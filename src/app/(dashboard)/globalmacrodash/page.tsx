@@ -375,7 +375,7 @@ function GuidanceBadge({ g }: { g: GuidanceLabel }) {
   const map: Record<GuidanceLabel, { label: string; cls: string }> = {
     hawkish: { label: "Hawkish", cls: "bg-red-900/60 text-red-300 border-red-700" },
     dovish: { label: "Dovish", cls: "bg-green-900/60 text-green-300 border-green-700" },
-    neutral: { label: "Neutral", cls: "bg-gray-800 text-gray-300 border-gray-600" },
+    neutral: { label: "Neutral", cls: "bg-muted text-muted-foreground border-gray-600" },
   };
   const { label, cls } = map[g];
   return (
@@ -491,7 +491,7 @@ function MacroRegimeTab() {
       <div className="flex items-center gap-3 flex-wrap">
         <div className="flex items-center gap-2">
           <Globe className="w-5 h-5 text-primary" />
-          <span className="text-sm font-semibold text-gray-200">Global Growth/Inflation Matrix</span>
+          <span className="text-sm font-semibold text-foreground">Global Growth/Inflation Matrix</span>
         </div>
         <Badge
           className="ml-auto text-xs font-bold px-3 py-1"
@@ -503,9 +503,9 @@ function MacroRegimeTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Scatter chart */}
-        <Card className="lg:col-span-2 bg-gray-900/60 border-gray-800">
+        <Card className="lg:col-span-2 bg-card/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-300">Country Positioning (Growth vs Inflation)</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Country Positioning (Growth vs Inflation)</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="h-64">
@@ -514,7 +514,7 @@ function MacroRegimeTab() {
             {/* Legend */}
             <div className="flex flex-wrap gap-3 mt-2">
               {(Object.entries(REGIME_COLORS) as [MacroRegime, string][]).map(([k, v]) => (
-                <span key={k} className="flex items-center gap-1 text-xs text-gray-400">
+                <span key={k} className="flex items-center gap-1 text-xs text-muted-foreground">
                   <span className="w-2.5 h-2.5 rounded-full inline-block" style={{ background: v }} />
                   {k}
                 </span>
@@ -524,9 +524,9 @@ function MacroRegimeTab() {
         </Card>
 
         {/* Regime gauge + info */}
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-300">Regime Indicator</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Regime Indicator</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col items-center gap-3">
             <RegimeGauge regime={current.regime} color={current.color} />
@@ -537,7 +537,7 @@ function MacroRegimeTab() {
               <p className="text-xs font-bold mb-1" style={{ color: current.color }}>
                 {current.regime}
               </p>
-              <p className="text-xs text-gray-400 leading-snug">{current.desc}</p>
+              <p className="text-xs text-muted-foreground leading-snug">{current.desc}</p>
             </div>
 
             {/* Regime scores */}
@@ -547,14 +547,14 @@ function MacroRegimeTab() {
                 const pct = (count / REGIME_POINTS.length) * 100;
                 return (
                   <div key={r} className="flex items-center gap-2">
-                    <span className="text-xs text-gray-400 w-20">{r}</span>
-                    <div className="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                    <span className="text-xs text-muted-foreground w-20">{r}</span>
+                    <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full"
                         style={{ width: `${pct}%`, background: REGIME_COLORS[r] }}
                       />
                     </div>
-                    <span className="text-xs text-gray-500 w-8 text-right">{count}/8</span>
+                    <span className="text-xs text-muted-foreground w-8 text-right">{count}/8</span>
                   </div>
                 );
               })}
@@ -571,7 +571,7 @@ function MacroRegimeTab() {
           { label: "G7 GDP Growth", value: "2.1%", sub: "Steady", icon: <BarChart2 className="w-4 h-4 text-primary" />, up: true },
           { label: "USD Index (DXY)", value: "104.6", sub: "-0.3% MTD", icon: <DollarSign className="w-4 h-4 text-yellow-400" />, up: false },
         ].map((m, i) => (
-          <Card key={i} className="bg-gray-900/60 border-gray-800">
+          <Card key={i} className="bg-card/60 border-border">
             <CardContent className="pt-3 pb-3">
               <div className="flex items-center justify-between mb-1">
                 {m.icon}
@@ -582,8 +582,8 @@ function MacroRegimeTab() {
                 )}
               </div>
               <p className="text-lg font-bold text-white">{m.value}</p>
-              <p className="text-xs text-gray-400">{m.label}</p>
-              <p className="text-xs text-gray-500">{m.sub}</p>
+              <p className="text-xs text-muted-foreground">{m.label}</p>
+              <p className="text-xs text-muted-foreground">{m.sub}</p>
             </CardContent>
           </Card>
         ))}
@@ -597,14 +597,14 @@ function CentralBanksTab() {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <Target className="w-5 h-5 text-primary" />
-        <span className="text-sm font-semibold text-gray-200">Central Bank Policy Tracker</span>
+        <span className="text-sm font-semibold text-foreground">Central Bank Policy Tracker</span>
       </div>
 
-      <Card className="bg-gray-900/60 border-gray-800 overflow-x-auto">
+      <Card className="bg-card/60 border-border overflow-x-auto">
         <CardContent className="pt-4 pb-2">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-xs text-gray-500 border-b border-gray-800">
+              <tr className="text-left text-xs text-muted-foreground border-b border-border">
                 <th className="pb-2 pr-3">Bank</th>
                 <th className="pb-2 pr-3 text-right">Rate</th>
                 <th className="pb-2 pr-3 text-right">Last Chg</th>
@@ -615,13 +615,13 @@ function CentralBanksTab() {
             </thead>
             <tbody className="divide-y divide-gray-800/60">
               {CENTRAL_BANKS.map((cb, i) => (
-                <tr key={i} className="hover:bg-gray-800/30 transition-colors">
+                <tr key={i} className="hover:bg-muted/30 transition-colors">
                   <td className="py-3 pr-3">
                     <div className="flex items-center gap-2">
                       <span className="text-lg">{cb.flag}</span>
                       <div>
-                        <p className="font-semibold text-gray-200 text-xs">{cb.abbr}</p>
-                        <p className="text-xs text-gray-500 hidden sm:block">{cb.name}</p>
+                        <p className="font-semibold text-foreground text-xs">{cb.abbr}</p>
+                        <p className="text-xs text-muted-foreground hidden sm:block">{cb.name}</p>
                       </div>
                     </div>
                   </td>
@@ -638,13 +638,13 @@ function CentralBanksTab() {
                         <ArrowDownRight className="w-3 h-3" />{cb.lastChange.toFixed(2)}%
                       </span>
                     ) : (
-                      <span className="flex items-center justify-end gap-0.5 text-gray-400 font-mono text-xs">
+                      <span className="flex items-center justify-end gap-0.5 text-muted-foreground font-mono text-xs">
                         <Minus className="w-3 h-3" />0.00%
                       </span>
                     )}
                   </td>
                   <td className="py-3 pr-4">
-                    <span className="flex items-center gap-1 text-xs text-gray-400">
+                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
                       <Calendar className="w-3 h-3" />
                       {cb.nextMeeting}
                     </span>
@@ -663,9 +663,9 @@ function CentralBanksTab() {
       </Card>
 
       {/* Policy divergence note */}
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-gray-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-yellow-400" />
             Policy Divergence Analysis
           </CardTitle>
@@ -692,10 +692,10 @@ function CentralBanksTab() {
                 color: "text-green-400",
               },
             ].map((d, i) => (
-              <div key={i} className="bg-gray-800/50 rounded-lg p-3">
-                <p className="text-xs text-gray-500 mb-1">{d.title}</p>
+              <div key={i} className="bg-muted/50 rounded-lg p-3">
+                <p className="text-xs text-muted-foreground mb-1">{d.title}</p>
                 <p className={cn("text-xl font-bold font-mono", d.color)}>{d.value}</p>
-                <p className="text-xs text-gray-400 mt-1">{d.note}</p>
+                <p className="text-xs text-muted-foreground mt-1">{d.note}</p>
               </div>
             ))}
           </div>
@@ -703,9 +703,9 @@ function CentralBanksTab() {
       </Card>
 
       {/* Currency Wars indicator */}
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-gray-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-orange-400" />
             Currency Wars Monitor
           </CardTitle>
@@ -722,11 +722,11 @@ function CentralBanksTab() {
                 c.risk === "high" ? "text-red-400" : c.risk === "medium" ? "text-yellow-400" : "text-green-400";
               const ytdColor = c.ytd.startsWith("+") ? "text-green-400" : "text-red-400";
               return (
-                <div key={i} className="bg-gray-800/50 rounded-lg p-3 text-center">
-                  <p className="font-bold text-gray-200 text-sm">{c.currency}</p>
+                <div key={i} className="bg-muted/50 rounded-lg p-3 text-center">
+                  <p className="font-bold text-foreground text-sm">{c.currency}</p>
                   <p className={cn("text-lg font-mono font-bold", ytdColor)}>{c.ytd}</p>
-                  <p className="text-xs text-gray-500">YTD vs basket</p>
-                  <p className="text-xs text-gray-400 mt-1">Intervention: {c.interv}</p>
+                  <p className="text-xs text-muted-foreground">YTD vs basket</p>
+                  <p className="text-xs text-muted-foreground mt-1">Intervention: {c.interv}</p>
                   <p className={cn("text-xs font-semibold mt-0.5", riskColor)}>Risk: {c.risk}</p>
                 </div>
               );
@@ -745,14 +745,14 @@ function CrossAssetTab() {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <Layers className="w-5 h-5 text-muted-foreground" />
-        <span className="text-sm font-semibold text-gray-200">Cross-Asset Correlation Matrix (30-day rolling)</span>
+        <span className="text-sm font-semibold text-foreground">Cross-Asset Correlation Matrix (30-day rolling)</span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Heatmap */}
-        <Card className="lg:col-span-2 bg-gray-900/60 border-gray-800">
+        <Card className="lg:col-span-2 bg-card/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-300">Correlation Heatmap</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Correlation Heatmap</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
@@ -760,7 +760,7 @@ function CrossAssetTab() {
             </div>
             {/* Color scale legend */}
             <div className="flex items-center gap-2 mt-3">
-              <span className="text-xs text-gray-500">−1.0</span>
+              <span className="text-xs text-muted-foreground">−1.0</span>
               <div
                 className="flex-1 h-2 rounded"
                 style={{
@@ -768,16 +768,16 @@ function CrossAssetTab() {
                     "linear-gradient(to right, #b91c1c, #ef4444, #fca5a5, #f9fafb, #93c5fd, #3b82f6, #1d4ed8)",
                 }}
               />
-              <span className="text-xs text-gray-500">+1.0</span>
+              <span className="text-xs text-muted-foreground">+1.0</span>
             </div>
-            <p className="text-xs text-gray-600 mt-1">Negative = inverse relationship &nbsp;·&nbsp; Positive = move together</p>
+            <p className="text-xs text-muted-foreground mt-1">Negative = inverse relationship &nbsp;·&nbsp; Positive = move together</p>
           </CardContent>
         </Card>
 
         {/* Notable correlations */}
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-gray-300">Notable Correlations</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Notable Correlations</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {[
@@ -793,8 +793,8 @@ function CrossAssetTab() {
               const barPct = Math.abs(c.corr) * 100;
               return (
                 <div key={i} className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-gray-300 w-16">{c.pair}</span>
-                  <div className="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                  <span className="text-xs font-mono text-muted-foreground w-16">{c.pair}</span>
+                  <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                     <div className="h-full rounded-full" style={{ width: `${barPct}%`, background: color }} />
                   </div>
                   <span className="text-xs font-mono w-12 text-right" style={{ color }}>
@@ -804,9 +804,9 @@ function CrossAssetTab() {
               );
             })}
 
-            <div className="mt-4 p-3 rounded-lg bg-gray-800/50">
-              <p className="text-xs text-gray-400 font-semibold mb-1">Regime Insight</p>
-              <p className="text-xs text-gray-500 leading-snug">
+            <div className="mt-4 p-3 rounded-lg bg-muted/50">
+              <p className="text-xs text-muted-foreground font-semibold mb-1">Regime Insight</p>
+              <p className="text-xs text-muted-foreground leading-snug">
                 SPX/TLT correlation shift signals key regime transition. Positive correlation indicates
                 risk-off dynamics; negative suggests inflation-driven repricing.
               </p>
@@ -816,9 +816,9 @@ function CrossAssetTab() {
       </div>
 
       {/* Asset performance summary */}
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-gray-300">30-Day Asset Performance</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">30-Day Asset Performance</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
@@ -832,12 +832,12 @@ function CrossAssetTab() {
             ].map((a, i) => {
               const pos = a.ret >= 0;
               return (
-                <div key={i} className="bg-gray-800/50 rounded-lg p-3 text-center">
-                  <p className="font-bold text-gray-300 text-sm">{a.short}</p>
+                <div key={i} className="bg-muted/50 rounded-lg p-3 text-center">
+                  <p className="font-bold text-muted-foreground text-sm">{a.short}</p>
                   <p className={cn("text-xl font-bold font-mono", pos ? "text-green-400" : "text-red-400")}>
                     {pos ? "+" : ""}{a.ret.toFixed(1)}%
                   </p>
-                  <p className="text-xs text-gray-500">Vol {a.vol.toFixed(1)}%</p>
+                  <p className="text-xs text-muted-foreground">Vol {a.vol.toFixed(1)}%</p>
                 </div>
               );
             })}
@@ -853,17 +853,17 @@ function PositioningTab() {
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <BarChart2 className="w-5 h-5 text-orange-400" />
-        <span className="text-sm font-semibold text-gray-200">Global Portfolio Positioning (COT-Style)</span>
+        <span className="text-sm font-semibold text-foreground">Global Portfolio Positioning (COT-Style)</span>
       </div>
 
-      <Card className="bg-gray-900/60 border-gray-800 overflow-x-auto">
+      <Card className="bg-card/60 border-border overflow-x-auto">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-gray-300">Net Speculative Positioning by Asset Class</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Net Speculative Positioning by Asset Class</CardTitle>
         </CardHeader>
         <CardContent>
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-xs text-gray-500 border-b border-gray-800">
+              <tr className="text-left text-xs text-muted-foreground border-b border-border">
                 <th className="pb-2 pr-3">Asset</th>
                 <th className="pb-2 pr-4">Net Long/Short</th>
                 <th className="pb-2 pr-4">Spec Net</th>
@@ -880,12 +880,12 @@ function PositioningTab() {
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.04 }}
-                    className="hover:bg-gray-800/30 transition-colors"
+                    className="hover:bg-muted/30 transition-colors"
                   >
                     <td className="py-2.5 pr-3">
                       <div>
-                        <p className="font-semibold text-gray-200 text-xs">{p.short}</p>
-                        <p className="text-xs text-gray-500 hidden sm:block">{p.name}</p>
+                        <p className="font-semibold text-foreground text-xs">{p.short}</p>
+                        <p className="text-xs text-muted-foreground hidden sm:block">{p.name}</p>
                       </div>
                     </td>
                     <td className="py-2.5 pr-4">
@@ -937,9 +937,9 @@ function PositioningTab() {
           const nx = cx + r * Math.cos(rad);
           const ny = cy + r * Math.sin(rad);
           return (
-            <Card key={i} className="bg-gray-900/60 border-gray-800">
+            <Card key={i} className="bg-card/60 border-border">
               <CardContent className="pt-3 pb-3">
-                <p className="text-xs text-gray-500 mb-2">{s.label}</p>
+                <p className="text-xs text-muted-foreground mb-2">{s.label}</p>
                 {/* Mini arc gauge */}
                 <svg viewBox="0 0 100 55" className="w-full h-12">
                   <path
@@ -977,9 +977,9 @@ function PositioningTab() {
       </div>
 
       {/* Crowded trades alert */}
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-gray-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-yellow-400" />
             Crowded Trade Risk Monitor
           </CardTitle>
@@ -1008,8 +1008,8 @@ function PositioningTab() {
             ].map((t, i) => {
               const riskColor = t.risk === "high" ? "#ef4444" : "#f59e0b";
               return (
-                <div key={i} className="bg-gray-800/50 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-gray-200 mb-1">{t.trade}</p>
+                <div key={i} className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-xs font-semibold text-foreground mb-1">{t.trade}</p>
                   <div className="flex items-center gap-2 mb-1">
                     <div className="flex-1 h-1.5 bg-gray-700 rounded-full overflow-hidden">
                       <div
@@ -1019,7 +1019,7 @@ function PositioningTab() {
                     </div>
                     <span className="text-xs font-mono" style={{ color: riskColor }}>{t.crowding}%</span>
                   </div>
-                  <p className="text-xs text-gray-500 leading-snug">{t.note}</p>
+                  <p className="text-xs text-muted-foreground leading-snug">{t.note}</p>
                 </div>
               );
             })}
@@ -1043,7 +1043,7 @@ export default function GlobalMacroDashPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 p-4 md:p-6 space-y-5">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-5">
       {/* Page header */}
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
@@ -1051,7 +1051,7 @@ export default function GlobalMacroDashPage() {
             <Globe className="w-6 h-6 text-primary" />
             <h1 className="text-xl font-bold text-white">Global Macro Dashboard</h1>
           </div>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-muted-foreground">
             Cross-asset correlations · Central bank policy · Macro regimes · Positioning intelligence
           </p>
         </div>
@@ -1060,18 +1060,18 @@ export default function GlobalMacroDashPage() {
             <Activity className="w-3 h-3 mr-1" />
             Live Feed
           </Badge>
-          <span className="text-xs text-gray-500">Updated Mar 28, 2026</span>
+          <span className="text-xs text-muted-foreground">Updated Mar 28, 2026</span>
         </div>
       </div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="bg-gray-900/70 border border-gray-800 h-auto p-1 flex flex-wrap gap-1">
+        <TabsList className="bg-card/70 border border-border h-auto p-1 flex flex-wrap gap-1">
           {tabs.map((t) => (
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-gray-700 data-[state=active]:text-white text-gray-400"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-gray-700 data-[state=active]:text-white text-muted-foreground"
             >
               {t.icon}
               {t.label}

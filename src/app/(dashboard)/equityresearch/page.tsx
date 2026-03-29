@@ -467,7 +467,7 @@ function SensitivityGrid() {
           Terminal Growth →
         </text>
       </svg>
-      <p className="text-xs text-slate-500 mt-2">White border = base case (WACC 10.5%, g 3.5%). Values are per-share intrinsic value ($).</p>
+      <p className="text-xs text-muted-foreground mt-2">White border = base case (WACC 10.5%, g 3.5%). Values are per-share intrinsic value ($).</p>
     </div>
   );
 }
@@ -767,7 +767,7 @@ function RatingDistributionChart({ ratings }: { ratings: AnalystRating[] }) {
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-slate-400 font-medium">Consensus Distribution ({total} analysts)</p>
+      <p className="text-xs text-muted-foreground font-medium">Consensus Distribution ({total} analysts)</p>
       <svg width={barW + 120} height={barH + 40}>
         {/* Stacked bar */}
         <rect x={0} y={0} width={(buyPct / 100) * barW} height={barH} fill="#22c55e" rx={4} />
@@ -867,16 +867,16 @@ function ResearchProcessTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-sm font-semibold text-slate-200 mb-1">The Equity Research Process</h3>
-        <p className="text-xs text-slate-400">
+        <h3 className="text-sm font-semibold text-foreground mb-1">The Equity Research Process</h3>
+        <p className="text-xs text-muted-foreground">
           Professional equity research follows a disciplined 8-step framework from idea generation through
           ongoing monitoring. Each phase builds on the previous to create a rigorous, repeatable investment process.
         </p>
       </div>
 
       {/* Flowchart */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
-        <p className="text-xs text-slate-400 mb-3 font-medium">Process Flowchart</p>
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+        <p className="text-xs text-muted-foreground mb-3 font-medium">Process Flowchart</p>
         <ProcessFlowchart />
       </div>
 
@@ -886,7 +886,7 @@ function ResearchProcessTab() {
           <button
             key={step.id}
             onClick={() => setActiveStep(activeStep === step.id ? null : step.id)}
-            className="text-left rounded-xl bg-slate-800/50 border border-slate-700/50 p-4 hover:border-slate-500/60 transition-colors"
+            className="text-left rounded-xl bg-muted/50 border border-border/50 p-4 hover:border-slate-500/60 transition-colors"
           >
             <div className="flex items-center gap-3 mb-1">
               <div
@@ -896,12 +896,12 @@ function ResearchProcessTab() {
                 {step.icon}
               </div>
               <div>
-                <span className="text-xs text-slate-500 font-mono">Step {step.id}</span>
-                <p className="text-sm font-semibold text-slate-200">{step.label}</p>
+                <span className="text-xs text-muted-foreground font-mono">Step {step.id}</span>
+                <p className="text-sm font-semibold text-foreground">{step.label}</p>
               </div>
               <ChevronRight
                 size={14}
-                className={cn("ml-auto text-slate-500 transition-transform", activeStep === step.id && "rotate-90")}
+                className={cn("ml-auto text-muted-foreground transition-transform", activeStep === step.id && "rotate-90")}
               />
             </div>
             <AnimatePresence>
@@ -910,7 +910,7 @@ function ResearchProcessTab() {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  className="text-xs text-slate-400 mt-2 overflow-hidden"
+                  className="text-xs text-muted-foreground mt-2 overflow-hidden"
                 >
                   {step.description}
                 </motion.p>
@@ -921,8 +921,8 @@ function ResearchProcessTab() {
       </div>
 
       {/* Checklist */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
-        <p className="text-xs text-slate-400 mb-3 font-medium">Thesis Validation Checklist</p>
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+        <p className="text-xs text-muted-foreground mb-3 font-medium">Thesis Validation Checklist</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {[
             "Can you explain the thesis in 2 sentences?",
@@ -934,7 +934,7 @@ function ResearchProcessTab() {
             "At what price is your thesis wrong?",
             "Who is on the other side of this trade?",
           ].map((q, i) => (
-            <div key={`check-${i}`} className="flex items-start gap-2 text-xs text-slate-300">
+            <div key={`check-${i}`} className="flex items-start gap-2 text-xs text-muted-foreground">
               <CheckCircle2 size={13} className="text-indigo-400 mt-0.5 flex-shrink-0" />
               {q}
             </div>
@@ -950,12 +950,12 @@ function FinancialModelingTab() {
   return (
     <div className="space-y-6">
       {/* 3-Statement Linkage */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Layers size={15} className="text-indigo-400" />
-          <p className="text-sm font-semibold text-slate-200">3-Statement Model Linkage</p>
+          <p className="text-sm font-semibold text-foreground">3-Statement Model Linkage</p>
         </div>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           The three financial statements are deeply interlinked. Net income flows from the IS to the CFS and equity section of the BS.
           Cash from the CFS feeds the BS cash balance. D&A ties IS to CFS and reduces PP&E on BS.
         </p>
@@ -963,27 +963,27 @@ function FinancialModelingTab() {
       </div>
 
       {/* Key Driver Assumptions */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Activity size={15} className="text-muted-foreground" />
-          <p className="text-sm font-semibold text-slate-200">Key Driver Assumptions — {TICKER}</p>
+          <p className="text-sm font-semibold text-foreground">Key Driver Assumptions — {TICKER}</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700/50">
-                <th className="text-left py-2 pr-4 text-slate-400 font-medium">Driver</th>
-                <th className="text-right py-2 px-3 text-slate-400 font-medium">Base</th>
+              <tr className="border-b border-border/50">
+                <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Driver</th>
+                <th className="text-right py-2 px-3 text-muted-foreground font-medium">Base</th>
                 <th className="text-right py-2 px-3 text-emerald-400 font-medium">Bull</th>
                 <th className="text-right py-2 px-3 text-red-400 font-medium">Bear</th>
-                <th className="text-right py-2 pl-3 text-slate-400 font-medium">Sensitivity</th>
+                <th className="text-right py-2 pl-3 text-muted-foreground font-medium">Sensitivity</th>
               </tr>
             </thead>
             <tbody>
               {DRIVER_ASSUMPTIONS.map((row, i) => (
-                <tr key={`driver-${i}`} className="border-b border-slate-700/30 hover:bg-slate-700/20">
-                  <td className="py-2 pr-4 text-slate-300 font-medium">{row.driver}</td>
-                  <td className="py-2 px-3 text-right text-slate-200 font-mono">{row.base}</td>
+                <tr key={`driver-${i}`} className="border-b border-border/30 hover:bg-muted/20">
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{row.driver}</td>
+                  <td className="py-2 px-3 text-right text-foreground font-mono">{row.base}</td>
                   <td className="py-2 px-3 text-right text-emerald-400 font-mono">{row.bull}</td>
                   <td className="py-2 px-3 text-right text-red-400 font-mono">{row.bear}</td>
                   <td className="py-2 pl-3 text-right">
@@ -994,7 +994,7 @@ function FinancialModelingTab() {
                           ? "bg-red-500/20 text-red-400"
                           : row.sensitivity === "Medium"
                           ? "bg-amber-500/20 text-amber-400"
-                          : "bg-slate-600/40 text-slate-400"
+                          : "bg-slate-600/40 text-muted-foreground"
                       )}
                     >
                       {row.sensitivity}
@@ -1008,12 +1008,12 @@ function FinancialModelingTab() {
       </div>
 
       {/* Tornado Chart */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 size={15} className="text-primary" />
-          <p className="text-sm font-semibold text-slate-200">Sensitivity Analysis — Tornado Chart</p>
+          <p className="text-sm font-semibold text-foreground">Sensitivity Analysis — Tornado Chart</p>
         </div>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Shows impact on price target from moving each assumption from base to bull/bear,
           holding all others constant. Widest bars = highest sensitivity = most critical assumptions.
         </p>
@@ -1047,12 +1047,12 @@ function ValuationTab() {
   return (
     <div className="space-y-6">
       {/* DCF Sensitivity Matrix */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Calculator size={15} className="text-primary" />
-          <p className="text-sm font-semibold text-slate-200">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
+          <p className="text-sm font-semibold text-foreground">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
         </div>
-        <p className="text-xs text-slate-400 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Green = above ${BASE_PT} bull target. Yellow = near current price ${CURRENT_PRICE}. Red = downside.
           Base case (white border) assumes WACC 10.5% and terminal growth 3.5%.
         </p>
@@ -1060,10 +1060,10 @@ function ValuationTab() {
       </div>
 
       {/* P/E Relative Valuation */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Scale size={15} className="text-muted-foreground" />
-          <p className="text-sm font-semibold text-slate-200">P/E Relative Valuation Context</p>
+          <p className="text-sm font-semibold text-foreground">P/E Relative Valuation Context</p>
         </div>
         <div className="grid grid-cols-3 gap-3 mb-4">
           {[
@@ -1076,10 +1076,10 @@ function ValuationTab() {
               delta: "",
             },
           ].map((item, i) => (
-            <div key={`pe-${i}`} className="rounded-lg bg-slate-700/30 p-3 text-center">
-              <p className="text-xs text-slate-400 mb-1">{item.label}</p>
-              <p className="text-xl font-bold text-slate-100">{item.value}</p>
-              {item.note && <p className="text-xs text-slate-500 mt-0.5">{item.note}</p>}
+            <div key={`pe-${i}`} className="rounded-lg bg-muted/30 p-3 text-center">
+              <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
+              <p className="text-xl font-bold text-foreground">{item.value}</p>
+              {item.note && <p className="text-xs text-muted-foreground mt-0.5">{item.note}</p>}
               {item.delta && <p className="text-xs text-amber-400 mt-0.5">{item.delta}</p>}
             </div>
           ))}
@@ -1087,11 +1087,11 @@ function ValuationTab() {
       </div>
 
       {/* EV/EBITDA Comps Table */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Layers size={15} className="text-emerald-400" />
-            <p className="text-sm font-semibold text-slate-200">Semiconductor Comps Table</p>
+            <p className="text-sm font-semibold text-foreground">Semiconductor Comps Table</p>
           </div>
           <div className="flex gap-1">
             {(["evEbitda", "pe", "evRev", "growth"] as const).map((k) => (
@@ -1100,7 +1100,7 @@ function ValuationTab() {
                 onClick={() => setSortKey(k)}
                 className={cn(
                   "text-xs px-2 py-1 rounded-md transition-colors",
-                  sortKey === k ? "bg-indigo-600 text-white" : "text-slate-400 hover:text-slate-200"
+                  sortKey === k ? "bg-indigo-600 text-white" : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {k === "evEbitda" ? "EV/EBITDA" : k === "evRev" ? "EV/Rev" : k === "pe" ? "P/E" : "Growth"}
@@ -1111,7 +1111,7 @@ function ValuationTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700/50 text-slate-400">
+              <tr className="border-b border-border/50 text-muted-foreground">
                 <th className="text-left py-2 pr-3 font-medium">Company</th>
                 <th className="text-right py-2 px-2 font-medium">Mkt Cap ($B)</th>
                 <th className="text-right py-2 px-2 font-medium">EV/EBITDA</th>
@@ -1129,32 +1129,32 @@ function ValuationTab() {
                   <tr
                     key={`comp-${i}`}
                     className={cn(
-                      "border-b border-slate-700/30 hover:bg-slate-700/20",
+                      "border-b border-border/30 hover:bg-muted/20",
                       isNvda && "bg-indigo-500/10"
                     )}
                   >
                     <td className="py-2 pr-3">
                       <div>
-                        <span className={cn("font-bold", isNvda ? "text-indigo-300" : "text-slate-200")}>
+                        <span className={cn("font-bold", isNvda ? "text-indigo-300" : "text-foreground")}>
                           {c.ticker}
                         </span>
-                        <span className="text-slate-500 ml-1 text-xs">{c.name}</span>
+                        <span className="text-muted-foreground ml-1 text-xs">{c.name}</span>
                       </div>
                     </td>
-                    <td className="py-2 px-2 text-right text-slate-300 font-mono">{c.marketCap.toFixed(0)}</td>
-                    <td className={cn("py-2 px-2 text-right font-mono", c.evEbitda > medEvEbitda ? "text-amber-400" : "text-slate-300")}>
+                    <td className="py-2 px-2 text-right text-muted-foreground font-mono">{c.marketCap.toFixed(0)}</td>
+                    <td className={cn("py-2 px-2 text-right font-mono", c.evEbitda > medEvEbitda ? "text-amber-400" : "text-muted-foreground")}>
                       {c.evEbitda.toFixed(1)}x
                     </td>
-                    <td className={cn("py-2 px-2 text-right font-mono", c.evRev > medEvRev ? "text-amber-400" : "text-slate-300")}>
+                    <td className={cn("py-2 px-2 text-right font-mono", c.evRev > medEvRev ? "text-amber-400" : "text-muted-foreground")}>
                       {c.evRev.toFixed(1)}x
                     </td>
-                    <td className={cn("py-2 px-2 text-right font-mono", c.pe > medPE ? "text-amber-400" : "text-slate-300")}>
+                    <td className={cn("py-2 px-2 text-right font-mono", c.pe > medPE ? "text-amber-400" : "text-muted-foreground")}>
                       {c.pe}x
                     </td>
                     <td className={cn("py-2 px-2 text-right font-mono", c.growth >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {c.growth > 0 ? "+" : ""}{c.growth}%
                     </td>
-                    <td className="py-2 px-2 text-right font-mono text-slate-300">{c.margin}%</td>
+                    <td className="py-2 px-2 text-right font-mono text-muted-foreground">{c.margin}%</td>
                     <td className="py-2 pl-2 text-right">
                       <RatingBadge rating={c.rating} />
                     </td>
@@ -1162,20 +1162,20 @@ function ValuationTab() {
                 );
               })}
               {/* Median row */}
-              <tr className="border-t border-slate-600/50 bg-slate-700/20">
-                <td className="py-2 pr-3 text-slate-400 font-semibold text-xs italic">Median</td>
-                <td className="py-2 px-2 text-right text-slate-400 font-mono">—</td>
-                <td className="py-2 px-2 text-right text-slate-300 font-mono font-semibold">{medEvEbitda.toFixed(1)}x</td>
-                <td className="py-2 px-2 text-right text-slate-300 font-mono font-semibold">{medEvRev.toFixed(1)}x</td>
-                <td className="py-2 px-2 text-right text-slate-300 font-mono font-semibold">{medPE.toFixed(0)}x</td>
-                <td className="py-2 px-2 text-right text-slate-400 font-mono">—</td>
-                <td className="py-2 px-2 text-right text-slate-400 font-mono">—</td>
+              <tr className="border-t border-slate-600/50 bg-muted/20">
+                <td className="py-2 pr-3 text-muted-foreground font-semibold text-xs italic">Median</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-semibold">{medEvEbitda.toFixed(1)}x</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-semibold">{medEvRev.toFixed(1)}x</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono font-semibold">{medPE.toFixed(0)}x</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
+                <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
                 <td className="py-2 pl-2" />
               </tr>
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Amber = above peer median. NVDA highlighted in blue. Sort by any metric.
         </p>
       </div>
@@ -1271,8 +1271,8 @@ function ReportStructureTab() {
     <div className="space-y-6">
       {/* Report outline */}
       <div>
-        <h3 className="text-sm font-semibold text-slate-200 mb-1">Professional Research Report Structure</h3>
-        <p className="text-xs text-slate-400">
+        <h3 className="text-sm font-semibold text-foreground mb-1">Professional Research Report Structure</h3>
+        <p className="text-xs text-muted-foreground">
           Sell-side and buy-side reports follow a consistent structure. Click each section to explore what it should contain.
         </p>
       </div>
@@ -1281,20 +1281,20 @@ function ReportStructureTab() {
         {sections.map((sec, i) => (
           <div
             key={`sec-${i}`}
-            className="rounded-xl bg-slate-800/50 border border-slate-700/50 overflow-hidden"
+            className="rounded-xl bg-muted/50 border border-border/50 overflow-hidden"
           >
             <button
-              className="w-full flex items-center gap-3 p-4 text-left hover:bg-slate-700/20 transition-colors"
+              className="w-full flex items-center gap-3 p-4 text-left hover:bg-muted/20 transition-colors"
               onClick={() => setOpenSection(openSection === i ? null : i)}
             >
               <div
                 className="w-2 h-6 rounded-full flex-shrink-0"
                 style={{ backgroundColor: sec.color }}
               />
-              <span className="text-sm font-semibold text-slate-200 flex-1">{sec.title}</span>
+              <span className="text-sm font-semibold text-foreground flex-1">{sec.title}</span>
               <ChevronRight
                 size={14}
-                className={cn("text-slate-500 transition-transform flex-shrink-0", openSection === i && "rotate-90")}
+                className={cn("text-muted-foreground transition-transform flex-shrink-0", openSection === i && "rotate-90")}
               />
             </button>
             <AnimatePresence>
@@ -1307,7 +1307,7 @@ function ReportStructureTab() {
                 >
                   <div className="px-4 pb-4 space-y-1.5">
                     {sec.content.map((line, j) => (
-                      <div key={`line-${i}-${j}`} className="flex items-start gap-2 text-xs text-slate-400">
+                      <div key={`line-${i}-${j}`} className="flex items-start gap-2 text-xs text-muted-foreground">
                         <div
                           className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
                           style={{ backgroundColor: sec.color }}
@@ -1330,7 +1330,7 @@ function ReportStructureTab() {
             <TrendingUp size={15} className="text-emerald-400" />
             <p className="text-sm font-semibold text-emerald-300">NVDA Bull Case — $1,250 PT</p>
           </div>
-          <ul className="space-y-1.5 text-xs text-slate-300">
+          <ul className="space-y-1.5 text-xs text-muted-foreground">
             {[
               "Blackwell GPU demand significantly exceeds supply through 2026",
               "Data center AI capex cycle accelerates beyond current estimates",
@@ -1350,7 +1350,7 @@ function ReportStructureTab() {
             <TrendingDown size={15} className="text-red-400" />
             <p className="text-sm font-semibold text-red-300">NVDA Bear Case — $600 PT</p>
           </div>
-          <ul className="space-y-1.5 text-xs text-slate-300">
+          <ul className="space-y-1.5 text-xs text-muted-foreground">
             {[
               "Export restrictions expand to additional GPU products/markets",
               "Hyperscaler custom silicon (TPU, Trainium) gains significant share",
@@ -1368,15 +1368,15 @@ function ReportStructureTab() {
       </div>
 
       {/* Catalyst Calendar */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Clock size={15} className="text-amber-400" />
-          <p className="text-sm font-semibold text-slate-200">Catalyst Calendar — {TICKER}</p>
+          <p className="text-sm font-semibold text-foreground">Catalyst Calendar — {TICKER}</p>
         </div>
         <div className="space-y-2">
           {CATALYSTS.map((cat, i) => (
             <div key={`cat-${i}`} className="flex items-center gap-3 text-xs">
-              <span className="font-mono text-slate-400 w-14 flex-shrink-0">{cat.date}</span>
+              <span className="font-mono text-muted-foreground w-14 flex-shrink-0">{cat.date}</span>
               <span
                 className={cn(
                   "px-2 py-0.5 rounded-full font-semibold flex-shrink-0",
@@ -1386,16 +1386,16 @@ function ReportStructureTab() {
                     ? "bg-primary/20 text-primary"
                     : cat.type === "regulatory"
                     ? "bg-red-500/20 text-red-300"
-                    : "bg-slate-600/40 text-slate-300"
+                    : "bg-slate-600/40 text-muted-foreground"
                 )}
               >
                 {cat.type}
               </span>
-              <span className="text-slate-300 flex-1">{cat.event}</span>
+              <span className="text-muted-foreground flex-1">{cat.event}</span>
               <span
                 className={cn(
                   "font-semibold flex-shrink-0",
-                  cat.impact === "High" ? "text-red-400" : cat.impact === "Medium" ? "text-amber-400" : "text-slate-500"
+                  cat.impact === "High" ? "text-red-400" : cat.impact === "Medium" ? "text-amber-400" : "text-muted-foreground"
                 )}
               >
                 {cat.impact}
@@ -1446,31 +1446,31 @@ function AnalystRatingsTab() {
           { label: "Avg Price Target", value: `$${avgPT}`, sub: `${implied}% upside`, color: "text-emerald-400" },
           { label: "High Target", value: `$${highPT}`, sub: "Morgan Stanley", color: "text-emerald-300" },
           { label: "Low Target", value: `$${lowPT}`, sub: "RBC Capital", color: "text-red-400" },
-          { label: "Coverage", value: `${ANALYST_RATINGS.length}`, sub: "sell-side analysts", color: "text-slate-300" },
+          { label: "Coverage", value: `${ANALYST_RATINGS.length}`, sub: "sell-side analysts", color: "text-muted-foreground" },
         ].map((stat, i) => (
-          <div key={`stat-${i}`} className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-3 text-center">
-            <p className="text-xs text-slate-400 mb-1">{stat.label}</p>
+          <div key={`stat-${i}`} className="rounded-xl bg-muted/50 border border-border/50 p-3 text-center">
+            <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
             <p className={cn("text-xl font-bold", stat.color)}>{stat.value}</p>
-            <p className="text-xs text-slate-500 mt-0.5">{stat.sub}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>
           </div>
         ))}
       </div>
 
       {/* Rating distribution */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <RatingDistributionChart ratings={ANALYST_RATINGS} />
       </div>
 
       {/* Individual ratings table */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Star size={15} className="text-amber-400" />
-          <p className="text-sm font-semibold text-slate-200">Individual Analyst Ratings</p>
+          <p className="text-sm font-semibold text-foreground">Individual Analyst Ratings</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700/50 text-slate-400">
+              <tr className="border-b border-border/50 text-muted-foreground">
                 <th className="text-left py-2 pr-3 font-medium">Firm</th>
                 <th className="text-left py-2 px-2 font-medium">Analyst</th>
                 <th className="text-center py-2 px-2 font-medium">Rating</th>
@@ -1485,20 +1485,20 @@ function AnalystRatingsTab() {
                 const pctDiff = (((r.priceTarget - CURRENT_PRICE) / CURRENT_PRICE) * 100).toFixed(1);
                 const isUp = r.priceTarget > CURRENT_PRICE;
                 return (
-                  <tr key={`rating-${i}`} className="border-b border-slate-700/30 hover:bg-slate-700/20">
-                    <td className="py-2 pr-3 text-slate-200 font-semibold">{r.firm}</td>
-                    <td className="py-2 px-2 text-slate-400">{r.analyst}</td>
+                  <tr key={`rating-${i}`} className="border-b border-border/30 hover:bg-muted/20">
+                    <td className="py-2 pr-3 text-foreground font-semibold">{r.firm}</td>
+                    <td className="py-2 px-2 text-muted-foreground">{r.analyst}</td>
                     <td className="py-2 px-2 text-center">
                       <RatingBadge rating={r.rating} />
                     </td>
-                    <td className="py-2 px-2 text-right text-slate-200 font-mono font-semibold">${r.priceTarget}</td>
+                    <td className="py-2 px-2 text-right text-foreground font-mono font-semibold">${r.priceTarget}</td>
                     <td className={cn("py-2 px-2 text-right font-mono", isUp ? "text-emerald-400" : "text-red-400")}>
                       {isUp ? "+" : ""}{pctDiff}%
                     </td>
-                    <td className="py-2 px-2 text-right text-slate-400">{r.date}</td>
+                    <td className="py-2 px-2 text-right text-muted-foreground">{r.date}</td>
                     <td className="py-2 pl-2 text-right">
                       <div className="flex items-center justify-end gap-1.5">
-                        <div className="w-20 h-2 rounded-full bg-slate-700 overflow-hidden">
+                        <div className="w-20 h-2 rounded-full bg-muted overflow-hidden">
                           <div
                             className={cn(
                               "h-full rounded-full",
@@ -1526,21 +1526,21 @@ function AnalystRatingsTab() {
       </div>
 
       {/* Price Target Accuracy chart */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Target size={15} className="text-rose-400" />
-          <p className="text-sm font-semibold text-slate-200">12-Month Price Target Accuracy by Firm</p>
+          <p className="text-sm font-semibold text-foreground">12-Month Price Target Accuracy by Firm</p>
         </div>
         <PriceTargetAccuracyChart ratings={ANALYST_RATINGS} />
       </div>
 
       {/* Earnings Revision Momentum */}
-      <div className="rounded-xl bg-slate-800/50 border border-slate-700/50 p-4">
+      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp size={15} className="text-emerald-400" />
-          <p className="text-sm font-semibold text-slate-200">EPS Estimate Revision Momentum</p>
+          <p className="text-sm font-semibold text-foreground">EPS Estimate Revision Momentum</p>
         </div>
-        <p className="text-xs text-slate-400 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Count of upward EPS estimate revisions minus downward revisions over rolling 8-week window. Rising = positive momentum.
         </p>
         <svg width={revW} height={revH}>
@@ -1609,7 +1609,7 @@ function AnalystRatingsTab() {
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function EquityResearchPage() {
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 p-4 sm:p-6">
+    <div className="min-h-screen bg-card text-foreground p-4 sm:p-6">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <motion.div
@@ -1621,16 +1621,16 @@ export default function EquityResearchPage() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <BookOpen size={20} className="text-indigo-400" />
-                <h1 className="text-xl font-bold text-slate-100">Equity Research</h1>
+                <h1 className="text-xl font-bold text-foreground">Equity Research</h1>
               </div>
-              <p className="text-sm text-slate-400">
+              <p className="text-sm text-muted-foreground">
                 Process, financial modeling, valuation methodology, and analyst dynamics —
                 illustrated with <span className="text-indigo-300 font-semibold">{TICKER}</span> as a live case study.
               </p>
             </div>
             <div className="text-right flex-shrink-0">
-              <p className="text-xs text-slate-500">Current Price</p>
-              <p className="text-2xl font-bold text-slate-100">${CURRENT_PRICE.toFixed(2)}</p>
+              <p className="text-xs text-muted-foreground">Current Price</p>
+              <p className="text-2xl font-bold text-foreground">${CURRENT_PRICE.toFixed(2)}</p>
               <p className="text-xs text-emerald-400">Avg PT: ${BASE_PT} (+{(((BASE_PT - CURRENT_PRICE) / CURRENT_PRICE) * 100).toFixed(1)}%)</p>
             </div>
           </div>
@@ -1638,7 +1638,7 @@ export default function EquityResearchPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="process">
-          <TabsList className="bg-slate-800/60 border border-slate-700/50 flex flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-muted/60 border border-border/50 flex flex-wrap h-auto gap-1 p-1">
             {[
               { value: "process", label: "Research Process", icon: <Search size={13} /> },
               { value: "modeling", label: "Financial Modeling", icon: <BarChart3 size={13} /> },

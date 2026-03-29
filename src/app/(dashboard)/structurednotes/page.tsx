@@ -673,17 +673,17 @@ function RiskBar({
         className="flex items-center justify-between cursor-pointer"
         onClick={() => setOpen((o) => !o)}
       >
-        <span className="text-sm font-medium text-slate-200">{label}</span>
+        <span className="text-sm font-medium text-foreground">{label}</span>
         <div className="flex items-center gap-2">
-          <span className="text-xs font-mono text-slate-400">{score}/100</span>
+          <span className="text-xs font-mono text-muted-foreground">{score}/100</span>
           {open ? (
-            <ChevronUp className="w-3 h-3 text-slate-400" />
+            <ChevronUp className="w-3 h-3 text-muted-foreground" />
           ) : (
-            <ChevronDown className="w-3 h-3 text-slate-400" />
+            <ChevronDown className="w-3 h-3 text-muted-foreground" />
           )}
         </div>
       </div>
-      <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+      <div className="h-2 bg-muted rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${score}%` }}
@@ -698,7 +698,7 @@ function RiskBar({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="text-xs text-slate-400 leading-relaxed overflow-hidden"
+            className="text-xs text-muted-foreground leading-relaxed overflow-hidden"
           >
             {description}
           </motion.p>
@@ -772,17 +772,17 @@ function ScenarioTable({
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-slate-800">
-            <th className="text-left py-2 px-3 text-slate-400 font-medium">
+          <tr className="border-b border-border">
+            <th className="text-left py-2 px-3 text-muted-foreground font-medium">
               Scenario
             </th>
-            <th className="text-right py-2 px-3 text-slate-400 font-medium">
+            <th className="text-right py-2 px-3 text-muted-foreground font-medium">
               Underlying
             </th>
-            <th className="text-right py-2 px-3 text-slate-400 font-medium">
+            <th className="text-right py-2 px-3 text-muted-foreground font-medium">
               Note Return
             </th>
-            <th className="text-right py-2 px-3 text-slate-400 font-medium">
+            <th className="text-right py-2 px-3 text-muted-foreground font-medium">
               Outperforms?
             </th>
           </tr>
@@ -796,9 +796,9 @@ function ScenarioTable({
             return (
               <tr
                 key={row.label}
-                className="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors"
+                className="border-b border-border/60 hover:bg-muted/30 transition-colors"
               >
-                <td className="py-2 px-3 text-slate-200 font-medium">
+                <td className="py-2 px-3 text-foreground font-medium">
                   {row.label}
                 </td>
                 <td className="py-2 px-3 text-right font-mono">
@@ -827,7 +827,7 @@ function ScenarioTable({
                       Yes
                     </span>
                   ) : (
-                    <span className="text-slate-500 text-xs">No</span>
+                    <span className="text-muted-foreground text-xs">No</span>
                   )}
                 </td>
               </tr>
@@ -975,7 +975,7 @@ export default function StructuredNotesPage() {
   const selectedProductData = PRODUCTS.find((p) => p.id === selectedProduct) ?? PRODUCTS[0];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -983,10 +983,10 @@ export default function StructuredNotesPage() {
             <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-slate-100">
+            <h1 className="text-xl font-semibold text-foreground">
               Structured Notes
             </h1>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-muted-foreground">
               Principal-protected notes, auto-callables, reverse convertibles,
               and structured product payoff analysis
             </p>
@@ -1026,13 +1026,13 @@ export default function StructuredNotesPage() {
           ].map((m) => (
             <div
               key={m.label}
-              className="bg-slate-900 border border-slate-800 rounded-lg p-3 flex items-start gap-2"
+              className="bg-card border border-border rounded-lg p-3 flex items-start gap-2"
             >
               <div className={cn("mt-0.5", m.color)}>{m.icon}</div>
               <div>
                 <div className={cn("text-lg font-bold", m.color)}>{m.value}</div>
-                <div className="text-xs text-slate-400 font-medium">{m.label}</div>
-                <div className="text-xs text-slate-500">{m.sub}</div>
+                <div className="text-xs text-muted-foreground font-medium">{m.label}</div>
+                <div className="text-xs text-muted-foreground">{m.sub}</div>
               </div>
             </div>
           ))}
@@ -1041,31 +1041,31 @@ export default function StructuredNotesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="products" className="space-y-4">
-        <TabsList className="bg-slate-900 border border-slate-800 h-auto flex-wrap gap-1 p-1">
+        <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
           <TabsTrigger
             value="products"
-            className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400"
+            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
           >
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             Product Types
           </TabsTrigger>
           <TabsTrigger
             value="payoff"
-            className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400"
+            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
           >
             <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
             Payoff Builder
           </TabsTrigger>
           <TabsTrigger
             value="pricing"
-            className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400"
+            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
           >
             <DollarSign className="w-3.5 h-3.5 mr-1.5" />
             Pricing
           </TabsTrigger>
           <TabsTrigger
             value="risk"
-            className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400"
+            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
           >
             <AlertTriangle className="w-3.5 h-3.5 mr-1.5" />
             Risk Analysis
@@ -1075,7 +1075,7 @@ export default function StructuredNotesPage() {
         {/* ── Tab 1: Product Types ── */}
         <TabsContent value="products" className="data-[state=inactive]:hidden">
           <div className="space-y-4">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-muted-foreground">
               Structured notes combine a fixed-income component (typically a
               zero-coupon bond) with one or more derivative instruments to create
               customized risk/return profiles. Click a product to explore its
@@ -1094,10 +1094,10 @@ export default function StructuredNotesPage() {
                     )
                   }
                   className={cn(
-                    "bg-slate-900 border rounded-xl p-4 cursor-pointer transition-all",
+                    "bg-card border rounded-xl p-4 cursor-pointer transition-all",
                     selectedProduct === product.id
                       ? "border-slate-500 ring-1 ring-slate-500/40"
-                      : "border-slate-800 hover:border-slate-700"
+                      : "border-border hover:border-border"
                   )}
                 >
                   {/* Card header */}
@@ -1113,10 +1113,10 @@ export default function StructuredNotesPage() {
                         {product.icon}
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-slate-100">
+                        <div className="text-sm font-semibold text-foreground">
                           {product.shortName}
                         </div>
-                        <div className="text-xs text-slate-400">
+                        <div className="text-xs text-muted-foreground">
                           {product.name}
                         </div>
                       </div>
@@ -1136,18 +1136,18 @@ export default function StructuredNotesPage() {
                   </div>
 
                   {/* Structure diagram */}
-                  <div className="flex justify-center mb-3 bg-slate-950/50 rounded-lg py-2">
+                  <div className="flex justify-center mb-3 bg-background/50 rounded-lg py-2">
                     <StructureDiagramSVG product={product} width={260} height={110} />
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-3">
                     {product.description}
                   </p>
 
                   {/* Key metrics */}
                   <div className="grid grid-cols-3 gap-2">
-                    <div className="bg-slate-800/60 rounded-lg p-2 text-center">
+                    <div className="bg-muted/60 rounded-lg p-2 text-center">
                       <div
                         className="text-sm font-bold"
                         style={{ color: product.color }}
@@ -1156,9 +1156,9 @@ export default function StructuredNotesPage() {
                           ? `${product.participationRate}%`
                           : "N/A"}
                       </div>
-                      <div className="text-xs text-slate-500">Participation</div>
+                      <div className="text-xs text-muted-foreground">Participation</div>
                     </div>
-                    <div className="bg-slate-800/60 rounded-lg p-2 text-center">
+                    <div className="bg-muted/60 rounded-lg p-2 text-center">
                       <div
                         className="text-sm font-bold"
                         style={{ color: product.color }}
@@ -1167,34 +1167,34 @@ export default function StructuredNotesPage() {
                           ? `${product.barrierLevel}%`
                           : "None"}
                       </div>
-                      <div className="text-xs text-slate-500">Barrier</div>
+                      <div className="text-xs text-muted-foreground">Barrier</div>
                     </div>
-                    <div className="bg-slate-800/60 rounded-lg p-2 text-center">
+                    <div className="bg-muted/60 rounded-lg p-2 text-center">
                       <div
                         className="text-sm font-bold"
                         style={{ color: product.color }}
                       >
                         {product.coupon > 0 ? `${product.coupon}%` : "0%"}
                       </div>
-                      <div className="text-xs text-slate-500">Coupon</div>
+                      <div className="text-xs text-muted-foreground">Coupon</div>
                     </div>
                   </div>
 
                   {/* Key feature badge */}
                   <div className="mt-3 flex items-center gap-1.5">
-                    <Zap className="w-3 h-3 text-slate-500" />
-                    <span className="text-xs text-slate-400 italic">
+                    <Zap className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground italic">
                       {product.keyFeature}
                     </span>
                   </div>
 
                   {/* Term */}
                   <div className="mt-2 flex items-center gap-1.5">
-                    <Activity className="w-3 h-3 text-slate-500" />
-                    <span className="text-xs text-slate-400">
+                    <Activity className="w-3 h-3 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground">
                       Term: {product.term} year{product.term > 1 ? "s" : ""}
                     </span>
-                    <span className="text-xs text-slate-500 ml-2">
+                    <span className="text-xs text-muted-foreground ml-2">
                       Protection: {product.protectionLevel}%
                     </span>
                   </div>
@@ -1222,7 +1222,7 @@ export default function StructuredNotesPage() {
               ].map((box) => (
                 <div
                   key={box.id}
-                  className="bg-slate-900 border border-slate-800 rounded-lg p-4"
+                  className="bg-card border border-border rounded-lg p-4"
                 >
                   <div
                     className="flex items-center gap-2 mb-2 cursor-pointer"
@@ -1233,13 +1233,13 @@ export default function StructuredNotesPage() {
                     }
                   >
                     {box.icon}
-                    <span className="text-sm font-medium text-slate-200">
+                    <span className="text-sm font-medium text-foreground">
                       {box.title}
                     </span>
                     {expandedInfo === box.id ? (
-                      <ChevronUp className="w-3.5 h-3.5 text-slate-400 ml-auto" />
+                      <ChevronUp className="w-3.5 h-3.5 text-muted-foreground ml-auto" />
                     ) : (
-                      <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-auto" />
+                      <ChevronDown className="w-3.5 h-3.5 text-muted-foreground ml-auto" />
                     )}
                   </div>
                   <AnimatePresence>
@@ -1248,7 +1248,7 @@ export default function StructuredNotesPage() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="text-xs text-slate-400 leading-relaxed overflow-hidden"
+                        className="text-xs text-muted-foreground leading-relaxed overflow-hidden"
                       >
                         {box.content}
                       </motion.p>
@@ -1265,15 +1265,15 @@ export default function StructuredNotesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <div className="space-y-5">
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-5">
-                <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+              <div className="bg-card border border-border rounded-xl p-4 space-y-5">
+                <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-primary" />
                   Payoff Parameters
                 </h3>
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Participation Rate</span>
+                    <span className="text-muted-foreground">Participation Rate</span>
                     <span className="font-mono text-primary">
                       {participationRate}%
                     </span>
@@ -1286,14 +1286,14 @@ export default function StructuredNotesPage() {
                     step={5}
                     className="w-full"
                   />
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     % of upside you capture. &gt;100% = leveraged note.
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Barrier Level</span>
+                    <span className="text-muted-foreground">Barrier Level</span>
                     <span className="font-mono text-amber-400">
                       {barrierLevel}%
                     </span>
@@ -1306,7 +1306,7 @@ export default function StructuredNotesPage() {
                     step={5}
                     className="w-full"
                   />
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     Protection kicks in down to this level. Below = capital at
                     risk.
                   </p>
@@ -1314,7 +1314,7 @@ export default function StructuredNotesPage() {
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Capital Protection</span>
+                    <span className="text-muted-foreground">Capital Protection</span>
                     <span className="font-mono text-emerald-400">
                       {capitalProtection}%
                     </span>
@@ -1327,7 +1327,7 @@ export default function StructuredNotesPage() {
                     step={5}
                     className="w-full"
                   />
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     Minimum return of principal at maturity if barrier is
                     breached.
                   </p>
@@ -1335,8 +1335,8 @@ export default function StructuredNotesPage() {
               </div>
 
               {/* Key metrics */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
-                <h3 className="text-sm font-semibold text-slate-200">
+              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+                <h3 className="text-sm font-semibold text-foreground">
                   Payoff Summary
                 </h3>
                 <div className="space-y-2">
@@ -1379,14 +1379,14 @@ export default function StructuredNotesPage() {
                         breakEvenUnderlying === 0
                           ? "Any positive return"
                           : `Underlying ≥ ${(breakEvenUnderlying * 100).toFixed(0)}%`,
-                      color: "text-slate-300",
+                      color: "text-muted-foreground",
                     },
                   ].map((m) => (
                     <div
                       key={m.label}
                       className="flex justify-between text-xs"
                     >
-                      <span className="text-slate-400">{m.label}</span>
+                      <span className="text-muted-foreground">{m.label}</span>
                       <span className={cn("font-mono font-medium", m.color)}>
                         {m.value}
                       </span>
@@ -1398,8 +1398,8 @@ export default function StructuredNotesPage() {
 
             {/* Payoff diagram */}
             <div className="lg:col-span-2 space-y-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-primary" />
                   Payoff Diagram — Underlying vs Note Return
                 </h3>
@@ -1412,15 +1412,15 @@ export default function StructuredNotesPage() {
                     height={280}
                   />
                 </div>
-                <p className="text-xs text-slate-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Green line = note outperforms; Red line = note underperforms.
                   Dashed vertical = barrier level. Dashed diagonal = 1:1 reference.
                 </p>
               </div>
 
               {/* Scenarios */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Scenario Analysis
                 </h3>
@@ -1439,15 +1439,15 @@ export default function StructuredNotesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <div className="space-y-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-5">
-                <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+              <div className="bg-card border border-border rounded-xl p-4 space-y-5">
+                <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-emerald-400" />
                   Pricing Inputs
                 </h3>
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Risk-Free Rate</span>
+                    <span className="text-muted-foreground">Risk-Free Rate</span>
                     <span className="font-mono text-emerald-400">
                       {pricingYield.toFixed(1)}%
                     </span>
@@ -1460,7 +1460,7 @@ export default function StructuredNotesPage() {
                     step={1}
                     className="w-full"
                   />
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     Higher rates = cheaper zero coupon bond = more budget for
                     options.
                   </p>
@@ -1468,7 +1468,7 @@ export default function StructuredNotesPage() {
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Credit Spread</span>
+                    <span className="text-muted-foreground">Credit Spread</span>
                     <span className="font-mono text-red-400">
                       {creditSpreadBps} bps
                     </span>
@@ -1481,7 +1481,7 @@ export default function StructuredNotesPage() {
                     step={10}
                     className="w-full"
                   />
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     Issuer credit risk. Wider spreads reduce the ZCB value and
                     fair value.
                   </p>
@@ -1489,7 +1489,7 @@ export default function StructuredNotesPage() {
 
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Participation Rate</span>
+                    <span className="text-muted-foreground">Participation Rate</span>
                     <span className="font-mono text-primary">
                       {participationRate}%
                     </span>
@@ -1506,8 +1506,8 @@ export default function StructuredNotesPage() {
               </div>
 
               {/* Fair value vs offer */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-3">
-                <h3 className="text-sm font-semibold text-slate-200">
+              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+                <h3 className="text-sm font-semibold text-foreground">
                   Valuation Summary
                 </h3>
                 <div className="space-y-3">
@@ -1538,7 +1538,7 @@ export default function StructuredNotesPage() {
                     },
                   ].map((item) => (
                     <div key={item.label} className="flex justify-between text-xs">
-                      <span className="text-slate-400">{item.label}</span>
+                      <span className="text-muted-foreground">{item.label}</span>
                       <span
                         className="font-mono font-semibold"
                         style={{ color: item.color }}
@@ -1548,15 +1548,15 @@ export default function StructuredNotesPage() {
                       </span>
                     </div>
                   ))}
-                  <div className="border-t border-slate-700 pt-2 flex justify-between text-sm font-semibold">
-                    <span className="text-slate-200">Fair Value</span>
+                  <div className="border-t border-border pt-2 flex justify-between text-sm font-semibold">
+                    <span className="text-foreground">Fair Value</span>
                     <span className="font-mono text-primary">
                       {fairValue.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-400">Offer Price</span>
-                    <span className="font-mono text-slate-200">
+                    <span className="text-muted-foreground">Offer Price</span>
+                    <span className="font-mono text-foreground">
                       {offerPrice.toFixed(2)}
                     </span>
                   </div>
@@ -1580,8 +1580,8 @@ export default function StructuredNotesPage() {
 
             {/* Waterfall chart + secondary market */}
             <div className="lg:col-span-2 space-y-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-emerald-400" />
                   Component Decomposition — % of Face Value
                 </h3>
@@ -1595,7 +1595,7 @@ export default function StructuredNotesPage() {
                     height={240}
                   />
                 </div>
-                <p className="text-xs text-slate-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Each bar shows the contribution to total note value. Credit spread and
                   distribution costs are subtracted from fair value.
                 </p>
@@ -1603,12 +1603,12 @@ export default function StructuredNotesPage() {
 
               {/* Secondary market + liquidity */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
+                <div className="bg-card border border-border rounded-xl p-4">
+                  <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <Activity className="w-4 h-4 text-amber-400" />
                     Secondary Market Dynamics
                   </h3>
-                  <div className="space-y-3 text-xs text-slate-400">
+                  <div className="space-y-3 text-xs text-muted-foreground">
                     <div className="flex items-start gap-2">
                       <AlertTriangle className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
                       <span>
@@ -1633,8 +1633,8 @@ export default function StructuredNotesPage() {
                   </div>
                 </div>
 
-                <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                  <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
+                <div className="bg-card border border-border rounded-xl p-4">
+                  <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <Lock className="w-4 h-4 text-primary" />
                     Issuer Credit Impact
                   </h3>
@@ -1647,9 +1647,9 @@ export default function StructuredNotesPage() {
                     ].map((row) => (
                       <div
                         key={row.rating}
-                        className="flex justify-between text-xs text-slate-400"
+                        className="flex justify-between text-xs text-muted-foreground"
                       >
-                        <span className="text-slate-300 font-medium">
+                        <span className="text-muted-foreground font-medium">
                           {row.rating}
                         </span>
                         <span className="font-mono">{row.spread} bps</span>
@@ -1678,8 +1678,8 @@ export default function StructuredNotesPage() {
         <TabsContent value="risk" className="data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Risk factors */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 space-y-4">
-              <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+            <div className="bg-card border border-border rounded-xl p-4 space-y-4">
+              <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
                 Risk Factor Scores (click to expand)
               </h3>
@@ -1688,29 +1688,29 @@ export default function StructuredNotesPage() {
                   <RiskBar key={rf.name} {...rf} />
                 ))}
               </div>
-              <p className="text-xs text-slate-500 border-t border-slate-800 pt-3">
+              <p className="text-xs text-muted-foreground border-t border-border pt-3">
                 Risk scores adjust dynamically based on Payoff Builder parameters.
                 Try increasing participation rate or reducing capital protection.
               </p>
             </div>
 
             {/* Suitability matrix */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
                 <Shield className="w-4 h-4 text-emerald-400" />
                 Investor Suitability Matrix
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-slate-700">
-                      <th className="text-left py-2 px-2 text-slate-400 font-medium">
+                    <tr className="border-b border-border">
+                      <th className="text-left py-2 px-2 text-muted-foreground font-medium">
                         Investor Type
                       </th>
                       {PRODUCTS.map((p) => (
                         <th
                           key={p.id}
-                          className="text-center py-2 px-1 text-slate-400 font-medium"
+                          className="text-center py-2 px-1 text-muted-foreground font-medium"
                         >
                           {p.shortName}
                         </th>
@@ -1721,9 +1721,9 @@ export default function StructuredNotesPage() {
                     {SUITABILITY_MATRIX.map((row) => (
                       <tr
                         key={row.investor}
-                        className="border-b border-slate-800/60 hover:bg-slate-800/20 transition-colors"
+                        className="border-b border-border/60 hover:bg-muted/20 transition-colors"
                       >
-                        <td className="py-2 px-2 text-slate-200 font-medium">
+                        <td className="py-2 px-2 text-foreground font-medium">
                           {row.investor}
                         </td>
                         {(
@@ -1748,12 +1748,12 @@ export default function StructuredNotesPage() {
               </div>
 
               {/* Break-even analysis */}
-              <div className="mt-4 p-3 bg-slate-800/40 rounded-lg">
-                <h4 className="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1.5">
+              <div className="mt-4 p-3 bg-muted/40 rounded-lg">
+                <h4 className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
                   <TrendingUp className="w-3.5 h-3.5 text-primary" />
                   Break-Even Analysis (current settings)
                 </h4>
-                <div className="space-y-1.5 text-xs text-slate-400">
+                <div className="space-y-1.5 text-xs text-muted-foreground">
                   <div className="flex justify-between">
                     <span>Participation Rate</span>
                     <span className="font-mono text-primary">
@@ -1772,7 +1772,7 @@ export default function StructuredNotesPage() {
                       {barrierLevel}%
                     </span>
                   </div>
-                  <div className="flex justify-between border-t border-slate-700 pt-1.5">
+                  <div className="flex justify-between border-t border-border pt-1.5">
                     <span>Break-even underlying</span>
                     <span
                       className={cn(
@@ -1807,8 +1807,8 @@ export default function StructuredNotesPage() {
             </div>
 
             {/* Scenario table */}
-            <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
+            <div className="lg:col-span-2 bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-primary" />
                 Full Scenario Table — Current Payoff Parameters
               </h3>
@@ -1841,17 +1841,17 @@ export default function StructuredNotesPage() {
                   <div
                     key={card.title}
                     className={cn(
-                      "bg-slate-800/30 border rounded-lg p-3",
+                      "bg-muted/30 border rounded-lg p-3",
                       card.color
                     )}
                   >
                     <div className="flex items-center gap-2 mb-1.5">
                       {card.icon}
-                      <span className="text-xs font-semibold text-slate-200">
+                      <span className="text-xs font-semibold text-foreground">
                         {card.title}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-400 leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       {card.text}
                     </p>
                   </div>

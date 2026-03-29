@@ -71,18 +71,18 @@ function StatCard({
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
-        {icon && <span className="text-zinc-400">{icon}</span>}
-        <span className="text-xs text-zinc-400">{label}</span>
+        {icon && <span className="text-muted-foreground">{icon}</span>}
+        <span className="text-xs text-muted-foreground">{label}</span>
       </div>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -217,8 +217,8 @@ function WalletHierarchySVG() {
       <div className="grid grid-cols-3 gap-2 mt-2">
         {tiers.map((t) => (
           <div key={t.label} className="rounded-lg border border-white/10 bg-white/5 p-2 text-center">
-            <p className="text-xs text-zinc-300 font-semibold">{t.label}</p>
-            <p className="text-xs text-zinc-500 mt-0.5">{t.sub}</p>
+            <p className="text-xs text-muted-foreground font-semibold">{t.label}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{t.sub}</p>
           </div>
         ))}
       </div>
@@ -392,12 +392,12 @@ function Tab1CustodyArchitecture() {
                 onClick={() => setExpanded(expanded === m.id ? null : m.id)}
               >
                 <span className={m.color}>{m.icon}</span>
-                <span className="text-sm font-medium text-zinc-200 flex-1">{m.label}</span>
-                <span className="text-zinc-500 text-xs mr-2">{m.desc.slice(0, 60)}…</span>
+                <span className="text-sm font-medium text-foreground flex-1">{m.label}</span>
+                <span className="text-muted-foreground text-xs mr-2">{m.desc.slice(0, 60)}…</span>
                 {expanded === m.id ? (
-                  <ArrowRight size={13} className="text-zinc-500 rotate-90" />
+                  <ArrowRight size={13} className="text-muted-foreground rotate-90" />
                 ) : (
-                  <ArrowRight size={13} className="text-zinc-500" />
+                  <ArrowRight size={13} className="text-muted-foreground" />
                 )}
               </button>
               <AnimatePresence>
@@ -410,10 +410,10 @@ function Tab1CustodyArchitecture() {
                     className="overflow-hidden"
                   >
                     <div className="px-4 pb-4 border-t border-white/10 pt-3">
-                      <p className="text-xs text-zinc-400 mb-2">{m.desc}</p>
+                      <p className="text-xs text-muted-foreground mb-2">{m.desc}</p>
                       <ul className="space-y-1">
                         {m.details.map((d, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-zinc-300">
+                          <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                             <CheckCircle size={11} className="text-emerald-400 mt-0.5 shrink-0" />
                             {d}
                           </li>
@@ -437,7 +437,7 @@ function Tab1CustodyArchitecture() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-left text-zinc-400 font-medium py-2 pr-4 w-40">Feature</th>
+                <th className="text-left text-muted-foreground font-medium py-2 pr-4 w-40">Feature</th>
                 <th className="text-center text-muted-foreground font-medium py-2 px-3">MPC / TSS</th>
                 <th className="text-center text-primary font-medium py-2 px-3">Multi-Sig</th>
               </tr>
@@ -445,7 +445,7 @@ function Tab1CustodyArchitecture() {
             <tbody>
               {MPC_MULTISIG_ROWS.map((row, i) => (
                 <tr key={i} className="border-b border-white/5 hover:bg-white/3 transition-colors">
-                  <td className="text-zinc-300 py-2 pr-4 font-medium">{row.feature}</td>
+                  <td className="text-muted-foreground py-2 pr-4 font-medium">{row.feature}</td>
                   <td className="text-center py-2 px-3">
                     <div className="flex items-center justify-center gap-1">
                       {row.mpcGood ? (
@@ -488,7 +488,7 @@ function Tab1CustodyArchitecture() {
           {airGapMeasures.map((m, i) => (
             <div key={i} className="flex items-start gap-2 rounded-lg bg-white/5 border border-white/10 p-2.5">
               <ShieldCheck size={13} className="text-emerald-400 mt-0.5 shrink-0" />
-              <span className="text-xs text-zinc-300">{m}</span>
+              <span className="text-xs text-muted-foreground">{m}</span>
             </div>
           ))}
         </div>
@@ -504,11 +504,11 @@ function Tab1CustodyArchitecture() {
             <div key={i} className="flex items-center gap-2">
               <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/10 p-2.5 text-center min-w-[100px]">
                 <div className="text-indigo-400 font-bold text-xs mb-0.5">Step {step.step}</div>
-                <div className="text-zinc-200 text-xs font-medium">{step.label}</div>
-                <div className="text-zinc-500 text-xs mt-0.5 leading-tight">{step.desc}</div>
+                <div className="text-foreground text-xs font-medium">{step.label}</div>
+                <div className="text-muted-foreground text-xs mt-0.5 leading-tight">{step.desc}</div>
               </div>
               {i < keyDerivationSteps.length - 1 && (
-                <ArrowRight size={14} className="text-zinc-600 shrink-0" />
+                <ArrowRight size={14} className="text-muted-foreground shrink-0" />
               )}
             </div>
           ))}
@@ -635,13 +635,13 @@ function Tab2InstitutionalSolutions() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-left text-zinc-400 font-medium py-2 pr-3">Custodian</th>
-                <th className="text-left text-zinc-400 font-medium py-2 px-3">AUM</th>
-                <th className="text-left text-zinc-400 font-medium py-2 px-3">Technology</th>
-                <th className="text-left text-zinc-400 font-medium py-2 px-3">Regulatory</th>
-                <th className="text-center text-zinc-400 font-medium py-2 px-2">Staking</th>
-                <th className="text-center text-zinc-400 font-medium py-2 px-2">DeFi</th>
-                <th className="text-center text-zinc-400 font-medium py-2 px-2">PB</th>
+                <th className="text-left text-muted-foreground font-medium py-2 pr-3">Custodian</th>
+                <th className="text-left text-muted-foreground font-medium py-2 px-3">AUM</th>
+                <th className="text-left text-muted-foreground font-medium py-2 px-3">Technology</th>
+                <th className="text-left text-muted-foreground font-medium py-2 px-3">Regulatory</th>
+                <th className="text-center text-muted-foreground font-medium py-2 px-2">Staking</th>
+                <th className="text-center text-muted-foreground font-medium py-2 px-2">DeFi</th>
+                <th className="text-center text-muted-foreground font-medium py-2 px-2">PB</th>
               </tr>
             </thead>
             <tbody>
@@ -651,10 +651,10 @@ function Tab2InstitutionalSolutions() {
                   className="border-b border-white/5 hover:bg-white/5 cursor-pointer transition-colors"
                   onClick={() => setSelectedCustodian(selectedCustodian?.name === c.name ? null : c)}
                 >
-                  <td className="py-2 pr-3 font-semibold text-zinc-200">{c.name}</td>
+                  <td className="py-2 pr-3 font-semibold text-foreground">{c.name}</td>
                   <td className="py-2 px-3 text-emerald-400 font-medium">{c.aum}</td>
-                  <td className="py-2 px-3 text-zinc-300">{c.technology}</td>
-                  <td className="py-2 px-3 text-zinc-400">{c.regulatory}</td>
+                  <td className="py-2 px-3 text-muted-foreground">{c.technology}</td>
+                  <td className="py-2 px-3 text-muted-foreground">{c.regulatory}</td>
                   <td className="py-2 px-2 text-center">
                     {c.staking ? <CheckCircle size={12} className="text-emerald-400 mx-auto" /> : <XCircle size={12} className="text-rose-400 mx-auto" />}
                   </td>
@@ -681,7 +681,7 @@ function Tab2InstitutionalSolutions() {
               <div className="rounded-lg border border-indigo-500/30 bg-indigo-500/10 p-3">
                 <p className="text-indigo-300 font-semibold text-xs mb-1">{selectedCustodian.name} — Notable Detail</p>
                 <p className="text-indigo-200 text-xs">{selectedCustodian.notable}</p>
-                <p className="text-zinc-400 text-xs mt-1">Insurance: {selectedCustodian.insurance} | Founded: {selectedCustodian.founded}</p>
+                <p className="text-muted-foreground text-xs mt-1">Insurance: {selectedCustodian.insurance} | Founded: {selectedCustodian.founded}</p>
               </div>
             </motion.div>
           )}
@@ -707,7 +707,7 @@ function Tab2InstitutionalSolutions() {
                 "Preferred by regulated funds and RIAs",
                 "Coinbase Prime default for institutional clients",
               ].map((item, i) => (
-                <li key={i} className="text-xs text-zinc-300 flex items-start gap-1.5">
+                <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
                   <CheckCircle size={10} className="text-emerald-400 mt-0.5 shrink-0" /> {item}
                 </li>
               ))}
@@ -726,7 +726,7 @@ function Tab2InstitutionalSolutions() {
                 "Bankruptcy exposure (FTX precedent)",
                 "Some exchanges use for operational wallets",
               ].map((item, i) => (
-                <li key={i} className="text-xs text-zinc-300 flex items-start gap-1.5">
+                <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
                   <AlertTriangle size={10} className="text-amber-400 mt-0.5 shrink-0" /> {item}
                 </li>
               ))}
@@ -741,7 +741,7 @@ function Tab2InstitutionalSolutions() {
           <SectionTitle>
             <Zap size={14} /> Staking from Custody
           </SectionTitle>
-          <p className="text-xs text-zinc-400 mb-3">Custodians allow institutional staking without losing custody control. Staked assets remain in segregated custody with slashing protection.</p>
+          <p className="text-xs text-muted-foreground mb-3">Custodians allow institutional staking without losing custody control. Staked assets remain in segregated custody with slashing protection.</p>
           <div className="space-y-2">
             {[
               { label: "ETH Staking Yield", value: "3.5–4.2%", note: "Via Liquid Staking Tokens (LSTs)" },
@@ -750,10 +750,10 @@ function Tab2InstitutionalSolutions() {
               { label: "Slashing Insurance", value: "Available", note: "Unslashed, Nexus Mutual" },
             ].map((row, i) => (
               <div key={i} className="flex items-center justify-between text-xs border-b border-white/5 pb-1.5">
-                <span className="text-zinc-300">{row.label}</span>
+                <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
                   <span className="text-emerald-400 font-semibold">{row.value}</span>
-                  <span className="text-zinc-500 ml-2">{row.note}</span>
+                  <span className="text-muted-foreground ml-2">{row.note}</span>
                 </div>
               </div>
             ))}
@@ -763,7 +763,7 @@ function Tab2InstitutionalSolutions() {
           <SectionTitle>
             <Globe size={14} /> DeFi Integration via Custody
           </SectionTitle>
-          <p className="text-xs text-zinc-400 mb-3">Select custodians provide policy-controlled DeFi access, maintaining compliance while allowing protocol interaction.</p>
+          <p className="text-xs text-muted-foreground mb-3">Select custodians provide policy-controlled DeFi access, maintaining compliance while allowing protocol interaction.</p>
           <div className="space-y-2">
             {[
               { label: "Fireblocks DeFi", desc: "Smart contract risk scoring, transaction simulation before execution" },
@@ -773,7 +773,7 @@ function Tab2InstitutionalSolutions() {
             ].map((row, i) => (
               <div key={i} className="rounded-md bg-white/5 border border-white/10 p-2">
                 <p className="text-xs text-muted-foreground font-medium">{row.label}</p>
-                <p className="text-xs text-zinc-400">{row.desc}</p>
+                <p className="text-xs text-muted-foreground">{row.desc}</p>
               </div>
             ))}
           </div>
@@ -790,9 +790,9 @@ function Tab2InstitutionalSolutions() {
             <div key={i} className="rounded-lg border border-white/10 bg-white/5 p-3">
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="text-indigo-400">{svc.icon}</span>
-                <p className="text-xs font-semibold text-zinc-200">{svc.service}</p>
+                <p className="text-xs font-semibold text-foreground">{svc.service}</p>
               </div>
-              <p className="text-xs text-zinc-400">{svc.desc}</p>
+              <p className="text-xs text-muted-foreground">{svc.desc}</p>
             </div>
           ))}
         </div>
@@ -931,14 +931,14 @@ function Tab3RegulatoryFramework() {
                       ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
                       : evt.impact === "negative"
                       ? "bg-rose-500/20 text-rose-300 border-rose-500/30"
-                      : "bg-zinc-500/20 text-zinc-300"
+                      : "bg-zinc-500/20 text-muted-foreground"
                   )}
                 >
                   {evt.year}
                 </Badge>
                 <div className="flex-1">
-                  <span className="text-xs font-semibold text-zinc-200">{evt.event}</span>
-                  <span className="text-xs text-zinc-500 ml-2">— {evt.body}</span>
+                  <span className="text-xs font-semibold text-foreground">{evt.event}</span>
+                  <span className="text-xs text-muted-foreground ml-2">— {evt.body}</span>
                 </div>
                 {evt.impact === "positive" ? (
                   <CheckCircle size={13} className="text-emerald-400 shrink-0" />
@@ -952,7 +952,7 @@ function Tab3RegulatoryFramework() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="text-xs text-zinc-400 mt-2 overflow-hidden"
+                    className="text-xs text-muted-foreground mt-2 overflow-hidden"
                   >
                     {evt.detail}
                   </motion.p>
@@ -974,7 +974,7 @@ function Tab3RegulatoryFramework() {
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-semibold text-zinc-200">{reg.state}</span>
+                    <span className="text-xs font-semibold text-foreground">{reg.state}</span>
                     <Badge className={cn(
                       "text-xs",
                       reg.status === "active" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
@@ -987,7 +987,7 @@ function Tab3RegulatoryFramework() {
                   <p className="text-xs text-muted-foreground font-medium">{reg.regime}</p>
                 </div>
               </div>
-              <p className="text-xs text-zinc-400 mt-1">{reg.requirement}</p>
+              <p className="text-xs text-muted-foreground mt-1">{reg.requirement}</p>
             </div>
           ))}
         </div>
@@ -1000,7 +1000,7 @@ function Tab3RegulatoryFramework() {
         </SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <p className="text-xs text-zinc-400 mb-3">Markets in Crypto-Assets (MiCA) regulation fully effective December 2024. Custody providers must obtain CASP authorization from national competent authority.</p>
+            <p className="text-xs text-muted-foreground mb-3">Markets in Crypto-Assets (MiCA) regulation fully effective December 2024. Custody providers must obtain CASP authorization from national competent authority.</p>
             <div className="space-y-2">
               {[
                 { label: "Minimum Capital", value: "€125,000 (custody-only CASP)" },
@@ -1011,8 +1011,8 @@ function Tab3RegulatoryFramework() {
                 { label: "Annual Report", value: "Audited financial statements required" },
               ].map((row, i) => (
                 <div key={i} className="flex justify-between text-xs border-b border-white/5 pb-1.5">
-                  <span className="text-zinc-400">{row.label}</span>
-                  <span className="text-zinc-200 font-medium">{row.value}</span>
+                  <span className="text-muted-foreground">{row.label}</span>
+                  <span className="text-foreground font-medium">{row.value}</span>
                 </div>
               ))}
             </div>
@@ -1091,7 +1091,7 @@ function HacksTimelineSVG() {
         {(["exchange", "bridge", "protocol"] as HackEvent["type"][]).map((t) => (
           <div key={t} className="flex items-center gap-1.5">
             <div className="w-2.5 h-2.5 rounded-full" style={{ background: typeColor(t) }} />
-            <span className="text-xs text-zinc-400 capitalize">{t}</span>
+            <span className="text-xs text-muted-foreground capitalize">{t}</span>
           </div>
         ))}
         <div className="ml-auto text-xs text-rose-400 font-semibold">${totalLoss.toLocaleString()}M+ total losses</div>
@@ -1200,16 +1200,16 @@ function Tab4SecurityInsurance() {
         <SectionTitle>
           <Shield size={14} /> Insurance Market for Crypto Custody
         </SectionTitle>
-        <p className="text-xs text-zinc-400 mb-3">The crypto insurance market has grown from ~$1B capacity in 2020 to $6B+ in 2024, though still far below the ~$100B+ of institutional AUM in custody. Coverage gaps remain significant.</p>
+        <p className="text-xs text-muted-foreground mb-3">The crypto insurance market has grown from ~$1B capacity in 2020 to $6B+ in 2024, though still far below the ~$100B+ of institutional AUM in custody. Coverage gaps remain significant.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {INSURANCE_TYPES.map((ins, i) => (
             <div key={i} className="rounded-lg border border-white/10 bg-white/5 p-3">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-zinc-200">{ins.type}</span>
+                <span className="text-xs font-semibold text-foreground">{ins.type}</span>
                 <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">{ins.maxCoverage}</Badge>
               </div>
-              <p className="text-xs text-zinc-400 mb-1.5">{ins.desc}</p>
-              <p className="text-xs text-zinc-500 italic mb-1">Example: {ins.example}</p>
+              <p className="text-xs text-muted-foreground mb-1.5">{ins.desc}</p>
+              <p className="text-xs text-muted-foreground italic mb-1">Example: {ins.example}</p>
               <p className="text-xs text-primary">Providers: {ins.providers}</p>
             </div>
           ))}
@@ -1224,14 +1224,14 @@ function Tab4SecurityInsurance() {
         <SectionTitle>
           <FileText size={14} /> SOC 2 Type II Audits — Trust Service Criteria
         </SectionTitle>
-        <p className="text-xs text-zinc-400 mb-3">SOC 2 Type II (AICPA) tests effectiveness of controls over a minimum 6-month period. Required by most institutional clients before engaging a custodian. Big 4 firms conduct audits.</p>
+        <p className="text-xs text-muted-foreground mb-3">SOC 2 Type II (AICPA) tests effectiveness of controls over a minimum 6-month period. Required by most institutional clients before engaging a custodian. Big 4 firms conduct audits.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {SOC2_CONTROLS.map((cat, i) => (
             <div key={i} className="rounded-lg border border-indigo-500/20 bg-indigo-500/5 p-3">
               <p className="text-xs font-semibold text-indigo-400 mb-2">{cat.category}</p>
               <ul className="space-y-1">
                 {cat.controls.map((ctrl, j) => (
-                  <li key={j} className="flex items-start gap-1.5 text-xs text-zinc-300">
+                  <li key={j} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                     <CheckCircle size={10} className="text-indigo-400 mt-0.5 shrink-0" /> {ctrl}
                   </li>
                 ))}
@@ -1257,10 +1257,10 @@ function Tab4SecurityInsurance() {
               { label: "Reports", value: "Provided to auditors", note: "Required for SOC 2 + insurance" },
             ].map((row, i) => (
               <div key={i} className="flex items-center justify-between text-xs border-b border-white/5 pb-1.5">
-                <span className="text-zinc-400">{row.label}</span>
+                <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
-                  <span className="text-zinc-200 font-medium">{row.value}</span>
-                  <span className="text-zinc-500 ml-1.5">{row.note}</span>
+                  <span className="text-foreground font-medium">{row.value}</span>
+                  <span className="text-muted-foreground ml-1.5">{row.note}</span>
                 </div>
               </div>
             ))}
@@ -1280,10 +1280,10 @@ function Tab4SecurityInsurance() {
               { label: "Runbook Documentation", value: "Required", note: "All recovery procedures documented" },
             ].map((row, i) => (
               <div key={i} className="flex items-center justify-between text-xs border-b border-white/5 pb-1.5">
-                <span className="text-zinc-400">{row.label}</span>
+                <span className="text-muted-foreground">{row.label}</span>
                 <div className="text-right">
-                  <span className="text-zinc-200 font-medium">{row.value}</span>
-                  <span className="text-zinc-500 ml-1.5">{row.note}</span>
+                  <span className="text-foreground font-medium">{row.value}</span>
+                  <span className="text-muted-foreground ml-1.5">{row.note}</span>
                 </div>
               </div>
             ))}
@@ -1303,7 +1303,7 @@ function Tab4SecurityInsurance() {
 
 export default function DigitalCustodyPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1317,7 +1317,7 @@ export default function DigitalCustodyPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Digital Asset Custody</h1>
-            <p className="text-sm text-zinc-400">Institutional crypto custody solutions, MPC technology, regulatory requirements, and insurance</p>
+            <p className="text-sm text-muted-foreground">Institutional crypto custody solutions, MPC technology, regulatory requirements, and insurance</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mt-3">

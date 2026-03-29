@@ -642,15 +642,15 @@ function ROICalculator() {
   const payback = netSavings > 0 ? (toolCost / savings * 12).toFixed(1) : "N/A";
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-700 p-5 space-y-4">
-      <h3 className="text-sm font-semibold text-gray-200 flex items-center gap-2">
+    <div className="bg-card rounded-xl border border-border p-5 space-y-4">
+      <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
         <DollarSign className="w-4 h-4 text-green-400" />
         RegTech ROI Calculator
       </h3>
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="text-xs text-gray-400 mb-1 block">Compliance Staff Count</label>
+          <label className="text-xs text-muted-foreground mb-1 block">Compliance Staff Count</label>
           <input
             type="range"
             min={5}
@@ -659,10 +659,10 @@ function ROICalculator() {
             onChange={(e) => setStaff(Number(e.target.value))}
             className="w-full accent-violet-500"
           />
-          <span className="text-xs text-gray-300">{staff} FTEs</span>
+          <span className="text-xs text-muted-foreground">{staff} FTEs</span>
         </div>
         <div>
-          <label className="text-xs text-gray-400 mb-1 block">Avg Salary ($/yr)</label>
+          <label className="text-xs text-muted-foreground mb-1 block">Avg Salary ($/yr)</label>
           <input
             type="range"
             min={50000}
@@ -672,10 +672,10 @@ function ROICalculator() {
             onChange={(e) => setAvgSalary(Number(e.target.value))}
             className="w-full accent-violet-500"
           />
-          <span className="text-xs text-gray-300">${(avgSalary / 1000).toFixed(0)}k</span>
+          <span className="text-xs text-muted-foreground">${(avgSalary / 1000).toFixed(0)}k</span>
         </div>
         <div>
-          <label className="text-xs text-gray-400 mb-1 block">FTE Reduction via Automation</label>
+          <label className="text-xs text-muted-foreground mb-1 block">FTE Reduction via Automation</label>
           <input
             type="range"
             min={10}
@@ -684,10 +684,10 @@ function ROICalculator() {
             onChange={(e) => setFteReduction(Number(e.target.value))}
             className="w-full accent-violet-500"
           />
-          <span className="text-xs text-gray-300">{fteReduction}%</span>
+          <span className="text-xs text-muted-foreground">{fteReduction}%</span>
         </div>
         <div>
-          <label className="text-xs text-gray-400 mb-1 block">RegTech Tool Cost ($/yr)</label>
+          <label className="text-xs text-muted-foreground mb-1 block">RegTech Tool Cost ($/yr)</label>
           <input
             type="range"
             min={100000}
@@ -697,23 +697,23 @@ function ROICalculator() {
             onChange={(e) => setToolCost(Number(e.target.value))}
             className="w-full accent-violet-500"
           />
-          <span className="text-xs text-gray-300">${(toolCost / 1000000).toFixed(2)}M</span>
+          <span className="text-xs text-muted-foreground">${(toolCost / 1000000).toFixed(2)}M</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 pt-2 border-t border-gray-700">
+      <div className="grid grid-cols-3 gap-3 pt-2 border-t border-border">
         <div className="text-center">
-          <p className="text-xs text-gray-400">Annual Savings</p>
+          <p className="text-xs text-muted-foreground">Annual Savings</p>
           <p className="text-lg font-bold text-green-400">${(savings / 1000).toFixed(0)}k</p>
         </div>
         <div className="text-center">
-          <p className="text-xs text-gray-400">Net Benefit</p>
+          <p className="text-xs text-muted-foreground">Net Benefit</p>
           <p className={`text-lg font-bold ${netSavings >= 0 ? "text-emerald-400" : "text-red-400"}`}>
             ${(netSavings / 1000).toFixed(0)}k
           </p>
         </div>
         <div className="text-center">
-          <p className="text-xs text-gray-400">ROI / Payback</p>
+          <p className="text-xs text-muted-foreground">ROI / Payback</p>
           <p className="text-lg font-bold text-primary">{roi}% / {payback}mo</p>
         </div>
       </div>
@@ -734,16 +734,16 @@ function AMLKYCTab() {
           { label: "KYC Onboarding (Auto)", value: "2 hrs", icon: <Zap className="w-4 h-4 text-green-400" />, color: "text-green-400" },
           { label: "False Positive Rate (rules)", value: "~92%", icon: <XCircle className="w-4 h-4 text-rose-400" />, color: "text-rose-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-gray-900 rounded-xl border border-gray-700 p-4">
-            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-gray-400">{kpi.label}</p></div>
+          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Flow Diagram */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Network className="w-4 h-4 text-primary" />
           AML Transaction Monitoring Flow
         </h3>
@@ -751,20 +751,20 @@ function AMLKYCTab() {
       </div>
 
       {/* False Positive Chart */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Filter className="w-4 h-4 text-primary" />
           False Positive Rate: Rule-Based vs ML (Year 1–10)
         </h3>
         <FalsePositiveChart />
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           ML models reduce false positives from ~92% to ~12% over time, dramatically cutting analyst workload.
         </p>
       </div>
 
       {/* KYC Comparison */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           KYC Onboarding Time Comparison
         </h3>
@@ -776,10 +776,10 @@ function AMLKYCTab() {
           ].map((item) => (
             <div key={item.label} className="space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="text-gray-300">{item.label}</span>
-                <span className="text-gray-400">{item.unit}</span>
+                <span className="text-muted-foreground">{item.label}</span>
+                <span className="text-muted-foreground">{item.unit}</span>
               </div>
-              <div className="h-3 bg-gray-800 rounded-full overflow-hidden">
+              <div className="h-3 bg-muted rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${(item.value / 120) * 100}%` }}
@@ -793,16 +793,16 @@ function AMLKYCTab() {
       </div>
 
       {/* Customer Risk Score Factors */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
           Customer Risk Scoring Model — 10 Factors
         </h3>
         <div className="space-y-2">
           {RISK_FACTORS.map((f) => (
             <div key={f.factor} className="flex items-center gap-3">
-              <div className="w-36 text-xs text-gray-300 truncate">{f.factor}</div>
-              <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div className="w-36 text-xs text-muted-foreground truncate">{f.factor}</div>
+              <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${(f.weight / 18) * 100}%` }}
@@ -811,21 +811,21 @@ function AMLKYCTab() {
                 />
               </div>
               <div className="w-8 text-xs text-primary text-right">{f.weight}%</div>
-              <div className="hidden sm:block w-48 text-xs text-gray-500">{f.desc}</div>
+              <div className="hidden sm:block w-48 text-xs text-muted-foreground">{f.desc}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* AML Fines Table */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5 overflow-x-auto">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5 overflow-x-auto">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Top AML/Sanctions Fines in History
         </h3>
         <table className="w-full text-xs">
           <thead>
-            <tr className="text-gray-400 border-b border-gray-700">
+            <tr className="text-muted-foreground border-b border-border">
               <th className="text-left py-2">Institution</th>
               <th className="text-left py-2">Year</th>
               <th className="text-right py-2">Fine ($M)</th>
@@ -834,11 +834,11 @@ function AMLKYCTab() {
           </thead>
           <tbody>
             {AML_FINES.sort((a, b) => b.fine - a.fine).map((row) => (
-              <tr key={row.bank} className="border-b border-gray-800 hover:bg-gray-800/40 transition-colors">
-                <td className="py-2 font-medium text-gray-200">{row.bank}</td>
-                <td className="py-2 text-gray-400">{row.year}</td>
+              <tr key={row.bank} className="border-b border-border hover:bg-muted/40 transition-colors">
+                <td className="py-2 font-medium text-foreground">{row.bank}</td>
+                <td className="py-2 text-muted-foreground">{row.year}</td>
                 <td className="py-2 text-right text-amber-400 font-bold">{row.fine.toLocaleString()}</td>
-                <td className="py-2 pl-4 text-gray-400">{row.reason}</td>
+                <td className="py-2 pl-4 text-muted-foreground">{row.reason}</td>
               </tr>
             ))}
           </tbody>
@@ -859,16 +859,16 @@ function RegulatoryReportingTab() {
           { label: "COREP Deadline", value: "T+15d", icon: <Clock className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
           { label: "MiFID II Reporting", value: "T+1d", icon: <Zap className="w-4 h-4 text-green-400" />, color: "text-green-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-gray-900 rounded-xl border border-gray-700 p-4">
-            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-gray-400">{kpi.label}</p></div>
+          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Reporting Timeline */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Clock className="w-4 h-4 text-primary" />
           Regulatory Reporting Timeline — COREP / FINREP / MiFID II / EMIR
         </h3>
@@ -876,8 +876,8 @@ function RegulatoryReportingTab() {
       </div>
 
       {/* Data Lineage Diagram */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Database className="w-4 h-4 text-primary" />
           Data Lineage for Regulatory Reporting
         </h3>
@@ -923,25 +923,25 @@ function RegulatoryReportingTab() {
       </div>
 
       {/* Rule Changes Chart */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-primary" />
           Global Regulatory Rule Changes per Year (2010–2024)
         </h3>
         <RuleChangesChart />
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Financial institutions face ~941 new/amended rules per year in 2024, a 4.5× increase from 2010.
         </p>
       </div>
 
       {/* Compliance Cost Trend */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-rose-400" />
           Cost of Compliance as % of Revenue (2015–2024)
         </h3>
         <ComplianceCostChart />
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Compliance costs have grown from 2.1% to 5.6% of revenue — RegTech automation is key to containing this trend.
         </p>
       </div>
@@ -963,25 +963,25 @@ function SanctionsTab() {
           { label: "Adverse Media Sources", value: "100k+", icon: <Globe className="w-4 h-4 text-primary" />, color: "text-primary" },
           { label: "ML Screening FPR", value: "3%", icon: <CheckCircle className="w-4 h-4 text-green-400" />, color: "text-green-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-gray-900 rounded-xl border border-gray-700 p-4">
-            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-gray-400">{kpi.label}</p></div>
+          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Sanction List Sizes */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Globe className="w-4 h-4 text-primary" />
           Global Sanctions List Sizes
         </h3>
         <div className="space-y-3">
           {SANCTION_LISTS.map((lst) => (
             <div key={lst.name} className="flex items-center gap-3">
-              <div className="w-28 text-xs text-gray-300">{lst.name}</div>
+              <div className="w-28 text-xs text-muted-foreground">{lst.name}</div>
               <Badge variant="outline" className="text-xs shrink-0">{lst.jurisdiction}</Badge>
-              <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${(lst.entries / 14200) * 100}%` }}
@@ -992,16 +992,16 @@ function SanctionsTab() {
               <div className="w-16 text-xs text-right text-primary">
                 {lst.entries.toLocaleString()}
               </div>
-              <div className="hidden sm:block w-28 text-xs text-gray-500">{lst.type}</div>
+              <div className="hidden sm:block w-28 text-xs text-muted-foreground">{lst.type}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Name Matching Algorithms */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 overflow-hidden">
-        <div className="p-5 border-b border-gray-700">
-          <h3 className="text-sm font-semibold text-gray-200 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border overflow-hidden">
+        <div className="p-5 border-b border-border">
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Search className="w-4 h-4 text-primary" />
             Name Matching Algorithms Comparison
           </h3>
@@ -1009,7 +1009,7 @@ function SanctionsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-gray-400 bg-gray-800/50">
+              <tr className="text-muted-foreground bg-muted/50">
                 <th className="text-left px-4 py-3">Algorithm</th>
                 <th className="text-right px-4 py-3">Precision</th>
                 <th className="text-right px-4 py-3">Recall</th>
@@ -1019,8 +1019,8 @@ function SanctionsTab() {
             </thead>
             <tbody>
               {MATCHING_ALGOS.map((algo) => (
-                <tr key={algo.name} className="border-t border-gray-800 hover:bg-gray-800/40 transition-colors">
-                  <td className="px-4 py-3 font-medium text-gray-200">{algo.name}</td>
+                <tr key={algo.name} className="border-t border-border hover:bg-muted/40 transition-colors">
+                  <td className="px-4 py-3 font-medium text-foreground">{algo.name}</td>
                   <td className="px-4 py-3 text-right">
                     <span className={`font-bold ${algo.precision >= 90 ? "text-green-400" : algo.precision >= 80 ? "text-amber-400" : "text-red-400"}`}>
                       {algo.precision}%
@@ -1036,7 +1036,7 @@ function SanctionsTab() {
                       {algo.fpr}%
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-right text-gray-400">{algo.speed}</td>
+                  <td className="px-4 py-3 text-right text-muted-foreground">{algo.speed}</td>
                 </tr>
               ))}
             </tbody>
@@ -1045,8 +1045,8 @@ function SanctionsTab() {
       </div>
 
       {/* Real-time vs Batch */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Zap className="w-4 h-4 text-primary" />
           Real-Time vs Batch Screening Comparison
         </h3>
@@ -1067,14 +1067,14 @@ function SanctionsTab() {
               cons: ["Higher infrastructure cost", "Latency must be <200ms", "Alert management overhead"],
             },
           ].map((item) => (
-            <div key={item.mode} className={`rounded-xl border ${item.color} bg-gray-800/50 p-4`}>
+            <div key={item.mode} className={`rounded-xl border ${item.color} bg-muted/50 p-4`}>
               <div className="flex items-center gap-2 mb-3">
                 {item.icon}
-                <span className="text-sm font-semibold text-gray-200">{item.mode}</span>
+                <span className="text-sm font-semibold text-foreground">{item.mode}</span>
               </div>
               <div className="space-y-1 mb-3">
                 {item.pros.map((p) => (
-                  <div key={p} className="flex items-start gap-2 text-xs text-gray-300">
+                  <div key={p} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <CheckCircle className="w-3 h-3 text-green-400 mt-0.5 shrink-0" />
                     {p}
                   </div>
@@ -1082,7 +1082,7 @@ function SanctionsTab() {
               </div>
               <div className="space-y-1">
                 {item.cons.map((c) => (
-                  <div key={c} className="flex items-start gap-2 text-xs text-gray-400">
+                  <div key={c} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <XCircle className="w-3 h-3 text-red-400 mt-0.5 shrink-0" />
                     {c}
                   </div>
@@ -1095,22 +1095,22 @@ function SanctionsTab() {
 
       {/* PEP + Adverse Media */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+        <div className="bg-card rounded-xl border border-border p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Users className="w-4 h-4 text-primary" />
             PEP Screening
           </h3>
-          <div className="space-y-3 text-xs text-gray-300">
+          <div className="space-y-3 text-xs text-muted-foreground">
             {[
               { tier: "Tier 1 PEP", desc: "Heads of state, ministers, senior officials", risk: "Extreme" },
               { tier: "Tier 2 PEP", desc: "Senior military, judiciary, SOE execs", risk: "High" },
               { tier: "Tier 3 PEP", desc: "Local politicians, mid-level officials", risk: "Medium" },
               { tier: "RCA (Relatives)", desc: "Close associates & family members", risk: "Elevated" },
             ].map((p) => (
-              <div key={p.tier} className="flex justify-between items-start gap-2 py-1.5 border-b border-gray-800">
+              <div key={p.tier} className="flex justify-between items-start gap-2 py-1.5 border-b border-border">
                 <div>
-                  <p className="font-medium text-gray-200">{p.tier}</p>
-                  <p className="text-gray-500 text-xs mt-0.5">{p.desc}</p>
+                  <p className="font-medium text-foreground">{p.tier}</p>
+                  <p className="text-muted-foreground text-xs mt-0.5">{p.desc}</p>
                 </div>
                 <Badge
                   className={`text-xs shrink-0 ${
@@ -1127,8 +1127,8 @@ function SanctionsTab() {
             ))}
           </div>
         </div>
-        <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+        <div className="bg-card rounded-xl border border-border p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Eye className="w-4 h-4 text-primary" />
             Adverse Media Monitoring
           </h3>
@@ -1142,10 +1142,10 @@ function SanctionsTab() {
             ].map((item) => (
               <div key={item.category} className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-gray-300">{item.category}</span>
-                  <span className="text-gray-500">{item.sources}</span>
+                  <span className="text-muted-foreground">{item.category}</span>
+                  <span className="text-muted-foreground">{item.sources}</span>
                 </div>
-                <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${item.coverage}%` }}
@@ -1156,7 +1156,7 @@ function SanctionsTab() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-500 mt-3">Coverage across 100k+ global news sources in 60+ languages.</p>
+          <p className="text-xs text-muted-foreground mt-3">Coverage across 100k+ global news sources in 60+ languages.</p>
         </div>
       </div>
     </div>
@@ -1174,16 +1174,16 @@ function MarketFutureTab() {
           { label: "AI/NLP Adoption in Regs", value: "41%", icon: <Cpu className="w-4 h-4 text-primary" />, color: "text-primary" },
           { label: "FCA Sandbox Firms Funded", value: "280+", icon: <Building2 className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-gray-900 rounded-xl border border-gray-700 p-4">
-            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-gray-400">{kpi.label}</p></div>
+          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+            <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
           </div>
         ))}
       </div>
 
       {/* Funding by Sector Donut */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-primary" />
           RegTech Funding by Sector
         </h3>
@@ -1191,9 +1191,9 @@ function MarketFutureTab() {
       </div>
 
       {/* Top Vendors */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 overflow-hidden">
-        <div className="p-5 border-b border-gray-700">
-          <h3 className="text-sm font-semibold text-gray-200 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border overflow-hidden">
+        <div className="p-5 border-b border-border">
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             Top RegTech Vendors
           </h3>
@@ -1201,7 +1201,7 @@ function MarketFutureTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-gray-400 bg-gray-800/50">
+              <tr className="text-muted-foreground bg-muted/50">
                 <th className="text-left px-4 py-3">Vendor</th>
                 <th className="text-left px-4 py-3">Focus</th>
                 <th className="text-left px-4 py-3">Region</th>
@@ -1210,10 +1210,10 @@ function MarketFutureTab() {
             </thead>
             <tbody>
               {REGTECH_VENDORS.map((v) => (
-                <tr key={v.name} className="border-t border-gray-800 hover:bg-gray-800/40 transition-colors">
-                  <td className="px-4 py-3 font-medium text-gray-200">{v.name}</td>
+                <tr key={v.name} className="border-t border-border hover:bg-muted/40 transition-colors">
+                  <td className="px-4 py-3 font-medium text-foreground">{v.name}</td>
                   <td className="px-4 py-3 text-primary">{v.focus}</td>
-                  <td className="px-4 py-3 text-gray-400">{v.region}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{v.region}</td>
                   <td className="px-4 py-3">
                     <Badge variant="outline" className={`text-xs ${
                       v.stage === "Enterprise" ? "text-primary border-border" :
@@ -1231,8 +1231,8 @@ function MarketFutureTab() {
       </div>
 
       {/* AI/NLP in Regulatory Interpretation */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Cpu className="w-4 h-4 text-primary" />
           AI/NLP in Regulatory Interpretation
         </h3>
@@ -1257,9 +1257,9 @@ function MarketFutureTab() {
               adoption: 21,
             },
           ].map((item) => (
-            <div key={item.use} className="bg-gray-800/50 rounded-xl border border-gray-700 p-4">
+            <div key={item.use} className="bg-muted/50 rounded-xl border border-border p-4">
               <div className="flex justify-between items-start mb-2">
-                <span className="text-sm font-medium text-gray-200">{item.use}</span>
+                <span className="text-sm font-medium text-foreground">{item.use}</span>
                 <Badge variant="outline" className={`text-xs shrink-0 ml-2 ${
                   item.maturity === "Mature" ? "text-green-300 border-green-700" :
                   item.maturity === "Growing" ? "text-primary border-border" :
@@ -1268,9 +1268,9 @@ function MarketFutureTab() {
                   {item.maturity}
                 </Badge>
               </div>
-              <p className="text-xs text-gray-400 mb-3">{item.desc}</p>
+              <p className="text-xs text-muted-foreground mb-3">{item.desc}</p>
               <div className="space-y-1">
-                <div className="flex justify-between text-xs text-gray-500">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span>Industry adoption</span>
                   <span>{item.adoption}%</span>
                 </div>
@@ -1289,17 +1289,17 @@ function MarketFutureTab() {
       </div>
 
       {/* Regulatory Sandbox Participation */}
-      <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-        <h3 className="text-sm font-semibold text-gray-200 mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-primary" />
           Regulatory Sandbox Participation
         </h3>
         <div className="space-y-2">
           {SANDBOX_PARTICIPANTS.map((p) => (
             <div key={p.country} className="flex items-center gap-3">
-              <div className="w-36 text-xs text-gray-300">{p.country}</div>
-              <div className="w-16 text-xs text-gray-500 text-center">{p.cohorts} cohorts</div>
-              <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+              <div className="w-36 text-xs text-muted-foreground">{p.country}</div>
+              <div className="w-16 text-xs text-muted-foreground text-center">{p.cohorts} cohorts</div>
+              <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${(p.firms / 280) * 100}%` }}
@@ -1315,8 +1315,8 @@ function MarketFutureTab() {
 
       {/* SupTech & Talent Gap */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+        <div className="bg-card rounded-xl border border-border p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Eye className="w-4 h-4 text-primary" />
             SupTech (Supervisory Tech) Adoption
           </h3>
@@ -1330,10 +1330,10 @@ function MarketFutureTab() {
             ].map((item) => (
               <div key={item.area} className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-gray-300">{item.area}</span>
+                  <span className="text-muted-foreground">{item.area}</span>
                   <span className="text-primary">{item.pct}%</span>
                 </div>
-                <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${item.pct}%` }}
@@ -1345,8 +1345,8 @@ function MarketFutureTab() {
             ))}
           </div>
         </div>
-        <div className="bg-gray-900 rounded-xl border border-gray-700 p-5">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+        <div className="bg-card rounded-xl border border-border p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Users className="w-4 h-4 text-amber-400" />
             Talent Gap Challenge
           </h3>
@@ -1360,10 +1360,10 @@ function MarketFutureTab() {
             ].map((item) => (
               <div key={item.role} className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-gray-300">{item.role}</span>
-                  <span className="text-gray-500">{item.open.toLocaleString()} open roles</span>
+                  <span className="text-muted-foreground">{item.role}</span>
+                  <span className="text-muted-foreground">{item.open.toLocaleString()} open roles</span>
                 </div>
-                <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${item.fill}%` }}
@@ -1371,7 +1371,7 @@ function MarketFutureTab() {
                     className={`h-full ${item.color} rounded-full`}
                   />
                 </div>
-                <p className="text-xs text-gray-600">{item.fill}% fill rate</p>
+                <p className="text-xs text-muted-foreground">{item.fill}% fill rate</p>
               </div>
             ))}
           </div>
@@ -1397,8 +1397,8 @@ export default function RegtechPage() {
             <ShieldCheck className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-100">RegTech & Compliance Automation</h1>
-            <p className="text-sm text-gray-400">
+            <h1 className="text-2xl font-bold text-foreground">RegTech & Compliance Automation</h1>
+            <p className="text-sm text-muted-foreground">
               AML/KYC automation, regulatory reporting, sanctions screening, and compliance cost reduction
             </p>
           </div>
@@ -1415,7 +1415,7 @@ export default function RegtechPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="aml">
-        <TabsList className="bg-gray-900 border border-gray-700 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="aml" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <AlertTriangle className="w-3 h-3 mr-1" />
             AML / KYC

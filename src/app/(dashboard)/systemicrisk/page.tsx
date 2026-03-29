@@ -637,9 +637,9 @@ function FSOCHeatmap() {
       <table className="w-full text-xs border-collapse">
         <thead>
           <tr>
-            <th className="text-left text-slate-500 p-2 w-32">Category</th>
+            <th className="text-left text-muted-foreground p-2 w-32">Category</th>
             {["Sub-sector A", "Sub-sector B", "Sub-sector C"].map((s, i) => (
-              <th key={i} className="text-center text-slate-400 p-2 font-normal">{s}</th>
+              <th key={i} className="text-center text-muted-foreground p-2 font-normal">{s}</th>
             ))}
           </tr>
         </thead>
@@ -647,8 +647,8 @@ function FSOCHeatmap() {
           {categories.map((cat, ci) => {
             const cells = FSOC_HEATMAP.filter(c => c.category === cat);
             return (
-              <tr key={ci} className="border-t border-slate-800">
-                <td className="p-2 text-slate-300 font-medium text-xs">{cat}</td>
+              <tr key={ci} className="border-t border-border">
+                <td className="p-2 text-muted-foreground font-medium text-xs">{cat}</td>
                 {cells.map((cell, j) => (
                   <td key={j} className="p-1">
                     <div
@@ -685,7 +685,7 @@ function EWIBar({ row }: { row: EWIRow }) {
   return (
     <div className={`rounded-lg border p-3 ${statusBg(row.status)}`}>
       <div className="flex justify-between items-center mb-1">
-        <span className="text-sm font-medium text-slate-200">{row.indicator}</span>
+        <span className="text-sm font-medium text-foreground">{row.indicator}</span>
         <div className="flex items-center gap-2">
           <span className="text-sm font-bold" style={{ color: col }}>
             {row.current}{row.unit}
@@ -693,11 +693,11 @@ function EWIBar({ row }: { row: EWIRow }) {
           <div className="w-2 h-2 rounded-full" style={{ backgroundColor: col }} />
         </div>
       </div>
-      <div className="relative h-2 rounded-full bg-slate-800 overflow-hidden mb-1">
+      <div className="relative h-2 rounded-full bg-muted overflow-hidden mb-1">
         <div className="absolute top-0 left-0 h-full rounded-full" style={{ width: `${pct}%`, backgroundColor: col, opacity: 0.8 }} />
         <div className="absolute top-0 h-full w-0.5 bg-white/40" style={{ left: `${threshPct}%` }} />
       </div>
-      <p className="text-xs text-slate-500">{row.description}</p>
+      <p className="text-xs text-muted-foreground">{row.description}</p>
     </div>
   );
 }
@@ -708,16 +708,16 @@ function EWIBar({ row }: { row: EWIRow }) {
 function InfoCard({ title, children, icon: Icon }: { title: string; children: React.ReactNode; icon: React.ComponentType<{ className?: string }> }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-900/60">
+    <div className="rounded-lg border border-border bg-card/60">
       <button
         className="w-full flex items-center justify-between p-3 text-left"
         onClick={() => setOpen(o => !o)}
       >
         <div className="flex items-center gap-2">
           <Icon className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium text-slate-200">{title}</span>
+          <span className="text-sm font-medium text-foreground">{title}</span>
         </div>
-        {open ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
       <AnimatePresence>
         {open && (
@@ -728,7 +728,7 @@ function InfoCard({ title, children, icon: Icon }: { title: string; children: Re
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 text-sm text-slate-400 border-t border-slate-800 pt-3 space-y-2">
+            <div className="px-4 pb-4 text-sm text-muted-foreground border-t border-border pt-3 space-y-2">
               {children}
             </div>
           </motion.div>
@@ -746,16 +746,16 @@ function ContagionTab() {
   return (
     <div className="space-y-6">
       {/* Network SVG */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <GitBranch className="w-4 h-4 text-red-400" />
             Interbank Network — Contagion Propagation
           </CardTitle>
         </CardHeader>
         <CardContent>
           <NetworkContagionSVG />
-          <p className="text-xs text-slate-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             When Bank A fails, losses propagate through bilateral exposures. Red edges show triggered contagion channels.
             Highly connected nodes (high degree/betweenness centrality) amplify systemic stress.
           </p>
@@ -796,19 +796,19 @@ function ContagionTab() {
 
         <InfoCard title="Cross-Border Contagion Channels" icon={Globe}>
           <ul className="list-disc ml-4 space-y-1">
-            <li><strong className="text-slate-300">Trade channel:</strong> recession in one economy reduces imports from partners</li>
-            <li><strong className="text-slate-300">Financial channel:</strong> cross-border bank exposures transmit credit losses directly</li>
-            <li><strong className="text-slate-300">Confidence channel:</strong> investors re-assess risk in correlated markets (flight to quality)</li>
-            <li><strong className="text-slate-300">Currency channel:</strong> devaluations create balance-sheet crises for dollar borrowers</li>
+            <li><strong className="text-muted-foreground">Trade channel:</strong> recession in one economy reduces imports from partners</li>
+            <li><strong className="text-muted-foreground">Financial channel:</strong> cross-border bank exposures transmit credit losses directly</li>
+            <li><strong className="text-muted-foreground">Confidence channel:</strong> investors re-assess risk in correlated markets (flight to quality)</li>
+            <li><strong className="text-muted-foreground">Currency channel:</strong> devaluations create balance-sheet crises for dollar borrowers</li>
             <li>2008: European banks held $1T+ in US structured products; immediate global transmission</li>
           </ul>
         </InfoCard>
       </div>
 
       {/* 2008 Crisis Timeline */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-amber-400" />
             2008 Financial Crisis — Key Events
           </CardTitle>
@@ -821,7 +821,7 @@ function ContagionTab() {
               return (
                 <div key={s} className="flex items-center gap-1.5">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: c }} />
-                  <span className="text-slate-400 capitalize">{s}</span>
+                  <span className="text-muted-foreground capitalize">{s}</span>
                 </div>
               );
             })}
@@ -833,7 +833,7 @@ function ContagionTab() {
         <CardContent className="pt-4">
           <div className="flex items-start gap-3">
             <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-            <div className="text-sm text-slate-300">
+            <div className="text-sm text-muted-foreground">
               <strong className="text-primary">Key Insight:</strong> Contagion is non-linear. Small shocks can cascade into systemic crises when
               institutions are highly interconnected, leverage is elevated, and liquidity buffers are thin.
               The 2008 crisis spread from $500B in subprime losses to a $20T global wealth destruction event.
@@ -856,9 +856,9 @@ function GSIBTab() {
   return (
     <div className="space-y-6">
       {/* G-SIB Identification Methodology */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             G-SIB Identification: 5 Indicator Categories (Basel Committee)
           </CardTitle>
@@ -872,15 +872,15 @@ function GSIBTab() {
               { name: "Global Activity", weight: "20%", desc: "Cross-jurisdictional claims and liabilities", icon: "🌐" },
               { name: "Complexity", weight: "20%", desc: "OTC derivatives notional, Level 3 assets, trading/AFS securities", icon: "⚙️" },
             ].map((cat, i) => (
-              <div key={i} className="rounded-lg bg-slate-800/50 border border-slate-700 p-3 text-center">
+              <div key={i} className="rounded-lg bg-muted/50 border border-border p-3 text-center">
                 <div className="text-2xl mb-1">{cat.icon}</div>
-                <div className="text-xs font-bold text-slate-200 mb-0.5">{cat.name}</div>
+                <div className="text-xs font-bold text-foreground mb-0.5">{cat.name}</div>
                 <Badge variant="outline" className="text-xs border-border text-primary mb-1">{cat.weight}</Badge>
-                <p className="text-xs text-slate-500">{cat.desc}</p>
+                <p className="text-xs text-muted-foreground">{cat.desc}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Each bank receives a score for each category; scores are averaged to produce an overall systemic importance score.
             Banks above a threshold are designated G-SIBs and must hold additional Tier 1 capital (surcharges).
           </p>
@@ -888,10 +888,10 @@ function GSIBTab() {
       </Card>
 
       {/* G-SIB List */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <Shield className="w-4 h-4 text-green-400" />
               2024 G-SIB List — Capital Surcharges
             </CardTitle>
@@ -899,7 +899,7 @@ function GSIBTab() {
               {[1, 2, 3, 4].map(b => (
                 <div key={b} className="flex items-center gap-1">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: bucketColor(b) }} />
-                  <span className="text-xs text-slate-400">B{b}({bucketCounts[b] ?? 0})</span>
+                  <span className="text-xs text-muted-foreground">B{b}({bucketCounts[b] ?? 0})</span>
                 </div>
               ))}
             </div>
@@ -909,9 +909,9 @@ function GSIBTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-800">
+                <tr className="border-b border-border">
                   {["Bank", "Country", "Bucket", "Surcharge", "Total Capital", ""].map((h, i) => (
-                    <th key={i} className="text-left p-2 text-slate-500 font-normal">{h}</th>
+                    <th key={i} className="text-left p-2 text-muted-foreground font-normal">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -919,19 +919,19 @@ function GSIBTab() {
                 {GSIBS.map((row, i) => (
                   <tr
                     key={i}
-                    className="border-b border-slate-800/50 hover:bg-slate-800/30 cursor-pointer transition-colors"
+                    className="border-b border-border/50 hover:bg-muted/30 cursor-pointer transition-colors"
                     onClick={() => setSelectedBank(b => b?.bank === row.bank ? null : row)}
                   >
-                    <td className="p-2 font-medium text-slate-200">{row.bank}</td>
-                    <td className="p-2 text-slate-400">{row.country}</td>
+                    <td className="p-2 font-medium text-foreground">{row.bank}</td>
+                    <td className="p-2 text-muted-foreground">{row.country}</td>
                     <td className="p-2">
                       <Badge variant="outline" className="text-xs" style={{ borderColor: bucketColor(row.bucket), color: bucketColor(row.bucket) }}>
                         Bucket {row.bucket}
                       </Badge>
                     </td>
                     <td className="p-2 font-bold" style={{ color: bucketColor(row.bucket) }}>{row.surcharge}</td>
-                    <td className="p-2 text-slate-300">{row.totalCapital}</td>
-                    <td className="p-2 text-slate-500">
+                    <td className="p-2 text-muted-foreground">{row.totalCapital}</td>
+                    <td className="p-2 text-muted-foreground">
                       <ArrowRight className="w-3 h-3" />
                     </td>
                   </tr>
@@ -943,9 +943,9 @@ function GSIBTab() {
             <motion.div
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-3 rounded-lg bg-slate-800/50 border border-slate-700 p-3 text-sm text-slate-300"
+              className="mt-3 rounded-lg bg-muted/50 border border-border p-3 text-sm text-muted-foreground"
             >
-              <strong className="text-slate-100">{selectedBank.bank}</strong> — {selectedBank.country} |&nbsp;
+              <strong className="text-foreground">{selectedBank.bank}</strong> — {selectedBank.country} |&nbsp;
               G-SIB surcharge <strong style={{ color: bucketColor(selectedBank.bucket) }}>{selectedBank.surcharge}</strong> on top of minimum 8% CET1 requirement.
               Total minimum capital: <strong className="text-primary">{selectedBank.totalCapital}</strong> (CET1 + surcharge + conservation buffer).
             </motion.div>
@@ -955,15 +955,15 @@ function GSIBTab() {
 
       {/* TBTF Subsidy + Bail-In/Out */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-card/50 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-amber-400" />
               TBTF Funding Subsidy
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-muted-foreground">
               G-SIBs benefit from an implicit government guarantee: creditors lend at lower rates because they expect a bailout.
             </p>
             {[
@@ -972,27 +972,27 @@ function GSIBTab() {
               { label: "Post-Dodd-Frank reduction", value: "~40%", color: "#4ade80" },
               { label: "IMF global estimate (2014)", value: "$590B/yr", color: "#f87171" },
             ].map((item, i) => (
-              <div key={i} className="flex justify-between items-center text-xs border-b border-slate-800 pb-2">
-                <span className="text-slate-400">{item.label}</span>
+              <div key={i} className="flex justify-between items-center text-xs border-b border-border pb-2">
+                <span className="text-muted-foreground">{item.label}</span>
                 <span className="font-bold" style={{ color: item.color }}>{item.value}</span>
               </div>
             ))}
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-muted-foreground">
               Living wills (resolution plans) under Dodd-Frank Title I require G-SIBs to demonstrate they can fail without taxpayer assistance.
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-card/50 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <Scale className="w-4 h-4 text-green-400" />
               Bail-In vs Bail-Out
             </CardTitle>
           </CardHeader>
           <CardContent>
             <BailInVsBailoutSVG />
-            <p className="text-xs text-slate-500 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               Dodd-Frank Title II (Orderly Liquidation Authority) enables FDIC to resolve failing G-SIBs via bail-in:
               equity wiped, long-term debt converted to equity, no taxpayer funds used.
             </p>
@@ -1016,26 +1016,26 @@ function MetricsTab() {
           <motion.div
             key={i}
             whileHover={{ scale: 1.01 }}
-            className="rounded-lg border border-slate-800 bg-slate-900/60 p-4 cursor-pointer"
+            className="rounded-lg border border-border bg-card/60 p-4 cursor-pointer"
             style={{ borderColor: activeMetric?.symbol === m.symbol ? riskColors[m.riskLevel] : undefined }}
             onClick={() => setActiveMetric(am => am?.symbol === m.symbol ? null : m)}
           >
             <div className="flex justify-between items-start mb-2">
               <div>
-                <div className="text-xs text-slate-500">{m.name}</div>
-                <div className="text-lg font-bold text-slate-100 font-mono">{m.symbol}</div>
+                <div className="text-xs text-muted-foreground">{m.name}</div>
+                <div className="text-lg font-bold text-foreground font-mono">{m.symbol}</div>
               </div>
               <div className="text-right">
                 <div className="text-base font-bold" style={{ color: riskColors[m.riskLevel] }}>{m.value}</div>
                 <div className="flex items-center gap-1 justify-end mt-0.5">
-                  {m.trend === "up" ? <TrendingUp className="w-3 h-3 text-red-400" /> : m.trend === "down" ? <TrendingDown className="w-3 h-3 text-green-400" /> : <Activity className="w-3 h-3 text-slate-400" />}
+                  {m.trend === "up" ? <TrendingUp className="w-3 h-3 text-red-400" /> : m.trend === "down" ? <TrendingDown className="w-3 h-3 text-green-400" /> : <Activity className="w-3 h-3 text-muted-foreground" />}
                   <Badge variant="outline" className="text-xs capitalize" style={{ borderColor: riskColors[m.riskLevel], color: riskColors[m.riskLevel] }}>
                     {m.riskLevel}
                   </Badge>
                 </div>
               </div>
             </div>
-            <p className="text-xs text-slate-500">{m.description}</p>
+            <p className="text-xs text-muted-foreground">{m.description}</p>
           </motion.div>
         ))}
       </div>
@@ -1053,11 +1053,11 @@ function MetricsTab() {
                 <div className="flex items-start gap-3">
                   <BarChart3 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <div className="space-y-2">
-                    <div className="font-semibold text-slate-200">{activeMetric.name} — Technical Definition</div>
-                    <div className="bg-slate-900/60 border border-slate-700 rounded px-3 py-2 font-mono text-xs text-green-300">
+                    <div className="font-semibold text-foreground">{activeMetric.name} — Technical Definition</div>
+                    <div className="bg-card/60 border border-border rounded px-3 py-2 font-mono text-xs text-green-300">
                       {activeMetric.formula}
                     </div>
-                    <p className="text-sm text-slate-400">{activeMetric.description}</p>
+                    <p className="text-sm text-muted-foreground">{activeMetric.description}</p>
                   </div>
                 </div>
               </CardContent>
@@ -1067,16 +1067,16 @@ function MetricsTab() {
       </AnimatePresence>
 
       {/* FSOC Dashboard */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-red-400" />
             FSOC Systemic Risk Monitoring Heat Map
           </CardTitle>
         </CardHeader>
         <CardContent>
           <FSOCHeatmap />
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             FSOC (Financial Stability Oversight Council) monitors 5 vulnerability categories across banking, non-banking, and cross-border sectors.
             Current stress elevated in non-bank leverage and corporate credit.
           </p>
@@ -1084,9 +1084,9 @@ function MetricsTab() {
       </Card>
 
       {/* Early Warning Indicators */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             Early Warning Indicators Dashboard
           </CardTitle>
@@ -1101,7 +1101,7 @@ function MetricsTab() {
             {["green", "amber", "red"].map(s => (
               <div key={s} className="flex items-center gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: statusColor(s) }} />
-                <span className="text-slate-400 capitalize">{s === "green" ? "Normal" : s === "amber" ? "Elevated" : "Stress"}</span>
+                <span className="text-muted-foreground capitalize">{s === "green" ? "Normal" : s === "amber" ? "Elevated" : "Stress"}</span>
               </div>
             ))}
           </div>
@@ -1112,7 +1112,7 @@ function MetricsTab() {
         <CardContent className="pt-4">
           <div className="flex items-start gap-3">
             <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-            <p className="text-sm text-slate-300">
+            <p className="text-sm text-muted-foreground">
               <strong className="text-amber-400">Network centrality matters:</strong> A node with high eigenvector centrality is connected to other highly connected nodes.
               In 2008, AIG's centrality was not reflected in simple size metrics — it was the CDS counterparty to virtually every major dealer.
             </p>
@@ -1134,9 +1134,9 @@ function MacroPruTab() {
   return (
     <div className="space-y-6">
       {/* Tool list */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Lock className="w-4 h-4 text-primary" />
             Macroprudential Toolkit
           </CardTitle>
@@ -1147,7 +1147,7 @@ function MacroPruTab() {
               <motion.div
                 key={i}
                 whileHover={{ x: 2 }}
-                className="rounded-lg border border-slate-800 bg-slate-800/30 p-3 cursor-pointer hover:border-slate-700 transition-colors"
+                className="rounded-lg border border-border bg-muted/30 p-3 cursor-pointer hover:border-border transition-colors"
                 style={{ borderColor: selectedTool?.acronym === tool.acronym ? typeColor(tool.type) : undefined }}
                 onClick={() => setSelectedTool(t => t?.acronym === tool.acronym ? null : tool)}
               >
@@ -1160,13 +1160,13 @@ function MacroPruTab() {
                       {tool.acronym}
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-slate-200">{tool.name}</div>
-                      <div className="text-xs text-slate-500">Targets: {tool.targetRisk}</div>
+                      <div className="text-sm font-medium text-foreground">{tool.name}</div>
+                      <div className="text-xs text-muted-foreground">Targets: {tool.targetRisk}</div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-bold text-slate-200">{tool.currentValue}</div>
-                    <div className="text-xs text-slate-500">Range: {tool.range}</div>
+                    <div className="text-sm font-bold text-foreground">{tool.currentValue}</div>
+                    <div className="text-xs text-muted-foreground">Range: {tool.range}</div>
                     <Badge variant="outline" className="text-xs mt-1 border-green-700 text-green-400">{tool.status}</Badge>
                   </div>
                 </div>
@@ -1177,7 +1177,7 @@ function MacroPruTab() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="text-xs text-slate-400 mt-2 border-t border-slate-700 pt-2"
+                      className="text-xs text-muted-foreground mt-2 border-t border-border pt-2"
                     >
                       {tool.description}
                     </motion.p>
@@ -1190,9 +1190,9 @@ function MacroPruTab() {
       </Card>
 
       {/* CCyB Timeline */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Countercyclical Capital Buffer (CCyB) — Build-up and Release
           </CardTitle>
@@ -1205,9 +1205,9 @@ function MacroPruTab() {
               { phase: "COVID Release (2020)", color: "#f87171", desc: "CCyB immediately released to 0% to maintain bank lending capacity" },
               { phase: "Re-tightening (2022+)", color: "#fbbf24", desc: "Gradual re-build as credit growth resumed post-pandemic stimulus" },
             ].map((p, i) => (
-              <div key={i} className="rounded bg-slate-800/50 border border-slate-700 p-2">
+              <div key={i} className="rounded bg-muted/50 border border-border p-2">
                 <div className="font-semibold mb-1" style={{ color: p.color }}>{p.phase}</div>
-                <p className="text-slate-500">{p.desc}</p>
+                <p className="text-muted-foreground">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -1216,42 +1216,42 @@ function MacroPruTab() {
 
       {/* LCR / NSFR mechanics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-card/50 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <Banknote className="w-4 h-4 text-amber-400" />
               LCR Mechanics
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-sm text-slate-400">
-            <div className="bg-slate-800/50 rounded p-3 font-mono text-xs text-green-300">
+          <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <div className="bg-muted/50 rounded p-3 font-mono text-xs text-green-300">
               LCR = HQLA / Net Cash Outflows (30-day) ≥ 100%
             </div>
             <ul className="list-disc ml-4 space-y-1 text-xs">
-              <li><strong className="text-slate-300">HQLA Level 1:</strong> Cash, central bank reserves, sovereign debt (0% haircut)</li>
-              <li><strong className="text-slate-300">HQLA Level 2A:</strong> Agency/GSE debt, covered bonds (15% haircut, max 40% of HQLA)</li>
-              <li><strong className="text-slate-300">HQLA Level 2B:</strong> Corporate bonds, equities (25–50% haircut, max 15%)</li>
+              <li><strong className="text-muted-foreground">HQLA Level 1:</strong> Cash, central bank reserves, sovereign debt (0% haircut)</li>
+              <li><strong className="text-muted-foreground">HQLA Level 2A:</strong> Agency/GSE debt, covered bonds (15% haircut, max 40% of HQLA)</li>
+              <li><strong className="text-muted-foreground">HQLA Level 2B:</strong> Corporate bonds, equities (25–50% haircut, max 15%)</li>
               <li>Retail deposit outflow rate: 3–10% over 30 days (stable/less stable)</li>
               <li>Unsecured wholesale: 25–100% depending on counterparty type</li>
             </ul>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900/50 border-slate-800">
+        <Card className="bg-card/50 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <Layers className="w-4 h-4 text-green-400" />
               NSFR &amp; OTC Clearing Mandate
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-sm text-slate-400">
-            <div className="bg-slate-800/50 rounded p-3 font-mono text-xs text-green-300">
+          <CardContent className="space-y-3 text-sm text-muted-foreground">
+            <div className="bg-muted/50 rounded p-3 font-mono text-xs text-green-300">
               NSFR = Available Stable Funding / Required Stable Funding ≥ 100%
             </div>
             <ul className="list-disc ml-4 space-y-1 text-xs">
               <li>ASF: Tier 1 equity + deposits with &gt;1yr maturity (100% stable)</li>
               <li>RSF: Assets weighted by liquidity (illiquid assets require more stable funding)</li>
-              <li><strong className="text-slate-300">OTC clearing mandate (Dodd-Frank §723):</strong> standardized derivatives must clear through central counterparties (CCPs)</li>
+              <li><strong className="text-muted-foreground">OTC clearing mandate (Dodd-Frank §723):</strong> standardized derivatives must clear through central counterparties (CCPs)</li>
               <li>CCPs require initial + variation margin, reducing bilateral counterparty risk</li>
               <li>Risk: CCP becomes a new SIFI — "too central to fail" problem</li>
             </ul>
@@ -1260,16 +1260,16 @@ function MacroPruTab() {
       </div>
 
       {/* Shadow banking regulatory arbitrage */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-orange-400" />
             Regulatory Arbitrage: Shadow Banking Growth
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ShadowBankingGrowthSVG />
-          <div className="mt-3 space-y-2 text-xs text-slate-400">
+          <div className="mt-3 space-y-2 text-xs text-muted-foreground">
             <p>
               Stricter bank regulation post-2008 pushed credit intermediation into the shadow banking sector —
               money market funds, hedge funds, private credit, and securitization vehicles that perform bank-like
@@ -1281,9 +1281,9 @@ function MacroPruTab() {
                 { label: "Share of total financial assets", value: "~28%", color: "#fbbf24" },
                 { label: "FSB monitoring universe", value: "$218T", color: "#60a5fa" },
               ].map((stat, i) => (
-                <div key={i} className="rounded bg-slate-800/50 border border-slate-700 p-2 text-center">
+                <div key={i} className="rounded bg-muted/50 border border-border p-2 text-center">
                   <div className="text-base font-bold" style={{ color: stat.color }}>{stat.value}</div>
-                  <div className="text-slate-500">{stat.label}</div>
+                  <div className="text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -1292,9 +1292,9 @@ function MacroPruTab() {
       </Card>
 
       {/* DFAST/CCAR history */}
-      <Card className="bg-slate-900/50 border-slate-800">
+      <Card className="bg-card/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             Stress Test Evolution: DFAST &amp; CCAR
           </CardTitle>
@@ -1314,8 +1314,8 @@ function MacroPruTab() {
                   {item.year}
                 </div>
                 <div>
-                  <span className="text-sm font-semibold text-slate-200">{item.name}: </span>
-                  <span className="text-xs text-slate-400">{item.desc}</span>
+                  <span className="text-sm font-semibold text-foreground">{item.name}: </span>
+                  <span className="text-xs text-muted-foreground">{item.desc}</span>
                 </div>
               </div>
             ))}
@@ -1331,7 +1331,7 @@ function MacroPruTab() {
 // ---------------------------------------------------------------------------
 export default function SystemicRiskPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1344,8 +1344,8 @@ export default function SystemicRiskPage() {
             <AlertTriangle className="w-6 h-6 text-red-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">Systemic Risk &amp; Financial Stability</h1>
-            <p className="text-sm text-slate-400">How financial crises propagate — contagion, G-SIBs, systemic metrics, macroprudential regulation</p>
+            <h1 className="text-2xl font-bold text-foreground">Systemic Risk &amp; Financial Stability</h1>
+            <p className="text-sm text-muted-foreground">How financial crises propagate — contagion, G-SIBs, systemic metrics, macroprudential regulation</p>
           </div>
         </div>
 
@@ -1359,7 +1359,7 @@ export default function SystemicRiskPage() {
             { label: "LCR Requirement", value: "≥100%", color: "text-green-400 border-green-800 bg-green-950/30" },
           ].map((chip, i) => (
             <div key={i} className={`rounded-full border px-3 py-1 text-xs flex items-center gap-1.5 ${chip.color}`}>
-              <span className="text-slate-400">{chip.label}:</span>
+              <span className="text-muted-foreground">{chip.label}:</span>
               <span className="font-bold">{chip.value}</span>
             </div>
           ))}
@@ -1368,7 +1368,7 @@ export default function SystemicRiskPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="contagion">
-        <TabsList className="bg-slate-900 border border-slate-800 mb-6 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           {[
             { value: "contagion", label: "Contagion Mechanisms", icon: GitBranch },
             { value: "gsibs", label: "G-SIBs & TBTF", icon: Building2 },
@@ -1378,7 +1378,7 @@ export default function SystemicRiskPage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100 text-slate-400 flex items-center gap-1.5 px-3 py-2"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5 px-3 py-2"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}

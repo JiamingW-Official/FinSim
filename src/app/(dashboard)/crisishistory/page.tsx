@@ -649,7 +649,7 @@ export default function CrisisHistoryPage() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -657,8 +657,8 @@ export default function CrisisHistoryPage() {
             <AlertTriangle className="w-5 h-5 text-red-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">Financial Crises: History &amp; Anatomy</h1>
-            <p className="text-sm text-slate-400">Study the crashes, understand the patterns, avoid repeating history</p>
+            <h1 className="text-2xl font-bold text-foreground">Financial Crises: History &amp; Anatomy</h1>
+            <p className="text-sm text-muted-foreground">Study the crashes, understand the patterns, avoid repeating history</p>
           </div>
         </div>
         {/* quick stats */}
@@ -669,12 +669,12 @@ export default function CrisisHistoryPage() {
             { label: "Asset Classes", value: "6", icon: <Activity className="w-4 h-4 text-emerald-400" /> },
             { label: "Policy Tools", value: "12+", icon: <Landmark className="w-4 h-4 text-primary" /> },
           ].map((s) => (
-            <Card key={s.label} className="bg-slate-900 border-slate-800">
+            <Card key={s.label} className="bg-card border-border">
               <CardContent className="p-3 flex items-center gap-3">
-                <div className="w-8 h-8 rounded-md bg-slate-800 flex items-center justify-center">{s.icon}</div>
+                <div className="w-8 h-8 rounded-md bg-muted flex items-center justify-center">{s.icon}</div>
                 <div>
-                  <p className="text-xs text-slate-500">{s.label}</p>
-                  <p className="text-lg font-bold text-slate-100">{s.value}</p>
+                  <p className="text-xs text-muted-foreground">{s.label}</p>
+                  <p className="text-lg font-bold text-foreground">{s.value}</p>
                 </div>
               </CardContent>
             </Card>
@@ -684,29 +684,29 @@ export default function CrisisHistoryPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="timeline" className="w-full">
-        <TabsList className="bg-slate-900 border border-slate-800 mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="timeline" className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400 text-xs">
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsTrigger value="timeline" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
             Crisis Timeline
           </TabsTrigger>
-          <TabsTrigger value="gfc" className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400 text-xs">
+          <TabsTrigger value="gfc" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
             2008 GFC Deep Dive
           </TabsTrigger>
-          <TabsTrigger value="patterns" className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400 text-xs">
+          <TabsTrigger value="patterns" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
             Common Patterns
           </TabsTrigger>
-          <TabsTrigger value="assets" className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400 text-xs">
+          <TabsTrigger value="assets" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
             Asset Behavior
           </TabsTrigger>
-          <TabsTrigger value="policy" className="data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400 text-xs">
+          <TabsTrigger value="policy" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
             Policy Response
           </TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Crisis Timeline ─────────────────────────────────────────── */}
         <TabsContent value="timeline" className="data-[state=inactive]:hidden">
-          <Card className="bg-slate-900 border-slate-800 mb-4">
+          <Card className="bg-card border-border mb-4">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Interactive Crisis Timeline — Click a crisis to explore
               </CardTitle>
@@ -724,19 +724,19 @@ export default function CrisisHistoryPage() {
                 onClick={() => setSelectedCrisis(c.id === selectedCrisis ? null : c.id)}
                 className={`text-left rounded-lg border p-3 transition-all ${
                   c.id === selectedCrisis
-                    ? "border-slate-500 bg-slate-800"
-                    : "border-slate-800 bg-slate-900 hover:border-slate-700"
+                    ? "border-slate-500 bg-muted"
+                    : "border-border bg-card hover:border-border"
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-slate-300">{c.year}</span>
+                  <span className="text-xs font-bold text-muted-foreground">{c.year}</span>
                   <Badge className={`text-xs px-1.5 py-0 border ${severityColor(c.severity)}`}>
                     {c.severity}
                   </Badge>
                 </div>
-                <p className="text-xs font-semibold text-slate-200 leading-tight mb-1">{c.shortName !== String(c.year) ? c.name : c.name}</p>
+                <p className="text-xs font-semibold text-foreground leading-tight mb-1">{c.shortName !== String(c.year) ? c.name : c.name}</p>
                 <p className="text-xs text-red-400 font-bold">{c.peak_loss}</p>
-                <p className="text-xs text-slate-500">{c.duration}</p>
+                <p className="text-xs text-muted-foreground">{c.duration}</p>
               </button>
             ))}
           </div>
@@ -751,42 +751,42 @@ export default function CrisisHistoryPage() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.2 }}
               >
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
                       <div>
-                        <CardTitle className="text-lg text-slate-100">{selected.name}</CardTitle>
-                        <p className="text-xs text-slate-400 mt-1">{selected.cause}</p>
+                        <CardTitle className="text-lg text-foreground">{selected.name}</CardTitle>
+                        <p className="text-xs text-muted-foreground mt-1">{selected.cause}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-2xl font-bold text-red-400">{selected.peak_loss}</p>
-                        <p className="text-xs text-slate-500">peak decline</p>
-                        <p className="text-xs text-slate-400 mt-1">GDP: {selected.gdpImpact}</p>
+                        <p className="text-xs text-muted-foreground">peak decline</p>
+                        <p className="text-xs text-muted-foreground mt-1">GDP: {selected.gdpImpact}</p>
                       </div>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-slate-300 mb-4 leading-relaxed">{selected.description}</p>
+                    <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{selected.description}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1">
+                        <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
                           <AlertTriangle className="w-3 h-3 text-orange-400" /> Key Triggers
                         </h4>
                         <ul className="space-y-1">
                           {selected.triggers.map((t, i) => (
-                            <li key={i} className="text-xs text-slate-300 flex items-start gap-2">
+                            <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
                               <span className="text-orange-400 mt-0.5">•</span> {t}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-2 flex items-center gap-1">
+                        <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2 flex items-center gap-1">
                           <BookOpen className="w-3 h-3 text-emerald-400" /> Lessons Learned
                         </h4>
                         <ul className="space-y-1">
                           {selected.lessons.map((l, i) => (
-                            <li key={i} className="text-xs text-slate-300 flex items-start gap-2">
+                            <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
                               <span className="text-emerald-400 mt-0.5">•</span> {l}
                             </li>
                           ))}
@@ -802,16 +802,16 @@ export default function CrisisHistoryPage() {
 
         {/* ── Tab 2: 2008 GFC Deep Dive ─────────────────────────────────────── */}
         <TabsContent value="gfc" className="data-[state=inactive]:hidden space-y-4">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Globe className="w-4 h-4 text-red-400" />
                 Crisis Transmission Mechanism
               </CardTitle>
             </CardHeader>
             <CardContent>
               <GFCDiagramSVG />
-              <p className="text-xs text-slate-500 mt-2">Top row: origination and securitization chain. Bottom row: how collapse propagated. Vertical connections show causal links.</p>
+              <p className="text-xs text-muted-foreground mt-2">Top row: origination and securitization chain. Bottom row: how collapse propagated. Vertical connections show causal links.</p>
             </CardContent>
           </Card>
 
@@ -867,7 +867,7 @@ export default function CrisisHistoryPage() {
                 ],
               },
             ].map((section) => (
-              <Card key={section.title} className="bg-slate-900 border-slate-800">
+              <Card key={section.title} className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     {section.icon}
@@ -877,8 +877,8 @@ export default function CrisisHistoryPage() {
                 <CardContent>
                   <ul className="space-y-1.5">
                     {section.points.map((p, i) => (
-                      <li key={i} className="text-xs text-slate-300 flex items-start gap-2">
-                        <span className="text-slate-500 mt-0.5 shrink-0">{i + 1}.</span> {p}
+                      <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+                        <span className="text-muted-foreground mt-0.5 shrink-0">{i + 1}.</span> {p}
                       </li>
                     ))}
                   </ul>
@@ -888,9 +888,9 @@ export default function CrisisHistoryPage() {
           </div>
 
           {/* Key metrics */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300">Crisis by the Numbers</CardTitle>
+              <CardTitle className="text-sm text-muted-foreground">Crisis by the Numbers</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -904,8 +904,8 @@ export default function CrisisHistoryPage() {
                   { label: "Fed Balance Sheet 2009", value: "$2.2T", color: "text-primary" },
                   { label: "Recovery to Prior Peak", value: "5.5 years", color: "text-emerald-400" },
                 ].map((m) => (
-                  <div key={m.label} className="bg-slate-800 rounded-lg p-3">
-                    <p className="text-xs text-slate-400 mb-1">{m.label}</p>
+                  <div key={m.label} className="bg-muted rounded-lg p-3">
+                    <p className="text-xs text-muted-foreground mb-1">{m.label}</p>
                     <p className={`text-lg font-bold ${m.color}`}>{m.value}</p>
                   </div>
                 ))}
@@ -916,16 +916,16 @@ export default function CrisisHistoryPage() {
 
         {/* ── Tab 3: Common Patterns ─────────────────────────────────────────── */}
         <TabsContent value="patterns" className="data-[state=inactive]:hidden space-y-4">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Kindleberger–Minsky Anatomy of a Financial Crisis
               </CardTitle>
             </CardHeader>
             <CardContent>
               <MinskyCycleSVG />
-              <p className="text-xs text-slate-500 mt-2">Every speculative boom follows this five-phase pattern. The Minsky Moment is the sudden transition from Euphoria to Distress when leveraged positions cannot be rolled.</p>
+              <p className="text-xs text-muted-foreground mt-2">Every speculative boom follows this five-phase pattern. The Minsky Moment is the sudden transition from Euphoria to Distress when leveraged positions cannot be rolled.</p>
             </CardContent>
           </Card>
 
@@ -950,10 +950,10 @@ export default function CrisisHistoryPage() {
             ].map((p) => (
               <div key={p.phase} className={`rounded-lg border p-3 ${p.color}`}>
                 <p className={`text-xs font-bold mb-2 ${p.tc}`}>{p.phase}</p>
-                <p className="text-xs text-slate-300 leading-relaxed mb-2">{p.desc}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-2">{p.desc}</p>
                 <div className="space-y-1">
                   {p.examples.map((ex, i) => (
-                    <p key={i} className="text-xs text-slate-500">• {ex}</p>
+                    <p key={i} className="text-xs text-muted-foreground">• {ex}</p>
                   ))}
                 </div>
               </div>
@@ -961,9 +961,9 @@ export default function CrisisHistoryPage() {
           </div>
 
           {/* Credit cycle */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300">Credit Expansion Index — Simulated Cycle</CardTitle>
+              <CardTitle className="text-sm text-muted-foreground">Credit Expansion Index — Simulated Cycle</CardTitle>
             </CardHeader>
             <CardContent>
               <CreditCycleChartSVG />
@@ -971,9 +971,9 @@ export default function CrisisHistoryPage() {
           </Card>
 
           {/* Warning indicators */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
                 Early Warning Indicators
               </CardTitle>
@@ -1007,8 +1007,8 @@ export default function CrisisHistoryPage() {
                     <p className={`text-xs font-bold mb-2 ${cat.color}`}>{cat.category}</p>
                     <ul className="space-y-1">
                       {cat.items.map((item, i) => (
-                        <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
-                          <span className="text-slate-600 mt-0.5">▸</span>{item}
+                        <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                          <span className="text-muted-foreground mt-0.5">▸</span>{item}
                         </li>
                       ))}
                     </ul>
@@ -1021,9 +1021,9 @@ export default function CrisisHistoryPage() {
 
         {/* ── Tab 4: Asset Behavior ──────────────────────────────────────────── */}
         <TabsContent value="assets" className="data-[state=inactive]:hidden space-y-4">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-primary" />
                 Asset Class Performance During Crises — Heatmap
               </CardTitle>
@@ -1042,7 +1042,7 @@ export default function CrisisHistoryPage() {
                 ].map((l) => (
                   <div key={l.label} className="flex items-center gap-1.5">
                     <div className="w-3 h-3 rounded-sm" style={{ background: l.color, opacity: 0.6 }} />
-                    <span className="text-xs text-slate-500">{l.label}</span>
+                    <span className="text-xs text-muted-foreground">{l.label}</span>
                   </div>
                 ))}
               </div>
@@ -1077,7 +1077,7 @@ export default function CrisisHistoryPage() {
                 exception: "2020: residential real estate rose due to stimulus and work-from-home demand shift.",
                 rule: "Watch price-to-rent ratios and mortgage credit conditions as leading indicators." },
             ].map((a) => (
-              <Card key={a.asset} className="bg-slate-900 border-slate-800">
+              <Card key={a.asset} className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     {a.icon}
@@ -1085,14 +1085,14 @@ export default function CrisisHistoryPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <p className="text-xs text-slate-300">{a.summary}</p>
+                  <p className="text-xs text-muted-foreground">{a.summary}</p>
                   <div className="bg-amber-500/10 border border-amber-500/20 rounded p-2">
                     <p className="text-xs text-amber-400 font-semibold mb-0.5">Notable Exception</p>
-                    <p className="text-xs text-slate-400">{a.exception}</p>
+                    <p className="text-xs text-muted-foreground">{a.exception}</p>
                   </div>
                   <div className="bg-primary/10 border border-border rounded p-2">
                     <p className="text-xs text-primary font-semibold mb-0.5">Investor Rule</p>
-                    <p className="text-xs text-slate-400">{a.rule}</p>
+                    <p className="text-xs text-muted-foreground">{a.rule}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -1100,9 +1100,9 @@ export default function CrisisHistoryPage() {
           </div>
 
           {/* Portfolio lesson */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-emerald-400" />
                 Portfolio Construction for Crisis Resilience
               </CardTitle>
@@ -1114,11 +1114,11 @@ export default function CrisisHistoryPage() {
                   { strategy: "Crisis Alpha", desc: "Long volatility strategies (VIX calls, tail-risk hedges) and trend-following CTAs that go short during trending downturns. Expensive in calm markets but invaluable in crashes.", drawdown: "+40–80% in 2008" },
                   { strategy: "Barbell Approach", desc: "Taleb's approach: 90% ultra-safe assets (T-bills, gold) + 10% high-risk/reward bets. Limits downside to 10% while retaining large upside from convex positions.", drawdown: "Capped ~10%" },
                 ].map((s) => (
-                  <div key={s.strategy} className="bg-slate-800 rounded-lg p-3">
-                    <p className="text-xs font-bold text-slate-200 mb-1">{s.strategy}</p>
-                    <p className="text-xs text-slate-400 mb-2 leading-relaxed">{s.desc}</p>
+                  <div key={s.strategy} className="bg-muted rounded-lg p-3">
+                    <p className="text-xs font-bold text-foreground mb-1">{s.strategy}</p>
+                    <p className="text-xs text-muted-foreground mb-2 leading-relaxed">{s.desc}</p>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-xs text-slate-500">2008 drawdown:</span>
+                      <span className="text-xs text-muted-foreground">2008 drawdown:</span>
                       <Badge className="text-xs bg-emerald-500/20 text-emerald-400 border-emerald-500/30 px-1.5 py-0 border">{s.drawdown}</Badge>
                     </div>
                   </div>
@@ -1130,9 +1130,9 @@ export default function CrisisHistoryPage() {
 
         {/* ── Tab 5: Policy Response ─────────────────────────────────────────── */}
         <TabsContent value="policy" className="data-[state=inactive]:hidden space-y-4">
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Landmark className="w-4 h-4 text-primary" />
                 Fed Policy Tools — Historical Timeline
               </CardTitle>
@@ -1144,9 +1144,9 @@ export default function CrisisHistoryPage() {
 
           {/* Fed tools evolution */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-300">Federal Reserve Toolkit Evolution</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Federal Reserve Toolkit Evolution</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -1170,12 +1170,12 @@ export default function CrisisHistoryPage() {
                       "Bank Term Funding Program (BTFP)",
                     ]},
                   ].map((era) => (
-                    <div key={era.era} className="bg-slate-800 rounded-lg p-3">
+                    <div key={era.era} className="bg-muted rounded-lg p-3">
                       <p className={`text-xs font-bold mb-2 ${era.color}`}>{era.era}</p>
                       <ul className="space-y-1">
                         {era.tools.map((t, i) => (
-                          <li key={i} className="text-xs text-slate-400 flex items-start gap-1.5">
-                            <span className="text-slate-600">▸</span>{t}
+                          <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
+                            <span className="text-muted-foreground">▸</span>{t}
                           </li>
                         ))}
                       </ul>
@@ -1185,9 +1185,9 @@ export default function CrisisHistoryPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-300">Fiscal Stimulus Comparison</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Fiscal Stimulus Comparison</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -1197,12 +1197,12 @@ export default function CrisisHistoryPage() {
                     { crisis: "2020 COVID", response: "CARES Act $2.2T + ARPA $1.9T + PPP $800B. Total US fiscal ~$6T. Fed balance sheet: $4T → $9T. Result: fastest recovery on record.", outcome: "Strong", color: "text-emerald-400" },
                     { crisis: "2022 Inflation", response: "Rapid Fed rate hikes: 0% → 5.25% in 16 months. Simultaneous QT. IRA/CHIPS Acts as supply-side response. Result: inflation down without recession.", outcome: "Effective", color: "text-primary" },
                   ].map((row) => (
-                    <div key={row.crisis} className="bg-slate-800 rounded-lg p-3">
+                    <div key={row.crisis} className="bg-muted rounded-lg p-3">
                       <div className="flex items-center justify-between mb-1">
-                        <p className="text-xs font-bold text-slate-300">{row.crisis}</p>
-                        <Badge className={`text-xs px-1.5 py-0 border border-slate-600 bg-slate-700/50 ${row.color}`}>{row.outcome}</Badge>
+                        <p className="text-xs font-bold text-muted-foreground">{row.crisis}</p>
+                        <Badge className={`text-xs px-1.5 py-0 border border-slate-600 bg-muted/50 ${row.color}`}>{row.outcome}</Badge>
                       </div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{row.response}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{row.response}</p>
                     </div>
                   ))}
                 </div>
@@ -1211,9 +1211,9 @@ export default function CrisisHistoryPage() {
           </div>
 
           {/* Policy lessons & debates */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-amber-400" />
                 Key Policy Debates &amp; Lessons
               </CardTitle>
@@ -1230,13 +1230,13 @@ export default function CrisisHistoryPage() {
                   <button
                     key={i}
                     onClick={() => setExpandedLesson(expandedLesson === i ? null : i)}
-                    className="w-full text-left bg-slate-800 rounded-lg p-3 hover:bg-slate-700/80 transition-colors"
+                    className="w-full text-left bg-muted rounded-lg p-3 hover:bg-muted/80 transition-colors"
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-xs font-semibold text-slate-200">{item.q}</p>
+                      <p className="text-xs font-semibold text-foreground">{item.q}</p>
                       {expandedLesson === i
-                        ? <ChevronUp className="w-3 h-3 text-slate-400 shrink-0 mt-0.5" />
-                        : <ChevronDown className="w-3 h-3 text-slate-400 shrink-0 mt-0.5" />
+                        ? <ChevronUp className="w-3 h-3 text-muted-foreground shrink-0 mt-0.5" />
+                        : <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0 mt-0.5" />
                       }
                     </div>
                     <AnimatePresence>
@@ -1246,7 +1246,7 @@ export default function CrisisHistoryPage() {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.15 }}
-                          className="text-xs text-slate-400 mt-2 leading-relaxed overflow-hidden"
+                          className="text-xs text-muted-foreground mt-2 leading-relaxed overflow-hidden"
                         >
                           {item.a}
                         </motion.p>
@@ -1259,9 +1259,9 @@ export default function CrisisHistoryPage() {
           </Card>
 
           {/* Central bank balance sheet comparison */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-300">Central Bank Balance Sheet Expansion</CardTitle>
+              <CardTitle className="text-sm text-muted-foreground">Central Bank Balance Sheet Expansion</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -1273,10 +1273,10 @@ export default function CrisisHistoryPage() {
                 ].map((row) => (
                   <div key={row.cb}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs text-slate-300">{row.cb}</span>
-                      <span className="text-xs text-slate-400">{row.pre} → {row.post}</span>
+                      <span className="text-xs text-muted-foreground">{row.cb}</span>
+                      <span className="text-xs text-muted-foreground">{row.pre} → {row.post}</span>
                     </div>
-                    <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${Math.min((row.ratio / 12) * 100, 100)}%` }}
@@ -1285,7 +1285,7 @@ export default function CrisisHistoryPage() {
                         style={{ backgroundColor: row.color, opacity: 0.7 }}
                       />
                     </div>
-                    <p className="text-xs text-slate-500 mt-0.5">{row.ratio}× expansion</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{row.ratio}× expansion</p>
                   </div>
                 ))}
               </div>

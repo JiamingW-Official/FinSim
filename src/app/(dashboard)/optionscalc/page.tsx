@@ -610,9 +610,9 @@ function MetricRow({ label, value, colored, info }: { label: string; value: stri
     : "text-white";
   return (
     <div className="flex items-center justify-between py-1.5 border-b border-white/5">
-      <span className="text-xs text-gray-400 flex items-center gap-1">
+      <span className="text-xs text-muted-foreground flex items-center gap-1">
         {label}
-        {info && <Info size={10} className="text-gray-600" aria-label={info} />}
+        {info && <Info size={10} className="text-muted-foreground" aria-label={info} />}
       </span>
       <span className={`text-xs font-mono font-medium ${color}`}>{value}</span>
     </div>
@@ -650,16 +650,16 @@ function SingleOptionTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
       {/* Inputs */}
-      <Card className="lg:col-span-2 bg-gray-900 border-gray-800 p-4 space-y-4">
+      <Card className="lg:col-span-2 bg-card border-border p-4 space-y-4">
         <h3 className="text-sm font-semibold text-white flex items-center gap-2"><Calculator size={14} /> Parameters</h3>
 
         <div className="flex gap-2">
-          <button onClick={() => setIsCall(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Call</button>
-          <button onClick={() => setIsCall(false)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${!isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Put</button>
+          <button onClick={() => setIsCall(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isCall ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-gray-700"}`}>Call</button>
+          <button onClick={() => setIsCall(false)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${!isCall ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-gray-700"}`}>Put</button>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => setIsBuy(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isBuy ? "bg-emerald-700 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Buy</button>
-          <button onClick={() => setIsBuy(false)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${!isBuy ? "bg-red-700 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>Sell</button>
+          <button onClick={() => setIsBuy(true)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${isBuy ? "bg-emerald-700 text-white" : "bg-muted text-muted-foreground hover:bg-gray-700"}`}>Buy</button>
+          <button onClick={() => setIsBuy(false)} className={`flex-1 py-1.5 text-xs rounded font-medium transition-colors ${!isBuy ? "bg-red-700 text-white" : "bg-muted text-muted-foreground hover:bg-gray-700"}`}>Sell</button>
         </div>
 
         {(
@@ -672,7 +672,7 @@ function SingleOptionTab() {
           ] as { label: string; val: number; set: (v: number) => void; min: number; max: number; step: number }[]
         ).map(({ label, val, set, min, max, step }) => (
           <div key={label.split(":")[0]} className="space-y-1">
-            <label className="text-xs text-gray-400">{label}</label>
+            <label className="text-xs text-muted-foreground">{label}</label>
             <Slider value={[val]} onValueChange={([v]) => set(v)} min={min} max={max} step={step} className="w-full" />
           </div>
         ))}
@@ -681,7 +681,7 @@ function SingleOptionTab() {
       {/* Outputs */}
       <div className="lg:col-span-3 space-y-4">
         {/* Metrics */}
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-3">Option Metrics</h3>
           <div className="grid grid-cols-2 gap-x-6">
             <div>
@@ -701,18 +701,18 @@ function SingleOptionTab() {
         </Card>
 
         {/* Payoff Diagram */}
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-2">Payoff at Expiry (1 contract = 100 shares)</h3>
           <PayoffChart legs={legs} spot={spot} r={r} sigma={sigma} height={180} />
         </Card>
 
         {/* Greeks sensitivity */}
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold text-white">Greeks Sensitivity (±20% stock range)</h3>
             <div className="flex gap-1">
               {(["delta", "gamma", "theta", "vega"] as const).map(gk => (
-                <button key={gk} onClick={() => setShowGreek(gk)} className={`px-2 py-0.5 text-xs rounded transition-colors ${showGreek === gk ? "bg-indigo-600 text-white" : "bg-gray-800 text-gray-400"}`}>{gk}</button>
+                <button key={gk} onClick={() => setShowGreek(gk)} className={`px-2 py-0.5 text-xs rounded transition-colors ${showGreek === gk ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground"}`}>{gk}</button>
               ))}
             </div>
           </div>
@@ -720,23 +720,23 @@ function SingleOptionTab() {
         </Card>
 
         {/* What-if table */}
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-3">What-If P&L Scenarios at Expiry</h3>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-gray-800">
-                  <th className="text-left text-gray-400 pb-1.5 font-medium">Move</th>
-                  <th className="text-right text-gray-400 pb-1.5 font-medium">Stock Price</th>
-                  <th className="text-right text-gray-400 pb-1.5 font-medium">P&L (1 contract)</th>
-                  <th className="text-right text-gray-400 pb-1.5 font-medium">Return</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-muted-foreground pb-1.5 font-medium">Move</th>
+                  <th className="text-right text-muted-foreground pb-1.5 font-medium">Stock Price</th>
+                  <th className="text-right text-muted-foreground pb-1.5 font-medium">P&L (1 contract)</th>
+                  <th className="text-right text-muted-foreground pb-1.5 font-medium">Return</th>
                 </tr>
               </thead>
               <tbody>
                 {scenarios.map(s => (
-                  <tr key={s.pct} className={`border-b border-gray-800/50 ${s.pct === 0 ? "bg-gray-800/30" : ""}`}>
-                    <td className="py-1 text-gray-400">{s.pct > 0 ? `+${s.pct}` : s.pct}%</td>
-                    <td className="py-1 text-right text-gray-300">${s.S.toFixed(2)}</td>
+                  <tr key={s.pct} className={`border-b border-border/50 ${s.pct === 0 ? "bg-muted/30" : ""}`}>
+                    <td className="py-1 text-muted-foreground">{s.pct > 0 ? `+${s.pct}` : s.pct}%</td>
+                    <td className="py-1 text-right text-muted-foreground">${s.S.toFixed(2)}</td>
                     <td className={`py-1 text-right font-mono ${clsNum(s.pnl)}`}>{fmtDollar(s.pnl)}</td>
                     <td className={`py-1 text-right font-mono ${clsNum(s.pnl)}`}>{fmt((s.pnl / (g.price * 100)) * 100)}%</td>
                   </tr>
@@ -831,21 +831,21 @@ function StrategyBuilderTab() {
     <div className="space-y-4">
       {/* Top Controls */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card className="bg-gray-900 border-gray-800 p-4 space-y-3">
+        <Card className="bg-card border-border p-4 space-y-3">
           <h3 className="text-sm font-semibold text-white flex items-center gap-2"><Layers size={14} /> Setup</h3>
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Stock Price: ${spot}</label>
+            <label className="text-xs text-muted-foreground">Stock Price: ${spot}</label>
             <Slider value={[spot]} onValueChange={([v]) => setSpot(v)} min={50} max={500} step={1} />
           </div>
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">IV: {(sigma * 100).toFixed(0)}%</label>
+            <label className="text-xs text-muted-foreground">IV: {(sigma * 100).toFixed(0)}%</label>
             <Slider value={[sigma * 100]} onValueChange={([v]) => setSigma(v / 100)} min={5} max={150} step={1} />
           </div>
           <div>
-            <p className="text-xs text-gray-400 mb-1.5">IV Stress Test</p>
+            <p className="text-xs text-muted-foreground mb-1.5">IV Stress Test</p>
             <div className="flex gap-1.5">
               {(["normal", "double", "half"] as const).map(s => (
-                <button key={s} onClick={() => setStressIV(s)} className={`flex-1 py-1 text-xs rounded ${stressIV === s ? "bg-amber-700 text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>
+                <button key={s} onClick={() => setStressIV(s)} className={`flex-1 py-1 text-xs rounded ${stressIV === s ? "bg-amber-700 text-white" : "bg-muted text-muted-foreground hover:bg-gray-700"}`}>
                   {s === "normal" ? "Normal" : s === "double" ? "IV×2" : "IV÷2"}
                 </button>
               ))}
@@ -853,15 +853,15 @@ function StrategyBuilderTab() {
           </div>
         </Card>
 
-        <Card className="lg:col-span-2 bg-gray-900 border-gray-800 p-4">
+        <Card className="lg:col-span-2 bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-2">Strategy Presets</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 max-h-40 overflow-y-auto">
             {Object.entries(presets).map(([name, preset]) => (
               <button key={name} onClick={() => applyPreset(name)}
-                className={`text-left p-2 rounded border text-xs transition-all ${selectedPreset === name ? "border-primary bg-muted/50" : "border-gray-700 bg-gray-800/50 hover:border-gray-600"}`}>
-                <div className="font-medium text-gray-200 truncate">{name}</div>
+                className={`text-left p-2 rounded border text-xs transition-all ${selectedPreset === name ? "border-primary bg-muted/50" : "border-border bg-muted/50 hover:border-gray-600"}`}>
+                <div className="font-medium text-foreground truncate">{name}</div>
                 <div className="flex flex-wrap gap-0.5 mt-1">
-                  {preset.tags.map(t => <span key={t} className={`px-1 py-0.5 rounded text-[11px] ${tagColors[t] ?? "bg-gray-700 text-gray-300"}`}>{t}</span>)}
+                  {preset.tags.map(t => <span key={t} className={`px-1 py-0.5 rounded text-[11px] ${tagColors[t] ?? "bg-gray-700 text-muted-foreground"}`}>{t}</span>)}
                 </div>
               </button>
             ))}
@@ -870,35 +870,35 @@ function StrategyBuilderTab() {
       </div>
 
       {/* Legs Editor */}
-      <Card className="bg-gray-900 border-gray-800 p-4">
+      <Card className="bg-card border-border p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Legs</h3>
-          <Button size="sm" variant="outline" className="h-7 text-xs border-gray-700 text-gray-300 hover:bg-gray-800" onClick={addLeg}>
+          <Button size="sm" variant="outline" className="h-7 text-xs border-border text-muted-foreground hover:bg-muted" onClick={addLeg}>
             <Plus size={12} className="mr-1" /> Add Leg
           </Button>
         </div>
         {legs.length === 0 ? (
-          <p className="text-xs text-gray-500 text-center py-4">Select a preset or add legs manually</p>
+          <p className="text-xs text-muted-foreground text-center py-4">Select a preset or add legs manually</p>
         ) : (
           <div className="space-y-2">
             {legs.map((leg, idx) => {
               const T = leg.expiry / 365;
               const premium = bsPrice(spot, leg.strike, T, r, sigma, leg.type === "call");
               return (
-                <div key={leg.id} className="grid grid-cols-7 gap-1.5 items-center bg-gray-800/50 rounded p-2">
-                  <span className="text-xs text-gray-500">#{idx + 1}</span>
-                  <select value={leg.position} onChange={e => updateLeg(leg.id, "position", e.target.value)} className="bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-1 py-1">
+                <div key={leg.id} className="grid grid-cols-7 gap-1.5 items-center bg-muted/50 rounded p-2">
+                  <span className="text-xs text-muted-foreground">#{idx + 1}</span>
+                  <select value={leg.position} onChange={e => updateLeg(leg.id, "position", e.target.value)} className="bg-muted border border-border text-xs text-foreground rounded px-1 py-1">
                     <option value="buy">Buy</option><option value="sell">Sell</option>
                   </select>
-                  <select value={leg.type} onChange={e => updateLeg(leg.id, "type", e.target.value)} className="bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-1 py-1">
+                  <select value={leg.type} onChange={e => updateLeg(leg.id, "type", e.target.value)} className="bg-muted border border-border text-xs text-foreground rounded px-1 py-1">
                     <option value="call">Call</option><option value="put">Put</option>
                   </select>
-                  <input type="number" value={leg.strike} onChange={e => updateLeg(leg.id, "strike", +e.target.value)} className="bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-1.5 py-1 w-full" placeholder="Strike" />
-                  <input type="number" value={leg.expiry} onChange={e => updateLeg(leg.id, "expiry", +e.target.value)} className="bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-1.5 py-1 w-full" placeholder="DTE" />
-                  <input type="number" value={leg.qty} onChange={e => updateLeg(leg.id, "qty", +e.target.value)} min={1} className="bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-1.5 py-1 w-full" placeholder="Qty" />
+                  <input type="number" value={leg.strike} onChange={e => updateLeg(leg.id, "strike", +e.target.value)} className="bg-muted border border-border text-xs text-foreground rounded px-1.5 py-1 w-full" placeholder="Strike" />
+                  <input type="number" value={leg.expiry} onChange={e => updateLeg(leg.id, "expiry", +e.target.value)} className="bg-muted border border-border text-xs text-foreground rounded px-1.5 py-1 w-full" placeholder="DTE" />
+                  <input type="number" value={leg.qty} onChange={e => updateLeg(leg.id, "qty", +e.target.value)} min={1} className="bg-muted border border-border text-xs text-foreground rounded px-1.5 py-1 w-full" placeholder="Qty" />
                   <div className="flex items-center gap-1">
-                    <span className="text-xs font-mono text-gray-400">${premium.toFixed(2)}</span>
-                    <button onClick={() => removeLeg(leg.id)} className="ml-auto text-gray-600 hover:text-red-400"><Trash2 size={12} /></button>
+                    <span className="text-xs font-mono text-muted-foreground">${premium.toFixed(2)}</span>
+                    <button onClick={() => removeLeg(leg.id)} className="ml-auto text-muted-foreground hover:text-red-400"><Trash2 size={12} /></button>
                   </div>
                 </div>
               );
@@ -910,18 +910,18 @@ function StrategyBuilderTab() {
       {/* Results */}
       {legs.length > 0 && (
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-          <Card className="lg:col-span-3 bg-gray-900 border-gray-800 p-4">
+          <Card className="lg:col-span-3 bg-card border-border p-4">
             <h3 className="text-sm font-semibold text-white mb-2">Combined Payoff at Expiry {stressIV !== "normal" && <span className="text-amber-400 text-xs ml-1">({stressIV === "double" ? "IV×2" : "IV÷2"})</span>}</h3>
             <PayoffChart legs={legs} spot={spot} r={r} sigma={effectiveSigma} height={200} />
           </Card>
-          <Card className="lg:col-span-2 bg-gray-900 border-gray-800 p-4 space-y-1">
+          <Card className="lg:col-span-2 bg-card border-border p-4 space-y-1">
             <h3 className="text-sm font-semibold text-white mb-2">Strategy Metrics</h3>
             <MetricRow label="Max Profit" value={pnlRange.maxProfit > 9999 ? "Unlimited" : fmtDollar(pnlRange.maxProfit)} colored />
             <MetricRow label="Max Loss" value={pnlRange.maxLoss < -9999 ? "Unlimited" : fmtDollar(pnlRange.maxLoss)} colored />
             <MetricRow label="Breakeven(s)" value={breakevens.length ? breakevens.map(b => `$${b}`).join(", ") : "N/A"} />
             <MetricRow label="Prob. of Profit" value={`${(pop * 100).toFixed(1)}%`} />
-            <div className="pt-2 border-t border-gray-800 mt-2">
-              <p className="text-xs text-gray-500 mb-1">Net Greeks (position)</p>
+            <div className="pt-2 border-t border-border mt-2">
+              <p className="text-xs text-muted-foreground mb-1">Net Greeks (position)</p>
               <MetricRow label="Net Delta" value={fmt(netGreeks.delta, 2)} colored />
               <MetricRow label="Net Gamma" value={fmt(netGreeks.gamma, 4)} colored />
               <MetricRow label="Net Theta/day" value={fmtDollar(netGreeks.theta)} colored />
@@ -947,17 +947,17 @@ function VolatilityTab() {
     ? { signal: "IV Rich — Sell Premium", color: "text-amber-400", desc: "IV is historically elevated. Favor short premium strategies: Iron Condor, Short Strangle, Credit Spreads." }
     : tickerVol.ivPct < 25
       ? { signal: "IV Cheap — Buy Premium", color: "text-emerald-400", desc: "IV is historically low. Favor long premium strategies: Long Straddle, Debit Spreads, Calendar Spreads." }
-      : { signal: "IV Neutral", color: "text-gray-300", desc: "IV is in the middle of its 52-week range. No strong edge for buyers or sellers." };
+      : { signal: "IV Neutral", color: "text-muted-foreground", desc: "IV is in the middle of its 52-week range. No strong edge for buyers or sellers." };
 
   return (
     <div className="space-y-4">
       {/* Ticker selector */}
-      <Card className="bg-gray-900 border-gray-800 p-4">
+      <Card className="bg-card border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">IV vs HV by Ticker</h3>
         <div className="flex flex-wrap gap-2 mb-4">
           {TICKERS.map(t => (
             <button key={t} onClick={() => setSelectedTicker(t)}
-              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${selectedTicker === t ? "bg-primary text-white" : "bg-gray-800 text-gray-400 hover:bg-gray-700"}`}>
+              className={`px-3 py-1 text-xs rounded-full font-medium transition-colors ${selectedTicker === t ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-gray-700"}`}>
               {t}
             </button>
           ))}
@@ -965,25 +965,25 @@ function VolatilityTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-gray-800">
+              <tr className="border-b border-border">
                 {["Ticker", "IV (30d)", "HV (30d)", "IV/HV", "IV %ile", "IV Rank", "Signal"].map(h => (
-                  <th key={h} className="text-left text-gray-400 pb-1.5 pr-4 font-medium">{h}</th>
+                  <th key={h} className="text-left text-muted-foreground pb-1.5 pr-4 font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {VOL_DATA.map(d => {
                 const ratio = d.iv / d.hv;
-                const sig = d.ivPct > 75 ? { label: "Rich", cls: "text-amber-400" } : d.ivPct < 25 ? { label: "Cheap", cls: "text-emerald-400" } : { label: "Fair", cls: "text-gray-400" };
+                const sig = d.ivPct > 75 ? { label: "Rich", cls: "text-amber-400" } : d.ivPct < 25 ? { label: "Cheap", cls: "text-emerald-400" } : { label: "Fair", cls: "text-muted-foreground" };
                 return (
                   <tr key={d.ticker} onClick={() => setSelectedTicker(d.ticker)}
-                    className={`border-b border-gray-800/50 cursor-pointer hover:bg-gray-800/30 transition-colors ${d.ticker === selectedTicker ? "bg-muted/40" : ""}`}>
-                    <td className="py-1.5 pr-4 font-medium text-gray-200">{d.ticker}</td>
+                    className={`border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors ${d.ticker === selectedTicker ? "bg-muted/40" : ""}`}>
+                    <td className="py-1.5 pr-4 font-medium text-foreground">{d.ticker}</td>
                     <td className="py-1.5 pr-4 text-primary">{(d.iv * 100).toFixed(1)}%</td>
-                    <td className="py-1.5 pr-4 text-gray-400">{(d.hv * 100).toFixed(1)}%</td>
-                    <td className={`py-1.5 pr-4 ${ratio > 1.1 ? "text-amber-400" : ratio < 0.9 ? "text-emerald-400" : "text-gray-300"}`}>{ratio.toFixed(2)}x</td>
-                    <td className="py-1.5 pr-4 text-gray-300">{d.ivPct.toFixed(0)}th</td>
-                    <td className="py-1.5 pr-4 text-gray-300">{(d.ivRank * 100).toFixed(0)}</td>
+                    <td className="py-1.5 pr-4 text-muted-foreground">{(d.hv * 100).toFixed(1)}%</td>
+                    <td className={`py-1.5 pr-4 ${ratio > 1.1 ? "text-amber-400" : ratio < 0.9 ? "text-emerald-400" : "text-muted-foreground"}`}>{ratio.toFixed(2)}x</td>
+                    <td className="py-1.5 pr-4 text-muted-foreground">{d.ivPct.toFixed(0)}th</td>
+                    <td className="py-1.5 pr-4 text-muted-foreground">{(d.ivRank * 100).toFixed(0)}</td>
                     <td className={`py-1.5 pr-4 font-medium ${sig.cls}`}>{sig.label}</td>
                   </tr>
                 );
@@ -995,7 +995,7 @@ function VolatilityTab() {
 
       {/* Selected ticker detail */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card className="bg-gray-900 border-gray-800 p-4 flex flex-col items-center justify-center gap-3">
+        <Card className="bg-card border-border p-4 flex flex-col items-center justify-center gap-3">
           <h3 className="text-sm font-semibold text-white self-start">{selectedTicker} IV Gauges</h3>
           <div className="flex gap-4">
             <div className="text-center">
@@ -1006,19 +1006,19 @@ function VolatilityTab() {
             </div>
           </div>
           <div className={`text-center text-xs font-medium ${richCheap.color}`}>{richCheap.signal}</div>
-          <p className="text-xs text-gray-400 text-center">{richCheap.desc}</p>
+          <p className="text-xs text-muted-foreground text-center">{richCheap.desc}</p>
         </Card>
 
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-2">Volatility Skew (30 DTE)</h3>
           <IVSmileChart data={smileData} />
-          <p className="text-xs text-gray-500 mt-2">Put skew: OTM puts trade at higher IV, reflecting demand for downside protection.</p>
+          <p className="text-xs text-muted-foreground mt-2">Put skew: OTM puts trade at higher IV, reflecting demand for downside protection.</p>
         </Card>
 
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-2">Term Structure</h3>
           <TermStructureChart data={termData} />
-          <p className="text-xs text-gray-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             {termData[0].iv > termData[termData.length - 1].iv ? "Inverted: near-term IV > long-term IV. Market expects near-term volatility event." : "Normal contango: long-term IV > near-term IV."}
           </p>
         </Card>
@@ -1085,14 +1085,14 @@ function StrategyComparisonTab() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
-        <Card className="bg-gray-900 border-gray-800 p-4 space-y-3">
+        <Card className="bg-card border-border p-4 space-y-3">
           <h3 className="text-sm font-semibold text-white flex items-center gap-2"><ArrowUpDown size={14} /> Setup</h3>
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Underlying: ${spot}</label>
+            <label className="text-xs text-muted-foreground">Underlying: ${spot}</label>
             <Slider value={[spot]} onValueChange={([v]) => setSpot(v)} min={50} max={500} step={1} />
           </div>
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">IV: {(sigma * 100).toFixed(0)}%</label>
+            <label className="text-xs text-muted-foreground">IV: {(sigma * 100).toFixed(0)}%</label>
             <Slider value={[sigma * 100]} onValueChange={([v]) => setSigma(v / 100)} min={5} max={150} step={1} />
           </div>
           <div className="space-y-2 pt-1">
@@ -1100,7 +1100,7 @@ function StrategyComparisonTab() {
               <div key={i}>
                 <label className="text-xs mb-1 block" style={{ color: STRATEGY_COLORS[i] }}>Strategy {i + 1}</label>
                 <select value={selected[i]} onChange={e => setSelected(prev => { const n = [...prev] as [string, string, string]; n[i] = e.target.value; return n; })}
-                  className="w-full bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-2 py-1.5">
+                  className="w-full bg-muted border border-border text-xs text-foreground rounded px-2 py-1.5">
                   {COMPARE_STRATEGIES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </div>
@@ -1108,7 +1108,7 @@ function StrategyComparisonTab() {
           </div>
         </Card>
 
-        <Card className="lg:col-span-3 bg-gray-900 border-gray-800 p-4">
+        <Card className="lg:col-span-3 bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-2">Overlaid Payoff Diagram</h3>
           {strategyLegs[0].length > 0 && (
             <PayoffChart
@@ -1127,7 +1127,7 @@ function StrategyComparisonTab() {
             {selected.map((name, i) => (
               <div key={name} className="flex items-center gap-1.5">
                 <div className="w-4 h-0.5" style={{ backgroundColor: STRATEGY_COLORS[i] }} />
-                <span className="text-xs text-gray-400">{name}</span>
+                <span className="text-xs text-muted-foreground">{name}</span>
               </div>
             ))}
           </div>
@@ -1135,13 +1135,13 @@ function StrategyComparisonTab() {
       </div>
 
       {/* Comparison table */}
-      <Card className="bg-gray-900 border-gray-800 p-4">
+      <Card className="bg-card border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">Side-by-Side Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-gray-800">
-                <th className="text-left text-gray-400 pb-2 font-medium">Metric</th>
+              <tr className="border-b border-border">
+                <th className="text-left text-muted-foreground pb-2 font-medium">Metric</th>
                 {selected.map((name, i) => (
                   <th key={name} className="text-right pb-2 font-medium pr-4" style={{ color: STRATEGY_COLORS[i] }}>{name}</th>
                 ))}
@@ -1155,20 +1155,20 @@ function StrategyComparisonTab() {
                 { label: "Prob. of Profit", vals: metrics.map(m => `${(m.pop * 100).toFixed(1)}%`), colored: false },
                 { label: "Theta/Day", vals: metrics.map(m => fmtDollar(m.netTheta)), colored: true },
               ].map(row => (
-                <tr key={row.label} className="border-b border-gray-800/50">
-                  <td className="py-1.5 text-gray-400">{row.label}</td>
+                <tr key={row.label} className="border-b border-border/50">
+                  <td className="py-1.5 text-muted-foreground">{row.label}</td>
                   {row.vals.map((v, i) => (
-                    <td key={i} className={`py-1.5 text-right font-mono pr-4 ${row.colored ? (v.startsWith("+") ? "text-emerald-400" : v.startsWith("-") ? "text-red-400" : "text-gray-300") : "text-gray-300"}`}>{v}</td>
+                    <td key={i} className={`py-1.5 text-right font-mono pr-4 ${row.colored ? (v.startsWith("+") ? "text-emerald-400" : v.startsWith("-") ? "text-red-400" : "text-muted-foreground") : "text-muted-foreground"}`}>{v}</td>
                   ))}
                 </tr>
               ))}
-              <tr className="border-b border-gray-800/50">
-                <td className="py-1.5 text-gray-400">Best For</td>
+              <tr className="border-b border-border/50">
+                <td className="py-1.5 text-muted-foreground">Best For</td>
                 {selected.map(name => (
                   <td key={name} className="py-1.5 text-right pr-4">
                     <div className="flex flex-wrap gap-1 justify-end">
                       {(strategyTags[name] ?? []).map(tag => (
-                        <Badge key={tag} variant="outline" className="text-[11px] px-1 py-0 border-gray-700 text-gray-400">{tag}</Badge>
+                        <Badge key={tag} variant="outline" className="text-[11px] px-1 py-0 border-border text-muted-foreground">{tag}</Badge>
                       ))}
                     </div>
                   </td>
@@ -1237,14 +1237,14 @@ function GreeksDashboardTab() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <Card className="bg-gray-900 border-gray-800 p-4 space-y-3">
+        <Card className="bg-card border-border p-4 space-y-3">
           <h3 className="text-sm font-semibold text-white flex items-center gap-2"><Activity size={14} /> Parameters</h3>
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">Underlying Price: ${spot}</label>
+            <label className="text-xs text-muted-foreground">Underlying Price: ${spot}</label>
             <Slider value={[spot]} onValueChange={([v]) => setSpot(v)} min={50} max={500} step={1} />
           </div>
           <div className="space-y-1">
-            <label className="text-xs text-gray-400">IV: {(sigma * 100).toFixed(0)}%</label>
+            <label className="text-xs text-muted-foreground">IV: {(sigma * 100).toFixed(0)}%</label>
             <Slider value={[sigma * 100]} onValueChange={([v]) => setSigma(v / 100)} min={5} max={150} step={1} />
           </div>
           <h3 className="text-xs font-semibold text-white pt-2">Portfolio Greeks</h3>
@@ -1255,45 +1255,45 @@ function GreeksDashboardTab() {
           <MetricRow label="Net Vega/1%IV" value={fmtDollar(aggregated.vega)} colored />
         </Card>
 
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2"><Shield size={14} /> Delta-Neutral Hedging</h3>
-          <p className="text-xs text-gray-400 mb-3">Your portfolio delta tells you the equivalent share exposure. To hedge to delta-neutral, trade the opposite in shares.</p>
-          <div className="bg-gray-800/60 rounded p-3 space-y-2">
+          <p className="text-xs text-muted-foreground mb-3">Your portfolio delta tells you the equivalent share exposure. To hedge to delta-neutral, trade the opposite in shares.</p>
+          <div className="bg-muted/60 rounded p-3 space-y-2">
             <MetricRow label="Current Portfolio Delta" value={fmt(aggregated.delta, 2)} colored />
             <MetricRow label="Shares to Hedge" value={`${sharesForDeltaNeutral > 0 ? "Buy" : "Sell"} ${Math.abs(sharesForDeltaNeutral)} shares`} />
             <MetricRow label="Post-Hedge Delta" value={`≈ 0.00`} />
           </div>
           <div className="mt-3 p-2 bg-amber-900/20 border border-amber-800/40 rounded">
             <p className="text-xs text-amber-300 font-medium mb-1">Gamma Scalping</p>
-            <p className="text-xs text-gray-400">With net gamma <span className="text-white font-mono">{fmt(aggregated.gamma, 4)}</span>, a 1% move in the stock generates approximately <span className={`font-mono font-medium ${clsNum(gammaPnlExample)}`}>{fmtDollar(gammaPnlExample)}</span> in gamma P&L before re-hedging costs.</p>
+            <p className="text-xs text-muted-foreground">With net gamma <span className="text-white font-mono">{fmt(aggregated.gamma, 4)}</span>, a 1% move in the stock generates approximately <span className={`font-mono font-medium ${clsNum(gammaPnlExample)}`}>{fmtDollar(gammaPnlExample)}</span> in gamma P&L before re-hedging costs.</p>
           </div>
         </Card>
 
-        <Card className="bg-gray-900 border-gray-800 p-4">
+        <Card className="bg-card border-border p-4">
           <h3 className="text-sm font-semibold text-white mb-2 flex items-center gap-2"><Zap size={14} /> Theta Decay</h3>
           <ThetaDecayChart S={spot} K={Math.round(spot / 5) * 5} r={r} sigma={sigma} isCall={isCall} />
           <div className="flex gap-2 mt-2">
-            <button onClick={() => setIsCall(true)} className={`flex-1 py-1 text-xs rounded ${isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400"}`}>Call</button>
-            <button onClick={() => setIsCall(false)} className={`flex-1 py-1 text-xs rounded ${!isCall ? "bg-primary text-white" : "bg-gray-800 text-gray-400"}`}>Put</button>
+            <button onClick={() => setIsCall(true)} className={`flex-1 py-1 text-xs rounded ${isCall ? "bg-primary text-white" : "bg-muted text-muted-foreground"}`}>Call</button>
+            <button onClick={() => setIsCall(false)} className={`flex-1 py-1 text-xs rounded ${!isCall ? "bg-primary text-white" : "bg-muted text-muted-foreground"}`}>Put</button>
           </div>
-          <p className="text-xs text-gray-500 mt-2">Time value accelerates to zero non-linearly — the last 30 days lose the most value per day.</p>
+          <p className="text-xs text-muted-foreground mt-2">Time value accelerates to zero non-linearly — the last 30 days lose the most value per day.</p>
         </Card>
       </div>
 
       {/* Positions table */}
-      <Card className="bg-gray-900 border-gray-800 p-4">
+      <Card className="bg-card border-border p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Option Positions (up to 5)</h3>
-          <Button size="sm" variant="outline" className="h-7 text-xs border-gray-700 text-gray-300 hover:bg-gray-800" onClick={addPosition} disabled={positions.length >= 5}>
+          <Button size="sm" variant="outline" className="h-7 text-xs border-border text-muted-foreground hover:bg-muted" onClick={addPosition} disabled={positions.length >= 5}>
             <Plus size={12} className="mr-1" /> Add Position
           </Button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-gray-800">
+              <tr className="border-b border-border">
                 {["Ticker", "Side", "Type", "Strike", "DTE", "Qty", "Price", "Delta", "Gamma", "Theta", "Vega", ""].map(h => (
-                  <th key={h} className="text-left text-gray-400 pb-1.5 pr-2 font-medium">{h}</th>
+                  <th key={h} className="text-left text-muted-foreground pb-1.5 pr-2 font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1303,30 +1303,30 @@ function GreeksDashboardTab() {
                 const g = bsGreeks(spot, pos.strike, T, r, sigma, pos.type === "call");
                 const sign = pos.side === "long" ? 1 : -1;
                 return (
-                  <tr key={pos.id} className="border-b border-gray-800/50">
-                    <td className="py-1.5 pr-2"><input value={pos.ticker} onChange={e => updatePos(pos.id, "ticker", e.target.value)} className="w-14 bg-gray-800 border border-gray-700 rounded px-1 py-0.5 text-xs text-gray-200" /></td>
-                    <td className="pr-2"><select value={pos.side} onChange={e => updatePos(pos.id, "side", e.target.value)} className="bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-1 py-0.5">
+                  <tr key={pos.id} className="border-b border-border/50">
+                    <td className="py-1.5 pr-2"><input value={pos.ticker} onChange={e => updatePos(pos.id, "ticker", e.target.value)} className="w-14 bg-muted border border-border rounded px-1 py-0.5 text-xs text-foreground" /></td>
+                    <td className="pr-2"><select value={pos.side} onChange={e => updatePos(pos.id, "side", e.target.value)} className="bg-muted border border-border text-xs text-foreground rounded px-1 py-0.5">
                       <option value="long">Long</option><option value="short">Short</option>
                     </select></td>
-                    <td className="pr-2"><select value={pos.type} onChange={e => updatePos(pos.id, "type", e.target.value)} className="bg-gray-800 border border-gray-700 text-xs text-gray-200 rounded px-1 py-0.5">
+                    <td className="pr-2"><select value={pos.type} onChange={e => updatePos(pos.id, "type", e.target.value)} className="bg-muted border border-border text-xs text-foreground rounded px-1 py-0.5">
                       <option value="call">Call</option><option value="put">Put</option>
                     </select></td>
-                    <td className="pr-2"><input type="number" value={pos.strike} onChange={e => updatePos(pos.id, "strike", +e.target.value)} className="w-16 bg-gray-800 border border-gray-700 rounded px-1 py-0.5 text-xs text-gray-200" /></td>
-                    <td className="pr-2"><input type="number" value={pos.expiry} onChange={e => updatePos(pos.id, "expiry", +e.target.value)} className="w-12 bg-gray-800 border border-gray-700 rounded px-1 py-0.5 text-xs text-gray-200" /></td>
-                    <td className="pr-2"><input type="number" value={pos.qty} onChange={e => updatePos(pos.id, "qty", +e.target.value)} min={1} className="w-10 bg-gray-800 border border-gray-700 rounded px-1 py-0.5 text-xs text-gray-200" /></td>
-                    <td className="pr-2 font-mono text-gray-300">${g.price.toFixed(2)}</td>
+                    <td className="pr-2"><input type="number" value={pos.strike} onChange={e => updatePos(pos.id, "strike", +e.target.value)} className="w-16 bg-muted border border-border rounded px-1 py-0.5 text-xs text-foreground" /></td>
+                    <td className="pr-2"><input type="number" value={pos.expiry} onChange={e => updatePos(pos.id, "expiry", +e.target.value)} className="w-12 bg-muted border border-border rounded px-1 py-0.5 text-xs text-foreground" /></td>
+                    <td className="pr-2"><input type="number" value={pos.qty} onChange={e => updatePos(pos.id, "qty", +e.target.value)} min={1} className="w-10 bg-muted border border-border rounded px-1 py-0.5 text-xs text-foreground" /></td>
+                    <td className="pr-2 font-mono text-muted-foreground">${g.price.toFixed(2)}</td>
                     <td className={`pr-2 font-mono ${clsNum(sign * g.delta)}`}>{(sign * g.delta * pos.qty * 100).toFixed(2)}</td>
                     <td className={`pr-2 font-mono ${clsNum(sign * g.gamma)}`}>{(sign * g.gamma * pos.qty * 100).toFixed(4)}</td>
                     <td className={`pr-2 font-mono ${clsNum(sign * g.theta)}`}>{fmtDollar(sign * g.theta * pos.qty * 100)}</td>
                     <td className={`pr-2 font-mono ${clsNum(sign * g.vega)}`}>{fmtDollar(sign * g.vega * pos.qty * 100)}</td>
-                    <td><button onClick={() => removePos(pos.id)} className="text-gray-600 hover:text-red-400"><Trash2 size={12} /></button></td>
+                    <td><button onClick={() => removePos(pos.id)} className="text-muted-foreground hover:text-red-400"><Trash2 size={12} /></button></td>
                   </tr>
                 );
               })}
             </tbody>
             <tfoot>
-              <tr className="border-t border-gray-700">
-                <td colSpan={7} className="pt-2 text-gray-400 font-medium">Portfolio Total</td>
+              <tr className="border-t border-border">
+                <td colSpan={7} className="pt-2 text-muted-foreground font-medium">Portfolio Total</td>
                 <td className={`pt-2 font-mono font-medium ${clsNum(aggregated.delta)}`}>{aggregated.delta.toFixed(2)}</td>
                 <td className={`pt-2 font-mono font-medium ${clsNum(aggregated.gamma)}`}>{aggregated.gamma.toFixed(4)}</td>
                 <td className={`pt-2 font-mono font-medium ${clsNum(aggregated.theta)}`}>{fmtDollar(aggregated.theta)}</td>
@@ -1340,7 +1340,7 @@ function GreeksDashboardTab() {
         {/* Vega exposure */}
         <div className="mt-4 p-3 bg-indigo-900/20 border border-indigo-800/40 rounded">
           <p className="text-xs text-indigo-300 font-medium mb-1">Vega (IV) Exposure</p>
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-muted-foreground">
             Your portfolio net vega is <span className={`font-mono font-medium ${clsNum(aggregated.vega)}`}>{fmtDollar(aggregated.vega)}</span> per 1% IV change.
             If IV rises 5%, your portfolio changes by <span className={`font-mono font-medium ${clsNum(aggregated.vega * 5)}`}>{fmtDollar(aggregated.vega * 5)}</span>.
             If IV falls 5%, your portfolio changes by <span className={`font-mono font-medium ${clsNum(-aggregated.vega * 5)}`}>{fmtDollar(-aggregated.vega * 5)}</span>.
@@ -1365,7 +1365,7 @@ export default function OptionsCalcPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
@@ -1375,7 +1375,7 @@ export default function OptionsCalcPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Options Strategies Calculator</h1>
-              <p className="text-sm text-gray-400">Black-Scholes pricing · Interactive payoff diagrams · Multi-leg strategies</p>
+              <p className="text-sm text-muted-foreground">Black-Scholes pricing · Interactive payoff diagrams · Multi-leg strategies</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
@@ -1389,11 +1389,11 @@ export default function OptionsCalcPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-gray-900 border border-gray-800 p-1 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
             {tabs.map(tab => {
               const Icon = tab.icon;
               return (
-                <TabsTrigger key={tab.id} value={tab.id} className="flex items-center gap-1.5 text-xs data-[state=active]:bg-gray-700 data-[state=active]:text-white text-gray-400 px-3 py-1.5">
+                <TabsTrigger key={tab.id} value={tab.id} className="flex items-center gap-1.5 text-xs data-[state=active]:bg-gray-700 data-[state=active]:text-white text-muted-foreground px-3 py-1.5">
                   <Icon size={12} />
                   {tab.label}
                 </TabsTrigger>

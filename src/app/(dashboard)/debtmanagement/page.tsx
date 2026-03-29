@@ -331,9 +331,9 @@ function DebtOverviewTab() {
           { label: "Avg Rate", value: fmtPct(weightedRate), icon: <TrendingDown className="w-4 h-4" />, color: "text-primary" },
           { label: "DTI Ratio", value: fmtPct(dtiRatio), icon: <BarChart3 className="w-4 h-4" />, color: dtiRatio < 28 ? "text-green-400" : dtiRatio < 43 ? "text-amber-400" : "text-red-400" },
         ].map((item) => (
-          <Card key={item.label} className="bg-neutral-900 border-neutral-800">
+          <Card key={item.label} className="bg-card border-border">
             <CardContent className="p-4">
-              <div className="flex items-center gap-2 text-neutral-400 text-xs mb-1">
+              <div className="flex items-center gap-2 text-muted-foreground text-xs mb-1">
                 {item.icon}
                 {item.label}
               </div>
@@ -346,26 +346,26 @@ function DebtOverviewTab() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Debt Portfolio Builder */}
         <div className="lg:col-span-2">
-          <Card className="bg-neutral-900 border-neutral-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                 <CreditCard className="w-4 h-4 text-primary" />
                 Debt Portfolio Builder
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
               {debts.map((debt) => (
-                <div key={debt.id} className="space-y-2 pb-4 border-b border-neutral-800 last:border-0">
+                <div key={debt.id} className="space-y-2 pb-4 border-b border-border last:border-0">
                   <div className="flex items-center gap-2">
                     <span style={{ color: debt.color }}>{debt.icon}</span>
-                    <span className="text-sm font-medium text-neutral-200">{debt.label}</span>
+                    <span className="text-sm font-medium text-foreground">{debt.label}</span>
                     <Badge className="ml-auto text-xs" style={{ backgroundColor: `${debt.color}20`, color: debt.color, border: `1px solid ${debt.color}40` }}>
                       {fmtPct(debt.rate)} APR
                     </Badge>
                   </div>
                   <div className="grid grid-cols-3 gap-3 text-xs">
                     <div>
-                      <div className="text-neutral-500 mb-1">Balance: {fmtK(debt.balance)}</div>
+                      <div className="text-muted-foreground mb-1">Balance: {fmtK(debt.balance)}</div>
                       <Slider
                         min={0}
                         max={debt.maxBalance}
@@ -376,7 +376,7 @@ function DebtOverviewTab() {
                       />
                     </div>
                     <div>
-                      <div className="text-neutral-500 mb-1">Rate: {fmtPct(debt.rate)}</div>
+                      <div className="text-muted-foreground mb-1">Rate: {fmtPct(debt.rate)}</div>
                       <Slider
                         min={0}
                         max={debt.maxRate}
@@ -387,7 +387,7 @@ function DebtOverviewTab() {
                       />
                     </div>
                     <div>
-                      <div className="text-neutral-500 mb-1">Min Pay: {fmt(debt.minPayment)}</div>
+                      <div className="text-muted-foreground mb-1">Min Pay: {fmt(debt.minPayment)}</div>
                       <Slider
                         min={25}
                         max={Math.max(debt.balance * 0.05, 100)}
@@ -407,12 +407,12 @@ function DebtOverviewTab() {
         {/* Right column: DTI Gauge + Method selector */}
         <div className="space-y-4">
           {/* DTI Gauge */}
-          <Card className="bg-neutral-900 border-neutral-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-neutral-200">Debt-to-Income Ratio</CardTitle>
+              <CardTitle className="text-sm font-medium text-foreground">Debt-to-Income Ratio</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="mb-3 text-xs text-neutral-500">
+              <div className="mb-3 text-xs text-muted-foreground">
                 Monthly income:&nbsp;{fmt(monthlyIncome)}
               </div>
               <Slider
@@ -465,7 +465,7 @@ function DebtOverviewTab() {
                 ].map((z) => (
                   <div key={z.label}>
                     <div className={cn("font-medium", z.color)}>{z.label}</div>
-                    <div className="text-neutral-500">{z.range}</div>
+                    <div className="text-muted-foreground">{z.range}</div>
                   </div>
                 ))}
               </div>
@@ -473,9 +473,9 @@ function DebtOverviewTab() {
           </Card>
 
           {/* Method selector */}
-          <Card className="bg-neutral-900 border-neutral-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-neutral-200">Payoff Method</CardTitle>
+              <CardTitle className="text-sm font-medium text-foreground">Payoff Method</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {(["avalanche", "snowball"] as const).map((m) => (
@@ -486,7 +486,7 @@ function DebtOverviewTab() {
                     "w-full p-3 rounded-lg border text-left transition-all",
                     method === m
                       ? "border-primary bg-primary/10"
-                      : "border-neutral-700 bg-neutral-800/50 hover:border-neutral-600"
+                      : "border-border bg-muted/50 hover:border-neutral-600"
                   )}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -495,7 +495,7 @@ function DebtOverviewTab() {
                     ) : (
                       <Target className="w-3 h-3 text-primary" />
                     )}
-                    <span className="text-xs font-semibold text-neutral-200 capitalize">{m}</span>
+                    <span className="text-xs font-semibold text-foreground capitalize">{m}</span>
                     {m === "avalanche" && (
                       <Badge className="ml-auto text-xs bg-primary/20 text-primary border-border">
                         Saves more $
@@ -507,7 +507,7 @@ function DebtOverviewTab() {
                       </Badge>
                     )}
                   </div>
-                  <p className="text-xs text-neutral-500">
+                  <p className="text-xs text-muted-foreground">
                     {m === "avalanche"
                       ? "Highest interest rate first — mathematically optimal"
                       : "Lowest balance first — psychological momentum"}
@@ -520,9 +520,9 @@ function DebtOverviewTab() {
       </div>
 
       {/* Interest Cost SVG bar chart */}
-      <Card className="bg-neutral-900 border-neutral-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-neutral-200">Annual Interest Cost by Debt Type</CardTitle>
+          <CardTitle className="text-sm font-medium text-foreground">Annual Interest Cost by Debt Type</CardTitle>
         </CardHeader>
         <CardContent>
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
@@ -546,9 +546,9 @@ function DebtOverviewTab() {
       </Card>
 
       {/* Min vs Accelerated comparison */}
-      <Card className="bg-neutral-900 border-neutral-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-neutral-200">
+          <CardTitle className="text-sm font-medium text-foreground">
             Minimum vs Accelerated Payoff (+{fmt(extraPayment)}/mo extra · {method === "avalanche" ? "Avalanche" : "Snowball"})
           </CardTitle>
         </CardHeader>
@@ -560,11 +560,11 @@ function DebtOverviewTab() {
             ].map((item) => (
               <div key={item.label} className="space-y-2">
                 <div className="text-sm font-medium" style={{ color: item.color }}>{item.label}</div>
-                <div className="text-2xl font-bold text-neutral-100">
+                <div className="text-2xl font-bold text-foreground">
                   {item.sim.months >= 600 ? "Never" : `${item.sim.months} mo`}
                 </div>
-                <div className="text-xs text-neutral-400">
-                  Total interest: <span className="text-neutral-200">{fmtK(item.sim.totalInterest)}</span>
+                <div className="text-xs text-muted-foreground">
+                  Total interest: <span className="text-foreground">{fmtK(item.sim.totalInterest)}</span>
                 </div>
               </div>
             ))}
@@ -648,9 +648,9 @@ function PayoffStrategiesTab() {
   return (
     <div className="space-y-6">
       {/* Single debt calculator */}
-      <Card className="bg-neutral-900 border-neutral-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Debt Payoff Calculator
           </CardTitle>
@@ -658,15 +658,15 @@ function PayoffStrategiesTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Balance: {fmtK(balance)}</div>
+              <div className="text-xs text-muted-foreground mb-1">Balance: {fmtK(balance)}</div>
               <Slider min={1000} max={100000} step={500} value={[balance]} onValueChange={([v]) => setBalance(v)} />
             </div>
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Interest Rate: {fmtPct(rate)}</div>
+              <div className="text-xs text-muted-foreground mb-1">Interest Rate: {fmtPct(rate)}</div>
               <Slider min={1} max={30} step={0.1} value={[rate]} onValueChange={([v]) => setRate(v)} />
             </div>
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Extra Payment: {fmt(extraPayment)}/mo</div>
+              <div className="text-xs text-muted-foreground mb-1">Extra Payment: {fmt(extraPayment)}/mo</div>
               <Slider min={0} max={2000} step={25} value={[extraPayment]} onValueChange={([v]) => setExtraPayment(v)} />
             </div>
           </div>
@@ -679,16 +679,16 @@ function PayoffStrategiesTab() {
               { label: "Avalanche", months: avalancheResult.months, interest: avalancheResult.totalInterest, color: "#8b5cf6" },
               { label: "Snowball", months: snowballResult.months, interest: snowballResult.totalInterest, color: "#06b6d4" },
             ].map((item) => (
-              <div key={item.label} className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700/50">
+              <div key={item.label} className="p-3 rounded-lg bg-muted/60 border border-border/50">
                 <div className="text-xs font-medium mb-1" style={{ color: item.color }}>{item.label}</div>
-                <div className="text-lg font-bold text-neutral-100">{item.months >= 600 ? "Never" : `${item.months}m`}</div>
-                <div className="text-xs text-neutral-400">{fmtK(item.interest)} interest</div>
+                <div className="text-lg font-bold text-foreground">{item.months >= 600 ? "Never" : `${item.months}m`}</div>
+                <div className="text-xs text-muted-foreground">{fmtK(item.interest)} interest</div>
               </div>
             ))}
           </div>
 
           {/* Payoff timeline SVG */}
-          <div className="text-xs text-neutral-500 mb-2 font-medium">Payoff Timeline — Balance Remaining</div>
+          <div className="text-xs text-muted-foreground mb-2 font-medium">Payoff Timeline — Balance Remaining</div>
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
             {/* Grid lines */}
             {[0, 0.25, 0.5, 0.75, 1].map((pct) => {
@@ -732,9 +732,9 @@ function PayoffStrategiesTab() {
       {/* Balance Transfer + Consolidation */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Balance Transfer */}
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <Repeat className="w-4 h-4 text-muted-foreground" />
               Balance Transfer Analysis
             </CardTitle>
@@ -742,29 +742,29 @@ function PayoffStrategiesTab() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Intro Rate: {fmtPct(transferRate)}</div>
+                <div className="text-xs text-muted-foreground mb-1">Intro Rate: {fmtPct(transferRate)}</div>
                 <Slider min={0} max={5} step={0.25} value={[transferRate]} onValueChange={([v]) => setTransferRate(v)} />
               </div>
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Transfer Fee: {fmtPct(transferFee)}</div>
+                <div className="text-xs text-muted-foreground mb-1">Transfer Fee: {fmtPct(transferFee)}</div>
                 <Slider min={0} max={5} step={0.5} value={[transferFee]} onValueChange={([v]) => setTransferFee(v)} />
               </div>
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Intro Period: {transferMonths}mo</div>
+                <div className="text-xs text-muted-foreground mb-1">Intro Period: {transferMonths}mo</div>
                 <Slider min={6} max={24} step={3} value={[transferMonths]} onValueChange={([v]) => setTransferMonths(v)} />
               </div>
             </div>
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Transfer fee:</span>
+                <span className="text-muted-foreground">Transfer fee:</span>
                 <span className="text-red-400">{fmt(feeAmount)}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Interest saved:</span>
+                <span className="text-muted-foreground">Interest saved:</span>
                 <span className="text-green-400">{fmtK(Math.max(0, accelResult.totalInterest - btResult.totalInterest))}</span>
               </div>
-              <div className="flex justify-between text-xs border-t border-neutral-700 pt-2">
-                <span className="text-neutral-400 font-medium">Net benefit:</span>
+              <div className="flex justify-between text-xs border-t border-border pt-2">
+                <span className="text-muted-foreground font-medium">Net benefit:</span>
                 <span className={cn("font-bold", btSavings > 0 ? "text-green-400" : "text-red-400")}>
                   {btSavings > 0 ? "+" : ""}{fmtK(btSavings)}
                 </span>
@@ -780,38 +780,38 @@ function PayoffStrategiesTab() {
         </Card>
 
         {/* Debt Consolidation */}
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <Shield className="w-4 h-4 text-primary" />
               Debt Consolidation Analysis
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Consolidation Rate: {fmtPct(consolidationRate)}</div>
+              <div className="text-xs text-muted-foreground mb-1">Consolidation Rate: {fmtPct(consolidationRate)}</div>
               <Slider min={5} max={25} step={0.25} value={[consolidationRate]} onValueChange={([v]) => setConsolidationRate(v)} />
             </div>
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Current total interest:</span>
+                <span className="text-muted-foreground">Current total interest:</span>
                 <span className="text-red-400">{fmtK(accelResult.totalInterest)}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Consolidated interest:</span>
+                <span className="text-muted-foreground">Consolidated interest:</span>
                 <span className={consolidationRate < rate ? "text-green-400" : "text-red-400"}>
                   {fmtK(consResult.totalInterest)}
                 </span>
               </div>
-              <div className="flex justify-between text-xs border-t border-neutral-700 pt-2">
-                <span className="text-neutral-400 font-medium">Total savings:</span>
+              <div className="flex justify-between text-xs border-t border-border pt-2">
+                <span className="text-muted-foreground font-medium">Total savings:</span>
                 <span className={cn("font-bold", consSavings > 0 ? "text-green-400" : "text-red-400")}>
                   {consSavings > 0 ? "+" : ""}{fmtK(consSavings)}
                 </span>
               </div>
             </div>
-            <div className="space-y-1 text-xs text-neutral-500">
-              <div className="font-medium text-neutral-300">Consolidation checklist:</div>
+            <div className="space-y-1 text-xs text-muted-foreground">
+              <div className="font-medium text-muted-foreground">Consolidation checklist:</div>
               {[
                 { ok: consolidationRate < rate, text: `Lower rate than current ${fmtPct(rate)}` },
                 { ok: consolidationRate < 15, text: "Rate below 15% threshold" },
@@ -907,9 +907,9 @@ function MortgageOptimizationTab() {
   return (
     <div className="space-y-6">
       {/* 15 vs 30 Year Comparison */}
-      <Card className="bg-neutral-900 border-neutral-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Home className="w-4 h-4 text-primary" />
             15 vs 30-Year Mortgage Comparison
           </CardTitle>
@@ -917,19 +917,19 @@ function MortgageOptimizationTab() {
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Home Price: {fmtK(homePrice)}</div>
+              <div className="text-xs text-muted-foreground mb-1">Home Price: {fmtK(homePrice)}</div>
               <Slider min={100000} max={1500000} step={5000} value={[homePrice]} onValueChange={([v]) => setHomePrice(v)} />
             </div>
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Down Payment: {fmtPct(downPaymentPct)}</div>
+              <div className="text-xs text-muted-foreground mb-1">Down Payment: {fmtPct(downPaymentPct)}</div>
               <Slider min={3} max={50} step={1} value={[downPaymentPct]} onValueChange={([v]) => setDownPaymentPct(v)} />
             </div>
             <div>
-              <div className="text-xs text-neutral-500 mb-1">30yr Rate: {fmtPct(rate30)}</div>
+              <div className="text-xs text-muted-foreground mb-1">30yr Rate: {fmtPct(rate30)}</div>
               <Slider min={3} max={10} step={0.05} value={[rate30]} onValueChange={([v]) => setRate30(v)} />
             </div>
             <div>
-              <div className="text-xs text-neutral-500 mb-1">15yr Rate: {fmtPct(rate15)}</div>
+              <div className="text-xs text-muted-foreground mb-1">15yr Rate: {fmtPct(rate15)}</div>
               <Slider min={2.5} max={9} step={0.05} value={[rate15]} onValueChange={([v]) => setRate15(v)} />
             </div>
           </div>
@@ -953,24 +953,24 @@ function MortgageOptimizationTab() {
                 rate: rate15,
               },
             ].map((item) => (
-              <div key={item.term} className="p-4 rounded-lg bg-neutral-800/60 border border-neutral-700/50">
+              <div key={item.term} className="p-4 rounded-lg bg-muted/60 border border-border/50">
                 <div className="text-sm font-semibold mb-3" style={{ color: item.color }}>{item.term}</div>
                 <div className="space-y-1 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-neutral-400">Monthly Payment</span>
-                    <span className="text-neutral-100 font-medium">{fmt(item.mp)}</span>
+                    <span className="text-muted-foreground">Monthly Payment</span>
+                    <span className="text-foreground font-medium">{fmt(item.mp)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-neutral-400">Total Paid</span>
-                    <span className="text-neutral-100">{fmtK(item.total)}</span>
+                    <span className="text-muted-foreground">Total Paid</span>
+                    <span className="text-foreground">{fmtK(item.total)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-neutral-400">Total Interest</span>
+                    <span className="text-muted-foreground">Total Interest</span>
                     <span style={{ color: item.color }}>{fmtK(item.interest)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-neutral-400">Interest / Principal</span>
-                    <span className="text-neutral-300">{fmtPct((item.interest / loanAmount) * 100)}</span>
+                    <span className="text-muted-foreground">Interest / Principal</span>
+                    <span className="text-muted-foreground">{fmtPct((item.interest / loanAmount) * 100)}</span>
                   </div>
                 </div>
               </div>
@@ -988,7 +988,7 @@ function MortgageOptimizationTab() {
           )}
 
           {/* Amortization Curves SVG */}
-          <div className="text-xs text-neutral-500 mb-2 font-medium">Amortization Curves — Balance Remaining</div>
+          <div className="text-xs text-muted-foreground mb-2 font-medium">Amortization Curves — Balance Remaining</div>
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
             {[0, 0.25, 0.5, 0.75, 1].map((pct) => {
               const y = padT + cH - pct * cH;
@@ -1022,9 +1022,9 @@ function MortgageOptimizationTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Refinance Break-Even */}
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <Repeat className="w-4 h-4 text-muted-foreground" />
               Refinance Break-Even Calculator
             </CardTitle>
@@ -1032,30 +1032,30 @@ function MortgageOptimizationTab() {
           <CardContent className="space-y-4">
             <div className="space-y-3">
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Current Balance: {fmtK(currentBalance)}</div>
+                <div className="text-xs text-muted-foreground mb-1">Current Balance: {fmtK(currentBalance)}</div>
                 <Slider min={50000} max={800000} step={5000} value={[currentBalance]} onValueChange={([v]) => setCurrentBalance(v)} />
               </div>
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Current Rate: {fmtPct(currentRate)}</div>
+                <div className="text-xs text-muted-foreground mb-1">Current Rate: {fmtPct(currentRate)}</div>
                 <Slider min={3} max={10} step={0.05} value={[currentRate]} onValueChange={([v]) => setCurrentRate(v)} />
               </div>
               <div>
-                <div className="text-xs text-neutral-500 mb-1">New Rate: {fmtPct(newRate)}</div>
+                <div className="text-xs text-muted-foreground mb-1">New Rate: {fmtPct(newRate)}</div>
                 <Slider min={3} max={10} step={0.05} value={[newRate]} onValueChange={([v]) => setNewRate(v)} />
               </div>
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Closing Costs: {fmtK(closingCosts)}</div>
+                <div className="text-xs text-muted-foreground mb-1">Closing Costs: {fmtK(closingCosts)}</div>
                 <Slider min={1000} max={20000} step={500} value={[closingCosts]} onValueChange={([v]) => setClosingCosts(v)} />
               </div>
             </div>
-            <div className="space-y-2 border-t border-neutral-700 pt-3">
+            <div className="space-y-2 border-t border-border pt-3">
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Monthly savings:</span>
+                <span className="text-muted-foreground">Monthly savings:</span>
                 <span className={monthlySavings > 0 ? "text-green-400" : "text-red-400"}>{fmt(monthlySavings)}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Break-even:</span>
-                <span className="text-neutral-100 font-bold">
+                <span className="text-muted-foreground">Break-even:</span>
+                <span className="text-foreground font-bold">
                   {breakEvenMonths === Infinity ? "Never" : `${breakEvenMonths} months (${(breakEvenMonths / 12).toFixed(1)} yrs)`}
                 </span>
               </div>
@@ -1074,16 +1074,16 @@ function MortgageOptimizationTab() {
         </Card>
 
         {/* Extra Payment Impact */}
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <Zap className="w-4 h-4 text-yellow-400" />
               Extra Payment Impact
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Extra Monthly Payment: {fmt(extraMonthly)}</div>
+              <div className="text-xs text-muted-foreground mb-1">Extra Monthly Payment: {fmt(extraMonthly)}</div>
               <Slider min={0} max={2000} step={50} value={[extraMonthly]} onValueChange={([v]) => setExtraMonthly(v)} />
             </div>
 
@@ -1123,13 +1123,13 @@ function MortgageOptimizationTab() {
             </svg>
 
             {/* Points analysis */}
-            <div className="p-3 rounded-lg bg-neutral-800/60 border border-neutral-700/50 text-xs space-y-1">
-              <div className="font-medium text-neutral-200 mb-2">Mortgage Points Strategy</div>
-              <div className="text-neutral-400">1 point = 1% of loan amount ({fmtK(loanAmount * 0.01)})</div>
-              <div className="text-neutral-400">Typically reduces rate by 0.25% per point</div>
+            <div className="p-3 rounded-lg bg-muted/60 border border-border/50 text-xs space-y-1">
+              <div className="font-medium text-foreground mb-2">Mortgage Points Strategy</div>
+              <div className="text-muted-foreground">1 point = 1% of loan amount ({fmtK(loanAmount * 0.01)})</div>
+              <div className="text-muted-foreground">Typically reduces rate by 0.25% per point</div>
               <div className="flex justify-between">
-                <span className="text-neutral-400">Breakeven for 1 pt:</span>
-                <span className="text-neutral-200">
+                <span className="text-muted-foreground">Breakeven for 1 pt:</span>
+                <span className="text-foreground">
                   {monthlyPayment(loanAmount, rate30 - 0.25, 360) > 0
                     ? `${Math.ceil((loanAmount * 0.01) / (mp30 - monthlyPayment(loanAmount, rate30 - 0.25, 360)))} months`
                     : "N/A"}
@@ -1223,9 +1223,9 @@ function CreditBehavioralTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Credit Score Donut */}
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <PieChart className="w-4 h-4 text-primary" />
               Credit Score Components
             </CardTitle>
@@ -1266,10 +1266,10 @@ function CreditBehavioralTab() {
                 {creditComponents.map((c) => (
                   <div key={c.label}>
                     <div className="flex justify-between text-xs mb-0.5">
-                      <span className="text-neutral-400">{c.label}</span>
+                      <span className="text-muted-foreground">{c.label}</span>
                       <span style={{ color: c.color }}>{c.pct}%</span>
                     </div>
-                    <div className="w-full h-1.5 bg-neutral-800 rounded-full">
+                    <div className="w-full h-1.5 bg-muted rounded-full">
                       <div
                         className="h-full rounded-full"
                         style={{ width: `${c.score}%`, backgroundColor: c.color, opacity: 0.8 }}
@@ -1283,9 +1283,9 @@ function CreditBehavioralTab() {
         </Card>
 
         {/* Utilization Optimizer */}
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <Target className="w-4 h-4 text-green-400" />
               Credit Utilization Optimizer
             </CardTitle>
@@ -1293,11 +1293,11 @@ function CreditBehavioralTab() {
           <CardContent className="space-y-4">
             <div className="space-y-3">
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Total Credit Limit: {fmtK(totalCreditLimit)}</div>
+                <div className="text-xs text-muted-foreground mb-1">Total Credit Limit: {fmtK(totalCreditLimit)}</div>
                 <Slider min={5000} max={100000} step={1000} value={[totalCreditLimit]} onValueChange={([v]) => setTotalCreditLimit(v)} />
               </div>
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Current Balance: {fmtK(currentBalance2)}</div>
+                <div className="text-xs text-muted-foreground mb-1">Current Balance: {fmtK(currentBalance2)}</div>
                 <Slider min={0} max={totalCreditLimit} step={100} value={[currentBalance2]} onValueChange={([v]) => setCurrentBalance2(v)} />
               </div>
             </div>
@@ -1305,12 +1305,12 @@ function CreditBehavioralTab() {
             {/* Utilization gauge */}
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Utilization</span>
+                <span className="text-muted-foreground">Utilization</span>
                 <span className={cn("font-bold", currentUtil < 10 ? "text-green-400" : currentUtil < 30 ? "text-primary" : currentUtil < 50 ? "text-amber-400" : "text-red-400")}>
                   {fmtPct(currentUtil)}
                 </span>
               </div>
-              <div className="w-full h-3 bg-neutral-800 rounded-full overflow-hidden">
+              <div className="w-full h-3 bg-muted rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all"
                   style={{
@@ -1319,7 +1319,7 @@ function CreditBehavioralTab() {
                   }}
                 />
               </div>
-              <div className="flex justify-between text-xs text-neutral-500">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span>0% — Excellent</span>
                 <span>10% — Ideal</span>
                 <span>30% — Good</span>
@@ -1343,9 +1343,9 @@ function CreditBehavioralTab() {
                 { range: "10–30%", label: "Good", color: "text-primary", score: "+20 pts" },
                 { range: ">50%", label: "Harmful", color: "text-red-400", score: "−50 pts" },
               ].map((z) => (
-                <div key={z.range} className="p-2 rounded-lg bg-neutral-800/60 border border-neutral-700/40">
+                <div key={z.range} className="p-2 rounded-lg bg-muted/60 border border-border/40">
                   <div className={cn("font-medium", z.color)}>{z.range}</div>
-                  <div className="text-neutral-400">{z.label}</div>
+                  <div className="text-muted-foreground">{z.label}</div>
                   <div className={z.color}>{z.score}</div>
                 </div>
               ))}
@@ -1355,9 +1355,9 @@ function CreditBehavioralTab() {
       </div>
 
       {/* Rewards Arbitrage */}
-      <Card className="bg-neutral-900 border-neutral-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Award className="w-4 h-4 text-yellow-400" />
             Credit Card Rewards Arbitrage — Annual Value: {fmt(totalRewards)}
           </CardTitle>
@@ -1397,12 +1397,12 @@ function CreditBehavioralTab() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
             {spendCategories.map((cat) => (
-              <div key={cat.name} className="p-2 rounded-lg bg-neutral-800/60 border border-neutral-700/40 text-center">
+              <div key={cat.name} className="p-2 rounded-lg bg-muted/60 border border-border/40 text-center">
                 <div className="text-base mb-1">{cat.icon}</div>
-                <div className="text-xs font-medium text-neutral-200">{cat.name}</div>
-                <div className="text-xs text-neutral-400">{cat.bestCard}</div>
+                <div className="text-xs font-medium text-foreground">{cat.name}</div>
+                <div className="text-xs text-muted-foreground">{cat.bestCard}</div>
                 <div className="text-xs text-green-400 font-medium">{fmtPct(cat.cashback * 100)}</div>
-                <div className="text-xs text-neutral-300">{fmt(cat.monthly * cat.cashback * 12)}/yr</div>
+                <div className="text-xs text-muted-foreground">{fmt(cat.monthly * cat.cashback * 12)}/yr</div>
               </div>
             ))}
           </div>
@@ -1411,15 +1411,15 @@ function CreditBehavioralTab() {
 
       {/* Debt Psychology + Net Worth Impact */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <Shield className="w-4 h-4 text-primary" />
               Debt Psychology — Snowball Science
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
-            <p className="text-neutral-400 leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed">
               Research by Harvard Business Review (2016) found that focusing on small debts first — the snowball method — increases the likelihood of complete debt payoff by <span className="text-primary font-medium">14%</span> compared to purely mathematical approaches.
             </p>
             <div className="space-y-2">
@@ -1445,11 +1445,11 @@ function CreditBehavioralTab() {
                   color: "#f59e0b",
                 },
               ].map((item) => (
-                <div key={item.title} className="flex gap-3 p-2 rounded-lg bg-neutral-800/60">
+                <div key={item.title} className="flex gap-3 p-2 rounded-lg bg-muted/60">
                   <div className="w-1 rounded-full shrink-0" style={{ backgroundColor: item.color }} />
                   <div>
-                    <div className="font-medium text-neutral-200 mb-0.5" style={{ color: item.color }}>{item.title}</div>
-                    <div className="text-neutral-400">{item.desc}</div>
+                    <div className="font-medium text-foreground mb-0.5" style={{ color: item.color }}>{item.title}</div>
+                    <div className="text-muted-foreground">{item.desc}</div>
                   </div>
                 </div>
               ))}
@@ -1458,9 +1458,9 @@ function CreditBehavioralTab() {
         </Card>
 
         {/* Net Worth Impact SVG */}
-        <Card className="bg-neutral-900 border-neutral-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
               <TrendingDown className="w-4 h-4 text-green-400" />
               Net Worth Impact — With vs Without Debt Freedom
             </CardTitle>
@@ -1559,7 +1559,7 @@ export default function DebtManagementPage() {
   void NOISE;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-4 md:p-6">
+    <div className="min-h-screen bg-neutral-950 text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1572,8 +1572,8 @@ export default function DebtManagementPage() {
             <TrendingDown className="w-5 h-5 text-red-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-neutral-100">Personal Debt Management</h1>
-            <p className="text-xs text-neutral-500">
+            <h1 className="text-xl font-bold text-foreground">Personal Debt Management</h1>
+            <p className="text-xs text-muted-foreground">
               Avalanche vs snowball · Mortgage optimization · Credit mastery · Debt freedom
             </p>
           </div>
@@ -1592,7 +1592,7 @@ export default function DebtManagementPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid grid-cols-4 mb-6 bg-neutral-900 border border-neutral-800">
+        <TabsList className="grid grid-cols-4 mb-6 bg-card border border-border">
           {[
             { id: "overview", label: "Debt Overview", icon: <BarChart3 className="w-3.5 h-3.5" /> },
             { id: "strategies", label: "Payoff Strategies", icon: <Target className="w-3.5 h-3.5" /> },
@@ -1602,7 +1602,7 @@ export default function DebtManagementPage() {
             <TabsTrigger
               key={tab.id}
               value={tab.id}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-neutral-800 data-[state=active]:text-neutral-100"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               {tab.icon}
               <span className="hidden sm:inline">{tab.label}</span>

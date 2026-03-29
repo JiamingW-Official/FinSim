@@ -245,14 +245,14 @@ function FxPairRow({ pair }: { pair: FxPair }) {
         </div>
       </td>
       <td className="py-3 px-4 font-mono text-white text-sm text-right">{pair.spot}</td>
-      <td className="py-3 px-4 font-mono text-slate-400 text-xs text-right">{pair.bid}</td>
-      <td className="py-3 px-4 font-mono text-slate-400 text-xs text-right">{pair.ask}</td>
+      <td className="py-3 px-4 font-mono text-muted-foreground text-xs text-right">{pair.bid}</td>
+      <td className="py-3 px-4 font-mono text-muted-foreground text-xs text-right">{pair.ask}</td>
       <td className="py-3 px-4 text-right">
-        <Badge variant="outline" className="font-mono text-xs border-slate-600 text-slate-300">
+        <Badge variant="outline" className="font-mono text-xs border-slate-600 text-muted-foreground">
           {pair.spread}
         </Badge>
       </td>
-      <td className="py-3 px-4 font-mono text-slate-400 text-xs text-right whitespace-nowrap">
+      <td className="py-3 px-4 font-mono text-muted-foreground text-xs text-right whitespace-nowrap">
         {pair.dailyLow} – {pair.dailyHigh}
       </td>
       <td className="py-3 px-4 text-right">
@@ -545,7 +545,7 @@ export default function CurrencyMarketsPage() {
   const selectedCrisisData = selectedCrisis !== null ? CRISES[selectedCrisis] : null;
 
   return (
-    <div className="min-h-screen bg-[#0a0f1e] text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-[#0a0f1e] text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -554,7 +554,7 @@ export default function CurrencyMarketsPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Currency Markets Deep Dive</h1>
-            <p className="text-slate-400 text-sm">FX structure, carry trades, PPP/UIP theory, and currency crises</p>
+            <p className="text-muted-foreground text-sm">FX structure, carry trades, PPP/UIP theory, and currency crises</p>
           </div>
         </div>
 
@@ -571,7 +571,7 @@ export default function CurrencyMarketsPage() {
                 <stat.icon className={cn("w-5 h-5 flex-shrink-0", stat.color)} />
                 <div>
                   <div className={cn("text-lg font-bold", stat.color)}>{stat.value}</div>
-                  <div className="text-slate-500 text-xs">{stat.label}</div>
+                  <div className="text-muted-foreground text-xs">{stat.label}</div>
                 </div>
               </CardContent>
             </Card>
@@ -582,16 +582,16 @@ export default function CurrencyMarketsPage() {
       {/* Tabs */}
       <Tabs defaultValue="structure" className="space-y-4">
         <TabsList className="bg-white/[0.05] border border-white/10 p-1 flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="structure" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="structure" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <Globe className="w-3 h-3 mr-1" /> FX Structure
           </TabsTrigger>
-          <TabsTrigger value="carry" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="carry" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <TrendingUp className="w-3 h-3 mr-1" /> Carry Trades
           </TabsTrigger>
-          <TabsTrigger value="theory" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="theory" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <BookOpen className="w-3 h-3 mr-1" /> Theory
           </TabsTrigger>
-          <TabsTrigger value="crises" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="crises" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <ShieldAlert className="w-3 h-3 mr-1" /> Crises
           </TabsTrigger>
         </TabsList>
@@ -612,7 +612,7 @@ export default function CurrencyMarketsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-white/10 text-slate-500 text-xs">
+                        <tr className="border-b border-white/10 text-muted-foreground text-xs">
                           <th className="py-2 px-4 text-left">Pair</th>
                           <th className="py-2 px-4 text-right">Spot</th>
                           <th className="py-2 px-4 text-right">Bid</th>
@@ -630,7 +630,7 @@ export default function CurrencyMarketsPage() {
                       </tbody>
                     </table>
                   </div>
-                  <div className="px-4 py-3 border-t border-white/5 text-xs text-slate-500">
+                  <div className="px-4 py-3 border-t border-white/5 text-xs text-muted-foreground">
                     Spread in pips (1 pip = 0.0001 for majors, 0.01 for JPY pairs). Prices are indicative.
                   </div>
                 </CardContent>
@@ -652,8 +652,8 @@ export default function CurrencyMarketsPage() {
                     {SESSIONS.map((sess) => (
                       <div key={sess.name} className="flex items-center gap-2 text-xs">
                         <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: sess.color }} />
-                        <span className="text-slate-300">{sess.name}</span>
-                        <span className="text-slate-500 ml-auto">{sess.startHour.toString().padStart(2,"0")}–{sess.endHour.toString().padStart(2,"0")}</span>
+                        <span className="text-muted-foreground">{sess.name}</span>
+                        <span className="text-muted-foreground ml-auto">{sess.startHour.toString().padStart(2,"0")}–{sess.endHour.toString().padStart(2,"0")}</span>
                       </div>
                     ))}
                   </div>
@@ -672,7 +672,7 @@ export default function CurrencyMarketsPage() {
             </CardHeader>
             <CardContent>
               <SessionVolumeChart />
-              <div className="flex flex-wrap gap-4 mt-2 text-xs text-slate-400">
+              <div className="flex flex-wrap gap-4 mt-2 text-xs text-muted-foreground">
                 <span><span className="inline-block w-3 h-2 rounded bg-primary mr-1 opacity-70" />Tokyo (00–09)</span>
                 <span><span className="inline-block w-3 h-2 rounded bg-emerald-500 mr-1 opacity-70" />London (07–16)</span>
                 <span><span className="inline-block w-3 h-2 rounded bg-amber-500 mr-1 opacity-70" />New York (12–21) / Overlap</span>
@@ -712,10 +712,10 @@ export default function CurrencyMarketsPage() {
                     <item.icon className={cn("w-4 h-4", item.color)} />
                     <span className="text-white font-semibold text-sm">{item.title}</span>
                   </div>
-                  <p className="text-slate-400 text-xs leading-relaxed mb-3">{item.desc}</p>
+                  <p className="text-muted-foreground text-xs leading-relaxed mb-3">{item.desc}</p>
                   <div className="flex flex-wrap gap-1">
                     {item.tags.map((t) => (
-                      <Badge key={t} variant="outline" className="text-xs border-white/10 text-slate-400">{t}</Badge>
+                      <Badge key={t} variant="outline" className="text-xs border-white/10 text-muted-foreground">{t}</Badge>
                     ))}
                   </div>
                 </CardContent>
@@ -764,7 +764,7 @@ export default function CurrencyMarketsPage() {
 
                 {/* Leverage slider */}
                 <div className="pt-3 border-t border-white/5">
-                  <div className="flex justify-between text-xs text-slate-400 mb-2">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-2">
                     <span>Leverage</span>
                     <span className="text-white font-mono">{leverage[0]}x</span>
                   </div>
@@ -791,41 +791,41 @@ export default function CurrencyMarketsPage() {
                 <CardContent className="space-y-3">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
-                      <div className="text-slate-400 text-xs mb-1">Long ({selectedCarryPair.longCcy})</div>
+                      <div className="text-muted-foreground text-xs mb-1">Long ({selectedCarryPair.longCcy})</div>
                       <div className="text-emerald-400 font-mono font-bold text-xl">{selectedCarryPair.longRate}%</div>
-                      <div className="text-slate-500 text-xs">Policy rate</div>
+                      <div className="text-muted-foreground text-xs">Policy rate</div>
                     </div>
                     <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-3">
-                      <div className="text-slate-400 text-xs mb-1">Short ({selectedCarryPair.shortCcy})</div>
+                      <div className="text-muted-foreground text-xs mb-1">Short ({selectedCarryPair.shortCcy})</div>
                       <div className="text-red-400 font-mono font-bold text-xl">{selectedCarryPair.shortRate}%</div>
-                      <div className="text-slate-500 text-xs">Policy rate</div>
+                      <div className="text-muted-foreground text-xs">Policy rate</div>
                     </div>
                   </div>
 
                   <div className="flex justify-between items-center py-2 border-t border-white/5">
-                    <span className="text-slate-400 text-sm">Net Differential</span>
+                    <span className="text-muted-foreground text-sm">Net Differential</span>
                     <span className="text-amber-400 font-mono font-bold text-lg">+{selectedCarryPair.differential.toFixed(2)}%</span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 text-sm">
                     <div className="flex flex-col gap-1">
-                      <span className="text-slate-500 text-xs">30D Carry Return</span>
+                      <span className="text-muted-foreground text-xs">30D Carry Return</span>
                       <span className={cn("font-mono font-semibold", parseFloat(selectedCarryPair.carryReturn[selectedCarryPair.carryReturn.length - 1].toString()) >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {selectedCarryPair.carryReturn[selectedCarryPair.carryReturn.length - 1]}%
                       </span>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <span className="text-slate-500 text-xs">Max Drawdown</span>
+                      <span className="text-muted-foreground text-xs">Max Drawdown</span>
                       <span className="text-red-400 font-mono font-semibold">{selectedCarryPair.maxDrawdown}%</span>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <span className="text-slate-500 text-xs">Sharpe Ratio</span>
+                      <span className="text-muted-foreground text-xs">Sharpe Ratio</span>
                       <span className={cn("font-mono font-semibold", selectedCarryPair.sharpe > 0.5 ? "text-emerald-400" : "text-amber-400")}>
                         {selectedCarryPair.sharpe}
                       </span>
                     </div>
                     <div className="flex flex-col gap-1">
-                      <span className="text-slate-500 text-xs">Crash Risk</span>
+                      <span className="text-muted-foreground text-xs">Crash Risk</span>
                       <span className={cn("font-semibold", selectedCarryPair.crashRisk === "High" ? "text-red-400" : selectedCarryPair.crashRisk === "Medium" ? "text-amber-400" : "text-emerald-400")}>
                         {selectedCarryPair.crashRisk}
                       </span>
@@ -844,13 +844,13 @@ export default function CurrencyMarketsPage() {
                 </CardHeader>
                 <CardContent className="grid grid-cols-2 gap-3">
                   <div>
-                    <div className="text-slate-400 text-xs mb-1">Leveraged Return</div>
+                    <div className="text-muted-foreground text-xs mb-1">Leveraged Return</div>
                     <div className={cn("font-mono font-bold text-xl", parseFloat(leveragedReturn) >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {parseFloat(leveragedReturn) >= 0 ? "+" : ""}{leveragedReturn}%
                     </div>
                   </div>
                   <div>
-                    <div className="text-slate-400 text-xs mb-1">Max Drawdown</div>
+                    <div className="text-muted-foreground text-xs mb-1">Max Drawdown</div>
                     <div className="font-mono font-bold text-xl text-red-400">{leveragedDD}%</div>
                   </div>
                   {parseFloat(leveragedDD) < -20 && (
@@ -870,7 +870,7 @@ export default function CurrencyMarketsPage() {
               </CardHeader>
               <CardContent>
                 <CarryReturnChart data={selectedCarryPair.carryReturn} color="#10b981" />
-                <p className="text-slate-500 text-xs mt-2">Cumulative carry P&L (spot + rollover, unlevered)</p>
+                <p className="text-muted-foreground text-xs mt-2">Cumulative carry P&L (spot + rollover, unlevered)</p>
               </CardContent>
             </Card>
           </div>
@@ -892,13 +892,13 @@ export default function CurrencyMarketsPage() {
                 ].map((p) => (
                   <div key={p.phase} className={cn("rounded-lg p-4 border", p.color === "emerald" ? "border-emerald-500/20 bg-emerald-500/5" : p.color === "amber" ? "border-amber-500/20 bg-amber-500/5" : "border-red-500/20 bg-red-500/5")}>
                     <div className={cn("font-semibold text-sm mb-2", p.color === "emerald" ? "text-emerald-400" : p.color === "amber" ? "text-amber-400" : "text-red-400")}>{p.phase}</div>
-                    <p className="text-slate-400 text-xs leading-relaxed">{p.desc}</p>
+                    <p className="text-muted-foreground text-xs leading-relaxed">{p.desc}</p>
                   </div>
                 ))}
               </div>
               <div className="mt-3 p-3 bg-primary/10 border border-border rounded-lg flex items-start gap-2">
                 <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                <p className="text-slate-300 text-xs leading-relaxed">
+                <p className="text-muted-foreground text-xs leading-relaxed">
                   <strong className="text-primary">Carry Crash Correlation:</strong> Carry returns exhibit negative skewness and excess kurtosis — they show small consistent gains interspersed with large sudden losses. The Sharpe ratio overstates risk-adjusted returns because it assumes normality. Position sizing and stop-losses are critical.
                 </p>
               </div>
@@ -917,13 +917,13 @@ export default function CurrencyMarketsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-slate-400 text-xs mb-4">
+              <p className="text-muted-foreground text-xs mb-4">
                 PPP states that exchange rates should equalize the price of identical goods across countries. The Big Mac Index (The Economist) uses McDonald's burger price as a real-world PPP indicator. A positive % means the currency is <strong className="text-amber-400">overvalued</strong> vs USD; negative means <strong className="text-primary">undervalued</strong>.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b border-white/10 text-slate-500 text-xs">
+                    <tr className="border-b border-white/10 text-muted-foreground text-xs">
                       <th className="py-2 px-3 text-left">Country</th>
                       <th className="py-2 px-3 text-right">Big Mac Price</th>
                       <th className="py-2 px-3 text-right">PPP Rate</th>
@@ -941,12 +941,12 @@ export default function CurrencyMarketsPage() {
                         <tr key={row.country} className="border-b border-white/5 hover:bg-white/[0.02]">
                           <td className="py-2.5 px-3">
                             <span className="mr-2">{row.flag}</span>
-                            <span className="text-slate-200 text-xs">{row.country}</span>
-                            <span className="text-slate-500 text-xs ml-1">({row.currency})</span>
+                            <span className="text-foreground text-xs">{row.country}</span>
+                            <span className="text-muted-foreground text-xs ml-1">({row.currency})</span>
                           </td>
-                          <td className="py-2.5 px-3 font-mono text-slate-300 text-xs text-right">{row.currency} {row.bigMacPrice.toFixed(2)}</td>
-                          <td className="py-2.5 px-3 font-mono text-slate-300 text-xs text-right">{row.impliedRate}</td>
-                          <td className="py-2.5 px-3 font-mono text-slate-300 text-xs text-right">{row.actualRate}</td>
+                          <td className="py-2.5 px-3 font-mono text-muted-foreground text-xs text-right">{row.currency} {row.bigMacPrice.toFixed(2)}</td>
+                          <td className="py-2.5 px-3 font-mono text-muted-foreground text-xs text-right">{row.impliedRate}</td>
+                          <td className="py-2.5 px-3 font-mono text-muted-foreground text-xs text-right">{row.actualRate}</td>
                           <td className="py-2.5 px-3 text-right">
                             <span className={cn("font-mono font-semibold text-sm", over ? "text-amber-400" : "text-primary")}>
                               {over ? "+" : ""}{row.valuation}%
@@ -971,7 +971,7 @@ export default function CurrencyMarketsPage() {
                   </tbody>
                 </table>
               </div>
-              <div className="mt-3 flex gap-4 text-xs text-slate-500">
+              <div className="mt-3 flex gap-4 text-xs text-muted-foreground">
                 <span>US Big Mac: $5.69 (reference)</span>
                 <span className="text-amber-400">Amber = overvalued vs USD</span>
                 <span className="text-primary">Blue = undervalued vs USD</span>
@@ -992,9 +992,9 @@ export default function CurrencyMarketsPage() {
                 <div className="bg-primary/10 border border-border rounded-lg p-3">
                   <div className="font-mono text-primary text-xs text-center mb-1">UIP Theory:</div>
                   <div className="font-mono text-white text-sm text-center">E[ΔS] = i_d − i_f</div>
-                  <div className="text-slate-400 text-xs text-center mt-1">High-rate currency should depreciate by the rate differential</div>
+                  <div className="text-muted-foreground text-xs text-center mt-1">High-rate currency should depreciate by the rate differential</div>
                 </div>
-                <p className="text-slate-400 text-xs leading-relaxed">
+                <p className="text-muted-foreground text-xs leading-relaxed">
                   UIP is one of the most empirically violated theories in international finance. In practice, high-interest-rate currencies tend to <strong className="text-white">appreciate</strong>, not depreciate — the "forward premium puzzle" or "carry trade profitability."
                 </p>
                 <div className="space-y-2">
@@ -1006,7 +1006,7 @@ export default function CurrencyMarketsPage() {
                   ].map((item) => (
                     <div key={item.reason} className="flex gap-2 text-xs">
                       <span className="text-primary font-semibold whitespace-nowrap">{item.reason}:</span>
-                      <span className="text-slate-400">{item.desc}</span>
+                      <span className="text-muted-foreground">{item.desc}</span>
                     </div>
                   ))}
                 </div>
@@ -1024,9 +1024,9 @@ export default function CurrencyMarketsPage() {
                 <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div className="font-mono text-emerald-300 text-xs text-center mb-1">Taylor Rule:</div>
                   <div className="font-mono text-white text-xs text-center">r = r* + π + 0.5(π−π*) + 0.5·output_gap</div>
-                  <div className="text-slate-400 text-xs text-center mt-1">Central bank rate setting framework</div>
+                  <div className="text-muted-foreground text-xs text-center mt-1">Central bank rate setting framework</div>
                 </div>
-                <p className="text-slate-400 text-xs leading-relaxed">
+                <p className="text-muted-foreground text-xs leading-relaxed">
                   The Taylor Rule provides a framework for expected central bank rate paths, which in turn imply FX rate movements. When a country's Taylor rate exceeds its actual policy rate, the currency tends to appreciate (accommodative → tightening expected).
                 </p>
                 <div className="space-y-1.5">
@@ -1041,7 +1041,7 @@ export default function CurrencyMarketsPage() {
                       <span className={cn("font-mono", item.taylorGap > 0 ? "text-amber-400" : "text-primary")}>
                         {item.taylorGap > 0 ? "+" : ""}{item.taylorGap}%
                       </span>
-                      <span className="text-slate-400">{item.dir}</span>
+                      <span className="text-muted-foreground">{item.dir}</span>
                     </div>
                   ))}
                 </div>
@@ -1058,11 +1058,11 @@ export default function CurrencyMarketsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-slate-400 text-xs mb-4">
+              <p className="text-muted-foreground text-xs mb-4">
                 REER adjusts nominal exchange rates for inflation differentials, providing a measure of a currency's true international competitiveness. Index = 100 at base period. Rising REER = appreciation (possible competitiveness loss).
               </p>
               <ReerChart />
-              <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-400">
+              <div className="mt-2 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
                 <div><span className="text-amber-400 font-semibold">USD REER:</span> Driven by Fed tightening, dollar dominance in trade invoicing.</div>
                 <div><span className="text-primary font-semibold">EUR REER:</span> ECB policy normalization after years of negative rates.</div>
                 <div><span className="text-primary font-semibold">JPY REER:</span> Multi-decade low reflects BOJ yield curve control and inflation gap.</div>
@@ -1108,14 +1108,14 @@ export default function CurrencyMarketsPage() {
                       </div>
 
                       {/* Timeline dot */}
-                      <div className="w-3 h-3 rounded-full flex-shrink-0 mt-1 border-2 border-slate-800" style={{ backgroundColor: crisis.color }} />
+                      <div className="w-3 h-3 rounded-full flex-shrink-0 mt-1 border-2 border-border" style={{ backgroundColor: crisis.color }} />
 
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="text-white font-semibold text-sm">{crisis.name}</span>
-                          <span className="text-slate-500 text-xs">{crisis.country}</span>
-                          <Badge variant="outline" className="text-xs border-white/10 text-slate-400">{crisis.currency}</Badge>
+                          <span className="text-muted-foreground text-xs">{crisis.country}</span>
+                          <Badge variant="outline" className="text-xs border-white/10 text-muted-foreground">{crisis.currency}</Badge>
                         </div>
                         <div className={cn("text-sm font-mono font-bold mt-0.5", crisis.peakDevaluation < 0 ? "text-red-400" : "text-emerald-400")}>
                           {crisis.peakDevaluation > 0 ? "+" : ""}{crisis.peakDevaluation}% peak move
@@ -1151,18 +1151,18 @@ export default function CurrencyMarketsPage() {
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <div className="text-slate-400 text-xs font-semibold mb-2">Attack Mechanics</div>
-                      <p className="text-slate-300 text-sm leading-relaxed">{selectedCrisisData.mechanism}</p>
+                      <div className="text-muted-foreground text-xs font-semibold mb-2">Attack Mechanics</div>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{selectedCrisisData.mechanism}</p>
                     </div>
                     <div>
-                      <div className="text-slate-400 text-xs font-semibold mb-2">Outcome</div>
-                      <p className="text-slate-300 text-sm leading-relaxed">{selectedCrisisData.outcome}</p>
+                      <div className="text-muted-foreground text-xs font-semibold mb-2">Outcome</div>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{selectedCrisisData.outcome}</p>
                     </div>
                   </div>
 
                   {/* Speculative pressure indicators */}
                   <div>
-                    <div className="text-slate-400 text-xs font-semibold mb-2">Speculative Pressure Indicators</div>
+                    <div className="text-muted-foreground text-xs font-semibold mb-2">Speculative Pressure Indicators</div>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       {[
                         { label: "Reserve Depletion", value: selectedCrisis === 0 ? 72 : selectedCrisis === 1 ? 85 : selectedCrisis === 2 ? 91 : selectedCrisis === 3 ? 88 : 20, unit: "%" },
@@ -1171,7 +1171,7 @@ export default function CurrencyMarketsPage() {
                         { label: "FX Vol Spike", value: selectedCrisis === 0 ? 18 : selectedCrisis === 1 ? 35 : selectedCrisis === 2 ? 28 : selectedCrisis === 3 ? 22 : 42, unit: "%" },
                       ].map((ind) => (
                         <div key={ind.label} className="bg-white/[0.03] border border-white/10 rounded-lg p-3">
-                          <div className="text-slate-500 text-xs mb-1">{ind.label}</div>
+                          <div className="text-muted-foreground text-xs mb-1">{ind.label}</div>
                           <div className="font-mono font-bold text-white text-lg">{ind.value}{ind.unit}</div>
                         </div>
                       ))}
@@ -1193,30 +1193,30 @@ export default function CurrencyMarketsPage() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-3">
-                  <div className="text-slate-400 text-xs font-semibold">First-Generation Model (Krugman 1979)</div>
-                  <p className="text-slate-400 text-xs leading-relaxed">
+                  <div className="text-muted-foreground text-xs font-semibold">First-Generation Model (Krugman 1979)</div>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
                     Fiscal deficits monetized by central banks create inflation, depleting foreign exchange reserves. When reserves approach zero, a speculative attack forces the abandonment of the peg. The attack is rational — speculators anticipate the inevitable. <strong className="text-white">Fundamentals-driven.</strong>
                   </p>
                   <div className="space-y-1">
                     {["Fiscal imbalance → money printing", "Inflation differential vs peg anchor", "Reserve depletion over time", "Speculative attack when reserves critical", "Peg collapses → sharp devaluation"].map((step, i) => (
                       <div key={step} className="flex items-center gap-2 text-xs">
                         <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
-                        <span className="text-slate-300">{step}</span>
+                        <span className="text-muted-foreground">{step}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="text-slate-400 text-xs font-semibold">Second-Generation Model (Obstfeld 1994)</div>
-                  <p className="text-slate-400 text-xs leading-relaxed">
+                  <div className="text-muted-foreground text-xs font-semibold">Second-Generation Model (Obstfeld 1994)</div>
+                  <p className="text-muted-foreground text-xs leading-relaxed">
                     Multiple equilibria: a peg can be sustainable if everyone believes it will hold, but self-fulfilling attacks can force abandonment even with strong fundamentals. The cost of defending the peg depends on market expectations — creating a coordination game. <strong className="text-white">Expectations-driven.</strong>
                   </p>
                   <div className="space-y-1">
                     {["Peg sustainable at current beliefs", "Speculative pressure increases hedging cost", "Defense requires painful rate hikes", "Government weighs defense cost vs credibility", "Self-fulfilling exit if confidence breaks"].map((step, i) => (
                       <div key={step} className="flex items-center gap-2 text-xs">
                         <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
-                        <span className="text-slate-300">{step}</span>
+                        <span className="text-muted-foreground">{step}</span>
                       </div>
                     ))}
                   </div>
@@ -1230,9 +1230,9 @@ export default function CurrencyMarketsPage() {
                   { title: "Post-Crisis Recovery", items: ["IMF conditionality programs", "Structural reform packages", "Debt restructuring / haircuts", "Gradual reserve rebuilding", "New monetary framework (inflation target)"] },
                 ].map((section) => (
                   <div key={section.title} className="bg-white/[0.02] border border-white/5 rounded-lg p-3">
-                    <div className="text-slate-300 text-xs font-semibold mb-2">{section.title}</div>
+                    <div className="text-muted-foreground text-xs font-semibold mb-2">{section.title}</div>
                     {section.items.map((item) => (
-                      <div key={item} className="flex items-center gap-1.5 text-xs text-slate-400 mb-1">
+                      <div key={item} className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
                         <div className="w-1 h-1 rounded-full bg-slate-600 flex-shrink-0" />
                         {item}
                       </div>

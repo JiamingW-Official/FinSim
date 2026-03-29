@@ -1583,7 +1583,7 @@ export default function AlgoBuilderPage() {
                             <span className="text-emerald-400 font-mono">
                               Strategy: {backtestResult.totalReturn > 0 ? "+" : ""}{backtestResult.totalReturn.toFixed(1)}%
                             </span>
-                            <span className="text-gray-400 font-mono">
+                            <span className="text-muted-foreground font-mono">
                               SPY: {backtestResult.spyReturn > 0 ? "+" : ""}{backtestResult.spyReturn.toFixed(1)}%
                             </span>
                           </div>
@@ -1745,7 +1745,7 @@ export default function AlgoBuilderPage() {
                               style={{ width: `${Math.min(100, Math.abs(st.mktRet) / 55 * 100)}%` }}
                             />
                           </div>
-                          <span className="w-12 text-right font-mono text-gray-400">{st.mktRet}%</span>
+                          <span className="w-12 text-right font-mono text-muted-foreground">{st.mktRet}%</span>
                         </div>
                       </div>
                       <div className={cn(

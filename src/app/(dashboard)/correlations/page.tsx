@@ -271,7 +271,7 @@ function CorrelationHeatmap({ matrix, title }: HeatmapProps) {
 
   return (
     <div className="overflow-x-auto">
-      <p className="text-xs text-slate-400 mb-2">{title}</p>
+      <p className="text-xs text-muted-foreground mb-2">{title}</p>
       <svg width={svgW} height={svgH} className="block">
         {/* Column headers */}
         {ASSETS.map((a, ci) => (
@@ -333,7 +333,7 @@ function CorrelationHeatmap({ matrix, title }: HeatmapProps) {
         )}
       </svg>
       {/* Legend */}
-      <div className="flex items-center gap-2 mt-3 text-xs text-slate-400">
+      <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
         <span>-1.0</span>
         <svg width={160} height={14}>
           <defs>
@@ -530,22 +530,22 @@ function CorrelationMatrixTab() {
           { label: "Most Correlated",  value: "0.96",  sub: "US Eq / Intl Eq",  icon: <TrendingUp size={16} />, color: "text-red-400" },
           { label: "Least Correlated", value: "-0.52", sub: "US Eq / Bonds",    icon: <Shield size={16} />, color: "text-green-400" },
         ].map((s) => (
-          <Card key={s.label} className="bg-slate-800/50 border-slate-700">
+          <Card key={s.label} className="bg-muted/50 border-border">
             <CardContent className="pt-4 pb-4">
-              <div className="flex items-center gap-2 text-slate-400 mb-1">
+              <div className="flex items-center gap-2 text-muted-foreground mb-1">
                 <span className={s.color}>{s.icon}</span>
                 <span className="text-xs">{s.label}</span>
               </div>
               <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{s.sub}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{s.sub}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <BarChart3 size={15} className="text-primary" />
             10×10 Asset Class Correlation Matrix (Current — 252-day)
           </CardTitle>
@@ -638,24 +638,24 @@ function CorrelationMatrixTab() {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                className="mt-4 p-3 bg-slate-700/60 border border-slate-600 rounded-lg flex items-center gap-4"
+                className="mt-4 p-3 bg-muted/60 border border-slate-600 rounded-lg flex items-center gap-4"
               >
                 <div className="flex items-center gap-2">
                   <div
                     className="w-3 h-3 rounded-sm"
                     style={{ background: ASSETS[hoveredCell.ci].color }}
                   />
-                  <span className="text-sm text-slate-300">{ASSETS[hoveredCell.ci].label}</span>
+                  <span className="text-sm text-muted-foreground">{ASSETS[hoveredCell.ci].label}</span>
                 </div>
-                <span className="text-slate-500 text-sm">vs</span>
+                <span className="text-muted-foreground text-sm">vs</span>
                 <div className="flex items-center gap-2">
                   <div
                     className="w-3 h-3 rounded-sm"
                     style={{ background: ASSETS[hoveredCell.ri].color }}
                   />
-                  <span className="text-sm text-slate-300">{ASSETS[hoveredCell.ri].label}</span>
+                  <span className="text-sm text-muted-foreground">{ASSETS[hoveredCell.ri].label}</span>
                 </div>
-                <span className="text-slate-500 text-sm">—</span>
+                <span className="text-muted-foreground text-sm">—</span>
                 <Badge
                   className="text-sm"
                   style={{
@@ -666,7 +666,7 @@ function CorrelationMatrixTab() {
                   {highlightedVal > 0 ? "+" : ""}
                   {highlightedVal.toFixed(2)}
                 </Badge>
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-muted-foreground">
                   {Math.abs(highlightedVal) >= 0.7
                     ? "Strong"
                     : Math.abs(highlightedVal) >= 0.4
@@ -681,7 +681,7 @@ function CorrelationMatrixTab() {
           </AnimatePresence>
 
           {/* Color legend */}
-          <div className="flex items-center gap-2 mt-4 text-xs text-slate-400">
+          <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
             <span className="whitespace-nowrap">-1.0 (inverse)</span>
             <svg width={160} height={14} className="flex-1 max-w-[160px]">
               <defs>
@@ -701,9 +701,9 @@ function CorrelationMatrixTab() {
       </Card>
 
       {/* Interpretation notes */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Info size={14} className="text-amber-400" />
             Interpretation Guide
           </CardTitle>
@@ -719,9 +719,9 @@ function CorrelationMatrixTab() {
               <div key={r.range} className="flex items-start gap-2">
                 <div className="w-2.5 h-2.5 rounded-sm mt-0.5 flex-shrink-0" style={{ background: r.color }} />
                 <div>
-                  <p className="text-xs font-medium text-slate-200">{r.label}</p>
-                  <p className="text-xs text-slate-500">{r.range}</p>
-                  <p className="text-xs text-slate-400 mt-0.5">{r.desc}</p>
+                  <p className="text-xs font-medium text-foreground">{r.label}</p>
+                  <p className="text-xs text-muted-foreground">{r.range}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{r.desc}</p>
                 </div>
               </div>
             ))}
@@ -775,9 +775,9 @@ function RollingCorrelationsTab() {
       className="space-y-5"
     >
       {/* Pair selector */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardContent className="pt-4 pb-4">
-          <p className="text-xs text-slate-400 mb-3">Select asset pair</p>
+          <p className="text-xs text-muted-foreground mb-3">Select asset pair</p>
           <div className="flex flex-wrap gap-2">
             {pairData.map((p, i) => (
               <Button
@@ -787,7 +787,7 @@ function RollingCorrelationsTab() {
                 onClick={() => setSelectedPair(i)}
                 className={selectedPair === i
                   ? "bg-primary text-white border-primary text-xs"
-                  : "border-slate-600 text-slate-300 text-xs hover:bg-slate-700"
+                  : "border-slate-600 text-muted-foreground text-xs hover:bg-muted"
                 }
               >
                 {p.aLabel.split(" ")[0]} / {p.bLabel.split(" ")[0]}
@@ -805,9 +805,9 @@ function RollingCorrelationsTab() {
           { label: "Min (60d)", value: minCorr.toFixed(3),    color: "text-red-400" },
           { label: "Max (60d)", value: maxCorr.toFixed(3),    color: "text-green-400" },
         ].map((s) => (
-          <Card key={s.label} className="bg-slate-800/50 border-slate-700">
+          <Card key={s.label} className="bg-muted/50 border-border">
             <CardContent className="pt-3 pb-3">
-              <p className="text-xs text-slate-500">{s.label}</p>
+              <p className="text-xs text-muted-foreground">{s.label}</p>
               <p className={`text-xl font-bold mt-0.5 ${s.color}`}>{s.value}</p>
             </CardContent>
           </Card>
@@ -815,9 +815,9 @@ function RollingCorrelationsTab() {
       </div>
 
       {/* Chart */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-200">
+          <CardTitle className="text-sm font-medium text-foreground">
             60-Day Rolling Correlation — {current.aLabel} / {current.bLabel}
           </CardTitle>
         </CardHeader>
@@ -837,7 +837,7 @@ function RollingCorrelationsTab() {
               />
             </motion.div>
           </AnimatePresence>
-          <div className="mt-3 flex gap-4 text-xs text-slate-400">
+          <div className="mt-3 flex gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <span className="w-3 h-0.5 bg-primary inline-block" /> Rolling corr
             </span>
@@ -852,22 +852,22 @@ function RollingCorrelationsTab() {
       </Card>
 
       {/* Regime commentary */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <Info size={14} className="text-amber-400" />
             Regime Interpretation
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-slate-300 leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed">
             {currentLast < -0.3
               ? `The ${current.aLabel} / ${current.bLabel} pair shows strong negative correlation (${currentLast.toFixed(2)}). This is an ideal diversification pair — gains in one tend to offset losses in the other.`
               : currentLast > 0.7
               ? `High positive correlation (${currentLast.toFixed(2)}) between ${current.aLabel} and ${current.bLabel}. Both assets move in tandem, offering limited diversification benefit currently.`
               : `Moderate correlation (${currentLast.toFixed(2)}) between ${current.aLabel} and ${current.bLabel}. Partial diversification benefit is available; combining these assets reduces portfolio volatility modestly.`}
           </p>
-          <p className="text-xs text-slate-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Rolling window: 60 trading days • Updated daily • Pearson coefficient
           </p>
         </CardContent>
@@ -948,7 +948,7 @@ function CrisisCorrelationsTab() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all border ${
               selectedCrisis === e.id
                 ? "text-white border-transparent"
-                : "border-slate-600 text-slate-400 bg-slate-800/50 hover:border-slate-500"
+                : "border-slate-600 text-muted-foreground bg-muted/50 hover:border-slate-500"
             }`}
             style={selectedCrisis === e.id ? { background: e.color, borderColor: e.color } : {}}
           >
@@ -968,20 +968,20 @@ function CrisisCorrelationsTab() {
           className="space-y-5"
         >
           {/* Description card */}
-          <Card className="bg-slate-800/50 border-slate-700" style={{ borderLeftColor: era.color, borderLeftWidth: 3 }}>
+          <Card className="bg-muted/50 border-border" style={{ borderLeftColor: era.color, borderLeftWidth: 3 }}>
             <CardContent className="pt-4 pb-4">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle size={14} style={{ color: era.color }} />
-                <span className="text-sm font-medium text-slate-200">{era.label} — {era.period}</span>
+                <span className="text-sm font-medium text-foreground">{era.label} — {era.period}</span>
               </div>
-              <p className="text-sm text-slate-300 leading-relaxed">{era.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{era.description}</p>
             </CardContent>
           </Card>
 
           {/* Before/After comparison table */}
-          <Card className="bg-slate-800/50 border-slate-700">
+          <Card className="bg-muted/50 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-200">
+              <CardTitle className="text-sm font-medium text-foreground">
                 Before vs During Crisis — Key Pair Correlations
               </CardTitle>
             </CardHeader>
@@ -989,7 +989,7 @@ function CrisisCorrelationsTab() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="text-xs text-slate-500 border-b border-slate-700">
+                    <tr className="text-xs text-muted-foreground border-b border-border">
                       <th className="text-left pb-2 font-medium">Pair</th>
                       <th className="text-right pb-2 font-medium">Normal</th>
                       <th className="text-right pb-2 font-medium">Crisis</th>
@@ -1003,8 +1003,8 @@ function CrisisCorrelationsTab() {
                       const crisis = era.matrix[ai][bi];
                       const delta = crisis - normal;
                       return (
-                        <tr key={idx} className="border-b border-slate-800 last:border-0">
-                          <td className="py-2.5 text-slate-300">
+                        <tr key={idx} className="border-b border-border last:border-0">
+                          <td className="py-2.5 text-muted-foreground">
                             {ASSETS[ai].short} / {ASSETS[bi].short}
                           </td>
                           <td className="py-2.5 text-right">
@@ -1024,7 +1024,7 @@ function CrisisCorrelationsTab() {
                             </span>
                           </td>
                           <td className="py-2.5 text-right">
-                            <span className={`text-xs font-mono font-medium ${delta > 0.1 ? "text-red-400" : delta < -0.1 ? "text-green-400" : "text-slate-400"}`}>
+                            <span className={`text-xs font-mono font-medium ${delta > 0.1 ? "text-red-400" : delta < -0.1 ? "text-green-400" : "text-muted-foreground"}`}>
                               {delta > 0 ? "+" : ""}{delta.toFixed(2)}
                             </span>
                           </td>
@@ -1049,16 +1049,16 @@ function CrisisCorrelationsTab() {
           </Card>
 
           {/* Toggle full matrix */}
-          <Card className="bg-slate-800/50 border-slate-700">
+          <Card className="bg-muted/50 border-border">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-sm font-medium text-slate-200">
+                <CardTitle className="text-sm font-medium text-foreground">
                   Full Crisis Matrix — {era.label}
                 </CardTitle>
                 <Button
                   size="sm"
                   variant="outline"
-                  className="border-slate-600 text-slate-300 text-xs hover:bg-slate-700"
+                  className="border-slate-600 text-muted-foreground text-xs hover:bg-muted"
                   onClick={() => setShowMatrix(!showMatrix)}
                 >
                   {showMatrix ? <ChevronUp size={12} className="mr-1" /> : <ChevronDown size={12} className="mr-1" />}
@@ -1124,22 +1124,22 @@ function DiversificationScoreTab() {
     >
       {/* Gauge row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="bg-slate-800/50 border-slate-700">
+        <Card className="bg-muted/50 border-border">
           <CardContent className="pt-4 pb-2">
             <GaugeChart value={overallScore} label="Overall Score" color="#60a5fa" />
           </CardContent>
         </Card>
-        <Card className="bg-slate-800/50 border-slate-700">
+        <Card className="bg-muted/50 border-border">
           <CardContent className="pt-4 pb-2">
             <GaugeChart value={drScore} label="Diversif. Ratio" color="#34d399" />
           </CardContent>
         </Card>
-        <Card className="bg-slate-800/50 border-slate-700">
+        <Card className="bg-muted/50 border-border">
           <CardContent className="pt-4 pb-2">
             <GaugeChart value={Math.max(0, concentrationScore)} label="Concentration" color="#f59e0b" />
           </CardContent>
         </Card>
-        <Card className="bg-slate-800/50 border-slate-700">
+        <Card className="bg-muted/50 border-border">
           <CardContent className="pt-4 pb-2">
             <GaugeChart value={Math.min(100, effectiveN * 14)} label={`Eff. N = ${effectiveN}`} color="#a78bfa" />
           </CardContent>
@@ -1156,20 +1156,20 @@ function DiversificationScoreTab() {
           { label: "HH Concentration Index",  value: `${hhiPct}%`,                    sub: "Lower is better" },
           { label: "Volatility Reduction",     value: `${(weightedAvgVol - portVol).toFixed(1)}%`, sub: "From diversification" },
         ].map((m) => (
-          <Card key={m.label} className="bg-slate-800/50 border-slate-700">
+          <Card key={m.label} className="bg-muted/50 border-border">
             <CardContent className="pt-3 pb-3">
-              <p className="text-xs text-slate-500">{m.label}</p>
-              <p className="text-xl font-bold text-slate-100 mt-0.5">{m.value}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{m.sub}</p>
+              <p className="text-xs text-muted-foreground">{m.label}</p>
+              <p className="text-xl font-bold text-foreground mt-0.5">{m.value}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{m.sub}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Risk contribution chart */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <BarChart3 size={14} className="text-primary" />
             Risk Concentration vs Weight Allocation
           </CardTitle>
@@ -1177,14 +1177,14 @@ function DiversificationScoreTab() {
         <CardContent className="space-y-3">
           {PORTFOLIO_ASSETS.map((a) => (
             <div key={a.asset}>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>{a.asset}</span>
                 <span className="flex gap-3">
-                  <span>Weight: <strong className="text-slate-200">{a.weight}%</strong></span>
-                  <span>Risk: <strong className={a.contribution > a.weight + 5 ? "text-red-400" : "text-slate-200"}>{a.contribution}%</strong></span>
+                  <span>Weight: <strong className="text-foreground">{a.weight}%</strong></span>
+                  <span>Risk: <strong className={a.contribution > a.weight + 5 ? "text-red-400" : "text-foreground"}>{a.contribution}%</strong></span>
                 </span>
               </div>
-              <div className="relative h-4 bg-slate-700/50 rounded overflow-hidden">
+              <div className="relative h-4 bg-muted/50 rounded overflow-hidden">
                 <div
                   className="absolute left-0 top-0 h-full bg-primary/50 rounded"
                   style={{ width: `${a.weight}%` }}
@@ -1196,7 +1196,7 @@ function DiversificationScoreTab() {
               </div>
             </div>
           ))}
-          <div className="flex gap-4 text-xs text-slate-400 mt-2">
+          <div className="flex gap-4 text-xs text-muted-foreground mt-2">
             <span className="flex items-center gap-1.5">
               <span className="w-3 h-2 bg-primary/50 inline-block rounded-sm" /> Weight
             </span>
@@ -1211,9 +1211,9 @@ function DiversificationScoreTab() {
       </Card>
 
       {/* SVG donut — risk contribution */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-200">Risk Contribution Breakdown</CardTitle>
+          <CardTitle className="text-sm font-medium text-foreground">Risk Contribution Breakdown</CardTitle>
         </CardHeader>
         <CardContent>
           {(() => {
@@ -1258,11 +1258,11 @@ function DiversificationScoreTab() {
                     <div key={i} className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-sm flex-shrink-0" style={{ background: seg.color }} />
-                        <span className="text-xs text-slate-300">{seg.label}</span>
+                        <span className="text-xs text-muted-foreground">{seg.label}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <Progress value={seg.contribution} className="w-20 h-1.5" />
-                        <span className="text-xs font-mono text-slate-400 w-10 text-right">{seg.contribution}%</span>
+                        <span className="text-xs font-mono text-muted-foreground w-10 text-right">{seg.contribution}%</span>
                       </div>
                     </div>
                   ))}
@@ -1296,7 +1296,7 @@ function OptimalPairsTab() {
   const freeLunchColor = (fl: string) =>
     fl === "High" ? "text-green-400 bg-green-900/30" :
     fl === "Medium" ? "text-amber-400 bg-amber-900/30" :
-    "text-slate-400 bg-slate-700/50";
+    "text-muted-foreground bg-muted/50";
 
   return (
     <motion.div
@@ -1311,8 +1311,8 @@ function OptimalPairsTab() {
           <div className="flex items-start gap-3">
             <Star size={16} className="text-primary mt-0.5 flex-shrink-0" />
             <div>
-              <p className="text-sm font-medium text-slate-200 mb-1">The Free Lunch of Diversification</p>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm font-medium text-foreground mb-1">The Free Lunch of Diversification</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 Harry Markowitz called diversification the only free lunch in investing. By combining
                 assets with low or negative correlations, you reduce portfolio risk without sacrificing
                 expected return. The pairs below offer the strongest diversification benefits.
@@ -1324,7 +1324,7 @@ function OptimalPairsTab() {
 
       {/* Sort controls */}
       <div className="flex items-center gap-2">
-        <span className="text-xs text-slate-400">Sort by:</span>
+        <span className="text-xs text-muted-foreground">Sort by:</span>
         {[
           { key: "corr" as const,       label: "Correlation" },
           { key: "reduction" as const,  label: "Vol Reduction" },
@@ -1337,7 +1337,7 @@ function OptimalPairsTab() {
             onClick={() => setSortBy(s.key)}
             className={sortBy === s.key
               ? "bg-primary text-white border-primary text-xs"
-              : "border-slate-600 text-slate-300 text-xs hover:bg-slate-700"
+              : "border-slate-600 text-muted-foreground text-xs hover:bg-muted"
             }
           >
             {s.label}
@@ -1355,7 +1355,7 @@ function OptimalPairsTab() {
               layout
               transition={{ duration: 0.2 }}
             >
-              <Card className="bg-slate-800/50 border-slate-700 hover:border-slate-600 transition-colors">
+              <Card className="bg-muted/50 border-border hover:border-slate-600 transition-colors">
                 <CardContent className="pt-0 pb-0">
                   <button
                     className="w-full text-left py-4"
@@ -1364,8 +1364,8 @@ function OptimalPairsTab() {
                     <div className="flex flex-wrap items-center gap-3">
                       <div className="flex items-center gap-2 flex-1 min-w-0">
                         <GitBranch size={14} className="text-primary flex-shrink-0" />
-                        <span className="text-sm font-medium text-slate-200 truncate">
-                          {pair.a} <span className="text-slate-500">×</span> {pair.b}
+                        <span className="text-sm font-medium text-foreground truncate">
+                          {pair.a} <span className="text-muted-foreground">×</span> {pair.b}
                         </span>
                       </div>
                       <div className="flex items-center gap-3 flex-shrink-0">
@@ -1385,8 +1385,8 @@ function OptimalPairsTab() {
                           −{pair.reductionPct}% vol
                         </span>
                         {isExpanded
-                          ? <ChevronUp size={14} className="text-slate-500" />
-                          : <ChevronDown size={14} className="text-slate-500" />
+                          ? <ChevronUp size={14} className="text-muted-foreground" />
+                          : <ChevronDown size={14} className="text-muted-foreground" />
                         }
                       </div>
                     </div>
@@ -1401,26 +1401,26 @@ function OptimalPairsTab() {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <div className="border-t border-slate-700 py-4 space-y-3">
-                          <p className="text-sm text-slate-300">{pair.notes}</p>
+                        <div className="border-t border-border py-4 space-y-3">
+                          <p className="text-sm text-muted-foreground">{pair.notes}</p>
                           <div className="grid grid-cols-3 gap-3">
-                            <div className="text-center bg-slate-700/40 rounded-lg p-2">
-                              <p className="text-xs text-slate-500">Correlation</p>
-                              <p className="text-base font-bold text-slate-100 mt-0.5">
+                            <div className="text-center bg-muted/40 rounded-lg p-2">
+                              <p className="text-xs text-muted-foreground">Correlation</p>
+                              <p className="text-base font-bold text-foreground mt-0.5">
                                 {pair.correlation > 0 ? "+" : ""}{pair.correlation.toFixed(2)}
                               </p>
                             </div>
-                            <div className="text-center bg-slate-700/40 rounded-lg p-2">
-                              <p className="text-xs text-slate-500">Vol Reduction</p>
+                            <div className="text-center bg-muted/40 rounded-lg p-2">
+                              <p className="text-xs text-muted-foreground">Vol Reduction</p>
                               <p className="text-base font-bold text-green-400 mt-0.5">
                                 ~{pair.reductionPct}%
                               </p>
                             </div>
-                            <div className="text-center bg-slate-700/40 rounded-lg p-2">
-                              <p className="text-xs text-slate-500">Free Lunch</p>
+                            <div className="text-center bg-muted/40 rounded-lg p-2">
+                              <p className="text-xs text-muted-foreground">Free Lunch</p>
                               <p className={`text-base font-bold mt-0.5 ${
                                 pair.freeLunch === "High" ? "text-green-400" :
-                                pair.freeLunch === "Medium" ? "text-amber-400" : "text-slate-400"
+                                pair.freeLunch === "Medium" ? "text-amber-400" : "text-muted-foreground"
                               }`}>
                                 {pair.freeLunch}
                               </p>
@@ -1428,7 +1428,7 @@ function OptimalPairsTab() {
                           </div>
                           {/* Mini SVG correlation bar */}
                           <div>
-                            <p className="text-xs text-slate-500 mb-1">Correlation on the scale</p>
+                            <p className="text-xs text-muted-foreground mb-1">Correlation on the scale</p>
                             <svg width="100%" height={24} viewBox="0 0 300 24">
                               <rect x={0} y={8} width={300} height={8} rx={4} fill="#1e293b" />
                               {/* zero marker */}
@@ -1459,9 +1459,9 @@ function OptimalPairsTab() {
       </div>
 
       {/* Summary insight */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
             <RefreshCw size={13} className="text-primary" />
             Diversification Summary
           </CardTitle>
@@ -1488,9 +1488,9 @@ function OptimalPairsTab() {
               <div key={item.title} className="space-y-1.5">
                 <div className="flex items-center gap-1.5">
                   {item.icon}
-                  <p className="text-xs font-medium text-slate-200">{item.title}</p>
+                  <p className="text-xs font-medium text-foreground">{item.title}</p>
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">{item.body}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -1504,7 +1504,7 @@ function OptimalPairsTab() {
 
 export default function CorrelationsPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 p-6">
+    <div className="min-h-screen bg-background text-slate-50 p-6">
       {/* Page header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
@@ -1516,19 +1516,19 @@ export default function CorrelationsPage() {
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
             <GitBranch size={16} className="text-primary" />
           </div>
-          <h1 className="text-xl font-semibold text-slate-100">Correlation Analysis</h1>
+          <h1 className="text-xl font-semibold text-foreground">Correlation Analysis</h1>
           <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">
             10 Asset Classes
           </Badge>
         </div>
-        <p className="text-sm text-slate-400 max-w-2xl">
+        <p className="text-sm text-muted-foreground max-w-2xl">
           Multi-asset correlation analysis, crisis regime shifts, portfolio diversification scoring, and optimal pair identification for the free lunch of diversification.
         </p>
       </motion.div>
 
       {/* Tabs */}
       <Tabs defaultValue="matrix" className="space-y-5">
-        <TabsList className="bg-slate-800/70 border border-slate-700 h-auto flex-wrap p-1 gap-1">
+        <TabsList className="bg-muted/70 border border-border h-auto flex-wrap p-1 gap-1">
           {[
             { value: "matrix",    label: "Correlation Matrix", icon: <BarChart3 size={13} /> },
             { value: "rolling",   label: "Rolling Corr",       icon: <Activity size={13} /> },
@@ -1539,7 +1539,7 @@ export default function CorrelationsPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 px-3 py-1.5"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground px-3 py-1.5"
             >
               {t.icon}
               {t.label}

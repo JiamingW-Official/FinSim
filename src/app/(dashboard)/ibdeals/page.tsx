@@ -690,13 +690,13 @@ export default function IBDealsPage() {
           <Briefcase className="text-primary" size={28} />
           <h1 className="text-2xl font-bold tracking-tight">Investment Banking Deal Simulator</h1>
         </div>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Live M&A tracker, deal structuring, fairness opinions, regulatory review, LBO models, and league tables.
         </p>
       </motion.div>
 
       <Tabs defaultValue="tracker" className="w-full">
-        <TabsList className="bg-zinc-900 border border-zinc-800 flex flex-wrap gap-1 h-auto p-1 mb-6">
+        <TabsList className="bg-card border border-border flex flex-wrap gap-1 h-auto p-1 mb-6">
           {[
             { value: "tracker", label: "Live Deal Tracker" },
             { value: "structure", label: "Deal Structuring" },
@@ -718,10 +718,10 @@ export default function IBDealsPage() {
         {/* ── Tab 1: Live Deal Tracker ────────────────────────────────────────── */}
         <TabsContent value="tracker" className="data-[state=inactive]:hidden space-y-6">
           {/* Filters */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <div className="flex flex-wrap gap-4 items-center">
               <div className="flex flex-col gap-1">
-                <span className="text-xs text-zinc-400">Deal Type</span>
+                <span className="text-xs text-muted-foreground">Deal Type</span>
                 <div className="flex gap-1">
                   {(["All", "Acquisition", "Merger", "LBO", "Spinoff"] as const).map((t) => (
                     <button
@@ -731,7 +731,7 @@ export default function IBDealsPage() {
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterType === t
                           ? "bg-primary border-primary text-white"
-                          : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                          : "bg-muted border-border text-muted-foreground hover:text-white"
                       )}
                     >
                       {t}
@@ -740,7 +740,7 @@ export default function IBDealsPage() {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-xs text-zinc-400">Status</span>
+                <span className="text-xs text-muted-foreground">Status</span>
                 <div className="flex gap-1">
                   {(["All", "Pending", "Closed", "Terminated"] as const).map((t) => (
                     <button
@@ -750,7 +750,7 @@ export default function IBDealsPage() {
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterStatus === t
                           ? "bg-primary border-primary text-white"
-                          : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                          : "bg-muted border-border text-muted-foreground hover:text-white"
                       )}
                     >
                       {t}
@@ -759,7 +759,7 @@ export default function IBDealsPage() {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-xs text-zinc-400">Deal Size</span>
+                <span className="text-xs text-muted-foreground">Deal Size</span>
                 <div className="flex gap-1">
                   {(["All", ">1B", ">5B", ">10B"] as const).map((t) => (
                     <button
@@ -769,7 +769,7 @@ export default function IBDealsPage() {
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterSize === t
                           ? "bg-primary border-primary text-white"
-                          : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                          : "bg-muted border-border text-muted-foreground hover:text-white"
                       )}
                     >
                       {t}
@@ -777,15 +777,15 @@ export default function IBDealsPage() {
                   ))}
                 </div>
               </div>
-              <div className="ml-auto text-sm text-zinc-400">
+              <div className="ml-auto text-sm text-muted-foreground">
                 {filteredDeals.length} deal{filteredDeals.length !== 1 ? "s" : ""}
               </div>
             </div>
           </div>
 
           {/* Deals table */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-            <div className="p-4 border-b border-zinc-800">
+          <div className="bg-card border border-border rounded-xl overflow-hidden">
+            <div className="p-4 border-b border-border">
               <h2 className="font-semibold text-sm flex items-center gap-2">
                 <Activity size={14} className="text-primary" />
                 Announced M&A Deals
@@ -793,8 +793,8 @@ export default function IBDealsPage() {
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
-                <thead className="bg-zinc-800/50">
-                  <tr className="text-zinc-400">
+                <thead className="bg-muted/50">
+                  <tr className="text-muted-foreground">
                     <th className="text-left px-4 py-2">Acquirer</th>
                     <th className="text-left px-4 py-2">Target</th>
                     <th className="text-right px-4 py-2">Value</th>
@@ -813,10 +813,10 @@ export default function IBDealsPage() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: i * 0.03 }}
-                      className="border-t border-zinc-800 hover:bg-zinc-800/30 transition-colors"
+                      className="border-t border-border hover:bg-muted/30 transition-colors"
                     >
                       <td className="px-4 py-2 font-medium text-white">{d.acquirer}</td>
-                      <td className="px-4 py-2 text-zinc-300">{d.target}</td>
+                      <td className="px-4 py-2 text-muted-foreground">{d.target}</td>
                       <td className="px-4 py-2 text-right font-semibold text-emerald-400">{fmtB(d.value)}</td>
                       <td className="px-4 py-2 text-center">
                         <span className={cn("px-2 py-0.5 rounded text-xs border", typeColor(d.type))}>
@@ -831,15 +831,15 @@ export default function IBDealsPage() {
                       <td className="px-4 py-2 text-right text-amber-400">
                         {d.premium > 0 ? `+${d.premium}%` : "—"}
                       </td>
-                      <td className="px-4 py-2 text-zinc-400">{d.industry}</td>
+                      <td className="px-4 py-2 text-muted-foreground">{d.industry}</td>
                       <td className="px-4 py-2 text-center">
                         {d.crossBorder ? (
                           <span className="text-primary font-medium">{d.origin} → {d.destination}</span>
                         ) : (
-                          <span className="text-zinc-600">Domestic</span>
+                          <span className="text-muted-foreground">Domestic</span>
                         )}
                       </td>
-                      <td className="px-4 py-2 text-zinc-500">{d.announced}</td>
+                      <td className="px-4 py-2 text-muted-foreground">{d.announced}</td>
                     </motion.tr>
                   ))}
                 </tbody>
@@ -848,7 +848,7 @@ export default function IBDealsPage() {
           </div>
 
           {/* Deal timelines */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
               <BarChart3 size={14} className="text-primary" />
               Deal Timeline: Announce → Regulatory → Close
@@ -892,7 +892,7 @@ export default function IBDealsPage() {
 
           {/* YTD bar chart + cross-border */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
                 <DollarSign size={14} className="text-emerald-400" />
                 Global M&A Volume YTD ($B)
@@ -925,7 +925,7 @@ export default function IBDealsPage() {
               </svg>
             </div>
 
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
                 <Globe size={14} className="text-primary" />
                 Cross-Border Deal Origins
@@ -943,8 +943,8 @@ export default function IBDealsPage() {
                       .sort(([, a], [, b]) => b - a)
                       .map(([country, vol]) => (
                         <div key={country} className="flex items-center gap-2">
-                          <span className="text-xs text-zinc-400 w-8">{country}</span>
-                          <div className="flex-1 bg-zinc-800 rounded-full h-3 overflow-hidden">
+                          <span className="text-xs text-muted-foreground w-8">{country}</span>
+                          <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${(vol / maxVal) * 100}%` }}
@@ -952,10 +952,10 @@ export default function IBDealsPage() {
                               className="h-full bg-primary rounded-full"
                             />
                           </div>
-                          <span className="text-xs text-zinc-400 w-12 text-right">{fmtB(vol)}</span>
+                          <span className="text-xs text-muted-foreground w-12 text-right">{fmtB(vol)}</span>
                         </div>
                       ))}
-                    <p className="text-xs text-zinc-600 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       {crossBorderDeals.length} cross-border deals of {MA_DEALS.length} total
                     </p>
                   </div>
@@ -969,18 +969,18 @@ export default function IBDealsPage() {
         <TabsContent value="structure" className="data-[state=inactive]:hidden space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-4">
+            <div className="bg-card border border-border rounded-xl p-4 space-y-4">
               <h2 className="font-semibold text-sm flex items-center gap-2">
                 <Target size={14} className="text-primary" />
                 Deal Builder
               </h2>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">Target Company</label>
+                <label className="text-xs text-muted-foreground block mb-1">Target Company</label>
                 <select
                   value={selectedTarget}
                   onChange={(e) => setSelectedTarget(e.target.value)}
-                  className="w-full bg-zinc-800 border border-zinc-700 text-sm rounded px-2 py-1.5 text-white"
+                  className="w-full bg-muted border border-border text-sm rounded px-2 py-1.5 text-white"
                 >
                   {COMPS.map((c) => (
                     <option key={c.name} value={c.name}>{c.name}</option>
@@ -989,24 +989,24 @@ export default function IBDealsPage() {
               </div>
 
               {dealCalcs && (
-                <div className="bg-zinc-800/50 rounded p-2 text-xs space-y-1">
+                <div className="bg-muted/50 rounded p-2 text-xs space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">Revenue</span>
+                    <span className="text-muted-foreground">Revenue</span>
                     <span className="text-white">{fmtB(dealCalcs.comp.revenue)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">EBITDA</span>
+                    <span className="text-muted-foreground">EBITDA</span>
                     <span className="text-white">{fmtB(dealCalcs.comp.ebitda)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">EV/EBITDA (market)</span>
+                    <span className="text-muted-foreground">EV/EBITDA (market)</span>
                     <span className="text-white">{dealCalcs.comp.evEbitda}×</span>
                   </div>
                 </div>
               )}
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Offer Premium: <span className="text-white">{offerPremium}%</span>
                 </label>
                 <Slider
@@ -1018,7 +1018,7 @@ export default function IBDealsPage() {
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Cash Mix: <span className="text-white">{cashMix}% Cash / {100 - cashMix}% Stock</span>
                 </label>
                 <Slider
@@ -1030,7 +1030,7 @@ export default function IBDealsPage() {
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Acquirer Shares Outstanding: <span className="text-white">{acquirerShares}M</span>
                 </label>
                 <Slider
@@ -1042,7 +1042,7 @@ export default function IBDealsPage() {
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Acquirer EPS: <span className="text-white">${acquirerEPS.toFixed(2)}</span>
                 </label>
                 <Slider
@@ -1054,7 +1054,7 @@ export default function IBDealsPage() {
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Annual Synergies Input: <span className="text-white">${synergiesInput}M</span>
                 </label>
                 <Slider
@@ -1077,17 +1077,17 @@ export default function IBDealsPage() {
                     { label: "EV/EBITDA (offer)", value: `${fmt(dealCalcs.impliedEvEbitda)}×`, color: "text-amber-400" },
                     { label: "EV/Revenue (offer)", value: `${fmt(dealCalcs.impliedEvRevenue)}×`, color: "text-primary" },
                     { label: "P/E (offer)", value: `${fmt(dealCalcs.impliedPE)}×`, color: "text-muted-foreground" },
-                    { label: "New Shares Issued", value: `${fmt(dealCalcs.newSharesIssued, 0)}M`, color: "text-zinc-300" },
+                    { label: "New Shares Issued", value: `${fmt(dealCalcs.newSharesIssued, 0)}M`, color: "text-muted-foreground" },
                   ].map((m) => (
-                    <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
-                      <div className="text-xs text-zinc-400 mb-1">{m.label}</div>
+                    <div key={m.label} className="bg-card border border-border rounded-xl p-3">
+                      <div className="text-xs text-muted-foreground mb-1">{m.label}</div>
                       <div className={cn("text-lg font-bold", m.color)}>{m.value}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Accretion/Dilution */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                <div className="bg-card border border-border rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                     {dealCalcs.accretive ? (
                       <TrendingUp size={14} className="text-emerald-400" />
@@ -1098,28 +1098,28 @@ export default function IBDealsPage() {
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                     <div className="text-center">
-                      <div className="text-xs text-zinc-400 mb-1">Standalone EPS</div>
+                      <div className="text-xs text-muted-foreground mb-1">Standalone EPS</div>
                       <div className="text-sm font-semibold text-white">${fmt(acquirerEPS, 2)}</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xs text-zinc-400 mb-1">Combined EPS</div>
+                      <div className="text-xs text-muted-foreground mb-1">Combined EPS</div>
                       <div className="text-sm font-semibold text-white">${fmt(dealCalcs.combinedEPS, 2)}</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xs text-zinc-400 mb-1">EPS Change</div>
+                      <div className="text-xs text-muted-foreground mb-1">EPS Change</div>
                       <div className={cn("text-sm font-bold", dealCalcs.accretive ? "text-emerald-400" : "text-red-400")}>
                         {dealCalcs.epsChange > 0 ? "+" : ""}{fmt(dealCalcs.epsChange, 2)}%
                       </div>
                     </div>
                     <div className="text-center">
-                      <div className="text-xs text-zinc-400 mb-1">Verdict</div>
+                      <div className="text-xs text-muted-foreground mb-1">Verdict</div>
                       <span className={cn("px-2 py-0.5 rounded text-xs font-bold", dealCalcs.accretive ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400")}>
                         {dealCalcs.accretive ? "ACCRETIVE" : "DILUTIVE"}
                       </span>
                     </div>
                   </div>
-                  <div className="border-t border-zinc-800 pt-3">
-                    <p className="text-xs text-zinc-400">
+                  <div className="border-t border-border pt-3">
+                    <p className="text-xs text-muted-foreground">
                       Required synergies to break even:{" "}
                       <span className="text-amber-400 font-semibold">${fmt(dealCalcs.requiredSynergies, 0)}M</span>
                       {" "}vs. your synergy input of{" "}
@@ -1132,26 +1132,26 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Financing structure */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                <div className="bg-card border border-border rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                     <DollarSign size={14} className="text-primary" />
                     Financing Structure
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                    <div className="bg-zinc-800/50 rounded p-2">
-                      <div className="text-xs text-zinc-400">Cash Consideration</div>
+                    <div className="bg-muted/50 rounded p-2">
+                      <div className="text-xs text-muted-foreground">Cash Consideration</div>
                       <div className="text-sm font-semibold text-white">{fmtB(dealCalcs.offeredEquity * cashMix / 100)}</div>
                     </div>
-                    <div className="bg-zinc-800/50 rounded p-2">
-                      <div className="text-xs text-zinc-400">Stock Consideration</div>
+                    <div className="bg-muted/50 rounded p-2">
+                      <div className="text-xs text-muted-foreground">Stock Consideration</div>
                       <div className="text-sm font-semibold text-white">{fmtB(dealCalcs.offeredEquity * (100 - cashMix) / 100)}</div>
                     </div>
-                    <div className="bg-zinc-800/50 rounded p-2">
-                      <div className="text-xs text-zinc-400">Debt Financing</div>
+                    <div className="bg-muted/50 rounded p-2">
+                      <div className="text-xs text-muted-foreground">Debt Financing</div>
                       <div className="text-sm font-semibold text-primary">{fmtM(dealCalcs.debtFinancing)}</div>
                     </div>
-                    <div className="bg-zinc-800/50 rounded p-2">
-                      <div className="text-xs text-zinc-400">Equity Financing</div>
+                    <div className="bg-muted/50 rounded p-2">
+                      <div className="text-xs text-muted-foreground">Equity Financing</div>
                       <div className="text-sm font-semibold text-primary">{fmtM(Math.max(0, dealCalcs.equityFinancing))}</div>
                     </div>
                   </div>
@@ -1168,7 +1168,7 @@ export default function IBDealsPage() {
                       title={`Stock: ${100 - cashMix}%`}
                     />
                   </div>
-                  <div className="flex gap-4 mt-2 text-xs text-zinc-400">
+                  <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
                     <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Cash {cashMix}%</span>
                     <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Stock {100 - cashMix}%</span>
                   </div>
@@ -1181,15 +1181,15 @@ export default function IBDealsPage() {
         {/* ── Tab 3: Fairness Opinion ─────────────────────────────────────────── */}
         <TabsContent value="fairness" className="data-[state=inactive]:hidden space-y-6">
           {/* Comps */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
               <Scale size={14} className="text-primary" />
               Comparable Company Analysis
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
-                <thead className="bg-zinc-800/50">
-                  <tr className="text-zinc-400">
+                <thead className="bg-muted/50">
+                  <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Company</th>
                     <th className="text-right px-3 py-2">Revenue ($B)</th>
                     <th className="text-right px-3 py-2">EBITDA ($B)</th>
@@ -1200,23 +1200,23 @@ export default function IBDealsPage() {
                 </thead>
                 <tbody>
                   {COMPS.map((c, i) => (
-                    <tr key={c.name} className={cn("border-t border-zinc-800", c.name === selectedTarget ? "bg-muted/40" : "")}>
+                    <tr key={c.name} className={cn("border-t border-border", c.name === selectedTarget ? "bg-muted/40" : "")}>
                       <td className="px-3 py-2 font-medium text-white flex items-center gap-1">
                         {c.name === selectedTarget && <span className="text-primary text-[11px]">TARGET</span>}
                         {c.name}
                       </td>
-                      <td className="px-3 py-2 text-right text-zinc-300">{fmtB(c.revenue)}</td>
-                      <td className="px-3 py-2 text-right text-zinc-300">{fmtB(c.ebitda)}</td>
+                      <td className="px-3 py-2 text-right text-muted-foreground">{fmtB(c.revenue)}</td>
+                      <td className="px-3 py-2 text-right text-muted-foreground">{fmtB(c.ebitda)}</td>
                       <td className="px-3 py-2 text-right text-primary">{fmt(c.evRevenue)}×</td>
                       <td className="px-3 py-2 text-right text-emerald-400">{fmt(c.evEbitda)}×</td>
                       <td className="px-3 py-2 text-right text-amber-400">{fmt(c.peRatio)}×</td>
                     </tr>
                   ))}
                   {/* Median row */}
-                  <tr className="border-t-2 border-zinc-600 bg-zinc-800/30 font-semibold">
-                    <td className="px-3 py-2 text-zinc-300">Median</td>
-                    <td className="px-3 py-2 text-right text-zinc-400">—</td>
-                    <td className="px-3 py-2 text-right text-zinc-400">—</td>
+                  <tr className="border-t-2 border-border bg-muted/30 font-semibold">
+                    <td className="px-3 py-2 text-muted-foreground">Median</td>
+                    <td className="px-3 py-2 text-right text-muted-foreground">—</td>
+                    <td className="px-3 py-2 text-right text-muted-foreground">—</td>
                     <td className="px-3 py-2 text-right text-primary">
                       {fmt([...COMPS].sort((a, b) => a.evRevenue - b.evRevenue)[3].evRevenue)}×
                     </td>
@@ -1233,15 +1233,15 @@ export default function IBDealsPage() {
           </div>
 
           {/* Precedents */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
               <FileText size={14} className="text-primary" />
               Precedent Transaction Analysis
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
-                <thead className="bg-zinc-800/50">
-                  <tr className="text-zinc-400">
+                <thead className="bg-muted/50">
+                  <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Transaction</th>
                     <th className="text-right px-3 py-2">Year</th>
                     <th className="text-right px-3 py-2">Premium Paid</th>
@@ -1251,9 +1251,9 @@ export default function IBDealsPage() {
                 </thead>
                 <tbody>
                   {PRECEDENTS.map((p) => (
-                    <tr key={p.name} className="border-t border-zinc-800 hover:bg-zinc-800/20">
-                      <td className="px-3 py-2 text-zinc-300">{p.name}</td>
-                      <td className="px-3 py-2 text-right text-zinc-400">{p.year}</td>
+                    <tr key={p.name} className="border-t border-border hover:bg-muted/20">
+                      <td className="px-3 py-2 text-muted-foreground">{p.name}</td>
+                      <td className="px-3 py-2 text-right text-muted-foreground">{p.year}</td>
                       <td className="px-3 py-2 text-right text-amber-400">+{p.premium}%</td>
                       <td className="px-3 py-2 text-right text-primary">{fmt(p.evRevenue)}×</td>
                       <td className="px-3 py-2 text-right text-emerald-400">{fmt(p.evEbitda)}×</td>
@@ -1266,7 +1266,7 @@ export default function IBDealsPage() {
 
           {/* Football Field SVG */}
           {valuationRanges && (
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
                 <BarChart3 size={14} className="text-emerald-400" />
                 Football Field — Implied Valuation Range ($B EV)
@@ -1382,7 +1382,7 @@ export default function IBDealsPage() {
         {/* ── Tab 4: Regulatory Review ────────────────────────────────────────── */}
         <TabsContent value="regulatory" className="data-[state=inactive]:hidden space-y-6">
           {/* Timeline */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
               <Shield size={14} className="text-amber-400" />
               Regulatory Review Timeline
@@ -1396,20 +1396,20 @@ export default function IBDealsPage() {
               ].map((reg, i) => (
                 <div key={reg.regulator}>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-medium text-zinc-300">{reg.regulator}</span>
+                    <span className="text-xs font-medium text-muted-foreground">{reg.regulator}</span>
                   </div>
                   <div className="flex gap-2">
-                    <div className="flex-1 bg-zinc-800 rounded p-2">
-                      <div className="text-[11px] text-zinc-500 mb-1">Phase 1</div>
-                      <div className="text-xs text-zinc-200">{reg.phase1}</div>
+                    <div className="flex-1 bg-muted rounded p-2">
+                      <div className="text-[11px] text-muted-foreground mb-1">Phase 1</div>
+                      <div className="text-xs text-foreground">{reg.phase1}</div>
                       <div
                         className="mt-1 h-1 rounded-full"
                         style={{ backgroundColor: reg.color, opacity: 0.7, width: "40%" }}
                       />
                     </div>
-                    <div className="flex-1 bg-zinc-800 rounded p-2">
-                      <div className="text-[11px] text-zinc-500 mb-1">Phase 2 (if triggered)</div>
-                      <div className="text-xs text-zinc-200">{reg.phase2}</div>
+                    <div className="flex-1 bg-muted rounded p-2">
+                      <div className="text-[11px] text-muted-foreground mb-1">Phase 2 (if triggered)</div>
+                      <div className="text-xs text-foreground">{reg.phase2}</div>
                       <div
                         className="mt-1 h-1 rounded-full"
                         style={{ backgroundColor: reg.color, opacity: 0.4, width: "80%" }}
@@ -1423,7 +1423,7 @@ export default function IBDealsPage() {
 
           {/* HHI Calculator */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
                 <Percent size={14} className="text-red-400" />
                 HHI Calculator (Herfindahl-Hirschman Index)
@@ -1452,29 +1452,29 @@ export default function IBDealsPage() {
                 return (
                   <div className="space-y-3">
                     <div className="grid grid-cols-3 gap-2">
-                      <div className="text-center bg-zinc-800/50 rounded p-2">
-                        <div className="text-xs text-zinc-400">Pre-HHI</div>
+                      <div className="text-center bg-muted/50 rounded p-2">
+                        <div className="text-xs text-muted-foreground">Pre-HHI</div>
                         <div className="text-lg font-bold text-white">{preHHI}</div>
                       </div>
-                      <div className="text-center bg-zinc-800/50 rounded p-2">
-                        <div className="text-xs text-zinc-400">Post-HHI</div>
+                      <div className="text-center bg-muted/50 rounded p-2">
+                        <div className="text-xs text-muted-foreground">Post-HHI</div>
                         <div className="text-lg font-bold text-red-400">{postHHI}</div>
                       </div>
-                      <div className="text-center bg-zinc-800/50 rounded p-2">
-                        <div className="text-xs text-zinc-400">Delta</div>
+                      <div className="text-center bg-muted/50 rounded p-2">
+                        <div className="text-xs text-muted-foreground">Delta</div>
                         <div className="text-lg font-bold text-amber-400">+{delta}</div>
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <div className="flex justify-between text-xs text-zinc-400 mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span>Unconcentrated</span><span>Moderately</span><span>Highly</span>
                       </div>
-                      <div className="h-3 bg-zinc-800 rounded-full overflow-hidden flex">
+                      <div className="h-3 bg-muted rounded-full overflow-hidden flex">
                         <div className="h-full bg-emerald-500" style={{ width: `${(1500 / 10000) * 100}%` }} />
                         <div className="h-full bg-amber-500" style={{ width: `${((2500 - 1500) / 10000) * 100}%` }} />
                         <div className="h-full bg-red-500" style={{ width: `${((10000 - 2500) / 10000) * 100}%` }} />
                       </div>
-                      <div className="flex gap-4 text-xs text-zinc-500 mt-1">
+                      <div className="flex gap-4 text-xs text-muted-foreground mt-1">
                         <span><span className="text-emerald-400">■</span> &lt;1500: Safe</span>
                         <span><span className="text-amber-400">■</span> 1500-2500: Scrutiny</span>
                         <span><span className="text-red-400">■</span> &gt;2500: Concern</span>
@@ -1491,7 +1491,7 @@ export default function IBDealsPage() {
             </div>
 
             {/* Remedies */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
                 <Scale size={14} className="text-primary" />
                 Potential Remedies
@@ -1505,14 +1505,14 @@ export default function IBDealsPage() {
                   { remedy: "Commit to supply agreements", type: "Behavioral", likelihood: "Low" },
                   { remedy: "Cap pricing for 5 years", type: "Behavioral", likelihood: "Low" },
                 ].map((r, i) => (
-                  <div key={i} className="flex items-start justify-between bg-zinc-800/40 rounded p-2 gap-2">
+                  <div key={i} className="flex items-start justify-between bg-muted/40 rounded p-2 gap-2">
                     <div className="flex-1">
-                      <p className="text-xs text-zinc-200">{r.remedy}</p>
-                      <span className="text-[11px] text-zinc-500">{r.type}</span>
+                      <p className="text-xs text-foreground">{r.remedy}</p>
+                      <span className="text-[11px] text-muted-foreground">{r.type}</span>
                     </div>
                     <span className={cn("text-[11px] px-1.5 py-0.5 rounded",
                       r.likelihood === "High" ? "bg-red-500/20 text-red-400" :
-                      r.likelihood === "Medium" ? "bg-amber-500/20 text-amber-400" : "bg-zinc-700 text-zinc-400"
+                      r.likelihood === "Medium" ? "bg-amber-500/20 text-amber-400" : "bg-muted text-muted-foreground"
                     )}>
                       {r.likelihood}
                     </span>
@@ -1523,15 +1523,15 @@ export default function IBDealsPage() {
           </div>
 
           {/* Historical outcomes */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
               <FileText size={14} className="text-primary" />
               Historical Regulatory Outcomes
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
-                <thead className="bg-zinc-800/50">
-                  <tr className="text-zinc-400">
+                <thead className="bg-muted/50">
+                  <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Deal</th>
                     <th className="text-right px-3 py-2">Year</th>
                     <th className="text-left px-3 py-2">Regulator</th>
@@ -1542,17 +1542,17 @@ export default function IBDealsPage() {
                 </thead>
                 <tbody>
                   {REGULATORY_OUTCOMES.map((r, i) => (
-                    <tr key={i} className="border-t border-zinc-800">
-                      <td className="px-3 py-2 font-medium text-zinc-200">{r.deal}</td>
-                      <td className="px-3 py-2 text-right text-zinc-400">{r.year}</td>
-                      <td className="px-3 py-2 text-zinc-400">{r.regulator}</td>
+                    <tr key={i} className="border-t border-border">
+                      <td className="px-3 py-2 font-medium text-foreground">{r.deal}</td>
+                      <td className="px-3 py-2 text-right text-muted-foreground">{r.year}</td>
+                      <td className="px-3 py-2 text-muted-foreground">{r.regulator}</td>
                       <td className="px-3 py-2 text-center">
                         <span className={cn("px-2 py-0.5 rounded text-xs", outcomeColor(r.outcome))}>
                           {r.outcome}
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-right text-zinc-400">{r.hhi}</td>
-                      <td className="px-3 py-2 text-zinc-500 text-xs">{r.note}</td>
+                      <td className="px-3 py-2 text-right text-muted-foreground">{r.hhi}</td>
+                      <td className="px-3 py-2 text-muted-foreground text-xs">{r.note}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1565,18 +1565,18 @@ export default function IBDealsPage() {
         <TabsContent value="lbo" className="data-[state=inactive]:hidden space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* LBO controls */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-4">
+            <div className="bg-card border border-border rounded-xl p-4 space-y-4">
               <h2 className="font-semibold text-sm flex items-center gap-2">
                 <Building2 size={14} className="text-orange-400" />
                 LBO Model Inputs
               </h2>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">Target Company</label>
+                <label className="text-xs text-muted-foreground block mb-1">Target Company</label>
                 <select
                   value={lboTarget}
                   onChange={(e) => setLboTarget(e.target.value)}
-                  className="w-full bg-zinc-800 border border-zinc-700 text-sm rounded px-2 py-1.5 text-white"
+                  className="w-full bg-muted border border-border text-sm rounded px-2 py-1.5 text-white"
                 >
                   {LBO_TARGETS.map((t) => (
                     <option key={t.name} value={t.name}>{t.name}</option>
@@ -1585,56 +1585,56 @@ export default function IBDealsPage() {
               </div>
 
               {lboCalcs && (
-                <div className="bg-zinc-800/50 rounded p-2 text-xs space-y-1">
+                <div className="bg-muted/50 rounded p-2 text-xs space-y-1">
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">Revenue</span>
+                    <span className="text-muted-foreground">Revenue</span>
                     <span className="text-white">{fmtB(lboCalcs.target.revenue)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">EBITDA</span>
+                    <span className="text-muted-foreground">EBITDA</span>
                     <span className="text-white">{fmtB(lboCalcs.target.ebitda)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">EBITDA Margin</span>
+                    <span className="text-muted-foreground">EBITDA Margin</span>
                     <span className="text-white">{lboCalcs.target.ebitdaMargin}%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-zinc-400">Industry</span>
+                    <span className="text-muted-foreground">Industry</span>
                     <span className="text-white">{lboCalcs.target.industry}</span>
                   </div>
                 </div>
               )}
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Entry Multiple: <span className="text-white">{entryMultiple}× EBITDA</span>
                 </label>
                 <Slider min={6} max={16} step={0.5} value={[entryMultiple]} onValueChange={([v]) => setEntryMultiple(v)} className="my-2" />
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Leverage: <span className="text-white">{leverage}× EBITDA</span>
                 </label>
                 <Slider min={3} max={8} step={0.25} value={[leverage]} onValueChange={([v]) => setLeverage(v)} className="my-2" />
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Exit Multiple: <span className="text-white">{exitMultiple}× EBITDA</span>
                 </label>
                 <Slider min={6} max={18} step={0.5} value={[exitMultiple]} onValueChange={([v]) => setExitMultiple(v)} className="my-2" />
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Hold Period: <span className="text-white">{holdPeriod} years</span>
                 </label>
                 <Slider min={3} max={8} step={1} value={[holdPeriod]} onValueChange={([v]) => setHoldPeriod(v)} className="my-2" />
               </div>
 
               <div>
-                <label className="text-xs text-zinc-400 block mb-1">
+                <label className="text-xs text-muted-foreground block mb-1">
                   Interest Rate: <span className="text-white">{interestRate}%</span>
                 </label>
                 <Slider min={4} max={14} step={0.25} value={[interestRate]} onValueChange={([v]) => setInterestRate(v)} className="my-2" />
@@ -1652,23 +1652,23 @@ export default function IBDealsPage() {
                     { label: "Equity Contribution", value: fmtB(lboCalcs.equityContribution), color: "text-emerald-400" },
                     { label: "Annual FCF", value: fmtB(lboCalcs.fcf), color: "text-amber-400" },
                   ].map((m) => (
-                    <div key={m.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-3">
-                      <div className="text-xs text-zinc-400 mb-1">{m.label}</div>
+                    <div key={m.label} className="bg-card border border-border rounded-xl p-3">
+                      <div className="text-xs text-muted-foreground mb-1">{m.label}</div>
                       <div className={cn("text-lg font-bold", m.color)}>{m.value}</div>
                     </div>
                   ))}
                 </div>
 
                 {/* Exit scenarios table */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                <div className="bg-card border border-border rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                     <TrendingUp size={14} className="text-emerald-400" />
                     Returns at Different Exit Scenarios
                   </h3>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
-                      <thead className="bg-zinc-800/50">
-                        <tr className="text-zinc-400">
+                      <thead className="bg-muted/50">
+                        <tr className="text-muted-foreground">
                           <th className="text-center px-3 py-2">Exit Multiple</th>
                           <th className="text-right px-3 py-2">Exit EV</th>
                           <th className="text-right px-3 py-2">Exit Equity</th>
@@ -1678,12 +1678,12 @@ export default function IBDealsPage() {
                       </thead>
                       <tbody>
                         {lboCalcs.exitScenarios.map((sc, i) => (
-                          <tr key={i} className={cn("border-t border-zinc-800", i === 2 ? "bg-emerald-900/10 font-semibold" : "")}>
-                            <td className="px-3 py-2 text-center text-zinc-200">
+                          <tr key={i} className={cn("border-t border-border", i === 2 ? "bg-emerald-900/10 font-semibold" : "")}>
+                            <td className="px-3 py-2 text-center text-foreground">
                               {sc.multiple}×{i === 2 && <span className="text-emerald-400 ml-1 text-[11px]">BASE</span>}
                             </td>
-                            <td className="px-3 py-2 text-right text-zinc-300">{fmtB(sc.exitEV)}</td>
-                            <td className="px-3 py-2 text-right text-zinc-300">{fmtB(sc.exitEquity)}</td>
+                            <td className="px-3 py-2 text-right text-muted-foreground">{fmtB(sc.exitEV)}</td>
+                            <td className="px-3 py-2 text-right text-muted-foreground">{fmtB(sc.exitEquity)}</td>
                             <td className={cn("px-3 py-2 text-right font-semibold", sc.moic >= 2 ? "text-emerald-400" : sc.moic >= 1.5 ? "text-amber-400" : "text-red-400")}>
                               {fmt(sc.moic, 2)}×
                             </td>
@@ -1698,7 +1698,7 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Debt schedule SVG */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                <div className="bg-card border border-border rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                     <BarChart3 size={14} className="text-primary" />
                     Debt Paydown Schedule ($B)
@@ -1732,7 +1732,7 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Returns waterfall */}
-                <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                <div className="bg-card border border-border rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
                     <Award size={14} className="text-amber-400" />
                     Sponsor Returns Waterfall (Base Case)
@@ -1747,8 +1747,8 @@ export default function IBDealsPage() {
                       const pct = (item.value / total) * 100;
                       return (
                         <div key={item.label} className="flex items-center gap-3">
-                          <span className="text-xs text-zinc-400 w-48">{item.label}</span>
-                          <div className="flex-1 bg-zinc-800 rounded-full h-4 overflow-hidden">
+                          <span className="text-xs text-muted-foreground w-48">{item.label}</span>
+                          <div className="flex-1 bg-muted rounded-full h-4 overflow-hidden">
                             <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${pct}%` }}
@@ -1756,15 +1756,15 @@ export default function IBDealsPage() {
                               className={cn("h-full rounded-full", item.color)}
                             />
                           </div>
-                          <span className="text-xs font-semibold text-zinc-200 w-20 text-right">{fmtB(item.value)}</span>
+                          <span className="text-xs font-semibold text-foreground w-20 text-right">{fmtB(item.value)}</span>
                         </div>
                       );
                     })}
-                    <div className="border-t border-zinc-700 pt-2 flex justify-between text-xs text-zinc-400">
+                    <div className="border-t border-border pt-2 flex justify-between text-xs text-muted-foreground">
                       <span>Total Exit Equity</span>
                       <span className="text-white font-semibold">{fmtB(lboCalcs.baseExit.exitEquity)}</span>
                     </div>
-                    <div className="flex justify-between text-xs text-zinc-400">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>Base Case MOIC / IRR</span>
                       <span className="text-emerald-400 font-semibold">
                         {fmt(lboCalcs.baseExit.moic, 2)}× MOIC / {fmt(lboCalcs.baseExit.irr, 1)}% IRR
@@ -1793,7 +1793,7 @@ export default function IBDealsPage() {
                   "px-3 py-1.5 text-xs rounded border transition-colors",
                   leagueTab === t.key
                     ? "bg-primary border-primary text-white"
-                    : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                    : "bg-muted border-border text-muted-foreground hover:text-white"
                 )}
               >
                 {t.label}
@@ -1809,9 +1809,9 @@ export default function IBDealsPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden"
+              className="bg-card border border-border rounded-xl overflow-hidden"
             >
-              <div className="p-4 border-b border-zinc-800 flex items-center gap-2">
+              <div className="p-4 border-b border-border flex items-center gap-2">
                 <Award size={14} className="text-amber-400" />
                 <h2 className="font-semibold text-sm">
                   {leagueTab === "advisory" ? "M&A Advisory" : leagueTab === "ecm" ? "Equity Capital Markets" : "Debt Capital Markets"} — Top 10 Banks (2025 YTD)
@@ -1823,8 +1823,8 @@ export default function IBDealsPage() {
                 return (
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
-                      <thead className="bg-zinc-800/50">
-                        <tr className="text-zinc-400">
+                      <thead className="bg-muted/50">
+                        <tr className="text-muted-foreground">
                           <th className="text-center px-4 py-2 w-10">Rank</th>
                           <th className="text-left px-4 py-2">Bank</th>
                           <th className="text-right px-4 py-2">Deals</th>
@@ -1840,30 +1840,30 @@ export default function IBDealsPage() {
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.04 }}
-                            className="border-t border-zinc-800 hover:bg-zinc-800/20"
+                            className="border-t border-border hover:bg-muted/20"
                           >
                             <td className="px-4 py-2 text-center">
                               <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mx-auto",
                                 i === 0 ? "bg-amber-500/20 text-amber-400" :
-                                i === 1 ? "bg-zinc-400/20 text-zinc-300" :
+                                i === 1 ? "bg-zinc-400/20 text-muted-foreground" :
                                 i === 2 ? "bg-orange-600/20 text-orange-400" :
-                                "bg-zinc-800 text-zinc-500"
+                                "bg-muted text-muted-foreground"
                               )}>
                                 {entry.rank}
                               </span>
                             </td>
                             <td className="px-4 py-2 font-medium text-white">{entry.bank}</td>
-                            <td className="px-4 py-2 text-right text-zinc-300">{entry.deals}</td>
+                            <td className="px-4 py-2 text-right text-muted-foreground">{entry.deals}</td>
                             <td className="px-4 py-2 text-right text-emerald-400 font-semibold">{fmtB(entry.value)}</td>
                             <td className="px-4 py-2">
                               <div className="flex items-center gap-2">
-                                <div className="w-28 bg-zinc-800 rounded-full h-2 overflow-hidden">
+                                <div className="w-28 bg-muted rounded-full h-2 overflow-hidden">
                                   <div
                                     className="h-full bg-primary rounded-full"
                                     style={{ width: `${(entry.value / maxValue) * 100}%` }}
                                   />
                                 </div>
-                                <span className="text-zinc-400 text-xs">{fmt(entry.share, 1)}%</span>
+                                <span className="text-muted-foreground text-xs">{fmt(entry.share, 1)}%</span>
                               </div>
                             </td>
                             <td className="px-4 py-2 text-right text-amber-400">{fmtM(entry.fees)}</td>
@@ -1878,7 +1878,7 @@ export default function IBDealsPage() {
           </AnimatePresence>
 
           {/* Fee wallet */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
               <DollarSign size={14} className="text-emerald-400" />
               Investment Bank Fee Wallet Estimator
@@ -1889,26 +1889,26 @@ export default function IBDealsPage() {
                 { type: "ECM (IPO)", rate: "5–7% gross spread", typical: "7% on $1B IPO = $70M", note: "Split: lead 20%, syndicate 60%, selling 20%" },
                 { type: "DCM (Bond)", rate: "0.3–1.5%", typical: "0.5% on $2B issuance = $10M", note: "Higher for HY bonds; lower for IG; management fee + selling concession" },
               ].map((f) => (
-                <div key={f.type} className="bg-zinc-800/50 rounded-lg p-3">
+                <div key={f.type} className="bg-muted/50 rounded-lg p-3">
                   <div className="font-semibold text-xs text-primary mb-1">{f.type}</div>
-                  <div className="text-xs text-zinc-200 mb-1">Rate: {f.rate}</div>
+                  <div className="text-xs text-foreground mb-1">Rate: {f.rate}</div>
                   <div className="text-xs text-emerald-400 mb-2">Typical: {f.typical}</div>
-                  <div className="text-xs text-zinc-500">{f.note}</div>
+                  <div className="text-xs text-muted-foreground">{f.note}</div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* IB compensation */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div className="bg-card border border-border rounded-xl p-4">
             <h2 className="font-semibold text-sm mb-3 flex items-center gap-2">
               <Users size={14} className="text-primary" />
               IB Analyst / Associate Compensation (Top Banks, 2025)
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
-                <thead className="bg-zinc-800/50">
-                  <tr className="text-zinc-400">
+                <thead className="bg-muted/50">
+                  <tr className="text-muted-foreground">
                     <th className="text-left px-3 py-2">Title</th>
                     <th className="text-right px-3 py-2">Base Salary</th>
                     <th className="text-right px-3 py-2">Bonus</th>
@@ -1920,15 +1920,15 @@ export default function IBDealsPage() {
                   {IB_COMPENSATION.map((row, i) => {
                     const maxTotal = IB_COMPENSATION[IB_COMPENSATION.length - 1].total;
                     return (
-                      <tr key={i} className="border-t border-zinc-800 hover:bg-zinc-800/20">
-                        <td className="px-3 py-2 font-medium text-zinc-200">{row.title}</td>
-                        <td className="px-3 py-2 text-right text-zinc-400">${(row.base / 1000).toFixed(0)}K</td>
+                      <tr key={i} className="border-t border-border hover:bg-muted/20">
+                        <td className="px-3 py-2 font-medium text-foreground">{row.title}</td>
+                        <td className="px-3 py-2 text-right text-muted-foreground">${(row.base / 1000).toFixed(0)}K</td>
                         <td className="px-3 py-2 text-right text-amber-400">${(row.bonus / 1000).toFixed(0)}K</td>
                         <td className="px-3 py-2 text-right font-semibold text-emerald-400">
                           {row.total >= 1000000 ? `$${(row.total / 1000000).toFixed(2)}M` : `$${(row.total / 1000).toFixed(0)}K`}
                         </td>
                         <td className="px-3 py-2">
-                          <div className="w-32 bg-zinc-800 rounded-full h-2 overflow-hidden">
+                          <div className="w-32 bg-muted rounded-full h-2 overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 rounded-full"
                               style={{ width: `${(row.total / maxTotal) * 100}%` }}
@@ -1941,7 +1941,7 @@ export default function IBDealsPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-zinc-500 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               * Compensation figures are representative estimates for bulge bracket / elite boutique banks (Goldman, Morgan Stanley, JPMorgan, Lazard, Evercore). Actual figures vary by bank, group, and performance.
             </p>
           </div>

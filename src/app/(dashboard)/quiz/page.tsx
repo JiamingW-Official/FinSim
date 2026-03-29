@@ -1045,7 +1045,7 @@ function DailyChallengeTab() {
                     i === 0
                       ? "text-yellow-400"
                       : i === 1
-                      ? "text-slate-300"
+                      ? "text-muted-foreground"
                       : i === 2
                       ? "text-amber-600"
                       : "text-muted-foreground"

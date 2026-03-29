@@ -764,7 +764,7 @@ export default function BehavioralLabPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Behavioral Economics Lab</h1>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-muted-foreground">
               Interactive experiments revealing cognitive biases in investing
             </p>
           </div>
@@ -774,7 +774,7 @@ export default function BehavioralLabPage() {
             <Badge
               key={b}
               variant="outline"
-              className="text-xs border-zinc-700 text-zinc-400"
+              className="text-xs border-border text-muted-foreground"
               style={{ borderColor: BIAS_META[b].color + "44", color: BIAS_META[b].color }}
             >
               {BIAS_META[b].label}
@@ -784,7 +784,7 @@ export default function BehavioralLabPage() {
       </div>
 
       <Tabs defaultValue="detector" className="space-y-4">
-        <TabsList className="bg-zinc-900 border border-zinc-800 grid grid-cols-4 w-full md:w-auto">
+        <TabsList className="bg-card border border-border grid grid-cols-4 w-full md:w-auto">
           <TabsTrigger value="detector" className="text-xs sm:text-sm">
             Bias Detector
           </TabsTrigger>
@@ -805,10 +805,10 @@ export default function BehavioralLabPage() {
             {/* Questions */}
             <div className="lg:col-span-2 space-y-3">
               {QUIZ_QUESTIONS.map((q, qi) => (
-                <Card key={q.id} className="bg-zinc-900 border-zinc-800">
+                <Card key={q.id} className="bg-card border-border">
                   <CardContent className="pt-4 pb-4">
                     <p className="text-sm font-medium text-white mb-3">
-                      <span className="text-zinc-500 mr-2">Q{qi + 1}.</span>
+                      <span className="text-muted-foreground mr-2">Q{qi + 1}.</span>
                       {q.scenario}
                     </p>
                     <div className="space-y-2">
@@ -824,14 +824,14 @@ export default function BehavioralLabPage() {
                               "w-full text-left px-3 py-2 rounded-lg border text-sm transition-all",
                               selected
                                 ? "border-primary bg-primary/10 text-white"
-                                : "border-zinc-700 bg-zinc-800/50 text-zinc-400 hover:border-zinc-600 hover:text-white"
+                                : "border-border bg-muted/50 text-muted-foreground hover:border-border hover:text-white"
                             )}
                           >
                             <div className="flex items-center gap-2">
                               {selected ? (
                                 <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
                               ) : (
-                                <Circle className="w-4 h-4 text-zinc-600 shrink-0" />
+                                <Circle className="w-4 h-4 text-muted-foreground shrink-0" />
                               )}
                               {c.text}
                             </div>
@@ -854,9 +854,9 @@ export default function BehavioralLabPage() {
 
             {/* Results panel */}
             <div className="space-y-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                     <BarChart2 className="w-4 h-4 text-primary" />
                     Bias Radar
                   </CardTitle>
@@ -872,8 +872,8 @@ export default function BehavioralLabPage() {
                     </motion.div>
                   ) : (
                     <div className="flex flex-col items-center justify-center py-12 text-center">
-                      <Brain className="w-10 h-10 text-zinc-600 mb-3" />
-                      <p className="text-xs text-zinc-500">
+                      <Brain className="w-10 h-10 text-muted-foreground mb-3" />
+                      <p className="text-xs text-muted-foreground">
                         Complete the questionnaire to see your bias profile
                       </p>
                     </div>
@@ -888,9 +888,9 @@ export default function BehavioralLabPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <Card className="bg-zinc-900 border-zinc-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-zinc-300">
+                      <CardTitle className="text-sm font-semibold text-muted-foreground">
                         Bias Scores
                       </CardTitle>
                     </CardHeader>
@@ -901,7 +901,7 @@ export default function BehavioralLabPage() {
                         .map((s) => (
                           <div key={s.bias}>
                             <div className="flex items-center justify-between mb-1">
-                              <div className="flex items-center gap-1.5 text-xs font-medium text-zinc-400">
+                              <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                                 <span style={{ color: s.color }}>{s.icon}</span>
                                 {s.label}
                               </div>
@@ -912,7 +912,7 @@ export default function BehavioralLabPage() {
                                 {s.score}%
                               </span>
                             </div>
-                            <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                               <motion.div
                                 className="h-full rounded-full"
                                 style={{ backgroundColor: s.color }}
@@ -935,7 +935,7 @@ export default function BehavioralLabPage() {
                         <p className="font-semibold mb-1" style={{ color: dominantBias.color }}>
                           Dominant Bias: {dominantBias.label}
                         </p>
-                        <p className="text-zinc-400 leading-relaxed">
+                        <p className="text-muted-foreground leading-relaxed">
                           {dominantBias.description}
                         </p>
                       </div>
@@ -949,12 +949,12 @@ export default function BehavioralLabPage() {
 
         {/* ── TAB 2: Experiments ──────────────────────────────────────────────── */}
         <TabsContent value="experiments" className="space-y-4">
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-muted-foreground">
             Three interactive experiments that reveal cognitive biases in action. Try each one before revealing the answer.
           </p>
 
           {/* Experiment 1: Loss Aversion Coin Flip */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center gap-2">
                 <div className="p-1.5 rounded bg-red-500/10">
@@ -967,18 +967,18 @@ export default function BehavioralLabPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="p-4 rounded-lg bg-zinc-800/60 border border-zinc-700">
+              <div className="p-4 rounded-lg bg-muted/60 border border-border">
                 <p className="text-sm text-white font-medium mb-1">The Bet</p>
-                <p className="text-sm text-zinc-300">
+                <p className="text-sm text-muted-foreground">
                   I flip a fair coin. <span className="text-green-400 font-semibold">Heads: you win $150.</span>{" "}
                   <span className="text-red-400 font-semibold">Tails: you lose $100.</span>
                 </p>
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Expected value = (+$150 × 0.5) + (−$100 × 0.5) = <span className="text-green-400">+$25</span>
                 </p>
               </div>
 
-              <p className="text-sm text-zinc-300 font-medium">Do you accept the bet?</p>
+              <p className="text-sm text-muted-foreground font-medium">Do you accept the bet?</p>
               <div className="flex gap-3">
                 <Button
                   variant={exp1Choice === "accept" ? "default" : "outline"}
@@ -986,7 +986,7 @@ export default function BehavioralLabPage() {
                     "flex-1",
                     exp1Choice === "accept"
                       ? "bg-green-600 hover:bg-green-700 text-white"
-                      : "border-zinc-700 text-zinc-400 hover:text-white"
+                      : "border-border text-muted-foreground hover:text-white"
                   )}
                   onClick={() => { setExp1Choice("accept"); setExp1Revealed(false); }}
                 >
@@ -999,7 +999,7 @@ export default function BehavioralLabPage() {
                     "flex-1",
                     exp1Choice === "reject"
                       ? "bg-red-600 hover:bg-red-700 text-white"
-                      : "border-zinc-700 text-zinc-400 hover:text-white"
+                      : "border-border text-muted-foreground hover:text-white"
                   )}
                   onClick={() => { setExp1Choice("reject"); setExp1Revealed(false); }}
                 >
@@ -1010,7 +1010,7 @@ export default function BehavioralLabPage() {
 
               {exp1Choice && !exp1Revealed && (
                 <Button
-                  className="w-full bg-zinc-700 hover:bg-zinc-600"
+                  className="w-full bg-muted hover:bg-zinc-600"
                   onClick={() => setExp1Revealed(true)}
                 >
                   Reveal Analysis
@@ -1045,8 +1045,8 @@ export default function BehavioralLabPage() {
                           {exp1Result.biasDetected}
                         </span>
                       </div>
-                      <p className="text-zinc-300 leading-relaxed">{exp1Result.explanation}</p>
-                      <div className="flex gap-4 pt-1 text-xs text-zinc-500">
+                      <p className="text-muted-foreground leading-relaxed">{exp1Result.explanation}</p>
+                      <div className="flex gap-4 pt-1 text-xs text-muted-foreground">
                         <span>Your choice: <span className="text-white">{exp1Result.userChoice}</span></span>
                         <span>Rational: <span className="text-green-400">{exp1Result.rationalChoice}</span></span>
                       </div>
@@ -1058,7 +1058,7 @@ export default function BehavioralLabPage() {
           </Card>
 
           {/* Experiment 2: Anchoring */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center gap-2">
                 <div className="p-1.5 rounded bg-yellow-500/10">
@@ -1073,11 +1073,11 @@ export default function BehavioralLabPage() {
             <CardContent className="space-y-4">
               {exp2Anchor === null ? (
                 <div className="space-y-3">
-                  <p className="text-sm text-zinc-300">
+                  <p className="text-sm text-muted-foreground">
                     We&apos;ll show you a random number, then ask you to estimate a company&apos;s market cap.
                     The random number has no relation to the answer.
                   </p>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-muted-foreground">
                     Choose an anchor group to see your random number:
                   </p>
                   <div className="flex gap-3">
@@ -1085,7 +1085,7 @@ export default function BehavioralLabPage() {
                       <Button
                         key={i}
                         variant="outline"
-                        className="flex-1 border-zinc-700 text-zinc-400 hover:text-white"
+                        className="flex-1 border-border text-muted-foreground hover:text-white"
                         onClick={() => setExp2Anchor(a)}
                       >
                         Group {i + 1}
@@ -1095,16 +1095,16 @@ export default function BehavioralLabPage() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-lg bg-zinc-800 border border-zinc-700 text-center">
-                    <p className="text-xs text-zinc-500 mb-1">Your random number is:</p>
+                  <div className="p-4 rounded-lg bg-muted border border-border text-center">
+                    <p className="text-xs text-muted-foreground mb-1">Your random number is:</p>
                     <p className="text-4xl font-bold text-yellow-400">{exp2Anchor}</p>
-                    <p className="text-xs text-zinc-600 mt-1">(This is irrelevant to the answer)</p>
+                    <p className="text-xs text-muted-foreground mt-1">(This is irrelevant to the answer)</p>
                   </div>
                   <div>
                     <p className="text-sm text-white font-medium mb-1">
                       What is the market cap of a major semiconductor company (in $B)?
                     </p>
-                    <p className="text-xs text-zinc-500 mb-3">
+                    <p className="text-xs text-muted-foreground mb-3">
                       Adjust the slider to your best estimate: $
                       <span className="text-white font-bold">{exp2Estimate[0]}B</span>
                     </p>
@@ -1115,7 +1115,7 @@ export default function BehavioralLabPage() {
                       value={exp2Estimate}
                       onValueChange={setExp2Estimate}
                     />
-                    <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
                       <span>$50B</span>
                       <span>$1,500B</span>
                     </div>
@@ -1144,22 +1144,22 @@ export default function BehavioralLabPage() {
                         <Anchor className="w-4 h-4" />
                         {exp2Result.biasDetected}
                       </div>
-                      <p className="text-zinc-300 leading-relaxed">{exp2Result.explanation}</p>
+                      <p className="text-muted-foreground leading-relaxed">{exp2Result.explanation}</p>
                       <div className="grid grid-cols-3 gap-2 pt-2 text-xs">
-                        <div className="text-center p-2 bg-zinc-800 rounded">
-                          <p className="text-zinc-500">Your Anchor</p>
+                        <div className="text-center p-2 bg-muted rounded">
+                          <p className="text-muted-foreground">Your Anchor</p>
                           <p className="text-yellow-400 font-bold">${exp2Anchor}B</p>
                         </div>
-                        <div className="text-center p-2 bg-zinc-800 rounded">
-                          <p className="text-zinc-500">Your Estimate</p>
+                        <div className="text-center p-2 bg-muted rounded">
+                          <p className="text-muted-foreground">Your Estimate</p>
                           <p className="text-white font-bold">{exp2Result.userChoice}</p>
                         </div>
-                        <div className="text-center p-2 bg-zinc-800 rounded">
-                          <p className="text-zinc-500">Actual</p>
+                        <div className="text-center p-2 bg-muted rounded">
+                          <p className="text-muted-foreground">Actual</p>
                           <p className="text-green-400 font-bold">${TRUE_MARKET_CAP}B</p>
                         </div>
                       </div>
-                      <div className="mt-2 h-2 bg-zinc-800 rounded-full relative overflow-hidden">
+                      <div className="mt-2 h-2 bg-muted rounded-full relative overflow-hidden">
                         <div
                           className="absolute top-0 h-full w-1 bg-yellow-400"
                           style={{ left: `${((exp2Anchor ?? 0) / 1500) * 100}%` }}
@@ -1176,7 +1176,7 @@ export default function BehavioralLabPage() {
                           title="Actual"
                         />
                       </div>
-                      <div className="flex justify-between text-xs text-zinc-600">
+                      <div className="flex justify-between text-xs text-muted-foreground">
                         <span className="text-yellow-400">Anchor</span>
                         <span className="text-white">Your est.</span>
                         <span className="text-green-400">Actual</span>
@@ -1189,7 +1189,7 @@ export default function BehavioralLabPage() {
           </Card>
 
           {/* Experiment 3: Overconfidence CI */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader>
               <CardTitle className="text-base font-semibold flex items-center gap-2">
                 <div className="p-1.5 rounded bg-orange-500/10">
@@ -1202,11 +1202,11 @@ export default function BehavioralLabPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="p-3 rounded-lg bg-zinc-800/60 border border-zinc-700">
+              <div className="p-3 rounded-lg bg-muted/60 border border-border">
                 <p className="text-sm text-white font-medium">
                   Provide a <span className="text-orange-400">90% confidence interval</span> for the S&P 500 closing level at end of 2023.
                 </p>
-                <p className="text-xs text-zinc-500 mt-1">
+                <p className="text-xs text-muted-foreground mt-1">
                   Set a low and high value such that you are 90% sure the truth lies between them.
                 </p>
               </div>
@@ -1214,7 +1214,7 @@ export default function BehavioralLabPage() {
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-zinc-400">Lower bound</span>
+                    <span className="text-muted-foreground">Lower bound</span>
                     <span className="text-white font-bold">{exp3Low[0]}</span>
                   </div>
                   <Slider
@@ -1229,7 +1229,7 @@ export default function BehavioralLabPage() {
                 </div>
                 <div>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-zinc-400">Upper bound</span>
+                    <span className="text-muted-foreground">Upper bound</span>
                     <span className="text-white font-bold">{exp3High[0]}</span>
                   </div>
                   <Slider
@@ -1244,7 +1244,7 @@ export default function BehavioralLabPage() {
                 </div>
 
                 {/* Visual range */}
-                <div className="relative h-8 bg-zinc-800 rounded-lg overflow-hidden">
+                <div className="relative h-8 bg-muted rounded-lg overflow-hidden">
                   <div
                     className="absolute top-0 h-full bg-orange-500/20 border-l-2 border-r-2 border-orange-500/60"
                     style={{
@@ -1258,7 +1258,7 @@ export default function BehavioralLabPage() {
                       style={{ left: `${((SP500_ACTUAL - 3000) / 3000) * 100}%` }}
                     />
                   )}
-                  <div className="absolute inset-0 flex items-center justify-between px-2 text-xs text-zinc-500">
+                  <div className="absolute inset-0 flex items-center justify-between px-2 text-xs text-muted-foreground">
                     <span>3000</span>
                     <span className="font-semibold text-orange-300">
                       Width: {exp3Width}
@@ -1308,14 +1308,14 @@ export default function BehavioralLabPage() {
                         )}
                         {exp3Result.biasDetected}
                       </div>
-                      <p className="text-zinc-300 leading-relaxed">{exp3Result.explanation}</p>
+                      <p className="text-muted-foreground leading-relaxed">{exp3Result.explanation}</p>
                       <div className="grid grid-cols-2 gap-2 pt-1 text-xs">
-                        <div className="p-2 bg-zinc-800 rounded">
-                          <p className="text-zinc-500">Your interval</p>
+                        <div className="p-2 bg-muted rounded">
+                          <p className="text-muted-foreground">Your interval</p>
                           <p className="text-white font-bold">{exp3Low[0]} – {exp3High[0]}</p>
                         </div>
-                        <div className="p-2 bg-zinc-800 rounded">
-                          <p className="text-zinc-500">S&P 500 end-2023</p>
+                        <div className="p-2 bg-muted rounded">
+                          <p className="text-muted-foreground">S&P 500 end-2023</p>
                           <p className="text-green-400 font-bold">{SP500_ACTUAL}</p>
                         </div>
                       </div>
@@ -1330,7 +1330,7 @@ export default function BehavioralLabPage() {
         {/* ── TAB 3: Portfolio Impact ─────────────────────────────────────────── */}
         <TabsContent value="impact" className="space-y-4">
           {!quizSubmitted && (
-            <div className="p-4 rounded-lg border border-zinc-700 bg-zinc-900 text-sm text-zinc-400 flex items-center gap-3">
+            <div className="p-4 rounded-lg border border-border bg-card text-sm text-muted-foreground flex items-center gap-3">
               <AlertTriangle className="w-5 h-5 text-yellow-500 shrink-0" />
               Complete the Bias Detector questionnaire first to personalise your portfolio impact.
               Default scores are used until then.
@@ -1339,9 +1339,9 @@ export default function BehavioralLabPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Simulation chart */}
-            <Card className="bg-zinc-900 border-zinc-800 lg:col-span-2">
+            <Card className="bg-card border-border lg:col-span-2">
               <CardHeader>
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-green-400" />
                   20-Period Portfolio Simulation: Rational vs. Biased Investor
                 </CardTitle>
@@ -1351,7 +1351,7 @@ export default function BehavioralLabPage() {
                 <div className="flex gap-6 mt-3 justify-center text-xs">
                   <div className="flex items-center gap-1.5">
                     <div className="w-6 h-0.5 bg-green-500" />
-                    <span className="text-zinc-400">Rational investor</span>
+                    <span className="text-muted-foreground">Rational investor</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <div
@@ -1361,11 +1361,11 @@ export default function BehavioralLabPage() {
                           "repeating-linear-gradient(to right, #ef4444 0 5px, transparent 5px 8px)",
                       }}
                     />
-                    <span className="text-zinc-400">Biased investor</span>
+                    <span className="text-muted-foreground">Biased investor</span>
                   </div>
                 </div>
-                <div className="mt-3 p-3 rounded-lg bg-zinc-800/60 border border-zinc-700 text-center">
-                  <p className="text-xs text-zinc-500">20-period terminal gap</p>
+                <div className="mt-3 p-3 rounded-lg bg-muted/60 border border-border text-center">
+                  <p className="text-xs text-muted-foreground">20-period terminal gap</p>
                   <p className="text-2xl font-bold text-red-400 mt-0.5">
                     −
                     {(
@@ -1374,7 +1374,7 @@ export default function BehavioralLabPage() {
                     ).toFixed(1)}{" "}
                     pts
                   </p>
-                  <p className="text-xs text-zinc-500 mt-0.5">
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     Starting from 100. Rational ends at{" "}
                     <span className="text-green-400">
                       {portfolioPaths[portfolioPaths.length - 1].rational}
@@ -1391,10 +1391,10 @@ export default function BehavioralLabPage() {
 
             {/* Per-bias cost cards */}
             {biasCosts.map((bc) => (
-              <Card key={bc.bias} className="bg-zinc-900 border-zinc-800">
+              <Card key={bc.bias} className="bg-card border-border">
                 <CardContent className="pt-4 pb-4">
                   <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2 text-sm font-medium text-zinc-300">
+                    <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
                       <span style={{ color: BIAS_META[bc.bias].color }}>
                         {BIAS_META[bc.bias].icon}
                       </span>
@@ -1415,7 +1415,7 @@ export default function BehavioralLabPage() {
                     value={biasScoreMap[bc.bias]}
                     className="h-1.5"
                   />
-                  <p className="text-xs text-zinc-500 mt-2 leading-relaxed">
+                  <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
                     {BIAS_META[bc.bias].description}
                   </p>
                 </CardContent>
@@ -1424,20 +1424,20 @@ export default function BehavioralLabPage() {
 
             {/* Total cost summary */}
             <Card
-              className="bg-zinc-900 border-zinc-800 lg:col-span-2"
+              className="bg-card border-border lg:col-span-2"
               style={{ borderColor: totalCostPct > 3 ? "#ef444433" : "#22c55e33" }}
             >
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-xs text-zinc-500 mb-0.5">Estimated total annual drag from biases</p>
+                    <p className="text-xs text-muted-foreground mb-0.5">Estimated total annual drag from biases</p>
                     <p
                       className="text-3xl font-bold"
                       style={{ color: totalCostPct > 3 ? "#ef4444" : "#22c55e" }}
                     >
                       −{totalCostPct.toFixed(2)}% / year
                     </p>
-                    <p className="text-xs text-zinc-500 mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       Compounded over 20 years, this drag turns $100k into approximately $
                       {(100000 * Math.pow(1 - totalCostPct / 100, 20)).toFixed(0)}{" "}
                       vs. $
@@ -1445,7 +1445,7 @@ export default function BehavioralLabPage() {
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-zinc-500">Bias severity</p>
+                    <p className="text-xs text-muted-foreground">Bias severity</p>
                     <Badge
                       className="mt-1"
                       style={{
@@ -1481,11 +1481,11 @@ export default function BehavioralLabPage() {
         {/* ── TAB 4: Debiasing ────────────────────────────────────────────────── */}
         <TabsContent value="debiasing" className="space-y-4">
           {/* Overall resistance score */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardContent className="pt-4 pb-4">
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className="text-xs text-zinc-500">Bias Resistance Score</p>
+                  <p className="text-xs text-muted-foreground">Bias Resistance Score</p>
                   <p className="text-2xl font-bold text-white">{resistanceScore}%</p>
                 </div>
                 <div className="p-3 rounded-full border-2" style={{ borderColor: resistanceScore > 60 ? "#22c55e" : resistanceScore > 30 ? "#f97316" : "#ef4444" }}>
@@ -1496,7 +1496,7 @@ export default function BehavioralLabPage() {
                 </div>
               </div>
               <Progress value={resistanceScore} className="h-2" />
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 {resistanceScore < 20
                   ? "Start working through the debiasing checklists below to build your resistance."
                   : resistanceScore < 50
@@ -1518,7 +1518,7 @@ export default function BehavioralLabPage() {
               const targetMeta = BIAS_META[t.targetBias];
 
               return (
-                <Card key={t.id} className="bg-zinc-900 border-zinc-800">
+                <Card key={t.id} className="bg-card border-border">
                   <CardContent className="pt-4 pb-4">
                     <div className="flex items-start gap-3">
                       <div
@@ -1541,13 +1541,13 @@ export default function BehavioralLabPage() {
                             {targetMeta.label}
                           </Badge>
                         </div>
-                        <p className="text-xs text-zinc-400 leading-relaxed mb-3">
+                        <p className="text-xs text-muted-foreground leading-relaxed mb-3">
                           {t.description}
                         </p>
 
                         {/* Progress bar */}
                         <div className="flex items-center gap-2 mb-3">
-                          <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                          <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                             <motion.div
                               className="h-full rounded-full"
                               style={{ backgroundColor: targetMeta.color }}
@@ -1555,7 +1555,7 @@ export default function BehavioralLabPage() {
                               transition={{ duration: 0.4, ease: "easeOut" }}
                             />
                           </div>
-                          <span className="text-xs text-zinc-500 shrink-0">
+                          <span className="text-xs text-muted-foreground shrink-0">
                             {completedCount}/{t.checklist.length}
                           </span>
                         </div>
@@ -1583,13 +1583,13 @@ export default function BehavioralLabPage() {
                                       style={{ color: targetMeta.color }}
                                     />
                                   ) : (
-                                    <Circle className="w-4 h-4 text-zinc-600 group-hover:text-zinc-400 transition-colors" />
+                                    <Circle className="w-4 h-4 text-muted-foreground group-hover:text-muted-foreground transition-colors" />
                                   )}
                                 </div>
                                 <span
                                   className={cn(
                                     "text-xs leading-relaxed transition-colors",
-                                    done ? "text-zinc-500 line-through" : "text-zinc-300 group-hover:text-white"
+                                    done ? "text-muted-foreground line-through" : "text-muted-foreground group-hover:text-white"
                                   )}
                                 >
                                   {item}
@@ -1619,14 +1619,14 @@ export default function BehavioralLabPage() {
           </div>
 
           {/* Educational summary */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                 <Lightbulb className="w-4 h-4 text-yellow-400" />
                 Why Debiasing Works
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-xs text-zinc-400 space-y-2 leading-relaxed">
+            <CardContent className="text-xs text-muted-foreground space-y-2 leading-relaxed">
               <p>
                 Cognitive biases are not moral failures — they are systematic patterns in how
                 the human brain processes information under uncertainty. They evolved to help us make

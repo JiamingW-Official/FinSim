@@ -909,7 +909,7 @@ function CycleCard({
             </Badge>
           )}
         </div>
-        <div className="flex items-center gap-3 text-xs text-gray-400">
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <span>{cycle.era}</span>
           <span>{cycle.durationYrs}yr cycle</span>
           {cycle.indexGain > 0 && (
@@ -929,10 +929,10 @@ function CycleCard({
           >
             <div className="mt-4 grid grid-cols-2 gap-4 text-xs">
               <div>
-                <p className="text-gray-500 mb-1.5 uppercase tracking-wide">Key Drivers</p>
+                <p className="text-muted-foreground mb-1.5 uppercase tracking-wide">Key Drivers</p>
                 <ul className="space-y-1">
                   {cycle.drivers.map((d) => (
-                    <li key={d} className="flex items-center gap-1.5 text-gray-300">
+                    <li key={d} className="flex items-center gap-1.5 text-muted-foreground">
                       <ArrowRight size={10} className="text-primary shrink-0" />
                       {d}
                     </li>
@@ -940,7 +940,7 @@ function CycleCard({
                 </ul>
               </div>
               <div>
-                <p className="text-gray-500 mb-1.5 uppercase tracking-wide">Peak Commodities</p>
+                <p className="text-muted-foreground mb-1.5 uppercase tracking-wide">Peak Commodities</p>
                 <div className="flex flex-wrap gap-1.5">
                   {cycle.peakCommodities.map((c) => (
                     <span
@@ -957,7 +957,7 @@ function CycleCard({
                 </div>
               </div>
             </div>
-            <div className="mt-3 flex gap-4 text-xs text-gray-400 border-t border-white/5 pt-3">
+            <div className="mt-3 flex gap-4 text-xs text-muted-foreground border-t border-white/5 pt-3">
               <span>
                 Start: <span className="text-white">{cycle.startYear}</span>
               </span>
@@ -1001,7 +1001,7 @@ export default function CommodityCyclesPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Commodity Super-Cycles</h1>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-muted-foreground">
               Raw materials analysis, market dynamics, and investment vehicles
             </p>
           </div>
@@ -1040,13 +1040,13 @@ export default function CommodityCyclesPage() {
             <div className="space-y-4">
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-gray-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     Commodity Index (Normalized to Start=100)
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <SuperCycleChart selectedId={selectedCycle} />
-                  <p className="text-xs text-gray-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     Click a cycle below to highlight its trajectory
                   </p>
                 </CardContent>
@@ -1057,15 +1057,15 @@ export default function CommodityCyclesPage() {
                   <div className="grid grid-cols-3 gap-3 text-center">
                     <div>
                       <p className="text-2xl font-bold text-amber-400">5</p>
-                      <p className="text-xs text-gray-500">Identified Cycles</p>
+                      <p className="text-xs text-muted-foreground">Identified Cycles</p>
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-primary">25yr</p>
-                      <p className="text-xs text-gray-500">Avg Duration</p>
+                      <p className="text-xs text-muted-foreground">Avg Duration</p>
                     </div>
                     <div>
                       <p className="text-2xl font-bold text-emerald-400">+299%</p>
-                      <p className="text-xs text-gray-500">Avg Peak Gain</p>
+                      <p className="text-xs text-muted-foreground">Avg Peak Gain</p>
                     </div>
                   </div>
                 </CardContent>
@@ -1073,7 +1073,7 @@ export default function CommodityCyclesPage() {
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
                 Historical Cycles
               </h3>
               {SUPER_CYCLES.map((cycle) => (
@@ -1098,7 +1098,7 @@ export default function CommodityCyclesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-gray-300 flex items-center gap-2">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                     <Zap size={14} className="text-amber-400" />
                     Global Oil Supply vs Demand (mb/d)
                   </CardTitle>
@@ -1110,7 +1110,7 @@ export default function CommodityCyclesPage() {
 
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-gray-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     OPEC+ Production Context
                   </CardTitle>
                 </CardHeader>
@@ -1143,7 +1143,7 @@ export default function CommodityCyclesPage() {
                   ].map(({ label, value, color, suffix }) => (
                     <div key={label}>
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-gray-400">{label}</span>
+                        <span className="text-muted-foreground">{label}</span>
                         <span className="font-semibold" style={{ color }}>
                           {value}
                           {suffix}
@@ -1166,7 +1166,7 @@ export default function CommodityCyclesPage() {
 
             <Card className="bg-white/[0.03] border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-gray-300">
+                <CardTitle className="text-sm font-semibold text-muted-foreground">
                   Energy Complex — Market Data
                 </CardTitle>
               </CardHeader>
@@ -1174,7 +1174,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-gray-500">
+                      <tr className="border-b border-white/10 text-muted-foreground">
                         <th className="text-left py-2 pr-4">Commodity</th>
                         <th className="text-left py-2 pr-4">Type</th>
                         <th className="text-right py-2 pr-4">Price</th>
@@ -1194,23 +1194,23 @@ export default function CommodityCyclesPage() {
                             {row.name}
                           </td>
                           <td className="py-2 pr-4">
-                            <Badge className="text-xs bg-white/5 text-gray-400 border-white/10">
+                            <Badge className="text-xs bg-white/5 text-muted-foreground border-white/10">
                               {row.type}
                             </Badge>
                           </td>
                           <td className="py-2 pr-4 text-right font-mono text-white">
                             ${row.price.toFixed(2)}
-                            <span className="text-gray-500 ml-1 text-xs">
+                            <span className="text-muted-foreground ml-1 text-xs">
                               {row.unit}
                             </span>
                           </td>
                           <td className="py-2 pr-4 text-right">
                             <ChangeChip value={row.yoyChange} />
                           </td>
-                          <td className="py-2 pr-4 text-right text-gray-300">
+                          <td className="py-2 pr-4 text-right text-muted-foreground">
                             {row.opecShare > 0 ? `${row.opecShare}%` : "—"}
                           </td>
-                          <td className="py-2 pr-4 text-right text-gray-300">
+                          <td className="py-2 pr-4 text-right text-muted-foreground">
                             {row.breakeven !== null
                               ? `$${row.breakeven}/bbl`
                               : "—"}
@@ -1259,7 +1259,7 @@ export default function CommodityCyclesPage() {
                         {title}
                       </span>
                     </div>
-                    <p className="text-xs text-gray-400 leading-relaxed">{body}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{body}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -1273,7 +1273,7 @@ export default function CommodityCyclesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-gray-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     Relative Price Performance (Indexed, 24 months)
                   </CardTitle>
                 </CardHeader>
@@ -1284,7 +1284,7 @@ export default function CommodityCyclesPage() {
 
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-gray-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     EV Demand Drivers (per vehicle)
                   </CardTitle>
                 </CardHeader>
@@ -1313,7 +1313,7 @@ export default function CommodityCyclesPage() {
                           }}
                         />
                       </div>
-                      <p className="text-xs text-gray-600">{note}</p>
+                      <p className="text-xs text-muted-foreground">{note}</p>
                     </div>
                   ))}
                 </CardContent>
@@ -1323,7 +1323,7 @@ export default function CommodityCyclesPage() {
             {/* Metals table */}
             <Card className="bg-white/[0.03] border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-gray-300">
+                <CardTitle className="text-sm font-semibold text-muted-foreground">
                   Metals Market Overview
                 </CardTitle>
               </CardHeader>
@@ -1331,7 +1331,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-gray-500">
+                      <tr className="border-b border-white/10 text-muted-foreground">
                         <th className="text-left py-2 pr-4">Metal</th>
                         <th className="text-right py-2 pr-4">Price</th>
                         <th className="text-right py-2 pr-4">YoY</th>
@@ -1350,7 +1350,7 @@ export default function CommodityCyclesPage() {
                             <span className="font-medium text-white">
                               {row.name}
                             </span>
-                            <span className="text-gray-600 ml-1">
+                            <span className="text-muted-foreground ml-1">
                               ({row.symbol})
                             </span>
                           </td>
@@ -1358,17 +1358,17 @@ export default function CommodityCyclesPage() {
                             {row.price >= 1000
                               ? `$${row.price.toLocaleString()}`
                               : `$${row.price.toFixed(2)}`}
-                            <span className="text-gray-500 ml-1 text-xs">
+                            <span className="text-muted-foreground ml-1 text-xs">
                               {row.unit}
                             </span>
                           </td>
                           <td className="py-2 pr-4 text-right">
                             <ChangeChip value={row.yoyChange} />
                           </td>
-                          <td className="py-2 pr-4 text-gray-300">
+                          <td className="py-2 pr-4 text-muted-foreground">
                             {row.primaryDriver}
                           </td>
-                          <td className="py-2 pr-4 text-right text-gray-400">
+                          <td className="py-2 pr-4 text-right text-muted-foreground">
                             {row.evWeight}
                           </td>
                           <td className="py-2 text-right">
@@ -1433,11 +1433,11 @@ export default function CommodityCyclesPage() {
                       <span className="font-semibold text-white text-sm">
                         {name}
                       </span>
-                      <Badge className="text-xs bg-white/5 text-gray-500 border-white/10">
+                      <Badge className="text-xs bg-white/5 text-muted-foreground border-white/10">
                         {ticker}
                       </Badge>
                     </div>
-                    <p className="text-xs text-gray-400 leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       {insight}
                     </p>
                   </CardContent>
@@ -1453,14 +1453,14 @@ export default function CommodityCyclesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-gray-300 flex items-center gap-2">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                     <Wheat size={14} className="text-amber-400" />
                     Seasonal Price Patterns (Index Jan=100)
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <AgriSeasonalChart />
-                  <p className="text-xs text-gray-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     Shaded region = corn harvest pressure window (Sep–Oct)
                   </p>
                 </CardContent>
@@ -1468,7 +1468,7 @@ export default function CommodityCyclesPage() {
 
               <Card className="bg-white/[0.03] border-white/10">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-gray-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     ENSO Impact on Agricultural Markets
                   </CardTitle>
                 </CardHeader>
@@ -1479,13 +1479,13 @@ export default function CommodityCyclesPage() {
                     </p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div>
-                        <p className="text-gray-500 mb-1">Reduces yield:</p>
+                        <p className="text-muted-foreground mb-1">Reduces yield:</p>
                         <p className="text-red-400">US corn, soybeans</p>
                         <p className="text-red-400">Australia wheat</p>
                         <p className="text-red-400">Argentina crops</p>
                       </div>
                       <div>
-                        <p className="text-gray-500 mb-1">Boosts yield:</p>
+                        <p className="text-muted-foreground mb-1">Boosts yield:</p>
                         <p className="text-emerald-400">Brazil coffee</p>
                         <p className="text-emerald-400">W. Africa cocoa</p>
                         <p className="text-emerald-400">SE Asia rice</p>
@@ -1498,13 +1498,13 @@ export default function CommodityCyclesPage() {
                     </p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
                       <div>
-                        <p className="text-gray-500 mb-1">Reduces yield:</p>
+                        <p className="text-muted-foreground mb-1">Reduces yield:</p>
                         <p className="text-red-400">SE Asia palm oil</p>
                         <p className="text-red-400">India sugarcane</p>
                         <p className="text-red-400">Australian wheat</p>
                       </div>
                       <div>
-                        <p className="text-gray-500 mb-1">Boosts yield:</p>
+                        <p className="text-muted-foreground mb-1">Boosts yield:</p>
                         <p className="text-emerald-400">US corn/soybeans</p>
                         <p className="text-emerald-400">Brazil sugarcane</p>
                         <p className="text-emerald-400">Argentina grains</p>
@@ -1518,7 +1518,7 @@ export default function CommodityCyclesPage() {
             {/* Agri table */}
             <Card className="bg-white/[0.03] border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-gray-300">
+                <CardTitle className="text-sm font-semibold text-muted-foreground">
                   Agricultural Complex — Market Data
                 </CardTitle>
               </CardHeader>
@@ -1526,7 +1526,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-gray-500">
+                      <tr className="border-b border-white/10 text-muted-foreground">
                         <th className="text-left py-2 pr-4">Commodity</th>
                         <th className="text-right py-2 pr-4">Price</th>
                         <th className="text-right py-2 pr-4">YoY</th>
@@ -1545,7 +1545,7 @@ export default function CommodityCyclesPage() {
                             <span className="font-medium text-white">
                               {row.name}
                             </span>
-                            <span className="text-gray-600 ml-1">
+                            <span className="text-muted-foreground ml-1">
                               ({row.symbol})
                             </span>
                           </td>
@@ -1553,14 +1553,14 @@ export default function CommodityCyclesPage() {
                             {row.price >= 1000
                               ? `$${row.price.toLocaleString()}`
                               : `$${row.price.toFixed(2)}`}
-                            <span className="text-gray-500 ml-1 text-xs">
+                            <span className="text-muted-foreground ml-1 text-xs">
                               {row.unit}
                             </span>
                           </td>
                           <td className="py-2 pr-4 text-right">
                             <ChangeChip value={row.yoyChange} />
                           </td>
-                          <td className="py-2 pr-4 text-gray-300">
+                          <td className="py-2 pr-4 text-muted-foreground">
                             {row.topProducer}
                           </td>
                           <td className="py-2 pr-4 text-center">
@@ -1570,13 +1570,13 @@ export default function CommodityCyclesPage() {
                                   ? "bg-red-500/15 text-red-400 border-red-500/25"
                                   : row.laNinaImpact === "Positive"
                                   ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
-                                  : "bg-gray-500/15 text-gray-400 border-gray-500/25"
+                                  : "bg-gray-500/15 text-muted-foreground border-gray-500/25"
                               }`}
                             >
                               {row.laNinaImpact}
                             </Badge>
                           </td>
-                          <td className="py-2 text-right text-gray-400">
+                          <td className="py-2 text-right text-muted-foreground">
                             {row.harvestMonths}
                           </td>
                         </tr>
@@ -1590,7 +1590,7 @@ export default function CommodityCyclesPage() {
             {/* Crop calendar visual */}
             <Card className="bg-white/[0.03] border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-gray-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <Globe size={14} className="text-primary" />
                   Northern Hemisphere Crop Calendar
                 </CardTitle>
@@ -1628,7 +1628,7 @@ export default function CommodityCyclesPage() {
                     },
                   ].map(({ crop, plant, grow, harvest, color }) => (
                     <div key={crop} className="flex items-center gap-2">
-                      <span className="text-xs text-gray-400 w-28 shrink-0">
+                      <span className="text-xs text-muted-foreground w-28 shrink-0">
                         {crop}
                       </span>
                       <div className="flex gap-0.5 flex-1">
@@ -1666,13 +1666,13 @@ export default function CommodityCyclesPage() {
                     </div>
                   ))}
                   <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs text-gray-600 w-28 shrink-0" />
+                    <span className="text-xs text-muted-foreground w-28 shrink-0" />
                     <div className="flex gap-0.5 flex-1">
                       {["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"].map(
                         (m) => (
                           <span
                             key={m}
-                            className="flex-1 text-center text-[11px] text-gray-600"
+                            className="flex-1 text-center text-[11px] text-muted-foreground"
                           >
                             {m}
                           </span>
@@ -1680,7 +1680,7 @@ export default function CommodityCyclesPage() {
                       )}
                     </div>
                   </div>
-                  <div className="flex gap-4 text-xs text-gray-500 mt-1">
+                  <div className="flex gap-4 text-xs text-muted-foreground mt-1">
                     <span className="flex items-center gap-1">
                       <span className="w-3 h-2 rounded-sm bg-white/30 inline-block" />
                       Planting
@@ -1706,7 +1706,7 @@ export default function CommodityCyclesPage() {
             {/* Quick compare table */}
             <Card className="bg-white/[0.03] border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-gray-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <DollarSign size={14} className="text-emerald-400" />
                   Investment Vehicle Comparison
                 </CardTitle>
@@ -1715,7 +1715,7 @@ export default function CommodityCyclesPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/10 text-gray-500">
+                      <tr className="border-b border-white/10 text-muted-foreground">
                         <th className="text-left py-2 pr-4">Vehicle</th>
                         <th className="text-left py-2 pr-4">Type</th>
                         <th className="text-right py-2 pr-4">AUM / Mkt Cap</th>
@@ -1753,16 +1753,16 @@ export default function CommodityCyclesPage() {
                               {v.type}
                             </Badge>
                           </td>
-                          <td className="py-2 pr-4 text-right text-gray-300">
+                          <td className="py-2 pr-4 text-right text-muted-foreground">
                             {v.aum}
                           </td>
-                          <td className="py-2 pr-4 text-right text-gray-300">
+                          <td className="py-2 pr-4 text-right text-muted-foreground">
                             {v.expenseRatio > 0 ? `${v.expenseRatio}%` : "—"}
                           </td>
-                          <td className="py-2 pr-4 text-right text-gray-300">
+                          <td className="py-2 pr-4 text-right text-muted-foreground">
                             {v.rollCost !== null ? `~${v.rollCost}%/yr` : "—"}
                           </td>
-                          <td className="py-2 text-gray-400 max-w-xs">
+                          <td className="py-2 text-muted-foreground max-w-xs">
                             {v.exposure}
                           </td>
                         </tr>
@@ -1775,7 +1775,7 @@ export default function CommodityCyclesPage() {
 
             {/* Detailed cards */}
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wide">
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
                 Detailed Analysis
               </h3>
               {INVESTMENT_VEHICLES.map((v) => (
@@ -1813,7 +1813,7 @@ export default function CommodityCyclesPage() {
                         {v.ticker}
                       </span>
                     </div>
-                    <div className="flex items-center gap-3 text-xs text-gray-500">
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
                       {v.expenseRatio > 0 && (
                         <span>ER: {v.expenseRatio}%</span>
                       )}
@@ -1840,11 +1840,11 @@ export default function CommodityCyclesPage() {
                       >
                         <div className="px-4 pb-4 grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-white/10 pt-4">
                           <div>
-                            <p className="text-xs text-gray-500 mb-1.5 uppercase tracking-wide">
+                            <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wide">
                               Exposure
                             </p>
                             <p className="text-sm text-white">{v.exposure}</p>
-                            <p className="text-xs text-gray-400 mt-1">
+                            <p className="text-xs text-muted-foreground mt-1">
                               AUM: {v.aum}
                             </p>
                           </div>
@@ -1856,7 +1856,7 @@ export default function CommodityCyclesPage() {
                               {v.pros.map((p) => (
                                 <li
                                   key={p}
-                                  className="text-xs text-gray-300 flex items-start gap-1.5"
+                                  className="text-xs text-muted-foreground flex items-start gap-1.5"
                                 >
                                   <TrendingUp
                                     size={10}
@@ -1875,7 +1875,7 @@ export default function CommodityCyclesPage() {
                               {v.cons.map((c) => (
                                 <li
                                   key={c}
-                                  className="text-xs text-gray-300 flex items-start gap-1.5"
+                                  className="text-xs text-muted-foreground flex items-start gap-1.5"
                                 >
                                   <TrendingDown
                                     size={10}
@@ -1903,7 +1903,7 @@ export default function CommodityCyclesPage() {
                     <p className="text-sm font-semibold text-amber-400 mb-1">
                       Understanding Futures Roll Cost
                     </p>
-                    <p className="text-xs text-gray-400 leading-relaxed">
+                    <p className="text-xs text-muted-foreground leading-relaxed">
                       Commodity ETFs that hold futures contracts must "roll" expiring contracts to the
                       next month. When markets are in{" "}
                       <span className="text-amber-300 font-medium">contango</span> (future price &gt;

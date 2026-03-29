@@ -879,7 +879,7 @@ function PodiumSlot({
       {/* Place label (no emoji) */}
       <span className={cn(
         "text-xs font-bold tabular-nums",
-        place === 1 ? "text-amber-400" : place === 2 ? "text-gray-300" : "text-orange-400",
+        place === 1 ? "text-amber-400" : place === 2 ? "text-muted-foreground" : "text-orange-400",
       )}>{placeLabels[place - 1]}</span>
 
       {/* Avatar */}

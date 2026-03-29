@@ -693,7 +693,7 @@ function ShariahTab() {
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-white mb-1">The Five Core Prohibitions</h2>
-        <p className="text-sm text-gray-400">Islamic finance is built around avoiding specific categories of harm. These prohibitions shape every sukuk structure.</p>
+        <p className="text-sm text-muted-foreground">Islamic finance is built around avoiding specific categories of harm. These prohibitions shape every sukuk structure.</p>
       </div>
 
       <div className="space-y-3">
@@ -702,7 +702,7 @@ function ShariahTab() {
           return (
             <motion.div
               key={p.arabic}
-              className="rounded-xl border border-gray-700 bg-gray-800/50 overflow-hidden"
+              className="rounded-xl border border-border bg-muted/50 overflow-hidden"
               layout
             >
               <button
@@ -713,10 +713,10 @@ function ShariahTab() {
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-white">{p.arabic}</span>
-                    <span className="text-xs text-gray-400 bg-gray-700 px-2 py-0.5 rounded-full">{p.english}</span>
+                    <span className="text-xs text-muted-foreground bg-gray-700 px-2 py-0.5 rounded-full">{p.english}</span>
                   </div>
                 </div>
-                {isOpen ? <ChevronUp className="h-4 w-4 text-gray-400" /> : <ChevronDown className="h-4 w-4 text-gray-400" />}
+                {isOpen ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
               </button>
               <AnimatePresence initial={false}>
                 {isOpen && (
@@ -728,10 +728,10 @@ function ShariahTab() {
                     className="overflow-hidden"
                   >
                     <div className="px-4 pb-4 space-y-3">
-                      <p className="text-sm text-gray-300">{p.description}</p>
-                      <div className="bg-gray-900/60 rounded-lg p-3">
-                        <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Practical Examples</p>
-                        <p className="text-sm text-gray-400">{p.example}</p>
+                      <p className="text-sm text-muted-foreground">{p.description}</p>
+                      <div className="bg-card/60 rounded-lg p-3">
+                        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Practical Examples</p>
+                        <p className="text-sm text-muted-foreground">{p.example}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -745,10 +745,10 @@ function ShariahTab() {
       {/* Halal vs Haram sector table */}
       <div>
         <h3 className="text-base font-semibold text-white mb-3">Halal vs. Haram Sector Screening</h3>
-        <div className="rounded-xl border border-gray-700 overflow-hidden">
+        <div className="rounded-xl border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-gray-800 text-gray-400 text-xs uppercase tracking-wide">
+              <tr className="bg-muted text-muted-foreground text-xs uppercase tracking-wide">
                 <th className="text-left px-4 py-2.5">Sector</th>
                 <th className="text-center px-3 py-2.5">Status</th>
                 <th className="text-left px-4 py-2.5">Note</th>
@@ -758,9 +758,9 @@ function ShariahTab() {
               {HALAL_SECTORS.map((row, i) => (
                 <tr
                   key={row.sector}
-                  className={cn("border-t border-gray-700/50", i % 2 === 0 ? "bg-gray-800/20" : "bg-gray-800/5")}
+                  className={cn("border-t border-border/50", i % 2 === 0 ? "bg-muted/20" : "bg-muted/5")}
                 >
-                  <td className="px-4 py-2.5 text-gray-200">{row.sector}</td>
+                  <td className="px-4 py-2.5 text-foreground">{row.sector}</td>
                   <td className="px-3 py-2.5 text-center">
                     {row.halal ? (
                       <CheckCircle2 className="h-4 w-4 text-emerald-400 inline" />
@@ -768,7 +768,7 @@ function ShariahTab() {
                       <XCircle className="h-4 w-4 text-red-400 inline" />
                     )}
                   </td>
-                  <td className="px-4 py-2.5 text-gray-400 text-xs">{row.note}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground text-xs">{row.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -778,12 +778,12 @@ function ShariahTab() {
 
       {/* AAOIFI + Shariah Board */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Scale className="h-4 w-4 text-primary" />
             <span className="font-semibold text-white text-sm">Shariah Board Role</span>
           </div>
-          <ul className="space-y-1.5 text-xs text-gray-400">
+          <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li>• Approve all product structures before issuance</li>
             <li>• Review underlying assets for compliance</li>
             <li>• Issue fatwa (religious ruling) on each transaction</li>
@@ -791,12 +791,12 @@ function ShariahTab() {
             <li>• Typically 3–7 scholars; internationally recognized</li>
           </ul>
         </div>
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <BookOpen className="h-4 w-4 text-primary" />
             <span className="font-semibold text-white text-sm">AAOIFI Standards</span>
           </div>
-          <ul className="space-y-1.5 text-xs text-gray-400">
+          <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li>• Accounting &amp; Auditing Organization for Islamic Financial Institutions</li>
             <li>• 100+ Shariah standards since 1991</li>
             <li>• Standard 17 specifically governs investment sukuk</li>
@@ -819,7 +819,7 @@ function StructuresTab() {
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-white mb-1">Sukuk Structure Types</h2>
-        <p className="text-sm text-gray-400">Different underlying contracts produce different sukuk structures. Each has distinct Shariah requirements, risk profiles, and market uses.</p>
+        <p className="text-sm text-muted-foreground">Different underlying contracts produce different sukuk structures. Each has distinct Shariah requirements, risk profiles, and market uses.</p>
       </div>
 
       {/* Structure selector */}
@@ -832,7 +832,7 @@ function StructuresTab() {
               "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
               selected === s.id
                 ? "text-white border-transparent"
-                : "bg-gray-800 text-gray-400 border-gray-600 hover:border-gray-500"
+                : "bg-muted text-muted-foreground border-gray-600 hover:border-gray-500"
             )}
             style={selected === s.id ? { backgroundColor: s.color, borderColor: s.color } : {}}
           >
@@ -851,25 +851,25 @@ function StructuresTab() {
           className="space-y-4"
         >
           {/* Header */}
-          <div className="rounded-xl border p-4 bg-gray-800/40" style={{ borderColor: structure.color + "40" }}>
+          <div className="rounded-xl border p-4 bg-muted/40" style={{ borderColor: structure.color + "40" }}>
             <div className="flex items-start justify-between mb-2">
               <div>
                 <h3 className="font-bold text-white text-base">{structure.name}</h3>
-                <p className="text-xs text-gray-500">{structure.arabic}</p>
+                <p className="text-xs text-muted-foreground">{structure.arabic}</p>
               </div>
               <span className="text-xs px-2.5 py-1 rounded-full font-medium" style={{ backgroundColor: structure.color + "25", color: structure.color }}>
                 {structure.marketShare}% market share
               </span>
             </div>
-            <p className="text-sm text-gray-300">{structure.description}</p>
+            <p className="text-sm text-muted-foreground">{structure.description}</p>
           </div>
 
           {/* Flow Diagram */}
-          <div className="rounded-xl border border-gray-700 bg-gray-900/50 p-4">
-            <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Transaction Flow</p>
+          <div className="rounded-xl border border-border bg-card/50 p-4">
+            <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Transaction Flow</p>
             <FlowDiagram structure={structure} />
-            <div className="mt-2 bg-gray-800/50 rounded-lg p-3">
-              <p className="text-xs text-gray-400">{structure.mechanism}</p>
+            <div className="mt-2 bg-muted/50 rounded-lg p-3">
+              <p className="text-xs text-muted-foreground">{structure.mechanism}</p>
             </div>
           </div>
 
@@ -879,7 +879,7 @@ function StructuresTab() {
               <p className="text-xs text-emerald-400 uppercase tracking-wide font-semibold mb-2">Advantages</p>
               <ul className="space-y-1.5">
                 {structure.pros.map((pro) => (
-                  <li key={pro} className="flex items-start gap-2 text-xs text-gray-300">
+                  <li key={pro} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 mt-0.5 shrink-0" />
                     {pro}
                   </li>
@@ -890,7 +890,7 @@ function StructuresTab() {
               <p className="text-xs text-red-400 uppercase tracking-wide font-semibold mb-2">Limitations</p>
               <ul className="space-y-1.5">
                 {structure.cons.map((con) => (
-                  <li key={con} className="flex items-start gap-2 text-xs text-gray-300">
+                  <li key={con} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <XCircle className="h-3.5 w-3.5 text-red-400 mt-0.5 shrink-0" />
                     {con}
                   </li>
@@ -903,12 +903,12 @@ function StructuresTab() {
 
       {/* Donut + sovereign vs corporate comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Market Issuance by Structure</p>
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">Market Issuance by Structure</p>
           <DonutChart structures={SUKUK_STRUCTURES} />
         </div>
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Sovereign vs. Corporate Sukuk</p>
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Sovereign vs. Corporate Sukuk</p>
           <div className="space-y-3 text-sm">
             {[
               { feat: "Issuer", sov: "National governments, quasi-sovereigns", corp: "Banks, corporates, SPVs" },
@@ -918,8 +918,8 @@ function StructuresTab() {
               { feat: "Yield", sov: "Reference benchmark", corp: "Spread over sovereign" },
               { feat: "Liquidity", sov: "Higher — benchmark issues", corp: "Lower — buy-and-hold" },
             ].map((row) => (
-              <div key={row.feat} className="grid grid-cols-3 gap-2 text-xs border-b border-gray-700/40 pb-2 last:border-0">
-                <span className="text-gray-500 font-medium">{row.feat}</span>
+              <div key={row.feat} className="grid grid-cols-3 gap-2 text-xs border-b border-border/40 pb-2 last:border-0">
+                <span className="text-muted-foreground font-medium">{row.feat}</span>
                 <span className="text-primary">{row.sov}</span>
                 <span className="text-primary">{row.corp}</span>
               </div>
@@ -938,7 +938,7 @@ function MarketTab() {
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-white mb-1">Global Sukuk Market Overview</h2>
-        <p className="text-sm text-gray-400">The global sukuk market has grown from ~$116B in 2015 to ~$816B outstanding in 2024, driven by GCC sovereign issuance and Southeast Asian corporate demand.</p>
+        <p className="text-sm text-muted-foreground">The global sukuk market has grown from ~$116B in 2015 to ~$816B outstanding in 2024, driven by GCC sovereign issuance and Southeast Asian corporate demand.</p>
       </div>
 
       {/* Stats row */}
@@ -949,25 +949,25 @@ function MarketTab() {
           { label: "Avg Tenor", value: "7.4 yrs", sub: "Global weighted avg", color: "text-primary" },
           { label: "ESG / Green Sukuk", value: "$38B", sub: "4.7% of total", color: "text-amber-400" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-gray-700 bg-gray-800/40 p-3 text-center">
+          <div key={stat.label} className="rounded-xl border border-border bg-muted/40 p-3 text-center">
             <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
-            <div className="text-xs text-gray-300 mt-0.5">{stat.label}</div>
-            <div className="text-xs text-gray-500">{stat.sub}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
+            <div className="text-xs text-muted-foreground">{stat.sub}</div>
           </div>
         ))}
       </div>
 
       {/* Bar chart */}
-      <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
-        <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Global Sukuk Issuance 2015–2024 (USD Billion)</p>
+      <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Global Sukuk Issuance 2015–2024 (USD Billion)</p>
         <IssuanceBarChart />
       </div>
 
       {/* Country table */}
-      <div className="rounded-xl border border-gray-700 overflow-hidden">
+      <div className="rounded-xl border border-border overflow-hidden">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-gray-800 text-gray-400 text-xs uppercase tracking-wide">
+            <tr className="bg-muted text-muted-foreground text-xs uppercase tracking-wide">
               <th className="text-left px-4 py-2.5">Country</th>
               <th className="text-right px-3 py-2.5">Outstanding ($B)</th>
               <th className="text-right px-3 py-2.5">Share</th>
@@ -978,10 +978,10 @@ function MarketTab() {
           </thead>
           <tbody>
             {COUNTRIES.map((c, i) => (
-              <tr key={c.country} className={cn("border-t border-gray-700/50", i % 2 === 0 ? "bg-gray-800/20" : "bg-gray-800/5")}>
+              <tr key={c.country} className={cn("border-t border-border/50", i % 2 === 0 ? "bg-muted/20" : "bg-muted/5")}>
                 <td className="px-4 py-2.5">
                   <span className="mr-2">{c.flag}</span>
-                  <span className="text-gray-200">{c.country}</span>
+                  <span className="text-foreground">{c.country}</span>
                 </td>
                 <td className="px-3 py-2.5 text-right text-primary font-medium">{c.outstanding}</td>
                 <td className="px-3 py-2.5 text-right">
@@ -989,12 +989,12 @@ function MarketTab() {
                     <div className="w-16 bg-gray-700 rounded-full h-1.5">
                       <div className="bg-primary h-1.5 rounded-full" style={{ width: `${c.share * 2.5}%` }} />
                     </div>
-                    <span className="text-gray-300 text-xs w-10 text-right">{c.share}%</span>
+                    <span className="text-muted-foreground text-xs w-10 text-right">{c.share}%</span>
                   </div>
                 </td>
-                <td className="px-3 py-2.5 text-gray-400 text-xs">{c.primaryCurrency}</td>
-                <td className="px-3 py-2.5 text-gray-300 text-xs">{c.yieldRange}</td>
-                <td className="px-3 py-2.5 text-gray-300 text-xs">{c.rating}</td>
+                <td className="px-3 py-2.5 text-muted-foreground text-xs">{c.primaryCurrency}</td>
+                <td className="px-3 py-2.5 text-muted-foreground text-xs">{c.yieldRange}</td>
+                <td className="px-3 py-2.5 text-muted-foreground text-xs">{c.rating}</td>
               </tr>
             ))}
           </tbody>
@@ -1003,8 +1003,8 @@ function MarketTab() {
 
       {/* Currency + maturity + rating breakdown */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Currency Breakdown</p>
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Currency Breakdown</p>
           <div className="space-y-2">
             {[
               { label: "USD", pct: 42, color: "bg-primary" },
@@ -1014,17 +1014,17 @@ function MarketTab() {
               { label: "Other", pct: 7, color: "bg-gray-500" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
-                <span className="text-xs text-gray-400 w-8">{item.label}</span>
+                <span className="text-xs text-muted-foreground w-8">{item.label}</span>
                 <div className="flex-1 bg-gray-700 rounded-full h-2">
                   <div className={cn("h-2 rounded-full", item.color)} style={{ width: `${item.pct}%` }} />
                 </div>
-                <span className="text-xs text-gray-400 w-8 text-right">{item.pct}%</span>
+                <span className="text-xs text-muted-foreground w-8 text-right">{item.pct}%</span>
               </div>
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Maturity Profile</p>
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Maturity Profile</p>
           <div className="space-y-2">
             {[
               { label: "1–3 yr", pct: 22, color: "bg-cyan-500" },
@@ -1034,17 +1034,17 @@ function MarketTab() {
               { label: "30+ yr", pct: 2, color: "bg-primary" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
-                <span className="text-xs text-gray-400 w-10">{item.label}</span>
+                <span className="text-xs text-muted-foreground w-10">{item.label}</span>
                 <div className="flex-1 bg-gray-700 rounded-full h-2">
                   <div className={cn("h-2 rounded-full", item.color)} style={{ width: `${item.pct * 3}%` }} />
                 </div>
-                <span className="text-xs text-gray-400 w-8 text-right">{item.pct}%</span>
+                <span className="text-xs text-muted-foreground w-8 text-right">{item.pct}%</span>
               </div>
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
-          <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Rating Distribution</p>
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Rating Distribution</p>
           <div className="space-y-2">
             {[
               { label: "AAA–AA", pct: 18, color: "bg-emerald-500" },
@@ -1054,11 +1054,11 @@ function MarketTab() {
               { label: "NR", pct: 8, color: "bg-gray-500" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
-                <span className="text-xs text-gray-400 w-12">{item.label}</span>
+                <span className="text-xs text-muted-foreground w-12">{item.label}</span>
                 <div className="flex-1 bg-gray-700 rounded-full h-2">
                   <div className={cn("h-2 rounded-full", item.color)} style={{ width: `${item.pct * 2.8}%` }} />
                 </div>
-                <span className="text-xs text-gray-400 w-8 text-right">{item.pct}%</span>
+                <span className="text-xs text-muted-foreground w-8 text-right">{item.pct}%</span>
               </div>
             ))}
           </div>
@@ -1075,14 +1075,14 @@ function ComparisonTab() {
     <div className="space-y-6">
       <div>
         <h2 className="text-lg font-semibold text-white mb-1">Sukuk vs. Conventional Bonds</h2>
-        <p className="text-sm text-gray-400">While sukuk and bonds may appear similar as fixed-income instruments, fundamental differences in structure, ownership, and return mechanics distinguish them.</p>
+        <p className="text-sm text-muted-foreground">While sukuk and bonds may appear similar as fixed-income instruments, fundamental differences in structure, ownership, and return mechanics distinguish them.</p>
       </div>
 
       {/* Comparison table */}
-      <div className="rounded-xl border border-gray-700 overflow-hidden">
+      <div className="rounded-xl border border-border overflow-hidden">
         <table className="w-full text-xs">
           <thead>
-            <tr className="bg-gray-800 text-gray-400 text-xs uppercase tracking-wide">
+            <tr className="bg-muted text-muted-foreground text-xs uppercase tracking-wide">
               <th className="text-left px-4 py-3 w-1/3">Feature</th>
               <th className="px-3 py-3 text-center text-emerald-400">Sukuk</th>
               <th className="px-3 py-3 text-center text-primary">Conventional Bond</th>
@@ -1093,21 +1093,21 @@ function ComparisonTab() {
             {COMPARISON_ROWS.map((row, i) => (
               <tr
                 key={row.feature}
-                className={cn("border-t border-gray-700/50", i % 2 === 0 ? "bg-gray-800/20" : "bg-gray-800/5")}
+                className={cn("border-t border-border/50", i % 2 === 0 ? "bg-muted/20" : "bg-muted/5")}
               >
-                <td className="px-4 py-2.5 text-gray-300 font-medium">{row.feature}</td>
-                <td className="px-3 py-2.5 text-gray-300">{row.sukuk}</td>
-                <td className="px-3 py-2.5 text-gray-300">{row.bond}</td>
+                <td className="px-4 py-2.5 text-muted-foreground font-medium">{row.feature}</td>
+                <td className="px-3 py-2.5 text-muted-foreground">{row.sukuk}</td>
+                <td className="px-3 py-2.5 text-muted-foreground">{row.bond}</td>
                 <td className="px-3 py-2.5 text-center">
                   {row.sukukFav === true && <TrendingUp className="h-3.5 w-3.5 text-emerald-400 inline" />}
                   {row.sukukFav === false && <TrendingDown className="h-3.5 w-3.5 text-red-400 inline" />}
-                  {row.sukukFav === null && <span className="text-gray-600 text-xs">—</span>}
+                  {row.sukukFav === null && <span className="text-muted-foreground text-xs">—</span>}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className="px-4 py-2 bg-gray-800/60 flex items-center gap-4 text-xs text-gray-500">
+        <div className="px-4 py-2 bg-muted/60 flex items-center gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><TrendingUp className="h-3 w-3 text-emerald-400" /> Sukuk advantage</span>
           <span className="flex items-center gap-1"><TrendingDown className="h-3 w-3 text-red-400" /> Bond advantage</span>
           <span>— Comparable / neutral</span>
@@ -1115,35 +1115,35 @@ function ComparisonTab() {
       </div>
 
       {/* Yield spread chart */}
-      <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
-        <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Yield & Spread History (2015–2024)</p>
-        <p className="text-xs text-gray-600 mb-3">Sukuk traditionally trade at a modest spread to equivalent-rated conventional bonds due to lower liquidity and smaller investor base</p>
+      <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Yield & Spread History (2015–2024)</p>
+        <p className="text-xs text-muted-foreground mb-3">Sukuk traditionally trade at a modest spread to equivalent-rated conventional bonds due to lower liquidity and smaller investor base</p>
         <YieldSpreadChart />
       </div>
 
       {/* Liquidity + crossover investors */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="h-4 w-4 text-primary" />
             <span className="text-sm font-semibold text-white">Liquidity Differences</span>
           </div>
-          <div className="space-y-2 text-xs text-gray-400">
-            <div className="flex justify-between border-b border-gray-700/40 pb-1.5">
+          <div className="space-y-2 text-xs text-muted-foreground">
+            <div className="flex justify-between border-b border-border/40 pb-1.5">
               <span>Avg bid-ask spread (IG)</span>
               <span className="text-amber-300">25–50 bps (sukuk) vs 5–15 bps (bond)</span>
             </div>
-            <div className="flex justify-between border-b border-gray-700/40 pb-1.5">
+            <div className="flex justify-between border-b border-border/40 pb-1.5">
               <span>Daily turnover</span>
               <span className="text-amber-300">~3% of outstanding vs ~15% for UST</span>
             </div>
-            <div className="flex justify-between border-b border-gray-700/40 pb-1.5">
+            <div className="flex justify-between border-b border-border/40 pb-1.5">
               <span>Buy-and-hold investors</span>
-              <span className="text-gray-300">~65% of sukuk held to maturity</span>
+              <span className="text-muted-foreground">~65% of sukuk held to maturity</span>
             </div>
-            <div className="flex justify-between border-b border-gray-700/40 pb-1.5">
+            <div className="flex justify-between border-b border-border/40 pb-1.5">
               <span>Exchange-listed share</span>
-              <span className="text-gray-300">~45% listed on Nasdaq Dubai / LSE</span>
+              <span className="text-muted-foreground">~45% listed on Nasdaq Dubai / LSE</span>
             </div>
             <div className="flex justify-between">
               <span>Repo market development</span>
@@ -1151,22 +1151,22 @@ function ComparisonTab() {
             </div>
           </div>
         </div>
-        <div className="rounded-xl border border-gray-700 bg-gray-800/40 p-4">
+        <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <ArrowRightLeft className="h-4 w-4 text-primary" />
             <span className="text-sm font-semibold text-white">Crossover Investor Flow</span>
           </div>
-          <div className="space-y-3 text-xs text-gray-400">
-            <div className="bg-gray-900/50 rounded-lg p-3">
-              <p className="text-gray-300 font-medium mb-1">Who buys both?</p>
+          <div className="space-y-3 text-xs text-muted-foreground">
+            <div className="bg-card/50 rounded-lg p-3">
+              <p className="text-muted-foreground font-medium mb-1">Who buys both?</p>
               <p>GEM (global emerging market) fund managers, MENA sovereign wealth funds, and international banks with Islamic finance divisions actively participate in both markets.</p>
             </div>
-            <div className="bg-gray-900/50 rounded-lg p-3">
-              <p className="text-gray-300 font-medium mb-1">Dual-listed securities</p>
+            <div className="bg-card/50 rounded-lg p-3">
+              <p className="text-muted-foreground font-medium mb-1">Dual-listed securities</p>
               <p>Major sukuk (Saudi Aramco, UAE sovereign) are dual-listed, allowing both Islamic and conventional investors to buy same instrument under their respective frameworks.</p>
             </div>
-            <div className="bg-gray-900/50 rounded-lg p-3">
-              <p className="text-gray-300 font-medium mb-1">Spread compression drivers</p>
+            <div className="bg-card/50 rounded-lg p-3">
+              <p className="text-muted-foreground font-medium mb-1">Spread compression drivers</p>
               <p>Crossover demand narrows sukuk spreads vs conventional bonds when GCC sovereigns issue in size, as both investor bases compete for the same paper.</p>
             </div>
           </div>
@@ -1176,7 +1176,7 @@ function ComparisonTab() {
       {/* Info card */}
       <div className="rounded-xl border border-border bg-muted/30 p-4 flex gap-3">
         <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-        <div className="text-xs text-gray-400">
+        <div className="text-xs text-muted-foreground">
           <span className="text-primary font-medium">Key insight: </span>
           From a cash flow perspective, investment-grade ijara sukuk often look nearly identical to conventional bonds — predictable periodic payments and a bullet redemption. The critical distinction is structural: sukuk holders legally co-own an underlying asset, while bondholders are unsecured creditors of the issuer. This difference has material implications in default scenarios.
         </div>
@@ -1189,7 +1189,7 @@ function ComparisonTab() {
 
 export default function SukukPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1204,7 +1204,7 @@ export default function SukukPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Islamic Finance &amp; Sukuk</h1>
-              <p className="text-sm text-gray-400">Shariah-compliant capital markets — structures, principles &amp; global market</p>
+              <p className="text-sm text-muted-foreground">Shariah-compliant capital markets — structures, principles &amp; global market</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
@@ -1223,7 +1223,7 @@ export default function SukukPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="shariah">
-          <TabsList className="grid grid-cols-4 w-full bg-gray-800/60 mb-6">
+          <TabsList className="grid grid-cols-4 w-full bg-muted/60 mb-6">
             <TabsTrigger value="shariah" className="text-xs flex items-center gap-1.5 data-[state=inactive]:hidden md:data-[state=inactive]:flex">
               <ShieldCheck className="h-3.5 w-3.5" />
               <span className="hidden sm:inline">Shariah Principles</span>

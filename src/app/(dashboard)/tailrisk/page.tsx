@@ -275,8 +275,8 @@ function BlackSwanTab() {
           <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
           <div>
             <p className="text-sm font-semibold text-red-300 mb-1">Nassim Taleb's Black Swan Theory</p>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              A Black Swan event has three attributes: it is an <span className="text-slate-200">outlier</span> beyond regular expectations, it carries an <span className="text-slate-200">extreme impact</span>, and — in retrospect — human nature makes us concoct explanations that make it appear predictable. Traditional financial models based on Gaussian distributions systematically <span className="text-red-300">underestimate tail risk</span> because real asset returns exhibit fat tails (excess kurtosis) and negative skew.
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              A Black Swan event has three attributes: it is an <span className="text-foreground">outlier</span> beyond regular expectations, it carries an <span className="text-foreground">extreme impact</span>, and — in retrospect — human nature makes us concoct explanations that make it appear predictable. Traditional financial models based on Gaussian distributions systematically <span className="text-red-300">underestimate tail risk</span> because real asset returns exhibit fat tails (excess kurtosis) and negative skew.
             </p>
           </div>
         </div>
@@ -284,17 +284,17 @@ function BlackSwanTab() {
 
       {/* Historical Events Table */}
       <div>
-        <h3 className="text-sm font-semibold text-slate-300 mb-3">Historical Tail Events</h3>
-        <div className="overflow-x-auto rounded-xl border border-slate-800">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-3">Historical Tail Events</h3>
+        <div className="overflow-x-auto rounded-xl border border-border">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-800 bg-slate-900/60">
-                <th className="px-3 py-2.5 text-left text-slate-500 font-medium">Year</th>
-                <th className="px-3 py-2.5 text-left text-slate-500 font-medium">Event</th>
-                <th className="px-3 py-2.5 text-left text-slate-500 font-medium">Category</th>
-                <th className="px-3 py-2.5 text-right text-slate-500 font-medium">S&P Peak→Trough</th>
-                <th className="px-3 py-2.5 text-right text-slate-500 font-medium">VIX Spike</th>
-                <th className="px-3 py-2.5 text-right text-slate-500 font-medium">Recovery</th>
+              <tr className="border-b border-border bg-card/60">
+                <th className="px-3 py-2.5 text-left text-muted-foreground font-medium">Year</th>
+                <th className="px-3 py-2.5 text-left text-muted-foreground font-medium">Event</th>
+                <th className="px-3 py-2.5 text-left text-muted-foreground font-medium">Category</th>
+                <th className="px-3 py-2.5 text-right text-muted-foreground font-medium">S&P Peak→Trough</th>
+                <th className="px-3 py-2.5 text-right text-muted-foreground font-medium">VIX Spike</th>
+                <th className="px-3 py-2.5 text-right text-muted-foreground font-medium">Recovery</th>
               </tr>
             </thead>
             <tbody>
@@ -302,14 +302,14 @@ function BlackSwanTab() {
                 <tr
                   key={i}
                   className={cn(
-                    "border-b border-slate-800/50 transition-colors cursor-default",
-                    hoveredRow === i ? "bg-slate-800/50" : i % 2 === 0 ? "bg-slate-900/20" : ""
+                    "border-b border-border/50 transition-colors cursor-default",
+                    hoveredRow === i ? "bg-muted/50" : i % 2 === 0 ? "bg-card/20" : ""
                   )}
                   onMouseEnter={() => setHoveredRow(i)}
                   onMouseLeave={() => setHoveredRow(null)}
                 >
-                  <td className="px-3 py-2 text-slate-400 font-mono">{ev.year}</td>
-                  <td className="px-3 py-2 text-slate-200 font-medium">{ev.name}</td>
+                  <td className="px-3 py-2 text-muted-foreground font-mono">{ev.year}</td>
+                  <td className="px-3 py-2 text-foreground font-medium">{ev.name}</td>
                   <td className="px-3 py-2">
                     <span
                       className="px-1.5 py-0.5 rounded text-xs font-medium"
@@ -324,7 +324,7 @@ function BlackSwanTab() {
                       {ev.vixSpike}
                     </span>
                   </td>
-                  <td className="px-3 py-2 text-right font-mono text-slate-300">
+                  <td className="px-3 py-2 text-right font-mono text-muted-foreground">
                     {ev.recoveryMonths < 3 ? `${ev.recoveryMonths}mo` : ev.recoveryMonths >= 12 ? `${(ev.recoveryMonths / 12).toFixed(1)}yr` : `${ev.recoveryMonths}mo`}
                   </td>
                 </tr>
@@ -335,29 +335,29 @@ function BlackSwanTab() {
       </div>
 
       {/* Fat Tail Distribution */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">Fat Tail vs Normal Distribution</h3>
-        <p className="text-xs text-slate-500 mb-3">Real returns have heavier tails — extreme events occur far more often than a Gaussian model predicts.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">Fat Tail vs Normal Distribution</h3>
+        <p className="text-xs text-muted-foreground mb-3">Real returns have heavier tails — extreme events occur far more often than a Gaussian model predicts.</p>
         <FatTailSVG />
-        <div className="mt-2 flex gap-4 text-xs text-slate-500">
+        <div className="mt-2 flex gap-4 text-xs text-muted-foreground">
           <span><span className="text-primary font-semibold">Blue:</span> Normal (Gaussian) — underestimates tail events</span>
           <span><span className="text-red-400 font-semibold">Red dashed:</span> Fat tail (Student-t df=3) — closer to reality</span>
         </div>
       </div>
 
       {/* Correlation Breakdown */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">Correlation Breakdown in Crises</h3>
-        <p className="text-xs text-slate-500 mb-3">In calm markets, assets appear diversified. During crises, correlations converge toward +1 — diversification fails precisely when you need it most.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">Correlation Breakdown in Crises</h3>
+        <p className="text-xs text-muted-foreground mb-3">In calm markets, assets appear diversified. During crises, correlations converge toward +1 — diversification fails precisely when you need it most.</p>
         <CorrelationMatrixSVG />
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
           <div className="rounded-lg bg-muted/40 border border-border p-2.5">
             <p className="text-primary font-semibold mb-1">Normal Regime</p>
-            <p className="text-slate-400">Bonds negatively correlated with equities (-0.3). Gold and commodities provide diversification. Classic 60/40 portfolio appears resilient.</p>
+            <p className="text-muted-foreground">Bonds negatively correlated with equities (-0.3). Gold and commodities provide diversification. Classic 60/40 portfolio appears resilient.</p>
           </div>
           <div className="rounded-lg bg-red-950/30 border border-red-900/30 p-2.5">
             <p className="text-red-400 font-semibold mb-1">Crisis Regime</p>
-            <p className="text-slate-400">Correlations spike as forced deleveraging hits all assets. Only gold and long-duration Treasuries reliably decouple. "Risk-on / risk-off" dominates.</p>
+            <p className="text-muted-foreground">Correlations spike as forced deleveraging hits all assets. Only gold and long-duration Treasuries reliably decouple. "Risk-on / risk-off" dominates.</p>
           </div>
         </div>
       </div>
@@ -557,38 +557,38 @@ function HedgingInstrumentsTab() {
   return (
     <div className="space-y-6">
       {/* OTM Put Payoff */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">OTM Put Option Payoff Profiles</h3>
-        <p className="text-xs text-slate-500 mb-3">Deeper OTM puts cost less but require a larger drawdown to become profitable. The breakeven = Strike − Premium.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">OTM Put Option Payoff Profiles</h3>
+        <p className="text-xs text-muted-foreground mb-3">Deeper OTM puts cost less but require a larger drawdown to become profitable. The breakeven = Strike − Premium.</p>
         <OTMPutPayoffSVG />
       </div>
 
       {/* Instruments table */}
       <div>
-        <h3 className="text-sm font-semibold text-slate-300 mb-3">Hedging Instrument Comparison</h3>
+        <h3 className="text-sm font-semibold text-muted-foreground mb-3">Hedging Instrument Comparison</h3>
         <div className="grid gap-2">
           {HEDGE_INSTRUMENTS.map((inst, i) => (
             <motion.div
               key={i}
               className={cn(
                 "rounded-xl border p-3 cursor-pointer transition-colors",
-                selected === i ? "border-primary bg-muted/40" : "border-slate-800 bg-slate-900/30 hover:border-slate-700"
+                selected === i ? "border-primary bg-muted/40" : "border-border bg-card/30 hover:border-border"
               )}
               onClick={() => setSelected(selected === i ? null : i)}
               whileTap={{ scale: 0.99 }}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-semibold text-slate-200">{inst.name}</span>
-                  <span className="text-xs px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">{inst.annualCost}/yr</span>
+                  <span className="text-sm font-semibold text-foreground">{inst.name}</span>
+                  <span className="text-xs px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{inst.annualCost}/yr</span>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="text-right hidden sm:block">
-                    <p className="text-xs text-slate-500">Liquidity</p>
+                    <p className="text-xs text-muted-foreground">Liquidity</p>
                     <RatingDots value={inst.liquidity} color="#3b82f6" />
                   </div>
                   <div className="text-right hidden sm:block">
-                    <p className="text-xs text-slate-500">Complexity</p>
+                    <p className="text-xs text-muted-foreground">Complexity</p>
                     <RatingDots value={inst.complexity} color="#f59e0b" />
                   </div>
                   <span className="text-xs text-green-400 font-mono font-semibold">{inst.crisisPayoff}</span>
@@ -603,7 +603,7 @@ function HedgingInstrumentsTab() {
                     transition={{ duration: 0.2 }}
                     className="mt-2 overflow-hidden"
                   >
-                    <p className="text-xs text-slate-400 leading-relaxed border-t border-slate-800/60 pt-2">{inst.mechanism}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed border-t border-border/60 pt-2">{inst.mechanism}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -613,9 +613,9 @@ function HedgingInstrumentsTab() {
       </div>
 
       {/* CTA Crisis Alpha */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">CTA / Trend Following Crisis Alpha</h3>
-        <p className="text-xs text-slate-500 mb-3">Systematic trend followers systematically go short risk assets during sustained downtrends, generating positive returns when markets crash.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">CTA / Trend Following Crisis Alpha</h3>
+        <p className="text-xs text-muted-foreground mb-3">Systematic trend followers systematically go short risk assets during sustained downtrends, generating positive returns when markets crash.</p>
         <CTACrisisAlphaSVG />
       </div>
 
@@ -625,7 +625,7 @@ function HedgingInstrumentsTab() {
           <Info className="h-4 w-4 text-orange-400 mt-0.5 shrink-0" />
           <div>
             <p className="text-xs font-semibold text-orange-300 mb-1">Variance Swap Mechanics</p>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               P&L = Notional × (Realized Vol² − Strike Vol²). In 2008, S&P realized vol reached ~80 vs an implied strike of ~25 — a variance swap payer netted a <span className="text-orange-300">~10× return</span>. The convexity of vol squaring means payoff accelerates dramatically in tail events. However, counterparty risk and liquidity constraints make these instruments inaccessible to most retail investors.
             </p>
           </div>
@@ -862,9 +862,9 @@ function CostBenefitTab() {
   return (
     <div className="space-y-6">
       {/* Drag cost */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">Compound Drag Cost of Continuous Hedging</h3>
-        <p className="text-xs text-slate-500 mb-3">Paying 1–3%/year in option premium or fund fees creates a compounding drag. Over 20 years at 8% base return, a 3% hedge cost reduces final wealth by ~35%.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">Compound Drag Cost of Continuous Hedging</h3>
+        <p className="text-xs text-muted-foreground mb-3">Paying 1–3%/year in option premium or fund fees creates a compounding drag. Over 20 years at 8% base return, a 3% hedge cost reduces final wealth by ~35%.</p>
         <DragCostSVG />
         <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
           {[
@@ -872,19 +872,19 @@ function CostBenefitTab() {
             { drag: "2%/yr", final20: (Math.pow(1.06, 20)).toFixed(2), color: "text-yellow-400" },
             { drag: "3%/yr", final20: (Math.pow(1.05, 20)).toFixed(2), color: "text-red-400" },
           ].map((d) => (
-            <div key={d.drag} className="rounded-lg bg-slate-800/60 p-2">
-              <p className="text-slate-500">{d.drag} drag</p>
+            <div key={d.drag} className="rounded-lg bg-muted/60 p-2">
+              <p className="text-muted-foreground">{d.drag} drag</p>
               <p className={cn("font-semibold", d.color)}>{d.final20}×</p>
-              <p className="text-slate-500">20yr multiple</p>
+              <p className="text-muted-foreground">20yr multiple</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* 2-year backtest simulation */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">Crisis Payoff Simulation (2-Year Backtest, 3 Crash Scenarios)</h3>
-        <p className="text-xs text-slate-500 mb-3">Seed-903 PRNG backtest. Red markers = crash events. Hedged portfolio absorbs 65% of each crash at the cost of 2%/yr drag.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">Crisis Payoff Simulation (2-Year Backtest, 3 Crash Scenarios)</h3>
+        <p className="text-xs text-muted-foreground mb-3">Seed-903 PRNG backtest. Red markers = crash events. Hedged portfolio absorbs 65% of each crash at the cost of 2%/yr drag.</p>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
           {[yMin, yMin + (yMax - yMin) * 0.33, yMin + (yMax - yMin) * 0.67, yMax].map((v) => {
             const { sy } = toSVG(0, v);
@@ -923,9 +923,9 @@ function CostBenefitTab() {
       </div>
 
       {/* Optimal hedge ratio */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">Optimal Hedge Ratio vs Cost Tradeoff</h3>
-        <p className="text-xs text-slate-500 mb-3">Expected utility (protection benefit minus drag cost) peaks at roughly 15–20% hedge allocation. Beyond this, marginal cost exceeds marginal benefit.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">Optimal Hedge Ratio vs Cost Tradeoff</h3>
+        <p className="text-xs text-muted-foreground mb-3">Expected utility (protection benefit minus drag cost) peaks at roughly 15–20% hedge allocation. Beyond this, marginal cost exceeds marginal benefit.</p>
         <HedgeRatioSVG />
       </div>
 
@@ -959,7 +959,7 @@ function CostBenefitTab() {
         ].map((card) => (
           <div key={card.title} className={cn("rounded-xl border p-3", card.color)}>
             <p className={cn("text-xs font-semibold mb-1", card.titleColor)}>{card.title}</p>
-            <p className="text-xs text-slate-400 leading-relaxed">{card.body}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
           </div>
         ))}
       </div>
@@ -1153,24 +1153,24 @@ function PortfolioConstructionTab() {
     <div className="space-y-6">
       {/* Convexity */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+        <div className="rounded-xl border border-border bg-card/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Zap className="h-4 w-4 text-yellow-400" />
-            <h3 className="text-sm font-semibold text-slate-300">Convexity as a Feature</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">Convexity as a Feature</h3>
           </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             Long options add positive convexity: the P&L profile curves upward, so large moves generate disproportionate gains. A portfolio with embedded convexity can lose less in small moves while gaining far more in large ones. This is the core of tail risk fund designs like Universa's Black Swan Protection Protocol.
           </p>
           <div className="mt-3 flex items-center gap-2 p-2 rounded-lg bg-yellow-950/30 border border-yellow-900/30">
             <span className="text-yellow-400 text-xs font-mono">Convexity = dΔ/dS = Gamma × S</span>
           </div>
         </div>
-        <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+        <div className="rounded-xl border border-border bg-card/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Activity className="h-4 w-4 text-primary" />
-            <h3 className="text-sm font-semibold text-slate-300">Tail-Risk Parity</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground">Tail-Risk Parity</h3>
           </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             Traditional risk parity equalizes volatility contributions. Tail-risk parity equalizes the <span className="text-primary">Expected Tail Loss (CVaR)</span> contribution of each asset. This results in larger allocations to crisis-resilient assets (Treasuries, gold) and smaller equity exposure than standard risk parity.
           </p>
           <div className="mt-3 flex gap-2 text-xs">
@@ -1183,15 +1183,15 @@ function PortfolioConstructionTab() {
       </div>
 
       {/* Asset performance in tail scenarios */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">Tail Hedge Asset Performance by Crisis</h3>
-        <p className="text-xs text-slate-500 mb-3">Long-duration bonds and vol overlays have been the most reliable tail hedges historically. Note: bonds failed in 2022 (rate-driven crash).</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">Tail Hedge Asset Performance by Crisis</h3>
+        <p className="text-xs text-muted-foreground mb-3">Long-duration bonds and vol overlays have been the most reliable tail hedges historically. Note: bonds failed in 2022 (rate-driven crash).</p>
         <TailAssetPerformanceSVG />
       </div>
 
       {/* Regime-based hedging */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-2">Regime-Based Hedging Rules</h3>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-2">Regime-Based Hedging Rules</h3>
         <div className="space-y-2">
           {[
             { regime: "Calm (VIX < 15)", action: "Accumulate cheap OTM puts. Add VIX calls. Build convexity at low cost.", status: "Accumulate", color: "green" },
@@ -1223,25 +1223,25 @@ function PortfolioConstructionTab() {
                   "bg-red-900/40 text-red-300": r.color === "red",
                 })}>{r.status}</span>
               </div>
-              <p className="text-xs text-slate-400">{r.action}</p>
+              <p className="text-xs text-muted-foreground">{r.action}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Stress Test Heatmap */}
-      <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
-        <h3 className="text-sm font-semibold text-slate-300 mb-1">Stress Test Dashboard</h3>
-        <p className="text-xs text-slate-500 mb-3">Portfolio P&L (%) across 5 crisis scenarios for 4 hedge overlays. Green = less negative / positive; Red = larger loss.</p>
+      <div className="rounded-xl border border-border bg-card/40 p-4">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">Stress Test Dashboard</h3>
+        <p className="text-xs text-muted-foreground mb-3">Portfolio P&L (%) across 5 crisis scenarios for 4 hedge overlays. Green = less negative / positive; Red = larger loss.</p>
         <div className="overflow-x-auto">
           <TailScenarioHeatmapSVG />
         </div>
         <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2 text-center text-xs">
           {HEDGE_OVERLAYS.map((ov) => (
-            <div key={ov.name} className="rounded-lg bg-slate-800/60 p-1.5">
+            <div key={ov.name} className="rounded-lg bg-muted/60 p-1.5">
               <div className="w-2 h-2 rounded-full mx-auto mb-1" style={{ backgroundColor: ov.color }} />
-              <p className="text-slate-300 font-medium">{ov.name}</p>
-              {ov.allocation > 0 && <p className="text-slate-500">{ov.allocation}% allocated</p>}
+              <p className="text-muted-foreground font-medium">{ov.name}</p>
+              {ov.allocation > 0 && <p className="text-muted-foreground">{ov.allocation}% allocated</p>}
             </div>
           ))}
         </div>
@@ -1253,7 +1253,7 @@ function PortfolioConstructionTab() {
           <DollarSign className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
           <div>
             <p className="text-xs font-semibold text-amber-300 mb-1">Liquidity Premium vs Tail Risk Tradeoff</p>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Illiquid assets (private equity, real estate, infrastructure) typically offer a <span className="text-amber-300">3–5% liquidity premium</span> but cannot be hedged or liquidated in a crisis. When correlations spike and margin calls arrive, illiquid holdings become forced-sale candidates. Tail-risk aware portfolios must maintain a <span className="text-amber-300">liquid buffer (20–30%)</span> to survive crisis periods without crystallizing losses at the worst time.
             </p>
           </div>
@@ -1271,7 +1271,7 @@ export default function TailRiskPage() {
   const [activeTab, setActiveTab] = useState("blackswan");
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-5xl px-4 py-6 space-y-6">
         {/* Header */}
         <div className="flex items-start gap-4">
@@ -1279,8 +1279,8 @@ export default function TailRiskPage() {
             <Shield className="h-6 w-6 text-red-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-slate-100">Tail Risk Hedging</h1>
-            <p className="text-sm text-slate-400 mt-0.5">
+            <h1 className="text-xl font-bold text-foreground">Tail Risk Hedging</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">
               Protecting portfolios against black swans, volatility spikes, and the cost-benefit of tail protection strategies.
             </p>
           </div>
@@ -1294,20 +1294,20 @@ export default function TailRiskPage() {
             { label: "Optimal Hedge Cost", value: "1–2%/yr", sub: "Annual drag budget", color: "text-yellow-400", icon: DollarSign },
             { label: "Universa 2020 Return", value: "+3,600%", sub: "Tail fund payoff", color: "text-green-400", icon: Zap },
           ].map(({ label, value, sub, color, icon: Icon }) => (
-            <div key={label} className="rounded-xl border border-slate-800 bg-slate-900/40 p-3">
+            <div key={label} className="rounded-xl border border-border bg-card/40 p-3">
               <div className="flex items-center gap-2 mb-1">
                 <Icon className={cn("h-3.5 w-3.5", color)} />
-                <span className="text-xs text-slate-500">{label}</span>
+                <span className="text-xs text-muted-foreground">{label}</span>
               </div>
               <p className={cn("text-lg font-bold font-mono", color)}>{value}</p>
-              <p className="text-xs text-slate-500">{sub}</p>
+              <p className="text-xs text-muted-foreground">{sub}</p>
             </div>
           ))}
         </div>
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="w-full grid grid-cols-4 bg-slate-900 border border-slate-800 h-auto p-1">
+          <TabsList className="w-full grid grid-cols-4 bg-card border border-border h-auto p-1">
             {[
               { value: "blackswan", label: "Black Swan Events" },
               { value: "instruments", label: "Hedging Instruments" },
@@ -1317,7 +1317,7 @@ export default function TailRiskPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="text-xs py-2 data-[state=active]:bg-slate-800 data-[state=active]:text-slate-100 text-slate-400"
+                className="text-xs py-2 data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
               >
                 {tab.label}
               </TabsTrigger>

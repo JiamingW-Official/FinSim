@@ -1002,7 +1002,7 @@ export default function TransitionFinancePage() {
   void gapData;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1018,14 +1018,14 @@ export default function TransitionFinancePage() {
             Transition Finance &amp; Climate Risk
           </h1>
         </div>
-        <p className="text-gray-400 text-sm ml-12">
+        <p className="text-muted-foreground text-sm ml-12">
           Financing the energy transition · carbon pricing · stranded assets · green taxonomy
         </p>
       </motion.div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="bg-gray-900 border border-gray-800 h-auto p-1 flex-wrap gap-1">
+        <TabsList className="bg-card border border-border h-auto p-1 flex-wrap gap-1">
           <TabsTrigger value="landscape" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
             <Globe className="w-3.5 h-3.5 mr-1" />Climate Finance
           </TabsTrigger>
@@ -1043,7 +1043,7 @@ export default function TransitionFinancePage() {
         {/* ── Tab 1: Climate Finance Landscape ─────────────────────────────── */}
         <TabsContent value="landscape" className="data-[state=inactive]:hidden space-y-4">
           {/* Investment trend */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Zap className="w-4 h-4 text-emerald-400" />
@@ -1052,7 +1052,7 @@ export default function TransitionFinancePage() {
             </CardHeader>
             <CardContent>
               <EnergyInvestmentChart />
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Renewables investment surpassed fossil fuel supply investment for the first time in 2023 at ~$1.7T vs ~$1.0T. Source: IEA World Energy Investment 2024.
               </p>
             </CardContent>
@@ -1060,7 +1060,7 @@ export default function TransitionFinancePage() {
 
           {/* Public vs Private + Blended Finance */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">Public vs Private Capital Split</CardTitle>
               </CardHeader>
@@ -1072,35 +1072,35 @@ export default function TransitionFinancePage() {
                   { label: "Retail / Crowd", pct: 6, color: "bg-amber-500" },
                 ].map((row) => (
                   <div key={row.label}>
-                    <div className="flex justify-between text-xs text-gray-400 mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span>{row.label}</span>
                       <span className="font-mono">{row.pct}%</span>
                     </div>
-                    <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
                       <div className={`h-full ${row.color} opacity-80 rounded-full`} style={{ width: `${row.pct}%` }} />
                     </div>
                   </div>
                 ))}
-                <p className="text-xs text-gray-500 pt-1">
+                <p className="text-xs text-muted-foreground pt-1">
                   Private capital must scale 3× to meet 1.5°C pathways. Blended finance de-risks first-loss to catalyse commercial flows.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">Blended Finance Structures</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {BLENDED_STRUCTURES.map((b) => (
-                  <div key={b.name} className="flex items-start gap-2 p-2 bg-gray-800/50 rounded-lg text-xs">
+                  <div key={b.name} className="flex items-start gap-2 p-2 bg-muted/50 rounded-lg text-xs">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                     <div>
                       <div className="font-medium text-white">{b.name}</div>
-                      <div className="text-gray-400">
+                      <div className="text-muted-foreground">
                         <span className="text-primary">{b.provider}</span> · Risk: {b.risk} · Return: {b.return}
                       </div>
-                      <div className="text-gray-500">{b.purpose}</div>
+                      <div className="text-muted-foreground">{b.purpose}</div>
                     </div>
                   </div>
                 ))}
@@ -1109,7 +1109,7 @@ export default function TransitionFinancePage() {
           </div>
 
           {/* $100B Pledge */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Target className="w-4 h-4 text-amber-400" />
@@ -1119,29 +1119,29 @@ export default function TransitionFinancePage() {
             <CardContent>
               <div className="flex items-end gap-2 mb-3">
                 <span className="text-3xl font-bold text-emerald-400">${PLEDGE_PROGRESS.delivered}B</span>
-                <span className="text-gray-400 text-sm mb-1">delivered / $100B pledged</span>
+                <span className="text-muted-foreground text-sm mb-1">delivered / $100B pledged</span>
               </div>
-              <div className="h-3 bg-gray-800 rounded-full overflow-hidden mb-3">
+              <div className="h-3 bg-muted rounded-full overflow-hidden mb-3">
                 <div className="h-full bg-emerald-500 rounded-full transition-all" style={{ width: `${PLEDGE_PROGRESS.delivered}%` }} />
               </div>
               <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="bg-gray-800/50 rounded-lg p-3">
+                <div className="bg-muted/50 rounded-lg p-3">
                   <div className="text-primary font-mono font-semibold">${PLEDGE_PROGRESS.publicSources}B</div>
-                  <div className="text-gray-400 text-xs">Public bilateral / multilateral</div>
+                  <div className="text-muted-foreground text-xs">Public bilateral / multilateral</div>
                 </div>
-                <div className="bg-gray-800/50 rounded-lg p-3">
+                <div className="bg-muted/50 rounded-lg p-3">
                   <div className="text-emerald-400 font-mono font-semibold">${PLEDGE_PROGRESS.privateMobilised}B</div>
-                  <div className="text-gray-400 text-xs">Private mobilised</div>
+                  <div className="text-muted-foreground text-xs">Private mobilised</div>
                 </div>
               </div>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 The pledge was first met in 2022 (per OECD). New goal: $300B/yr by 2035 agreed at COP29 (Baku, 2024). Developing nations sought $1.3T.
               </p>
             </CardContent>
           </Card>
 
           {/* Finance Gap */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
@@ -1150,14 +1150,14 @@ export default function TransitionFinancePage() {
             </CardHeader>
             <CardContent>
               <FinanceGapChart />
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 The annual gap (red shaded area) has widened to ~$3.8T by 2024. Emerging markets &amp; developing economies (EMDEs) represent 80% of unmet need.
               </p>
             </CardContent>
           </Card>
 
           {/* Disclosure Frameworks */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Climate Disclosure Frameworks</CardTitle>
             </CardHeader>
@@ -1170,7 +1170,7 @@ export default function TransitionFinancePage() {
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                       selectedDisclosure === i
                         ? "bg-emerald-600 border-emerald-500 text-white"
-                        : "bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-600"
+                        : "bg-muted border-border text-muted-foreground hover:border-gray-600"
                     }`}
                   >
                     {f.name}
@@ -1180,13 +1180,13 @@ export default function TransitionFinancePage() {
               {(() => {
                 const f = DISCLOSURE_FRAMEWORKS[selectedDisclosure];
                 return (
-                  <div className="bg-gray-800/50 rounded-lg p-4 space-y-3">
+                  <div className="bg-muted/50 rounded-lg p-4 space-y-3">
                     <div>
                       <div className="text-white font-medium text-sm">{f.name}</div>
-                      <div className="text-gray-400 text-xs">{f.full}</div>
+                      <div className="text-muted-foreground text-xs">{f.full}</div>
                     </div>
                     <div>
-                      <div className="text-xs text-gray-500 mb-1.5">Core pillars:</div>
+                      <div className="text-xs text-muted-foreground mb-1.5">Core pillars:</div>
                       <div className="flex flex-wrap gap-1.5">
                         {f.pillars.map((p) => (
                           <Badge key={p} variant="outline" className="text-xs border-emerald-500/40 text-emerald-300">
@@ -1197,7 +1197,7 @@ export default function TransitionFinancePage() {
                     </div>
                     <div className="flex items-center gap-2 text-xs">
                       <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="text-gray-300">Mandatory in: <span className="text-white">{f.mandatory}</span></span>
+                      <span className="text-muted-foreground">Mandatory in: <span className="text-white">{f.mandatory}</span></span>
                     </div>
                   </div>
                 );
@@ -1210,14 +1210,14 @@ export default function TransitionFinancePage() {
         <TabsContent value="carbon" className="data-[state=inactive]:hidden space-y-4">
           {/* ETS vs Tax explainer */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-emerald-400" />
                   Cap-and-Trade ETS
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-gray-300 space-y-2">
+              <CardContent className="text-xs text-muted-foreground space-y-2">
                 <p>A regulator sets a total cap on emissions. Allowances (EUAs) are issued and can be bought, sold or banked. The market determines the price.</p>
                 <div className="space-y-1">
                   {["Price certainty: Low (volatile)", "Quantity certainty: High (cap fixed)", "Examples: EU ETS, California CaT, RGGI, China NETs", "Revenues: Auction proceeds → green funds"].map((t) => (
@@ -1229,14 +1229,14 @@ export default function TransitionFinancePage() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-amber-400" />
                   Carbon Tax
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-gray-300 space-y-2">
+              <CardContent className="text-xs text-muted-foreground space-y-2">
                 <p>A fixed price is placed on each tonne of CO₂ emitted. Quantity of emission reduction is uncertain; depends on price elasticity of emitters.</p>
                 <div className="space-y-1">
                   {["Price certainty: High (policy-set)", "Quantity certainty: Low (depends on response)", "Examples: Canada, Sweden (~$130/tCO₂), Singapore", "Revenues: Dividends, tax cuts or transition funds"].map((t) => (
@@ -1251,7 +1251,7 @@ export default function TransitionFinancePage() {
           </div>
 
           {/* EU ETS price chart */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">EU ETS Carbon Price History (€/tCO₂, 2005–2024)</CardTitle>
             </CardHeader>
@@ -1259,9 +1259,9 @@ export default function TransitionFinancePage() {
               <EuEtsPriceChart />
               <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3">
                 {EU_ETS_EVENTS.map((e) => (
-                  <div key={e.year} className="flex items-center gap-1.5 text-xs bg-gray-800/50 rounded px-2 py-1">
+                  <div key={e.year} className="flex items-center gap-1.5 text-xs bg-muted/50 rounded px-2 py-1">
                     <span className="text-amber-400 font-mono">{e.year}</span>
-                    <span className="text-gray-400">{e.note}</span>
+                    <span className="text-muted-foreground">{e.note}</span>
                   </div>
                 ))}
               </div>
@@ -1269,7 +1269,7 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* Markets comparison table */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Carbon Markets Comparison</CardTitle>
             </CardHeader>
@@ -1282,7 +1282,7 @@ export default function TransitionFinancePage() {
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                       selectedMarket === i
                         ? "bg-emerald-600 border-emerald-500 text-white"
-                        : "bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-600"
+                        : "bg-muted border-border text-muted-foreground hover:border-gray-600"
                     }`}
                   >
                     {m.name}
@@ -1299,14 +1299,14 @@ export default function TransitionFinancePage() {
                       { label: "Coverage", value: m.coverage },
                       { label: "Vintage / Credits", value: m.vintage },
                     ].map((row) => (
-                      <div key={row.label} className="bg-gray-800/50 rounded-lg p-3">
-                        <div className="text-xs text-gray-500 mb-0.5">{row.label}</div>
+                      <div key={row.label} className="bg-muted/50 rounded-lg p-3">
+                        <div className="text-xs text-muted-foreground mb-0.5">{row.label}</div>
                         <div className="text-sm text-white font-medium">{row.value}</div>
                       </div>
                     ))}
-                    <div className="col-span-2 bg-gray-800/50 rounded-lg p-3">
-                      <div className="text-xs text-gray-500 mb-0.5">Notes</div>
-                      <div className="text-xs text-gray-300">{m.notes}</div>
+                    <div className="col-span-2 bg-muted/50 rounded-lg p-3">
+                      <div className="text-xs text-muted-foreground mb-0.5">Notes</div>
+                      <div className="text-xs text-muted-foreground">{m.notes}</div>
                     </div>
                   </div>
                 );
@@ -1315,7 +1315,7 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* Carbon forecasts */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-primary" />
@@ -1326,7 +1326,7 @@ export default function TransitionFinancePage() {
               <div className="space-y-3">
                 {CARBON_FORECASTS.map((row) => (
                   <div key={row.region}>
-                    <div className="text-xs text-gray-400 mb-1">{row.region}</div>
+                    <div className="text-xs text-muted-foreground mb-1">{row.region}</div>
                     <div className="flex items-center gap-2">
                       {[
                         { label: "SDS Base", val: row.sdsBase, color: "bg-gray-500" },
@@ -1334,8 +1334,8 @@ export default function TransitionFinancePage() {
                         { label: "Net Zero 2050", val: row.ieanetzero, color: "bg-emerald-500" },
                       ].map((sc) => (
                         <div key={sc.label} className="flex-1">
-                          <div className="text-xs text-gray-500 text-center mb-0.5">{sc.label}</div>
-                          <div className="bg-gray-800 rounded h-6 relative overflow-hidden">
+                          <div className="text-xs text-muted-foreground text-center mb-0.5">{sc.label}</div>
+                          <div className="bg-muted rounded h-6 relative overflow-hidden">
                             <div
                               className={`absolute left-0 top-0 bottom-0 ${sc.color} opacity-70`}
                               style={{ width: `${(sc.val / 260) * 100}%` }}
@@ -1355,32 +1355,32 @@ export default function TransitionFinancePage() {
 
           {/* Article 6 + CDR */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <Globe className="w-4 h-4 text-primary" />
                   Article 6 — Paris International Trading
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-gray-300 space-y-2">
+              <CardContent className="text-xs text-muted-foreground space-y-2">
                 {[
                   { ref: "Art. 6.2", desc: "Bilateral Internationally Transferred Mitigation Outcomes (ITMOs) between countries; corresponding adjustments mandatory to avoid double-counting." },
                   { ref: "Art. 6.4", desc: "Multilateral UN-supervised mechanism (successor to CDM); Activity Cycle rules finalised at COP29 (2024). First ITMOs expected 2025." },
                   { ref: "Art. 6.8", desc: "Non-market approaches; capacity-building, adaptation co-benefits; no credits issued." },
                 ].map((a) => (
-                  <div key={a.ref} className="bg-gray-800/50 rounded p-2">
+                  <div key={a.ref} className="bg-muted/50 rounded p-2">
                     <span className="text-primary font-medium">{a.ref}:</span> {a.desc}
                   </div>
                 ))}
               </CardContent>
             </Card>
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">CDR Cost Curves ($/tCO₂)</CardTitle>
               </CardHeader>
               <CardContent>
                 <CdrCostCurve />
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Afforestation remains cheapest (&lt;$50) but faces permanence risks. DAC is most permanent but costs $300–$1,000/tCO₂ today; projected to fall to ~$100 by 2040.
                 </p>
               </CardContent>
@@ -1391,14 +1391,14 @@ export default function TransitionFinancePage() {
         {/* ── Tab 3: Stranded Assets & Physical Risk ────────────────────────── */}
         <TabsContent value="stranded" className="data-[state=inactive]:hidden space-y-4">
           {/* Stranded definition */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Info className="w-4 h-4 text-amber-400" />
                 Stranded Assets — Definition
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-xs text-gray-300">
+            <CardContent className="text-xs text-muted-foreground">
               <p>
                 Assets that suffer <span className="text-amber-400 font-medium">unanticipated or premature write-downs, devaluations or conversion to liabilities</span> driven by environment-related risks: policy change, technology disruption, shifting market preferences, physical climate damage, or litigation risk. The concept was formalised by Carbon Tracker (2011) with the <span className="text-white">"unburnable carbon"</span> thesis — fossil fuel reserves on company books exceed the carbon budget consistent with 2°C, implying large eventual impairments.
               </p>
@@ -1406,23 +1406,23 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* Stranding timeline chart */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Fossil Fuel Reserve Stranding Timeline — IEA Net Zero Scenario</CardTitle>
             </CardHeader>
             <CardContent>
               <StrandingTimeline />
-              <div className="flex gap-3 mt-2 text-xs text-gray-400 flex-wrap">
+              <div className="flex gap-3 mt-2 text-xs text-muted-foreground flex-wrap">
                 <span>Dark = 2030 · Medium = 2040 · Light = 2050 stranded fraction</span>
               </div>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Under IEA NZE2050, no new coal mines are approved beyond 2021; existing coal assets face 85% stranding by 2030. Oil sands and unconventional gas follow with 5–10 year lags.
               </p>
             </CardContent>
           </Card>
 
           {/* Physical risks */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Physical Risk Mapping — Acute vs Chronic</CardTitle>
             </CardHeader>
@@ -1443,11 +1443,11 @@ export default function TransitionFinancePage() {
                     <div className="space-y-2">
                       {cat.events.map((ev) => (
                         <div key={ev.name}>
-                          <div className="flex justify-between text-xs text-gray-400 mb-0.5">
+                          <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                             <span>{ev.name}</span>
-                            <span className="text-gray-500">{ev.trend}</span>
+                            <span className="text-muted-foreground">{ev.trend}</span>
                           </div>
-                          <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                          <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full ${cat.type === "Acute" ? "bg-red-500" : "bg-primary"} opacity-75`}
                               style={{ width: `${ev.exposure}%` }}
@@ -1463,7 +1463,7 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* NGFS scenarios + repricing */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">NGFS Climate Scenarios — Asset Repricing (%)</CardTitle>
             </CardHeader>
@@ -1474,9 +1474,9 @@ export default function TransitionFinancePage() {
                   { name: "Disorderly", color: "border-amber-500 text-amber-300", desc: "Late, abrupt policy action; high transition risk" },
                   { name: "Hot House World", color: "border-red-500 text-red-300", desc: "NDCs only; high physical risk by 2100" },
                 ].map((sc) => (
-                  <div key={sc.name} className={`bg-gray-800/50 rounded-lg p-2 border ${sc.color} border-opacity-40`}>
+                  <div key={sc.name} className={`bg-muted/50 rounded-lg p-2 border ${sc.color} border-opacity-40`}>
                     <div className={`font-medium mb-0.5 ${sc.color.split(" ")[1]}`}>{sc.name}</div>
-                    <div className="text-gray-400">{sc.desc}</div>
+                    <div className="text-muted-foreground">{sc.desc}</div>
                   </div>
                 ))}
               </div>
@@ -1485,7 +1485,7 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* Insurable losses */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Shield className="w-4 h-4 text-orange-400" />
@@ -1494,14 +1494,14 @@ export default function TransitionFinancePage() {
             </CardHeader>
             <CardContent>
               <InsurableLossChart />
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 The insurance gap (total − insured, ~60%) is widening as climate risks become harder to model. Major re/insurers are withdrawing from California wildfire, Florida hurricane and Australian flood markets. Source: Munich Re NatCatSERVICE.
               </p>
             </CardContent>
           </Card>
 
           {/* Real estate climate overlay */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Real Estate Climate Risk Overlay</CardTitle>
             </CardHeader>
@@ -1517,11 +1517,11 @@ export default function TransitionFinancePage() {
                   { hazard: "Insurance Withdrawal", at_risk: "High-risk US zip codes", driver: "Uninsurability", horizon: "2024–2030" },
                   { hazard: "Water Scarcity", at_risk: "SW US / Australia", driver: "Drought + groundwater", horizon: "2030–2050" },
                 ].map((r) => (
-                  <div key={r.hazard} className="bg-gray-800/50 rounded-lg p-2">
+                  <div key={r.hazard} className="bg-muted/50 rounded-lg p-2">
                     <div className="font-medium text-orange-300 mb-0.5">{r.hazard}</div>
-                    <div className="text-gray-300">{r.at_risk}</div>
-                    <div className="text-gray-500">{r.driver}</div>
-                    <div className="text-gray-600 text-xs mt-0.5">{r.horizon}</div>
+                    <div className="text-muted-foreground">{r.at_risk}</div>
+                    <div className="text-muted-foreground">{r.driver}</div>
+                    <div className="text-muted-foreground text-xs mt-0.5">{r.horizon}</div>
                   </div>
                 ))}
               </div>
@@ -1532,7 +1532,7 @@ export default function TransitionFinancePage() {
         {/* ── Tab 4: Bonds & Taxonomy ───────────────────────────────────────── */}
         <TabsContent value="bonds" className="data-[state=inactive]:hidden space-y-4">
           {/* Bond comparison */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Sustainable Bond Types Comparison</CardTitle>
             </CardHeader>
@@ -1540,9 +1540,9 @@ export default function TransitionFinancePage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-gray-800">
+                    <tr className="border-b border-border">
                       {["Type", "Use of Proceeds", "Standard", "Issuers", "Greenwash Risk", "2024 Volume"].map((h) => (
-                        <th key={h} className="text-left py-2 pr-3 text-gray-500 font-medium whitespace-nowrap">
+                        <th key={h} className="text-left py-2 pr-3 text-muted-foreground font-medium whitespace-nowrap">
                           {h}
                         </th>
                       ))}
@@ -1557,11 +1557,11 @@ export default function TransitionFinancePage() {
                           ? "text-amber-400"
                           : "text-emerald-400";
                       return (
-                        <tr key={b.type} className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
+                        <tr key={b.type} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                           <td className="py-2 pr-3 font-medium text-white whitespace-nowrap">{b.type}</td>
-                          <td className="py-2 pr-3 text-gray-300">{b.proceeds}</td>
-                          <td className="py-2 pr-3 text-gray-400">{b.standard}</td>
-                          <td className="py-2 pr-3 text-gray-400">{b.issuer}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{b.proceeds}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{b.standard}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{b.issuer}</td>
                           <td className={`py-2 pr-3 font-medium ${riskColor}`}>{b.greenwash}</td>
                           <td className="py-2 pr-3 text-emerald-400 font-mono">{b.size2024}</td>
                         </tr>
@@ -1574,20 +1574,20 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* Bond issuance chart */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Sustainable Bond Issuance 2019–2024 ($B, stacked)</CardTitle>
             </CardHeader>
             <CardContent>
               <BondIssuanceChart />
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Cumulative sustainable bond issuance exceeded $5T by end-2024. Transition bonds remain a small but fast-growing segment as hard-to-abate sectors adopt credentialed frameworks.
               </p>
             </CardContent>
           </Card>
 
           {/* EU Taxonomy */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Leaf className="w-4 h-4 text-emerald-400" />
@@ -1597,20 +1597,20 @@ export default function TransitionFinancePage() {
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
                 {TAXONOMY_OBJECTIVES.map((obj) => (
-                  <div key={obj.id} className="flex items-start gap-2 bg-gray-800/50 rounded-lg p-2.5">
+                  <div key={obj.id} className="flex items-start gap-2 bg-muted/50 rounded-lg p-2.5">
                     <div className="w-5 h-5 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center shrink-0 text-xs text-emerald-400 font-bold">
                       {obj.id}
                     </div>
                     <div>
                       <div className="text-xs font-medium text-white">{obj.name}</div>
-                      <div className="text-xs text-gray-500 mt-0.5">{obj.examples[0]}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">{obj.examples[0]}</div>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3 text-xs">
                 <div className="font-medium text-amber-300 mb-1">Do No Significant Harm (DNSH) Test</div>
-                <p className="text-gray-300">
+                <p className="text-muted-foreground">
                   An activity can only be Taxonomy-aligned for one objective if it does <em>not significantly harm</em> any of the other five. This cross-cutting requirement substantially narrows eligible activities — e.g. a hydropower plant that substantially harms biodiversity cannot be aligned under Objective 1 (mitigation).
                 </p>
               </div>
@@ -1618,20 +1618,20 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* Taxonomy aligned revenue */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">EU Taxonomy-Aligned Revenue by Sector (%)</CardTitle>
             </CardHeader>
             <CardContent>
               <TaxonomyAlignedChart />
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Only 6–42% of reported turnover is Taxonomy-aligned across sectors. Low scores reflect either genuine non-alignment or lack of technical screening criteria (e.g. agriculture Delegated Acts not yet finalised).
               </p>
             </CardContent>
           </Card>
 
           {/* Hard-to-abate sectors */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Flame className="w-4 h-4 text-orange-400" />
@@ -1642,7 +1642,7 @@ export default function TransitionFinancePage() {
               {HARD_TO_ABATE.map((s, i) => (
                 <motion.div
                   key={s.sector}
-                  className="bg-gray-800/50 rounded-lg overflow-hidden cursor-pointer"
+                  className="bg-muted/50 rounded-lg overflow-hidden cursor-pointer"
                   onClick={() => setExpandedSector(expandedSector === i ? null : i)}
                 >
                   <div className="flex items-center justify-between p-3">
@@ -1650,7 +1650,7 @@ export default function TransitionFinancePage() {
                       <Wind className="w-4 h-4 text-orange-400 shrink-0" />
                       <div>
                         <span className="text-sm font-medium text-white">{s.sector}</span>
-                        <span className="ml-2 text-xs text-gray-500">{s.share}</span>
+                        <span className="ml-2 text-xs text-muted-foreground">{s.share}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -1658,14 +1658,14 @@ export default function TransitionFinancePage() {
                         {s.financeNeed}
                       </Badge>
                       <ArrowRight
-                        className={`w-3.5 h-3.5 text-gray-500 transition-transform ${expandedSector === i ? "rotate-90" : ""}`}
+                        className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${expandedSector === i ? "rotate-90" : ""}`}
                       />
                     </div>
                   </div>
                   {expandedSector === i && (
                     <div className="px-3 pb-3 space-y-2">
                       <div>
-                        <div className="text-xs text-gray-500 mb-1">Decarbonisation pathways:</div>
+                        <div className="text-xs text-muted-foreground mb-1">Decarbonisation pathways:</div>
                         <div className="flex flex-wrap gap-1">
                           {s.pathways.map((p) => (
                             <Badge key={p} variant="outline" className="text-xs border-emerald-500/30 text-emerald-300">
@@ -1676,7 +1676,7 @@ export default function TransitionFinancePage() {
                       </div>
                       <div className="flex items-start gap-1.5 text-xs">
                         <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-                        <span className="text-gray-400">{s.challenge}</span>
+                        <span className="text-muted-foreground">{s.challenge}</span>
                       </div>
                     </div>
                   )}
@@ -1686,7 +1686,7 @@ export default function TransitionFinancePage() {
           </Card>
 
           {/* Greenwashing indicators */}
-          <Card className="bg-gray-900 border-gray-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
@@ -1710,7 +1710,7 @@ export default function TransitionFinancePage() {
                         <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                       )}
                       <span className={high ? "text-red-200" : "text-amber-200"}>{g.flag}</span>
-                      <span className="ml-auto text-gray-500 whitespace-nowrap">{g.type}</span>
+                      <span className="ml-auto text-muted-foreground whitespace-nowrap">{g.type}</span>
                       <Badge
                         variant="outline"
                         className={`text-xs whitespace-nowrap ${
@@ -1723,7 +1723,7 @@ export default function TransitionFinancePage() {
                   );
                 })}
               </div>
-              <p className="text-xs text-gray-500 mt-3">
+              <p className="text-xs text-muted-foreground mt-3">
                 Regulators including ESMA, SEC, FCA and ASIC have all issued greenwashing enforcement actions 2023–2024. The EU Anti-Greenwashing Directive (2024) bans generic environmental claims without substantiation.
               </p>
             </CardContent>

@@ -245,14 +245,14 @@ export default function BacktestPage() {
           <FlaskConical className="h-4 w-4 text-primary" />
         </div>
         <div>
-          <h1 className="text-sm font-semibold text-zinc-100">Strategy Backtester</h1>
+          <h1 className="text-sm font-semibold text-foreground">Strategy Backtester</h1>
           <p className="text-xs text-muted-foreground">Build, test, and optimize on simulated market data</p>
         </div>
         <span className="ml-4 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-[10px] font-medium text-primary/70">
           Simulated historical data
         </span>
         {store.totalBacktestsRun > 0 && (
-          <div className="ml-auto flex items-center gap-4 text-xs text-zinc-500">
+          <div className="ml-auto flex items-center gap-4 text-xs text-muted-foreground">
             <span>{store.totalBacktestsRun} backtests run</span>
             <span>{store.savedStrategies.length} saved</span>
           </div>
@@ -268,7 +268,7 @@ export default function BacktestPage() {
             className={`px-5 py-2.5 text-xs font-medium transition-colors ${
               activeTab === tab.id
                 ? "border-b-2 border-primary text-primary"
-                : "text-zinc-500 hover:text-zinc-300"
+                : "text-muted-foreground hover:text-muted-foreground"
             }`}
           >
             {tab.label}
@@ -350,8 +350,8 @@ export default function BacktestPage() {
               <div className="mx-auto max-w-4xl space-y-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-sm font-bold text-zinc-200">Earnings Event Analysis</h2>
-                    <p className="text-xs text-zinc-500">Historical earnings reactions and pattern detection</p>
+                    <h2 className="text-sm font-bold text-foreground">Earnings Event Analysis</h2>
+                    <p className="text-xs text-muted-foreground">Historical earnings reactions and pattern detection</p>
                   </div>
                   <EarningsTickerSelect
                     tickers={tickerOptions}
@@ -388,8 +388,8 @@ export default function BacktestPage() {
             <div className="flex-1 overflow-y-auto p-6">
               <div className="mx-auto max-w-3xl space-y-4">
                 <div className="mb-4">
-                  <h2 className="text-sm font-bold text-zinc-200">Walk-Forward Analysis</h2>
-                  <p className="text-xs text-zinc-500">
+                  <h2 className="text-sm font-bold text-foreground">Walk-Forward Analysis</h2>
+                  <p className="text-xs text-muted-foreground">
                     Measures how well in-sample performance translates to out-of-sample results across multiple folds
                   </p>
                 </div>
@@ -405,8 +405,8 @@ export default function BacktestPage() {
             <div className="flex-1 overflow-y-auto p-6">
               <div className="mx-auto max-w-4xl space-y-4">
                 <div className="mb-4">
-                  <h2 className="text-sm font-bold text-zinc-200">Parameter Optimization</h2>
-                  <p className="text-xs text-zinc-500">
+                  <h2 className="text-sm font-bold text-foreground">Parameter Optimization</h2>
+                  <p className="text-xs text-muted-foreground">
                     Grid search over parameter combinations to find the highest Sharpe ratio
                   </p>
                 </div>
@@ -448,7 +448,7 @@ function EarningsTickerSelect({
     <select
       value={selected}
       onChange={(e) => onSelect(e.target.value)}
-      className="appearance-none rounded-md border border-border bg-card px-3 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-primary"
+      className="appearance-none rounded-md border border-border bg-card px-3 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
     >
       {tickers.map((t) => (
         <option key={t} value={t}>{t}</option>

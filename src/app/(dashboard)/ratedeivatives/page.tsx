@@ -322,8 +322,8 @@ function MetricCard({
   icon?: React.ElementType;
 }) {
   return (
-    <div className="bg-zinc-800/60 border border-zinc-700/50 rounded-xl p-4 flex flex-col gap-1">
-      <div className="flex items-center gap-1.5 text-zinc-400 text-xs font-medium uppercase tracking-wide">
+    <div className="bg-muted/60 border border-border/50 rounded-xl p-4 flex flex-col gap-1">
+      <div className="flex items-center gap-1.5 text-muted-foreground text-xs font-medium uppercase tracking-wide">
         {Icon && <Icon className="w-3 h-3" />}
         {label}
       </div>
@@ -338,14 +338,14 @@ function MetricCard({
       >
         {value}
       </div>
-      {sub && <div className="text-zinc-500 text-xs">{sub}</div>}
+      {sub && <div className="text-muted-foreground text-xs">{sub}</div>}
     </div>
   );
 }
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-xs font-semibold text-zinc-500 mb-3 mt-1">
+    <div className="text-xs font-semibold text-muted-foreground mb-3 mt-1">
       {children}
     </div>
   );
@@ -577,9 +577,9 @@ function SwaptionGrid({
       <table className="text-xs border-separate border-spacing-1">
         <thead>
           <tr>
-            <th className="text-zinc-500 text-left pr-3 pb-2 font-normal">Exp\Tenor</th>
+            <th className="text-muted-foreground text-left pr-3 pb-2 font-normal">Exp\Tenor</th>
             {tenors.map((t) => (
-              <th key={t} className="text-zinc-400 font-semibold pb-2 text-center w-14">
+              <th key={t} className="text-muted-foreground font-semibold pb-2 text-center w-14">
                 {t}Y
               </th>
             ))}
@@ -588,7 +588,7 @@ function SwaptionGrid({
         <tbody>
           {expiries.map((exp) => (
             <tr key={exp}>
-              <td className="text-zinc-400 font-semibold pr-3 text-right">{exp}Y</td>
+              <td className="text-muted-foreground font-semibold pr-3 text-right">{exp}Y</td>
               {tenors.map((ten) => {
                 const cell = cells.find((c) => c.expiry === exp && c.tenor === ten);
                 if (!cell) return <td key={ten} />;
@@ -1265,7 +1265,7 @@ export default function RateDerivativesPage() {
 
   // ── Render ──────────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-3">
         <div className="flex items-center gap-3">
@@ -1274,7 +1274,7 @@ export default function RateDerivativesPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold tracking-tight">Interest Rate Derivatives</h1>
-            <p className="text-zinc-400 text-sm">IRS · Swaptions · Caps & Floors · Vol Surface</p>
+            <p className="text-muted-foreground text-sm">IRS · Swaptions · Caps & Floors · Vol Surface</p>
           </div>
         </div>
         <div className="sm:ml-auto flex items-center gap-2 flex-wrap">
@@ -1287,27 +1287,27 @@ export default function RateDerivativesPage() {
           <Badge variant="outline" className="border-emerald-500/40 text-emerald-300 text-xs">
             DV01
           </Badge>
-          <div className="text-xs text-zinc-500 border border-zinc-700/50 rounded px-2 py-1">
+          <div className="text-xs text-muted-foreground border border-border/50 rounded px-2 py-1">
             Base 5Y: <span className="text-white font-semibold">{baseRate.toFixed(2)}%</span>
           </div>
         </div>
       </div>
 
       <Tabs defaultValue="swaps" className="space-y-4">
-        <TabsList className="bg-zinc-900 border border-zinc-800 p-1 flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="swaps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm gap-1.5">
+        <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
+          <TabsTrigger value="swaps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
             <ArrowLeftRight className="w-3.5 h-3.5" />
             Swaps
           </TabsTrigger>
-          <TabsTrigger value="swaptions" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm gap-1.5">
+          <TabsTrigger value="swaptions" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
             <Layers className="w-3.5 h-3.5" />
             Swaptions
           </TabsTrigger>
-          <TabsTrigger value="caps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm gap-1.5">
+          <TabsTrigger value="caps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
             <BarChart3 className="w-3.5 h-3.5" />
             Caps & Floors
           </TabsTrigger>
-          <TabsTrigger value="ratevol" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm gap-1.5">
+          <TabsTrigger value="ratevol" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
             <Thermometer className="w-3.5 h-3.5" />
             Rate Vol
           </TabsTrigger>
@@ -1317,7 +1317,7 @@ export default function RateDerivativesPage() {
         <TabsContent value="swaps" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Builder panel */}
-            <Card className="bg-zinc-900 border-zinc-800 lg:col-span-1">
+            <Card className="bg-card border-border lg:col-span-1">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-indigo-400" />
@@ -1328,7 +1328,7 @@ export default function RateDerivativesPage() {
                 {/* Notional */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Notional</label>
+                    <label className="text-xs text-muted-foreground font-medium">Notional</label>
                     <span className="text-xs text-white font-semibold">{fmtK(notional)}</span>
                   </div>
                   <Slider
@@ -1339,7 +1339,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setNotional(v)}
                     className="[&_[role=slider]]:bg-indigo-500"
                   />
-                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>$1M</span><span>$100M</span>
                   </div>
                 </div>
@@ -1347,7 +1347,7 @@ export default function RateDerivativesPage() {
                 {/* Tenor */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Tenor</label>
+                    <label className="text-xs text-muted-foreground font-medium">Tenor</label>
                     <span className="text-xs text-white font-semibold">{swapTenor}Y</span>
                   </div>
                   <div className="flex gap-1.5 flex-wrap">
@@ -1358,7 +1358,7 @@ export default function RateDerivativesPage() {
                         className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
                           swapTenor === t
                             ? "bg-indigo-600 text-white"
-                            : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                            : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
                         {t}Y
@@ -1370,7 +1370,7 @@ export default function RateDerivativesPage() {
                 {/* Fixed Rate */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Fixed Rate</label>
+                    <label className="text-xs text-muted-foreground font-medium">Fixed Rate</label>
                     <span className="text-xs text-white font-semibold">{fixedRate.toFixed(2)}%</span>
                   </div>
                   <Slider
@@ -1381,7 +1381,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setFixedRate(v / 100)}
                     className="[&_[role=slider]]:bg-indigo-500"
                   />
-                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>2.00%</span><span>8.00%</span>
                   </div>
                 </div>
@@ -1389,8 +1389,8 @@ export default function RateDerivativesPage() {
                 {/* Curve Shift */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Curve Shift</label>
-                    <span className={`text-xs font-semibold ${curveShift > 0 ? "text-red-400" : curveShift < 0 ? "text-emerald-400" : "text-zinc-400"}`}>
+                    <label className="text-xs text-muted-foreground font-medium">Curve Shift</label>
+                    <span className={`text-xs font-semibold ${curveShift > 0 ? "text-red-400" : curveShift < 0 ? "text-emerald-400" : "text-muted-foreground"}`}>
                       {curveShift > 0 ? "+" : ""}{curveShift} bps
                     </span>
                   </div>
@@ -1402,7 +1402,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setCurveShift(v)}
                     className="[&_[role=slider]]:bg-primary"
                   />
-                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>-300 bps</span><span>+300 bps</span>
                   </div>
                 </div>
@@ -1414,7 +1414,7 @@ export default function RateDerivativesPage() {
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       payFixed
                         ? "bg-red-600/80 text-white"
-                        : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     Pay Fixed
@@ -1424,7 +1424,7 @@ export default function RateDerivativesPage() {
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       !payFixed
                         ? "bg-emerald-600/80 text-white"
-                        : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     Receive Fixed
@@ -1432,7 +1432,7 @@ export default function RateDerivativesPage() {
                 </div>
 
                 {/* Info box */}
-                <div className="bg-zinc-800/50 rounded-lg p-3 text-xs text-zinc-400 space-y-1">
+                <div className="bg-muted/50 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
                   <div className="flex justify-between">
                     <span>Current Rate ({swapTenor}Y)</span>
                     <span className="text-white">{currentRate.toFixed(3)}%</span>
@@ -1482,9 +1482,9 @@ export default function RateDerivativesPage() {
               </div>
 
               {/* MTM Chart */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">MTM P&L vs Rate Shift</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">MTM P&L vs Rate Shift</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <MTMChart
@@ -1498,16 +1498,16 @@ export default function RateDerivativesPage() {
               </Card>
 
               {/* Cashflow Timeline */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Cashflow Schedule</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">Cashflow Schedule</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CashflowTimeline bars={cashflows} payFixed={payFixed} />
                   <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                     {cashflows.slice(0, 4).map((cf) => (
-                      <div key={cf.period} className="bg-zinc-800/50 rounded p-2 flex justify-between">
-                        <span className="text-zinc-500">Year {cf.period}</span>
+                      <div key={cf.period} className="bg-muted/50 rounded p-2 flex justify-between">
+                        <span className="text-muted-foreground">Year {cf.period}</span>
                         <span className={cf.net >= 0 ? "text-emerald-400" : "text-red-400"}>
                           {fmtK(cf.net)} net
                         </span>
@@ -1518,16 +1518,16 @@ export default function RateDerivativesPage() {
               </Card>
 
               {/* Swap spread chart */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Swap Spread to Treasury</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">Swap Spread to Treasury</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <SwapSpreadChart data={swapSpreads} />
                   <div className="mt-2 flex flex-wrap gap-2">
                     {swapSpreads.map((d) => (
-                      <span key={d.tenor} className="text-xs bg-zinc-800/60 border border-zinc-700/50 rounded px-2 py-0.5">
-                        <span className="text-zinc-400">{d.tenor}: </span>
+                      <span key={d.tenor} className="text-xs bg-muted/60 border border-border/50 rounded px-2 py-0.5">
+                        <span className="text-muted-foreground">{d.tenor}: </span>
                         <span className="text-indigo-300 font-semibold">{d.spread} bps</span>
                       </span>
                     ))}
@@ -1542,7 +1542,7 @@ export default function RateDerivativesPage() {
         <TabsContent value="swaptions" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Layers className="w-4 h-4 text-primary" />
@@ -1557,7 +1557,7 @@ export default function RateDerivativesPage() {
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       swaptionType === "payer"
                         ? "bg-red-600/80 text-white"
-                        : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     Payer
@@ -1567,14 +1567,14 @@ export default function RateDerivativesPage() {
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       swaptionType === "receiver"
                         ? "bg-emerald-600/80 text-white"
-                        : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     Receiver
                   </button>
                 </div>
 
-                <div className="text-xs text-zinc-500 bg-zinc-800/40 rounded p-2">
+                <div className="text-xs text-muted-foreground bg-muted/40 rounded p-2">
                   {swaptionType === "payer"
                     ? "Right to enter a swap paying fixed. Benefits when rates rise."
                     : "Right to enter a swap receiving fixed. Benefits when rates fall."}
@@ -1583,7 +1583,7 @@ export default function RateDerivativesPage() {
                 {/* Expiry */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Option Expiry</label>
+                    <label className="text-xs text-muted-foreground font-medium">Option Expiry</label>
                     <span className="text-xs text-white font-semibold">{swaptionExpiry}Y</span>
                   </div>
                   <div className="flex gap-1.5">
@@ -1594,7 +1594,7 @@ export default function RateDerivativesPage() {
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           swaptionExpiry === t
                             ? "bg-primary text-white"
-                            : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                            : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
                         {t}Y
@@ -1606,7 +1606,7 @@ export default function RateDerivativesPage() {
                 {/* Underlying tenor */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Underlying Tenor</label>
+                    <label className="text-xs text-muted-foreground font-medium">Underlying Tenor</label>
                     <span className="text-xs text-white font-semibold">{swaptionTenor}Y</span>
                   </div>
                   <div className="flex gap-1.5">
@@ -1617,7 +1617,7 @@ export default function RateDerivativesPage() {
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           swaptionTenor === t
                             ? "bg-primary text-white"
-                            : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                            : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
                         {t}Y
@@ -1629,7 +1629,7 @@ export default function RateDerivativesPage() {
                 {/* Strike */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Strike Rate</label>
+                    <label className="text-xs text-muted-foreground font-medium">Strike Rate</label>
                     <span className="text-xs text-white font-semibold">{swaptionStrike.toFixed(2)}%</span>
                   </div>
                   <Slider
@@ -1640,7 +1640,7 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setSwaptionStrike(v / 100)}
                     className="[&_[role=slider]]:bg-primary"
                   />
-                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>2.00%</span><span>8.00%</span>
                   </div>
                 </div>
@@ -1648,7 +1648,7 @@ export default function RateDerivativesPage() {
                 {/* Vol */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Implied Vol</label>
+                    <label className="text-xs text-muted-foreground font-medium">Implied Vol</label>
                     <span className="text-xs text-white font-semibold">{swaptionVol}%</span>
                   </div>
                   <Slider
@@ -1659,30 +1659,30 @@ export default function RateDerivativesPage() {
                     onValueChange={([v]) => setSwaptionVol(v)}
                     className="[&_[role=slider]]:bg-primary"
                   />
-                  <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>5%</span><span>60%</span>
                   </div>
                 </div>
 
                 {/* Greeks */}
-                <div className="bg-zinc-800/50 rounded-lg p-3 space-y-2">
-                  <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-1">Greeks</div>
+                <div className="bg-muted/50 rounded-lg p-3 space-y-2">
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Greeks</div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Δ Delta</span>
+                    <span className="text-muted-foreground">Δ Delta</span>
                     <span className="text-amber-400 font-semibold">{fmtNum(swaptionMetrics.delta, 4)}</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">ν Vega (per 1% vol)</span>
+                    <span className="text-muted-foreground">ν Vega (per 1% vol)</span>
                     <span className="text-sky-400 font-semibold">{fmtNum(swaptionMetrics.vega * notional * 0.01, 0)}</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Moneyness</span>
+                    <span className="text-muted-foreground">Moneyness</span>
                     <span className={swaptionMetrics.moneyness > 0 ? "text-emerald-400 font-semibold" : "text-red-400 font-semibold"}>
                       {swaptionMetrics.moneyness > 0 ? "+" : ""}{swaptionMetrics.moneyness.toFixed(1)} bps
                     </span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Fwd Swap Rate</span>
+                    <span className="text-muted-foreground">Fwd Swap Rate</span>
                     <span className="text-white font-semibold">{swaptionMetrics.F.toFixed(3)}%</span>
                   </div>
                 </div>
@@ -1714,10 +1714,10 @@ export default function RateDerivativesPage() {
               </div>
 
               {/* Grid */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Expiry × Tenor Vol/Price Grid</CardTitle>
-                  <p className="text-xs text-zinc-500">Click a cell to highlight (notional {fmtK(notional)})</p>
+                  <CardTitle className="text-sm text-muted-foreground">Expiry × Tenor Vol/Price Grid</CardTitle>
+                  <p className="text-xs text-muted-foreground">Click a cell to highlight (notional {fmtK(notional)})</p>
                 </CardHeader>
                 <CardContent>
                   <SwaptionGrid
@@ -1733,10 +1733,10 @@ export default function RateDerivativesPage() {
               </Card>
 
               {/* Exercise boundary */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Exercise Boundary (Value Decomposition)</CardTitle>
-                  <p className="text-xs text-zinc-500">Total vs Intrinsic vs Time Value across expiry</p>
+                  <CardTitle className="text-sm text-muted-foreground">Exercise Boundary (Value Decomposition)</CardTitle>
+                  <p className="text-xs text-muted-foreground">Total vs Intrinsic vs Time Value across expiry</p>
                 </CardHeader>
                 <CardContent>
                   <ExerciseBoundaryChart
@@ -1756,7 +1756,7 @@ export default function RateDerivativesPage() {
         <TabsContent value="caps" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-emerald-400" />
@@ -1771,7 +1771,7 @@ export default function RateDerivativesPage() {
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       showCap
                         ? "bg-emerald-600/80 text-white"
-                        : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     Cap
@@ -1781,14 +1781,14 @@ export default function RateDerivativesPage() {
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       !showCap
                         ? "bg-sky-600/80 text-white"
-                        : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                        : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     Floor
                   </button>
                 </div>
 
-                <div className="text-xs text-zinc-500 bg-zinc-800/40 rounded p-2">
+                <div className="text-xs text-muted-foreground bg-muted/40 rounded p-2">
                   {showCap
                     ? "An interest rate cap pays when floating rate exceeds the cap strike. Protects floating-rate borrowers."
                     : "An interest rate floor pays when floating rate falls below the floor strike. Protects floating-rate lenders."}
@@ -1797,7 +1797,7 @@ export default function RateDerivativesPage() {
                 {/* Cap tenor */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Cap Tenor</label>
+                    <label className="text-xs text-muted-foreground font-medium">Cap Tenor</label>
                     <span className="text-xs text-white font-semibold">{capTenor}Y</span>
                   </div>
                   <div className="flex gap-1.5">
@@ -1808,7 +1808,7 @@ export default function RateDerivativesPage() {
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           capTenor === t
                             ? "bg-emerald-600 text-white"
-                            : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                            : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
                         {t}Y
@@ -1820,7 +1820,7 @@ export default function RateDerivativesPage() {
                 {/* Cap Strike */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Cap Strike</label>
+                    <label className="text-xs text-muted-foreground font-medium">Cap Strike</label>
                     <span className="text-xs text-white font-semibold">{capStrike.toFixed(2)}%</span>
                   </div>
                   <Slider
@@ -1836,7 +1836,7 @@ export default function RateDerivativesPage() {
                 {/* Floor Strike */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Floor Strike</label>
+                    <label className="text-xs text-muted-foreground font-medium">Floor Strike</label>
                     <span className="text-xs text-white font-semibold">{floorStrike.toFixed(2)}%</span>
                   </div>
                   <Slider
@@ -1852,7 +1852,7 @@ export default function RateDerivativesPage() {
                 {/* Cap Vol */}
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-xs text-zinc-400 font-medium">Implied Vol</label>
+                    <label className="text-xs text-muted-foreground font-medium">Implied Vol</label>
                     <span className="text-xs text-white font-semibold">{capVol}%</span>
                   </div>
                   <Slider
@@ -1866,24 +1866,24 @@ export default function RateDerivativesPage() {
                 </div>
 
                 {/* Metrics */}
-                <div className="bg-zinc-800/50 rounded-lg p-3 space-y-2">
-                  <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-1">Pricing</div>
+                <div className="bg-muted/50 rounded-lg p-3 space-y-2">
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">Pricing</div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Cap Premium</span>
+                    <span className="text-muted-foreground">Cap Premium</span>
                     <span className="text-emerald-400 font-semibold">{fmtK(capMetrics.totalCap)}</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Floor Premium</span>
+                    <span className="text-muted-foreground">Floor Premium</span>
                     <span className="text-sky-400 font-semibold">{fmtK(capMetrics.totalFloor)}</span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Collar Net Cost</span>
+                    <span className="text-muted-foreground">Collar Net Cost</span>
                     <span className={capMetrics.collarCost >= 0 ? "text-orange-400 font-semibold" : "text-primary font-semibold"}>
                       {fmtK(capMetrics.collarCost)}
                     </span>
                   </div>
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Break-even Rate</span>
+                    <span className="text-muted-foreground">Break-even Rate</span>
                     <span className="text-white font-semibold">{capMetrics.breakEven.toFixed(3)}%</span>
                   </div>
                 </div>
@@ -1922,12 +1922,12 @@ export default function RateDerivativesPage() {
               </div>
 
               {/* Caplet waterfall */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">
+                  <CardTitle className="text-sm text-muted-foreground">
                     {showCap ? "Caplet" : "Floorlet"} PV Decomposition
                   </CardTitle>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-muted-foreground">
                     Each bar = discounted {showCap ? "caplet" : "floorlet"} value ($1M notional)
                   </p>
                 </CardHeader>
@@ -1935,8 +1935,8 @@ export default function RateDerivativesPage() {
                   <CapletWaterfall bars={capletBars} isCap={showCap} />
                   <div className="mt-2 grid grid-cols-3 sm:grid-cols-5 gap-1.5 text-xs">
                     {capletBars.slice(0, 5).map((b) => (
-                      <div key={b.period} className="bg-zinc-800/50 rounded p-1.5 text-center">
-                        <div className="text-zinc-500">Y{b.period}</div>
+                      <div key={b.period} className="bg-muted/50 rounded p-1.5 text-center">
+                        <div className="text-muted-foreground">Y{b.period}</div>
                         <div className="text-white font-semibold">{b.forwardRate.toFixed(2)}%</div>
                         <div className={showCap ? "text-emerald-400" : "text-sky-400"}>
                           {fmtK(showCap ? b.capletPV : b.floorletPV)}
@@ -1948,10 +1948,10 @@ export default function RateDerivativesPage() {
               </Card>
 
               {/* Cap vs Collar */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Cap vs Floor vs Collar Comparison</CardTitle>
-                  <p className="text-xs text-zinc-500">
+                  <CardTitle className="text-sm text-muted-foreground">Cap vs Floor vs Collar Comparison</CardTitle>
+                  <p className="text-xs text-muted-foreground">
                     Collar = Buy Cap at {capStrike.toFixed(2)}% + Sell Floor at {floorStrike.toFixed(2)}%
                   </p>
                 </CardHeader>
@@ -1961,8 +1961,8 @@ export default function RateDerivativesPage() {
                     floorPremium={capMetrics.totalFloor}
                     collarCost={capMetrics.collarCost}
                   />
-                  <div className="mt-3 bg-zinc-800/40 rounded-lg p-3 text-xs text-zinc-400 space-y-1">
-                    <div className="font-semibold text-zinc-300 mb-1">Break-even Analysis</div>
+                  <div className="mt-3 bg-muted/40 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
+                    <div className="font-semibold text-muted-foreground mb-1">Break-even Analysis</div>
                     <div>
                       A collar at these strikes costs{" "}
                       <span className={capMetrics.collarCost >= 0 ? "text-orange-400 font-semibold" : "text-primary font-semibold"}>
@@ -1987,7 +1987,7 @@ export default function RateDerivativesPage() {
         <TabsContent value="ratevol" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Thermometer className="w-4 h-4 text-orange-400" />
@@ -1995,22 +1995,22 @@ export default function RateDerivativesPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-xs text-zinc-500 bg-zinc-800/40 rounded p-3 space-y-1">
-                  <div className="font-semibold text-zinc-300 mb-1">SABR Model</div>
+                <div className="text-xs text-muted-foreground bg-muted/40 rounded p-3 space-y-1">
+                  <div className="font-semibold text-muted-foreground mb-1">SABR Model</div>
                   <div>Stochastic Alpha Beta Rho model by Hagan et al.</div>
                   <div>Parameters: α (vol of spot), β (CEV exponent), ρ (correlation), ν (vol of vol)</div>
                 </div>
 
                 {/* Vol convention toggle */}
                 <div>
-                  <div className="text-xs text-zinc-400 font-medium mb-2">Vol Convention</div>
+                  <div className="text-xs text-muted-foreground font-medium mb-2">Vol Convention</div>
                   <div className="flex gap-2">
                     <button
                       onClick={() => setShowNormalVol(false)}
                       className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                         !showNormalVol
                           ? "bg-orange-600/80 text-white"
-                          : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                          : "bg-muted text-muted-foreground hover:text-foreground"
                       }`}
                     >
                       Log-Normal
@@ -2020,13 +2020,13 @@ export default function RateDerivativesPage() {
                       className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                         showNormalVol
                           ? "bg-orange-600/80 text-white"
-                          : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                          : "bg-muted text-muted-foreground hover:text-foreground"
                       }`}
                     >
                       Normal (bp)
                     </button>
                   </div>
-                  <div className="text-xs text-zinc-500 mt-2 bg-zinc-800/30 rounded p-2">
+                  <div className="text-xs text-muted-foreground mt-2 bg-muted/30 rounded p-2">
                     {showNormalVol
                       ? "Normal vol (Bachelier): σ_N in bp/yr. Preferred for near-zero or negative rates."
                       : "Log-normal vol (Black): σ_LN as %. Standard for positive-rate environments."}
@@ -2035,7 +2035,7 @@ export default function RateDerivativesPage() {
 
                 {/* Selected tenor info */}
                 <div>
-                  <div className="text-xs text-zinc-400 font-medium mb-2">Selected Tenor</div>
+                  <div className="text-xs text-muted-foreground font-medium mb-2">Selected Tenor</div>
                   <div className="flex gap-1.5 flex-wrap">
                     {volTenors.map((ten, ti) => (
                       <button
@@ -2044,7 +2044,7 @@ export default function RateDerivativesPage() {
                         className={`px-2.5 py-1.5 rounded text-xs font-medium transition-colors ${
                           ti === selectedVolTenorIdx
                             ? "bg-orange-600 text-white"
-                            : "bg-zinc-800 text-zinc-400 hover:text-zinc-200"
+                            : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
                         {ten}Y
@@ -2054,13 +2054,13 @@ export default function RateDerivativesPage() {
                 </div>
 
                 {/* SABR params display */}
-                <div className="bg-zinc-800/50 rounded-lg p-3 space-y-2">
-                  <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-1">
+                <div className="bg-muted/50 rounded-lg p-3 space-y-2">
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">
                     SABR Params ({volTenors[selectedVolTenorIdx]}Y)
                   </div>
                   {(["alpha", "beta", "rho", "nu"] as const).map((param) => (
                     <div key={param} className="flex justify-between text-xs">
-                      <span className="text-zinc-500 capitalize">{param} ({param === "alpha" ? "α" : param === "beta" ? "β" : param === "rho" ? "ρ" : "ν"})</span>
+                      <span className="text-muted-foreground capitalize">{param} ({param === "alpha" ? "α" : param === "beta" ? "β" : param === "rho" ? "ρ" : "ν"})</span>
                       <span className="text-orange-300 font-semibold">
                         {sabrParams[selectedVolTenorIdx][param].toFixed(4)}
                       </span>
@@ -2069,15 +2069,15 @@ export default function RateDerivativesPage() {
                 </div>
 
                 {/* ATM vol at each tenor */}
-                <div className="bg-zinc-800/50 rounded-lg p-3 space-y-2">
-                  <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wide mb-1">ATM Vol by Tenor</div>
+                <div className="bg-muted/50 rounded-lg p-3 space-y-2">
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-1">ATM Vol by Tenor</div>
                   {volTenors.map((ten, ti) => {
                     const atmIdx = Math.floor(volStrikes.length / 2);
                     const v = volMatrix[atmIdx]?.[ti] ?? 0;
                     return (
                       <div key={ten} className="flex items-center gap-2 text-xs">
-                        <span className="text-zinc-500 w-8">{ten}Y</span>
-                        <div className="flex-1 bg-zinc-700/50 rounded h-1.5 overflow-hidden">
+                        <span className="text-muted-foreground w-8">{ten}Y</span>
+                        <div className="flex-1 bg-muted/50 rounded h-1.5 overflow-hidden">
                           <div
                             className="h-full bg-orange-500 rounded"
                             style={{ width: `${Math.min(100, (v / 40) * 100)}%` }}
@@ -2094,12 +2094,12 @@ export default function RateDerivativesPage() {
             {/* Charts */}
             <div className="lg:col-span-2 space-y-4">
               {/* Heatmap */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">
+                  <CardTitle className="text-sm text-muted-foreground">
                     Vol Surface — Strike × Tenor Heatmap
                   </CardTitle>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-muted-foreground">
                     Click column to select tenor for smile view. Rows = strike offset from ATM ({baseRate.toFixed(2)}%).
                   </p>
                 </CardHeader>
@@ -2115,14 +2115,14 @@ export default function RateDerivativesPage() {
               </Card>
 
               {/* Vol Smile */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
-                    <CardTitle className="text-sm text-zinc-300">
+                    <CardTitle className="text-sm text-muted-foreground">
                       Vol Smile — {volTenors[selectedVolTenorIdx]}Y Tenor
                     </CardTitle>
                     <div className="flex gap-2 items-center">
-                      <span className="text-xs text-zinc-500">Convention:</span>
+                      <span className="text-xs text-muted-foreground">Convention:</span>
                       <Badge
                         variant="outline"
                         className={`text-xs cursor-pointer ${
@@ -2147,8 +2147,8 @@ export default function RateDerivativesPage() {
                   />
                   <div className="mt-2 flex flex-wrap gap-2 text-xs">
                     {volStrikes.map((k, i) => (
-                      <span key={i} className="bg-zinc-800/50 border border-zinc-700/50 rounded px-2 py-0.5">
-                        <span className="text-zinc-500">{k.toFixed(2)}%:</span>{" "}
+                      <span key={i} className="bg-muted/50 border border-border/50 rounded px-2 py-0.5">
+                        <span className="text-muted-foreground">{k.toFixed(2)}%:</span>{" "}
                         <span className="text-orange-300 font-semibold">
                           {showNormalVol
                             ? smileVols.normal[i].toFixed(1) + "bp"
@@ -2161,22 +2161,22 @@ export default function RateDerivativesPage() {
               </Card>
 
               {/* Term structure table */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Vol Term Structure Summary</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">Vol Term Structure Summary</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-zinc-800">
-                          <th className="text-left text-zinc-500 font-medium py-2 pr-3">Tenor</th>
-                          <th className="text-right text-zinc-500 font-medium py-2 px-2">α</th>
-                          <th className="text-right text-zinc-500 font-medium py-2 px-2">ρ</th>
-                          <th className="text-right text-zinc-500 font-medium py-2 px-2">ν</th>
-                          <th className="text-right text-zinc-500 font-medium py-2 px-2">ATM LN Vol</th>
-                          <th className="text-right text-zinc-500 font-medium py-2 px-2">ATM N Vol</th>
-                          <th className="text-right text-zinc-500 font-medium py-2 pl-2">Skew</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left text-muted-foreground font-medium py-2 pr-3">Tenor</th>
+                          <th className="text-right text-muted-foreground font-medium py-2 px-2">α</th>
+                          <th className="text-right text-muted-foreground font-medium py-2 px-2">ρ</th>
+                          <th className="text-right text-muted-foreground font-medium py-2 px-2">ν</th>
+                          <th className="text-right text-muted-foreground font-medium py-2 px-2">ATM LN Vol</th>
+                          <th className="text-right text-muted-foreground font-medium py-2 px-2">ATM N Vol</th>
+                          <th className="text-right text-muted-foreground font-medium py-2 pl-2">Skew</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -2192,19 +2192,19 @@ export default function RateDerivativesPage() {
                           return (
                             <tr
                               key={ten}
-                              className={`border-b border-zinc-800/50 cursor-pointer ${
-                                isSelected ? "bg-orange-600/10" : "hover:bg-zinc-800/40"
+                              className={`border-b border-border/50 cursor-pointer ${
+                                isSelected ? "bg-orange-600/10" : "hover:bg-muted/40"
                               }`}
                               onClick={() => setSelectedVolTenorIdx(ti)}
                             >
                               <td className="py-2 pr-3">
-                                <span className={`font-semibold ${isSelected ? "text-orange-400" : "text-zinc-300"}`}>
+                                <span className={`font-semibold ${isSelected ? "text-orange-400" : "text-muted-foreground"}`}>
                                   {ten}Y
                                 </span>
                               </td>
-                              <td className="text-right py-2 px-2 text-zinc-400">{p.alpha.toFixed(3)}</td>
-                              <td className="text-right py-2 px-2 text-zinc-400">{p.rho.toFixed(3)}</td>
-                              <td className="text-right py-2 px-2 text-zinc-400">{p.nu.toFixed(3)}</td>
+                              <td className="text-right py-2 px-2 text-muted-foreground">{p.alpha.toFixed(3)}</td>
+                              <td className="text-right py-2 px-2 text-muted-foreground">{p.rho.toFixed(3)}</td>
+                              <td className="text-right py-2 px-2 text-muted-foreground">{p.nu.toFixed(3)}</td>
                               <td className="text-right py-2 px-2 font-semibold text-orange-300">{atmLN.toFixed(1)}%</td>
                               <td className="text-right py-2 px-2 font-semibold text-sky-300">{atmN.toFixed(1)} bp</td>
                               <td className={`text-right py-2 pl-2 font-semibold ${skew < 0 ? "text-red-400" : "text-emerald-400"}`}>

@@ -38,6 +38,7 @@ import { TradeShareCard } from "@/components/trading/TradeShareCard";
 import { TradeReplay } from "@/components/trading/TradeReplay";
 import { MarginDashboard } from "@/components/trading/MarginDashboard";
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, RefreshCw } from "lucide-react";
 
 // ── Chart area wrapper with DrawingOverlay ────────────────────────────────────
@@ -236,8 +237,28 @@ export default function TradePage() {
             <DrawingToolbar />
             <ChartWithDrawing flashClass={flashClass}>
               {isLoading && (
-                <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-                  <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                <div className="absolute inset-0 z-10 flex flex-col gap-2 bg-background/80 p-4">
+                  {/* Price axis skeleton */}
+                  <div className="flex items-center justify-between">
+                    <Skeleton className="h-4 w-20" />
+                    <Skeleton className="h-4 w-16" />
+                  </div>
+                  {/* Candlestick area skeleton */}
+                  <div className="flex flex-1 items-end gap-[3px] px-2">
+                    {Array.from({ length: 48 }).map((_, i) => (
+                      <Skeleton
+                        key={i}
+                        className="flex-1 rounded-sm"
+                        style={{ height: `${25 + Math.sin(i * 0.4) * 20 + Math.random() * 30}%` }}
+                      />
+                    ))}
+                  </div>
+                  {/* Time axis skeleton */}
+                  <div className="flex justify-between pt-1">
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <Skeleton key={i} className="h-3 w-12" />
+                    ))}
+                  </div>
                 </div>
               )}
               {error && (
@@ -466,8 +487,22 @@ export default function TradePage() {
           <DrawingToolbar />
           <ChartWithDrawing flashClass={flashClass}>
             {isLoading && (
-              <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-                <Loader2 className="h-6 w-6 animate-spin text-primary" />
+              <div className="absolute inset-0 z-10 flex flex-col gap-2 bg-background/80 p-3">
+                <Skeleton className="h-4 w-20" />
+                <div className="flex flex-1 items-end gap-[2px]">
+                  {Array.from({ length: 32 }).map((_, i) => (
+                    <Skeleton
+                      key={i}
+                      className="flex-1 rounded-sm"
+                      style={{ height: `${25 + Math.sin(i * 0.4) * 20 + Math.random() * 30}%` }}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <Skeleton key={i} className="h-3 w-10" />
+                  ))}
+                </div>
               </div>
             )}
             {error && (

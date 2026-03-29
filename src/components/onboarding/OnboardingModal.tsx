@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   BarChart3,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -105,12 +106,14 @@ export function OnboardingModal() {
               Step {currentStep + 1} of {TOTAL_STEPS}
             </span>
             {isFirst && (
-              <button
+              <Button
+                variant="ghost"
+                size="xs"
                 onClick={handleSkip}
-                className="text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground"
+                className="text-muted-foreground/60 hover:text-muted-foreground"
               >
                 Skip
-              </button>
+              </Button>
             )}
           </div>
 
@@ -143,26 +146,23 @@ export function OnboardingModal() {
           {/* Footer */}
           <div className="border-t border-border/40 px-5 py-4 flex items-center gap-3">
             {currentStep === 1 && (
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => {
                   dirRef.current = -1;
                   setStep(0);
                 }}
-                className="flex items-center gap-1.5 rounded-md border border-border/50 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
               >
                 Back
-              </button>
+              </Button>
             )}
 
-            <button
+            <Button
+              size="sm"
               onClick={handleNext}
               disabled={!canAdvance()}
-              className={cn(
-                "ml-auto flex items-center gap-1.5 rounded-md px-4 py-2 text-xs font-semibold transition-colors",
-                canAdvance()
-                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                  : "bg-muted text-muted-foreground cursor-not-allowed"
-              )}
+              className="ml-auto"
             >
               {currentStep === 0 && "Get Started"}
               {currentStep === 1 && "Next"}
@@ -171,7 +171,7 @@ export function OnboardingModal() {
                   ? "Start Learning"
                   : "Start Trading")}
               <ArrowRight className="h-3.5 w-3.5" />
-            </button>
+            </Button>
           </div>
 
           {/* Progress dots */}

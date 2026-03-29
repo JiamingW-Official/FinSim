@@ -59,16 +59,16 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
-      <span className="text-xs text-zinc-400">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -302,7 +302,7 @@ function ClientSegmentationTab() {
                   <span className="font-semibold" style={{ color: seg.color }}>
                     {seg.label}
                   </span>
-                  <span className="text-zinc-400">{seg.range}</span>
+                  <span className="text-muted-foreground">{seg.range}</span>
                 </div>
                 <AnimatePresence>
                   {selectedSeg === i && (
@@ -310,7 +310,7 @@ function ClientSegmentationTab() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      className="text-zinc-300 overflow-hidden mt-1"
+                      className="text-muted-foreground overflow-hidden mt-1"
                     >
                       {seg.description}
                     </motion.p>
@@ -339,8 +339,8 @@ function ClientSegmentationTab() {
                   <g.icon size={14} className={g.color} />
                   <div className="flex-1">
                     <div className="flex justify-between text-xs mb-0.5">
-                      <span className="text-zinc-300">{g.goal}</span>
-                      <span className="text-zinc-400">{g.pct}%</span>
+                      <span className="text-muted-foreground">{g.goal}</span>
+                      <span className="text-muted-foreground">{g.pct}%</span>
                     </div>
                     <div className="h-1.5 rounded-full bg-white/10">
                       <div
@@ -401,7 +401,7 @@ function ClientSegmentationTab() {
                   {b.severity}
                 </Badge>
               </div>
-              <p className="text-zinc-400 leading-relaxed">{b.description}</p>
+              <p className="text-muted-foreground leading-relaxed">{b.description}</p>
             </div>
           ))}
         </div>
@@ -650,7 +650,7 @@ function FinancialPlanningTab() {
                 </span>
                 <div>
                   <span className="font-semibold text-white">{step.title}: </span>
-                  <span className="text-zinc-400">{step.desc}</span>
+                  <span className="text-muted-foreground">{step.desc}</span>
                 </div>
               </div>
             ))}
@@ -662,20 +662,20 @@ function FinancialPlanningTab() {
             <SectionTitle>
               <BarChart3 size={14} /> Monte Carlo Retirement Simulation
             </SectionTitle>
-            <p className="text-xs text-zinc-500 mb-2">$1M portfolio, $40K/yr withdrawal, 30-year horizon</p>
+            <p className="text-xs text-muted-foreground mb-2">$1M portfolio, $40K/yr withdrawal, 30-year horizon</p>
             <MonteCarloSVG />
             <div className="grid grid-cols-3 gap-2 mt-2 text-xs text-center">
               <div className="rounded bg-rose-500/10 border border-rose-500/20 p-1.5">
                 <div className="text-rose-400 font-bold">10th Pct</div>
-                <div className="text-zinc-400">Bear scenario</div>
+                <div className="text-muted-foreground">Bear scenario</div>
               </div>
               <div className="rounded bg-primary/10 border border-border p-1.5">
                 <div className="text-primary font-bold">Median</div>
-                <div className="text-zinc-400">Base case</div>
+                <div className="text-muted-foreground">Base case</div>
               </div>
               <div className="rounded bg-emerald-500/10 border border-emerald-500/20 p-1.5">
                 <div className="text-emerald-400 font-bold">90th Pct</div>
-                <div className="text-zinc-400">Bull scenario</div>
+                <div className="text-muted-foreground">Bull scenario</div>
               </div>
             </div>
           </div>
@@ -687,7 +687,7 @@ function FinancialPlanningTab() {
             <div className="space-y-2">
               {TAX_ALPHA_SOURCES.map((t) => (
                 <div key={t.source} className="flex items-center gap-2 text-xs">
-                  <div className="w-24 text-zinc-300 flex-shrink-0">{t.source}</div>
+                  <div className="w-24 text-muted-foreground flex-shrink-0">{t.source}</div>
                   <div className="flex-1">
                     <div className="h-1.5 rounded-full bg-white/10">
                       <div
@@ -953,7 +953,7 @@ function AssetAllocationTab() {
                   "flex-1 text-xs rounded-lg border py-1.5 font-medium transition-colors",
                   selectedProfile === i
                     ? "border-white/30 bg-white/10 text-white"
-                    : "border-white/10 bg-transparent text-zinc-400 hover:text-white"
+                    : "border-white/10 bg-transparent text-muted-foreground hover:text-white"
                 )}
                 style={selectedProfile === i ? { borderColor: p.color + "80", color: p.color } : {}}
               >
@@ -969,7 +969,7 @@ function AssetAllocationTab() {
                 return (
                   <div key={k} className="text-xs">
                     <div className="flex justify-between mb-0.5">
-                      <span className="text-zinc-400">{k.replace("_", " ")}</span>
+                      <span className="text-muted-foreground">{k.replace("_", " ")}</span>
                       <span className="text-white font-medium">{val}%</span>
                     </div>
                     <div className="h-1 rounded-full bg-white/10">
@@ -1006,7 +1006,7 @@ function AssetAllocationTab() {
               <TrendingUp size={14} /> Lifecycle Glide Path (Age vs Allocation)
             </SectionTitle>
             <GlidePath />
-            <p className="text-xs text-zinc-500 mt-1">
+            <p className="text-xs text-muted-foreground mt-1">
               Modern approach: "110 − age" equity rule. Adds alternatives sleeve (PE/real assets) for HNW clients.
               Target-date funds use automated glide paths.
             </p>
@@ -1023,7 +1023,7 @@ function AssetAllocationTab() {
                     <span className="font-medium text-white">{f.factor}</span>
                     <span className="text-emerald-400">+{f.premium}% avg annual premium</span>
                   </div>
-                  <p className="text-zinc-500">{f.risk}</p>
+                  <p className="text-muted-foreground">{f.risk}</p>
                 </div>
               ))}
             </div>
@@ -1049,7 +1049,7 @@ function AssetAllocationTab() {
               )}
             >
               <div className="font-semibold text-white mb-1">{m.method} Rebalancing</div>
-              <div className="text-zinc-400 mb-1">Trigger: {m.frequency}</div>
+              <div className="text-muted-foreground mb-1">Trigger: {m.frequency}</div>
               <div className="text-emerald-300 mb-0.5">Pros: {m.pros}</div>
               <div className="text-rose-300">Cons: {m.cons}</div>
             </div>
@@ -1289,7 +1289,7 @@ function FeeModelsTab() {
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-semibold text-white">{m.model}</span>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-zinc-400">{m.typical}</span>
+                      <span className="text-muted-foreground">{m.typical}</span>
                       <Badge
                         className={cn(
                           "text-xs px-1 py-0",
@@ -1324,19 +1324,19 @@ function FeeModelsTab() {
               <div className="font-bold text-sm mb-1" style={{ color: ra.color }}>
                 {ra.name}
               </div>
-              <div className="grid grid-cols-2 gap-x-2 mb-2 text-zinc-400">
+              <div className="grid grid-cols-2 gap-x-2 mb-2 text-muted-foreground">
                 <div>
-                  <span className="text-zinc-500">Fee: </span>
+                  <span className="text-muted-foreground">Fee: </span>
                   <span className="text-white font-medium">{ra.fee}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500">Min: </span>
+                  <span className="text-muted-foreground">Min: </span>
                   <span className="text-white font-medium">{ra.min}</span>
                 </div>
               </div>
               <ul className="space-y-0.5">
                 {ra.features.map((f) => (
-                  <li key={f} className="flex items-center gap-1 text-zinc-400">
+                  <li key={f} className="flex items-center gap-1 text-muted-foreground">
                     <CheckCircle size={9} className="text-emerald-500 flex-shrink-0" />
                     {f}
                   </li>
@@ -1362,15 +1362,15 @@ function FeeModelsTab() {
               </div>
               <div className="flex gap-4 mb-2">
                 <div>
-                  <span className="text-zinc-500">Min: </span>
+                  <span className="text-muted-foreground">Min: </span>
                   <span className="text-white">{fo.threshold}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500">Cost: </span>
+                  <span className="text-muted-foreground">Cost: </span>
                   <span className="text-white">{fo.cost}</span>
                 </div>
               </div>
-              <p className="text-zinc-400 leading-relaxed">{fo.desc}</p>
+              <p className="text-muted-foreground leading-relaxed">{fo.desc}</p>
             </div>
           ))}
         </div>
@@ -1421,7 +1421,7 @@ export default function WealthMgmtPage() {
   void r();
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
@@ -1436,7 +1436,7 @@ export default function WealthMgmtPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Wealth Management</h1>
-              <p className="text-sm text-zinc-400">
+              <p className="text-sm text-muted-foreground">
                 HNW client segmentation, financial planning, asset allocation, fee models, and family offices
               </p>
             </div>

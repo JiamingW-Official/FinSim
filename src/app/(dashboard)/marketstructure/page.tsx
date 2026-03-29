@@ -296,11 +296,11 @@ function HorizontalBarChart({
         const y = i * rowH + (rowH - barH) / 2;
         return (
           <g key={i}>
-            <text x={labelW - 6} y={i * rowH + rowH / 2 + 4} textAnchor="end" className="fill-slate-400 text-[11px]" fontSize={11}>
+            <text x={labelW - 6} y={i * rowH + rowH / 2 + 4} textAnchor="end" className="fill-muted-foreground text-[11px]" fontSize={11}>
               {d[labelKey] as string}
             </text>
             <rect x={labelW} y={y} width={barW} height={barH} rx={3} fill={d[colorKey] as string} opacity={0.85} />
-            <text x={labelW + barW + 6} y={i * rowH + rowH / 2 + 4} className="fill-slate-300" fontSize={11}>
+            <text x={labelW + barW + 6} y={i * rowH + rowH / 2 + 4} className="fill-muted-foreground" fontSize={11}>
               {(val as number).toFixed(1)}{unit}
             </text>
           </g>
@@ -345,14 +345,14 @@ function DonutChart({ data }: { data: { source: string; pct: number; color: stri
           <path key={i} d={arcPath(s.startAngle, s.endAngle)} fill={s.color} opacity={0.9} />
         ))}
         <text x={cx} y={cy - 4} textAnchor="middle" className="fill-white" fontSize={13} fontWeight="bold">Revenue</text>
-        <text x={cx} y={cy + 12} textAnchor="middle" className="fill-slate-400" fontSize={10}>Mix</text>
+        <text x={cx} y={cy + 12} textAnchor="middle" className="fill-muted-foreground" fontSize={10}>Mix</text>
       </svg>
       <div className="flex flex-col gap-1.5">
         {data.map((d, i) => (
-          <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
+          <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
             <div className="w-3 h-3 rounded-sm flex-shrink-0" style={{ background: d.color }} />
             <span>{d.source}</span>
-            <span className="ml-auto font-mono text-slate-200 pl-3">{d.pct}%</span>
+            <span className="ml-auto font-mono text-foreground pl-3">{d.pct}%</span>
           </div>
         ))}
       </div>
@@ -371,17 +371,17 @@ function InfoCard({ title, children, icon: Icon, accent = "#3b82f6" }: {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-4"
+      className="rounded-xl border border-border/60 bg-muted/50 p-4"
       style={{ borderLeftColor: accent, borderLeftWidth: 3 }}
     >
       {Icon && (
         <div className="flex items-center gap-2 mb-3">
-          <Icon size={16} className="text-slate-400" />
-          <span className="text-sm font-semibold text-slate-200">{title}</span>
+          <Icon size={16} className="text-muted-foreground" />
+          <span className="text-sm font-semibold text-foreground">{title}</span>
         </div>
       )}
-      {!Icon && <div className="text-sm font-semibold text-slate-200 mb-3">{title}</div>}
-      <div className="text-xs text-slate-400 leading-relaxed space-y-1.5">{children}</div>
+      {!Icon && <div className="text-sm font-semibold text-foreground mb-3">{title}</div>}
+      <div className="text-xs text-muted-foreground leading-relaxed space-y-1.5">{children}</div>
     </motion.div>
   );
 }
@@ -400,24 +400,24 @@ function ExchangeLandscapeTab() {
     <div className="space-y-6">
       {/* Market Share */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <BarChart3 size={15} className="text-primary" />
             US Equity Market Share (2024)
           </h3>
           <HorizontalBarChart data={US_EXCHANGES} height={280} />
         </div>
 
-        <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <DollarSign size={15} className="text-primary" />
             Exchange Revenue Model
           </h3>
           <DonutChart data={EXCHANGE_REVENUE} />
-          <div className="mt-4 space-y-1.5 text-xs text-slate-400">
-            <p><span className="text-slate-300 font-medium">Transaction Fees:</span> Per-share or per-order fees; maker-taker or taker-maker rebate models.</p>
-            <p><span className="text-slate-300 font-medium">Market Data:</span> Fastest-growing segment — SIPs, proprietary feeds, depth-of-book.</p>
-            <p><span className="text-slate-300 font-medium">Listing Fees:</span> Annual and one-time fees from listed companies.</p>
+          <div className="mt-4 space-y-1.5 text-xs text-muted-foreground">
+            <p><span className="text-muted-foreground font-medium">Transaction Fees:</span> Per-share or per-order fees; maker-taker or taker-maker rebate models.</p>
+            <p><span className="text-muted-foreground font-medium">Market Data:</span> Fastest-growing segment — SIPs, proprietary feeds, depth-of-book.</p>
+            <p><span className="text-muted-foreground font-medium">Listing Fees:</span> Annual and one-time fees from listed companies.</p>
           </div>
         </div>
       </div>
@@ -459,27 +459,27 @@ function ExchangeLandscapeTab() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-4"
+            className="rounded-xl border border-border/60 bg-muted/50 p-4"
             style={{ borderTopColor: t.color, borderTopWidth: 2 }}
           >
             <div className="flex items-center gap-2 mb-2">
               <t.icon size={14} style={{ color: t.color }} />
-              <span className="text-sm font-semibold text-slate-200">{t.title}</span>
+              <span className="text-sm font-semibold text-foreground">{t.title}</span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed mb-2">{t.desc}</p>
-            <div className="text-xs text-slate-500 font-medium">{t.examples}</div>
+            <p className="text-xs text-muted-foreground leading-relaxed mb-2">{t.desc}</p>
+            <div className="text-xs text-muted-foreground font-medium">{t.examples}</div>
           </motion.div>
         ))}
       </div>
 
       {/* NYSE vs NASDAQ */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4">NYSE vs NASDAQ: Structural Differences</h3>
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">NYSE vs NASDAQ: Structural Differences</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700">
-                <th className="text-left py-2 pr-4 text-slate-400 font-medium">Dimension</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Dimension</th>
                 <th className="text-left py-2 pr-4 text-primary font-medium">NYSE</th>
                 <th className="text-left py-2 text-primary font-medium">NASDAQ</th>
               </tr>
@@ -495,10 +495,10 @@ function ExchangeLandscapeTab() {
                 ["Order Types", "More floor-specific order types", "Standard electronic order types"],
                 ["Typical Listings", "Large-cap, blue chip, industrials, financials", "Tech, biotech, growth companies"],
               ].map(([dim, nyse, nsdq], i) => (
-                <tr key={i} className="hover:bg-slate-700/20">
-                  <td className="py-2 pr-4 text-slate-300 font-medium">{dim}</td>
-                  <td className="py-2 pr-4 text-slate-400">{nyse}</td>
-                  <td className="py-2 text-slate-400">{nsdq}</td>
+                <tr key={i} className="hover:bg-muted/20">
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{dim}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{nyse}</td>
+                  <td className="py-2 text-muted-foreground">{nsdq}</td>
                 </tr>
               ))}
             </tbody>
@@ -507,8 +507,8 @@ function ExchangeLandscapeTab() {
       </div>
 
       {/* Global Exchanges */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Globe size={15} className="text-muted-foreground" />
           Global Exchanges by Market Cap
         </h3>
@@ -518,14 +518,14 @@ function ExchangeLandscapeTab() {
               key={i}
               whileHover={{ scale: 1.02 }}
               onClick={() => setSelectedGlobal(selectedGlobal?.abbr === ex.abbr ? null : ex)}
-              className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-primary bg-muted/40" : "border-slate-700 hover:border-slate-600 bg-slate-900/40")}
+              className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-primary bg-muted/40" : "border-border hover:border-slate-600 bg-card/40")}
             >
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-bold text-slate-200">{ex.abbr}</span>
-                <Badge variant="outline" className="text-xs px-1.5 py-0 border-slate-600 text-slate-400">{ex.country}</Badge>
+                <span className="text-xs font-bold text-foreground">{ex.abbr}</span>
+                <Badge variant="outline" className="text-xs px-1.5 py-0 border-slate-600 text-muted-foreground">{ex.country}</Badge>
               </div>
               <div className="text-lg font-bold" style={{ color: ex.color }}>{ex.marketCap}</div>
-              <div className="text-xs text-slate-500 mt-1">{ex.hours}</div>
+              <div className="text-xs text-muted-foreground mt-1">{ex.hours}</div>
             </motion.div>
           ))}
         </div>
@@ -537,11 +537,11 @@ function ExchangeLandscapeTab() {
               exit={{ opacity: 0, height: 0 }}
               className="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-xs"
             >
-              <div className="font-semibold text-slate-200 mb-1">{selectedGlobal.name}</div>
-              <div className="grid grid-cols-3 gap-4 text-slate-400">
-                <div><span className="text-slate-500">Type:</span> {selectedGlobal.type}</div>
-                <div><span className="text-slate-500">Market Cap:</span> {selectedGlobal.marketCap}</div>
-                <div><span className="text-slate-500">Hours:</span> {selectedGlobal.hours}</div>
+              <div className="font-semibold text-foreground mb-1">{selectedGlobal.name}</div>
+              <div className="grid grid-cols-3 gap-4 text-muted-foreground">
+                <div><span className="text-muted-foreground">Type:</span> {selectedGlobal.type}</div>
+                <div><span className="text-muted-foreground">Market Cap:</span> {selectedGlobal.marketCap}</div>
+                <div><span className="text-muted-foreground">Hours:</span> {selectedGlobal.hours}</div>
               </div>
             </motion.div>
           )}
@@ -589,7 +589,7 @@ function ExchangeLandscapeTab() {
             <ul className="space-y-1.5">
               {card.content.map((c, j) => (
                 <li key={j} className="flex gap-1.5">
-                  <span className="text-slate-600 mt-0.5">•</span>
+                  <span className="text-muted-foreground mt-0.5">•</span>
                   {c}
                 </li>
               ))}
@@ -611,15 +611,15 @@ function OrderTypesTab() {
   return (
     <div className="space-y-6">
       {/* Order type grid */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <h3 className="text-sm font-semibold text-slate-200">15 Order Types</h3>
+          <h3 className="text-sm font-semibold text-foreground">15 Order Types</h3>
           <div className="flex gap-2">
             {(["All", "Low", "Medium", "High"] as const).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-primary border-primary text-white" : "border-slate-700 text-slate-400 hover:border-slate-500")}
+                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-primary border-primary text-white" : "border-border text-muted-foreground hover:border-slate-500")}
               >
                 {f}
               </button>
@@ -636,11 +636,11 @@ function OrderTypesTab() {
               onClick={() => setSelected(selected?.abbr === o.abbr ? null : o)}
               className={cn(
                 "rounded-lg border p-2.5 text-left transition-colors",
-                selected?.abbr === o.abbr ? "border-primary bg-muted/40" : "border-slate-700 hover:border-slate-600 bg-slate-900/40"
+                selected?.abbr === o.abbr ? "border-primary bg-muted/40" : "border-border hover:border-slate-600 bg-card/40"
               )}
             >
-              <div className="text-xs font-bold text-slate-200 mb-0.5">{o.abbr}</div>
-              <div className="text-xs text-slate-500 leading-tight">{o.name}</div>
+              <div className="text-xs font-bold text-foreground mb-0.5">{o.abbr}</div>
+              <div className="text-xs text-muted-foreground leading-tight">{o.name}</div>
             </motion.button>
           ))}
         </div>
@@ -654,29 +654,29 @@ function OrderTypesTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="rounded-xl border border-border bg-slate-800/50 p-5"
+            className="rounded-xl border border-border bg-muted/50 p-5"
           >
             <div className="flex items-start justify-between mb-3">
               <div>
-                <div className="text-base font-bold text-slate-100">{selected.name}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{selected.definition}</div>
+                <div className="text-base font-bold text-foreground">{selected.name}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{selected.definition}</div>
               </div>
               <RiskBadge risk={selected.risk} />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-              <div className="bg-slate-900/40 rounded-lg p-3">
-                <div className="text-slate-300 font-medium mb-1.5 flex items-center gap-1.5"><CheckCircle size={12} className="text-emerald-400" />When to Use</div>
-                <p className="text-slate-400">{selected.whenToUse}</p>
+              <div className="bg-card/40 rounded-lg p-3">
+                <div className="text-muted-foreground font-medium mb-1.5 flex items-center gap-1.5"><CheckCircle size={12} className="text-emerald-400" />When to Use</div>
+                <p className="text-muted-foreground">{selected.whenToUse}</p>
               </div>
-              <div className="bg-slate-900/40 rounded-lg p-3">
+              <div className="bg-card/40 rounded-lg p-3">
                 <div className="text-emerald-400 font-medium mb-1.5">Pros</div>
-                <ul className="space-y-1 text-slate-400">
+                <ul className="space-y-1 text-muted-foreground">
                   {selected.pros.map((p, i) => <li key={i}>+ {p}</li>)}
                 </ul>
               </div>
-              <div className="bg-slate-900/40 rounded-lg p-3">
+              <div className="bg-card/40 rounded-lg p-3">
                 <div className="text-rose-400 font-medium mb-1.5">Cons</div>
-                <ul className="space-y-1 text-slate-400">
+                <ul className="space-y-1 text-muted-foreground">
                   {selected.cons.map((c, i) => <li key={i}>− {c}</li>)}
                 </ul>
               </div>
@@ -687,11 +687,11 @@ function OrderTypesTab() {
 
       {/* Order Book Mechanics */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4">Order Book: Price-Time Priority</h3>
+        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4">Order Book: Price-Time Priority</h3>
           <div className="space-y-1 text-xs mb-3">
             {/* Simplified order book visual */}
-            <div className="grid grid-cols-3 text-slate-500 text-xs font-medium border-b border-slate-700 pb-1 mb-2">
+            <div className="grid grid-cols-3 text-muted-foreground text-xs font-medium border-b border-border pb-1 mb-2">
               <span>Size</span><span className="text-center">Price</span><span className="text-right">Side</span>
             </div>
             {[
@@ -701,13 +701,13 @@ function OrderTypesTab() {
               { size: "800", price: "182.00", side: "Ask", color: "text-rose-400" },
             ].map((row, i) => (
               <div key={i} className="grid grid-cols-3 text-xs py-0.5">
-                <span className="text-slate-400">{row.size}</span>
+                <span className="text-muted-foreground">{row.size}</span>
                 <span className={cn("text-center font-mono font-medium", row.color)}>${row.price}</span>
                 <span className={cn("text-right", row.color)}>{row.side}</span>
               </div>
             ))}
-            <div className="grid grid-cols-3 text-xs py-1 bg-slate-700/30 rounded px-1">
-              <span className="text-slate-500">Spread</span>
+            <div className="grid grid-cols-3 text-xs py-1 bg-muted/30 rounded px-1">
+              <span className="text-muted-foreground">Spread</span>
               <span className="text-center text-amber-300 font-mono font-bold">$0.05</span>
               <span></span>
             </div>
@@ -718,46 +718,46 @@ function OrderTypesTab() {
               { size: "300", price: "181.80", side: "Bid", color: "text-emerald-400" },
             ].map((row, i) => (
               <div key={i} className="grid grid-cols-3 text-xs py-0.5">
-                <span className="text-slate-400">{row.size}</span>
+                <span className="text-muted-foreground">{row.size}</span>
                 <span className={cn("text-center font-mono font-medium", row.color)}>${row.price}</span>
                 <span className={cn("text-right", row.color)}>{row.side}</span>
               </div>
             ))}
           </div>
-          <div className="text-xs text-slate-500 leading-relaxed space-y-1">
-            <p><span className="text-slate-400">Price Priority:</span> Best price always executes first.</p>
-            <p><span className="text-slate-400">Time Priority:</span> At same price, earliest order executes first.</p>
-            <p><span className="text-slate-400">Pro-rata:</span> Some markets allocate fills proportionally by size.</p>
+          <div className="text-xs text-muted-foreground leading-relaxed space-y-1">
+            <p><span className="text-muted-foreground">Price Priority:</span> Best price always executes first.</p>
+            <p><span className="text-muted-foreground">Time Priority:</span> At same price, earliest order executes first.</p>
+            <p><span className="text-muted-foreground">Pro-rata:</span> Some markets allocate fills proportionally by size.</p>
           </div>
         </div>
 
         <div className="space-y-4">
           <InfoCard title="Order Routing: How Brokers Decide" icon={Network} accent="#8b5cf6">
             <ul className="space-y-1.5">
-              <li><span className="text-slate-300">1. Internalization check</span> — can wholesaler fill at NBBO?</li>
-              <li><span className="text-slate-300">2. Dark pool sweep</span> — check for block liquidity at mid</li>
-              <li><span className="text-slate-300">3. Smart order routing (SOR)</span> — scan lit venues for best price</li>
-              <li><span className="text-slate-300">4. Reg NMS compliance</span> — must trade-through NBBO protected quotes</li>
-              <li><span className="text-slate-300">5. Venue selection</span> — latency, fill rate, rebate optimization</li>
+              <li><span className="text-muted-foreground">1. Internalization check</span> — can wholesaler fill at NBBO?</li>
+              <li><span className="text-muted-foreground">2. Dark pool sweep</span> — check for block liquidity at mid</li>
+              <li><span className="text-muted-foreground">3. Smart order routing (SOR)</span> — scan lit venues for best price</li>
+              <li><span className="text-muted-foreground">4. Reg NMS compliance</span> — must trade-through NBBO protected quotes</li>
+              <li><span className="text-muted-foreground">5. Venue selection</span> — latency, fill rate, rebate optimization</li>
             </ul>
           </InfoCard>
 
           <InfoCard title="PFOF: Payment for Order Flow" icon={DollarSign} accent="#ef4444">
             <ul className="space-y-1.5">
-              <li><span className="text-slate-300">Model:</span> Brokers (Robinhood) receive payment from wholesalers (Citadel) for routing retail orders.</li>
-              <li><span className="text-slate-300">Revenue:</span> Citadel earned ~$6.7B from market making in 2020 (COVID volatility).</li>
-              <li><span className="text-slate-300">Controversy:</span> Critics argue retail gets suboptimal prices; proponents say spreads are tight.</li>
-              <li><span className="text-slate-300">2024 Reform:</span> SEC proposed eliminating PFOF for exchange-listed equities.</li>
-              <li><span className="text-slate-300">EU/Canada:</span> Already banned — UK phased out in 2012.</li>
+              <li><span className="text-muted-foreground">Model:</span> Brokers (Robinhood) receive payment from wholesalers (Citadel) for routing retail orders.</li>
+              <li><span className="text-muted-foreground">Revenue:</span> Citadel earned ~$6.7B from market making in 2020 (COVID volatility).</li>
+              <li><span className="text-muted-foreground">Controversy:</span> Critics argue retail gets suboptimal prices; proponents say spreads are tight.</li>
+              <li><span className="text-muted-foreground">2024 Reform:</span> SEC proposed eliminating PFOF for exchange-listed equities.</li>
+              <li><span className="text-muted-foreground">EU/Canada:</span> Already banned — UK phased out in 2012.</li>
             </ul>
           </InfoCard>
 
           <InfoCard title="Reg NMS: Best Execution" icon={Scale} accent="#10b981">
             <ul className="space-y-1.5">
-              <li><span className="text-slate-300">Order Protection Rule:</span> Cannot trade-through a protected quote at another venue.</li>
-              <li><span className="text-slate-300">Access Rule:</span> Fair access to protected quotes; max $0.003/share fee.</li>
-              <li><span className="text-slate-300">Sub-penny Rule:</span> No quoting in sub-penny increments for stocks over $1.</li>
-              <li><span className="text-slate-300">Market Data Rules:</span> SIPS must disseminate consolidated best bid/offer.</li>
+              <li><span className="text-muted-foreground">Order Protection Rule:</span> Cannot trade-through a protected quote at another venue.</li>
+              <li><span className="text-muted-foreground">Access Rule:</span> Fair access to protected quotes; max $0.003/share fee.</li>
+              <li><span className="text-muted-foreground">Sub-penny Rule:</span> No quoting in sub-penny increments for stocks over $1.</li>
+              <li><span className="text-muted-foreground">Market Data Rules:</span> SIPS must disseminate consolidated best bid/offer.</li>
             </ul>
           </InfoCard>
         </div>
@@ -812,9 +812,9 @@ function PriceDiscoveryTab() {
       </div>
 
       {/* Opening auction */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-1">Opening Auction Mechanics</h3>
-        <p className="text-xs text-slate-400 mb-4">NYSE/NASDAQ calculate an indicative match price in the minutes before 9:30 AM. Largest imbalance side triggers DMM facilitation.</p>
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-1">Opening Auction Mechanics</h3>
+        <p className="text-xs text-muted-foreground mb-4">NYSE/NASDAQ calculate an indicative match price in the minutes before 9:30 AM. Largest imbalance side triggers DMM facilitation.</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
             {
@@ -841,22 +841,22 @@ function PriceDiscoveryTab() {
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-lg bg-slate-900/50 border border-slate-700/50 p-4"
+              className="rounded-lg bg-card/50 border border-border/50 p-4"
             >
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: s.color }}>
                   {s.step}
                 </div>
-                <span className="text-xs font-semibold text-slate-200">{s.title}</span>
+                <span className="text-xs font-semibold text-foreground">{s.title}</span>
               </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed">{s.desc}</p>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">{s.desc}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Indicative open SVG */}
         <div className="mt-4">
-          <div className="text-xs text-slate-500 mb-2">Indicative Open Price — Final 5 Minutes Before Open</div>
+          <div className="text-xs text-muted-foreground mb-2">Indicative Open Price — Final 5 Minutes Before Open</div>
           <svg width="100%" viewBox="0 0 520 80" className="w-full">
             {auctionData.map((d, i) => {
               const x = 40 + i * 80;
@@ -873,24 +873,24 @@ function PriceDiscoveryTab() {
                     return <line x1={px} y1={py} x2={x} y2={y} stroke="#3b82f6" strokeWidth={2} />;
                   })()}
                   <circle cx={x} cy={y} r={i === auctionData.length - 1 ? 6 : 4} fill={i === auctionData.length - 1 ? "#f59e0b" : "#3b82f6"} />
-                  <text x={x} y={72} textAnchor="middle" className="fill-slate-500" fontSize={9}>{d.time}</text>
-                  <text x={x} y={y - 8} textAnchor="middle" className="fill-slate-300" fontSize={9}>${d.indicative.toFixed(2)}</text>
+                  <text x={x} y={72} textAnchor="middle" className="fill-muted-foreground" fontSize={9}>{d.time}</text>
+                  <text x={x} y={y - 8} textAnchor="middle" className="fill-muted-foreground" fontSize={9}>${d.indicative.toFixed(2)}</text>
                 </g>
               );
             })}
-            <text x={10} y={15} className="fill-slate-500" fontSize={9} textAnchor="middle" transform="rotate(-90, 10, 40)">Price</text>
+            <text x={10} y={15} className="fill-muted-foreground" fontSize={9} textAnchor="middle" transform="rotate(-90, 10, 40)">Price</text>
           </svg>
         </div>
       </div>
 
       {/* Closing auction */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-3">Closing Auction — Most Important Price of the Day</h3>
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-3">Closing Auction — Most Important Price of the Day</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-3 text-xs text-slate-400">
-            <p>The closing price determines index values, ETF NAVs, margin calculations, derivatives settlements, and portfolio benchmarks. <span className="text-slate-300">30–40% of total daily volume</span> trades in the closing auction on S&P 500 stocks.</p>
-            <div className="bg-slate-900/50 rounded-lg p-3 space-y-1.5">
-              <div className="text-slate-300 font-medium">Closing Auction Timeline (NYSE/NASDAQ)</div>
+          <div className="space-y-3 text-xs text-muted-foreground">
+            <p>The closing price determines index values, ETF NAVs, margin calculations, derivatives settlements, and portfolio benchmarks. <span className="text-muted-foreground">30–40% of total daily volume</span> trades in the closing auction on S&P 500 stocks.</p>
+            <div className="bg-card/50 rounded-lg p-3 space-y-1.5">
+              <div className="text-muted-foreground font-medium">Closing Auction Timeline (NYSE/NASDAQ)</div>
               <div className="flex gap-2"><span className="text-amber-400 font-mono w-14">3:45 PM</span><span>MOC order entry opens; imbalance published</span></div>
               <div className="flex gap-2"><span className="text-amber-400 font-mono w-14">3:50 PM</span><span>LOC order entry opens</span></div>
               <div className="flex gap-2"><span className="text-amber-400 font-mono w-14">3:58 PM</span><span>Offset period begins — opposite-side orders can offset imbalance</span></div>
@@ -914,40 +914,40 @@ function PriceDiscoveryTab() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <InfoCard title="Index Rebalancing" icon={RefreshCw} accent="#10b981">
           <ul className="space-y-1.5">
-            <li><span className="text-slate-300">S&P 500:</span> Quarterly; additions/deletions announced 1 week in advance</li>
-            <li><span className="text-slate-300">Arbitrage:</span> Predictable index fund flows create front-running opportunity</li>
-            <li><span className="text-slate-300">Russell:</span> Annual reconstitution in June — largest single-day rebalance event</li>
-            <li><span className="text-slate-300">Impact:</span> Added stocks often rise 3–8%; removed stocks decline</li>
+            <li><span className="text-muted-foreground">S&P 500:</span> Quarterly; additions/deletions announced 1 week in advance</li>
+            <li><span className="text-muted-foreground">Arbitrage:</span> Predictable index fund flows create front-running opportunity</li>
+            <li><span className="text-muted-foreground">Russell:</span> Annual reconstitution in June — largest single-day rebalance event</li>
+            <li><span className="text-muted-foreground">Impact:</span> Added stocks often rise 3–8%; removed stocks decline</li>
           </ul>
         </InfoCard>
         <InfoCard title="ETF Creation/Redemption" icon={Layers} accent="#f59e0b">
           <ul className="space-y-1.5">
-            <li><span className="text-slate-300">APs</span> (BlackRock, Vanguard, Citadel) create/redeem 50,000-share blocks</li>
-            <li><span className="text-slate-300">Creation:</span> Deliver basket of underlying stocks → receive ETF shares</li>
-            <li><span className="text-slate-300">Redemption:</span> Return ETF shares → receive underlying basket</li>
-            <li><span className="text-slate-300">Arbitrage:</span> This mechanism keeps ETF price within ~1bp of NAV</li>
-            <li><span className="text-slate-300">Implied liquidity:</span> ETF can be more liquid than its underlying basket</li>
+            <li><span className="text-muted-foreground">APs</span> (BlackRock, Vanguard, Citadel) create/redeem 50,000-share blocks</li>
+            <li><span className="text-muted-foreground">Creation:</span> Deliver basket of underlying stocks → receive ETF shares</li>
+            <li><span className="text-muted-foreground">Redemption:</span> Return ETF shares → receive underlying basket</li>
+            <li><span className="text-muted-foreground">Arbitrage:</span> This mechanism keeps ETF price within ~1bp of NAV</li>
+            <li><span className="text-muted-foreground">Implied liquidity:</span> ETF can be more liquid than its underlying basket</li>
           </ul>
         </InfoCard>
-        <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-4">
+        <div className="rounded-xl border border-border/60 bg-muted/50 p-4">
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle size={14} className="text-rose-400" />
-            <span className="text-sm font-semibold text-slate-200">Circuit Breakers</span>
+            <span className="text-sm font-semibold text-foreground">Circuit Breakers</span>
           </div>
           <div className="space-y-2">
             {CIRCUIT_BREAKERS.map((cb, i) => (
-              <div key={i} className="text-xs bg-slate-900/50 rounded-lg p-2.5 border border-slate-700/40">
+              <div key={i} className="text-xs bg-card/50 rounded-lg p-2.5 border border-border/40">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-slate-300 font-medium">{cb.level}</span>
+                  <span className="text-muted-foreground font-medium">{cb.level}</span>
                   <span className={cn("text-xs font-mono", i === 2 ? "text-rose-400" : i === 1 ? "text-amber-400" : "text-yellow-400")}>{cb.trigger}</span>
                 </div>
-                <div className="text-slate-500">{cb.halt} — {cb.resumption}</div>
+                <div className="text-muted-foreground">{cb.halt} — {cb.resumption}</div>
               </div>
             ))}
-            <div className="mt-2 text-xs text-slate-500">
-              <div className="font-medium text-slate-400 mb-1">LULD Bands (Limit Up-Limit Down)</div>
+            <div className="mt-2 text-xs text-muted-foreground">
+              <div className="font-medium text-muted-foreground mb-1">LULD Bands (Limit Up-Limit Down)</div>
               {LULD_BANDS.map((l, i) => (
-                <div key={i} className="flex justify-between py-0.5 border-b border-slate-700/30">
+                <div key={i} className="flex justify-between py-0.5 border-b border-border/30">
                   <span className="truncate pr-2">{l.tier.split("(")[0]}</span>
                   <span className="text-amber-400">{l.normal}</span>
                 </div>
@@ -976,25 +976,25 @@ function FragmentationTab() {
     <div className="space-y-6">
       {/* Overview */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
+        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Network size={14} className="text-muted-foreground" />
             US Equity Fragmentation (2024)
           </h3>
           <DonutChart data={fragmentData} />
-          <div className="mt-4 text-xs text-slate-400 space-y-1">
-            <p>US equities now trade across <span className="text-slate-300 font-medium">60+ distinct venues</span> — 16 registered exchanges, ~30 dark pools, and ~15 other ATS.</p>
+          <div className="mt-4 text-xs text-muted-foreground space-y-1">
+            <p>US equities now trade across <span className="text-muted-foreground font-medium">60+ distinct venues</span> — 16 registered exchanges, ~30 dark pools, and ~15 other ATS.</p>
             <p>The US is the most fragmented equity market in the world. European markets consolidated under MiFID II.</p>
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <BarChart3 size={14} className="text-green-400" />
             Market Quality Metrics by Venue
           </h3>
           <div className="space-y-3">
-            <div className="grid grid-cols-4 text-xs text-slate-500 font-medium border-b border-slate-700 pb-1">
+            <div className="grid grid-cols-4 text-xs text-muted-foreground font-medium border-b border-border pb-1">
               <span>Venue</span>
               <span className="text-center">Eff. Spread</span>
               <span className="text-center">Price Impact</span>
@@ -1010,10 +1010,10 @@ function FragmentationTab() {
               >
                 <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: v.color }} />
-                  <span className="text-slate-300">{v.venue}</span>
+                  <span className="text-muted-foreground">{v.venue}</span>
                 </div>
-                <div className="text-center font-mono text-slate-400">${v.effectiveSpread.toFixed(3)}</div>
-                <div className="text-center font-mono text-slate-400">${v.priceImpact.toFixed(3)}</div>
+                <div className="text-center font-mono text-muted-foreground">${v.effectiveSpread.toFixed(3)}</div>
+                <div className="text-center font-mono text-muted-foreground">${v.priceImpact.toFixed(3)}</div>
                 <div className="text-right">
                   <span className={cn("font-mono", v.fillRate >= 90 ? "text-emerald-400" : v.fillRate >= 70 ? "text-amber-400" : "text-rose-400")}>
                     {v.fillRate.toFixed(1)}%
@@ -1022,10 +1022,10 @@ function FragmentationTab() {
               </motion.div>
             ))}
           </div>
-          <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-slate-500">
-            <div className="bg-slate-900/40 rounded p-2"><span className="text-slate-400 font-medium">Eff. Spread</span><br />Actual cost relative to midpoint</div>
-            <div className="bg-slate-900/40 rounded p-2"><span className="text-slate-400 font-medium">Price Impact</span><br />Market move after execution</div>
-            <div className="bg-slate-900/40 rounded p-2"><span className="text-slate-400 font-medium">Fill Rate</span><br />% of orders fully executed</div>
+          <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
+            <div className="bg-card/40 rounded p-2"><span className="text-muted-foreground font-medium">Eff. Spread</span><br />Actual cost relative to midpoint</div>
+            <div className="bg-card/40 rounded p-2"><span className="text-muted-foreground font-medium">Price Impact</span><br />Market move after execution</div>
+            <div className="bg-card/40 rounded p-2"><span className="text-muted-foreground font-medium">Fill Rate</span><br />% of orders fully executed</div>
           </div>
         </div>
       </div>
@@ -1034,28 +1034,28 @@ function FragmentationTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="NBBO: National Best Bid & Offer" icon={Scale} accent="#3b82f6">
           <ul className="space-y-1.5">
-            <li><span className="text-slate-300">Definition:</span> Best displayed bid and offer across all protected exchanges, calculated by SIPs in real time.</li>
-            <li><span className="text-slate-300">SIPs:</span> Securities Information Processors (CT Plan, UTP Plan) aggregate and disseminate quotes.</li>
-            <li><span className="text-slate-300">Protection:</span> Reg NMS requires orders to be filled at NBBO or better — no trade-through allowed.</li>
-            <li><span className="text-slate-300">Limitation:</span> NBBO only captures top-of-book; depth not protected. Dark pools not included.</li>
-            <li><span className="text-slate-300">Latency:</span> SIP quotes arrive ~1ms after direct feeds — HFT exploits this gap.</li>
+            <li><span className="text-muted-foreground">Definition:</span> Best displayed bid and offer across all protected exchanges, calculated by SIPs in real time.</li>
+            <li><span className="text-muted-foreground">SIPs:</span> Securities Information Processors (CT Plan, UTP Plan) aggregate and disseminate quotes.</li>
+            <li><span className="text-muted-foreground">Protection:</span> Reg NMS requires orders to be filled at NBBO or better — no trade-through allowed.</li>
+            <li><span className="text-muted-foreground">Limitation:</span> NBBO only captures top-of-book; depth not protected. Dark pools not included.</li>
+            <li><span className="text-muted-foreground">Latency:</span> SIP quotes arrive ~1ms after direct feeds — HFT exploits this gap.</li>
           </ul>
         </InfoCard>
         <InfoCard title="Smart Order Routing (SOR)" icon={Zap} accent="#f59e0b">
           <ul className="space-y-1.5">
-            <li><span className="text-slate-300">Function:</span> Algorithms route order slices across venues to minimize execution cost.</li>
-            <li><span className="text-slate-300">Logic:</span> Compare venue liquidity, fee structure, historical fill rates, current order book depth.</li>
-            <li><span className="text-slate-300">Speed:</span> SOR decisions made in microseconds; re-route if venue depleted.</li>
-            <li><span className="text-slate-300">Dark first:</span> Most SOR algorithms check dark pools for price improvement before lit venues.</li>
-            <li><span className="text-slate-300">Adaptive:</span> Machine learning models continuously optimize routing based on market conditions.</li>
+            <li><span className="text-muted-foreground">Function:</span> Algorithms route order slices across venues to minimize execution cost.</li>
+            <li><span className="text-muted-foreground">Logic:</span> Compare venue liquidity, fee structure, historical fill rates, current order book depth.</li>
+            <li><span className="text-muted-foreground">Speed:</span> SOR decisions made in microseconds; re-route if venue depleted.</li>
+            <li><span className="text-muted-foreground">Dark first:</span> Most SOR algorithms check dark pools for price improvement before lit venues.</li>
+            <li><span className="text-muted-foreground">Adaptive:</span> Machine learning models continuously optimize routing based on market conditions.</li>
           </ul>
         </InfoCard>
       </div>
 
       {/* Dark pools */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
-          <EyeOff size={14} className="text-slate-400" />
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+          <EyeOff size={14} className="text-muted-foreground" />
           Dark Pools: Anatomy and Use Cases
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1088,12 +1088,12 @@ function FragmentationTab() {
               ],
             },
           ].map((col, i) => (
-            <div key={i} className="bg-slate-900/40 rounded-lg p-4">
-              <div className="text-xs font-semibold text-slate-300 mb-2">{col.title}</div>
-              <ul className="space-y-1.5 text-[11px] text-slate-400">
+            <div key={i} className="bg-card/40 rounded-lg p-4">
+              <div className="text-xs font-semibold text-muted-foreground mb-2">{col.title}</div>
+              <ul className="space-y-1.5 text-[11px] text-muted-foreground">
                 {col.items.map((item, j) => (
                   <li key={j} className="flex gap-1.5">
-                    <span className="text-slate-600 mt-0.5 flex-shrink-0">•</span>
+                    <span className="text-muted-foreground mt-0.5 flex-shrink-0">•</span>
                     {item}
                   </li>
                 ))}
@@ -1104,12 +1104,12 @@ function FragmentationTab() {
       </div>
 
       {/* Retail liquidity */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4">Retail Liquidity: Wholesalers vs Exchange Execution</h3>
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Retail Liquidity: Wholesalers vs Exchange Execution</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-slate-900/40 rounded-lg p-4 text-xs">
+          <div className="bg-card/40 rounded-lg p-4 text-xs">
             <div className="text-emerald-400 font-medium mb-2">Wholesaler Model (Citadel, Virtu, Two Sigma)</div>
-            <ul className="space-y-1.5 text-slate-400">
+            <ul className="space-y-1.5 text-muted-foreground">
               <li>Receive order flow from brokers via PFOF arrangements</li>
               <li>Fill retail orders from own inventory at NBBO or better</li>
               <li>Profit: capture spread between inventory cost and execution price</li>
@@ -1117,9 +1117,9 @@ function FragmentationTab() {
               <li>Citadel Securities: executes ~28% of all US equity volume</li>
             </ul>
           </div>
-          <div className="bg-slate-900/40 rounded-lg p-4 text-xs">
+          <div className="bg-card/40 rounded-lg p-4 text-xs">
             <div className="text-primary font-medium mb-2">Exchange Execution (Fidelity, Interactive Brokers)</div>
-            <ul className="space-y-1.5 text-slate-400">
+            <ul className="space-y-1.5 text-muted-foreground">
               <li>Orders sent directly to exchanges — compete with all market participants</li>
               <li>Potential for better price discovery in volatile conditions</li>
               <li>No PFOF: broker's incentive aligned with best execution</li>
@@ -1138,13 +1138,13 @@ function RegulationTab() {
   return (
     <div className="space-y-6">
       {/* Timeline */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <BookOpen size={14} className="text-muted-foreground" />
           US Market Structure Regulatory Timeline
         </h3>
         <div className="relative">
-          <div className="absolute left-10 top-0 bottom-0 w-px bg-slate-700" />
+          <div className="absolute left-10 top-0 bottom-0 w-px bg-muted" />
           <div className="space-y-4">
             {REG_TIMELINE.map((item, i) => (
               <motion.div
@@ -1159,8 +1159,8 @@ function RegulationTab() {
                 </div>
                 <div className="w-3 h-3 rounded-full bg-primary flex-shrink-0 mt-0.5 relative z-10" />
                 <div className="pb-2">
-                  <div className="text-xs font-semibold text-slate-200">{item.event}</div>
-                  <div className="text-[11px] text-slate-500 mt-0.5">{item.description}</div>
+                  <div className="text-xs font-semibold text-foreground">{item.event}</div>
+                  <div className="text-[11px] text-muted-foreground mt-0.5">{item.description}</div>
                 </div>
               </motion.div>
             ))}
@@ -1221,18 +1221,18 @@ function RegulationTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.07 }}
-            className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5"
+            className="rounded-xl border border-border/60 bg-muted/50 p-5"
             style={{ borderTopColor: reg.accent, borderTopWidth: 2 }}
           >
             <div className="flex items-center gap-2 mb-4">
               <reg.icon size={15} style={{ color: reg.accent }} />
-              <span className="text-sm font-semibold text-slate-200">{reg.title}</span>
+              <span className="text-sm font-semibold text-foreground">{reg.title}</span>
             </div>
             <div className="space-y-3">
               {reg.content.map((item, j) => (
                 <div key={j} className="text-xs">
-                  <span className="text-slate-300 font-medium">{item.label}: </span>
-                  <span className="text-slate-400">{item.desc}</span>
+                  <span className="text-muted-foreground font-medium">{item.label}: </span>
+                  <span className="text-muted-foreground">{item.desc}</span>
                 </div>
               ))}
             </div>
@@ -1241,13 +1241,13 @@ function RegulationTab() {
       </div>
 
       {/* Tick size pilot */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-3">Tick Size Pilot (2016–2018) & Ongoing Debates</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-400">
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-3">Tick Size Pilot (2016–2018) & Ongoing Debates</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div className="space-y-2">
-            <div className="text-slate-300 font-medium">What Was Tested</div>
+            <div className="text-muted-foreground font-medium">What Was Tested</div>
             <p>The SEC ran a 2-year pilot widening tick sizes to $0.05 for ~1,200 small-cap stocks (less than $3B market cap). The goal: improve market quality and increase analyst coverage of small companies.</p>
-            <div className="text-slate-300 font-medium mt-3">Results Were Mixed</div>
+            <div className="text-muted-foreground font-medium mt-3">Results Were Mixed</div>
             <ul className="space-y-1">
               <li>+ Increased market depth at top of book</li>
               <li>+ Modest improvement in analyst coverage</li>
@@ -1256,7 +1256,7 @@ function RegulationTab() {
             </ul>
           </div>
           <div className="space-y-2">
-            <div className="text-slate-300 font-medium">International Comparison</div>
+            <div className="text-muted-foreground font-medium">International Comparison</div>
             <div className="space-y-2">
               {[
                 { region: "EU (MiFID II)", desc: "Dark pool volume caps (4% per venue, 8% system-wide). More restrictive than US." },
@@ -1264,8 +1264,8 @@ function RegulationTab() {
                 { region: "Japan (JPX)", desc: "Tokyo PRO Market for sophisticated investors. Arrowhead system upgrade: <1ms latency." },
                 { region: "Canada", desc: "T+1 aligned with US. Investment Industry Regulatory Organization (CIRO) oversight." },
               ].map((r, i) => (
-                <div key={i} className="bg-slate-900/40 rounded p-2.5">
-                  <span className="text-slate-300 font-medium">{r.region}: </span>
+                <div key={i} className="bg-card/40 rounded p-2.5">
+                  <span className="text-muted-foreground font-medium">{r.region}: </span>
                   {r.desc}
                 </div>
               ))}
@@ -1275,8 +1275,8 @@ function RegulationTab() {
       </div>
 
       {/* Key concepts summary */}
-      <div className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4">Key Regulatory Concepts</h3>
+      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Key Regulatory Concepts</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {[
             { term: "Trade-Through", def: "Executing at inferior price when better price exists at another venue", color: "#ef4444" },
@@ -1291,11 +1291,11 @@ function RegulationTab() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.04 }}
-              className="rounded-lg bg-slate-900/50 border border-slate-700/40 p-3"
+              className="rounded-lg bg-card/50 border border-border/40 p-3"
               style={{ borderTopColor: item.color, borderTopWidth: 2 }}
             >
-              <div className="text-xs font-semibold text-slate-200 mb-1">{item.term}</div>
-              <div className="text-xs text-slate-500 leading-relaxed">{item.def}</div>
+              <div className="text-xs font-semibold text-foreground mb-1">{item.term}</div>
+              <div className="text-xs text-muted-foreground leading-relaxed">{item.def}</div>
             </motion.div>
           ))}
         </div>
@@ -1307,7 +1307,7 @@ function RegulationTab() {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function MarketStructurePage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -1315,9 +1315,9 @@ export default function MarketStructurePage() {
             <div className="p-2 rounded-lg bg-primary/15 border border-border">
               <Network size={20} className="text-primary" />
             </div>
-            <h1 className="text-2xl font-bold text-slate-100">Market Structure</h1>
+            <h1 className="text-2xl font-bold text-foreground">Market Structure</h1>
           </div>
-          <p className="text-sm text-slate-400">How trading venues, order types, price discovery, liquidity, and regulation shape every trade</p>
+          <p className="text-sm text-muted-foreground">How trading venues, order types, price discovery, liquidity, and regulation shape every trade</p>
         </div>
         <div className="flex flex-wrap gap-2">
           {[
@@ -1348,21 +1348,21 @@ export default function MarketStructurePage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 + i * 0.04 }}
-            className="rounded-xl border border-slate-700/60 bg-slate-800/50 p-4"
+            className="rounded-xl border border-border/60 bg-muted/50 p-4"
           >
             <div className="flex items-center gap-2 mb-2">
               <stat.icon size={14} style={{ color: stat.color }} />
-              <span className="text-[11px] text-slate-500">{stat.label}</span>
+              <span className="text-[11px] text-muted-foreground">{stat.label}</span>
             </div>
             <div className="text-xl font-bold" style={{ color: stat.color }}>{stat.value}</div>
-            <div className="text-xs text-slate-500 mt-0.5">{stat.sub}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
           </motion.div>
         ))}
       </motion.div>
 
       {/* Tabs */}
       <Tabs defaultValue="exchanges" className="space-y-4">
-        <TabsList className="bg-slate-800/60 border border-slate-700/50 h-auto flex flex-wrap gap-1 p-1">
+        <TabsList className="bg-muted/60 border border-border/50 h-auto flex flex-wrap gap-1 p-1">
           {[
             { value: "exchanges", label: "Exchange Landscape", icon: Globe },
             { value: "orders", label: "Order Types", icon: BookOpen },

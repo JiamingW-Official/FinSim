@@ -23,12 +23,12 @@ export function SeasonProgress() {
     : 100;
 
   return (
-    <div className="rounded-xl border border-amber-500/20 bg-card p-3">
+    <div className="rounded-xl border border-border bg-card p-3">
       {/* Header */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
-          <Crown className="h-3.5 w-3.5 text-amber-400" />
-          <span className="text-xs font-bold text-amber-300">{season.name}</span>
+          <Crown className="h-3.5 w-3.5 text-primary" />
+          <span className="text-xs font-bold text-foreground">{season.name}</span>
         </div>
         <span className="text-xs font-bold tabular-nums text-muted-foreground">
           Tier {currentTier}/{totalTiers}
@@ -36,9 +36,9 @@ export function SeasonProgress() {
       </div>
 
       {/* Progress bar to next tier */}
-      <div className="mb-1 h-2 overflow-hidden rounded-full bg-muted/20">
+      <div className="mb-1 h-2 overflow-hidden rounded-full bg-muted">
         <motion.div
-          className="h-full rounded-full bg-amber-500"
+          className="h-full rounded-full bg-primary"
           initial={{ width: 0 }}
           animate={{ width: `${Math.min(tierProgress, 100)}%` }}
           transition={{ duration: 0.6, ease: "easeOut" }}
@@ -47,13 +47,13 @@ export function SeasonProgress() {
 
       {/* XP text */}
       <div className="mb-2 flex items-center justify-between text-[11px] tabular-nums">
-        <span className="text-amber-400/70">{progress.seasonXP} XP</span>
+        <span className="text-primary/70">{progress.seasonXP} XP</span>
         {nextTier ? (
           <span className="text-muted-foreground">
             {nextTier.required} XP for Tier {nextTier.tierNumber}
           </span>
         ) : (
-          <span className="flex items-center gap-0.5 text-amber-400">
+          <span className="flex items-center gap-0.5 text-primary">
             <Sparkles className="h-2.5 w-2.5" />
             Max Tier!
           </span>
@@ -68,10 +68,10 @@ export function SeasonProgress() {
             className={cn(
               "h-1.5 flex-1 rounded-full transition-colors",
               t.tier <= progress.highestTierClaimed
-                ? "bg-amber-500"
+                ? "bg-primary"
                 : t.tier <= currentTier
-                  ? "bg-amber-500/40"
-                  : "bg-muted/15",
+                  ? "bg-primary/40"
+                  : "bg-muted",
             )}
           />
         ))}

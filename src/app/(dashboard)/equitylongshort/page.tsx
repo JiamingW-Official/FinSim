@@ -140,12 +140,12 @@ function StatChip({
   neutral?: boolean;
 }) {
   return (
-    <div className="bg-neutral-800/60 rounded-lg px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-xs text-neutral-400 uppercase tracking-wide">{label}</span>
+    <div className="bg-muted/60 rounded-lg px-3 py-2 flex flex-col gap-0.5">
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span
         className={cn(
           "text-sm font-semibold",
-          neutral ? "text-neutral-200" : positive ? "text-emerald-400" : "text-red-400"
+          neutral ? "text-foreground" : positive ? "text-emerald-400" : "text-red-400"
         )}
       >
         {value}
@@ -156,7 +156,7 @@ function StatChip({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-xs font-semibold text-neutral-400 mb-3">
+    <h3 className="text-xs font-semibold text-muted-foreground mb-3">
       {children}
     </h3>
   );
@@ -220,9 +220,9 @@ function PortfolioStructureTab() {
       </div>
 
       {/* Exposure decomposition SVG */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-indigo-400" />
             Book Structure Comparison
           </CardTitle>
@@ -272,7 +272,7 @@ function PortfolioStructureTab() {
       {/* Portfolio table */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Long book */}
-        <Card className="bg-neutral-900 border-neutral-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-emerald-400 flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
@@ -282,20 +282,20 @@ function PortfolioStructureTab() {
           <CardContent className="p-0">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-neutral-700">
-                  <th className="text-left px-3 py-2 text-neutral-400">Ticker</th>
-                  <th className="text-right px-3 py-2 text-neutral-400">Weight</th>
-                  <th className="text-right px-3 py-2 text-neutral-400">Beta</th>
-                  <th className="text-left px-3 py-2 text-neutral-400">Sector</th>
+                <tr className="border-b border-border">
+                  <th className="text-left px-3 py-2 text-muted-foreground">Ticker</th>
+                  <th className="text-right px-3 py-2 text-muted-foreground">Weight</th>
+                  <th className="text-right px-3 py-2 text-muted-foreground">Beta</th>
+                  <th className="text-left px-3 py-2 text-muted-foreground">Sector</th>
                 </tr>
               </thead>
               <tbody>
                 {LONG_BOOK.map((st) => (
-                  <tr key={st.ticker} className="border-b border-neutral-800 hover:bg-neutral-800/40">
-                    <td className="px-3 py-1.5 font-semibold text-neutral-200">{st.ticker}</td>
+                  <tr key={st.ticker} className="border-b border-border hover:bg-muted/40">
+                    <td className="px-3 py-1.5 font-semibold text-foreground">{st.ticker}</td>
                     <td className="px-3 py-1.5 text-right text-emerald-400">+{st.weight}%</td>
-                    <td className="px-3 py-1.5 text-right text-neutral-300">{st.beta.toFixed(2)}</td>
-                    <td className="px-3 py-1.5 text-neutral-400">{st.sector}</td>
+                    <td className="px-3 py-1.5 text-right text-muted-foreground">{st.beta.toFixed(2)}</td>
+                    <td className="px-3 py-1.5 text-muted-foreground">{st.sector}</td>
                   </tr>
                 ))}
               </tbody>
@@ -304,7 +304,7 @@ function PortfolioStructureTab() {
         </Card>
 
         {/* Short book */}
-        <Card className="bg-neutral-900 border-neutral-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm text-red-400 flex items-center gap-2">
               <TrendingDown className="w-4 h-4" />
@@ -314,32 +314,32 @@ function PortfolioStructureTab() {
           <CardContent className="p-0">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-neutral-700">
-                  <th className="text-left px-3 py-2 text-neutral-400">Ticker</th>
-                  <th className="text-right px-3 py-2 text-neutral-400">Weight</th>
-                  <th className="text-right px-3 py-2 text-neutral-400">Beta</th>
-                  <th className="text-left px-3 py-2 text-neutral-400">Sector</th>
+                <tr className="border-b border-border">
+                  <th className="text-left px-3 py-2 text-muted-foreground">Ticker</th>
+                  <th className="text-right px-3 py-2 text-muted-foreground">Weight</th>
+                  <th className="text-right px-3 py-2 text-muted-foreground">Beta</th>
+                  <th className="text-left px-3 py-2 text-muted-foreground">Sector</th>
                 </tr>
               </thead>
               <tbody>
                 {SHORT_BOOK.map((st) => (
-                  <tr key={st.ticker} className="border-b border-neutral-800 hover:bg-neutral-800/40">
-                    <td className="px-3 py-1.5 font-semibold text-neutral-200">{st.ticker}</td>
+                  <tr key={st.ticker} className="border-b border-border hover:bg-muted/40">
+                    <td className="px-3 py-1.5 font-semibold text-foreground">{st.ticker}</td>
                     <td className="px-3 py-1.5 text-right text-red-400">{st.weight}%</td>
-                    <td className="px-3 py-1.5 text-right text-neutral-300">{st.beta.toFixed(2)}</td>
-                    <td className="px-3 py-1.5 text-neutral-400">{st.sector}</td>
+                    <td className="px-3 py-1.5 text-right text-muted-foreground">{st.beta.toFixed(2)}</td>
+                    <td className="px-3 py-1.5 text-muted-foreground">{st.sector}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className="px-3 py-3 border-t border-neutral-700 space-y-1">
+            <div className="px-3 py-3 border-t border-border space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Net Beta Contribution</span>
+                <span className="text-muted-foreground">Net Beta Contribution</span>
                 <span className="text-sky-400 font-semibold">{netBeta.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-xs">
-                <span className="text-neutral-400">Effective Market Sensitivity</span>
-                <span className="text-neutral-200">
+                <span className="text-muted-foreground">Effective Market Sensitivity</span>
+                <span className="text-foreground">
                   {netBeta > 0.3
                     ? "Long-Biased"
                     : netBeta > -0.1
@@ -353,9 +353,9 @@ function PortfolioStructureTab() {
       </div>
 
       {/* Sector neutralization */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Scale className="w-4 h-4 text-amber-400" />
             Sector Exposure (Net = Long − Short)
           </CardTitle>
@@ -368,10 +368,10 @@ function PortfolioStructureTab() {
               const pct = Math.min(Math.abs(net) / maxNet, 1) * 100;
               return (
                 <div key={sector} className="flex items-center gap-3 text-xs">
-                  <span className="w-28 text-neutral-400 shrink-0">{sector}</span>
+                  <span className="w-28 text-muted-foreground shrink-0">{sector}</span>
                   <span className="w-10 text-right text-emerald-400">+{l}%</span>
                   <span className="w-10 text-right text-red-400">{sh > 0 ? `-${sh}%` : "—"}</span>
-                  <div className="flex-1 h-3 bg-neutral-800 rounded-full overflow-hidden">
+                  <div className="flex-1 h-3 bg-muted rounded-full overflow-hidden">
                     <div
                       className={cn(
                         "h-full rounded-full transition-all",
@@ -397,7 +397,7 @@ function PortfolioStructureTab() {
               );
             })}
           </div>
-          <p className="text-xs text-neutral-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Factor neutralization targets: market beta &lt;0.3, sector tilt &lt;10%, style (value/growth) &lt;15%.
             Residual idiosyncratic exposure drives alpha.
           </p>
@@ -405,9 +405,9 @@ function PortfolioStructureTab() {
       </Card>
 
       {/* Risk budget */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Risk Budget Allocation
           </CardTitle>
@@ -420,12 +420,12 @@ function PortfolioStructureTab() {
               { label: "Market Beta", pct: 15, color: "bg-sky-500" },
               { label: "Liquidity Risk", pct: 10, color: "bg-rose-500" },
             ].map((rb) => (
-              <div key={rb.label} className="bg-neutral-800/60 rounded-lg p-3 flex flex-col gap-2">
-                <span className="text-xs text-neutral-400 uppercase tracking-wide">{rb.label}</span>
+              <div key={rb.label} className="bg-muted/60 rounded-lg p-3 flex flex-col gap-2">
+                <span className="text-xs text-muted-foreground uppercase tracking-wide">{rb.label}</span>
                 <div className="h-2 bg-neutral-700 rounded-full">
                   <div className={`h-full rounded-full ${rb.color}`} style={{ width: `${rb.pct}%` }} />
                 </div>
-                <span className="text-sm font-bold text-neutral-200">{rb.pct}%</span>
+                <span className="text-sm font-bold text-foreground">{rb.pct}%</span>
               </div>
             ))}
           </div>
@@ -468,9 +468,9 @@ function ShortSellingTab() {
   return (
     <div className="space-y-6">
       {/* Borrow mechanics flow */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <RefreshCw className="w-4 h-4 text-sky-400" />
             Short Sale Mechanics — Step-by-Step
           </CardTitle>
@@ -494,9 +494,9 @@ function ShortSellingTab() {
                     <div className="w-0.5 h-3 bg-neutral-700" />
                   )}
                 </div>
-                <div className="bg-neutral-800/50 rounded-lg px-3 py-2 flex-1 min-w-[160px] max-w-[220px] mb-2">
-                  <div className="text-xs font-semibold text-neutral-200 mb-0.5">{item.label}</div>
-                  <div className="text-xs text-neutral-400 leading-relaxed">{item.desc}</div>
+                <div className="bg-muted/50 rounded-lg px-3 py-2 flex-1 min-w-[160px] max-w-[220px] mb-2">
+                  <div className="text-xs font-semibold text-foreground mb-0.5">{item.label}</div>
+                  <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
                 </div>
               </div>
             ))}
@@ -505,9 +505,9 @@ function ShortSellingTab() {
       </Card>
 
       {/* Borrow rates by sector */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
             Hard-to-Borrow (HTB) Rates by Segment
           </CardTitle>
@@ -562,10 +562,10 @@ function ShortSellingTab() {
             })}
           </svg>
           <div className="flex gap-4 mt-1">
-            <div className="flex items-center gap-1 text-xs text-neutral-400">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <div className="w-2.5 h-2.5 rounded bg-emerald-500" />Easy borrow
             </div>
-            <div className="flex items-center gap-1 text-xs text-neutral-400">
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
               <div className="w-2.5 h-2.5 rounded bg-red-500" />Hard to borrow (HTB)
             </div>
           </div>
@@ -573,9 +573,9 @@ function ShortSellingTab() {
       </Card>
 
       {/* Short squeeze interactive */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-rose-400" />
             Short Squeeze Mechanics — GME 2021 (Jan)
           </CardTitle>
@@ -589,8 +589,8 @@ function ShortSellingTab() {
                 className={cn(
                   "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
                   squeezeStep === i
-                    ? "bg-neutral-700 border-neutral-400 text-neutral-100"
-                    : "bg-neutral-800/50 border-neutral-700 text-neutral-400 hover:border-neutral-500"
+                    ? "bg-neutral-700 border-neutral-400 text-foreground"
+                    : "bg-muted/50 border-border text-muted-foreground hover:border-neutral-500"
                 )}
               >
                 {st.label}
@@ -605,7 +605,7 @@ function ShortSellingTab() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center gap-3 bg-neutral-800/50 rounded-lg p-3"
+              className="flex items-center gap-3 bg-muted/50 rounded-lg p-3"
             >
               <div
                 className="text-2xl font-bold tabular-nums"
@@ -613,7 +613,7 @@ function ShortSellingTab() {
               >
                 ${squeezeSteps[squeezeStep].price.toLocaleString()}
               </div>
-              <p className="text-xs text-neutral-300">{squeezeSteps[squeezeStep].detail}</p>
+              <p className="text-xs text-muted-foreground">{squeezeSteps[squeezeStep].detail}</p>
             </motion.div>
           </AnimatePresence>
 
@@ -636,9 +636,9 @@ function ShortSellingTab() {
       </Card>
 
       {/* Short seller risks */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-orange-400" />
             Short Seller Risks
           </CardTitle>
@@ -678,9 +678,9 @@ function ShortSellingTab() {
                   >
                     {risk.severity.toUpperCase()}
                   </Badge>
-                  <span className="text-xs font-semibold text-neutral-200">{risk.title}</span>
+                  <span className="text-xs font-semibold text-foreground">{risk.title}</span>
                 </div>
-                <p className="text-xs text-neutral-400 leading-relaxed">{risk.desc}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{risk.desc}</p>
               </div>
             ))}
           </div>
@@ -743,9 +743,9 @@ function PairsTradingTab() {
   return (
     <div className="space-y-6">
       {/* Cointegration concept */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-sky-400" />
             Cointegration vs Correlation
           </CardTitle>
@@ -754,21 +754,21 @@ function PairsTradingTab() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="bg-amber-950/20 border border-amber-800/30 rounded-lg p-3">
               <div className="text-xs font-semibold text-amber-400 mb-1">Correlation</div>
-              <p className="text-xs text-neutral-300 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 Two series move together on a short-term basis. Can break down permanently.
                 AAPL and MSFT are correlated (r ≈ 0.85) but their spread can diverge indefinitely.
               </p>
             </div>
             <div className="bg-emerald-950/20 border border-emerald-800/30 rounded-lg p-3">
               <div className="text-xs font-semibold text-emerald-400 mb-1">Cointegration</div>
-              <p className="text-xs text-neutral-300 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 A linear combination of two non-stationary series is stationary.
                 Spread = P_A − β × P_B is mean-reverting with half-life τ. This is what pairs trading exploits.
               </p>
             </div>
           </div>
-          <div className="mt-3 bg-neutral-800/40 rounded-lg p-3">
-            <p className="text-xs text-neutral-400 font-mono leading-relaxed">
+          <div className="mt-3 bg-muted/40 rounded-lg p-3">
+            <p className="text-xs text-muted-foreground font-mono leading-relaxed">
               Engle-Granger test: regress P_A on P_B → residuals ε_t. Run ADF on ε_t.
               If ADF t-stat &lt; critical value (−3.37 at 5%), series are cointegrated.
               Mean-reversion half-life: τ = −ln(2) / ln(ρ) where ρ = AR(1) coefficient on spread.
@@ -778,9 +778,9 @@ function PairsTradingTab() {
       </Card>
 
       {/* Spread Z-score SVG */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-indigo-400" />
             AAPL / MSFT Spread Z-Score — 50 Bars (Simulated, seed 905)
           </CardTitle>
@@ -830,17 +830,17 @@ function PairsTradingTab() {
             ))}
           </svg>
           <div className="flex gap-4 flex-wrap mt-1">
-            <div className="flex items-center gap-1 text-xs text-neutral-400"><div className="w-2 h-2 rounded-full bg-emerald-500" />Entry long spread (z &lt; -2σ)</div>
-            <div className="flex items-center gap-1 text-xs text-neutral-400"><div className="w-2 h-2 rounded-full bg-red-500" />Entry short spread (z &gt; +2σ)</div>
-            <div className="flex items-center gap-1 text-xs text-neutral-400"><div className="w-2 h-2 rounded-full bg-amber-500" />Exit (z → 0)</div>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground"><div className="w-2 h-2 rounded-full bg-emerald-500" />Entry long spread (z &lt; -2σ)</div>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground"><div className="w-2 h-2 rounded-full bg-red-500" />Entry short spread (z &gt; +2σ)</div>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground"><div className="w-2 h-2 rounded-full bg-amber-500" />Exit (z → 0)</div>
           </div>
         </CardContent>
       </Card>
 
       {/* P&L simulation */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
             Pairs P&amp;L Simulation — Cumulative (seed 905)
           </CardTitle>
@@ -851,9 +851,9 @@ function PairsTradingTab() {
       </Card>
 
       {/* Risks */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Info className="w-4 h-4 text-amber-400" />
             Convergence vs Divergence Risk
           </CardTitle>
@@ -862,14 +862,14 @@ function PairsTradingTab() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="bg-emerald-950/20 border border-emerald-800/30 rounded-lg p-3">
               <div className="text-xs font-semibold text-emerald-400 mb-1">Convergence (Expected)</div>
-              <p className="text-xs text-neutral-300 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 Spread reverts to mean. Both legs profit — long leg rises and short leg falls.
                 Half-life typically 5–20 days for sector pairs. Alpha = spread width − transaction costs − borrow.
               </p>
             </div>
             <div className="bg-red-950/20 border border-red-800/30 rounded-lg p-3">
               <div className="text-xs font-semibold text-red-400 mb-1">Divergence (Tail Risk)</div>
-              <p className="text-xs text-neutral-300 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 Spread widens further after entry (structural break, M&amp;A, earnings shock).
                 Both legs lose simultaneously. Cointegration can break permanently — use stop-loss at ±3σ.
               </p>
@@ -945,7 +945,7 @@ function PairsPnLChart({ bars }: { bars: PairsBar[] }) {
           {finalPnL >= 0 ? "+" : ""}{finalPnL.toFixed(2)}
         </text>
       </svg>
-      <p className="text-xs text-neutral-500 mt-1">
+      <p className="text-xs text-muted-foreground mt-1">
         Cumulative P&L units (normalized spread). Entry ±2σ, exit at 0σ. Positive = profitable mean reversion.
       </p>
     </div>
@@ -1001,42 +1001,42 @@ function FundEconomicsTab() {
   return (
     <div className="space-y-6">
       {/* 2 and 20 */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Percent className="w-4 h-4 text-amber-400" />
             The "2 and 20" Fee Structure
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-            <div className="bg-neutral-800/50 rounded-lg p-4">
+            <div className="bg-muted/50 rounded-lg p-4">
               <div className="text-2xl font-bold text-amber-400 mb-1">2%</div>
-              <div className="text-xs font-semibold text-neutral-200 mb-1">Management Fee</div>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <div className="text-xs font-semibold text-foreground mb-1">Management Fee</div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 Annual fee on AUM (gross assets). Paid monthly regardless of performance.
                 On a $1B fund = $20M/yr. Covers salaries, research, prime brokerage, overhead.
                 Incentive: grow AUM. Risk: misalignment if returns are poor.
               </p>
             </div>
-            <div className="bg-neutral-800/50 rounded-lg p-4">
+            <div className="bg-muted/50 rounded-lg p-4">
               <div className="text-2xl font-bold text-indigo-400 mb-1">20%</div>
-              <div className="text-xs font-semibold text-neutral-200 mb-1">Performance Fee (Carry)</div>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <div className="text-xs font-semibold text-foreground mb-1">Performance Fee (Carry)</div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 20% of profits above hurdle rate (typically LIBOR/SOFR + 200bps or 8%).
                 Only charged when fund exceeds high watermark. Aligns manager with investor
                 returns. Best-in-class funds: 1.5/15 or 1/10.
               </p>
             </div>
           </div>
-          <div className="bg-neutral-800/40 rounded-lg p-3">
+          <div className="bg-muted/40 rounded-lg p-3">
             <SectionLabel>Alpha Math: What Net Returns Actually Look Like</SectionLabel>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-neutral-700">
+                  <tr className="border-b border-border">
                     {["Gross Alpha", "Mgmt Fee", "Trading Costs", "Perf Fee (20%)", "Net Alpha"].map((h) => (
-                      <th key={h} className="px-2 py-1.5 text-neutral-400 text-left">{h}</th>
+                      <th key={h} className="px-2 py-1.5 text-muted-foreground text-left">{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -1051,7 +1051,7 @@ function FundEconomicsTab() {
                     const perfFee = aboveHurdle * 0.2;
                     const net = row.gross - row.mgmt - row.trading - perfFee;
                     return (
-                      <tr key={row.gross} className="border-b border-neutral-800">
+                      <tr key={row.gross} className="border-b border-border">
                         <td className="px-2 py-1.5 text-emerald-400 font-medium">+{row.gross}%</td>
                         <td className="px-2 py-1.5 text-red-400">−{row.mgmt}%</td>
                         <td className="px-2 py-1.5 text-orange-400">−{row.trading}%</td>
@@ -1070,9 +1070,9 @@ function FundEconomicsTab() {
       </Card>
 
       {/* High watermark SVG */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-sky-400" />
             High Watermark &amp; Hurdle Rate Mechanics
           </CardTitle>
@@ -1130,7 +1130,7 @@ function FundEconomicsTab() {
             <circle cx={padL + 130} cy={svgH - 6} r={4} fill="#a78bfa" />
             <text x={padL + 138} y={svgH - 2} fontSize={8} fill="#a78bfa">Perf. Fee Event</text>
           </svg>
-          <p className="text-xs text-neutral-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             In 2022 (drawdown year), NAV falls below HWM. No performance fee charged. Manager must recover losses before
             earning carry again — aligns long-term interests with investors.
           </p>
@@ -1138,9 +1138,9 @@ function FundEconomicsTab() {
       </Card>
 
       {/* HFRI vs S&P */}
-      <Card className="bg-neutral-900 border-neutral-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-indigo-400" />
             HFRI L/S Index vs S&amp;P 500 — Annual Returns (2014–2023)
           </CardTitle>
@@ -1195,7 +1195,7 @@ function FundEconomicsTab() {
             <rect x={hPadL + 70} y={hSvgH - 8} width={8} height={6} fill="#38bdf8" opacity={0.8} />
             <text x={hPadL + 83} y={hSvgH - 2} fontSize={8} fill="#38bdf8">S&P 500</text>
           </svg>
-          <p className="text-xs text-neutral-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Key observation: HFRI L/S typically delivers lower returns in strong bull markets (2017, 2019, 2021)
             but protects capital in down markets (2018, 2022). Sharpe ratios can be comparable despite lower gross returns.
           </p>
@@ -1204,15 +1204,15 @@ function FundEconomicsTab() {
 
       {/* Capacity constraints + Sharpe decomposition */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-neutral-900 border-neutral-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 text-rose-400" />
               Capacity Constraints
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2 text-xs text-neutral-300 leading-relaxed">
+            <div className="space-y-2 text-xs text-muted-foreground leading-relaxed">
               <p>
                 <span className="text-rose-400 font-semibold">Market impact:</span> Large orders move prices against the fund.
                 A $10B L/S fund trading 1,000 names needs liquidity — alpha erodes at scale.
@@ -1229,9 +1229,9 @@ function FundEconomicsTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-neutral-900 border-neutral-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-neutral-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <Activity className="w-4 h-4 text-emerald-400" />
               Sharpe Ratio Decomposition
             </CardTitle>
@@ -1244,11 +1244,11 @@ function FundEconomicsTab() {
                 { label: "− Trading Costs (1%)", value: "−1%", color: "text-orange-400" },
                 { label: "− Performance Fee (20% of 6%)", value: "−1.2%", color: "text-amber-400" },
                 { label: "= Net Alpha to Investor", value: "+10.8%", color: "text-sky-400 font-bold" },
-                { label: "Portfolio Volatility (σ)", value: "12%", color: "text-neutral-300" },
+                { label: "Portfolio Volatility (σ)", value: "12%", color: "text-muted-foreground" },
                 { label: "Net Sharpe ≈ (10.8 − 5) / 12", value: "≈ 0.48", color: "text-indigo-400 font-bold" },
               ].map((row) => (
-                <div key={row.label} className="flex justify-between items-center text-xs border-b border-neutral-800/50 pb-1">
-                  <span className="text-neutral-400">{row.label}</span>
+                <div key={row.label} className="flex justify-between items-center text-xs border-b border-border/50 pb-1">
+                  <span className="text-muted-foreground">{row.label}</span>
                   <span className={row.color}>{row.value}</span>
                 </div>
               ))}
@@ -1268,7 +1268,7 @@ export default function EquityLongShortPage() {
   const [activeTab, setActiveTab] = useState("portfolio");
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-4 md:p-6">
+    <div className="min-h-screen bg-neutral-950 text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1281,8 +1281,8 @@ export default function EquityLongShortPage() {
             <Scale className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-neutral-100">Equity Long/Short Strategies</h1>
-            <p className="text-xs text-neutral-400">
+            <h1 className="text-xl font-bold text-foreground">Equity Long/Short Strategies</h1>
+            <p className="text-xs text-muted-foreground">
               Fundamental L/S · Pairs Trading · Short Selling · Hedge Fund Alpha Economics
             </p>
           </div>
@@ -1307,7 +1307,7 @@ export default function EquityLongShortPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-neutral-900 border border-neutral-700 h-auto flex-wrap gap-1 p-1 mb-6">
+        <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1 mb-6">
           {[
             { value: "portfolio", label: "L/S Portfolio Structure", icon: Layers },
             { value: "short", label: "Short Selling", icon: TrendingDown },
@@ -1318,8 +1318,8 @@ export default function EquityLongShortPage() {
               key={value}
               value={value}
               className={cn(
-                "text-xs px-3 py-1.5 rounded-md transition-all data-[state=active]:bg-neutral-700 data-[state=active]:text-neutral-100",
-                "text-neutral-400 hover:text-neutral-200"
+                "text-xs px-3 py-1.5 rounded-md transition-all data-[state=active]:bg-neutral-700 data-[state=active]:text-foreground",
+                "text-muted-foreground hover:text-foreground"
               )}
             >
               <Icon className="w-3.5 h-3.5 mr-1.5 inline-block" />

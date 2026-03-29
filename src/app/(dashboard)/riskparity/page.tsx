@@ -351,7 +351,7 @@ function LeverageDisplay() {
         </div>
         <div className="rounded-lg bg-muted/40 p-3">
           <div className="text-xs text-muted-foreground mb-1">Unlevered Vol</div>
-          <div className="font-mono font-bold text-slate-300">{portfolioNatVol}%</div>
+          <div className="font-mono font-bold text-muted-foreground">{portfolioNatVol}%</div>
         </div>
       </div>
       <p className="text-xs text-muted-foreground leading-relaxed">
@@ -560,7 +560,7 @@ export default function RiskParityPage() {
                             <td className="text-right py-2 px-2 font-mono">{a.vol.toFixed(1)}%</td>
                             <td className="text-right py-2 px-2 font-mono text-primary">{a.riskWeight.toFixed(1)}%</td>
                             <td className="text-right py-2 px-2 font-mono">
-                              <span className={a.corrToPort < 0 ? "text-emerald-400" : "text-slate-300"}>
+                              <span className={a.corrToPort < 0 ? "text-emerald-400" : "text-muted-foreground"}>
                                 {a.corrToPort > 0 ? "+" : ""}{a.corrToPort.toFixed(2)}
                               </span>
                             </td>
@@ -645,7 +645,7 @@ export default function RiskParityPage() {
                   {[
                     { label: "Risk Parity", value: finalValues.riskParity.toFixed(0), color: "text-primary" },
                     { label: "60/40", value: finalValues.sixtyForty.toFixed(0), color: "text-muted-foreground" },
-                    { label: "All-Equity", value: finalValues.allEquity.toFixed(0), color: "text-slate-400" },
+                    { label: "All-Equity", value: finalValues.allEquity.toFixed(0), color: "text-muted-foreground" },
                   ].map(s => (
                     <div key={s.label} className="rounded-lg bg-muted/40 p-2">
                       <div className="text-muted-foreground">{s.label}</div>

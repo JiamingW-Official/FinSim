@@ -178,14 +178,14 @@ function MetricCard({
   color?: string;
 }) {
   return (
-    <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 flex gap-3 items-start">
-      <div className="mt-0.5 p-2 rounded-md bg-neutral-800">
-        <Icon className="w-4 h-4 text-neutral-400" />
+    <div className="bg-card border border-border rounded-lg p-4 flex gap-3 items-start">
+      <div className="mt-0.5 p-2 rounded-md bg-muted">
+        <Icon className="w-4 h-4 text-muted-foreground" />
       </div>
       <div>
-        <div className="text-xs text-neutral-500 mb-0.5">{label}</div>
+        <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
         <div className={`text-lg font-semibold tabular-nums ${color}`}>{value}</div>
-        {sub && <div className="text-xs text-neutral-500 mt-0.5">{sub}</div>}
+        {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
       </div>
     </div>
   );
@@ -264,7 +264,7 @@ function TradeLogTab() {
     <div className="space-y-4">
       {/* Filters */}
       <div className="flex flex-wrap gap-2 items-center">
-        <span className="text-xs text-neutral-500">Outcome:</span>
+        <span className="text-xs text-muted-foreground">Outcome:</span>
         {(["all", "win", "loss", "breakeven"] as const).map((o) => (
           <button
             key={o}
@@ -272,13 +272,13 @@ function TradeLogTab() {
             className={`px-3 py-1 text-xs rounded-full border transition-colors ${
               filterOutcome === o
                 ? "bg-primary text-white border-primary"
-                : "border-neutral-700 text-neutral-400 hover:border-neutral-500"
+                : "border-border text-muted-foreground hover:border-neutral-500"
             }`}
           >
             {o === "all" ? "All" : o.charAt(0).toUpperCase() + o.slice(1)}
           </button>
         ))}
-        <span className="text-xs text-neutral-500 ml-2">Strategy:</span>
+        <span className="text-xs text-muted-foreground ml-2">Strategy:</span>
         {(["all", ...STRATEGIES] as const).map((s) => (
           <button
             key={s}
@@ -286,7 +286,7 @@ function TradeLogTab() {
             className={`px-3 py-1 text-xs rounded-full border transition-colors ${
               filterStrategy === s
                 ? "bg-primary text-white border-primary"
-                : "border-neutral-700 text-neutral-400 hover:border-neutral-500"
+                : "border-border text-muted-foreground hover:border-neutral-500"
             }`}
           >
             {s === "all" ? "All" : s}
@@ -295,10 +295,10 @@ function TradeLogTab() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-neutral-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-neutral-900 border-b border-neutral-800 text-neutral-400">
+            <tr className="bg-card border-b border-border text-muted-foreground">
               <th
                 className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-white transition-colors"
                 onClick={() => handleSort("symbol")}
@@ -350,7 +350,7 @@ function TradeLogTab() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.15, delay: idx * 0.02 }}
-                  className="border-b border-neutral-800/60 hover:bg-neutral-800/30 transition-colors"
+                  className="border-b border-border/60 hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-3 py-2.5 font-medium text-white">{trade.symbol}</td>
                   <td className="px-3 py-2.5">
@@ -364,10 +364,10 @@ function TradeLogTab() {
                       {trade.strategy}
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-neutral-400">{trade.openDate}</td>
-                  <td className="px-3 py-2.5 text-neutral-400">{trade.closeDate}</td>
-                  <td className="px-3 py-2.5 text-right text-neutral-400">{trade.daysInTrade}d</td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 tabular-nums">
+                  <td className="px-3 py-2.5 text-muted-foreground">{trade.openDate}</td>
+                  <td className="px-3 py-2.5 text-muted-foreground">{trade.closeDate}</td>
+                  <td className="px-3 py-2.5 text-right text-muted-foreground">{trade.daysInTrade}d</td>
+                  <td className="px-3 py-2.5 text-right text-muted-foreground tabular-nums">
                     {trade.premiumCollected > 0 ? "+" : ""}${Math.abs(trade.premiumCollected).toFixed(2)}
                   </td>
                   <td
@@ -384,7 +384,7 @@ function TradeLogTab() {
                   >
                     {fmt(trade.returnPct, 1)}%
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-400">{trade.ivRankAtEntry}%</td>
+                  <td className="px-3 py-2.5 text-right text-muted-foreground">{trade.ivRankAtEntry}%</td>
                   <td className="px-3 py-2.5 text-center">
                     {trade.outcome === "win" ? (
                       <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-medium">
@@ -406,7 +406,7 @@ function TradeLogTab() {
           </tbody>
         </table>
       </div>
-      <div className="text-xs text-neutral-500">
+      <div className="text-xs text-muted-foreground">
         Showing {sorted.length} of {TRADES.length} trades
       </div>
     </div>
@@ -541,7 +541,7 @@ function PerformanceTab() {
       </div>
 
       {/* Equity Curve */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-white mb-3">Equity Curve</div>
         <svg
           viewBox={`0 0 ${W} ${H}`}
@@ -630,7 +630,7 @@ function PerformanceTab() {
             );
           })}
         </svg>
-        <div className="flex gap-4 mt-2 text-xs text-neutral-500">
+        <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" /> Win
           </span>
@@ -688,9 +688,9 @@ function StrategyBreakdownTab() {
   return (
     <div className="space-y-6">
       {/* SVG P&L by strategy */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-white mb-1">Total P&L by Strategy</div>
-        <div className="text-xs text-neutral-500 mb-3">Bars above zero = net profitable</div>
+        <div className="text-xs text-muted-foreground mb-3">Bars above zero = net profitable</div>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 200 }}>
           {/* Zero line */}
           <line
@@ -766,7 +766,7 @@ function StrategyBreakdownTab() {
       </div>
 
       {/* Avg days per strategy SVG bar */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-white mb-1">Avg Days In Trade</div>
         <svg viewBox="0 0 560 120" className="w-full" style={{ maxHeight: 120 }}>
           {stratStats.map((stat, i) => {
@@ -789,10 +789,10 @@ function StrategyBreakdownTab() {
       </div>
 
       {/* Strategy table */}
-      <div className="overflow-x-auto rounded-lg border border-neutral-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-neutral-900 border-b border-neutral-800 text-neutral-400">
+            <tr className="bg-card border-b border-border text-muted-foreground">
               <th className="px-3 py-2.5 text-left font-medium">Strategy</th>
               <th className="px-3 py-2.5 text-right font-medium">Trades</th>
               <th className="px-3 py-2.5 text-right font-medium">Win Rate</th>
@@ -803,7 +803,7 @@ function StrategyBreakdownTab() {
           </thead>
           <tbody>
             {stratStats.map((stat) => (
-              <tr key={stat.strategy} className="border-b border-neutral-800/60 hover:bg-neutral-800/20">
+              <tr key={stat.strategy} className="border-b border-border/60 hover:bg-muted/20">
                 <td className="px-3 py-2.5">
                   <span
                     className="px-2 py-0.5 rounded text-xs font-medium"
@@ -815,7 +815,7 @@ function StrategyBreakdownTab() {
                     {stat.strategy}
                   </span>
                 </td>
-                <td className="px-3 py-2.5 text-right text-neutral-300">{stat.trades}</td>
+                <td className="px-3 py-2.5 text-right text-muted-foreground">{stat.trades}</td>
                 <td className="px-3 py-2.5 text-right">
                   <span className={stat.winRate >= 50 ? "text-emerald-400" : "text-red-400"}>
                     {stat.winRate.toFixed(1)}%
@@ -835,7 +835,7 @@ function StrategyBreakdownTab() {
                 >
                   {fmt(stat.avgReturn, 1)}%
                 </td>
-                <td className="px-3 py-2.5 text-right text-neutral-400">{stat.avgDays.toFixed(1)}d</td>
+                <td className="px-3 py-2.5 text-right text-muted-foreground">{stat.avgDays.toFixed(1)}d</td>
               </tr>
             ))}
           </tbody>
@@ -914,13 +914,13 @@ function GreekAttributionTab() {
           <div key={g.label} className="flex items-center gap-2 text-sm">
             <span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: g.color }} />
             <span className="font-medium text-white">{g.label}</span>
-            <span className="text-neutral-500 text-xs">{g.desc}</span>
+            <span className="text-muted-foreground text-xs">{g.desc}</span>
           </div>
         ))}
       </div>
 
       {/* SVG grouped bar chart */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-white mb-3">Monthly Greek P&L Attribution</div>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 240 }}>
           {/* Grid */}
@@ -982,10 +982,10 @@ function GreekAttributionTab() {
       </div>
 
       {/* Monthly table */}
-      <div className="overflow-x-auto rounded-lg border border-neutral-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-neutral-900 border-b border-neutral-800 text-neutral-400">
+            <tr className="bg-card border-b border-border text-muted-foreground">
               <th className="px-3 py-2.5 text-left font-medium">Month</th>
               <th className="px-3 py-2.5 text-right font-medium">Delta P&L</th>
               <th className="px-3 py-2.5 text-right font-medium">Theta P&L</th>
@@ -997,13 +997,13 @@ function GreekAttributionTab() {
             {monthlyData.map((md) => {
               const net = md.deltaPnl + md.thetaPnl + md.vegaPnl;
               return (
-                <tr key={md.month} className="border-b border-neutral-800/60 hover:bg-neutral-800/20">
-                  <td className="px-3 py-2.5 text-neutral-300 font-medium">{md.month}</td>
+                <tr key={md.month} className="border-b border-border/60 hover:bg-muted/20">
+                  <td className="px-3 py-2.5 text-muted-foreground font-medium">{md.month}</td>
                   {[md.deltaPnl, md.thetaPnl, md.vegaPnl, net].map((v, vi) => (
                     <td
                       key={vi}
                       className={`px-3 py-2.5 text-right tabular-nums ${
-                        v > 0 ? "text-emerald-400" : v < 0 ? "text-red-400" : "text-neutral-500"
+                        v > 0 ? "text-emerald-400" : v < 0 ? "text-red-400" : "text-muted-foreground"
                       }`}
                     >
                       {fmtDollar(v)}
@@ -1102,15 +1102,15 @@ function ImprovementAreasTab() {
   return (
     <div className="space-y-6">
       {/* Trade Sizing */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-white mb-3">Trade Sizing Distribution (% of $25K capital)</div>
         <div className="space-y-2">
           {sizingBuckets.map((b) => {
             const barPct = (b.count / TRADES.length) * 100;
             return (
               <div key={b.label} className="flex items-center gap-3 text-sm">
-                <div className="w-12 text-xs text-neutral-400 text-right">{b.label}</div>
-                <div className="flex-1 h-6 bg-neutral-800 rounded overflow-hidden relative">
+                <div className="w-12 text-xs text-muted-foreground text-right">{b.label}</div>
+                <div className="flex-1 h-6 bg-muted rounded overflow-hidden relative">
                   <div
                     className="h-full rounded transition-all"
                     style={{
@@ -1120,7 +1120,7 @@ function ImprovementAreasTab() {
                     }}
                   />
                 </div>
-                <div className="w-12 text-xs text-neutral-400">{b.count} trade{b.count !== 1 ? "s" : ""}</div>
+                <div className="w-12 text-xs text-muted-foreground">{b.count} trade{b.count !== 1 ? "s" : ""}</div>
                 <div
                   className={`w-16 text-xs text-right tabular-nums font-medium ${
                     b.pnl >= 0 ? "text-emerald-400" : "text-red-400"
@@ -1135,7 +1135,7 @@ function ImprovementAreasTab() {
       </div>
 
       {/* Early vs Held */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-white mb-3">Early Exits vs Held to Expiration</div>
         <div className="grid grid-cols-2 gap-4">
           {[
@@ -1154,13 +1154,13 @@ function ImprovementAreasTab() {
               color: "amber",
             },
           ].map((g) => (
-            <div key={g.label} className="bg-neutral-800/50 rounded-lg p-3 space-y-2">
+            <div key={g.label} className="bg-muted/50 rounded-lg p-3 space-y-2">
               <div className="text-sm font-medium text-white">{g.label}</div>
               <div className="text-2xl font-bold text-white">{g.count}</div>
-              <div className="text-xs text-neutral-500">trades</div>
+              <div className="text-xs text-muted-foreground">trades</div>
               <div className="flex gap-3 mt-1">
                 <div>
-                  <div className="text-xs text-neutral-500">Win Rate</div>
+                  <div className="text-xs text-muted-foreground">Win Rate</div>
                   <div
                     className={`text-sm font-medium ${g.winRate >= 50 ? "text-emerald-400" : "text-red-400"}`}
                   >
@@ -1168,7 +1168,7 @@ function ImprovementAreasTab() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs text-neutral-500">Avg P&L</div>
+                  <div className="text-xs text-muted-foreground">Avg P&L</div>
                   <div
                     className={`text-sm font-medium ${g.avgPnl >= 0 ? "text-emerald-400" : "text-red-400"}`}
                   >
@@ -1182,7 +1182,7 @@ function ImprovementAreasTab() {
       </div>
 
       {/* IV Rank at Entry Distribution */}
-      <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <div className="text-sm font-medium text-white mb-3">IV Rank at Entry Distribution</div>
         <svg viewBox="0 0 560 100" className="w-full" style={{ maxHeight: 100 }}>
           {ivBuckets.map((b, i) => {
@@ -1225,12 +1225,12 @@ function ImprovementAreasTab() {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.08 }}
-              className="bg-neutral-900 border border-neutral-800 rounded-lg p-4 flex gap-3"
+              className="bg-card border border-border rounded-lg p-4 flex gap-3"
             >
               <lesson.icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${lesson.color}`} />
               <div>
                 <div className="text-sm font-medium text-white mb-1">{lesson.title}</div>
-                <div className="text-xs text-neutral-400 leading-relaxed">{lesson.body}</div>
+                <div className="text-xs text-muted-foreground leading-relaxed">{lesson.body}</div>
               </div>
             </motion.div>
           ))}
@@ -1251,7 +1251,7 @@ export default function OptionsJournalPage() {
   return (
     <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-neutral-950">
       {/* Header */}
-      <div className="border-b border-neutral-800 px-6 py-4 flex-shrink-0">
+      <div className="border-b border-border px-6 py-4 flex-shrink-0">
         <div className="flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-primary/10 rounded-lg">
@@ -1259,12 +1259,12 @@ export default function OptionsJournalPage() {
             </div>
             <div>
               <h1 className="text-lg font-semibold text-white">Options Journal</h1>
-              <p className="text-xs text-neutral-500">Performance tracker & trade analysis</p>
+              <p className="text-xs text-muted-foreground">Performance tracker & trade analysis</p>
             </div>
           </div>
           <div className="flex gap-4 text-sm">
             <div className="text-right">
-              <div className="text-xs text-neutral-500">Total P&L</div>
+              <div className="text-xs text-muted-foreground">Total P&L</div>
               <div
                 className={`font-bold tabular-nums ${totalPnl >= 0 ? "text-emerald-400" : "text-red-400"}`}
               >
@@ -1272,13 +1272,13 @@ export default function OptionsJournalPage() {
               </div>
             </div>
             <div className="text-right">
-              <div className="text-xs text-neutral-500">Win Rate</div>
+              <div className="text-xs text-muted-foreground">Win Rate</div>
               <div className={`font-bold ${winRate >= 50 ? "text-emerald-400" : "text-red-400"}`}>
                 {winRate}%
               </div>
             </div>
             <div className="text-right">
-              <div className="text-xs text-neutral-500">Trades</div>
+              <div className="text-xs text-muted-foreground">Trades</div>
               <div className="font-bold text-white">{TRADES.length}</div>
             </div>
           </div>
@@ -1288,7 +1288,7 @@ export default function OptionsJournalPage() {
       {/* Tabs */}
       <div className="flex-1 min-h-0 overflow-y-auto">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
-          <TabsList className="flex-shrink-0 mx-6 mt-4 bg-neutral-900 border border-neutral-800 w-fit h-auto flex-wrap gap-1 p-1 rounded-lg">
+          <TabsList className="flex-shrink-0 mx-6 mt-4 bg-card border border-border w-fit h-auto flex-wrap gap-1 p-1 rounded-lg">
             <TabsTrigger
               value="tradelog"
               className="text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white"

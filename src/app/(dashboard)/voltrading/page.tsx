@@ -274,13 +274,13 @@ interface ExpandableSectionProps {
 function ExpandableSection({ title, children, defaultOpen = false, accent = "#6366f1" }: ExpandableSectionProps) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border border-zinc-800 rounded-lg overflow-hidden">
+    <div className="border border-border rounded-lg overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900/50 hover:bg-zinc-900 transition-colors"
+        className="w-full flex items-center justify-between px-4 py-3 bg-card/50 hover:bg-card transition-colors"
       >
-        <span className="text-sm font-semibold text-zinc-200">{title}</span>
-        {open ? <ChevronUp className="w-4 h-4 text-zinc-400" /> : <ChevronDown className="w-4 h-4 text-zinc-400" />}
+        <span className="text-sm font-semibold text-foreground">{title}</span>
+        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -301,12 +301,12 @@ function ExpandableSection({ title, children, defaultOpen = false, accent = "#63
 }
 
 // ── Info pill ──────────────────────────────────────────────────────────────────
-function InfoPill({ label, value, sub, color = "text-zinc-200" }: { label: string; value: string; sub?: string; color?: string }) {
+function InfoPill({ label, value, sub, color = "text-foreground" }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div className="flex flex-col items-center bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[90px]">
-      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
+    <div className="flex flex-col items-center bg-card border border-border rounded-lg px-3 py-2 min-w-[90px]">
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-bold", color)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -631,8 +631,8 @@ export default function VolTradingPage() {
             <Activity className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100">Volatility Trading</h1>
-            <p className="text-sm text-zinc-500">
+            <h1 className="text-2xl font-bold text-foreground">Volatility Trading</h1>
+            <p className="text-sm text-muted-foreground">
               Vol surface dynamics, long/short vol strategies, and dispersion trading
             </p>
           </div>
@@ -653,7 +653,7 @@ export default function VolTradingPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-zinc-900 border border-zinc-800 w-full justify-start flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border w-full justify-start flex-wrap h-auto gap-1 p-1">
           {[
             { value: "surface", label: "Volatility Surface", icon: <Layers className="w-3.5 h-3.5" /> },
             { value: "longvol", label: "Long Vol Strategies", icon: <TrendingUp className="w-3.5 h-3.5" /> },
@@ -674,25 +674,25 @@ export default function VolTradingPage() {
         {/* ── TAB 1: Volatility Surface ───────────────────────────────────────────── */}
         <TabsContent value="surface" className="mt-4 space-y-5 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Implied Volatility Surface (Isometric)
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <VolSurfaceSVG />
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   The vol surface maps implied volatility across strike (moneyness) and expiry. Put skew from
                   investor hedging demand elevates OTM put IVs. Term structure shows contango in calm markets.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                   Term Structure Shapes
                 </CardTitle>
@@ -705,7 +705,7 @@ export default function VolTradingPage() {
                       <div className="w-2 h-2 rounded-full mt-1 flex-shrink-0" style={{ background: shape.color }} />
                       <div>
                         <span className="text-xs font-semibold" style={{ color: shape.color }}>{shape.label}: </span>
-                        <span className="text-xs text-zinc-400">{shape.description}</span>
+                        <span className="text-xs text-muted-foreground">{shape.description}</span>
                       </div>
                     </div>
                   ))}
@@ -714,9 +714,9 @@ export default function VolTradingPage() {
             </Card>
           </div>
 
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Target className="w-4 h-4 text-primary" />
                 Volatility Skew Dynamics
               </CardTitle>
@@ -724,32 +724,32 @@ export default function VolTradingPage() {
             <CardContent>
               <SkewSVG />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4 text-xs">
-                <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                <div className="bg-card rounded-lg p-3 border border-border">
                   <p className="font-semibold text-primary mb-1">Put Skew Origin</p>
-                  <p className="text-zinc-400">Institutional investors systematically buy OTM puts for portfolio insurance, creating persistent demand that inflates put IV vs call IV — a structural risk premium.</p>
+                  <p className="text-muted-foreground">Institutional investors systematically buy OTM puts for portfolio insurance, creating persistent demand that inflates put IV vs call IV — a structural risk premium.</p>
                 </div>
-                <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                <div className="bg-card rounded-lg p-3 border border-border">
                   <p className="font-semibold text-primary mb-1">Sticky Strike vs Sticky Delta</p>
-                  <p className="text-zinc-400">Sticky strike: same absolute strike keeps its IV as spot moves. Sticky delta: vol follows the delta (25Δ put always has same IV). Equity tends sticky strike; FX tends sticky delta.</p>
+                  <p className="text-muted-foreground">Sticky strike: same absolute strike keeps its IV as spot moves. Sticky delta: vol follows the delta (25Δ put always has same IV). Equity tends sticky strike; FX tends sticky delta.</p>
                 </div>
-                <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                <div className="bg-card rounded-lg p-3 border border-border">
                   <p className="font-semibold text-muted-foreground mb-1">Post-Earnings Surface</p>
-                  <p className="text-zinc-400">Near-dated vol collapses dramatically post-earnings (vol crush). Far-dated vol barely moves. The surface flattens in the front end as event uncertainty resolves.</p>
+                  <p className="text-muted-foreground">Near-dated vol collapses dramatically post-earnings (vol crush). Far-dated vol barely moves. The surface flattens in the front end as event uncertainty resolves.</p>
                 </div>
               </div>
             </CardContent>
           </Card>
 
           {/* SABR Model */}
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Zap className="w-4 h-4 text-amber-400" />
                 SABR Model Parameters
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-xs text-zinc-400 mb-4">
+              <p className="text-xs text-muted-foreground mb-4">
                 SABR (Stochastic Alpha Beta Rho) is the industry-standard model for interest rate and FX options. It produces a closed-form IV approximation as a function of strike, making surface calibration tractable.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -757,20 +757,20 @@ export default function VolTradingPage() {
                   <button
                     key={p.param}
                     onClick={() => setExpandedSabrParam(expandedSabrParam === p.param ? null : p.param)}
-                    className="text-left bg-zinc-900 border border-zinc-800 rounded-lg p-3 hover:border-zinc-600 transition-colors"
+                    className="text-left bg-card border border-border rounded-lg p-3 hover:border-border transition-colors"
                   >
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm font-bold" style={{ color: p.color }}>{p.param}</span>
-                      {expandedSabrParam === p.param ? <ChevronUp className="w-3 h-3 text-zinc-500" /> : <ChevronDown className="w-3 h-3 text-zinc-500" />}
+                      {expandedSabrParam === p.param ? <ChevronUp className="w-3 h-3 text-muted-foreground" /> : <ChevronDown className="w-3 h-3 text-muted-foreground" />}
                     </div>
-                    <p className="text-xs text-zinc-300">{p.meaning}</p>
+                    <p className="text-xs text-muted-foreground">{p.meaning}</p>
                     <AnimatePresence>
                       {expandedSabrParam === p.param && (
                         <motion.p
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          className="text-xs text-zinc-500 mt-2 overflow-hidden"
+                          className="text-xs text-muted-foreground mt-2 overflow-hidden"
                         >
                           {p.effect}
                         </motion.p>
@@ -785,15 +785,15 @@ export default function VolTradingPage() {
           {/* SVI + Arbitrage + Local vs Stoch */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             <ExpandableSection title="SVI Parameterization" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>
-                  <span className="font-semibold text-zinc-200">SVI (Stochastic Volatility Inspired)</span> parameterizes the smile as:
+                  <span className="font-semibold text-foreground">SVI (Stochastic Volatility Inspired)</span> parameterizes the smile as:
                 </p>
-                <div className="bg-zinc-900 rounded p-3 font-mono text-zinc-300 text-[11px]">
+                <div className="bg-card rounded p-3 font-mono text-muted-foreground text-[11px]">
                   w(k) = a + b [rho(k-m) + sqrt((k-m)^2 + sigma^2)]
                 </div>
                 <p>where k = log(K/F), w is total variance, and {"(a, b, rho, m, sigma)"} are 5 free parameters. SVI automatically satisfies the no-butterfly-arbitrage condition when calibrated correctly.</p>
-                <p className="text-zinc-500">Key property: SVI is asymptotically linear in log-moneyness, consistent with Roger Lee moment formula bounding IV growth at large strikes.</p>
+                <p className="text-muted-foreground">Key property: SVI is asymptotically linear in log-moneyness, consistent with Roger Lee moment formula bounding IV growth at large strikes.</p>
               </div>
             </ExpandableSection>
 
@@ -802,24 +802,24 @@ export default function VolTradingPage() {
                 {ARB_CONDITIONS.map((c) => (
                   <div key={c.name} className="border-l-2 pl-3" style={{ borderColor: c.color }}>
                     <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
-                    <p className="text-xs text-zinc-400">{c.condition}</p>
-                    <p className="text-xs text-zinc-500 mt-0.5">Violation: {c.violation}</p>
+                    <p className="text-xs text-muted-foreground">{c.condition}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Violation: {c.violation}</p>
                   </div>
                 ))}
               </div>
             </ExpandableSection>
           </div>
 
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Info className="w-4 h-4 text-muted-foreground" />
                 Local Vol vs Stochastic Vol
               </CardTitle>
             </CardHeader>
             <CardContent>
               <LocalVsStochVolSVG />
-              <p className="text-xs text-zinc-500 mt-3">
+              <p className="text-xs text-muted-foreground mt-3">
                 Vanna-volga pricing (popular in FX) adds Greeks-based corrections to Black-Scholes using market prices of the 25-delta strangle and risk reversal, capturing smile effects analytically without full stochastic model calibration.
               </p>
             </CardContent>
@@ -829,9 +829,9 @@ export default function VolTradingPage() {
         {/* ── TAB 2: Long Vol Strategies ───────────────────────────────────────────── */}
         <TabsContent value="longvol" className="mt-4 space-y-5 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                   Long Straddle: Payoff at Expiry
                 </CardTitle>
@@ -839,32 +839,32 @@ export default function VolTradingPage() {
               <CardContent>
                 <BreakevenDisplay />
                 <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
-                  <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                  <div className="bg-card rounded-lg p-3 border border-border">
                     <p className="font-semibold text-emerald-300 mb-1">Breakeven Formula</p>
-                    <p className="text-zinc-400">Upside BE = Strike + Total Premium</p>
-                    <p className="text-zinc-400">Downside BE = Strike − Total Premium</p>
-                    <p className="text-zinc-500 mt-1">ATM S=100, Call=3.2, Put=3.0 → BEs: 93.8 / 106.2</p>
+                    <p className="text-muted-foreground">Upside BE = Strike + Total Premium</p>
+                    <p className="text-muted-foreground">Downside BE = Strike − Total Premium</p>
+                    <p className="text-muted-foreground mt-1">ATM S=100, Call=3.2, Put=3.0 → BEs: 93.8 / 106.2</p>
                   </div>
-                  <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                  <div className="bg-card rounded-lg p-3 border border-border">
                     <p className="font-semibold text-primary mb-1">Pay Theta, Own Gamma</p>
-                    <p className="text-zinc-400">Long straddle: negative theta (time decay enemy) but long gamma (big moves profit). Profitability depends on realized vol exceeding implied vol over the holding period.</p>
+                    <p className="text-muted-foreground">Long straddle: negative theta (time decay enemy) but long gamma (big moves profit). Profitability depends on realized vol exceeding implied vol over the holding period.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Gamma Scalping P&L Simulation
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <GammaScalpPnLSVG />
-                <div className="space-y-2 mt-3 text-xs text-zinc-400">
+                <div className="space-y-2 mt-3 text-xs text-muted-foreground">
                   <p>
-                    <span className="font-semibold text-zinc-200">Gamma scalping condition: </span>
+                    <span className="font-semibold text-foreground">Gamma scalping condition: </span>
                     Daily P&L approx 0.5 x Gamma x S^2 x (sigma_realized^2 - sigma_implied^2) x dt. Positive when realized exceeds implied.
                   </p>
                   <p>
@@ -875,9 +875,9 @@ export default function VolTradingPage() {
             </Card>
           </div>
 
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-primary" />
                 Long Vol Strategy Reference
               </CardTitle>
@@ -886,18 +886,18 @@ export default function VolTradingPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
+                    <tr className="border-b border-border">
                       {["Strategy", "Structure", "Market Outlook", "Max Risk", "Max Reward", "Theta", "Gamma"].map((h) => (
-                        <th key={h} className="text-left py-2 px-2 text-zinc-500 font-medium">{h}</th>
+                        <th key={h} className="text-left py-2 px-2 text-muted-foreground font-medium">{h}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {LONG_VOL_STRATEGIES.map((st, i) => (
-                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-zinc-950" : "bg-zinc-900/30")}>
+                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
                         <td className="py-2 px-2 font-semibold text-primary">{st.name}</td>
-                        <td className="py-2 px-2 text-zinc-400">{st.structure}</td>
-                        <td className="py-2 px-2 text-zinc-300">{st.outlook}</td>
+                        <td className="py-2 px-2 text-muted-foreground">{st.structure}</td>
+                        <td className="py-2 px-2 text-muted-foreground">{st.outlook}</td>
                         <td className="py-2 px-2 text-red-400">{st.risk}</td>
                         <td className="py-2 px-2 text-emerald-400">{st.reward}</td>
                         <td className="py-2 px-2 text-amber-400">{st.theta}</td>
@@ -912,10 +912,10 @@ export default function VolTradingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <ExpandableSection title="Variance Swap: Pure Vol Exposure" defaultOpen>
-              <div className="space-y-3 text-xs text-zinc-400">
-                <p>A variance swap pays <span className="text-zinc-200 font-semibold">(sigma_realized^2 - K_var) x Notional</span> at expiry. Unlike options, it has no delta and no need for dynamic hedging.</p>
-                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-zinc-300">Key mechanics:</p>
+              <div className="space-y-3 text-xs text-muted-foreground">
+                <p>A variance swap pays <span className="text-foreground font-semibold">(sigma_realized^2 - K_var) x Notional</span> at expiry. Unlike options, it has no delta and no need for dynamic hedging.</p>
+                <div className="bg-card rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-muted-foreground">Key mechanics:</p>
                   <p>Fair strike K_var is replicated via a log-contract (infinite strip of OTM options)</p>
                   <p>Vega notional = Variance notional x 2 x K_var</p>
                   <p>Convexity: long var swap benefits from very large vol moves (sigma^2 is convex in sigma)</p>
@@ -925,10 +925,10 @@ export default function VolTradingPage() {
             </ExpandableSection>
 
             <ExpandableSection title="UVXY Mechanics & Decay" defaultOpen>
-              <div className="space-y-3 text-xs text-zinc-400">
+              <div className="space-y-3 text-xs text-muted-foreground">
                 <p>UVXY targets 1.5x daily return of the S&P 500 short-term VIX futures index (blend of 1st and 2nd month futures).</p>
-                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-zinc-300">Why UVXY decays chronically:</p>
+                <div className="bg-card rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-muted-foreground">Why UVXY decays chronically:</p>
                   <p>Contango roll cost: rolling near-term futures into higher-priced later contracts</p>
                   <p>Average roll cost: 5-7% per month in normal contango markets</p>
                   <p>Leverage decay: daily rebalancing causes compounding drag</p>
@@ -943,31 +943,31 @@ export default function VolTradingPage() {
         {/* ── TAB 3: Short Vol Strategies ──────────────────────────────────────────── */}
         <TabsContent value="shortvol" className="mt-4 space-y-5 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-emerald-400" />
                   Volatility Risk Premium (Historical)
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <VRPBarChart />
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Historically implied vol exceeds realized vol by 2-3 vol points on average, creating a persistent risk premium for option sellers. February spike shows the key exception.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-red-400" />
                   February 2018: XIV/SVXY Implosion
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <VixSpikeSVG />
-                <div className="mt-3 space-y-2 text-xs text-zinc-400">
+                <div className="mt-3 space-y-2 text-xs text-muted-foreground">
                   <p>
                     <span className="font-semibold text-red-300">What happened: </span>
                     VIX spiked from ~14 to ~50 in a single afternoon. XIV (inverse VIX ETP) was designed to reset daily — a 90%+ VIX move triggered the acceleration clause, terminating the product.
@@ -981,9 +981,9 @@ export default function VolTradingPage() {
             </Card>
           </div>
 
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Shield className="w-4 h-4 text-red-400" />
                 Short Vol Strategy Reference
               </CardTitle>
@@ -992,20 +992,20 @@ export default function VolTradingPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
+                    <tr className="border-b border-border">
                       {["Strategy", "Structure", "Max Gain", "Max Loss", "Ideal Environment", "Key Risk"].map((h) => (
-                        <th key={h} className="text-left py-2 px-2 text-zinc-500 font-medium">{h}</th>
+                        <th key={h} className="text-left py-2 px-2 text-muted-foreground font-medium">{h}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {SHORT_VOL_STRATEGIES.map((st, i) => (
-                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-zinc-950" : "bg-zinc-900/30")}>
+                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
                         <td className="py-2 px-2 font-semibold text-red-300">{st.name}</td>
-                        <td className="py-2 px-2 text-zinc-400">{st.structure}</td>
+                        <td className="py-2 px-2 text-muted-foreground">{st.structure}</td>
                         <td className="py-2 px-2 text-emerald-400">{st.maxGain}</td>
                         <td className="py-2 px-2 text-red-400">{st.maxLoss}</td>
-                        <td className="py-2 px-2 text-zinc-300">{st.idealEnv}</td>
+                        <td className="py-2 px-2 text-muted-foreground">{st.idealEnv}</td>
                         <td className="py-2 px-2 text-amber-400">{st.risk}</td>
                       </tr>
                     ))}
@@ -1017,23 +1017,23 @@ export default function VolTradingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <ExpandableSection title="Iron Condor Mechanics" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>Iron condor = bear call spread + bull put spread. Collects premium from both wings. Profitable if underlying stays within the short strikes at expiry.</p>
-                <div className="bg-zinc-900 rounded p-3 space-y-1">
-                  <p className="font-semibold text-zinc-300">P&L formula:</p>
+                <div className="bg-card rounded p-3 space-y-1">
+                  <p className="font-semibold text-muted-foreground">P&L formula:</p>
                   <p>Max gain = net premium collected</p>
                   <p>Max loss = wing width minus premium</p>
                   <p>Break-evens = short strikes plus/minus net premium</p>
                 </div>
-                <p className="text-zinc-500">Best entered at 30-45 DTE; closed at 50% profit target to avoid accelerating gamma risk near expiry.</p>
+                <p className="text-muted-foreground">Best entered at 30-45 DTE; closed at 50% profit target to avoid accelerating gamma risk near expiry.</p>
               </div>
             </ExpandableSection>
 
             <ExpandableSection title="VIX Futures Roll Yield" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>Short VIX futures captures roll yield when VIX futures trade above spot VIX (contango). As time passes, futures converge down to spot — the short position profits from this convergence.</p>
-                <div className="bg-zinc-900 rounded p-3 space-y-1">
-                  <p className="font-semibold text-zinc-300">Annualized roll yield approx:</p>
+                <div className="bg-card rounded p-3 space-y-1">
+                  <p className="font-semibold text-muted-foreground">Annualized roll yield approx:</p>
                   <p className="font-mono text-xs">(VIX_futures - VIX_spot) / VIX_spot x 252/DTE</p>
                 </div>
                 <p className="text-amber-400 font-medium">Risk: VIX spot can spike above futures during stress, destroying the trade instantly with unlimited theoretical loss.</p>
@@ -1041,13 +1041,13 @@ export default function VolTradingPage() {
             </ExpandableSection>
 
             <ExpandableSection title="Normalized VRP Selling" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>VRP (Vol Risk Premium) = Implied Vol minus Expected Realized Vol. Normalized VRP = (IV - HV20) / HV20.</p>
-                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-zinc-300">Signal thresholds:</p>
+                <div className="bg-card rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-muted-foreground">Signal thresholds:</p>
                   <p className="text-emerald-400">nVRP &gt; 0.15: sell premium (IV expensive)</p>
                   <p className="text-red-400">nVRP &lt; -0.05: avoid or go long vol</p>
-                  <p className="text-zinc-400">IV Rank &gt; 50: premium selling regime</p>
+                  <p className="text-muted-foreground">IV Rank &gt; 50: premium selling regime</p>
                 </div>
               </div>
             </ExpandableSection>
@@ -1057,47 +1057,47 @@ export default function VolTradingPage() {
         {/* ── TAB 4: Dispersion & Correlation ─────────────────────────────────────── */}
         <TabsContent value="dispersion" className="mt-4 space-y-5 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
                   Dispersion Trade Structure
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <DispersionSVG />
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Dispersion trades short index volatility and long individual stock volatility. The edge comes from the correlation risk premium — implied correlation exceeds realized correlation historically.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-950 border-zinc-800">
+            <Card className="bg-background border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Implied vs Realized Correlation
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ImpliedCorrSVG />
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Implied correlation (derived from index vs component vols) persistently exceeds realized correlation except during crises, creating a systematic risk premium harvestable via dispersion.
                 </p>
               </CardContent>
             </Card>
           </div>
 
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Target className="w-4 h-4 text-amber-400" />
                 Implied Correlation Formula
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="bg-zinc-900/60 rounded-lg p-4 border border-zinc-800">
-                <div className="font-mono text-zinc-300 text-sm mb-2">
+              <div className="bg-card/60 rounded-lg p-4 border border-border">
+                <div className="font-mono text-muted-foreground text-sm mb-2">
                   rho_implied = (sigma_index^2 - sum_i(wi^2 * sigmai^2)) / (2 * sum_ij(wi * wj * sigmai * sigmaj))
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mt-3">
@@ -1107,9 +1107,9 @@ export default function VolTradingPage() {
                     { sym: "sigmai", def: "Component i implied vol", color: "text-emerald-300" },
                     { sym: "rho_implied", def: "Market-implied average pairwise correlation", color: "text-amber-300" },
                   ].map((item) => (
-                    <div key={item.sym} className="bg-zinc-950 rounded p-2 border border-zinc-800">
+                    <div key={item.sym} className="bg-background rounded p-2 border border-border">
                       <code className={cn("font-mono font-bold text-sm", item.color)}>{item.sym}</code>
-                      <p className="text-zinc-500 mt-1">{item.def}</p>
+                      <p className="text-muted-foreground mt-1">{item.def}</p>
                     </div>
                   ))}
                 </div>
@@ -1117,9 +1117,9 @@ export default function VolTradingPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-emerald-400" />
                 Dispersion P&L Decomposition (Illustrative, vol pts)
               </CardTitle>
@@ -1133,8 +1133,8 @@ export default function VolTradingPage() {
                   const maxAbs = 8.6;
                   const barW = Math.abs(item.value) / maxAbs * 60;
                   return (
-                    <div key={item.driver} className={cn("flex items-center gap-3", isLast && "border-t border-zinc-700 pt-2 mt-1")}>
-                      <div className="flex-1 text-xs text-zinc-400">{item.driver}</div>
+                    <div key={item.driver} className={cn("flex items-center gap-3", isLast && "border-t border-border pt-2 mt-1")}>
+                      <div className="flex-1 text-xs text-muted-foreground">{item.driver}</div>
                       <div className="w-16 flex items-center">
                         <div className={cn("h-2 rounded", barColor)} style={{ width: `${barW}%` }} />
                       </div>
@@ -1150,50 +1150,50 @@ export default function VolTradingPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <ExpandableSection title="Variance Dispersion vs Vega Dispersion" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-zinc-900 rounded p-3">
+                  <div className="bg-card rounded p-3">
                     <p className="font-semibold text-primary mb-1">Variance Dispersion</p>
                     <p>Use variance swaps on index and components. Pure volatility exposure, no delta hedging needed. Payoff scales with realized variance (sigma^2), rewarding large moves convexly.</p>
                   </div>
-                  <div className="bg-zinc-900 rounded p-3">
+                  <div className="bg-card rounded p-3">
                     <p className="font-semibold text-muted-foreground mb-1">Vega Dispersion</p>
                     <p>Use options (ATM straddles) on index and components. Requires continuous delta hedging. Payoff linear in vol. More gamma exposure, path-dependent P&L.</p>
                   </div>
                 </div>
-                <p className="text-zinc-500">Variance dispersion is cleaner theoretically; vega dispersion is more accessible in practice for options books.</p>
+                <p className="text-muted-foreground">Variance dispersion is cleaner theoretically; vega dispersion is more accessible in practice for options books.</p>
               </div>
             </ExpandableSection>
 
             <ExpandableSection title="Correlation Regimes & Crisis Behavior" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>In normal regimes, average pairwise stock correlations are 0.3-0.5. During crises, correlations spike to 0.7-0.9 as macro factors dominate all individual names.</p>
-                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-zinc-300">Dispersion trade crisis P&L:</p>
+                <div className="bg-card rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-muted-foreground">Dispersion trade crisis P&L:</p>
                   <p className="text-red-400">Index vol spikes — short index vega hurts badly</p>
                   <p className="text-red-400">Correlation spike — individual stocks move together</p>
-                  <p className="text-zinc-500">Long individual vol gains, but insufficient to offset</p>
-                  <p className="text-zinc-500 mt-1">Crisis is the primary scenario where dispersion trades lose money. Size accordingly.</p>
+                  <p className="text-muted-foreground">Long individual vol gains, but insufficient to offset</p>
+                  <p className="text-muted-foreground mt-1">Crisis is the primary scenario where dispersion trades lose money. Size accordingly.</p>
                 </div>
               </div>
             </ExpandableSection>
 
             <ExpandableSection title="Sector vs Full Index Dispersion" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>Dispersion can be implemented at sector level (e.g., XLK vs mega-cap tech) or full index level (SPX vs S&P 500 components).</p>
-                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
-                  <p className="font-semibold text-zinc-300">Sector advantages:</p>
+                <div className="bg-card rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-muted-foreground">Sector advantages:</p>
                   <p>Higher intra-sector correlation tracking, fewer legs (10-30 vs 500 stocks), sector events drive larger divergence</p>
-                  <p className="font-semibold text-zinc-300 mt-2">Full index advantages:</p>
+                  <p className="font-semibold text-muted-foreground mt-2">Full index advantages:</p>
                   <p>Deeper liquidity on SPX options, more diversified correlation exposure across the market</p>
                 </div>
               </div>
             </ExpandableSection>
 
             <ExpandableSection title="Cross-Asset Vol Correlation" defaultOpen>
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>Volatility regimes are correlated across asset classes but not perfectly, creating cross-asset vol trading opportunities.</p>
-                <div className="space-y-1.5 bg-zinc-900 rounded p-3">
+                <div className="space-y-1.5 bg-card rounded p-3">
                   {[
                     { pair: "Equity vol (VIX) vs FX vol (EURUSD)", corr: "+0.55", note: "Risk-off drives both up" },
                     { pair: "Equity vol (VIX) vs Rates vol (MOVE)", corr: "+0.42", note: "Fed uncertainty spills over" },
@@ -1201,7 +1201,7 @@ export default function VolTradingPage() {
                     { pair: "EM FX vol vs DM equity vol", corr: "+0.63", note: "Dollar strength / EM outflows" },
                   ].map((item) => (
                     <div key={item.pair} className="flex items-center justify-between gap-2">
-                      <span className="text-zinc-400 flex-1 text-[11px]">{item.pair}</span>
+                      <span className="text-muted-foreground flex-1 text-[11px]">{item.pair}</span>
                       <Badge className="bg-muted/60 text-primary border-border text-xs">{item.corr}</Badge>
                     </div>
                   ))}
@@ -1210,9 +1210,9 @@ export default function VolTradingPage() {
             </ExpandableSection>
           </div>
 
-          <Card className="bg-zinc-950 border-zinc-800">
+          <Card className="bg-background border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-muted-foreground" />
                 Practical Implementation
               </CardTitle>
@@ -1254,12 +1254,12 @@ export default function VolTradingPage() {
                     ],
                   },
                 ].map((section) => (
-                  <div key={section.title} className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                  <div key={section.title} className="bg-card rounded-lg p-3 border border-border">
                     <p className={cn("font-semibold mb-2", section.color)}>{section.title}</p>
                     <ul className="space-y-1">
                       {section.points.map((pt, i) => (
-                        <li key={i} className="text-zinc-400 flex items-start gap-1.5">
-                          <span className="text-zinc-600 mt-0.5">•</span>
+                        <li key={i} className="text-muted-foreground flex items-start gap-1.5">
+                          <span className="text-muted-foreground mt-0.5">•</span>
                           <span>{pt}</span>
                         </li>
                       ))}

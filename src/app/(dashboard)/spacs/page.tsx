@@ -289,7 +289,7 @@ function generateConvertibleBonds(): ConvertibleBond[] {
 
 function StatusBadge({ status }: { status: SpacStatus }) {
   const cfg = {
-    "Pre-deal": "bg-slate-500/20 text-slate-400 border-slate-500/30",
+    "Pre-deal": "bg-slate-500/20 text-muted-foreground border-slate-500/30",
     "Announced": "bg-primary/20 text-primary border-border",
     "Voting": "bg-amber-500/20 text-amber-400 border-amber-500/30",
     "Completed": "bg-green-500/20 text-green-400 border-green-500/30",
@@ -316,7 +316,7 @@ function DeltaBadge({ delta }: { delta: number }) {
     delta >= 0.7 ? "bg-green-500/20 text-green-400 border-green-500/30" :
     delta >= 0.4 ? "bg-primary/20 text-primary border-border" :
     delta >= 0.2 ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
-    "bg-slate-500/20 text-slate-400 border-slate-500/30";
+    "bg-slate-500/20 text-muted-foreground border-slate-500/30";
   return (
     <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold tabular-nums", color)}>
       Δ {delta.toFixed(2)}
@@ -462,8 +462,8 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
         <div className="flex items-center gap-2">
           {inTheMoney
             ? <TrendingUp className="h-4 w-4 text-green-400" />
-            : <TrendingDown className="h-4 w-4 text-slate-400" />}
-          <span className={cn("text-xs font-semibold", inTheMoney ? "text-green-400" : "text-slate-400")}>
+            : <TrendingDown className="h-4 w-4 text-muted-foreground" />}
+          <span className={cn("text-xs font-semibold", inTheMoney ? "text-green-400" : "text-muted-foreground")}>
             {inTheMoney ? "In-the-Money — Conversion favorable" : "Out-of-the-Money — Bond floor dominant"}
           </span>
         </div>
@@ -530,7 +530,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
         <p className="mb-2 text-xs font-semibold text-muted-foreground/60">
           Conversion Delta (Equity Sensitivity)
         </p>
-        <div className="mb-1.5 h-2 w-full rounded-full bg-slate-700">
+        <div className="mb-1.5 h-2 w-full rounded-full bg-muted">
           <div
             className="h-2 rounded-full bg-primary transition-all"
             style={{ width: `${bond.delta * 100}%` }}
@@ -953,7 +953,7 @@ function ConvertibleBondsTab({ bonds }: { bonds: ConvertibleBond[] }) {
                       {itm ? (
                         <TrendingUp className="mx-auto h-3.5 w-3.5 text-green-400" />
                       ) : (
-                        <TrendingDown className="mx-auto h-3.5 w-3.5 text-slate-500" />
+                        <TrendingDown className="mx-auto h-3.5 w-3.5 text-muted-foreground" />
                       )}
                     </td>
                     <td className="px-2 py-2.5 text-center">
@@ -975,7 +975,7 @@ function ConvertibleBondsTab({ bonds }: { bonds: ConvertibleBond[] }) {
             <TrendingUp className="h-3 w-3 text-green-400" /> In-the-money (stock &gt; conv. price)
           </span>
           <span className="flex items-center gap-1">
-            <TrendingDown className="h-3 w-3 text-slate-500" /> Out-of-the-money
+            <TrendingDown className="h-3 w-3 text-muted-foreground" /> Out-of-the-money
           </span>
           <span className="ml-auto">Parity = (Face ÷ Conv. Price) × Stock Price</span>
         </div>

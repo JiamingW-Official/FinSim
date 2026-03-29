@@ -79,16 +79,16 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
-      <span className="text-xs text-zinc-400">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -134,7 +134,7 @@ function SliderInput({
   return (
     <div className="flex flex-col gap-1">
       <div className="flex justify-between text-xs">
-        <span className="text-zinc-400">{label}</span>
+        <span className="text-muted-foreground">{label}</span>
         <span className="text-white font-medium">{format(value)}</span>
       </div>
       <input
@@ -235,7 +235,7 @@ function IndustryOverview() {
                   ${f.aum}B
                 </Badge>
               </div>
-              <p className="text-xs text-zinc-400">{f.focus}</p>
+              <p className="text-xs text-muted-foreground">{f.focus}</p>
               <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <div
                   className="h-full rounded-full bg-primary"
@@ -315,7 +315,7 @@ function IndustryOverview() {
             <text x={10} y={90} textAnchor="middle" fontSize={8} fill="#71717a">{(maxVol / 2).toFixed(0)}</text>
             <text x={10} y={18} textAnchor="middle" fontSize={8} fill="#71717a">{maxVol}</text>
           </svg>
-          <div className="flex gap-6 justify-center mt-2 text-xs text-zinc-400">
+          <div className="flex gap-6 justify-center mt-2 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <span className="w-3 h-3 rounded bg-primary inline-block" /> Volume ($B)
             </span>
@@ -339,11 +339,11 @@ function IndustryOverview() {
                 >
                   {v.irr.toFixed(1)}%
                 </div>
-                <span className="text-xs text-zinc-500">{v.year}</span>
+                <span className="text-xs text-muted-foreground">{v.year}</span>
               </div>
             ))}
           </div>
-          <div className="flex gap-4 mt-3 text-xs text-zinc-400">
+          <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <span className="w-3 h-3 rounded inline-block bg-emerald-400" /> 20%+
             </span>
@@ -375,14 +375,14 @@ function IndustryOverview() {
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-semibold text-white">{s.name}</span>
                 <div className="flex gap-2">
-                  <Badge className="bg-zinc-700 text-zinc-200 text-xs">{s.stage}</Badge>
+                  <Badge className="bg-muted text-foreground text-xs">{s.stage}</Badge>
                   <Badge className="bg-primary/20 text-primary border-border text-xs">{s.minInvest}</Badge>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-zinc-400">Risk</span>
+                    <span className="text-muted-foreground">Risk</span>
                     <span className="text-rose-400">{s.risk}%</span>
                   </div>
                   <div className="h-2 rounded-full bg-white/10 overflow-hidden">
@@ -391,7 +391,7 @@ function IndustryOverview() {
                 </div>
                 <div>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-zinc-400">Return Potential</span>
+                    <span className="text-muted-foreground">Return Potential</span>
                     <span className="text-emerald-400">{s.return}%</span>
                   </div>
                   <div className="h-2 rounded-full bg-white/10 overflow-hidden">
@@ -561,11 +561,11 @@ function LBOModeling() {
               )}
             >
               <p className="text-xs font-semibold text-white truncate">{t.name}</p>
-              <p className="text-xs text-zinc-400 mt-0.5">{t.sector}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{t.sector}</p>
               <div className="flex gap-2 mt-2 text-xs">
-                <span className="text-zinc-300">Rev: <strong className="text-white">${t.revenue}M</strong></span>
+                <span className="text-muted-foreground">Rev: <strong className="text-white">${t.revenue}M</strong></span>
               </div>
-              <div className="text-xs text-zinc-300 mt-0.5">
+              <div className="text-xs text-muted-foreground mt-0.5">
                 EBITDA: <strong className="text-primary">${t.ebitda}M</strong>
               </div>
             </button>
@@ -655,7 +655,7 @@ function LBOModeling() {
 
         {/* Equity bridge */}
         <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-xs font-semibold text-zinc-300 mb-3">Equity Bridge</p>
+          <p className="text-xs font-semibold text-muted-foreground mb-3">Equity Bridge</p>
           <svg viewBox="0 0 600 120" className="w-full">
             {[
               { label: "Entry Equity", value: result.entryEquity, color: "#8b5cf6" },
@@ -690,7 +690,7 @@ function LBOModeling() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-zinc-400">
+              <tr className="border-b border-white/10 text-muted-foreground">
                 <th className="text-left py-2 pr-4">Year</th>
                 <th className="text-right py-2 pr-4">EBITDA</th>
                 <th className="text-right py-2 pr-4">Interest</th>
@@ -701,7 +701,7 @@ function LBOModeling() {
             <tbody>
               {result.schedule.map((row) => (
                 <tr key={row.year} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="py-2 pr-4 text-zinc-300">Year {row.year}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">Year {row.year}</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${row.ebitda.toFixed(1)}M</td>
                   <td className="text-right py-2 pr-4 text-rose-400">${row.interest.toFixed(1)}M</td>
                   <td className="text-right py-2 pr-4 text-primary">${row.cashSweep.toFixed(1)}M</td>
@@ -719,7 +719,7 @@ function LBOModeling() {
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-zinc-400">
+              <tr className="text-muted-foreground">
                 <th className="text-left py-2 pr-4">Entry \ Exit</th>
                 {exitMults.map((em) => (
                   <th key={em} className="text-center py-2 px-3">{em.toFixed(1)}x</th>
@@ -729,7 +729,7 @@ function LBOModeling() {
             <tbody>
               {entryMults.map((ent) => (
                 <tr key={ent} className="border-t border-white/10">
-                  <td className="py-2 pr-4 text-zinc-300 font-medium">{ent.toFixed(1)}x</td>
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{ent.toFixed(1)}x</td>
                   {exitMults.map((ex) => {
                     const res = calcLBO(
                       target.ebitda,
@@ -757,7 +757,7 @@ function LBOModeling() {
               ))}
             </tbody>
           </table>
-          <p className="text-xs text-zinc-500 mt-2">Color: green ≥25%, light green ≥20%, amber ≥15%, orange ≥10%, red &lt;10%</p>
+          <p className="text-xs text-muted-foreground mt-2">Color: green ≥25%, light green ≥20%, amber ≥15%, orange ≥10%, red &lt;10%</p>
         </div>
       </div>
     </div>
@@ -917,8 +917,8 @@ function ValueCreation() {
               <p className={cn("text-sm font-semibold mb-3", section.color)}>{section.title}</p>
               <ul className="space-y-2">
                 {section.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-zinc-300">
-                    <CheckCircle className="w-3 h-3 text-zinc-500 mt-0.5 flex-shrink-0" />
+                  <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <CheckCircle className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -936,19 +936,19 @@ function ValueCreation() {
             <div key={bo.name} className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col md:flex-row md:items-center gap-3">
               <div className="flex-1">
                 <p className="text-sm font-semibold text-white">{bo.name}</p>
-                <p className="text-xs text-zinc-400 mt-0.5">Acquired Year {bo.year}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">Acquired Year {bo.year}</p>
               </div>
               <div className="flex flex-wrap gap-4 text-xs">
                 <div>
-                  <span className="text-zinc-400">Price: </span>
+                  <span className="text-muted-foreground">Price: </span>
                   <span className="text-white font-medium">${bo.price}M</span>
                 </div>
                 <div>
-                  <span className="text-zinc-400">Revenue: </span>
+                  <span className="text-muted-foreground">Revenue: </span>
                   <span className="text-white font-medium">${bo.revenue}M</span>
                 </div>
                 <div>
-                  <span className="text-zinc-400">Synergy EBITDA: </span>
+                  <span className="text-muted-foreground">Synergy EBITDA: </span>
                   <span className="text-emerald-400 font-medium">+${bo.synergyEBITDA}M</span>
                 </div>
               </div>
@@ -969,15 +969,15 @@ function ValueCreation() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-amber-400 mb-2">Sweet Equity</p>
-            <p className="text-xs text-zinc-300 leading-relaxed">Management co-invests at same entry price but receives disproportionate upside above hurdle. Typical pool: 15–20% of equity. Vesting: 20% per year over 5 years.</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">Management co-invests at same entry price but receives disproportionate upside above hurdle. Typical pool: 15–20% of equity. Vesting: 20% per year over 5 years.</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-primary mb-2">IRR Hurdles</p>
-            <p className="text-xs text-zinc-300 leading-relaxed">Management equity kicks in above 8% preferred return. Accelerated participation above 20% IRR. Full vesting on change-of-control event regardless of time served.</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">Management equity kicks in above 8% preferred return. Accelerated participation above 20% IRR. Full vesting on change-of-control event regardless of time served.</p>
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-emerald-400 mb-2">Annual Bonus</p>
-            <p className="text-xs text-zinc-300 leading-relaxed">Cash bonus tied to EBITDA, revenue, and cash conversion targets. Typically 30–100% of base salary. Clawback if restatement within 3 years.</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">Cash bonus tied to EBITDA, revenue, and cash conversion targets. Typically 30–100% of base salary. Clawback if restatement within 3 years.</p>
           </div>
         </div>
       </div>
@@ -1005,17 +1005,17 @@ function ValueCreation() {
                 )}
               </div>
               <div className="flex gap-4 text-xs mb-3">
-                <span className="text-zinc-400">Avg MOIC: <strong className="text-white">{opt.avgMOIC}x</strong></span>
-                <span className="text-zinc-400">Timeline: <strong className="text-white">{opt.timeToClose}</strong></span>
+                <span className="text-muted-foreground">Avg MOIC: <strong className="text-white">{opt.avgMOIC}x</strong></span>
+                <span className="text-muted-foreground">Timeline: <strong className="text-white">{opt.timeToClose}</strong></span>
               </div>
               <div className="space-y-1 text-xs">
                 {opt.pros.map((p) => (
-                  <p key={p} className="flex items-start gap-1.5 text-zinc-300">
+                  <p key={p} className="flex items-start gap-1.5 text-muted-foreground">
                     <CheckCircle className="w-3 h-3 text-emerald-500 mt-0.5 flex-shrink-0" /> {p}
                   </p>
                 ))}
                 {opt.cons.map((c) => (
-                  <p key={c} className="flex items-start gap-1.5 text-zinc-400">
+                  <p key={c} className="flex items-start gap-1.5 text-muted-foreground">
                     <AlertTriangle className="w-3 h-3 text-rose-500 mt-0.5 flex-shrink-0" /> {c}
                   </p>
                 ))}
@@ -1111,7 +1111,7 @@ function FundEconomics() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-white mb-2">Commitment Period (Years 1–5)</p>
-            <p className="text-xs text-zinc-300 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               2.0% × <strong className="text-primary">${committedCapital}M committed capital</strong> ={" "}
               <strong className="text-amber-300">${(committedCapital * 0.02).toFixed(0)}M/yr</strong> management fee.
               Fee base is full committed capital regardless of deployment pace.
@@ -1119,7 +1119,7 @@ function FundEconomics() {
           </div>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
             <p className="text-sm font-semibold text-white mb-2">Harvest Period (Years 6–10)</p>
-            <p className="text-xs text-zinc-300 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Fee step-down to 1.5% × <strong className="text-primary">invested capital</strong>.
               As realizations return capital, fee base shrinks. GPs typically reduce to 1.5% after commitment period ends.
             </p>
@@ -1133,25 +1133,25 @@ function FundEconomics() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
             <p className="text-sm font-semibold text-amber-300 mb-2">European (Whole-Fund)</p>
-            <ol className="space-y-2 text-xs text-zinc-300">
+            <ol className="space-y-2 text-xs text-muted-foreground">
               <li className="flex gap-2"><span className="text-amber-400 font-bold">1.</span> Return 100% of invested capital to LPs</li>
               <li className="flex gap-2"><span className="text-amber-400 font-bold">2.</span> Return 100% of management fees and fund expenses</li>
               <li className="flex gap-2"><span className="text-amber-400 font-bold">3.</span> Pay 8% preferred return (compounded annually) to LPs</li>
               <li className="flex gap-2"><span className="text-amber-400 font-bold">4.</span> GP catch-up: GP receives 20% until 20/80 split on all profits</li>
               <li className="flex gap-2"><span className="text-amber-400 font-bold">5.</span> 80% LP / 20% GP on remaining profits (carried interest)</li>
             </ol>
-            <p className="text-xs text-zinc-400 mt-2 italic">LP-friendly: GP only gets carry after full fund returns hurdle</p>
+            <p className="text-xs text-muted-foreground mt-2 italic">LP-friendly: GP only gets carry after full fund returns hurdle</p>
           </div>
           <div className="rounded-xl border border-border bg-primary/10 p-4">
             <p className="text-sm font-semibold text-primary mb-2">American (Deal-by-Deal)</p>
-            <ol className="space-y-2 text-xs text-zinc-300">
+            <ol className="space-y-2 text-xs text-muted-foreground">
               <li className="flex gap-2"><span className="text-primary font-bold">1.</span> Return invested capital for <em>that specific deal</em></li>
               <li className="flex gap-2"><span className="text-primary font-bold">2.</span> 8% pref on capital invested in that deal</li>
               <li className="flex gap-2"><span className="text-primary font-bold">3.</span> GP catch-up on deal profits</li>
               <li className="flex gap-2"><span className="text-primary font-bold">4.</span> 80/20 split on remaining deal profits</li>
               <li className="flex gap-2"><span className="text-primary font-bold">5.</span> Clawback provision applies if later deals underperform</li>
             </ol>
-            <p className="text-xs text-zinc-400 mt-2 italic">GP-friendly: early carry on winning deals before full fund close</p>
+            <p className="text-xs text-muted-foreground mt-2 italic">GP-friendly: early carry on winning deals before full fund close</p>
           </div>
         </div>
       </div>
@@ -1162,7 +1162,7 @@ function FundEconomics() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-zinc-400">
+              <tr className="border-b border-white/10 text-muted-foreground">
                 <th className="text-left py-2 pr-4">Gross IRR</th>
                 <th className="text-right py-2 pr-4">Gross Value</th>
                 <th className="text-right py-2 pr-4">GP Carry</th>
@@ -1178,7 +1178,7 @@ function FundEconomics() {
                   irr === targetIRR ? "bg-primary/10" : ""
                 )}>
                   <td className="py-2 pr-4 font-semibold text-white">{irr}%</td>
-                  <td className="text-right py-2 pr-4 text-zinc-300">${sc.grossValue.toFixed(0)}M</td>
+                  <td className="text-right py-2 pr-4 text-muted-foreground">${sc.grossValue.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-amber-400">${sc.gpCarry.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${sc.lpProfit.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-primary">{fmtIRR(sc.netIRR)}</td>
@@ -1275,7 +1275,7 @@ function DealSourcing() {
           <div className="space-y-2">
             {DEAL_FUNNEL.map((stage) => (
               <div key={stage.stage} className="flex items-center gap-3">
-                <div className="w-40 text-xs text-zinc-300 text-right flex-shrink-0">{stage.stage}</div>
+                <div className="w-40 text-xs text-muted-foreground text-right flex-shrink-0">{stage.stage}</div>
                 <div className="flex-1 h-8 bg-white/5 rounded-lg overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
@@ -1287,7 +1287,7 @@ function DealSourcing() {
                     <span className="text-xs font-semibold text-white">{stage.count}</span>
                   </motion.div>
                 </div>
-                <div className="w-12 text-xs text-zinc-500 text-right flex-shrink-0">{stage.pct}%</div>
+                <div className="w-12 text-xs text-muted-foreground text-right flex-shrink-0">{stage.pct}%</div>
               </div>
             ))}
           </div>
@@ -1308,11 +1308,11 @@ function DealSourcing() {
               </div>
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <div>
-                  <span className="text-zinc-400">Avg Competitors: </span>
+                  <span className="text-muted-foreground">Avg Competitors: </span>
                   <span className="text-white font-medium">{ch.avgCompetitors}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-400">Win Rate: </span>
+                  <span className="text-muted-foreground">Win Rate: </span>
                   <span className={cn("font-medium", ch.winRate >= 30 ? "text-emerald-400" : "text-amber-400")}>
                     {ch.winRate}%
                   </span>
@@ -1352,9 +1352,9 @@ function DealSourcing() {
                 <div className="rounded-xl border border-white/10 bg-white/5 p-3 flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <p className="text-sm font-semibold text-white">{step.step}</p>
-                    <Badge className="bg-zinc-700 text-zinc-300 text-xs border-zinc-600">{step.days}</Badge>
+                    <Badge className="bg-muted text-muted-foreground text-xs border-border">{step.days}</Badge>
                   </div>
-                  <p className="text-xs text-zinc-400">{step.description}</p>
+                  <p className="text-xs text-muted-foreground">{step.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -1419,8 +1419,8 @@ function DealSourcing() {
               </p>
               <ul className="space-y-2">
                 {section.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-zinc-300">
-                    <ArrowRight className="w-3 h-3 text-zinc-500 mt-0.5 flex-shrink-0" />
+                  <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <ArrowRight className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -1477,13 +1477,13 @@ function DealSourcing() {
           ].map((phase) => (
             <div key={phase.phase} className={cn("rounded-xl border p-4", phase.color)}>
               <div className="mb-3">
-                <Badge className="bg-zinc-800 text-zinc-300 text-xs border-zinc-700 mb-1">{phase.phase}</Badge>
+                <Badge className="bg-muted text-muted-foreground text-xs border-border mb-1">{phase.phase}</Badge>
                 <p className={cn("text-sm font-semibold", phase.titleColor)}>{phase.title}</p>
               </div>
               <ul className="space-y-1.5">
                 {phase.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-zinc-300">
-                    <CheckCircle className="w-3 h-3 text-zinc-500 mt-0.5 flex-shrink-0" />
+                  <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <CheckCircle className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -1502,7 +1502,7 @@ function DealSourcing() {
 
 export default function PrivateEquityPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
         {/* Header */}
         <motion.div
@@ -1517,12 +1517,12 @@ export default function PrivateEquityPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Private Equity &amp; LBO Analysis</h1>
-              <p className="text-sm text-zinc-400">Industry overview, LBO modeling, value creation, fund economics, deal sourcing</p>
+              <p className="text-sm text-muted-foreground">Industry overview, LBO modeling, value creation, fund economics, deal sourcing</p>
             </div>
           </div>
           <div className="flex gap-3 mt-2">
             <Badge className="bg-primary/20 text-primary border-border">$7T Global AUM</Badge>
-            <Badge className="bg-zinc-700 text-zinc-300 border-zinc-600">Buyout | VC | Growth</Badge>
+            <Badge className="bg-muted text-muted-foreground border-border">Buyout | VC | Growth</Badge>
             <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30">IRR Modeling</Badge>
           </div>
         </motion.div>

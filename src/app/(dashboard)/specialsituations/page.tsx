@@ -479,8 +479,8 @@ function SuccessRateBar({
 }) {
   return (
     <div className="flex items-center gap-3 py-2">
-      <span className="text-xs text-gray-400 w-44 shrink-0">{demand}</span>
-      <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+      <span className="text-xs text-muted-foreground w-44 shrink-0">{demand}</span>
+      <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-indigo-500"
           initial={{ width: 0 }}
@@ -669,7 +669,7 @@ function StubCalculator() {
 
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-800 p-5 space-y-4">
+    <div className="bg-card rounded-xl border border-border p-5 space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Calculator className="w-4 h-4 text-indigo-400" />
         <span className="text-sm font-semibold text-white">Implied Stub Value Calculator</span>
@@ -685,7 +685,7 @@ function StubCalculator() {
           ] as Array<{ label: string; value: number; setter: (v: number) => void; min: number; max: number; step: number }>
         ).map(({ label, value, setter, min, max, step }) => (
           <div key={label} className="space-y-1">
-            <label className="text-xs text-gray-400">{label}</label>
+            <label className="text-xs text-muted-foreground">{label}</label>
             <input
               type="range"
               min={min}
@@ -700,14 +700,14 @@ function StubCalculator() {
         ))}
       </div>
 
-      <div className="grid grid-cols-3 gap-3 pt-2 border-t border-gray-800">
+      <div className="grid grid-cols-3 gap-3 pt-2 border-t border-border">
         {[
           { label: "Sub Stake Value", value: `$${subStakeValue.toFixed(2)}`, color: "text-primary" },
           { label: "Implied Stub Value", value: `$${impliedStub.toFixed(2)}`, color: impliedStub < 0 ? "text-red-400" : "text-emerald-400" },
           { label: "Stub Mkt Cap ($M)", value: `$${(stubMarketCap / 1).toFixed(0)}M`, color: stubMarketCap < 0 ? "text-red-400" : "text-emerald-400" },
         ].map(({ label, value, color }) => (
-          <div key={label} className="bg-gray-800 rounded-lg p-3 text-center">
-            <div className="text-xs text-gray-500 mb-1">{label}</div>
+          <div key={label} className="bg-muted rounded-lg p-3 text-center">
+            <div className="text-xs text-muted-foreground mb-1">{label}</div>
             <div className={cn("text-base font-bold font-mono", color)}>{value}</div>
           </div>
         ))}
@@ -734,9 +734,9 @@ function EventCatalogTab() {
 
   return (
     <div className="space-y-4">
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+      <div className="bg-card border border-border rounded-xl p-4">
         <h3 className="text-sm font-semibold text-white mb-1">8 Core Special Situations</h3>
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-muted-foreground">
           Event-driven investing exploits mispricings caused by corporate actions. Each event type has distinct mechanics, holding periods, and risk profiles.
         </p>
       </div>
@@ -748,8 +748,8 @@ function EventCatalogTab() {
             whileHover={{ scale: 1.01 }}
             onClick={() => setSelected(selected === evt.id ? null : evt.id)}
             className={cn(
-              "bg-gray-900 border rounded-xl p-4 cursor-pointer transition-colors",
-              selected === evt.id ? "border-indigo-500/60" : "border-gray-800 hover:border-gray-700"
+              "bg-card border rounded-xl p-4 cursor-pointer transition-colors",
+              selected === evt.id ? "border-indigo-500/60" : "border-border hover:border-border"
             )}
           >
             <div className="flex items-start justify-between mb-2">
@@ -763,9 +763,9 @@ function EventCatalogTab() {
               <RiskBadge level={evt.riskLevel} />
             </div>
 
-            <p className="text-xs text-gray-400 mb-3 leading-relaxed">{evt.description}</p>
+            <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{evt.description}</p>
 
-            <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+            <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
               <div className="flex items-center gap-1">
                 <Clock className="w-3 h-3" />
                 <span>
@@ -788,19 +788,19 @@ function EventCatalogTab() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mt-3 pt-3 border-t border-gray-800 overflow-hidden"
+                  className="mt-3 pt-3 border-t border-border overflow-hidden"
                 >
                   <div className="space-y-2">
-                    <div className="text-xs font-medium text-gray-300 mb-1">Return Profile</div>
+                    <div className="text-xs font-medium text-muted-foreground mb-1">Return Profile</div>
                     <ReturnProfileSVG
                       min={evt.typicalReturnPct[0]}
                       max={evt.typicalReturnPct[1]}
                       color={evt.color}
                     />
                     <div className="mt-2">
-                      <div className="text-xs font-medium text-gray-300 mb-1">Key Risks</div>
+                      <div className="text-xs font-medium text-muted-foreground mb-1">Key Risks</div>
                       {evt.keyRisks.map((risk, i) => (
-                        <div key={i} className="flex items-center gap-1.5 text-xs text-gray-400 py-0.5">
+                        <div key={i} className="flex items-center gap-1.5 text-xs text-muted-foreground py-0.5">
                           <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0" />
                           {risk}
                         </div>
@@ -834,9 +834,9 @@ function ActivistTab() {
   return (
     <div className="space-y-5">
       {/* Campaign Phases */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-1">Activist Campaign Phases</h3>
-        <p className="text-xs text-gray-500 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           From initial 13D filing to resolution — each phase has distinct price dynamics and investor behavior.
         </p>
         <ActivistCampaignSVG />
@@ -847,38 +847,38 @@ function ActivistTab() {
             { phase: "Proxy Fight", note: "Costly; ~60% of contested elections settle before vote", icon: <Users className="w-4 h-4 text-fuchsia-400" /> },
             { phase: "Resolution", note: "Board seat, strategic review, or sale announcement", icon: <CheckCircle2 className="w-4 h-4 text-pink-400" /> },
           ].map(({ phase, note, icon }) => (
-            <div key={phase} className="bg-gray-800 rounded-lg p-3">
+            <div key={phase} className="bg-muted rounded-lg p-3">
               <div className="flex items-center gap-1.5 mb-1">
                 {icon}
                 <span className="text-xs font-semibold text-white">{phase}</span>
               </div>
-              <p className="text-xs text-gray-400">{note}</p>
+              <p className="text-xs text-muted-foreground">{note}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Top Activist Funds */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Top Activist Funds</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-gray-800">
+              <tr className="border-b border-border">
                 {["Fund", "AUM", "Style", "Success Rate", "Avg Hold", "Notable Wins"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-4 text-gray-500 font-medium">{h}</th>
+                  <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {ACTIVIST_FUNDS.map((fund) => (
-                <tr key={fund.name} className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
+                <tr key={fund.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 pr-4 font-semibold text-white">{fund.name}</td>
                   <td className="py-2.5 pr-4 text-indigo-400">{fund.aum}</td>
-                  <td className="py-2.5 pr-4 text-gray-300">{fund.style}</td>
+                  <td className="py-2.5 pr-4 text-muted-foreground">{fund.style}</td>
                   <td className="py-2.5 pr-4">
                     <div className="flex items-center gap-2">
-                      <div className="w-16 h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                      <div className="w-16 h-1.5 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full bg-emerald-500 rounded-full"
                           style={{ width: `${fund.successRate}%` }}
@@ -887,8 +887,8 @@ function ActivistTab() {
                       <span className="text-emerald-400">{fund.successRate}%</span>
                     </div>
                   </td>
-                  <td className="py-2.5 pr-4 text-gray-300">{fund.avgHoldMonths}mo</td>
-                  <td className="py-2.5 text-gray-400 text-xs">{fund.notableWins}</td>
+                  <td className="py-2.5 pr-4 text-muted-foreground">{fund.avgHoldMonths}mo</td>
+                  <td className="py-2.5 text-muted-foreground text-xs">{fund.notableWins}</td>
                 </tr>
               ))}
             </tbody>
@@ -897,7 +897,7 @@ function ActivistTab() {
       </div>
 
       {/* Success Rate by Demand Type */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Success Rate by Demand Type</h3>
         <div className="space-y-1">
           {DEMAND_TYPES.map((d) => (
@@ -912,7 +912,7 @@ function ActivistTab() {
       </div>
 
       {/* Short Activism Toggle */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <button
           onClick={() => setShowShort(!showShort)}
           className="flex items-center justify-between w-full"
@@ -920,9 +920,9 @@ function ActivistTab() {
           <div className="flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-red-400" />
             <span className="text-sm font-semibold text-white">Short Activism Model</span>
-            <span className="text-xs text-gray-500">(Hindenburg / Muddy Waters)</span>
+            <span className="text-xs text-muted-foreground">(Hindenburg / Muddy Waters)</span>
           </div>
-          <ChevronRight className={cn("w-4 h-4 text-gray-500 transition-transform", showShort && "rotate-90")} />
+          <ChevronRight className={cn("w-4 h-4 text-muted-foreground transition-transform", showShort && "rotate-90")} />
         </button>
 
         <AnimatePresence>
@@ -935,7 +935,7 @@ function ActivistTab() {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-gray-300">Research Process</h4>
+                  <h4 className="text-xs font-semibold text-muted-foreground">Research Process</h4>
                   {[
                     "12–18 month deep investigation",
                     "On-the-ground channel checks",
@@ -943,7 +943,7 @@ function ActivistTab() {
                     "Former employee interviews",
                     "Forensic accounting review",
                   ].map((step, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
+                    <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
                       <div className="w-4 h-4 rounded-full bg-red-900/50 flex items-center justify-center text-red-400 text-xs font-bold">
                         {i + 1}
                       </div>
@@ -952,7 +952,7 @@ function ActivistTab() {
                   ))}
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-xs font-semibold text-gray-300">Common Targets</h4>
+                  <h4 className="text-xs font-semibold text-muted-foreground">Common Targets</h4>
                   {[
                     "Chinese reverse-merger companies",
                     "Companies with related-party transactions",
@@ -960,7 +960,7 @@ function ActivistTab() {
                     "Frequent auditor changes",
                     "Unusually high short interest",
                   ].map((target, i) => (
-                    <div key={i} className="flex items-center gap-1.5 text-xs text-gray-400">
+                    <div key={i} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                       <AlertTriangle className="w-3 h-3 text-red-400 shrink-0" />
                       {target}
                     </div>
@@ -978,24 +978,24 @@ function ActivistTab() {
       </div>
 
       {/* Target Selection Criteria */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Target Selection Criteria</h3>
         <div className="space-y-2">
           {targetCriteria.map(({ criterion, weight, detail }) => (
-            <div key={criterion} className="flex items-start gap-3 py-2 border-b border-gray-800/50 last:border-0">
+            <div key={criterion} className="flex items-start gap-3 py-2 border-b border-border/50 last:border-0">
               <span
                 className={cn(
                   "text-xs px-1.5 py-0.5 rounded font-medium shrink-0",
                   weight === "High" ? "bg-red-900/40 text-red-400" :
                   weight === "Medium" ? "bg-amber-900/40 text-amber-400" :
-                  "bg-gray-800 text-gray-400"
+                  "bg-muted text-muted-foreground"
                 )}
               >
                 {weight}
               </span>
               <div>
                 <div className="text-xs font-medium text-white">{criterion}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{detail}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{detail}</div>
               </div>
             </div>
           ))}
@@ -1046,29 +1046,29 @@ function PostReorgTab() {
   return (
     <div className="space-y-5">
       {/* Why Undervalued */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-2">Why Post-Reorg Equity Outperforms</h3>
-        <p className="text-xs text-gray-400 leading-relaxed mb-4">
+        <p className="text-xs text-muted-foreground leading-relaxed mb-4">
           Studies show post-reorganization equities outperform the market by 40–60% over the first 3 years. The reasons are structural: creditors receive equity they didn&apos;t want, institutional investors can&apos;t hold below-investment-grade equity, and sell-side analysts don&apos;t cover companies without revenue from banking relationships.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {keyInsights.map(({ title, icon, description }) => (
-            <div key={title} className="bg-gray-800 rounded-lg p-3">
+            <div key={title} className="bg-muted rounded-lg p-3">
               <div className="flex items-center gap-2 mb-1.5">
                 {icon}
                 <span className="text-xs font-semibold text-white">{title}</span>
               </div>
-              <p className="text-xs text-gray-400 leading-relaxed">{description}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{description}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Historical Returns Chart */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-1">Historical Post-Reorg Equity Returns</h3>
-        <p className="text-xs text-gray-500 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Median cumulative return vs. S&P 500, equal-weighted basket of 200 post-reorg equities (2000–2024)
         </p>
         <PostReorgReturnSVG />
@@ -1078,25 +1078,25 @@ function PostReorgTab() {
             { label: "36-Month Median", value: "+128%", sub: "vs. S&P +38%" },
             { label: "Re-Filing Rate", value: "15%", sub: "Within 3 years" },
           ].map(({ label, value, sub }) => (
-            <div key={label} className="bg-gray-800 rounded-lg p-3 text-center">
-              <div className="text-xs text-gray-500">{label}</div>
+            <div key={label} className="bg-muted rounded-lg p-3 text-center">
+              <div className="text-xs text-muted-foreground">{label}</div>
               <div className="text-base font-bold text-red-400 font-mono mt-1">{value}</div>
-              <div className="text-xs text-gray-600">{sub}</div>
+              <div className="text-xs text-muted-foreground">{sub}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Key Risks */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Key Risks in Post-Reorg Equity</h3>
         <div className="space-y-2">
           {riskFactors.map(({ risk, detail }) => (
-            <div key={risk} className="flex items-start gap-3 py-2 border-b border-gray-800/50 last:border-0">
+            <div key={risk} className="flex items-start gap-3 py-2 border-b border-border/50 last:border-0">
               <AlertTriangle className="w-3.5 h-3.5 text-amber-400 mt-0.5 shrink-0" />
               <div>
                 <div className="text-xs font-medium text-white">{risk}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{detail}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{detail}</div>
               </div>
             </div>
           ))}
@@ -1104,7 +1104,7 @@ function PostReorgTab() {
       </div>
 
       {/* Due Diligence Checklist */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Due Diligence Checklist</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {[
@@ -1117,7 +1117,7 @@ function PostReorgTab() {
             "Evaluate competitive position post-emergence",
             "Monitor 13F filings for smart money accumulation",
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2 text-xs text-gray-400 py-1">
+            <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground py-1">
               <CheckCircle2 className="w-3 h-3 text-emerald-400 shrink-0" />
               {item}
             </div>
@@ -1164,9 +1164,9 @@ function StubTradesTab() {
   return (
     <div className="space-y-5">
       {/* Mechanics */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-2">Stub Trade Mechanics</h3>
-        <p className="text-xs text-gray-400 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           A stub trade profits when a parent company trades at a discount to the market value of its publicly-listed subsidiary stake. The &quot;stub&quot; represents the residual value of the parent after subtracting its subsidiary holding.
         </p>
         <div className="space-y-3">
@@ -1177,7 +1177,7 @@ function StubTradesTab() {
               </div>
               <div>
                 <div className="text-xs font-semibold text-white">{title}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{detail}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{detail}</div>
               </div>
             </div>
           ))}
@@ -1188,9 +1188,9 @@ function StubTradesTab() {
       <StubCalculator />
 
       {/* Stub Discount Historical */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-1">Stub Discount / Premium Historical Pattern</h3>
-        <p className="text-xs text-gray-500 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Simulated stub discount trajectory — starts at deep discount, converges toward fair value on catalyst
         </p>
         <StubDiscountSVG />
@@ -1200,8 +1200,8 @@ function StubTradesTab() {
             { label: "Catalyst Timeline", value: "12–18mo", color: "text-amber-400" },
             { label: "Avg Convergence", value: "+62%", color: "text-emerald-400" },
           ].map(({ label, value, color }) => (
-            <div key={label} className="bg-gray-800 rounded-lg p-3 text-center">
-              <div className="text-xs text-gray-500">{label}</div>
+            <div key={label} className="bg-muted rounded-lg p-3 text-center">
+              <div className="text-xs text-muted-foreground">{label}</div>
               <div className={cn("text-base font-bold font-mono mt-1", color)}>{value}</div>
             </div>
           ))}
@@ -1209,19 +1209,19 @@ function StubTradesTab() {
       </div>
 
       {/* Famous Stub Trades */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Famous Stub Trades</h3>
         <div className="space-y-2">
           {FAMOUS_STUBS.map((stub, i) => (
-            <div key={stub.name} className="border border-gray-800 rounded-lg overflow-hidden">
+            <div key={stub.name} className="border border-border rounded-lg overflow-hidden">
               <button
                 onClick={() => setSelectedStub(selectedStub === i ? null : i)}
-                className="w-full flex items-center justify-between p-3 hover:bg-gray-800/40 transition-colors"
+                className="w-full flex items-center justify-between p-3 hover:bg-muted/40 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   <div className="text-xs font-bold text-indigo-400 w-4">{stub.year}</div>
                   <span className="text-sm font-semibold text-white">{stub.name}</span>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-muted-foreground">
                     {stub.parent} / {stub.subsidiary}
                   </span>
                 </div>
@@ -1235,7 +1235,7 @@ function StubTradesTab() {
                     Implied Stub: ${stub.impliedStubValue}
                   </span>
                   <ChevronRight
-                    className={cn("w-4 h-4 text-gray-600 transition-transform", selectedStub === i && "rotate-90")}
+                    className={cn("w-4 h-4 text-muted-foreground transition-transform", selectedStub === i && "rotate-90")}
                   />
                 </div>
               </button>
@@ -1249,13 +1249,13 @@ function StubTradesTab() {
                   >
                     <div className="px-3 pb-3 space-y-2">
                       <div className="grid grid-cols-2 gap-3">
-                        <div className="bg-gray-800 rounded-lg p-2.5">
-                          <div className="text-xs text-gray-500 mb-0.5">Catalyst</div>
-                          <div className="text-xs text-gray-200">{stub.catalyst}</div>
+                        <div className="bg-muted rounded-lg p-2.5">
+                          <div className="text-xs text-muted-foreground mb-0.5">Catalyst</div>
+                          <div className="text-xs text-foreground">{stub.catalyst}</div>
                         </div>
-                        <div className="bg-gray-800 rounded-lg p-2.5">
-                          <div className="text-xs text-gray-500 mb-0.5">Outcome</div>
-                          <div className="text-xs text-gray-200">{stub.outcome}</div>
+                        <div className="bg-muted rounded-lg p-2.5">
+                          <div className="text-xs text-muted-foreground mb-0.5">Outcome</div>
+                          <div className="text-xs text-foreground">{stub.outcome}</div>
                         </div>
                       </div>
                     </div>
@@ -1268,7 +1268,7 @@ function StubTradesTab() {
       </div>
 
       {/* Pair Trade Setup */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <h3 className="text-sm font-semibold text-white mb-3">Pair Trade Setup & Sizing</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -1279,7 +1279,7 @@ function StubTradesTab() {
               "Set stop-loss if stub widens beyond -60%",
               "Monitor parent's non-sub assets for deterioration",
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-1.5 text-xs text-gray-400">
+              <div key={i} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                 <TrendingUp className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
                 {item}
               </div>
@@ -1293,7 +1293,7 @@ function StubTradesTab() {
               "Borrowing costs can erode returns — check borrow rate",
               "Watch for squeeze risk if sub is heavily shorted",
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-1.5 text-xs text-gray-400">
+              <div key={i} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                 <TrendingDown className="w-3 h-3 text-red-400 mt-0.5 shrink-0" />
                 {item}
               </div>
@@ -1317,7 +1317,7 @@ function StubTradesTab() {
 
 export default function SpecialSituationsPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
         {/* Header */}
         <div className="space-y-1">
@@ -1325,7 +1325,7 @@ export default function SpecialSituationsPage() {
             <Zap className="w-5 h-5 text-indigo-400" />
             <h1 className="text-xl font-bold text-white">Special Situations Investing</h1>
           </div>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-muted-foreground">
             Event-driven strategies — merger arbitrage, activist campaigns, post-reorganization equity, and stub trades
           </p>
         </div>
@@ -1338,20 +1338,20 @@ export default function SpecialSituationsPage() {
             { label: "Activist Success Rate", value: "66%", sub: "Demand met", icon: <Target className="w-4 h-4 text-primary" /> },
             { label: "Stub Avg Entry Discount", value: "−38%", sub: "To fair value", icon: <DollarSign className="w-4 h-4 text-pink-400" /> },
           ].map(({ label, value, sub, icon }) => (
-            <div key={label} className="bg-gray-900 border border-gray-800 rounded-xl p-3">
+            <div key={label} className="bg-card border border-border rounded-xl p-3">
               <div className="flex items-center gap-1.5 mb-1">
                 {icon}
-                <span className="text-xs text-gray-500">{label}</span>
+                <span className="text-xs text-muted-foreground">{label}</span>
               </div>
               <div className="text-lg font-bold font-mono text-white">{value}</div>
-              <div className="text-xs text-gray-600">{sub}</div>
+              <div className="text-xs text-muted-foreground">{sub}</div>
             </div>
           ))}
         </div>
 
         {/* Tabs */}
         <Tabs defaultValue="events">
-          <TabsList className="bg-gray-900 border border-gray-800 w-full grid grid-cols-4">
+          <TabsList className="bg-card border border-border w-full grid grid-cols-4">
             <TabsTrigger value="events" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
               Event Catalog
             </TabsTrigger>

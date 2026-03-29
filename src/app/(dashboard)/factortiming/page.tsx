@@ -260,7 +260,7 @@ function fmtZ(v: number) {
 function trendIcon(t: Trend) {
   if (t === "up") return <TrendingUp className="w-4 h-4 text-emerald-400" />;
   if (t === "down") return <TrendingDown className="w-4 h-4 text-red-400" />;
-  return <Minus className="w-4 h-4 text-zinc-400" />;
+  return <Minus className="w-4 h-4 text-muted-foreground" />;
 }
 
 function weightBadge(w: Weight) {
@@ -268,7 +268,7 @@ function weightBadge(w: Weight) {
     return <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 text-xs">Overweight</Badge>;
   if (w === "underweight")
     return <Badge className="bg-red-500/20 text-red-400 border-red-500/30 text-xs">Underweight</Badge>;
-  return <Badge className="bg-zinc-500/20 text-zinc-400 border-zinc-600 text-xs">Neutral</Badge>;
+  return <Badge className="bg-zinc-500/20 text-muted-foreground border-border text-xs">Neutral</Badge>;
 }
 
 function signalBadge(sig: "buy" | "hold" | "sell") {
@@ -276,7 +276,7 @@ function signalBadge(sig: "buy" | "hold" | "sell") {
     return <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 text-xs">Buy</Badge>;
   if (sig === "sell")
     return <Badge className="bg-red-500/20 text-red-400 border-red-500/30 text-xs">Sell</Badge>;
-  return <Badge className="bg-zinc-500/20 text-zinc-400 border-zinc-600 text-xs">Hold</Badge>;
+  return <Badge className="bg-zinc-500/20 text-muted-foreground border-border text-xs">Hold</Badge>;
 }
 
 function corrColor(v: number) {
@@ -623,11 +623,11 @@ function FactorDashboard() {
               "text-left p-3 rounded-lg border transition-all",
               selected === f.name
                 ? "border-primary/60 bg-primary/10"
-                : "border-zinc-700 bg-zinc-900 hover:border-zinc-500"
+                : "border-border bg-card hover:border-zinc-500"
             )}
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs font-semibold text-zinc-300">{f.name}</span>
+              <span className="text-xs font-semibold text-muted-foreground">{f.name}</span>
               {trendIcon(f.trend)}
             </div>
             <div
@@ -649,20 +649,20 @@ function FactorDashboard() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="rounded-lg border border-zinc-700 bg-zinc-900 p-4"
+            className="rounded-lg border border-border bg-card p-4"
           >
             <div className="flex items-start justify-between">
               <div>
                 <h3 className="text-base font-semibold text-white">{sel.name} Factor</h3>
-                <p className="text-sm text-zinc-400 mt-0.5">{sel.description}</p>
+                <p className="text-sm text-muted-foreground mt-0.5">{sel.description}</p>
               </div>
-              <div className="text-right text-xs text-zinc-500">
+              <div className="text-right text-xs text-muted-foreground">
                 <div>Crowding: <span className="font-semibold text-amber-400">{Math.round(sel.crowding * 100)}%</span></div>
-                <div className="mt-1">Trend: <span className="font-semibold text-zinc-300">{sel.trend}</span></div>
+                <div className="mt-1">Trend: <span className="font-semibold text-muted-foreground">{sel.trend}</span></div>
               </div>
             </div>
             <div className="mt-3 flex items-center gap-4">
-              <div className="flex-1 h-2 bg-zinc-700 rounded-full overflow-hidden">
+              <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all"
                   style={{
@@ -680,25 +680,25 @@ function FactorDashboard() {
       </AnimatePresence>
 
       {/* Chart */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Factor Z-Score &amp; Crowding
           </CardTitle>
         </CardHeader>
         <CardContent>
           <FactorSignalChart factors={factorSignals} />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Bar length = z-score magnitude. Amber bars (right) = crowding %. Z-score above +1.5σ suggests factor richness; below -1.5σ suggests cheapness.
           </p>
         </CardContent>
       </Card>
 
       {/* Signal table */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Factor Signal Table
           </CardTitle>
@@ -706,7 +706,7 @@ function FactorDashboard() {
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-zinc-500 border-b border-zinc-700">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Factor</th>
                 <th className="text-right py-2 pr-3">Z-Score</th>
                 <th className="text-center py-2 pr-3">Trend</th>
@@ -716,11 +716,11 @@ function FactorDashboard() {
             </thead>
             <tbody>
               {factorSignals.map((f) => (
-                <tr key={f.name} className="border-b border-zinc-800 hover:bg-zinc-800/40 transition-colors">
+                <tr key={f.name} className="border-b border-border hover:bg-muted/40 transition-colors">
                   <td className="py-2 pr-3">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: f.color }} />
-                      <span className="font-medium text-zinc-200">{f.name}</span>
+                      <span className="font-medium text-foreground">{f.name}</span>
                     </div>
                   </td>
                   <td className="text-right py-2 pr-3 font-mono font-semibold" style={{ color: f.zScore >= 0 ? "#10b981" : "#ef4444" }}>
@@ -732,7 +732,7 @@ function FactorDashboard() {
                   <td className="text-center py-2 pr-3">{weightBadge(f.weight)}</td>
                   <td className="text-right py-2">
                     <div className="flex items-center justify-end gap-1">
-                      <div className="w-16 h-1.5 bg-zinc-700 rounded-full overflow-hidden">
+                      <div className="w-16 h-1.5 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{
@@ -741,7 +741,7 @@ function FactorDashboard() {
                           }}
                         />
                       </div>
-                      <span className="text-zinc-300 w-8 text-right">{Math.round(f.crowding * 100)}%</span>
+                      <span className="text-muted-foreground w-8 text-right">{Math.round(f.crowding * 100)}%</span>
                     </div>
                   </td>
                 </tr>
@@ -765,7 +765,7 @@ function CrossAssetMomentum() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold text-emerald-400 flex items-center gap-2">
               <ArrowUpRight className="w-4 h-4" />
@@ -774,14 +774,14 @@ function CrossAssetMomentum() {
           </CardHeader>
           <CardContent className="space-y-2">
             {top5.map((a) => (
-              <div key={a.ticker} className="flex items-center justify-between py-1.5 border-b border-zinc-800 last:border-0">
+              <div key={a.ticker} className="flex items-center justify-between py-1.5 border-b border-border last:border-0">
                 <div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: assetClassColor(a.assetClass) }} />
-                    <span className="text-sm font-semibold text-zinc-200">{a.ticker}</span>
-                    <span className="text-xs text-zinc-500">{a.name}</span>
+                    <span className="text-sm font-semibold text-foreground">{a.ticker}</span>
+                    <span className="text-xs text-muted-foreground">{a.name}</span>
                   </div>
-                  <div className="text-xs text-zinc-500 mt-0.5">{a.assetClass} · 3m: <span className="text-zinc-300">{fmtPct(a.momentum3m)}</span></div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{a.assetClass} · 3m: <span className="text-muted-foreground">{fmtPct(a.momentum3m)}</span></div>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-emerald-400">{fmtPct(a.momentum12m)}</span>
@@ -792,7 +792,7 @@ function CrossAssetMomentum() {
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold text-red-400 flex items-center gap-2">
               <ArrowDownRight className="w-4 h-4" />
@@ -801,14 +801,14 @@ function CrossAssetMomentum() {
           </CardHeader>
           <CardContent className="space-y-2">
             {bot5.map((a) => (
-              <div key={a.ticker} className="flex items-center justify-between py-1.5 border-b border-zinc-800 last:border-0">
+              <div key={a.ticker} className="flex items-center justify-between py-1.5 border-b border-border last:border-0">
                 <div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: assetClassColor(a.assetClass) }} />
-                    <span className="text-sm font-semibold text-zinc-200">{a.ticker}</span>
-                    <span className="text-xs text-zinc-500">{a.name}</span>
+                    <span className="text-sm font-semibold text-foreground">{a.ticker}</span>
+                    <span className="text-xs text-muted-foreground">{a.name}</span>
                   </div>
-                  <div className="text-xs text-zinc-500 mt-0.5">{a.assetClass} · 3m: <span className="text-zinc-300">{fmtPct(a.momentum3m)}</span></div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{a.assetClass} · 3m: <span className="text-muted-foreground">{fmtPct(a.momentum3m)}</span></div>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-red-400">{fmtPct(a.momentum12m)}</span>
@@ -821,25 +821,25 @@ function CrossAssetMomentum() {
       </div>
 
       {/* Ranking chart */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             12-Month Momentum Ranking (All Assets)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <MomentumRankChart assets={crossAssets} />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Bars show 12-month price momentum. Blue = Equities · Purple = Bonds · Amber = Commodities · Green = FX. Long top-ranked, short bottom-ranked per cross-asset momentum rules.
           </p>
         </CardContent>
       </Card>
 
       {/* Full table */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
             Full Cross-Asset Momentum Table
           </CardTitle>
@@ -847,7 +847,7 @@ function CrossAssetMomentum() {
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-zinc-500 border-b border-zinc-700">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Ticker</th>
                 <th className="text-left py-2 pr-3">Name</th>
                 <th className="text-left py-2 pr-3">Class</th>
@@ -858,9 +858,9 @@ function CrossAssetMomentum() {
             </thead>
             <tbody>
               {sorted.map((a) => (
-                <tr key={a.ticker} className="border-b border-zinc-800 hover:bg-zinc-800/40 transition-colors">
-                  <td className="py-2 pr-3 font-mono font-semibold text-zinc-200">{a.ticker}</td>
-                  <td className="py-2 pr-3 text-zinc-400">{a.name}</td>
+                <tr key={a.ticker} className="border-b border-border hover:bg-muted/40 transition-colors">
+                  <td className="py-2 pr-3 font-mono font-semibold text-foreground">{a.ticker}</td>
+                  <td className="py-2 pr-3 text-muted-foreground">{a.name}</td>
                   <td className="py-2 pr-3">
                     <span className="px-1.5 py-0.5 rounded text-xs font-medium" style={{ backgroundColor: assetClassColor(a.assetClass) + "22", color: assetClassColor(a.assetClass) }}>
                       {a.assetClass}
@@ -892,16 +892,16 @@ function FactorCycle() {
   return (
     <div className="space-y-6">
       {/* Heatmap */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Factor Performance by Economic Regime (annualised %)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <FactorHeatmap data={cycleData} />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Green = positive excess return vs market. Red = negative. Values shown as annualised factor premium (%).
             Current regime: <span className="text-amber-400 font-medium">Slowdown</span>
           </p>
@@ -924,20 +924,20 @@ function FactorCycle() {
             Contraction: "GDP contraction · risk-off · Low-Vol & Quality outperform",
           };
           return (
-            <div key={r} className="p-3 rounded-lg border border-zinc-700 bg-zinc-900">
+            <div key={r} className="p-3 rounded-lg border border-border bg-card">
               <div className="text-xs font-bold mb-1" style={{ color: clr[r] }}>
                 {r}
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{desc[r]}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{desc[r]}</p>
             </div>
           );
         })}
       </div>
 
       {/* Correlation matrix */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Scale className="w-4 h-4 text-primary" />
             Factor Correlation Matrix (trailing 3Y)
           </CardTitle>
@@ -946,7 +946,7 @@ function FactorCycle() {
           <div className="overflow-x-auto">
             <table className="text-xs w-full">
               <thead>
-                <tr className="text-zinc-500">
+                <tr className="text-muted-foreground">
                   <th className="py-1.5 pr-3 text-left" />
                   {factorNames.map((fn) => (
                     <th key={fn} className="py-1.5 pr-2 text-center min-w-[70px]">
@@ -957,13 +957,13 @@ function FactorCycle() {
               </thead>
               <tbody>
                 {factorNames.map((rowFactor) => (
-                  <tr key={rowFactor} className="border-t border-zinc-800">
-                    <td className="py-2 pr-3 font-semibold text-zinc-300 whitespace-nowrap">{rowFactor}</td>
+                  <tr key={rowFactor} className="border-t border-border">
+                    <td className="py-2 pr-3 font-semibold text-muted-foreground whitespace-nowrap">{rowFactor}</td>
                     {factorNames.map((colFactor) => {
                       if (rowFactor === colFactor) {
                         return (
                           <td key={colFactor} className="py-2 pr-2 text-center">
-                            <span className="text-zinc-500 font-mono">1.00</span>
+                            <span className="text-muted-foreground font-mono">1.00</span>
                           </td>
                         );
                       }
@@ -990,16 +990,16 @@ function FactorCycle() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-zinc-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Red = positive correlation (factors move together, less diversification). Blue = negative correlation (diversifying). Pairs above |0.4| warrant monitoring for portfolio concentration risk.
           </p>
         </CardContent>
       </Card>
 
       {/* Crowding indicators */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             Crowding Indicators
           </CardTitle>
@@ -1011,8 +1011,8 @@ function FactorCycle() {
               const riskColor = f.crowding > 0.6 ? "text-red-400" : f.crowding > 0.4 ? "text-amber-400" : "text-emerald-400";
               return (
                 <div key={f.name} className="flex items-center gap-3">
-                  <div className="w-20 text-xs text-zinc-300 font-semibold">{f.name}</div>
-                  <div className="flex-1 h-2 bg-zinc-700 rounded-full overflow-hidden">
+                  <div className="w-20 text-xs text-muted-foreground font-semibold">{f.name}</div>
+                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all"
                       style={{
@@ -1022,12 +1022,12 @@ function FactorCycle() {
                     />
                   </div>
                   <div className={cn("w-14 text-xs font-bold text-right", riskColor)}>{risk}</div>
-                  <div className="w-8 text-xs text-right text-zinc-400">{Math.round(f.crowding * 100)}%</div>
+                  <div className="w-8 text-xs text-right text-muted-foreground">{Math.round(f.crowding * 100)}%</div>
                 </div>
               );
             })}
           </div>
-          <p className="text-xs text-zinc-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Crowding measures concentration of institutional positioning in each factor strategy. High crowding (&gt;60%) signals potential for sharp reversals if positions unwind simultaneously.
           </p>
         </CardContent>
@@ -1049,9 +1049,9 @@ function TacticalAllocation() {
   return (
     <div className="space-y-6">
       {/* MA rules table */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             200-Day Moving Average Rules — Current Signals
           </CardTitle>
@@ -1059,7 +1059,7 @@ function TacticalAllocation() {
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-zinc-500 border-b border-zinc-700">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Asset</th>
                 <th className="text-left py-2 pr-3">ETF</th>
                 <th className="text-right py-2 pr-3">Price</th>
@@ -1071,16 +1071,16 @@ function TacticalAllocation() {
             </thead>
             <tbody>
               {tacticalRules.map((r) => (
-                <tr key={r.ticker} className="border-b border-zinc-800 hover:bg-zinc-800/40 transition-colors">
+                <tr key={r.ticker} className="border-b border-border hover:bg-muted/40 transition-colors">
                   <td className="py-2 pr-3">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: r.color }} />
-                      <span className="font-medium text-zinc-200">{r.asset}</span>
+                      <span className="font-medium text-foreground">{r.asset}</span>
                     </div>
                   </td>
-                  <td className="py-2 pr-3 font-mono text-zinc-400">{r.ticker}</td>
-                  <td className="py-2 pr-3 text-right font-mono text-zinc-200">${r.price}</td>
-                  <td className="py-2 pr-3 text-right font-mono text-zinc-400">${r.ma200}</td>
+                  <td className="py-2 pr-3 font-mono text-muted-foreground">{r.ticker}</td>
+                  <td className="py-2 pr-3 text-right font-mono text-foreground">${r.price}</td>
+                  <td className="py-2 pr-3 text-right font-mono text-muted-foreground">${r.ma200}</td>
                   <td className="py-2 pr-3 text-center">
                     {r.signal === "above" ? (
                       <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 text-xs">
@@ -1097,7 +1097,7 @@ function TacticalAllocation() {
                   <td className={cn("py-2 pr-3 text-right font-mono font-semibold", r.stratReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {fmtPct(r.stratReturn)}
                   </td>
-                  <td className={cn("py-2 text-right font-mono", r.bHReturn >= 0 ? "text-zinc-300" : "text-red-400/70")}>
+                  <td className={cn("py-2 text-right font-mono", r.bHReturn >= 0 ? "text-muted-foreground" : "text-red-400/70")}>
                     {fmtPct(r.bHReturn)}
                   </td>
                 </tr>
@@ -1108,23 +1108,23 @@ function TacticalAllocation() {
       </Card>
 
       {/* Equity curve comparison */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between">
-            <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-primary" />
               200d MA Strategy vs Buy &amp; Hold (36-Month Sim)
             </CardTitle>
             <div className="flex items-center gap-3 text-xs">
               <div>
-                <span className="text-zinc-500">Strategy: </span>
+                <span className="text-muted-foreground">Strategy: </span>
                 <span className={cn("font-bold", stratReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {fmtPct(stratReturn)}
                 </span>
               </div>
               <div>
-                <span className="text-zinc-500">B&amp;H: </span>
-                <span className={cn("font-bold", bhReturn >= 0 ? "text-zinc-300" : "text-red-400")}>
+                <span className="text-muted-foreground">B&amp;H: </span>
+                <span className={cn("font-bold", bhReturn >= 0 ? "text-muted-foreground" : "text-red-400")}>
                   {fmtPct(bhReturn)}
                 </span>
               </div>
@@ -1133,7 +1133,7 @@ function TacticalAllocation() {
         </CardHeader>
         <CardContent>
           <EquityCurveChart points={equityCurvePoints} />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Simulated 36-month equity curves. Strategy = invest when price &gt; 200d MA, hold cash otherwise. Risk-adjusted returns typically improve despite lower raw returns due to smaller drawdowns.
           </p>
         </CardContent>
@@ -1146,13 +1146,13 @@ function TacticalAllocation() {
           { icon: <Clock className="w-4 h-4 text-amber-400" />, title: "Rebalance Frequency", body: "Daily monitoring, monthly execution to reduce friction. Signal lags by 1 trading day to avoid look-ahead bias. Transaction costs assumed at 5bps round-trip." },
           { icon: <DollarSign className="w-4 h-4 text-emerald-400" />, title: "Risk Controls", body: "Max allocation 40% per asset class. Position sizing via equal-weight among passing signals. Cash held in short-term T-bills yielding estimated 4.8%." },
         ].map((item) => (
-          <Card key={item.title} className="bg-zinc-900 border-zinc-700">
+          <Card key={item.title} className="bg-card border-border">
             <CardContent className="p-4">
               <div className="flex items-center gap-2 mb-2">
                 {item.icon}
-                <span className="text-sm font-semibold text-zinc-200">{item.title}</span>
+                <span className="text-sm font-semibold text-foreground">{item.title}</span>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{item.body}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{item.body}</p>
             </CardContent>
           </Card>
         ))}
@@ -1179,9 +1179,9 @@ function Implementation() {
   return (
     <div className="space-y-6">
       {/* ETF universe table */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-yellow-400" />
             Factor ETF Universe
           </CardTitle>
@@ -1189,7 +1189,7 @@ function Implementation() {
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-zinc-500 border-b border-zinc-700">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">ETF</th>
                 <th className="text-left py-2 pr-3">Factor</th>
                 <th className="text-right py-2 pr-3">AUM ($B)</th>
@@ -1206,14 +1206,14 @@ function Implementation() {
                   key={e.ticker}
                   onClick={() => setSelected(selected === e.ticker ? null : e.ticker)}
                   className={cn(
-                    "border-b border-zinc-800 cursor-pointer transition-colors",
-                    selected === e.ticker ? "bg-primary/10" : "hover:bg-zinc-800/40"
+                    "border-b border-border cursor-pointer transition-colors",
+                    selected === e.ticker ? "bg-primary/10" : "hover:bg-muted/40"
                   )}
                 >
                   <td className="py-2 pr-3">
                     <div className="flex items-center gap-2">
-                      <ChevronRight className={cn("w-3 h-3 text-zinc-500 transition-transform", selected === e.ticker && "rotate-90")} />
-                      <span className="font-mono font-bold text-zinc-200">{e.ticker}</span>
+                      <ChevronRight className={cn("w-3 h-3 text-muted-foreground transition-transform", selected === e.ticker && "rotate-90")} />
+                      <span className="font-mono font-bold text-foreground">{e.ticker}</span>
                     </div>
                   </td>
                   <td className="py-2 pr-3">
@@ -1227,16 +1227,16 @@ function Implementation() {
                       {e.factor}
                     </span>
                   </td>
-                  <td className="py-2 pr-3 text-right text-zinc-300">${e.aum}B</td>
-                  <td className="py-2 pr-3 text-right text-zinc-400">{e.expense}%</td>
-                  <td className="py-2 pr-3 text-right text-zinc-400">{e.turnover}%</td>
+                  <td className="py-2 pr-3 text-right text-muted-foreground">${e.aum}B</td>
+                  <td className="py-2 pr-3 text-right text-muted-foreground">{e.expense}%</td>
+                  <td className="py-2 pr-3 text-right text-muted-foreground">{e.turnover}%</td>
                   <td className="py-2 pr-3 text-right">
-                    <span className={e.taxDrag > 30 ? "text-amber-400" : "text-zinc-400"}>{e.taxDrag}bps</span>
+                    <span className={e.taxDrag > 30 ? "text-amber-400" : "text-muted-foreground"}>{e.taxDrag}bps</span>
                   </td>
                   <td className={cn("py-2 pr-3 text-right font-mono font-semibold", e.ytd >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {fmtPct(e.ytd)}
                   </td>
-                  <td className="py-2 text-right text-zinc-500">{e.inception}</td>
+                  <td className="py-2 text-right text-muted-foreground">{e.inception}</td>
                 </tr>
               ))}
             </tbody>
@@ -1268,16 +1268,16 @@ function Implementation() {
                     {sel.factor}
                   </span>
                 </div>
-                <div className="text-sm text-zinc-400 mt-0.5">{sel.name}</div>
+                <div className="text-sm text-muted-foreground mt-0.5">{sel.name}</div>
               </div>
               <div className="text-right">
                 <div className={cn("text-lg font-bold", sel.ytd >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {fmtPct(sel.ytd)} YTD
                 </div>
-                <div className="text-xs text-zinc-500">AUM: ${sel.aum}B</div>
+                <div className="text-xs text-muted-foreground">AUM: ${sel.aum}B</div>
               </div>
             </div>
-            <p className="text-sm text-zinc-300 mb-3">{sel.description}</p>
+            <p className="text-sm text-muted-foreground mb-3">{sel.description}</p>
             <div className="grid grid-cols-4 gap-3">
               {[
                 { label: "Expense Ratio", value: `${sel.expense}%/yr` },
@@ -1285,9 +1285,9 @@ function Implementation() {
                 { label: "Tax Drag Est.", value: `${sel.taxDrag}bps` },
                 { label: "Inception", value: sel.inception.toString() },
               ].map((item) => (
-                <div key={item.label} className="text-center p-2 bg-zinc-900 rounded border border-zinc-700">
-                  <div className="text-xs text-zinc-500 mb-1">{item.label}</div>
-                  <div className="text-sm font-bold text-zinc-200">{item.value}</div>
+                <div key={item.label} className="text-center p-2 bg-card rounded border border-border">
+                  <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
+                  <div className="text-sm font-bold text-foreground">{item.value}</div>
                 </div>
               ))}
             </div>
@@ -1296,9 +1296,9 @@ function Implementation() {
       </AnimatePresence>
 
       {/* ETF vs mutual fund comparison */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Info className="w-4 h-4 text-primary" />
             Factor ETF vs Mutual Fund: Key Trade-offs
           </CardTitle>
@@ -1306,7 +1306,7 @@ function Implementation() {
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-zinc-500 border-b border-zinc-700">
+              <tr className="text-muted-foreground border-b border-border">
                 <th className="text-left py-2 pr-3">Dimension</th>
                 <th className="text-left py-2 pr-3">Factor ETF</th>
                 <th className="text-left py-2">Smart Beta Fund</th>
@@ -1323,10 +1323,10 @@ function Implementation() {
                 { dim: "Turnover Control", etf: "Limited by index rules", fund: "Manager discretion" },
                 { dim: "Rebalance Frequency", etf: "Semi-annual reconstitution", fund: "Continuous / quarterly" },
               ].map((row) => (
-                <tr key={row.dim} className="border-b border-zinc-800 hover:bg-zinc-800/30 transition-colors">
-                  <td className="py-2 pr-3 font-semibold text-zinc-300">{row.dim}</td>
-                  <td className="py-2 pr-3 text-zinc-400">{row.etf}</td>
-                  <td className="py-2 text-zinc-400">{row.fund}</td>
+                <tr key={row.dim} className="border-b border-border hover:bg-muted/30 transition-colors">
+                  <td className="py-2 pr-3 font-semibold text-muted-foreground">{row.dim}</td>
+                  <td className="py-2 pr-3 text-muted-foreground">{row.etf}</td>
+                  <td className="py-2 text-muted-foreground">{row.fund}</td>
                 </tr>
               ))}
             </tbody>
@@ -1335,9 +1335,9 @@ function Implementation() {
       </Card>
 
       {/* Cost breakdown visual */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-emerald-400" />
             Estimated Total Cost of Ownership (per $100k invested, 1 year)
           </CardTitle>
@@ -1351,10 +1351,10 @@ function Implementation() {
             return (
               <div key={e.ticker} className="space-y-1">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-mono font-semibold text-zinc-300">{e.ticker}</span>
-                  <span className="text-zinc-400">Total: <span className="font-bold text-zinc-200">${total}/yr</span></span>
+                  <span className="font-mono font-semibold text-muted-foreground">{e.ticker}</span>
+                  <span className="text-muted-foreground">Total: <span className="font-bold text-foreground">${total}/yr</span></span>
                 </div>
-                <div className="flex h-3 rounded-full overflow-hidden bg-zinc-800 gap-px">
+                <div className="flex h-3 rounded-full overflow-hidden bg-muted gap-px">
                   <div
                     className="bg-primary"
                     style={{ width: `${(expCost / total) * 100}%` }}
@@ -1371,7 +1371,7 @@ function Implementation() {
                     title={`Trade cost: $${tradeCost}`}
                   />
                 </div>
-                <div className="flex gap-4 text-xs text-zinc-500">
+                <div className="flex gap-4 text-xs text-muted-foreground">
                   <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Expense ${expCost}</span>
                   <span><span className="inline-block w-2 h-2 rounded-full bg-amber-500 mr-1" />Tax ${taxCost}</span>
                   <span><span className="inline-block w-2 h-2 rounded-full bg-primary mr-1" />Trade ${tradeCost}</span>
@@ -1399,7 +1399,7 @@ export default function FactorTimingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1412,19 +1412,19 @@ export default function FactorTimingPage() {
           <h1 className="text-2xl font-bold tracking-tight text-white">Factor Timing</h1>
           <Badge className="bg-primary/20 text-primary border-border text-xs ml-2">Quant</Badge>
         </div>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Cross-asset momentum signals · Factor z-scores &amp; crowding · Economic regime heatmap · 200d MA tactical rules · Factor ETF universe
         </p>
       </motion.div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="bg-zinc-900 border border-zinc-700 flex flex-wrap h-auto gap-1 p-1 mb-6">
+        <TabsList className="bg-card border border-border flex flex-wrap h-auto gap-1 p-1 mb-6">
           {tabs.map((t) => (
             <TabsTrigger
               key={t.id}
               value={t.id}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-zinc-700 data-[state=active]:text-white text-zinc-400 px-3 py-1.5 rounded"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground px-3 py-1.5 rounded"
             >
               {t.icon}
               {t.label}

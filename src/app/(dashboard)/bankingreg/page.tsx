@@ -290,16 +290,16 @@ interface ExpandableRowProps {
   defaultOpen?: boolean;
   accent?: string;
 }
-function ExpandableRow({ title, children, defaultOpen = false, accent = "text-zinc-300" }: ExpandableRowProps) {
+function ExpandableRow({ title, children, defaultOpen = false, accent = "text-muted-foreground" }: ExpandableRowProps) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border border-zinc-800 rounded-lg overflow-hidden mb-2">
+    <div className="border border-border rounded-lg overflow-hidden mb-2">
       <button
-        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900/60 hover:bg-zinc-800/60 transition-colors"
+        className="w-full flex items-center justify-between px-4 py-3 bg-card/60 hover:bg-muted/60 transition-colors"
         onClick={() => setOpen((p) => !p)}
       >
         <span className={cn("text-sm font-medium", accent)}>{title}</span>
-        {open ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -310,7 +310,7 @@ function ExpandableRow({ title, children, defaultOpen = false, accent = "text-zi
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 py-3 bg-zinc-950/40 text-sm text-zinc-400 space-y-1">{children}</div>
+            <div className="px-4 py-3 bg-background/40 text-sm text-muted-foreground space-y-1">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -324,11 +324,11 @@ interface StatChipProps {
   value: string;
   color?: string;
 }
-function StatChip({ label, value, color = "text-zinc-100" }: StatChipProps) {
+function StatChip({ label, value, color = "text-foreground" }: StatChipProps) {
   return (
-    <div className="flex flex-col items-center bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[90px]">
+    <div className="flex flex-col items-center bg-card border border-border rounded-lg px-3 py-2 min-w-[90px]">
       <span className={cn("text-base font-bold tabular-nums", color)}>{value}</span>
-      <span className="text-xs text-zinc-500 mt-0.5 text-center leading-tight">{label}</span>
+      <span className="text-xs text-muted-foreground mt-0.5 text-center leading-tight">{label}</span>
     </div>
   );
 }
@@ -338,7 +338,7 @@ export default function BankingRegPage() {
   const [gsibBucket, setGsibBucket] = useState(2);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -351,13 +351,13 @@ export default function BankingRegPage() {
           <h1 className="text-2xl font-bold tracking-tight">Banking Regulation &amp; Capital</h1>
           <Badge variant="outline" className="text-xs border-indigo-500/40 text-indigo-400">Basel III/IV</Badge>
         </div>
-        <p className="text-sm text-zinc-500 ml-9">
+        <p className="text-sm text-muted-foreground ml-9">
           Capital adequacy frameworks, stress testing, resolution planning, deposit insurance, and the 2023 banking crisis.
         </p>
       </motion.div>
 
       <Tabs defaultValue="capital" className="space-y-4">
-        <TabsList className="bg-zinc-900 border border-zinc-800 h-auto flex-wrap gap-1 p-1">
+        <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
           <TabsTrigger value="capital" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
             <Layers className="w-3.5 h-3.5 mr-1" />Basel III/IV Capital
           </TabsTrigger>
@@ -376,9 +376,9 @@ export default function BankingRegPage() {
         <TabsContent value="capital" className="data-[state=inactive]:hidden space-y-4">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
             {/* Capital stack */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-400" />
                   Capital Hierarchy — Basel III Minimum Requirements
                 </CardTitle>
@@ -396,47 +396,47 @@ export default function BankingRegPage() {
 
             {/* Minimum ratios + buffers */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                     <BarChart2 className="w-4 h-4 text-sky-400" />
                     RWA Calculation Approaches
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <RwaApproachChart />
-                  <div className="mt-2 space-y-1 text-xs text-zinc-500">
-                    <p><span className="text-zinc-300 font-medium">Standardised (SA):</span> Fixed regulatory risk weights per asset class. Simple but conservative.</p>
-                    <p><span className="text-zinc-300 font-medium">Foundation IRB:</span> Banks estimate PD; LGD/EAD set by regulator. Requires supervisory approval.</p>
-                    <p><span className="text-zinc-300 font-medium">Advanced IRB:</span> Banks estimate PD, LGD, EAD. Most risk-sensitive; most model risk.</p>
-                    <p><span className="text-zinc-300 font-medium">Basel IV Output Floor:</span> IRB-derived RWA cannot fall below 72.5% of SA-based RWA. Phased in 2025–2030.</p>
+                  <div className="mt-2 space-y-1 text-xs text-muted-foreground">
+                    <p><span className="text-muted-foreground font-medium">Standardised (SA):</span> Fixed regulatory risk weights per asset class. Simple but conservative.</p>
+                    <p><span className="text-muted-foreground font-medium">Foundation IRB:</span> Banks estimate PD; LGD/EAD set by regulator. Requires supervisory approval.</p>
+                    <p><span className="text-muted-foreground font-medium">Advanced IRB:</span> Banks estimate PD, LGD, EAD. Most risk-sensitive; most model risk.</p>
+                    <p><span className="text-muted-foreground font-medium">Basel IV Output Floor:</span> IRB-derived RWA cannot fall below 72.5% of SA-based RWA. Phased in 2025–2030.</p>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-amber-400" />
                     Liquidity Standards
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3 text-xs text-zinc-400">
-                  <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700/50">
+                <CardContent className="space-y-3 text-xs text-muted-foreground">
+                  <div className="bg-muted/50 rounded-lg p-3 border border-border/50">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-sky-400">LCR — Liquidity Coverage Ratio</span>
                       <Badge className="bg-sky-900/40 text-sky-300 text-xs">≥ 100%</Badge>
                     </div>
                     <p>HQLA / Net cash outflows over 30-day stress. Ensures short-term liquidity. Level 1 (cash, sovereign) and Level 2 (corporate bonds) assets.</p>
                   </div>
-                  <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700/50">
+                  <div className="bg-muted/50 rounded-lg p-3 border border-border/50">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-amber-400">NSFR — Net Stable Funding Ratio</span>
                       <Badge className="bg-amber-900/40 text-amber-300 text-xs">≥ 100%</Badge>
                     </div>
                     <p>Available stable funding / Required stable funding over 1-year horizon. Discourages over-reliance on short-term wholesale funding.</p>
                   </div>
-                  <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700/50">
+                  <div className="bg-muted/50 rounded-lg p-3 border border-border/50">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-semibold text-emerald-400">SLR — Supplementary Leverage Ratio</span>
                       <Badge className="bg-emerald-900/40 text-emerald-300 text-xs">≥ 3%</Badge>
@@ -449,9 +449,9 @@ export default function BankingRegPage() {
 
             {/* G-SIB surcharge + Basel IV timeline */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                     <Building2 className="w-4 h-4 text-primary" />
                     G-SIB Surcharge by Bucket
                   </CardTitle>
@@ -466,7 +466,7 @@ export default function BankingRegPage() {
                           "px-3 py-1 text-xs rounded-md border transition-colors",
                           gsibBucket === b
                             ? "bg-primary border-primary text-white"
-                            : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:bg-zinc-700"
+                            : "bg-muted border-border text-muted-foreground hover:bg-muted"
                         )}
                       >
                         Bucket {b}
@@ -492,12 +492,12 @@ export default function BankingRegPage() {
                         return (
                           <div className="space-y-2 text-xs">
                             <div className="flex items-center gap-3">
-                              <span className="text-zinc-500">CET1 Surcharge:</span>
+                              <span className="text-muted-foreground">CET1 Surcharge:</span>
                               <Badge className="bg-muted/60 text-primary text-sm font-bold">{info.surcharge}</Badge>
-                              <span className="text-zinc-500">Effective CET1 min:</span>
+                              <span className="text-muted-foreground">Effective CET1 min:</span>
                               <Badge className="bg-indigo-900/40 text-indigo-300 text-sm font-bold">{info.cet1}</Badge>
                             </div>
-                            <p className="text-zinc-500 leading-relaxed">{info.banks}</p>
+                            <p className="text-muted-foreground leading-relaxed">{info.banks}</p>
                           </div>
                         );
                       })()}
@@ -506,16 +506,16 @@ export default function BankingRegPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-emerald-400" />
                     US Basel III Endgame &amp; Capital Actions
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-3 text-xs text-zinc-400">
+                <CardContent className="space-y-3 text-xs text-muted-foreground">
                   <div>
-                    <p className="text-zinc-300 font-medium mb-1">US Implementation Timeline</p>
+                    <p className="text-muted-foreground font-medium mb-1">US Implementation Timeline</p>
                     <div className="space-y-1">
                       {[
                         { year: "2013–2015", event: "Basel III phased in: LCR, SLR, capital minimums" },
@@ -530,8 +530,8 @@ export default function BankingRegPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="border-t border-zinc-800 pt-2">
-                    <p className="text-zinc-300 font-medium mb-1">Capital Distribution Restrictions</p>
+                  <div className="border-t border-border pt-2">
+                    <p className="text-muted-foreground font-medium mb-1">Capital Distribution Restrictions</p>
                     <p>When CET1 falls below the Combined Buffer Requirement (CBR = conservation + CCyB + G-SIB surcharge), Maximum Distributable Amount (MDA) limits dividends, buybacks, and discretionary bonuses as a % of eligible profits.</p>
                   </div>
                 </CardContent>
@@ -544,9 +544,9 @@ export default function BankingRegPage() {
         <TabsContent value="stress" className="data-[state=inactive]:hidden space-y-4">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
             {/* DFAST/CCAR flow */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-sky-400" />
                   DFAST / CCAR Framework — Fed Supervisory Process
                 </CardTitle>
@@ -563,16 +563,16 @@ export default function BankingRegPage() {
             </Card>
 
             {/* Capital ratio under stress */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <TrendingDown className="w-4 h-4 text-amber-400" />
                   CET1 Ratio Projection Under Three Scenarios (illustrative)
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <StressCapitalChart />
-                <p className="text-[11px] text-zinc-600 mt-1">Severely Adverse: severe global recession, 40% equity decline, +5% unemployment, commercial real estate stress.</p>
+                <p className="text-[11px] text-muted-foreground mt-1">Severely Adverse: severe global recession, 40% equity decline, +5% unemployment, commercial real estate stress.</p>
               </CardContent>
             </Card>
 
@@ -624,9 +624,9 @@ export default function BankingRegPage() {
         <TabsContent value="resolution" className="data-[state=inactive]:hidden space-y-4">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
             {/* SPOE vs MPOE */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <FileText className="w-4 h-4 text-emerald-400" />
                   Resolution Strategies — SPOE vs. MPOE
                 </CardTitle>
@@ -660,9 +660,9 @@ export default function BankingRegPage() {
               </div>
               <div className="space-y-2">
                 {/* 2023 failures timeline */}
-                <Card className="bg-zinc-900 border-zinc-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <AlertTriangle className="w-4 h-4 text-red-400" />
                       2023 Banking Crisis Timeline
                     </CardTitle>
@@ -678,12 +678,12 @@ export default function BankingRegPage() {
                           className="flex items-start gap-2 text-xs"
                         >
                           <span className={cn("font-mono text-xs shrink-0 mt-0.5 w-12", `text-[${f.color}]`)} style={{ color: f.color }}>{f.date}</span>
-                          <div className="flex-1 bg-zinc-800/50 rounded-md px-2 py-1.5 border border-zinc-700/40">
+                          <div className="flex-1 bg-muted/50 rounded-md px-2 py-1.5 border border-border/40">
                             <div className="flex items-center justify-between mb-0.5">
-                              <span className="font-semibold text-zinc-200">{f.bank}</span>
+                              <span className="font-semibold text-foreground">{f.bank}</span>
                               <span style={{ color: f.color }} className="text-xs font-mono">{f.assets}</span>
                             </div>
-                            <span className="text-zinc-500">{f.cause}</span>
+                            <span className="text-muted-foreground">{f.cause}</span>
                           </div>
                         </motion.div>
                       ))}
@@ -706,9 +706,9 @@ export default function BankingRegPage() {
         <TabsContent value="deposit" className="data-[state=inactive]:hidden space-y-4">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
             {/* FDIC mechanics */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Lock className="w-4 h-4 text-amber-400" />
                   Deposit Insurance — Global Coverage Comparison
                 </CardTitle>
@@ -765,9 +765,9 @@ export default function BankingRegPage() {
             </div>
 
             {/* Quick reference grid */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <Users className="w-4 h-4 text-emerald-400" />
                   Regulatory Agency Quick Reference
                 </CardTitle>
@@ -782,12 +782,12 @@ export default function BankingRegPage() {
                     { agency: "NCUA", role: "Credit union supervision and deposit insurance (NCUSIF)", color: "#ec4899" },
                     { agency: "FinCEN", role: "BSA/AML compliance, suspicious activity reports (SARs)", color: "#a78bfa" },
                   ].map((a, i) => (
-                    <div key={i} className="bg-zinc-800/40 rounded-lg px-3 py-2 border border-zinc-700/40">
+                    <div key={i} className="bg-muted/40 rounded-lg px-3 py-2 border border-border/40">
                       <div className="flex items-center gap-2 mb-1">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: a.color }} />
-                        <span className="text-xs font-semibold text-zinc-200">{a.agency}</span>
+                        <span className="text-xs font-semibold text-foreground">{a.agency}</span>
                       </div>
-                      <p className="text-[11px] text-zinc-500 leading-snug">{a.role}</p>
+                      <p className="text-[11px] text-muted-foreground leading-snug">{a.role}</p>
                     </div>
                   ))}
                 </div>

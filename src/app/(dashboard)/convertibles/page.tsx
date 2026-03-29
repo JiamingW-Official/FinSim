@@ -244,8 +244,8 @@ function ConvertibleMechanicsTab() {
       </div>
 
       {/* Payoff SVG */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-sm font-semibold text-zinc-200 mb-3">Convertible Bond Payoff Profile</div>
+      <div className="bg-card border border-border rounded-xl p-4">
+        <div className="text-sm font-semibold text-foreground mb-3">Convertible Bond Payoff Profile</div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
           {/* Grid */}
           {[0, 500, 1000, 1500, 2000].map((y) => (
@@ -299,10 +299,10 @@ function ConvertibleMechanicsTab() {
           { label: "Credit Spread (%)", key: "creditSpread" as keyof ConvertibleParams, min: 0.5, max: 10, step: 0.5 },
           { label: "Years to Maturity", key: "yearsToMaturity" as keyof ConvertibleParams, min: 1, max: 10, step: 1 },
         ].map(({ label, key, min, max, step }) => (
-          <div key={key} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-            <div className="flex justify-between text-xs text-zinc-400 mb-2">
+          <div key={key} className="bg-card border border-border rounded-lg p-3">
+            <div className="flex justify-between text-xs text-muted-foreground mb-2">
               <span>{label}</span>
-              <span className="font-mono text-zinc-200">{params[key]}</span>
+              <span className="font-mono text-foreground">{params[key]}</span>
             </div>
             <input
               type="range" min={min} max={max} step={step}
@@ -338,11 +338,11 @@ function ConvertibleMechanicsTab() {
             body: `The embedded call option is worth $${metrics.optionValue.toFixed(0)} using Black-Scholes with ${params.volatility}% vol and ${params.yearsToMaturity}yr tenor. Total fair value = Bond Floor + Option = $${metrics.theoreticalValue.toFixed(0)}, implying ${metrics.premium > 0 ? "a premium of" : "a discount of"} ${Math.abs(metrics.premium).toFixed(1)}% to par.`,
           },
         ].map((card) => (
-          <div key={card.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-zinc-200">
+          <div key={card.title} className="bg-card border border-border rounded-xl p-4">
+            <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-foreground">
               {card.icon}{card.title}
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">{card.body}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
           </div>
         ))}
       </div>
@@ -422,9 +422,9 @@ function GreeksSensitivityTab() {
       </div>
 
       {/* Delta chart */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-sm font-semibold text-zinc-200 mb-1">Greeks vs. Stock Price</div>
-        <div className="text-xs text-zinc-500 mb-3">Conv. Price = ${BASE_CONV_PRICE} | Vol = {vol}% | Tenor = {tenor}yr</div>
+      <div className="bg-card border border-border rounded-xl p-4">
+        <div className="text-sm font-semibold text-foreground mb-1">Greeks vs. Stock Price</div>
+        <div className="text-xs text-muted-foreground mb-3">Conv. Price = ${BASE_CONV_PRICE} | Vol = {vol}% | Tenor = {tenor}yr</div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
           {[0, 0.25, 0.5, 0.75, 1.0].map((y) => (
             <line key={y} x1={padL} y1={padT + plotH * (1 - y)} x2={svgW - padR} y2={padT + plotH * (1 - y)}
@@ -471,10 +471,10 @@ function GreeksSensitivityTab() {
           { label: "Years to Maturity", value: tenor, set: setTenor, min: 1, max: 10 },
           { label: "Credit Spread (%)", value: spread, set: setSpread, min: 0.5, max: 10, step: 0.5 },
         ].map(({ label, value, set, min, max, step = 1 }) => (
-          <div key={label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-            <div className="flex justify-between text-xs text-zinc-400 mb-2">
+          <div key={label} className="bg-card border border-border rounded-lg p-3">
+            <div className="flex justify-between text-xs text-muted-foreground mb-2">
               <span>{label}</span>
-              <span className="font-mono text-zinc-200">{value}</span>
+              <span className="font-mono text-foreground">{value}</span>
             </div>
             <input type="range" min={min} max={max} step={step} value={value}
               onChange={(e) => set(parseFloat(e.target.value))}
@@ -503,9 +503,9 @@ function GreeksSensitivityTab() {
             body: "Sensitivity to interest rates. The bond floor falls when rates rise (negative duration), while the embedded call value decreases (negative rho). Net rho of a convertible is typically negative — they underperform in rising-rate environments.",
           },
         ].map((g) => (
-          <div key={g.greek} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div key={g.greek} className="bg-card border border-border rounded-xl p-4">
             <div className={cn("text-sm font-semibold mb-2", g.color)}>{g.greek}</div>
-            <p className="text-xs text-zinc-400 leading-relaxed">{g.body}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{g.body}</p>
           </div>
         ))}
       </div>
@@ -553,8 +553,8 @@ function MarketOverviewTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sector donut */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-          <div className="text-sm font-semibold text-zinc-200 mb-3">Market by Sector</div>
+        <div className="bg-card border border-border rounded-xl p-4">
+          <div className="text-sm font-semibold text-foreground mb-3">Market by Sector</div>
           <svg viewBox="0 0 300 160" className="w-full">
             {slices.map((sl) => (
               <path key={sl.name} d={sl.path} fill={sl.color} stroke="#18181b" strokeWidth={2} />
@@ -571,9 +571,9 @@ function MarketOverviewTab() {
         </div>
 
         {/* Issuance bar chart */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-          <div className="text-sm font-semibold text-zinc-200 mb-1">Global Issuance ($B)</div>
-          <div className="text-xs text-zinc-500 mb-2">Annual convertible issuance 2018–2025</div>
+        <div className="bg-card border border-border rounded-xl p-4">
+          <div className="text-sm font-semibold text-foreground mb-1">Global Issuance ($B)</div>
+          <div className="text-xs text-muted-foreground mb-2">Annual convertible issuance 2018–2025</div>
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
             {[0, 50, 100, 150].map((y) => (
               <line key={y} x1={padL} y1={padT + plotH - (y / maxAmt) * plotH} x2={svgW - padR} y2={padT + plotH - (y / maxAmt) * plotH}
@@ -603,28 +603,28 @@ function MarketOverviewTab() {
       </div>
 
       {/* Top issuers table */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-zinc-800">
-          <div className="text-sm font-semibold text-zinc-200">Top Convertible Issuers</div>
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
+        <div className="px-4 py-3 border-b border-border">
+          <div className="text-sm font-semibold text-foreground">Top Convertible Issuers</div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
-            <thead className="bg-zinc-800/50">
+            <thead className="bg-muted/50">
               <tr>
                 {["Issuer", "Ticker", "Sector", "Outstanding ($B)", "Coupon (%)", "Conv. Premium", "Rating"].map((h) => (
-                  <th key={h} className="px-4 py-2 text-left font-medium text-zinc-400">{h}</th>
+                  <th key={h} className="px-4 py-2 text-left font-medium text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {TOP_ISSUERS.map((iss, i) => (
                 <tr key={iss.ticker}
-                  className={cn("border-t border-zinc-800/50 hover:bg-zinc-800/30 transition-colors",
-                    i % 2 === 0 ? "" : "bg-zinc-900/50")}>
-                  <td className="px-4 py-2.5 font-medium text-zinc-200">{iss.name}</td>
+                  className={cn("border-t border-border/50 hover:bg-muted/30 transition-colors",
+                    i % 2 === 0 ? "" : "bg-card/50")}>
+                  <td className="px-4 py-2.5 font-medium text-foreground">{iss.name}</td>
                   <td className="px-4 py-2.5 font-mono text-indigo-400">{iss.ticker}</td>
-                  <td className="px-4 py-2.5 text-zinc-400">{iss.sector}</td>
-                  <td className="px-4 py-2.5 font-mono text-zinc-200">${iss.outstanding.toFixed(2)}</td>
+                  <td className="px-4 py-2.5 text-muted-foreground">{iss.sector}</td>
+                  <td className="px-4 py-2.5 font-mono text-foreground">${iss.outstanding.toFixed(2)}</td>
                   <td className="px-4 py-2.5 font-mono text-green-400">{iss.coupon.toFixed(3)}%</td>
                   <td className="px-4 py-2.5 font-mono text-amber-400">{iss.premium.toFixed(1)}%</td>
                   <td className="px-4 py-2.5">
@@ -660,11 +660,11 @@ function MarketOverviewTab() {
             body: "Asia Pacific now accounts for ~30% of global issuance, with Japan, China, and South Korea driving growth. Mandatory convertibles and exchangeable bonds are more common in this region.",
           },
         ].map((c) => (
-          <div key={c.title} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-            <div className="flex items-center gap-2 text-sm font-semibold text-zinc-200 mb-2">
+          <div key={c.title} className="bg-card border border-border rounded-xl p-4">
+            <div className="flex items-center gap-2 text-sm font-semibold text-foreground mb-2">
               {c.icon}{c.title}
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">{c.body}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{c.body}</p>
           </div>
         ))}
       </div>
@@ -757,12 +757,12 @@ function InvestmentStrategiesTab() {
               onClick={() => setSelected(i)}
               className={cn(
                 "rounded-xl border p-3 text-left transition-all",
-                selected === i ? `${cc.border} ${cc.bg}` : "border-zinc-800 bg-zinc-900 hover:border-zinc-700",
+                selected === i ? `${cc.border} ${cc.bg}` : "border-border bg-card hover:border-border",
               )}
             >
-              <div className={cn("mb-1", selected === i ? cc.text : "text-zinc-400")}>{st.icon}</div>
-              <div className={cn("text-sm font-semibold", selected === i ? cc.text : "text-zinc-300")}>{st.name}</div>
-              <div className="text-xs text-zinc-500 mt-0.5 line-clamp-2">{st.profile}</div>
+              <div className={cn("mb-1", selected === i ? cc.text : "text-muted-foreground")}>{st.icon}</div>
+              <div className={cn("text-sm font-semibold", selected === i ? cc.text : "text-muted-foreground")}>{st.name}</div>
+              <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{st.profile}</div>
             </button>
           );
         })}
@@ -782,33 +782,33 @@ function InvestmentStrategiesTab() {
             <div className={cn("flex items-center gap-2 text-base font-bold mb-2", colorClasses[s.color].text)}>
               {s.icon} {s.name}
             </div>
-            <p className="text-sm text-zinc-300 leading-relaxed">{s.mechanics}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{s.mechanics}</p>
             <div className="flex gap-4 mt-3">
-              <div className="text-xs text-zinc-500">Target Return: <span className={cn("font-mono font-semibold", colorClasses[s.color].text)}>{s.targetReturn}</span></div>
-              <div className="text-xs text-zinc-500">Horizon: <span className={cn("font-mono font-semibold", colorClasses[s.color].text)}>{s.horizon}</span></div>
+              <div className="text-xs text-muted-foreground">Target Return: <span className={cn("font-mono font-semibold", colorClasses[s.color].text)}>{s.targetReturn}</span></div>
+              <div className="text-xs text-muted-foreground">Horizon: <span className={cn("font-mono font-semibold", colorClasses[s.color].text)}>{s.horizon}</span></div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <div className="text-xs font-semibold text-green-400 mb-3 flex items-center gap-1.5">
                 <TrendingUp size={13} /> Advantages
               </div>
               <ul className="space-y-2">
                 {s.pros.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-xs text-zinc-300">
+                  <li key={p} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <span className="text-green-400 mt-0.5 shrink-0">+</span>{p}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <div className="text-xs font-semibold text-red-400 mb-3 flex items-center gap-1.5">
                 <TrendingDown size={13} /> Risks & Drawbacks
               </div>
               <ul className="space-y-2">
                 {s.cons.map((c) => (
-                  <li key={c} className="flex items-start gap-2 text-xs text-zinc-300">
+                  <li key={c} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <span className="text-red-400 mt-0.5 shrink-0">−</span>{c}
                   </li>
                 ))}
@@ -819,16 +819,16 @@ function InvestmentStrategiesTab() {
       </AnimatePresence>
 
       {/* Comparative table */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b border-zinc-800 text-sm font-semibold text-zinc-200">
+      <div className="bg-card border border-border rounded-xl overflow-hidden">
+        <div className="px-4 py-3 border-b border-border text-sm font-semibold text-foreground">
           Strategy Comparison
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
-            <thead className="bg-zinc-800/50">
+            <thead className="bg-muted/50">
               <tr>
                 {["Strategy", "Delta", "Vega", "Credit", "Liquidity", "Complexity", "Target Return"].map((h) => (
-                  <th key={h} className="px-4 py-2 text-left font-medium text-zinc-400">{h}</th>
+                  <th key={h} className="px-4 py-2 text-left font-medium text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -839,9 +839,9 @@ function InvestmentStrategiesTab() {
                 { name: "Busted Converts", delta: "0.0–0.2", vega: "Low", credit: "High", liq: "Low", cx: "High", ret: "12–20%" },
                 { name: "Equity Sub.", delta: "0.7–1.0", vega: "Low", credit: "Med", liq: "Med", cx: "Low", ret: "Market+" },
               ].map((r, i) => (
-                <tr key={r.name} className={cn("border-t border-zinc-800/50 hover:bg-zinc-800/30 transition-colors",
+                <tr key={r.name} className={cn("border-t border-border/50 hover:bg-muted/30 transition-colors",
                   i === selected ? "bg-indigo-900/10" : "")}>
-                  <td className="px-4 py-2.5 font-medium text-zinc-200">{r.name}</td>
+                  <td className="px-4 py-2.5 font-medium text-foreground">{r.name}</td>
                   <td className="px-4 py-2.5 font-mono text-indigo-400">{r.delta}</td>
                   <td className="px-4 py-2.5 text-emerald-400">{r.vega}</td>
                   <td className={cn("px-4 py-2.5", r.credit === "High" ? "text-red-400" : r.credit === "Low" ? "text-green-400" : "text-amber-400")}>{r.credit}</td>
@@ -924,9 +924,9 @@ function RiskAnalysisTab() {
   return (
     <div className="space-y-6">
       {/* Risk matrix SVG */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="text-sm font-semibold text-zinc-200 mb-1">Risk Matrix</div>
-        <div className="text-xs text-zinc-500 mb-3">Bubble size = severity × likelihood</div>
+      <div className="bg-card border border-border rounded-xl p-4">
+        <div className="text-sm font-semibold text-foreground mb-1">Risk Matrix</div>
+        <div className="text-xs text-muted-foreground mb-3">Bubble size = severity × likelihood</div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
           {/* Grid zones */}
           <rect x={padL} y={padT} width={plotW / 2} height={plotH / 2} fill="#22c55e08" />
@@ -983,8 +983,8 @@ function RiskAnalysisTab() {
             key={rk.name}
             whileHover={{ scale: 1.01 }}
             className={cn(
-              "bg-zinc-900 border rounded-xl p-4 transition-colors cursor-pointer",
-              hovered === rk.name ? "border-zinc-600" : "border-zinc-800",
+              "bg-card border rounded-xl p-4 transition-colors cursor-pointer",
+              hovered === rk.name ? "border-border" : "border-border",
             )}
             onMouseEnter={() => setHovered(rk.name)}
             onMouseLeave={() => setHovered(null)}
@@ -992,13 +992,13 @@ function RiskAnalysisTab() {
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <AlertTriangle size={14} style={{ color: rk.color }} />
-                <span className="text-sm font-semibold text-zinc-200">{rk.name}</span>
+                <span className="text-sm font-semibold text-foreground">{rk.name}</span>
               </div>
               <div className="flex gap-2 text-xs">
                 <span className="px-2 py-0.5 rounded font-mono" style={{ background: `${rk.color}20`, color: rk.color }}>
                   Sev {rk.severity}/10
                 </span>
-                <span className="px-2 py-0.5 rounded font-mono bg-zinc-800 text-zinc-400">
+                <span className="px-2 py-0.5 rounded font-mono bg-muted text-muted-foreground">
                   Lkly {rk.likelihood}/10
                 </span>
               </div>
@@ -1006,43 +1006,43 @@ function RiskAnalysisTab() {
             {/* Severity bar */}
             <div className="flex gap-2 mb-3">
               <div className="flex-1">
-                <div className="text-xs text-zinc-500 mb-1">Severity</div>
-                <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="text-xs text-muted-foreground mb-1">Severity</div>
+                <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <div className="h-full rounded-full transition-all" style={{ width: `${rk.severity * 10}%`, background: rk.color }} />
                 </div>
               </div>
               <div className="flex-1">
-                <div className="text-xs text-zinc-500 mb-1">Likelihood</div>
-                <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="text-xs text-muted-foreground mb-1">Likelihood</div>
+                <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <div className="h-full rounded-full bg-zinc-400 transition-all" style={{ width: `${rk.likelihood * 10}%` }} />
                 </div>
               </div>
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed mb-2">{rk.description}</p>
-            <div className="border-t border-zinc-800 pt-2">
-              <span className="text-xs text-zinc-500">Mitigation: </span>
-              <span className="text-xs text-zinc-300">{rk.mitigation}</span>
+            <p className="text-xs text-muted-foreground leading-relaxed mb-2">{rk.description}</p>
+            <div className="border-t border-border pt-2">
+              <span className="text-xs text-muted-foreground">Mitigation: </span>
+              <span className="text-xs text-muted-foreground">{rk.mitigation}</span>
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Risk summary */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
-        <div className="flex items-center gap-2 text-sm font-semibold text-zinc-200 mb-3">
+      <div className="bg-card border border-border rounded-xl p-4">
+        <div className="flex items-center gap-2 text-sm font-semibold text-foreground mb-3">
           <BookOpen size={15} className="text-indigo-400" /> Risk Management Framework
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-zinc-400 leading-relaxed">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-muted-foreground leading-relaxed">
           <div>
-            <div className="text-zinc-200 font-medium mb-1">Position Sizing</div>
+            <div className="text-foreground font-medium mb-1">Position Sizing</div>
             Limit individual convertible positions to 2–5% of portfolio. Cap aggregate convert exposure at 20–30% of fixed income allocation. Higher limits for investment-grade issuers.
           </div>
           <div>
-            <div className="text-zinc-200 font-medium mb-1">Hedging Tools</div>
+            <div className="text-foreground font-medium mb-1">Hedging Tools</div>
             Delta hedge with short stock or put options. Use CDS for credit protection on high-yield issuers. Rate swaps to manage duration exposure. Options to cap equity risk in arb books.
           </div>
           <div>
-            <div className="text-zinc-200 font-medium mb-1">Monitoring Metrics</div>
+            <div className="text-foreground font-medium mb-1">Monitoring Metrics</div>
             Track daily: delta, conversion premium, bond floor vs. price, credit spread. Weekly: implied vol changes, call trigger proximity, issuer earnings risk. Monthly: portfolio convexity and vega.
           </div>
         </div>
@@ -1055,16 +1055,16 @@ function RiskAnalysisTab() {
 
 export default function ConvertiblesPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Layers size={22} className="text-indigo-400" />
-              <h1 className="text-xl font-bold text-zinc-100">Convertible Bonds & Hybrid Securities</h1>
+              <h1 className="text-xl font-bold text-foreground">Convertible Bonds & Hybrid Securities</h1>
             </div>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-muted-foreground">
               Bonds with embedded equity options — $320B+ global market bridging debt and equity
             </p>
           </div>
@@ -1072,7 +1072,7 @@ export default function ConvertiblesPage() {
             <span className="px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-medium">
               Bond + Option
             </span>
-            <span className="px-3 py-1 rounded-full bg-zinc-800 border border-zinc-700 text-zinc-400 text-xs font-medium">
+            <span className="px-3 py-1 rounded-full bg-muted border border-border text-muted-foreground text-xs font-medium">
               $320B Market
             </span>
           </div>
@@ -1088,7 +1088,7 @@ export default function ConvertiblesPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="mechanics" className="w-full">
-          <TabsList className="grid grid-cols-5 w-full bg-zinc-900 border border-zinc-800 h-auto p-1 gap-1">
+          <TabsList className="grid grid-cols-5 w-full bg-card border border-border h-auto p-1 gap-1">
             {[
               { value: "mechanics", label: "Mechanics", icon: <Layers size={13} /> },
               { value: "greeks", label: "Greeks", icon: <Activity size={13} /> },

@@ -238,7 +238,7 @@ function Th({
   return (
     <th
       className={cn(
-        "px-3 py-2 text-xs font-medium text-zinc-400 cursor-pointer select-none hover:text-zinc-200 whitespace-nowrap",
+        "px-3 py-2 text-xs font-medium text-muted-foreground cursor-pointer select-none hover:text-foreground whitespace-nowrap",
         right ? "text-right" : "text-left"
       )}
       onClick={() => onSort(col)}
@@ -306,12 +306,12 @@ function DeepValueScreen() {
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold text-zinc-100">Deep Value Screener</h2>
-          <p className="text-sm text-zinc-400 mt-0.5">Graham number, net-nets, and deep value metrics across 25 synthetic stocks</p>
+          <h2 className="text-lg font-semibold text-foreground">Deep Value Screener</h2>
+          <p className="text-sm text-muted-foreground mt-0.5">Graham number, net-nets, and deep value metrics across 25 synthetic stocks</p>
         </div>
         <button
           onClick={() => setShowInfo((v) => !v)}
-          className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-200 border border-zinc-700 rounded px-2 py-1"
+          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border border-border rounded px-2 py-1"
         >
           <Info className="w-3.5 h-3.5" />
           Methodology
@@ -326,7 +326,7 @@ function DeepValueScreen() {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="bg-zinc-800/50 border border-zinc-700 rounded-lg p-4 text-sm text-zinc-300 space-y-2">
+            <div className="bg-muted/50 border border-border rounded-lg p-4 text-sm text-muted-foreground space-y-2">
               <p><span className="text-primary font-medium">Graham Number</span> = √(22.5 × EPS × Book Value per share). A stock trading below its Graham number is considered undervalued by Benjamin Graham's classic formula.</p>
               <p><span className="text-primary font-medium">Net-Net</span> = stocks where market cap &lt; net current assets (current assets − all liabilities). Graham's most conservative value criterion.</p>
               <p><span className="text-primary font-medium">EV/EBIT</span> is a capital-structure-neutral valuation ratio; values below 8× historically outperform.</p>
@@ -346,18 +346,18 @@ function DeepValueScreen() {
               "px-3 py-1.5 rounded text-xs font-medium transition-colors",
               filter === f
                 ? "bg-primary text-white"
-                : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-zinc-200"
+                : "bg-muted text-muted-foreground hover:bg-muted hover:text-foreground"
             )}
           >
             {f === "all" ? "All Stocks (25)" : f === "netnets" ? "Net-Nets" : "Deep Value (P/B<1.5 P/E<12)"}
           </button>
         ))}
-        <span className="ml-auto text-xs text-zinc-500 self-center">{sorted.length} results</span>
+        <span className="ml-auto text-xs text-muted-foreground self-center">{sorted.length} results</span>
       </div>
 
       {/* SVG Distribution */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-        <p className="text-xs text-zinc-400 mb-3">P/B Ratio Distribution</p>
+      <div className="bg-card border border-border rounded-lg p-4">
+        <p className="text-xs text-muted-foreground mb-3">P/B Ratio Distribution</p>
         <svg width="100%" height="80" viewBox="0 0 420 80" preserveAspectRatio="none">
           {bins.map((count, i) => {
             const barH = maxBin > 0 ? (count / maxBin) * 60 : 0;
@@ -385,9 +385,9 @@ function DeepValueScreen() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-zinc-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
-          <thead className="bg-zinc-900 border-b border-zinc-800">
+          <thead className="bg-card border-b border-border">
             <tr>
               <Th label="Ticker" col="ticker" sortKey={String(sortKey)} sortDir={sortDir} onSort={handleSort as (k: string) => void} />
               <Th label="Company" col="company" sortKey={String(sortKey)} sortDir={sortDir} onSort={handleSort as (k: string) => void} />
@@ -397,7 +397,7 @@ function DeepValueScreen() {
               <Th label="P/E" col="pe" sortKey={String(sortKey)} sortDir={sortDir} onSort={handleSort as (k: string) => void} right />
               <Th label="EV/EBIT" col="evEbit" sortKey={String(sortKey)} sortDir={sortDir} onSort={handleSort as (k: string) => void} right />
               <Th label="FCF Yield" col="fcfYield" sortKey={String(sortKey)} sortDir={sortDir} onSort={handleSort as (k: string) => void} right />
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-center">Flags</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-center">Flags</th>
             </tr>
           </thead>
           <tbody>
@@ -407,26 +407,26 @@ function DeepValueScreen() {
                 <tr
                   key={st.ticker}
                   className={cn(
-                    "border-b border-zinc-800/50 hover:bg-zinc-800/40 transition-colors",
-                    idx % 2 === 0 ? "bg-zinc-900/30" : ""
+                    "border-b border-border/50 hover:bg-muted/40 transition-colors",
+                    idx % 2 === 0 ? "bg-card/30" : ""
                   )}
                 >
                   <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
-                  <td className="px-3 py-2 text-zinc-300">{st.company}</td>
-                  <td className="px-3 py-2 text-right text-zinc-200">${st.price.toFixed(2)}</td>
-                  <td className={cn("px-3 py-2 text-right font-medium", belowGraham ? "text-emerald-400" : "text-zinc-400")}>
+                  <td className="px-3 py-2 text-muted-foreground">{st.company}</td>
+                  <td className="px-3 py-2 text-right text-foreground">${st.price.toFixed(2)}</td>
+                  <td className={cn("px-3 py-2 text-right font-medium", belowGraham ? "text-emerald-400" : "text-muted-foreground")}>
                     ${st.grahamNumber.toFixed(2)}
                   </td>
-                  <td className={cn("px-3 py-2 text-right", st.pb < 1.5 ? "text-emerald-400" : "text-zinc-300")}>
+                  <td className={cn("px-3 py-2 text-right", st.pb < 1.5 ? "text-emerald-400" : "text-muted-foreground")}>
                     {st.pb.toFixed(2)}x
                   </td>
-                  <td className={cn("px-3 py-2 text-right", st.pe < 12 ? "text-emerald-400" : "text-zinc-300")}>
+                  <td className={cn("px-3 py-2 text-right", st.pe < 12 ? "text-emerald-400" : "text-muted-foreground")}>
                     {st.pe.toFixed(1)}x
                   </td>
-                  <td className={cn("px-3 py-2 text-right", st.evEbit < 8 ? "text-emerald-400" : "text-zinc-300")}>
+                  <td className={cn("px-3 py-2 text-right", st.evEbit < 8 ? "text-emerald-400" : "text-muted-foreground")}>
                     {st.evEbit.toFixed(1)}x
                   </td>
-                  <td className={cn("px-3 py-2 text-right", st.fcfYield > 8 ? "text-emerald-400" : "text-zinc-300")}>
+                  <td className={cn("px-3 py-2 text-right", st.fcfYield > 8 ? "text-emerald-400" : "text-muted-foreground")}>
                     {st.fcfYield.toFixed(1)}%
                   </td>
                   <td className="px-3 py-2">
@@ -487,8 +487,8 @@ function MagicFormula() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-lg font-semibold text-zinc-100">Magic Formula — Joel Greenblatt</h2>
-        <p className="text-sm text-zinc-400 mt-0.5">
+        <h2 className="text-lg font-semibold text-foreground">Magic Formula — Joel Greenblatt</h2>
+        <p className="text-sm text-muted-foreground mt-0.5">
           Ranks by <span className="text-primary">Return on Invested Capital</span> + <span className="text-amber-400">Earnings Yield</span> (EBIT/EV). Lower combined rank = better opportunity.
         </p>
       </div>
@@ -499,17 +499,17 @@ function MagicFormula() {
           { label: "Avg ROIC (Top 10)", value: `${(ranked.slice(0,10).reduce((a,b) => a+b.roic, 0)/10).toFixed(1)}%`, sub: "High quality threshold", color: "text-primary" },
           { label: "Avg EY (Top 10)", value: `${(ranked.slice(0,10).reduce((a,b) => a+b.earningsYield, 0)/10).toFixed(1)}%`, sub: "Above market average", color: "text-amber-400" },
         ].map((c) => (
-          <div key={c.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-            <p className="text-xs text-zinc-500">{c.label}</p>
+          <div key={c.label} className="bg-card border border-border rounded-lg p-3">
+            <p className="text-xs text-muted-foreground">{c.label}</p>
             <p className={cn("text-xl font-bold mt-1", c.color)}>{c.value}</p>
-            <p className="text-xs text-zinc-500 mt-0.5">{c.sub}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{c.sub}</p>
           </div>
         ))}
       </div>
 
       {/* Scatter */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-        <p className="text-xs text-zinc-400 mb-2">ROIC Rank vs Earnings Yield Rank (top 20 — lower-left is best)</p>
+      <div className="bg-card border border-border rounded-lg p-4">
+        <p className="text-xs text-muted-foreground mb-2">ROIC Rank vs Earnings Yield Rank (top 20 — lower-left is best)</p>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
           {/* Axes */}
           <line x1={padX} y1={H - padY} x2={W - 10} y2={H - padY} stroke="#374151" strokeWidth={1} />
@@ -540,9 +540,9 @@ function MagicFormula() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-zinc-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
-          <thead className="bg-zinc-900 border-b border-zinc-800">
+          <thead className="bg-card border-b border-border">
             <tr>
               <Th label="Rank" col="combinedRank" sortKey={String(sortKey)} sortDir={sortDir} onSort={handleSort as (k: string) => void} right />
               <Th label="Ticker" col="ticker" sortKey={String(sortKey)} sortDir={sortDir} onSort={handleSort as (k: string) => void} />
@@ -559,24 +559,24 @@ function MagicFormula() {
               <tr
                 key={st.ticker}
                 className={cn(
-                  "border-b border-zinc-800/50 hover:bg-zinc-800/40 transition-colors",
-                  idx % 2 === 0 ? "bg-zinc-900/30" : ""
+                  "border-b border-border/50 hover:bg-muted/40 transition-colors",
+                  idx % 2 === 0 ? "bg-card/30" : ""
                 )}
               >
                 <td className="px-3 py-2 text-right">
                   {st.combinedRank <= 5 ? (
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold">{idx + 1}</span>
                   ) : (
-                    <span className="text-zinc-500 text-xs">{idx + 1}</span>
+                    <span className="text-muted-foreground text-xs">{idx + 1}</span>
                   )}
                 </td>
                 <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
-                <td className="px-3 py-2 text-zinc-300">{st.company}</td>
+                <td className="px-3 py-2 text-muted-foreground">{st.company}</td>
                 <td className="px-3 py-2 text-right text-emerald-400">{st.roic.toFixed(1)}%</td>
-                <td className="px-3 py-2 text-right text-zinc-400">#{st.roicRank}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">#{st.roicRank}</td>
                 <td className="px-3 py-2 text-right text-amber-400">{st.earningsYield.toFixed(1)}%</td>
-                <td className="px-3 py-2 text-right text-zinc-400">#{st.eyRank}</td>
-                <td className="px-3 py-2 text-right font-bold text-zinc-200">#{st.combinedRank}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">#{st.eyRank}</td>
+                <td className="px-3 py-2 text-right font-bold text-foreground">#{st.combinedRank}</td>
               </tr>
             ))}
           </tbody>
@@ -604,45 +604,45 @@ function AcquirersMultiple() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-lg font-semibold text-zinc-100">The Acquirer&apos;s Multiple</h2>
-        <p className="text-sm text-zinc-400 mt-0.5">
+        <h2 className="text-lg font-semibold text-foreground">The Acquirer&apos;s Multiple</h2>
+        <p className="text-sm text-muted-foreground mt-0.5">
           EV / Operating Earnings — the metric used by activist investors. Removes accounting distortions that inflate P/E ratios.
         </p>
       </div>
 
-      <div className="bg-zinc-800/40 border border-zinc-700 rounded-lg p-3 text-sm text-zinc-300">
+      <div className="bg-muted/40 border border-border rounded-lg p-3 text-sm text-muted-foreground">
         <span className="text-amber-400 font-medium">Key insight: </span>
         The Acquirer&apos;s Multiple often reveals deeper cheapness than P/E because it uses enterprise value (includes debt) and operating earnings (removes interest/tax manipulation). Historically, the cheapest decile by AM has outperformed by 4–7% annually.
       </div>
 
       <div className="grid grid-cols-4 gap-3">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-          <p className="text-xs text-zinc-500">Cheapest AM</p>
+        <div className="bg-card border border-border rounded-lg p-3">
+          <p className="text-xs text-muted-foreground">Cheapest AM</p>
           <p className="text-xl font-bold text-emerald-400 mt-1">{sorted[0]?.acquirerMultiple.toFixed(1)}x</p>
-          <p className="text-xs text-zinc-500 mt-0.5">{sorted[0]?.ticker}</p>
+          <p className="text-xs text-muted-foreground mt-0.5">{sorted[0]?.ticker}</p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-          <p className="text-xs text-zinc-500">Avg AM (top 5)</p>
+        <div className="bg-card border border-border rounded-lg p-3">
+          <p className="text-xs text-muted-foreground">Avg AM (top 5)</p>
           <p className="text-xl font-bold text-primary mt-1">{avgAM.toFixed(1)}x</p>
-          <p className="text-xs text-zinc-500 mt-0.5">Cheapest decile</p>
+          <p className="text-xs text-muted-foreground mt-0.5">Cheapest decile</p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-          <p className="text-xs text-zinc-500">Avg P/E (top 5)</p>
+        <div className="bg-card border border-border rounded-lg p-3">
+          <p className="text-xs text-muted-foreground">Avg P/E (top 5)</p>
           <p className="text-xl font-bold text-amber-400 mt-1">{avgPE.toFixed(1)}x</p>
-          <p className="text-xs text-zinc-500 mt-0.5">P/E by comparison</p>
+          <p className="text-xs text-muted-foreground mt-0.5">P/E by comparison</p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-          <p className="text-xs text-zinc-500">AM/PE Divergence</p>
-          <p className={cn("text-xl font-bold mt-1", avgPE - avgAM > 3 ? "text-red-400" : "text-zinc-400")}>
+        <div className="bg-card border border-border rounded-lg p-3">
+          <p className="text-xs text-muted-foreground">AM/PE Divergence</p>
+          <p className={cn("text-xl font-bold mt-1", avgPE - avgAM > 3 ? "text-red-400" : "text-muted-foreground")}>
             {(avgPE - avgAM).toFixed(1)}x
           </p>
-          <p className="text-xs text-zinc-500 mt-0.5">Debt burden signal</p>
+          <p className="text-xs text-muted-foreground mt-0.5">Debt burden signal</p>
         </div>
       </div>
 
       {/* Comparison bar chart */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-        <p className="text-xs text-zinc-400 mb-2">AM vs P/E Comparison — Top 10 (blue = AM, amber = P/E)</p>
+      <div className="bg-card border border-border rounded-lg p-4">
+        <p className="text-xs text-muted-foreground mb-2">AM vs P/E Comparison — Top 10 (blue = AM, amber = P/E)</p>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
           {sorted.slice(0, 10).map((st, i) => {
             const maxVal = 30;
@@ -664,19 +664,19 @@ function AcquirersMultiple() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-zinc-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
-          <thead className="bg-zinc-900 border-b border-zinc-800">
+          <thead className="bg-card border-b border-border">
             <tr>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Rank</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Ticker</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Company</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Sector</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">EV ($M)</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Op. Earnings</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Acq. Multiple</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">P/E</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Δ vs P/E</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Rank</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Ticker</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Company</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Sector</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">EV ($M)</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Op. Earnings</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Acq. Multiple</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">P/E</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Δ vs P/E</th>
             </tr>
           </thead>
           <tbody>
@@ -687,21 +687,21 @@ function AcquirersMultiple() {
                 <tr
                   key={st.ticker}
                   className={cn(
-                    "border-b border-zinc-800/50 hover:bg-zinc-800/40 transition-colors",
-                    isTopDecile ? "bg-emerald-950/20" : idx % 2 === 0 ? "bg-zinc-900/30" : ""
+                    "border-b border-border/50 hover:bg-muted/40 transition-colors",
+                    isTopDecile ? "bg-emerald-950/20" : idx % 2 === 0 ? "bg-card/30" : ""
                   )}
                 >
-                  <td className="px-3 py-2 text-zinc-500 text-xs">{idx + 1}</td>
+                  <td className="px-3 py-2 text-muted-foreground text-xs">{idx + 1}</td>
                   <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
-                  <td className="px-3 py-2 text-zinc-300">{st.company}</td>
-                  <td className="px-3 py-2 text-zinc-500 text-xs">{st.sector}</td>
-                  <td className="px-3 py-2 text-right text-zinc-400">${st.ev.toFixed(0)}M</td>
-                  <td className="px-3 py-2 text-right text-zinc-400">${st.operatingEarnings.toFixed(0)}M</td>
-                  <td className={cn("px-3 py-2 text-right font-bold", isTopDecile ? "text-emerald-400" : "text-zinc-300")}>
+                  <td className="px-3 py-2 text-muted-foreground">{st.company}</td>
+                  <td className="px-3 py-2 text-muted-foreground text-xs">{st.sector}</td>
+                  <td className="px-3 py-2 text-right text-muted-foreground">${st.ev.toFixed(0)}M</td>
+                  <td className="px-3 py-2 text-right text-muted-foreground">${st.operatingEarnings.toFixed(0)}M</td>
+                  <td className={cn("px-3 py-2 text-right font-bold", isTopDecile ? "text-emerald-400" : "text-muted-foreground")}>
                     {st.acquirerMultiple.toFixed(1)}x
                   </td>
                   <td className="px-3 py-2 text-right text-amber-400">{st.pe.toFixed(1)}x</td>
-                  <td className={cn("px-3 py-2 text-right text-xs", delta > 5 ? "text-red-400" : delta < 0 ? "text-emerald-400" : "text-zinc-500")}>
+                  <td className={cn("px-3 py-2 text-right text-xs", delta > 5 ? "text-red-400" : delta < 0 ? "text-emerald-400" : "text-muted-foreground")}>
                     {delta > 0 ? "+" : ""}{delta.toFixed(1)}x
                   </td>
                 </tr>
@@ -759,16 +759,16 @@ function QualityValueBlend() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-lg font-semibold text-zinc-100">Quality-Value Blend</h2>
-        <p className="text-sm text-zinc-400 mt-0.5">
+        <h2 className="text-lg font-semibold text-foreground">Quality-Value Blend</h2>
+        <p className="text-sm text-muted-foreground mt-0.5">
           Composite score combining value (P/B, EV/EBITDA) with quality (ROIC, Piotroski F-Score, earnings stability).
         </p>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         {/* Quadrant chart */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
-          <p className="text-xs text-zinc-400 mb-1">Quality-Value Quadrant (click to select)</p>
+        <div className="bg-card border border-border rounded-lg p-4">
+          <p className="text-xs text-muted-foreground mb-1">Quality-Value Quadrant (click to select)</p>
           <svg width="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
             {/* Grid lines */}
             <line x1={pad} y1={(H - pad) / 2 + 10} x2={W - 10} y2={(H - pad) / 2 + 10} stroke="#374151" strokeWidth={0.5} strokeDasharray="3,3" />
@@ -808,27 +808,27 @@ function QualityValueBlend() {
         </div>
 
         {/* Selected detail or top list */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+        <div className="bg-card border border-border rounded-lg p-4">
           {selectedStock ? (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-primary font-bold text-lg">{selectedStock.ticker}</span>
-                <button onClick={() => setSelected(null)} className="text-zinc-500 hover:text-zinc-300 text-xs">✕ close</button>
+                <button onClick={() => setSelected(null)} className="text-muted-foreground hover:text-muted-foreground text-xs">✕ close</button>
               </div>
-              <p className="text-sm text-zinc-400">{selectedStock.company}</p>
+              <p className="text-sm text-muted-foreground">{selectedStock.company}</p>
               <div className="space-y-2">
                 {[
                   { label: "Composite Score", value: selectedStock.compositeScore.toFixed(1), color: "text-amber-400" },
                   { label: "Value Score", value: selectedStock.valueScore.toFixed(1), color: "text-primary" },
                   { label: "Quality Score", value: selectedStock.qualityScore.toFixed(1), color: "text-emerald-400" },
-                  { label: "P/B Ratio", value: `${selectedStock.pb.toFixed(2)}x`, color: "text-zinc-200" },
-                  { label: "EV/EBITDA", value: `${selectedStock.evEbitda.toFixed(1)}x`, color: "text-zinc-200" },
-                  { label: "ROIC", value: `${selectedStock.roic.toFixed(1)}%`, color: "text-zinc-200" },
-                  { label: "F-Score", value: `${selectedStock.fScore}/9`, color: selectedStock.fScore >= 7 ? "text-emerald-400" : selectedStock.fScore < 5 ? "text-red-400" : "text-zinc-200" },
-                  { label: "Earnings Stability", value: `${(selectedStock.earningsStability * 100).toFixed(0)}%`, color: "text-zinc-200" },
+                  { label: "P/B Ratio", value: `${selectedStock.pb.toFixed(2)}x`, color: "text-foreground" },
+                  { label: "EV/EBITDA", value: `${selectedStock.evEbitda.toFixed(1)}x`, color: "text-foreground" },
+                  { label: "ROIC", value: `${selectedStock.roic.toFixed(1)}%`, color: "text-foreground" },
+                  { label: "F-Score", value: `${selectedStock.fScore}/9`, color: selectedStock.fScore >= 7 ? "text-emerald-400" : selectedStock.fScore < 5 ? "text-red-400" : "text-foreground" },
+                  { label: "Earnings Stability", value: `${(selectedStock.earningsStability * 100).toFixed(0)}%`, color: "text-foreground" },
                 ].map((row) => (
                   <div key={row.label} className="flex justify-between text-sm">
-                    <span className="text-zinc-500">{row.label}</span>
+                    <span className="text-muted-foreground">{row.label}</span>
                     <span className={cn("font-medium", row.color)}>{row.value}</span>
                   </div>
                 ))}
@@ -836,18 +836,18 @@ function QualityValueBlend() {
             </div>
           ) : (
             <div>
-              <p className="text-xs text-zinc-400 mb-3">Top 10 Quality-Value Stocks</p>
+              <p className="text-xs text-muted-foreground mb-3">Top 10 Quality-Value Stocks</p>
               <div className="space-y-1.5">
                 {stocks.slice(0, 10).map((st, idx) => (
                   <div
                     key={st.ticker}
                     onClick={() => setSelected(st.ticker)}
-                    className="flex items-center gap-2 p-1.5 rounded hover:bg-zinc-800 cursor-pointer group"
+                    className="flex items-center gap-2 p-1.5 rounded hover:bg-muted cursor-pointer group"
                   >
-                    <span className="w-5 text-center text-xs text-zinc-600">{idx + 1}</span>
+                    <span className="w-5 text-center text-xs text-muted-foreground">{idx + 1}</span>
                     <span className="font-mono text-primary text-sm w-14">{st.ticker}</span>
                     <div className="flex-1">
-                      <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full bg-gradient-to-r from-blue-600 to-emerald-500 rounded-full"
                           style={{ width: `${st.compositeScore}%` }}
@@ -864,20 +864,20 @@ function QualityValueBlend() {
       </div>
 
       {/* Full table */}
-      <div className="overflow-x-auto rounded-lg border border-zinc-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
-          <thead className="bg-zinc-900 border-b border-zinc-800">
+          <thead className="bg-card border-b border-border">
             <tr>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Rank</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Ticker</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Company</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Value Score</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Quality Score</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Composite</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">P/B</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">EV/EBITDA</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">ROIC</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">F-Score</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Rank</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Ticker</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Company</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Value Score</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Quality Score</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Composite</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">P/B</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">EV/EBITDA</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">ROIC</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">F-Score</th>
             </tr>
           </thead>
           <tbody>
@@ -885,21 +885,21 @@ function QualityValueBlend() {
               <tr
                 key={st.ticker}
                 className={cn(
-                  "border-b border-zinc-800/50 hover:bg-zinc-800/40 transition-colors cursor-pointer",
-                  selected === st.ticker ? "bg-amber-950/20" : idx % 2 === 0 ? "bg-zinc-900/30" : ""
+                  "border-b border-border/50 hover:bg-muted/40 transition-colors cursor-pointer",
+                  selected === st.ticker ? "bg-amber-950/20" : idx % 2 === 0 ? "bg-card/30" : ""
                 )}
                 onClick={() => setSelected(st.ticker === selected ? null : st.ticker)}
               >
-                <td className="px-3 py-2 text-zinc-500 text-xs">{idx + 1}</td>
+                <td className="px-3 py-2 text-muted-foreground text-xs">{idx + 1}</td>
                 <td className="px-3 py-2 font-mono text-primary font-medium">{st.ticker}</td>
-                <td className="px-3 py-2 text-zinc-300">{st.company}</td>
+                <td className="px-3 py-2 text-muted-foreground">{st.company}</td>
                 <td className="px-3 py-2 text-right text-primary">{st.valueScore.toFixed(1)}</td>
                 <td className="px-3 py-2 text-right text-emerald-400">{st.qualityScore.toFixed(1)}</td>
                 <td className="px-3 py-2 text-right font-bold text-amber-400">{st.compositeScore.toFixed(1)}</td>
-                <td className="px-3 py-2 text-right text-zinc-300">{st.pb.toFixed(2)}x</td>
-                <td className="px-3 py-2 text-right text-zinc-300">{st.evEbitda.toFixed(1)}x</td>
-                <td className="px-3 py-2 text-right text-zinc-300">{st.roic.toFixed(1)}%</td>
-                <td className={cn("px-3 py-2 text-right font-medium", st.fScore >= 7 ? "text-emerald-400" : st.fScore < 5 ? "text-red-400" : "text-zinc-300")}>
+                <td className="px-3 py-2 text-right text-muted-foreground">{st.pb.toFixed(2)}x</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{st.evEbitda.toFixed(1)}x</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{st.roic.toFixed(1)}%</td>
+                <td className={cn("px-3 py-2 text-right font-medium", st.fScore >= 7 ? "text-emerald-400" : st.fScore < 5 ? "text-red-400" : "text-muted-foreground")}>
                   {st.fScore}/9
                 </td>
               </tr>
@@ -960,8 +960,8 @@ function BacktestedPerformance() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-lg font-semibold text-zinc-100">Backtested Value Factor Performance</h2>
-        <p className="text-sm text-zinc-400 mt-0.5">Simulated 20-year performance of quantitative value strategy vs. market. Seeded PRNG, illustrative only.</p>
+        <h2 className="text-lg font-semibold text-foreground">Backtested Value Factor Performance</h2>
+        <p className="text-sm text-muted-foreground mt-0.5">Simulated 20-year performance of quantitative value strategy vs. market. Seeded PRNG, illustrative only.</p>
       </div>
 
       {/* KPIs */}
@@ -972,8 +972,8 @@ function BacktestedPerformance() {
           { label: "Avg Annual Spread", value: `+${(avgAnnualValue - avgAnnualMarket).toFixed(1)}%`, color: "text-amber-400" },
           { label: "Max Drawdown", value: `${maxDrawdown.toFixed(1)}%`, color: "text-red-400" },
         ].map((k) => (
-          <div key={k.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
-            <p className="text-xs text-zinc-500">{k.label}</p>
+          <div key={k.label} className="bg-card border border-border rounded-lg p-3">
+            <p className="text-xs text-muted-foreground">{k.label}</p>
             <p className={cn("text-xl font-bold mt-1", k.color)}>{k.value}</p>
           </div>
         ))}
@@ -983,20 +983,20 @@ function BacktestedPerformance() {
       <div className="flex gap-2">
         <button
           onClick={() => setShowDrawdown(false)}
-          className={cn("px-3 py-1 text-xs rounded", !showDrawdown ? "bg-primary text-white" : "bg-zinc-800 text-zinc-400")}
+          className={cn("px-3 py-1 text-xs rounded", !showDrawdown ? "bg-primary text-white" : "bg-muted text-muted-foreground")}
         >
           NAV Growth
         </button>
         <button
           onClick={() => setShowDrawdown(true)}
-          className={cn("px-3 py-1 text-xs rounded", showDrawdown ? "bg-red-700 text-white" : "bg-zinc-800 text-zinc-400")}
+          className={cn("px-3 py-1 text-xs rounded", showDrawdown ? "bg-red-700 text-white" : "bg-muted text-muted-foreground")}
         >
           Drawdown Profile
         </button>
       </div>
 
       {/* Line chart */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+      <div className="bg-card border border-border rounded-lg p-4">
         <AnimatePresence mode="wait">
           {!showDrawdown ? (
             <motion.div key="nav" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -1036,7 +1036,7 @@ function BacktestedPerformance() {
             </motion.div>
           ) : (
             <motion.div key="dd" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <p className="text-xs text-zinc-400 mb-2">Drawdown from peak (%)</p>
+              <p className="text-xs text-muted-foreground mb-2">Drawdown from peak (%)</p>
               <svg width="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
                 {/* Zero line */}
                 <line x1={padL} y1={padT} x2={W - padR} y2={padT} stroke="#374151" strokeWidth={0.5} />
@@ -1057,17 +1057,17 @@ function BacktestedPerformance() {
       </div>
 
       {/* Annual return table */}
-      <div className="overflow-x-auto rounded-lg border border-zinc-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-sm">
-          <thead className="bg-zinc-900 border-b border-zinc-800">
+          <thead className="bg-card border-b border-border">
             <tr>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-left">Year</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Value Return</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Market Return</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Spread</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Drawdown</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Value NAV</th>
-              <th className="px-3 py-2 text-xs font-medium text-zinc-400 text-right">Mkt NAV</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-left">Year</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Value Return</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Market Return</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Spread</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Drawdown</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Value NAV</th>
+              <th className="px-3 py-2 text-xs font-medium text-muted-foreground text-right">Mkt NAV</th>
             </tr>
           </thead>
           <tbody>
@@ -1075,32 +1075,32 @@ function BacktestedPerformance() {
               <tr
                 key={yr.year}
                 className={cn(
-                  "border-b border-zinc-800/50 hover:bg-zinc-800/40 transition-colors",
-                  idx % 2 === 0 ? "bg-zinc-900/30" : ""
+                  "border-b border-border/50 hover:bg-muted/40 transition-colors",
+                  idx % 2 === 0 ? "bg-card/30" : ""
                 )}
               >
-                <td className="px-3 py-2 font-medium text-zinc-300">{yr.year}</td>
+                <td className="px-3 py-2 font-medium text-muted-foreground">{yr.year}</td>
                 <td className={cn("px-3 py-2 text-right font-medium", yr.valueReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   <Num v={yr.valueReturn} suffix="%" colorize />
                 </td>
                 <td className={cn("px-3 py-2 text-right", yr.marketReturn >= 0 ? "text-primary" : "text-red-400")}>
                   <Num v={yr.marketReturn} suffix="%" colorize />
                 </td>
-                <td className={cn("px-3 py-2 text-right text-xs", yr.spread >= 0 ? "text-amber-400" : "text-zinc-500")}>
+                <td className={cn("px-3 py-2 text-right text-xs", yr.spread >= 0 ? "text-amber-400" : "text-muted-foreground")}>
                   {yr.spread >= 0 ? "+" : ""}{yr.spread.toFixed(1)}%
                 </td>
-                <td className={cn("px-3 py-2 text-right text-xs", yr.drawdown < -15 ? "text-red-400" : "text-zinc-400")}>
+                <td className={cn("px-3 py-2 text-right text-xs", yr.drawdown < -15 ? "text-red-400" : "text-muted-foreground")}>
                   {yr.drawdown.toFixed(1)}%
                 </td>
-                <td className="px-3 py-2 text-right text-zinc-300">{yr.vNav.toFixed(1)}</td>
-                <td className="px-3 py-2 text-right text-zinc-500">{yr.mNav.toFixed(1)}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{yr.vNav.toFixed(1)}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{yr.mNav.toFixed(1)}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <p className="text-xs text-zinc-600 italic">
+      <p className="text-xs text-muted-foreground italic">
         Disclaimer: All data is synthetically generated using seeded PRNG for educational purposes only. Past performance of simulated strategies is not indicative of future results.
       </p>
     </div>
@@ -1111,7 +1111,7 @@ function BacktestedPerformance() {
 
 export default function QuantValuePage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
       {/* Page Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1119,8 +1119,8 @@ export default function QuantValuePage() {
             <Target className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100">Quantitative Value Investing</h1>
-            <p className="text-sm text-zinc-400">Deep value analysis: Graham, Magic Formula, Acquirer&apos;s Multiple, Quality-Value blend</p>
+            <h1 className="text-2xl font-bold text-foreground">Quantitative Value Investing</h1>
+            <p className="text-sm text-muted-foreground">Deep value analysis: Graham, Magic Formula, Acquirer&apos;s Multiple, Quality-Value blend</p>
           </div>
         </div>
         <div className="flex gap-2 flex-wrap mt-3">
@@ -1144,24 +1144,24 @@ export default function QuantValuePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="deepvalue">
-        <TabsList className="bg-zinc-900 border border-zinc-800 mb-4 h-auto flex-wrap gap-1 p-1">
-          <TabsTrigger value="deepvalue" className="text-xs data-[state=active]:bg-zinc-700">
+        <TabsList className="bg-card border border-border mb-4 h-auto flex-wrap gap-1 p-1">
+          <TabsTrigger value="deepvalue" className="text-xs data-[state=active]:bg-muted">
             <Filter className="w-3.5 h-3.5 mr-1.5" />
             Deep Value
           </TabsTrigger>
-          <TabsTrigger value="magic" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="magic" className="text-xs data-[state=active]:bg-muted">
             <Award className="w-3.5 h-3.5 mr-1.5" />
             Magic Formula
           </TabsTrigger>
-          <TabsTrigger value="acquirers" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="acquirers" className="text-xs data-[state=active]:bg-muted">
             <Target className="w-3.5 h-3.5 mr-1.5" />
             Acquirer&apos;s Multiple
           </TabsTrigger>
-          <TabsTrigger value="qualityvalue" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="qualityvalue" className="text-xs data-[state=active]:bg-muted">
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             Quality-Value
           </TabsTrigger>
-          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-muted">
             <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
             Backtest
           </TabsTrigger>
@@ -1185,9 +1185,9 @@ export default function QuantValuePage() {
       </Tabs>
 
       {/* Footer note */}
-      <div className="mt-8 flex items-start gap-2 p-3 bg-zinc-900/50 border border-zinc-800 rounded-lg">
-        <Info className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
-        <p className="text-xs text-zinc-500">
+      <div className="mt-8 flex items-start gap-2 p-3 bg-card/50 border border-border rounded-lg">
+        <Info className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+        <p className="text-xs text-muted-foreground">
           All stock data is synthetically generated using a seeded PRNG (seed 742005) for educational and simulation purposes.
           Tickers represent real company names for context but figures do not reflect actual market data.
           Quantitative value investing has empirical academic support (Fama-French, Greenblatt, Tobias Carlisle) but involves significant risk and is not investment advice.

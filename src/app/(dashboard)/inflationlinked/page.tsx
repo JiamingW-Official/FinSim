@@ -198,7 +198,7 @@ function StatChip({
   color?: "default" | "green" | "red" | "amber" | "blue";
 }) {
   const colors = {
-    default: "bg-white/5 text-slate-300 border-white/10",
+    default: "bg-white/5 text-muted-foreground border-white/10",
     green: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
     red: "bg-red-500/10 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
@@ -206,7 +206,7 @@ function StatChip({
   };
   return (
     <div className={cn("rounded-lg border px-3 py-2 text-center", colors[color])}>
-      <p className="text-xs text-slate-500 mb-0.5">{label}</p>
+      <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
       <p className="text-sm font-semibold">{value}</p>
     </div>
   );
@@ -272,7 +272,7 @@ function TipsMechanicsTab() {
       <SectionCard title="TIPS Inflation Accrual Calculator" icon={Calculator}>
         <div className="grid grid-cols-2 gap-3 mb-4 sm:grid-cols-4">
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Par Value ($)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Par Value ($)</label>
             <input
               type="number"
               value={par}
@@ -281,7 +281,7 @@ function TipsMechanicsTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Real Coupon Rate (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Real Coupon Rate (%)</label>
             <input
               type="number"
               step="0.1"
@@ -291,7 +291,7 @@ function TipsMechanicsTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Base CPI</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Base CPI</label>
             <input
               type="number"
               value={cpiStart}
@@ -300,7 +300,7 @@ function TipsMechanicsTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Current CPI</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Current CPI</label>
             <input
               type="number"
               value={cpiCurrent}
@@ -318,7 +318,7 @@ function TipsMechanicsTab() {
               "flex items-center gap-2 text-xs px-3 py-1.5 rounded border transition-colors",
               deflationMode
                 ? "bg-amber-500/15 border-amber-500/30 text-amber-400"
-                : "bg-white/5 border-white/10 text-slate-400"
+                : "bg-white/5 border-white/10 text-muted-foreground"
             )}
           >
             <AlertTriangle className="w-3 h-3" />
@@ -348,7 +348,7 @@ function TipsMechanicsTab() {
           />
         </div>
 
-        <div className="mt-3 p-3 rounded bg-primary/8 border border-border text-xs text-slate-300 space-y-1">
+        <div className="mt-3 p-3 rounded bg-primary/8 border border-border text-xs text-muted-foreground space-y-1">
           <p>
             <span className="text-primary font-medium">Formula:</span> Adjusted Principal = Par × (Current CPI / Base CPI)
           </p>
@@ -450,7 +450,7 @@ function TipsMechanicsTab() {
             );
           })()}
         </svg>
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           Starting par ${par.toLocaleString()} accretes to ~${accretionData[10].principal.toLocaleString()} over 10 years at 2.5% annual CPI. Coupon payments also rise proportionally.
         </p>
       </SectionCard>
@@ -460,7 +460,7 @@ function TipsMechanicsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-slate-500 border-b border-white/8">
+              <tr className="text-muted-foreground border-b border-white/8">
                 <th className="text-left py-2 pr-3">Market</th>
                 <th className="text-left py-2 pr-3">Instrument</th>
                 <th className="text-right py-2 pr-3">Size</th>
@@ -476,18 +476,18 @@ function TipsMechanicsTab() {
                   <td className="py-2 pr-3 text-white font-medium">
                     {m.flag} {m.country}
                   </td>
-                  <td className="py-2 pr-3 text-slate-400">{m.instrument}</td>
-                  <td className="py-2 pr-3 text-right text-slate-300">{m.marketSize}</td>
+                  <td className="py-2 pr-3 text-muted-foreground">{m.instrument}</td>
+                  <td className="py-2 pr-3 text-right text-muted-foreground">{m.marketSize}</td>
                   <td className={cn("py-2 pr-3 text-right font-medium", m.realYield > 0 ? "text-emerald-400" : "text-red-400")}>
                     {m.realYield > 0 ? "+" : ""}{m.realYield.toFixed(2)}%
                   </td>
                   <td className="py-2 pr-3 text-right text-amber-400">{m.breakeven.toFixed(2)}%</td>
-                  <td className="py-2 pr-3 text-slate-400">{m.maturityRange}</td>
+                  <td className="py-2 pr-3 text-muted-foreground">{m.maturityRange}</td>
                   <td className="py-2 text-center">
                     {m.deflationProtection ? (
                       <span className="text-emerald-400">✓</span>
                     ) : (
-                      <span className="text-slate-600">–</span>
+                      <span className="text-muted-foreground">–</span>
                     )}
                   </td>
                 </tr>
@@ -495,7 +495,7 @@ function TipsMechanicsTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 mt-2">Real yields and breakevens as of simulated data. UK linkers index to RPI (not CPI).</p>
+        <p className="text-xs text-muted-foreground mt-2">Real yields and breakevens as of simulated data. UK linkers index to RPI (not CPI).</p>
       </SectionCard>
     </div>
   );
@@ -558,7 +558,7 @@ function RealYieldsTab() {
       <SectionCard title="Breakeven Inflation & Fisher Equation" icon={Calculator}>
         <div className="grid grid-cols-3 gap-3 mb-4">
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">10Y Nominal Yield (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">10Y Nominal Yield (%)</label>
             <input
               type="number"
               step="0.05"
@@ -568,7 +568,7 @@ function RealYieldsTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">10Y TIPS Yield (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">10Y TIPS Yield (%)</label>
             <input
               type="number"
               step="0.05"
@@ -578,7 +578,7 @@ function RealYieldsTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Expected Inflation (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Expected Inflation (%)</label>
             <input
               type="number"
               step="0.05"
@@ -602,20 +602,20 @@ function RealYieldsTab() {
 
         <div className="p-3 rounded bg-white/4 border border-white/8 space-y-1.5 text-xs">
           <div className="flex justify-between">
-            <span className="text-slate-400">Fisher Equation:</span>
+            <span className="text-muted-foreground">Fisher Equation:</span>
             <span className="text-white font-mono">(1 + r_nominal) = (1 + r_real) × (1 + inflation)</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-slate-400">Simplified Fisher:</span>
+            <span className="text-muted-foreground">Simplified Fisher:</span>
             <span className="text-white font-mono">r_real ≈ r_nominal − inflation</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-slate-400">Current breakeven:</span>
+            <span className="text-muted-foreground">Current breakeven:</span>
             <span className="text-amber-400 font-mono">{nominalYield.toFixed(2)}% − {tipsYield.toFixed(2)}% = {breakeven.toFixed(2)}%</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-slate-400">TIPS vs Nominal decision:</span>
-            <span className={cn("font-mono", breakeven < inflationExp ? "text-emerald-400" : "text-slate-300")}>
+            <span className="text-muted-foreground">TIPS vs Nominal decision:</span>
+            <span className={cn("font-mono", breakeven < inflationExp ? "text-emerald-400" : "text-muted-foreground")}>
               {breakeven < inflationExp
                 ? `TIPS preferred (expected ${inflationExp}% > breakeven ${breakeven.toFixed(2)}%)`
                 : `Nominals preferred (expected ${inflationExp}% < breakeven ${breakeven.toFixed(2)}%)`}
@@ -755,7 +755,7 @@ function RealYieldsTab() {
             );
           })()}
         </svg>
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           Shaded red region = negative real yields (2010–2022 era of ZIRP/QE). TIPS offer a real floor.
         </p>
       </SectionCard>
@@ -815,7 +815,7 @@ function DurationRiskTab() {
       <SectionCard title="TIPS Duration Calculator" icon={Calculator}>
         <div className="grid grid-cols-2 gap-3 mb-4 sm:grid-cols-5">
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Maturity (yrs)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Maturity (yrs)</label>
             <input
               type="number"
               value={maturity}
@@ -824,7 +824,7 @@ function DurationRiskTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Real Coupon (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Real Coupon (%)</label>
             <input
               type="number"
               step="0.1"
@@ -834,7 +834,7 @@ function DurationRiskTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Real Yield (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Real Yield (%)</label>
             <input
               type="number"
               step="0.05"
@@ -844,7 +844,7 @@ function DurationRiskTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Nominal Yield (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Nominal Yield (%)</label>
             <input
               type="number"
               step="0.05"
@@ -854,7 +854,7 @@ function DurationRiskTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-slate-400 mb-1 block">Exp. Inflation (%)</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Exp. Inflation (%)</label>
             <input
               type="number"
               step="0.05"
@@ -878,7 +878,7 @@ function DurationRiskTab() {
           <StatChip label="Real Dur < Mod Dur" value={`${modDur - realDur > 0 ? "−" : "+"}${Math.abs(modDur - realDur).toFixed(2)}y`} color="default" />
         </div>
 
-        <div className="mt-3 p-3 rounded bg-white/4 border border-white/8 text-xs text-slate-300 space-y-1">
+        <div className="mt-3 p-3 rounded bg-white/4 border border-white/8 text-xs text-muted-foreground space-y-1">
           <p><span className="text-primary">Modified Duration</span>: sensitivity to changes in real yields. A {modDur.toFixed(1)}y ModDur means ~{modDur.toFixed(1)}% price change per 100bps real yield shift.</p>
           <p><span className="text-primary">Real Duration</span>: further adjusted for inflation expectations — TIPS have lower interest rate risk in real terms than ModDur implies.</p>
           <p><span className="text-primary">Key insight</span>: TIPS carry inflation risk on the accreted principal, but this is the risk you <em>want</em> when hedging inflation.</p>
@@ -890,7 +890,7 @@ function DurationRiskTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-slate-500 border-b border-white/8">
+              <tr className="text-muted-foreground border-b border-white/8">
                 <th className="text-left py-2 pr-3">Asset</th>
                 <th className="text-right py-2 pr-3">Inflation Beta</th>
                 <th className="text-right py-2 pr-3">Correlation</th>
@@ -904,10 +904,10 @@ function DurationRiskTab() {
                   <td className={cn("py-2 pr-3 text-right font-semibold font-mono", row.beta > 0.5 ? "text-emerald-400" : row.beta < 0 ? "text-red-400" : "text-amber-400")}>
                     {row.beta > 0 ? "+" : ""}{row.beta.toFixed(2)}
                   </td>
-                  <td className={cn("py-2 pr-3 text-right font-mono", row.correlation > 0.4 ? "text-emerald-400" : row.correlation < 0 ? "text-red-400" : "text-slate-300")}>
+                  <td className={cn("py-2 pr-3 text-right font-mono", row.correlation > 0.4 ? "text-emerald-400" : row.correlation < 0 ? "text-red-400" : "text-muted-foreground")}>
                     {row.correlation > 0 ? "+" : ""}{row.correlation.toFixed(2)}
                   </td>
-                  <td className="py-2 text-slate-400">{row.description}</td>
+                  <td className="py-2 text-muted-foreground">{row.description}</td>
                 </tr>
               ))}
             </tbody>
@@ -946,7 +946,7 @@ function DurationRiskTab() {
             );
           })}
         </svg>
-        <p className="text-xs text-slate-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           TIPS show low/negative correlation to equities and slightly positive to nominal bonds — a useful diversifier.
         </p>
       </SectionCard>
@@ -1036,7 +1036,7 @@ function InflationHedgingTab() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-muted-foreground">
           Current regime: Mild overshoot (2–3%). Breakeven inflation at 2.35% suggests market expects modest price pressures to persist. TIPS modestly attractive vs nominals at current levels.
         </p>
       </SectionCard>
@@ -1052,7 +1052,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/8"
+                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-white/8"
               )}
             >
               {sc}
@@ -1064,9 +1064,9 @@ function InflationHedgingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/8">
-                <th className="text-left py-2 pr-3 text-slate-500">Scenario</th>
+                <th className="text-left py-2 pr-3 text-muted-foreground">Scenario</th>
                 {HEDGING_ASSETS.map((a) => (
-                  <th key={a} className="text-center py-2 px-2 text-slate-500">{a}</th>
+                  <th key={a} className="text-center py-2 px-2 text-muted-foreground">{a}</th>
                 ))}
               </tr>
             </thead>
@@ -1079,7 +1079,7 @@ function InflationHedgingTab() {
                     si === selectedScenario ? "bg-primary/5" : "hover:bg-white/3"
                   )}
                 >
-                  <td className={cn("py-2 pr-3 font-medium", si === selectedScenario ? "text-primary" : "text-slate-300")}>
+                  <td className={cn("py-2 pr-3 font-medium", si === selectedScenario ? "text-primary" : "text-muted-foreground")}>
                     {sc}
                   </td>
                   {HEDGING_MATRIX[si].map((score, ai) => (
@@ -1100,7 +1100,7 @@ function InflationHedgingTab() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
-            className="text-xs text-slate-400 mt-2"
+            className="text-xs text-muted-foreground mt-2"
           >
             {scenarioDesc[selectedScenario]}
           </motion.p>
@@ -1118,7 +1118,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/8"
+                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-white/8"
               )}
             >
               {sc}
@@ -1174,7 +1174,7 @@ function InflationHedgingTab() {
             );
           })}
         </svg>
-        <p className="text-xs text-slate-500 mt-1">Simulated annualized expected returns under each inflation scenario. TIPS are the most consistent across regimes.</p>
+        <p className="text-xs text-muted-foreground mt-1">Simulated annualized expected returns under each inflation scenario. TIPS are the most consistent across regimes.</p>
       </SectionCard>
 
       {/* Portfolio allocation recommendations */}
@@ -1188,7 +1188,7 @@ function InflationHedgingTab() {
                 "text-xs px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-white/5 border-white/10 text-slate-400 hover:bg-white/8"
+                  : "bg-white/5 border-white/10 text-muted-foreground hover:bg-white/8"
               )}
             >
               {r.scenario}
@@ -1214,7 +1214,7 @@ function InflationHedgingTab() {
               const val = currentRec[key as keyof typeof currentRec] as number;
               return (
                 <div key={key} className="rounded-lg border border-white/8 bg-white/3 p-2 text-center">
-                  <div className="text-[11px] text-slate-500 mb-1">{label}</div>
+                  <div className="text-[11px] text-muted-foreground mb-1">{label}</div>
                   <div className="text-lg font-bold" style={{ color }}>{val}%</div>
                   <div className="w-full bg-white/5 rounded-full h-1.5 mt-1">
                     <div className="h-1.5 rounded-full" style={{ width: `${val}%`, backgroundColor: color, opacity: 0.8 }} />
@@ -1224,7 +1224,7 @@ function InflationHedgingTab() {
             })}
           </motion.div>
         </AnimatePresence>
-        <p className="text-xs text-slate-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           Allocations are illustrative. In stagflation, avoid long-duration nominals; overweight real assets, gold, and short-duration TIPS. In low inflation, trim TIPS and overweight equities.
         </p>
       </SectionCard>
@@ -1251,7 +1251,7 @@ export default function InflationLinkedPage() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">Inflation-Linked Bonds</h1>
-              <p className="text-sm text-slate-400">TIPS mechanics, real yields, breakeven inflation &amp; hedging strategies</p>
+              <p className="text-sm text-muted-foreground">TIPS mechanics, real yields, breakeven inflation &amp; hedging strategies</p>
             </div>
           </div>
 
@@ -1312,8 +1312,8 @@ export default function InflationLinkedPage() {
 
         {/* Footer disclaimer */}
         <div className="mt-8 p-3 rounded-lg border border-white/6 bg-white/2 flex items-start gap-2">
-          <Info className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-slate-500">
+          <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-muted-foreground">
             All yield data, breakevens, and returns are simulated for educational purposes. TIPS returns depend on actual realized CPI vs breakeven at purchase. Real past performance varies; consult a financial advisor before investing in inflation-linked securities.
           </p>
         </div>

@@ -286,14 +286,14 @@ function MechanicsTab() {
       {/* Header */}
       <div>
         <h2 className="text-xl font-semibold text-white mb-1">SPAC Mechanics</h2>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           How Special Purpose Acquisition Companies work from IPO to merger completion.
         </p>
       </div>
 
       {/* Lifecycle SVG Timeline */}
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
-        <h3 className="text-sm font-medium text-zinc-300 mb-5">SPAC Lifecycle</h3>
+      <div className="bg-card rounded-xl border border-border p-6">
+        <h3 className="text-sm font-medium text-muted-foreground mb-5">SPAC Lifecycle</h3>
         <div className="overflow-x-auto">
           <svg width="720" height="180" viewBox="0 0 720 180" className="w-full">
             {/* Connector line */}
@@ -358,18 +358,18 @@ function MechanicsTab() {
             })}
           </svg>
         </div>
-        <p className="text-xs text-zinc-500 mt-2 text-center">Click a step to learn more</p>
+        <p className="text-xs text-muted-foreground mt-2 text-center">Click a step to learn more</p>
       </div>
 
       {/* Key Structure Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Trust Account */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Lock className="w-4 h-4 text-emerald-400" />
             <span className="text-sm font-medium text-white">Trust Account</span>
           </div>
-          <p className="text-xs text-zinc-400 mb-3">
+          <p className="text-xs text-muted-foreground mb-3">
             100% of IPO proceeds are held in a segregated trust invested in U.S. T-Bills. The sponsor cannot touch this
             money unless a deal is approved.
           </p>
@@ -381,7 +381,7 @@ function MechanicsTab() {
               { label: "If no deal found", value: "Trust returned to shareholders" },
             ].map((item) => (
               <div key={item.label} className="flex justify-between text-xs">
-                <span className="text-zinc-500">{item.label}</span>
+                <span className="text-muted-foreground">{item.label}</span>
                 <span className="text-emerald-400 font-medium">{item.value}</span>
               </div>
             ))}
@@ -389,19 +389,19 @@ function MechanicsTab() {
         </div>
 
         {/* Sponsor Promote */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <DollarSign className="w-4 h-4 text-amber-400" />
             <span className="text-sm font-medium text-white">Sponsor Promote (20%)</span>
           </div>
-          <p className="text-xs text-zinc-400 mb-3">
+          <p className="text-xs text-muted-foreground mb-3">
             Sponsors receive 20% of post-IPO shares for nominal consideration (~$25K). This &quot;promote&quot; is the
             primary incentive for sponsors.
           </p>
           <div className="space-y-1.5">
             {Object.entries(sponsorPromoteInfo).map(([k, v]) => (
               <div key={k} className="flex justify-between text-xs">
-                <span className="text-zinc-500">{k.replace(/([A-Z])/g, " $1").trim()}</span>
+                <span className="text-muted-foreground">{k.replace(/([A-Z])/g, " $1").trim()}</span>
                 <span className="text-amber-400 font-medium">{v}</span>
               </div>
             ))}
@@ -409,12 +409,12 @@ function MechanicsTab() {
         </div>
 
         {/* Warrants */}
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-white">Warrants</span>
           </div>
-          <p className="text-xs text-zinc-400 mb-3">
+          <p className="text-xs text-muted-foreground mb-3">
             Each SPAC unit includes fractional warrants — typically ½ or 1 warrant per unit — exercisable at $11.50 per
             share after deal close.
           </p>
@@ -427,7 +427,7 @@ function MechanicsTab() {
               { label: "Black-Scholes value", value: "$1.50–$3.00" },
             ].map((item) => (
               <div key={item.label} className="flex justify-between text-xs">
-                <span className="text-zinc-500">{item.label}</span>
+                <span className="text-muted-foreground">{item.label}</span>
                 <span className="text-primary font-medium">{item.value}</span>
               </div>
             ))}
@@ -436,12 +436,12 @@ function MechanicsTab() {
       </div>
 
       {/* Redemption Rights Explainer */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-white">Redemption Rights — The NAV Floor</span>
         </div>
-        <p className="text-xs text-zinc-400 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           SPAC shareholders who vote against a deal (or choose not to vote) can redeem their shares at approximately
           $10.00 plus accrued trust interest. This creates an effective downside floor unique to SPACs.
         </p>
@@ -457,10 +457,10 @@ function MechanicsTab() {
             { label: "Redemption window", value: "10 days before vote", color: "text-amber-400", desc: "Must elect by deadline" },
             { label: "Warrants after redemption", value: "Retained", color: "text-primary", desc: "Keep optionality" },
           ].map((item) => (
-            <div key={item.label} className="bg-zinc-800 rounded-lg p-3">
+            <div key={item.label} className="bg-muted rounded-lg p-3">
               <div className={`text-base font-bold ${item.color}`}>{item.value}</div>
-              <div className="text-xs font-medium text-zinc-300 mt-0.5">{item.label}</div>
-              <div className="text-xs text-zinc-500 mt-0.5">{item.desc}</div>
+              <div className="text-xs font-medium text-muted-foreground mt-0.5">{item.label}</div>
+              <div className="text-xs text-muted-foreground mt-0.5">{item.desc}</div>
             </div>
           ))}
         </div>
@@ -488,37 +488,37 @@ function DealAnalysisTab() {
     <div className="space-y-8">
       <div>
         <h2 className="text-xl font-semibold text-white mb-1">Deal Analysis</h2>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           SPAC vs. traditional IPO mechanics, dilution calculations, and de-SPAC deal metrics.
         </p>
       </div>
 
       {/* SPAC vs IPO comparison table */}
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-5">
-        <h3 className="text-sm font-medium text-zinc-300 mb-4">SPAC vs. Traditional IPO</h3>
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">SPAC vs. Traditional IPO</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left py-2 pr-4 text-xs font-medium text-zinc-500">Metric</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 pr-4 text-xs font-medium text-muted-foreground">Metric</th>
                 <th className="text-left py-2 pr-4 text-xs font-medium text-primary">SPAC Route</th>
                 <th className="text-left py-2 pr-4 text-xs font-medium text-emerald-400">Traditional IPO</th>
-                <th className="text-left py-2 text-xs font-medium text-zinc-500">Edge</th>
+                <th className="text-left py-2 text-xs font-medium text-muted-foreground">Edge</th>
               </tr>
             </thead>
             <tbody>
               {COMPARISON_ROWS.map((row, i) => (
-                <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/40 transition-colors">
-                  <td className="py-2.5 pr-4 text-zinc-300 text-xs font-medium">{row.metric}</td>
-                  <td className="py-2.5 pr-4 text-xs text-zinc-400">{row.spac}</td>
-                  <td className="py-2.5 pr-4 text-xs text-zinc-400">{row.ipo}</td>
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/40 transition-colors">
+                  <td className="py-2.5 pr-4 text-muted-foreground text-xs font-medium">{row.metric}</td>
+                  <td className="py-2.5 pr-4 text-xs text-muted-foreground">{row.spac}</td>
+                  <td className="py-2.5 pr-4 text-xs text-muted-foreground">{row.ipo}</td>
                   <td className="py-2.5 text-xs">
                     {row.winner === "spac" ? (
                       <span className="text-primary font-medium">SPAC</span>
                     ) : row.winner === "ipo" ? (
                       <span className="text-emerald-400 font-medium">IPO</span>
                     ) : (
-                      <span className="text-zinc-500">Tie</span>
+                      <span className="text-muted-foreground">Tie</span>
                     )}
                   </td>
                 </tr>
@@ -529,9 +529,9 @@ function DealAnalysisTab() {
       </div>
 
       {/* Deal list */}
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800">
-        <div className="px-5 py-4 border-b border-zinc-800">
-          <h3 className="text-sm font-medium text-zinc-300">Active SPAC Deals — Click to Analyze</h3>
+      <div className="bg-card rounded-xl border border-border">
+        <div className="px-5 py-4 border-b border-border">
+          <h3 className="text-sm font-medium text-muted-foreground">Active SPAC Deals — Click to Analyze</h3>
         </div>
         <div className="divide-y divide-zinc-800">
           {deals.map((deal) => {
@@ -542,14 +542,14 @@ function DealAnalysisTab() {
                 key={deal.ticker}
                 onClick={() => setSelectedDeal(selectedDeal?.ticker === deal.ticker ? null : deal)}
                 className={cn(
-                  "px-5 py-3 cursor-pointer hover:bg-zinc-800/50 transition-colors",
-                  selectedDeal?.ticker === deal.ticker && "bg-zinc-800/70"
+                  "px-5 py-3 cursor-pointer hover:bg-muted/50 transition-colors",
+                  selectedDeal?.ticker === deal.ticker && "bg-muted/70"
                 )}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-bold text-white font-mono">{deal.ticker}</span>
-                    <span className="text-xs text-zinc-400 hidden sm:block">{deal.name}</span>
+                    <span className="text-xs text-muted-foreground hidden sm:block">{deal.name}</span>
                     <span
                       className={cn(
                         "text-xs px-2 py-0.5 rounded-full font-medium",
@@ -567,24 +567,24 @@ function DealAnalysisTab() {
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="text-right hidden md:block">
-                      <div className="text-xs text-zinc-500">Target</div>
-                      <div className="text-xs text-zinc-300">{deal.target}</div>
+                      <div className="text-xs text-muted-foreground">Target</div>
+                      <div className="text-xs text-muted-foreground">{deal.target}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-zinc-500">Price</div>
+                      <div className="text-xs text-muted-foreground">Price</div>
                       <div className="text-xs text-white font-medium">${deal.currentPrice.toFixed(2)}</div>
                     </div>
                     <div className="text-right">
-                      <div className="text-xs text-zinc-500">vs NAV</div>
+                      <div className="text-xs text-muted-foreground">vs NAV</div>
                       <div className={cn("text-xs font-medium", discPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                         {discPct >= 0 ? "+" : ""}
                         {discPct.toFixed(1)}%
                       </div>
                     </div>
                     {selectedDeal?.ticker === deal.ticker ? (
-                      <ChevronUp className="w-4 h-4 text-zinc-500" />
+                      <ChevronUp className="w-4 h-4 text-muted-foreground" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-zinc-500" />
+                      <ChevronDown className="w-4 h-4 text-muted-foreground" />
                     )}
                   </div>
                 </div>
@@ -608,14 +608,14 @@ function DealAnalysisTab() {
                             { label: "Sponsor Shares", value: `${d.sponsorSharesMn.toFixed(1)}M`, color: "text-orange-400" },
                             { label: "Total Dilution", value: `${d.dilutionPct.toFixed(1)}%`, color: "text-red-400" },
                           ].map((item) => (
-                            <div key={item.label} className="bg-zinc-900 border border-zinc-700 rounded-lg p-3">
-                              <div className="text-xs text-zinc-500">{item.label}</div>
+                            <div key={item.label} className="bg-card border border-border rounded-lg p-3">
+                              <div className="text-xs text-muted-foreground">{item.label}</div>
                               <div className={`text-sm font-bold mt-0.5 ${item.color}`}>{item.value}</div>
                             </div>
                           ));
                         })()}
                       </div>
-                      <div className="mt-3 flex items-center gap-2 text-xs text-zinc-500">
+                      <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
                         <AlertTriangle className="w-3 h-3 text-amber-400" />
                         <span>
                           {deal.daysToDeadline} days until deadline &bull; {deal.sector} sector &bull; Warrant strike $
@@ -703,19 +703,19 @@ function WarrantValuationTab() {
     <div className="space-y-8">
       <div>
         <h2 className="text-xl font-semibold text-white mb-1">Warrant Valuation</h2>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           SPAC warrants are embedded call options. Understand their pricing, behavior, and trading strategies.
         </p>
       </div>
 
       {/* Interactive Warrant Pricer */}
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-5">
-        <h3 className="text-sm font-medium text-zinc-300 mb-5">Black-Scholes Warrant Pricer</h3>
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-medium text-muted-foreground mb-5">Black-Scholes Warrant Pricer</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Controls */}
           <div className="space-y-5">
             <div>
-              <label className="text-xs text-zinc-400 block mb-1.5">
+              <label className="text-xs text-muted-foreground block mb-1.5">
                 Stock Price: <span className="text-white font-medium">${stockPrice.toFixed(2)}</span>
               </label>
               <input
@@ -727,13 +727,13 @@ function WarrantValuationTab() {
                 onChange={(e) => setStockPrice(parseFloat(e.target.value))}
                 className="w-full accent-blue-500"
               />
-              <div className="flex justify-between text-xs text-zinc-600 mt-1">
+              <div className="flex justify-between text-xs text-muted-foreground mt-1">
                 <span>$5</span>
                 <span>$35</span>
               </div>
             </div>
             <div>
-              <label className="text-xs text-zinc-400 block mb-1.5">
+              <label className="text-xs text-muted-foreground block mb-1.5">
                 Implied Volatility: <span className="text-white font-medium">{vol}%</span>
               </label>
               <input
@@ -745,18 +745,18 @@ function WarrantValuationTab() {
                 onChange={(e) => setVol(parseInt(e.target.value))}
                 className="w-full accent-blue-500"
               />
-              <div className="flex justify-between text-xs text-zinc-600 mt-1">
+              <div className="flex justify-between text-xs text-muted-foreground mt-1">
                 <span>20%</span>
                 <span>120%</span>
               </div>
             </div>
-            <div className="bg-zinc-800 rounded-lg p-4 space-y-2">
+            <div className="bg-muted rounded-lg p-4 space-y-2">
               {[
                 { label: "Warrant (BS) Value", value: `$${warrantPrice.toFixed(2)}`, color: "text-primary" },
                 { label: "Intrinsic Value", value: `$${intrinsicValue.toFixed(2)}`, color: "text-emerald-400" },
                 { label: "Time / Extrinsic Value", value: `$${timeValue.toFixed(2)}`, color: "text-amber-400" },
-                { label: "Strike Price", value: `$${K}`, color: "text-zinc-300" },
-                { label: "Time to Expiry", value: `${T} years`, color: "text-zinc-300" },
+                { label: "Strike Price", value: `$${K}`, color: "text-muted-foreground" },
+                { label: "Time to Expiry", value: `${T} years`, color: "text-muted-foreground" },
                 {
                   label: "Moneyness",
                   value: stockPrice > K ? "ITM" : stockPrice < K ? "OTM" : "ATM",
@@ -764,7 +764,7 @@ function WarrantValuationTab() {
                 },
               ].map((item) => (
                 <div key={item.label} className="flex justify-between text-xs">
-                  <span className="text-zinc-500">{item.label}</span>
+                  <span className="text-muted-foreground">{item.label}</span>
                   <span className={`font-medium ${item.color}`}>{item.value}</span>
                 </div>
               ))}
@@ -773,7 +773,7 @@ function WarrantValuationTab() {
 
           {/* Payoff Diagram */}
           <div>
-            <div className="text-xs text-zinc-500 mb-2">Payoff at Expiry (vs. Stock Price)</div>
+            <div className="text-xs text-muted-foreground mb-2">Payoff at Expiry (vs. Stock Price)</div>
             <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
               {/* Grid lines */}
               {[-10, -5, 0, 5, 10, 15, 20].map((val) => (
@@ -849,12 +849,12 @@ function WarrantValuationTab() {
 
       {/* Post-merger warrant behavior */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
             <span className="text-sm font-medium text-white">Warrant vs Common Trade</span>
           </div>
-          <p className="text-xs text-zinc-400 mb-3">
+          <p className="text-xs text-muted-foreground mb-3">
             Pre-announcement, warrants trade at implied volatility of the deal. Post-announcement, correlation to common
             stock increases dramatically.
           </p>
@@ -865,9 +865,9 @@ function WarrantValuationTab() {
               { phase: "Deal announced", warrantVal: "$1.50–$4.00", leverage: "~3–5x", risk: "High" },
               { phase: "Post-merger", warrantVal: "Market price", leverage: "~2–4x", risk: "Very High" },
             ].map((row, i) => (
-              <div key={i} className="bg-zinc-800 rounded p-2.5 text-xs">
-                <div className="text-zinc-300 font-medium mb-1">{row.phase}</div>
-                <div className="flex gap-4 text-zinc-500">
+              <div key={i} className="bg-muted rounded p-2.5 text-xs">
+                <div className="text-muted-foreground font-medium mb-1">{row.phase}</div>
+                <div className="flex gap-4 text-muted-foreground">
                   <span>
                     Value: <span className="text-primary">{row.warrantVal}</span>
                   </span>
@@ -883,7 +883,7 @@ function WarrantValuationTab() {
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             <span className="text-sm font-medium text-white">Key Warrant Risks</span>
@@ -914,8 +914,8 @@ function WarrantValuationTab() {
               <div key={i} className="flex gap-2.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
                 <div>
-                  <div className="text-xs font-medium text-zinc-300">{item.risk}</div>
-                  <div className="text-xs text-zinc-500 mt-0.5">{item.desc}</div>
+                  <div className="text-xs font-medium text-muted-foreground">{item.risk}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{item.desc}</div>
                 </div>
               </div>
             ))}
@@ -990,16 +990,16 @@ function HistoricalPerformanceTab() {
     <div className="space-y-8">
       <div>
         <h2 className="text-xl font-semibold text-white mb-1">Historical Performance</h2>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Pre-merger vs. post-merger returns, the SPAC bubble cycle, and sector analysis.
         </p>
       </div>
 
       {/* Performance Chart */}
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-5">
+      <div className="bg-card rounded-xl border border-border p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-medium text-zinc-300">SPAC Returns by Year — Pre-Merger vs. Post-Merger</h3>
-          <div className="flex gap-4 text-xs text-zinc-500">
+          <h3 className="text-sm font-medium text-muted-foreground">SPAC Returns by Year — Pre-Merger vs. Post-Merger</h3>
+          <div className="flex gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1">
               <span className="w-3 h-2 inline-block bg-primary/60 rounded-sm" />
               Pre-Merger
@@ -1065,7 +1065,7 @@ function HistoricalPerformanceTab() {
             SPAC Bubble
           </text>
         </svg>
-        <p className="text-xs text-zinc-600 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           * Pre-merger returns shown as bars (annualized). Post-merger returns are median de-SPAC performance.
         </p>
       </div>
@@ -1078,17 +1078,17 @@ function HistoricalPerformanceTab() {
           { label: "SPAC Peak Year", value: "2021", sub: "$162B raised in SPACs", color: "text-amber-400" },
           { label: "Beat Traditional IPO", value: "22%", sub: "% of de-SPACs that outperformed", color: "text-emerald-400" },
         ].map((item) => (
-          <div key={item.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+          <div key={item.label} className="bg-card border border-border rounded-xl p-4">
             <div className={`text-xl font-bold ${item.color}`}>{item.value}</div>
-            <div className="text-xs font-medium text-zinc-300 mt-0.5">{item.label}</div>
-            <div className="text-xs text-zinc-600 mt-0.5">{item.sub}</div>
+            <div className="text-xs font-medium text-muted-foreground mt-0.5">{item.label}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{item.sub}</div>
           </div>
         ))}
       </div>
 
       {/* Sector Breakdown */}
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-5">
-        <h3 className="text-sm font-medium text-zinc-300 mb-4">SPAC Volume by Sector (2019–2025)</h3>
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">SPAC Volume by Sector (2019–2025)</h3>
         <div className="flex flex-col md:flex-row gap-6 items-center">
           {/* Pie Chart */}
           <svg width={200} height={190} viewBox="0 0 200 190" className="shrink-0">
@@ -1115,14 +1115,14 @@ function HistoricalPerformanceTab() {
             {sectorData.map((d, i) => (
               <div key={i} className="flex items-center gap-2">
                 <div className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ backgroundColor: d.color }} />
-                <span className="text-xs text-zinc-400 w-24 shrink-0">{d.sector}</span>
-                <div className="flex-1 bg-zinc-800 rounded-full h-1.5 relative">
+                <span className="text-xs text-muted-foreground w-24 shrink-0">{d.sector}</span>
+                <div className="flex-1 bg-muted rounded-full h-1.5 relative">
                   <div
                     className="h-full rounded-full"
                     style={{ width: `${(d.count / total) * 100}%`, backgroundColor: d.color }}
                   />
                 </div>
-                <span className="text-xs text-zinc-500 w-12 text-right">{d.count} deals</span>
+                <span className="text-xs text-muted-foreground w-12 text-right">{d.count} deals</span>
                 <span
                   className={cn(
                     "text-xs font-medium w-16 text-right",
@@ -1134,13 +1134,13 @@ function HistoricalPerformanceTab() {
                 </span>
               </div>
             ))}
-            <div className="text-xs text-zinc-600 pt-1">Last column: avg 12-month post-merger return by sector</div>
+            <div className="text-xs text-muted-foreground pt-1">Last column: avg 12-month post-merger return by sector</div>
           </div>
         </div>
       </div>
 
       {/* Bubble / Bust narrative */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <BarChart2 className="w-4 h-4 text-amber-400" />
           <span className="text-sm font-medium text-white">The SPAC Bubble & Bust Cycle (2020–2022)</span>
@@ -1166,12 +1166,12 @@ function HistoricalPerformanceTab() {
               metrics: ["Smaller SPACs ($200–400M)", "Higher trust yield (4–5%)", "Fewer but higher quality deals"],
             },
           ].map((phase, i) => (
-            <div key={i} className={`bg-zinc-800 border ${phase.color} rounded-lg p-3`}>
-              <div className="font-medium text-zinc-200 mb-1.5">{phase.phase}</div>
-              <p className="text-zinc-400 mb-2 leading-relaxed">{phase.desc}</p>
+            <div key={i} className={`bg-muted border ${phase.color} rounded-lg p-3`}>
+              <div className="font-medium text-foreground mb-1.5">{phase.phase}</div>
+              <p className="text-muted-foreground mb-2 leading-relaxed">{phase.desc}</p>
               <ul className="space-y-0.5">
                 {phase.metrics.map((m, j) => (
-                  <li key={j} className="flex items-center gap-1.5 text-zinc-500">
+                  <li key={j} className="flex items-center gap-1.5 text-muted-foreground">
                     <ArrowRight className="w-3 h-3" />
                     {m}
                   </li>
@@ -1267,34 +1267,34 @@ function InvestorStrategyTab() {
     <div className="space-y-8">
       <div>
         <h2 className="text-xl font-semibold text-white mb-1">Investor Strategy</h2>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Five proven SPAC investment approaches — from conservative arbitrage to aggressive warrant speculation.
         </p>
       </div>
 
       {/* Quick Strategy Comparison Table */}
-      <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-5">
-        <h3 className="text-sm font-medium text-zinc-300 mb-4">Strategy Comparison</h3>
+      <div className="bg-card rounded-xl border border-border p-5">
+        <h3 className="text-sm font-medium text-muted-foreground mb-4">Strategy Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left py-2 pr-3 text-zinc-500 font-medium">Strategy</th>
-                <th className="text-left py-2 pr-3 text-zinc-500 font-medium">Mechanism</th>
-                <th className="text-left py-2 pr-3 text-zinc-500 font-medium">Return Range</th>
-                <th className="text-left py-2 pr-3 text-zinc-500 font-medium">Risk</th>
-                <th className="text-left py-2 text-zinc-500 font-medium">Horizon</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Strategy</th>
+                <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Mechanism</th>
+                <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Return Range</th>
+                <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Risk</th>
+                <th className="text-left py-2 text-muted-foreground font-medium">Horizon</th>
               </tr>
             </thead>
             <tbody>
               {STRATEGY_ROWS.map((row, i) => (
                 <tr
                   key={i}
-                  className="border-b border-zinc-800/50 hover:bg-zinc-800/40 transition-colors cursor-pointer"
+                  className="border-b border-border/50 hover:bg-muted/40 transition-colors cursor-pointer"
                   onClick={() => setActiveStrategy(activeStrategy === i ? null : i)}
                 >
                   <td className="py-2.5 pr-3 text-white font-medium">{row.strategy}</td>
-                  <td className="py-2.5 pr-3 text-zinc-400">{row.mechanism}</td>
+                  <td className="py-2.5 pr-3 text-muted-foreground">{row.mechanism}</td>
                   <td
                     className={cn(
                       "py-2.5 pr-3 font-medium",
@@ -1315,7 +1315,7 @@ function InvestorStrategyTab() {
                   >
                     {row.risk}
                   </td>
-                  <td className="py-2.5 text-zinc-400">{row.horizon}</td>
+                  <td className="py-2.5 text-muted-foreground">{row.horizon}</td>
                 </tr>
               ))}
             </tbody>
@@ -1331,11 +1331,11 @@ function InvestorStrategyTab() {
           return (
             <div
               key={i}
-              className={cn("bg-zinc-900 border rounded-xl overflow-hidden", isOpen ? strat.borderColor : "border-zinc-800")}
+              className={cn("bg-card border rounded-xl overflow-hidden", isOpen ? strat.borderColor : "border-border")}
             >
               <button
                 onClick={() => setActiveStrategy(isOpen ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-zinc-800/30 transition-colors"
+                className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-muted/30 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", strat.bgColor)}>
@@ -1343,15 +1343,15 @@ function InvestorStrategyTab() {
                   </div>
                   <div>
                     <div className="text-sm font-medium text-white">{strat.title}</div>
-                    <div className="text-xs text-zinc-500">
+                    <div className="text-xs text-muted-foreground">
                       Risk: <span className={strat.color}>{strat.risk}</span> &bull; Return: {strat.return}
                     </div>
                   </div>
                 </div>
                 {isOpen ? (
-                  <ChevronUp className="w-4 h-4 text-zinc-500" />
+                  <ChevronUp className="w-4 h-4 text-muted-foreground" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-zinc-500" />
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
                 )}
               </button>
 
@@ -1364,19 +1364,19 @@ function InvestorStrategyTab() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-5 pb-5 border-t border-zinc-800">
+                    <div className="px-5 pb-5 border-t border-border">
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
                         {/* How it works */}
                         <div>
-                          <div className="text-xs font-medium text-zinc-400 mb-2 flex items-center gap-1.5">
+                          <div className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1.5">
                             <Info className="w-3 h-3" /> How it works
                           </div>
-                          <p className="text-xs text-zinc-400 leading-relaxed">{strat.how}</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{strat.how}</p>
                           <div className="mt-3">
-                            <div className="text-xs font-medium text-zinc-500 mb-1">Key metrics to track:</div>
+                            <div className="text-xs font-medium text-muted-foreground mb-1">Key metrics to track:</div>
                             <ul className="space-y-0.5">
                               {strat.keyMetrics.map((m, j) => (
-                                <li key={j} className="text-xs text-zinc-500 flex items-center gap-1">
+                                <li key={j} className="text-xs text-muted-foreground flex items-center gap-1">
                                   <ArrowRight className="w-3 h-3 shrink-0" />
                                   {m}
                                 </li>
@@ -1391,7 +1391,7 @@ function InvestorStrategyTab() {
                           </div>
                           <ul className="space-y-1.5">
                             {strat.pros.map((pro, j) => (
-                              <li key={j} className="flex gap-2 text-xs text-zinc-400">
+                              <li key={j} className="flex gap-2 text-xs text-muted-foreground">
                                 <span className="text-emerald-400 mt-0.5 shrink-0">+</span>
                                 {pro}
                               </li>
@@ -1405,7 +1405,7 @@ function InvestorStrategyTab() {
                           </div>
                           <ul className="space-y-1.5">
                             {strat.cons.map((con, j) => (
-                              <li key={j} className="flex gap-2 text-xs text-zinc-400">
+                              <li key={j} className="flex gap-2 text-xs text-muted-foreground">
                                 <span className="text-red-400 mt-0.5 shrink-0">−</span>
                                 {con}
                               </li>
@@ -1423,8 +1423,8 @@ function InvestorStrategyTab() {
       </div>
 
       {/* Bottom disclaimer */}
-      <div className="flex items-start gap-2.5 bg-zinc-900 border border-zinc-800 rounded-xl p-4 text-xs text-zinc-500">
-        <Info className="w-4 h-4 text-zinc-600 shrink-0 mt-0.5" />
+      <div className="flex items-start gap-2.5 bg-card border border-border rounded-xl p-4 text-xs text-muted-foreground">
+        <Info className="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
         <span>
           All strategies carry risk. SPAC investing requires careful due diligence. Historical SPAC returns have been
           negative for most post-merger investors. Pre-merger arbitrage strategies depend on trust account integrity and
@@ -1447,7 +1447,7 @@ export default function SpacInvestingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Page Header */}
         <motion.div
@@ -1462,7 +1462,7 @@ export default function SpacInvestingPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">SPAC Investing</h1>
-              <p className="text-sm text-zinc-500">Special Purpose Acquisition Companies — mechanics, analysis & strategy</p>
+              <p className="text-sm text-muted-foreground">Special Purpose Acquisition Companies — mechanics, analysis & strategy</p>
             </div>
           </div>
           {/* Quick stats bar */}
@@ -1474,8 +1474,8 @@ export default function SpacInvestingPage() {
               { label: "Avg Deal Size", value: "$312M", color: "text-amber-400" },
               { label: "Typical Warrant Strike", value: "$11.50", color: "text-primary" },
             ].map((stat) => (
-              <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-1.5">
-                <span className="text-xs text-zinc-500">{stat.label}: </span>
+              <div key={stat.label} className="bg-card border border-border rounded-lg px-3 py-1.5">
+                <span className="text-xs text-muted-foreground">{stat.label}: </span>
                 <span className={cn("text-xs font-semibold", stat.color)}>{stat.value}</span>
               </div>
             ))}
@@ -1484,14 +1484,14 @@ export default function SpacInvestingPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="mechanics">
-          <TabsList className="bg-zinc-900 border border-zinc-800 p-1 mb-6 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-card border border-border p-1 mb-6 flex flex-wrap gap-1 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 text-xs data-[state=active]:bg-zinc-800 data-[state=active]:text-white text-zinc-500"
+                  className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {tab.label}

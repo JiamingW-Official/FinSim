@@ -352,7 +352,7 @@ function FormulaCard({
       >
         {formula}
       </div>
-      <div className="text-xs text-zinc-400">{description}</div>
+      <div className="text-xs text-muted-foreground">{description}</div>
     </div>
   );
 }
@@ -369,8 +369,8 @@ function StatChip({
   up?: boolean;
 }) {
   return (
-    <div className="flex flex-col items-center bg-zinc-800/60 rounded-lg px-4 py-2 min-w-[90px]">
-      <div className="text-xs text-zinc-400 mb-0.5">{label}</div>
+    <div className="flex flex-col items-center bg-muted/60 rounded-lg px-4 py-2 min-w-[90px]">
+      <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
       <div
         className="text-base font-bold"
         style={{ color: color ?? (up === undefined ? "#e4e4e7" : up ? "#22c55e" : "#ef4444") }}
@@ -450,9 +450,9 @@ function BHBTab() {
       </div>
 
       {/* Waterfall SVG */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Return Decomposition — Waterfall
           </CardTitle>
         </CardHeader>
@@ -518,9 +518,9 @@ function BHBTab() {
       </Card>
 
       {/* Sector breakdown table */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Sector-Level Attribution — Click a row to inspect
           </CardTitle>
         </CardHeader>
@@ -528,7 +528,7 @@ function BHBTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-zinc-400 border-b border-zinc-800">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2 pr-3">Sector</th>
                   <th className="text-right py-2 px-2">Port Wt</th>
                   <th className="text-right py-2 px-2">Bmk Wt</th>
@@ -544,7 +544,7 @@ function BHBTab() {
                 {sectors.map((s) => (
                   <tr
                     key={s.sector}
-                    className="border-b border-zinc-800/50 hover:bg-zinc-800/40 cursor-pointer transition-colors"
+                    className="border-b border-border/50 hover:bg-muted/40 cursor-pointer transition-colors"
                     style={
                       selectedSector === s.sector
                         ? { background: s.color + "18" }
@@ -562,14 +562,14 @@ function BHBTab() {
                       {s.sector}
                     </td>
                     <td className="text-right px-2">{pct(s.portfolioWeight)}</td>
-                    <td className="text-right px-2 text-zinc-400">{pct(s.benchmarkWeight)}</td>
+                    <td className="text-right px-2 text-muted-foreground">{pct(s.benchmarkWeight)}</td>
                     <td
                       className="text-right px-2 font-medium"
                       style={{ color: s.portfolioReturn >= 0 ? "#22c55e" : "#ef4444" }}
                     >
                       {pct(s.portfolioReturn)}
                     </td>
-                    <td className="text-right px-2 text-zinc-400">{pct(s.benchmarkReturn)}</td>
+                    <td className="text-right px-2 text-muted-foreground">{pct(s.benchmarkReturn)}</td>
                     <td
                       className="text-right px-2"
                       style={{ color: s.allocationEffect >= 0 ? "#22c55e" : "#ef4444" }}
@@ -583,7 +583,7 @@ function BHBTab() {
                       {bps(s.selectionEffect)}
                     </td>
                     <td
-                      className="text-right px-2 text-zinc-400"
+                      className="text-right px-2 text-muted-foreground"
                     >
                       {bps(s.interactionEffect)}
                     </td>
@@ -595,7 +595,7 @@ function BHBTab() {
                     </td>
                   </tr>
                 ))}
-                <tr className="border-t border-zinc-600 font-bold text-zinc-200">
+                <tr className="border-t border-border font-bold text-foreground">
                   <td className="py-2 pr-3">TOTAL</td>
                   <td className="text-right px-2">{pct(sectors.reduce((a, s) => a + s.portfolioWeight, 0))}</td>
                   <td className="text-right px-2">{pct(sectors.reduce((a, s) => a + s.benchmarkWeight, 0))}</td>
@@ -609,7 +609,7 @@ function BHBTab() {
                   <td className="text-right px-2" style={{ color: totalSel >= 0 ? "#22c55e" : "#ef4444" }}>
                     {bps(totalSel)}
                   </td>
-                  <td className="text-right px-2 text-zinc-400">{bps(totalInt)}</td>
+                  <td className="text-right px-2 text-muted-foreground">{bps(totalInt)}</td>
                   <td className="text-right px-2" style={{ color: activeReturn >= 0 ? "#22c55e" : "#ef4444" }}>
                     {bps(activeReturn)}
                   </td>
@@ -629,7 +629,7 @@ function BHBTab() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
           >
-            <Card className="border-zinc-700 bg-zinc-900/80" style={{ borderColor: sel.color + "60" }}>
+            <Card className="border-border bg-card/80" style={{ borderColor: sel.color + "60" }}>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm" style={{ color: sel.color }}>
                   {sel.sector} — Worked Example
@@ -638,8 +638,8 @@ function BHBTab() {
               <CardContent className="space-y-3 text-xs">
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-2">
-                    <div className="text-zinc-400 font-semibold uppercase tracking-wide">Allocation Effect</div>
-                    <div className="font-mono text-zinc-300">
+                    <div className="text-muted-foreground font-semibold uppercase tracking-wide">Allocation Effect</div>
+                    <div className="font-mono text-muted-foreground">
                       = (w_p − w_b) × (R_b,sector − R_b,total)
                     </div>
                     <div className="font-mono" style={{ color: sel.color }}>
@@ -650,8 +650,8 @@ function BHBTab() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-zinc-400 font-semibold uppercase tracking-wide">Selection Effect</div>
-                    <div className="font-mono text-zinc-300">
+                    <div className="text-muted-foreground font-semibold uppercase tracking-wide">Selection Effect</div>
+                    <div className="font-mono text-muted-foreground">
                       = w_b × (R_p,sector − R_b,sector)
                     </div>
                     <div className="font-mono" style={{ color: sel.color }}>
@@ -663,8 +663,8 @@ function BHBTab() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <div className="text-zinc-400 font-semibold uppercase tracking-wide">Interaction Effect</div>
-                  <div className="font-mono text-zinc-300">
+                  <div className="text-muted-foreground font-semibold uppercase tracking-wide">Interaction Effect</div>
+                  <div className="font-mono text-muted-foreground">
                     = (w_p − w_b) × (R_p,sector − R_b,sector) — combined active decisions
                   </div>
                   <div className="font-bold text-sm" style={{ color: "#06b6d4" }}>
@@ -700,30 +700,30 @@ function BHBTab() {
       </div>
 
       {/* Currency attribution add-on */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
             Currency Attribution Add-On (Global Portfolios)
           </CardTitle>
         </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-zinc-300">
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div className="space-y-2">
-            <div className="text-zinc-400 font-semibold uppercase tracking-wide">Currency Effect</div>
-            <div className="font-mono bg-zinc-800 rounded px-3 py-2 text-amber-300">
+            <div className="text-muted-foreground font-semibold uppercase tracking-wide">Currency Effect</div>
+            <div className="font-mono bg-muted rounded px-3 py-2 text-amber-300">
               Currency = w_b × (FX_local − FX_base)
             </div>
-            <p className="text-zinc-400">
+            <p className="text-muted-foreground">
               Isolates the return contribution from currency movements independently from local asset returns.
               A manager can deliver strong local returns but negative total returns when the base currency strengthens.
             </p>
           </div>
           <div className="space-y-2">
-            <div className="text-zinc-400 font-semibold uppercase tracking-wide">Hedging Overlay Impact</div>
-            <div className="font-mono bg-zinc-800 rounded px-3 py-2 text-primary">
+            <div className="text-muted-foreground font-semibold uppercase tracking-wide">Hedging Overlay Impact</div>
+            <div className="font-mono bg-muted rounded px-3 py-2 text-primary">
               Overlay = Σ hedge_notional × (F_locked − spot)
             </div>
-            <p className="text-zinc-400">
+            <p className="text-muted-foreground">
               Measures the P&L from currency forwards and options used to hedge or express views.
               Reported separately to avoid contaminating security selection attribution.
             </p>
@@ -758,9 +758,9 @@ function FactorTab() {
       </div>
 
       {/* FF5 bar chart */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Fama-French 5-Factor Contributions to Active Return
           </CardTitle>
         </CardHeader>
@@ -880,18 +880,18 @@ function FactorTab() {
                 {bps(f.contribution)}
               </Badge>
             </div>
-            <div className="text-xs text-zinc-400 mb-2">{f.description}</div>
+            <div className="text-xs text-muted-foreground mb-2">{f.description}</div>
             <div className="grid grid-cols-3 gap-1 text-xs">
               <div>
-                <div className="text-zinc-500">Exposure</div>
-                <div className="font-mono text-zinc-200">{fmt2(f.exposure)}</div>
+                <div className="text-muted-foreground">Exposure</div>
+                <div className="font-mono text-foreground">{fmt2(f.exposure)}</div>
               </div>
               <div>
-                <div className="text-zinc-500">Fac Ret</div>
-                <div className="font-mono text-zinc-200">{pct(f.factorReturn)}</div>
+                <div className="text-muted-foreground">Fac Ret</div>
+                <div className="font-mono text-foreground">{pct(f.factorReturn)}</div>
               </div>
               <div>
-                <div className="text-zinc-500">t-stat</div>
+                <div className="text-muted-foreground">t-stat</div>
                 <div
                   className="font-mono font-bold"
                   style={{
@@ -908,13 +908,13 @@ function FactorTab() {
 
       {/* R-squared and style box */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-zinc-800 bg-zinc-900/60">
+        <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Model Quality — R² = {(rSquared * 100).toFixed(1)}%
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-zinc-400 space-y-2">
+          <CardContent className="text-xs text-muted-foreground space-y-2">
             <p>
               <span className="text-indigo-400 font-semibold">R² = 0.87</span> means 87% of the
               portfolio&apos;s return variation is explained by the 5 systematic factors.
@@ -930,16 +930,16 @@ function FactorTab() {
                 <div key={range} className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: color }} />
                   <span className="font-mono text-xs" style={{ color }}>{range}</span>
-                  <span className="text-zinc-500">{label}</span>
+                  <span className="text-muted-foreground">{label}</span>
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-zinc-800 bg-zinc-900/60">
+        <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-zinc-200">Style Box Analysis</CardTitle>
+            <CardTitle className="text-sm font-semibold text-foreground">Style Box Analysis</CardTitle>
           </CardHeader>
           <CardContent>
             <svg viewBox="0 0 200 180" className="w-full max-w-xs mx-auto">
@@ -992,9 +992,9 @@ function FactorTab() {
       </div>
 
       {/* Fixed income factor attribution */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Fixed Income Factor Attribution
           </CardTitle>
@@ -1124,10 +1124,10 @@ function RiskTab() {
       {/* Metric cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {metrics.map((m) => (
-          <Card key={m.name} className="border-zinc-800 bg-zinc-900/60" style={{ borderColor: m.color + "30" }}>
+          <Card key={m.name} className="border-border bg-card/60" style={{ borderColor: m.color + "30" }}>
             <CardContent className="pt-4 pb-4">
               <div className="flex justify-between items-center mb-2">
-                <div className="text-sm font-semibold text-zinc-200">{m.name}</div>
+                <div className="text-sm font-semibold text-foreground">{m.name}</div>
                 <div className="text-xl font-bold" style={{ color: m.color }}>
                   {m.value.toFixed(2)}
                 </div>
@@ -1138,9 +1138,9 @@ function RiskTab() {
               >
                 {m.formula}
               </div>
-              <div className="text-xs text-zinc-400 mb-3">{m.interpretation}</div>
+              <div className="text-xs text-muted-foreground mb-3">{m.interpretation}</div>
               <div className="flex items-center gap-2 text-xs">
-                <span className="text-zinc-500">vs Benchmark:</span>
+                <span className="text-muted-foreground">vs Benchmark:</span>
                 <span
                   className="font-semibold"
                   style={{
@@ -1163,8 +1163,8 @@ function RiskTab() {
               {/* Bar comparison */}
               <div className="mt-2 space-y-1">
                 <div className="flex items-center gap-2">
-                  <div className="text-xs text-zinc-500 w-12">Port</div>
-                  <div className="flex-1 bg-zinc-800 rounded-full h-2">
+                  <div className="text-xs text-muted-foreground w-12">Port</div>
+                  <div className="flex-1 bg-muted rounded-full h-2">
                     <div
                       className="h-2 rounded-full transition-all"
                       style={{
@@ -1175,8 +1175,8 @@ function RiskTab() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="text-xs text-zinc-500 w-12">Bmk</div>
-                  <div className="flex-1 bg-zinc-800 rounded-full h-2">
+                  <div className="text-xs text-muted-foreground w-12">Bmk</div>
+                  <div className="flex-1 bg-muted rounded-full h-2">
                     <div
                       className="h-2 rounded-full"
                       style={{
@@ -1193,10 +1193,10 @@ function RiskTab() {
       </div>
 
       {/* Drawdown chart */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Drawdown Analysis
             </CardTitle>
             <div className="flex gap-3 text-xs">
@@ -1229,9 +1229,9 @@ function RiskTab() {
       </Card>
 
       {/* Rolling Sharpe */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Rolling 12-Month Sharpe Ratio
           </CardTitle>
         </CardHeader>
@@ -1275,14 +1275,14 @@ function RiskTab() {
       </Card>
 
       {/* Benchmark impact note */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Info className="w-4 h-4 text-primary" />
             Benchmark Selection Impact
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-xs text-zinc-400 space-y-2">
+        <CardContent className="text-xs text-muted-foreground space-y-2">
           <p>
             All risk-adjusted metrics are highly sensitive to benchmark choice.
             A manager with beta 1.2 who uses a low-volatility benchmark will appear to have
@@ -1294,10 +1294,10 @@ function RiskTab() {
               { bmk: "Russell 2000 (β≈1.3)", ir: "0.42", sharpe: "0.98", color: "#f59e0b" },
               { bmk: "T-Bill (β≈0)", ir: "2.10", sharpe: "1.24", color: "#22c55e" },
             ].map(({ bmk, ir, sharpe, color }) => (
-              <div key={bmk} className="rounded-lg border border-zinc-700 p-3" style={{ borderColor: color + "40" }}>
+              <div key={bmk} className="rounded-lg border border-border p-3" style={{ borderColor: color + "40" }}>
                 <div className="font-semibold text-xs mb-1" style={{ color }}>{bmk}</div>
-                <div>IR: <span className="font-bold text-zinc-200">{ir}</span></div>
-                <div>Sharpe: <span className="font-bold text-zinc-200">{sharpe}</span></div>
+                <div>IR: <span className="font-bold text-foreground">{ir}</span></div>
+                <div>Sharpe: <span className="font-bold text-foreground">{sharpe}</span></div>
               </div>
             ))}
           </div>
@@ -1353,9 +1353,9 @@ function ManagerTab() {
   return (
     <div className="space-y-6">
       {/* Manager comparison table */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Users className="w-4 h-4 text-indigo-400" />
             Peer Group Comparison — Manager Universe
           </CardTitle>
@@ -1364,7 +1364,7 @@ function ManagerTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-zinc-400 border-b border-zinc-800">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left py-2 pr-3">Manager</th>
                   <th className="text-right py-2 px-2">Alpha</th>
                   <th className="text-right py-2 px-2">t-stat</th>
@@ -1388,7 +1388,7 @@ function ManagerTab() {
                     luck: "#ef4444",
                   }[m.skill];
                   return (
-                    <tr key={m.name} className="border-b border-zinc-800/50 hover:bg-zinc-800/40">
+                    <tr key={m.name} className="border-b border-border/50 hover:bg-muted/40">
                       <td className="py-2 pr-3">
                         <span
                           className="inline-block w-2 h-2 rounded-full mr-2"
@@ -1423,8 +1423,8 @@ function ManagerTab() {
                       >
                         {mtr}y {hasSufficientTrack ? "✓" : "—"}
                       </td>
-                      <td className="text-right px-2 text-zinc-300">${m.aum.toFixed(0)}M</td>
-                      <td className="text-right px-2 text-zinc-400">{m.fees}</td>
+                      <td className="text-right px-2 text-muted-foreground">${m.aum.toFixed(0)}M</td>
+                      <td className="text-right px-2 text-muted-foreground">{m.fees}</td>
                       <td className="text-right px-2">
                         <Badge
                           className="text-xs"
@@ -1455,7 +1455,7 @@ function ManagerTab() {
               </tbody>
             </table>
           </div>
-          <div className="mt-3 text-xs text-zinc-500">
+          <div className="mt-3 text-xs text-muted-foreground">
             Skill verdict requires t-stat &gt; 2.0 (statistically significant at 95% confidence).
             Minimum track record = (2 / IR)² years required to distinguish skill from noise.
           </div>
@@ -1464,9 +1464,9 @@ function ManagerTab() {
 
       {/* Performance persistence SVG */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-zinc-800 bg-zinc-900/60">
+        <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-zinc-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Performance Persistence — Quartile Flow
             </CardTitle>
           </CardHeader>
@@ -1531,26 +1531,26 @@ function ManagerTab() {
         </Card>
 
         {/* Skill vs luck framework */}
-        <Card className="border-zinc-800 bg-zinc-900/60">
+        <Card className="border-border bg-card/60">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+            <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
               <Star className="w-4 h-4 text-amber-400" />
               Skill vs Luck Framework
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-zinc-400 space-y-3">
-            <div className="rounded-lg border border-zinc-700 p-3 space-y-1">
-              <div className="font-semibold text-zinc-200">Alpha t-statistic</div>
+          <CardContent className="text-xs text-muted-foreground space-y-3">
+            <div className="rounded-lg border border-border p-3 space-y-1">
+              <div className="font-semibold text-foreground">Alpha t-statistic</div>
               <div className="font-mono text-indigo-300">t = α / (σ_α / √T)</div>
               <p>Measures statistical significance. Need t &gt; 2.0 for 95% confidence that alpha is not zero.</p>
             </div>
-            <div className="rounded-lg border border-zinc-700 p-3 space-y-1">
-              <div className="font-semibold text-zinc-200">Minimum Track Record (MTR)</div>
+            <div className="rounded-lg border border-border p-3 space-y-1">
+              <div className="font-semibold text-foreground">Minimum Track Record (MTR)</div>
               <div className="font-mono text-indigo-300">MTR = (z_α / IR)² years</div>
               <p>A manager with IR = 0.5 needs (2/0.5)² = 16 years of track record to confirm skill with 95% confidence.</p>
             </div>
-            <div className="rounded-lg border border-zinc-700 p-3 space-y-1">
-              <div className="font-semibold text-zinc-200">Luck Threshold</div>
+            <div className="rounded-lg border border-border p-3 space-y-1">
+              <div className="font-semibold text-foreground">Luck Threshold</div>
               <p>
                 Given 1,000 managers all with zero skill, ~23 will have t-stat &gt; 2.0 purely by chance in any 5-year period.
                 Universe-relative evaluation is essential.
@@ -1561,9 +1561,9 @@ function ManagerTab() {
       </div>
 
       {/* Fee impact SVG */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-red-400" />
             Fee Impact — 8% Gross Return, 30-Year Compound
           </CardTitle>
@@ -1572,15 +1572,15 @@ function ManagerTab() {
           <div className="flex gap-4 mb-3 text-xs">
             <div className="flex items-center gap-2">
               <div className="w-4 h-0.5 bg-green-400" />
-              <span className="text-zinc-400">Gross: ${feeData[30].gross.toFixed(0)}</span>
+              <span className="text-muted-foreground">Gross: ${feeData[30].gross.toFixed(0)}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-0.5 bg-yellow-400" />
-              <span className="text-zinc-400">1% fee: ${feeData[30].net1.toFixed(0)}</span>
+              <span className="text-muted-foreground">1% fee: ${feeData[30].net1.toFixed(0)}</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-0.5 bg-red-400" />
-              <span className="text-zinc-400">2% fee: ${feeData[30].net2.toFixed(0)}</span>
+              <span className="text-muted-foreground">2% fee: ${feeData[30].net2.toFixed(0)}</span>
             </div>
           </div>
           <svg viewBox={`0 0 ${feeW} ${feeH + 20}`} className="w-full" style={{ maxHeight: 180 }}>
@@ -1618,7 +1618,7 @@ function ManagerTab() {
               </text>
             ))}
           </svg>
-          <div className="mt-2 text-xs text-zinc-500">
+          <div className="mt-2 text-xs text-muted-foreground">
             A 2% fee drag reduces terminal wealth by{" "}
             <span className="text-red-400 font-semibold">
               ${(feeData[30].gross - feeData[30].net2).toFixed(0)}
@@ -1633,9 +1633,9 @@ function ManagerTab() {
       </Card>
 
       {/* GIPS compliance */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
             <CheckCircle className="w-4 h-4 text-green-400" />
             GIPS Compliance Requirements
           </CardTitle>
@@ -1643,7 +1643,7 @@ function ManagerTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {gipsRequirements.map((req, i) => (
-              <div key={i} className="flex items-start gap-2 text-xs text-zinc-300">
+              <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                 <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0 mt-0.5" />
                 <span>{req}</span>
               </div>
@@ -1653,9 +1653,9 @@ function ManagerTab() {
       </Card>
 
       {/* Red flags */}
-      <Card className="border-zinc-800 bg-zinc-900/60">
+      <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
             Red Flags in Performance Reporting
           </CardTitle>
@@ -1679,7 +1679,7 @@ function ManagerTab() {
                 <div className="flex items-center justify-between px-3 py-2">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: severityColor }} />
-                    <span className="text-xs font-semibold text-zinc-200">{flag.flag}</span>
+                    <span className="text-xs font-semibold text-foreground">{flag.flag}</span>
                     <Badge
                       className="text-xs capitalize"
                       style={{
@@ -1692,9 +1692,9 @@ function ManagerTab() {
                     </Badge>
                   </div>
                   {isExpanded ? (
-                    <ChevronUp className="w-3.5 h-3.5 text-zinc-500" />
+                    <ChevronUp className="w-3.5 h-3.5 text-muted-foreground" />
                   ) : (
-                    <ChevronDown className="w-3.5 h-3.5 text-zinc-500" />
+                    <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
                   )}
                 </div>
                 <AnimatePresence>
@@ -1705,7 +1705,7 @@ function ManagerTab() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.18 }}
                     >
-                      <div className="px-3 pb-3 text-xs text-zinc-400 border-t border-zinc-800 pt-2">
+                      <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-border pt-2">
                         {flag.detail}
                       </div>
                     </motion.div>
@@ -1724,7 +1724,7 @@ function ManagerTab() {
 
 export default function PerfAttributionPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1737,8 +1737,8 @@ export default function PerfAttributionPage() {
             <BarChart3 className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-zinc-100">Investment Performance Attribution</h1>
-            <p className="text-xs text-zinc-400">
+            <h1 className="text-xl font-bold text-foreground">Investment Performance Attribution</h1>
+            <p className="text-xs text-muted-foreground">
               BHB decomposition · Factor attribution · Risk metrics · Manager evaluation
             </p>
           </div>
@@ -1763,20 +1763,20 @@ export default function PerfAttributionPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="bhb">
-        <TabsList className="bg-zinc-900 border border-zinc-800 mb-6">
-          <TabsTrigger value="bhb" className="data-[state=active]:bg-zinc-800 text-xs">
+        <TabsList className="bg-card border border-border mb-6">
+          <TabsTrigger value="bhb" className="data-[state=active]:bg-muted text-xs">
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             BHB Attribution
           </TabsTrigger>
-          <TabsTrigger value="factor" className="data-[state=active]:bg-zinc-800 text-xs">
+          <TabsTrigger value="factor" className="data-[state=active]:bg-muted text-xs">
             <Activity className="w-3.5 h-3.5 mr-1.5" />
             Factor Attribution
           </TabsTrigger>
-          <TabsTrigger value="risk" className="data-[state=active]:bg-zinc-800 text-xs">
+          <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs">
             <Percent className="w-3.5 h-3.5 mr-1.5" />
             Risk-Adjusted Metrics
           </TabsTrigger>
-          <TabsTrigger value="manager" className="data-[state=active]:bg-zinc-800 text-xs">
+          <TabsTrigger value="manager" className="data-[state=active]:bg-muted text-xs">
             <Award className="w-3.5 h-3.5 mr-1.5" />
             Manager Evaluation
           </TabsTrigger>

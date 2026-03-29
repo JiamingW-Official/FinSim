@@ -334,7 +334,7 @@ function DonutChart({ data }: { data: AssetClass[] }) {
             <text x={cx} y={cy - 10} textAnchor="middle" className="fill-white font-semibold" style={{ fontSize: 13 }}>
               {hoveredSlice.name}
             </text>
-            <text x={cx} y={cy + 10} textAnchor="middle" className="fill-slate-300" style={{ fontSize: 12 }}>
+            <text x={cx} y={cy + 10} textAnchor="middle" className="fill-muted-foreground" style={{ fontSize: 12 }}>
               ${hoveredSlice.marketSize}B
             </text>
             <text x={cx} y={cy + 26} textAnchor="middle" style={{ fontSize: 11, fill: "#94a3b8" }}>
@@ -363,7 +363,7 @@ function DonutChart({ data }: { data: AssetClass[] }) {
             onMouseLeave={() => setHovered(null)}
           >
             <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: d.color }} />
-            <span className="text-sm text-slate-300 w-36">{d.name}</span>
+            <span className="text-sm text-muted-foreground w-36">{d.name}</span>
             <span className="text-sm font-mono text-white">${d.marketSize}B</span>
             <span className="text-xs text-emerald-400 font-mono">+{d.growth}%</span>
           </div>
@@ -547,7 +547,7 @@ function AdoptionRoadmap({ events }: { events: TimelineEvent[] }) {
         {(Object.entries(catColors) as [TimelineEvent["category"], string][]).map(([cat, color]) => (
           <div key={cat} className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
-            <span className="text-xs text-slate-400">{cat}</span>
+            <span className="text-xs text-muted-foreground">{cat}</span>
           </div>
         ))}
       </div>
@@ -560,24 +560,24 @@ function AdoptionRoadmap({ events }: { events: TimelineEvent[] }) {
 function ExpandableRow({ protocol }: { protocol: (typeof TOP_PROTOCOLS)[0] }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-slate-800 rounded-lg overflow-hidden">
+    <div className="border border-border rounded-lg overflow-hidden">
       <button
-        className="w-full flex items-center justify-between p-3 hover:bg-slate-800/40 transition-colors"
+        className="w-full flex items-center justify-between p-3 hover:bg-muted/40 transition-colors"
         onClick={() => setOpen(!open)}
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
             <Network className="w-4 h-4 text-primary" />
           </div>
           <div className="text-left">
             <p className="text-sm font-semibold text-white">{protocol.name}</p>
-            <p className="text-xs text-slate-400">{protocol.type}</p>
+            <p className="text-xs text-muted-foreground">{protocol.type}</p>
           </div>
         </div>
         <div className="flex items-center gap-4">
           <span className="text-sm font-mono text-emerald-400">${protocol.tvl}M TVL</span>
-          <span className="text-xs text-slate-400">{protocol.chain}</span>
-          {open ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+          <span className="text-xs text-muted-foreground">{protocol.chain}</span>
+          {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
         </div>
       </button>
       <AnimatePresence>
@@ -589,8 +589,8 @@ function ExpandableRow({ protocol }: { protocol: (typeof TOP_PROTOCOLS)[0] }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-3 pt-1 border-t border-slate-800/60 bg-slate-900/40">
-              <p className="text-xs text-slate-300 leading-relaxed">{protocol.description}</p>
+            <div className="px-4 pb-3 pt-1 border-t border-border/60 bg-card/40">
+              <p className="text-xs text-muted-foreground leading-relaxed">{protocol.description}</p>
               <div className="mt-2 flex items-center gap-2">
                 <Badge variant="secondary" className="text-xs bg-emerald-900/30 text-emerald-400 border-emerald-800">
                   {protocol.highlight}
@@ -630,7 +630,7 @@ function DefaultWaterfallDiagram() {
                 <p className="text-sm font-semibold" style={{ color: tier.color }}>
                   {tier.name}
                 </p>
-                <p className="text-xs text-slate-400">{tier.protection}</p>
+                <p className="text-xs text-muted-foreground">{tier.protection}</p>
               </div>
               <div className="text-right">
                 <p className="text-sm font-mono text-white">{tier.percent}%</p>
@@ -642,12 +642,12 @@ function DefaultWaterfallDiagram() {
           </div>
           {i < tiers.length - 1 && (
             <div className="flex justify-center my-1">
-              <ArrowRight className="w-4 h-4 text-slate-600 rotate-90" />
+              <ArrowRight className="w-4 h-4 text-muted-foreground rotate-90" />
             </div>
           )}
         </div>
       ))}
-      <p className="text-xs text-slate-500 mt-2">
+      <p className="text-xs text-muted-foreground mt-2">
         In default: losses absorbed bottom-up. Junior holders lose first; senior holders last.
       </p>
     </div>
@@ -661,7 +661,7 @@ function StatusBadge({ status }: { status: Jurisdiction["status"] }) {
     Favorable: "bg-emerald-900/30 text-emerald-400 border-emerald-800",
     Developing: "bg-yellow-900/30 text-yellow-400 border-yellow-800",
     Restrictive: "bg-red-900/30 text-red-400 border-red-800",
-    Pending: "bg-slate-800 text-slate-400 border-slate-700",
+    Pending: "bg-muted text-muted-foreground border-border",
   };
   return <Badge variant="secondary" className={`text-xs border ${map[status]}`}>{status}</Badge>;
 }
@@ -744,7 +744,7 @@ export default function TokenizationPage() {
   const noiseAt = (i: number) => NOISE[i % NOISE.length];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
@@ -754,7 +754,7 @@ export default function TokenizationPage() {
                 <Coins className="w-6 h-6 text-primary" />
                 <h1 className="text-2xl font-bold text-white">Tokenization of Real-World Assets</h1>
               </div>
-              <p className="text-slate-400 text-sm max-w-2xl">
+              <p className="text-muted-foreground text-sm max-w-2xl">
                 Blockchain-based tokenization is digitizing trillions in real-world assets — from US Treasuries and
                 real estate to private credit. Explore protocols, mechanics, yields, and the evolving regulatory landscape.
               </p>
@@ -781,14 +781,14 @@ export default function TokenizationPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.06 }}
             >
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-1">
                     <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
-                    <span className="text-xs text-slate-400">{kpi.label}</span>
+                    <span className="text-xs text-muted-foreground">{kpi.label}</span>
                   </div>
                   <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
-                  <p className="text-xs text-slate-500">{kpi.sub}</p>
+                  <p className="text-xs text-muted-foreground">{kpi.sub}</p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -797,7 +797,7 @@ export default function TokenizationPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-slate-900 border border-slate-800 flex-wrap h-auto">
+          <TabsList className="bg-card border border-border flex-wrap h-auto">
             <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-primary">
               RWA Overview
             </TabsTrigger>
@@ -818,7 +818,7 @@ export default function TokenizationPage() {
           {/* ── TAB 1: RWA Overview ─────────────────────────────────────────── */}
           <TabsContent value="overview" className="space-y-5 mt-4 data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-primary" />
@@ -830,7 +830,7 @@ export default function TokenizationPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -841,10 +841,10 @@ export default function TokenizationPage() {
                   {ASSET_CLASSES.map((ac) => (
                     <div key={ac.name}>
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-slate-300">{ac.name}</span>
+                        <span className="text-muted-foreground">{ac.name}</span>
                         <span className="text-emerald-400 font-mono">+{ac.growth}% YoY</span>
                       </div>
-                      <Progress value={Math.min((ac.growth / 350) * 100, 100)} className="h-1.5 bg-slate-800" />
+                      <Progress value={Math.min((ac.growth / 350) * 100, 100)} className="h-1.5 bg-muted" />
                     </div>
                   ))}
                 </CardContent>
@@ -852,7 +852,7 @@ export default function TokenizationPage() {
             </div>
 
             {/* Top Protocols */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Network className="w-4 h-4 text-primary" />
@@ -867,7 +867,7 @@ export default function TokenizationPage() {
             </Card>
 
             {/* What is RWA Tokenization */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Layers className="w-4 h-4 text-muted-foreground" />
@@ -896,10 +896,10 @@ export default function TokenizationPage() {
                       color: "text-emerald-400",
                     },
                   ].map((item) => (
-                    <div key={item.step} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                    <div key={item.step} className="p-3 rounded-lg bg-muted/50 border border-border/50">
                       <div className={`text-2xl font-bold ${item.color} mb-1`}>{item.step}</div>
                       <p className="text-sm font-semibold text-white mb-1">{item.title}</p>
-                      <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -910,7 +910,7 @@ export default function TokenizationPage() {
           {/* ── TAB 2: Tokenized Treasuries ─────────────────────────────────── */}
           <TabsContent value="treasuries" className="space-y-5 mt-4 data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <Activity className="w-4 h-4 text-primary" />
@@ -919,13 +919,13 @@ export default function TokenizationPage() {
                 </CardHeader>
                 <CardContent>
                   <YieldComparisonChart />
-                  <p className="text-xs text-slate-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     Tokenized products tend to slightly outperform T-bills due to yield-optimization strategies (e.g., repo overlays).
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <Shield className="w-4 h-4 text-emerald-400" />
@@ -943,7 +943,7 @@ export default function TokenizationPage() {
                       <item.icon className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-xs font-semibold text-white">{item.title}</p>
-                        <p className="text-xs text-slate-400">{item.desc}</p>
+                        <p className="text-xs text-muted-foreground">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -952,7 +952,7 @@ export default function TokenizationPage() {
             </div>
 
             {/* Comparison Table */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <FileText className="w-4 h-4 text-primary" />
@@ -963,11 +963,11 @@ export default function TokenizationPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800">
+                      <tr className="border-b border-border">
                         {(["name", "issuer", "yield", "aum", "chain", "minimum"] as (keyof TreasuryProduct)[]).map((col) => (
                           <th
                             key={col}
-                            className="text-left py-2 px-2 text-slate-400 font-medium cursor-pointer hover:text-white transition-colors"
+                            className="text-left py-2 px-2 text-muted-foreground font-medium cursor-pointer hover:text-white transition-colors"
                             onClick={() => handleSort(col)}
                           >
                             {col === "yield" ? "Yield" :
@@ -988,14 +988,14 @@ export default function TokenizationPage() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: i * 0.04 }}
-                          className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors"
+                          className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                         >
                           <td className="py-2 px-2 font-semibold text-white">{prod.name}</td>
-                          <td className="py-2 px-2 text-slate-300">{prod.issuer}</td>
+                          <td className="py-2 px-2 text-muted-foreground">{prod.issuer}</td>
                           <td className="py-2 px-2 font-mono text-emerald-400">{prod.yield.toFixed(2)}%</td>
                           <td className="py-2 px-2 font-mono text-primary">{prod.aum}</td>
-                          <td className="py-2 px-2 text-slate-400">{prod.chain}</td>
-                          <td className="py-2 px-2 font-mono text-slate-300">
+                          <td className="py-2 px-2 text-muted-foreground">{prod.chain}</td>
+                          <td className="py-2 px-2 font-mono text-muted-foreground">
                             {prod.minimum >= 1000000
                               ? `$${(prod.minimum / 1000000).toFixed(0)}M`
                               : prod.minimum >= 1000
@@ -1011,7 +1011,7 @@ export default function TokenizationPage() {
             </Card>
 
             {/* Risk Considerations */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -1025,7 +1025,7 @@ export default function TokenizationPage() {
                     { title: "Custodian Risk", desc: "Underlying T-bills held by off-chain custodian. Counterparty failure could impair redemption.", severity: "Medium" },
                     { title: "Liquidity Risk", desc: "Secondary market depth is limited. Large redemptions may not settle instantly on-chain.", severity: "Medium" },
                   ].map((r) => (
-                    <div key={r.title} className="p-3 rounded-lg bg-slate-800/40 border border-slate-700/50">
+                    <div key={r.title} className="p-3 rounded-lg bg-muted/40 border border-border/50">
                       <div className="flex justify-between items-start mb-1">
                         <p className="text-xs font-semibold text-white">{r.title}</p>
                         <Badge
@@ -1035,7 +1035,7 @@ export default function TokenizationPage() {
                           {r.severity}
                         </Badge>
                       </div>
-                      <p className="text-xs text-slate-400">{r.desc}</p>
+                      <p className="text-xs text-muted-foreground">{r.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -1046,7 +1046,7 @@ export default function TokenizationPage() {
           {/* ── TAB 3: Real Estate Tokenization ─────────────────────────────── */}
           <TabsContent value="realestate" className="space-y-5 mt-4 data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-primary" />
@@ -1058,7 +1058,7 @@ export default function TokenizationPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <Building2 className="w-4 h-4 text-primary" />
@@ -1066,7 +1066,7 @@ export default function TokenizationPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     A $10M commercial property is wrapped in an LLC. The LLC issues 10,000,000 tokens at $1 each.
                     Investors purchase tokens representing fractional ownership, proportional to token holdings.
                     Rental income is distributed via smart contract — no fund manager needed.
@@ -1078,10 +1078,10 @@ export default function TokenizationPage() {
                       { label: "Dividends", value: "Auto", note: "Smart contract" },
                       { label: "Global Trading", value: "24/7", note: "DEX / ATS" },
                     ].map((item) => (
-                      <div key={item.label} className="p-2 rounded bg-slate-800/50 border border-slate-700/50">
-                        <p className="text-xs text-slate-400">{item.label}</p>
+                      <div key={item.label} className="p-2 rounded bg-muted/50 border border-border/50">
+                        <p className="text-xs text-muted-foreground">{item.label}</p>
                         <p className="text-sm font-bold text-primary">{item.value}</p>
-                        <p className="text-xs text-slate-500">{item.note}</p>
+                        <p className="text-xs text-muted-foreground">{item.note}</p>
                       </div>
                     ))}
                   </div>
@@ -1090,7 +1090,7 @@ export default function TokenizationPage() {
             </div>
 
             {/* Smart Contract Escrow */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Lock className="w-4 h-4 text-muted-foreground" />
@@ -1102,7 +1102,7 @@ export default function TokenizationPage() {
                   {[
                     { step: "Buyer deposits USDC", color: "bg-muted/50 text-primary border-border" },
                     { step: "→", color: "" },
-                    { step: "Escrow contract locks funds", color: "bg-slate-800 text-slate-300 border-slate-700" },
+                    { step: "Escrow contract locks funds", color: "bg-muted text-muted-foreground border-border" },
                     { step: "→", color: "" },
                     { step: "Title verification oracle", color: "bg-amber-900/30 text-amber-400 border-amber-800" },
                     { step: "→", color: "" },
@@ -1111,7 +1111,7 @@ export default function TokenizationPage() {
                     { step: "Funds released to seller", color: "bg-emerald-900/30 text-emerald-400 border-emerald-800" },
                   ].map((item, i) =>
                     item.step === "→" ? (
-                      <ArrowRight key={i} className="w-4 h-4 text-slate-600" />
+                      <ArrowRight key={i} className="w-4 h-4 text-muted-foreground" />
                     ) : (
                       <Badge key={i} variant="secondary" className={`border ${item.color} text-xs`}>
                         {item.step}
@@ -1119,7 +1119,7 @@ export default function TokenizationPage() {
                     )
                   )}
                 </div>
-                <p className="text-xs text-slate-500 mt-3">
+                <p className="text-xs text-muted-foreground mt-3">
                   If title verification fails or deadline expires, escrow automatically refunds buyer.
                   No intermediary needed — gas costs replace closing attorneys.
                 </p>
@@ -1127,7 +1127,7 @@ export default function TokenizationPage() {
             </Card>
 
             {/* Property Token Economics */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Coins className="w-4 h-4 text-amber-400" />
@@ -1137,7 +1137,7 @@ export default function TokenizationPage() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <p className="text-xs text-slate-400 font-semibold">Asset: Manhattan Office Block</p>
+                    <p className="text-xs text-muted-foreground font-semibold">Asset: Manhattan Office Block</p>
                     {[
                       { label: "Property Value", value: "$25,000,000" },
                       { label: "Tokens Issued", value: "25,000,000 PROP" },
@@ -1146,14 +1146,14 @@ export default function TokenizationPage() {
                       { label: "Income per Token/Year", value: "$0.07 (7% yield)" },
                       { label: "Mgmt Fee", value: "0.5% / year (on-chain)" },
                     ].map((row) => (
-                      <div key={row.label} className="flex justify-between text-xs border-b border-slate-800/50 py-1">
-                        <span className="text-slate-400">{row.label}</span>
+                      <div key={row.label} className="flex justify-between text-xs border-b border-border/50 py-1">
+                        <span className="text-muted-foreground">{row.label}</span>
                         <span className="text-white font-mono">{row.value}</span>
                       </div>
                     ))}
                   </div>
                   <div className="space-y-3">
-                    <p className="text-xs text-slate-400 font-semibold">Secondary Market Liquidity</p>
+                    <p className="text-xs text-muted-foreground font-semibold">Secondary Market Liquidity</p>
                     <div className="space-y-2">
                       {[
                         { exchange: "tZERO ATS", volume: "$2.1M/day", spread: "0.3%" },
@@ -1161,10 +1161,10 @@ export default function TokenizationPage() {
                         { exchange: "Archax (UK)", volume: "$450K/day", spread: "0.8%" },
                         { exchange: "DeFi DEX", volume: "$320K/day", spread: "0.6%" },
                       ].map((ex) => (
-                        <div key={ex.exchange} className="flex justify-between items-center text-xs p-2 rounded bg-slate-800/40">
-                          <span className="text-slate-300">{ex.exchange}</span>
+                        <div key={ex.exchange} className="flex justify-between items-center text-xs p-2 rounded bg-muted/40">
+                          <span className="text-muted-foreground">{ex.exchange}</span>
                           <span className="text-primary font-mono">{ex.volume}</span>
-                          <span className="text-slate-500">Spread: {ex.spread}</span>
+                          <span className="text-muted-foreground">Spread: {ex.spread}</span>
                         </div>
                       ))}
                     </div>
@@ -1177,7 +1177,7 @@ export default function TokenizationPage() {
           {/* ── TAB 4: Private Credit On-Chain ──────────────────────────────── */}
           <TabsContent value="credit" className="space-y-5 mt-4 data-[state=inactive]:hidden">
             {/* SPV Structure */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Network className="w-4 h-4 text-muted-foreground" />
@@ -1186,7 +1186,7 @@ export default function TokenizationPage() {
               </CardHeader>
               <CardContent>
                 <SPVStructureDiagram />
-                <p className="text-xs text-slate-500 mt-3">
+                <p className="text-xs text-muted-foreground mt-3">
                   Assets flow from originator into an SPV. The SPV mints tokens representing debt claims.
                   Tokens serve as collateral in DeFi pools, unlocking liquidity for the originator.
                   Investors earn yield from real-world borrower interest payments.
@@ -1195,7 +1195,7 @@ export default function TokenizationPage() {
             </Card>
 
             {/* Protocol Comparison */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-primary" />
@@ -1205,7 +1205,7 @@ export default function TokenizationPage() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {CREDIT_PROTOCOLS.map((proto) => (
-                    <div key={proto.name} className="p-3 rounded-lg bg-slate-800/40 border border-slate-700/50 space-y-2">
+                    <div key={proto.name} className="p-3 rounded-lg bg-muted/40 border border-border/50 space-y-2">
                       <div className="flex justify-between items-start">
                         <p className="text-sm font-bold text-white">{proto.name}</p>
                         <Badge
@@ -1223,19 +1223,19 @@ export default function TokenizationPage() {
                       </div>
                       <div className="space-y-1 text-xs">
                         <div className="flex justify-between">
-                          <span className="text-slate-400">TVL</span>
+                          <span className="text-muted-foreground">TVL</span>
                           <span className="text-primary font-mono">${proto.tvl}M</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-slate-400">Avg APY</span>
+                          <span className="text-muted-foreground">Avg APY</span>
                           <span className="text-emerald-400 font-mono">{proto.avgApy}%</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-slate-400">Historical Default</span>
+                          <span className="text-muted-foreground">Historical Default</span>
                           <span className="text-amber-400 font-mono">{proto.defaultRate}%</span>
                         </div>
                       </div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{proto.mechanism}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{proto.mechanism}</p>
                     </div>
                   ))}
                 </div>
@@ -1244,7 +1244,7 @@ export default function TokenizationPage() {
 
             {/* Default Waterfall */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <Layers className="w-4 h-4 text-red-400" />
@@ -1256,7 +1256,7 @@ export default function TokenizationPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -1271,11 +1271,11 @@ export default function TokenizationPage() {
                     { risk: "Regulatory Clawback", detail: "Cross-border transactions may face retroactive legal challenge." },
                     { risk: "Liquidity Mismatch", detail: "Loan terms (1–3 years) vs LP withdrawal expectations (30 days)." },
                   ].map((item) => (
-                    <div key={item.risk} className="flex items-start gap-2 p-2 rounded bg-slate-800/30 border border-slate-800">
+                    <div key={item.risk} className="flex items-start gap-2 p-2 rounded bg-muted/30 border border-border">
                       <AlertTriangle className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-xs font-semibold text-white">{item.risk}</p>
-                        <p className="text-xs text-slate-400">{item.detail}</p>
+                        <p className="text-xs text-muted-foreground">{item.detail}</p>
                       </div>
                     </div>
                   ))}
@@ -1287,7 +1287,7 @@ export default function TokenizationPage() {
           {/* ── TAB 5: Regulatory Landscape ─────────────────────────────────── */}
           <TabsContent value="regulatory" className="space-y-5 mt-4 data-[state=inactive]:hidden">
             {/* Jurisdiction Table */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Scale className="w-4 h-4 text-primary" />
@@ -1297,21 +1297,21 @@ export default function TokenizationPage() {
               <CardContent>
                 <div className="space-y-3">
                   {JURISDICTIONS.map((jur) => (
-                    <div key={jur.name} className="p-3 rounded-lg bg-slate-800/40 border border-slate-700/50">
+                    <div key={jur.name} className="p-3 rounded-lg bg-muted/40 border border-border/50">
                       <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
                         <div>
                           <p className="text-sm font-semibold text-white">{jur.name}</p>
-                          <p className="text-xs text-slate-400">{jur.framework}</p>
+                          <p className="text-xs text-muted-foreground">{jur.framework}</p>
                         </div>
                         <div className="flex items-center gap-2">
                           <StatusBadge status={jur.status} />
-                          <span className="text-xs text-slate-400 font-mono">Score: {jur.score}/100</span>
+                          <span className="text-xs text-muted-foreground font-mono">Score: {jur.score}/100</span>
                         </div>
                       </div>
-                      <Progress value={jur.score} className="h-1 bg-slate-700 mb-2" />
+                      <Progress value={jur.score} className="h-1 bg-muted mb-2" />
                       <div className="flex flex-wrap gap-1">
                         {jur.keyRegs.map((reg) => (
-                          <Badge key={reg} variant="secondary" className="text-xs bg-slate-800 text-slate-300 border-slate-700">
+                          <Badge key={reg} variant="secondary" className="text-xs bg-muted text-muted-foreground border-border">
                             {reg}
                           </Badge>
                         ))}
@@ -1324,7 +1324,7 @@ export default function TokenizationPage() {
 
             {/* SEC No-Action & MiCA */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <Landmark className="w-4 h-4 text-primary" />
@@ -1332,7 +1332,7 @@ export default function TokenizationPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     The SEC issues no-action letters confirming it will not pursue enforcement against specific tokenized
                     security structures — providing regulatory certainty without formal rulemaking.
                   </p>
@@ -1342,19 +1342,19 @@ export default function TokenizationPage() {
                       { entity: "Prometheum", year: "2023", note: "First SEC-approved special purpose broker-dealer for digital assets" },
                       { entity: "tZERO ATS", year: "2019", note: "No-action for security token secondary trading on ATS platform" },
                     ].map((item) => (
-                      <div key={item.entity} className="p-2 rounded bg-slate-800/40 border border-slate-700/30 text-xs">
+                      <div key={item.entity} className="p-2 rounded bg-muted/40 border border-border/30 text-xs">
                         <div className="flex justify-between mb-0.5">
                           <span className="font-semibold text-white">{item.entity}</span>
-                          <span className="text-slate-500">{item.year}</span>
+                          <span className="text-muted-foreground">{item.year}</span>
                         </div>
-                        <p className="text-slate-400">{item.note}</p>
+                        <p className="text-muted-foreground">{item.note}</p>
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
                     <Globe className="w-4 h-4 text-emerald-400" />
@@ -1362,7 +1362,7 @@ export default function TokenizationPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     Markets in Crypto-Assets (MiCA) — the world's most comprehensive crypto regulatory framework —
                     fully in force December 2024. It categorizes tokens as ART (Asset-Referenced Tokens),
                     EMT (E-Money Tokens), or other crypto-assets.
@@ -1373,9 +1373,9 @@ export default function TokenizationPage() {
                       { cat: "EMT (E-Money Token)", rule: "Backed 1:1 by fiat. Only credit institutions / e-money firms may issue.", color: "text-primary" },
                       { cat: "Security Tokens", rule: "Existing MiFID II rules apply. DLT Pilot Regime for trading & settlement.", color: "text-muted-foreground" },
                     ].map((item) => (
-                      <div key={item.cat} className="p-2 rounded bg-slate-800/40 border border-slate-700/30 text-xs">
+                      <div key={item.cat} className="p-2 rounded bg-muted/40 border border-border/30 text-xs">
                         <p className={`font-semibold mb-0.5 ${item.color}`}>{item.cat}</p>
-                        <p className="text-slate-400">{item.rule}</p>
+                        <p className="text-muted-foreground">{item.rule}</p>
                       </div>
                     ))}
                   </div>
@@ -1384,7 +1384,7 @@ export default function TokenizationPage() {
             </div>
 
             {/* Institutional Adoption Roadmap */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -1397,7 +1397,7 @@ export default function TokenizationPage() {
             </Card>
 
             {/* Institutional Players */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
@@ -1414,7 +1414,7 @@ export default function TokenizationPage() {
                     { name: "Citi", role: "Citi Token Services", status: "Pilot", via: "Permissioned DLT" },
                     { name: "UBS", role: "Tokenized money market fund", status: "Active", via: "Ethereum / Canton" },
                   ].map((inst) => (
-                    <div key={inst.name} className="p-3 rounded-lg bg-slate-800/40 border border-slate-700/50">
+                    <div key={inst.name} className="p-3 rounded-lg bg-muted/40 border border-border/50">
                       <div className="flex justify-between items-start mb-1">
                         <p className="text-sm font-semibold text-white">{inst.name}</p>
                         <Badge
@@ -1428,8 +1428,8 @@ export default function TokenizationPage() {
                           {inst.status}
                         </Badge>
                       </div>
-                      <p className="text-xs text-slate-300">{inst.role}</p>
-                      <p className="text-xs text-slate-500 mt-0.5">Via: {inst.via}</p>
+                      <p className="text-xs text-muted-foreground">{inst.role}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">Via: {inst.via}</p>
                     </div>
                   ))}
                 </div>
@@ -1437,7 +1437,7 @@ export default function TokenizationPage() {
             </Card>
 
             {/* Looking Forward */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <ExternalLink className="w-4 h-4 text-muted-foreground" />
@@ -1472,11 +1472,11 @@ export default function TokenizationPage() {
                       color: "text-muted-foreground",
                     },
                   ].map((item) => (
-                    <div key={item.title} className="flex items-start gap-2 p-3 rounded-lg bg-slate-800/40 border border-slate-700/50">
+                    <div key={item.title} className="flex items-start gap-2 p-3 rounded-lg bg-muted/40 border border-border/50">
                       <item.icon className={`w-4 h-4 ${item.color} mt-0.5 flex-shrink-0`} />
                       <div>
                         <p className="text-xs font-semibold text-white">{item.title}</p>
-                        <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">{item.desc}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
                   ))}

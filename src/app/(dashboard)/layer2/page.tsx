@@ -203,15 +203,15 @@ function StatCard({
     blue: "text-primary",
   };
   return (
-    <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-      <div className="flex items-center gap-2 text-xs text-neutral-400 mb-1">
+    <div className="rounded-lg border border-border bg-card p-4">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
         {icon}
         {label}
       </div>
-      <div className={cn("text-xl font-semibold", highlight ? colors[highlight] : "text-neutral-100")}>
+      <div className={cn("text-xl font-semibold", highlight ? colors[highlight] : "text-foreground")}>
         {value}
       </div>
-      {sub && <div className="text-xs text-neutral-500 mt-0.5">{sub}</div>}
+      {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
     </div>
   );
 }
@@ -219,8 +219,8 @@ function StatCard({
 function SectionHeader({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <div className="mb-6">
-      <h2 className="text-lg font-semibold text-neutral-100">{title}</h2>
-      <p className="text-sm text-neutral-400 mt-1">{subtitle}</p>
+      <h2 className="text-lg font-semibold text-foreground">{title}</h2>
+      <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>
     </div>
   );
 }
@@ -232,7 +232,7 @@ function InfoBox({ title, children }: { title: string; children: React.ReactNode
         <Info size={14} />
         {title}
       </div>
-      <div className="text-sm text-neutral-300 leading-relaxed">{children}</div>
+      <div className="text-sm text-muted-foreground leading-relaxed">{children}</div>
     </div>
   );
 }
@@ -253,8 +253,8 @@ function TVLBarChart() {
   const yLines = [0, 5, 10, 15, 20];
 
   return (
-    <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-      <div className="text-sm font-medium text-neutral-300 mb-3">Total Value Locked (TVL) by L2</div>
+    <div className="rounded-lg border border-border bg-card p-4">
+      <div className="text-sm font-medium text-muted-foreground mb-3">Total Value Locked (TVL) by L2</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
         {yLines.map((v) => {
           const y = padT + (H - padT - padB) * (1 - v / (maxTvl * 1.1));
@@ -299,8 +299,8 @@ function TPSChart() {
   const rowH = (H - padT - padB) / L2_PROTOCOLS.length;
 
   return (
-    <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-      <div className="text-sm font-medium text-neutral-300 mb-3">Transactions Per Second (TPS) Capacity</div>
+    <div className="rounded-lg border border-border bg-card p-4">
+      <div className="text-sm font-medium text-muted-foreground mb-3">Transactions Per Second (TPS) Capacity</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
         {L2_PROTOCOLS.map((p, i) => {
           const y = padT + i * rowH + rowH * 0.1;
@@ -343,14 +343,14 @@ function ScalingLandscape() {
       <TVLBarChart />
       <TPSChart />
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
-        <div className="text-sm font-medium text-neutral-300 p-4 border-b border-neutral-800">
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <div className="text-sm font-medium text-muted-foreground p-4 border-b border-border">
           L2 Protocol Comparison Table
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-neutral-500 border-b border-neutral-800">
+              <tr className="text-xs text-muted-foreground border-b border-border">
                 <th className="text-left px-4 py-2">Network</th>
                 <th className="text-left px-4 py-2">Type</th>
                 <th className="text-right px-4 py-2">TVL</th>
@@ -362,11 +362,11 @@ function ScalingLandscape() {
             </thead>
             <tbody>
               {L2_PROTOCOLS.map((p) => (
-                <tr key={p.name} className="border-b border-neutral-800/60 hover:bg-neutral-800/40 transition-colors">
+                <tr key={p.name} className="border-b border-border/60 hover:bg-muted/40 transition-colors">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
-                      <span className="font-medium text-neutral-200">{p.name}</span>
+                      <span className="font-medium text-foreground">{p.name}</span>
                     </div>
                   </td>
                   <td className="px-4 py-3">
@@ -382,10 +382,10 @@ function ScalingLandscape() {
                       {p.type === "zk" ? "ZK Rollup" : "Optimistic"}
                     </Badge>
                   </td>
-                  <td className="px-4 py-3 text-right font-mono text-neutral-200">{fmtB(p.tvlB)}</td>
-                  <td className="px-4 py-3 text-right font-mono text-neutral-300">{Math.round(p.tps)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-foreground">{fmtB(p.tvlB)}</td>
+                  <td className="px-4 py-3 text-right font-mono text-muted-foreground">{Math.round(p.tps)}</td>
                   <td className="px-4 py-3 text-right font-mono text-green-400">{fmtUSD(p.avgFeeUSD, 3)}</td>
-                  <td className="px-4 py-3 text-right text-neutral-300">{p.protocols}</td>
+                  <td className="px-4 py-3 text-right text-muted-foreground">{p.protocols}</td>
                   <td className="px-4 py-3 text-right">
                     <span className={p.weeklyGrowth >= 0 ? "text-emerald-400" : "text-red-400"}>
                       {fmtPct(p.weeklyGrowth)}
@@ -509,20 +509,20 @@ function RollupTechnology() {
       />
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <div className="rounded-lg border border-border bg-neutral-900 p-4">
+        <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 mb-3">
             <Clock size={16} className="text-orange-400" />
             <span className="text-sm font-medium text-orange-300">Optimistic Rollups</span>
             <Badge variant="outline" className="text-xs border-orange-700 text-orange-400 ml-auto">7-day window</Badge>
           </div>
           <RollupDiagram type="optimistic" />
-          <div className="mt-3 text-xs text-neutral-400 leading-relaxed">
+          <div className="mt-3 text-xs text-muted-foreground leading-relaxed">
             Assume transactions are valid; rely on fraud proofs submitted during a 7-day challenge window
             to catch invalid state transitions. Simple but introduces withdrawal delay.
           </div>
           <div className="mt-2 space-y-1">
             {["Arbitrum (Fraud Proof via BOLD)", "Optimism (Cannon fault proofs)", "Base (OP Stack)"].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-xs text-neutral-400">
+              <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <div className="w-1.5 h-1.5 rounded-full bg-orange-400" />
                 {item}
               </div>
@@ -530,20 +530,20 @@ function RollupTechnology() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-border bg-neutral-900 p-4">
+        <div className="rounded-lg border border-border bg-card p-4">
           <div className="flex items-center gap-2 mb-3">
             <Shield size={16} className="text-primary" />
             <span className="text-sm font-medium text-primary">ZK Rollups</span>
             <Badge variant="outline" className="text-xs border-border text-primary ml-auto">Instant finality</Badge>
           </div>
           <RollupDiagram type="zk" />
-          <div className="mt-3 text-xs text-neutral-400 leading-relaxed">
+          <div className="mt-3 text-xs text-muted-foreground leading-relaxed">
             Cryptographically prove every state transition is valid. No challenge window — finality is
             achieved the moment the L1 verifier contract accepts the ZK proof. Higher computation overhead.
           </div>
           <div className="mt-2 space-y-1">
             {["zkSync Era (zkEVM)", "Starknet (Cairo + STARKs)", "Polygon zkEVM"].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-xs text-neutral-400">
+              <div key={item} className="flex items-center gap-2 text-xs text-muted-foreground">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary" />
                 {item}
               </div>
@@ -552,13 +552,13 @@ function RollupTechnology() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
-        <div className="text-sm font-medium text-neutral-300 p-4 border-b border-neutral-800">
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <div className="text-sm font-medium text-muted-foreground p-4 border-b border-border">
           Head-to-Head Comparison
         </div>
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-xs text-neutral-500 border-b border-neutral-800">
+            <tr className="text-xs text-muted-foreground border-b border-border">
               <th className="text-left px-4 py-2">Feature</th>
               <th className="text-left px-4 py-2 text-orange-400">Optimistic</th>
               <th className="text-left px-4 py-2 text-primary">ZK Rollup</th>
@@ -567,17 +567,17 @@ function RollupTechnology() {
           </thead>
           <tbody>
             {ROLLUP_COMPARE.map((row) => (
-              <tr key={row.feature} className="border-b border-neutral-800/60 hover:bg-neutral-800/40">
-                <td className="px-4 py-2.5 text-neutral-300 font-medium text-xs">{row.feature}</td>
-                <td className="px-4 py-2.5 text-xs text-neutral-400">{row.optimistic}</td>
-                <td className="px-4 py-2.5 text-xs text-neutral-400">{row.zk}</td>
+              <tr key={row.feature} className="border-b border-border/60 hover:bg-muted/40">
+                <td className="px-4 py-2.5 text-muted-foreground font-medium text-xs">{row.feature}</td>
+                <td className="px-4 py-2.5 text-xs text-muted-foreground">{row.optimistic}</td>
+                <td className="px-4 py-2.5 text-xs text-muted-foreground">{row.zk}</td>
                 <td className="px-4 py-2.5 text-center">
                   {row.winner === "zk" ? (
                     <span className="text-xs text-primary font-medium">ZK</span>
                   ) : row.winner === "optimistic" ? (
                     <span className="text-xs text-orange-400 font-medium">Opt.</span>
                   ) : (
-                    <span className="text-xs text-neutral-500">Tie</span>
+                    <span className="text-xs text-muted-foreground">Tie</span>
                   )}
                 </td>
               </tr>
@@ -587,12 +587,12 @@ function RollupTechnology() {
       </div>
 
       <div className="space-y-3">
-        <div className="text-sm font-medium text-neutral-300">Key Concepts</div>
+        <div className="text-sm font-medium text-muted-foreground">Key Concepts</div>
         {Object.entries(details).map(([title, body]) => (
-          <div key={title} className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
+          <div key={title} className="rounded-lg border border-border bg-card overflow-hidden">
             <button
               onClick={() => setExpanded(expanded === title ? null : title)}
-              className="w-full flex items-center justify-between px-4 py-3 text-sm text-neutral-200 hover:bg-neutral-800/50"
+              className="w-full flex items-center justify-between px-4 py-3 text-sm text-foreground hover:bg-muted/50"
             >
               <span className="font-medium">{title}</span>
               {expanded === title ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
@@ -607,7 +607,7 @@ function RollupTechnology() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-4 pb-4 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800">
+                  <div className="px-4 pb-4 text-xs text-muted-foreground leading-relaxed border-t border-border">
                     {body}
                   </div>
                 </motion.div>
@@ -653,8 +653,8 @@ function RevenueBarChart() {
   const rowH = (H - padT - padB) / TOKEN_DATA.length;
 
   return (
-    <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-      <div className="text-sm font-medium text-neutral-300 mb-3">Sequencer Revenue (30-day, $M)</div>
+    <div className="rounded-lg border border-border bg-card p-4">
+      <div className="text-sm font-medium text-muted-foreground mb-3">Sequencer Revenue (30-day, $M)</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
         {TOKEN_DATA.map((t, i) => {
           const y = padT + i * rowH + rowH * 0.1;
@@ -688,8 +688,8 @@ function FeeComparisonChart() {
   const rowH = (H - padT - padB) / FEE_TABLE.length;
 
   return (
-    <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-      <div className="text-sm font-medium text-neutral-300 mb-3">Average Transaction Fee Comparison</div>
+    <div className="rounded-lg border border-border bg-card p-4">
+      <div className="text-sm font-medium text-muted-foreground mb-3">Average Transaction Fee Comparison</div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
         {FEE_TABLE.map((f, i) => {
           const y = padT + i * rowH + rowH * 0.1;
@@ -730,14 +730,14 @@ function L2TokenEconomics() {
       <RevenueBarChart />
       <FeeComparisonChart />
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
-        <div className="text-sm font-medium text-neutral-300 p-4 border-b border-neutral-800">
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <div className="text-sm font-medium text-muted-foreground p-4 border-b border-border">
           Token Utility Matrix
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-neutral-500 border-b border-neutral-800">
+              <tr className="text-xs text-muted-foreground border-b border-border">
                 <th className="text-left px-4 py-2">Token</th>
                 <th className="text-center px-4 py-2">Governance</th>
                 <th className="text-center px-4 py-2">Fee Payment</th>
@@ -748,12 +748,12 @@ function L2TokenEconomics() {
             </thead>
             <tbody>
               {TOKEN_DATA.map((t) => (
-                <tr key={t.token} className="border-b border-neutral-800/60 hover:bg-neutral-800/40">
+                <tr key={t.token} className="border-b border-border/60 hover:bg-muted/40">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: t.color }} />
-                      <span className="font-medium text-neutral-200">{t.name}</span>
-                      <span className="text-xs text-neutral-500">{t.token}</span>
+                      <span className="font-medium text-foreground">{t.name}</span>
+                      <span className="text-xs text-muted-foreground">{t.token}</span>
                     </div>
                   </td>
                   <td className="px-4 py-3 text-center">
@@ -765,8 +765,8 @@ function L2TokenEconomics() {
                   <td className="px-4 py-3 text-center">
                     {t.sequencerStaking ? <CheckCircle size={14} className="mx-auto text-emerald-400" /> : <span className="text-neutral-600">—</span>}
                   </td>
-                  <td className="px-4 py-3 text-right font-mono text-neutral-300">{t.circSupply.toLocaleString()}M</td>
-                  <td className="px-4 py-3 text-right font-mono text-neutral-300">${t.fdv.toFixed(1)}B</td>
+                  <td className="px-4 py-3 text-right font-mono text-muted-foreground">{t.circSupply.toLocaleString()}M</td>
+                  <td className="px-4 py-3 text-right font-mono text-muted-foreground">${t.fdv.toFixed(1)}B</td>
                 </tr>
               ))}
             </tbody>
@@ -775,25 +775,25 @@ function L2TokenEconomics() {
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-          <div className="text-sm font-medium text-neutral-300 mb-3 flex items-center gap-2">
+        <div className="rounded-lg border border-border bg-card p-4">
+          <div className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
             <DollarSign size={14} className="text-emerald-400" />
             L2 Fee Economics
           </div>
-          <div className="space-y-2 text-xs text-neutral-400">
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
+          <div className="space-y-2 text-xs text-muted-foreground">
+            <div className="flex justify-between border-b border-border pb-2">
               <span>L2 Execution Fee</span>
               <span className="text-emerald-400">~$0.001–$0.01</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
+            <div className="flex justify-between border-b border-border pb-2">
               <span>L1 Data Posting Cost</span>
               <span className="text-yellow-400">~$0.01–$0.05</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
+            <div className="flex justify-between border-b border-border pb-2">
               <span>Sequencer Margin</span>
               <span className="text-primary">~10–30%</span>
             </div>
-            <div className="flex justify-between border-b border-neutral-800 pb-2">
+            <div className="flex justify-between border-b border-border pb-2">
               <span>Post EIP-4844 Savings</span>
               <span className="text-emerald-400">~90–95% reduction</span>
             </div>
@@ -844,8 +844,8 @@ function AdoptionChart() {
   const yTicks = [0, 2, 4, 6];
 
   return (
-    <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-      <div className="text-sm font-medium text-neutral-300 mb-1">Cumulative Unique Wallet Growth (Millions)</div>
+    <div className="rounded-lg border border-border bg-card p-4">
+      <div className="text-sm font-medium text-muted-foreground mb-1">Cumulative Unique Wallet Growth (Millions)</div>
       <div className="flex gap-4 mb-3">
         {lines.map((l) => (
           <div key={l.key} className="flex items-center gap-1.5 text-xs" style={{ color: l.color }}>
@@ -918,14 +918,14 @@ function DeveloperEcosystem() {
 
       <AdoptionChart />
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
-        <div className="text-sm font-medium text-neutral-300 p-4 border-b border-neutral-800">
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <div className="text-sm font-medium text-muted-foreground p-4 border-b border-border">
           EVM Compatibility Matrix
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-neutral-500 border-b border-neutral-800">
+              <tr className="text-xs text-muted-foreground border-b border-border">
                 <th className="text-left px-4 py-2">Feature</th>
                 <th className="text-center px-4 py-2 text-primary">Arbitrum</th>
                 <th className="text-center px-4 py-2 text-red-400">Optimism</th>
@@ -935,8 +935,8 @@ function DeveloperEcosystem() {
             </thead>
             <tbody>
               {evmFeatures.map((f) => (
-                <tr key={f.label} className="border-b border-neutral-800/60 hover:bg-neutral-800/40">
-                  <td className="px-4 py-2.5 text-xs text-neutral-300">{f.label}</td>
+                <tr key={f.label} className="border-b border-border/60 hover:bg-muted/40">
+                  <td className="px-4 py-2.5 text-xs text-muted-foreground">{f.label}</td>
                   {(["arbitrum", "optimism", "zksync", "starknet"] as const).map((k) => (
                     <td key={k} className="px-4 py-2.5 text-center">
                       {f[k] ? (
@@ -953,14 +953,14 @@ function DeveloperEcosystem() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
-        <div className="text-sm font-medium text-neutral-300 p-4 border-b border-neutral-800">
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <div className="text-sm font-medium text-muted-foreground p-4 border-b border-border">
           User Growth Metrics
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-neutral-500 border-b border-neutral-800">
+              <tr className="text-xs text-muted-foreground border-b border-border">
                 <th className="text-left px-4 py-2">Metric</th>
                 <th className="text-right px-4 py-2 text-primary">Arbitrum</th>
                 <th className="text-right px-4 py-2 text-red-400">Optimism</th>
@@ -969,23 +969,23 @@ function DeveloperEcosystem() {
             </thead>
             <tbody>
               {ECOSYSTEM.map((row) => (
-                <tr key={row.label} className="border-b border-neutral-800/60 hover:bg-neutral-800/40">
-                  <td className="px-4 py-2.5 text-xs text-neutral-300">{row.label}</td>
-                  <td className="px-4 py-2.5 text-right font-mono text-xs text-neutral-200">
+                <tr key={row.label} className="border-b border-border/60 hover:bg-muted/40">
+                  <td className="px-4 py-2.5 text-xs text-muted-foreground">{row.label}</td>
+                  <td className="px-4 py-2.5 text-right font-mono text-xs text-foreground">
                     {typeof row.arbitrum === "number"
                       ? row.unit === "B"
                         ? `$${row.arbitrum.toFixed(1)}B`
                         : `${row.arbitrum.toLocaleString()}${row.unit}`
                       : row.arbitrum}
                   </td>
-                  <td className="px-4 py-2.5 text-right font-mono text-xs text-neutral-200">
+                  <td className="px-4 py-2.5 text-right font-mono text-xs text-foreground">
                     {typeof row.optimism === "number"
                       ? row.unit === "B"
                         ? `$${row.optimism.toFixed(1)}B`
                         : `${row.optimism.toLocaleString()}${row.unit}`
                       : row.optimism}
                   </td>
-                  <td className="px-4 py-2.5 text-right font-mono text-xs text-neutral-200">
+                  <td className="px-4 py-2.5 text-right font-mono text-xs text-foreground">
                     {typeof row.base === "number"
                       ? row.unit === "B"
                         ? `$${row.base.toFixed(1)}B`
@@ -1072,12 +1072,12 @@ function InvestmentThesis() {
       />
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="rounded-lg border border-emerald-900/40 bg-neutral-900 p-4">
+        <div className="rounded-lg border border-emerald-900/40 bg-card p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp size={15} className="text-emerald-400" />
             <span className="text-sm font-medium text-emerald-300">Bull Case — L2 Tokens</span>
           </div>
-          <ul className="space-y-2 text-xs text-neutral-400">
+          <ul className="space-y-2 text-xs text-muted-foreground">
             {[
               "EIP-4844 already delivered 90% fee reduction; Full Danksharding drives fees to near-zero",
               "Sequencer revenue growing 3–5x annually as user adoption scales",
@@ -1094,12 +1094,12 @@ function InvestmentThesis() {
           </ul>
         </div>
 
-        <div className="rounded-lg border border-red-900/40 bg-neutral-900 p-4">
+        <div className="rounded-lg border border-red-900/40 bg-card p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingDown size={15} className="text-red-400" />
             <span className="text-sm font-medium text-red-300">Bear Case — Key Risks</span>
           </div>
-          <ul className="space-y-2 text-xs text-neutral-400">
+          <ul className="space-y-2 text-xs text-muted-foreground">
             {[
               "L2 fragmentation creates liquidity silos; cross-chain bridges remain major attack surfaces",
               "Sequencer centralization risk — most L2s run single sequencers with liveness and censorship risk",
@@ -1117,8 +1117,8 @@ function InvestmentThesis() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-        <div className="text-sm font-medium text-neutral-300 mb-4 flex items-center gap-2">
+      <div className="rounded-lg border border-border bg-card p-4">
+        <div className="text-sm font-medium text-muted-foreground mb-4 flex items-center gap-2">
           <Lock size={14} className="text-primary" />
           Ethereum Roadmap — L2 Catalysts
         </div>
@@ -1129,16 +1129,16 @@ function InvestmentThesis() {
                 <div className={cn("w-2 h-2 rounded-full mt-1.5 flex-shrink-0",
                   item.status === "live" ? "bg-emerald-400" : item.status === "upcoming" ? "bg-primary" : "bg-primary"
                 )} />
-                <div className="w-px flex-1 bg-neutral-800 mt-1" />
+                <div className="w-px flex-1 bg-muted mt-1" />
               </div>
               <div className="pb-4">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-medium text-neutral-200">{item.title}</span>
+                  <span className="text-xs font-medium text-foreground">{item.title}</span>
                   <Badge variant="outline" className={cn("text-xs border", statusColor(item.status))}>
                     {item.phase}
                   </Badge>
                 </div>
-                <p className="text-xs text-neutral-400 mb-1">{item.description}</p>
+                <p className="text-xs text-muted-foreground mb-1">{item.description}</p>
                 <div className="flex items-center gap-1 text-xs">
                   <ArrowRight size={11} className="text-emerald-500" />
                   <span className="text-emerald-400">{item.impact}</span>
@@ -1149,14 +1149,14 @@ function InvestmentThesis() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
-        <div className="text-sm font-medium text-neutral-300 p-4 border-b border-neutral-800">
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <div className="text-sm font-medium text-muted-foreground p-4 border-b border-border">
           L2 Valuation Framework
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-neutral-500 border-b border-neutral-800">
+              <tr className="text-xs text-muted-foreground border-b border-border">
                 <th className="text-left px-4 py-2">Network</th>
                 <th className="text-right px-4 py-2">Price/Fees</th>
                 <th className="text-right px-4 py-2">Price/TVL</th>
@@ -1166,15 +1166,15 @@ function InvestmentThesis() {
             </thead>
             <tbody>
               {VALUATION_DATA.map((v) => (
-                <tr key={v.name} className="border-b border-neutral-800/60 hover:bg-neutral-800/40">
+                <tr key={v.name} className="border-b border-border/60 hover:bg-muted/40">
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: v.color }} />
-                      <span className="font-medium text-neutral-200 text-xs">{v.name}</span>
+                      <span className="font-medium text-foreground text-xs">{v.name}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-right font-mono text-xs text-neutral-300">{v.priceToFees}x</td>
-                  <td className="px-4 py-3 text-right font-mono text-xs text-neutral-300">{v.priceToTvl.toFixed(2)}x</td>
+                  <td className="px-4 py-3 text-right font-mono text-xs text-muted-foreground">{v.priceToFees}x</td>
+                  <td className="px-4 py-3 text-right font-mono text-xs text-muted-foreground">{v.priceToTvl.toFixed(2)}x</td>
                   <td className="px-4 py-3 text-right text-xs text-emerald-400">+{v.revGrowth}%</td>
                   <td className="px-4 py-3 text-center">
                     <Badge
@@ -1193,14 +1193,14 @@ function InvestmentThesis() {
             </tbody>
           </table>
         </div>
-        <div className="p-4 border-t border-neutral-800 text-xs text-neutral-500">
+        <div className="p-4 border-t border-border text-xs text-muted-foreground">
           Price/Fees = Market Cap / Annualized Sequencer Revenue. Price/TVL = Market Cap / Protocol TVL.
           Lower ratios indicate relative value vs peers.
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
-        <div className="text-sm font-medium text-neutral-300 mb-3 flex items-center gap-2">
+      <div className="rounded-lg border border-border bg-card p-4">
+        <div className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
           <Layers size={14} className="text-primary" />
           Modular Blockchain Thesis
         </div>
@@ -1222,11 +1222,11 @@ function InvestmentThesis() {
               color: "#8B5CF6",
             },
           ].map((layer) => (
-            <div key={layer.title} className="rounded-md border border-neutral-800 p-3">
+            <div key={layer.title} className="rounded-md border border-border p-3">
               <div className="text-xs font-semibold mb-1" style={{ color: layer.color }}>
                 {layer.title} Layer
               </div>
-              <p className="text-xs text-neutral-400 leading-relaxed">{layer.desc}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{layer.desc}</p>
             </div>
           ))}
         </div>
@@ -1255,7 +1255,7 @@ export default function Layer2Page() {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100">
+    <div className="min-h-screen bg-neutral-950 text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1269,8 +1269,8 @@ export default function Layer2Page() {
               <Layers size={18} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-neutral-100">Layer 2 Networks</h1>
-              <p className="text-sm text-neutral-400">Ethereum scaling solutions and blockchain infrastructure investing</p>
+              <h1 className="text-2xl font-bold text-foreground">Layer 2 Networks</h1>
+              <p className="text-sm text-muted-foreground">Ethereum scaling solutions and blockchain infrastructure investing</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-4">
@@ -1280,8 +1280,8 @@ export default function Layer2Page() {
               { label: "Avg Fee", value: "$0.04", color: "text-green-400" },
               { label: "Networks", value: "6 major", color: "text-primary" },
             ].map((chip) => (
-              <div key={chip.label} className="flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900 px-3 py-1 text-xs">
-                <span className="text-neutral-500">{chip.label}:</span>
+              <div key={chip.label} className="flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs">
+                <span className="text-muted-foreground">{chip.label}:</span>
                 <span className={chip.color}>{chip.value}</span>
               </div>
             ))}
@@ -1290,12 +1290,12 @@ export default function Layer2Page() {
 
         {/* Tabs */}
         <Tabs defaultValue="scaling">
-          <TabsList className="flex flex-wrap gap-1 h-auto bg-neutral-900 border border-neutral-800 p-1 rounded-lg mb-6">
+          <TabsList className="flex flex-wrap gap-1 h-auto bg-card border border-border p-1 rounded-lg mb-6">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-neutral-400"
+                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-muted-foreground"
               >
                 {tab.icon}
                 {tab.label}

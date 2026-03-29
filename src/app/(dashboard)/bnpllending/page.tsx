@@ -90,18 +90,18 @@ function StatCard({
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
-        {icon && <span className="text-zinc-400">{icon}</span>}
-        <span className="text-xs text-zinc-400">{label}</span>
+        {icon && <span className="text-muted-foreground">{icon}</span>}
+        <span className="text-xs text-muted-foreground">{label}</span>
       </div>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -342,13 +342,13 @@ function Tab1BNPLModel() {
             ].map((r) => (
               <div key={r.label} className="space-y-1">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs text-zinc-300 font-medium">{r.label}</span>
-                  <span className="text-xs text-zinc-400">{r.pct}% of revenue</span>
+                  <span className="text-xs text-muted-foreground font-medium">{r.label}</span>
+                  <span className="text-xs text-muted-foreground">{r.pct}% of revenue</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-white/10">
                   <div className={cn("h-1.5 rounded-full", r.color)} style={{ width: `${r.pct}%` }} />
                 </div>
-                <p className="text-xs text-zinc-500">{r.desc}</p>
+                <p className="text-xs text-muted-foreground">{r.desc}</p>
               </div>
             ))}
           </div>
@@ -382,7 +382,7 @@ function Tab1BNPLModel() {
             <thead>
               <tr className="border-b border-white/10">
                 {["Provider", "GMV (2024)", "Take Rate", "Credit Loss", "Model", "Positioning", "Profitable"].map((h) => (
-                  <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">{h}</th>
+                  <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -393,8 +393,8 @@ function Tab1BNPLModel() {
                   <td className="py-2.5 px-3 text-primary">{p.gmv}</td>
                   <td className="py-2.5 px-3 text-emerald-300">{p.takeRate}</td>
                   <td className="py-2.5 px-3 text-rose-300">{p.creditLoss}</td>
-                  <td className="py-2.5 px-3 text-zinc-300">{p.model}</td>
-                  <td className="py-2.5 px-3 text-zinc-400 max-w-[180px]">{p.positioning}</td>
+                  <td className="py-2.5 px-3 text-muted-foreground">{p.model}</td>
+                  <td className="py-2.5 px-3 text-muted-foreground max-w-[180px]">{p.positioning}</td>
                   <td className="py-2.5 px-3">
                     {p.profitable ? (
                       <CheckCircle size={14} className="text-emerald-400" />
@@ -619,8 +619,8 @@ function Tab2DigitalScoring() {
             ].map((f) => (
               <div key={f.factor} className="space-y-0.5">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-300">{f.factor}</span>
-                  <span className="text-zinc-400">{f.weight}%</span>
+                  <span className="text-muted-foreground">{f.factor}</span>
+                  <span className="text-muted-foreground">{f.weight}%</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-white/10">
                   <div className={cn("h-1.5 rounded-full", f.color)} style={{ width: `${f.weight * 2}%` }} />
@@ -641,14 +641,14 @@ function Tab2DigitalScoring() {
           <div className="grid grid-cols-2 gap-3">
             {ALT_DATA_FEATURES.map((cat) => (
               <div key={cat.category} className="rounded-lg border border-white/10 bg-white/5 p-3">
-                <div className="flex items-center gap-1.5 mb-2 text-zinc-300">
+                <div className="flex items-center gap-1.5 mb-2 text-muted-foreground">
                   {cat.icon}
                   <span className="text-xs font-semibold">{cat.category}</span>
                 </div>
                 <ul className="space-y-0.5">
                   {cat.features.map((f) => (
-                    <li key={f} className="text-xs text-zinc-400 flex items-center gap-1">
-                      <ChevronRight size={9} className="text-zinc-600" />
+                    <li key={f} className="text-xs text-muted-foreground flex items-center gap-1">
+                      <ChevronRight size={9} className="text-muted-foreground" />
                       {f}
                     </li>
                   ))}
@@ -686,7 +686,7 @@ function Tab2DigitalScoring() {
           ML vs Traditional: Approval Rate &amp; Default Rate by Credit Score
         </SectionTitle>
         <ApprovalDefaultCurvesSVG />
-        <p className="text-xs text-zinc-500 mt-2 text-center">
+        <p className="text-xs text-muted-foreground mt-2 text-center">
           ML models approve significantly more thin-file consumers at equivalent or lower default rates — the core value proposition of fintech underwriting.
         </p>
       </div>
@@ -708,8 +708,8 @@ function Tab2DigitalScoring() {
                 <span className="text-xs font-semibold text-white">{seg.segment}</span>
                 <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs">{seg.size}</Badge>
               </div>
-              <p className="text-xs text-zinc-400"><span className="text-rose-400 font-medium">Barrier: </span>{seg.barrier}</p>
-              <p className="text-xs text-zinc-400"><span className="text-emerald-400 font-medium">Alt Data: </span>{seg.solution}</p>
+              <p className="text-xs text-muted-foreground"><span className="text-rose-400 font-medium">Barrier: </span>{seg.barrier}</p>
+              <p className="text-xs text-muted-foreground"><span className="text-emerald-400 font-medium">Alt Data: </span>{seg.solution}</p>
             </div>
           ))}
         </div>
@@ -921,17 +921,17 @@ function Tab3EmbeddedFinance() {
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <span className="text-sm font-bold text-white">{cs.company}</span>
-                  <span className="text-xs text-zinc-400 ml-2">— {cs.product}</span>
+                  <span className="text-xs text-muted-foreground ml-2">— {cs.product}</span>
                 </div>
                 <Badge className="text-xs" style={{ backgroundColor: cs.color + "22", color: cs.color, borderColor: cs.color + "44" }}>
                   {cs.volume}
                 </Badge>
               </div>
-              <p className="text-xs text-zinc-300 mb-2">
+              <p className="text-xs text-muted-foreground mb-2">
                 <span className="text-amber-400 font-medium">Data advantage: </span>
                 {cs.advantage}
               </p>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-muted-foreground">
                 <span className="text-primary font-medium">Model: </span>
                 {cs.model}
               </p>
@@ -956,8 +956,8 @@ function Tab3EmbeddedFinance() {
             ].map((row) => (
               <div key={row.metric} className="flex items-center justify-between py-2 border-b border-white/5">
                 <div>
-                  <p className="text-xs text-zinc-300 font-medium">{row.metric}</p>
-                  <p className="text-xs text-zinc-500">{row.note}</p>
+                  <p className="text-xs text-muted-foreground font-medium">{row.metric}</p>
+                  <p className="text-xs text-muted-foreground">{row.note}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-bold text-white">{row.value}</p>
@@ -1269,7 +1269,7 @@ function Tab4RiskRegulation() {
                     <Badge className={cn("text-xs", severityColor)}>{item.date}</Badge>
                     <span className="text-xs font-semibold text-white">{item.event}</span>
                   </div>
-                  <p className="text-xs text-zinc-400">{item.detail}</p>
+                  <p className="text-xs text-muted-foreground">{item.detail}</p>
                 </div>
               );
             })}
@@ -1284,7 +1284,7 @@ function Tab4RiskRegulation() {
           Credit Quality: BNPL Users vs Prime Borrowers
         </SectionTitle>
         <CreditQualityDistributionSVG />
-        <p className="text-xs text-zinc-500 mt-2 text-center">
+        <p className="text-xs text-muted-foreground mt-2 text-center">
           BNPL users are heavily over-indexed in sub-prime buckets (&lt;620) vs traditional credit card prime borrowers — explaining higher structural default rates.
         </p>
       </div>
@@ -1308,7 +1308,7 @@ function Tab4RiskRegulation() {
               </div>
               <div className="text-rose-400">{item.icon}</div>
               <p className="text-xs font-semibold text-white">{item.title}</p>
-              <p className="text-xs text-zinc-400">{item.desc}</p>
+              <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -1341,7 +1341,7 @@ export default function BNPLLendingPage() {
   const [activeTab, setActiveTab] = useState("model");
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="mb-6">
@@ -1351,7 +1351,7 @@ export default function BNPLLendingPage() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">BNPL &amp; Digital Lending</h1>
-              <p className="text-xs text-zinc-400">Buy Now Pay Later business models, digital credit scoring, embedded finance &amp; consumer lending disruption</p>
+              <p className="text-xs text-muted-foreground">Buy Now Pay Later business models, digital credit scoring, embedded finance &amp; consumer lending disruption</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">

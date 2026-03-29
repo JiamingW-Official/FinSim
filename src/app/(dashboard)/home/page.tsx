@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useGameStore } from "@/stores/game-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { useLearnStore } from "@/stores/learn-store";
@@ -327,6 +328,10 @@ export default function HomePage() {
     { label: "Portfolio", href: "/portfolio", Icon: PieChart },
   ] as const;
 
+  // Hydration: Zustand persisted stores aren't ready on first render
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
   return (
     <div className="flex h-full flex-col overflow-y-auto">
       <div className="mx-auto w-full max-w-6xl space-y-5 p-6">
@@ -348,30 +353,49 @@ export default function HomePage() {
 
           {/* Market state strip */}
           <div className="border-b border-border/20 px-6 py-3 flex items-center gap-4 overflow-x-auto scrollbar-none">
-            <span className={cn("shrink-0 rounded px-2 py-0.5 text-xs font-bold", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>
-              {marketPulse.regime}
-            </span>
-            <span className="shrink-0 text-xs text-muted-foreground">
-              VIX <span className={cn("font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
-            </span>
-            <span className={cn("shrink-0 text-xs font-medium", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>
-              F&G {marketPulse.fg}
-            </span>
-            <div className="h-3 w-px bg-border/40 shrink-0" />
-            {overviewPrices.map(({ ticker, price, changePct }) => {
-              const isUp = changePct >= 0;
-              return (
-                <div key={ticker} className="flex shrink-0 items-center gap-1.5">
-                  <span className="text-xs font-bold">{ticker}</span>
-                  <span className="text-xs tabular-nums text-muted-foreground">
-                    {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
-                  </span>
-                  <span className={cn("text-xs font-semibold tabular-nums", isUp ? "text-emerald-400" : "text-red-400")}>
-                    {isUp ? "+" : ""}{changePct.toFixed(2)}%
-                  </span>
-                </div>
-              );
-            })}
+            {!mounted ? (
+              /* Skeleton while stores hydrate */
+              <>
+                <Skeleton className="h-5 w-12 shrink-0" />
+                <Skeleton className="h-4 w-14 shrink-0" />
+                <Skeleton className="h-4 w-12 shrink-0" />
+                <div className="h-3 w-px bg-border/40 shrink-0" />
+                {OVERVIEW_TICKERS.map((t) => (
+                  <div key={t} className="flex shrink-0 items-center gap-1.5">
+                    <Skeleton className="h-4 w-8" />
+                    <Skeleton className="h-4 w-14" />
+                    <Skeleton className="h-4 w-12" />
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                <span className={cn("shrink-0 rounded px-2 py-0.5 text-xs font-bold", marketPulse.regime === "Bull" ? "bg-emerald-500/15 text-emerald-400" : marketPulse.regime === "Bear" ? "bg-red-500/15 text-red-400" : "bg-amber-500/15 text-amber-400")}>
+                  {marketPulse.regime}
+                </span>
+                <span className="shrink-0 text-xs text-muted-foreground">
+                  VIX <span className={cn("font-bold tabular-nums", marketPulse.vix > 25 ? "text-red-400" : marketPulse.vix > 18 ? "text-amber-400" : "text-emerald-400")}>{marketPulse.vix}</span>
+                </span>
+                <span className={cn("shrink-0 text-xs font-medium", marketPulse.fg >= 55 ? "text-emerald-400" : marketPulse.fg <= 35 ? "text-red-400" : "text-amber-400")}>
+                  F&G {marketPulse.fg}
+                </span>
+                <div className="h-3 w-px bg-border/40 shrink-0" />
+                {overviewPrices.map(({ ticker, price, changePct }) => {
+                  const isUp = changePct >= 0;
+                  return (
+                    <div key={ticker} className="flex shrink-0 items-center gap-1.5">
+                      <span className="text-xs font-bold">{ticker}</span>
+                      <span className="text-xs tabular-nums text-muted-foreground">
+                        {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
+                      </span>
+                      <span className={cn("text-xs font-semibold tabular-nums", isUp ? "text-emerald-400" : "text-red-400")}>
+                        {isUp ? "+" : ""}{changePct.toFixed(2)}%
+                      </span>
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </div>
 
           {/* Main hero body */}
@@ -455,7 +479,7 @@ export default function HomePage() {
           <div className="rounded-md border border-border bg-card p-3"><p className="text-xs text-muted-foreground">Level</p><p className="text-sm font-bold tabular-nums">{level}</p><span className="text-xs text-muted-foreground tabular-nums">{xp.toLocaleString()} XP</span></div>
           <div className="rounded-md border border-border bg-card p-3"><p className="text-xs text-muted-foreground">Win Rate</p><p className="text-sm font-bold tabular-nums">{winRate.toFixed(1)}%</p><span className="text-xs text-muted-foreground tabular-nums">{stats.totalTrades} trades</span></div>
         </div>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {TIER2_ACTIONS.map(({ label, href, Icon }) => (
             <Link key={href} href={href}>
               <div className="group flex items-center justify-center gap-2 rounded-md border border-border bg-card p-4 transition-colors hover:bg-accent/50">
@@ -608,7 +632,7 @@ export default function HomePage() {
                 {nextLesson ? <div className="rounded border border-border/30 bg-muted/10 px-2.5 py-1.5"><p className="text-[11px] text-muted-foreground">Next: <span className="font-medium text-foreground">{nextLesson.lesson.title}</span></p></div> : <p className="text-xs text-emerald-400 font-medium">All complete!</p>}
               </div>
             </div>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
               {[
                 { val: learnProgress.sRankCount, label: "A/S Ranks" },
                 { val: learningStreak > 0 ? `${learningStreak}d` : "--", label: "Streak" },
@@ -621,7 +645,7 @@ export default function HomePage() {
           </div>
           <div className="rounded-md border border-border/30 bg-card p-3">
             <p className="mb-3 text-xs text-muted-foreground">Quick Navigation</p>
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
               {NAV_SHORTCUTS.map(({ label, href, Icon }) => (
                 <Link key={href} href={href}><div className="flex flex-col items-center gap-1.5 rounded border border-border/30 bg-muted/10 px-1.5 py-2 text-center transition-colors hover:bg-accent/20"><Icon className="h-4 w-4 text-muted-foreground" /><span className="text-[11px] font-medium">{label}</span></div></Link>
               ))}

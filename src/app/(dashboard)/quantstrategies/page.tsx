@@ -661,7 +661,7 @@ function FactorModelsTab() {
           </div>
           <div className="flex flex-wrap gap-1.5">
             {selected.factors.map((f) => (
-              <Badge key={f} variant="outline" className="border-border/60 text-zinc-300 text-xs">
+              <Badge key={f} variant="outline" className="border-border/60 text-muted-foreground text-xs">
                 {f}
               </Badge>
             ))}
@@ -699,11 +699,11 @@ function FactorModelsTab() {
                         {m.shortName}
                       </span>
                     </td>
-                    <td className="py-2 pr-4 text-zinc-300">{m.factors.length}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{m.factors.length}</td>
                     <td className="py-2 pr-4 text-green-400">+{m.alpha.toFixed(2)}%</td>
-                    <td className="py-2 pr-4 text-zinc-300">{m.beta.toFixed(2)}</td>
-                    <td className="py-2 pr-4 text-zinc-300">{(m.rSquared * 100).toFixed(0)}%</td>
-                    <td className="py-2 pr-4 text-zinc-300">{m.sharpe.toFixed(2)}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{m.beta.toFixed(2)}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{(m.rSquared * 100).toFixed(0)}%</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{m.sharpe.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -793,8 +793,8 @@ function MomentumTab() {
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm text-white">{strat.name}</CardTitle>
             <div className="flex gap-2 text-xs text-muted-foreground">
-              <span>Formation: <strong className="text-zinc-200">{strat.formation}m</strong></span>
-              <span>Holding: <strong className="text-zinc-200">{strat.holding}m</strong></span>
+              <span>Formation: <strong className="text-foreground">{strat.formation}m</strong></span>
+              <span>Holding: <strong className="text-foreground">{strat.holding}m</strong></span>
             </div>
           </div>
         </CardHeader>
@@ -859,19 +859,19 @@ function MeanReversionTab() {
           </CardHeader>
           <CardContent className="space-y-3 text-xs text-muted-foreground leading-relaxed">
             <p>
-              Two assets are <strong className="text-zinc-200">cointegrated</strong> when their price spread is stationary (mean-reverting) even
+              Two assets are <strong className="text-foreground">cointegrated</strong> when their price spread is stationary (mean-reverting) even
               though each individually follows a random walk.
             </p>
             <p>
-              The <strong className="text-zinc-200">Engle-Granger test</strong> fits a linear regression of asset A on B, then tests residuals
+              The <strong className="text-foreground">Engle-Granger test</strong> fits a linear regression of asset A on B, then tests residuals
               for a unit root via ADF. A p-value &lt; 0.05 suggests cointegration.
             </p>
             <p>
-              <strong className="text-zinc-200">Half-life</strong> measures mean-reversion speed: the expected time for the spread to revert
+              <strong className="text-foreground">Half-life</strong> measures mean-reversion speed: the expected time for the spread to revert
               halfway to its mean. Shorter = faster trades.
             </p>
             <div className="bg-card/80 rounded-lg p-3">
-              <div className="text-zinc-300 font-medium mb-1">Z-Score Entry Rules</div>
+              <div className="text-muted-foreground font-medium mb-1">Z-Score Entry Rules</div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="text-green-400">Enter Long</span>
@@ -882,7 +882,7 @@ function MeanReversionTab() {
                   <span>when z-score &gt; +2σ</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-zinc-300">Exit</span>
+                  <span className="text-muted-foreground">Exit</span>
                   <span>when z-score crosses 0</span>
                 </div>
               </div>
@@ -934,7 +934,7 @@ function MeanReversionTab() {
               {pair.ticker1}/{pair.ticker2} Spread Z-Score
             </CardTitle>
             <div className="flex gap-2">
-              <Badge variant="outline" className="border-border/60 text-zinc-300 text-xs">
+              <Badge variant="outline" className="border-border/60 text-muted-foreground text-xs">
                 Half-life: {pair.halfLife}d
               </Badge>
               <Badge variant="outline" className="border-green-700 text-green-300 text-xs">
@@ -1019,7 +1019,7 @@ function StatArbTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
             <div className="space-y-3">
-              <div className="text-zinc-300 font-medium">Risk Controls</div>
+              <div className="text-muted-foreground font-medium">Risk Controls</div>
               {[
                 { label: "Net market exposure", val: "< 5% notional", ok: true },
                 { label: "Sector concentration", val: "< 20% per sector", ok: true },
@@ -1034,14 +1034,14 @@ function StatArbTab() {
                     ) : (
                       <XCircle className="w-3.5 h-3.5 text-red-400" />
                     )}
-                    <span className="text-zinc-300">{item.label}</span>
+                    <span className="text-muted-foreground">{item.label}</span>
                   </div>
                   <span className="text-muted-foreground">{item.val}</span>
                 </div>
               ))}
             </div>
             <div className="space-y-3">
-              <div className="text-zinc-300 font-medium">Correlation-Based Pair Selection</div>
+              <div className="text-muted-foreground font-medium">Correlation-Based Pair Selection</div>
               <p className="text-muted-foreground leading-relaxed">
                 Pairs are screened for rolling 6-month correlation &gt; 0.8, cointegration p &lt; 0.05, and minimum
                 trading history of 252 days. Pairs are re-tested monthly and rotated if conditions break.
@@ -1055,7 +1055,7 @@ function StatArbTab() {
                 ].map((f) => (
                   <div key={f.label}>
                     <div className="flex justify-between text-xs mb-0.5">
-                      <span className="text-zinc-300">{f.label}</span>
+                      <span className="text-muted-foreground">{f.label}</span>
                       <span className="text-muted-foreground">{f.pct}%</span>
                     </div>
                     <Progress value={f.pct} className="h-1" />
@@ -1104,7 +1104,7 @@ function MLSignalsTab() {
                       className="inline-block w-1.5 h-1.5 rounded-full"
                       style={{ background: categoryColors[f.category] }}
                     />
-                    <span className="text-zinc-300 truncate max-w-[160px]">{f.name}</span>
+                    <span className="text-muted-foreground truncate max-w-[160px]">{f.name}</span>
                   </div>
                   <span className="text-muted-foreground">{(f.importance * 100).toFixed(0)}%</span>
                 </div>
@@ -1141,7 +1141,7 @@ function MLSignalsTab() {
                 <tbody>
                   {ML_FEATURES.map((f) => (
                     <tr key={f.name} className="border-b border-border/40 hover:bg-card/80/40 transition-colors">
-                      <td className="py-1.5 pr-3 text-zinc-300 truncate max-w-[120px]">{f.name}</td>
+                      <td className="py-1.5 pr-3 text-muted-foreground truncate max-w-[120px]">{f.name}</td>
                       <td className={`py-1.5 pr-3 font-medium ${f.ic > 0 ? "text-green-400" : "text-red-400"}`}>
                         {f.ic > 0 ? "+" : ""}{f.ic.toFixed(3)}
                       </td>

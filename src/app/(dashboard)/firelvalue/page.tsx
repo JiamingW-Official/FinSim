@@ -283,9 +283,9 @@ interface StatChipProps {
 function StatChip({ label, value, color = "text-white", sub }: StatChipProps) {
   return (
     <div className="flex flex-col items-center bg-white/5 rounded-lg px-3 py-2 min-w-[80px]">
-      <span className="text-xs text-zinc-400 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-semibold", color)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -417,9 +417,9 @@ function YieldCurveTab() {
       </div>
 
       {/* Yield Curve SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             US Treasury Yield Curve
           </CardTitle>
@@ -521,23 +521,23 @@ function YieldCurveTab() {
               className="mt-2 bg-muted/50 border border-border rounded-lg p-3 grid grid-cols-4 gap-3"
             >
               <div>
-                <p className="text-xs text-zinc-400">Tenor</p>
+                <p className="text-xs text-muted-foreground">Tenor</p>
                 <p className="text-sm font-semibold text-white">{curve[selectedNode].tenor}</p>
               </div>
               <div>
-                <p className="text-xs text-zinc-400">Yield</p>
+                <p className="text-xs text-muted-foreground">Yield</p>
                 <p className="text-sm font-semibold text-primary">
                   {curve[selectedNode].yield.toFixed(3)}%
                 </p>
               </div>
               <div>
-                <p className="text-xs text-zinc-400">DV01 / $1M</p>
+                <p className="text-xs text-muted-foreground">DV01 / $1M</p>
                 <p className="text-sm font-semibold text-white">
                   ${curve[selectedNode].dv01.toFixed(2)}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-zinc-400">Duration</p>
+                <p className="text-xs text-muted-foreground">Duration</p>
                 <p className="text-sm font-semibold text-white">
                   {curve[selectedNode].years.toFixed(1)}y
                 </p>
@@ -548,9 +548,9 @@ function YieldCurveTab() {
       </Card>
 
       {/* Trade Builder */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <ArrowLeftRight className="w-4 h-4 text-primary" />
             Curve Trade Builder
           </CardTitle>
@@ -566,7 +566,7 @@ function YieldCurveTab() {
                   "capitalize text-xs",
                   tradeType === t
                     ? "bg-primary hover:bg-primary/80 text-white"
-                    : "border-zinc-700 text-zinc-400 hover:bg-zinc-800",
+                    : "border-border text-muted-foreground hover:bg-muted",
                 )}
                 onClick={() => setTradeType(t)}
               >
@@ -577,7 +577,7 @@ function YieldCurveTab() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-xs text-zinc-400 block mb-1">Short Leg</label>
+              <label className="text-xs text-muted-foreground block mb-1">Short Leg</label>
               <div className="flex flex-col gap-1">
                 {curve.map((p, i) => (
                   <button
@@ -587,7 +587,7 @@ function YieldCurveTab() {
                       "text-left px-3 py-1.5 rounded text-xs border transition-colors",
                       shortLeg === i
                         ? "bg-red-900/40 border-red-700 text-red-300"
-                        : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500",
+                        : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
                     )}
                   >
                     {p.tenor} — {p.yield.toFixed(3)}%
@@ -596,7 +596,7 @@ function YieldCurveTab() {
               </div>
             </div>
             <div>
-              <label className="text-xs text-zinc-400 block mb-1">Long Leg</label>
+              <label className="text-xs text-muted-foreground block mb-1">Long Leg</label>
               <div className="flex flex-col gap-1">
                 {curve.map((p, i) => (
                   <button
@@ -606,7 +606,7 @@ function YieldCurveTab() {
                       "text-left px-3 py-1.5 rounded text-xs border transition-colors",
                       longLeg === i
                         ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
-                        : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500",
+                        : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
                     )}
                   >
                     {p.tenor} — {p.yield.toFixed(3)}%
@@ -617,7 +617,7 @@ function YieldCurveTab() {
           </div>
 
           <div>
-            <label className="text-xs text-zinc-400 block mb-2">
+            <label className="text-xs text-muted-foreground block mb-2">
               Notional: <span className="text-white font-medium">${notionalMM}M</span>
             </label>
             <Slider
@@ -630,17 +630,17 @@ function YieldCurveTab() {
             />
           </div>
 
-          <div className="grid grid-cols-3 gap-3 bg-zinc-800/60 rounded-lg p-3">
+          <div className="grid grid-cols-3 gap-3 bg-muted/60 rounded-lg p-3">
             <div>
-              <p className="text-xs text-zinc-400">Spread</p>
+              <p className="text-xs text-muted-foreground">Spread</p>
               <p className="text-sm font-semibold text-amber-300">{spreadBps.toFixed(1)} bps</p>
             </div>
             <div>
-              <p className="text-xs text-zinc-400">Hedge Ratio</p>
+              <p className="text-xs text-muted-foreground">Hedge Ratio</p>
               <p className="text-sm font-semibold text-white">{hedgeRatio.toFixed(3)}x</p>
             </div>
             <div>
-              <p className="text-xs text-zinc-400">DV01 Neutral</p>
+              <p className="text-xs text-muted-foreground">DV01 Neutral</p>
               <p className="text-sm font-semibold text-emerald-400">
                 ${(curve[longLeg]?.dv01 ?? 0).toFixed(2)}
               </p>
@@ -650,7 +650,7 @@ function YieldCurveTab() {
           {/* Scenario P&L */}
           <button
             onClick={() => setShowScenarios(!showScenarios)}
-            className="flex items-center gap-1 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             {showScenarios ? (
               <ChevronUp className="w-3 h-3" />
@@ -674,11 +674,11 @@ function YieldCurveTab() {
                     return (
                       <div
                         key={sc.label}
-                        className="flex items-center justify-between bg-zinc-800/50 rounded px-3 py-2"
+                        className="flex items-center justify-between bg-muted/50 rounded px-3 py-2"
                       >
                         <div>
-                          <p className="text-xs text-zinc-300">{sc.label}</p>
-                          <p className="text-xs text-zinc-500">
+                          <p className="text-xs text-muted-foreground">{sc.label}</p>
+                          <p className="text-xs text-muted-foreground">
                             {sc.parallelBps !== 0 && `${sc.parallelBps > 0 ? "+" : ""}${sc.parallelBps}bps parallel`}
                             {sc.twistBps !== 0 && ` ${sc.twistBps > 0 ? "+" : ""}${sc.twistBps}bps twist`}
                             {sc.butterflyBps !== 0 && ` ${sc.butterflyBps > 0 ? "+" : ""}${sc.butterflyBps}bps fly`}
@@ -786,7 +786,7 @@ function SpreadTradesTab() {
               "text-xs",
               selectedPair === i
                 ? "bg-primary/80 hover:bg-primary/70 text-white"
-                : "border-zinc-700 text-zinc-400 hover:bg-zinc-800",
+                : "border-border text-muted-foreground hover:bg-muted",
             )}
             onClick={() => setSelectedPair(i)}
           >
@@ -796,9 +796,9 @@ function SpreadTradesTab() {
       </div>
 
       {/* OTR vs OFR Comparison */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
             On-the-Run vs Off-the-Run
             <Badge
@@ -808,7 +808,7 @@ function SpreadTradesTab() {
                   ? "bg-emerald-900/50 text-emerald-300 border-emerald-800"
                   : tradeSignal === "RICH OTR"
                     ? "bg-red-900/50 text-red-300 border-red-800"
-                    : "bg-zinc-700 text-zinc-300 border-zinc-600",
+                    : "bg-muted text-muted-foreground border-border",
               )}
             >
               {tradeSignal}
@@ -818,7 +818,7 @@ function SpreadTradesTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* OTR Bond */}
-            <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
+            <div className="bg-muted/50 rounded-lg p-3 border border-border">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-medium text-primary">ON-THE-RUN</span>
                 <Badge className="bg-muted/70 text-primary border-border text-xs">
@@ -826,37 +826,37 @@ function SpreadTradesTab() {
                 </Badge>
               </div>
               <p className="text-sm font-semibold text-white">{activePair.otr.label}</p>
-              <p className="text-xs text-zinc-500 mb-2">{activePair.otr.cusip}</p>
+              <p className="text-xs text-muted-foreground mb-2">{activePair.otr.cusip}</p>
               <div className="grid grid-cols-3 gap-2 text-xs">
                 <div>
-                  <p className="text-zinc-400">Yield</p>
+                  <p className="text-muted-foreground">Yield</p>
                   <p className="text-white font-medium">{activePair.otr.yieldPct.toFixed(3)}%</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">DV01/$M</p>
+                  <p className="text-muted-foreground">DV01/$M</p>
                   <p className="text-white font-medium">${activePair.otr.dv01.toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">Bid/Ask</p>
+                  <p className="text-muted-foreground">Bid/Ask</p>
                   <p className="text-white font-medium">{activePair.otr.bidAsk} ct</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">Duration</p>
+                  <p className="text-muted-foreground">Duration</p>
                   <p className="text-white font-medium">{activePair.otr.duration.toFixed(2)}y</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">Convexity</p>
+                  <p className="text-muted-foreground">Convexity</p>
                   <p className="text-white font-medium">{activePair.otr.convexity.toFixed(3)}</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">OS ($B)</p>
+                  <p className="text-muted-foreground">OS ($B)</p>
                   <p className="text-white font-medium">${activePair.otr.outstanding}B</p>
                 </div>
               </div>
             </div>
 
             {/* OFR Bond */}
-            <div className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
+            <div className="bg-muted/50 rounded-lg p-3 border border-border">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-medium text-amber-300">OFF-THE-RUN</span>
                 <Badge className="bg-amber-900/50 text-amber-300 border-amber-800 text-xs">
@@ -864,30 +864,30 @@ function SpreadTradesTab() {
                 </Badge>
               </div>
               <p className="text-sm font-semibold text-white">{activePair.ofr.label}</p>
-              <p className="text-xs text-zinc-500 mb-2">{activePair.ofr.cusip}</p>
+              <p className="text-xs text-muted-foreground mb-2">{activePair.ofr.cusip}</p>
               <div className="grid grid-cols-3 gap-2 text-xs">
                 <div>
-                  <p className="text-zinc-400">Yield</p>
+                  <p className="text-muted-foreground">Yield</p>
                   <p className="text-white font-medium">{activePair.ofr.yieldPct.toFixed(3)}%</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">DV01/$M</p>
+                  <p className="text-muted-foreground">DV01/$M</p>
                   <p className="text-white font-medium">${activePair.ofr.dv01.toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">Bid/Ask</p>
+                  <p className="text-muted-foreground">Bid/Ask</p>
                   <p className="text-white font-medium">{activePair.ofr.bidAsk} ct</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">Duration</p>
+                  <p className="text-muted-foreground">Duration</p>
                   <p className="text-white font-medium">{activePair.ofr.duration.toFixed(2)}y</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">Convexity</p>
+                  <p className="text-muted-foreground">Convexity</p>
                   <p className="text-white font-medium">{activePair.ofr.convexity.toFixed(3)}</p>
                 </div>
                 <div>
-                  <p className="text-zinc-400">OS ($B)</p>
+                  <p className="text-muted-foreground">OS ($B)</p>
                   <p className="text-white font-medium">${activePair.ofr.outstanding}B</p>
                 </div>
               </div>
@@ -895,21 +895,21 @@ function SpreadTradesTab() {
           </div>
 
           {/* Spread metrics */}
-          <div className="mt-3 grid grid-cols-3 gap-3 bg-zinc-800/40 rounded-lg p-3">
+          <div className="mt-3 grid grid-cols-3 gap-3 bg-muted/40 rounded-lg p-3">
             <div>
-              <p className="text-xs text-zinc-400">OFR Spread</p>
+              <p className="text-xs text-muted-foreground">OFR Spread</p>
               <p className="text-base font-bold text-amber-300">
                 {activePair.spreadBps.toFixed(1)} bps
               </p>
             </div>
             <div>
-              <p className="text-xs text-zinc-400">Hedge Ratio</p>
+              <p className="text-xs text-muted-foreground">Hedge Ratio</p>
               <p className="text-base font-bold text-white">
                 {activePair.hr.toFixed(3)}x
               </p>
             </div>
             <div>
-              <p className="text-xs text-zinc-400">Repo Carry</p>
+              <p className="text-xs text-muted-foreground">Repo Carry</p>
               <p className="text-base font-bold text-emerald-400">
                 +{(activePair.spreadBps * 0.35).toFixed(1)} bps/yr
               </p>
@@ -919,9 +919,9 @@ function SpreadTradesTab() {
       </Card>
 
       {/* Historical Spread Chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Historical OFR Spread (60 days)
           </CardTitle>
@@ -999,16 +999,16 @@ function SpreadTradesTab() {
       </Card>
 
       {/* Duration-Neutral Hedge Calculator */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Calculator className="w-4 h-4 text-emerald-400" />
             Duration-Neutral Hedge Calculator
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div>
-            <label className="text-xs text-zinc-400 block mb-2">
+            <label className="text-xs text-muted-foreground block mb-2">
               Notional: <span className="text-white font-medium">${tradeNotionalMM}M</span>
             </label>
             <Slider
@@ -1022,43 +1022,43 @@ function SpreadTradesTab() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-zinc-800/50 rounded-lg p-3">
-              <p className="text-xs text-zinc-400 mb-1">Long OFR</p>
+            <div className="bg-muted/50 rounded-lg p-3">
+              <p className="text-xs text-muted-foreground mb-1">Long OFR</p>
               <p className="text-sm font-semibold text-amber-300">{activePair.ofr.label}</p>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-muted-foreground">
                 ${tradeNotionalMM}M face
               </p>
-              <p className="text-xs text-zinc-300 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 DV01 exposure: ${(activePair.ofr.dv01 * tradeNotionalMM).toFixed(0)}
               </p>
             </div>
-            <div className="bg-zinc-800/50 rounded-lg p-3">
-              <p className="text-xs text-zinc-400 mb-1">Short OTR (hedge)</p>
+            <div className="bg-muted/50 rounded-lg p-3">
+              <p className="text-xs text-muted-foreground mb-1">Short OTR (hedge)</p>
               <p className="text-sm font-semibold text-primary">{activePair.otr.label}</p>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-muted-foreground">
                 ${(tradeNotionalMM * activePair.hr).toFixed(1)}M face
               </p>
-              <p className="text-xs text-zinc-300 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 DV01 offset: ${(activePair.otr.dv01 * tradeNotionalMM * activePair.hr).toFixed(0)}
               </p>
             </div>
           </div>
 
-          <div className="bg-zinc-800/40 rounded-lg p-3 grid grid-cols-3 gap-3">
+          <div className="bg-muted/40 rounded-lg p-3 grid grid-cols-3 gap-3">
             <div>
-              <p className="text-xs text-zinc-400">Net DV01</p>
+              <p className="text-xs text-muted-foreground">Net DV01</p>
               <p className="text-sm font-semibold text-emerald-400">
                 ${Math.abs(activePair.ofr.dv01 * tradeNotionalMM - activePair.otr.dv01 * tradeNotionalMM * activePair.hr).toFixed(1)}
               </p>
             </div>
             <div>
-              <p className="text-xs text-zinc-400">P&L / bps tightening</p>
+              <p className="text-xs text-muted-foreground">P&L / bps tightening</p>
               <p className="text-sm font-semibold text-white">
                 ${(activePair.ofr.dv01 * tradeNotionalMM).toFixed(1)}k
               </p>
             </div>
             <div>
-              <p className="text-xs text-zinc-400">Break-even (bid/ask)</p>
+              <p className="text-xs text-muted-foreground">Break-even (bid/ask)</p>
               <p className="text-sm font-semibold text-amber-300">
                 {(activePair.ofr.bidAsk + activePair.otr.bidAsk).toFixed(1)} cts
               </p>
@@ -1170,9 +1170,9 @@ function ButterflyTab() {
   return (
     <div className="space-y-4">
       {/* Wing/Belly selectors */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Butterfly Setup
           </CardTitle>
@@ -1181,7 +1181,7 @@ function ButterflyTab() {
           <div className="grid grid-cols-3 gap-3">
             {/* Short wing */}
             <div>
-              <label className="text-xs text-zinc-400 block mb-1">Short Wing (Long)</label>
+              <label className="text-xs text-muted-foreground block mb-1">Short Wing (Long)</label>
               {curve.map((p, i) => (
                 <button
                   key={p.tenor}
@@ -1190,7 +1190,7 @@ function ButterflyTab() {
                     "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
                     wing1Idx === i
                       ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
-                      : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500",
+                      : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
                   )}
                 >
                   {p.tenor} {p.yield.toFixed(3)}%
@@ -1200,7 +1200,7 @@ function ButterflyTab() {
 
             {/* Belly */}
             <div>
-              <label className="text-xs text-zinc-400 block mb-1">Belly (Short)</label>
+              <label className="text-xs text-muted-foreground block mb-1">Belly (Short)</label>
               {curve.map((p, i) => (
                 <button
                   key={p.tenor}
@@ -1209,7 +1209,7 @@ function ButterflyTab() {
                     "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
                     bellyIdx === i
                       ? "bg-red-900/40 border-red-700 text-red-300"
-                      : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500",
+                      : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
                   )}
                 >
                   {p.tenor} {p.yield.toFixed(3)}%
@@ -1219,7 +1219,7 @@ function ButterflyTab() {
 
             {/* Long wing */}
             <div>
-              <label className="text-xs text-zinc-400 block mb-1">Long Wing (Long)</label>
+              <label className="text-xs text-muted-foreground block mb-1">Long Wing (Long)</label>
               {curve.map((p, i) => (
                 <button
                   key={p.tenor}
@@ -1228,7 +1228,7 @@ function ButterflyTab() {
                     "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
                     wing2Idx === i
                       ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
-                      : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500",
+                      : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
                   )}
                 >
                   {p.tenor} {p.yield.toFixed(3)}%
@@ -1238,21 +1238,21 @@ function ButterflyTab() {
           </div>
 
           {fly && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-zinc-800/40 rounded-lg p-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-muted/40 rounded-lg p-3">
               <div>
-                <p className="text-xs text-zinc-400">Fly Spread</p>
+                <p className="text-xs text-muted-foreground">Fly Spread</p>
                 <p className="text-base font-bold text-primary">
                   {fly.spreadBps.toFixed(1)} bps
                 </p>
               </div>
               <div>
-                <p className="text-xs text-zinc-400">Body Weight</p>
+                <p className="text-xs text-muted-foreground">Body Weight</p>
                 <p className="text-base font-bold text-white">
                   {fly.bodyWeight.toFixed(3)}x
                 </p>
               </div>
               <div>
-                <p className="text-xs text-zinc-400">Net DV01</p>
+                <p className="text-xs text-muted-foreground">Net DV01</p>
                 <p
                   className={cn(
                     "text-base font-bold",
@@ -1263,7 +1263,7 @@ function ButterflyTab() {
                 </p>
               </div>
               <div>
-                <p className="text-xs text-zinc-400">Net Convexity</p>
+                <p className="text-xs text-muted-foreground">Net Convexity</p>
                 <p
                   className={cn(
                     "text-base font-bold",
@@ -1280,9 +1280,9 @@ function ButterflyTab() {
 
       {/* Trade legs detail */}
       {fly && (
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Trade Legs</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Trade Legs</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -1301,15 +1301,15 @@ function ButterflyTab() {
                   </div>
                   <div className="flex items-center gap-4 text-right">
                     <div>
-                      <p className="text-xs text-zinc-400">Weight</p>
+                      <p className="text-xs text-muted-foreground">Weight</p>
                       <p className="text-xs text-white">{weight.toFixed(3)}x</p>
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-400">DV01</p>
+                      <p className="text-xs text-muted-foreground">DV01</p>
                       <p className="text-xs text-white">${(bond.dv01 * weight * notionalMM).toFixed(0)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-400">Convexity</p>
+                      <p className="text-xs text-muted-foreground">Convexity</p>
                       <p className="text-xs text-white">{((bond.convexity ?? 0) * weight).toFixed(4)}</p>
                     </div>
                   </div>
@@ -1321,10 +1321,10 @@ function ButterflyTab() {
       )}
 
       {/* P&L Surface */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <BarChart3 className="w-4 h-4 text-primary" />
               P&L Surface vs Fly Spread Change
             </CardTitle>
@@ -1332,7 +1332,7 @@ function ButterflyTab() {
         </CardHeader>
         <CardContent className="space-y-3">
           <div>
-            <label className="text-xs text-zinc-400 block mb-2">
+            <label className="text-xs text-muted-foreground block mb-2">
               Notional: <span className="text-white font-medium">${notionalMM}M</span>
             </label>
             <Slider
@@ -1492,7 +1492,7 @@ function SwapSpreadsTab() {
               "text-xs",
               view === key
                 ? "bg-primary hover:bg-primary/80 text-white"
-                : "border-zinc-700 text-zinc-400 hover:bg-zinc-800",
+                : "border-border text-muted-foreground hover:bg-muted",
             )}
             onClick={() => setView(key)}
           >
@@ -1502,9 +1502,9 @@ function SwapSpreadsTab() {
       </div>
 
       {/* Swap curve vs Treasury */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <ArrowLeftRight className="w-4 h-4 text-primary" />
             Swap Curve vs Treasury Curve
           </CardTitle>
@@ -1614,53 +1614,53 @@ function SwapSpreadsTab() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-emerald-400" />
                 {selected.tenor} Swap Spread Analysis
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-xs text-zinc-400">Treasury Yield</p>
+                <div className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground">Treasury Yield</p>
                   <p className="text-base font-bold text-primary">
                     {selected.treasuryYield.toFixed(3)}%
                   </p>
                 </div>
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-xs text-zinc-400">Swap Rate</p>
+                <div className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground">Swap Rate</p>
                   <p className="text-base font-bold text-amber-300">
                     {selected.swapRate.toFixed(3)}%
                   </p>
                 </div>
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-xs text-zinc-400">Asset Swap Spread</p>
+                <div className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground">Asset Swap Spread</p>
                   <p className="text-base font-bold text-primary">
                     {selected.assetSwapSpread.toFixed(1)} bps
                   </p>
                 </div>
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-xs text-zinc-400">Z-Spread</p>
+                <div className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground">Z-Spread</p>
                   <p className="text-base font-bold text-white">
                     {selected.zSpread.toFixed(1)} bps
                   </p>
                 </div>
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-xs text-zinc-400">LIBOR Spread</p>
+                <div className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground">LIBOR Spread</p>
                   <p className="text-base font-bold text-muted-foreground">
                     {selected.libSpread.toFixed(1)} bps
                   </p>
                 </div>
-                <div className="bg-zinc-800/50 rounded-lg p-3">
-                  <p className="text-xs text-zinc-400">Carry (bps/yr)</p>
+                <div className="bg-muted/50 rounded-lg p-3">
+                  <p className="text-xs text-muted-foreground">Carry (bps/yr)</p>
                   <p className="text-base font-bold text-emerald-400">
                     +{selected.carryBps.toFixed(1)} bps
                   </p>
                 </div>
-                <div className="bg-zinc-800/50 rounded-lg p-3 col-span-2">
-                  <p className="text-xs text-zinc-400 mb-1">ASW vs Z-Spread differential</p>
+                <div className="bg-muted/50 rounded-lg p-3 col-span-2">
+                  <p className="text-xs text-muted-foreground mb-1">ASW vs Z-Spread differential</p>
                   <div className="flex items-center gap-2">
                     <div
                       className="h-2 rounded-full bg-primary"
@@ -1672,7 +1672,7 @@ function SwapSpreadsTab() {
                       {(selected.assetSwapSpread - selected.zSpread).toFixed(1)} bps differential
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     {selected.assetSwapSpread > selected.zSpread
                       ? "ASW wider: bond trading cheap vs swap curve"
                       : "Z-spread wider: discount factor divergence"}
@@ -1685,9 +1685,9 @@ function SwapSpreadsTab() {
       )}
 
       {/* Spread term structure chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             {spreadViewLabel} Term Structure
           </CardTitle>
@@ -1705,7 +1705,7 @@ function SwapSpreadsTab() {
                   className="flex flex-col items-center flex-1 cursor-pointer"
                   onClick={() => setSelectedTenor(i)}
                 >
-                  <span className="text-[11px] text-zinc-400 mb-1">{d.val.toFixed(1)}</span>
+                  <span className="text-[11px] text-muted-foreground mb-1">{d.val.toFixed(1)}</span>
                   <div
                     className={cn(
                       "w-full rounded-t-sm transition-all",
@@ -1715,7 +1715,7 @@ function SwapSpreadsTab() {
                     )}
                     style={{ height: `${pct}%` }}
                   />
-                  <span className="text-[11px] text-zinc-500 mt-1">{spreads[i].tenor}</span>
+                  <span className="text-[11px] text-muted-foreground mt-1">{spreads[i].tenor}</span>
                 </div>
               );
             })}
@@ -1724,9 +1724,9 @@ function SwapSpreadsTab() {
       </Card>
 
       {/* Carry summary table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Calculator className="w-4 h-4 text-amber-400" />
             Carry Summary
           </CardTitle>
@@ -1735,12 +1735,12 @@ function SwapSpreadsTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Tenor", "Tsy Yield", "Swap Rate", "ASW", "Z-Sprd", "Carry", "Signal"].map(
                     (h) => (
                       <th
                         key={h}
-                        className="text-left py-2 px-2 text-xs text-zinc-500 font-medium uppercase tracking-wide"
+                        className="text-left py-2 px-2 text-xs text-muted-foreground font-medium uppercase tracking-wide"
                       >
                         {h}
                       </th>
@@ -1760,10 +1760,10 @@ function SwapSpreadsTab() {
                     <tr
                       key={d.tenor}
                       className={cn(
-                        "border-b border-zinc-800/50 transition-colors cursor-pointer",
+                        "border-b border-border/50 transition-colors cursor-pointer",
                         selectedTenor === i
                           ? "bg-muted/40"
-                          : "hover:bg-zinc-800/30",
+                          : "hover:bg-muted/30",
                       )}
                       onClick={() => setSelectedTenor(i)}
                     >
@@ -1771,7 +1771,7 @@ function SwapSpreadsTab() {
                       <td className="py-2 px-2 text-primary">{d.treasuryYield.toFixed(3)}%</td>
                       <td className="py-2 px-2 text-amber-300">{d.swapRate.toFixed(3)}%</td>
                       <td className="py-2 px-2 text-primary">{d.assetSwapSpread.toFixed(1)}</td>
-                      <td className="py-2 px-2 text-zinc-300">{d.zSpread.toFixed(1)}</td>
+                      <td className="py-2 px-2 text-muted-foreground">{d.zSpread.toFixed(1)}</td>
                       <td className="py-2 px-2 text-emerald-400">+{d.carryBps.toFixed(1)}</td>
                       <td className="py-2 px-2">
                         <Badge
@@ -1781,7 +1781,7 @@ function SwapSpreadsTab() {
                               ? "bg-emerald-900/50 text-emerald-300 border-emerald-800"
                               : signal === "SELL ASW"
                                 ? "bg-red-900/50 text-red-300 border-red-800"
-                                : "bg-zinc-700 text-zinc-400 border-zinc-600",
+                                : "bg-muted text-muted-foreground border-border",
                           )}
                         >
                           {signal}
@@ -1805,7 +1805,7 @@ function SwapSpreadsTab() {
 
 export default function FIRelValuePage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
@@ -1814,7 +1814,7 @@ export default function FIRelValuePage() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Fixed Income Relative Value</h1>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-muted-foreground">
               Bond spread analysis, duration-neutral trades, swap spreads & butterfly strategies
             </p>
           </div>
@@ -1843,31 +1843,31 @@ export default function FIRelValuePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="yieldcurve" className="w-full">
-        <TabsList className="bg-zinc-900 border border-zinc-800 h-auto p-1 flex flex-wrap gap-1 mb-4">
+        <TabsList className="bg-card border border-border h-auto p-1 flex flex-wrap gap-1 mb-4">
           <TabsTrigger
             value="yieldcurve"
-            className="data-[state=active]:bg-primary/80 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary/80 data-[state=active]:text-white text-muted-foreground text-xs px-3 py-1.5"
           >
             <Activity className="w-3.5 h-3.5 mr-1.5" />
             Yield Curve
           </TabsTrigger>
           <TabsTrigger
             value="spreadtrades"
-            className="data-[state=active]:bg-amber-700 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-amber-700 data-[state=active]:text-white text-muted-foreground text-xs px-3 py-1.5"
           >
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             Spread Trades
           </TabsTrigger>
           <TabsTrigger
             value="butterfly"
-            className="data-[state=active]:bg-primary/80 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary/80 data-[state=active]:text-white text-muted-foreground text-xs px-3 py-1.5"
           >
             <Target className="w-3.5 h-3.5 mr-1.5" />
             Butterfly
           </TabsTrigger>
           <TabsTrigger
             value="swapspreads"
-            className="data-[state=active]:bg-emerald-700 data-[state=active]:text-white text-zinc-400 text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-emerald-700 data-[state=active]:text-white text-muted-foreground text-xs px-3 py-1.5"
           >
             <ArrowLeftRight className="w-3.5 h-3.5 mr-1.5" />
             Swap Spreads

@@ -584,9 +584,9 @@ function MetricChip({
   chg: number;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[100px]">
-      <span className="text-xs text-zinc-500 truncate">{label}</span>
-      <span className="text-sm font-semibold text-zinc-100">{value}</span>
+    <div className="flex flex-col gap-0.5 bg-card border border-border rounded-lg px-3 py-2 min-w-[100px]">
+      <span className="text-xs text-muted-foreground truncate">{label}</span>
+      <span className="text-sm font-semibold text-foreground">{value}</span>
       <span className={`text-xs font-medium ${posColor(chg)}`}>
         {fmtChg(chg)}
       </span>
@@ -612,20 +612,20 @@ export default function CommoditySpreadsPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
     >
       {/* Header */}
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <ArrowUpDown className="w-6 h-6 text-indigo-400" />
-          <h1 className="text-2xl font-bold text-zinc-100">
+          <h1 className="text-2xl font-bold text-foreground">
             Commodity Spreads &amp; Relative Value
           </h1>
           <Badge className="bg-indigo-500/15 text-indigo-400 border-indigo-500/30 text-xs">
             Advanced
           </Badge>
         </div>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Crack spreads, spark spreads, crush margins, calendar structures and relative value strategies across energy and agricultural commodities
         </p>
       </div>
@@ -642,7 +642,7 @@ export default function CommoditySpreadsPage() {
 
       {/* Main Tabs */}
       <Tabs defaultValue="crack">
-        <TabsList className="bg-zinc-900 border border-zinc-800 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="crack" className="flex items-center gap-1.5 text-xs">
             <Flame className="w-3.5 h-3.5" />
             Crack Spreads
@@ -673,7 +673,7 @@ export default function CommoditySpreadsPage() {
         <TabsContent value="crack" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* 3-2-1 */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Flame className="w-4 h-4 text-amber-400" />
@@ -691,8 +691,8 @@ export default function CommoditySpreadsPage() {
                   unit="$/bbl"
                   gradId="crack321Grad"
                 />
-                <div className="bg-zinc-800/50 rounded-lg p-3 text-xs text-zinc-400 space-y-1">
-                  <p className="text-zinc-300 font-medium">Formula</p>
+                <div className="bg-muted/50 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
+                  <p className="text-muted-foreground font-medium">Formula</p>
                   <p>Spread = (2 × Gasoline + 1 × Heating Oil – 3 × Crude) ÷ 3</p>
                   <p className="mt-1">
                     <span className="text-amber-400">Typical range:</span> $10–35/bbl. Refinery economics improve when spread widens above ~$18.
@@ -702,7 +702,7 @@ export default function CommoditySpreadsPage() {
             </Card>
 
             {/* 5-3-2 */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Flame className="w-4 h-4 text-indigo-400" />
@@ -720,8 +720,8 @@ export default function CommoditySpreadsPage() {
                   unit="$/bbl"
                   gradId="crack532Grad"
                 />
-                <div className="bg-zinc-800/50 rounded-lg p-3 text-xs text-zinc-400 space-y-1">
-                  <p className="text-zinc-300 font-medium">Formula</p>
+                <div className="bg-muted/50 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
+                  <p className="text-muted-foreground font-medium">Formula</p>
                   <p>Spread = (3 × Gasoline + 2 × Heating Oil – 5 × Crude) ÷ 5</p>
                   <p className="mt-1">
                     <span className="text-indigo-400">More balanced:</span> Higher heating oil ratio makes this more sensitive to diesel/distillate demand cycles.
@@ -732,10 +732,10 @@ export default function CommoditySpreadsPage() {
           </div>
 
           {/* Refinery context */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                <Info className="w-4 h-4 text-zinc-400" />
+                <Info className="w-4 h-4 text-muted-foreground" />
                 Crack Spread Context &amp; Drivers
               </CardTitle>
             </CardHeader>
@@ -761,12 +761,12 @@ export default function CommoditySpreadsPage() {
                     color: "text-indigo-400",
                   },
                 ].map((item) => (
-                  <div key={item.title} className="bg-zinc-800/50 rounded-lg p-3 space-y-1">
+                  <div key={item.title} className="bg-muted/50 rounded-lg p-3 space-y-1">
                     <div className="flex items-center gap-1.5">
                       {item.icon}
                       <span className={`text-xs font-medium ${item.color}`}>{item.title}</span>
                     </div>
-                    <p className="text-xs text-zinc-400">{item.desc}</p>
+                    <p className="text-xs text-muted-foreground">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -801,7 +801,7 @@ export default function CommoditySpreadsPage() {
                 unit: "$/MWh",
                 formula: "Dark = Power Price – (Coal Efficiency × Coal Price)",
                 detail: "Coal plant efficiency ~35–40%. Dark spread signals coal plant profitability.",
-                accentColor: "text-zinc-400",
+                accentColor: "text-muted-foreground",
                 badgeClass: posBg(darkCurrent.chg),
               },
               {
@@ -818,7 +818,7 @@ export default function CommoditySpreadsPage() {
                 badgeClass: posBg(cleanDarkCurrent.chg),
               },
             ].map((sp) => (
-              <Card key={sp.label} className="bg-zinc-900 border-zinc-800">
+              <Card key={sp.label} className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex flex-col gap-1">
                     <div className="flex items-center gap-2">
@@ -826,7 +826,7 @@ export default function CommoditySpreadsPage() {
                       <span className="truncate">{sp.label}</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-zinc-500 font-normal">{sp.subtitle}</span>
+                      <span className="text-xs text-muted-foreground font-normal">{sp.subtitle}</span>
                       <Badge className={`text-xs ${sp.badgeClass}`}>
                         {sp.current.value.toFixed(1)} ({fmtChg(sp.current.chg)})
                       </Badge>
@@ -835,10 +835,10 @@ export default function CommoditySpreadsPage() {
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <SpreadLineChart bars={sp.bars} color={sp.color} unit={sp.unit} gradId={sp.gradId} />
-                  <div className="bg-zinc-800/50 rounded-lg p-2.5 space-y-1">
+                  <div className="bg-muted/50 rounded-lg p-2.5 space-y-1">
                     <p className={`text-xs font-medium ${sp.accentColor}`}>Formula</p>
-                    <p className="text-xs text-zinc-400">{sp.formula}</p>
-                    <p className="text-xs text-zinc-500 mt-1">{sp.detail}</p>
+                    <p className="text-xs text-muted-foreground">{sp.formula}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{sp.detail}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -846,17 +846,17 @@ export default function CommoditySpreadsPage() {
           </div>
 
           {/* Spark spread comparison */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-zinc-400" />
+                <BarChart2 className="w-4 h-4 text-muted-foreground" />
                 Fuel Switching Dynamics
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <p className="text-xs text-zinc-300 font-medium">When Spark Spread Widens vs Dark Spread</p>
+                  <p className="text-xs text-muted-foreground font-medium">When Spark Spread Widens vs Dark Spread</p>
                   <div className="space-y-1.5">
                     {[
                       { label: "Gas plants dispatch first", positive: true },
@@ -864,7 +864,7 @@ export default function CommoditySpreadsPage() {
                       { label: "Gas demand increases", positive: true },
                       { label: "Carbon emissions from power sector fall", positive: true },
                     ].map((item) => (
-                      <div key={item.label} className="flex items-center gap-2 text-xs text-zinc-400">
+                      <div key={item.label} className="flex items-center gap-2 text-xs text-muted-foreground">
                         {item.positive ? (
                           <TrendingUp className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                         ) : (
@@ -876,7 +876,7 @@ export default function CommoditySpreadsPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-xs text-zinc-300 font-medium">Clean Dark Spread Policy Impact</p>
+                  <p className="text-xs text-muted-foreground font-medium">Clean Dark Spread Policy Impact</p>
                   <div className="space-y-1.5">
                     {[
                       "EU ETS carbon price >€60/t makes most coal uneconomic",
@@ -884,7 +884,7 @@ export default function CommoditySpreadsPage() {
                       "UK & EU targeting coal phase-out by 2025–2030",
                       "Negative clean dark = stranded asset risk for coal plants",
                     ].map((text, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-zinc-400">
+                      <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                         <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                         {text}
                       </div>
@@ -899,7 +899,7 @@ export default function CommoditySpreadsPage() {
         {/* ── Crush Spread Tab ───────────────────────────────────────────────── */}
         <TabsContent value="crush" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800 lg:col-span-3">
+            <Card className="bg-card border-border lg:col-span-3">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <Wheat className="w-4 h-4 text-yellow-400" />
@@ -920,9 +920,9 @@ export default function CommoditySpreadsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800 lg:col-span-2">
+            <Card className="bg-card border-border lg:col-span-2">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300">
+                <CardTitle className="text-sm font-semibold text-muted-foreground">
                   Crush Economics
                 </CardTitle>
               </CardHeader>
@@ -967,15 +967,15 @@ export default function CommoditySpreadsPage() {
                     },
                   ].map((row) => (
                     <div key={row.label} className={`flex items-center justify-between rounded-md px-2.5 py-1.5 ${row.bg}`}>
-                      <span className="text-xs text-zinc-400">{row.label}</span>
+                      <span className="text-xs text-muted-foreground">{row.label}</span>
                       <span className={`text-xs font-semibold ${row.color}`}>{row.value}</span>
                     </div>
                   ))}
                 </div>
-                <div className="bg-zinc-800/50 rounded-lg p-2.5 text-xs text-zinc-400 space-y-1">
-                  <p className="text-zinc-300 font-medium">Crush Formula</p>
+                <div className="bg-muted/50 rounded-lg p-2.5 text-xs text-muted-foreground space-y-1">
+                  <p className="text-muted-foreground font-medium">Crush Formula</p>
                   <p>Board Crush = (0.022 × Oil Price × 100) + (0.48 × Meal Price) – Bean Price</p>
-                  <p className="text-zinc-500 mt-1">
+                  <p className="text-muted-foreground mt-1">
                     CBOT units: Beans in ¢/bu, Meal in $/ton, Oil in ¢/lb
                   </p>
                 </div>
@@ -984,9 +984,9 @@ export default function CommoditySpreadsPage() {
           </div>
 
           {/* Crush factors */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-300">Key Crush Spread Drivers</CardTitle>
+              <CardTitle className="text-sm font-semibold text-muted-foreground">Key Crush Spread Drivers</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -1016,12 +1016,12 @@ export default function CommoditySpreadsPage() {
                     color: "text-amber-400",
                   },
                 ].map((d) => (
-                  <div key={d.title} className="bg-zinc-800/50 rounded-lg p-2.5 space-y-1">
+                  <div key={d.title} className="bg-muted/50 rounded-lg p-2.5 space-y-1">
                     <div className="flex items-center gap-1.5">
                       {d.icon}
                       <span className={`text-xs font-medium ${d.color}`}>{d.title}</span>
                     </div>
-                    <p className="text-xs text-zinc-500">{d.desc}</p>
+                    <p className="text-xs text-muted-foreground">{d.desc}</p>
                   </div>
                 ))}
               </div>
@@ -1051,10 +1051,10 @@ export default function CommoditySpreadsPage() {
           </div>
 
           {calendarView === "table" ? (
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-zinc-400" />
+                  <Calendar className="w-4 h-4 text-muted-foreground" />
                   Energy &amp; Ag Calendar Spreads
                 </CardTitle>
               </CardHeader>
@@ -1062,10 +1062,10 @@ export default function CommoditySpreadsPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
+                      <tr className="border-b border-border">
                         {["Commodity", "Front Month", "Front Price", "Back Month", "Back Price", "Spread", "Structure", "Bull/Bear"].map(
                           (h) => (
-                            <th key={h} className="text-left text-zinc-500 font-medium py-2 pr-4 whitespace-nowrap">
+                            <th key={h} className="text-left text-muted-foreground font-medium py-2 pr-4 whitespace-nowrap">
                               {h}
                             </th>
                           )
@@ -1074,16 +1074,16 @@ export default function CommoditySpreadsPage() {
                     </thead>
                     <tbody>
                       {CALENDAR_SPREADS.map((cs) => (
-                        <tr key={cs.commodity} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
-                          <td className="py-2.5 pr-4 font-medium text-zinc-200 whitespace-nowrap">
+                        <tr key={cs.commodity} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                          <td className="py-2.5 pr-4 font-medium text-foreground whitespace-nowrap">
                             {cs.icon} {cs.commodity}
                           </td>
-                          <td className="py-2.5 pr-4 text-zinc-400">{cs.frontMonth}</td>
-                          <td className="py-2.5 pr-4 text-zinc-200 font-mono">
+                          <td className="py-2.5 pr-4 text-muted-foreground">{cs.frontMonth}</td>
+                          <td className="py-2.5 pr-4 text-foreground font-mono">
                             {cs.frontPrice < 10 ? cs.frontPrice.toFixed(3) : cs.frontPrice.toFixed(2)}
                           </td>
-                          <td className="py-2.5 pr-4 text-zinc-400">{cs.backMonth}</td>
-                          <td className="py-2.5 pr-4 text-zinc-200 font-mono">
+                          <td className="py-2.5 pr-4 text-muted-foreground">{cs.backMonth}</td>
+                          <td className="py-2.5 pr-4 text-foreground font-mono">
                             {cs.backPrice < 10 ? cs.backPrice.toFixed(3) : cs.backPrice.toFixed(2)}
                           </td>
                           <td className={`py-2.5 pr-4 font-mono font-semibold ${posColor(cs.spread)}`}>
@@ -1122,7 +1122,7 @@ export default function CommoditySpreadsPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {CALENDAR_SPREADS.map((cs) => (
-                <Card key={cs.commodity} className="bg-zinc-900 border-zinc-800">
+                <Card key={cs.commodity} className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold flex items-center gap-2">
                       <span>{cs.icon}</span>
@@ -1141,14 +1141,14 @@ export default function CommoditySpreadsPage() {
                   <CardContent>
                     <CalendarCurveSVG isContango={cs.structure === "contango"} commodity={cs.commodity} />
                     <div className="flex justify-between text-xs mt-2">
-                      <span className="text-zinc-500">
-                        Front: <span className="text-zinc-200 font-mono">{cs.frontPrice.toFixed(2)}</span>
+                      <span className="text-muted-foreground">
+                        Front: <span className="text-foreground font-mono">{cs.frontPrice.toFixed(2)}</span>
                       </span>
                       <span className={`font-mono font-semibold ${posColor(cs.spread)}`}>
                         Spread: {cs.spread > 0 ? "+" : ""}{cs.spread.toFixed(2)}
                       </span>
-                      <span className="text-zinc-500">
-                        Back: <span className="text-zinc-200 font-mono">{cs.backPrice.toFixed(2)}</span>
+                      <span className="text-muted-foreground">
+                        Back: <span className="text-foreground font-mono">{cs.backPrice.toFixed(2)}</span>
                       </span>
                     </div>
                   </CardContent>
@@ -1159,14 +1159,14 @@ export default function CommoditySpreadsPage() {
 
           {/* Calendar spread education */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-amber-400" />
                   Backwardation
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-xs text-zinc-400">
+              <CardContent className="space-y-2 text-xs text-muted-foreground">
                 <p>Front-month price trades <span className="text-amber-400 font-medium">above</span> deferred contracts. Signals tight current supply or strong spot demand.</p>
                 <ul className="space-y-1 list-none">
                   {[
@@ -1183,14 +1183,14 @@ export default function CommoditySpreadsPage() {
                 </ul>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <TrendingDown className="w-4 h-4 text-indigo-400" />
                   Contango
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-xs text-zinc-400">
+              <CardContent className="space-y-2 text-xs text-muted-foreground">
                 <p>Deferred contracts trade <span className="text-indigo-400 font-medium">above</span> front-month. Reflects storage costs, financing, and surplus supply expectations.</p>
                 <ul className="space-y-1 list-none">
                   {[
@@ -1212,7 +1212,7 @@ export default function CommoditySpreadsPage() {
 
         {/* ── Weather & Seasonality Tab ──────────────────────────────────────── */}
         <TabsContent value="weather" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
                 <CloudRain className="w-4 h-4 text-sky-400" />
@@ -1223,9 +1223,9 @@ export default function CommoditySpreadsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
+                    <tr className="border-b border-border">
                       {["Weather Event", "Affected Spread", "Direction", "Magnitude", "Season", "Mechanism"].map((h) => (
-                        <th key={h} className="text-left text-zinc-500 font-medium py-2 pr-3 whitespace-nowrap">
+                        <th key={h} className="text-left text-muted-foreground font-medium py-2 pr-3 whitespace-nowrap">
                           {h}
                         </th>
                       ))}
@@ -1233,9 +1233,9 @@ export default function CommoditySpreadsPage() {
                   </thead>
                   <tbody>
                     {WEATHER_IMPACTS.map((w, i) => (
-                      <tr key={i} className="border-b border-zinc-800/40 hover:bg-zinc-800/30 transition-colors">
-                        <td className="py-2.5 pr-3 font-medium text-zinc-200 whitespace-nowrap">{w.event}</td>
-                        <td className="py-2.5 pr-3 text-zinc-300 whitespace-nowrap">{w.spread}</td>
+                      <tr key={i} className="border-b border-border/40 hover:bg-muted/30 transition-colors">
+                        <td className="py-2.5 pr-3 font-medium text-foreground whitespace-nowrap">{w.event}</td>
+                        <td className="py-2.5 pr-3 text-muted-foreground whitespace-nowrap">{w.spread}</td>
                         <td className="py-2.5 pr-3">
                           <Badge
                             className={
@@ -1249,13 +1249,13 @@ export default function CommoditySpreadsPage() {
                             {w.direction}
                           </Badge>
                         </td>
-                        <td className="py-2.5 pr-3 text-zinc-400 whitespace-nowrap">{w.magnitude}</td>
+                        <td className="py-2.5 pr-3 text-muted-foreground whitespace-nowrap">{w.magnitude}</td>
                         <td className="py-2.5 pr-3">
-                          <Badge className="bg-zinc-700/50 text-zinc-400 border-zinc-700 text-xs">
+                          <Badge className="bg-muted/50 text-muted-foreground border-border text-xs">
                             {w.season}
                           </Badge>
                         </td>
-                        <td className="py-2.5 text-zinc-500 max-w-[240px]">{w.reason}</td>
+                        <td className="py-2.5 text-muted-foreground max-w-[240px]">{w.reason}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1266,9 +1266,9 @@ export default function CommoditySpreadsPage() {
 
           {/* Seasonality summary */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300">Energy Seasonality Calendar</CardTitle>
+                <CardTitle className="text-sm font-semibold text-muted-foreground">Energy Seasonality Calendar</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-1.5">
@@ -1280,17 +1280,17 @@ export default function CommoditySpreadsPage() {
                     { months: "Sep–Oct", event: "Refinery maintenance → Transitional crack spread", color: "text-primary" },
                     { months: "Nov–Dec", event: "Pre-winter storage → Heating oil/gas premium", color: "text-sky-400" },
                   ].map((s) => (
-                    <div key={s.months} className="flex items-center gap-3 bg-zinc-800/40 rounded px-2.5 py-1.5">
+                    <div key={s.months} className="flex items-center gap-3 bg-muted/40 rounded px-2.5 py-1.5">
                       <span className={`text-xs font-mono font-medium w-16 shrink-0 ${s.color}`}>{s.months}</span>
-                      <span className="text-xs text-zinc-400">{s.event}</span>
+                      <span className="text-xs text-muted-foreground">{s.event}</span>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300">Agricultural Seasonality Calendar</CardTitle>
+                <CardTitle className="text-sm font-semibold text-muted-foreground">Agricultural Seasonality Calendar</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-1.5">
@@ -1299,12 +1299,12 @@ export default function CommoditySpreadsPage() {
                     { months: "Mar–May", event: "US planting season → Corn/soy spread widens on acreage", color: "text-emerald-400" },
                     { months: "Jun–Jul", event: "Pollination weather → Corn yield risk premium", color: "text-amber-400" },
                     { months: "Aug–Sep", event: "Crop condition reports → Pre-harvest basis narrows", color: "text-red-400" },
-                    { months: "Oct–Nov", event: "Harvest pressure → Front contracts weaken vs deferred", color: "text-zinc-400" },
+                    { months: "Oct–Nov", event: "Harvest pressure → Front contracts weaken vs deferred", color: "text-muted-foreground" },
                     { months: "Dec", event: "USDA supply/demand estimates → Re-pricing spreads", color: "text-indigo-400" },
                   ].map((s) => (
-                    <div key={s.months} className="flex items-center gap-3 bg-zinc-800/40 rounded px-2.5 py-1.5">
+                    <div key={s.months} className="flex items-center gap-3 bg-muted/40 rounded px-2.5 py-1.5">
                       <span className={`text-xs font-mono font-medium w-16 shrink-0 ${s.color}`}>{s.months}</span>
-                      <span className="text-xs text-zinc-400">{s.event}</span>
+                      <span className="text-xs text-muted-foreground">{s.event}</span>
                     </div>
                   ))}
                 </div>
@@ -1324,7 +1324,7 @@ export default function CommoditySpreadsPage() {
                 transition={{ duration: 0.3, delay: i * 0.08 }}
               >
                 <Card
-                  className="bg-zinc-900 border-zinc-800 cursor-pointer hover:border-zinc-700 transition-colors"
+                  className="bg-card border-border cursor-pointer hover:border-border transition-colors"
                   onClick={() => setActiveStrategy(activeStrategy === i ? null : i)}
                 >
                   <CardHeader className="pb-2">
@@ -1345,13 +1345,13 @@ export default function CommoditySpreadsPage() {
                         {strat.type}
                       </Badge>
                       <div className="ml-auto flex items-center gap-3">
-                        <span className="text-xs text-zinc-500 hidden sm:block">R:R {strat.rrRatio}</span>
-                        <ArrowUpDown className="w-3.5 h-3.5 text-zinc-500" />
+                        <span className="text-xs text-muted-foreground hidden sm:block">R:R {strat.rrRatio}</span>
+                        <ArrowUpDown className="w-3.5 h-3.5 text-muted-foreground" />
                       </div>
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <p className="text-xs text-zinc-400">{strat.description}</p>
+                    <p className="text-xs text-muted-foreground">{strat.description}</p>
 
                     {activeStrategy === i && (
                       <motion.div
@@ -1400,15 +1400,15 @@ export default function CommoditySpreadsPage() {
                                 {field.icon}
                                 <span className={`text-xs font-medium ${field.color}`}>{field.label}</span>
                               </div>
-                              <p className="text-xs text-zinc-400">{field.value}</p>
+                              <p className="text-xs text-muted-foreground">{field.value}</p>
                             </div>
                           ))}
                         </div>
 
-                        <div className="flex items-center gap-4 bg-zinc-800/60 rounded-lg px-3 py-2">
+                        <div className="flex items-center gap-4 bg-muted/60 rounded-lg px-3 py-2">
                           <div className="flex items-center gap-2">
-                            <BarChart2 className="w-3.5 h-3.5 text-zinc-400" />
-                            <span className="text-xs text-zinc-500">Risk/Reward</span>
+                            <BarChart2 className="w-3.5 h-3.5 text-muted-foreground" />
+                            <span className="text-xs text-muted-foreground">Risk/Reward</span>
                             <span
                               className="text-xs font-semibold"
                               style={{ color: strat.color }}
@@ -1418,15 +1418,15 @@ export default function CommoditySpreadsPage() {
                           </div>
                           <div className="flex items-center gap-2 ml-4">
                             <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
-                            <span className="text-xs text-zinc-500">Edge:</span>
-                            <span className="text-xs text-zinc-300">{strat.edge}</span>
+                            <span className="text-xs text-muted-foreground">Edge:</span>
+                            <span className="text-xs text-muted-foreground">{strat.edge}</span>
                           </div>
                         </div>
                       </motion.div>
                     )}
 
                     {activeStrategy !== i && (
-                      <div className="flex items-center gap-4 text-xs text-zinc-600">
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
                         <span>Click to expand strategy details</span>
                         <span className="flex items-center gap-1 ml-auto" style={{ color: strat.color }}>
                           R:R {strat.rrRatio}
@@ -1440,13 +1440,13 @@ export default function CommoditySpreadsPage() {
           </div>
 
           {/* Risk warning */}
-          <Card className="bg-zinc-900 border-amber-900/40">
+          <Card className="bg-card border-amber-900/40">
             <CardContent className="pt-4">
               <div className="flex gap-3">
                 <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <p className="text-sm font-medium text-amber-400">Spread Trading Risk Disclosure</p>
-                  <p className="text-xs text-zinc-400">
+                  <p className="text-xs text-muted-foreground">
                     While spread trades have lower outright price exposure than directional futures, they carry significant risks including: basis risk (spread does not revert as expected), liquidity risk in deferred months, margin amplification (both legs require margin), and correlation breakdown during market stress. Commodity spreads can move violently during supply shocks, weather events, or regulatory changes. This is a simulation environment for educational purposes only.
                   </p>
                 </div>

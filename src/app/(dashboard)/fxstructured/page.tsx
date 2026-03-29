@@ -181,7 +181,7 @@ function MiniPayoffChart({
 
   return (
     <div className="flex flex-col gap-1">
-      <span className="text-xs text-zinc-400 font-medium">{label}</span>
+      <span className="text-xs text-muted-foreground font-medium">{label}</span>
       <svg width={width} height={height} className="overflow-visible">
         {/* Zero line */}
         <line
@@ -348,14 +348,14 @@ function FXOptionsTab() {
     <div className="space-y-6">
       {/* Header */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-emerald-400" />
               Exporter Perspective
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-zinc-400 space-y-1">
+          <CardContent className="text-xs text-muted-foreground space-y-1">
             <p>Receives foreign currency (e.g., EUR) and must convert to USD.</p>
             <p className="text-amber-400">Risk: EUR depreciates → fewer USD received.</p>
             <p className="text-emerald-400">
@@ -363,14 +363,14 @@ function FXOptionsTab() {
             </p>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <TrendingDown className="w-4 h-4 text-red-400" />
               Importer Perspective
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-zinc-400 space-y-1">
+          <CardContent className="text-xs text-muted-foreground space-y-1">
             <p>Pays in foreign currency (e.g., EUR) and converts from USD.</p>
             <p className="text-amber-400">Risk: EUR appreciates → more USD needed.</p>
             <p className="text-emerald-400">
@@ -382,14 +382,14 @@ function FXOptionsTab() {
 
       {/* Toggle */}
       <div className="flex items-center gap-3">
-        <span className="text-xs text-zinc-500">Perspective:</span>
+        <span className="text-xs text-muted-foreground">Perspective:</span>
         <button
           onClick={() => setShowExporter(true)}
           className={cn(
             "px-3 py-1 rounded text-xs font-medium transition-colors",
             showExporter
               ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-              : "text-zinc-500 hover:text-zinc-300",
+              : "text-muted-foreground hover:text-muted-foreground",
           )}
         >
           Exporter (Sell EUR)
@@ -400,7 +400,7 @@ function FXOptionsTab() {
             "px-3 py-1 rounded text-xs font-medium transition-colors",
             !showExporter
               ? "bg-primary/20 text-primary border border-primary/40"
-              : "text-zinc-500 hover:text-zinc-300",
+              : "text-muted-foreground hover:text-muted-foreground",
           )}
         >
           Importer (Buy EUR)
@@ -408,9 +408,9 @@ function FXOptionsTab() {
       </div>
 
       {/* Payoff diagrams */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
             Payoff Diagrams — EUR/USD Spot: {SPOT.toFixed(4)} | Notional: $1M
           </CardTitle>
         </CardHeader>
@@ -423,7 +423,7 @@ function FXOptionsTab() {
                 label="25Δ Risk Reversal"
                 height={120}
               />
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Long 25Δ call at 1.1050, short 25Δ put at 1.0650. Zero net premium. Exporter
                 participates in EUR upside but has downside floor risk below 1.0650.
               </p>
@@ -435,7 +435,7 @@ function FXOptionsTab() {
                 label="Range Forward"
                 height={120}
               />
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Locks EUR/USD between 1.06–1.11. Zero premium. Both parties capped. Best for
                 corporates seeking predictability over upside.
               </p>
@@ -447,7 +447,7 @@ function FXOptionsTab() {
                 label="Participating Forward"
                 height={120}
               />
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Guaranteed worst case at 1.08 forward rate. 50% participation in EUR rally above
                 strike. Small premium (~$4,200). Popular with mid-cap exporters.
               </p>
@@ -457,9 +457,9 @@ function FXOptionsTab() {
       </Card>
 
       {/* Cost comparison table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Vanilla vs Exotic Cost Comparison — $1M Notional, 90-day Tenor
           </CardTitle>
@@ -468,10 +468,10 @@ function FXOptionsTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Strategy", "Type", "Upfront Cost", "Max Gain", "Max Loss", "Suitable For", "Complexity"].map(
                     (h) => (
-                      <th key={h} className="pb-2 pr-4 text-left text-zinc-500 font-medium">
+                      <th key={h} className="pb-2 pr-4 text-left text-muted-foreground font-medium">
                         {h}
                       </th>
                     ),
@@ -480,8 +480,8 @@ function FXOptionsTab() {
               </thead>
               <tbody>
                 {COST_COMPARISON.map((row, i) => (
-                  <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
-                    <td className="py-2 pr-4 text-zinc-200 font-medium">{row.strategy}</td>
+                  <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                    <td className="py-2 pr-4 text-foreground font-medium">{row.strategy}</td>
                     <td className="py-2 pr-4">
                       <Badge
                         variant="outline"
@@ -493,22 +493,22 @@ function FXOptionsTab() {
                               ? "border-amber-500/40 text-amber-400"
                               : row.type === "Vanilla"
                                 ? "border-primary/40 text-primary"
-                                : "border-zinc-600 text-zinc-400",
+                                : "border-border text-muted-foreground",
                         )}
                       >
                         {row.type}
                       </Badge>
                     </td>
-                    <td className="py-2 pr-4 text-zinc-300">
+                    <td className="py-2 pr-4 text-muted-foreground">
                       {row.upfront === 0 ? (
                         <span className="text-emerald-400">$0</span>
                       ) : (
                         <span className="text-amber-400">${row.upfront.toLocaleString()}</span>
                       )}
                     </td>
-                    <td className="py-2 pr-4 text-zinc-400">{row.maxGain}</td>
-                    <td className="py-2 pr-4 text-zinc-400">{row.maxLoss}</td>
-                    <td className="py-2 pr-4 text-zinc-400">{row.suitability}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{row.maxGain}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{row.maxLoss}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{row.suitability}</td>
                     <td className="py-2 pr-4">
                       <Badge
                         variant="outline"
@@ -569,7 +569,7 @@ function FXOptionsTab() {
             ],
           },
         ].map(({ title, icon: Icon, color, points }) => (
-          <Card key={title} className="bg-zinc-900 border-zinc-800">
+          <Card key={title} className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle
                 className={cn(
@@ -597,7 +597,7 @@ function FXOptionsTab() {
             <CardContent>
               <ul className="space-y-1">
                 {points.map((p, i) => (
-                  <li key={i} className="text-xs text-zinc-400 flex gap-2">
+                  <li key={i} className="text-xs text-muted-foreground flex gap-2">
                     <span
                       className={cn(
                         "mt-0.5 shrink-0",
@@ -851,7 +851,7 @@ function AccumulatorsTab() {
         <AlertTriangle className="w-5 h-5 text-red-400 mt-0.5 shrink-0" />
         <div>
           <p className="text-sm font-medium text-red-300">&ldquo;I Kill You Later&rdquo; Products</p>
-          <p className="text-xs text-zinc-400 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Accumulators earned this infamous nickname during the 2008 financial crisis when the AUD and other EM
             currencies crashed. Clients who purchased accumulators at tight forward rates were forced to buy currencies
             at far-above-market prices, suffering massive losses. The lesson: understand path-dependency and worst-case
@@ -862,9 +862,9 @@ function AccumulatorsTab() {
 
       {/* Accumulator mechanics */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Activity className="w-4 h-4 text-emerald-400" />
               Accumulator: Daily Fixing vs Knock-Out Barrier
             </CardTitle>
@@ -872,25 +872,25 @@ function AccumulatorsTab() {
           <CardContent className="space-y-3">
             <AccumulatorSVG />
             <div className="grid grid-cols-3 gap-3 text-xs">
-              <div className="bg-zinc-800/50 rounded p-2">
-                <div className="text-zinc-500">Structure</div>
-                <div className="text-zinc-200">Buy EUR daily at 1.08 forward</div>
+              <div className="bg-muted/50 rounded p-2">
+                <div className="text-muted-foreground">Structure</div>
+                <div className="text-foreground">Buy EUR daily at 1.08 forward</div>
               </div>
-              <div className="bg-zinc-800/50 rounded p-2">
-                <div className="text-zinc-500">KO Barrier</div>
+              <div className="bg-muted/50 rounded p-2">
+                <div className="text-muted-foreground">KO Barrier</div>
                 <div className="text-red-400">1.1050 — stops accumulation</div>
               </div>
-              <div className="bg-zinc-800/50 rounded p-2">
-                <div className="text-zinc-500">Benefit</div>
+              <div className="bg-muted/50 rounded p-2">
+                <div className="text-muted-foreground">Benefit</div>
                 <div className="text-emerald-400">Below-market forward rate</div>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Target className="w-4 h-4 text-primary" />
               TARF: Cash Flow Waterfall
             </CardTitle>
@@ -898,17 +898,17 @@ function AccumulatorsTab() {
           <CardContent className="space-y-3">
             <TARFWaterfallSVG />
             <div className="grid grid-cols-3 gap-3 text-xs">
-              <div className="bg-zinc-800/50 rounded p-2">
-                <div className="text-zinc-500">Target Profit</div>
+              <div className="bg-muted/50 rounded p-2">
+                <div className="text-muted-foreground">Target Profit</div>
                 <div className="text-amber-400">$50,000 cumulative</div>
               </div>
-              <div className="bg-zinc-800/50 rounded p-2">
-                <div className="text-zinc-500">Redemption</div>
+              <div className="bg-muted/50 rounded p-2">
+                <div className="text-muted-foreground">Redemption</div>
                 <div className="text-primary">Auto-redeems at target</div>
               </div>
-              <div className="bg-zinc-800/50 rounded p-2">
-                <div className="text-zinc-500">Tenor</div>
-                <div className="text-zinc-200">12 monthly periods</div>
+              <div className="bg-muted/50 rounded p-2">
+                <div className="text-muted-foreground">Tenor</div>
+                <div className="text-foreground">12 monthly periods</div>
               </div>
             </div>
           </CardContent>
@@ -916,9 +916,9 @@ function AccumulatorsTab() {
       </div>
 
       {/* P&L Scenarios */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             P&L Scenarios Under Different Spot Paths
           </CardTitle>
@@ -939,11 +939,11 @@ function AccumulatorsTab() {
                         : s.color === "red"
                           ? "bg-red-500/10 border-red-500/50"
                           : "bg-amber-500/10 border-amber-500/50"
-                    : "bg-zinc-800/30 border-zinc-800 hover:border-zinc-600",
+                    : "bg-muted/30 border-border hover:border-border",
                 )}
               >
-                <div className="text-xs font-medium text-zinc-200">{s.name}</div>
-                <div className="text-xs text-zinc-500 mt-1">{s.path}</div>
+                <div className="text-xs font-medium text-foreground">{s.name}</div>
+                <div className="text-xs text-muted-foreground mt-1">{s.path}</div>
                 <Badge
                   variant="outline"
                   className={cn(
@@ -969,10 +969,10 @@ function AccumulatorsTab() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="p-4 bg-zinc-800/40 rounded-lg border border-zinc-700/50"
+              className="p-4 bg-muted/40 rounded-lg border border-border/50"
             >
-              <p className="text-sm font-medium text-zinc-200">{TARF_SCENARIOS[activeScenario].name}</p>
-              <p className="text-xs text-zinc-400 mt-2">{TARF_SCENARIOS[activeScenario].result}</p>
+              <p className="text-sm font-medium text-foreground">{TARF_SCENARIOS[activeScenario].name}</p>
+              <p className="text-xs text-muted-foreground mt-2">{TARF_SCENARIOS[activeScenario].result}</p>
             </motion.div>
           </AnimatePresence>
         </CardContent>
@@ -980,9 +980,9 @@ function AccumulatorsTab() {
 
       {/* Key terms */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">Accumulator Key Terms</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Accumulator Key Terms</CardTitle>
           </CardHeader>
           <CardContent>
             <dl className="space-y-2 text-xs">
@@ -995,15 +995,15 @@ function AccumulatorsTab() {
               ].map(([term, def]) => (
                 <div key={term as string} className="flex gap-2">
                   <dt className="text-primary shrink-0 w-32">{term}</dt>
-                  <dd className="text-zinc-400">{def}</dd>
+                  <dd className="text-muted-foreground">{def}</dd>
                 </div>
               ))}
             </dl>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">TARF Mechanics</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">TARF Mechanics</CardTitle>
           </CardHeader>
           <CardContent>
             <dl className="space-y-2 text-xs">
@@ -1016,7 +1016,7 @@ function AccumulatorsTab() {
               ].map(([term, def]) => (
                 <div key={term as string} className="flex gap-2">
                   <dt className="text-primary shrink-0 w-32">{term}</dt>
-                  <dd className="text-zinc-400">{def}</dd>
+                  <dd className="text-muted-foreground">{def}</dd>
                 </div>
               ))}
             </dl>
@@ -1117,7 +1117,7 @@ function DCDScenarioBar({ scenario }: { scenario: DCDScenario }) {
   return (
     <div className="space-y-1">
       <div className="flex justify-between text-xs">
-        <span className="text-zinc-300">{scenario.name}</span>
+        <span className="text-muted-foreground">{scenario.name}</span>
         <span className={cn("font-medium", scenario.totalReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
           {scenario.totalReturn >= 0 ? "+" : ""}{scenario.totalReturn.toFixed(1)}%
         </span>
@@ -1138,7 +1138,7 @@ function DCDScenarioBar({ scenario }: { scenario: DCDScenario }) {
           </div>
         )}
       </div>
-      <div className="flex gap-2 text-xs text-zinc-500">
+      <div className="flex gap-2 text-xs text-muted-foreground">
         <span>Spot: {scenario.endSpot}</span>
         <span>•</span>
         <span className={scenario.converted ? "text-amber-400" : "text-emerald-400"}>
@@ -1154,14 +1154,14 @@ function DualCurrencyTab() {
     <div className="space-y-6">
       {/* Mechanics overview */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-emerald-400" />
               DCD Mechanics — How It Works
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs text-zinc-400">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="flex gap-3 items-start">
               <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0">1</div>
               <p>Investor deposits USD (or other base currency) for a fixed tenor (typically 1–4 weeks).</p>
@@ -1178,34 +1178,34 @@ function DualCurrencyTab() {
               <div className="w-6 h-6 rounded-full bg-red-500/20 text-red-400 flex items-center justify-center text-xs font-bold shrink-0">4</div>
               <p>If spot is above strike at maturity, principal is converted to JPY at the strike rate. Investor receives JPY — regardless of current market rate.</p>
             </div>
-            <div className="p-3 bg-zinc-800/60 rounded text-zinc-300 border-l-2 border-amber-400">
+            <div className="p-3 bg-muted/60 rounded text-muted-foreground border-l-2 border-amber-400">
               <strong className="text-amber-300">Key Risk:</strong> The enhanced yield compensates for accepting FX conversion risk. If the currency moves sharply against you, the conversion loss can exceed the yield pickup.
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Calculator className="w-4 h-4 text-primary" />
               Yield Enhancement vs Strike Selection
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <DCDYieldSVG />
-            <div className="text-xs text-zinc-400 space-y-1">
+            <div className="text-xs text-muted-foreground space-y-1">
               <p><span className="text-emerald-400">ATM strike (0%):</span> highest enhancement (deepest option premium)</p>
               <p><span className="text-primary">Far OTM strike (±3%):</span> lower enhancement but less conversion risk</p>
-              <p className="text-zinc-500">Strike selection is the key trade-off between yield and safety.</p>
+              <p className="text-muted-foreground">Strike selection is the key trade-off between yield and safety.</p>
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Scenario analysis */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Worst-Case Scenario Analysis — USD/JPY DCD, Strike: 150.0, Yield: 5.8% p.a. (28-day)
           </CardTitle>
@@ -1214,7 +1214,7 @@ function DualCurrencyTab() {
           {DCD_SCENARIOS.map((sc, i) => (
             <DCDScenarioBar key={i} scenario={sc} />
           ))}
-          <p className="text-xs text-zinc-500 pt-2 border-t border-zinc-800">
+          <p className="text-xs text-muted-foreground pt-2 border-t border-border">
             Green = deposit yield earned. Red = FX conversion loss. Total return can turn negative if FX move is large enough.
           </p>
         </CardContent>
@@ -1222,52 +1222,52 @@ function DualCurrencyTab() {
 
       {/* Suitability and structure */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">Suitability Considerations</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Suitability Considerations</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
               <div className="flex items-start gap-2 text-xs">
                 <span className="text-emerald-400 mt-0.5">✓</span>
-                <span className="text-zinc-400">Investors comfortable holding either currency at maturity</span>
+                <span className="text-muted-foreground">Investors comfortable holding either currency at maturity</span>
               </div>
               <div className="flex items-start gap-2 text-xs">
                 <span className="text-emerald-400 mt-0.5">✓</span>
-                <span className="text-zinc-400">Those who need currency anyway (natural hedge users)</span>
+                <span className="text-muted-foreground">Those who need currency anyway (natural hedge users)</span>
               </div>
               <div className="flex items-start gap-2 text-xs">
                 <span className="text-emerald-400 mt-0.5">✓</span>
-                <span className="text-zinc-400">Yield-enhancement seekers in low-rate environments</span>
+                <span className="text-muted-foreground">Yield-enhancement seekers in low-rate environments</span>
               </div>
               <div className="flex items-start gap-2 text-xs">
                 <span className="text-red-400 mt-0.5">✗</span>
-                <span className="text-zinc-400">Investors who need their principal in specific currency at maturity</span>
+                <span className="text-muted-foreground">Investors who need their principal in specific currency at maturity</span>
               </div>
               <div className="flex items-start gap-2 text-xs">
                 <span className="text-red-400 mt-0.5">✗</span>
-                <span className="text-zinc-400">Those without FX risk tolerance or diversified FX portfolio</span>
+                <span className="text-muted-foreground">Those without FX risk tolerance or diversified FX portfolio</span>
               </div>
               <div className="flex items-start gap-2 text-xs">
                 <span className="text-red-400 mt-0.5">✗</span>
-                <span className="text-zinc-400">Retail investors without structured product experience</span>
+                <span className="text-muted-foreground">Retail investors without structured product experience</span>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">DCD vs Plain Deposit — Key Facts</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">DCD vs Plain Deposit — Key Facts</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-zinc-800">
-                    <th className="pb-2 text-left text-zinc-500">Feature</th>
-                    <th className="pb-2 text-left text-zinc-500">Plain Deposit</th>
-                    <th className="pb-2 text-left text-zinc-500">DCD</th>
+                  <tr className="border-b border-border">
+                    <th className="pb-2 text-left text-muted-foreground">Feature</th>
+                    <th className="pb-2 text-left text-muted-foreground">Plain Deposit</th>
+                    <th className="pb-2 text-left text-muted-foreground">DCD</th>
                   </tr>
                 </thead>
                 <tbody className="space-y-1">
@@ -1279,10 +1279,10 @@ function DualCurrencyTab() {
                     ["Early exit", "Possible (penalty)", "Generally not permitted"],
                     ["Regulatory status", "Deposit", "Investment product"],
                   ].map(([feat, plain, dcd]) => (
-                    <tr key={feat as string} className="border-b border-zinc-800/30">
-                      <td className="py-1.5 pr-4 text-zinc-300">{feat}</td>
-                      <td className="py-1.5 pr-4 text-zinc-400">{plain}</td>
-                      <td className="py-1.5 text-zinc-400">{dcd}</td>
+                    <tr key={feat as string} className="border-b border-border/30">
+                      <td className="py-1.5 pr-4 text-muted-foreground">{feat}</td>
+                      <td className="py-1.5 pr-4 text-muted-foreground">{plain}</td>
+                      <td className="py-1.5 text-muted-foreground">{dcd}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1435,9 +1435,9 @@ function CorporateHedgingTab() {
   return (
     <div className="space-y-6">
       {/* Exposure types */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary" />
             FX Risk Exposure Mapping
           </CardTitle>
@@ -1470,7 +1470,7 @@ function CorporateHedgingTab() {
                 </div>
                 <ul className="space-y-1 mb-3">
                   {exp.examples.map((e) => (
-                    <li key={e} className="text-xs text-zinc-400 flex gap-1.5">
+                    <li key={e} className="text-xs text-muted-foreground flex gap-1.5">
                       <span
                         className={cn(
                           exp.color === "blue"
@@ -1487,8 +1487,8 @@ function CorporateHedgingTab() {
                   ))}
                 </ul>
                 <div className="text-xs">
-                  <div className="text-zinc-500">Horizon: <span className="text-zinc-300">{exp.horizon}</span></div>
-                  <div className="text-zinc-500 mt-1">Tool: <span className="text-zinc-300">{exp.tool}</span></div>
+                  <div className="text-muted-foreground">Horizon: <span className="text-muted-foreground">{exp.horizon}</span></div>
+                  <div className="text-muted-foreground mt-1">Tool: <span className="text-muted-foreground">{exp.tool}</span></div>
                 </div>
               </div>
             ))}
@@ -1497,9 +1497,9 @@ function CorporateHedgingTab() {
       </Card>
 
       {/* Cost comparison SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Cost of Carry Comparison — Forward vs Option vs Zero-Cost Collar
           </CardTitle>
@@ -1512,10 +1512,10 @@ function CorporateHedgingTab() {
               { name: "Vanilla Put Option", color: "text-emerald-400", pros: "Full upside retained", cons: "$8,000 upfront premium" },
               { name: "Zero-Cost Collar", color: "text-primary", pros: "No premium, downside floor", cons: "Upside capped at strike" },
             ].map((s) => (
-              <div key={s.name} className="bg-zinc-800/40 rounded p-3 space-y-1">
+              <div key={s.name} className="bg-muted/40 rounded p-3 space-y-1">
                 <div className={cn("font-medium", s.color)}>{s.name}</div>
-                <div className="text-zinc-400"><span className="text-emerald-500">+</span> {s.pros}</div>
-                <div className="text-zinc-400"><span className="text-red-500">−</span> {s.cons}</div>
+                <div className="text-muted-foreground"><span className="text-emerald-500">+</span> {s.pros}</div>
+                <div className="text-muted-foreground"><span className="text-red-500">−</span> {s.cons}</div>
               </div>
             ))}
           </div>
@@ -1524,9 +1524,9 @@ function CorporateHedgingTab() {
 
       {/* Hedge ratio framework */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Target className="w-4 h-4 text-emerald-400" />
               Hedge Ratio Decision Framework
             </CardTitle>
@@ -1541,7 +1541,7 @@ function CorporateHedgingTab() {
                     "px-3 py-1.5 rounded text-xs font-medium transition-colors border",
                     selectedRatio === i
                       ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                      : "text-zinc-400 border-zinc-700 hover:border-zinc-500",
+                      : "text-muted-foreground border-border hover:border-zinc-500",
                   )}
                 >
                   {h.ratio}
@@ -1555,21 +1555,21 @@ function CorporateHedgingTab() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.2 }}
-                className="p-4 bg-zinc-800/40 rounded-lg border border-zinc-700/50"
+                className="p-4 bg-muted/40 rounded-lg border border-border/50"
               >
-                <div className="text-sm font-medium text-zinc-200">{HEDGE_RATIOS[selectedRatio].ratio} — {HEDGE_RATIOS[selectedRatio].label}</div>
+                <div className="text-sm font-medium text-foreground">{HEDGE_RATIOS[selectedRatio].ratio} — {HEDGE_RATIOS[selectedRatio].label}</div>
                 <div className="mt-2 space-y-1 text-xs">
-                  <div className="text-zinc-400"><span className="text-amber-400">Risk: </span>{HEDGE_RATIOS[selectedRatio].risk}</div>
-                  <div className="text-zinc-400"><span className="text-emerald-400">Benefit: </span>{HEDGE_RATIOS[selectedRatio].benefit}</div>
+                  <div className="text-muted-foreground"><span className="text-amber-400">Risk: </span>{HEDGE_RATIOS[selectedRatio].risk}</div>
+                  <div className="text-muted-foreground"><span className="text-emerald-400">Benefit: </span>{HEDGE_RATIOS[selectedRatio].benefit}</div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Zap className="w-4 h-4 text-amber-400" />
               Natural Hedging Strategies
             </CardTitle>
@@ -1601,13 +1601,13 @@ function CorporateHedgingTab() {
                 <li key={item.title} className="flex gap-3 items-start">
                   <Badge
                     variant="outline"
-                    className="border-zinc-600 text-zinc-400 text-xs shrink-0 mt-0.5"
+                    className="border-border text-muted-foreground text-xs shrink-0 mt-0.5"
                   >
                     {item.tag}
                   </Badge>
                   <div>
-                    <div className="text-xs font-medium text-zinc-200">{item.title}</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">{item.desc}</div>
+                    <div className="text-xs font-medium text-foreground">{item.title}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{item.desc}</div>
                   </div>
                 </li>
               ))}
@@ -1617,9 +1617,9 @@ function CorporateHedgingTab() {
       </div>
 
       {/* P&L impact analysis */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-red-400" />
             P&L Impact Analysis — 3 Hedging Strategies, $10M EUR Revenue, EUR/USD moves -5% (1.085 → 1.030)
           </CardTitle>
@@ -1628,9 +1628,9 @@ function CorporateHedgingTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Strategy", "Effective Rate", "USD Revenue", "FX Gain/Loss", "Net P&L Impact", "Verdict"].map((h) => (
-                    <th key={h} className="pb-2 pr-4 text-left text-zinc-500 font-medium">{h}</th>
+                    <th key={h} className="pb-2 pr-4 text-left text-muted-foreground font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -1667,11 +1667,11 @@ function CorporateHedgingTab() {
                     verdictColor: "text-primary",
                   },
                 ].map((row) => (
-                  <tr key={row.strategy} className="border-b border-zinc-800/50 hover:bg-zinc-800/20 transition-colors">
-                    <td className="py-2.5 pr-4 text-zinc-200 font-medium">{row.strategy}</td>
-                    <td className="py-2.5 pr-4 text-zinc-400">{row.effectiveRate}</td>
-                    <td className="py-2.5 pr-4 text-zinc-300">{row.usdRevenue}</td>
-                    <td className="py-2.5 pr-4 text-zinc-400">{row.fxGL}</td>
+                  <tr key={row.strategy} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                    <td className="py-2.5 pr-4 text-foreground font-medium">{row.strategy}</td>
+                    <td className="py-2.5 pr-4 text-muted-foreground">{row.effectiveRate}</td>
+                    <td className="py-2.5 pr-4 text-muted-foreground">{row.usdRevenue}</td>
+                    <td className="py-2.5 pr-4 text-muted-foreground">{row.fxGL}</td>
                     <td className={cn("py-2.5 pr-4 font-medium", row.pnlColor)}>{row.pnl}</td>
                     <td className={cn("py-2.5 font-medium", row.verdictColor)}>{row.verdict}</td>
                   </tr>
@@ -1689,7 +1689,7 @@ function CorporateHedgingTab() {
 
 export default function FXStructuredPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1697,21 +1697,21 @@ export default function FXStructuredPage() {
             <Globe className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-zinc-100">FX Structured Products</h1>
-            <p className="text-sm text-zinc-500">
+            <h1 className="text-xl font-semibold text-foreground">FX Structured Products</h1>
+            <p className="text-sm text-muted-foreground">
               Options strategies, accumulators, TARFs, dual currency deposits & corporate hedging
             </p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { label: "EUR/USD Spot", value: "1.0850", color: "text-zinc-300" },
-            { label: "3M Forward", value: "1.0832", color: "text-zinc-300" },
+            { label: "EUR/USD Spot", value: "1.0850", color: "text-muted-foreground" },
+            { label: "3M Forward", value: "1.0832", color: "text-muted-foreground" },
             { label: "3M ATM IV", value: "6.2%", color: "text-amber-400" },
             { label: "25Δ RR", value: "+0.45%", color: "text-emerald-400" },
           ].map((item) => (
-            <div key={item.label} className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 rounded px-2.5 py-1 text-xs">
-              <span className="text-zinc-500">{item.label}</span>
+            <div key={item.label} className="flex items-center gap-1.5 bg-card border border-border rounded px-2.5 py-1 text-xs">
+              <span className="text-muted-foreground">{item.label}</span>
               <span className={cn("font-medium", item.color)}>{item.value}</span>
             </div>
           ))}
@@ -1720,31 +1720,31 @@ export default function FXStructuredPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="options" className="space-y-4">
-        <TabsList className="bg-zinc-900 border border-zinc-800 h-auto flex-wrap gap-1 p-1">
+        <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
           <TabsTrigger
             value="options"
-            className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5 flex items-center gap-1.5"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
           >
             <ArrowLeftRight className="w-3.5 h-3.5" />
             FX Options Strategies
           </TabsTrigger>
           <TabsTrigger
             value="accumulators"
-            className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5 flex items-center gap-1.5"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
           >
             <Layers className="w-3.5 h-3.5" />
             Accumulators & TARFs
           </TabsTrigger>
           <TabsTrigger
             value="dcd"
-            className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5 flex items-center gap-1.5"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
           >
             <DollarSign className="w-3.5 h-3.5" />
             Dual Currency Deposits
           </TabsTrigger>
           <TabsTrigger
             value="corporate"
-            className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5 flex items-center gap-1.5"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5 flex items-center gap-1.5"
           >
             <Shield className="w-3.5 h-3.5" />
             Corporate Hedging

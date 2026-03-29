@@ -372,10 +372,10 @@ function StatChip({
   color?: string;
 }) {
   return (
-    <div className="bg-zinc-800/60 rounded-lg p-3 flex flex-col gap-0.5">
-      <span className="text-xs text-zinc-500">{label}</span>
+    <div className="bg-muted/60 rounded-lg p-3 flex flex-col gap-0.5">
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-lg font-bold", color)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -964,7 +964,7 @@ export default function PaymentSystemsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -976,8 +976,8 @@ export default function PaymentSystemsPage() {
           <Network className="w-7 h-7 text-primary" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Payment Systems &amp; Infrastructure</h1>
-          <p className="text-sm text-zinc-400 mt-1">
+          <h1 className="text-2xl font-bold text-foreground">Payment Systems &amp; Infrastructure</h1>
+          <p className="text-sm text-muted-foreground mt-1">
             How global payments work — clearing &amp; settlement, card networks, real-time payments,
             cross-border flows, and fintech disruption
           </p>
@@ -999,7 +999,7 @@ export default function PaymentSystemsPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-zinc-900 border border-zinc-800 w-full grid grid-cols-4">
+        <TabsList className="bg-card border border-border w-full grid grid-cols-4">
           <TabsTrigger value="rails" className="text-xs data-[state=active]:bg-primary/30 data-[state=active]:text-primary">
             Payment Rails
           </TabsTrigger>
@@ -1018,7 +1018,7 @@ export default function PaymentSystemsPage() {
         <TabsContent value="rails" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Rails table */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
@@ -1029,9 +1029,9 @@ export default function PaymentSystemsPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
+                      <tr className="border-b border-border">
                         {["Rail", "Region", "Settlement", "Type", "Max Tx"].map((h) => (
-                          <th key={h} className="px-3 py-2 text-left text-zinc-500 font-medium">
+                          <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">
                             {h}
                           </th>
                         ))}
@@ -1044,13 +1044,13 @@ export default function PaymentSystemsPage() {
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.05 }}
-                          className="border-b border-zinc-800/50 hover:bg-zinc-800/30"
+                          className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="px-3 py-2 font-semibold" style={{ color: r.color }}>
                             {r.name}
                           </td>
-                          <td className="px-3 py-2 text-zinc-400">{r.region}</td>
-                          <td className="px-3 py-2 text-zinc-300">{r.settlementTime}</td>
+                          <td className="px-3 py-2 text-muted-foreground">{r.region}</td>
+                          <td className="px-3 py-2 text-muted-foreground">{r.settlementTime}</td>
                           <td className="px-3 py-2">
                             <Badge
                               variant="outline"
@@ -1064,7 +1064,7 @@ export default function PaymentSystemsPage() {
                               {r.type.toUpperCase()}
                             </Badge>
                           </td>
-                          <td className="px-3 py-2 text-zinc-400">{r.maxTx}</td>
+                          <td className="px-3 py-2 text-muted-foreground">{r.maxTx}</td>
                         </motion.tr>
                       ))}
                     </tbody>
@@ -1074,7 +1074,7 @@ export default function PaymentSystemsPage() {
             </Card>
 
             {/* Settlement Lag Chart */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <Clock className="w-4 h-4 text-yellow-400" />
@@ -1083,7 +1083,7 @@ export default function PaymentSystemsPage() {
               </CardHeader>
               <CardContent>
                 <SettlementLagChart />
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   RTGS (Real-Time Gross Settlement) provides instant finality vs deferred net settlement for batch rails.
                 </p>
               </CardContent>
@@ -1091,7 +1091,7 @@ export default function PaymentSystemsPage() {
           </div>
 
           {/* Volume vs Value Chart */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-primary" />
@@ -1101,11 +1101,11 @@ export default function PaymentSystemsPage() {
             <CardContent>
               <VolumeValueChart />
               <div className="grid grid-cols-2 gap-3 mt-3">
-                <div className="bg-zinc-800/50 rounded p-2 text-xs text-zinc-400">
+                <div className="bg-muted/50 rounded p-2 text-xs text-muted-foreground">
                   <span className="text-primary font-semibold">Fedwire &amp; CHIPS</span> settle trillions
                   daily in wholesale interbank payments despite low transaction counts.
                 </div>
-                <div className="bg-zinc-800/50 rounded p-2 text-xs text-zinc-400">
+                <div className="bg-muted/50 rounded p-2 text-xs text-muted-foreground">
                   <span className="text-primary font-semibold">ACH &amp; SEPA</span> process billions of
                   retail transactions at much lower average values per transaction.
                 </div>
@@ -1114,7 +1114,7 @@ export default function PaymentSystemsPage() {
           </Card>
 
           {/* SWIFT Correspondent Banking Chain */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Globe className="w-4 h-4 text-yellow-400" />
@@ -1124,23 +1124,23 @@ export default function PaymentSystemsPage() {
             <CardContent>
               <SWIFTChainSVG />
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 text-xs">
-                <div className="bg-zinc-800/50 rounded p-2">
+                <div className="bg-muted/50 rounded p-2">
                   <div className="text-yellow-400 font-semibold mb-1">Nostro Account</div>
-                  <div className="text-zinc-400">
+                  <div className="text-muted-foreground">
                     &quot;Our money at your bank&quot; — Bank A holds a pre-funded account at Bank B in the
                     destination currency.
                   </div>
                 </div>
-                <div className="bg-zinc-800/50 rounded p-2">
+                <div className="bg-muted/50 rounded p-2">
                   <div className="text-green-400 font-semibold mb-1">Vostro Account</div>
-                  <div className="text-zinc-400">
+                  <div className="text-muted-foreground">
                     &quot;Your money at our bank&quot; — mirror view. Bank B holds Bank A&apos;s funds and
                     records them as a vostro liability.
                   </div>
                 </div>
-                <div className="bg-zinc-800/50 rounded p-2">
+                <div className="bg-muted/50 rounded p-2">
                   <div className="text-red-400 font-semibold mb-1">Pain Points</div>
-                  <div className="text-zinc-400">
+                  <div className="text-muted-foreground">
                     Each hop adds 1–2 days, $10–25 in fees, and opacity. A 5-hop transfer costs $50–125 and
                     takes 3–5 business days.
                   </div>
@@ -1151,14 +1151,14 @@ export default function PaymentSystemsPage() {
 
           {/* Net vs Gross Settlement */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <Layers className="w-4 h-4 text-primary" />
                   Net Settlement (DNS)
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-zinc-400 space-y-2">
+              <CardContent className="text-xs text-muted-foreground space-y-2">
                 <p>
                   All transactions are batched and obligations are offset. Only the net position
                   is settled at end-of-day. Used by ACH, SEPA.
@@ -1174,14 +1174,14 @@ export default function PaymentSystemsPage() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <Zap className="w-4 h-4 text-green-400" />
                   Gross Settlement (RTGS)
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-zinc-400 space-y-2">
+              <CardContent className="text-xs text-muted-foreground space-y-2">
                 <p>
                   Each transaction is settled individually and immediately in central bank money.
                   No netting. Used by Fedwire, CHIPS (hybrid), TARGET2.
@@ -1204,7 +1204,7 @@ export default function PaymentSystemsPage() {
         <TabsContent value="cards" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Pie Chart */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <CreditCard className="w-4 h-4 text-primary" />
@@ -1217,7 +1217,7 @@ export default function PaymentSystemsPage() {
             </Card>
 
             {/* 4-Party Model */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <Network className="w-4 h-4 text-primary" />
@@ -1229,14 +1229,14 @@ export default function PaymentSystemsPage() {
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   <div className="bg-primary/10 border border-border rounded p-2">
                     <div className="text-primary font-semibold mb-1">4-Party (Visa/MC)</div>
-                    <div className="text-zinc-400">
+                    <div className="text-muted-foreground">
                       Cardholder, Issuing Bank, Acquiring Bank, Merchant. Network sets rules but
                       doesn&apos;t issue cards or acquire merchants directly.
                     </div>
                   </div>
                   <div className="bg-primary/10 border border-border rounded p-2">
                     <div className="text-primary font-semibold mb-1">3-Party (Amex/Discover)</div>
-                    <div className="text-zinc-400">
+                    <div className="text-muted-foreground">
                       Network acts as both issuer and acquirer. Direct relationship with cardholder
                       and merchant. Higher control but smaller acceptance.
                     </div>
@@ -1247,7 +1247,7 @@ export default function PaymentSystemsPage() {
           </div>
 
           {/* Interchange Breakdown */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-green-400" />
@@ -1279,12 +1279,12 @@ export default function PaymentSystemsPage() {
                 ].map((item) => (
                   <div key={item.label} className={cn("border rounded p-2", item.bg)}>
                     <div className={cn("font-semibold mb-1", item.color)}>{item.label}</div>
-                    <div className="text-zinc-400">{item.desc}</div>
+                    <div className="text-muted-foreground">{item.desc}</div>
                   </div>
                 ))}
               </div>
-              <div className="bg-zinc-800/50 rounded p-3 text-xs text-zinc-400">
-                <span className="text-zinc-300 font-medium">Typical MDR examples: </span>
+              <div className="bg-muted/50 rounded p-3 text-xs text-muted-foreground">
+                <span className="text-muted-foreground font-medium">Typical MDR examples: </span>
                 Debit card 0.5–1.2% | Consumer credit 1.5–2.2% | Premium rewards card 2.0–3.5% |
                 Amex corporate 2.5–3.8% | Cross-border +1.0–1.5% surcharge
               </div>
@@ -1292,7 +1292,7 @@ export default function PaymentSystemsPage() {
           </Card>
 
           {/* Auth-Clear-Settle */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <RefreshCw className="w-4 h-4 text-primary" />
@@ -1301,7 +1301,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <AuthClearSettleFlow />
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Note: Authorization and settlement are separate events. A hotel pre-auth reserves funds
                 but doesn&apos;t capture until checkout — creating a "hold" that can last 3–7 days.
               </p>
@@ -1309,7 +1309,7 @@ export default function PaymentSystemsPage() {
           </Card>
 
           {/* Security Layers */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Shield className="w-4 h-4 text-green-400" />
@@ -1364,7 +1364,7 @@ export default function PaymentSystemsPage() {
                       <sec.icon className="w-3.5 h-3.5" />
                       {sec.title}
                     </div>
-                    <ul className="space-y-1 text-zinc-400">
+                    <ul className="space-y-1 text-muted-foreground">
                       {sec.points.map((p) => (
                         <li key={p} className="flex items-start gap-1">
                           <span className={cn("mt-0.5 text-xs", sec.color)}>•</span>
@@ -1382,7 +1382,7 @@ export default function PaymentSystemsPage() {
         {/* ── TAB 3: Real-Time Payments ────────────────────────────────────── */}
         <TabsContent value="rtp" className="data-[state=inactive]:hidden space-y-4 mt-4">
           {/* Global adoption volume */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Globe className="w-4 h-4 text-green-400" />
@@ -1391,7 +1391,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent>
               <RTPVolumeChart />
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 India&apos;s UPI processes more real-time payments than the rest of the world combined,
                 reaching 10B+ monthly transactions in 2024.
               </p>
@@ -1399,7 +1399,7 @@ export default function PaymentSystemsPage() {
           </Card>
 
           {/* Feature Comparison Table */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <ArrowLeftRight className="w-4 h-4 text-primary" />
@@ -1410,8 +1410,8 @@ export default function PaymentSystemsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
-                      <th className="px-3 py-2 text-left text-zinc-500">Feature</th>
+                    <tr className="border-b border-border">
+                      <th className="px-3 py-2 text-left text-muted-foreground">Feature</th>
                       <th className="px-3 py-2 text-center text-primary">RTP (TCH)</th>
                       <th className="px-3 py-2 text-center text-orange-400">FedNow</th>
                     </tr>
@@ -1429,10 +1429,10 @@ export default function PaymentSystemsPage() {
                       ["Settlement", "Real-time gross", "Real-time gross"],
                       ["Target market", "Commercial/retail", "Community banks/CUs"],
                     ].map(([feat, rtp, fednow], i) => (
-                      <tr key={feat} className={cn("border-b border-zinc-800/50", i % 2 === 0 && "bg-zinc-800/20")}>
-                        <td className="px-3 py-2 text-zinc-400 font-medium">{feat}</td>
-                        <td className="px-3 py-2 text-center text-zinc-300">{rtp}</td>
-                        <td className="px-3 py-2 text-center text-zinc-300">{fednow}</td>
+                      <tr key={feat} className={cn("border-b border-border/50", i % 2 === 0 && "bg-muted/20")}>
+                        <td className="px-3 py-2 text-muted-foreground font-medium">{feat}</td>
+                        <td className="px-3 py-2 text-center text-muted-foreground">{rtp}</td>
+                        <td className="px-3 py-2 text-center text-muted-foreground">{fednow}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1473,18 +1473,18 @@ export default function PaymentSystemsPage() {
                 note: "Linked to NRIC/mobile number. Cross-border link with PromptPay Thailand enables instant bilateral.",
               },
             ].map((sys) => (
-              <Card key={sys.name} className="bg-zinc-900 border-zinc-800">
+              <Card key={sys.name} className="bg-card border-border">
                 <CardContent className="pt-4 space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-semibold" style={{ color: sys.color }}>
                       {sys.name}
                     </span>
-                    <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400">
+                    <Badge variant="outline" className="text-xs border-border text-muted-foreground">
                       {sys.year}
                     </Badge>
                   </div>
-                  <div className="text-xl font-bold text-zinc-100">{sys.stat}</div>
-                  <p className="text-xs text-zinc-500">{sys.note}</p>
+                  <div className="text-xl font-bold text-foreground">{sys.stat}</div>
+                  <p className="text-xs text-muted-foreground">{sys.note}</p>
                 </CardContent>
               </Card>
             ))}
@@ -1492,14 +1492,14 @@ export default function PaymentSystemsPage() {
 
           {/* ISO 20022 & Fraud */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-400" />
                   ISO 20022 Migration Benefits
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-zinc-400 space-y-2">
+              <CardContent className="text-xs text-muted-foreground space-y-2">
                 {[
                   ["Richer Data", "Purpose codes, LEIs, full address, remittance info (up to 140 chars vs 35)"],
                   ["Straight-Through Processing", "Machine-readable structured data eliminates manual repair"],
@@ -1510,21 +1510,21 @@ export default function PaymentSystemsPage() {
                   <div key={title as string} className="flex gap-2">
                     <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="text-zinc-300 font-medium">{title}: </span>
+                      <span className="text-muted-foreground font-medium">{title}: </span>
                       {desc}
                     </div>
                   </div>
                 ))}
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-red-400" />
                   Fraud Challenges in Instant Payments
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-zinc-400 space-y-2">
+              <CardContent className="text-xs text-muted-foreground space-y-2">
                 {[
                   ["Irrevocability", "Once sent, funds cannot be recalled — authorized push payment (APP) fraud exploded"],
                   ["Speed vs. Screening", "Sub-second settlement leaves little time for AML/fraud checks"],
@@ -1535,7 +1535,7 @@ export default function PaymentSystemsPage() {
                   <div key={title as string} className="flex gap-2">
                     <AlertTriangle className="w-3 h-3 text-red-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <span className="text-zinc-300 font-medium">{title}: </span>
+                      <span className="text-muted-foreground font-medium">{title}: </span>
                       {desc}
                     </div>
                   </div>
@@ -1545,33 +1545,33 @@ export default function PaymentSystemsPage() {
           </div>
 
           {/* Open Banking & Overlay Services */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Smartphone className="w-4 h-4 text-primary" />
                 Open Banking API Integration &amp; Overlay Services
               </CardTitle>
             </CardHeader>
-            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-zinc-400">
+            <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-muted-foreground">
               <div className="space-y-2">
-                <div className="text-zinc-300 font-semibold">Open Banking Layer</div>
+                <div className="text-muted-foreground font-semibold">Open Banking Layer</div>
                 <p>
                   Regulated API access (PSD2 in EU, CDR in AU, open banking in UK) lets licensed Third
                   Party Providers (TPPs) initiate payments and access account data on behalf of consumers.
                 </p>
-                <div className="bg-zinc-800/50 rounded p-2 space-y-1">
+                <div className="bg-muted/50 rounded p-2 space-y-1">
                   <div><span className="text-primary">AISP:</span> Account Information Service Provider — read-only data aggregation</div>
                   <div><span className="text-primary">PISP:</span> Payment Initiation Service Provider — trigger bank transfers</div>
                   <div><span className="text-primary">CBPII:</span> Card-Based Payment Instrument Issuer — confirmation of funds</div>
                 </div>
               </div>
               <div className="space-y-2">
-                <div className="text-zinc-300 font-semibold">Overlay Services (Zelle / Venmo Layer)</div>
+                <div className="text-muted-foreground font-semibold">Overlay Services (Zelle / Venmo Layer)</div>
                 <p>
                   Consumer-facing apps built on top of underlying RTP rails. Zelle runs on RTP/FedNow;
                   Venmo settles via ACH (instant option via debit push).
                 </p>
-                <div className="bg-zinc-800/50 rounded p-2 space-y-1">
+                <div className="bg-muted/50 rounded p-2 space-y-1">
                   <div><span className="text-green-400">Zelle:</span> 2.9B transactions, $806B in 2023 — bank-owned consortium</div>
                   <div><span className="text-green-400">Venmo:</span> 900M+ transactions — PayPal subsidiary, social layer</div>
                   <div><span className="text-green-400">Cash App:</span> Square/Block — integrated investing + banking super-app</div>
@@ -1584,7 +1584,7 @@ export default function PaymentSystemsPage() {
         {/* ── TAB 4: Cross-Border & CBDC ───────────────────────────────────── */}
         <TabsContent value="crossborder" className="data-[state=inactive]:hidden space-y-4 mt-4">
           {/* Remittance Cost Chart */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-green-400" />
@@ -1593,7 +1593,7 @@ export default function PaymentSystemsPage() {
             </CardHeader>
             <CardContent>
               <RemittanceCostChart />
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 World Bank SDG 10c target: reduce remittance costs to under 3% by 2030. Traditional banks
                 charge ~6%, disproportionately impacting migrants sending money home.
               </p>
@@ -1601,7 +1601,7 @@ export default function PaymentSystemsPage() {
           </Card>
 
           {/* FX Cost Breakdown */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-yellow-400" />
@@ -1614,7 +1614,7 @@ export default function PaymentSystemsPage() {
           </Card>
 
           {/* Corridors */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <ArrowRight className="w-4 h-4 text-primary" />
@@ -1625,9 +1625,9 @@ export default function PaymentSystemsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
+                    <tr className="border-b border-border">
                       {["Corridor", "Annual Flow", "Bank Cost", "Fintech Cost", "Crypto Cost", "Avg Days"].map((h) => (
-                        <th key={h} className="px-3 py-2 text-left text-zinc-500 font-medium">
+                        <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">
                           {h}
                         </th>
                       ))}
@@ -1640,16 +1640,16 @@ export default function PaymentSystemsPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: i * 0.07 }}
-                        className="border-b border-zinc-800/50 hover:bg-zinc-800/30"
+                        className="border-b border-border/50 hover:bg-muted/30"
                       >
-                        <td className="px-3 py-2 font-semibold text-zinc-200">
+                        <td className="px-3 py-2 font-semibold text-foreground">
                           {c.from} → {c.to}
                         </td>
                         <td className="px-3 py-2 text-primary">${c.annualBillion}B</td>
                         <td className="px-3 py-2 text-red-400">{c.bankCostPct}%</td>
                         <td className="px-3 py-2 text-green-400">{c.fintechCostPct}%</td>
                         <td className="px-3 py-2 text-primary">{c.cryptoCostPct}%</td>
-                        <td className="px-3 py-2 text-zinc-400">T+{c.avgDays}</td>
+                        <td className="px-3 py-2 text-muted-foreground">T+{c.avgDays}</td>
                       </motion.tr>
                     ))}
                   </tbody>
@@ -1659,7 +1659,7 @@ export default function PaymentSystemsPage() {
           </Card>
 
           {/* SWIFT GPI */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Globe className="w-4 h-4 text-yellow-400" />
@@ -1673,10 +1673,10 @@ export default function PaymentSystemsPage() {
                 { label: "Payment tracking", value: "100%", sub: "UETR tracker", color: "text-primary" },
                 { label: "Fee transparency", value: "Full", sub: "upfront disclosure", color: "text-yellow-400" },
               ].map((m) => (
-                <div key={m.label} className="bg-zinc-800/60 rounded-lg p-3">
-                  <div className="text-xs text-zinc-500">{m.label}</div>
+                <div key={m.label} className="bg-muted/60 rounded-lg p-3">
+                  <div className="text-xs text-muted-foreground">{m.label}</div>
                   <div className={cn("text-xl font-bold", m.color)}>{m.value}</div>
-                  <div className="text-xs text-zinc-500">{m.sub}</div>
+                  <div className="text-xs text-muted-foreground">{m.sub}</div>
                 </div>
               ))}
             </CardContent>
@@ -1684,14 +1684,14 @@ export default function PaymentSystemsPage() {
 
           {/* Blockchain Alternatives */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <Network className="w-4 h-4 text-primary" />
                   Blockchain Alternatives — Ripple / Stellar
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-zinc-400 space-y-3">
+              <CardContent className="text-xs text-muted-foreground space-y-3">
                 <div className="bg-primary/10 border border-border rounded p-2">
                   <div className="text-primary font-semibold mb-1">Ripple (XRP Ledger)</div>
                   <ul className="space-y-1">
@@ -1714,14 +1714,14 @@ export default function PaymentSystemsPage() {
                 </div>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
                 <CardTitle className="text-sm flex items-center gap-2">
                   <Layers className="w-4 h-4 text-green-400" />
                   CBDC — Retail vs Wholesale Designs
                 </CardTitle>
               </CardHeader>
-              <CardContent className="text-xs text-zinc-400 space-y-3">
+              <CardContent className="text-xs text-muted-foreground space-y-3">
                 <div className="bg-green-500/10 border border-green-500/20 rounded p-2">
                   <div className="text-green-400 font-semibold mb-1">Retail CBDC (General Public)</div>
                   <ul className="space-y-1">
@@ -1747,7 +1747,7 @@ export default function PaymentSystemsPage() {
           </div>
 
           {/* BIS Projects & CBDC Interoperability */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <Zap className="w-4 h-4 text-yellow-400" />
@@ -1791,18 +1791,18 @@ export default function PaymentSystemsPage() {
               ].map((p) => (
                 <div key={p.name} className={cn("border rounded p-3 space-y-1.5", p.bg)}>
                   <div className={cn("font-bold text-sm", p.color)}>{p.name}</div>
-                  <Badge variant="outline" className={cn("text-xs border-zinc-700", p.color)}>
+                  <Badge variant="outline" className={cn("text-xs border-border", p.color)}>
                     {p.status}
                   </Badge>
-                  <div className="text-zinc-500">{p.participants}</div>
-                  <p className="text-zinc-400">{p.desc}</p>
+                  <div className="text-muted-foreground">{p.participants}</div>
+                  <p className="text-muted-foreground">{p.desc}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
 
           {/* Interoperability Challenges */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
@@ -1842,9 +1842,9 @@ export default function PaymentSystemsPage() {
                   desc: "Programmable money enables state surveillance. Design choices between privacy-preserving (token-based) vs account-based CBDC are contested.",
                 },
               ].map((ch) => (
-                <div key={ch.title} className="bg-zinc-800/50 rounded p-2.5">
+                <div key={ch.title} className="bg-muted/50 rounded p-2.5">
                   <div className={cn("font-semibold mb-1", ch.color)}>{ch.title}</div>
-                  <p className="text-zinc-400">{ch.desc}</p>
+                  <p className="text-muted-foreground">{ch.desc}</p>
                 </div>
               ))}
             </CardContent>

@@ -463,10 +463,10 @@ function ScenarioPnLChart({ themes }: { themes: MacroTheme[] }) {
 
 function StatPill({ label, value, sub, positive }: { label: string; value: string; sub?: string; positive?: boolean }) {
   return (
-    <div className="flex flex-col gap-0.5 bg-slate-800/60 rounded-lg px-3 py-2 border border-slate-700/40">
-      <span className="text-xs text-slate-500 uppercase tracking-wide">{label}</span>
-      <span className={`text-sm font-semibold ${positive === undefined ? "text-slate-100" : positive ? "text-green-400" : "text-red-400"}`}>{value}</span>
-      {sub && <span className="text-xs text-slate-500">{sub}</span>}
+    <div className="flex flex-col gap-0.5 bg-muted/60 rounded-lg px-3 py-2 border border-border/40">
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
+      <span className={`text-sm font-semibold ${positive === undefined ? "text-foreground" : positive ? "text-green-400" : "text-red-400"}`}>{value}</span>
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -496,9 +496,9 @@ function LongShortTab() {
       </div>
 
       {/* Sector neutrality */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Scale className="w-4 h-4 text-primary" />
             Sector Neutrality Check
           </CardTitle>
@@ -510,7 +510,7 @@ function LongShortTab() {
             const isNeutral = Math.abs(net) < 0.3;
             return (
               <div key={sector} className="flex items-center gap-3">
-                <span className="text-xs text-slate-400 w-28 truncate">{sector}</span>
+                <span className="text-xs text-muted-foreground w-28 truncate">{sector}</span>
                 <Progress value={50 + net * 8} className="flex-1 h-1.5" />
                 <Badge variant="outline" className={`text-xs px-1.5 py-0 ${isNeutral ? "border-green-700 text-green-400" : "border-amber-700 text-amber-400"}`}>
                   {net > 0 ? "+" : ""}{net.toFixed(1)}% {isNeutral ? "✓" : "!"}
@@ -522,9 +522,9 @@ function LongShortTab() {
       </Card>
 
       {/* Pair positions table */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Repeat className="w-4 h-4 text-primary" />
             Active Pair Trades
           </CardTitle>
@@ -533,9 +533,9 @@ function LongShortTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-800">
+                <tr className="border-b border-border">
                   {["Long", "Short", "Sector", "Spread", "Z-Score", "P&L"].map((h) => (
-                    <th key={h} className="text-left py-2 text-slate-500 font-medium pr-4">{h}</th>
+                    <th key={h} className="text-left py-2 text-muted-foreground font-medium pr-4">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -543,14 +543,14 @@ function LongShortTab() {
                 {pairs.map((p, i) => (
                   <tr
                     key={p.longTicker}
-                    className={`border-b border-slate-800/40 cursor-pointer transition-colors ${selected === i ? "bg-slate-800/50" : "hover:bg-slate-800/30"}`}
+                    className={`border-b border-border/40 cursor-pointer transition-colors ${selected === i ? "bg-muted/50" : "hover:bg-muted/30"}`}
                     onClick={() => setSelected(selected === i ? null : i)}
                   >
                     <td className="py-2 pr-4 text-green-400 font-medium">{p.longTicker}</td>
                     <td className="py-2 pr-4 text-red-400 font-medium">{p.shortTicker}</td>
-                    <td className="py-2 pr-4 text-slate-400">{p.sector}</td>
-                    <td className="py-2 pr-4 text-slate-200">{p.spread > 0 ? "+" : ""}{p.spread}σ</td>
-                    <td className={`py-2 pr-4 font-medium ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-slate-300"}`}>
+                    <td className="py-2 pr-4 text-muted-foreground">{p.sector}</td>
+                    <td className="py-2 pr-4 text-foreground">{p.spread > 0 ? "+" : ""}{p.spread}σ</td>
+                    <td className={`py-2 pr-4 font-medium ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-muted-foreground"}`}>
                       {p.zScore > 0 ? "+" : ""}{p.zScore.toFixed(2)}
                     </td>
                     <td className={`py-2 font-semibold ${p.pnl >= 0 ? "text-green-400" : "text-red-400"}`}>
@@ -565,9 +565,9 @@ function LongShortTab() {
       </Card>
 
       {/* SVG Exposure chart */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Gross Exposure by Pair
           </CardTitle>
@@ -602,9 +602,9 @@ function GlobalMacroTab() {
       </div>
 
       {/* Theme builder */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary" />
             Macro Theme Book
           </CardTitle>
@@ -613,14 +613,14 @@ function GlobalMacroTab() {
           {themes.map((t) => (
             <div
               key={t.id}
-              className={`rounded-lg border p-3 cursor-pointer transition-all ${activeTheme === t.id ? "border-slate-500 bg-slate-800/70" : "border-slate-800/60 bg-slate-800/20 hover:border-slate-700"}`}
+              className={`rounded-lg border p-3 cursor-pointer transition-all ${activeTheme === t.id ? "border-slate-500 bg-muted/70" : "border-border/60 bg-muted/20 hover:border-border"}`}
               onClick={() => setActiveTheme(activeTheme === t.id ? null : t.id)}
             >
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full mt-0.5" style={{ backgroundColor: t.color }} />
                   <div>
-                    <div className="text-sm font-medium text-slate-200">{t.name}</div>
+                    <div className="text-sm font-medium text-foreground">{t.name}</div>
                     <div className="flex items-center gap-2 mt-0.5">
                       <Badge variant="outline" className="text-xs py-0 px-1.5" style={{ borderColor: categoryColors[t.category], color: categoryColors[t.category] }}>
                         {t.category.toUpperCase()}
@@ -628,7 +628,7 @@ function GlobalMacroTab() {
                       <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.position === "long" ? "border-green-700 text-green-400" : "border-red-700 text-red-400"}`}>
                         {t.position.toUpperCase()}
                       </Badge>
-                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.conviction === "high" ? "border-border text-primary" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-slate-600 text-slate-400"}`}>
+                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.conviction === "high" ? "border-border text-primary" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-slate-600 text-muted-foreground"}`}>
                         {t.conviction}
                       </Badge>
                     </div>
@@ -636,13 +636,13 @@ function GlobalMacroTab() {
                 </div>
                 <div className="text-right">
                   <div className={`text-sm font-semibold ${t.currentPnl >= 0 ? "text-green-400" : "text-red-400"}`}>{t.currentPnl > 0 ? "+" : ""}{t.currentPnl.toFixed(1)}%</div>
-                  <div className="text-xs text-slate-500">${t.notional}M notional</div>
+                  <div className="text-xs text-muted-foreground">${t.notional}M notional</div>
                 </div>
               </div>
               <AnimatePresence>
                 {activeTheme === t.id && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-2 pt-2 border-t border-slate-700/40">
-                    <p className="text-xs text-slate-400">{t.rationale}</p>
+                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-2 pt-2 border-t border-border/40">
+                    <p className="text-xs text-muted-foreground">{t.rationale}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -652,9 +652,9 @@ function GlobalMacroTab() {
       </Card>
 
       {/* Correlation matrix */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             Theme Correlation Matrix
           </CardTitle>
@@ -665,9 +665,9 @@ function GlobalMacroTab() {
       </Card>
 
       {/* Scenario P&L */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-amber-400" />
             Scenario Analysis
           </CardTitle>
@@ -676,7 +676,7 @@ function GlobalMacroTab() {
           <ScenarioPnLChart themes={themes} />
           <div className="flex gap-3 flex-wrap mt-2">
             {themes.map((t) => (
-              <div key={t.id} className="flex items-center gap-1.5 text-xs text-slate-400">
+              <div key={t.id} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: t.color }} />
                 {t.name.split(" ").slice(0, 2).join(" ")}
               </div>
@@ -716,7 +716,7 @@ function EventDrivenTab() {
 
       <div className="flex gap-2">
         {(["merger", "distressed", "special"] as const).map((t) => (
-          <Button key={t} size="sm" variant={subTab === t ? "default" : "outline"} onClick={() => setSubTab(t)} className={`text-xs capitalize ${subTab === t ? "bg-primary hover:bg-primary/80" : "border-slate-700 text-slate-400 hover:text-slate-200"}`}>
+          <Button key={t} size="sm" variant={subTab === t ? "default" : "outline"} onClick={() => setSubTab(t)} className={`text-xs capitalize ${subTab === t ? "bg-primary hover:bg-primary/80" : "border-border text-muted-foreground hover:text-foreground"}`}>
             {t === "merger" ? "Merger Arb" : t === "distressed" ? "Distressed Debt" : "Special Situations"}
           </Button>
         ))}
@@ -725,9 +725,9 @@ function EventDrivenTab() {
       <AnimatePresence mode="wait">
         {subTab === "merger" && (
           <motion.div key="merger" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-slate-900/60 border-slate-700/40">
+            <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
-                <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <GitMerge className="w-4 h-4 text-green-400" />
                   Merger Arbitrage Spread Tracker
                 </CardTitle>
@@ -736,28 +736,28 @@ function EventDrivenTab() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800">
+                      <tr className="border-b border-border">
                         {["Acquirer", "Target", "Spread", "Deal Close", "Probability", "Ann. Return", "Type", "Status"].map((h) => (
-                          <th key={h} className="text-left py-2 text-slate-500 font-medium pr-3">{h}</th>
+                          <th key={h} className="text-left py-2 text-muted-foreground font-medium pr-3">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {deals.map((d) => (
-                        <tr key={d.target} className="border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors">
-                          <td className="py-2 pr-3 text-slate-300">{d.acquirer}</td>
-                          <td className="py-2 pr-3 text-slate-200 font-medium">{d.target}</td>
+                        <tr key={d.target} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                          <td className="py-2 pr-3 text-muted-foreground">{d.acquirer}</td>
+                          <td className="py-2 pr-3 text-foreground font-medium">{d.target}</td>
                           <td className="py-2 pr-3 text-green-400 font-semibold">${d.spread.toFixed(2)}</td>
-                          <td className="py-2 pr-3 text-slate-400">{d.expectedClose}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{d.expectedClose}</td>
                           <td className="py-2 pr-3">
                             <div className="flex items-center gap-2">
                               <Progress value={d.probability} className="w-16 h-1.5" />
-                              <span className="text-slate-300">{d.probability}%</span>
+                              <span className="text-muted-foreground">{d.probability}%</span>
                             </div>
                           </td>
                           <td className="py-2 pr-3 text-primary font-medium">{d.annualizedReturn.toFixed(1)}%</td>
                           <td className="py-2 pr-3">
-                            <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-slate-400">{d.dealType}</Badge>
+                            <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-muted-foreground">{d.dealType}</Badge>
                           </td>
                           <td className="py-2">
                             <Badge variant="outline" className={`text-xs py-0 px-1.5 ${statusColors[d.status]}`}>{d.status.replace("_", " ")}</Badge>
@@ -774,9 +774,9 @@ function EventDrivenTab() {
 
         {subTab === "distressed" && (
           <motion.div key="distressed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-slate-900/60 border-slate-700/40">
+            <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
-                <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
                   Distressed Debt Yield Table
                 </CardTitle>
@@ -785,18 +785,18 @@ function EventDrivenTab() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800">
+                      <tr className="border-b border-border">
                         {["Issuer", "Coupon", "Maturity", "YTM", "Spread (bps)", "Distress %", "Recovery Est.", "Catalyst", "Rating"].map((h) => (
-                          <th key={h} className="text-left py-2 text-slate-500 font-medium pr-3">{h}</th>
+                          <th key={h} className="text-left py-2 text-muted-foreground font-medium pr-3">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {distressed.map((d) => (
-                        <tr key={d.issuer} className="border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors">
-                          <td className="py-2 pr-3 text-slate-200 font-medium">{d.issuer}</td>
-                          <td className="py-2 pr-3 text-slate-300">{d.coupon.toFixed(3)}%</td>
-                          <td className="py-2 pr-3 text-slate-400">{d.maturity}</td>
+                        <tr key={d.issuer} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                          <td className="py-2 pr-3 text-foreground font-medium">{d.issuer}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{d.coupon.toFixed(3)}%</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{d.maturity}</td>
                           <td className="py-2 pr-3 text-red-400 font-semibold">{d.currentYield.toFixed(1)}%</td>
                           <td className="py-2 pr-3 text-red-300">{d.spread}</td>
                           <td className="py-2 pr-3">
@@ -806,7 +806,7 @@ function EventDrivenTab() {
                             </div>
                           </td>
                           <td className="py-2 pr-3 text-green-400">${d.recoveryEst}¢</td>
-                          <td className="py-2 pr-3 text-slate-400 max-w-24">{d.catalyst}</td>
+                          <td className="py-2 pr-3 text-muted-foreground max-w-24">{d.catalyst}</td>
                           <td className="py-2">
                             <Badge variant="outline" className="text-xs py-0 px-1.5 border-red-800 text-red-400">{d.rating}</Badge>
                           </td>
@@ -822,30 +822,30 @@ function EventDrivenTab() {
 
         {subTab === "special" && (
           <motion.div key="special" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-slate-900/60 border-slate-700/40">
+            <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
-                <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Target className="w-4 h-4 text-primary" />
                   Special Situations Screener
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 pb-4 space-y-3">
                 {specialSituations.map((ss) => (
-                  <div key={ss.name} className="rounded-lg border border-slate-800/60 bg-slate-800/20 p-3">
+                  <div key={ss.name} className="rounded-lg border border-border/60 bg-muted/20 p-3">
                     <div className="flex items-start justify-between">
                       <div>
-                        <div className="text-sm font-medium text-slate-200">{ss.name}</div>
+                        <div className="text-sm font-medium text-foreground">{ss.name}</div>
                         <div className="flex items-center gap-2 mt-1">
                           <Badge variant="outline" className="text-xs py-0 px-1.5 border-border text-primary">{ss.type}</Badge>
-                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-slate-400">{ss.stage}</Badge>
+                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-muted-foreground">{ss.stage}</Badge>
                         </div>
-                        <p className="text-xs text-slate-500 mt-1.5">{ss.catalyst}</p>
+                        <p className="text-xs text-muted-foreground mt-1.5">{ss.catalyst}</p>
                       </div>
                       <div className="text-right">
                         <div className="text-sm font-semibold text-green-400">{ss.upside}</div>
                         <div className="flex items-center justify-end gap-1.5 mt-1">
                           <Progress value={ss.probability} className="w-16 h-1" />
-                          <span className="text-xs text-slate-400">{ss.probability}%</span>
+                          <span className="text-xs text-muted-foreground">{ss.probability}%</span>
                         </div>
                       </div>
                     </div>
@@ -892,7 +892,7 @@ function RelativeValueTab() {
 
       <div className="flex gap-2 flex-wrap">
         {([["convertible", "Convertible Arb"], ["capstructure", "Capital Structure Arb"], ["statarb", "Stat Arb"]] as const).map(([key, label]) => (
-          <Button key={key} size="sm" variant={rvMode === key ? "default" : "outline"} onClick={() => setRvMode(key)} className={`text-xs ${rvMode === key ? "bg-primary hover:bg-primary/80" : "border-slate-700 text-slate-400 hover:text-slate-200"}`}>
+          <Button key={key} size="sm" variant={rvMode === key ? "default" : "outline"} onClick={() => setRvMode(key)} className={`text-xs ${rvMode === key ? "bg-primary hover:bg-primary/80" : "border-border text-muted-foreground hover:text-foreground"}`}>
             {label}
           </Button>
         ))}
@@ -901,9 +901,9 @@ function RelativeValueTab() {
       <AnimatePresence mode="wait">
         {rvMode === "convertible" && (
           <motion.div key="conv" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-slate-900/60 border-slate-700/40">
+            <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
-                <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Layers className="w-4 h-4 text-primary" />
                   Convertible Arbitrage — Delta-Hedged Book
                 </CardTitle>
@@ -912,19 +912,19 @@ function RelativeValueTab() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800">
+                      <tr className="border-b border-border">
                         {["Instrument", "Conv. Prem.", "Theory Val.", "Mkt Price", "Mispricing", "Delta", "Gamma", "Imp. Vol"].map((h) => (
-                          <th key={h} className="text-left py-2 text-slate-500 font-medium pr-3">{h}</th>
+                          <th key={h} className="text-left py-2 text-muted-foreground font-medium pr-3">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {convertibles.map((c) => (
-                        <tr key={c.issuer} className="border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors">
-                          <td className="py-2 pr-3 text-slate-200 font-medium text-[11px]">{c.issuer}</td>
-                          <td className="py-2 pr-3 text-slate-300">{c.conversionPremium.toFixed(1)}%</td>
-                          <td className="py-2 pr-3 text-slate-300">{c.theoreticalValue.toFixed(1)}</td>
-                          <td className="py-2 pr-3 text-slate-300">{c.marketPrice.toFixed(1)}</td>
+                        <tr key={c.issuer} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                          <td className="py-2 pr-3 text-foreground font-medium text-[11px]">{c.issuer}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{c.conversionPremium.toFixed(1)}%</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{c.theoreticalValue.toFixed(1)}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{c.marketPrice.toFixed(1)}</td>
                           <td className={`py-2 pr-3 font-semibold ${c.mispricing < 0 ? "text-green-400" : "text-red-400"}`}>
                             {c.mispricing > 0 ? "+" : ""}{c.mispricing.toFixed(1)}
                           </td>
@@ -936,7 +936,7 @@ function RelativeValueTab() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-slate-600 mt-2">* Negative mispricing = bond undervalued relative to theoretical — long opportunity after delta hedge</p>
+                <p className="text-xs text-muted-foreground mt-2">* Negative mispricing = bond undervalued relative to theoretical — long opportunity after delta hedge</p>
               </CardContent>
             </Card>
           </motion.div>
@@ -944,32 +944,32 @@ function RelativeValueTab() {
 
         {rvMode === "capstructure" && (
           <motion.div key="cap" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-slate-900/60 border-slate-700/40">
+            <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
-                <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-green-400" />
                   Capital Structure Arbitrage
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-4 pb-4 space-y-3">
                 {capStructureDeals.map((d) => (
-                  <div key={d.name} className="rounded-lg border border-slate-800/60 bg-slate-800/20 p-3">
+                  <div key={d.name} className="rounded-lg border border-border/60 bg-muted/20 p-3">
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <div className="text-sm font-medium text-slate-200">{d.name}</div>
-                        <div className="text-xs text-slate-500 mt-0.5">Long: <span className="text-green-400">{d.longLeg}</span></div>
-                        <div className="text-xs text-slate-500">Short: <span className="text-red-400">{d.shortLeg}</span></div>
+                        <div className="text-sm font-medium text-foreground">{d.name}</div>
+                        <div className="text-xs text-muted-foreground mt-0.5">Long: <span className="text-green-400">{d.longLeg}</span></div>
+                        <div className="text-xs text-muted-foreground">Short: <span className="text-red-400">{d.shortLeg}</span></div>
                       </div>
                       <div className="text-right">
                         <Badge variant="outline" className={`text-xs py-0 px-1.5 mb-1 ${d.riskRating === "Low" ? "border-green-700 text-green-400" : d.riskRating === "Medium" ? "border-amber-700 text-amber-400" : "border-red-700 text-red-400"}`}>
                           {d.riskRating} Risk
                         </Badge>
-                        <div className="text-xs text-slate-400">Current: <span className="text-slate-200">{d.currentSpread}bps</span></div>
+                        <div className="text-xs text-muted-foreground">Current: <span className="text-foreground">{d.currentSpread}bps</span></div>
                         <div className="text-xs text-green-400 font-semibold">Edge: +{d.edge}bps</div>
                       </div>
                     </div>
                     <div className="mt-2">
-                      <div className="flex justify-between text-xs text-slate-500 mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span>Expected: {d.expectedCapture}bps</span>
                         <span>Current: {d.currentSpread}bps</span>
                       </div>
@@ -984,9 +984,9 @@ function RelativeValueTab() {
 
         {rvMode === "statarb" && (
           <motion.div key="stat" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-slate-900/60 border-slate-700/40">
+            <Card className="bg-card/60 border-border/40">
               <CardHeader className="pb-2 pt-4 px-4">
-                <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <RefreshCw className="w-4 h-4 text-muted-foreground" />
                   Statistical Arbitrage Framework
                 </CardTitle>
@@ -995,23 +995,23 @@ function RelativeValueTab() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800">
+                      <tr className="border-b border-border">
                         {["Pair", "Correlation", "Z-Score", "Half-Life (d)", "Signal", "Exp. Return"].map((h) => (
-                          <th key={h} className="text-left py-2 text-slate-500 font-medium pr-3">{h}</th>
+                          <th key={h} className="text-left py-2 text-muted-foreground font-medium pr-3">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {statArbPairs.map((p) => (
-                        <tr key={p.name} className="border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors">
-                          <td className="py-2 pr-3 text-slate-200 font-medium">{p.name}</td>
+                        <tr key={p.name} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                          <td className="py-2 pr-3 text-foreground font-medium">{p.name}</td>
                           <td className="py-2 pr-3 text-primary">{p.correlation.toFixed(3)}</td>
-                          <td className={`py-2 pr-3 font-semibold ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-slate-400"}`}>
+                          <td className={`py-2 pr-3 font-semibold ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-muted-foreground"}`}>
                             {p.zScore > 0 ? "+" : ""}{p.zScore.toFixed(2)}
                           </td>
-                          <td className="py-2 pr-3 text-slate-400">{p.halfLife}d</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{p.halfLife}d</td>
                           <td className="py-2 pr-3 text-primary text-[11px]">{p.signal}</td>
-                          <td className={`py-2 font-semibold ${p.expectedReturn > 1 ? "text-green-400" : "text-slate-500"}`}>{p.expectedReturn.toFixed(1)}%</td>
+                          <td className={`py-2 font-semibold ${p.expectedReturn > 1 ? "text-green-400" : "text-muted-foreground"}`}>{p.expectedReturn.toFixed(1)}%</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1052,9 +1052,9 @@ function PerformanceTab() {
       </div>
 
       {/* Equity curve */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-green-400" />
             NAV & Drawdown — 28 Month Track Record
           </CardTitle>
@@ -1066,9 +1066,9 @@ function PerformanceTab() {
 
       {/* Alpha/Beta decomposition */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Card className="bg-slate-900/60 border-slate-700/40">
+        <Card className="bg-card/60 border-border/40">
           <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <PieChart className="w-4 h-4 text-primary" />
               Alpha vs Beta Decomposition
             </CardTitle>
@@ -1082,33 +1082,33 @@ function PerformanceTab() {
               ].map((item) => (
                 <div key={item.label}>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-slate-400">{item.label}</span>
+                    <span className="text-muted-foreground">{item.label}</span>
                     <span style={{ color: item.color }} className="font-semibold">+{item.value.toFixed(2)}%</span>
                   </div>
                   <Progress value={Math.max(0, item.pct)} className="h-2" />
                 </div>
               ))}
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-800">
+            <div className="mt-4 pt-3 border-t border-border">
               <div className="flex justify-between text-xs">
-                <span className="text-slate-500">Total Attributed Return</span>
+                <span className="text-muted-foreground">Total Attributed Return</span>
                 <span className="text-green-400 font-semibold">+{totalFactorReturn.toFixed(2)}%</span>
               </div>
               <div className="flex justify-between text-xs mt-1">
-                <span className="text-slate-500">Information Ratio (alpha)</span>
+                <span className="text-muted-foreground">Information Ratio (alpha)</span>
                 <span className="text-green-400 font-semibold">{(alpha / 1.82).toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-xs mt-1">
-                <span className="text-slate-500">Portfolio Beta (equity)</span>
+                <span className="text-muted-foreground">Portfolio Beta (equity)</span>
                 <span className="text-primary font-semibold">0.38</span>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900/60 border-slate-700/40">
+        <Card className="bg-card/60 border-border/40">
           <CardHeader className="pb-2 pt-4 px-4">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <BarChart3 className="w-4 h-4 text-primary" />
               Factor Attribution
             </CardTitle>
@@ -1120,9 +1120,9 @@ function PerformanceTab() {
       </div>
 
       {/* Monthly return heatmap */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-amber-400" />
             Monthly Return Calendar
           </CardTitle>
@@ -1134,29 +1134,29 @@ function PerformanceTab() {
                 key={i}
                 className={`rounded-md p-2 text-center border ${r >= 0 ? "bg-green-950/40 border-green-900/40" : "bg-red-950/40 border-red-900/40"}`}
               >
-                <div className="text-[11px] text-slate-500 mb-0.5">M{i + 1}</div>
+                <div className="text-[11px] text-muted-foreground mb-0.5">M{i + 1}</div>
                 <div className={`text-xs font-semibold ${r >= 0 ? "text-green-400" : "text-red-400"}`}>
                   {r > 0 ? "+" : ""}{r.toFixed(1)}%
                 </div>
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-800">
-            <div className="flex gap-4 text-xs text-slate-500">
+          <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
+            <div className="flex gap-4 text-xs text-muted-foreground">
               <span>Best Month: <span className="text-green-400">+4.2%</span></span>
               <span>Worst Month: <span className="text-red-400">-2.1%</span></span>
             </div>
-            <div className="text-xs text-slate-500">
-              Win Rate: <span className="text-slate-300 font-medium">{((winMonths / monthlyReturns.length) * 100).toFixed(0)}%</span>
+            <div className="text-xs text-muted-foreground">
+              Win Rate: <span className="text-muted-foreground font-medium">{((winMonths / monthlyReturns.length) * 100).toFixed(0)}%</span>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Risk metrics */}
-      <Card className="bg-slate-900/60 border-slate-700/40">
+      <Card className="bg-card/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Scale className="w-4 h-4 text-muted-foreground" />
             Risk &amp; Return Metrics
           </CardTitle>
@@ -1173,9 +1173,9 @@ function PerformanceTab() {
               { label: "Skewness", value: "+0.32", positive: true },
               { label: "Kurtosis", value: "3.12", positive: undefined },
             ].map((m) => (
-              <div key={m.label} className="bg-slate-800/40 rounded-lg p-2.5 border border-slate-700/30">
-                <div className="text-xs text-slate-500 mb-0.5">{m.label}</div>
-                <div className={`text-sm font-semibold ${m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-slate-200"}`}>
+              <div key={m.label} className="bg-muted/40 rounded-lg p-2.5 border border-border/30">
+                <div className="text-xs text-muted-foreground mb-0.5">{m.label}</div>
+                <div className={`text-sm font-semibold ${m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-foreground"}`}>
                   {m.value}
                 </div>
               </div>
@@ -1191,16 +1191,16 @@ function PerformanceTab() {
 
 export default function HFStrategiesPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
               <Layers className="w-6 h-6 text-primary" />
               Hedge Fund Strategies
             </h1>
-            <p className="text-sm text-slate-500 mt-1">Professional-grade strategy simulator — Long/Short, Global Macro, Event Driven, Relative Value</p>
+            <p className="text-sm text-muted-foreground mt-1">Professional-grade strategy simulator — Long/Short, Global Macro, Event Driven, Relative Value</p>
           </div>
           <div className="flex items-center gap-2">
             <Badge variant="outline" className="border-green-700 text-green-400 text-xs">
@@ -1220,7 +1220,7 @@ export default function HFStrategiesPage() {
 
         {/* Fund overview bar */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
-          <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-3 bg-slate-900/40 rounded-xl border border-slate-800/60">
+          <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-3 bg-card/40 rounded-xl border border-border/60">
             {[
               { label: "Strategy", value: "Multi-Strat", icon: <Layers className="w-3.5 h-3.5" /> },
               { label: "Gross Leverage", value: "1.8×", icon: <BarChart3 className="w-3.5 h-3.5" /> },
@@ -1230,11 +1230,11 @@ export default function HFStrategiesPage() {
               { label: "S&P 500 Corr", value: "0.31", icon: <Activity className="w-3.5 h-3.5" /> },
             ].map((item) => (
               <div key={item.label} className="flex flex-col items-center text-center">
-                <div className="flex items-center gap-1 text-slate-500 mb-0.5">
+                <div className="flex items-center gap-1 text-muted-foreground mb-0.5">
                   {item.icon}
                   <span className="text-xs">{item.label}</span>
                 </div>
-                <span className="text-sm font-semibold text-slate-100">{item.value}</span>
+                <span className="text-sm font-semibold text-foreground">{item.value}</span>
               </div>
             ))}
           </div>
@@ -1242,20 +1242,20 @@ export default function HFStrategiesPage() {
 
         {/* Main tabs */}
         <Tabs defaultValue="longshort">
-          <TabsList className="bg-slate-900/60 border border-slate-800/60 flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="longshort" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+          <TabsList className="bg-card/60 border border-border/60 flex-wrap h-auto gap-1 p-1">
+            <TabsTrigger value="longshort" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Scale className="w-3.5 h-3.5 mr-1" />Long/Short Equity
             </TabsTrigger>
-            <TabsTrigger value="globalmacro" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+            <TabsTrigger value="globalmacro" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Globe className="w-3.5 h-3.5 mr-1" />Global Macro
             </TabsTrigger>
-            <TabsTrigger value="eventdriven" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+            <TabsTrigger value="eventdriven" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Zap className="w-3.5 h-3.5 mr-1" />Event Driven
             </TabsTrigger>
-            <TabsTrigger value="relvalue" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+            <TabsTrigger value="relvalue" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Repeat className="w-3.5 h-3.5 mr-1" />Relative Value
             </TabsTrigger>
-            <TabsTrigger value="performance" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+            <TabsTrigger value="performance" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <TrendingUp className="w-3.5 h-3.5 mr-1" />Performance Attribution
             </TabsTrigger>
           </TabsList>

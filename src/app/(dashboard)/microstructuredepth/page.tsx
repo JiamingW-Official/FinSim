@@ -186,8 +186,8 @@ function SpreadPieChart() {
         {segments.map((seg) => (
           <div key={seg.label} className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: seg.color }} />
-            <span className="text-xs text-slate-300">{seg.label}</span>
-            <Badge variant="outline" className="text-xs px-1 py-0 border-slate-600 text-slate-400">{seg.value}%</Badge>
+            <span className="text-xs text-muted-foreground">{seg.label}</span>
+            <Badge variant="outline" className="text-xs px-1 py-0 border-slate-600 text-muted-foreground">{seg.value}%</Badge>
           </div>
         ))}
       </div>
@@ -531,8 +531,8 @@ function InfoCard({ icon, title, body, color }: InfoCardProps) {
     <div className={cn("rounded-lg border p-4 flex gap-3", color)}>
       <div className="mt-0.5 shrink-0">{icon}</div>
       <div>
-        <p className="text-sm font-semibold text-slate-200 mb-1">{title}</p>
-        <p className="text-xs text-slate-400 leading-relaxed">{body}</p>
+        <p className="text-sm font-semibold text-foreground mb-1">{title}</p>
+        <p className="text-xs text-muted-foreground leading-relaxed">{body}</p>
       </div>
     </div>
   );
@@ -562,7 +562,7 @@ export default function MicrostructureDepthPage() {
   const avgVPIN = useMemo(() => (toxicFlowRows.reduce((a, b) => a + b.vpinScore, 0) / toxicFlowRows.length).toFixed(3), []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -575,8 +575,8 @@ export default function MicrostructureDepthPage() {
             <Layers className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">Market Microstructure Deep Dive</h1>
-            <p className="text-sm text-slate-400">Bid-ask decomposition · Adverse selection · Inventory risk · Optimal execution</p>
+            <h1 className="text-2xl font-bold text-foreground">Market Microstructure Deep Dive</h1>
+            <p className="text-sm text-muted-foreground">Bid-ask decomposition · Adverse selection · Inventory risk · Optimal execution</p>
           </div>
         </div>
         {/* KPI chips */}
@@ -589,7 +589,7 @@ export default function MicrostructureDepthPage() {
             { label: "√-Impact @$1M", value: `${(sigma * Math.sqrt(1 / adv) * kappa * 10000).toFixed(2)}bp`, color: "text-primary border-border bg-primary/5" },
           ].map((chip) => (
             <div key={chip.label} className={cn("flex items-center gap-1.5 border rounded-full px-3 py-1", chip.color)}>
-              <span className="text-xs text-slate-400">{chip.label}</span>
+              <span className="text-xs text-muted-foreground">{chip.label}</span>
               <span className="text-xs font-semibold">{chip.value}</span>
             </div>
           ))}
@@ -598,17 +598,17 @@ export default function MicrostructureDepthPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="spread" className="w-full">
-        <TabsList className="bg-slate-900 border border-slate-800 flex-wrap h-auto gap-1 p-1 mb-4">
-          <TabsTrigger value="spread" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1 mb-4">
+          <TabsTrigger value="spread" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />Spread Analysis
           </TabsTrigger>
-          <TabsTrigger value="orderflow" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="orderflow" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <Activity className="w-3.5 h-3.5 mr-1.5" />Order Flow
           </TabsTrigger>
-          <TabsTrigger value="impact" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="impact" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <TrendingDown className="w-3.5 h-3.5 mr-1.5" />Price Impact
           </TabsTrigger>
-          <TabsTrigger value="execution" className="data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 text-xs sm:text-sm">
+          <TabsTrigger value="execution" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
             <Target className="w-3.5 h-3.5 mr-1.5" />Execution Models
           </TabsTrigger>
         </TabsList>
@@ -617,9 +617,9 @@ export default function MicrostructureDepthPage() {
         <TabsContent value="spread" className="data-[state=inactive]:hidden space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Spread Decomposition Pie */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Scale className="w-4 h-4 text-primary" />
                   Bid-Ask Spread Decomposition
                 </CardTitle>
@@ -650,9 +650,9 @@ export default function MicrostructureDepthPage() {
             </Card>
 
             {/* Realized vs Effective Spread */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-amber-400" />
                   Realized vs Effective Spread (bps)
                 </CardTitle>
@@ -661,8 +661,8 @@ export default function MicrostructureDepthPage() {
                 <div className="overflow-x-auto">
                   <SpreadComparisonChart />
                 </div>
-                <div className="mt-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700/50">
-                  <p className="text-xs text-slate-400 leading-relaxed">
+                <div className="mt-3 p-3 bg-muted/50 rounded-lg border border-border/50">
+                  <p className="text-xs text-muted-foreground leading-relaxed">
                     <span className="text-primary font-medium">Realized spread</span> measures actual dealer revenue after mid-quote reversion.
                     <span className="text-amber-400 font-medium ml-1">Effective spread</span> is twice the distance from trade price to mid — the true round-trip cost.
                     When effective &gt; realized, dealers capture positive profits; the gap equals adverse selection cost.
@@ -674,17 +674,17 @@ export default function MicrostructureDepthPage() {
 
           {/* Roll Model + Quote Lifetime */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <GitBranch className="w-4 h-4 text-green-400" />
                     Roll Model Implied Spread
                   </CardTitle>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-7 text-xs text-slate-400 hover:text-slate-200"
+                    className="h-7 text-xs text-muted-foreground hover:text-foreground"
                     onClick={() => setShowRollDetail((v) => !v)}
                   >
                     {showRollDetail ? "Hide" : "Formula"} <Info className="w-3 h-3 ml-1" />
@@ -701,9 +701,9 @@ export default function MicrostructureDepthPage() {
                       className="mb-3 overflow-hidden"
                     >
                       <div className="p-3 bg-primary/5 border border-border rounded-lg">
-                        <p className="text-xs text-slate-300 font-mono mb-1">Roll (1984) Model:</p>
+                        <p className="text-xs text-muted-foreground font-mono mb-1">Roll (1984) Model:</p>
                         <p className="text-xs text-primary font-mono">S = 2√(-Cov(Δp_t, Δp_t-1))</p>
-                        <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                        <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
                           Negative serial covariance in trade-to-trade price changes implies a bid-ask bounce. The Roll measure estimates the effective half-spread from observable price data without requiring quote data.
                         </p>
                       </div>
@@ -713,24 +713,24 @@ export default function MicrostructureDepthPage() {
                 <div className="space-y-2">
                   {rollAutocovariances.map((cov, i) => (
                     <div key={i} className="flex items-center gap-2">
-                      <span className="text-xs text-slate-400 w-12 shrink-0">Asset {i + 1}</span>
-                      <div className="flex-1 bg-slate-800 rounded-full h-2">
+                      <span className="text-xs text-muted-foreground w-12 shrink-0">Asset {i + 1}</span>
+                      <div className="flex-1 bg-muted rounded-full h-2">
                         <div
                           className="h-2 rounded-full bg-green-500 opacity-80"
                           style={{ width: `${Math.min(rollImpliedSpreads[i] / Math.max(...rollImpliedSpreads) * 100, 100)}%` }}
                         />
                       </div>
                       <span className="text-xs font-mono text-green-400 w-14 text-right">{rollImpliedSpreads[i]} bps</span>
-                      <span className="text-xs text-slate-600 font-mono w-24 text-right">cov={cov.toFixed(5)}</span>
+                      <span className="text-xs text-muted-foreground font-mono w-24 text-right">cov={cov.toFixed(5)}</span>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Clock className="w-4 h-4 text-primary" />
                   Quote Lifetime Distribution
                 </CardTitle>
@@ -739,7 +739,7 @@ export default function MicrostructureDepthPage() {
                 <div className="overflow-x-auto">
                   <QuoteLifetimeChart />
                 </div>
-                <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
                   <span className="text-red-400 font-medium">&lt;1ms quotes</span> dominate — a hallmark of HFT quote stuffing. Markets see millions of sub-millisecond quotes daily, the majority never executed. This creates latency arbitrage opportunities for co-located participants.
                 </p>
               </CardContent>
@@ -750,9 +750,9 @@ export default function MicrostructureDepthPage() {
         {/* ── Tab 2: Order Flow ──────────────────────────────────────────────── */}
         <TabsContent value="orderflow" className="data-[state=inactive]:hidden space-y-4">
           {/* OFI Bar Chart */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Order Flow Imbalance (OFI) by Interval
               </CardTitle>
@@ -767,10 +767,10 @@ export default function MicrostructureDepthPage() {
                   { label: "Buy Pressure", value: `${(buyVolumes.reduce((a, b) => a + b, 0) / 1000).toFixed(0)}k`, sub: "total buy volume" },
                   { label: "Sell Pressure", value: `${(sellVolumes.reduce((a, b) => a + b, 0) / 1000).toFixed(0)}k`, sub: "total sell volume" },
                 ].map((s) => (
-                  <div key={s.label} className="bg-slate-800/50 rounded-lg p-2 border border-slate-700/50">
-                    <p className="text-xs text-slate-400">{s.label}</p>
-                    <p className="text-base font-bold text-slate-100">{s.value}</p>
-                    <p className="text-xs text-slate-500">{s.sub}</p>
+                  <div key={s.label} className="bg-muted/50 rounded-lg p-2 border border-border/50">
+                    <p className="text-xs text-muted-foreground">{s.label}</p>
+                    <p className="text-base font-bold text-foreground">{s.value}</p>
+                    <p className="text-xs text-muted-foreground">{s.sub}</p>
                   </div>
                 ))}
               </div>
@@ -779,9 +779,9 @@ export default function MicrostructureDepthPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Toxic Flow Identifier */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-red-400" />
                   Toxic Flow Identifier
                 </CardTitle>
@@ -791,17 +791,17 @@ export default function MicrostructureDepthPage() {
                   {toxicFlowRows.map((row) => (
                     <div
                       key={row.symbol}
-                      className="flex items-center gap-2 p-2 rounded-lg bg-slate-800/40 border border-slate-700/30 cursor-pointer hover:border-slate-600/50 transition-colors"
+                      className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/30 cursor-pointer hover:border-slate-600/50 transition-colors"
                       onClick={() => setSelectedSymbol(spreadSymbols.indexOf(row.symbol))}
                     >
-                      <span className="text-xs font-mono font-semibold text-slate-200 w-12 shrink-0">{row.symbol}</span>
+                      <span className="text-xs font-mono font-semibold text-foreground w-12 shrink-0">{row.symbol}</span>
                       <div className="flex-1">
                         <div className="flex gap-0.5 h-3">
                           <div className="rounded-l bg-red-500 opacity-80" style={{ width: `${row.toxicPct}%` }} title="Toxic" />
                           <div className="rounded-r bg-slate-600 opacity-60" style={{ width: `${row.normalPct}%` }} title="Normal" />
                         </div>
                       </div>
-                      <span className="text-xs text-slate-400 w-10 text-right">{row.toxicPct}%</span>
+                      <span className="text-xs text-muted-foreground w-10 text-right">{row.toxicPct}%</span>
                       <Badge
                         className={cn(
                           "text-xs px-1.5 py-0 shrink-0",
@@ -816,15 +816,15 @@ export default function MicrostructureDepthPage() {
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-slate-500 mt-3">Toxic flow = high adverse-selection component. Dealers widen spreads or refuse to quote when toxic flow exceeds 40%.</p>
+                <p className="text-xs text-muted-foreground mt-3">Toxic flow = high adverse-selection component. Dealers widen spreads or refuse to quote when toxic flow exceeds 40%.</p>
               </CardContent>
             </Card>
 
             {/* VPIN Gauge + Lee-Ready */}
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <Eye className="w-4 h-4 text-amber-400" />
                     VPIN Metric (Volume-Synchronized PIN)
                   </CardTitle>
@@ -833,7 +833,7 @@ export default function MicrostructureDepthPage() {
                   <div className="flex items-center gap-6">
                     <VPINGauge value={Number(avgVPIN)} />
                     <div className="space-y-2 flex-1">
-                      <p className="text-xs text-slate-400 leading-relaxed">
+                      <p className="text-xs text-muted-foreground leading-relaxed">
                         VPIN estimates the probability of informed trading by comparing buy vs sell volume in equal-sized volume buckets. Values &gt;0.65 historically precede major price dislocations (e.g., 2010 Flash Crash VPIN exceeded 0.75).
                       </p>
                       <div className="flex gap-2">
@@ -853,9 +853,9 @@ export default function MicrostructureDepthPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <Cpu className="w-4 h-4 text-green-400" />
                     Lee-Ready Trade Classification
                   </CardTitle>
@@ -868,13 +868,13 @@ export default function MicrostructureDepthPage() {
                       { rule: "Lee-Ready (combined)", desc: "Quote rule primary; tick rule for midpoint trades", accuracy: 88 },
                       { rule: "Bulk Volume Classification", desc: "σ-normalized price changes map to [0,1] buy probability", accuracy: 91 },
                     ].map((r) => (
-                      <div key={r.rule} className="p-2 rounded bg-slate-800/40 border border-slate-700/30">
+                      <div key={r.rule} className="p-2 rounded bg-muted/40 border border-border/30">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-slate-200 font-medium">{r.rule}</span>
+                          <span className="text-foreground font-medium">{r.rule}</span>
                           <Badge variant="outline" className="text-xs px-1.5 border-green-500/30 text-green-400">{r.accuracy}%</Badge>
                         </div>
-                        <p className="text-slate-500">{r.desc}</p>
-                        <Progress value={r.accuracy} className="h-1 mt-1.5 bg-slate-700" />
+                        <p className="text-muted-foreground">{r.desc}</p>
+                        <Progress value={r.accuracy} className="h-1 mt-1.5 bg-muted" />
                       </div>
                     ))}
                   </div>
@@ -888,9 +888,9 @@ export default function MicrostructureDepthPage() {
         <TabsContent value="impact" className="data-[state=inactive]:hidden space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Permanent vs Temporary Impact chart */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <TrendingDown className="w-4 h-4 text-red-400" />
                   Permanent vs Temporary Price Impact
                 </CardTitle>
@@ -901,13 +901,13 @@ export default function MicrostructureDepthPage() {
                 </div>
                 <div className="mt-3 space-y-2 text-xs">
                   <div className="flex gap-2">
-                    <div className="flex-1 p-2 rounded bg-slate-800/40 border border-border">
+                    <div className="flex-1 p-2 rounded bg-muted/40 border border-border">
                       <p className="text-primary font-medium mb-0.5">Permanent Impact</p>
-                      <p className="text-slate-400">Reflects the informational content of the trade — causes a lasting price update. Related to Kyle λ and information asymmetry.</p>
+                      <p className="text-muted-foreground">Reflects the informational content of the trade — causes a lasting price update. Related to Kyle λ and information asymmetry.</p>
                     </div>
-                    <div className="flex-1 p-2 rounded bg-slate-800/40 border border-amber-500/20">
+                    <div className="flex-1 p-2 rounded bg-muted/40 border border-amber-500/20">
                       <p className="text-amber-400 font-medium mb-0.5">Temporary Impact</p>
-                      <p className="text-slate-400">Liquidity provision cost that reverts after the trade. Market makers widen quotes to absorb large flow, then normalize.</p>
+                      <p className="text-muted-foreground">Liquidity provision cost that reverts after the trade. Market makers widen quotes to absorb large flow, then normalize.</p>
                     </div>
                   </div>
                 </div>
@@ -915,9 +915,9 @@ export default function MicrostructureDepthPage() {
             </Card>
 
             {/* Square-root model + slider */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-green-400" />
                   Square-Root Market Impact Model
                 </CardTitle>
@@ -925,11 +925,11 @@ export default function MicrostructureDepthPage() {
               <CardContent>
                 <div className="p-3 mb-4 bg-primary/5 border border-border rounded-lg font-mono text-xs text-primary">
                   Impact(bps) = σ · √(Q / ADV) · κ
-                  <p className="text-slate-400 mt-1 font-sans">σ={sigma} · κ={kappa} · ADV=$50M · Q=$<span className="text-primary font-mono">{qm}M</span></p>
+                  <p className="text-muted-foreground mt-1 font-sans">σ={sigma} · κ={kappa} · ADV=$50M · Q=$<span className="text-primary font-mono">{qm}M</span></p>
                 </div>
                 <div className="mb-4">
-                  <div className="flex justify-between text-xs text-slate-400 mb-2">
-                    <span>Trade Size: <span className="text-slate-200 font-semibold">${qm}M</span></span>
+                  <div className="flex justify-between text-xs text-muted-foreground mb-2">
+                    <span>Trade Size: <span className="text-foreground font-semibold">${qm}M</span></span>
                     <span>Impact: <span className="text-red-400 font-semibold">{sqrtImpact} bps</span></span>
                   </div>
                   <Slider
@@ -940,7 +940,7 @@ export default function MicrostructureDepthPage() {
                     step={0.1}
                     className="w-full"
                   />
-                  <div className="flex justify-between text-xs text-slate-600 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>$0.1M</span><span>$50M</span>
                   </div>
                 </div>
@@ -951,8 +951,8 @@ export default function MicrostructureDepthPage() {
                     { label: "% of Trade", value: `${(slippageBps / 100).toFixed(3)}%`, color: "text-orange-400" },
                     { label: "√(Q/ADV)", value: `${Math.sqrt(qm / adv).toFixed(3)}`, color: "text-primary" },
                   ].map((s) => (
-                    <div key={s.label} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50 text-center">
-                      <p className="text-xs text-slate-500 mb-1">{s.label}</p>
+                    <div key={s.label} className="p-3 rounded-lg bg-muted/50 border border-border/50 text-center">
+                      <p className="text-xs text-muted-foreground mb-1">{s.label}</p>
                       <p className={cn("text-sm font-bold", s.color)}>{s.value}</p>
                     </div>
                   ))}
@@ -962,9 +962,9 @@ export default function MicrostructureDepthPage() {
           </div>
 
           {/* Kyle Lambda table */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Waves className="w-4 h-4 text-primary" />
                 Kyle Lambda (λ) — Price Impact per Unit Order Flow
               </CardTitle>
@@ -972,16 +972,16 @@ export default function MicrostructureDepthPage() {
             <CardContent>
               <div className="mb-3 p-3 bg-primary/5 border border-border rounded-lg text-xs font-mono text-primary">
                 Δp = λ · (Q_buy − Q_sell) + ε
-                <span className="text-slate-400 font-sans ml-2">— Kyle (1985) linear impact model</span>
+                <span className="text-muted-foreground font-sans ml-2">— Kyle (1985) linear impact model</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {kyleLambdaAssets.map((asset) => {
                   const maxLambda = Math.max(...kyleLambdaAssets.map((a) => a.lambda));
                   const pct = (asset.lambda / maxLambda) * 100;
                   return (
-                    <div key={asset.name} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                    <div key={asset.name} className="p-3 rounded-lg bg-muted/50 border border-border/50">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-medium text-slate-200">{asset.name}</span>
+                        <span className="text-xs font-medium text-foreground">{asset.name}</span>
                         <Badge
                           variant="outline"
                           className={cn(
@@ -996,15 +996,15 @@ export default function MicrostructureDepthPage() {
                         </Badge>
                       </div>
                       <p className="text-base font-bold text-primary font-mono">{asset.lambda}</p>
-                      <div className="mt-1.5 bg-slate-700 rounded-full h-1.5">
+                      <div className="mt-1.5 bg-muted rounded-full h-1.5">
                         <div className="h-1.5 rounded-full bg-primary" style={{ width: `${pct}%` }} />
                       </div>
-                      <p className="text-xs text-slate-500 mt-1">λ × order flow = price Δ</p>
+                      <p className="text-xs text-muted-foreground mt-1">λ × order flow = price Δ</p>
                     </div>
                   );
                 })}
               </div>
-              <p className="text-xs text-slate-400 mt-3">
+              <p className="text-xs text-muted-foreground mt-3">
                 Higher λ = steeper price impact per unit of net order flow. HY bonds have 10–15× higher λ than EUR/USD, reflecting illiquidity premium and wider information asymmetry.
               </p>
             </CardContent>
@@ -1015,9 +1015,9 @@ export default function MicrostructureDepthPage() {
         <TabsContent value="execution" className="data-[state=inactive]:hidden space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* TWAP vs VWAP vs IS */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-primary" />
                   TWAP vs VWAP vs Implementation Shortfall
                 </CardTitle>
@@ -1044,9 +1044,9 @@ export default function MicrostructureDepthPage() {
                       desc: "Almgren-Chriss framework minimizes total execution cost = impact cost + timing risk. Front-loads in volatile markets; back-loads when mean-reverting.",
                     },
                   ].map((s) => (
-                    <div key={s.name} className={cn("p-2.5 rounded-lg border bg-slate-800/30 text-xs", s.color)}>
+                    <div key={s.name} className={cn("p-2.5 rounded-lg border bg-muted/30 text-xs", s.color)}>
                       <p className={cn("font-semibold mb-0.5", s.color.split(" ")[0])}>{s.name}</p>
-                      <p className="text-slate-400">{s.desc}</p>
+                      <p className="text-muted-foreground">{s.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -1055,9 +1055,9 @@ export default function MicrostructureDepthPage() {
 
             {/* AC Trajectory + Intraday Volume */}
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-green-400" />
                     Almgren-Chriss Optimal Trajectory
                   </CardTitle>
@@ -1066,15 +1066,15 @@ export default function MicrostructureDepthPage() {
                   <div className="overflow-x-auto">
                     <ACTrajectoryChart />
                   </div>
-                  <div className="mt-2 p-2 bg-slate-800/40 border border-slate-700/30 rounded text-xs text-slate-400">
+                  <div className="mt-2 p-2 bg-muted/40 border border-border/30 rounded text-xs text-muted-foreground">
                     The AC model trades off <span className="text-green-400">price impact cost</span> (prefers slow execution) vs <span className="text-amber-400">price risk</span> (prefers fast execution). The concave optimal path front-loads execution versus a linear schedule, especially at high risk-aversion γ.
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <BookOpen className="w-4 h-4 text-amber-400" />
                     Intraday Volume Profile
                   </CardTitle>
@@ -1083,7 +1083,7 @@ export default function MicrostructureDepthPage() {
                   <div className="overflow-x-auto">
                     <IntradayVolumeChart />
                   </div>
-                  <p className="text-xs text-slate-400 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     <span className="text-amber-400 font-medium">Open & close</span> account for ~35% of daily volume — VWAP algos concentrate here. Midday (11:30–13:30) is optimal for minimizing market impact cost.
                   </p>
                 </CardContent>
@@ -1092,9 +1092,9 @@ export default function MicrostructureDepthPage() {
           </div>
 
           {/* Slippage Estimator */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-slate-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <ArrowRight className="w-4 h-4 text-orange-400" />
                 Slippage Estimator — Cost per $1M Traded
               </CardTitle>
@@ -1112,11 +1112,11 @@ export default function MicrostructureDepthPage() {
                   const bpsNum = Number(s.bps);
                   const costPerM = (bpsNum * 100).toFixed(0);
                   return (
-                    <div key={s.strategy} className="p-3 rounded-lg bg-slate-800/50 border border-slate-700/50 text-center">
+                    <div key={s.strategy} className="p-3 rounded-lg bg-muted/50 border border-border/50 text-center">
                       <p className="text-lg mb-0.5">{s.icon}</p>
-                      <p className="text-[11px] text-slate-400 font-medium mb-1">{s.strategy}</p>
+                      <p className="text-[11px] text-muted-foreground font-medium mb-1">{s.strategy}</p>
                       <p className={cn("text-sm font-bold", bpsNum < 2 ? "text-green-400" : bpsNum < 4 ? "text-amber-400" : "text-red-400")}>{s.bps} bps</p>
-                      <p className="text-xs text-slate-500">${costPerM} / $1M</p>
+                      <p className="text-xs text-muted-foreground">${costPerM} / $1M</p>
                     </div>
                   );
                 })}
@@ -1145,8 +1145,8 @@ export default function MicrostructureDepthPage() {
                   <div key={card.title} className={cn("rounded-lg border p-3 flex gap-2", card.color)}>
                     <div className="mt-0.5 shrink-0">{card.icon}</div>
                     <div>
-                      <p className="font-semibold text-slate-200 mb-0.5">{card.title}</p>
-                      <p className="text-slate-400 leading-relaxed">{card.body}</p>
+                      <p className="font-semibold text-foreground mb-0.5">{card.title}</p>
+                      <p className="text-muted-foreground leading-relaxed">{card.body}</p>
                     </div>
                   </div>
                 ))}

@@ -62,9 +62,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
 }
@@ -73,14 +73,14 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
       <h3 className="text-base font-semibold text-white">{title}</h3>
-      {sub && <p className="text-xs text-zinc-400 mt-0.5">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
 }
 
 function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
   const cls: Record<string, string> = {
-    zinc: "bg-zinc-800 text-zinc-300",
+    zinc: "bg-muted text-muted-foreground",
     emerald: "bg-emerald-900/50 text-emerald-300",
     amber: "bg-amber-900/50 text-amber-300",
     rose: "bg-rose-900/50 text-rose-300",
@@ -258,12 +258,12 @@ function ValuationMethodsTab() {
                   <InfoPill text={m.badge} color={m.color} />
                 </div>
                 {isOpen ? (
-                  <ChevronUp className="w-4 h-4 text-zinc-500" />
+                  <ChevronUp className="w-4 h-4 text-muted-foreground" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-zinc-500" />
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
                 )}
               </div>
-              <p className="text-xs text-zinc-400 mt-2">{m.summary}</p>
+              <p className="text-xs text-muted-foreground mt-2">{m.summary}</p>
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
@@ -275,8 +275,8 @@ function ValuationMethodsTab() {
                   >
                     <div className="mt-3 space-y-1.5 border-t border-white/10 pt-3">
                       {m.details.map((d, i) => (
-                        <div key={i} className="flex gap-2 text-xs text-zinc-300">
-                          <ArrowRight className="w-3 h-3 mt-0.5 flex-shrink-0 text-zinc-500" />
+                        <div key={i} className="flex gap-2 text-xs text-muted-foreground">
+                          <ArrowRight className="w-3 h-3 mt-0.5 flex-shrink-0 text-muted-foreground" />
                           <span>{d}</span>
                         </div>
                       ))}
@@ -299,7 +299,7 @@ function ValuationMethodsTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border border-border bg-muted/30 p-4">
             <p className="text-xs font-semibold text-primary mb-3">High-Growth Tech / SaaS</p>
-            <ul className="space-y-1.5 text-xs text-zinc-300">
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Primary metric: EV/NTM Revenue (5–25× range)",
                 "Revenue growth rate > profitability (Rule of 40)",
@@ -317,7 +317,7 @@ function ValuationMethodsTab() {
           </div>
           <div className="rounded-lg border border-emerald-500/30 bg-emerald-900/10 p-4">
             <p className="text-xs font-semibold text-emerald-300 mb-3">Mature / Industrial / Consumer</p>
-            <ul className="space-y-1.5 text-xs text-zinc-300">
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Primary metrics: EV/EBITDA (8–15×), P/E (15–25×)",
                 "FCF yield and dividend capacity",
@@ -351,7 +351,7 @@ function ValuationMethodsTab() {
                 row.bold ? "border border-white/20 bg-white/10" : "bg-white/[0.03]"
               )}
             >
-              <span className={cn("text-zinc-300", row.bold && "font-semibold text-sm")}>{row.label}</span>
+              <span className={cn("text-muted-foreground", row.bold && "font-semibold text-sm")}>{row.label}</span>
               <span
                 className={cn(
                   "font-mono font-semibold",
@@ -367,7 +367,7 @@ function ValuationMethodsTab() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           IPO Price per share = Post-money Equity Value ÷ Fully Diluted Shares Outstanding
         </p>
       </div>
@@ -382,17 +382,17 @@ function ValuationMethodsTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium">Share Class</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">Shares</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">% Fully Diluted</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Share Class</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">Shares</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">% Fully Diluted</th>
               </tr>
             </thead>
             <tbody>
               {dilutionTable.map((row, i) => (
                 <tr key={row.type} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                  <td className="py-2 pr-4 text-zinc-300">{row.type}</td>
-                  <td className="py-2 text-right font-mono text-zinc-300">{row.shares.toLocaleString()}</td>
-                  <td className="py-2 text-right font-mono text-zinc-300">{row.pct.toFixed(1)}%</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{row.type}</td>
+                  <td className="py-2 text-right font-mono text-muted-foreground">{row.shares.toLocaleString()}</td>
+                  <td className="py-2 text-right font-mono text-muted-foreground">{row.pct.toFixed(1)}%</td>
                 </tr>
               ))}
               <tr className="border-t border-white/20 bg-white/5">
@@ -405,7 +405,7 @@ function ValuationMethodsTab() {
         </div>
         <div className="mt-3 rounded-lg border border-amber-500/30 bg-amber-900/10 p-3">
           <p className="text-xs text-amber-300 font-medium mb-1">Option Pool Shuffle Mechanic</p>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-muted-foreground">
             VCs require an unissued option pool (typically 10–15% post-financing) to be created{" "}
             <em>before</em> valuation is set. This dilutes founders on a pre-money basis. A{" "}
             $100M pre-money with 10% option pool = founders give up 10% of value before any VC
@@ -436,7 +436,7 @@ function ValuationMethodsTab() {
                   <Icon className={cn("w-4 h-4", colorMap[f.color])} />
                   <span className="text-xs font-semibold text-white">{f.title}</span>
                 </div>
-                <p className="text-xs text-zinc-400">{f.desc}</p>
+                <p className="text-xs text-muted-foreground">{f.desc}</p>
               </div>
             );
           })}
@@ -448,7 +448,7 @@ function ValuationMethodsTab() {
         <SectionHeading title="SEC S-1 Registration & JOBS Act Confidential Filing" sub="IPO regulatory process overview" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <p className="text-xs font-semibold text-zinc-300 mb-3">Traditional S-1 Filing Timeline</p>
+            <p className="text-xs font-semibold text-muted-foreground mb-3">Traditional S-1 Filing Timeline</p>
             <div className="space-y-2">
               {[
                 { step: "1", label: "Draft S-1 preparation", time: "8–16 weeks", note: "Audited financials, risk factors, MD&A" },
@@ -463,17 +463,17 @@ function ValuationMethodsTab() {
                     {s.step}
                   </div>
                   <div>
-                    <span className="text-zinc-200 font-medium">{s.label}</span>
-                    <span className="text-zinc-500 ml-2">({s.time})</span>
-                    <p className="text-zinc-500">{s.note}</p>
+                    <span className="text-foreground font-medium">{s.label}</span>
+                    <span className="text-muted-foreground ml-2">({s.time})</span>
+                    <p className="text-muted-foreground">{s.note}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold text-zinc-300 mb-3">JOBS Act (2012) — Confidential Filing</p>
-            <div className="space-y-2 text-xs text-zinc-400">
+            <p className="text-xs font-semibold text-muted-foreground mb-3">JOBS Act (2012) — Confidential Filing</p>
+            <div className="space-y-2 text-xs text-muted-foreground">
               <p>Emerging Growth Companies (EGCs) with &lt;$1.07B revenue may file a draft S-1 confidentially with the SEC.</p>
               <div className="space-y-2 mt-3">
                 {[
@@ -660,14 +660,14 @@ function BookbuildingTab() {
               <div className="flex items-center gap-2 mb-1">
                 <InfoPill text={o.type} color={o.color} />
               </div>
-              <p className="text-xs text-zinc-500 mb-0.5">{o.investor}</p>
-              <p className="text-xs text-zinc-300">{o.desc}</p>
+              <p className="text-xs text-muted-foreground mb-0.5">{o.investor}</p>
+              <p className="text-xs text-muted-foreground">{o.desc}</p>
             </div>
           ))}
         </div>
         <div className="mt-4 rounded-lg border border-amber-500/30 bg-amber-900/10 p-3">
           <p className="text-xs text-amber-300 font-medium mb-1">Oversubscription Mechanics</p>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-muted-foreground">
             A hot IPO 10–30× oversubscribed means $10–30 of demand for every $1 of shares available.
             The underwriter "clears" the book at a price where supply equals demand, usually the top
             of or above the filing range. Excess demand is rationed — long-only institutional accounts
@@ -686,19 +686,19 @@ function BookbuildingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium w-8">Rank</th>
-                <th className="py-2 text-left text-zinc-500 font-medium">Investor Type</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">Typical Alloc.</th>
-                <th className="py-2 text-left text-zinc-500 font-medium pl-4">Notes</th>
+                <th className="py-2 text-left text-muted-foreground font-medium w-8">Rank</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Investor Type</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">Typical Alloc.</th>
+                <th className="py-2 text-left text-muted-foreground font-medium pl-4">Notes</th>
               </tr>
             </thead>
             <tbody>
               {allocationPriority.map((row) => (
                 <tr key={row.rank} className="border-b border-white/5">
-                  <td className="py-2 text-zinc-500">{row.rank}</td>
-                  <td className="py-2 pr-4 text-zinc-200">{row.type}</td>
+                  <td className="py-2 text-muted-foreground">{row.rank}</td>
+                  <td className="py-2 pr-4 text-foreground">{row.type}</td>
                   <td className="py-2 text-right font-mono text-emerald-400">{row.alloc}</td>
-                  <td className="py-2 pl-4 text-zinc-400">{row.note}</td>
+                  <td className="py-2 pl-4 text-muted-foreground">{row.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -718,13 +718,13 @@ function BookbuildingTab() {
               <div className="w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5">
                 {i + 1}
               </div>
-              <p className="text-xs text-zinc-300">{s.step}</p>
+              <p className="text-xs text-muted-foreground">{s.step}</p>
             </div>
           ))}
         </div>
         <div className="mt-4 rounded-lg border border-rose-500/30 bg-rose-900/10 p-3">
           <p className="text-xs text-rose-300 font-medium mb-1">Penalty Bid for Flippers</p>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-muted-foreground">
             If IPO allocatees sell within a short period after listing (flipping), the syndicate
             manager can claw back the selling concession (typically 1–2% of proceeds) from the
             broker who placed that order. This disincentivizes flipping and rewards stable holders.
@@ -743,16 +743,16 @@ function BookbuildingTab() {
           ].map((row) => (
             <div key={row.label}>
               <div className="flex justify-between items-center mb-1">
-                <span className="text-xs text-zinc-300 font-medium">{row.label}</span>
-                <span className="text-xs font-mono text-zinc-400">{row.pct}% of gross spread</span>
+                <span className="text-xs text-muted-foreground font-medium">{row.label}</span>
+                <span className="text-xs font-mono text-muted-foreground">{row.pct}% of gross spread</span>
               </div>
               <div className="h-4 rounded bg-white/5 overflow-hidden mb-1">
                 <div className={cn("h-full rounded", row.color)} style={{ width: `${row.pct}%` }} />
               </div>
-              <p className="text-xs text-zinc-500">{row.desc}</p>
+              <p className="text-xs text-muted-foreground">{row.desc}</p>
             </div>
           ))}
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Example: $1B IPO at 7% gross spread = $70M in underwriter fees. Lead bank takes ~$28M (management + underwriting portion).
           </p>
         </div>
@@ -765,7 +765,7 @@ function BookbuildingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium">Requirement</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Requirement</th>
                 <th className="py-2 text-left text-primary font-medium">NYSE</th>
                 <th className="py-2 text-left text-primary font-medium">NASDAQ Global Select</th>
               </tr>
@@ -781,9 +781,9 @@ function BookbuildingTab() {
                 const k = keys[req];
                 return (
                   <tr key={req} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                    <td className="py-2 pr-4 text-zinc-400">{req}</td>
-                    <td className="py-2 pr-4 text-zinc-300">{listingReqs[0][k]}</td>
-                    <td className="py-2 text-zinc-300">{listingReqs[1][k]}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{req}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{listingReqs[0][k]}</td>
+                    <td className="py-2 text-muted-foreground">{listingReqs[1][k]}</td>
                   </tr>
                 );
               })}
@@ -799,25 +799,25 @@ function BookbuildingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium">Company</th>
-                <th className="py-2 text-left text-zinc-500 font-medium">Class A (Public)</th>
-                <th className="py-2 text-left text-zinc-500 font-medium">Class B (Founder)</th>
-                <th className="py-2 text-left text-zinc-500 font-medium">Class C</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Company</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Class A (Public)</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Class B (Founder)</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Class C</th>
               </tr>
             </thead>
             <tbody>
               {dualClassExamples.map((row, i) => (
                 <tr key={row.company} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-white font-medium">{row.company}</td>
-                  <td className="py-2 pr-4 text-zinc-300">{row.classA}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{row.classA}</td>
                   <td className="py-2 pr-4 text-amber-300">{row.classB}</td>
-                  <td className="py-2 text-zinc-400">{row.classC}</td>
+                  <td className="py-2 text-muted-foreground">{row.classC}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           S&P 500 excludes dual-class companies from index eligibility. ISS and major institutional proxy advisors often vote against dual-class structures.
         </p>
       </div>
@@ -993,7 +993,7 @@ function UnderpricingTab() {
                     <Icon className={cn("w-4 h-4", colorMap[t.color].split(" ")[0])} />
                     <span className="text-xs font-semibold text-white">{t.name}</span>
                   </div>
-                  {isOpen ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+                  {isOpen ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                 </div>
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -1005,7 +1005,7 @@ function UnderpricingTab() {
                       className="overflow-hidden"
                     >
                       <div className="mt-3 space-y-2 border-t border-white/10 pt-3">
-                        <p className="text-xs text-zinc-300">{t.explanation}</p>
+                        <p className="text-xs text-muted-foreground">{t.explanation}</p>
                         <div className="flex gap-2 mt-2">
                           <Activity className="w-3 h-3 text-emerald-400 mt-0.5 flex-shrink-0" />
                           <p className="text-xs text-emerald-300">{t.evidence}</p>
@@ -1029,25 +1029,25 @@ function UnderpricingTab() {
         <div className="grid grid-cols-3 gap-4 mb-4">
           {longRunData.map((d) => (
             <div key={d.label} className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-center">
-              <p className="text-xs text-zinc-500 mb-2">{d.label} Post-IPO</p>
+              <p className="text-xs text-muted-foreground mb-2">{d.label} Post-IPO</p>
               <div className="flex items-center justify-center gap-2">
                 <div>
-                  <p className="text-xs text-zinc-500">IPO</p>
+                  <p className="text-xs text-muted-foreground">IPO</p>
                   <p className={cn("text-lg font-bold", d.ipoReturn < 0 ? "text-rose-400" : "text-emerald-400")}>
                     {d.ipoReturn > 0 ? "+" : ""}{d.ipoReturn}%
                   </p>
                 </div>
-                <span className="text-zinc-600 text-xs">vs</span>
+                <span className="text-muted-foreground text-xs">vs</span>
                 <div>
-                  <p className="text-xs text-zinc-500">Bench</p>
+                  <p className="text-xs text-muted-foreground">Bench</p>
                   <p className="text-lg font-bold text-emerald-400">+{d.benchReturn}%</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div className="rounded-lg border border-zinc-700/50 bg-zinc-800/30 p-3">
-          <p className="text-xs text-zinc-400">
+        <div className="rounded-lg border border-border/50 bg-muted/30 p-3">
+          <p className="text-xs text-muted-foreground">
             Jay Ritter (University of Florida) documents that firms going public in hot markets show
             the worst long-run performance. Explanations: windows-of-opportunity hypothesis (firms
             issue when overvalued), managerial hubris, earnings management pre-IPO, and winner&apos;s
@@ -1062,7 +1062,7 @@ function UnderpricingTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border border-border bg-muted/30 p-4">
             <p className="text-xs font-semibold text-primary mb-2">Institutional Investors — Early Flip</p>
-            <ul className="space-y-1.5 text-xs text-zinc-400">
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Receive outsized IPO allocations (50–70% of deal)",
                 "Often flip 25–50% of position in first few days of trading",
@@ -1076,7 +1076,7 @@ function UnderpricingTab() {
           </div>
           <div className="rounded-lg border border-amber-500/30 bg-amber-900/10 p-4">
             <p className="text-xs font-semibold text-amber-300 mb-2">Retail Investors — Long Hold</p>
-            <ul className="space-y-1.5 text-xs text-zinc-400">
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Receive minimal allocation (5–10% of deal total)",
                 "Often buy in aftermarket at inflated first-day prices",
@@ -1101,17 +1101,17 @@ function UnderpricingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium">Period</th>
-                <th className="py-2 text-left text-zinc-500 font-medium">Market</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">Avg. 1st Day</th>
-                <th className="py-2 text-left text-zinc-500 font-medium pl-4">Volume</th>
-                <th className="py-2 text-left text-zinc-500 font-medium">Notable</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Period</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Market</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">Avg. 1st Day</th>
+                <th className="py-2 text-left text-muted-foreground font-medium pl-4">Volume</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Notable</th>
               </tr>
             </thead>
             <tbody>
               {hotColdCycles.map((row, i) => (
                 <tr key={row.period} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                  <td className="py-2 pr-3 text-zinc-300">{row.period}</td>
+                  <td className="py-2 pr-3 text-muted-foreground">{row.period}</td>
                   <td className="py-2 pr-3">
                     <InfoPill
                       text={row.type}
@@ -1119,8 +1119,8 @@ function UnderpricingTab() {
                     />
                   </td>
                   <td className={cn("py-2 text-right font-mono", row.type === "Cold" ? "text-rose-400" : "text-emerald-400")}>{row.avgPop}</td>
-                  <td className="py-2 pl-4 text-zinc-400">{row.vol}</td>
-                  <td className="py-2 text-zinc-400">{row.sector}</td>
+                  <td className="py-2 pl-4 text-muted-foreground">{row.vol}</td>
+                  <td className="py-2 text-muted-foreground">{row.sector}</td>
                 </tr>
               ))}
             </tbody>
@@ -1128,7 +1128,7 @@ function UnderpricingTab() {
         </div>
         <div className="mt-3 rounded-lg border border-sky-500/30 bg-sky-900/10 p-3">
           <p className="text-xs text-sky-300 font-medium mb-1">Sector Underpricing Hierarchy</p>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-muted-foreground">
             Technology IPOs historically show the highest average underpricing (~30–35%), followed by
             biotech/healthcare (~25%), fintech (~20%), and consumer/industrial (~10–15%). High
             information asymmetry and growth optionality explain tech&apos;s premium discount.
@@ -1226,10 +1226,10 @@ function PostIPOTab() {
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
           {lockupTimeline.map((ev) => (
             <div key={ev.day} className="flex gap-3 text-xs">
-              <div className="w-12 flex-shrink-0 font-mono text-zinc-500">D+{ev.day}</div>
+              <div className="w-12 flex-shrink-0 font-mono text-muted-foreground">D+{ev.day}</div>
               <div>
-                <span className="text-zinc-200 font-medium">{ev.event}</span>
-                <p className="text-zinc-500">{ev.desc}</p>
+                <span className="text-foreground font-medium">{ev.event}</span>
+                <p className="text-muted-foreground">{ev.desc}</p>
               </div>
             </div>
           ))}
@@ -1240,20 +1240,20 @@ function PostIPOTab() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <SectionHeading title="Lockup Mechanics, Waivers & Short Interest Buildup" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-lg border border-zinc-700/50 bg-white/[0.03] p-3">
-            <p className="text-xs font-semibold text-zinc-300 mb-2">Lockup Waiver Triggers</p>
-            <ul className="space-y-1.5 text-xs text-zinc-400">
+          <div className="rounded-lg border border-border/50 bg-white/[0.03] p-3">
+            <p className="text-xs font-semibold text-muted-foreground mb-2">Lockup Waiver Triggers</p>
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Underwriter discretion: waive for strategic secondary",
                 "Stock price performance milestones",
                 "M&A transaction requirement (stock consideration)",
                 "Hardship cases: medical, estate, divorce",
-              ].map((t, i) => <li key={i} className="flex gap-1.5"><span className="text-zinc-600 mt-0.5">•</span>{t}</li>)}
+              ].map((t, i) => <li key={i} className="flex gap-1.5"><span className="text-muted-foreground mt-0.5">•</span>{t}</li>)}
             </ul>
           </div>
           <div className="rounded-lg border border-rose-700/40 bg-rose-900/10 p-3">
             <p className="text-xs font-semibold text-rose-300 mb-2">Short Interest Dynamics</p>
-            <ul className="space-y-1.5 text-xs text-zinc-400">
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Short float often 5–15% pre-lockup expiry",
                 "Shorts anticipate lockup selling pressure",
@@ -1264,7 +1264,7 @@ function PostIPOTab() {
           </div>
           <div className="rounded-lg border border-border bg-muted/30 p-3">
             <p className="text-xs font-semibold text-primary mb-2">Block Trade Mechanics</p>
-            <ul className="space-y-1.5 text-xs text-zinc-400">
+            <ul className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "Large insider sales via block trades (not open market)",
                 "Underwriter acts as principal buyer, resells to institutions",
@@ -1286,7 +1286,7 @@ function PostIPOTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium">Feature</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Feature</th>
                 <th className="py-2 text-left text-primary font-medium">Traditional IPO</th>
                 <th className="py-2 text-left text-emerald-400 font-medium">Direct Listing</th>
                 <th className="py-2 text-left text-amber-400 font-medium">SPAC Merger</th>
@@ -1295,10 +1295,10 @@ function PostIPOTab() {
             <tbody>
               {directListingVsIPO.map((row, i) => (
                 <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                  <td className="py-2 pr-4 text-zinc-400 font-medium">{row.attr}</td>
-                  <td className="py-2 pr-4 text-zinc-300">{row.traditional}</td>
-                  <td className="py-2 pr-4 text-zinc-300">{row.direct}</td>
-                  <td className="py-2 text-zinc-300">{row.spac}</td>
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{row.attr}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{row.traditional}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{row.direct}</td>
+                  <td className="py-2 text-muted-foreground">{row.spac}</td>
                 </tr>
               ))}
             </tbody>
@@ -1314,7 +1314,7 @@ function PostIPOTab() {
         </div>
         <div className="space-y-1.5">
           {dutchAuctionLesson.points.map((p, i) => (
-            <div key={i} className="flex gap-2 text-xs text-zinc-300">
+            <div key={i} className="flex gap-2 text-xs text-muted-foreground">
               <span className="text-amber-600 flex-shrink-0 mt-0.5">{i + 1}.</span>
               <span>{p}</span>
             </div>
@@ -1332,18 +1332,18 @@ function PostIPOTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium">Company</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">IPO Price</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">Init. Target</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">12M Actual</th>
-                <th className="py-2 text-right text-zinc-500 font-medium">Beat Target?</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">Company</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">IPO Price</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">Init. Target</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">12M Actual</th>
+                <th className="py-2 text-right text-muted-foreground font-medium">Beat Target?</th>
               </tr>
             </thead>
             <tbody>
               {analystTargets.map((row, i) => (
                 <tr key={row.company} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                  <td className="py-2 pr-4 text-zinc-200 font-medium">{row.company}</td>
-                  <td className="py-2 pr-4 text-right font-mono text-zinc-300">${row.ipoPrice}</td>
+                  <td className="py-2 pr-4 text-foreground font-medium">{row.company}</td>
+                  <td className="py-2 pr-4 text-right font-mono text-muted-foreground">${row.ipoPrice}</td>
                   <td className="py-2 pr-4 text-right font-mono text-primary">${row.initTarget}</td>
                   <td className={cn("py-2 pr-4 text-right font-mono", row.actual12m < row.ipoPrice ? "text-rose-400" : "text-emerald-400")}>
                     ${row.actual12m}
@@ -1362,7 +1362,7 @@ function PostIPOTab() {
         </div>
         <div className="rounded-lg border border-border bg-muted/30 p-3">
           <p className="text-xs text-primary font-medium mb-1">MiFID II Impact on Research (Europe)</p>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-muted-foreground">
             EU MiFID II (2018) required asset managers to pay explicitly for research (unbundling from
             trading commissions). Result: 30–40% decline in small-cap analyst coverage in Europe.
             US SEC issued relief letters but debate continues. Reduced analyst coverage = higher
@@ -1376,7 +1376,7 @@ function PostIPOTab() {
         <SectionHeading title="Secondary Offerings & Follow-On Mechanics" sub="Post-IPO capital raises and insider liquidity events" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <p className="text-xs font-semibold text-zinc-300 mb-3">Types of Follow-On Offerings</p>
+            <p className="text-xs font-semibold text-muted-foreground mb-3">Types of Follow-On Offerings</p>
             <div className="space-y-2">
               {[
                 {
@@ -1402,14 +1402,14 @@ function PostIPOTab() {
               ].map((o) => (
                 <div key={o.type} className="flex gap-2">
                   <InfoPill text={o.type} color={o.color} />
-                  <p className="text-xs text-zinc-400">{o.desc}</p>
+                  <p className="text-xs text-muted-foreground">{o.desc}</p>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <p className="text-xs font-semibold text-zinc-300 mb-3">Shelf Registration (S-3 / F-3)</p>
-            <div className="space-y-1.5 text-xs text-zinc-400">
+            <p className="text-xs font-semibold text-muted-foreground mb-3">Shelf Registration (S-3 / F-3)</p>
+            <div className="space-y-1.5 text-xs text-muted-foreground">
               {[
                 "File once, sell repeatedly over 3-year window without new registration",
                 "Eligibility: must be public for 12+ months with timely reporting history",
@@ -1419,7 +1419,7 @@ function PostIPOTab() {
                 "Lock-up agreements for new follow-on: 30–60 days for remaining insiders",
               ].map((t, i) => (
                 <div key={i} className="flex gap-2">
-                  <ArrowRight className="w-3 h-3 mt-0.5 text-zinc-500 flex-shrink-0" />
+                  <ArrowRight className="w-3 h-3 mt-0.5 text-muted-foreground flex-shrink-0" />
                   <span>{t}</span>
                 </div>
               ))}
@@ -1437,7 +1437,7 @@ function PostIPOTab() {
 
 export default function IPOPricingPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1452,7 +1452,7 @@ export default function IPOPricingPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">IPO Pricing & Aftermarket</h1>
-              <p className="text-sm text-zinc-400">
+              <p className="text-sm text-muted-foreground">
                 Valuation, bookbuilding, underpricing, lockup dynamics, and alternative listing mechanisms
               </p>
             </div>
@@ -1471,7 +1471,7 @@ export default function IPOPricingPage() {
                 className="flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1"
               >
                 <Icon className={cn("w-3 h-3", color)} />
-                <span className="text-xs text-zinc-300">{label}</span>
+                <span className="text-xs text-muted-foreground">{label}</span>
               </div>
             ))}
           </div>
@@ -1479,7 +1479,7 @@ export default function IPOPricingPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="valuation">
-          <TabsList className="grid w-full grid-cols-4 mb-6 bg-zinc-900 border border-white/10">
+          <TabsList className="grid w-full grid-cols-4 mb-6 bg-card border border-white/10">
             <TabsTrigger value="valuation" className="text-xs">
               Valuation Methods
             </TabsTrigger>

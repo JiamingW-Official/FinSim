@@ -394,13 +394,13 @@ const CARBON_FUNDS: CarbonFund[] = [
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-zinc-800 rounded-lg overflow-hidden">
+    <div className="border border-border rounded-lg overflow-hidden">
       <button
-        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900 hover:bg-zinc-800 transition-colors text-left"
+        className="w-full flex items-center justify-between px-4 py-3 bg-card hover:bg-muted transition-colors text-left"
         onClick={() => setOpen((v) => !v)}
       >
-        <span className="text-sm font-medium text-zinc-200">{title}</span>
-        {open ? <ChevronUp className="w-4 h-4 text-zinc-400" /> : <ChevronDown className="w-4 h-4 text-zinc-400" />}
+        <span className="text-sm font-medium text-foreground">{title}</span>
+        {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
       </button>
       <AnimatePresence>
         {open && (
@@ -411,7 +411,7 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 py-3 bg-zinc-950 text-sm text-zinc-300 space-y-2">{children}</div>
+            <div className="px-4 py-3 bg-background text-sm text-muted-foreground space-y-2">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -419,12 +419,12 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
   );
 }
 
-function StatChip({ label, value, sub, color = "text-zinc-100" }: { label: string; value: string; sub?: string; color?: string }) {
+function StatChip({ label, value, sub, color = "text-foreground" }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 space-y-1">
-      <div className="text-xs text-zinc-500">{label}</div>
+    <div className="bg-card border border-border rounded-lg p-3 space-y-1">
+      <div className="text-xs text-muted-foreground">{label}</div>
       <div className={cn("text-lg font-bold font-mono", color)}>{value}</div>
-      {sub && <div className="text-xs text-zinc-500">{sub}</div>}
+      {sub && <div className="text-xs text-muted-foreground">{sub}</div>}
     </div>
   );
 }
@@ -456,58 +456,58 @@ function ComplianceTab() {
         <StatChip label="2025 Auction Revenue" value="EUR 37B" sub="EU member states" color="text-amber-400" />
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
             Cap-and-Trade Mechanism
           </CardTitle>
         </CardHeader>
         <CardContent>
           <CapTradeSVG />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Regulators set an annual emission cap which declines each year. Allowances are auctioned or freely allocated to emitters, who must surrender one allowance per tonne of CO2 emitted. Those who reduce emissions below their allocation can sell surplus permits.
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
             EU Carbon Allowance (EUA) Price 2018-2024
           </CardTitle>
         </CardHeader>
         <CardContent>
           <EuaPriceChart />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             EUA prices rose from single digits to over EUR 100/t in 2023, driven by the energy crisis and MSR tightening, before falling back on weaker industrial demand and gas price declines.
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300">EU ETS Phase Evolution</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">EU ETS Phase Evolution</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Phase", "Years", "Cap Design", "Price Range", "Key Developments"].map((h) => (
-                    <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">{h}</th>
+                    <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {euPhases.map((row, i) => (
-                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                  <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
                     <td className="py-2 px-3 text-indigo-400 font-medium">{row.phase}</td>
-                    <td className="py-2 px-3 text-zinc-300">{row.years}</td>
-                    <td className="py-2 px-3 text-zinc-400">{row.cap}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{row.years}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{row.cap}</td>
                     <td className="py-2 px-3 text-emerald-400 font-mono">{row.price}</td>
-                    <td className="py-2 px-3 text-zinc-400">{row.note}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{row.note}</td>
                   </tr>
                 ))}
               </tbody>
@@ -516,24 +516,24 @@ function ComplianceTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-indigo-400" />
             Market Stability Reserve (MSR) Mechanism
           </CardTitle>
         </CardHeader>
         <CardContent>
           <MsrSVG />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             The MSR automatically adjusts supply by absorbing allowances when total supply exceeds 833M (at 24%/yr) and releasing 100M/yr when supply falls below 400M. Since 2023, excess MSR holdings above the prior year auction volume are permanently cancelled.
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary" />
             Global ETS Comparison
           </CardTitle>
@@ -542,22 +542,22 @@ function ComplianceTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["System", "Region", "Year", "Price", "GHG Coverage", "Sectors", "Status"].map((h) => (
-                    <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">{h}</th>
+                    <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {ETS_SYSTEMS.map((ets, i) => (
-                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                  <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
                     <td className="py-2 px-3 text-primary font-medium">{ets.name}</td>
-                    <td className="py-2 px-3 text-zinc-300">{ets.region}</td>
-                    <td className="py-2 px-3 text-zinc-400">{ets.launched}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{ets.region}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{ets.launched}</td>
                     <td className="py-2 px-3 text-emerald-400 font-mono">{ets.price}</td>
-                    <td className="py-2 px-3 text-zinc-400">{ets.coverage}</td>
-                    <td className="py-2 px-3 text-zinc-400">{ets.sectors}</td>
-                    <td className="py-2 px-3 text-zinc-500">{ets.phase}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{ets.coverage}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{ets.sectors}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{ets.phase}</td>
                   </tr>
                 ))}
               </tbody>
@@ -567,18 +567,18 @@ function ComplianceTab() {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">EU ETS Sectoral Coverage</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">EU ETS Sectoral Coverage</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {sectorCoverage.map((sec) => (
               <div key={sec.name} className="space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-300">{sec.name}</span>
-                  <span className="text-zinc-400">{sec.pct}%</span>
+                  <span className="text-muted-foreground">{sec.name}</span>
+                  <span className="text-muted-foreground">{sec.pct}%</span>
                 </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <motion.div initial={{ width: 0 }} animate={{ width: `${sec.pct}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: sec.color }} />
                 </div>
               </div>
@@ -586,9 +586,9 @@ function ComplianceTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">Key Policy Mechanisms</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Key Policy Mechanisms</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
             {[
@@ -599,8 +599,8 @@ function ComplianceTab() {
               { label: "ETS Linking", desc: "EU-Swiss ETS linked 2020. California-Quebec linked since 2014. Linked systems share one carbon price." },
             ].map((item) => (
               <div key={item.label} className="border-l-2 border-indigo-600 pl-3">
-                <div className="text-zinc-200 font-medium mb-0.5">{item.label}</div>
-                <div className="text-zinc-500">{item.desc}</div>
+                <div className="text-foreground font-medium mb-0.5">{item.label}</div>
+                <div className="text-muted-foreground">{item.desc}</div>
               </div>
             ))}
           </CardContent>
@@ -633,16 +633,16 @@ function VoluntaryTab() {
         <StatChip label="REDD+ Share" value="~30%" color="text-green-400" />
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Carbon Credit Lifecycle
           </CardTitle>
         </CardHeader>
         <CardContent>
           <CreditLifecycleSVG />
-          <div className="grid grid-cols-5 gap-2 mt-3 text-center text-xs text-zinc-500">
+          <div className="grid grid-cols-5 gap-2 mt-3 text-center text-xs text-muted-foreground">
             {["Design PDD, baseline study, registry enrollment", "Measure, Report, Verify actual reductions", "Accredited auditor confirms claims", "Registry issues unique serial numbers", "Buyer cancels credit; removes from circulation"].map((d, i) => (
               <div key={i}>{d}</div>
             ))}
@@ -650,41 +650,41 @@ function VoluntaryTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-amber-400" />
             Carbon Credit Price Range by Project Type ($/tCO2)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <CreditPriceChart />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Prices vary widely by co-benefits, project type, vintage, and standard. Blue carbon and high-quality nature-based solutions command premiums. Commodity renewable energy credits trade near floor prices.
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300">VCM vs Compliance Market Comparison</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">VCM vs Compliance Market Comparison</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left py-2 px-3 text-zinc-400">Aspect</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-3 text-muted-foreground">Aspect</th>
                   <th className="text-left py-2 px-3 text-emerald-400">Voluntary (VCM)</th>
                   <th className="text-left py-2 px-3 text-primary">Compliance (ETS)</th>
                 </tr>
               </thead>
               <tbody>
                 {vcmVsCompliance.map((row, i) => (
-                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
-                    <td className="py-2 px-3 text-zinc-300 font-medium">{row.aspect}</td>
-                    <td className="py-2 px-3 text-zinc-400">{row.voluntary}</td>
-                    <td className="py-2 px-3 text-zinc-400">{row.compliance}</td>
+                  <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
+                    <td className="py-2 px-3 text-muted-foreground font-medium">{row.aspect}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{row.voluntary}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{row.compliance}</td>
                   </tr>
                 ))}
               </tbody>
@@ -695,14 +695,14 @@ function VoluntaryTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {VCM_STANDARDS.map((std) => (
-          <div key={std.name} className="border border-zinc-800 rounded-lg p-4 bg-zinc-900">
+          <div key={std.name} className="border border-border rounded-lg p-4 bg-card">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: std.color }} />
               <span className="text-sm font-bold" style={{ color: std.color }}>{std.name}</span>
               <Badge variant="outline" className="text-xs ml-auto">{std.founded}</Badge>
             </div>
-            <div className="text-xs text-zinc-300 font-medium mb-1">{std.fullName}</div>
-            <div className="text-xs text-zinc-500 mb-2">{std.focus}</div>
+            <div className="text-xs text-muted-foreground font-medium mb-1">{std.fullName}</div>
+            <div className="text-xs text-muted-foreground mb-2">{std.focus}</div>
             <Badge className="text-xs" style={{ backgroundColor: std.color + "22", color: std.color, borderColor: std.color + "44" }}>
               {std.credits} issued
             </Badge>
@@ -712,11 +712,11 @@ function VoluntaryTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="Article 6 Paris Agreement -- Corresponding Adjustments">
-          <p className="text-zinc-400">Article 6.4 establishes a UN-supervised carbon market. Credits traded internationally must be accompanied by a Corresponding Adjustment (CA) where the host country adjusts its NDC by the amount exported, preventing double counting.</p>
-          <p className="text-zinc-400 mt-2">Credits without CAs can still be used for corporate voluntary claims but cannot count toward national climate targets (ITMOs -- Internationally Transferred Mitigation Outcomes).</p>
+          <p className="text-muted-foreground">Article 6.4 establishes a UN-supervised carbon market. Credits traded internationally must be accompanied by a Corresponding Adjustment (CA) where the host country adjusts its NDC by the amount exported, preventing double counting.</p>
+          <p className="text-muted-foreground mt-2">Credits without CAs can still be used for corporate voluntary claims but cannot count toward national climate targets (ITMOs -- Internationally Transferred Mitigation Outcomes).</p>
         </InfoCard>
         <InfoCard title="ICVCM Core Carbon Principles (CCPs)">
-          <ul className="list-disc list-inside space-y-1 text-zinc-400">
+          <ul className="list-disc list-inside space-y-1 text-muted-foreground">
             <li>Effective governance of standard</li>
             <li>Tracking (unique serial numbers)</li>
             <li>Transparency (public disclosure)</li>
@@ -752,9 +752,9 @@ function QualityTab() {
 
   return (
     <div className="space-y-6">
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             Permanence Risk by Project Type (higher bar = riskier)
           </CardTitle>
@@ -763,38 +763,38 @@ function QualityTab() {
           {PERMANENCE_DATA.map((row) => (
             <div key={row.type} className="space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="text-zinc-300">{row.type}</span>
-                <span className="text-zinc-500 text-right max-w-[200px]">{row.note}</span>
+                <span className="text-muted-foreground">{row.type}</span>
+                <span className="text-muted-foreground text-right max-w-[200px]">{row.note}</span>
               </div>
-              <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
                 <motion.div initial={{ width: 0 }} animate={{ width: `${row.risk}%` }} transition={{ duration: 0.8, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: row.color }} />
               </div>
             </div>
           ))}
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Nature-based solutions carry high reversal risk from wildfires, storms, and land-use change. Buffer pools (20-30% of credits withheld) cover reversals.
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
             The Double Counting Problem
           </CardTitle>
         </CardHeader>
         <CardContent>
           <DoubleCountingSVG />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Without corresponding adjustments, both the host country and credit buyer claim the same emission reduction. Article 6 requires host countries to apply corresponding adjustments to their NDC accounting for any credits exported internationally.
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300">Additionality Testing Methods</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">Additionality Testing Methods</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {additionalityTests.map((test) => (
@@ -803,23 +803,23 @@ function QualityTab() {
                 {test.pass ? <CheckCircle className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
               </div>
               <div>
-                <div className="text-zinc-200 font-medium">{test.test}</div>
-                <div className="text-zinc-500">{test.desc}</div>
+                <div className="text-foreground font-medium">{test.test}</div>
+                <div className="text-muted-foreground">{test.desc}</div>
               </div>
             </div>
           ))}
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300">Leakage Types and Mitigation</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">Leakage Types and Mitigation</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {leakageTypes.map((lt) => (
-            <div key={lt.type} className="border border-zinc-800 rounded p-3 space-y-1">
+            <div key={lt.type} className="border border-border rounded p-3 space-y-1">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-zinc-200">{lt.type}</span>
+                <span className="text-xs font-medium text-foreground">{lt.type}</span>
                 <Badge
                   className="text-xs ml-auto"
                   style={{
@@ -831,30 +831,30 @@ function QualityTab() {
                   {lt.severity} Risk
                 </Badge>
               </div>
-              <div className="text-xs text-zinc-500">{lt.example}</div>
+              <div className="text-xs text-muted-foreground">{lt.example}</div>
             </div>
           ))}
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300">Calyx Global Credit Rating Distribution</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">Calyx Global Credit Rating Distribution</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
           {CALYX_RATINGS.map((r) => (
             <div key={r.rating} className="space-y-1">
               <div className="flex justify-between text-xs">
                 <span className="font-mono font-bold" style={{ color: r.color }}>{r.rating}</span>
-                <span className="text-zinc-400">{r.label}</span>
-                <span className="text-zinc-500">{r.pct}% of rated credits</span>
+                <span className="text-muted-foreground">{r.label}</span>
+                <span className="text-muted-foreground">{r.pct}% of rated credits</span>
               </div>
-              <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                 <motion.div initial={{ width: 0 }} animate={{ width: `${r.pct * 4}%` }} transition={{ duration: 0.6, ease: "easeOut" }} className="h-full rounded-full" style={{ backgroundColor: r.color }} />
               </div>
             </div>
           ))}
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Only ~20% of VCM credits rated AAA/AA -- highlighting widespread quality concerns. Low-quality credits have faced scrutiny for overstated baselines and inadequate permanence provisions.
           </p>
         </CardContent>
@@ -862,23 +862,23 @@ function QualityTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="Independent Verification Bodies (VVBs)">
-          <ul className="list-disc list-inside space-y-1 text-zinc-400">
-            <li><span className="text-zinc-300 font-medium">SCS Global Services</span> -- largest VVB; audits REDD+, agriculture, renewable</li>
-            <li><span className="text-zinc-300 font-medium">Bureau Veritas</span> -- global accreditation; strong in industrial projects</li>
-            <li><span className="text-zinc-300 font-medium">DNV</span> -- strong in maritime, energy, and Gold Standard projects</li>
-            <li><span className="text-zinc-300 font-medium">South Pole / Karbon</span> -- developer-verifier conflicts of interest flagged in press</li>
+          <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+            <li><span className="text-muted-foreground font-medium">SCS Global Services</span> -- largest VVB; audits REDD+, agriculture, renewable</li>
+            <li><span className="text-muted-foreground font-medium">Bureau Veritas</span> -- global accreditation; strong in industrial projects</li>
+            <li><span className="text-muted-foreground font-medium">DNV</span> -- strong in maritime, energy, and Gold Standard projects</li>
+            <li><span className="text-muted-foreground font-medium">South Pole / Karbon</span> -- developer-verifier conflicts of interest flagged in press</li>
           </ul>
-          <p className="text-zinc-500 mt-2 text-xs">VVBs must be ICROA-approved and accredited under each standard to issue validation/verification statements.</p>
+          <p className="text-muted-foreground mt-2 text-xs">VVBs must be ICROA-approved and accredited under each standard to issue validation/verification statements.</p>
         </InfoCard>
         <InfoCard title="Greenwashing vs Genuine Offsetting">
-          <p className="text-zinc-400">Red flags for greenwashing:</p>
-          <ul className="list-disc list-inside space-y-1 text-zinc-400 mt-1">
+          <p className="text-muted-foreground">Red flags for greenwashing:</p>
+          <ul className="list-disc list-inside space-y-1 text-muted-foreground mt-1">
             <li>Using cheap, low-quality offsets without internal emission reductions</li>
             <li>Claiming "carbon neutral" without scope 3 accounting</li>
             <li>Double-counting before Article 6 CAs established</li>
             <li>Vintage manipulation (selling old, non-additional credits)</li>
           </ul>
-          <p className="text-zinc-400 mt-2">Best practice: reduce first (SBTi targets), use high-quality offsets for residuals only, disclose project details, prioritize beyond-value-chain mitigation (BVCM) separately.</p>
+          <p className="text-muted-foreground mt-2">Best practice: reduce first (SBTi targets), use high-quality offsets for residuals only, disclose project details, prioritize beyond-value-chain mitigation (BVCM) separately.</p>
         </InfoCard>
       </div>
     </div>
@@ -912,9 +912,9 @@ function InvestmentTab() {
         <StatChip label="Carbon Beta" value="0.31" sub="vs MSCI World" color="text-primary" />
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
             Carbon Price Forecast Scenarios to 2030 ($/tCO2 equivalent)
           </CardTitle>
@@ -922,28 +922,28 @@ function InvestmentTab() {
         <CardContent>
           <PriceForecastChart />
           <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
-            <div className="border border-zinc-800 rounded p-2">
+            <div className="border border-border rounded p-2">
               <div className="text-emerald-400 font-bold">NZE Scenario</div>
-              <div className="text-zinc-400">$250/t by 2030</div>
-              <div className="text-zinc-500">Net Zero Emissions pathway; rapid policy tightening globally</div>
+              <div className="text-muted-foreground">$250/t by 2030</div>
+              <div className="text-muted-foreground">Net Zero Emissions pathway; rapid policy tightening globally</div>
             </div>
-            <div className="border border-zinc-800 rounded p-2">
+            <div className="border border-border rounded p-2">
               <div className="text-amber-400 font-bold">SDS Scenario</div>
-              <div className="text-zinc-400">$150/t by 2030</div>
-              <div className="text-zinc-500">Sustainable Development; Paris-aligned with current pledges</div>
+              <div className="text-muted-foreground">$150/t by 2030</div>
+              <div className="text-muted-foreground">Sustainable Development; Paris-aligned with current pledges</div>
             </div>
-            <div className="border border-zinc-800 rounded p-2">
-              <div className="text-zinc-400 font-bold">STEPS Baseline</div>
-              <div className="text-zinc-400">$110/t by 2030</div>
-              <div className="text-zinc-500">Stated policies only; modest tightening of existing systems</div>
+            <div className="border border-border rounded p-2">
+              <div className="text-muted-foreground font-bold">STEPS Baseline</div>
+              <div className="text-muted-foreground">$110/t by 2030</div>
+              <div className="text-muted-foreground">Stated policies only; modest tightening of existing systems</div>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
             Carbon-Focused ETFs and Funds
           </CardTitle>
@@ -952,21 +952,21 @@ function InvestmentTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Ticker", "Name", "AUM", "Exposure", "YTD", "Expense"].map((h) => (
-                    <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">{h}</th>
+                    <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {CARBON_FUNDS.map((fund, i) => (
-                  <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                  <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
                     <td className="py-2 px-3 text-primary font-mono font-bold">{fund.ticker}</td>
-                    <td className="py-2 px-3 text-zinc-300">{fund.name}</td>
-                    <td className="py-2 px-3 text-zinc-400">{fund.aum}</td>
-                    <td className="py-2 px-3 text-zinc-400">{fund.exposure}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{fund.name}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{fund.aum}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{fund.exposure}</td>
                     <td className={cn("py-2 px-3 font-mono", posColor(fund.ytd))}>{fmtPct(fund.ytd)}</td>
-                    <td className="py-2 px-3 text-zinc-500">{fund.expense}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{fund.expense}</td>
                   </tr>
                 ))}
               </tbody>
@@ -976,9 +976,9 @@ function InvestmentTab() {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">EUA Futures Market Structure</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">EUA Futures Market Structure</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs">
             {[
@@ -991,34 +991,34 @@ function InvestmentTab() {
               { label: "Margin", value: "ICE posts daily VaR-based margin; ~8-12% of notional" },
             ].map((item) => (
               <div key={item.label} className="flex justify-between gap-2">
-                <span className="text-zinc-400">{item.label}</span>
-                <span className="text-zinc-300 text-right">{item.value}</span>
+                <span className="text-muted-foreground">{item.label}</span>
+                <span className="text-muted-foreground text-right">{item.value}</span>
               </div>
             ))}
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">Carbon Arbitrage Opportunities</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Carbon Arbitrage Opportunities</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {arbitrageOps.map((arb, i) => (
-              <div key={i} className="border border-zinc-800 rounded p-2 text-xs space-y-1">
+              <div key={i} className="border border-border rounded p-2 text-xs space-y-1">
                 <div className="flex justify-between items-center">
-                  <span className="text-zinc-200 font-medium">{arb.desc}</span>
+                  <span className="text-foreground font-medium">{arb.desc}</span>
                   <Badge className="text-xs bg-emerald-900/40 text-emerald-400 border-emerald-700">{arb.current}</Badge>
                 </div>
-                <div className="text-zinc-500">{arb.note}</div>
+                <div className="text-muted-foreground">{arb.note}</div>
               </div>
             ))}
           </CardContent>
         </Card>
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
             Political Risk in Carbon Markets
           </CardTitle>
@@ -1027,13 +1027,13 @@ function InvestmentTab() {
           {politicalRisks.map((pr) => (
             <div key={pr.risk} className="space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="text-zinc-300 font-medium">{pr.risk}</span>
-                <span className="text-zinc-500">Risk Score: {pr.severity}/100</span>
+                <span className="text-muted-foreground font-medium">{pr.risk}</span>
+                <span className="text-muted-foreground">Risk Score: {pr.severity}/100</span>
               </div>
-              <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                 <motion.div initial={{ width: 0 }} animate={{ width: `${pr.severity}%` }} transition={{ duration: 0.7, ease: "easeOut" }} className="h-full rounded-full bg-red-500/70" />
               </div>
-              <div className="text-xs text-zinc-500">{pr.example}</div>
+              <div className="text-xs text-muted-foreground">{pr.example}</div>
             </div>
           ))}
         </CardContent>
@@ -1041,29 +1041,29 @@ function InvestmentTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="Physical vs Derivative Carbon Exposure">
-          <div className="space-y-2 text-zinc-400">
-            <div><span className="text-zinc-200 font-medium">Physical EUAs</span> -- held in EU Compliance Registry. No roll cost, no counterparty risk. Illiquid. Some ETP managers hold physically (e.g., WisdomTree EUA).</div>
-            <div><span className="text-zinc-200 font-medium">Futures (ETFs like KRBN)</span> -- liquid, exchange-traded, subject to roll cost (contango 2-4%/yr). Tracking error vs spot price.</div>
-            <div><span className="text-zinc-200 font-medium">Carbon Royalty Companies</span> -- invest in project development rights and receive a royalty on each credit issued. Lower volatility, exposure to VCM growth.</div>
+          <div className="space-y-2 text-muted-foreground">
+            <div><span className="text-foreground font-medium">Physical EUAs</span> -- held in EU Compliance Registry. No roll cost, no counterparty risk. Illiquid. Some ETP managers hold physically (e.g., WisdomTree EUA).</div>
+            <div><span className="text-foreground font-medium">Futures (ETFs like KRBN)</span> -- liquid, exchange-traded, subject to roll cost (contango 2-4%/yr). Tracking error vs spot price.</div>
+            <div><span className="text-foreground font-medium">Carbon Royalty Companies</span> -- invest in project development rights and receive a royalty on each credit issued. Lower volatility, exposure to VCM growth.</div>
           </div>
         </InfoCard>
         <InfoCard title="2025-2026 Market Outlook">
-          <div className="space-y-2 text-zinc-400 text-xs">
-            <div><span className="text-zinc-200 font-medium">Bullish factors:</span> ETS II implementation 2027 (buildings/transport), CBAM full enforcement 2026, declining cap under LRF 4.3%, MSR cancellations, expanding China ETS to cement/steel.</div>
-            <div><span className="text-zinc-200 font-medium">Bearish risks:</span> Weak industrial output in Europe suppressing demand, political pressure on energy costs, potential ETS reform delay, warm winters reducing power sector demand.</div>
-            <div><span className="text-zinc-200 font-medium">Base case:</span> EUA price range EUR 55-80 in 2025-26, with upside breakout above EUR 100 if industrial recovery accelerates and MSR cancellation effect materialises.</div>
+          <div className="space-y-2 text-muted-foreground text-xs">
+            <div><span className="text-foreground font-medium">Bullish factors:</span> ETS II implementation 2027 (buildings/transport), CBAM full enforcement 2026, declining cap under LRF 4.3%, MSR cancellations, expanding China ETS to cement/steel.</div>
+            <div><span className="text-foreground font-medium">Bearish risks:</span> Weak industrial output in Europe suppressing demand, political pressure on energy costs, potential ETS reform delay, warm winters reducing power sector demand.</div>
+            <div><span className="text-foreground font-medium">Base case:</span> EUA price range EUR 55-80 in 2025-26, with upside breakout above EUR 100 if industrial recovery accelerates and MSR cancellation effect materialises.</div>
           </div>
         </InfoCard>
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Transition Risk Hedging with Carbon
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-xs space-y-3 text-zinc-400">
+        <CardContent className="text-xs space-y-3 text-muted-foreground">
           <p>Carbon prices and the transition to a low-carbon economy create systematic risks for carbon-intensive sectors. Investors can hedge transition risk by holding long carbon positions:</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {[
@@ -1071,9 +1071,9 @@ function InvestmentTab() {
               { title: "Corporate Hedging", desc: "Energy-intensive companies buy EUA forwards to lock in compliance costs and reduce P&L volatility. Airlines hedge 50-70% of expected exposure." },
               { title: "Carbon as Inflation Hedge", desc: "Carbon prices historically rise with energy costs. Low correlation (0.12) with broad equity, positive with commodities. Useful in real-asset portfolios." },
             ].map((item) => (
-              <div key={item.title} className="border border-zinc-800 rounded p-3 space-y-1">
-                <div className="text-zinc-200 font-medium">{item.title}</div>
-                <div className="text-zinc-500">{item.desc}</div>
+              <div key={item.title} className="border border-border rounded p-3 space-y-1">
+                <div className="text-foreground font-medium">{item.title}</div>
+                <div className="text-muted-foreground">{item.desc}</div>
               </div>
             ))}
           </div>
@@ -1088,15 +1088,15 @@ function InvestmentTab() {
 // ══════════════════════════════════════════════════════════════════════════════
 export default function CarbonMarketsPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
           <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
             <Leaf className="w-6 h-6 text-emerald-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100">Carbon Markets</h1>
-            <p className="text-sm text-zinc-500">ETS compliance, voluntary credits, quality assessment, and investment strategies</p>
+            <h1 className="text-2xl font-bold text-foreground">Carbon Markets</h1>
+            <p className="text-sm text-muted-foreground">ETS compliance, voluntary credits, quality assessment, and investment strategies</p>
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">
             <Badge className="bg-emerald-900/40 text-emerald-400 border-emerald-700 text-xs">EUA EUR 62/t</Badge>
@@ -1107,7 +1107,7 @@ export default function CarbonMarketsPage() {
       </div>
 
       <Tabs defaultValue="compliance">
-        <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex flex-wrap gap-1 h-auto p-1">
+        <TabsList className="bg-card border border-border mb-6 flex flex-wrap gap-1 h-auto p-1">
           <TabsTrigger value="compliance" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs px-3 py-1.5">
             <Activity className="w-3 h-3 mr-1" />
             Compliance Markets

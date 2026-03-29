@@ -436,7 +436,7 @@ function PitchStructureTab() {
       ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
       : st === "in-progress"
       ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
-      : "bg-zinc-700/50 text-zinc-400 border-zinc-600";
+      : "bg-muted/50 text-muted-foreground border-border";
 
   const statusLabel = (st: string) =>
     st === "complete" ? "Complete" : st === "in-progress" ? "In Progress" : "Pending";
@@ -444,7 +444,7 @@ function PitchStructureTab() {
   return (
     <div className="space-y-6">
       {/* Deal header card */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardContent className="pt-4 pb-4">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
@@ -452,7 +452,7 @@ function PitchStructureTab() {
                 <Building2 className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <p className="text-xs text-zinc-500">Transaction</p>
+                <p className="text-xs text-muted-foreground">Transaction</p>
                 <p className="text-sm font-semibold text-white">NXTS Acquires STRD</p>
               </div>
             </div>
@@ -463,8 +463,8 @@ function PitchStructureTab() {
                 { label: "Offer Price", value: "$72.50" },
                 { label: "Structure", value: "Cash + Stock" },
               ].map((item) => (
-                <div key={item.label} className="text-center px-3 py-1 rounded-lg bg-zinc-800 border border-zinc-700">
-                  <p className="text-xs text-zinc-500">{item.label}</p>
+                <div key={item.label} className="text-center px-3 py-1 rounded-lg bg-muted border border-border">
+                  <p className="text-xs text-muted-foreground">{item.label}</p>
                   <p className="text-sm font-bold text-white">{item.value}</p>
                 </div>
               ))}
@@ -487,17 +487,17 @@ function PitchStructureTab() {
               className={`relative p-4 rounded-xl border text-left transition-all ${
                 isActive
                   ? section.bg + " ring-1 ring-current"
-                  : "bg-zinc-900 border-zinc-800 hover:border-zinc-600"
+                  : "bg-card border-border hover:border-border"
               }`}
             >
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-xs font-mono text-zinc-500">0{idx + 1}</span>
-                <Icon className={`w-4 h-4 ${isActive ? section.color : "text-zinc-500"}`} />
+                <span className="text-xs font-mono text-muted-foreground">0{idx + 1}</span>
+                <Icon className={`w-4 h-4 ${isActive ? section.color : "text-muted-foreground"}`} />
                 {idx < PITCH_SECTIONS.length - 1 && (
-                  <ChevronRight className="w-3 h-3 text-zinc-600 ml-auto" />
+                  <ChevronRight className="w-3 h-3 text-muted-foreground ml-auto" />
                 )}
               </div>
-              <p className={`text-xs font-semibold ${isActive ? "text-white" : "text-zinc-400"}`}>
+              <p className={`text-xs font-semibold ${isActive ? "text-white" : "text-muted-foreground"}`}>
                 {section.title}
               </p>
               <div className="mt-2">
@@ -517,7 +517,7 @@ function PitchStructureTab() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
       >
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base text-white flex items-center gap-2">
@@ -525,7 +525,7 @@ function PitchStructureTab() {
                 {active.title}
               </CardTitle>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-zinc-500">Advisor: {active.owner}</span>
+                <span className="text-xs text-muted-foreground">Advisor: {active.owner}</span>
                 <Badge className={`text-xs border ${statusColor(active.status)}`}>
                   {statusLabel(active.status)}
                 </Badge>
@@ -535,8 +535,8 @@ function PitchStructureTab() {
           <CardContent>
             <div className="mb-4">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-zinc-500">Section Completion</span>
-                <span className="text-xs font-mono text-zinc-300">{active.confidence}%</span>
+                <span className="text-xs text-muted-foreground">Section Completion</span>
+                <span className="text-xs font-mono text-muted-foreground">{active.confidence}%</span>
               </div>
               <Progress value={active.confidence} className="h-1.5" />
             </div>
@@ -547,9 +547,9 @@ function PitchStructureTab() {
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}
-                  className="flex items-start gap-3 text-sm text-zinc-300"
+                  className="flex items-start gap-3 text-sm text-muted-foreground"
                 >
-                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-xs font-mono text-zinc-400 mt-0.5">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-muted border border-border flex items-center justify-center text-xs font-mono text-muted-foreground mt-0.5">
                     {i + 1}
                   </span>
                   {point}
@@ -558,14 +558,14 @@ function PitchStructureTab() {
             </ul>
 
             {/* Action row */}
-            <div className="mt-5 pt-4 border-t border-zinc-800 flex flex-wrap gap-2">
-              <Button size="sm" variant="outline" className="text-xs border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+            <div className="mt-5 pt-4 border-t border-border flex flex-wrap gap-2">
+              <Button size="sm" variant="outline" className="text-xs border-border text-muted-foreground hover:bg-muted">
                 <FileText className="w-3 h-3 mr-1" /> Edit Section
               </Button>
-              <Button size="sm" variant="outline" className="text-xs border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+              <Button size="sm" variant="outline" className="text-xs border-border text-muted-foreground hover:bg-muted">
                 <CheckCircle className="w-3 h-3 mr-1" /> Mark Complete
               </Button>
-              <Button size="sm" variant="outline" className="text-xs border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+              <Button size="sm" variant="outline" className="text-xs border-border text-muted-foreground hover:bg-muted">
                 <Users className="w-3 h-3 mr-1" /> Assign Reviewer
               </Button>
             </div>
@@ -574,9 +574,9 @@ function PitchStructureTab() {
       </motion.div>
 
       {/* IB process timeline */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm text-zinc-300">Deal Process Timeline</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Deal Process Timeline</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-0 overflow-x-auto pb-2">
@@ -596,16 +596,16 @@ function PitchStructureTab() {
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border ${
                       step.done
                         ? "bg-primary border-primary text-white"
-                        : "bg-zinc-800 border-zinc-600 text-zinc-400"
+                        : "bg-muted border-border text-muted-foreground"
                     }`}
                   >
                     {step.done ? <CheckCircle className="w-4 h-4" /> : i + 1}
                   </div>
-                  <p className="text-xs text-zinc-300 mt-1 whitespace-nowrap w-20 text-center">{step.phase}</p>
-                  <p className="text-xs text-zinc-500 whitespace-nowrap">{step.date}</p>
+                  <p className="text-xs text-muted-foreground mt-1 whitespace-nowrap w-20 text-center">{step.phase}</p>
+                  <p className="text-xs text-muted-foreground whitespace-nowrap">{step.date}</p>
                 </div>
                 {i < arr.length - 1 && (
-                  <div className={`h-px w-6 mx-1 mt-[-18px] ${step.done ? "bg-primary" : "bg-zinc-700"}`} />
+                  <div className={`h-px w-6 mx-1 mt-[-18px] ${step.done ? "bg-primary" : "bg-muted"}`} />
                 )}
               </div>
             ))}
@@ -624,7 +624,7 @@ function ValuationSummaryTab() {
   return (
     <div className="space-y-6">
       {/* Football field chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-base text-white">Football Field — Implied Share Price</CardTitle>
@@ -632,7 +632,7 @@ function ValuationSummaryTab() {
               Offer: $72.50
             </Badge>
           </div>
-          <p className="text-xs text-zinc-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             STRD valuation range across 5 methodologies | Current price: $47.50
           </p>
         </CardHeader>
@@ -651,8 +651,8 @@ function ValuationSummaryTab() {
             onClick={() => setSelectedMethod(i)}
             className={`p-4 rounded-xl border text-left transition-all ${
               selectedMethod === i
-                ? "border-zinc-500 bg-zinc-800 ring-1 ring-zinc-500"
-                : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
+                ? "border-zinc-500 bg-muted ring-1 ring-zinc-500"
+                : "border-border bg-card hover:border-border"
             }`}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -666,9 +666,9 @@ function ValuationSummaryTab() {
               <span className="text-xl font-bold" style={{ color: m.color }}>
                 ${m.mid.toFixed(1)}
               </span>
-              <span className="text-xs text-zinc-500 mb-1">mid</span>
+              <span className="text-xs text-muted-foreground mb-1">mid</span>
             </div>
-            <div className="text-xs text-zinc-500">
+            <div className="text-xs text-muted-foreground">
               ${m.low.toFixed(1)} – ${m.high.toFixed(1)}
             </div>
           </motion.button>
@@ -681,7 +681,7 @@ function ValuationSummaryTab() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4">
             <div className="flex items-start gap-3">
               <div
@@ -692,7 +692,7 @@ function ValuationSummaryTab() {
                 <p className="text-sm font-semibold text-white mb-1">
                   {VALUATION_METHODS[selectedMethod].name} — Methodology Notes
                 </p>
-                <p className="text-sm text-zinc-400">
+                <p className="text-sm text-muted-foreground">
                   {VALUATION_METHODS[selectedMethod].description}
                 </p>
                 <div className="mt-3 grid grid-cols-3 gap-3">
@@ -701,8 +701,8 @@ function ValuationSummaryTab() {
                     { label: "Mid-Point", value: `$${VALUATION_METHODS[selectedMethod].mid.toFixed(1)}` },
                     { label: "Ceiling", value: `$${VALUATION_METHODS[selectedMethod].high.toFixed(1)}` },
                   ].map((item) => (
-                    <div key={item.label} className="text-center p-2 rounded-lg bg-zinc-800">
-                      <p className="text-xs text-zinc-500">{item.label}</p>
+                    <div key={item.label} className="text-center p-2 rounded-lg bg-muted">
+                      <p className="text-xs text-muted-foreground">{item.label}</p>
                       <p
                         className="text-base font-bold"
                         style={{ color: VALUATION_METHODS[selectedMethod].color }}
@@ -719,25 +719,25 @@ function ValuationSummaryTab() {
       </motion.div>
 
       {/* Sensitivity table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">DCF Sensitivity — Share Price vs WACC &amp; Terminal Growth</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">DCF Sensitivity — Share Price vs WACC &amp; Terminal Growth</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr>
-                  <th className="text-zinc-500 font-medium text-left p-2">WACC \ TGR</th>
+                  <th className="text-muted-foreground font-medium text-left p-2">WACC \ TGR</th>
                   {["2.0%", "2.5%", "3.0%", "3.5%", "4.0%"].map((tgr) => (
-                    <th key={tgr} className="text-zinc-400 font-semibold text-center p-2">{tgr}</th>
+                    <th key={tgr} className="text-muted-foreground font-semibold text-center p-2">{tgr}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {[8.0, 8.5, 9.0, 9.5, 10.0, 10.5].map((wacc, wi) => (
-                  <tr key={wacc} className="border-t border-zinc-800">
-                    <td className="text-zinc-400 font-semibold p-2">{wacc.toFixed(1)}%</td>
+                  <tr key={wacc} className="border-t border-border">
+                    <td className="text-muted-foreground font-semibold p-2">{wacc.toFixed(1)}%</td>
                     {[2.0, 2.5, 3.0, 3.5, 4.0].map((tgr, ti) => {
                       // Synthetic price: base 57.4, adjust by wacc/tgr
                       const base = 57.4;
@@ -755,7 +755,7 @@ function ValuationSummaryTab() {
                               ? "text-emerald-400"
                               : isLow
                               ? "text-red-400"
-                              : "text-zinc-300"
+                              : "text-muted-foreground"
                           }`}
                         >
                           ${val.toFixed(1)}
@@ -838,18 +838,18 @@ function ComparableCompaniesTab() {
       {/* Summary stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {stats.map((st) => (
-          <Card key={st.label} className="bg-zinc-900 border-zinc-800">
+          <Card key={st.label} className="bg-card border-border">
             <CardContent className="pt-4 pb-3">
-              <p className="text-xs text-zinc-500 mb-3">{st.label} — Peer Group Statistics</p>
+              <p className="text-xs text-muted-foreground mb-3">{st.label} — Peer Group Statistics</p>
               <div className="space-y-2">
                 {[
-                  { k: "25th Pct.", v: st.p25, color: "text-zinc-400" },
+                  { k: "25th Pct.", v: st.p25, color: "text-muted-foreground" },
                   { k: "Median", v: st.median, color: "text-primary" },
-                  { k: "Mean", v: st.mean, color: "text-zinc-300" },
+                  { k: "Mean", v: st.mean, color: "text-muted-foreground" },
                   { k: "75th Pct.", v: st.p75, color: "text-emerald-400" },
                 ].map((row) => (
                   <div key={row.k} className="flex items-center justify-between">
-                    <span className="text-xs text-zinc-500">{row.k}</span>
+                    <span className="text-xs text-muted-foreground">{row.k}</span>
                     <span className={`text-sm font-bold font-mono ${row.color}`}>
                       {row.v.toFixed(1)}x
                     </span>
@@ -862,24 +862,24 @@ function ComparableCompaniesTab() {
       </div>
 
       {/* Comps table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm text-zinc-300">Enterprise Software Peer Group (n=8)</CardTitle>
-            <Badge className="bg-zinc-800 text-zinc-400 border-zinc-700 text-xs">NTM Estimates</Badge>
+            <CardTitle className="text-sm text-muted-foreground">Enterprise Software Peer Group (n=8)</CardTitle>
+            <Badge className="bg-muted text-muted-foreground border-border text-xs">NTM Estimates</Badge>
           </div>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left p-2 text-zinc-500 font-medium">Company</th>
-                  <th className="text-left p-2 text-zinc-500 font-medium">Ticker</th>
+                <tr className="border-b border-border">
+                  <th className="text-left p-2 text-muted-foreground font-medium">Company</th>
+                  <th className="text-left p-2 text-muted-foreground font-medium">Ticker</th>
                   {cols.map((col) => (
                     <th
                       key={col.field}
-                      className="text-right p-2 text-zinc-500 font-medium cursor-pointer hover:text-zinc-300 select-none"
+                      className="text-right p-2 text-muted-foreground font-medium cursor-pointer hover:text-muted-foreground select-none"
                       onClick={() => toggleSort(col.field)}
                     >
                       {col.label}
@@ -899,11 +899,11 @@ function ComparableCompaniesTab() {
                     initial={{ opacity: 0, x: -4 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.04 }}
-                    className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors"
+                    className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                   >
-                    <td className="p-2 text-zinc-200 font-medium">{comp.name}</td>
+                    <td className="p-2 text-foreground font-medium">{comp.name}</td>
                     <td className="p-2">
-                      <Badge className="bg-zinc-800 text-zinc-400 border-zinc-700 text-xs font-mono">
+                      <Badge className="bg-muted text-muted-foreground border-border text-xs font-mono">
                         {comp.ticker}
                       </Badge>
                     </td>
@@ -915,7 +915,7 @@ function ComparableCompaniesTab() {
                         <td
                           key={col.field}
                           className={`p-2 text-right font-mono ${
-                            isMed ? "text-primary font-bold" : "text-zinc-300"
+                            isMed ? "text-primary font-bold" : "text-muted-foreground"
                           }`}
                         >
                           {col.fmt(val)}
@@ -925,7 +925,7 @@ function ComparableCompaniesTab() {
                   </motion.tr>
                 ))}
                 {/* Median row */}
-                <tr className="border-t-2 border-zinc-600 bg-zinc-800/30">
+                <tr className="border-t-2 border-border bg-muted/30">
                   <td className="p-2 text-primary font-bold" colSpan={2}>Median</td>
                   {cols.map((col) => {
                     const vals = COMPS_TABLE.map((c) => c[col.field] as number);
@@ -945,9 +945,9 @@ function ComparableCompaniesTab() {
       </Card>
 
       {/* Target implied value */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Implied Target Value — Applied Peer Multiples to STRD</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Implied Target Value — Applied Peer Multiples to STRD</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -956,11 +956,11 @@ function ComparableCompaniesTab() {
               { label: "EV/EBITDA (29.5x median)", implied: "$13.9B", share: "$52.6", delta: "+10.7%" },
               { label: "P/E (34.2x median)", implied: "$8.9B", share: "$58.4", delta: "+22.9%" },
             ].map((row) => (
-              <div key={row.label} className="p-3 rounded-lg bg-zinc-800 border border-zinc-700">
-                <p className="text-xs text-zinc-500 mb-2">{row.label}</p>
+              <div key={row.label} className="p-3 rounded-lg bg-muted border border-border">
+                <p className="text-xs text-muted-foreground mb-2">{row.label}</p>
                 <p className="text-lg font-bold text-white">{row.share}</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-zinc-400">{row.implied} EV</span>
+                  <span className="text-xs text-muted-foreground">{row.implied} EV</span>
                   <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
                     {row.delta}
                   </Badge>
@@ -1003,14 +1003,14 @@ function MAndAAccretionTab() {
   return (
     <div className="space-y-6">
       {/* Controls */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Model Assumptions</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Model Assumptions</CardTitle>
         </CardHeader>
         <CardContent className="space-y-5">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-zinc-400">Synergy Capture Rate</span>
+              <span className="text-xs text-muted-foreground">Synergy Capture Rate</span>
               <span className="text-sm font-bold text-primary">{synergyCapture}%</span>
             </div>
             <Slider
@@ -1021,14 +1021,14 @@ function MAndAAccretionTab() {
               step={5}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-zinc-600 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>Conservative (25%)</span>
               <span>Full Capture (100%)</span>
             </div>
           </div>
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-zinc-400">Debt Financing Mix</span>
+              <span className="text-xs text-muted-foreground">Debt Financing Mix</span>
               <span className="text-sm font-bold text-primary">{debtFinancing}% Debt / {100 - debtFinancing}% Equity</span>
             </div>
             <Slider
@@ -1039,7 +1039,7 @@ function MAndAAccretionTab() {
               step={5}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-zinc-600 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>Equity-heavy (20/80)</span>
               <span>Debt-heavy (80/20)</span>
             </div>
@@ -1054,15 +1054,15 @@ function MAndAAccretionTab() {
           { year: "Year 2", eps: proFormaY2EPS, acc: accretionY2, basis: "GAAP (diluted)" },
           { year: "Year 3", eps: proFormaY3EPS, acc: accretionY3, basis: "GAAP (diluted)" },
         ].map((row) => (
-          <Card key={row.year} className="bg-zinc-900 border-zinc-800">
+          <Card key={row.year} className="bg-card border-border">
             <CardContent className="pt-4 pb-3">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-zinc-400">{row.year}</span>
-                <Badge className="text-xs bg-zinc-800 border-zinc-700 text-zinc-400">{row.basis}</Badge>
+                <span className="text-xs font-semibold text-muted-foreground">{row.year}</span>
+                <Badge className="text-xs bg-muted border-border text-muted-foreground">{row.basis}</Badge>
               </div>
               <div className="flex items-end gap-2 mb-1">
                 <span className="text-2xl font-bold text-white">${row.eps.toFixed(2)}</span>
-                <span className="text-xs text-zinc-500 mb-1">Pro Forma EPS</span>
+                <span className="text-xs text-muted-foreground mb-1">Pro Forma EPS</span>
               </div>
               <div className={`flex items-center gap-1 text-sm font-bold ${accretionColor(row.acc)}`}>
                 {row.acc >= 0 ? (
@@ -1073,7 +1073,7 @@ function MAndAAccretionTab() {
                 {Math.abs(row.acc).toFixed(1)}%{" "}
                 {row.acc >= 0 ? "Accretive" : "Dilutive"}
               </div>
-              <div className="mt-2 text-xs text-zinc-500">
+              <div className="mt-2 text-xs text-muted-foreground">
                 vs. Standalone ${acquirerEPS.toFixed(2)}
               </div>
             </CardContent>
@@ -1082,13 +1082,13 @@ function MAndAAccretionTab() {
       </div>
 
       {/* Synergies table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm text-zinc-300">Synergy Assumptions ($M)</CardTitle>
-            <div className="text-xs text-zinc-500">
+            <CardTitle className="text-sm text-muted-foreground">Synergy Assumptions ($M)</CardTitle>
+            <div className="text-xs text-muted-foreground">
               Captured: <span className="text-primary font-bold">${capturedSynergies.toFixed(0)}M</span>{" "}
-              of <span className="text-zinc-300">${totalSynergies}M</span> total
+              of <span className="text-muted-foreground">${totalSynergies}M</span> total
             </div>
           </div>
         </CardHeader>
@@ -1096,14 +1096,14 @@ function MAndAAccretionTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left p-2 text-zinc-500">Category</th>
-                  <th className="text-center p-2 text-zinc-500">Type</th>
-                  <th className="text-right p-2 text-zinc-500">Yr 1</th>
-                  <th className="text-right p-2 text-zinc-500">Yr 2</th>
-                  <th className="text-right p-2 text-zinc-500">Yr 3</th>
-                  <th className="text-right p-2 text-zinc-500">Run-Rate</th>
-                  <th className="text-center p-2 text-zinc-500">Confidence</th>
+                <tr className="border-b border-border">
+                  <th className="text-left p-2 text-muted-foreground">Category</th>
+                  <th className="text-center p-2 text-muted-foreground">Type</th>
+                  <th className="text-right p-2 text-muted-foreground">Yr 1</th>
+                  <th className="text-right p-2 text-muted-foreground">Yr 2</th>
+                  <th className="text-right p-2 text-muted-foreground">Yr 3</th>
+                  <th className="text-right p-2 text-muted-foreground">Run-Rate</th>
+                  <th className="text-center p-2 text-muted-foreground">Confidence</th>
                 </tr>
               </thead>
               <tbody>
@@ -1115,8 +1115,8 @@ function MAndAAccretionTab() {
                       ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
                       : "bg-red-500/20 text-red-300 border-red-500/30";
                   return (
-                    <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/20">
-                      <td className="p-2 text-zinc-300">{syn.category}</td>
+                    <tr key={i} className="border-b border-border/50 hover:bg-muted/20">
+                      <td className="p-2 text-muted-foreground">{syn.category}</td>
                       <td className="p-2 text-center">
                         <Badge
                           className={`text-xs ${
@@ -1128,9 +1128,9 @@ function MAndAAccretionTab() {
                           {syn.type}
                         </Badge>
                       </td>
-                      <td className="p-2 text-right font-mono text-zinc-300">${syn.year1}M</td>
-                      <td className="p-2 text-right font-mono text-zinc-300">${syn.year2}M</td>
-                      <td className="p-2 text-right font-mono text-zinc-300">${syn.year3}M</td>
+                      <td className="p-2 text-right font-mono text-muted-foreground">${syn.year1}M</td>
+                      <td className="p-2 text-right font-mono text-muted-foreground">${syn.year2}M</td>
+                      <td className="p-2 text-right font-mono text-muted-foreground">${syn.year3}M</td>
                       <td className="p-2 text-right font-mono text-emerald-400 font-bold">${syn.fullyLoaded}M</td>
                       <td className="p-2 text-center">
                         <Badge className={`text-xs border ${confColor}`}>{syn.confidence}</Badge>
@@ -1138,7 +1138,7 @@ function MAndAAccretionTab() {
                     </tr>
                   );
                 })}
-                <tr className="border-t-2 border-zinc-600 bg-zinc-800/30">
+                <tr className="border-t-2 border-border bg-muted/30">
                   <td className="p-2 text-white font-bold">Total Synergies</td>
                   <td />
                   <td className="p-2 text-right font-mono text-white font-bold">
@@ -1162,20 +1162,20 @@ function MAndAAccretionTab() {
       </Card>
 
       {/* Pro forma combined financials */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Pro Forma Combined Financials ($M)</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Pro Forma Combined Financials ($M)</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left p-2 text-zinc-500">Metric</th>
-                  <th className="text-right p-2 text-zinc-500">NXTS Standalone</th>
-                  <th className="text-right p-2 text-zinc-500">STRD Standalone</th>
-                  <th className="text-right p-2 text-zinc-500">Synergies</th>
-                  <th className="text-right p-2 text-zinc-500">Pro Forma</th>
+                <tr className="border-b border-border">
+                  <th className="text-left p-2 text-muted-foreground">Metric</th>
+                  <th className="text-right p-2 text-muted-foreground">NXTS Standalone</th>
+                  <th className="text-right p-2 text-muted-foreground">STRD Standalone</th>
+                  <th className="text-right p-2 text-muted-foreground">Synergies</th>
+                  <th className="text-right p-2 text-muted-foreground">Pro Forma</th>
                 </tr>
               </thead>
               <tbody>
@@ -1187,12 +1187,12 @@ function MAndAAccretionTab() {
                   { label: "Net Income", nxts: 310, strd: 260, syn: 86, pf: 610 },
                   { label: "EPS (diluted)", nxts: 3.82, strd: 1.24, syn: null, pf: 4.18 },
                 ].map((row) => (
-                  <tr key={row.label} className="border-b border-zinc-800/50 hover:bg-zinc-800/20">
-                    <td className="p-2 text-zinc-300 font-medium">{row.label}</td>
-                    <td className="p-2 text-right font-mono text-zinc-400">
+                  <tr key={row.label} className="border-b border-border/50 hover:bg-muted/20">
+                    <td className="p-2 text-muted-foreground font-medium">{row.label}</td>
+                    <td className="p-2 text-right font-mono text-muted-foreground">
                       {row.label === "EPS (diluted)" ? `$${row.nxts.toFixed(2)}` : `$${row.nxts.toLocaleString()}M`}
                     </td>
-                    <td className="p-2 text-right font-mono text-zinc-400">
+                    <td className="p-2 text-right font-mono text-muted-foreground">
                       {row.label === "EPS (diluted)" ? `$${row.strd.toFixed(2)}` : `$${row.strd.toLocaleString()}M`}
                     </td>
                     <td className="p-2 text-right font-mono text-emerald-400">
@@ -1260,14 +1260,14 @@ function FinancingStructureTab() {
   return (
     <div className="space-y-6">
       {/* Leverage slider */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Optimal Capital Structure Explorer</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Optimal Capital Structure Explorer</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs text-zinc-400">Target Leverage (Debt / EBITDA)</span>
+              <span className="text-xs text-muted-foreground">Target Leverage (Debt / EBITDA)</span>
               <span className="text-sm font-bold text-primary">{leverage.toFixed(1)}x</span>
             </div>
             <Slider
@@ -1278,7 +1278,7 @@ function FinancingStructureTab() {
               step={5}
               className="w-full"
             />
-            <div className="flex justify-between text-xs text-zinc-600 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>Conservative (1.0x)</span>
               <span>Aggressive (7.0x)</span>
             </div>
@@ -1293,10 +1293,10 @@ function FinancingStructureTab() {
             ].map((item) => {
               const Icon = item.icon;
               return (
-                <div key={item.label} className="p-3 rounded-lg bg-zinc-800 border border-zinc-700">
+                <div key={item.label} className="p-3 rounded-lg bg-muted border border-border">
                   <div className="flex items-center gap-2 mb-1">
                     <Icon className={`w-3 h-3 ${item.color}`} />
-                    <span className="text-xs text-zinc-500">{item.label}</span>
+                    <span className="text-xs text-muted-foreground">{item.label}</span>
                   </div>
                   <p className={`text-lg font-bold ${item.color}`}>{item.value}</p>
                 </div>
@@ -1308,9 +1308,9 @@ function FinancingStructureTab() {
 
       {/* Capital structure visualization */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Sources &amp; Uses ($M)</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Sources &amp; Uses ($M)</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-center gap-6">
@@ -1331,7 +1331,7 @@ function FinancingStructureTab() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <div className="w-3 h-3 rounded-sm bg-primary" />
-                    <span className="text-xs text-zinc-400">Debt Financing</span>
+                    <span className="text-xs text-muted-foreground">Debt Financing</span>
                     <span className="text-xs font-bold text-primary ml-auto">{debtPct.toFixed(0)}%</span>
                   </div>
                   <p className="text-sm font-bold text-primary pl-5">${totalDebt.toLocaleString()}M</p>
@@ -1339,19 +1339,19 @@ function FinancingStructureTab() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <div className="w-3 h-3 rounded-sm bg-primary" />
-                    <span className="text-xs text-zinc-400">Equity Financing</span>
+                    <span className="text-xs text-muted-foreground">Equity Financing</span>
                     <span className="text-xs font-bold text-primary ml-auto">{equityPct.toFixed(0)}%</span>
                   </div>
                   <p className="text-sm font-bold text-primary pl-5">${equity.toLocaleString()}M</p>
                 </div>
-                <div className="pt-2 border-t border-zinc-700">
+                <div className="pt-2 border-t border-border">
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Total Transaction</span>
+                    <span className="text-muted-foreground">Total Transaction</span>
                     <span className="font-bold text-white">$8,200M</span>
                   </div>
                   <div className="flex justify-between text-xs mt-1">
-                    <span className="text-zinc-500">Fees &amp; Expenses</span>
-                    <span className="font-bold text-zinc-300">$185M</span>
+                    <span className="text-muted-foreground">Fees &amp; Expenses</span>
+                    <span className="font-bold text-muted-foreground">$185M</span>
                   </div>
                 </div>
               </div>
@@ -1360,9 +1360,9 @@ function FinancingStructureTab() {
         </Card>
 
         {/* Rating agency view */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Rating Agency View</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Rating Agency View</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             {[
@@ -1370,7 +1370,7 @@ function FinancingStructureTab() {
               { agency: "Moody's", rating: ratingInfo.rating, outlook: "Negative", metricFocus: "Interest coverage, capex needs" },
               { agency: "Fitch Ratings", rating: ratingInfo.rating, outlook: "Stable", metricFocus: "Liquidity, near-term maturities" },
             ].map((agency) => (
-              <div key={agency.agency} className="flex items-center gap-3 p-2 rounded-lg bg-zinc-800">
+              <div key={agency.agency} className="flex items-center gap-3 p-2 rounded-lg bg-muted">
                 <div className={`w-10 h-10 rounded-lg border ${ratingInfo.bg} flex items-center justify-center`}>
                   <span className={`text-xs font-bold ${ratingInfo.color}`}>{agency.rating}</span>
                 </div>
@@ -1385,7 +1385,7 @@ function FinancingStructureTab() {
                       {agency.outlook}
                     </Badge>
                   </div>
-                  <p className="text-xs text-zinc-500">{agency.metricFocus}</p>
+                  <p className="text-xs text-muted-foreground">{agency.metricFocus}</p>
                 </div>
               </div>
             ))}
@@ -1394,11 +1394,11 @@ function FinancingStructureTab() {
       </div>
 
       {/* Debt tranches table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm text-zinc-300">Proposed Debt Financing Structure</CardTitle>
-            <span className="text-xs text-zinc-500">
+            <CardTitle className="text-sm text-muted-foreground">Proposed Debt Financing Structure</CardTitle>
+            <span className="text-xs text-muted-foreground">
               Blended Rate:{" "}
               <span className="text-white font-bold">
                 {(
@@ -1413,14 +1413,14 @@ function FinancingStructureTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left p-2 text-zinc-500">Instrument</th>
-                  <th className="text-right p-2 text-zinc-500">Amount</th>
-                  <th className="text-right p-2 text-zinc-500">Rate</th>
-                  <th className="text-right p-2 text-zinc-500">Spread</th>
-                  <th className="text-right p-2 text-zinc-500">Maturity</th>
-                  <th className="text-center p-2 text-zinc-500">Rating</th>
-                  <th className="text-right p-2 text-zinc-500">Ann. Interest</th>
+                <tr className="border-b border-border">
+                  <th className="text-left p-2 text-muted-foreground">Instrument</th>
+                  <th className="text-right p-2 text-muted-foreground">Amount</th>
+                  <th className="text-right p-2 text-muted-foreground">Rate</th>
+                  <th className="text-right p-2 text-muted-foreground">Spread</th>
+                  <th className="text-right p-2 text-muted-foreground">Maturity</th>
+                  <th className="text-center p-2 text-muted-foreground">Rating</th>
+                  <th className="text-right p-2 text-muted-foreground">Ann. Interest</th>
                 </tr>
               </thead>
               <tbody>
@@ -1440,19 +1440,19 @@ function FinancingStructureTab() {
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className="border-b border-zinc-800/50 hover:bg-zinc-800/20"
+                      className="border-b border-border/50 hover:bg-muted/20"
                     >
-                      <td className="p-2 text-zinc-300 font-medium">{t.name}</td>
-                      <td className="p-2 text-right font-mono text-zinc-300">${t.amount.toLocaleString()}M</td>
+                      <td className="p-2 text-muted-foreground font-medium">{t.name}</td>
+                      <td className="p-2 text-right font-mono text-muted-foreground">${t.amount.toLocaleString()}M</td>
                       <td className="p-2 text-right font-mono text-primary">{t.rate.toFixed(2)}%</td>
-                      <td className="p-2 text-right font-mono text-zinc-400">S+{t.spread}bps</td>
-                      <td className="p-2 text-right font-mono text-zinc-400">{t.maturity}yr</td>
+                      <td className="p-2 text-right font-mono text-muted-foreground">S+{t.spread}bps</td>
+                      <td className="p-2 text-right font-mono text-muted-foreground">{t.maturity}yr</td>
                       <td className={`p-2 text-center font-bold ${ratingCol}`}>{t.rating}</td>
                       <td className="p-2 text-right font-mono text-amber-400">${annInt.toFixed(0)}M</td>
                     </motion.tr>
                   );
                 })}
-                <tr className="border-t-2 border-zinc-600 bg-zinc-800/30">
+                <tr className="border-t-2 border-border bg-muted/30">
                   <td className="p-2 text-white font-bold">Total Debt</td>
                   <td className="p-2 text-right font-mono text-white font-bold">${totalDebt.toLocaleString()}M</td>
                   <td className="p-2 text-right font-mono text-primary font-bold">
@@ -1468,7 +1468,7 @@ function FinancingStructureTab() {
           </div>
 
           {/* Credit metrics summary */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-zinc-800">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-border">
             {[
               { label: "Debt / EBITDA", value: `${debtToEbitda.toFixed(1)}x`, status: debtToEbitda < 4 ? "ok" : debtToEbitda < 5 ? "warn" : "bad" },
               { label: "Interest Coverage", value: `${interestCoverage.toFixed(1)}x`, status: interestCoverage > 3 ? "ok" : interestCoverage > 2 ? "warn" : "bad" },
@@ -1483,7 +1483,7 @@ function FinancingStructureTab() {
                   : "text-red-400 border-red-500/30 bg-red-500/10";
               return (
                 <div key={metric.label} className={`p-2 rounded-lg border ${col}`}>
-                  <p className="text-xs text-zinc-500">{metric.label}</p>
+                  <p className="text-xs text-muted-foreground">{metric.label}</p>
                   <p className={`text-base font-bold ${col.split(" ")[0]}`}>{metric.value}</p>
                   <div className="flex items-center gap-1 mt-0.5">
                     {metric.status === "ok" ? (
@@ -1493,7 +1493,7 @@ function FinancingStructureTab() {
                     ) : (
                       <AlertTriangle className="w-3 h-3 text-red-400" />
                     )}
-                    <span className="text-xs text-zinc-500">
+                    <span className="text-xs text-muted-foreground">
                       {metric.status === "ok" ? "Investment grade" : metric.status === "warn" ? "Monitor" : "High yield"}
                     </span>
                   </div>
@@ -1511,7 +1511,7 @@ function FinancingStructureTab() {
 
 export default function PitchbookPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-white p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1527,7 +1527,7 @@ export default function PitchbookPage() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">Pitch Book Builder</h1>
-                <p className="text-xs text-zinc-500">Investment Banking — M&amp;A Advisory</p>
+                <p className="text-xs text-muted-foreground">Investment Banking — M&amp;A Advisory</p>
               </div>
             </div>
           </div>
@@ -1566,10 +1566,10 @@ export default function PitchbookPage() {
           ].map((stat) => {
             const Icon = stat.icon;
             return (
-              <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-2 text-center">
+              <div key={stat.label} className="bg-card border border-border rounded-lg p-2 text-center">
                 <Icon className={`w-3 h-3 mx-auto mb-1 ${stat.color}`} />
                 <p className={`text-sm font-bold ${stat.color}`}>{stat.value}</p>
-                <p className="text-xs text-zinc-600 leading-tight mt-0.5">{stat.label}</p>
+                <p className="text-xs text-muted-foreground leading-tight mt-0.5">{stat.label}</p>
               </div>
             );
           })}
@@ -1583,20 +1583,20 @@ export default function PitchbookPage() {
         transition={{ delay: 0.25 }}
       >
         <Tabs defaultValue="pitch" className="space-y-4">
-          <TabsList className="bg-zinc-900 border border-zinc-800 p-1 flex flex-wrap gap-1 h-auto">
-            <TabsTrigger value="pitch" className="data-[state=active]:bg-zinc-700 text-xs gap-1.5">
+          <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
+            <TabsTrigger value="pitch" className="data-[state=active]:bg-muted text-xs gap-1.5">
               <FileText className="w-3.5 h-3.5" /> Pitch Structure
             </TabsTrigger>
-            <TabsTrigger value="valuation" className="data-[state=active]:bg-zinc-700 text-xs gap-1.5">
+            <TabsTrigger value="valuation" className="data-[state=active]:bg-muted text-xs gap-1.5">
               <BarChart3 className="w-3.5 h-3.5" /> Valuation Summary
             </TabsTrigger>
-            <TabsTrigger value="comps" className="data-[state=active]:bg-zinc-700 text-xs gap-1.5">
+            <TabsTrigger value="comps" className="data-[state=active]:bg-muted text-xs gap-1.5">
               <Building2 className="w-3.5 h-3.5" /> Comparable Companies
             </TabsTrigger>
-            <TabsTrigger value="mna" className="data-[state=active]:bg-zinc-700 text-xs gap-1.5">
+            <TabsTrigger value="mna" className="data-[state=active]:bg-muted text-xs gap-1.5">
               <TrendingUp className="w-3.5 h-3.5" /> M&amp;A Accretion/Dilution
             </TabsTrigger>
-            <TabsTrigger value="financing" className="data-[state=active]:bg-zinc-700 text-xs gap-1.5">
+            <TabsTrigger value="financing" className="data-[state=active]:bg-muted text-xs gap-1.5">
               <Layers className="w-3.5 h-3.5" /> Financing Structure
             </TabsTrigger>
           </TabsList>

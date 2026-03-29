@@ -884,20 +884,20 @@ function CollapsibleSection({
   title,
   children,
   defaultOpen = false,
-  accent = "border-zinc-700",
+  accent = "border-border",
 }: CollapsibleSectionProps) {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className={cn("border rounded-lg overflow-hidden", accent)}>
       <button
         onClick={() => setOpen((o) => !o)}
-        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900/50 hover:bg-zinc-800/60 transition-colors"
+        className="w-full flex items-center justify-between px-4 py-3 bg-card/50 hover:bg-muted/60 transition-colors"
       >
-        <span className="text-sm font-semibold text-zinc-200">{title}</span>
+        <span className="text-sm font-semibold text-foreground">{title}</span>
         {open ? (
-          <ChevronUp className="w-4 h-4 text-zinc-400" />
+          <ChevronUp className="w-4 h-4 text-muted-foreground" />
         ) : (
-          <ChevronDown className="w-4 h-4 text-zinc-400" />
+          <ChevronDown className="w-4 h-4 text-muted-foreground" />
         )}
       </button>
       <AnimatePresence initial={false}>
@@ -922,7 +922,7 @@ function StatChip({
   label,
   value,
   sub,
-  color = "text-zinc-200",
+  color = "text-foreground",
 }: {
   label: string;
   value: string;
@@ -930,12 +930,12 @@ function StatChip({
   color?: string;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[90px]">
-      <span className="text-xs text-zinc-500 uppercase tracking-wide">
+    <div className="flex flex-col gap-0.5 bg-card border border-border rounded-lg px-3 py-2 min-w-[90px]">
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">
         {label}
       </span>
       <span className={cn("text-sm font-bold", color)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -959,7 +959,7 @@ function VarianceSwapDisplay() {
       <StatChip
         label="Vega Notional"
         value={"$" + (notional / 1000).toFixed(0) + "K"}
-        color="text-zinc-300"
+        color="text-muted-foreground"
       />
       <StatChip
         label="P&L (long var)"
@@ -1023,7 +1023,7 @@ export default function EquityDerivativesPage() {
   void fmtPct; // suppress if unused
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1039,7 +1039,7 @@ export default function EquityDerivativesPage() {
             <h1 className="text-2xl font-bold text-zinc-50">
               Equity Derivatives
             </h1>
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-muted-foreground">
               Single-stock options, swaps, volatility products, and convertible bonds
             </p>
           </div>
@@ -1055,7 +1055,7 @@ export default function EquityDerivativesPage() {
             <Badge
               key={c.label}
               variant="outline"
-              className="border-zinc-700 text-zinc-300 text-xs"
+              className="border-border text-muted-foreground text-xs"
             >
               {c.label}: <span className="text-primary ml-1">{c.value}</span>
             </Badge>
@@ -1065,7 +1065,7 @@ export default function EquityDerivativesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="sso">
-        <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full mb-6 bg-zinc-900/80 border border-zinc-800">
+        <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full mb-6 bg-card/80 border border-border">
           <TabsTrigger value="sso" className="text-xs md:text-sm">
             <Target className="w-3.5 h-3.5 mr-1.5 hidden sm:inline" />
             Single-Stock Options
@@ -1094,14 +1094,14 @@ export default function EquityDerivativesPage() {
           >
             {/* Intro grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     <Target className="w-4 h-4 text-primary" />
                     Single-Stock vs Index Options
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-xs text-zinc-400 space-y-2">
+                <CardContent className="text-xs text-muted-foreground space-y-2">
                   <p>
                     Single-stock options carry <span className="text-primary font-semibold">idiosyncratic risk</span> — earnings surprises, M&A, dividend announcements — producing higher and more skewed implied volatility surfaces than index options.
                   </p>
@@ -1112,8 +1112,8 @@ export default function EquityDerivativesPage() {
                       { label: "Earnings Risk", sso: "High IV jump", idx: "Diversified away" },
                       { label: "Liquidity", sso: "Varies by name", idx: "Deep (SPX, NDX)" },
                     ].map((r) => (
-                      <div key={r.label} className="bg-zinc-800/60 rounded p-2">
-                        <div className="text-xs text-zinc-500 uppercase mb-1">{r.label}</div>
+                      <div key={r.label} className="bg-muted/60 rounded p-2">
+                        <div className="text-xs text-muted-foreground uppercase mb-1">{r.label}</div>
                         <div className="text-emerald-400 text-[11px]">SSO: {r.sso}</div>
                         <div className="text-sky-400 text-[11px]">IDX: {r.idx}</div>
                       </div>
@@ -1122,16 +1122,16 @@ export default function EquityDerivativesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     <BarChart2 className="w-4 h-4 text-amber-400" />
                     Volatility Surface (Term Structure + Skew)
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <VolSurfaceSVG />
-                  <p className="text-xs text-zinc-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Put skew (OTM puts expensive) reflects demand for downside protection. Term structure typically inverted during stress.
                   </p>
                 </CardContent>
@@ -1139,9 +1139,9 @@ export default function EquityDerivativesPage() {
             </div>
 
             {/* ESO vesting */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-emerald-400" />
                   Employee Stock Options (ESO) — Cliff & Ratable Vesting
                 </CardTitle>
@@ -1157,20 +1157,20 @@ export default function EquityDerivativesPage() {
                 <div className="overflow-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
+                      <tr className="border-b border-border">
                         {["Company", "Type", "Strike", "Vesting", "Expiry", "Dilution"].map((h) => (
-                          <th key={h} className="px-2 py-1.5 text-left text-zinc-500 font-medium">{h}</th>
+                          <th key={h} className="px-2 py-1.5 text-left text-muted-foreground font-medium">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {ESO_EXAMPLES.map((row, i) => (
-                        <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
-                          <td className="px-2 py-1.5 text-zinc-300">{row.company}</td>
+                        <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
+                          <td className="px-2 py-1.5 text-muted-foreground">{row.company}</td>
                           <td className="px-2 py-1.5 text-primary">{row.type}</td>
                           <td className="px-2 py-1.5 text-emerald-400">{row.strike}</td>
-                          <td className="px-2 py-1.5 text-zinc-400">{row.vesting}</td>
-                          <td className="px-2 py-1.5 text-zinc-400">{row.expiry}</td>
+                          <td className="px-2 py-1.5 text-muted-foreground">{row.vesting}</td>
+                          <td className="px-2 py-1.5 text-muted-foreground">{row.expiry}</td>
                           <td className="px-2 py-1.5 text-amber-400">{row.dilution}</td>
                         </tr>
                       ))}
@@ -1187,7 +1187,7 @@ export default function EquityDerivativesPage() {
                 defaultOpen={true}
                 accent="border-emerald-900/50"
               >
-                <div className="space-y-2 text-xs text-zinc-400">
+                <div className="space-y-2 text-xs text-muted-foreground">
                   <p>
                     <span className="text-emerald-400 font-semibold">Ordinary dividends:</span> Listed equity options are NOT automatically adjusted for ordinary dividends. The dividend is priced into put-call parity via the forward price F = S·e^(r-q)T. Traders call this the &quot;dividend drag&quot; on call values.
                   </p>
@@ -1207,14 +1207,14 @@ export default function EquityDerivativesPage() {
                 title="Warrants vs Listed Options — Dilution Effect"
                 accent="border-border"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <p>
                     <span className="text-primary font-semibold">Warrants</span> are issued by the company itself; exercise creates new shares, diluting existing shareholders. Listed exchange-traded options involve no new share issuance — only transfer of existing shares.
                   </p>
-                  <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px] mt-2">
-                    <div className="text-zinc-300 mb-1">Warrant dilution adjustment:</div>
+                  <div className="bg-muted/60 rounded p-3 font-mono text-[11px] mt-2">
+                    <div className="text-muted-foreground mb-1">Warrant dilution adjustment:</div>
                     <div className="text-primary">W = (N / N+nW) × C(S*, X, T)</div>
-                    <div className="text-zinc-500 mt-1">
+                    <div className="text-muted-foreground mt-1">
                       N = existing shares, nW = warrants, S* = diluted spot, C = Black-Scholes call
                     </div>
                   </div>
@@ -1228,13 +1228,13 @@ export default function EquityDerivativesPage() {
                 title="OTC vs Listed Equity Options — Equity Linked Notes"
                 accent="border-sky-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-3">
+                <div className="text-xs text-muted-foreground space-y-3">
                   <div className="grid grid-cols-2 gap-3">
                     {[
                       { label: "Listed (CBOE)", features: ["Standardized strikes/expiries", "Exchange clearing (OCC)", "Daily mark-to-market margin", "Deep liquidity for mega-caps"] },
                       { label: "OTC (ISDA)", features: ["Custom terms, any expiry", "Counterparty credit risk", "CSA/collateral negotiated", "Barrier/digital/Asian variants"] },
                     ].map((col) => (
-                      <div key={col.label} className="bg-zinc-800/50 rounded p-3">
+                      <div key={col.label} className="bg-muted/50 rounded p-3">
                         <div className="text-sky-300 font-semibold text-[11px] mb-2">{col.label}</div>
                         {col.features.map((f) => (
                           <div key={f} className="flex items-start gap-1 mb-1">
@@ -1263,9 +1263,9 @@ export default function EquityDerivativesPage() {
             className="space-y-5"
           >
             {/* TRS Diagram */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <ArrowRightLeft className="w-4 h-4 text-emerald-400" />
                   Total Return Swap (TRS) Mechanics
                 </CardTitle>
@@ -1273,26 +1273,26 @@ export default function EquityDerivativesPage() {
               <CardContent className="space-y-3">
                 <TrsMechanicsSVG />
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-                  <div className="bg-zinc-800/60 rounded p-2">
+                  <div className="bg-muted/60 rounded p-2">
                     <div className="text-emerald-400 font-semibold mb-1">Equity Leg</div>
-                    <div className="text-zinc-400">Receiver gets: price appreciation + dividends. Payer hedged by holding stock.</div>
+                    <div className="text-muted-foreground">Receiver gets: price appreciation + dividends. Payer hedged by holding stock.</div>
                   </div>
-                  <div className="bg-zinc-800/60 rounded p-2">
+                  <div className="bg-muted/60 rounded p-2">
                     <div className="text-sky-400 font-semibold mb-1">Funding Leg</div>
-                    <div className="text-zinc-400">Receiver pays: SOFR + spread (financing cost). Reset quarterly or semi-annually.</div>
+                    <div className="text-muted-foreground">Receiver pays: SOFR + spread (financing cost). Reset quarterly or semi-annually.</div>
                   </div>
-                  <div className="bg-zinc-800/60 rounded p-2">
+                  <div className="bg-muted/60 rounded p-2">
                     <div className="text-amber-400 font-semibold mb-1">Funded vs Unfunded</div>
-                    <div className="text-zinc-400">Funded: receiver posts upfront capital. Unfunded: receiver posts only initial margin (more leveraged).</div>
+                    <div className="text-muted-foreground">Funded: receiver posts upfront capital. Unfunded: receiver posts only initial margin (more leveraged).</div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* TRS use cases */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Layers className="w-4 h-4 text-sky-400" />
                   Equity Swap Use Cases
                 </CardTitle>
@@ -1301,18 +1301,18 @@ export default function EquityDerivativesPage() {
                 <div className="overflow-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
+                      <tr className="border-b border-border">
                         {["Strategy", "Receiver", "Motivation", "Key Risk"].map((h) => (
-                          <th key={h} className="px-3 py-1.5 text-left text-zinc-500 font-medium">{h}</th>
+                          <th key={h} className="px-3 py-1.5 text-left text-muted-foreground font-medium">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {TRS_USE_CASES.map((row, i) => (
-                        <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
+                        <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                           <td className={cn("px-3 py-2 font-semibold", row.color)}>{row.strategy}</td>
-                          <td className="px-3 py-2 text-zinc-300">{row.receiver}</td>
-                          <td className="px-3 py-2 text-zinc-400">{row.motivation}</td>
+                          <td className="px-3 py-2 text-muted-foreground">{row.receiver}</td>
+                          <td className="px-3 py-2 text-muted-foreground">{row.motivation}</td>
                           <td className="px-3 py-2 text-red-400/80">{row.risk}</td>
                         </tr>
                       ))}
@@ -1328,7 +1328,7 @@ export default function EquityDerivativesPage() {
                 defaultOpen={true}
                 accent="border-red-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <div className="flex items-start gap-2 p-3 bg-red-950/30 border border-red-900/40 rounded">
                     <AlertTriangle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
                     <p>
@@ -1345,11 +1345,11 @@ export default function EquityDerivativesPage() {
                 title="Variance Swap — Payoff & Vega Swap Introduction"
                 accent="border-amber-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-3">
-                  <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
+                <div className="text-xs text-muted-foreground space-y-3">
+                  <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                     <div className="text-amber-300 mb-1">Variance Swap Payoff (long):</div>
-                    <div className="text-zinc-200">P&L = Var Notional × (σ²_realized − σ²_strike)</div>
-                    <div className="text-zinc-500 mt-1">Var Notional = Vega Notional / (2 × σ_strike)</div>
+                    <div className="text-foreground">P&L = Var Notional × (σ²_realized − σ²_strike)</div>
+                    <div className="text-muted-foreground mt-1">Var Notional = Vega Notional / (2 × σ_strike)</div>
                   </div>
                   <VarianceSwapDisplay />
                   <p>
@@ -1362,7 +1362,7 @@ export default function EquityDerivativesPage() {
                 title="Dividend Swap, Equity Repo & Synthetic ETF"
                 accent="border-sky-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <p>
                     <span className="text-sky-300 font-semibold">Dividend swap:</span> Receiver pays a fixed dividend level (strike), receives actual declared dividends. Used to hedge dividend uncertainty in long-dated equity structures or speculate on corporate payout policy changes.
                   </p>
@@ -1388,20 +1388,20 @@ export default function EquityDerivativesPage() {
           >
             {/* VIX overview */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     <Activity className="w-4 h-4 text-red-400" />
                     VIX Calculation & Term Structure
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="text-xs text-zinc-400 space-y-2">
-                  <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
+                <CardContent className="text-xs text-muted-foreground space-y-2">
+                  <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                     <div className="text-primary mb-1">VIX Formula (model-free):</div>
-                    <div className="text-zinc-200">
+                    <div className="text-foreground">
                       σ² = (2/T) Σ ΔKᵢ/Kᵢ² × e^(rT) × Q(Kᵢ) − (1/T)[F/K₀ − 1]²
                     </div>
-                    <div className="text-zinc-500 mt-1">
+                    <div className="text-muted-foreground mt-1">
                       Q(K) = mid-price of OTM option at strike K; T = 30-day interpolation
                     </div>
                   </div>
@@ -1420,16 +1420,16 @@ export default function EquityDerivativesPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     <TrendingDown className="w-4 h-4 text-red-400" />
                     VXX Roll Cost (Contango Bleed)
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <VixRollSVG />
-                  <p className="text-xs text-zinc-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     In contango (front month futures {">"}  VIX spot), daily rolling from front-month to second-month futures creates a persistent negative carry of 4–8% per month. VXX loses ~75% of its value per year on average in low-vol environments.
                   </p>
                 </CardContent>
@@ -1437,9 +1437,9 @@ export default function EquityDerivativesPage() {
             </div>
 
             {/* Vol regime chart */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
                   VIX Regime Chart (2020–2024)
                 </CardTitle>
@@ -1455,7 +1455,7 @@ export default function EquityDerivativesPage() {
                 defaultOpen={true}
                 accent="border-border"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <p>
                     <span className="text-primary font-semibold">SVI (Stochastic Volatility Inspired):</span> parameterizes total implied variance w(k) = a + b{"{"}ρ(k−m) + √((k−m)²+σ²){"}"}. Guarantees no static arbitrage across strikes for a given expiry. Used widely for single-expiry smile fitting.
                   </p>
@@ -1472,7 +1472,7 @@ export default function EquityDerivativesPage() {
                 title="Vol Selling Strategies — Short Strangle & Iron Condor"
                 accent="border-emerald-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <div className="grid grid-cols-2 gap-3">
                     {[
                       {
@@ -1488,9 +1488,9 @@ export default function EquityDerivativesPage() {
                         color: "text-emerald-400",
                       },
                     ].map((s) => (
-                      <div key={s.name} className="bg-zinc-800/60 rounded p-3">
+                      <div key={s.name} className="bg-muted/60 rounded p-3">
                         <div className={cn("font-semibold mb-1", s.color)}>{s.name}</div>
-                        <div className="text-zinc-400 mb-2">{s.desc}</div>
+                        <div className="text-muted-foreground mb-2">{s.desc}</div>
                         <div className="text-red-400 text-xs">Max Loss: {s.risk}</div>
                       </div>
                     ))}
@@ -1502,13 +1502,13 @@ export default function EquityDerivativesPage() {
                 title="Dispersion Trading & Correlation Swaps"
                 accent="border-sky-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <p>
                     <span className="text-sky-300 font-semibold">Dispersion trade:</span> Short index variance swap + long component stock variance swaps (weighted by index weights). Profits when correlation falls (stocks diverge more than the index implies). Index vol trades at a premium to weighted component vol due to &quot;correlation risk premium.&quot;
                   </p>
-                  <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
+                  <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                     <div className="text-sky-300 mb-1">Implied correlation approximation:</div>
-                    <div className="text-zinc-200">ρ_implied = (σ²_index − Σwᵢ²σᵢ²) / (2 ΣΣ wᵢwⱼ σᵢσⱼ)</div>
+                    <div className="text-foreground">ρ_implied = (σ²_index − Σwᵢ²σᵢ²) / (2 ΣΣ wᵢwⱼ σᵢσⱼ)</div>
                   </div>
                   <p>
                     <span className="text-primary font-semibold">Correlation swaps</span> pay directly on realized correlation between a basket and its components. More pure exposure than dispersion trades but less liquid; OTC only. Typical strikes: 40–60% for S&P 500 sub-baskets.
@@ -1532,9 +1532,9 @@ export default function EquityDerivativesPage() {
           >
             {/* CB pricing SVG */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     <Shield className="w-4 h-4 text-primary" />
                     CB Anatomy & Pricing
                   </CardTitle>
@@ -1547,18 +1547,18 @@ export default function EquityDerivativesPage() {
                       { label: "Balanced CB", desc: "ATM region. High gamma, optionality premium maximized. Delta 0.4–0.6.", color: "text-amber-400" },
                       { label: "In-the-Money CB", desc: "Conversion value dominates. Equity-like delta ~0.9+.", color: "text-emerald-400" },
                     ].map((s) => (
-                      <div key={s.label} className="bg-zinc-800/50 rounded p-2">
+                      <div key={s.label} className="bg-muted/50 rounded p-2">
                         <div className={cn("font-semibold mb-1", s.color)}>{s.label}</div>
-                        <div className="text-zinc-400">{s.desc}</div>
+                        <div className="text-muted-foreground">{s.desc}</div>
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-emerald-400" />
                     CB Market Terms
                   </CardTitle>
@@ -1574,18 +1574,18 @@ export default function EquityDerivativesPage() {
                     <div className="overflow-auto mt-2">
                       <table className="w-full text-xs">
                         <thead>
-                          <tr className="border-b border-zinc-800">
+                          <tr className="border-b border-border">
                             {["Issuer", "Coupon", "Mat.", "Conv. Prem.", "Delta", "Rating"].map((h) => (
-                              <th key={h} className="px-1.5 py-1 text-left text-zinc-500 font-medium text-xs">{h}</th>
+                              <th key={h} className="px-1.5 py-1 text-left text-muted-foreground font-medium text-xs">{h}</th>
                             ))}
                           </tr>
                         </thead>
                         <tbody>
                           {CB_EXAMPLES.map((row, i) => (
-                            <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
-                              <td className="px-1.5 py-1 text-zinc-300">{row.issuer}</td>
+                            <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
+                              <td className="px-1.5 py-1 text-muted-foreground">{row.issuer}</td>
                               <td className="px-1.5 py-1 text-emerald-400">{row.coupon}</td>
-                              <td className="px-1.5 py-1 text-zinc-400">{row.maturity}</td>
+                              <td className="px-1.5 py-1 text-muted-foreground">{row.maturity}</td>
                               <td className="px-1.5 py-1 text-amber-400">{row.convPrem}</td>
                               <td className="px-1.5 py-1 text-primary">{row.delta}</td>
                               <td className="px-1.5 py-1 text-sky-400">{row.rating}</td>
@@ -1606,22 +1606,22 @@ export default function EquityDerivativesPage() {
                 defaultOpen={true}
                 accent="border-border"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
+                    <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                       <div className="text-primary mb-1">Conversion Ratio:</div>
-                      <div className="text-zinc-200">CR = Face Value / Conversion Price</div>
-                      <div className="text-zinc-500 mt-1">e.g. $1,000 / $50 = 20 shares</div>
+                      <div className="text-foreground">CR = Face Value / Conversion Price</div>
+                      <div className="text-muted-foreground mt-1">e.g. $1,000 / $50 = 20 shares</div>
                     </div>
-                    <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
+                    <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                       <div className="text-emerald-300 mb-1">Conversion Premium:</div>
-                      <div className="text-zinc-200">Prem = (Conv. Price − Spot) / Spot</div>
-                      <div className="text-zinc-500 mt-1">e.g. ($50 − $40) / $40 = 25%</div>
+                      <div className="text-foreground">Prem = (Conv. Price − Spot) / Spot</div>
+                      <div className="text-muted-foreground mt-1">e.g. ($50 − $40) / $40 = 25%</div>
                     </div>
-                    <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
+                    <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                       <div className="text-amber-300 mb-1">Parity (Conversion Value):</div>
-                      <div className="text-zinc-200">Parity = CR × Spot Price</div>
-                      <div className="text-zinc-500 mt-1">e.g. 20 × $40 = $800</div>
+                      <div className="text-foreground">Parity = CR × Spot Price</div>
+                      <div className="text-muted-foreground mt-1">e.g. 20 × $40 = $800</div>
                     </div>
                   </div>
                   <p>
@@ -1637,7 +1637,7 @@ export default function EquityDerivativesPage() {
                 title="Gamma Trading by CB Hedge Funds"
                 accent="border-emerald-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-2">
+                <div className="text-xs text-muted-foreground space-y-2">
                   <p>
                     CB hedge funds continuously delta-hedge their long CB portfolios by shorting the underlying stock. As the stock moves, they:
                   </p>
@@ -1646,16 +1646,16 @@ export default function EquityDerivativesPage() {
                       { scenario: "Stock rallies", action: "Delta increases → sell more stock short (delta hedge)", color: "text-red-400" },
                       { scenario: "Stock declines", action: "Delta decreases → buy back stock short (delta hedge)", color: "text-emerald-400" },
                     ].map((s) => (
-                      <div key={s.scenario} className="bg-zinc-800/50 rounded p-2">
+                      <div key={s.scenario} className="bg-muted/50 rounded p-2">
                         <div className={cn("font-semibold text-[11px] mb-1", s.color)}>{s.scenario}</div>
-                        <div className="text-zinc-400">{s.action}</div>
+                        <div className="text-muted-foreground">{s.action}</div>
                       </div>
                     ))}
                   </div>
                   <p>
                     The net effect is <span className="text-emerald-400 font-semibold">buy low / sell high</span> systematically — capturing realized gamma. This is profitable when realized vol {">"} implied vol priced into the embedded option. The CB pays for this gamma via a lower coupon (the option premium embedded in the structure).
                   </p>
-                  <p className="text-zinc-500">
+                  <p className="text-muted-foreground">
                     P&L per delta-hedge rebalancing ≈ ½ × Γ × (ΔS)² — the classic &quot;scalped gamma&quot; formula. Larger stock moves and higher gamma (near-ATM CBs) maximize gamma P&L.
                   </p>
                 </div>
@@ -1665,13 +1665,13 @@ export default function EquityDerivativesPage() {
                 title="Mandatory Convertibles (PRCS/DECS) & CoCo/AT1 Bonds"
                 accent="border-amber-900/50"
               >
-                <div className="text-xs text-zinc-400 space-y-3">
+                <div className="text-xs text-muted-foreground space-y-3">
                   <p>
                     <span className="text-amber-400 font-semibold">Mandatory convertibles</span> (PRCS — Preferred Redeemable Increased Dividend Equity Securities, DECS — Debt Exchangeable for Common Stock) must convert at maturity regardless of stock price. The conversion ratio varies with the stock price at maturity, giving them an equity-like profile from issuance. They offer higher coupons (4–7%) to compensate for mandatory conversion risk.
                   </p>
-                  <div className="bg-zinc-800/60 rounded p-3 font-mono text-[11px]">
+                  <div className="bg-muted/60 rounded p-3 font-mono text-[11px]">
                     <div className="text-amber-300 mb-1">PRCS conversion schedule:</div>
-                    <div className="text-zinc-200">
+                    <div className="text-foreground">
                       Stock ≤ Lower Strike: receive max shares (full dilution)<br />
                       Between strikes: receive fixed value in shares<br />
                       Stock ≥ Upper Strike: receive min shares (capped upside)
@@ -1691,9 +1691,9 @@ export default function EquityDerivativesPage() {
             </div>
 
             {/* Delta across CB spectrum */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-amber-400" />
                   CB Delta Profile Across Moneyness Spectrum
                 </CardTitle>
@@ -1702,9 +1702,9 @@ export default function EquityDerivativesPage() {
                 <div className="overflow-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
+                      <tr className="border-b border-border">
                         {["Stock/Conv. Price", "Region", "Delta", "Duration", "Credit Sensitivity", "Behavior"].map((h) => (
-                          <th key={h} className="px-2 py-1.5 text-left text-zinc-500 font-medium">{h}</th>
+                          <th key={h} className="px-2 py-1.5 text-left text-muted-foreground font-medium">{h}</th>
                         ))}
                       </tr>
                     </thead>
@@ -1716,13 +1716,13 @@ export default function EquityDerivativesPage() {
                         { ratio: "120–150%", region: "In-the-Money", delta: "0.65–0.85", dur: "Minimal", credit: "Low", behavior: "Equity proxy + floor protection", color: "text-sky-400" },
                         { ratio: ">150%", region: "Deep ITM", delta: "0.85–1.0", dur: "Near zero", credit: "Negligible", behavior: "Converts/calls; equity-like", color: "text-primary" },
                       ].map((row, i) => (
-                        <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
+                        <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                           <td className={cn("px-2 py-1.5 font-semibold", row.color)}>{row.ratio}</td>
-                          <td className="px-2 py-1.5 text-zinc-300">{row.region}</td>
+                          <td className="px-2 py-1.5 text-muted-foreground">{row.region}</td>
                           <td className="px-2 py-1.5 text-primary">{row.delta}</td>
-                          <td className="px-2 py-1.5 text-zinc-400">{row.dur}</td>
+                          <td className="px-2 py-1.5 text-muted-foreground">{row.dur}</td>
                           <td className="px-2 py-1.5 text-red-400/80">{row.credit}</td>
-                          <td className="px-2 py-1.5 text-zinc-400">{row.behavior}</td>
+                          <td className="px-2 py-1.5 text-muted-foreground">{row.behavior}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1735,7 +1735,7 @@ export default function EquityDerivativesPage() {
       </Tabs>
 
       {/* Footer disclaimer */}
-      <div className="mt-8 text-center text-[11px] text-zinc-600">
+      <div className="mt-8 text-center text-[11px] text-muted-foreground">
         Educational simulation only. Equity derivatives involve substantial risk and are not suitable for all investors.
       </div>
     </div>

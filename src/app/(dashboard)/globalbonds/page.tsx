@@ -583,7 +583,7 @@ function ratingColor(rc: string): string {
     case "ccc":
       return "text-red-400";
     default:
-      return "text-neutral-400";
+      return "text-muted-foreground";
   }
 }
 
@@ -662,7 +662,7 @@ function SovereignYieldsTab() {
       onClick={() => toggle(col)}
       className={cn(
         "flex items-center gap-1 text-xs font-medium transition-colors",
-        sortBy === col ? "text-primary" : "text-neutral-400 hover:text-white"
+        sortBy === col ? "text-primary" : "text-muted-foreground hover:text-white"
       )}
     >
       {label}
@@ -702,9 +702,9 @@ function SovereignYieldsTab() {
         ].map((c) => (
           <div
             key={c.label}
-            className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-3"
+            className="bg-muted/60 border border-border/50 rounded-lg p-3"
           >
-            <div className="flex items-center gap-1.5 text-neutral-400 text-xs mb-1">
+            <div className="flex items-center gap-1.5 text-muted-foreground text-xs mb-1">
               <c.icon className="w-3.5 h-3.5" />
               {c.label}
             </div>
@@ -714,7 +714,7 @@ function SovereignYieldsTab() {
       </div>
 
       {/* Yield Bar Chart */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-4">
           10Y Sovereign Yields — Sorted by Yield
         </h3>
@@ -786,24 +786,24 @@ function SovereignYieldsTab() {
       </div>
 
       {/* Table */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg overflow-hidden">
+      <div className="bg-muted/60 border border-border/50 rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-neutral-700/50">
-                <th className="text-left text-neutral-400 font-medium px-4 py-3 text-xs">
+              <tr className="border-b border-border/50">
+                <th className="text-left text-muted-foreground font-medium px-4 py-3 text-xs">
                   Country
                 </th>
                 <th className="text-right px-3 py-3">
                   <SortBtn col="yield" label="10Y Yield" />
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   2Y
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   30Y
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   1D Chg
                 </th>
                 <th className="text-right px-3 py-3">
@@ -824,7 +824,7 @@ function SovereignYieldsTab() {
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.03 }}
-                  className="border-b border-neutral-700/30 hover:bg-neutral-700/20 transition-colors"
+                  className="border-b border-border/30 hover:bg-neutral-700/20 transition-colors"
                 >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -834,7 +834,7 @@ function SovereignYieldsTab() {
                       </span>
                       <Badge
                         variant="outline"
-                        className="text-xs px-1.5 py-0 border-neutral-600 text-neutral-400"
+                        className="text-xs px-1.5 py-0 border-neutral-600 text-muted-foreground"
                       >
                         {bond.region}
                       </Badge>
@@ -845,10 +845,10 @@ function SovereignYieldsTab() {
                       {bond.yield10Y.toFixed(2)}%
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {bond.yield2Y.toFixed(2)}%
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {bond.yield30Y.toFixed(2)}%
                   </td>
                   <td className="px-3 py-2.5 text-right">
@@ -859,7 +859,7 @@ function SovereignYieldsTab() {
                           ? "text-red-400"
                           : bond.change1D < 0
                           ? "text-green-400"
-                          : "text-neutral-400"
+                          : "text-muted-foreground"
                       )}
                     >
                       {bond.change1D > 0 ? "+" : ""}
@@ -876,13 +876,13 @@ function SovereignYieldsTab() {
                       {bond.rating}
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {bond.debtGDP.toFixed(1)}%
                   </td>
                   <td className="px-3 py-2.5 text-right text-xs">
                     <span
                       className={
-                        bond.inflation > 4 ? "text-red-400" : "text-neutral-300"
+                        bond.inflation > 4 ? "text-red-400" : "text-muted-foreground"
                       }
                     >
                       {bond.inflation.toFixed(1)}%
@@ -1002,11 +1002,11 @@ function YieldCurveTab() {
     ];
 
     return (
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-3">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-3">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">{flag}</span>
           <span className="text-xs font-semibold text-white">{title}</span>
-          <span className="ml-auto text-xs text-neutral-500">
+          <span className="ml-auto text-xs text-muted-foreground">
             2Y / 5Y / 10Y / 30Y
           </span>
         </div>
@@ -1121,7 +1121,7 @@ function YieldCurveTab() {
       </div>
 
       {/* Overlay chart */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-3">
           Yield Curve Overlay — US vs Germany vs Japan
         </h3>
@@ -1132,7 +1132,7 @@ function YieldCurveTab() {
                 className="w-4 h-1 rounded"
                 style={{ backgroundColor: c.color }}
               />
-              <span className="text-neutral-300">
+              <span className="text-muted-foreground">
                 {c.flag} {c.code}
               </span>
             </div>
@@ -1206,7 +1206,7 @@ function YieldCurveTab() {
       </div>
 
       {/* Spread Analysis */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-3">
           Curve Shape Analysis
         </h3>
@@ -1240,7 +1240,7 @@ function YieldCurveTab() {
                     {a.value < 0 ? "Inverted" : "Normal"}
                   </Badge>
                 </div>
-                <p className="text-xs text-neutral-400">{a.insight}</p>
+                <p className="text-xs text-muted-foreground">{a.insight}</p>
               </div>
             </div>
           ))}
@@ -1292,43 +1292,43 @@ function HedgedReturnsTab() {
         ].map((c) => (
           <div
             key={c.label}
-            className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-3"
+            className="bg-muted/60 border border-border/50 rounded-lg p-3"
           >
-            <div className="text-xs text-neutral-400 mb-1">{c.label}</div>
+            <div className="text-xs text-muted-foreground mb-1">{c.label}</div>
             <div className={cn("font-bold text-sm", c.color)}>{c.val}</div>
-            <div className="text-xs text-neutral-500 mt-0.5">{c.sub}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{c.sub}</div>
           </div>
         ))}
       </div>
 
       {/* Table */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg overflow-hidden">
+      <div className="bg-muted/60 border border-border/50 rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-neutral-700/50">
-                <th className="text-left text-neutral-400 font-medium px-4 py-3 text-xs">
+              <tr className="border-b border-border/50">
+                <th className="text-left text-muted-foreground font-medium px-4 py-3 text-xs">
                   Currency Pair
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Spot
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   3M Fwd
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Hedging Cost
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Int. Diff
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Unhedged
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Hedged
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Verdict
                 </th>
               </tr>
@@ -1340,7 +1340,7 @@ function HedgedReturnsTab() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="border-b border-neutral-700/30 hover:bg-neutral-700/20 transition-colors"
+                  className="border-b border-border/30 hover:bg-neutral-700/20 transition-colors"
                 >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -1350,10 +1350,10 @@ function HedgedReturnsTab() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {h.spotRate.toFixed(4)}
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {h.fwd3M.toFixed(4)}
                   </td>
                   <td className="px-3 py-2.5 text-right">
@@ -1380,7 +1380,7 @@ function HedgedReturnsTab() {
                       {h.interestDiff.toFixed(2)}%
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {h.unhedgedReturn.toFixed(2)}%
                   </td>
                   <td className="px-3 py-2.5 text-right">
@@ -1421,7 +1421,7 @@ function HedgedReturnsTab() {
       </div>
 
       {/* Visual comparison bar chart */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-4">
           Unhedged vs Hedged Return Comparison
         </h3>
@@ -1563,9 +1563,9 @@ function EMBondsTab() {
         ].map((c) => (
           <div
             key={c.label}
-            className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-3"
+            className="bg-muted/60 border border-border/50 rounded-lg p-3"
           >
-            <div className="flex items-center gap-1.5 text-neutral-400 text-xs mb-1">
+            <div className="flex items-center gap-1.5 text-muted-foreground text-xs mb-1">
               <c.icon className="w-3.5 h-3.5" />
               {c.label}
             </div>
@@ -1575,7 +1575,7 @@ function EMBondsTab() {
       </div>
 
       {/* EMBI Spread Bar Chart */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-4">
           EMBI Spread by Country (bps over UST)
         </h3>
@@ -1654,33 +1654,33 @@ function EMBondsTab() {
       </div>
 
       {/* EM Table */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg overflow-hidden">
+      <div className="bg-muted/60 border border-border/50 rounded-lg overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-neutral-700/50">
-                <th className="text-left text-neutral-400 font-medium px-4 py-3 text-xs">
+              <tr className="border-b border-border/50">
+                <th className="text-left text-muted-foreground font-medium px-4 py-3 text-xs">
                   Country
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Hard CCY
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Local CCY
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   EMBI Spread
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Rating
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   FX YTD
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Debt/GDP
                 </th>
-                <th className="text-right text-neutral-400 font-medium px-3 py-3 text-xs">
+                <th className="text-right text-muted-foreground font-medium px-3 py-3 text-xs">
                   Risk
                 </th>
               </tr>
@@ -1692,7 +1692,7 @@ function EMBondsTab() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="border-b border-neutral-700/30 hover:bg-neutral-700/20 transition-colors"
+                  className="border-b border-border/30 hover:bg-neutral-700/20 transition-colors"
                 >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -1700,12 +1700,12 @@ function EMBondsTab() {
                       <span className="text-white text-xs font-medium">
                         {em.country}
                       </span>
-                      <span className="text-neutral-500 text-xs">
+                      <span className="text-muted-foreground text-xs">
                         {em.currency}
                       </span>
                     </div>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {em.hardCurrencyYield.toFixed(2)}%
                   </td>
                   <td className="px-3 py-2.5 text-right">
@@ -1755,7 +1755,7 @@ function EMBondsTab() {
                       {em.fxChangeYTD.toFixed(1)}%
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-neutral-300 text-xs">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground text-xs">
                     {em.debtGDP.toFixed(1)}%
                   </td>
                   <td className="px-3 py-2.5 text-right">
@@ -1785,7 +1785,7 @@ function EMBondsTab() {
       </div>
 
       {/* Hard vs Local Currency comparison note */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-3">
           Hard Currency vs Local Currency EM Bonds
         </h3>
@@ -1827,7 +1827,7 @@ function EMBondsTab() {
                 {panel.points.map((pt) => (
                   <li
                     key={pt}
-                    className="text-xs text-neutral-300 flex items-start gap-1.5"
+                    className="text-xs text-muted-foreground flex items-start gap-1.5"
                   >
                     <span className={cn("mt-0.5", panel.textColor)}>•</span>
                     {pt}
@@ -1849,7 +1849,7 @@ function CentralBankTab() {
   return (
     <div className="space-y-6">
       {/* Policy rate differential chart */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-4">
           G6 Central Bank Policy Rates
         </h3>
@@ -1969,7 +1969,7 @@ function CentralBankTab() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
-              className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4 space-y-3"
+              className="bg-muted/60 border border-border/50 rounded-lg p-4 space-y-3"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -1979,7 +1979,7 @@ function CentralBankTab() {
                       <div className="text-xs font-semibold text-white">
                         {cb.name}
                       </div>
-                      <div className="text-xs text-neutral-500">
+                      <div className="text-xs text-muted-foreground">
                         {cb.country}
                       </div>
                     </div>
@@ -2004,7 +2004,7 @@ function CentralBankTab() {
                       ? "text-red-400"
                       : rateChange < 0
                       ? "text-green-400"
-                      : "text-neutral-400"
+                      : "text-muted-foreground"
                   )}
                 >
                   {rateChange !== 0
@@ -2015,7 +2015,7 @@ function CentralBankTab() {
 
               {/* Inflation vs Target */}
               <div>
-                <div className="flex justify-between text-xs text-neutral-400 mb-1">
+                <div className="flex justify-between text-xs text-muted-foreground mb-1">
                   <span>Inflation</span>
                   <span>
                     {cb.currentInflation.toFixed(1)}% vs {cb.inflationTarget}% target
@@ -2043,7 +2043,7 @@ function CentralBankTab() {
 
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <div className="bg-neutral-700/40 rounded p-2">
-                  <div className="text-[11px] text-neutral-500">QE/QT Status</div>
+                  <div className="text-[11px] text-muted-foreground">QE/QT Status</div>
                   <div
                     className={cn(
                       "text-xs font-semibold",
@@ -2051,21 +2051,21 @@ function CentralBankTab() {
                         ? "text-red-400"
                         : cb.qeStatus === "QE"
                         ? "text-green-400"
-                        : "text-neutral-300"
+                        : "text-muted-foreground"
                     )}
                   >
                     {cb.qeStatus}
                   </div>
                 </div>
                 <div className="bg-neutral-700/40 rounded p-2">
-                  <div className="text-[11px] text-neutral-500">Balance Sheet</div>
-                  <div className="text-xs font-semibold text-neutral-200">
+                  <div className="text-[11px] text-muted-foreground">Balance Sheet</div>
+                  <div className="text-xs font-semibold text-foreground">
                     ${cb.balanceSheetTrillion.toFixed(1)}T
                   </div>
                 </div>
               </div>
 
-              <div className="text-xs text-neutral-500 flex justify-between border-t border-neutral-700/40 pt-2">
+              <div className="text-xs text-muted-foreground flex justify-between border-t border-border/40 pt-2">
                 <span>Last: {cb.lastMeeting}</span>
                 <span>Next: {cb.nextMeeting}</span>
               </div>
@@ -2075,7 +2075,7 @@ function CentralBankTab() {
       </div>
 
       {/* Divergence Analysis */}
-      <div className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
         <h3 className="text-sm font-semibold text-white mb-3">
           Policy Divergence Implications
         </h3>
@@ -2110,7 +2110,7 @@ function CentralBankTab() {
               <div className={cn("text-lg font-bold mb-1", p.color)}>
                 {p.diff}
               </div>
-              <p className="text-xs text-neutral-400">{p.desc}</p>
+              <p className="text-xs text-muted-foreground">{p.desc}</p>
             </div>
           ))}
         </div>
@@ -2158,9 +2158,9 @@ export default function GlobalBondsPage() {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-neutral-900 text-white overflow-y-auto">
+    <div className="flex flex-col h-full bg-card text-white overflow-y-auto">
       {/* Header */}
-      <div className="px-6 pt-6 pb-4 border-b border-neutral-800 shrink-0">
+      <div className="px-6 pt-6 pb-4 border-b border-border shrink-0">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2.5 mb-1">
@@ -2171,7 +2171,7 @@ export default function GlobalBondsPage() {
                 Global Bond Markets
               </h1>
             </div>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm text-muted-foreground">
               Cross-country fixed income analysis — sovereign yields, yield
               curves, currency-hedged returns, EM spreads &amp; central bank
               policy
@@ -2180,7 +2180,7 @@ export default function GlobalBondsPage() {
           <div className="flex gap-2 shrink-0">
             <Badge
               variant="outline"
-              className="border-neutral-600 text-neutral-400 text-xs"
+              className="border-neutral-600 text-muted-foreground text-xs"
             >
               <Percent className="w-3 h-3 mr-1" />
               Mar 28, 2026
@@ -2203,7 +2203,7 @@ export default function GlobalBondsPage() {
           onValueChange={setActiveTab}
           className="flex flex-col h-full"
         >
-          <TabsList className="bg-neutral-800/60 border border-neutral-700/50 rounded-lg p-1 mb-5 flex-wrap h-auto gap-1 w-full sm:w-auto">
+          <TabsList className="bg-muted/60 border border-border/50 rounded-lg p-1 mb-5 flex-wrap h-auto gap-1 w-full sm:w-auto">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.id}

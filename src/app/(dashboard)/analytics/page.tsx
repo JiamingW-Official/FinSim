@@ -755,12 +755,12 @@ function StatChip({
   positive?: boolean;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-lg bg-gray-900 border border-gray-800 px-3 py-2 min-w-[100px]">
-      <span className="text-xs text-gray-500 uppercase tracking-wide">{label}</span>
+    <div className="flex flex-col gap-0.5 rounded-lg bg-card border border-border px-3 py-2 min-w-[100px]">
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span
         className={cn(
           "text-sm font-semibold tabular-nums",
-          positive === true ? "text-green-400" : positive === false ? "text-red-400" : "text-gray-100"
+          positive === true ? "text-green-400" : positive === false ? "text-red-400" : "text-foreground"
         )}
       >
         {value}
@@ -776,11 +776,11 @@ function ScoreBar({ label, score, max = 100 }: { label: string; score: number; m
   const color = pct >= 70 ? "bg-green-500" : pct >= 45 ? "bg-amber-500" : "bg-red-500";
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs text-gray-400 w-24 shrink-0">{label}</span>
-      <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+      <span className="text-xs text-muted-foreground w-24 shrink-0">{label}</span>
+      <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
         <div className={cn("h-full rounded-full transition-all", color)} style={{ width: `${pct}%` }} />
       </div>
-      <span className="text-xs font-semibold text-gray-200 w-8 text-right tabular-nums">{score}</span>
+      <span className="text-xs font-semibold text-foreground w-8 text-right tabular-nums">{score}</span>
     </div>
   );
 }
@@ -900,24 +900,24 @@ export default function AnalyticsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-gray-800 bg-gray-950/80 backdrop-blur sticky top-0 z-10">
+      <div className="border-b border-border bg-background/80 backdrop-blur sticky top-0 z-10">
         <div className="px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center">
               <Cpu className="w-4 h-4 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-base font-semibold text-gray-100">Advanced Analytics</h1>
-              <p className="text-xs text-gray-500">Institutional-grade portfolio intelligence</p>
+              <h1 className="text-base font-semibold text-foreground">Advanced Analytics</h1>
+              <p className="text-xs text-muted-foreground">Institutional-grade portfolio intelligence</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Badge variant="outline" className="text-xs border-indigo-800 text-indigo-400">
               252-Day Window
             </Badge>
-            <Badge variant="outline" className="text-xs border-gray-700 text-gray-400">
+            <Badge variant="outline" className="text-xs border-border text-muted-foreground">
               Live Simulation
             </Badge>
           </div>
@@ -926,7 +926,7 @@ export default function AnalyticsPage() {
 
       <div className="p-6">
         <Tabs defaultValue="attribution">
-          <TabsList className="bg-gray-900 border border-gray-800 mb-6 h-9 flex-wrap">
+          <TabsList className="bg-card border border-border mb-6 h-9 flex-wrap">
             <TabsTrigger value="attribution" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
               <BarChart3 className="w-3 h-3 mr-1.5" />
               Performance Attribution
@@ -969,11 +969,11 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.05 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
+              <Card className="bg-card border-border p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-100">Return Decomposition Waterfall</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Total return broken into alpha sources and drags</p>
+                    <h3 className="text-sm font-semibold text-foreground">Return Decomposition Waterfall</h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">Total return broken into alpha sources and drags</p>
                   </div>
                   <Badge className="bg-green-500/15 text-green-400 border-0 text-xs">
                     +{totalReturn.toFixed(1)}% Total
@@ -984,7 +984,7 @@ export default function AnalyticsPage() {
                   {data.waterfallItems.map((item) => (
                     <div key={item.label} className="flex items-center gap-1.5">
                       <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
-                      <span className="text-xs text-gray-400">{item.label}</span>
+                      <span className="text-xs text-muted-foreground">{item.label}</span>
                       <span className="text-xs font-medium" style={{ color: item.color }}>
                         {item.value >= 0 ? "+" : ""}{item.value.toFixed(1)}%
                       </span>
@@ -1002,18 +1002,18 @@ export default function AnalyticsPage() {
               className="grid grid-cols-1 lg:grid-cols-3 gap-4"
             >
               <div className="lg:col-span-2">
-                <Card className="bg-gray-900 border-gray-800 p-4 h-full">
-                  <h3 className="text-sm font-semibold text-gray-100 mb-1">Rolling 12-Month Alpha</h3>
-                  <p className="text-xs text-gray-500 mb-3">Annualized excess return vs benchmark (252 trading days)</p>
+                <Card className="bg-card border-border p-4 h-full">
+                  <h3 className="text-sm font-semibold text-foreground mb-1">Rolling 12-Month Alpha</h3>
+                  <p className="text-xs text-muted-foreground mb-3">Annualized excess return vs benchmark (252 trading days)</p>
                   <RollingAlphaChart data={data.rollingAlpha} />
                 </Card>
               </div>
               <div>
-                <Card className="bg-gray-900 border-gray-800 p-4 h-full">
-                  <h3 className="text-sm font-semibold text-gray-100 mb-1">IC Analysis</h3>
-                  <p className="text-xs text-gray-500 mb-3">Predicted vs actual returns scatter</p>
+                <Card className="bg-card border-border p-4 h-full">
+                  <h3 className="text-sm font-semibold text-foreground mb-1">IC Analysis</h3>
+                  <p className="text-xs text-muted-foreground mb-3">Predicted vs actual returns scatter</p>
                   <ICScatterPlot data={data.icScatter} />
-                  <div className="mt-2 text-xs text-gray-500 text-center">
+                  <div className="mt-2 text-xs text-muted-foreground text-center">
                     Higher IC slope = better forecasting skill
                   </div>
                 </Card>
@@ -1026,8 +1026,8 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.15 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
-                <h3 className="text-sm font-semibold text-gray-100 mb-3">Baseball-Style Performance Metrics</h3>
+              <Card className="bg-card border-border p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3">Baseball-Style Performance Metrics</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {[
                     {
@@ -1059,9 +1059,9 @@ export default function AnalyticsPage() {
                       good: data.battingAvg + data.sluggingPct >= 1.5,
                     },
                   ].map((m) => (
-                    <div key={m.label} className="rounded-lg bg-gray-950 border border-gray-800 p-3">
+                    <div key={m.label} className="rounded-lg bg-background border border-border p-3">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs text-gray-500 uppercase tracking-wide">{m.label}</span>
+                        <span className="text-xs text-muted-foreground uppercase tracking-wide">{m.label}</span>
                         <Badge
                           className={cn(
                             "text-[11px] border-0 px-1.5 py-0",
@@ -1074,8 +1074,8 @@ export default function AnalyticsPage() {
                       <div className={cn("text-xl font-bold tabular-nums", m.good ? "text-green-400" : "text-red-400")}>
                         {m.value}
                       </div>
-                      <p className="text-xs text-gray-600 mt-1">{m.description}</p>
-                      <p className="text-xs text-gray-500 mt-0.5">{m.benchmark}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{m.description}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{m.benchmark}</p>
                     </div>
                   ))}
                 </div>
@@ -1104,9 +1104,9 @@ export default function AnalyticsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.05 }}
               >
-                <Card className="bg-gray-900 border-gray-800 p-4 h-full">
-                  <h3 className="text-sm font-semibold text-gray-100 mb-1">Portfolio Variance Decomposition</h3>
-                  <p className="text-xs text-gray-500 mb-4">Sources of total portfolio risk</p>
+                <Card className="bg-card border-border p-4 h-full">
+                  <h3 className="text-sm font-semibold text-foreground mb-1">Portfolio Variance Decomposition</h3>
+                  <p className="text-xs text-muted-foreground mb-4">Sources of total portfolio risk</p>
                   <div className="flex items-center gap-6">
                     <div className="w-[200px] shrink-0">
                       <DonutChart slices={donutSlices} />
@@ -1115,11 +1115,11 @@ export default function AnalyticsPage() {
                       {donutSlices.map((s) => (
                         <div key={s.label} className="flex items-center gap-2">
                           <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
-                          <span className="text-xs text-gray-300 flex-1">{s.label}</span>
+                          <span className="text-xs text-muted-foreground flex-1">{s.label}</span>
                           <div className="flex-1 max-w-[80px]">
-                            <Progress value={s.pct} className="h-1.5 bg-gray-800" />
+                            <Progress value={s.pct} className="h-1.5 bg-muted" />
                           </div>
-                          <span className="text-xs font-semibold text-gray-100 tabular-nums w-8 text-right">
+                          <span className="text-xs font-semibold text-foreground tabular-nums w-8 text-right">
                             {s.pct}%
                           </span>
                         </div>
@@ -1135,31 +1135,31 @@ export default function AnalyticsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <Card className="bg-gray-900 border-gray-800 p-4 h-full">
-                  <h3 className="text-sm font-semibold text-gray-100 mb-1">Factor Beta Loadings</h3>
-                  <p className="text-xs text-gray-500 mb-3">t-stat &gt; 2.0 indicates statistical significance</p>
+                <Card className="bg-card border-border p-4 h-full">
+                  <h3 className="text-sm font-semibold text-foreground mb-1">Factor Beta Loadings</h3>
+                  <p className="text-xs text-muted-foreground mb-3">t-stat &gt; 2.0 indicates statistical significance</p>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-gray-800">
-                          <th className="text-left py-2 text-gray-500 font-medium">Factor</th>
-                          <th className="text-right py-2 text-gray-500 font-medium">Beta</th>
-                          <th className="text-right py-2 text-gray-500 font-medium">t-stat</th>
-                          <th className="text-right py-2 text-gray-500 font-medium">Sig.</th>
-                          <th className="text-right py-2 text-gray-500 font-medium">% Variance</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-2 text-muted-foreground font-medium">Factor</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">Beta</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">t-stat</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">Sig.</th>
+                          <th className="text-right py-2 text-muted-foreground font-medium">% Variance</th>
                         </tr>
                       </thead>
                       <tbody>
                         {data.factorBetas.map((f) => (
-                          <tr key={f.factor} className="border-b border-gray-800/50">
-                            <td className="py-2 text-gray-200 font-medium">{f.factor}</td>
-                            <td className="py-2 text-right text-gray-100 tabular-nums">
+                          <tr key={f.factor} className="border-b border-border/50">
+                            <td className="py-2 text-foreground font-medium">{f.factor}</td>
+                            <td className="py-2 text-right text-foreground tabular-nums">
                               {f.factor === "Idiosyncratic" ? "—" : f.beta.toFixed(2)}
                             </td>
                             <td className="py-2 text-right tabular-nums">
                               <span
                                 className={cn(
-                                  f.tStat === 0 ? "text-gray-600" : f.tStat >= 2.0 ? "text-green-400" : "text-amber-400"
+                                  f.tStat === 0 ? "text-muted-foreground" : f.tStat >= 2.0 ? "text-green-400" : "text-amber-400"
                                 )}
                               >
                                 {f.tStat === 0 ? "—" : f.tStat.toFixed(1)}
@@ -1167,14 +1167,14 @@ export default function AnalyticsPage() {
                             </td>
                             <td className="py-2 text-right">
                               {f.tStat === 0 ? (
-                                <span className="text-gray-600 text-xs">—</span>
+                                <span className="text-muted-foreground text-xs">—</span>
                               ) : f.tStat >= 2.0 ? (
                                 <Badge className="bg-green-500/15 text-green-400 border-0 text-[11px] px-1.5 py-0">***</Badge>
                               ) : (
                                 <Badge className="bg-amber-500/15 text-amber-400 border-0 text-[11px] px-1.5 py-0">*</Badge>
                               )}
                             </td>
-                            <td className="py-2 text-right text-gray-300 tabular-nums">{f.pct}%</td>
+                            <td className="py-2 text-right text-muted-foreground tabular-nums">{f.pct}%</td>
                           </tr>
                         ))}
                       </tbody>
@@ -1190,9 +1190,9 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.15 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
-                <h3 className="text-sm font-semibold text-gray-100 mb-1">Tracking Error Decomposition</h3>
-                <p className="text-xs text-gray-500 mb-4">
+              <Card className="bg-card border-border p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-1">Tracking Error Decomposition</h3>
+                <p className="text-xs text-muted-foreground mb-4">
                   Active risk (TE = 4.2% annualized) broken into sources vs benchmark
                 </p>
                 <div className="grid grid-cols-3 gap-4">
@@ -1201,17 +1201,17 @@ export default function AnalyticsPage() {
                     { label: "Stock Bets", te: 1.6, pct: 38, color: "#22c55e", description: "Individual stock selection vs benchmark constituents" },
                     { label: "Factor Tilts", te: 0.8, pct: 19, color: "#f59e0b", description: "Style/factor exposure mismatch (value, momentum, size)" },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-lg bg-gray-950 border border-gray-800 p-3 text-center">
-                      <div className="text-xs text-gray-500 mb-2">{item.label}</div>
+                    <div key={item.label} className="rounded-lg bg-background border border-border p-3 text-center">
+                      <div className="text-xs text-muted-foreground mb-2">{item.label}</div>
                       <div className="text-2xl font-bold tabular-nums" style={{ color: item.color }}>
                         {item.te.toFixed(1)}%
                       </div>
-                      <div className="text-xs text-gray-500 mt-0.5">TE contribution</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">TE contribution</div>
                       <div className="mt-2">
-                        <Progress value={item.pct} className="h-1.5 bg-gray-800" />
+                        <Progress value={item.pct} className="h-1.5 bg-muted" />
                       </div>
-                      <div className="text-xs text-gray-400 mt-1">{item.pct}% of total TE</div>
-                      <p className="text-xs text-gray-600 mt-2 leading-tight">{item.description}</p>
+                      <div className="text-xs text-muted-foreground mt-1">{item.pct}% of total TE</div>
+                      <p className="text-xs text-muted-foreground mt-2 leading-tight">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -1226,14 +1226,14 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
+              <Card className="bg-card border-border p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-100">Trading Behavior Scorecards</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Derived from simulated trade history analysis</p>
+                    <h3 className="text-sm font-semibold text-foreground">Trading Behavior Scorecards</h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">Derived from simulated trade history analysis</p>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs text-gray-500">Behavioral Alpha Lost</div>
+                    <div className="text-xs text-muted-foreground">Behavioral Alpha Lost</div>
                     <div className="text-lg font-bold text-red-400 tabular-nums">
                       {data.behavioralAlphaLost.toFixed(1)}%
                     </div>
@@ -1279,8 +1279,8 @@ export default function AnalyticsPage() {
                       <div key={item.label} className={cn("rounded-xl border p-3 text-center", bgColor)}>
                         <Icon className={cn("w-4 h-4 mx-auto mb-1.5", color)} />
                         <div className={cn("text-2xl font-bold tabular-nums", color)}>{item.score}</div>
-                        <div className="text-xs font-medium text-gray-200 mt-0.5">{item.label}</div>
-                        <p className="text-xs text-gray-500 mt-1 leading-tight">{item.description}</p>
+                        <div className="text-xs font-medium text-foreground mt-0.5">{item.label}</div>
+                        <p className="text-xs text-muted-foreground mt-1 leading-tight">{item.description}</p>
                       </div>
                     );
                   })}
@@ -1300,10 +1300,10 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.08 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
+              <Card className="bg-card border-border p-4">
                 <div className="flex items-center gap-2 mb-4">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
-                  <h3 className="text-sm font-semibold text-gray-100">Cognitive Bias Detection Dashboard</h3>
+                  <h3 className="text-sm font-semibold text-foreground">Cognitive Bias Detection Dashboard</h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {biasItems.map((bias) => {
@@ -1315,15 +1315,15 @@ export default function AnalyticsPage() {
                     return (
                       <div
                         key={bias.key}
-                        className="rounded-lg bg-gray-950 border border-gray-800 p-3 flex gap-3 items-start"
+                        className="rounded-lg bg-background border border-border p-3 flex gap-3 items-start"
                       >
                         <div className="shrink-0">
                           <Gauge value={bias.score} color={gaugeColor} label={biasLabel} />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <Icon className="w-3.5 h-3.5 text-gray-400" />
-                            <span className="text-xs font-semibold text-gray-100">{bias.label}</span>
+                            <Icon className="w-3.5 h-3.5 text-muted-foreground" />
+                            <span className="text-xs font-semibold text-foreground">{bias.label}</span>
                             <Badge
                               className={cn(
                                 "text-[11px] border-0 px-1.5 py-0 ml-auto",
@@ -1337,7 +1337,7 @@ export default function AnalyticsPage() {
                               {biasLabel}
                             </Badge>
                           </div>
-                          <p className="text-xs text-gray-500 leading-tight mb-2">{bias.description}</p>
+                          <p className="text-xs text-muted-foreground leading-tight mb-2">{bias.description}</p>
                           <div className="rounded bg-indigo-500/10 border border-indigo-800/40 p-2">
                             <p className="text-xs text-indigo-300 leading-tight">
                               <span className="font-semibold">Fix: </span>
@@ -1358,8 +1358,8 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.16 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
-                <h3 className="text-sm font-semibold text-gray-100 mb-3">Behavioral Alpha Estimate</h3>
+              <Card className="bg-card border-border p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3">Behavioral Alpha Estimate</h3>
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     {
@@ -1381,10 +1381,10 @@ export default function AnalyticsPage() {
                       description: "Excess risk without commensurate return",
                     },
                   ].map((item) => (
-                    <div key={item.label} className="rounded-lg bg-gray-950 border border-red-900/30 p-3">
-                      <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">{item.label}</div>
+                    <div key={item.label} className="rounded-lg bg-background border border-red-900/30 p-3">
+                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">{item.label}</div>
                       <div className={cn("text-xl font-bold tabular-nums", item.color)}>{item.value}</div>
-                      <p className="text-xs text-gray-600 mt-1 leading-tight">{item.description}</p>
+                      <p className="text-xs text-muted-foreground mt-1 leading-tight">{item.description}</p>
                     </div>
                   ))}
                 </div>
@@ -1394,7 +1394,7 @@ export default function AnalyticsPage() {
                     <p className="text-xs font-semibold text-red-300">
                       Total behavioral alpha drag: {data.behavioralAlphaLost.toFixed(1)}% annualized
                     </p>
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       Correcting cognitive biases could recover approximately this much return per year
                     </p>
                   </div>
@@ -1423,9 +1423,9 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.05 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
-                <h3 className="text-sm font-semibold text-gray-100 mb-1">Peak-to-Trough Drawdown Analysis</h3>
-                <p className="text-xs text-gray-500 mb-3">Portfolio vs benchmark drawdown profile over 252-day window</p>
+              <Card className="bg-card border-border p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-1">Peak-to-Trough Drawdown Analysis</h3>
+                <p className="text-xs text-muted-foreground mb-3">Portfolio vs benchmark drawdown profile over 252-day window</p>
                 <DrawdownChart actual={data.equityCurveActual} benchmark={data.equityCurveHedged} />
               </Card>
             </motion.div>
@@ -1437,8 +1437,8 @@ export default function AnalyticsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <Card className="bg-gray-900 border-gray-800 p-4 h-full">
-                  <h3 className="text-sm font-semibold text-gray-100 mb-3">Top 5 Drawdown Events</h3>
+                <Card className="bg-card border-border p-4 h-full">
+                  <h3 className="text-sm font-semibold text-foreground mb-3">Top 5 Drawdown Events</h3>
                   <div className="space-y-2">
                     {data.drawdownEvents.map((evt, i) => (
                       <button
@@ -1448,7 +1448,7 @@ export default function AnalyticsPage() {
                           "w-full rounded-lg border p-2.5 text-left transition-all",
                           selectedDrawdown === i
                             ? "bg-indigo-500/15 border-indigo-600/50"
-                            : "bg-gray-950 border-gray-800 hover:border-gray-700"
+                            : "bg-background border-border hover:border-border"
                         )}
                       >
                         <div className="flex items-center justify-between">
@@ -1456,28 +1456,28 @@ export default function AnalyticsPage() {
                             <span
                               className={cn(
                                 "text-xs font-bold w-5 h-5 rounded flex items-center justify-center",
-                                selectedDrawdown === i ? "bg-indigo-600 text-white" : "bg-gray-800 text-gray-400"
+                                selectedDrawdown === i ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground"
                               )}
                             >
                               {i + 1}
                             </span>
-                            <span className="text-xs font-medium text-gray-200">{evt.label}</span>
+                            <span className="text-xs font-medium text-foreground">{evt.label}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-bold text-red-400 tabular-nums">{evt.maxLoss.toFixed(1)}%</span>
                             <ChevronRight
                               className={cn(
                                 "w-3 h-3 transition-transform",
-                                selectedDrawdown === i ? "text-indigo-400 rotate-90" : "text-gray-600"
+                                selectedDrawdown === i ? "text-indigo-400 rotate-90" : "text-muted-foreground"
                               )}
                             />
                           </div>
                         </div>
                         <div className="flex items-center gap-3 mt-1.5 pl-7">
-                          <span className="text-xs text-gray-500">{evt.duration}d duration</span>
-                          <span className="text-xs text-gray-600">•</span>
-                          <span className="text-xs text-gray-500">{evt.recovery}d recovery</span>
-                          <Badge className="bg-gray-800 text-gray-400 border-0 text-[11px] px-1.5 py-0 ml-auto">
+                          <span className="text-xs text-muted-foreground">{evt.duration}d duration</span>
+                          <span className="text-xs text-muted-foreground">•</span>
+                          <span className="text-xs text-muted-foreground">{evt.recovery}d recovery</span>
+                          <Badge className="bg-muted text-muted-foreground border-0 text-[11px] px-1.5 py-0 ml-auto">
                             {evt.regime}
                           </Badge>
                         </div>
@@ -1501,43 +1501,43 @@ export default function AnalyticsPage() {
                     exit={{ opacity: 0, x: -16 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Card className="bg-gray-900 border-gray-800 p-4 h-full">
+                    <Card className="bg-card border-border p-4 h-full">
                       <div className="flex items-center gap-2 mb-3">
                         <TrendingDown className="w-4 h-4 text-red-400" />
-                        <h3 className="text-sm font-semibold text-gray-100">{selectedDD.label}</h3>
+                        <h3 className="text-sm font-semibold text-foreground">{selectedDD.label}</h3>
                       </div>
                       <div className="grid grid-cols-2 gap-2 mb-4">
                         {[
                           { label: "Max Loss", value: `${selectedDD.maxLoss.toFixed(1)}%`, color: "text-red-400" },
-                          { label: "Duration", value: `${selectedDD.duration} days`, color: "text-gray-100" },
+                          { label: "Duration", value: `${selectedDD.duration} days`, color: "text-foreground" },
                           { label: "Recovery Time", value: `${selectedDD.recovery} days`, color: "text-amber-400" },
                           { label: "Market Regime", value: selectedDD.regime, color: "text-indigo-400" },
                         ].map((m) => (
-                          <div key={m.label} className="rounded bg-gray-950 border border-gray-800 p-2">
-                            <div className="text-xs text-gray-500">{m.label}</div>
+                          <div key={m.label} className="rounded bg-background border border-border p-2">
+                            <div className="text-xs text-muted-foreground">{m.label}</div>
                             <div className={cn("text-sm font-semibold mt-0.5", m.color)}>{m.value}</div>
                           </div>
                         ))}
                       </div>
-                      <div className="rounded-lg bg-gray-950 border border-gray-800 p-3 mb-3">
-                        <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">Root Cause</div>
-                        <p className="text-xs text-gray-300 leading-relaxed">{selectedDD.cause}</p>
+                      <div className="rounded-lg bg-background border border-border p-3 mb-3">
+                        <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Root Cause</div>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{selectedDD.cause}</p>
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <Eye className="w-3.5 h-3.5 text-gray-500" />
-                          <span className="text-xs text-gray-500">Recovery Ratio vs Market</span>
-                          <span className="text-xs font-medium text-gray-200 ml-auto">
+                          <Eye className="w-3.5 h-3.5 text-muted-foreground" />
+                          <span className="text-xs text-muted-foreground">Recovery Ratio vs Market</span>
+                          <span className="text-xs font-medium text-foreground ml-auto">
                             {(selectedDD.duration / selectedDD.recovery).toFixed(2)}×
                           </span>
                         </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full bg-indigo-500"
                             style={{ width: `${clamp((selectedDD.duration / selectedDD.recovery) * 60, 5, 100)}%` }}
                           />
                         </div>
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-muted-foreground">
                           Higher ratio = faster recovery relative to how long drawdown lasted
                         </p>
                       </div>
@@ -1553,9 +1553,9 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
-                <h3 className="text-sm font-semibold text-gray-100 mb-1">Drawdown Clustering by Market Regime</h3>
-                <p className="text-xs text-gray-500 mb-3">
+              <Card className="bg-card border-border p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-1">Drawdown Clustering by Market Regime</h3>
+                <p className="text-xs text-muted-foreground mb-3">
                   PTSD (Peak-to-Subsequent-Drawdown) metric: 2.4× — you are taking more risk than realized max loss suggests
                 </p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -1565,14 +1565,14 @@ export default function AnalyticsPage() {
                     { regime: "Sector Rotation", count: 1, avgLoss: 8.8, color: "#6366f1" },
                     { regime: "Crisis / Panic", count: 1, avgLoss: 21.1, color: "#dc2626" },
                   ].map((r) => (
-                    <div key={r.regime} className="rounded-lg bg-gray-950 border border-gray-800 p-3">
+                    <div key={r.regime} className="rounded-lg bg-background border border-border p-3">
                       <div className="flex items-center gap-1.5 mb-1">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: r.color }} />
-                        <span className="text-xs text-gray-400">{r.regime}</span>
+                        <span className="text-xs text-muted-foreground">{r.regime}</span>
                       </div>
                       <div className="text-lg font-bold text-red-400 tabular-nums">−{r.avgLoss.toFixed(1)}%</div>
-                      <div className="text-xs text-gray-500 mt-0.5">avg max loss</div>
-                      <div className="text-xs text-gray-600 mt-1">{r.count} event{r.count > 1 ? "s" : ""}</div>
+                      <div className="text-xs text-muted-foreground mt-0.5">avg max loss</div>
+                      <div className="text-xs text-muted-foreground mt-1">{r.count} event{r.count > 1 ? "s" : ""}</div>
                     </div>
                   ))}
                 </div>
@@ -1587,11 +1587,11 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
+              <Card className="bg-card border-border p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-100">What-If Machine — Scenario Equity Curves</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Toggle scenarios to compare against your actual performance</p>
+                    <h3 className="text-sm font-semibold text-foreground">What-If Machine — Scenario Equity Curves</h3>
+                    <p className="text-xs text-muted-foreground mt-0.5">Toggle scenarios to compare against your actual performance</p>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {scenarioResults.map((s) => (
@@ -1604,7 +1604,7 @@ export default function AnalyticsPage() {
                           "text-xs rounded-full px-2.5 py-0.5 border transition-all font-medium",
                           scenarioVisible[s.key]
                             ? "border-transparent text-white"
-                            : "bg-gray-950 border-gray-700 text-gray-500"
+                            : "bg-background border-border text-muted-foreground"
                         )}
                         style={
                           scenarioVisible[s.key]
@@ -1627,53 +1627,53 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.08 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
-                <h3 className="text-sm font-semibold text-gray-100 mb-3">Scenario Return Comparison</h3>
+              <Card className="bg-card border-border p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3">Scenario Return Comparison</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-gray-800">
-                        <th className="text-left py-2 text-gray-500 font-medium">Scenario</th>
-                        <th className="text-right py-2 text-gray-500 font-medium">Final Value</th>
-                        <th className="text-right py-2 text-gray-500 font-medium">Return</th>
-                        <th className="text-right py-2 text-gray-500 font-medium">vs Actual</th>
-                        <th className="text-left py-2 text-gray-500 font-medium">Rule</th>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 text-muted-foreground font-medium">Scenario</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Final Value</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Return</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">vs Actual</th>
+                        <th className="text-left py-2 text-muted-foreground font-medium">Rule</th>
                       </tr>
                     </thead>
                     <tbody>
                       {/* Actual row */}
-                      <tr className="border-b border-gray-800 bg-gray-800/20">
+                      <tr className="border-b border-border bg-muted/20">
                         <td className="py-2.5">
                           <div className="flex items-center gap-2">
                             <div className="w-2 h-2 rounded-full bg-gray-300" />
-                            <span className="font-semibold text-gray-100">Actual</span>
+                            <span className="font-semibold text-foreground">Actual</span>
                           </div>
                         </td>
-                        <td className="py-2.5 text-right tabular-nums text-gray-100">${actualFinal.toFixed(2)}</td>
-                        <td className="py-2.5 text-right tabular-nums text-gray-100">
+                        <td className="py-2.5 text-right tabular-nums text-foreground">${actualFinal.toFixed(2)}</td>
+                        <td className="py-2.5 text-right tabular-nums text-foreground">
                           {((actualFinal / 100 - 1) * 100).toFixed(1)}%
                         </td>
-                        <td className="py-2.5 text-right text-gray-500">—</td>
-                        <td className="py-2.5 text-gray-400">Baseline (your trades)</td>
+                        <td className="py-2.5 text-right text-muted-foreground">—</td>
+                        <td className="py-2.5 text-muted-foreground">Baseline (your trades)</td>
                       </tr>
                       {scenarioResults.map((s) => {
                         const ret = ((s.final / 100 - 1) * 100).toFixed(1);
                         const diff = ((s.final - actualFinal) / actualFinal) * 100;
                         const pos = diff >= 0;
                         return (
-                          <tr key={s.key} className="border-b border-gray-800/50">
+                          <tr key={s.key} className="border-b border-border/50">
                             <td className="py-2.5">
                               <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
-                                <span className="text-gray-200">{s.key}</span>
+                                <span className="text-foreground">{s.key}</span>
                               </div>
                             </td>
-                            <td className="py-2.5 text-right tabular-nums text-gray-100">${s.final.toFixed(2)}</td>
-                            <td className="py-2.5 text-right tabular-nums text-gray-100">{ret}%</td>
+                            <td className="py-2.5 text-right tabular-nums text-foreground">${s.final.toFixed(2)}</td>
+                            <td className="py-2.5 text-right tabular-nums text-foreground">{ret}%</td>
                             <td className={cn("py-2.5 text-right tabular-nums font-semibold", pos ? "text-green-400" : "text-red-400")}>
                               {pos ? "+" : ""}{diff.toFixed(1)}%
                             </td>
-                            <td className="py-2.5 text-gray-500 text-xs">{s.label}</td>
+                            <td className="py-2.5 text-muted-foreground text-xs">{s.label}</td>
                           </tr>
                         );
                       })}
@@ -1689,8 +1689,8 @@ export default function AnalyticsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.16 }}
             >
-              <Card className="bg-gray-900 border-gray-800 p-4">
-                <h3 className="text-sm font-semibold text-gray-100 mb-3">Regret Minimization — Key Decision Impact</h3>
+              <Card className="bg-card border-border p-4">
+                <h3 className="text-sm font-semibold text-foreground mb-3">Regret Minimization — Key Decision Impact</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {[
                     {
@@ -1749,8 +1749,8 @@ export default function AnalyticsPage() {
                           {item.impact}
                         </span>
                       </div>
-                      <div className="text-xs font-medium text-gray-200 mb-1">{item.decision}</div>
-                      <p className="text-xs text-gray-500 leading-tight">{item.detail}</p>
+                      <div className="text-xs font-medium text-foreground mb-1">{item.decision}</div>
+                      <p className="text-xs text-muted-foreground leading-tight">{item.detail}</p>
                     </div>
                   ))}
                 </div>
@@ -1762,7 +1762,7 @@ export default function AnalyticsPage() {
                       +{(((data.equityCurveOptimal[data.equityCurveOptimal.length - 1] / 100 - 1) * 100)).toFixed(1)}% return
                     </span>
                   </div>
-                  <p className="text-xs text-gray-500 leading-tight">
+                  <p className="text-xs text-muted-foreground leading-tight">
                     With perfect hindsight over 252 days. The gap between this and your actual return ({((actualFinal / 100 - 1) * 100).toFixed(1)}%) represents the maximum possible improvement from better decisions.
                   </p>
                 </div>

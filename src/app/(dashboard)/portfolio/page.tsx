@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { Skeleton } from "@/components/ui/skeleton";
 import { PerformanceMetrics } from "@/components/portfolio/PerformanceMetrics";
 import { TradeJournal } from "@/components/portfolio/TradeJournal";
 import { QuantDashboard } from "@/components/portfolio/QuantDashboard";
@@ -64,12 +65,37 @@ import { BlackLitterman } from "@/components/portfolio/BlackLitterman";
 import { RebalancingTool } from "@/components/portfolio/RebalancingTool";
 import { AttributionAnalysis } from "@/components/portfolio/AttributionAnalysis";
 
+function ChartSkeleton({ height = "h-[200px]" }: { height?: string }) {
+  return (
+    <div className={`${height} flex flex-col gap-2 p-2`}>
+      <div className="flex justify-between">
+        <Skeleton className="h-3 w-16" />
+        <Skeleton className="h-3 w-12" />
+      </div>
+      <div className="flex flex-1 items-end gap-[3px]">
+        {Array.from({ length: 24 }).map((_, i) => (
+          <Skeleton
+            key={i}
+            className="flex-1 rounded-sm"
+            style={{ height: `${30 + Math.sin(i * 0.5) * 25 + 20}%` }}
+          />
+        ))}
+      </div>
+      <div className="flex justify-between">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Skeleton key={i} className="h-2.5 w-10" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const EquityCurve = dynamic(
   () =>
     import("@/components/portfolio/EquityCurve").then(
       (mod) => mod.EquityCurve,
     ),
-  { ssr: false },
+  { ssr: false, loading: () => <ChartSkeleton /> },
 );
 
 const WinRateChart = dynamic(
@@ -77,7 +103,7 @@ const WinRateChart = dynamic(
     import("@/components/portfolio/WinRateChart").then(
       (mod) => mod.WinRateChart,
     ),
-  { ssr: false },
+  { ssr: false, loading: () => <ChartSkeleton height="h-[160px]" /> },
 );
 
 const TradeCalendar = dynamic(
@@ -85,7 +111,7 @@ const TradeCalendar = dynamic(
     import("@/components/portfolio/TradeCalendar").then(
       (mod) => mod.TradeCalendar,
     ),
-  { ssr: false },
+  { ssr: false, loading: () => <ChartSkeleton height="h-[160px]" /> },
 );
 
 export default function PortfolioPage() {
@@ -136,7 +162,7 @@ export default function PortfolioPage() {
         </div>
 
         {/* Quick Stats Row */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-lg bg-muted/30 p-3">
             <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
               <Wallet className="h-3 w-3" />

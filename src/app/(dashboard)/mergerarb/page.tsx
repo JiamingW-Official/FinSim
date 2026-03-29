@@ -196,7 +196,7 @@ function ProbabilityBar({ value }: { value: number }) {
       <div className="h-1.5 flex-1 rounded-full bg-white/10">
         <div className={cn("h-full rounded-full", color)} style={{ width: `${value}%` }} />
       </div>
-      <span className="text-xs tabular-nums text-zinc-300 w-8 text-right">{value}%</span>
+      <span className="text-xs tabular-nums text-muted-foreground w-8 text-right">{value}%</span>
     </div>
   );
 }
@@ -216,7 +216,7 @@ function DealDashboard({
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-white/10 text-zinc-400 text-xs uppercase tracking-wide">
+          <tr className="border-b border-white/10 text-muted-foreground text-xs uppercase tracking-wide">
             <th className="text-left py-3 px-3 font-medium">Target</th>
             <th className="text-left py-3 px-3 font-medium">Acquirer</th>
             <th className="text-right py-3 px-3 font-medium">Deal $</th>
@@ -240,14 +240,14 @@ function DealDashboard({
             >
               <td className="py-3 px-3">
                 <div className="font-medium text-white">{deal.target}</div>
-                <div className="text-xs text-zinc-400">{deal.targetTicker}</div>
+                <div className="text-xs text-muted-foreground">{deal.targetTicker}</div>
               </td>
               <td className="py-3 px-3">
-                <div className="text-zinc-300">{deal.acquirer}</div>
-                <div className="text-xs text-zinc-500">{deal.dealType}</div>
+                <div className="text-muted-foreground">{deal.acquirer}</div>
+                <div className="text-xs text-muted-foreground">{deal.dealType}</div>
               </td>
               <td className="py-3 px-3 text-right font-mono text-white">${deal.dealPrice.toFixed(2)}</td>
-              <td className="py-3 px-3 text-right font-mono text-zinc-300">${deal.currentPrice.toFixed(2)}</td>
+              <td className="py-3 px-3 text-right font-mono text-muted-foreground">${deal.currentPrice.toFixed(2)}</td>
               <td className="py-3 px-3 text-right">
                 <span className="text-emerald-400 font-mono">+{deal.spreadPct}%</span>
               </td>
@@ -259,7 +259,7 @@ function DealDashboard({
                       ? "text-emerald-400"
                       : deal.annualizedReturn > 5
                       ? "text-amber-400"
-                      : "text-zinc-300"
+                      : "text-muted-foreground"
                   )}
                 >
                   {deal.annualizedReturn.toFixed(1)}%
@@ -268,7 +268,7 @@ function DealDashboard({
               <td className="py-3 px-3 min-w-[120px]">
                 <ProbabilityBar value={deal.impliedProbability} />
               </td>
-              <td className="py-3 px-3 text-zinc-400 text-xs whitespace-nowrap">{deal.closeDate}</td>
+              <td className="py-3 px-3 text-muted-foreground text-xs whitespace-nowrap">{deal.closeDate}</td>
               <td className="py-3 px-3">
                 <StatusBadge status={deal.status} />
               </td>
@@ -307,9 +307,9 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
   ];
 
   return (
-    <Card className="bg-zinc-900 border-white/10">
+    <Card className="bg-card border-white/10">
       <CardHeader className="pb-3">
-        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
           Spread Decomposition — {deal.targetTicker}
         </CardTitle>
@@ -317,13 +317,13 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
       <CardContent className="space-y-4">
         <div className="text-3xl font-bold text-white tabular-nums">
           +{breakdown.total.toFixed(2)}%
-          <span className="text-sm font-normal text-zinc-400 ml-2">total spread</span>
+          <span className="text-sm font-normal text-muted-foreground ml-2">total spread</span>
         </div>
 
         {bars.map((bar) => (
           <div key={bar.label} className="space-y-1.5">
             <div className="flex justify-between text-xs">
-              <span className="text-zinc-300">{bar.label}</span>
+              <span className="text-muted-foreground">{bar.label}</span>
               <span className="text-white font-mono">{bar.value.toFixed(2)}%</span>
             </div>
             <div className="h-2 rounded-full bg-white/10">
@@ -332,26 +332,26 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
                 style={{ width: `${Math.min(100, (bar.value / breakdown.total) * 100)}%` }}
               />
             </div>
-            <div className="text-xs text-zinc-500">{bar.desc}</div>
+            <div className="text-xs text-muted-foreground">{bar.desc}</div>
           </div>
         ))}
 
         <div className="pt-2 border-t border-white/10 grid grid-cols-2 gap-3 text-sm">
           <div>
-            <div className="text-zinc-500 text-xs">Days to Close</div>
+            <div className="text-muted-foreground text-xs">Days to Close</div>
             <div className="text-white font-mono">{deal.daysToClose}d</div>
           </div>
           <div>
-            <div className="text-zinc-500 text-xs">Ann. Return</div>
+            <div className="text-muted-foreground text-xs">Ann. Return</div>
             <div className="text-emerald-400 font-mono">{deal.annualizedReturn.toFixed(1)}%</div>
           </div>
           <div>
-            <div className="text-zinc-500 text-xs">Deal Size</div>
+            <div className="text-muted-foreground text-xs">Deal Size</div>
             <div className="text-white font-mono">${deal.dealSize}B</div>
           </div>
           <div>
-            <div className="text-zinc-500 text-xs">Structure</div>
-            <div className="text-zinc-300">{deal.dealType}</div>
+            <div className="text-muted-foreground text-xs">Structure</div>
+            <div className="text-muted-foreground">{deal.dealType}</div>
           </div>
         </div>
       </CardContent>
@@ -394,12 +394,12 @@ function DealRiskMatrix({ deals }: { deals: Deal[] }) {
   const BUBBLE_COLORS = ["#3b82f6", "#8b5cf6", "#10b981", "#f59e0b", "#ef4444", "#06b6d4"];
 
   return (
-    <Card className="bg-zinc-900 border-white/10">
+    <Card className="bg-card border-white/10">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
           Deal Risk Matrix
-          <span className="text-xs text-zinc-500 font-normal ml-1">(bubble size = deal size $B)</span>
+          <span className="text-xs text-muted-foreground font-normal ml-1">(bubble size = deal size $B)</span>
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -517,20 +517,20 @@ function HistoricalPerformance({ history }: { history: PortfolioPoint[] }) {
   const lastSp = history[history.length - 1].sp500Return;
 
   return (
-    <Card className="bg-zinc-900 border-white/10">
+    <Card className="bg-card border-white/10">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           Historical Performance — Last 12 Months
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex gap-4 mb-3">
-          <div className="flex items-center gap-2 text-xs text-zinc-400">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <div className="w-5 h-0.5 bg-emerald-500 rounded" />
             Merger Arb Portfolio
           </div>
-          <div className="flex items-center gap-2 text-xs text-zinc-400">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <div className="w-5 h-0.5 bg-primary rounded" />
             S&amp;P 500
           </div>
@@ -577,19 +577,19 @@ function HistoricalPerformance({ history }: { history: PortfolioPoint[] }) {
         </svg>
         <div className="grid grid-cols-3 gap-4 mt-3 pt-3 border-t border-white/10 text-center">
           <div>
-            <div className="text-xs text-zinc-500">Arb YTD Return</div>
+            <div className="text-xs text-muted-foreground">Arb YTD Return</div>
             <div className="text-emerald-400 font-mono font-bold">
               {lastArb > 0 ? "+" : ""}{lastArb.toFixed(1)}%
             </div>
           </div>
           <div>
-            <div className="text-xs text-zinc-500">S&amp;P 500 YTD</div>
+            <div className="text-xs text-muted-foreground">S&amp;P 500 YTD</div>
             <div className={cn("font-mono font-bold", lastSp >= 0 ? "text-primary" : "text-red-400")}>
               {lastSp > 0 ? "+" : ""}{lastSp.toFixed(1)}%
             </div>
           </div>
           <div>
-            <div className="text-xs text-zinc-500">Sharpe Ratio</div>
+            <div className="text-xs text-muted-foreground">Sharpe Ratio</div>
             <div className="text-white font-mono font-bold">1.42</div>
           </div>
         </div>
@@ -662,9 +662,9 @@ function RiskFactorsPanel() {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <Card className="bg-zinc-900 border-white/10">
+    <Card className="bg-card border-white/10">
       <CardHeader className="pb-3">
-        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
           <Shield className="w-4 h-4 text-amber-400" />
           Risk Factors
         </CardTitle>
@@ -687,16 +687,16 @@ function RiskFactorsPanel() {
                   ) : (
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
                   )}
-                  <span className="text-sm text-zinc-200">{rf.label}</span>
+                  <span className="text-sm text-foreground">{rf.label}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", sc.bg, sc.text)}>
                     {rf.severity}
                   </span>
                   {isOpen ? (
-                    <ChevronDown className="w-4 h-4 text-zinc-500" />
+                    <ChevronDown className="w-4 h-4 text-muted-foreground" />
                   ) : (
-                    <ChevronRight className="w-4 h-4 text-zinc-500" />
+                    <ChevronRight className="w-4 h-4 text-muted-foreground" />
                   )}
                 </div>
               </button>
@@ -707,7 +707,7 @@ function RiskFactorsPanel() {
                   transition={{ duration: 0.2 }}
                   className="px-4 pb-3"
                 >
-                  <p className="text-sm text-zinc-400 leading-relaxed">{rf.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{rf.description}</p>
                 </motion.div>
               )}
             </div>
@@ -748,13 +748,13 @@ function ArbitrageCalculator() {
   const rrRatio = Math.abs(grossPnL) / Math.max(0.01, Math.abs(breakLoss));
 
   const inputClass =
-    "w-full bg-zinc-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-primary/50 transition-colors";
-  const labelClass = "text-xs text-zinc-400 mb-1 block";
+    "w-full bg-muted border border-white/10 rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-primary/50 transition-colors";
+  const labelClass = "text-xs text-muted-foreground mb-1 block";
 
   return (
-    <Card className="bg-zinc-900 border-white/10">
+    <Card className="bg-card border-white/10">
       <CardHeader className="pb-3">
-        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
           <Calculator className="w-4 h-4 text-primary" />
           Arbitrage Calculator
         </CardTitle>
@@ -838,24 +838,24 @@ function ArbitrageCalculator() {
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
-            <div className="text-xs text-zinc-500 mb-1">Gross P&amp;L</div>
+          <div className="bg-muted/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-muted-foreground mb-1">Gross P&amp;L</div>
             <div className={cn("text-xl font-bold font-mono", grossPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
               {grossPnL >= 0 ? "+" : ""}${grossPnL.toFixed(0)}
             </div>
           </div>
-          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
-            <div className="text-xs text-zinc-500 mb-1">Ann. Return</div>
+          <div className="bg-muted/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-muted-foreground mb-1">Ann. Return</div>
             <div className="text-xl font-bold font-mono text-primary">{annualizedReturn.toFixed(1)}%</div>
           </div>
-          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
-            <div className="text-xs text-zinc-500 mb-1">Expected Value</div>
+          <div className="bg-muted/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-muted-foreground mb-1">Expected Value</div>
             <div className={cn("text-xl font-bold font-mono", expectedValue >= 0 ? "text-white" : "text-red-400")}>
               {expectedValue >= 0 ? "+" : ""}${expectedValue.toFixed(0)}
             </div>
           </div>
-          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
-            <div className="text-xs text-zinc-500 mb-1">Reward / Risk</div>
+          <div className="bg-muted/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-muted-foreground mb-1">Reward / Risk</div>
             <div className={cn("text-xl font-bold font-mono", rrRatio >= 1 ? "text-emerald-400" : "text-amber-400")}>
               {rrRatio.toFixed(2)}x
             </div>
@@ -864,17 +864,17 @@ function ArbitrageCalculator() {
 
         <div className="mt-4 grid grid-cols-3 gap-3 text-center text-sm border-t border-white/10 pt-4">
           <div>
-            <div className="text-xs text-zinc-500">Capital Deployed</div>
-            <div className="text-zinc-300 font-mono">${capitalDeployed.toLocaleString()}</div>
+            <div className="text-xs text-muted-foreground">Capital Deployed</div>
+            <div className="text-muted-foreground font-mono">${capitalDeployed.toLocaleString()}</div>
           </div>
           <div>
-            <div className="text-xs text-zinc-500">Spread</div>
+            <div className="text-xs text-muted-foreground">Spread</div>
             <div className="text-emerald-400 font-mono">
               ${spreadPerShare.toFixed(2)} ({spreadPct.toFixed(2)}%)
             </div>
           </div>
           <div>
-            <div className="text-xs text-zinc-500">Max Break Loss</div>
+            <div className="text-xs text-muted-foreground">Max Break Loss</div>
             <div className="text-red-400 font-mono">${breakLoss.toFixed(0)}</div>
           </div>
         </div>
@@ -927,11 +927,11 @@ function SummaryStats({ deals }: { deals: Deal[] }) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {stats.map((stat) => (
-        <Card key={stat.label} className="bg-zinc-900 border-white/10">
+        <Card key={stat.label} className="bg-card border-white/10">
           <CardContent className="pt-4 pb-3">
             <div className={cn("mb-1", stat.color)}>{stat.icon}</div>
             <div className={cn("text-xl font-bold font-mono", stat.color)}>{stat.value}</div>
-            <div className="text-xs text-zinc-500 mt-0.5">{stat.label}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
           </CardContent>
         </Card>
       ))}
@@ -954,7 +954,7 @@ export default function MergerArbPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-zinc-950 text-white p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-white p-4 md:p-6 space-y-6"
     >
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -963,7 +963,7 @@ export default function MergerArbPage() {
             <TrendingDown className="w-6 h-6 text-primary" />
             Merger Arbitrage
           </h1>
-          <p className="text-sm text-zinc-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             Exploit acquisition spreads — earn returns by positioning in announced M&amp;A deals
           </p>
         </div>
@@ -981,29 +981,29 @@ export default function MergerArbPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="dashboard">
-        <TabsList className="bg-zinc-900 border border-white/10">
-          <TabsTrigger value="dashboard" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+        <TabsList className="bg-card border border-white/10">
+          <TabsTrigger value="dashboard" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Deal Dashboard
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+          <TabsTrigger value="analysis" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Analysis
           </TabsTrigger>
-          <TabsTrigger value="risk" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+          <TabsTrigger value="risk" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Risk Factors
           </TabsTrigger>
-          <TabsTrigger value="calculator" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+          <TabsTrigger value="calculator" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Calculator
           </TabsTrigger>
         </TabsList>
 
         {/* Tab: Dashboard */}
         <TabsContent value="dashboard" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-zinc-900 border-white/10">
+          <Card className="bg-card border-white/10">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Active Deals
-                <span className="text-xs text-zinc-500 font-normal ml-1">
+                <span className="text-xs text-muted-foreground font-normal ml-1">
                   — click a row to analyze spread
                 </span>
               </CardTitle>
@@ -1036,9 +1036,9 @@ export default function MergerArbPage() {
             <HistoricalPerformance history={PORTFOLIO_HISTORY} />
           </div>
 
-          <Card className="bg-zinc-900 border-white/10">
+          <Card className="bg-card border-white/10">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-primary" />
                 Deal Metrics Summary
               </CardTitle>
@@ -1047,7 +1047,7 @@ export default function MergerArbPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="text-zinc-400 border-b border-white/10 text-left">
+                    <tr className="text-muted-foreground border-b border-white/10 text-left">
                       <th className="py-2 pr-4 font-medium">Target</th>
                       <th className="py-2 pr-4 font-medium text-right">Spread</th>
                       <th className="py-2 pr-4 font-medium text-right">Ann. Ret.</th>
@@ -1066,13 +1066,13 @@ export default function MergerArbPage() {
                         <td className="py-2 pr-4 text-right font-mono text-primary">
                           {d.annualizedReturn.toFixed(1)}%
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-zinc-300">
+                        <td className="py-2 pr-4 text-right font-mono text-muted-foreground">
                           {d.impliedProbability}%
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-zinc-300">
+                        <td className="py-2 pr-4 text-right font-mono text-muted-foreground">
                           ${d.dealSize}B
                         </td>
-                        <td className="py-2 pr-4 text-right font-mono text-zinc-400">
+                        <td className="py-2 pr-4 text-right font-mono text-muted-foreground">
                           {d.daysToClose}d
                         </td>
                       </tr>
@@ -1088,14 +1088,14 @@ export default function MergerArbPage() {
         <TabsContent value="risk" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <RiskFactorsPanel />
 
-          <Card className="bg-zinc-900 border-white/10">
+          <Card className="bg-card border-white/10">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Info className="w-4 h-4 text-primary" />
                 Merger Arbitrage Education
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4 text-sm text-zinc-400 leading-relaxed">
+            <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               <div>
                 <div className="text-white font-medium mb-1">What is Merger Arbitrage?</div>
                 <p>
@@ -1149,9 +1149,9 @@ export default function MergerArbPage() {
       </Tabs>
 
       {/* Quick-select deal buttons */}
-      <Card className="bg-zinc-900 border-white/10">
+      <Card className="bg-card border-white/10">
         <CardContent className="pt-4">
-          <div className="text-xs text-zinc-500 mb-3">Quick Select Deal for Spread Analysis:</div>
+          <div className="text-xs text-muted-foreground mb-3">Quick Select Deal for Spread Analysis:</div>
           <div className="flex flex-wrap gap-2">
             {DEALS.map((deal) => (
               <Button

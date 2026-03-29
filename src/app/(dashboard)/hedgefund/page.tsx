@@ -417,7 +417,7 @@ function signalColor(s: TrendMarket["signal"]) {
   return {
     strong_long: "text-emerald-400 bg-emerald-400/10",
     long: "text-green-400 bg-green-400/10",
-    neutral: "text-zinc-400 bg-zinc-400/10",
+    neutral: "text-muted-foreground bg-zinc-400/10",
     short: "text-orange-400 bg-orange-400/10",
     strong_short: "text-red-400 bg-red-400/10",
   }[s];
@@ -454,13 +454,13 @@ function StatChip({
 }) {
   return (
     <div className="flex flex-col gap-0.5 rounded-md bg-white/5 px-3 py-2 min-w-[90px]">
-      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span
         className={cn(
           "text-sm font-semibold tabular-nums",
           positive === true && "text-emerald-400",
           positive === false && "text-red-400",
-          positive === undefined && "text-zinc-100"
+          positive === undefined && "text-foreground"
         )}
       >
         {value}
@@ -612,24 +612,24 @@ function StrategyExplorer() {
                 className="inline-block w-2 h-2 rounded-full flex-shrink-0"
                 style={{ background: st.color }}
               />
-              <span className="text-xs font-semibold text-zinc-100 leading-tight">{st.name}</span>
+              <span className="text-xs font-semibold text-foreground leading-tight">{st.name}</span>
             </div>
-            <div className="flex justify-between text-xs text-zinc-500 mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span>Sharpe</span>
-              <span className="text-zinc-300 font-medium">{st.sharpe.toFixed(2)}</span>
+              <span className="text-muted-foreground font-medium">{st.sharpe.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between text-xs text-zinc-500 mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span>SP Corr</span>
               <span
                 className={cn(
                   "font-medium",
-                  st.spCorr < 0.2 ? "text-emerald-400" : "text-zinc-300"
+                  st.spCorr < 0.2 ? "text-emerald-400" : "text-muted-foreground"
                 )}
               >
                 {st.spCorr.toFixed(2)}
               </span>
             </div>
-            <div className="text-xs text-zinc-500">Gross: {st.grossLeverage}</div>
+            <div className="text-xs text-muted-foreground">Gross: {st.grossLeverage}</div>
           </motion.button>
         ))}
       </div>
@@ -646,10 +646,10 @@ function StrategyExplorer() {
           >
             <div className="flex flex-wrap items-start gap-4 mb-4">
               <div className="flex-1 min-w-0">
-                <h3 className="text-base font-semibold text-zinc-100 mb-1" style={{ color: sel.color }}>
+                <h3 className="text-base font-semibold text-foreground mb-1" style={{ color: sel.color }}>
                   {sel.name}
                 </h3>
-                <p className="text-sm text-zinc-400">{sel.description}</p>
+                <p className="text-sm text-muted-foreground">{sel.description}</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 <StatChip label="Gross Leverage" value={sel.grossLeverage} />
@@ -664,13 +664,13 @@ function StrategyExplorer() {
                 <div className="flex items-center gap-1.5 mb-1 text-emerald-400 text-xs font-semibold uppercase tracking-wide">
                   <TrendingUp className="w-3.5 h-3.5" /> Best environment
                 </div>
-                <p className="text-zinc-300 text-xs">{sel.bestEnv}</p>
+                <p className="text-muted-foreground text-xs">{sel.bestEnv}</p>
               </div>
               <div className="rounded-lg bg-red-400/8 border border-red-400/20 p-3">
                 <div className="flex items-center gap-1.5 mb-1 text-red-400 text-xs font-semibold uppercase tracking-wide">
                   <ShieldAlert className="w-3.5 h-3.5" /> Worst environment
                 </div>
-                <p className="text-zinc-300 text-xs">{sel.worstEnv}</p>
+                <p className="text-muted-foreground text-xs">{sel.worstEnv}</p>
               </div>
             </div>
           </motion.div>
@@ -681,7 +681,7 @@ function StrategyExplorer() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Risk-Return Scatter (Bubble Size = AUM)</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Risk-Return Scatter (Bubble Size = AUM)</CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
             <RiskReturnChart />
@@ -690,22 +690,22 @@ function StrategyExplorer() {
 
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Annual Returns by Strategy</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Annual Returns by Strategy</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-2 pr-3 text-zinc-500 font-medium">Strategy</th>
+                  <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Strategy</th>
                   {YEARS.map((y) => (
-                    <th key={y} className="text-right py-2 px-2 text-zinc-500 font-medium">{y}</th>
+                    <th key={y} className="text-right py-2 px-2 text-muted-foreground font-medium">{y}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {STRATEGIES.map((st) => (
                   <tr key={st.id} className="border-b border-white/5 hover:bg-white/3 transition-colors">
-                    <td className="py-1.5 pr-3 text-zinc-300 whitespace-nowrap">
+                    <td className="py-1.5 pr-3 text-muted-foreground whitespace-nowrap">
                       <span
                         className="inline-block w-1.5 h-1.5 rounded-full mr-1.5"
                         style={{ background: st.color }}
@@ -842,7 +842,7 @@ function LSEquitySimulator() {
         {/* Longs table */}
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-emerald-400" />
               Long Book (10 positions)
             </CardTitle>
@@ -851,12 +851,12 @@ function LSEquitySimulator() {
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-1.5 text-zinc-500">Ticker</th>
-                  <th className="text-right py-1.5 text-zinc-500">Shares</th>
-                  <th className="text-right py-1.5 text-zinc-500">Entry</th>
-                  <th className="text-right py-1.5 text-zinc-500">Curr</th>
-                  <th className="text-right py-1.5 text-zinc-500">P&L</th>
-                  <th className="text-right py-1.5 text-zinc-500">β</th>
+                  <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Shares</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Entry</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Curr</th>
+                  <th className="text-right py-1.5 text-muted-foreground">P&L</th>
+                  <th className="text-right py-1.5 text-muted-foreground">β</th>
                 </tr>
               </thead>
               <tbody>
@@ -865,14 +865,14 @@ function LSEquitySimulator() {
                   const plPct = ((p.currentPrice - p.entryPrice) / p.entryPrice) * 100;
                   return (
                     <tr key={p.ticker} className="border-b border-white/5">
-                      <td className="py-1.5 text-zinc-200 font-medium">{p.ticker}</td>
-                      <td className="py-1.5 text-right text-zinc-400">{p.shares.toLocaleString()}</td>
-                      <td className="py-1.5 text-right text-zinc-400">${p.entryPrice.toFixed(1)}</td>
-                      <td className="py-1.5 text-right text-zinc-300">${p.currentPrice.toFixed(1)}</td>
+                      <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">{p.shares.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">${p.entryPrice.toFixed(1)}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">${p.currentPrice.toFixed(1)}</td>
                       <td className={cn("py-1.5 text-right font-medium", pl > 0 ? "text-emerald-400" : "text-red-400")}>
                         {pct(plPct)}
                       </td>
-                      <td className="py-1.5 text-right text-zinc-500">{p.beta.toFixed(2)}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">{p.beta.toFixed(2)}</td>
                     </tr>
                   );
                 })}
@@ -884,7 +884,7 @@ function LSEquitySimulator() {
         {/* Shorts table */}
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <TrendingDown className="w-4 h-4 text-red-400" />
               Short Book (5 positions)
             </CardTitle>
@@ -893,12 +893,12 @@ function LSEquitySimulator() {
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-1.5 text-zinc-500">Ticker</th>
-                  <th className="text-right py-1.5 text-zinc-500">Shares</th>
-                  <th className="text-right py-1.5 text-zinc-500">Entry</th>
-                  <th className="text-right py-1.5 text-zinc-500">Curr</th>
-                  <th className="text-right py-1.5 text-zinc-500">P&L</th>
-                  <th className="text-right py-1.5 text-zinc-500">β</th>
+                  <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Shares</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Entry</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Curr</th>
+                  <th className="text-right py-1.5 text-muted-foreground">P&L</th>
+                  <th className="text-right py-1.5 text-muted-foreground">β</th>
                 </tr>
               </thead>
               <tbody>
@@ -907,14 +907,14 @@ function LSEquitySimulator() {
                   const plPct = ((p.entryPrice - p.currentPrice) / p.entryPrice) * 100;
                   return (
                     <tr key={p.ticker} className="border-b border-white/5">
-                      <td className="py-1.5 text-zinc-200 font-medium">{p.ticker}</td>
-                      <td className="py-1.5 text-right text-zinc-400">{p.shares.toLocaleString()}</td>
-                      <td className="py-1.5 text-right text-zinc-400">${p.entryPrice.toFixed(2)}</td>
-                      <td className="py-1.5 text-right text-zinc-300">${p.currentPrice.toFixed(2)}</td>
+                      <td className="py-1.5 text-foreground font-medium">{p.ticker}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">{p.shares.toLocaleString()}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">${p.entryPrice.toFixed(2)}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">${p.currentPrice.toFixed(2)}</td>
                       <td className={cn("py-1.5 text-right font-medium", pl > 0 ? "text-emerald-400" : "text-red-400")}>
                         {pct(plPct)}
                       </td>
-                      <td className="py-1.5 text-right text-zinc-500">{p.beta.toFixed(2)}</td>
+                      <td className="py-1.5 text-right text-muted-foreground">{p.beta.toFixed(2)}</td>
                     </tr>
                   );
                 })}
@@ -928,7 +928,7 @@ function LSEquitySimulator() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Pair Trade — Long AAPL / Short MSFT</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Pair Trade — Long AAPL / Short MSFT</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 space-y-3">
             <div className="flex gap-3">
@@ -938,7 +938,7 @@ function LSEquitySimulator() {
               <StatChip label="Correlation" value="0.84" />
             </div>
             <SpreadChart />
-            <p className="text-xs text-zinc-500">
+            <p className="text-xs text-muted-foreground">
               The pair spread has mean-reverted close to zero over the trailing 60 days, consistent
               with a high-correlation pairs trade. Current spread is marginally positive — AAPL
               slightly outperforming MSFT on a dollar-neutral basis.
@@ -948,7 +948,7 @@ function LSEquitySimulator() {
 
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Factor Exposure & Portfolio Heat</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Factor Exposure & Portfolio Heat</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 space-y-3">
             {[
@@ -961,8 +961,8 @@ function LSEquitySimulator() {
             ].map(({ label, value, max, color }) => (
               <div key={label}>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-zinc-400">{label}</span>
-                  <span className="text-zinc-300 font-medium">{value.toFixed(1)}%</span>
+                  <span className="text-muted-foreground">{label}</span>
+                  <span className="text-muted-foreground font-medium">{value.toFixed(1)}%</span>
                 </div>
                 <div className="h-1.5 rounded-full bg-white/8 overflow-hidden">
                   <div
@@ -1084,31 +1084,31 @@ function GlobalMacroSimulator() {
                         {theme.category.charAt(0).toUpperCase() + theme.category.slice(1)}
                       </Badge>
                     </div>
-                    <h4 className="text-sm font-semibold text-zinc-100">{theme.name}</h4>
+                    <h4 className="text-sm font-semibold text-foreground">{theme.name}</h4>
                   </div>
                   <span className={cn("text-sm font-semibold tabular-nums", plPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {pct(plPct)}
                   </span>
                 </div>
-                <p className="text-xs text-zinc-500">{theme.thesis}</p>
+                <p className="text-xs text-muted-foreground">{theme.thesis}</p>
                 <div className="grid grid-cols-4 gap-2 text-xs">
                   {[["Instrument", theme.instrument], ["Entry", `${theme.unit}${theme.entry}`], ["Current", `${theme.unit}${theme.current}`], ["Target", `${theme.unit}${theme.target}`]].map(([l, v]) => (
                     <div key={l} className="bg-white/5 rounded px-2 py-1.5">
-                      <div className="text-zinc-600 text-[11px] uppercase">{l}</div>
-                      <div className="text-zinc-200 font-medium truncate">{v}</div>
+                      <div className="text-muted-foreground text-[11px] uppercase">{l}</div>
+                      <div className="text-foreground font-medium truncate">{v}</div>
                     </div>
                   ))}
                 </div>
                 <div>
-                  <div className="flex justify-between text-xs text-zinc-500 mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span>Entry → Target progress</span>
                     <span>{progress.toFixed(0)}%</span>
                   </div>
                   <Progress value={progress} className="h-1.5 bg-white/10" />
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Stop: <span className="text-red-400">{theme.unit}{theme.stop}</span></span>
-                  <span className="text-zinc-500">Size: <span className="text-zinc-300">${theme.size}M</span></span>
+                  <span className="text-muted-foreground">Stop: <span className="text-red-400">{theme.unit}{theme.stop}</span></span>
+                  <span className="text-muted-foreground">Size: <span className="text-muted-foreground">${theme.size}M</span></span>
                 </div>
               </CardContent>
             </Card>
@@ -1120,13 +1120,13 @@ function GlobalMacroSimulator() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Macro Regime Detector</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Macro Regime Detector</CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
             <div className="flex gap-4 flex-col sm:flex-row items-start">
               <RegimeChart activeRegime={activeRegime} />
               <div className="space-y-2 flex-1">
-                <p className="text-xs text-zinc-500 mb-2">Select current regime:</p>
+                <p className="text-xs text-muted-foreground mb-2">Select current regime:</p>
                 {MACRO_REGIMES.map((r, i) => (
                   <button
                     key={r.name}
@@ -1140,13 +1140,13 @@ function GlobalMacroSimulator() {
                     style={activeRegime === i ? { boxShadow: `0 0 0 1.5px ${r.color}` } : undefined}
                   >
                     <div className="font-semibold mb-0.5" style={{ color: r.color }}>{r.name}</div>
-                    <div className="text-zinc-500 text-xs">{r.quadrant}</div>
+                    <div className="text-muted-foreground text-xs">{r.quadrant}</div>
                   </button>
                 ))}
                 <div className="mt-3 rounded-lg bg-white/5 p-3">
-                  <p className="text-xs text-zinc-500 uppercase tracking-wide mb-1.5">Recommended trades in {regime.name}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5">Recommended trades in {regime.name}</p>
                   {regime.trades.map((t) => (
-                    <div key={t} className="flex items-center gap-1.5 text-xs text-zinc-300 py-0.5">
+                    <div key={t} className="flex items-center gap-1.5 text-xs text-muted-foreground py-0.5">
                       <ArrowUpRight className="w-3 h-3 flex-shrink-0" style={{ color: regime.color }} />
                       {t}
                     </div>
@@ -1159,29 +1159,29 @@ function GlobalMacroSimulator() {
 
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Central Bank Positioning</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Central Bank Positioning</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 space-y-2">
             {CB_STANCES.map((cb) => (
               <div key={cb.bank} className="rounded-lg bg-white/4 border border-white/8 p-3">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-zinc-200">{cb.bank}</span>
+                  <span className="text-xs font-semibold text-foreground">{cb.bank}</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-zinc-400">{cb.rate}</span>
+                    <span className="text-xs text-muted-foreground">{cb.rate}</span>
                     <Badge
                       className={cn(
                         "text-xs px-1.5 py-0 h-5",
                         cb.trend === "cutting" && "bg-emerald-400/15 text-emerald-400",
                         cb.trend === "hiking" && "bg-red-400/15 text-red-400",
-                        cb.trend === "holding" && "bg-zinc-400/15 text-zinc-400"
+                        cb.trend === "holding" && "bg-zinc-400/15 text-muted-foreground"
                       )}
                     >
                       {cb.stance}
                     </Badge>
                   </div>
                 </div>
-                <p className="text-[11px] text-zinc-500">
-                  <span className="text-zinc-400">Trade: </span>{cb.tradeIdea}
+                <p className="text-[11px] text-muted-foreground">
+                  <span className="text-muted-foreground">Trade: </span>{cb.tradeIdea}
                 </p>
               </div>
             ))}
@@ -1273,20 +1273,20 @@ function EventDriven() {
       {/* Deal table */}
       <Card className="bg-white/3 border-white/8">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Active Merger Arb Positions</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Active Merger Arb Positions</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-left py-2 text-zinc-500">Target</th>
-                <th className="text-left py-2 text-zinc-500">Acquirer</th>
-                <th className="text-right py-2 text-zinc-500">Offer</th>
-                <th className="text-right py-2 text-zinc-500">Current</th>
-                <th className="text-right py-2 text-zinc-500">Spread</th>
-                <th className="text-right py-2 text-zinc-500">Days</th>
-                <th className="text-right py-2 text-zinc-500">Ann. Return</th>
-                <th className="text-left py-2 text-zinc-500">Status</th>
+                <th className="text-left py-2 text-muted-foreground">Target</th>
+                <th className="text-left py-2 text-muted-foreground">Acquirer</th>
+                <th className="text-right py-2 text-muted-foreground">Offer</th>
+                <th className="text-right py-2 text-muted-foreground">Current</th>
+                <th className="text-right py-2 text-muted-foreground">Spread</th>
+                <th className="text-right py-2 text-muted-foreground">Days</th>
+                <th className="text-right py-2 text-muted-foreground">Ann. Return</th>
+                <th className="text-left py-2 text-muted-foreground">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -1303,12 +1303,12 @@ function EventDriven() {
                     )}
                     onClick={() => setSelected(i === selected ? null : i)}
                   >
-                    <td className="py-2 text-zinc-200 font-medium">{deal.target}</td>
-                    <td className="py-2 text-zinc-400">{deal.acquirer}</td>
-                    <td className="py-2 text-right text-zinc-300">${deal.offerPrice.toFixed(2)}</td>
-                    <td className="py-2 text-right text-zinc-300">${deal.currentPrice.toFixed(2)}</td>
+                    <td className="py-2 text-foreground font-medium">{deal.target}</td>
+                    <td className="py-2 text-muted-foreground">{deal.acquirer}</td>
+                    <td className="py-2 text-right text-muted-foreground">${deal.offerPrice.toFixed(2)}</td>
+                    <td className="py-2 text-right text-muted-foreground">${deal.currentPrice.toFixed(2)}</td>
                     <td className="py-2 text-right text-emerald-400 font-medium">{spreadPct.toFixed(2)}%</td>
-                    <td className="py-2 text-right text-zinc-400">{deal.daysToClose}d</td>
+                    <td className="py-2 text-right text-muted-foreground">{deal.daysToClose}d</td>
                     <td className="py-2 text-right text-muted-foreground font-medium">{annRet.toFixed(1)}%</td>
                     <td className="py-2 text-left">
                       <Badge
@@ -1356,7 +1356,7 @@ function EventDriven() {
               return (
                 <Card className="bg-white/3 border-white/8">
                   <CardContent className="p-5">
-                    <h4 className="text-sm font-semibold text-zinc-100 mb-3">
+                    <h4 className="text-sm font-semibold text-foreground mb-3">
                       Deal Analysis — {deal.target} / {deal.acquirer}
                     </h4>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
@@ -1369,17 +1369,17 @@ function EventDriven() {
                       <StatChip label="Kelly Size" value={`${kelly.toFixed(1)}%`} />
                       <StatChip label="Type" value={deal.dealType} />
                     </div>
-                    <div className="rounded-lg bg-white/5 p-3 text-xs text-zinc-400 space-y-1">
+                    <div className="rounded-lg bg-white/5 p-3 text-xs text-muted-foreground space-y-1">
                       <p>
-                        <span className="text-zinc-300">Spread calc: </span>
+                        <span className="text-muted-foreground">Spread calc: </span>
                         Annualised Return = (${deal.offerPrice.toFixed(2)} − ${deal.currentPrice.toFixed(2)}) / ${deal.currentPrice.toFixed(2)} × 365 / {deal.daysToClose} = {annRet.toFixed(2)}% p.a.
                       </p>
                       <p>
-                        <span className="text-zinc-300">Implied probability: </span>
+                        <span className="text-muted-foreground">Implied probability: </span>
                         Spread / (Spread + Break Loss) ≈ {impliedProb.toFixed(1)}% chance of completion implied by current price.
                       </p>
                       <p>
-                        <span className="text-zinc-300">Kelly criterion: </span>
+                        <span className="text-muted-foreground">Kelly criterion: </span>
                         Optimal position = {kelly.toFixed(1)}% of NAV. Risk: deal-break regulatory, financing, or market conditions.
                       </p>
                     </div>
@@ -1393,11 +1393,11 @@ function EventDriven() {
 
       <Card className="bg-white/3 border-white/8">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Merger Arb — 10-Year Track Record</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Merger Arb — 10-Year Track Record</CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <MergerArbHistoryChart />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Simulated 10-year NAV. Merger arb has historically delivered 6–10% p.a. with low vol (~4%),
             producing consistent Sharpe ratios above 1.0x. The strategy is not immune to market dislocations
             (2020 COVID, 2022 rate shock) which can widen spreads abruptly.
@@ -1493,26 +1493,26 @@ function CTASimulator() {
       {/* Signals table */}
       <Card className="bg-white/3 border-white/8">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Trend Following Signals & Position Sizing</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Trend Following Signals & Position Sizing</CardTitle>
         </CardHeader>
         <CardContent className="pt-0 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="text-left py-2 text-zinc-500">Market</th>
-                <th className="text-left py-2 text-zinc-500">Asset</th>
-                <th className="text-right py-2 text-zinc-500">12M Mom.</th>
-                <th className="text-left py-2 px-3 text-zinc-500">Signal</th>
-                <th className="text-right py-2 text-zinc-500">Realized Vol</th>
-                <th className="text-right py-2 text-zinc-500">Target Vol</th>
-                <th className="text-right py-2 text-zinc-500">Size (% NAV)</th>
+                <th className="text-left py-2 text-muted-foreground">Market</th>
+                <th className="text-left py-2 text-muted-foreground">Asset</th>
+                <th className="text-right py-2 text-muted-foreground">12M Mom.</th>
+                <th className="text-left py-2 px-3 text-muted-foreground">Signal</th>
+                <th className="text-right py-2 text-muted-foreground">Realized Vol</th>
+                <th className="text-right py-2 text-muted-foreground">Target Vol</th>
+                <th className="text-right py-2 text-muted-foreground">Size (% NAV)</th>
               </tr>
             </thead>
             <tbody>
               {TREND_MARKETS.map((m) => (
                 <tr key={m.name} className="border-b border-white/5">
-                  <td className="py-1.5 text-zinc-200 font-medium">{m.name}</td>
-                  <td className="py-1.5 text-zinc-500">{m.asset}</td>
+                  <td className="py-1.5 text-foreground font-medium">{m.name}</td>
+                  <td className="py-1.5 text-muted-foreground">{m.asset}</td>
                   <td className={cn("py-1.5 text-right font-medium", m.momentum12m >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {pct(m.momentum12m)}
                   </td>
@@ -1521,9 +1521,9 @@ function CTASimulator() {
                       {signalLabel(m.signal)}
                     </Badge>
                   </td>
-                  <td className="py-1.5 text-right text-zinc-400">{m.vol.toFixed(1)}%</td>
-                  <td className="py-1.5 text-right text-zinc-500">{m.targetVol}%</td>
-                  <td className="py-1.5 text-right text-zinc-300 font-medium">{m.size.toFixed(1)}%</td>
+                  <td className="py-1.5 text-right text-muted-foreground">{m.vol.toFixed(1)}%</td>
+                  <td className="py-1.5 text-right text-muted-foreground">{m.targetVol}%</td>
+                  <td className="py-1.5 text-right text-muted-foreground font-medium">{m.size.toFixed(1)}%</td>
                 </tr>
               ))}
             </tbody>
@@ -1535,7 +1535,7 @@ function CTASimulator() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Parameter Sweep — Trend Period vs Sharpe</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Parameter Sweep — Trend Period vs Sharpe</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 space-y-4">
             <div className="flex gap-2">
@@ -1547,7 +1547,7 @@ function CTASimulator() {
                     "flex-1 rounded-lg border py-2 text-sm font-medium transition-colors",
                     trendPeriod === p
                       ? "border-primary bg-primary/15 text-primary"
-                      : "border-white/8 text-zinc-500 hover:text-zinc-300 hover:bg-white/5"
+                      : "border-white/8 text-muted-foreground hover:text-muted-foreground hover:bg-white/5"
                   )}
                 >
                   {p}D
@@ -1559,7 +1559,7 @@ function CTASimulator() {
                 <div className="text-5xl font-bold text-primary mb-1">
                   {paramSharpe[trendPeriod].toFixed(2)}
                 </div>
-                <div className="text-xs text-zinc-500">Sharpe Ratio ({trendPeriod}D lookback)</div>
+                <div className="text-xs text-muted-foreground">Sharpe Ratio ({trendPeriod}D lookback)</div>
               </div>
             </div>
             <div className="space-y-1">
@@ -1568,7 +1568,7 @@ function CTASimulator() {
                 { p: 50, note: "Standard momentum window, best risk-adjusted returns historically" },
                 { p: 100, note: "Fewer signals, lower turnover, slower to adapt to regime changes" },
               ].map(({ p, note }) => (
-                <div key={p} className={cn("text-xs p-2 rounded", trendPeriod === p ? "text-zinc-300 bg-white/6" : "text-zinc-600")}>
+                <div key={p} className={cn("text-xs p-2 rounded", trendPeriod === p ? "text-muted-foreground bg-white/6" : "text-muted-foreground")}>
                   <span className="font-medium">{p}D: </span>{note}
                 </div>
               ))}
@@ -1578,12 +1578,12 @@ function CTASimulator() {
 
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Crisis Alpha — CTA vs S&P 500</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Crisis Alpha — CTA vs S&P 500</CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
             <CrisisAlphaChart />
             <div className="mt-3 rounded-lg bg-primary/8 border border-border p-3">
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-muted-foreground">
                 <span className="text-primary font-semibold">Crisis Alpha: </span>
                 CTAs delivered positive returns in 4 of 5 major equity drawdowns. The 2022 +25% return
                 during one of the worst bond and equity years illustrates trend-following&apos;s unique
@@ -1671,15 +1671,15 @@ function FundEconomics() {
       {/* Interactive sliders */}
       <Card className="bg-white/3 border-white/8">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Fee Calculator (2&amp;20 Structure)</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Fee Calculator (2&amp;20 Structure)</CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between text-xs mb-2">
-                  <span className="text-zinc-400">Fund AUM</span>
-                  <span className="text-zinc-200 font-semibold">${aumLevel}M</span>
+                  <span className="text-muted-foreground">Fund AUM</span>
+                  <span className="text-foreground font-semibold">${aumLevel}M</span>
                 </div>
                 <input
                   type="range"
@@ -1690,14 +1690,14 @@ function FundEconomics() {
                   onChange={(e) => setAumLevel(Number(e.target.value))}
                   className="w-full accent-indigo-500"
                 />
-                <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
                   <span>$50M</span><span>$2B</span>
                 </div>
               </div>
               <div>
                 <div className="flex justify-between text-xs mb-2">
-                  <span className="text-zinc-400">Annual Gross Return</span>
-                  <span className="text-zinc-200 font-semibold">{returnLevel}%</span>
+                  <span className="text-muted-foreground">Annual Gross Return</span>
+                  <span className="text-foreground font-semibold">{returnLevel}%</span>
                 </div>
                 <input
                   type="range"
@@ -1708,7 +1708,7 @@ function FundEconomics() {
                   onChange={(e) => setReturnLevel(Number(e.target.value))}
                   className="w-full accent-emerald-500"
                 />
-                <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
                   <span>-10%</span><span>+50%</span>
                 </div>
               </div>
@@ -1728,14 +1728,14 @@ function FundEconomics() {
                     highlight ? "bg-emerald-400/8 border border-emerald-400/20" : "bg-white/4"
                   )}
                 >
-                  <span className="text-zinc-400">{label}</span>
+                  <span className="text-muted-foreground">{label}</span>
                   <span className={cn("font-semibold tabular-nums", color)}>
                     ${value.toFixed(2)}M
                   </span>
                 </div>
               ))}
-              <div className="mt-1 text-[11px] text-zinc-500 px-1">
-                LP effective net return: <span className="text-zinc-300 font-medium">{lpNetPct > 0 ? lpNetPct.toFixed(1) : "N/A"}%</span>
+              <div className="mt-1 text-[11px] text-muted-foreground px-1">
+                LP effective net return: <span className="text-muted-foreground font-medium">{lpNetPct > 0 ? lpNetPct.toFixed(1) : "N/A"}%</span>
               </div>
             </div>
           </div>
@@ -1750,31 +1750,31 @@ function FundEconomics() {
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">High Water Mark — Investor Protection</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">High Water Mark — Investor Protection</CardTitle>
           </CardHeader>
           <CardContent className="pt-0">
             <table className="w-full text-xs mb-3">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-2 text-zinc-500">Year</th>
-                  <th className="text-right py-2 text-zinc-500">NAV</th>
-                  <th className="text-right py-2 text-zinc-500">HWM</th>
-                  <th className="text-right py-2 text-zinc-500">Perf Fee</th>
-                  <th className="text-left py-2 text-zinc-500">Note</th>
+                  <th className="text-left py-2 text-muted-foreground">Year</th>
+                  <th className="text-right py-2 text-muted-foreground">NAV</th>
+                  <th className="text-right py-2 text-muted-foreground">HWM</th>
+                  <th className="text-right py-2 text-muted-foreground">Perf Fee</th>
+                  <th className="text-left py-2 text-muted-foreground">Note</th>
                 </tr>
               </thead>
               <tbody>
                 {hwmScenarios.map((row) => (
                   <tr key={row.year} className="border-b border-white/5">
-                    <td className="py-1.5 text-zinc-300">{row.year}</td>
+                    <td className="py-1.5 text-muted-foreground">{row.year}</td>
                     <td className={cn("py-1.5 text-right font-medium", row.nav >= row.hwm ? "text-emerald-400" : "text-red-400")}>
                       ${row.nav}
                     </td>
-                    <td className="py-1.5 text-right text-zinc-400">${row.hwm}</td>
-                    <td className={cn("py-1.5 text-right font-medium", row.perfFee > 0 ? "text-amber-400" : "text-zinc-600")}>
+                    <td className="py-1.5 text-right text-muted-foreground">${row.hwm}</td>
+                    <td className={cn("py-1.5 text-right font-medium", row.perfFee > 0 ? "text-amber-400" : "text-muted-foreground")}>
                       {row.perfFee > 0 ? `$${row.perfFee.toFixed(1)}M` : "—"}
                     </td>
-                    <td className="py-1.5 text-zinc-500 text-xs">
+                    <td className="py-1.5 text-muted-foreground text-xs">
                       {row.nav < row.hwm ? "Loss — no perf fee"
                         : row.nav === 100 ? "Initial NAV"
                         : row.perfFee > 0 ? `New HWM, +20% on $${(row.nav - (hwmScenarios.find(s => s.year < row.year && s.hwm < row.hwm)?.hwm ?? row.hwm - row.perfFee * 5))?.toFixed(0) ?? "—"} gain`
@@ -1785,7 +1785,7 @@ function FundEconomics() {
                 ))}
               </tbody>
             </table>
-            <div className="rounded-lg bg-white/5 p-3 text-xs text-zinc-500">
+            <div className="rounded-lg bg-white/5 p-3 text-xs text-muted-foreground">
               HWM ensures GPs only collect performance fees on new profits. In Y2–Y3, despite negative/flat performance,
               no carry is charged. Fee resumes only once the fund surpasses prior peak NAV.
             </div>
@@ -1794,22 +1794,22 @@ function FundEconomics() {
 
         <Card className="bg-white/3 border-white/8">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-300">Fund Economics — Break-Even &amp; Scale</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Fund Economics — Break-Even &amp; Scale</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 space-y-4">
             <div className="rounded-xl bg-indigo-400/8 border border-indigo-400/20 p-4">
-              <p className="text-xs text-zinc-500 mb-1">Break-Even AUM (cover $3.5M fixed costs)</p>
+              <p className="text-xs text-muted-foreground mb-1">Break-Even AUM (cover $3.5M fixed costs)</p>
               <p className="text-3xl font-bold text-indigo-400">${breakEvenAUM.toFixed(0)}M</p>
-              <p className="text-xs text-zinc-600 mt-1">At 2% mgmt fee — minimum viable fund size</p>
+              <p className="text-xs text-muted-foreground mt-1">At 2% mgmt fee — minimum viable fund size</p>
             </div>
 
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-white/10">
-                  <th className="text-left py-1.5 text-zinc-500">AUM</th>
-                  <th className="text-right py-1.5 text-zinc-500">Mgmt Fee</th>
-                  <th className="text-right py-1.5 text-zinc-500">Perf Fee*</th>
-                  <th className="text-right py-1.5 text-zinc-500">GP Total</th>
+                  <th className="text-left py-1.5 text-muted-foreground">AUM</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Mgmt Fee</th>
+                  <th className="text-right py-1.5 text-muted-foreground">Perf Fee*</th>
+                  <th className="text-right py-1.5 text-muted-foreground">GP Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -1818,16 +1818,16 @@ function FundEconomics() {
                   const pf = aum * 0.10 * 0.20; // assume 10% gross return, 5% hurdle
                   return (
                     <tr key={aum} className="border-b border-white/5">
-                      <td className="py-1.5 text-zinc-300">${aum.toLocaleString()}M</td>
-                      <td className="py-1.5 text-right text-zinc-400">${mf.toFixed(1)}M</td>
+                      <td className="py-1.5 text-muted-foreground">${aum.toLocaleString()}M</td>
+                      <td className="py-1.5 text-right text-muted-foreground">${mf.toFixed(1)}M</td>
                       <td className="py-1.5 text-right text-amber-400">${pf.toFixed(1)}M</td>
-                      <td className="py-1.5 text-right text-zinc-200 font-semibold">${(mf + pf).toFixed(1)}M</td>
+                      <td className="py-1.5 text-right text-foreground font-semibold">${(mf + pf).toFixed(1)}M</td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
-            <p className="text-xs text-zinc-600">* Perf fee assumes 10% gross return, 5% hurdle, no HWM adjustment</p>
+            <p className="text-xs text-muted-foreground">* Perf fee assumes 10% gross return, 5% hurdle, no HWM adjustment</p>
 
             <div className="grid grid-cols-2 gap-2 text-xs">
               {[
@@ -1837,9 +1837,9 @@ function FundEconomics() {
                 { label: "All-In Cost (LP)", value: "3–6% drag", note: "At avg performance" },
               ].map(({ label, value, note }) => (
                 <div key={label} className="rounded-lg bg-white/5 p-2.5">
-                  <div className="text-zinc-500 text-xs mb-0.5">{label}</div>
-                  <div className="text-zinc-200 font-semibold">{value}</div>
-                  <div className="text-zinc-600 text-xs">{note}</div>
+                  <div className="text-muted-foreground text-xs mb-0.5">{label}</div>
+                  <div className="text-foreground font-semibold">{value}</div>
+                  <div className="text-muted-foreground text-xs">{note}</div>
                 </div>
               ))}
             </div>
@@ -1854,7 +1854,7 @@ function FundEconomics() {
 
 export default function HedgeFundPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-screen-xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -1867,14 +1867,14 @@ export default function HedgeFundPage() {
             <Building2 className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-zinc-100">Hedge Fund Strategies</h1>
-            <p className="text-sm text-zinc-500">
+            <h1 className="text-xl font-bold text-foreground">Hedge Fund Strategies</h1>
+            <p className="text-sm text-muted-foreground">
               Explore institutional strategies — L/S Equity, Global Macro, Merger Arb, CTA, and fund economics
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
             <Badge className="bg-indigo-400/15 text-indigo-400 text-xs">Simulated Data</Badge>
-            <Badge className="bg-zinc-700 text-zinc-300 text-xs">Institutional</Badge>
+            <Badge className="bg-muted text-muted-foreground text-xs">Institutional</Badge>
           </div>
         </motion.div>
 
@@ -1892,7 +1892,7 @@ export default function HedgeFundPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/12 data-[state=active]:text-zinc-100 text-zinc-500"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/12 data-[state=active]:text-foreground text-muted-foreground"
               >
                 {icon}
                 {label}
@@ -1922,8 +1922,8 @@ export default function HedgeFundPage() {
 
         {/* Footer note */}
         <div className="flex items-start gap-2 rounded-xl bg-white/3 border border-white/8 p-4">
-          <Info className="w-4 h-4 text-zinc-500 flex-shrink-0 mt-0.5" />
-          <p className="text-xs text-zinc-500">
+          <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+          <p className="text-xs text-muted-foreground">
             All data is simulated for educational purposes. Hedge fund strategies carry significant risks
             including leverage risk, illiquidity, manager risk, and regulatory risk. Past performance of
             simulated strategies does not predict future results. This is not investment advice.

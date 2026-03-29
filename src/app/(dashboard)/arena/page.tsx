@@ -141,29 +141,38 @@ export default function ArenaPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="border-b border-border px-4 py-4">
+      <div className="border-b border-border px-4 py-5">
         <div className="flex items-center gap-3">
           <motion.div
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
             initial={{ scale: 0, rotate: -15 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
           >
-            <Crosshair className="h-5 w-5 text-red-400" />
+            <Crosshair className="h-5 w-5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-lg font-bold">Arena</h1>
+            <h1 className="text-lg font-bold">Practice Arena</h1>
             <p className="text-[11px] text-muted-foreground">
-              Competitive trading challenges
+              Test your skills in simulated competitive challenges
             </p>
           </div>
           <div className="flex-1" />
           {totalMatches > 0 && (
             <div className="flex items-center gap-2">
               <ArenaRankBadge rank={rank} size="sm" />
-              <span className="text-xs tabular-nums text-zinc-500">{elo} ELO</span>
+              <span className="text-xs tabular-nums text-muted-foreground">{elo} ELO</span>
             </div>
           )}
+        </div>
+
+        {/* Educational framing */}
+        <div className="mt-3 rounded-lg border border-border bg-card px-3 py-2">
+          <p className="text-[11px] text-muted-foreground leading-relaxed">
+            Practice trading under pressure with simulated opponents. Arena matches help
+            sharpen your decision-making, risk management, and timing -- all with zero
+            real-world risk.
+          </p>
         </div>
       </div>
 
@@ -180,8 +189,8 @@ export default function ArenaPage() {
             className={cn(
               "flex flex-1 items-center justify-center gap-1.5 border-b-2 px-3 py-2.5 text-xs font-bold transition-colors",
               activeTab === tab.id
-                ? "border-teal-500 text-emerald-400"
-                : "border-transparent text-zinc-500 hover:text-zinc-300",
+                ? "border-primary text-primary"
+                : "border-transparent text-muted-foreground hover:text-foreground",
             )}
           >
             {tab.icon}
@@ -191,7 +200,7 @@ export default function ArenaPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="flex-1 overflow-y-auto px-4 py-6">
         {activeTab === "modes" && (
           <>
             <ArenaLobby onSelectType={handleSelectType} />

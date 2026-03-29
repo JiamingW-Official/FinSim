@@ -352,10 +352,10 @@ function StatCard({ label, value, sub, color = "text-indigo-400" }: {
   label: string; value: string; sub?: string; color?: string;
 }) {
   return (
-    <div className="bg-zinc-800/50 rounded-xl p-3 border border-zinc-700/40">
+    <div className="bg-muted/50 rounded-xl p-3 border border-border/40">
       <div className={cn("text-xl font-bold", color)}>{value}</div>
-      <div className="text-xs text-zinc-400 mt-0.5">{label}</div>
-      {sub && <div className="text-xs text-zinc-500 mt-0.5">{sub}</div>}
+      <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
+      {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
     </div>
   );
 }
@@ -365,11 +365,11 @@ function InfoRow({ icon: Icon, title, body }: {
   icon: React.ElementType; title: string; body: string;
 }) {
   return (
-    <div className="flex gap-3 p-3 rounded-lg bg-zinc-800/40 border border-zinc-700/30">
+    <div className="flex gap-3 p-3 rounded-lg bg-muted/40 border border-border/30">
       <Icon className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
       <div>
-        <div className="text-xs font-semibold text-zinc-200">{title}</div>
-        <div className="text-xs text-zinc-400 mt-0.5">{body}</div>
+        <div className="text-xs font-semibold text-foreground">{title}</div>
+        <div className="text-xs text-muted-foreground mt-0.5">{body}</div>
       </div>
     </div>
   );
@@ -388,55 +388,55 @@ function PortfoliosTab() {
       </div>
 
       {/* Asset Allocation SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Asset Allocation: P&C vs Life Insurer</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Asset Allocation: P&C vs Life Insurer</CardTitle>
         </CardHeader>
         <CardContent>
           <AssetAllocationChart />
-          <p className="text-xs text-zinc-500 mt-2">Life insurers hold 70–80% investment-grade bonds to match long-duration liabilities. P&C insurers favor shorter maturities aligned with 1–3yr claims payable cycles.</p>
+          <p className="text-xs text-muted-foreground mt-2">Life insurers hold 70–80% investment-grade bonds to match long-duration liabilities. P&C insurers favor shorter maturities aligned with 1–3yr claims payable cycles.</p>
         </CardContent>
       </Card>
 
       {/* Duration Matching */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Duration Matching (ALM)</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Duration Matching (ALM)</CardTitle>
         </CardHeader>
         <CardContent>
           <DurationMatchingChart />
-          <p className="text-xs text-zinc-500 mt-2">Life insurers deliberately mismatch assets slightly shorter than liabilities to pick up spread. P&C insurers maintain near-matched duration given unpredictable short-term claims.</p>
+          <p className="text-xs text-muted-foreground mt-2">Life insurers deliberately mismatch assets slightly shorter than liabilities to pick up spread. P&C insurers maintain near-matched duration given unpredictable short-term claims.</p>
         </CardContent>
       </Card>
 
       {/* Dual Profit Centers */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Dual Profit Centers</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Dual Profit Centers</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-            <div className="bg-zinc-800/50 rounded-xl p-4 border border-indigo-500/20">
+            <div className="bg-muted/50 rounded-xl p-4 border border-indigo-500/20">
               <div className="text-xs font-semibold text-indigo-400 mb-2">Underwriting Income</div>
-              <div className="text-xs text-zinc-300 space-y-1">
+              <div className="text-xs text-muted-foreground space-y-1">
                 <div className="flex justify-between"><span>Premiums collected</span><span className="text-emerald-400">$100</span></div>
                 <div className="flex justify-between"><span>— Losses paid</span><span className="text-red-400">−$60</span></div>
                 <div className="flex justify-between"><span>— Expenses</span><span className="text-red-400">−$30</span></div>
-                <div className="border-t border-zinc-700 pt-1 flex justify-between font-semibold"><span>Underwriting profit</span><span className="text-emerald-400">$10</span></div>
+                <div className="border-t border-border pt-1 flex justify-between font-semibold"><span>Underwriting profit</span><span className="text-emerald-400">$10</span></div>
               </div>
-              <div className="text-xs text-zinc-500 mt-2">Combined ratio = 90% (profitable)</div>
+              <div className="text-xs text-muted-foreground mt-2">Combined ratio = 90% (profitable)</div>
             </div>
-            <div className="bg-zinc-800/50 rounded-xl p-4 border border-emerald-500/20">
+            <div className="bg-muted/50 rounded-xl p-4 border border-emerald-500/20">
               <div className="text-xs font-semibold text-emerald-400 mb-2">Investment Income</div>
-              <div className="text-xs text-zinc-300 space-y-1">
-                <div className="flex justify-between"><span>Float (reserve pool)</span><span className="text-zinc-300">$500</span></div>
-                <div className="flex justify-between"><span>× Investment yield</span><span className="text-zinc-300">4.5%</span></div>
-                <div className="border-t border-zinc-700 pt-1 flex justify-between font-semibold"><span>Investment income</span><span className="text-emerald-400">$22.5</span></div>
+              <div className="text-xs text-muted-foreground space-y-1">
+                <div className="flex justify-between"><span>Float (reserve pool)</span><span className="text-muted-foreground">$500</span></div>
+                <div className="flex justify-between"><span>× Investment yield</span><span className="text-muted-foreground">4.5%</span></div>
+                <div className="border-t border-border pt-1 flex justify-between font-semibold"><span>Investment income</span><span className="text-emerald-400">$22.5</span></div>
               </div>
-              <div className="text-xs text-zinc-500 mt-2">Berkshire model: even CR&gt;100 is fine if float generates returns</div>
+              <div className="text-xs text-muted-foreground mt-2">Berkshire model: even CR&gt;100 is fine if float generates returns</div>
             </div>
           </div>
-          <div className="text-xs text-zinc-500 p-3 bg-zinc-800/30 rounded-lg border border-zinc-700/20">
+          <div className="text-xs text-muted-foreground p-3 bg-muted/30 rounded-lg border border-border/20">
             <span className="text-amber-400 font-semibold">Combined Ratio = </span>
             Loss Ratio + Expense Ratio. Below 100% = underwriting profit. The float (premiums held before claims paid) is invested, creating a second profit engine independent of underwriting results.
           </div>
@@ -477,17 +477,17 @@ function AnnuitiesTab() {
       </div>
 
       {/* Comparison Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Annuity Type Comparison</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Annuity Type Comparison</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-700">
+                <tr className="border-b border-border">
                   {["Type", "Return", "Risk", "Liquidity Risk", "Tax", "Best For"].map((h) => (
-                    <th key={h} className="text-left py-2 pr-3 text-zinc-400 font-semibold whitespace-nowrap">{h}</th>
+                    <th key={h} className="text-left py-2 pr-3 text-muted-foreground font-semibold whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -495,11 +495,11 @@ function AnnuitiesTab() {
                 {ANNUITY_TYPES.map((row, i) => (
                   <React.Fragment key={`frag-${i}`}>
                     <tr
-                      className="border-b border-zinc-800/50 cursor-pointer hover:bg-zinc-800/30 transition-colors"
+                      className="border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors"
                       onClick={() => setExpandedRow(expandedRow === i ? null : i)}
                     >
-                      <td className="py-2 pr-3 font-semibold text-zinc-200">{row.type}</td>
-                      <td className="py-2 pr-3 text-zinc-300">{row.returnType}</td>
+                      <td className="py-2 pr-3 font-semibold text-foreground">{row.type}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{row.returnType}</td>
                       <td className="py-2 pr-3">
                         <Badge variant="outline" className={cn("text-xs",
                           row.risk === "Low" || row.risk.includes("Low") ? "border-emerald-500/40 text-emerald-400" :
@@ -510,8 +510,8 @@ function AnnuitiesTab() {
                       <td className="py-2 pr-3">
                         <Badge variant="outline" className="border-red-500/30 text-red-400 text-xs">{row.liquidityRisk}</Badge>
                       </td>
-                      <td className="py-2 pr-3 text-zinc-400">{row.taxTreatment}</td>
-                      <td className="py-2 pr-3 text-zinc-400">{row.bestFor}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{row.taxTreatment}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{row.bestFor}</td>
                     </tr>
                     <AnimatePresence>
                       {expandedRow === i && (
@@ -521,7 +521,7 @@ function AnnuitiesTab() {
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
-                              className="px-3 py-2 bg-zinc-800/40 rounded-lg text-xs text-zinc-400 border-l-2 border-indigo-500/40"
+                              className="px-3 py-2 bg-muted/40 rounded-lg text-xs text-muted-foreground border-l-2 border-indigo-500/40"
                             >
                               {details[i]}
                             </motion.div>
@@ -534,14 +534,14 @@ function AnnuitiesTab() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-zinc-500 mt-2">Click any row for details.</p>
+          <p className="text-xs text-muted-foreground mt-2">Click any row for details.</p>
         </CardContent>
       </Card>
 
       {/* Living Benefits */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Living Benefits Explained</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Living Benefits Explained</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -550,10 +550,10 @@ function AnnuitiesTab() {
               { name: "GLWB", full: "Guaranteed Lifetime Withdrawal Benefit", desc: "Like GMWB but extends for life. If account depletes, insurer continues payments. Annual step-up provisions ratchet the benefit base higher. Cost: 0.75–1.5%/yr." },
               { name: "GMAB", full: "Guaranteed Minimum Accumulation Benefit", desc: "Guarantees account value equals or exceeds a specified amount (e.g., original premium) at a specific future date. Protects against poor market performance over a defined term." },
             ].map((b) => (
-              <div key={b.name} className="bg-zinc-800/50 rounded-xl p-3 border border-border">
+              <div key={b.name} className="bg-muted/50 rounded-xl p-3 border border-border">
                 <div className="text-xs font-bold text-primary">{b.name}</div>
-                <div className="text-xs text-zinc-400 mt-0.5 mb-2">{b.full}</div>
-                <div className="text-xs text-zinc-300">{b.desc}</div>
+                <div className="text-xs text-muted-foreground mt-0.5 mb-2">{b.full}</div>
+                <div className="text-xs text-muted-foreground">{b.desc}</div>
               </div>
             ))}
           </div>
@@ -561,9 +561,9 @@ function AnnuitiesTab() {
       </Card>
 
       {/* Annuity vs Bond Ladder */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Annuity vs Bond Ladder: Key Trade-offs</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Annuity vs Bond Ladder: Key Trade-offs</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -576,7 +576,7 @@ function AnnuitiesTab() {
                   "Mortality-weighted returns exceed comparable bond yields",
                   "Cannot outlive the income stream",
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-2 text-xs text-zinc-300">
+                  <div key={i} className="flex gap-2 text-xs text-muted-foreground">
                     <CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
                     <span>{item}</span>
                   </div>
@@ -592,7 +592,7 @@ function AnnuitiesTab() {
                   "Flexibility to adjust for changing spending needs",
                   "No counterparty risk beyond FDIC/SIPC limits",
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-2 text-xs text-zinc-300">
+                  <div key={i} className="flex gap-2 text-xs text-muted-foreground">
                     <CheckCircle className="w-3 h-3 text-amber-400 mt-0.5 shrink-0" />
                     <span>{item}</span>
                   </div>
@@ -600,9 +600,9 @@ function AnnuitiesTab() {
               </div>
             </div>
           </div>
-          <div className="mt-3 p-2 bg-zinc-800/30 rounded-lg border border-zinc-700/20">
-            <div className="text-xs text-zinc-400">
-              <span className="text-zinc-300 font-semibold">1035 Exchange: </span>
+          <div className="mt-3 p-2 bg-muted/30 rounded-lg border border-border/20">
+            <div className="text-xs text-muted-foreground">
+              <span className="text-muted-foreground font-semibold">1035 Exchange: </span>
               IRS allows annuity-to-annuity transfers without triggering taxable events. Enables switching to better-priced products while preserving tax-deferred status. Used to avoid surrender charges by waiting for charge-free windows.
             </div>
           </div>
@@ -625,9 +625,9 @@ function SettlementsILSTab() {
       </div>
 
       {/* Life Settlement Mechanics */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Life Settlement Mechanics</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Life Settlement Mechanics</CardTitle>
         </CardHeader>
         <CardContent>
           {/* Flow diagram via SVG */}
@@ -660,14 +660,14 @@ function SettlementsILSTab() {
           </svg>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-            <div className="bg-zinc-800/50 rounded-xl p-3 border border-zinc-700/30">
+            <div className="bg-muted/50 rounded-xl p-3 border border-border/30">
               <div className="text-xs font-semibold text-indigo-400 mb-2">Pricing Formula</div>
-              <div className="font-mono text-xs text-zinc-200 bg-zinc-900/60 p-2 rounded">
+              <div className="font-mono text-xs text-foreground bg-card/60 p-2 rounded">
                 Value ≈ Face × P(death&lt;n) / (1+r)^LE
               </div>
-              <div className="text-xs text-zinc-400 mt-2">Where LE = life expectancy (years), r = discount rate (10–15%), P(death&lt;n) = actuarial probability from mortality tables. Typical purchase price: 15–35% of face value.</div>
+              <div className="text-xs text-muted-foreground mt-2">Where LE = life expectancy (years), r = discount rate (10–15%), P(death&lt;n) = actuarial probability from mortality tables. Typical purchase price: 15–35% of face value.</div>
             </div>
-            <div className="bg-zinc-800/50 rounded-xl p-3 border border-zinc-700/30">
+            <div className="bg-muted/50 rounded-xl p-3 border border-border/30">
               <div className="text-xs font-semibold text-amber-400 mb-2">Key Risks</div>
               <div className="space-y-1">
                 {[
@@ -678,14 +678,14 @@ function SettlementsILSTab() {
                 ].map((r, i) => (
                   <div key={i} className="text-xs">
                     <span className="text-amber-400 font-semibold">{r.risk}: </span>
-                    <span className="text-zinc-400">{r.desc}</span>
+                    <span className="text-muted-foreground">{r.desc}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="p-2 bg-zinc-800/30 rounded-lg border border-zinc-700/20 text-xs text-zinc-400">
+          <div className="p-2 bg-muted/30 rounded-lg border border-border/20 text-xs text-muted-foreground">
             <span className="text-red-400 font-semibold">Viatical vs Life Settlement: </span>
             Viatical settlements involve terminally ill policyholders (life expectancy &lt;2yr), with payouts of 50–80% of face value. Life settlements involve senior (65+) policyholders with chronic (not terminal) illness. Ethical concerns center on whether financial incentives conflict with appropriate end-of-life care.
           </div>
@@ -693,9 +693,9 @@ function SettlementsILSTab() {
       </Card>
 
       {/* ILS Market */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Insurance-Linked Securities (ILS) Market Growth</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Insurance-Linked Securities (ILS) Market Growth</CardTitle>
         </CardHeader>
         <CardContent>
           <ILSMarketChart />
@@ -705,9 +705,9 @@ function SettlementsILSTab() {
               { name: "Sidecars", desc: "Quota-share arrangements where outside capital participates in a reinsurer's book. Rapid deployment post-catastrophe when reinsurance prices spike. Typical 1-3yr life.", color: "text-indigo-400" },
               { name: "Collateralized Re", desc: "Private, fully collateralized reinsurance contract. Higher returns (8–15%) but less liquid than cat bonds. Forms largest segment of ILS market.", color: "text-primary" },
             ].map((t) => (
-              <div key={t.name} className="bg-zinc-800/50 rounded-xl p-3 border border-zinc-700/30">
+              <div key={t.name} className="bg-muted/50 rounded-xl p-3 border border-border/30">
                 <div className={cn("text-xs font-semibold mb-1", t.color)}>{t.name}</div>
-                <div className="text-xs text-zinc-400">{t.desc}</div>
+                <div className="text-xs text-muted-foreground">{t.desc}</div>
               </div>
             ))}
           </div>
@@ -715,9 +715,9 @@ function SettlementsILSTab() {
       </Card>
 
       {/* PRT */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Pension Risk Transfer (PRT)</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Pension Risk Transfer (PRT)</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -726,12 +726,12 @@ function SettlementsILSTab() {
               { type: "Buyout", desc: "Full transfer of pension liabilities and assets to insurer. Members become direct policyholders of the insurer. Pension fund extinguished. Typical cost: 102–110% of liability value.", badge: "Full" },
               { type: "Longevity Swap", desc: "Pension fund pays fixed payments; insurer pays actual pension costs. Pension retains investment risk, transfers only longevity risk. Most capital-efficient PRT structure.", badge: "Risk only" },
             ].map((p, i) => (
-              <div key={i} className="bg-zinc-800/50 rounded-xl p-3 border border-zinc-700/30">
+              <div key={i} className="bg-muted/50 rounded-xl p-3 border border-border/30">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-semibold text-zinc-200">{p.type}</span>
+                  <span className="text-xs font-semibold text-foreground">{p.type}</span>
                   <Badge variant="outline" className="border-indigo-500/30 text-indigo-400 text-xs">{p.badge}</Badge>
                 </div>
-                <div className="text-xs text-zinc-400">{p.desc}</div>
+                <div className="text-xs text-muted-foreground">{p.desc}</div>
               </div>
             ))}
           </div>
@@ -754,49 +754,49 @@ function StockAnalysisTab() {
       </div>
 
       {/* Combined Ratio Chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Combined Ratio Trend Analysis</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Combined Ratio Trend Analysis</CardTitle>
         </CardHeader>
         <CardContent>
           <CombinedRatioChart />
-          <p className="text-xs text-zinc-500 mt-2">Red dashed line at 100% = underwriting breakeven. Below 100% means the insurer profits before any investment income. Berkshire and Progressive consistently maintain CR 90–96%, generating both underwriting and investment profits.</p>
+          <p className="text-xs text-muted-foreground mt-2">Red dashed line at 100% = underwriting breakeven. Below 100% means the insurer profits before any investment income. Berkshire and Progressive consistently maintain CR 90–96%, generating both underwriting and investment profits.</p>
         </CardContent>
       </Card>
 
       {/* Stock Screener Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">Insurance Stock Screening</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Insurance Stock Screening</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-700">
+                <tr className="border-b border-border">
                   {["Company", "Ticker", "Type", "Comb. Ratio", "ROE", "P/B", "Rating"].map((h) => (
-                    <th key={h} className="text-left py-2 pr-4 text-zinc-400 font-semibold whitespace-nowrap">{h}</th>
+                    <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-semibold whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {INSURANCE_STOCKS.map((stock, i) => (
-                  <tr key={i} className="border-b border-zinc-800/40 hover:bg-zinc-800/20 transition-colors">
-                    <td className="py-2 pr-4 font-semibold text-zinc-200">{stock.name}</td>
+                  <tr key={i} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                    <td className="py-2 pr-4 font-semibold text-foreground">{stock.name}</td>
                     <td className="py-2 pr-4 text-indigo-400 font-mono">{stock.ticker}</td>
-                    <td className="py-2 pr-4 text-zinc-400">{stock.type}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{stock.type}</td>
                     <td className={cn("py-2 pr-4 font-semibold", stock.combRatio < 95 ? "text-emerald-400" : stock.combRatio < 100 ? "text-amber-400" : "text-red-400")}>
                       {stock.combRatio.toFixed(1)}%
                     </td>
                     <td className={cn("py-2 pr-4 font-semibold", stock.roe > 12 ? "text-emerald-400" : "text-amber-400")}>
                       {stock.roe.toFixed(1)}%
                     </td>
-                    <td className="py-2 pr-4 text-zinc-300">{stock.pb.toFixed(1)}×</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{stock.pb.toFixed(1)}×</td>
                     <td className="py-2 pr-4">
                       <Badge variant="outline" className={cn("text-xs",
                         stock.rating === "Buy" ? "border-emerald-500/40 text-emerald-400" :
                         stock.rating === "Watch" ? "border-amber-500/40 text-amber-400" :
-                        "border-zinc-500/40 text-zinc-400"
+                        "border-zinc-500/40 text-muted-foreground"
                       )}>{stock.rating}</Badge>
                     </td>
                   </tr>
@@ -804,14 +804,14 @@ function StockAnalysisTab() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-zinc-500 mt-2">CR &lt;95% highlighted green. ROE &gt;12% highlighted green. P/B reflects ROE quality premium.</p>
+          <p className="text-xs text-muted-foreground mt-2">CR &lt;95% highlighted green. ROE &gt;12% highlighted green. P/B reflects ROE quality premium.</p>
         </CardContent>
       </Card>
 
       {/* Valuation Framework */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-200">P/B vs ROE Valuation Framework</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">P/B vs ROE Valuation Framework</CardTitle>
         </CardHeader>
         <CardContent>
           {/* Simple SVG scatter plot */}
@@ -851,7 +851,7 @@ function StockAnalysisTab() {
               );
             })}
           </svg>
-          <p className="text-xs text-zinc-500">Stocks above the fair value line trade at a P/B premium to ROE — typically justified by franchise quality, reserve consistency, and growth outlook. Berkshire's low P/B despite high ROE reflects insurance earnings discounted by conglomerate structure.</p>
+          <p className="text-xs text-muted-foreground">Stocks above the fair value line trade at a P/B premium to ROE — typically justified by franchise quality, reserve consistency, and growth outlook. Berkshire's low P/B despite high ROE reflects insurance earnings discounted by conglomerate structure.</p>
         </CardContent>
       </Card>
 
@@ -873,7 +873,7 @@ export default function InsuranceInvestingPage() {
   const [activeTab, setActiveTab] = useState("portfolios");
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -887,8 +887,8 @@ export default function InsuranceInvestingPage() {
               <Shield className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-zinc-100">Insurance as Investment</h1>
-              <p className="text-sm text-zinc-400">Portfolios • Annuities • Life Settlements & ILS • Stock Analysis</p>
+              <h1 className="text-2xl font-bold text-foreground">Insurance as Investment</h1>
+              <p className="text-sm text-muted-foreground">Portfolios • Annuities • Life Settlements & ILS • Stock Analysis</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-4">
@@ -898,9 +898,9 @@ export default function InsuranceInvestingPage() {
               { icon: Activity, label: "$112B+ ILS outstanding", color: "text-amber-400" },
               { icon: BookOpen, label: "Berkshire float model", color: "text-primary" },
             ].map(({ icon: Icon, label, color }) => (
-              <div key={label} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-800/60 border border-zinc-700/40 text-xs">
+              <div key={label} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-muted/60 border border-border/40 text-xs">
                 <Icon className={cn("w-3 h-3", color)} />
-                <span className="text-zinc-300">{label}</span>
+                <span className="text-muted-foreground">{label}</span>
               </div>
             ))}
           </div>
@@ -908,7 +908,7 @@ export default function InsuranceInvestingPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full bg-zinc-900 border border-zinc-800 mb-6 h-auto p-1 gap-1">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 w-full bg-card border border-border mb-6 h-auto p-1 gap-1">
             {[
               { value: "portfolios", label: "Insurer Portfolios", icon: PieChart },
               { value: "annuities", label: "Annuities", icon: DollarSign },
@@ -918,7 +918,7 @@ export default function InsuranceInvestingPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400"
+                className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">{label}</span>

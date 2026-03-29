@@ -73,16 +73,16 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
-      <span className="text-xs text-zinc-400">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -128,7 +128,7 @@ function SliderInput({
   return (
     <div className="flex flex-col gap-1">
       <div className="flex justify-between text-xs">
-        <span className="text-zinc-400">{label}</span>
+        <span className="text-muted-foreground">{label}</span>
         <span className="text-white font-medium">{format(value)}</span>
       </div>
       <input
@@ -371,7 +371,7 @@ function WaterfallBar({
   const pct = Math.min(100, (value / maxValue) * 100);
   return (
     <div className="flex items-center gap-3">
-      <span className="text-xs text-zinc-400 w-36 shrink-0 text-right">{label}</span>
+      <span className="text-xs text-muted-foreground w-36 shrink-0 text-right">{label}</span>
       <div className="flex-1 h-6 rounded bg-white/5 overflow-hidden">
         <div
           className="h-full rounded transition-all duration-500"
@@ -416,7 +416,7 @@ function TabSPVStructure() {
                 "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
                 selectedSector === i
                   ? "border-cyan-500 bg-cyan-500/20 text-muted-foreground"
-                  : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                  : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
               )}
             >
               {ps.name}
@@ -466,18 +466,18 @@ function TabSPVStructure() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="px-4 py-2 text-left text-zinc-400 font-medium">Contract</th>
-                <th className="px-4 py-2 text-left text-zinc-400 font-medium">Counterparty</th>
-                <th className="px-4 py-2 text-left text-zinc-400 font-medium">Purpose</th>
-                <th className="px-4 py-2 text-left text-zinc-400 font-medium">Typical Term</th>
+                <th className="px-4 py-2 text-left text-muted-foreground font-medium">Contract</th>
+                <th className="px-4 py-2 text-left text-muted-foreground font-medium">Counterparty</th>
+                <th className="px-4 py-2 text-left text-muted-foreground font-medium">Purpose</th>
+                <th className="px-4 py-2 text-left text-muted-foreground font-medium">Typical Term</th>
               </tr>
             </thead>
             <tbody>
               {CONTRACTUAL_FRAMEWORK.map((row, i) => (
                 <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                   <td className="px-4 py-2 text-muted-foreground font-medium">{row.contract}</td>
-                  <td className="px-4 py-2 text-zinc-300">{row.counterparty}</td>
-                  <td className="px-4 py-2 text-zinc-400">{row.purpose}</td>
+                  <td className="px-4 py-2 text-muted-foreground">{row.counterparty}</td>
+                  <td className="px-4 py-2 text-muted-foreground">{row.purpose}</td>
                   <td className="px-4 py-2 text-emerald-400 font-medium">{row.term}</td>
                 </tr>
               ))}
@@ -842,20 +842,20 @@ function TabCashFlowModel() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="px-3 py-2 text-left text-zinc-400">Year</th>
-                <th className="px-3 py-2 text-right text-zinc-400">Phase</th>
-                <th className="px-3 py-2 text-right text-zinc-400">Revenue</th>
-                <th className="px-3 py-2 text-right text-zinc-400">OpEx</th>
-                <th className="px-3 py-2 text-right text-zinc-400">EBITDA</th>
-                <th className="px-3 py-2 text-right text-zinc-400">Debt Svc</th>
-                <th className="px-3 py-2 text-right text-zinc-400">DSCR</th>
-                <th className="px-3 py-2 text-right text-zinc-400">Equity CF</th>
+                <th className="px-3 py-2 text-left text-muted-foreground">Year</th>
+                <th className="px-3 py-2 text-right text-muted-foreground">Phase</th>
+                <th className="px-3 py-2 text-right text-muted-foreground">Revenue</th>
+                <th className="px-3 py-2 text-right text-muted-foreground">OpEx</th>
+                <th className="px-3 py-2 text-right text-muted-foreground">EBITDA</th>
+                <th className="px-3 py-2 text-right text-muted-foreground">Debt Svc</th>
+                <th className="px-3 py-2 text-right text-muted-foreground">DSCR</th>
+                <th className="px-3 py-2 text-right text-muted-foreground">Equity CF</th>
               </tr>
             </thead>
             <tbody>
               {cashFlows.map((row) => (
                 <tr key={row.year} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="px-3 py-1.5 text-zinc-300 font-medium">Y{row.year}</td>
+                  <td className="px-3 py-1.5 text-muted-foreground font-medium">Y{row.year}</td>
                   <td className="px-3 py-1.5 text-right">
                     <Badge
                       className={cn(
@@ -865,23 +865,23 @@ function TabCashFlowModel() {
                           : row.phase === "ramp"
                           ? "bg-primary/20 text-primary"
                           : row.phase === "tail"
-                          ? "bg-zinc-500/20 text-zinc-300"
+                          ? "bg-zinc-500/20 text-muted-foreground"
                           : "bg-cyan-500/20 text-muted-foreground"
                       )}
                     >
                       {row.phase}
                     </Badge>
                   </td>
-                  <td className="px-3 py-1.5 text-right text-zinc-300">{row.revenue > 0 ? fmtM(row.revenue) : "—"}</td>
+                  <td className="px-3 py-1.5 text-right text-muted-foreground">{row.revenue > 0 ? fmtM(row.revenue) : "—"}</td>
                   <td className="px-3 py-1.5 text-right text-rose-400">{fmtM(row.opex)}</td>
-                  <td className="px-3 py-1.5 text-right text-zinc-300">{row.ebitda > 0 ? fmtM(row.ebitda) : "—"}</td>
+                  <td className="px-3 py-1.5 text-right text-muted-foreground">{row.ebitda > 0 ? fmtM(row.ebitda) : "—"}</td>
                   <td className="px-3 py-1.5 text-right text-orange-400">
                     {row.debtService > 0 ? fmtM(row.debtService) : "—"}
                   </td>
                   <td
                     className={cn(
                       "px-3 py-1.5 text-right font-medium",
-                      row.dscr === 0 ? "text-zinc-600" : row.dscr < 1.2 ? "text-rose-400" : "text-emerald-400"
+                      row.dscr === 0 ? "text-muted-foreground" : row.dscr < 1.2 ? "text-rose-400" : "text-emerald-400"
                     )}
                   >
                     {row.dscr > 0 ? fmtX(row.dscr) : "—"}
@@ -1021,7 +1021,7 @@ function TabRiskAllocation() {
               <div className="flex items-center gap-3 px-4 py-3">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-medium text-zinc-200">{row.category}</span>
+                    <span className="text-sm font-medium text-foreground">{row.category}</span>
                     <Badge
                       className={cn(
                         "text-xs",
@@ -1038,7 +1038,7 @@ function TabRiskAllocation() {
                   </div>
                   <RiskMeter value={row.mitigation} />
                 </div>
-                <span className="text-zinc-500 text-sm">{expanded === i ? "▲" : "▼"}</span>
+                <span className="text-muted-foreground text-sm">{expanded === i ? "▲" : "▼"}</span>
               </div>
               <AnimatePresence>
                 {expanded === i && (
@@ -1050,7 +1050,7 @@ function TabRiskAllocation() {
                     className="border-t border-white/10 px-4 py-3 space-y-3"
                   >
                     <div>
-                      <span className="text-xs text-zinc-500 font-medium uppercase tracking-wide">Key Risks</span>
+                      <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Key Risks</span>
                       <div className="flex flex-wrap gap-1 mt-1">
                         {row.risks.map((rk) => (
                           <span
@@ -1063,8 +1063,8 @@ function TabRiskAllocation() {
                       </div>
                     </div>
                     <div>
-                      <span className="text-xs text-zinc-500 font-medium uppercase tracking-wide">Mitigants</span>
-                      <p className="text-xs text-zinc-300 mt-1">{row.mitigant}</p>
+                      <span className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Mitigants</span>
+                      <p className="text-xs text-muted-foreground mt-1">{row.mitigant}</p>
                     </div>
                   </motion.div>
                 )}
@@ -1086,7 +1086,7 @@ function TabRiskAllocation() {
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <span className="text-sm font-semibold text-muted-foreground">{tool.org}</span>
-                  <span className="text-xs text-zinc-500 ml-2">{tool.fullName}</span>
+                  <span className="text-xs text-muted-foreground ml-2">{tool.fullName}</span>
                 </div>
                 <span className="text-xs text-emerald-400 font-medium">{tool.maxTenor}</span>
               </div>
@@ -1100,7 +1100,7 @@ function TabRiskAllocation() {
                   </span>
                 ))}
               </div>
-              <p className="text-xs text-zinc-400">{tool.note}</p>
+              <p className="text-xs text-muted-foreground">{tool.note}</p>
             </div>
           ))}
         </div>
@@ -1138,7 +1138,7 @@ function TabRiskAllocation() {
               <h4 className="text-sm font-semibold mb-2" style={{ color: item.color }}>
                 {item.title}
               </h4>
-              <p className="text-xs text-zinc-400 leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -1403,8 +1403,8 @@ function TabDealMetrics() {
               { label: "PLCR", desc: "NPV(CF) / Total project debt" },
             ].map((m) => (
               <div key={m.label} className="text-center">
-                <div className="text-xs font-medium text-zinc-300">{m.label}</div>
-                <div className="text-xs text-zinc-500">{m.desc}</div>
+                <div className="text-xs font-medium text-muted-foreground">{m.label}</div>
+                <div className="text-xs text-muted-foreground">{m.desc}</div>
               </div>
             ))}
           </div>
@@ -1421,18 +1421,18 @@ function TabDealMetrics() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="px-4 py-2 text-left text-zinc-400">Sector</th>
-                <th className="px-4 py-2 text-right text-zinc-400">Debt Tenor</th>
-                <th className="px-4 py-2 text-right text-zinc-400">Margin (bps)</th>
-                <th className="px-4 py-2 text-right text-zinc-400">LTV / Gearing</th>
-                <th className="px-4 py-2 text-right text-zinc-400">Min DSCR</th>
+                <th className="px-4 py-2 text-left text-muted-foreground">Sector</th>
+                <th className="px-4 py-2 text-right text-muted-foreground">Debt Tenor</th>
+                <th className="px-4 py-2 text-right text-muted-foreground">Margin (bps)</th>
+                <th className="px-4 py-2 text-right text-muted-foreground">LTV / Gearing</th>
+                <th className="px-4 py-2 text-right text-muted-foreground">Min DSCR</th>
               </tr>
             </thead>
             <tbody>
               {SECTOR_DEBT_TABLE.map((row, i) => (
                 <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                   <td className="px-4 py-2 text-muted-foreground font-medium">{row.sector}</td>
-                  <td className="px-4 py-2 text-right text-zinc-300">{row.tenor}</td>
+                  <td className="px-4 py-2 text-right text-muted-foreground">{row.tenor}</td>
                   <td className="px-4 py-2 text-right text-amber-400">{row.margin}</td>
                   <td className="px-4 py-2 text-right text-emerald-400">{row.ltv}</td>
                   <td className="px-4 py-2 text-right text-primary">{row.minDSCR}</td>
@@ -1469,7 +1469,7 @@ function TabDealMetrics() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="px-4 py-2 text-left text-zinc-400">Metric</th>
+                <th className="px-4 py-2 text-left text-muted-foreground">Metric</th>
                 <th className="px-4 py-2 text-center text-muted-foreground">PPP / Contracted</th>
                 <th className="px-4 py-2 text-center text-amber-400">Merchant / Market</th>
               </tr>
@@ -1477,7 +1477,7 @@ function TabDealMetrics() {
             <tbody>
               {PPP_VS_MERCHANT.map((row, i) => (
                 <tr key={i} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="px-4 py-2 text-zinc-400">{row.metric}</td>
+                  <td className="px-4 py-2 text-muted-foreground">{row.metric}</td>
                   <td className="px-4 py-2 text-center text-muted-foreground">{row.ppp}</td>
                   <td className="px-4 py-2 text-center text-amber-300">{row.merchant}</td>
                 </tr>
@@ -1500,7 +1500,7 @@ function TabDealMetrics() {
 
 export default function ProjectFinancePage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 sm:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6 space-y-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1514,7 +1514,7 @@ export default function ProjectFinancePage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Project Finance</h1>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-muted-foreground">
               SPV structure · Non-recourse debt · Infrastructure cash flows · DSCR modeling · Concession agreements
             </p>
           </div>

@@ -198,7 +198,7 @@ function WorldHeatmap() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.15 }}
-            className="absolute z-20 pointer-events-none bg-zinc-900 border border-zinc-700 rounded-lg p-3 shadow-xl text-xs min-w-[180px]"
+            className="absolute z-20 pointer-events-none bg-card border border-border rounded-lg p-3 shadow-xl text-xs min-w-[180px]"
             style={{
               left: Math.min(tooltipPos.x + 8, svgW > 0 ? 9999 : 0),
               top: tooltipPos.y + 8,
@@ -207,7 +207,7 @@ function WorldHeatmap() {
             <div className="font-bold text-white mb-1.5 text-sm">
               {hovered.flag} {hovered.name}
             </div>
-            <div className="space-y-1 text-zinc-300">
+            <div className="space-y-1 text-muted-foreground">
               <div className="flex justify-between gap-4">
                 <span>GDP Growth</span>
                 <span className={hovered.gdpGrowth > 2 ? "text-green-400" : hovered.gdpGrowth < 1 ? "text-red-400" : "text-yellow-400"}>
@@ -231,7 +231,7 @@ function WorldHeatmap() {
                 </span>
               </div>
             </div>
-            <div className="mt-2 pt-2 border-t border-zinc-700">
+            <div className="mt-2 pt-2 border-t border-border">
               <Badge
                 className="text-xs"
                 style={{
@@ -248,7 +248,7 @@ function WorldHeatmap() {
       </AnimatePresence>
 
       {/* Legend */}
-      <div className="flex gap-4 mt-3 text-xs text-zinc-400">
+      <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
         {(["bullish", "neutral", "bearish"] as const).map((o) => (
           <div key={o} className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: OUTLOOK_COLOR[o] + "66", border: `1px solid ${OUTLOOK_COLOR[o]}` }} />
@@ -266,11 +266,11 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
   const pct = ((idx / (indicator.options.length - 1)) * 100);
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardContent className="p-4">
         <div className="flex items-center gap-2 mb-3">
           <Icon className="w-4 h-4" style={{ color: indicator.color }} />
-          <span className="text-sm font-medium text-zinc-300">{indicator.label}</span>
+          <span className="text-sm font-medium text-muted-foreground">{indicator.label}</span>
         </div>
         <div className="flex gap-1 mb-3">
           {indicator.options.map((opt) => (
@@ -280,7 +280,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
                 "flex-1 text-center py-1 px-1 rounded text-xs font-semibold transition-all",
                 opt === indicator.current
                   ? "text-zinc-900"
-                  : "bg-zinc-800 text-zinc-500"
+                  : "bg-muted text-muted-foreground"
               )}
               style={opt === indicator.current ? { backgroundColor: indicator.color } : {}}
             >
@@ -288,7 +288,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
             </div>
           ))}
         </div>
-        <div className="relative h-1.5 bg-zinc-800 rounded-full mb-2">
+        <div className="relative h-1.5 bg-muted rounded-full mb-2">
           <div
             className="absolute top-0 left-0 h-full rounded-full transition-all"
             style={{ width: `${pct}%`, backgroundColor: indicator.color }}
@@ -298,7 +298,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
             style={{ left: `calc(${pct}% - 6px)`, backgroundColor: indicator.color }}
           />
         </div>
-        <p className="text-xs text-zinc-500 mt-2 leading-relaxed">{indicator.description}</p>
+        <p className="text-xs text-muted-foreground mt-2 leading-relaxed">{indicator.description}</p>
       </CardContent>
     </Card>
   );
@@ -452,7 +452,7 @@ function MiniPayoffBar({ potentialPct, direction }: { potentialPct: number; dire
 function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <Card className="bg-zinc-900 border-zinc-800 hover:border-zinc-600 transition-colors">
+    <Card className="bg-card border-border hover:border-border transition-colors">
       <CardContent className="p-4">
         <div className="flex items-start justify-between gap-2 mb-2">
           <div className="flex items-center gap-2 flex-wrap">
@@ -474,12 +474,12 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
           </div>
         </div>
 
-        <p className="text-xs text-zinc-400 leading-relaxed mb-3">{idea.thesis}</p>
+        <p className="text-xs text-muted-foreground leading-relaxed mb-3">{idea.thesis}</p>
 
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex flex-wrap gap-1">
             {idea.entry.map((e) => (
-              <span key={e} className="bg-zinc-800 text-zinc-300 text-xs px-2 py-0.5 rounded font-mono">{e}</span>
+              <span key={e} className="bg-muted text-muted-foreground text-xs px-2 py-0.5 rounded font-mono">{e}</span>
             ))}
           </div>
           <MiniPayoffBar potentialPct={idea.potentialPct} direction={idea.direction} />
@@ -487,7 +487,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
 
         <button
           onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-xs text-zinc-500 hover:text-zinc-300 mt-2 transition-colors"
+          className="flex items-center gap-1 text-xs text-muted-foreground hover:text-muted-foreground mt-2 transition-colors"
         >
           <ShieldAlert className="w-3 h-3" />
           Key Risk
@@ -685,11 +685,11 @@ function PolicyDivergenceHeatmap() {
       {CENTRAL_BANKS.map((bank) => (
         <div
           key={bank.abbr}
-          className="flex flex-col items-center gap-1 p-1.5 rounded-lg bg-zinc-800/60 border border-zinc-700"
+          className="flex flex-col items-center gap-1 p-1.5 rounded-lg bg-muted/60 border border-border"
         >
           <span className="text-lg">{bank.flag}</span>
-          <span className="text-xs font-bold text-zinc-300">{bank.abbr}</span>
-          <span className="text-xs text-zinc-400">{bank.rate}%</span>
+          <span className="text-xs font-bold text-muted-foreground">{bank.abbr}</span>
+          <span className="text-xs text-muted-foreground">{bank.rate}%</span>
           <Badge
             className="text-[11px] px-1 py-0"
             style={{
@@ -764,7 +764,7 @@ function MacroScorecard({ indicators }: { indicators: MacroIndicator[] }) {
   const expandingCount = indicators.filter((i) => i.expanding).length;
   const pct = Math.round((expandingCount / indicators.length) * 100);
   return (
-    <Card className="bg-zinc-900 border-zinc-800 mb-4">
+    <Card className="bg-card border-border mb-4">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="text-sm font-semibold text-white">Macro Expansion Scorecard</div>
@@ -772,8 +772,8 @@ function MacroScorecard({ indicators }: { indicators: MacroIndicator[] }) {
             {pct}%
           </span>
         </div>
-        <Progress value={pct} className="h-2 bg-zinc-800" />
-        <p className="text-xs text-zinc-500 mt-2">
+        <Progress value={pct} className="h-2 bg-muted" />
+        <p className="text-xs text-muted-foreground mt-2">
           {expandingCount} of {indicators.length} indicators in expansion territory
         </p>
       </CardContent>
@@ -785,10 +785,10 @@ function IndicatorRow({ ind }: { ind: MacroIndicator }) {
   const surprise = ind.value - ind.consensus;
   const surprisePos = surprise > 0;
   return (
-    <div className="flex items-center gap-3 py-2.5 border-b border-zinc-800 last:border-0">
+    <div className="flex items-center gap-3 py-2.5 border-b border-border last:border-0">
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
-          <span className="text-xs font-medium text-zinc-200 truncate">{ind.name}</span>
+          <span className="text-xs font-medium text-foreground truncate">{ind.name}</span>
           <Badge
             className="text-[11px] px-1 py-0 shrink-0"
             style={{ backgroundColor: CLASS_COLOR[ind.classification] + "22", color: CLASS_COLOR[ind.classification], border: `1px solid ${CLASS_COLOR[ind.classification]}44` }}
@@ -796,7 +796,7 @@ function IndicatorRow({ ind }: { ind: MacroIndicator }) {
             {ind.classification}
           </Badge>
         </div>
-        <div className="flex items-center gap-2 text-xs text-zinc-500">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <span>Prev: {ind.prev}{ind.unit}</span>
           <span>|</span>
           <span>Cons: {ind.consensus}{ind.unit}</span>
@@ -860,9 +860,9 @@ function FxMatrixTable() {
       <table className="w-full text-xs border-collapse">
         <thead>
           <tr>
-            <th className="p-1.5 text-left text-zinc-500 font-medium w-16">Base →</th>
+            <th className="p-1.5 text-left text-muted-foreground font-medium w-16">Base →</th>
             {CURRENCIES.map((c) => (
-              <th key={c.code} className="p-1.5 text-center text-zinc-400 font-semibold">
+              <th key={c.code} className="p-1.5 text-center text-muted-foreground font-semibold">
                 {c.flag} {c.code}
               </th>
             ))}
@@ -870,8 +870,8 @@ function FxMatrixTable() {
         </thead>
         <tbody>
           {CURRENCIES.map((base) => (
-            <tr key={base.code} className="border-t border-zinc-800">
-              <td className="p-1.5 text-zinc-300 font-semibold">
+            <tr key={base.code} className="border-t border-border">
+              <td className="p-1.5 text-muted-foreground font-semibold">
                 {base.flag} {base.code}
               </td>
               {CURRENCIES.map((quote) => {
@@ -880,7 +880,7 @@ function FxMatrixTable() {
                 return (
                   <td
                     key={quote.code}
-                    className={cn("p-1.5 text-center font-mono rounded", isDiag ? "text-zinc-600" : "")}
+                    className={cn("p-1.5 text-center font-mono rounded", isDiag ? "text-muted-foreground" : "")}
                     style={
                       isDiag
                         ? { backgroundColor: "#18181b" }
@@ -908,9 +908,9 @@ function CarryMatrix() {
       <table className="w-full text-xs border-collapse">
         <thead>
           <tr>
-            <th className="p-1.5 text-left text-zinc-500 font-medium w-16">Long →</th>
+            <th className="p-1.5 text-left text-muted-foreground font-medium w-16">Long →</th>
             {CURRENCIES.map((c) => (
-              <th key={c.code} className="p-1.5 text-center text-zinc-400 font-semibold">
+              <th key={c.code} className="p-1.5 text-center text-muted-foreground font-semibold">
                 {c.flag} {c.code}
               </th>
             ))}
@@ -918,8 +918,8 @@ function CarryMatrix() {
         </thead>
         <tbody>
           {CURRENCIES.map((base) => (
-            <tr key={base.code} className="border-t border-zinc-800">
-              <td className="p-1.5 text-zinc-300 font-semibold">
+            <tr key={base.code} className="border-t border-border">
+              <td className="p-1.5 text-muted-foreground font-semibold">
                 {base.flag} {base.code}
               </td>
               {CURRENCIES.map((quote) => {
@@ -928,7 +928,7 @@ function CarryMatrix() {
                 return (
                   <td
                     key={quote.code}
-                    className={cn("p-1.5 text-center font-mono rounded", isDiag ? "text-zinc-600" : "")}
+                    className={cn("p-1.5 text-center font-mono rounded", isDiag ? "text-muted-foreground" : "")}
                     style={
                       isDiag
                         ? { backgroundColor: "#18181b" }
@@ -963,7 +963,7 @@ function PppChart() {
         const overvalued = c.overUnder > 0;
         return (
           <div key={c.code} className="flex items-center gap-3">
-            <div className="w-12 text-xs text-zinc-300 font-semibold text-right">
+            <div className="w-12 text-xs text-muted-foreground font-semibold text-right">
               {ccy?.flag} {c.code}
             </div>
             <div className="flex-1 flex items-center gap-2">
@@ -988,11 +988,11 @@ function PppChart() {
             <div className={cn("w-14 text-xs font-mono text-right", overvalued ? "text-green-400" : "text-red-400")}>
               {c.overUnder > 0 ? "+" : ""}{c.overUnder.toFixed(1)}%
             </div>
-            <div className="text-xs text-zinc-500 w-20">{overvalued ? "Overvalued" : "Undervalued"}</div>
+            <div className="text-xs text-muted-foreground w-20">{overvalued ? "Overvalued" : "Undervalued"}</div>
           </div>
         );
       })}
-      <div className="flex justify-center mt-2 gap-6 text-xs text-zinc-500">
+      <div className="flex justify-center mt-2 gap-6 text-xs text-muted-foreground">
         <span className="text-red-400">◀ Undervalued vs USD</span>
         <span className="text-green-400">Overvalued vs USD ▶</span>
       </div>
@@ -1077,7 +1077,7 @@ export default function GlobalMacroPage() {
   const [minPotential, setMinPotential] = useState(0);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1091,18 +1091,18 @@ export default function GlobalMacroPage() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Global Macro Trading</h1>
-            <p className="text-xs text-zinc-500">Macro regime analysis · Trade ideas · Central banks · Economic indicators · Currency markets</p>
+            <p className="text-xs text-muted-foreground">Macro regime analysis · Trade ideas · Central banks · Economic indicators · Currency markets</p>
           </div>
         </div>
       </motion.div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="dashboard"   className="data-[state=active]:bg-zinc-800 text-xs">Macro Dashboard</TabsTrigger>
-          <TabsTrigger value="trade-ideas" className="data-[state=active]:bg-zinc-800 text-xs">Trade Ideas</TabsTrigger>
-          <TabsTrigger value="central-banks" className="data-[state=active]:bg-zinc-800 text-xs">Central Banks</TabsTrigger>
-          <TabsTrigger value="indicators"  className="data-[state=active]:bg-zinc-800 text-xs">Macro Indicators</TabsTrigger>
-          <TabsTrigger value="currency"    className="data-[state=active]:bg-zinc-800 text-xs">Currency Wars</TabsTrigger>
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsTrigger value="dashboard"   className="data-[state=active]:bg-muted text-xs">Macro Dashboard</TabsTrigger>
+          <TabsTrigger value="trade-ideas" className="data-[state=active]:bg-muted text-xs">Trade Ideas</TabsTrigger>
+          <TabsTrigger value="central-banks" className="data-[state=active]:bg-muted text-xs">Central Banks</TabsTrigger>
+          <TabsTrigger value="indicators"  className="data-[state=active]:bg-muted text-xs">Macro Indicators</TabsTrigger>
+          <TabsTrigger value="currency"    className="data-[state=active]:bg-muted text-xs">Currency Wars</TabsTrigger>
         </TabsList>
 
         {/* ── Tab 1: Macro Dashboard ─────────────────────────────────────────── */}
@@ -1112,13 +1112,13 @@ export default function GlobalMacroPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
           >
-            <Card className="bg-zinc-900 border-zinc-800 mb-6">
+            <Card className="bg-card border-border mb-6">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <Globe className="w-4 h-4 text-indigo-400" />
                   Global Economic Outlook Heatmap
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Hover over a country to see GDP growth, inflation, central bank rate, and FX performance</p>
+                <p className="text-xs text-muted-foreground">Hover over a country to see GDP growth, inflation, central bank rate, and FX performance</p>
               </CardHeader>
               <CardContent>
                 <WorldHeatmap />
@@ -1147,27 +1147,27 @@ export default function GlobalMacroPage() {
                 return (
                   <div key={c} className="flex items-center gap-2 text-xs">
                     <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: CONVICTION_COLOR[c] }} />
-                    <span className="text-zinc-400">{c} Conviction:</span>
+                    <span className="text-muted-foreground">{c} Conviction:</span>
                     <span className="font-semibold text-white">{count}</span>
                   </div>
                 );
               })}
-              <span className="text-zinc-600">|</span>
+              <span className="text-muted-foreground">|</span>
               {(["Short", "Medium", "Long"] as const).map((h) => {
                 const count = TRADE_IDEAS.filter((t) => t.horizon === h).length;
                 return (
                   <div key={h} className="flex items-center gap-2 text-xs">
-                    <span className="text-zinc-400">{h}:</span>
+                    <span className="text-muted-foreground">{h}:</span>
                     <span className="font-semibold text-white">{count}</span>
                   </div>
                 );
               })}
             </div>
             {/* P&L Potential filter */}
-            <Card className="bg-zinc-900 border-zinc-800 mb-4">
+            <Card className="bg-card border-border mb-4">
               <CardContent className="py-3 px-4">
                 <div className="flex items-center gap-4">
-                  <span className="text-xs text-zinc-400 shrink-0">Min P&L Potential:</span>
+                  <span className="text-xs text-muted-foreground shrink-0">Min P&L Potential:</span>
                   <Slider
                     value={[minPotential]}
                     onValueChange={([v]) => setMinPotential(v)}
@@ -1195,9 +1195,9 @@ export default function GlobalMacroPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
           >
-            <Card className="bg-zinc-900 border-zinc-800 mb-6">
+            <Card className="bg-card border-border mb-6">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-indigo-400" />
                   Central Bank Rate Cycle (Past 3 Years — 6 Major Banks)
                 </CardTitle>
@@ -1207,13 +1207,13 @@ export default function GlobalMacroPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800 mb-6">
+            <Card className="bg-card border-border mb-6">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-400" />
                   Policy Divergence Heatmap
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Market-implied next meeting expectation</p>
+                <p className="text-xs text-muted-foreground">Market-implied next meeting expectation</p>
               </CardHeader>
               <CardContent>
                 <PolicyDivergenceHeatmap />
@@ -1222,7 +1222,7 @@ export default function GlobalMacroPage() {
 
             <div className="space-y-3">
               {CENTRAL_BANKS.map((bank) => (
-                <Card key={bank.abbr} className="bg-zinc-900 border-zinc-800">
+                <Card key={bank.abbr} className="bg-card border-border">
                   <CardContent className="p-4">
                     <button
                       className="w-full text-left"
@@ -1233,10 +1233,10 @@ export default function GlobalMacroPage() {
                           <span className="text-2xl">{bank.flag}</span>
                           <div>
                             <div className="font-semibold text-sm text-white">{bank.name}</div>
-                            <div className="text-xs text-zinc-500">
-                              Rate: <span className="text-zinc-200 font-mono">{bank.rate.toFixed(2)}%</span>
+                            <div className="text-xs text-muted-foreground">
+                              Rate: <span className="text-foreground font-mono">{bank.rate.toFixed(2)}%</span>
                               <span className="mx-2 text-zinc-700">|</span>
-                              Next: <span className="text-zinc-300">{bank.nextMeeting}</span>
+                              Next: <span className="text-muted-foreground">{bank.nextMeeting}</span>
                             </div>
                           </div>
                         </div>
@@ -1265,20 +1265,20 @@ export default function GlobalMacroPage() {
                           transition={{ duration: 0.2 }}
                           className="overflow-hidden"
                         >
-                          <div className="mt-3 pt-3 border-t border-zinc-800">
-                            <p className="text-xs text-zinc-400 leading-relaxed mb-3">{bank.guidance}</p>
+                          <div className="mt-3 pt-3 border-t border-border">
+                            <p className="text-xs text-muted-foreground leading-relaxed mb-3">{bank.guidance}</p>
                             <div className="flex items-center gap-2 flex-wrap">
-                              <div className="flex items-center gap-1.5 text-xs text-zinc-500">
+                              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                                 <Calendar className="w-3 h-3" />
-                                Next meeting: <span className="text-zinc-300 font-medium">{bank.nextMeeting} 2025</span>
+                                Next meeting: <span className="text-muted-foreground font-medium">{bank.nextMeeting} 2025</span>
                               </div>
-                              <div className="text-xs text-zinc-500">
+                              <div className="text-xs text-muted-foreground">
                                 Market pricing: <span style={{ color: DECISION_COLOR[bank.marketExpectation] }} className="font-medium">{bank.marketExpectation}</span>
                               </div>
                             </div>
                             {/* Mini rate history sparkline */}
                             <div className="mt-3">
-                              <div className="text-xs text-zinc-600 mb-1">Rate history (3Y)</div>
+                              <div className="text-xs text-muted-foreground mb-1">Rate history (3Y)</div>
                               <svg viewBox="0 0 280 36" className="w-full" style={{ maxHeight: 36 }}>
                                 {(() => {
                                   const data = bank.rateHistory;
@@ -1330,13 +1330,13 @@ export default function GlobalMacroPage() {
                     className="w-2.5 h-2.5 rounded-full"
                     style={{ backgroundColor: CLASS_COLOR[cls] }}
                   />
-                  <span className="text-zinc-400">{cls}</span>
-                  <span className="text-zinc-600">({MACRO_INDICATORS.filter((i) => i.classification === cls).length})</span>
+                  <span className="text-muted-foreground">{cls}</span>
+                  <span className="text-muted-foreground">({MACRO_INDICATORS.filter((i) => i.classification === cls).length})</span>
                 </div>
               ))}
             </div>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardContent className="p-4">
                 {MACRO_INDICATORS.map((ind) => (
                   <IndicatorRow key={ind.name} ind={ind} />
@@ -1354,52 +1354,52 @@ export default function GlobalMacroPage() {
             transition={{ duration: 0.35 }}
             className="space-y-6"
           >
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-indigo-400" />
                   FX Performance Matrix — YTD % Change
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Row = base currency · Column = quote · Green = base strengthened vs quote</p>
+                <p className="text-xs text-muted-foreground">Row = base currency · Column = quote · Green = base strengthened vs quote</p>
               </CardHeader>
               <CardContent>
                 <FxMatrixTable />
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <Target className="w-4 h-4 text-indigo-400" />
                   Carry Trade Matrix — Interest Rate Differentials
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Row = long leg · Column = short leg · Positive = carry income earned</p>
+                <p className="text-xs text-muted-foreground">Row = long leg · Column = short leg · Positive = carry income earned</p>
               </CardHeader>
               <CardContent>
                 <CarryMatrix />
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <Info className="w-4 h-4 text-indigo-400" />
                   PPP Valuation vs USD
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Purchasing Power Parity fair value deviation — how over or undervalued each currency is vs the dollar</p>
+                <p className="text-xs text-muted-foreground">Purchasing Power Parity fair value deviation — how over or undervalued each currency is vs the dollar</p>
               </CardHeader>
               <CardContent>
                 <PppChart />
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-indigo-400" />
                   Real Effective Exchange Rate (REER)
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Above 100 = currency is strong vs long-run average; below 100 = historically cheap</p>
+                <p className="text-xs text-muted-foreground">Above 100 = currency is strong vs long-run average; below 100 = historically cheap</p>
               </CardHeader>
               <CardContent>
                 <ReerChart />

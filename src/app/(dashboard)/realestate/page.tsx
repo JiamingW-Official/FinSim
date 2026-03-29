@@ -79,9 +79,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
-      <span className="text-xs text-zinc-400">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -90,7 +90,7 @@ function StatCard({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -262,19 +262,19 @@ function PropertyAnalyzer() {
             ] as { key: keyof PropInputs; label: string; step: number; min: number }[]
           ).map(({ key, label, step, min }) => (
             <div key={key} className="flex items-center justify-between gap-4">
-              <label className="text-xs text-zinc-400 w-40 shrink-0">{label}</label>
+              <label className="text-xs text-muted-foreground w-40 shrink-0">{label}</label>
               <input
                 type="number"
                 value={inputs[key]}
                 step={step}
                 min={min}
                 onChange={(e) => set(key, parseFloat(e.target.value) || 0)}
-                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           ))}
           <div className="flex items-center justify-between gap-4">
-            <label className="text-xs text-zinc-400 w-40 shrink-0">Vacancy Rate (%)</label>
+            <label className="text-xs text-muted-foreground w-40 shrink-0">Vacancy Rate (%)</label>
             <input
               type="number"
               value={inputs.vacancy}
@@ -282,11 +282,11 @@ function PropertyAnalyzer() {
               min={0}
               max={30}
               onChange={(e) => set("vacancy", parseFloat(e.target.value) || 0)}
-              className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
           <div className="flex items-center justify-between gap-4">
-            <label className="text-xs text-zinc-400 w-40 shrink-0">Down Payment (%)</label>
+            <label className="text-xs text-muted-foreground w-40 shrink-0">Down Payment (%)</label>
             <input
               type="number"
               value={inputs.downPct}
@@ -294,7 +294,7 @@ function PropertyAnalyzer() {
               min={5}
               max={100}
               onChange={(e) => set("downPct", parseFloat(e.target.value) || 20)}
-              className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -320,7 +320,7 @@ function PropertyAnalyzer() {
               { label: "Cash Flow After Debt", val: calc.cashFlow, sign: 1, bold: true },
             ].map(({ label, val, bold }) => (
               <div key={label} className={cn("flex justify-between text-sm", bold ? "font-semibold border-t border-white/10 pt-1 mt-1" : "")}>
-                <span className="text-zinc-400">{label}</span>
+                <span className="text-muted-foreground">{label}</span>
                 <span className={posNegClass(val)}>{fmtM(val)}</span>
               </div>
             ))}
@@ -328,19 +328,19 @@ function PropertyAnalyzer() {
 
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-1">
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Loan Amount (80% LTV)</span>
+              <span className="text-muted-foreground">Loan Amount (80% LTV)</span>
               <span className="text-white">{fmtM(calc.loanAmount)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Monthly Mortgage (7%, 30yr)</span>
+              <span className="text-muted-foreground">Monthly Mortgage (7%, 30yr)</span>
               <span className="text-white">{fmtUSD(calc.pmt)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Break-Even Rent</span>
+              <span className="text-muted-foreground">Break-Even Rent</span>
               <span className="text-amber-400">{fmtUSD(calc.breakEvenRent)}/mo</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-zinc-400">Down Payment</span>
+              <span className="text-muted-foreground">Down Payment</span>
               <span className="text-white">{fmtM(calc.downPayment)}</span>
             </div>
           </div>
@@ -405,7 +405,7 @@ function PropertyAnalyzer() {
             const d = chartData[yr];
             return (
               <div key={yr} className="text-center">
-                <div className="text-xs text-zinc-500">Year {yr}</div>
+                <div className="text-xs text-muted-foreground">Year {yr}</div>
                 <div className="text-sm font-semibold text-primary">{fmtM(d.propValue)}</div>
                 <div className="text-xs text-emerald-400">{fmtM(d.equity)} equity</div>
               </div>
@@ -543,7 +543,7 @@ function MarketComparisons() {
     <div className="space-y-6">
       {/* Sort controls */}
       <div className="flex flex-wrap gap-2 items-center">
-        <span className="text-xs text-zinc-400">Sort by:</span>
+        <span className="text-xs text-muted-foreground">Sort by:</span>
         {(
           [
             { key: "score" as const, label: "Investor Score" },
@@ -558,7 +558,7 @@ function MarketComparisons() {
             onClick={() => setSort(key)}
             className={cn(
               "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
-              sort === key ? "bg-primary text-white" : "bg-white/5 text-zinc-400 hover:bg-white/10"
+              sort === key ? "bg-primary text-white" : "bg-white/5 text-muted-foreground hover:bg-white/10"
             )}
           >
             {label}
@@ -571,7 +571,7 @@ function MarketComparisons() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white/5 text-xs text-zinc-500 uppercase">
+              <tr className="bg-white/5 text-xs text-muted-foreground uppercase">
                 <th className="px-3 py-2 text-left">Metro</th>
                 <th className="px-3 py-2 text-right">Median Price</th>
                 <th className="px-3 py-2 text-right">P/Rent</th>
@@ -597,7 +597,7 @@ function MarketComparisons() {
                     <td className="px-3 py-2 font-medium text-white">
                       {m.city}, {m.state}
                     </td>
-                    <td className="px-3 py-2 text-right text-zinc-300">{fmtM(m.medianPrice)}</td>
+                    <td className="px-3 py-2 text-right text-muted-foreground">{fmtM(m.medianPrice)}</td>
                     <td className="px-3 py-2 text-right">
                       <span className={m.priceToRent < 15 ? "text-emerald-400" : m.priceToRent < 25 ? "text-amber-400" : "text-rose-400"}>
                         {m.priceToRent}x
@@ -620,7 +620,7 @@ function MarketComparisons() {
                         <div className="h-1.5 rounded-full bg-primary/30 w-16 overflow-hidden">
                           <div className="h-full bg-primary rounded-full" style={{ width: `${(score / 10) * 100}%` }} />
                         </div>
-                        <span className="text-xs text-zinc-400">{score.toFixed(1)}</span>
+                        <span className="text-xs text-muted-foreground">{score.toFixed(1)}</span>
                       </div>
                     </td>
                   </motion.tr>
@@ -642,7 +642,7 @@ function MarketComparisons() {
             { key: "investReturn" as const, label: "Investment Return (%)", step: 0.5 },
           ].map(({ key, label, step }) => (
             <div key={key}>
-              <label className="text-xs text-zinc-500 block mb-1">{label}</label>
+              <label className="text-xs text-muted-foreground block mb-1">{label}</label>
               <input
                 type="number"
                 value={rentVsBuy[key]}
@@ -650,7 +650,7 @@ function MarketComparisons() {
                 onChange={(e) =>
                   setRentVsBuy((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))
                 }
-                className="w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           ))}
@@ -765,7 +765,7 @@ function REITAnalysis() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-white/5 text-xs text-zinc-500 uppercase">
+              <tr className="bg-white/5 text-xs text-muted-foreground uppercase">
                 <th className="px-3 py-2 text-left">Ticker</th>
                 <th className="px-3 py-2 text-left">Sector</th>
                 <th className="px-3 py-2 text-right">Div Yield</th>
@@ -790,7 +790,7 @@ function REITAnalysis() {
                     </span>
                   </td>
                   <td className="px-3 py-2 text-right text-emerald-400">{fmtPct(r.divYield)}</td>
-                  <td className="px-3 py-2 text-right text-zinc-300">${r.ffoPerShare.toFixed(2)}</td>
+                  <td className="px-3 py-2 text-right text-muted-foreground">${r.ffoPerShare.toFixed(2)}</td>
                   <td className="px-3 py-2 text-right">
                     <span className={r.pFfo < 15 ? "text-emerald-400" : r.pFfo < 22 ? "text-amber-400" : "text-rose-400"}>{r.pFfo.toFixed(1)}x</span>
                   </td>
@@ -800,7 +800,7 @@ function REITAnalysis() {
                   <td className="px-3 py-2 text-right">
                     <span className={r.occupancy >= 95 ? "text-emerald-400" : r.occupancy >= 88 ? "text-amber-400" : "text-rose-400"}>{r.occupancy.toFixed(1)}%</span>
                   </td>
-                  <td className="px-3 py-2 text-xs text-zinc-400">{r.leaseType}</td>
+                  <td className="px-3 py-2 text-xs text-muted-foreground">{r.leaseType}</td>
                 </tr>
               ))}
             </tbody>
@@ -820,7 +820,7 @@ function REITAnalysis() {
             <div className="flex justify-between items-start mb-3">
               <div>
                 <span className="font-mono font-bold text-xl text-white">{sel.ticker}</span>
-                <span className="ml-2 text-zinc-400">{sel.name}</span>
+                <span className="ml-2 text-muted-foreground">{sel.name}</span>
               </div>
               <span className="rounded px-2 py-0.5 text-xs font-medium" style={{ backgroundColor: (SECTOR_COLORS[sel.sector] ?? "#6b7280") + "30", color: SECTOR_COLORS[sel.sector] ?? "#9ca3af" }}>
                 {sel.sector}
@@ -867,13 +867,13 @@ function REITAnalysis() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-2">
           <SectionTitle><Info className="w-4 h-4" />Why FFO Instead of EPS?</SectionTitle>
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             REITs own depreciating assets on paper — GAAP requires large depreciation charges that reduce net income, but real estate often <em>appreciates</em> in value.
           </p>
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             <strong className="text-white">FFO = Net Income + Depreciation − Gains on Property Sales</strong>. This gives a more accurate picture of cash generated from operations.
           </p>
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             <strong className="text-white">AFFO</strong> (Adjusted FFO) further subtracts recurring capex — the gold standard for dividend sustainability analysis.
           </p>
         </div>
@@ -888,7 +888,7 @@ function REITAnalysis() {
             { factor: "Min. Investment", reit: "~$50 per share", direct: "$50K+ down payment" },
           ].map(({ factor, reit, direct }) => (
             <div key={factor} className="grid grid-cols-3 text-xs gap-1">
-              <span className="text-zinc-500 font-medium">{factor}</span>
+              <span className="text-muted-foreground font-medium">{factor}</span>
               <span className="text-primary">{reit}</span>
               <span className="text-amber-300">{direct}</span>
             </div>
@@ -965,23 +965,23 @@ function CommercialRE() {
             </div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
               <div className="flex justify-between">
-                <span className="text-zinc-500">NYC Cap Rate</span>
-                <span className="text-zinc-300">{fmtPct(s.nyCapRate)}</span>
+                <span className="text-muted-foreground">NYC Cap Rate</span>
+                <span className="text-muted-foreground">{fmtPct(s.nyCapRate)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-500">Sun Belt</span>
-                <span className="text-zinc-300">{fmtPct(s.sunBeltCapRate)}</span>
+                <span className="text-muted-foreground">Sun Belt</span>
+                <span className="text-muted-foreground">{fmtPct(s.sunBeltCapRate)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-500">Vacancy</span>
+                <span className="text-muted-foreground">Vacancy</span>
                 <span className={s.vacancyRate > 15 ? "text-rose-400" : s.vacancyRate > 8 ? "text-amber-400" : "text-emerald-400"}>{fmtPct(s.vacancyRate)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-500">Lease Term</span>
-                <span className="text-zinc-300">{s.avgLeaseTerm}</span>
+                <span className="text-muted-foreground">Lease Term</span>
+                <span className="text-muted-foreground">{s.avgLeaseTerm}</span>
               </div>
             </div>
-            <p className="text-xs text-zinc-500 leading-relaxed">{s.note}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{s.note}</p>
           </motion.div>
         ))}
       </div>
@@ -995,13 +995,13 @@ function CommercialRE() {
             { key: "debtService" as const, label: "Annual Debt Service ($)" },
           ].map(({ key, label }) => (
             <div key={key} className="flex items-center justify-between gap-4">
-              <label className="text-xs text-zinc-400 w-40">{label}</label>
+              <label className="text-xs text-muted-foreground w-40">{label}</label>
               <input
                 type="number"
                 value={dscrInputs[key]}
                 step={10000}
                 onChange={(e) => setDscrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           ))}
@@ -1009,7 +1009,7 @@ function CommercialRE() {
             <div className={cn("text-3xl font-bold", dscr >= 1.25 ? "text-emerald-400" : dscr >= 1.0 ? "text-amber-400" : "text-rose-400")}>
               {dscr.toFixed(2)}x
             </div>
-            <div className="text-xs text-zinc-400 mt-1">DSCR — {dscr >= 1.25 ? "Lender approved (>1.25x)" : dscr >= 1.0 ? "Borderline — may require more equity" : "Below 1.0x — property cash flow negative"}</div>
+            <div className="text-xs text-muted-foreground mt-1">DSCR — {dscr >= 1.25 ? "Lender approved (>1.25x)" : dscr >= 1.0 ? "Borderline — may require more equity" : "Below 1.0x — property cash flow negative"}</div>
           </div>
           <InfoBox variant="blue">
             Most commercial lenders require <strong>DSCR ≥ 1.25x</strong>. Bridge lenders may go to 1.10x with higher rates. SBA loans often require 1.15x.
@@ -1025,13 +1025,13 @@ function CommercialRE() {
             { key: "amort" as const, label: "Amortization (years)", step: 5 },
           ].map(({ key, label, step }) => (
             <div key={key} className="flex items-center justify-between gap-4">
-              <label className="text-xs text-zinc-400 w-40">{label}</label>
+              <label className="text-xs text-muted-foreground w-40">{label}</label>
               <input
                 type="number"
                 value={mortInputs[key]}
                 step={step}
                 onChange={(e) => setMortInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           ))}
@@ -1057,11 +1057,11 @@ function CommercialRE() {
             <div key={metric} className="text-center">
               <div className="text-2xl font-bold text-rose-400">{val}</div>
               <div className="text-xs font-medium text-rose-300 mt-1">{metric}</div>
-              <div className="text-xs text-zinc-500 mt-0.5">{note}</div>
+              <div className="text-xs text-muted-foreground mt-0.5">{note}</div>
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-400 mt-3 leading-relaxed">
+        <p className="text-xs text-muted-foreground mt-3 leading-relaxed">
           Remote/hybrid work structurally reduced office demand. Many owners cannot refinance maturing loans at current values, creating distressed sale opportunities — but also significant credit risk for banks with concentrated office exposure.
         </p>
       </div>
@@ -1159,20 +1159,20 @@ function DevelopmentTab() {
             { key: "financingCosts" as const, label: "Financing Costs ($)" },
           ].map(({ key, label }) => (
             <div key={key} className="flex items-center justify-between gap-4">
-              <label className="text-xs text-zinc-400 flex-1">{label}</label>
+              <label className="text-xs text-muted-foreground flex-1">{label}</label>
               <input
                 type="number"
                 value={devInputs[key]}
                 step={10000}
                 onChange={(e) => setDevInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           ))}
 
           {/* Cost bar */}
           <div>
-            <div className="flex justify-between text-xs text-zinc-400 mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span>Total Development Cost</span>
               <span className="text-white font-semibold">{fmtM(totalCost)}</span>
             </div>
@@ -1206,7 +1206,7 @@ function DevelopmentTab() {
         {/* BRRRR */}
         <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
           <SectionTitle><RefreshCw className="w-4 h-4" />BRRRR Strategy</SectionTitle>
-          <p className="text-xs text-zinc-500">Buy → Rehab → Rent → Refinance → Repeat</p>
+          <p className="text-xs text-muted-foreground">Buy → Rehab → Rent → Refinance → Repeat</p>
           {[
             { key: "purchasePrice" as const, label: "Purchase Price ($)", step: 5000 },
             { key: "rehabCost" as const, label: "Rehab Cost ($)", step: 5000 },
@@ -1215,13 +1215,13 @@ function DevelopmentTab() {
             { key: "newLoanRate" as const, label: "Refi Rate (%)", step: 0.25 },
           ].map(({ key, label, step }) => (
             <div key={key} className="flex items-center justify-between gap-4">
-              <label className="text-xs text-zinc-400 flex-1">{label}</label>
+              <label className="text-xs text-muted-foreground flex-1">{label}</label>
               <input
                 type="number"
                 value={brrrrInputs[key]}
                 step={step}
                 onChange={(e) => setBrrrrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-white/10 bg-zinc-900 px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-32 rounded-lg border border-white/10 bg-card px-3 py-1.5 text-sm text-white text-right focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
             </div>
           ))}
@@ -1237,7 +1237,7 @@ function DevelopmentTab() {
             <StatCard label="Remaining Equity" value={fmtM(brrrrCalc.equity)} highlight="pos" />
           </div>
           <div className="flex justify-between text-sm">
-            <span className="text-zinc-400">Monthly Mortgage Payment</span>
+            <span className="text-muted-foreground">Monthly Mortgage Payment</span>
             <span className="text-white">{fmtUSD(brrrrCalc.monthlyPmt)}</span>
           </div>
         </div>
@@ -1249,7 +1249,7 @@ function DevelopmentTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-zinc-500 uppercase border-b border-white/10">
+              <tr className="text-xs text-muted-foreground uppercase border-b border-white/10">
                 <th className="px-3 py-2 text-left">Improvement</th>
                 <th className="px-3 py-2 text-right">Cost</th>
                 <th className="px-3 py-2 text-right">Value Added</th>
@@ -1262,8 +1262,8 @@ function DevelopmentTab() {
                 .sort((a, b) => b.roi - a.roi)
                 .map((r) => (
                   <tr key={r.item} className="border-t border-white/5 hover:bg-white/5 transition-colors">
-                    <td className="px-3 py-2 text-zinc-300">{r.item}</td>
-                    <td className="px-3 py-2 text-right text-zinc-400">{fmtUSD(r.cost)}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{r.item}</td>
+                    <td className="px-3 py-2 text-right text-muted-foreground">{fmtUSD(r.cost)}</td>
                     <td className="px-3 py-2 text-right text-emerald-400">{fmtUSD(r.addedVal)}</td>
                     <td className="px-3 py-2 text-right">
                       <span className={r.roi >= 100 ? "text-emerald-400 font-semibold" : r.roi >= 75 ? "text-amber-400" : "text-rose-400"}>
@@ -1288,15 +1288,15 @@ function DevelopmentTab() {
         <div className="grid grid-cols-6 gap-2 mb-3">
           {irrFlows.cashFlows.map((cf, i) => (
             <div key={i} className="text-center">
-              <div className="text-xs text-zinc-500 mb-1">Yr {i}</div>
+              <div className="text-xs text-muted-foreground mb-1">Yr {i}</div>
               <div className={cn("text-sm font-semibold", cf < 0 ? "text-rose-400" : "text-emerald-400")}>{fmtM(cf)}</div>
-              <div className="text-xs text-zinc-600">{i === 0 ? "Equity In" : i === 5 ? "Exit + CF" : "Cash Flow"}</div>
+              <div className="text-xs text-muted-foreground">{i === 0 ? "Equity In" : i === 5 ? "Exit + CF" : "Cash Flow"}</div>
             </div>
           ))}
         </div>
         <div className="rounded-lg bg-emerald-500/15 border border-emerald-500/30 p-3 text-center">
           <span className="text-emerald-400 text-2xl font-bold">{irrFlows.irr.toFixed(1)}% IRR</span>
-          <span className="text-zinc-400 text-sm ml-2">on $200K equity with 5-year hold</span>
+          <span className="text-muted-foreground text-sm ml-2">on $200K equity with 5-year hold</span>
         </div>
         <InfoBox variant="blue">
           <strong>IRR</strong> (Internal Rate of Return) is the annualized return that makes NPV = 0. Value-add targets: 12-18% IRR. Opportunistic: 18%+ IRR. Core: 7-10% IRR.
@@ -1421,7 +1421,7 @@ function PortfolioStrategy() {
             {STRATEGIES.map((s) => (
               <div key={s.strategy} className="text-xs flex gap-2">
                 <span className="font-semibold w-24 shrink-0" style={{ color: s.color }}>{s.strategy}</span>
-                <span className="text-zinc-500">{s.description}</span>
+                <span className="text-muted-foreground">{s.description}</span>
               </div>
             ))}
           </div>
@@ -1442,11 +1442,11 @@ function PortfolioStrategy() {
               {SECTORS_ALLOC.map((s) => (
                 <div key={s.name} className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
-                  <span className="text-xs text-zinc-300 flex-1">{s.name}</span>
+                  <span className="text-xs text-muted-foreground flex-1">{s.name}</span>
                   <div className="h-1.5 rounded-full bg-white/10 w-20 overflow-hidden">
                     <div className="h-full rounded-full" style={{ width: `${s.pct}%`, backgroundColor: s.color }} />
                   </div>
-                  <span className="text-xs text-zinc-400 w-8 text-right">{s.pct}%</span>
+                  <span className="text-xs text-muted-foreground w-8 text-right">{s.pct}%</span>
                 </div>
               ))}
             </div>
@@ -1458,7 +1458,7 @@ function PortfolioStrategy() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-5 space-y-4">
         <SectionTitle><Percent className="w-4 h-4" />Leverage Effects on Returns</SectionTitle>
         <div className="flex items-center gap-4 mb-2">
-          <label className="text-xs text-zinc-400 w-24">LTV: {ltv}%</label>
+          <label className="text-xs text-muted-foreground w-24">LTV: {ltv}%</label>
           <input type="range" min={0} max={90} step={5} value={ltv} onChange={(e) => setLtv(parseInt(e.target.value))} className="flex-1 accent-blue-500" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -1486,7 +1486,7 @@ function PortfolioStrategy() {
             const coc = eq > 0 ? (cf / eq) * 100 : 0;
             return (
               <div key={ltvTest} className="flex items-center gap-3 text-xs">
-                <span className="text-zinc-500 w-14">{ltvTest}% LTV</span>
+                <span className="text-muted-foreground w-14">{ltvTest}% LTV</span>
                 <div className="flex-1 h-4 rounded-full bg-white/10 overflow-hidden relative">
                   <div className={cn("absolute inset-y-0 left-0 rounded-full transition-all", coc > 5.5 ? "bg-emerald-500/60" : coc >= 0 ? "bg-amber-500/60" : "bg-rose-500/60")} style={{ width: `${Math.max(0, Math.min(100, coc * 5))}%` }} />
                 </div>
@@ -1511,7 +1511,7 @@ function PortfolioStrategy() {
           ].map(({ rule, desc }) => (
             <div key={rule} className="flex gap-3 text-xs">
               <span className="font-semibold text-primary w-28 shrink-0">{rule}</span>
-              <span className="text-zinc-400">{desc}</span>
+              <span className="text-muted-foreground">{desc}</span>
             </div>
           ))}
         </div>
@@ -1524,10 +1524,10 @@ function PortfolioStrategy() {
           ].map(({ pct, risk }) => (
             <div key={pct} className="flex gap-3 text-xs">
               <span className="font-semibold text-amber-400 w-24 shrink-0">{pct}</span>
-              <span className="text-zinc-400">{risk}</span>
+              <span className="text-muted-foreground">{risk}</span>
             </div>
           ))}
-          <div className="pt-2 border-t border-white/10 space-y-1 text-xs text-zinc-400">
+          <div className="pt-2 border-t border-white/10 space-y-1 text-xs text-muted-foreground">
             <p><strong className="text-white">Portfolio allocation target:</strong> Real estate 10-20% of total portfolio for most investors.</p>
             <p>Real estate correlation with equities is low (~0.15) over long periods, providing genuine diversification benefit.</p>
             <p><strong className="text-white">Concentration risk:</strong> Single-family investors often have 80%+ of net worth in one property — opposite of diversification.</p>
@@ -1553,7 +1553,7 @@ const TABS = [
 
 export default function RealEstatePage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
@@ -1564,7 +1564,7 @@ export default function RealEstatePage() {
               </div>
               <h1 className="text-2xl font-bold text-white">Real Estate Investment Analysis</h1>
             </div>
-            <p className="text-sm text-zinc-400 ml-14">
+            <p className="text-sm text-muted-foreground ml-14">
               Property analyzer, market comparisons, REITs, commercial RE, development, and portfolio strategy.
             </p>
           </div>
@@ -1588,7 +1588,7 @@ export default function RealEstatePage() {
               <TabsTrigger
                 key={id}
                 value={id}
-                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground hover:text-white transition-colors"
               >
                 {icon}
                 <span className="hidden sm:inline">{label}</span>

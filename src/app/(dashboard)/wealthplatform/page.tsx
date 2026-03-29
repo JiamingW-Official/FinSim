@@ -1111,14 +1111,14 @@ export default function WealthPlatformPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0f1a] text-slate-100 p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-[#0a0f1a] text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold tracking-tight">
             Wealth Management Platform
           </h1>
-          <p className="text-sm text-slate-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             Comprehensive financial planning · Asset allocation · Tax optimization · Estate planning
           </p>
         </div>
@@ -1126,7 +1126,7 @@ export default function WealthPlatformPage() {
           <Badge variant="outline" className="border-indigo-500/40 text-indigo-300 text-xs">
             Fiduciary Mode
           </Badge>
-          <Button size="sm" variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-800 gap-1.5 text-xs">
+          <Button size="sm" variant="outline" className="border-border text-muted-foreground hover:bg-muted gap-1.5 text-xs">
             <Download className="w-3.5 h-3.5" />
             Export Report
           </Button>
@@ -1135,20 +1135,20 @@ export default function WealthPlatformPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="profile" className="space-y-4">
-        <TabsList className="bg-slate-900 border border-slate-800 p-1 rounded-lg gap-1">
-          <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400 text-sm gap-1.5 px-3">
+        <TabsList className="bg-card border border-border p-1 rounded-lg gap-1">
+          <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
             <User className="w-3.5 h-3.5" />
             Client Profile
           </TabsTrigger>
-          <TabsTrigger value="allocation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400 text-sm gap-1.5 px-3">
+          <TabsTrigger value="allocation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
             <PieChart className="w-3.5 h-3.5" />
             Asset Allocation
           </TabsTrigger>
-          <TabsTrigger value="tax" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400 text-sm gap-1.5 px-3">
+          <TabsTrigger value="tax" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
             <Shield className="w-3.5 h-3.5" />
             Tax Planning
           </TabsTrigger>
-          <TabsTrigger value="reporting" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400 text-sm gap-1.5 px-3">
+          <TabsTrigger value="reporting" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
             <FileText className="w-3.5 h-3.5" />
             Reporting
           </TabsTrigger>
@@ -1168,37 +1168,37 @@ export default function WealthPlatformPage() {
                   "text-left p-4 rounded-xl border transition-all",
                   selectedClient === c.id
                     ? "border-indigo-500 bg-indigo-500/10"
-                    : "border-slate-800 bg-slate-900 hover:border-slate-700"
+                    : "border-border bg-card hover:border-border"
                 )}
               >
                 <div className="flex items-center gap-2 mb-2">
                   <div className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold",
-                    selectedClient === c.id ? "bg-indigo-600 text-white" : "bg-slate-700 text-slate-300"
+                    selectedClient === c.id ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground"
                   )}>
                     {c.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-slate-100 leading-tight">{c.name}</div>
-                    <div className="text-xs text-slate-400">Age {c.age}</div>
+                    <div className="text-sm font-medium text-foreground leading-tight">{c.name}</div>
+                    <div className="text-xs text-muted-foreground">Age {c.age}</div>
                   </div>
                 </div>
-                <Badge variant="outline" className="text-xs border-slate-700 text-slate-400 mb-1">
+                <Badge variant="outline" className="text-xs border-border text-muted-foreground mb-1">
                   {c.label}
                 </Badge>
-                <div className="text-lg font-semibold text-slate-100 mt-1">
+                <div className="text-lg font-semibold text-foreground mt-1">
                   {fmtK(c.totalAssets)}
                 </div>
-                <div className="text-xs text-slate-500 mt-0.5">{c.description}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{c.description}</div>
               </motion.button>
             ))}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             {/* Net Worth Donut + Breakdown */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <PieChart className="w-4 h-4 text-indigo-400" />
                   Net Worth Breakdown
                 </CardTitle>
@@ -1217,9 +1217,9 @@ export default function WealthPlatformPage() {
                           className="w-3 h-3 rounded-sm flex-shrink-0"
                           style={{ backgroundColor: d.color }}
                         />
-                        <span className="text-xs text-slate-300 flex-1">{d.label}</span>
-                        <span className="text-xs font-medium text-slate-200">{fmtK(d.value)}</span>
-                        <span className="text-xs text-slate-500">
+                        <span className="text-xs text-muted-foreground flex-1">{d.label}</span>
+                        <span className="text-xs font-medium text-foreground">{fmtK(d.value)}</span>
+                        <span className="text-xs text-muted-foreground">
                           {((d.value / client.totalAssets) * 100).toFixed(0)}%
                         </span>
                       </div>
@@ -1230,9 +1230,9 @@ export default function WealthPlatformPage() {
             </Card>
 
             {/* Risk Questionnaire */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-indigo-400" />
                   Risk Tolerance Questionnaire
                 </CardTitle>
@@ -1241,8 +1241,8 @@ export default function WealthPlatformPage() {
                 {riskDimensions.map((dim) => (
                   <div key={dim.key} className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-slate-300">{dim.label}</span>
-                      <span className="text-xs text-slate-500">{dim.desc}</span>
+                      <span className="text-xs text-muted-foreground">{dim.label}</span>
+                      <span className="text-xs text-muted-foreground">{dim.desc}</span>
                     </div>
                     <Slider
                       min={1}
@@ -1254,14 +1254,14 @@ export default function WealthPlatformPage() {
                       }
                       className="h-1.5"
                     />
-                    <div className="flex justify-between text-xs text-slate-600">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>Low</span>
                       <span>High</span>
                     </div>
                   </div>
                 ))}
-                <div className="mt-3 p-3 rounded-lg bg-slate-800/60 flex items-center justify-between">
-                  <span className="text-xs text-slate-400">Risk Score</span>
+                <div className="mt-3 p-3 rounded-lg bg-muted/60 flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">Risk Score</span>
                   <div className="flex items-center gap-2">
                     <Progress value={riskScore} className="w-24 h-2" />
                     <span className={cn("text-sm font-semibold", riskLabel.color)}>
@@ -1274,9 +1274,9 @@ export default function WealthPlatformPage() {
           </div>
 
           {/* Goals Tracker */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Target className="w-4 h-4 text-indigo-400" />
                 Financial Goals Tracker
               </CardTitle>
@@ -1290,15 +1290,15 @@ export default function WealthPlatformPage() {
                       ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
                       : goal.priority === "medium"
                       ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
-                      : "text-slate-400 border-slate-600/30 bg-slate-700/10";
+                      : "text-muted-foreground border-slate-600/30 bg-muted/10";
                   return (
                     <div
                       key={goal.name}
-                      className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/50"
+                      className="p-3 rounded-lg bg-muted/60 border border-border/50"
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-indigo-400">{goal.icon}</span>
-                        <span className="text-sm font-medium text-slate-200">{goal.name}</span>
+                        <span className="text-sm font-medium text-foreground">{goal.name}</span>
                         <Badge
                           variant="outline"
                           className={cn("text-xs ml-auto px-1.5 py-0", priorityColor)}
@@ -1306,12 +1306,12 @@ export default function WealthPlatformPage() {
                           {goal.priority}
                         </Badge>
                       </div>
-                      <div className="flex justify-between text-xs text-slate-400 mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span>{fmtK(goal.current)}</span>
                         <span>{fmtK(goal.target)} by {goal.targetYear}</span>
                       </div>
                       <Progress value={pct} className="h-1.5" />
-                      <div className="flex justify-between text-xs text-slate-500 mt-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mt-1">
                         <span>{pct.toFixed(0)}% funded</span>
                         <span>{fmtK(goal.target - goal.current)} remaining</span>
                       </div>
@@ -1326,9 +1326,9 @@ export default function WealthPlatformPage() {
         {/* ── ASSET ALLOCATION TAB ── */}
         <TabsContent value="allocation" className="space-y-4 data-[state=inactive]:hidden">
           {/* Glide path */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-indigo-400" />
                 Life-Stage Glide Path (Age 25–85)
               </CardTitle>
@@ -1343,7 +1343,7 @@ export default function WealthPlatformPage() {
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-1.5">
                     <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: item.color }} />
-                    <span className="text-xs text-slate-400">{item.label}</span>
+                    <span className="text-xs text-muted-foreground">{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -1353,9 +1353,9 @@ export default function WealthPlatformPage() {
 
           <div className="grid grid-cols-2 gap-4">
             {/* Current vs Model */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-indigo-400" />
                   Current vs Model Portfolio
                 </CardTitle>
@@ -1367,10 +1367,10 @@ export default function WealthPlatformPage() {
                     const diff = d.current - d.model;
                     return (
                       <div key={d.label} className="flex items-center justify-between text-xs">
-                        <span className="text-slate-400 w-24">{d.label}</span>
-                        <span className="text-slate-300 w-12">{d.current}%</span>
-                        <span className="text-slate-500 w-12">{d.model}%</span>
-                        <span className={cn("w-14 text-right", diff > 0 ? "text-amber-400" : diff < 0 ? "text-sky-400" : "text-slate-500")}>
+                        <span className="text-muted-foreground w-24">{d.label}</span>
+                        <span className="text-muted-foreground w-12">{d.current}%</span>
+                        <span className="text-muted-foreground w-12">{d.model}%</span>
+                        <span className={cn("w-14 text-right", diff > 0 ? "text-amber-400" : diff < 0 ? "text-sky-400" : "text-muted-foreground")}>
                           {diff > 0 ? "+" : ""}{diff}%
                         </span>
                       </div>
@@ -1381,9 +1381,9 @@ export default function WealthPlatformPage() {
             </Card>
 
             {/* Rebalancing Trades */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <RefreshCw className="w-4 h-4 text-indigo-400" />
                   Rebalancing Trade List
                 </CardTitle>
@@ -1392,7 +1392,7 @@ export default function WealthPlatformPage() {
                 {rebalanceTrades.map((trade) => (
                   <div
                     key={trade.ticker}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-slate-800/60 border border-slate-700/50"
+                    className="flex items-center gap-3 p-3 rounded-lg bg-muted/60 border border-border/50"
                   >
                     <Badge
                       variant="outline"
@@ -1406,18 +1406,18 @@ export default function WealthPlatformPage() {
                       {trade.action}
                     </Badge>
                     <div className="flex-1">
-                      <div className="text-sm font-medium text-slate-200">{trade.ticker}</div>
-                      <div className="text-xs text-slate-500">{trade.reason}</div>
+                      <div className="text-sm font-medium text-foreground">{trade.ticker}</div>
+                      <div className="text-xs text-muted-foreground">{trade.reason}</div>
                     </div>
-                    <div className="text-sm font-semibold text-slate-200">
+                    <div className="text-sm font-semibold text-foreground">
                       {fmtK(trade.amount)}
                     </div>
                   </div>
                 ))}
 
                 {/* Factor Tilts */}
-                <div className="mt-4 pt-3 border-t border-slate-800">
-                  <div className="text-xs font-medium text-slate-400 mb-2">Factor Tilts</div>
+                <div className="mt-4 pt-3 border-t border-border">
+                  <div className="text-xs font-medium text-muted-foreground mb-2">Factor Tilts</div>
                   <div className="flex flex-wrap gap-2">
                     {["Value +2%", "Momentum +1.5%", "Quality +1%", "Low Vol -0.5%", "Size +0.5%"].map((tilt) => (
                       <Badge key={tilt} variant="outline" className="text-xs border-indigo-500/30 text-indigo-300 bg-indigo-500/10">
@@ -1440,9 +1440,9 @@ export default function WealthPlatformPage() {
               { label: "Harvest Opportunities", value: `${harvestSelected.size} selected`, color: "text-indigo-400" },
               { label: "Roth Conversion Benefit", value: fmtK(rothConversionTax.projectedSaving), color: "text-amber-400" },
             ].map((stat) => (
-              <Card key={stat.label} className="bg-slate-900 border-slate-800">
+              <Card key={stat.label} className="bg-card border-border">
                 <CardContent className="pt-4 pb-4">
-                  <div className="text-xs text-slate-400">{stat.label}</div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
                   <div className={cn("text-xl font-bold mt-1", stat.color)}>{stat.value}</div>
                 </CardContent>
               </Card>
@@ -1451,9 +1451,9 @@ export default function WealthPlatformPage() {
 
           <div className="grid grid-cols-2 gap-4">
             {/* Tax-Loss Harvesting */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <TrendingDown className="w-4 h-4 text-red-400" />
                   Tax-Loss Harvesting Scanner
                 </CardTitle>
@@ -1477,7 +1477,7 @@ export default function WealthPlatformPage() {
                         "w-full text-left p-3 rounded-lg border transition-all",
                         selected
                           ? "border-indigo-500/50 bg-indigo-500/10"
-                          : "border-slate-800 bg-slate-800/40 hover:border-slate-700"
+                          : "border-border bg-muted/40 hover:border-border"
                       )}
                     >
                       <div className="flex items-center gap-2">
@@ -1486,15 +1486,15 @@ export default function WealthPlatformPage() {
                         )}>
                           {selected && <CheckCircle className="w-3 h-3 text-white" />}
                         </div>
-                        <span className="text-sm font-semibold text-slate-200 w-12">{pos.ticker}</span>
-                        <Badge variant="outline" className="text-xs border-slate-700 text-slate-500 px-1.5">
+                        <span className="text-sm font-semibold text-foreground w-12">{pos.ticker}</span>
+                        <Badge variant="outline" className="text-xs border-border text-muted-foreground px-1.5">
                           {pos.sector}
                         </Badge>
                         <div className="ml-auto text-right">
                           <div className="text-xs text-red-400">
                             {fmtK(pos.unrealizedLoss)}
                           </div>
-                          <div className="text-xs text-slate-500">
+                          <div className="text-xs text-muted-foreground">
                             saves {fmtK(pos.taxSaving)}
                           </div>
                         </div>
@@ -1502,8 +1502,8 @@ export default function WealthPlatformPage() {
                     </motion.button>
                   );
                 })}
-                <div className="pt-2 border-t border-slate-800 flex items-center justify-between">
-                  <span className="text-xs text-slate-400">Total tax savings selected</span>
+                <div className="pt-2 border-t border-border flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">Total tax savings selected</span>
                   <span className="text-sm font-bold text-emerald-400">{fmtK(totalHarvestSaving)}</span>
                 </div>
               </CardContent>
@@ -1511,18 +1511,18 @@ export default function WealthPlatformPage() {
 
             {/* Roth Conversion + Asset Location */}
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <RefreshCw className="w-4 h-4 text-amber-400" />
                     Roth Conversion Analyzer
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="space-y-1">
-                    <div className="flex justify-between text-xs text-slate-400">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>Conversion Amount</span>
-                      <span className="text-slate-200 font-medium">
+                      <span className="text-foreground font-medium">
                         {fmtK(rothAmount[0] * 1000)}
                       </span>
                     </div>
@@ -1534,25 +1534,25 @@ export default function WealthPlatformPage() {
                       onValueChange={setRothAmount}
                       className="h-1.5"
                     />
-                    <div className="flex justify-between text-xs text-slate-600">
+                    <div className="flex justify-between text-xs text-muted-foreground">
                       <span>$10K</span>
                       <span>$200K</span>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <div className="p-2 rounded-lg bg-slate-800/60 text-center">
-                      <div className="text-xs text-slate-500">Tax Due Now</div>
+                    <div className="p-2 rounded-lg bg-muted/60 text-center">
+                      <div className="text-xs text-muted-foreground">Tax Due Now</div>
                       <div className="text-sm font-bold text-red-400">
                         {fmtK(rothConversionTax.currentTax)}
                       </div>
-                      <div className="text-xs text-slate-500">24% marginal</div>
+                      <div className="text-xs text-muted-foreground">24% marginal</div>
                     </div>
-                    <div className="p-2 rounded-lg bg-slate-800/60 text-center">
-                      <div className="text-xs text-slate-500">Est. Lifetime Saving</div>
+                    <div className="p-2 rounded-lg bg-muted/60 text-center">
+                      <div className="text-xs text-muted-foreground">Est. Lifetime Saving</div>
                       <div className="text-sm font-bold text-emerald-400">
                         {fmtK(rothConversionTax.projectedSaving)}
                       </div>
-                      <div className="text-xs text-slate-500">vs 35% future rate</div>
+                      <div className="text-xs text-muted-foreground">vs 35% future rate</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-1.5 p-2 rounded bg-amber-500/10 border border-amber-500/20">
@@ -1564,16 +1564,16 @@ export default function WealthPlatformPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Landmark className="w-4 h-4 text-sky-400" />
                     Asset Location Optimizer
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-1.5">
-                    <div className="grid grid-cols-4 gap-1 text-xs text-slate-500 pb-1 border-b border-slate-800">
+                    <div className="grid grid-cols-4 gap-1 text-xs text-muted-foreground pb-1 border-b border-border">
                       <span>Asset</span>
                       <span className="text-center">Taxable</span>
                       <span className="text-center">Traditional</span>
@@ -1582,30 +1582,30 @@ export default function WealthPlatformPage() {
                     {ASSET_LOCATION.map((row) => (
                       <div key={row.asset} className="group">
                         <div className="grid grid-cols-4 gap-1 items-center py-1">
-                          <span className="text-xs text-slate-300">{row.asset}</span>
+                          <span className="text-xs text-muted-foreground">{row.asset}</span>
                           <div className="flex justify-center">
                             {row.taxable ? (
                               <CheckCircle className="w-3.5 h-3.5 text-emerald-400" />
                             ) : (
-                              <div className="w-3.5 h-3.5 rounded-full border border-slate-700" />
+                              <div className="w-3.5 h-3.5 rounded-full border border-border" />
                             )}
                           </div>
                           <div className="flex justify-center">
                             {row.traditional ? (
                               <CheckCircle className="w-3.5 h-3.5 text-sky-400" />
                             ) : (
-                              <div className="w-3.5 h-3.5 rounded-full border border-slate-700" />
+                              <div className="w-3.5 h-3.5 rounded-full border border-border" />
                             )}
                           </div>
                           <div className="flex justify-center">
                             {row.roth ? (
                               <CheckCircle className="w-3.5 h-3.5 text-amber-400" />
                             ) : (
-                              <div className="w-3.5 h-3.5 rounded-full border border-slate-700" />
+                              <div className="w-3.5 h-3.5 rounded-full border border-border" />
                             )}
                           </div>
                         </div>
-                        <div className="text-xs text-slate-500 px-0 pb-1 col-span-4 hidden group-hover:block">
+                        <div className="text-xs text-muted-foreground px-0 pb-1 col-span-4 hidden group-hover:block">
                           {row.reason}
                         </div>
                       </div>
@@ -1620,9 +1620,9 @@ export default function WealthPlatformPage() {
         {/* ── REPORTING TAB ── */}
         <TabsContent value="reporting" className="space-y-4 data-[state=inactive]:hidden">
           {/* Performance Chart */}
-          <Card className="bg-slate-900 border-slate-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-indigo-400" />
                 Portfolio Performance — Last 12 Months
               </CardTitle>
@@ -1632,12 +1632,12 @@ export default function WealthPlatformPage() {
               <div className="grid grid-cols-4 gap-3 mt-4">
                 {[
                   { label: "Portfolio YTD", value: fmtPct(portReturn1Y), color: "text-indigo-400" },
-                  { label: "Benchmark YTD", value: fmtPct(benchReturn1Y), color: "text-slate-400" },
+                  { label: "Benchmark YTD", value: fmtPct(benchReturn1Y), color: "text-muted-foreground" },
                   { label: "Alpha", value: fmtPct(portReturn1Y - benchReturn1Y), color: "text-emerald-400" },
                   { label: "Info Ratio", value: infoRatio.toFixed(2), color: "text-amber-400" },
                 ].map((stat) => (
-                  <div key={stat.label} className="p-3 rounded-lg bg-slate-800/60 text-center">
-                    <div className="text-xs text-slate-500">{stat.label}</div>
+                  <div key={stat.label} className="p-3 rounded-lg bg-muted/60 text-center">
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
                     <div className={cn("text-lg font-bold mt-0.5", stat.color)}>{stat.value}</div>
                   </div>
                 ))}
@@ -1647,9 +1647,9 @@ export default function WealthPlatformPage() {
 
           <div className="grid grid-cols-2 gap-4">
             {/* Holdings Table */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-indigo-400" />
                   Holdings &amp; Contribution Analysis
                 </CardTitle>
@@ -1658,7 +1658,7 @@ export default function WealthPlatformPage() {
                 <div className="overflow-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-slate-800 text-slate-500">
+                      <tr className="border-b border-border text-muted-foreground">
                         <th className="text-left pb-2 font-medium">Ticker</th>
                         <th className="text-right pb-2 font-medium">Value</th>
                         <th className="text-right pb-2 font-medium">Wt%</th>
@@ -1669,13 +1669,13 @@ export default function WealthPlatformPage() {
                     </thead>
                     <tbody className="divide-y divide-slate-800/50">
                       {HOLDINGS.map((h) => (
-                        <tr key={h.ticker} className="hover:bg-slate-800/30 transition-colors">
+                        <tr key={h.ticker} className="hover:bg-muted/30 transition-colors">
                           <td className="py-1.5">
-                            <div className="font-semibold text-slate-200">{h.ticker}</div>
-                            <div className="text-xs text-slate-500 truncate max-w-[100px]">{h.name}</div>
+                            <div className="font-semibold text-foreground">{h.ticker}</div>
+                            <div className="text-xs text-muted-foreground truncate max-w-[100px]">{h.name}</div>
                           </td>
-                          <td className="text-right text-slate-300 py-1.5">{fmtK(h.value)}</td>
-                          <td className="text-right text-slate-400 py-1.5">{h.weight.toFixed(1)}%</td>
+                          <td className="text-right text-muted-foreground py-1.5">{fmtK(h.value)}</td>
+                          <td className="text-right text-muted-foreground py-1.5">{h.weight.toFixed(1)}%</td>
                           <td className={cn("text-right py-1.5", pnlColor(h.return1m))}>
                             {fmtPct(h.return1m)}
                           </td>
@@ -1689,7 +1689,7 @@ export default function WealthPlatformPage() {
                       ))}
                     </tbody>
                     <tfoot>
-                      <tr className="border-t border-slate-700 text-slate-300 font-semibold">
+                      <tr className="border-t border-border text-muted-foreground font-semibold">
                         <td className="pt-2">Total</td>
                         <td className="text-right pt-2">{fmtK(totalPortValue)}</td>
                         <td className="text-right pt-2">100%</td>
@@ -1705,9 +1705,9 @@ export default function WealthPlatformPage() {
 
             {/* Risk Metrics + PDF Summary */}
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <Shield className="w-4 h-4 text-indigo-400" />
                     Risk Metrics Dashboard
                   </CardTitle>
@@ -1740,17 +1740,17 @@ export default function WealthPlatformPage() {
                         label: "Info Ratio",
                         value: infoRatio.toFixed(2),
                         desc: "Alpha per unit of tracking error",
-                        color: infoRatio > 0.5 ? "text-indigo-400" : "text-slate-400",
+                        color: infoRatio > 0.5 ? "text-indigo-400" : "text-muted-foreground",
                         bar: infoRatio * 100,
                       },
                     ].map((m) => (
                       <div
                         key={m.label}
-                        className="p-3 rounded-lg bg-slate-800/60 border border-slate-700/50"
+                        className="p-3 rounded-lg bg-muted/60 border border-border/50"
                       >
-                        <div className="text-xs text-slate-500 mb-0.5">{m.label}</div>
+                        <div className="text-xs text-muted-foreground mb-0.5">{m.label}</div>
                         <div className={cn("text-xl font-bold", m.color)}>{m.value}</div>
-                        <div className="text-xs text-slate-600 mb-1.5">{m.desc}</div>
+                        <div className="text-xs text-muted-foreground mb-1.5">{m.desc}</div>
                         <Progress value={m.bar} className="h-1" />
                       </div>
                     ))}
@@ -1761,35 +1761,35 @@ export default function WealthPlatformPage() {
               {/* PDF-style Summary Card */}
               <Card className="bg-card border border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                     <FileText className="w-4 h-4 text-indigo-400" />
                     Quarterly Summary Report
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-2">
                     <span>Client</span>
-                    <span className="text-slate-200 font-medium">{client.name}</span>
+                    <span className="text-foreground font-medium">{client.name}</span>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-2">
                     <span>Portfolio Value</span>
-                    <span className="text-slate-200 font-medium">{fmtK(totalPortValue)}</span>
+                    <span className="text-foreground font-medium">{fmtK(totalPortValue)}</span>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-2">
                     <span>YTD Return</span>
                     <span className="text-emerald-400 font-medium">{fmtPct(portReturn1Y)}</span>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-2">
                     <span>vs Benchmark</span>
                     <span className="text-emerald-400 font-medium">
                       +{(portReturn1Y - benchReturn1Y).toFixed(1)}% alpha
                     </span>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-2">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground border-b border-border pb-2">
                     <span>Risk Profile</span>
-                    <span className="text-slate-200 font-medium">{client.riskProfile}</span>
+                    <span className="text-foreground font-medium">{client.riskProfile}</span>
                   </div>
-                  <div className="flex items-center justify-between text-xs text-slate-400 pb-1">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground pb-1">
                     <span>Est. Tax Savings YTD</span>
                     <span className="text-emerald-400 font-medium">{fmtK(totalHarvestSaving + 3_200)}</span>
                   </div>

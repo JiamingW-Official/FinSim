@@ -260,7 +260,7 @@ function InsightCard({ icon: Icon, title, body, accent }: {
       <Icon className="w-5 h-5 mt-0.5 shrink-0" />
       <div>
         <p className="text-sm font-semibold mb-1">{title}</p>
-        <p className="text-xs text-zinc-400 leading-relaxed">{body}</p>
+        <p className="text-xs text-muted-foreground leading-relaxed">{body}</p>
       </div>
     </div>
   );
@@ -301,7 +301,7 @@ function PopulationPyramid({ country }: { country: PyramidCountry }) {
           );
         })}
       </svg>
-      <div className="text-xs text-zinc-500">Median age: <span className="text-zinc-300 font-medium">{country.medianAge}</span></div>
+      <div className="text-xs text-muted-foreground">Median age: <span className="text-muted-foreground font-medium">{country.medianAge}</span></div>
     </div>
   );
 }
@@ -326,7 +326,7 @@ function GlobalDemographicsTab() {
   return (
     <div className="space-y-6">
       {/* Population pyramids */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Users className="w-4 h-4 text-primary" />
@@ -343,7 +343,7 @@ function GlobalDemographicsTab() {
                   "px-3 py-1.5 rounded text-xs font-medium border transition-colors",
                   selectedCountry === c.name
                     ? "bg-primary border-primary text-white"
-                    : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-zinc-200",
+                    : "bg-muted border-border text-muted-foreground hover:text-foreground",
                 )}
               >
                 {c.flag} {c.name}
@@ -367,18 +367,18 @@ function GlobalDemographicsTab() {
                     { label: "Working Age", value: `${country.workingAge.toFixed(1)}%`, color: "text-primary" },
                     { label: "Elderly (65+)", value: `${country.oldDep.toFixed(1)}%`, color: "text-red-400" },
                   ].map((stat) => (
-                    <div key={stat.label} className="bg-zinc-800 rounded-lg p-3 text-center">
+                    <div key={stat.label} className="bg-muted rounded-lg p-3 text-center">
                       <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
-                      <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>
+                      <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
                     </div>
                   ))}
                 </div>
-                <div className="bg-zinc-800 rounded-lg p-3">
-                  <div className="text-xs text-zinc-400 mb-2">Support Ratio (workers per dependent)</div>
+                <div className="bg-muted rounded-lg p-3">
+                  <div className="text-xs text-muted-foreground mb-2">Support Ratio (workers per dependent)</div>
                   <div className="text-2xl font-bold text-white">
                     {(country.workingAge / (country.youngDep + country.oldDep)).toFixed(2)}
                   </div>
-                  <div className="text-xs text-zinc-500 mt-1">
+                  <div className="text-xs text-muted-foreground mt-1">
                     {country.workingAge / (country.youngDep + country.oldDep) > 2
                       ? "Favorable — economic tailwind"
                       : country.workingAge / (country.youngDep + country.oldDep) > 1.5
@@ -393,7 +393,7 @@ function GlobalDemographicsTab() {
       </Card>
 
       {/* Demographic Dividend */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-green-400" />
@@ -401,7 +401,7 @@ function GlobalDemographicsTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+          <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
             When fertility falls and more adults enter the workforce relative to dependents, economies enjoy a
             &ldquo;demographic dividend&rdquo; — higher savings rates, faster capital formation, and GDP acceleration.
             This window typically lasts 20–30 years before aging reverses the advantage.
@@ -449,7 +449,7 @@ function GlobalDemographicsTab() {
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1.5">
                 <div className={cn("w-2.5 h-2.5 rounded-sm", l.color)} />
-                <span className="text-xs text-zinc-400">{l.label}</span>
+                <span className="text-xs text-muted-foreground">{l.label}</span>
               </div>
             ))}
           </div>
@@ -457,7 +457,7 @@ function GlobalDemographicsTab() {
       </Card>
 
       {/* Median Age Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-primary" />
@@ -468,7 +468,7 @@ function GlobalDemographicsTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-zinc-800 text-xs text-zinc-500">
+                <tr className="border-b border-border text-xs text-muted-foreground">
                   <th className="text-left py-2 pr-4">Country</th>
                   <th className="text-right py-2 pr-4">Median Age</th>
                   <th className="text-right py-2 pr-4">Fertility</th>
@@ -478,24 +478,24 @@ function GlobalDemographicsTab() {
               </thead>
               <tbody>
                 {MEDIAN_AGE_TABLE.map((row) => (
-                  <tr key={row.country} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                  <tr key={row.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="py-2 pr-4">
                       <span className="mr-1.5">{row.flag}</span>
-                      <span className="text-zinc-200">{row.country}</span>
+                      <span className="text-foreground">{row.country}</span>
                     </td>
                     <td className="py-2 pr-4 text-right">
                       <div className="flex items-center justify-end gap-2">
-                        <div className="w-20 bg-zinc-800 rounded h-1.5">
+                        <div className="w-20 bg-muted rounded h-1.5">
                           <div
                             className="h-1.5 rounded bg-primary"
                             style={{ width: `${(row.medianAge / 55) * 100}%` }}
                           />
                         </div>
-                        <span className="text-zinc-300 font-medium w-8 text-right">{row.medianAge}</span>
+                        <span className="text-muted-foreground font-medium w-8 text-right">{row.medianAge}</span>
                       </div>
                     </td>
-                    <td className="py-2 pr-4 text-right text-zinc-400">{row.fertility.toFixed(1)}</td>
-                    <td className="py-2 pr-4 text-right text-zinc-400">{row.lifeExp}</td>
+                    <td className="py-2 pr-4 text-right text-muted-foreground">{row.fertility.toFixed(1)}</td>
+                    <td className="py-2 pr-4 text-right text-muted-foreground">{row.lifeExp}</td>
                     <td className="py-2 text-right">
                       <Badge
                         variant="outline"
@@ -562,7 +562,7 @@ function AgingTrendsTab() {
   return (
     <div className="space-y-6">
       {/* Old-age dependency ratio chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Activity className="w-4 h-4 text-orange-400" />
@@ -635,21 +635,21 @@ function AgingTrendsTab() {
                 key={r.name}
                 onMouseEnter={() => setHoveredRegion(r.name)}
                 onMouseLeave={() => setHoveredRegion(null)}
-                className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+                className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 <div className="w-6 h-0.5 rounded" style={{ backgroundColor: r.color }} />
                 {r.name}
               </button>
             ))}
           </div>
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Dashed vertical = 2026 (now). Projections from UN World Population Prospects.
           </p>
         </CardContent>
       </Card>
 
       {/* Healthcare costs */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Heart className="w-4 h-4 text-red-400" />
@@ -697,7 +697,7 @@ function AgingTrendsTab() {
               })}
             </svg>
           </div>
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             The US already spends 20%+ of GDP on healthcare. Japan and Europe face similar trajectories. By 2040,
             the fiscal gap between healthcare obligations and tax revenues may reach $50T+ globally.
           </p>
@@ -705,7 +705,7 @@ function AgingTrendsTab() {
       </Card>
 
       {/* Pension crisis */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -719,10 +719,10 @@ function AgingTrendsTab() {
               { country: "🇯🇵 Japan",          unfunded: "$7.7T", status: "Aging pressure",  color: "text-red-400" },
               { country: "🇩🇪 Germany",        unfunded: "$4.1T", status: "Pay-as-you-go",   color: "text-orange-400" },
             ].map((p) => (
-              <div key={p.country} className="bg-zinc-800 rounded-lg p-4">
+              <div key={p.country} className="bg-muted rounded-lg p-4">
                 <div className="text-sm font-medium mb-1">{p.country}</div>
                 <div className={cn("text-2xl font-bold", p.color)}>{p.unfunded}</div>
-                <div className="text-xs text-zinc-500 mt-1">Unfunded liability — {p.status}</div>
+                <div className="text-xs text-muted-foreground mt-1">Unfunded liability — {p.status}</div>
               </div>
             ))}
           </div>
@@ -776,7 +776,7 @@ function InvestmentImplicationsTab() {
   return (
     <div className="space-y-6">
       {/* Visual impact matrix */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-primary" />
@@ -784,7 +784,7 @@ function InvestmentImplicationsTab() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-xs text-zinc-500 mb-3">Click a sector bar to see details</p>
+          <p className="text-xs text-muted-foreground mb-3">Click a sector bar to see details</p>
           <div className="overflow-x-auto">
             <svg width={matrixW} height={matrixH + 60} className="overflow-visible">
               {/* Zero line */}
@@ -866,10 +866,10 @@ function InvestmentImplicationsTab() {
                       <span className="text-xs">{IMPACT_LABEL[selectedSector.impact]}</span>
                     </div>
                   </div>
-                  <p className="text-xs text-zinc-400 leading-relaxed mb-2">{selectedSector.rationale}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-2">{selectedSector.rationale}</p>
                   <div className="flex gap-1.5 flex-wrap">
                     {selectedSector.examples.map((ex) => (
-                      <span key={ex} className="text-xs px-2 py-0.5 bg-zinc-800 rounded font-mono">{ex}</span>
+                      <span key={ex} className="text-xs px-2 py-0.5 bg-muted rounded font-mono">{ex}</span>
                     ))}
                   </div>
                 </div>
@@ -895,10 +895,10 @@ function InvestmentImplicationsTab() {
                 <span className="text-xs">{IMPACT_LABEL[s.impact]}</span>
               </div>
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">{s.rationale}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{s.rationale}</p>
             <div className="flex gap-1 mt-2 flex-wrap">
               {s.examples.map((ex) => (
-                <span key={ex} className="text-xs px-1.5 py-0.5 bg-zinc-900/70 rounded font-mono">{ex}</span>
+                <span key={ex} className="text-xs px-1.5 py-0.5 bg-card/70 rounded font-mono">{ex}</span>
               ))}
             </div>
           </motion.div>
@@ -957,7 +957,7 @@ function JapanCaseStudyTab() {
   return (
     <div className="space-y-6">
       {/* Correlation chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Globe className="w-4 h-4 text-red-400" />
@@ -1009,11 +1009,11 @@ function JapanCaseStudyTab() {
           <div className="flex gap-4 mt-2">
             <div className="flex items-center gap-1.5">
               <div className="w-6 h-0.5 bg-red-500 rounded" />
-              <span className="text-xs text-zinc-400">Elderly % (left axis)</span>
+              <span className="text-xs text-muted-foreground">Elderly % (left axis)</span>
             </div>
             <div className="flex items-center gap-1.5">
               <div className="w-6 h-0.5 bg-primary rounded" />
-              <span className="text-xs text-zinc-400">Nikkei (right axis)</span>
+              <span className="text-xs text-muted-foreground">Nikkei (right axis)</span>
             </div>
           </div>
         </CardContent>
@@ -1052,10 +1052,10 @@ function JapanCaseStudyTab() {
       </div>
 
       {/* Japan demographic snapshot */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
-            <Info className="w-4 h-4 text-zinc-400" />
+            <Info className="w-4 h-4 text-muted-foreground" />
             Japan at a Glance — 2026
           </CardTitle>
         </CardHeader>
@@ -1067,10 +1067,10 @@ function JapanCaseStudyTab() {
               { label: "Fertility Rate",     value: "1.20",     sub: "Far below replacement (2.1)" },
               { label: "Population Decline", value: "−600k/yr", sub: "Net loss since 2010 peak" },
             ].map((stat) => (
-              <div key={stat.label} className="bg-zinc-800 rounded-lg p-3 text-center">
+              <div key={stat.label} className="bg-muted rounded-lg p-3 text-center">
                 <div className="text-xl font-bold text-white">{stat.value}</div>
-                <div className="text-xs text-zinc-400 mt-0.5">{stat.label}</div>
-                <div className="text-xs text-zinc-600 mt-0.5">{stat.sub}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
               </div>
             ))}
           </div>
@@ -1131,7 +1131,7 @@ function EmergingMarketTab() {
   return (
     <div className="space-y-6">
       {/* Working-age population growth rate chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-green-400" />
@@ -1192,7 +1192,7 @@ function EmergingMarketTab() {
                 key={m.name}
                 onMouseEnter={() => setFocusMarket(m.name)}
                 onMouseLeave={() => setFocusMarket(null)}
-                className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition-colors"
+                className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
               >
                 <div className="w-4 h-0.5 rounded" style={{ backgroundColor: m.color }} />
                 {m.flag} {m.name}
@@ -1203,7 +1203,7 @@ function EmergingMarketTab() {
       </Card>
 
       {/* Working-age index level chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Users className="w-4 h-4 text-primary" />
@@ -1252,7 +1252,7 @@ function EmergingMarketTab() {
               })}
             </svg>
           </div>
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Nigeria, India, and the Philippines are projected to add the most working-age people through 2060.
             Japan and China see absolute decline — a structural drag on potential GDP growth.
           </p>
@@ -1299,7 +1299,7 @@ function EmergingMarketTab() {
             insight: "Southeast Asia's largest economy. Nickel-to-EV battery pipeline, growing middle class (60M by 2030), and digitization of 17,000 islands creates multi-decade growth story.",
           },
         ].map((c) => (
-          <Card key={c.name} className={cn("bg-zinc-900 border", c.color)}>
+          <Card key={c.name} className={cn("bg-card border", c.color)}>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
                 <span className="text-xl">{c.flag}</span> {c.name}
@@ -1309,19 +1309,19 @@ function EmergingMarketTab() {
               <div className="space-y-1.5 mb-3">
                 {c.stats.map((stat) => (
                   <div key={stat.label} className="flex justify-between text-xs">
-                    <span className="text-zinc-500">{stat.label}</span>
-                    <span className="text-zinc-300 font-medium">{stat.value}</span>
+                    <span className="text-muted-foreground">{stat.label}</span>
+                    <span className="text-muted-foreground font-medium">{stat.value}</span>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{c.insight}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{c.insight}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
       {/* Southeast Asia growth story */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-base flex items-center gap-2">
             <Globe className="w-4 h-4 text-muted-foreground" />
@@ -1365,7 +1365,7 @@ function EmergingMarketTab() {
 
 export default function DemographicsPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -1374,7 +1374,7 @@ export default function DemographicsPage() {
           </div>
           <div>
             <h1 className="text-xl font-bold">Global Demographics</h1>
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-muted-foreground">
               Population trends, aging dynamics, and long-term investment implications
             </p>
           </div>
@@ -1396,11 +1396,11 @@ export default function DemographicsPage() {
             { label: "Share Aged 65+",     value: "10.3%", sub: "vs 5% in 1960",  color: "text-red-400" },
             { label: "Fertility (Global)", value: "2.3",   sub: "vs 5.0 in 1960", color: "text-green-400" },
           ].map((stat) => (
-            <Card key={stat.label} className="bg-zinc-900 border-zinc-800">
+            <Card key={stat.label} className="bg-card border-border">
               <CardContent className="p-3 text-center">
                 <div className={cn("text-2xl font-bold", stat.color)}>{stat.value}</div>
-                <div className="text-xs text-zinc-400 mt-0.5">{stat.label}</div>
-                <div className="text-xs text-zinc-600 mt-0.5">{stat.sub}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
               </CardContent>
             </Card>
           ))}
@@ -1408,12 +1408,12 @@ export default function DemographicsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="global" className="space-y-4">
-          <TabsList className="bg-zinc-900 border border-zinc-800 flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="global"   className="text-xs data-[state=active]:bg-zinc-700">Global Demographics</TabsTrigger>
-            <TabsTrigger value="aging"    className="text-xs data-[state=active]:bg-zinc-700">Aging Trends</TabsTrigger>
-            <TabsTrigger value="invest"   className="text-xs data-[state=active]:bg-zinc-700">Investment Implications</TabsTrigger>
-            <TabsTrigger value="japan"    className="text-xs data-[state=active]:bg-zinc-700">Japan Case Study</TabsTrigger>
-            <TabsTrigger value="emerging" className="text-xs data-[state=active]:bg-zinc-700">Emerging Market Dividend</TabsTrigger>
+          <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
+            <TabsTrigger value="global"   className="text-xs data-[state=active]:bg-muted">Global Demographics</TabsTrigger>
+            <TabsTrigger value="aging"    className="text-xs data-[state=active]:bg-muted">Aging Trends</TabsTrigger>
+            <TabsTrigger value="invest"   className="text-xs data-[state=active]:bg-muted">Investment Implications</TabsTrigger>
+            <TabsTrigger value="japan"    className="text-xs data-[state=active]:bg-muted">Japan Case Study</TabsTrigger>
+            <TabsTrigger value="emerging" className="text-xs data-[state=active]:bg-muted">Emerging Market Dividend</TabsTrigger>
           </TabsList>
 
           <TabsContent value="global"   className="data-[state=inactive]:hidden"><GlobalDemographicsTab /></TabsContent>

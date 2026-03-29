@@ -240,19 +240,19 @@ const CARRY_ROLL: CarryRollPoint[] = CURVE_POINTS.filter((p) =>
 const signalColor = (sig: string) => {
   if (sig === "cheap" || sig === "buy") return "text-emerald-400";
   if (sig === "rich" || sig === "sell") return "text-red-400";
-  return "text-zinc-400";
+  return "text-muted-foreground";
 };
 
 const signalBg = (sig: string) => {
   if (sig === "cheap" || sig === "buy") return "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
   if (sig === "rich" || sig === "sell") return "bg-red-500/10 text-red-400 border border-red-500/20";
-  return "bg-zinc-700/40 text-zinc-400 border border-zinc-600/30";
+  return "bg-muted/40 text-muted-foreground border border-border/30";
 };
 
 const zColor = (z: number) => {
   if (z > 0.5) return "text-emerald-400";
   if (z < -0.5) return "text-red-400";
-  return "text-zinc-400";
+  return "text-muted-foreground";
 };
 
 // ── Curve SVG ─────────────────────────────────────────────────────────────────
@@ -588,10 +588,10 @@ function CarryRollSVG({ data }: { data: CarryRollPoint[] }) {
 
 function StatChip({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-lg bg-zinc-800/60 border border-zinc-700/40 px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
-      <span className="text-sm font-semibold text-zinc-100">{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+    <div className="rounded-lg bg-muted/60 border border-border/40 px-3 py-2 flex flex-col gap-0.5">
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
+      <span className="text-sm font-semibold text-foreground">{value}</span>
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -600,7 +600,7 @@ function StatChip({ label, value, sub }: { label: string; value: string; sub?: s
 
 function InfoBox({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-lg bg-indigo-500/5 border border-indigo-500/20 p-3 flex gap-2 text-xs text-zinc-400">
+    <div className="rounded-lg bg-indigo-500/5 border border-indigo-500/20 p-3 flex gap-2 text-xs text-muted-foreground">
       <Info className="w-3.5 h-3.5 text-indigo-400 mt-0.5 shrink-0" />
       <span>{children}</span>
     </div>
@@ -635,7 +635,7 @@ export default function FixedIncomeRVPage() {
   );
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -648,11 +648,11 @@ export default function FixedIncomeRVPage() {
             <Activity className="w-4 h-4 text-indigo-400" />
           </div>
           <h1 className="text-xl font-semibold tracking-tight">Fixed Income Relative Value</h1>
-          <span className="ml-auto text-xs text-zinc-500 bg-zinc-800/60 border border-zinc-700/40 rounded px-2 py-0.5">
+          <span className="ml-auto text-xs text-muted-foreground bg-muted/60 border border-border/40 rounded px-2 py-0.5">
             As of Mar 28, 2026
           </span>
         </div>
-        <p className="text-xs text-zinc-500 ml-11">
+        <p className="text-xs text-muted-foreground ml-11">
           Yield curve trades, spread analysis, cross-market opportunities, sector rotation and carry/roll strategies.
         </p>
       </motion.div>
@@ -675,20 +675,20 @@ export default function FixedIncomeRVPage() {
       {/* Tabs */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
         <Tabs defaultValue="curve">
-          <TabsList className="bg-zinc-900/70 border border-zinc-800/60 h-9 mb-4 flex-wrap gap-1 p-1">
-            <TabsTrigger value="curve" className="text-xs h-7 px-3 data-[state=active]:bg-zinc-700/80">
+          <TabsList className="bg-card/70 border border-border/60 h-9 mb-4 flex-wrap gap-1 p-1">
+            <TabsTrigger value="curve" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
               Yield Curve Trades
             </TabsTrigger>
-            <TabsTrigger value="spreads" className="text-xs h-7 px-3 data-[state=active]:bg-zinc-700/80">
+            <TabsTrigger value="spreads" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
               Spread Analysis
             </TabsTrigger>
-            <TabsTrigger value="crossmarket" className="text-xs h-7 px-3 data-[state=active]:bg-zinc-700/80">
+            <TabsTrigger value="crossmarket" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
               Cross-Market RV
             </TabsTrigger>
-            <TabsTrigger value="sector" className="text-xs h-7 px-3 data-[state=active]:bg-zinc-700/80">
+            <TabsTrigger value="sector" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
               Sector Rotation
             </TabsTrigger>
-            <TabsTrigger value="carry" className="text-xs h-7 px-3 data-[state=active]:bg-zinc-700/80">
+            <TabsTrigger value="carry" className="text-xs h-7 px-3 data-[state=active]:bg-muted/80">
               Carry &amp; Roll
             </TabsTrigger>
           </TabsList>
@@ -697,10 +697,10 @@ export default function FixedIncomeRVPage() {
           <TabsContent value="curve" className="data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               {/* Left: curve visual */}
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center justify-between mb-3">
                   <h2 className="text-sm font-medium">Current Yield Curve</h2>
-                  <span className="text-xs text-zinc-500">US Treasuries — 3M to 30Y</span>
+                  <span className="text-xs text-muted-foreground">US Treasuries — 3M to 30Y</span>
                 </div>
                 <YieldCurveSVG highlight={curveHighlight} />
                 <div className="flex gap-2 mt-3 flex-wrap">
@@ -712,7 +712,7 @@ export default function FixedIncomeRVPage() {
                         "text-xs px-2.5 py-1 rounded border transition-colors",
                         curveHighlight === h
                           ? "bg-indigo-500/20 border-indigo-500/50 text-indigo-300"
-                          : "bg-zinc-800/50 border-zinc-700/40 text-zinc-500 hover:text-zinc-300"
+                          : "bg-muted/50 border-border/40 text-muted-foreground hover:text-muted-foreground"
                       )}
                     >
                       {h === null ? "Reset" : h.charAt(0).toUpperCase() + h.slice(1)}
@@ -729,7 +729,7 @@ export default function FixedIncomeRVPage() {
                     "rounded-xl border p-4 transition-colors cursor-pointer",
                     curveHighlight === "steepener"
                       ? "bg-emerald-900/10 border-emerald-500/30"
-                      : "bg-zinc-900/60 border-zinc-800/50 hover:border-zinc-700/60"
+                      : "bg-card/60 border-border/50 hover:border-border/60"
                   )}
                   onClick={() => setCurveHighlight(curveHighlight === "steepener" ? null : "steepener")}
                 >
@@ -740,25 +740,25 @@ export default function FixedIncomeRVPage() {
                       LONG 2Y / SHORT 10Y
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-400 mb-3">
+                  <p className="text-xs text-muted-foreground mb-3">
                     Buy the 2Y note, short the 10Y note. Profits if the curve steepens (2s10s spread widens). DV01-neutral
                     ratio ensures no outright duration bias.
                   </p>
                   <div className="grid grid-cols-3 gap-2 text-[11px]">
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">2Y Yield</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">2Y Yield</div>
                       <div className="font-semibold">{curve2Y.yield.toFixed(2)}%</div>
                     </div>
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">10Y Yield</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">10Y Yield</div>
                       <div className="font-semibold">{curve10Y.yield.toFixed(2)}%</div>
                     </div>
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">DV01 Ratio</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">DV01 Ratio</div>
                       <div className="font-semibold">{dv01Ratio_2y10y}x</div>
                     </div>
                   </div>
-                  <div className="mt-2 text-xs text-zinc-500">
+                  <div className="mt-2 text-xs text-muted-foreground">
                     Trade: Long $10M 2Y + Short ${dv01Ratio_2y10y}x notional 10Y &bull; Current slope: {Number(slope2s10s) >= 0 ? "+" : ""}{slope2s10s} bps
                   </div>
                 </div>
@@ -769,7 +769,7 @@ export default function FixedIncomeRVPage() {
                     "rounded-xl border p-4 transition-colors cursor-pointer",
                     curveHighlight === "flattener"
                       ? "bg-red-900/10 border-red-500/30"
-                      : "bg-zinc-900/60 border-zinc-800/50 hover:border-zinc-700/60"
+                      : "bg-card/60 border-border/50 hover:border-border/60"
                   )}
                   onClick={() => setCurveHighlight(curveHighlight === "flattener" ? null : "flattener")}
                 >
@@ -780,21 +780,21 @@ export default function FixedIncomeRVPage() {
                       SHORT 2Y / LONG 10Y
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-400 mb-3">
+                  <p className="text-xs text-muted-foreground mb-3">
                     Short the 2Y, buy the 10Y. Profits if the curve flattens or inverts. Favored when Fed is expected to hold
                     while long-end anchored by low inflation expectations.
                   </p>
                   <div className="grid grid-cols-3 gap-2 text-[11px]">
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">5s30s Slope</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">5s30s Slope</div>
                       <div className="font-semibold">+{slope5s30s} bps</div>
                     </div>
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">2Y DV01</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">2Y DV01</div>
                       <div className="font-semibold">${curve2Y.dv01.toLocaleString()}</div>
                     </div>
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">10Y DV01</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">10Y DV01</div>
                       <div className="font-semibold">${curve10Y.dv01.toLocaleString()}</div>
                     </div>
                   </div>
@@ -806,7 +806,7 @@ export default function FixedIncomeRVPage() {
                     "rounded-xl border p-4 transition-colors cursor-pointer",
                     curveHighlight === "butterfly"
                       ? "bg-yellow-900/10 border-yellow-500/30"
-                      : "bg-zinc-900/60 border-zinc-800/50 hover:border-zinc-700/60"
+                      : "bg-card/60 border-border/50 hover:border-border/60"
                   )}
                   onClick={() => setCurveHighlight(curveHighlight === "butterfly" ? null : "butterfly")}
                 >
@@ -817,25 +817,25 @@ export default function FixedIncomeRVPage() {
                       BARBELL vs BULLET
                     </span>
                   </div>
-                  <p className="text-xs text-zinc-400 mb-3">
+                  <p className="text-xs text-muted-foreground mb-3">
                     Long 5Y belly (bullet), short wings (2Y + 10Y barbell). DV01-neutral on each wing. Profits when the belly
                     cheapens relative to wings — positive butterfly value.
                   </p>
                   <div className="grid grid-cols-4 gap-2 text-[11px]">
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">2Y Wing</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">2Y Wing</div>
                       <div className="font-semibold">{BUTTERFLY_CONFIG.shortWingYield.toFixed(2)}%</div>
                     </div>
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">5Y Belly</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">5Y Belly</div>
                       <div className="font-semibold text-yellow-400">{BUTTERFLY_CONFIG.bellyYield.toFixed(2)}%</div>
                     </div>
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">10Y Wing</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">10Y Wing</div>
                       <div className="font-semibold">{BUTTERFLY_CONFIG.longWingYield.toFixed(2)}%</div>
                     </div>
-                    <div className="rounded bg-zinc-800/50 p-2">
-                      <div className="text-zinc-500 mb-0.5">Fly Value</div>
+                    <div className="rounded bg-muted/50 p-2">
+                      <div className="text-muted-foreground mb-0.5">Fly Value</div>
                       <div className={cn("font-semibold", Number(butterflyValue) > 0 ? "text-emerald-400" : "text-red-400")}>
                         {Number(butterflyValue) > 0 ? "+" : ""}{butterflyValue}%
                       </div>
@@ -857,23 +857,23 @@ export default function FixedIncomeRVPage() {
           <TabsContent value="spreads" className="data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               {/* Z-Score chart */}
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <h2 className="text-sm font-medium mb-1">OAS Z-Score vs 3Y History</h2>
-                <p className="text-xs text-zinc-500 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   Green bars = cheap (wide vs history) &bull; Red = rich (tight vs history) &bull; ±1σ band shaded
                 </p>
                 <ZScoreChart records={SPREAD_RECORDS} />
               </div>
 
               {/* Spread table */}
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <h2 className="text-sm font-medium mb-3">OAS by Rating / Sector</h2>
                 <div className="overflow-x-auto">
                   <table className="w-full text-[11px]">
                     <thead>
-                      <tr className="border-b border-zinc-800/60">
+                      <tr className="border-b border-border/60">
                         {["Rating", "Sector", "OAS (bps)", "1Y Avg", "3Y Avg", "Z-Score", "Signal"].map((h) => (
-                          <th key={h} className="text-left text-zinc-500 py-2 pr-3 font-medium">
+                          <th key={h} className="text-left text-muted-foreground py-2 pr-3 font-medium">
                             {h}
                           </th>
                         ))}
@@ -886,13 +886,13 @@ export default function FixedIncomeRVPage() {
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.04 }}
-                          className="border-b border-zinc-800/30 hover:bg-zinc-800/20"
+                          className="border-b border-border/30 hover:bg-muted/20"
                         >
-                          <td className="py-2 pr-3 font-mono font-semibold text-zinc-200">{r.rating}</td>
-                          <td className="py-2 pr-3 text-zinc-400">{r.sector}</td>
+                          <td className="py-2 pr-3 font-mono font-semibold text-foreground">{r.rating}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{r.sector}</td>
                           <td className="py-2 pr-3 font-mono">{r.oas}</td>
-                          <td className="py-2 pr-3 font-mono text-zinc-500">{r.history1y}</td>
-                          <td className="py-2 pr-3 font-mono text-zinc-500">{r.history3y}</td>
+                          <td className="py-2 pr-3 font-mono text-muted-foreground">{r.history1y}</td>
+                          <td className="py-2 pr-3 font-mono text-muted-foreground">{r.history3y}</td>
                           <td className={cn("py-2 pr-3 font-mono font-semibold", zColor(r.zScore))}>
                             {r.zScore > 0 ? "+" : ""}{r.zScore}σ
                           </td>
@@ -911,35 +911,35 @@ export default function FixedIncomeRVPage() {
 
             {/* IG vs HY comparison */}
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
                   <span className="text-xs font-medium text-primary">IG Credit</span>
                 </div>
-                <div className="text-2xl font-bold mb-1">118 <span className="text-sm text-zinc-500 font-normal">bps OAS</span></div>
-                <div className="text-xs text-zinc-500 mb-2">vs 10Y average: 125 bps</div>
+                <div className="text-2xl font-bold mb-1">118 <span className="text-sm text-muted-foreground font-normal">bps OAS</span></div>
+                <div className="text-xs text-muted-foreground mb-2">vs 10Y average: 125 bps</div>
                 <div className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded px-2 py-1">
                   Slightly RICH to history — limited upside from spread compression
                 </div>
               </div>
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertTriangle className="w-3.5 h-3.5 text-orange-400" />
                   <span className="text-xs font-medium text-orange-400">HY Credit</span>
                 </div>
-                <div className="text-2xl font-bold mb-1">382 <span className="text-sm text-zinc-500 font-normal">bps OAS</span></div>
-                <div className="text-xs text-zinc-500 mb-2">vs 10Y average: 420 bps</div>
+                <div className="text-2xl font-bold mb-1">382 <span className="text-sm text-muted-foreground font-normal">bps OAS</span></div>
+                <div className="text-xs text-muted-foreground mb-2">vs 10Y average: 420 bps</div>
                 <div className="text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded px-2 py-1">
                   FAIR value — select issuer opportunities in BB-rated
                 </div>
               </div>
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Target className="w-3.5 h-3.5 text-emerald-400" />
                   <span className="text-xs font-medium text-emerald-400">IG vs HY Differential</span>
                 </div>
-                <div className="text-2xl font-bold mb-1">264 <span className="text-sm text-zinc-500 font-normal">bps</span></div>
-                <div className="text-xs text-zinc-500 mb-2">vs 10Y average: 295 bps</div>
+                <div className="text-2xl font-bold mb-1">264 <span className="text-sm text-muted-foreground font-normal">bps</span></div>
+                <div className="text-xs text-muted-foreground mb-2">vs 10Y average: 295 bps</div>
                 <div className="text-xs text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 rounded px-2 py-1">
                   Tight differential — HY not well compensated vs IG quality
                 </div>
@@ -957,15 +957,15 @@ export default function FixedIncomeRVPage() {
 
           {/* ── Tab 3: Cross-Market RV ────────────────────────────────────────── */}
           <TabsContent value="crossmarket" className="data-[state=inactive]:hidden">
-            <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4 mb-4">
+            <div className="rounded-xl bg-card/60 border border-border/50 p-4 mb-4">
               <h2 className="text-sm font-medium mb-3">Treasury / Agency / Muni Value Matrix</h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-[11px]">
                   <thead>
-                    <tr className="border-b border-zinc-800/60">
+                    <tr className="border-b border-border/60">
                       {["Instrument", "Type", "Yield", "TEY (37%)", "Sprd vs Tsy", "OTR/OTS Prem", "View"].map(
                         (h) => (
-                          <th key={h} className="text-left text-zinc-500 py-2 pr-4 font-medium">
+                          <th key={h} className="text-left text-muted-foreground py-2 pr-4 font-medium">
                             {h}
                           </th>
                         )
@@ -980,17 +980,17 @@ export default function FixedIncomeRVPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.03 }}
                         className={cn(
-                          "border-b border-zinc-800/30 hover:bg-zinc-800/20",
+                          "border-b border-border/30 hover:bg-muted/20",
                           row.type === "Muni" && "bg-indigo-500/3",
                           row.type === "TIPS" && "bg-cyan-500/3"
                         )}
                       >
-                        <td className="py-2 pr-4 font-medium text-zinc-200">{row.instrument}</td>
+                        <td className="py-2 pr-4 font-medium text-foreground">{row.instrument}</td>
                         <td className="py-2 pr-4">
                           <span
                             className={cn(
                               "px-1.5 py-0.5 rounded text-xs",
-                              row.type === "Treasury" && "bg-zinc-700/50 text-zinc-400",
+                              row.type === "Treasury" && "bg-muted/50 text-muted-foreground",
                               row.type === "Agency" && "bg-primary/10 text-primary",
                               row.type === "Muni" && "bg-indigo-500/10 text-indigo-400",
                               row.type === "TIPS" && "bg-cyan-500/10 text-muted-foreground"
@@ -1004,14 +1004,14 @@ export default function FixedIncomeRVPage() {
                           {row.teyAdjusted != null ? (
                             <span className="text-indigo-400">{row.teyAdjusted.toFixed(2)}%</span>
                           ) : (
-                            <span className="text-zinc-600">—</span>
+                            <span className="text-muted-foreground">—</span>
                           )}
                         </td>
-                        <td className={cn("py-2 pr-4 font-mono", row.spreadVsTsy > 0 ? "text-emerald-400" : row.spreadVsTsy < -100 ? "text-muted-foreground" : "text-zinc-500")}>
+                        <td className={cn("py-2 pr-4 font-mono", row.spreadVsTsy > 0 ? "text-emerald-400" : row.spreadVsTsy < -100 ? "text-muted-foreground" : "text-muted-foreground")}>
                           {row.spreadVsTsy === 0 ? "—" : `${row.spreadVsTsy > 0 ? "+" : ""}${row.spreadVsTsy} bps`}
                         </td>
-                        <td className="py-2 pr-4 font-mono text-zinc-400">
-                          {row.otrOtsPremium != null ? `${row.otrOtsPremium} bps` : <span className="text-zinc-600">—</span>}
+                        <td className="py-2 pr-4 font-mono text-muted-foreground">
+                          {row.otrOtsPremium != null ? `${row.otrOtsPremium} bps` : <span className="text-muted-foreground">—</span>}
                         </td>
                         <td className="py-2">
                           <span className={cn("px-1.5 py-0.5 rounded text-xs font-medium", signalBg(row.signal))}>
@@ -1027,52 +1027,52 @@ export default function FixedIncomeRVPage() {
 
             {/* RV Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Layers className="w-3.5 h-3.5 text-primary" />
                   <span className="text-xs font-medium">Agency Premium</span>
                 </div>
-                <p className="text-xs text-zinc-400 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   FNMA 2Y trades at +26 bps vs OTR Treasury. Historical range: +18–42 bps. Currently FAIR-to-CHEAP.
                   Implicit GSE government backing provides high credit quality at above-Treasury yields.
                 </p>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-zinc-500">Typical range:</span>
-                  <span className="text-zinc-300">+18 — +42 bps</span>
+                  <span className="text-muted-foreground">Typical range:</span>
+                  <span className="text-muted-foreground">+18 — +42 bps</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>BUY</span>
                 </div>
               </div>
 
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="w-3.5 h-3.5 text-indigo-400" />
                   <span className="text-xs font-medium">Muni Tax Equiv. Yield</span>
                 </div>
-                <p className="text-xs text-zinc-400 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   10Y AA Muni nominal yield of {(CURVE_POINTS[7].yield * 0.68).toFixed(2)}% equates to{" "}
                   {((CURVE_POINTS[7].yield * 0.68) / 0.63).toFixed(2)}% TEY for a 37% bracket investor — a{" "}
                   {Math.round(((CURVE_POINTS[7].yield * 0.68) / 0.63 - CURVE_POINTS[7].yield) * 100)} bps pickup vs
                   Treasuries.
                 </p>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-zinc-500">Muni/Tsy ratio:</span>
+                  <span className="text-muted-foreground">Muni/Tsy ratio:</span>
                   <span className="text-indigo-300">68% (below 80% = cheap)</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>BUY</span>
                 </div>
               </div>
 
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
                   <span className="text-xs font-medium">10Y TIPS Breakeven</span>
                 </div>
-                <p className="text-xs text-zinc-400 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   10Y nominal Treasury at {CURVE_POINTS[7].yield.toFixed(2)}% vs TIPS real yield of{" "}
                   {(CURVE_POINTS[7].yield - 2.28).toFixed(2)}%. Breakeven inflation: 2.28% — below the 5Y average of
                   2.35%. Suggests TIPS slightly cheap relative to nominals.
                 </p>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-zinc-500">5Y avg BE:</span>
+                  <span className="text-muted-foreground">5Y avg BE:</span>
                   <span className="text-muted-foreground">2.35% &bull; Current: 2.28%</span>
                   <span className={cn("ml-auto px-1.5 py-0.5 rounded", signalBg("buy"))}>TIPS</span>
                 </div>
@@ -1090,9 +1090,9 @@ export default function FixedIncomeRVPage() {
           <TabsContent value="sector" className="data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               {/* Chart */}
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <h2 className="text-sm font-medium mb-1">Sector Spread: Current vs 6M Average</h2>
-                <p className="text-xs text-zinc-500 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   <span className="text-emerald-400">■</span> Cheap &nbsp;
                   <span className="text-red-400">■</span> Rich &nbsp;
                   <span className="text-indigo-400">■</span> Fair vs history — bars in bps OAS
@@ -1101,17 +1101,17 @@ export default function FixedIncomeRVPage() {
               </div>
 
               {/* Table */}
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <h2 className="text-sm font-medium mb-3">Spread per Turn of Leverage</h2>
-                <p className="text-xs text-zinc-500 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   Spread/leverage ratio normalizes compensation across sectors with different capital structures.
                 </p>
                 <div className="overflow-x-auto">
                   <table className="w-full text-[11px]">
                     <thead>
-                      <tr className="border-b border-zinc-800/60">
+                      <tr className="border-b border-border/60">
                         {["Sector", "OAS (bps)", "6M Avg", "Leverage", "Sprd/Turn Lev", "Signal"].map((h) => (
-                          <th key={h} className="text-left text-zinc-500 py-2 pr-3 font-medium">
+                          <th key={h} className="text-left text-muted-foreground py-2 pr-3 font-medium">
                             {h}
                           </th>
                         ))}
@@ -1124,12 +1124,12 @@ export default function FixedIncomeRVPage() {
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.05 }}
-                          className="border-b border-zinc-800/30 hover:bg-zinc-800/20"
+                          className="border-b border-border/30 hover:bg-muted/20"
                         >
-                          <td className="py-2 pr-3 font-medium text-zinc-200">{s.sector}</td>
+                          <td className="py-2 pr-3 font-medium text-foreground">{s.sector}</td>
                           <td className="py-2 pr-3 font-mono">{s.currentSpread}</td>
-                          <td className="py-2 pr-3 font-mono text-zinc-500">{s.sixMonthAvg}</td>
-                          <td className="py-2 pr-3 font-mono text-zinc-400">{s.leverage.toFixed(1)}x</td>
+                          <td className="py-2 pr-3 font-mono text-muted-foreground">{s.sixMonthAvg}</td>
+                          <td className="py-2 pr-3 font-mono text-muted-foreground">{s.leverage.toFixed(1)}x</td>
                           <td className={cn("py-2 pr-3 font-mono font-semibold", signalColor(s.signal))}>
                             {s.spreadPerTurnLev.toFixed(1)}
                           </td>
@@ -1148,44 +1148,44 @@ export default function FixedIncomeRVPage() {
 
             {/* Rotation recommendations */}
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
                   <span className="text-xs font-semibold text-emerald-400">Overweight Recommendation</span>
                 </div>
-                <div className="space-y-2 text-xs text-zinc-400">
+                <div className="space-y-2 text-xs text-muted-foreground">
                   <div className="flex items-start gap-2">
                     <span className="text-emerald-400 mt-0.5">+</span>
-                    <span><span className="text-zinc-200 font-medium">TMT (Tech/Media/Telecom)</span> — spreads at +162 bps, 14 bps wide to 6M avg. Earnings stability and BB migration tailwinds support tightening.</span>
+                    <span><span className="text-foreground font-medium">TMT (Tech/Media/Telecom)</span> — spreads at +162 bps, 14 bps wide to 6M avg. Earnings stability and BB migration tailwinds support tightening.</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-emerald-400 mt-0.5">+</span>
-                    <span><span className="text-zinc-200 font-medium">Healthcare</span> — +144 bps, 6 bps cheap. Defensive cashflows, limited refinancing risk, M&A pipeline supportive.</span>
+                    <span><span className="text-foreground font-medium">Healthcare</span> — +144 bps, 6 bps cheap. Defensive cashflows, limited refinancing risk, M&A pipeline supportive.</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-emerald-400 mt-0.5">+</span>
-                    <span><span className="text-zinc-200 font-medium">Consumer</span> — widest spread per turn of leverage. Credit positive catalyst from rate cut cycle expected H2 2026.</span>
+                    <span><span className="text-foreground font-medium">Consumer</span> — widest spread per turn of leverage. Credit positive catalyst from rate cut cycle expected H2 2026.</span>
                   </div>
                 </div>
               </div>
 
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <TrendingDown className="w-3.5 h-3.5 text-red-400" />
                   <span className="text-xs font-semibold text-red-400">Underweight / Trim</span>
                 </div>
-                <div className="space-y-2 text-xs text-zinc-400">
+                <div className="space-y-2 text-xs text-muted-foreground">
                   <div className="flex items-start gap-2">
                     <span className="text-red-400 mt-0.5">–</span>
-                    <span><span className="text-zinc-200 font-medium">Financials</span> — OAS 13 bps tight to 6M avg. Binary regulatory risk and CRE exposure create asymmetric risk/reward.</span>
+                    <span><span className="text-foreground font-medium">Financials</span> — OAS 13 bps tight to 6M avg. Binary regulatory risk and CRE exposure create asymmetric risk/reward.</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <span className="text-red-400 mt-0.5">–</span>
-                    <span><span className="text-zinc-200 font-medium">CCC-rated bonds</span> — overall HY richness limits the risk premium. Prefer BB/single-B where fundamentals are improving.</span>
+                    <span><span className="text-foreground font-medium">CCC-rated bonds</span> — overall HY richness limits the risk premium. Prefer BB/single-B where fundamentals are improving.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <span className="text-zinc-500 mt-0.5">—</span>
-                    <span><span className="text-zinc-200 font-medium">Utilities</span> — FAIR at -5 bps to avg. Rate sensitivity caps total return; prefer duration-neutral IG credit.</span>
+                    <span className="text-muted-foreground mt-0.5">—</span>
+                    <span><span className="text-foreground font-medium">Utilities</span> — FAIR at -5 bps to avg. Rate sensitivity caps total return; prefer duration-neutral IG credit.</span>
                   </div>
                 </div>
               </div>
@@ -1203,24 +1203,24 @@ export default function FixedIncomeRVPage() {
           <TabsContent value="carry" className="data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               {/* SVG */}
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <h2 className="text-sm font-medium mb-1">Riding the Yield Curve — 6M Horizon</h2>
-                <p className="text-xs text-zinc-500 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   Carry (coupon accrual) + Roll-down (yield decline as bond ages) = Total expected return in bps
                 </p>
                 <CarryRollSVG data={CARRY_ROLL} />
               </div>
 
               {/* Table */}
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <h2 className="text-sm font-medium mb-3">Carry &amp; Roll Breakdown Table</h2>
                 <div className="overflow-x-auto">
                   <table className="w-full text-[11px]">
                     <thead>
-                      <tr className="border-b border-zinc-800/60">
+                      <tr className="border-b border-border/60">
                         {["Tenor", "Yield", "Carry (6M)", "Roll-Down", "Total (bps)", "Ann. Return"].map(
                           (h) => (
-                            <th key={h} className="text-left text-zinc-500 py-2 pr-3 font-medium">
+                            <th key={h} className="text-left text-muted-foreground py-2 pr-3 font-medium">
                               {h}
                             </th>
                           )
@@ -1236,14 +1236,14 @@ export default function FixedIncomeRVPage() {
                             initial={{ opacity: 0, x: -8 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.06 }}
-                            className="border-b border-zinc-800/30 hover:bg-zinc-800/20"
+                            className="border-b border-border/30 hover:bg-muted/20"
                           >
-                            <td className="py-2 pr-3 font-semibold text-zinc-200">{row.tenor}</td>
+                            <td className="py-2 pr-3 font-semibold text-foreground">{row.tenor}</td>
                             <td className="py-2 pr-3 font-mono">{row.yield.toFixed(2)}%</td>
                             <td className="py-2 pr-3 font-mono text-indigo-400">+{row.carryBps}</td>
                             <td className="py-2 pr-3 font-mono text-orange-400">+{row.rollBps}</td>
                             <td className="py-2 pr-3 font-mono font-semibold text-muted-foreground">+{row.totalReturnBps}</td>
-                            <td className="py-2 pr-3 font-mono text-zinc-300">{annualized}%</td>
+                            <td className="py-2 pr-3 font-mono text-muted-foreground">{annualized}%</td>
                           </motion.tr>
                         );
                       })}
@@ -1257,7 +1257,7 @@ export default function FixedIncomeRVPage() {
                     <Target className="w-3.5 h-3.5 text-muted-foreground" />
                     <span className="text-xs font-medium text-muted-foreground">Optimal Carry Point</span>
                   </div>
-                  <p className="text-xs text-zinc-400">
+                  <p className="text-xs text-muted-foreground">
                     {(() => {
                       const best = [...CARRY_ROLL].sort((a, b) => b.totalReturnBps - a.totalReturnBps)[0];
                       return `The ${best.tenor} point offers the highest total 6M return of +${best.totalReturnBps} bps (+${((best.totalReturnBps / 10000) * 2 * 100).toFixed(2)}% annualized). Optimal for "riding the curve" strategy given current shape.`;
@@ -1269,32 +1269,32 @@ export default function FixedIncomeRVPage() {
 
             {/* Carry concepts */}
             <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <DollarSign className="w-3.5 h-3.5 text-indigo-400" />
                   <span className="text-xs font-semibold text-indigo-400">Carry</span>
                 </div>
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-muted-foreground">
                   The yield earned on holding a bond over a period (net of financing cost). In a normal upward-sloping
                   curve, longer bonds have higher carry. Formula: (Coupon − Repo Rate) × Time.
                 </p>
               </div>
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <BarChart3 className="w-3.5 h-3.5 text-orange-400" />
                   <span className="text-xs font-semibold text-orange-400">Roll-Down</span>
                 </div>
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-muted-foreground">
                   Price appreciation as a bond "rolls down" the yield curve toward maturity. A 5Y bond held for 6M
                   becomes a 4.5Y bond priced at the (typically lower) 4.5Y yield — generating capital gain.
                 </p>
               </div>
-              <div className="rounded-xl bg-zinc-900/60 border border-zinc-800/50 p-4">
+              <div className="rounded-xl bg-card/60 border border-border/50 p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Activity className="w-3.5 h-3.5 text-muted-foreground" />
                   <span className="text-xs font-semibold text-muted-foreground">Riding the Curve</span>
                 </div>
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-muted-foreground">
                   Combined strategy of maximizing carry + roll-down. Most effective in a stable, upward-sloping curve.
                   Risk: parallel shift up erodes returns; steepening at the target tenor is particularly adverse.
                 </p>

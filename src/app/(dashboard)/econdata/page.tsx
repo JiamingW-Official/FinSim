@@ -669,7 +669,7 @@ function TrafficDot({ status }: { status: TrafficLight }) {
 function TrendIcon({ trend }: { trend: Trend }) {
   if (trend === "up") return <TrendingUp className="w-3 h-3 text-emerald-400" />;
   if (trend === "down") return <TrendingDown className="w-3 h-3 text-red-400" />;
-  return <Minus className="w-3 h-3 text-gray-400" />;
+  return <Minus className="w-3 h-3 text-muted-foreground" />;
 }
 
 function ScoreBar({ score }: { score: number }) {
@@ -689,7 +689,7 @@ function SectionCard({ title, children, className }: { title: string; children: 
       transition={{ duration: 0.35 }}
       className={cn("bg-white/[0.03] border border-white/10 rounded-xl p-4", className)}
     >
-      <h3 className="text-xs font-semibold text-gray-400 mb-3">{title}</h3>
+      <h3 className="text-xs font-semibold text-muted-foreground mb-3">{title}</h3>
       {children}
     </motion.div>
   );
@@ -715,7 +715,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="flex items-center gap-6">
           <div className="text-center">
             <div className={cn("text-5xl font-bold", scoreColor)}>{compositeScore}</div>
-            <div className="text-xs text-gray-400 mt-1">out of 100</div>
+            <div className="text-xs text-muted-foreground mt-1">out of 100</div>
           </div>
           <div className="flex-1">
             <div className={cn("text-lg font-semibold", scoreColor)}>{scoreLabel}</div>
@@ -728,7 +728,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
                 }}
               />
             </div>
-            <div className="flex justify-between text-xs text-gray-500 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>Contraction</span>
               <span>Mixed</span>
               <span>Expansion</span>
@@ -740,7 +740,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
               return (
                 <div key={t} className="text-center">
                   <div className={cn("text-xl font-bold", t === "green" ? "text-emerald-400" : t === "yellow" ? "text-amber-400" : "text-red-400")}>{count}</div>
-                  <div className="text-gray-500 capitalize">{t}</div>
+                  <div className="text-muted-foreground capitalize">{t}</div>
                 </div>
               );
             })}
@@ -759,12 +759,12 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
             className="bg-white/[0.03] border border-white/10 rounded-lg p-3 hover:border-white/20 transition-colors"
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="text-xs text-gray-400 truncate">{ind.name}</span>
+              <span className="text-xs text-muted-foreground truncate">{ind.name}</span>
               <TrafficDot status={ind.traffic} />
             </div>
             <div className="flex items-end gap-2 mb-1">
               <span className="text-xl font-semibold text-white">{ind.value}</span>
-              <span className="text-xs text-gray-500 mb-0.5">{ind.unit}</span>
+              <span className="text-xs text-muted-foreground mb-0.5">{ind.unit}</span>
               <div className="ml-auto"><TrendIcon trend={ind.trend} /></div>
             </div>
             <div className="flex items-center justify-between">
@@ -798,23 +798,23 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
         <SectionCard title="Policy Rates">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-400">Fed Funds (Target)</span>
+              <span className="text-xs text-muted-foreground">Fed Funds (Target)</span>
               <span className="text-lg font-bold text-white">{currentRate}%</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-400">Neutral Rate (r*)</span>
+              <span className="text-xs text-muted-foreground">Neutral Rate (r*)</span>
               <span className="text-lg font-bold text-emerald-400">{neutralRate}%</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-400">Taylor Rule Rate</span>
+              <span className="text-xs text-muted-foreground">Taylor Rule Rate</span>
               <span className="text-lg font-bold text-amber-400">{taylorRate}%</span>
             </div>
-            <div className="mt-3 p-2 bg-white/5 rounded-lg text-xs text-gray-400">
-              <div className="font-semibold text-gray-300 mb-1">Taylor Rule Formula</div>
+            <div className="mt-3 p-2 bg-white/5 rounded-lg text-xs text-muted-foreground">
+              <div className="font-semibold text-muted-foreground mb-1">Taylor Rule Formula</div>
               <code className="text-indigo-300">r* + π + 0.5(π-2%) + 0.5(GDP gap)</code>
               <div className="mt-1">= 2.5 + 3.1 + 0.5(1.1) + 0.5(-0.6) = {taylorRate}%</div>
             </div>
-            <div className="text-xs text-gray-500 mt-2">
+            <div className="text-xs text-muted-foreground mt-2">
               Current rate is <span className={currentRate > taylorRate ? "text-amber-400" : "text-emerald-400"}>{currentRate > taylorRate ? "above" : "below"}</span> Taylor rule by {Math.abs(currentRate - taylorRate).toFixed(2)}pp
             </div>
           </div>
@@ -825,18 +825,18 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
           <div className="space-y-2">
             {[{ label: "Hawks", count: hawks, color: "#ef4444" }, { label: "Neutral", count: neutral, color: "#6b7280" }, { label: "Doves", count: doves, color: "#10b981" }].map((v) => (
               <div key={v.label} className="flex items-center gap-2">
-                <span className="text-xs text-gray-400 w-16">{v.label}</span>
+                <span className="text-xs text-muted-foreground w-16">{v.label}</span>
                 <div className="flex-1 bg-white/5 rounded-full h-2">
                   <div className="h-2 rounded-full" style={{ width: `${(v.count / 12) * 100}%`, backgroundColor: v.color }} />
                 </div>
                 <span className="text-xs font-mono text-white w-4">{v.count}</span>
               </div>
             ))}
-            <div className="text-xs text-gray-500 mt-2">12 total FOMC voters (7 governors + 5 presidents)</div>
+            <div className="text-xs text-muted-foreground mt-2">12 total FOMC voters (7 governors + 5 presidents)</div>
           </div>
 
           <div className="mt-4">
-            <div className="text-xs text-gray-400 mb-2">Hawkish Lean</div>
+            <div className="text-xs text-muted-foreground mb-2">Hawkish Lean</div>
             <div className="w-full h-3 rounded-full overflow-hidden bg-emerald-900/30 relative">
               <div className="absolute left-0 top-0 h-full bg-red-500/60 rounded-l-full" style={{ width: `${(hawks / 12) * 100}%` }} />
               <div className="absolute right-0 top-0 h-full bg-emerald-500/60 rounded-r-full" style={{ width: `${(doves / 12) * 100}%` }} />
@@ -852,7 +852,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
               <div key={i} className="flex items-center gap-2">
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-medium text-white truncate">{sp.name}</div>
-                  <div className="text-xs text-gray-500">{sp.date}</div>
+                  <div className="text-xs text-muted-foreground">{sp.date}</div>
                 </div>
                 <div className="text-xs px-2 py-0.5 rounded-full" style={{
                   backgroundColor: sp.score > 55 ? "#ef444420" : sp.score < 40 ? "#10b98120" : "#6b728020",
@@ -880,7 +880,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-gray-500 border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-white/10">
                 <th className="text-left py-1.5 pr-4">Meeting</th>
                 <th className="text-right pr-3">Hike</th>
                 <th className="text-right pr-3">Hold</th>
@@ -893,7 +893,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
                 <tr key={i} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
                   <td className="py-1.5 pr-4 text-white font-medium">{m.date}</td>
                   <td className="text-right pr-3 text-red-400">{m.hikePct}%</td>
-                  <td className="text-right pr-3 text-gray-300">{m.holdPct}%</td>
+                  <td className="text-right pr-3 text-muted-foreground">{m.holdPct}%</td>
                   <td className="text-right pr-3 text-emerald-400">{m.cutPct}%</td>
                   <td className="pr-2 w-40">
                     <div className="flex h-3 rounded-full overflow-hidden gap-px">
@@ -924,10 +924,10 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             {balanceSheetSeries.series.map((s) => (
               <div key={s.label} className="flex items-center gap-2 text-xs">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
-                <span className="text-gray-400">{s.label}</span>
+                <span className="text-muted-foreground">{s.label}</span>
               </div>
             ))}
-            <div className="mt-2 text-xs text-gray-500">QT pace: ~$60B/month</div>
+            <div className="mt-2 text-xs text-muted-foreground">QT pace: ~$60B/month</div>
           </div>
         </div>
       </SectionCard>
@@ -943,12 +943,12 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
   const sorted = useMemo(() => [...countries].sort((a, b) => (b[sortBy] as number) - (a[sortBy] as number)), [countries, sortBy]);
 
   function cellColor(val: number, metric: string): string {
-    if (metric === "gdpGrowth") return val > 3 ? "text-emerald-400" : val > 1.5 ? "text-gray-300" : val > 0 ? "text-amber-400" : "text-red-400";
+    if (metric === "gdpGrowth") return val > 3 ? "text-emerald-400" : val > 1.5 ? "text-muted-foreground" : val > 0 ? "text-amber-400" : "text-red-400";
     if (metric === "inflation") return val < 2.5 ? "text-emerald-400" : val < 4 ? "text-amber-400" : "text-red-400";
-    if (metric === "unemployment") return val < 4 ? "text-emerald-400" : val < 6 ? "text-gray-300" : val < 8 ? "text-amber-400" : "text-red-400";
+    if (metric === "unemployment") return val < 4 ? "text-emerald-400" : val < 6 ? "text-muted-foreground" : val < 8 ? "text-amber-400" : "text-red-400";
     if (metric === "debtGdp") return val < 60 ? "text-emerald-400" : val < 100 ? "text-amber-400" : "text-red-400";
-    if (metric === "currentAccount") return val > 2 ? "text-emerald-400" : val > -1 ? "text-gray-300" : "text-red-400";
-    return "text-gray-300";
+    if (metric === "currentAccount") return val > 2 ? "text-emerald-400" : val > -1 ? "text-muted-foreground" : "text-red-400";
+    return "text-muted-foreground";
   }
 
   const regionalBars = [
@@ -973,7 +973,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
             width={240}
             height={140}
           />
-          <div className="text-xs text-gray-500 mt-2">Positive = data beating consensus expectations</div>
+          <div className="text-xs text-muted-foreground mt-2">Positive = data beating consensus expectations</div>
         </SectionCard>
 
         {/* Capital Flow Heatmap */}
@@ -985,7 +985,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
             width={280}
             height={120}
           />
-          <div className="text-xs text-gray-500 mt-2">$ billions, 4-week flows</div>
+          <div className="text-xs text-muted-foreground mt-2">$ billions, 4-week flows</div>
         </SectionCard>
       </div>
 
@@ -994,7 +994,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-gray-500 border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-white/10">
                 <th className="text-left py-1.5 w-32">Country</th>
                 {[
                   { key: "gdpGrowth", label: "GDP %" },
@@ -1005,7 +1005,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
                 ].map((col) => (
                   <th
                     key={col.key}
-                    className={cn("text-right py-1.5 pr-4 cursor-pointer hover:text-gray-300 transition-colors", sortBy === col.key && "text-indigo-400")}
+                    className={cn("text-right py-1.5 pr-4 cursor-pointer hover:text-muted-foreground transition-colors", sortBy === col.key && "text-indigo-400")}
                     onClick={() => setSortBy(col.key as keyof Country)}
                   >
                     {col.label} {sortBy === col.key && "▼"}
@@ -1035,7 +1035,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
             </tbody>
           </table>
         </div>
-        <div className="flex gap-4 mt-3 text-xs text-gray-500">
+        <div className="flex gap-4 mt-3 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="text-emerald-400">■</span> Best quartile</span>
           <span className="flex items-center gap-1"><span className="text-amber-400">■</span> Middle</span>
           <span className="flex items-center gap-1"><span className="text-red-400">■</span> Worst quartile</span>
@@ -1075,14 +1075,14 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className={cn("text-2xl font-bold", consensusProb >= 50 ? "text-red-400" : consensusProb >= 33 ? "text-amber-400" : "text-emerald-400")}>{consensusProb}%</span>
-                <span className="text-xs text-gray-500">consensus</span>
+                <span className="text-xs text-muted-foreground">consensus</span>
               </div>
             </div>
             <div className="space-y-1">
               <div className="text-sm font-semibold text-amber-400">Elevated Risk</div>
-              <div className="text-xs text-gray-400">{triggered} of {recessionIndicators.length} indicators triggered</div>
-              <div className="text-xs text-gray-500">Yield curve inversion ongoing</div>
-              <div className="text-xs text-gray-500">LEI declining 6 consecutive months</div>
+              <div className="text-xs text-muted-foreground">{triggered} of {recessionIndicators.length} indicators triggered</div>
+              <div className="text-xs text-muted-foreground">Yield curve inversion ongoing</div>
+              <div className="text-xs text-muted-foreground">LEI declining 6 consecutive months</div>
             </div>
           </div>
         </SectionCard>
@@ -1096,7 +1096,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
                   <span className={cn("font-medium", ri.triggered ? "text-red-300" : "text-emerald-300")}>{ri.name}</span>
                 </div>
                 <div className="font-mono text-white">{ri.value}{ri.unit}</div>
-                <div className="text-gray-500">Threshold: {ri.threshold}{ri.unit}</div>
+                <div className="text-muted-foreground">Threshold: {ri.threshold}{ri.unit}</div>
               </div>
             ))}
           </div>
@@ -1108,7 +1108,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="overflow-x-auto">
           <YieldCurveChart spreads={yieldCurveSpreads} width={560} height={130} />
         </div>
-        <div className="flex gap-4 mt-2 text-xs text-gray-500">
+        <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="w-3 h-1 bg-red-500/40 inline-block rounded" /> Inversion periods (below 0)</span>
           <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-indigo-500 inline-block" /> 2Y-10Y spread</span>
         </div>
@@ -1132,9 +1132,9 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
             </div>
             <div className="flex items-center gap-3 mb-1">
               <span className="text-lg font-bold text-white">{ri.value}{ri.unit}</span>
-              <span className="text-gray-500">vs {ri.threshold}{ri.unit} threshold</span>
+              <span className="text-muted-foreground">vs {ri.threshold}{ri.unit} threshold</span>
             </div>
-            <div className="text-gray-400">{ri.desc}</div>
+            <div className="text-muted-foreground">{ri.desc}</div>
           </motion.div>
         ))}
       </div>
@@ -1170,7 +1170,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-gray-500 border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-white/10">
                 <th className="text-left py-1.5 w-36">Sector</th>
                 <th className="text-right pr-4">Rev Growth</th>
                 <th className="text-right pr-4">Net Margin</th>
@@ -1194,20 +1194,20 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                     {s.name}
                   </td>
-                  <td className={cn("text-right pr-4 font-mono", s.revenueGrowth > 8 ? "text-emerald-400" : s.revenueGrowth > 3 ? "text-gray-300" : "text-red-400")}>
+                  <td className={cn("text-right pr-4 font-mono", s.revenueGrowth > 8 ? "text-emerald-400" : s.revenueGrowth > 3 ? "text-muted-foreground" : "text-red-400")}>
                     {s.revenueGrowth > 0 ? "+" : ""}{s.revenueGrowth.toFixed(1)}%
                   </td>
-                  <td className={cn("text-right pr-4 font-mono", s.margin > 22 ? "text-emerald-400" : s.margin > 15 ? "text-gray-300" : "text-amber-400")}>
+                  <td className={cn("text-right pr-4 font-mono", s.margin > 22 ? "text-emerald-400" : s.margin > 15 ? "text-muted-foreground" : "text-amber-400")}>
                     {s.margin.toFixed(1)}%
                   </td>
-                  <td className="text-right pr-4 font-mono text-gray-300">{s.capex.toFixed(1)}%</td>
-                  <td className={cn("text-right pr-4 font-mono", s.empGrowth > 1 ? "text-emerald-400" : s.empGrowth > 0 ? "text-gray-300" : "text-red-400")}>
+                  <td className="text-right pr-4 font-mono text-muted-foreground">{s.capex.toFixed(1)}%</td>
+                  <td className={cn("text-right pr-4 font-mono", s.empGrowth > 1 ? "text-emerald-400" : s.empGrowth > 0 ? "text-muted-foreground" : "text-red-400")}>
                     {s.empGrowth > 0 ? "+" : ""}{s.empGrowth.toFixed(1)}%
                   </td>
                   <td className={cn("text-right pr-4 font-mono", s.igPct > 80 ? "text-emerald-400" : s.igPct > 65 ? "text-amber-400" : "text-red-400")}>
                     {s.igPct}%
                   </td>
-                  <td className={cn("text-right pr-4 font-mono", s.ism > 52 ? "text-emerald-400" : s.ism > 48 ? "text-gray-300" : "text-red-400")}>
+                  <td className={cn("text-right pr-4 font-mono", s.ism > 52 ? "text-emerald-400" : s.ism > 48 ? "text-muted-foreground" : "text-red-400")}>
                     {s.ism.toFixed(1)}
                   </td>
                   <td className={cn("text-right pr-4 font-mono", s.revisions > 0 ? "text-emerald-400" : "text-red-400")}>
@@ -1227,13 +1227,13 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
             <div key={s.name} className="text-xs">
               <div className="flex items-center gap-1 mb-1">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
-                <span className="text-gray-400 truncate">{s.name}</span>
+                <span className="text-muted-foreground truncate">{s.name}</span>
               </div>
               <div className="flex h-3 rounded-full overflow-hidden">
                 <div className="bg-emerald-500/60" style={{ width: `${s.igPct}%` }} title="IG" />
                 <div className="bg-amber-500/60" style={{ width: `${100 - s.igPct}%` }} title="HY" />
               </div>
-              <div className="flex justify-between mt-0.5 text-gray-500">
+              <div className="flex justify-between mt-0.5 text-muted-foreground">
                 <span>{s.igPct}% IG</span>
                 <span>{100 - s.igPct}% HY</span>
               </div>
@@ -1281,7 +1281,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
               width={200}
               height={180}
             />
-            <div className="text-xs text-gray-500 text-center">Growth momentum vs Inflation momentum</div>
+            <div className="text-xs text-muted-foreground text-center">Growth momentum vs Inflation momentum</div>
           </div>
         </SectionCard>
 
@@ -1290,7 +1290,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
           <div className="space-y-1.5">
             {regimeHistory.map((r, i) => (
               <div key={i} className="flex items-center gap-3 text-xs">
-                <span className="text-gray-500 w-16 shrink-0">{r.period}</span>
+                <span className="text-muted-foreground w-16 shrink-0">{r.period}</span>
                 <div className="flex-1 h-5 rounded flex items-center px-2" style={{ backgroundColor: regimeColors[r.regime] + "20" }}>
                   <span className="font-medium" style={{ color: regimeColors[r.regime] }}>{r.regime}</span>
                 </div>
@@ -1317,7 +1317,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
             height={200}
           />
         </div>
-        <div className="flex gap-4 mt-2 text-xs text-gray-500">
+        <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="text-emerald-400">■</span> Strong outperformance</span>
           <span className="flex items-center gap-1"><span className="text-amber-400">■</span> Underperformance</span>
           <span className="flex items-center gap-1"><span className="text-red-400">■</span> Strong underperformance</span>
@@ -1331,18 +1331,18 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
             {leadingSignals.map((ls, i) => (
               <div key={i} className="flex items-center gap-3 text-xs">
                 <TrendIcon trend={ls.direction} />
-                <span className="text-gray-400 flex-1">{ls.indicator}</span>
-                <span className={cn("font-medium", ls.direction === "up" ? "text-emerald-400" : ls.direction === "down" ? "text-red-400" : "text-gray-300")}>
+                <span className="text-muted-foreground flex-1">{ls.indicator}</span>
+                <span className={cn("font-medium", ls.direction === "up" ? "text-emerald-400" : ls.direction === "down" ? "text-red-400" : "text-muted-foreground")}>
                   {ls.signal}
                 </span>
               </div>
             ))}
           </div>
           <div className="p-3 rounded-lg border border-emerald-500/30 bg-emerald-500/5">
-            <div className="text-xs text-gray-400 mb-1">Predicted Next Regime</div>
+            <div className="text-xs text-muted-foreground mb-1">Predicted Next Regime</div>
             <div className="text-2xl font-bold text-emerald-400">{predictedRegime}</div>
-            <div className="text-xs text-gray-400 mt-2">Confidence: High (4/5 signals aligned)</div>
-            <div className="text-xs text-gray-500 mt-1">Leading indicators suggest continued growth deceleration with inflation normalizing — consistent with late Goldilocks transition.</div>
+            <div className="text-xs text-muted-foreground mt-2">Confidence: High (4/5 signals aligned)</div>
+            <div className="text-xs text-muted-foreground mt-1">Leading indicators suggest continued growth deceleration with inflation normalizing — consistent with late Goldilocks transition.</div>
           </div>
         </div>
       </SectionCard>
@@ -1380,7 +1380,7 @@ export default function EconDataPage() {
             <h1 className="text-2xl font-bold text-white">Economic Data</h1>
             <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Live</span>
           </div>
-          <p className="text-sm text-gray-400 ml-11">Macro indicators, Fed policy, global comparisons, and recession signals</p>
+          <p className="text-sm text-muted-foreground ml-11">Macro indicators, Fed policy, global comparisons, and recession signals</p>
         </motion.div>
 
         {/* Tabs */}
@@ -1392,7 +1392,7 @@ export default function EconDataPage() {
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-gray-400 data-[state=active]:bg-white/10 data-[state=active]:text-white transition-all"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-white/10 data-[state=active]:text-white transition-all"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {tab.label}

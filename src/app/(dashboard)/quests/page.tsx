@@ -90,8 +90,10 @@ function SimpleQuestCard({
       className={cn(
         "rounded-lg border p-3.5 transition-colors",
         isComplete
-          ? "border-emerald-500/20 bg-emerald-500/5"
-          : "border-border bg-card hover:border-border/80",
+          ? "border-emerald-500/20 bg-emerald-500/5 opacity-75"
+          : pct > 0
+            ? "border-primary/20 bg-primary/[0.03] hover:border-primary/30"
+            : "border-border bg-card hover:border-border/80",
       )}
     >
       <div className="flex items-start justify-between gap-3">
@@ -530,10 +532,10 @@ export default function QuestsPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="border-b border-border px-4 py-4">
+      <div className="border-b border-border px-4 py-5">
         <div className="flex items-center gap-3">
           <motion.div
-            className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"
+            className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -543,7 +545,7 @@ export default function QuestsPage() {
           <div>
             <h1 className="text-lg font-bold">Quest Board</h1>
             <p className="text-[11px] text-muted-foreground">
-              Complete quests across all game modes
+              Complete quests across all game modes to earn XP and unlock rewards
             </p>
           </div>
           <div className="flex-1" />
@@ -621,7 +623,7 @@ export default function QuestsPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto px-4 py-4">
+      <div className="flex-1 overflow-y-auto px-4 py-6">
         <div className="mx-auto max-w-2xl">
           <AnimatePresence mode="wait">
             <motion.div

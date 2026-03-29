@@ -699,9 +699,9 @@ function IcmaComponent({
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-zinc-800 rounded-lg overflow-hidden">
+    <div className="border border-border rounded-lg overflow-hidden">
       <button
-        className="w-full flex items-center gap-3 p-4 text-left hover:bg-zinc-800/40 transition-colors"
+        className="w-full flex items-center gap-3 p-4 text-left hover:bg-muted/40 transition-colors"
         onClick={() => setOpen((v) => !v)}
       >
         <span
@@ -710,11 +710,11 @@ function IcmaComponent({
         >
           {num}
         </span>
-        <span className="font-semibold text-sm text-zinc-100 flex-1">{title}</span>
+        <span className="font-semibold text-sm text-foreground flex-1">{title}</span>
         {open ? (
-          <ChevronUp size={14} className="text-zinc-400 shrink-0" />
+          <ChevronUp size={14} className="text-muted-foreground shrink-0" />
         ) : (
-          <ChevronDown size={14} className="text-zinc-400 shrink-0" />
+          <ChevronDown size={14} className="text-muted-foreground shrink-0" />
         )}
       </button>
       <AnimatePresence initial={false}>
@@ -726,11 +726,11 @@ function IcmaComponent({
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 space-y-2 border-t border-zinc-800">
-              <p className="text-xs text-zinc-400 mt-3">{desc}</p>
+            <div className="px-4 pb-4 space-y-2 border-t border-border">
+              <p className="text-xs text-muted-foreground mt-3">{desc}</p>
               <ul className="space-y-1">
                 {items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-zinc-300">
+                  <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <CheckCircle size={12} className="mt-0.5 text-green-500 shrink-0" />
                     {item}
                   </li>
@@ -785,7 +785,7 @@ export default function GreenBondsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
@@ -793,8 +793,8 @@ export default function GreenBondsPage() {
             <Leaf size={20} className="text-green-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-zinc-100">Green, Social & Sustainability Bonds</h1>
-            <p className="text-xs text-zinc-500">
+            <h1 className="text-xl font-bold text-foreground">Green, Social & Sustainability Bonds</h1>
+            <p className="text-xs text-muted-foreground">
               GSS frameworks · use of proceeds · second-party opinions · impact reporting · greenium
             </p>
           </div>
@@ -802,17 +802,17 @@ export default function GreenBondsPage() {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="bg-zinc-900 border border-zinc-800 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-zinc-700">
+        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
+          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted">
             Market Overview
           </TabsTrigger>
-          <TabsTrigger value="frameworks" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="frameworks" className="text-xs data-[state=active]:bg-muted">
             Frameworks
           </TabsTrigger>
-          <TabsTrigger value="deals" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="deals" className="text-xs data-[state=active]:bg-muted">
             Deal Analysis
           </TabsTrigger>
-          <TabsTrigger value="impact" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="impact" className="text-xs data-[state=active]:bg-muted">
             Impact Reporting
           </TabsTrigger>
         </TabsList>
@@ -822,11 +822,11 @@ export default function GreenBondsPage() {
           {/* Stats chips */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {statChips.map((chip) => (
-              <Card key={chip.label} className="bg-zinc-900 border-zinc-800">
+              <Card key={chip.label} className="bg-card border-border">
                 <CardContent className="p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <chip.icon size={13} className={chip.color} />
-                    <span className="text-xs text-zinc-500">{chip.label}</span>
+                    <span className="text-xs text-muted-foreground">{chip.label}</span>
                   </div>
                   <p className={`text-base font-bold ${chip.color}`}>{chip.value}</p>
                 </CardContent>
@@ -835,9 +835,9 @@ export default function GreenBondsPage() {
           </div>
 
           {/* Issuance chart */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <BarChart2 size={14} className="text-green-400" />
                 Annual GSS Bond Issuance 2015–2024 (USD Billions)
               </CardTitle>
@@ -849,9 +849,9 @@ export default function GreenBondsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Regional donut */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Globe size={14} className="text-primary" />
                   Regional Breakdown — 2024
                 </CardTitle>
@@ -862,9 +862,9 @@ export default function GreenBondsPage() {
             </Card>
 
             {/* Top issuers */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Building2 size={14} className="text-amber-400" />
                   Top Issuers by Cumulative Volume
                 </CardTitle>
@@ -872,7 +872,7 @@ export default function GreenBondsPage() {
               <CardContent className="pt-0 overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800 text-zinc-500">
+                    <tr className="border-b border-border text-muted-foreground">
                       <th className="pb-2 text-left font-medium">Issuer</th>
                       <th className="pb-2 text-center font-medium">Type</th>
                       <th className="pb-2 text-right font-medium">Total ($B)</th>
@@ -886,9 +886,9 @@ export default function GreenBondsPage() {
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.04 }}
-                        className="border-b border-zinc-800/50 hover:bg-zinc-800/30"
+                        className="border-b border-border/50 hover:bg-muted/30"
                       >
-                        <td className="py-1.5 font-medium text-zinc-200">{iss.name}</td>
+                        <td className="py-1.5 font-medium text-foreground">{iss.name}</td>
                         <td className="py-1.5 text-center">
                           <span
                             className={`px-1.5 py-0.5 rounded text-xs border ${
@@ -920,13 +920,13 @@ export default function GreenBondsPage() {
         {/* ── TAB 2: Frameworks ─────────────────────────────────────────────── */}
         <TabsContent value="frameworks" className="data-[state=inactive]:hidden space-y-5">
           {/* ICMA Principles */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <FileText size={14} className="text-green-400" />
                 ICMA Green Bond Principles — 4 Core Components
               </CardTitle>
-              <p className="text-xs text-zinc-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 The International Capital Market Association (ICMA) Green Bond Principles provide
                 voluntary process guidelines that recommend transparency and disclosure.
               </p>
@@ -993,9 +993,9 @@ export default function GreenBondsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* SFDR Classification */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Shield size={14} className="text-primary" />
                   SFDR Classification
                 </CardTitle>
@@ -1006,9 +1006,9 @@ export default function GreenBondsPage() {
                     article: "Article 6",
                     title: "No ESG Integration",
                     desc: "Product does not promote environmental/social characteristics and does not have a sustainable investment objective.",
-                    color: "text-zinc-400",
-                    bg: "bg-zinc-800/60",
-                    border: "border-zinc-700",
+                    color: "text-muted-foreground",
+                    bg: "bg-muted/60",
+                    border: "border-border",
                     applicable: false,
                   },
                   {
@@ -1040,19 +1040,19 @@ export default function GreenBondsPage() {
                       {item.applicable ? (
                         <CheckCircle size={12} className="text-green-500" />
                       ) : (
-                        <XCircle size={12} className="text-zinc-600" />
+                        <XCircle size={12} className="text-muted-foreground" />
                       )}
                     </div>
-                    <p className="text-[11px] text-zinc-400">{item.desc}</p>
+                    <p className="text-[11px] text-muted-foreground">{item.desc}</p>
                   </div>
                 ))}
               </CardContent>
             </Card>
 
             {/* EU Taxonomy */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Globe size={14} className="text-green-400" />
                   EU Taxonomy — 6 Environmental Objectives
                 </CardTitle>
@@ -1110,23 +1110,23 @@ export default function GreenBondsPage() {
                 ].map((obj) => (
                   <div
                     key={obj.num}
-                    className="flex items-start gap-3 p-2.5 rounded border border-zinc-800 bg-zinc-800/30"
+                    className="flex items-start gap-3 p-2.5 rounded border border-border bg-muted/30"
                   >
                     <obj.icon size={14} className={`${obj.color} mt-0.5 shrink-0`} />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-medium text-zinc-200">{obj.title}</span>
+                        <span className="text-xs font-medium text-foreground">{obj.title}</span>
                         <span
                           className={`text-xs px-1.5 py-0.5 rounded border ${
                             obj.aligned
                               ? "bg-green-900/40 text-green-300 border-green-800"
-                              : "bg-zinc-800 text-zinc-500 border-zinc-700"
+                              : "bg-muted text-muted-foreground border-border"
                           }`}
                         >
                           {obj.aligned ? "TSC finalised" : "TSC pending"}
                         </span>
                       </div>
-                      <p className="text-xs text-zinc-500 mt-0.5">{obj.desc}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{obj.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -1136,7 +1136,7 @@ export default function GreenBondsPage() {
                     <Award size={12} className="text-primary" />
                     <span className="text-xs font-semibold text-primary">CBI Certification</span>
                   </div>
-                  <p className="text-xs text-zinc-400">
+                  <p className="text-xs text-muted-foreground">
                     Climate Bonds Initiative certification provides assurance that assets are
                     consistent with a 1.5°C economy. Sector-specific criteria cover buildings, energy,
                     transport, water, land use and ICT under the Climate Bonds Standard v4.
@@ -1150,18 +1150,18 @@ export default function GreenBondsPage() {
         {/* ── TAB 3: Deal Analysis ───────────────────────────────────────────── */}
         <TabsContent value="deals" className="data-[state=inactive]:hidden space-y-5">
           {/* Bond table */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <FileText size={14} className="text-green-400" />
                 Sample GSS Bond Universe
               </CardTitle>
-              <p className="text-xs text-zinc-500">Click a row to view spread details</p>
+              <p className="text-xs text-muted-foreground">Click a row to view spread details</p>
             </CardHeader>
             <CardContent className="overflow-x-auto">
               <table className="w-full text-xs min-w-[620px]">
                 <thead>
-                  <tr className="border-b border-zinc-800 text-zinc-500">
+                  <tr className="border-b border-border text-muted-foreground">
                     <th className="pb-2 text-left font-medium">Issuer</th>
                     <th className="pb-2 text-center font-medium">Type</th>
                     <th className="pb-2 text-right font-medium">Size</th>
@@ -1178,22 +1178,22 @@ export default function GreenBondsPage() {
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className={`border-b border-zinc-800/50 cursor-pointer transition-colors ${
+                      className={`border-b border-border/50 cursor-pointer transition-colors ${
                         selectedBond?.issuer === bond.issuer
-                          ? "bg-zinc-700/40"
-                          : "hover:bg-zinc-800/30"
+                          ? "bg-muted/40"
+                          : "hover:bg-muted/30"
                       }`}
                       onClick={() =>
                         setSelectedBond(selectedBond?.issuer === bond.issuer ? null : bond)
                       }
                     >
-                      <td className="py-2 font-medium text-zinc-200">{bond.issuer}</td>
+                      <td className="py-2 font-medium text-foreground">{bond.issuer}</td>
                       <td className="py-2 text-center">
                         <span className={`px-1.5 py-0.5 rounded text-xs border ${typeColor(bond.type)}`}>
                           {bond.type}
                         </span>
                       </td>
-                      <td className="py-2 text-right font-mono text-zinc-300">
+                      <td className="py-2 text-right font-mono text-muted-foreground">
                         {bond.currency} {bond.size.toFixed(1)}B
                       </td>
                       <td className="py-2 text-right font-mono text-primary">
@@ -1226,9 +1226,9 @@ export default function GreenBondsPage() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-3 p-3 rounded-lg border border-zinc-700 bg-zinc-800/50 space-y-2">
+                    <div className="mt-3 p-3 rounded-lg border border-border bg-muted/50 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-zinc-100">
+                        <span className="text-sm font-semibold text-foreground">
                           {selectedBond.issuer}
                         </span>
                         <span
@@ -1239,31 +1239,31 @@ export default function GreenBondsPage() {
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                         <div>
-                          <p className="text-zinc-500">Maturity</p>
-                          <p className="font-semibold text-zinc-200">{selectedBond.maturity}Y</p>
+                          <p className="text-muted-foreground">Maturity</p>
+                          <p className="font-semibold text-foreground">{selectedBond.maturity}Y</p>
                         </div>
                         <div>
-                          <p className="text-zinc-500">Size</p>
-                          <p className="font-semibold text-zinc-200">
+                          <p className="text-muted-foreground">Size</p>
+                          <p className="font-semibold text-foreground">
                             {selectedBond.currency} {selectedBond.size}B
                           </p>
                         </div>
                         <div>
-                          <p className="text-zinc-500">Greenium</p>
+                          <p className="text-muted-foreground">Greenium</p>
                           <p className="font-semibold text-green-400">
                             {(selectedBond.greenium * 100).toFixed(1)} bps
                           </p>
                         </div>
                         <div>
-                          <p className="text-zinc-500">SPO Provider</p>
+                          <p className="text-muted-foreground">SPO Provider</p>
                           <p className="font-semibold" style={{ color: selectedBond.spoColor }}>
                             {selectedBond.spo}
                           </p>
                         </div>
                       </div>
                       <div>
-                        <p className="text-zinc-500 text-xs mb-1">Use of Proceeds</p>
-                        <p className="text-xs text-zinc-300 bg-zinc-900/60 px-2 py-1 rounded">
+                        <p className="text-muted-foreground text-xs mb-1">Use of Proceeds</p>
+                        <p className="text-xs text-muted-foreground bg-card/60 px-2 py-1 rounded">
                           {selectedBond.useOfProceeds}
                         </p>
                       </div>
@@ -1275,13 +1275,13 @@ export default function GreenBondsPage() {
           </Card>
 
           {/* Yield Comparison */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <TrendingUp size={14} className="text-green-400" />
                 Green Bond vs Conventional Peer Yield Curve
               </CardTitle>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 The "greenium" is the negative spread — green bonds yield less than comparable
                 conventional bonds, reflecting higher investor demand for ESG assets.
               </p>
@@ -1293,9 +1293,9 @@ export default function GreenBondsPage() {
 
           {/* Spread Analysis + SPO providers */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <BarChart2 size={14} className="text-primary" />
                   Spread Analysis by Bond Type
                 </CardTitle>
@@ -1311,14 +1311,14 @@ export default function GreenBondsPage() {
                   { type: "SLB (off-track)", spread: +1.4, max: 6 },
                 ].map((row) => (
                   <div key={row.type}>
-                    <div className="flex justify-between text-xs text-zinc-400 mb-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
                       <span>{row.type}</span>
                       <span className={row.spread < 0 ? "text-green-400" : "text-red-400"}>
                         {row.spread > 0 ? "+" : ""}
                         {row.spread.toFixed(1)} bps
                       </span>
                     </div>
-                    <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full ${row.spread < 0 ? "bg-green-500" : "bg-red-500"}`}
                         style={{
@@ -1332,9 +1332,9 @@ export default function GreenBondsPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Shield size={14} className="text-primary" />
                   Second-Party Opinion Providers
                 </CardTitle>
@@ -1380,7 +1380,7 @@ export default function GreenBondsPage() {
                 ].map((spo) => (
                   <div
                     key={spo.name}
-                    className="flex items-center gap-3 p-2.5 rounded border border-zinc-800 bg-zinc-800/30"
+                    className="flex items-center gap-3 p-2.5 rounded border border-border bg-muted/30"
                   >
                     <div
                       className="w-1 self-stretch rounded-full shrink-0"
@@ -1388,10 +1388,10 @@ export default function GreenBondsPage() {
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold text-zinc-200">{spo.name}</span>
-                        <span className="text-xs text-zinc-400 font-mono">{spo.market}</span>
+                        <span className="text-xs font-semibold text-foreground">{spo.name}</span>
+                        <span className="text-xs text-muted-foreground font-mono">{spo.market}</span>
                       </div>
-                      <p className="text-xs text-zinc-500">{spo.strength}</p>
+                      <p className="text-xs text-muted-foreground">{spo.strength}</p>
                     </div>
                   </div>
                 ))}
@@ -1404,9 +1404,9 @@ export default function GreenBondsPage() {
         <TabsContent value="impact" className="data-[state=inactive]:hidden space-y-5">
           {/* KPI charts */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
-                <CardTitle className="text-xs text-zinc-400 flex items-center gap-2">
+                <CardTitle className="text-xs text-muted-foreground flex items-center gap-2">
                   <Sun size={12} className="text-yellow-400" />
                   Renewable Energy Generated (TWh/yr)
                 </CardTitle>
@@ -1415,9 +1415,9 @@ export default function GreenBondsPage() {
                 <ImpactBarChart data={renewableSeries} color="#f59e0b" unit="TWh" />
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
-                <CardTitle className="text-xs text-zinc-400 flex items-center gap-2">
+                <CardTitle className="text-xs text-muted-foreground flex items-center gap-2">
                   <Wind size={12} className="text-green-400" />
                   CO₂ Emissions Avoided (MtCO₂e/yr)
                 </CardTitle>
@@ -1426,9 +1426,9 @@ export default function GreenBondsPage() {
                 <ImpactBarChart data={co2Series} color="#22c55e" unit="MtCO₂e" />
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
-                <CardTitle className="text-xs text-zinc-400 flex items-center gap-2">
+                <CardTitle className="text-xs text-muted-foreground flex items-center gap-2">
                   <Building2 size={12} className="text-primary" />
                   Green Buildings Certified (million m²)
                 </CardTitle>
@@ -1437,9 +1437,9 @@ export default function GreenBondsPage() {
                 <ImpactBarChart data={buildingSeries} color="#3b82f6" unit="M m²" />
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-1">
-                <CardTitle className="text-xs text-zinc-400 flex items-center gap-2">
+                <CardTitle className="text-xs text-muted-foreground flex items-center gap-2">
                   <Droplets size={12} className="text-muted-foreground" />
                   Sustainable Water Treatment (bn m³/yr)
                 </CardTitle>
@@ -1451,9 +1451,9 @@ export default function GreenBondsPage() {
           </div>
 
           {/* KPI tracking table */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <BarChart2 size={14} className="text-green-400" />
                 Cumulative Impact KPI Tracker — 2024
               </CardTitle>
@@ -1461,7 +1461,7 @@ export default function GreenBondsPage() {
             <CardContent className="overflow-x-auto">
               <table className="w-full text-xs min-w-[540px]">
                 <thead>
-                  <tr className="border-b border-zinc-800 text-zinc-500">
+                  <tr className="border-b border-border text-muted-foreground">
                     <th className="pb-2 text-left font-medium">KPI Metric</th>
                     <th className="pb-2 text-right font-medium">2022</th>
                     <th className="pb-2 text-right font-medium">2023</th>
@@ -1517,10 +1517,10 @@ export default function GreenBondsPage() {
                   ].map((row) => {
                     const growth = ((row.v24 - row.v23) / row.v23) * 100;
                     return (
-                      <tr key={row.metric} className="border-b border-zinc-800/50 hover:bg-zinc-800/20">
-                        <td className="py-2 text-zinc-200 font-medium">{row.metric}</td>
-                        <td className="py-2 text-right font-mono text-zinc-400">{row.v22}</td>
-                        <td className="py-2 text-right font-mono text-zinc-400">{row.v23}</td>
+                      <tr key={row.metric} className="border-b border-border/50 hover:bg-muted/20">
+                        <td className="py-2 text-foreground font-medium">{row.metric}</td>
+                        <td className="py-2 text-right font-mono text-muted-foreground">{row.v22}</td>
+                        <td className="py-2 text-right font-mono text-muted-foreground">{row.v23}</td>
                         <td className="py-2 text-right font-mono text-green-400 font-semibold">
                           {row.v24}
                         </td>
@@ -1552,9 +1552,9 @@ export default function GreenBondsPage() {
 
           {/* UN SDG alignment + Additionality debate */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Globe size={14} className="text-primary" />
                   UN SDG Alignment Coverage
                 </CardTitle>
@@ -1571,14 +1571,14 @@ export default function GreenBondsPage() {
                 ].map((row) => (
                   <div key={row.sdg}>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="text-zinc-300">
+                      <span className="text-muted-foreground">
                         <span className="font-bold" style={{ color: row.color }}>{row.sdg}</span>
                         {" — "}
                         {row.title}
                       </span>
-                      <span className="text-zinc-500">{row.pct}%</span>
+                      <span className="text-muted-foreground">{row.pct}%</span>
                     </div>
-                    <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                    <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full"
                         style={{ width: `${row.pct}%`, background: row.color }}
@@ -1586,21 +1586,21 @@ export default function GreenBondsPage() {
                     </div>
                   </div>
                 ))}
-                <p className="text-xs text-zinc-600 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   % of active GSS bond proceeds mapped to each SDG (CBI 2024 estimate)
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <AlertTriangle size={14} className="text-amber-400" />
                   Additionality Debate
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-muted-foreground">
                   Additionality asks whether green bond financing actually causes a new environmental
                   outcome — or merely refinances projects that would have happened anyway.
                 </p>
@@ -1643,7 +1643,7 @@ export default function GreenBondsPage() {
                       <p className={`text-xs font-semibold mb-2 ${block.color}`}>{block.side}</p>
                       <ul className="space-y-1">
                         {block.points.map((pt) => (
-                          <li key={pt} className="flex items-start gap-2 text-xs text-zinc-400">
+                          <li key={pt} className="flex items-start gap-2 text-xs text-muted-foreground">
                             <block.icon size={11} className={`mt-0.5 shrink-0 ${block.iconColor}`} />
                             {pt}
                           </li>
@@ -1653,9 +1653,9 @@ export default function GreenBondsPage() {
                   ))}
                 </div>
 
-                <div className="p-2.5 rounded border border-zinc-700 bg-zinc-800/40 flex items-start gap-2">
+                <div className="p-2.5 rounded border border-border bg-muted/40 flex items-start gap-2">
                   <Info size={12} className="text-primary mt-0.5 shrink-0" />
-                  <p className="text-[11px] text-zinc-400">
+                  <p className="text-[11px] text-muted-foreground">
                     Academic consensus (Flammer 2021, Ehlers & Packer 2017) finds modest but
                     statistically significant improvements in environmental performance post-issuance,
                     suggesting partial additionality via reputational commitment mechanisms.

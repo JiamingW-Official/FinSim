@@ -40,7 +40,7 @@ const rand = () => {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3">
       {children}
     </h3>
   );
@@ -56,7 +56,7 @@ function Card({
   return (
     <div
       className={cn(
-        "bg-zinc-900 border border-zinc-800 rounded-xl p-4",
+        "bg-card border border-border rounded-xl p-4",
         className
       )}
     >
@@ -202,7 +202,7 @@ function MLTradingTab() {
         ].map((s) => (
           <Card key={s.label}>
             <div className={cn("text-xl font-bold font-mono", s.color)}>{s.value}</div>
-            <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
           </Card>
         ))}
       </div>
@@ -213,9 +213,9 @@ function MLTradingTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-zinc-800">
+              <tr className="border-b border-border">
                 {["Strategy", "Technique", "Horizon", "Features", "Sharpe", "Data", "Status"].map((h) => (
-                  <th key={h} className="text-left text-zinc-500 text-xs font-medium pb-2 pr-3 whitespace-nowrap">
+                  <th key={h} className="text-left text-muted-foreground text-xs font-medium pb-2 pr-3 whitespace-nowrap">
                     {h}
                   </th>
                 ))}
@@ -227,14 +227,14 @@ function MLTradingTab() {
                   key={row.name}
                   onClick={() => setActiveCase(i)}
                   className={cn(
-                    "border-b border-zinc-800/50 cursor-pointer transition-colors hover:bg-zinc-800/40",
-                    activeCase === i && "bg-zinc-800/60"
+                    "border-b border-border/50 cursor-pointer transition-colors hover:bg-muted/40",
+                    activeCase === i && "bg-muted/60"
                   )}
                 >
-                  <td className="py-2 pr-3 font-medium text-zinc-200 whitespace-nowrap">{row.name}</td>
-                  <td className="py-2 pr-3 text-zinc-400 text-xs whitespace-nowrap">{row.technique}</td>
-                  <td className="py-2 pr-3 text-zinc-400 text-xs whitespace-nowrap">{row.horizon}</td>
-                  <td className="py-2 pr-3 text-zinc-400 text-xs whitespace-nowrap">{row.features}</td>
+                  <td className="py-2 pr-3 font-medium text-foreground whitespace-nowrap">{row.name}</td>
+                  <td className="py-2 pr-3 text-muted-foreground text-xs whitespace-nowrap">{row.technique}</td>
+                  <td className="py-2 pr-3 text-muted-foreground text-xs whitespace-nowrap">{row.horizon}</td>
+                  <td className="py-2 pr-3 text-muted-foreground text-xs whitespace-nowrap">{row.features}</td>
                   <td className="py-2 pr-3 font-mono text-emerald-400">{row.sharpe.toFixed(1)}</td>
                   <td className="py-2 pr-3">
                     <InfoBadge color="blue">{row.data}</InfoBadge>
@@ -268,10 +268,10 @@ function MLTradingTab() {
             />
             <polyline points={pts} fill="none" stroke="#3b82f6" strokeWidth="1.5" />
           </svg>
-          <div className="flex gap-3 mt-2 text-xs text-zinc-500">
+          <div className="flex gap-3 mt-2 text-xs text-muted-foreground">
             <span>Sharpe: <span className="text-emerald-400 font-mono">{ML_USE_CASES[activeCase].sharpe.toFixed(1)}</span></span>
-            <span>Horizon: <span className="text-zinc-300">{ML_USE_CASES[activeCase].horizon}</span></span>
-            <span>Status: <span className="text-zinc-300">{ML_USE_CASES[activeCase].status}</span></span>
+            <span>Horizon: <span className="text-muted-foreground">{ML_USE_CASES[activeCase].horizon}</span></span>
+            <span>Status: <span className="text-muted-foreground">{ML_USE_CASES[activeCase].status}</span></span>
           </div>
         </Card>
 
@@ -284,12 +284,12 @@ function MLTradingTab() {
                 <div className="w-6 h-6 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary text-xs font-bold flex-shrink-0">
                   {i + 1}
                 </div>
-                <div className="flex-1 bg-zinc-800/50 rounded px-3 py-1.5">
-                  <span className="text-xs font-semibold text-zinc-200">{stage.label}</span>
-                  <span className="text-xs text-zinc-500 ml-2">{stage.desc}</span>
+                <div className="flex-1 bg-muted/50 rounded px-3 py-1.5">
+                  <span className="text-xs font-semibold text-foreground">{stage.label}</span>
+                  <span className="text-xs text-muted-foreground ml-2">{stage.desc}</span>
                 </div>
                 {i < RL_STAGES.length - 1 && (
-                  <ChevronRight className="w-3 h-3 text-zinc-600" />
+                  <ChevronRight className="w-3 h-3 text-muted-foreground" />
                 )}
               </div>
             ))}
@@ -302,9 +302,9 @@ function MLTradingTab() {
         <SectionTitle>Alternative Data Sources</SectionTitle>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {ALT_DATA.map((d) => (
-            <div key={d.source} className="bg-zinc-800/40 rounded-lg p-3">
+            <div key={d.source} className="bg-muted/40 rounded-lg p-3">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-medium text-zinc-200">{d.source}</span>
+                <span className="text-sm font-medium text-foreground">{d.source}</span>
                 <InfoBadge
                   color={
                     d.edge === "Very high"
@@ -319,7 +319,7 @@ function MLTradingTab() {
                   {d.edge}
                 </InfoBadge>
               </div>
-              <p className="text-xs text-zinc-500">{d.signal}</p>
+              <p className="text-xs text-muted-foreground">{d.signal}</p>
             </div>
           ))}
         </div>
@@ -381,8 +381,8 @@ function CreditScoringTab() {
               ["Accuracy (AUC)", "~0.78"],
             ].map(([k, v]) => (
               <div key={k} className="flex justify-between text-sm">
-                <span className="text-zinc-500">{k}</span>
-                <span className="text-zinc-200 font-medium">{v}</span>
+                <span className="text-muted-foreground">{k}</span>
+                <span className="text-foreground font-medium">{v}</span>
               </div>
             ))}
           </div>
@@ -399,8 +399,8 @@ function CreditScoringTab() {
               ["Accuracy (AUC)", "~0.86–0.91"],
             ].map(([k, v]) => (
               <div key={k} className="flex justify-between text-sm">
-                <span className="text-zinc-500">{k}</span>
-                <span className="text-zinc-200 font-medium">{v}</span>
+                <span className="text-muted-foreground">{k}</span>
+                <span className="text-foreground font-medium">{v}</span>
               </div>
             ))}
           </div>
@@ -429,7 +429,7 @@ function CreditScoringTab() {
             const mlW = (feat.ml / maxFeat) * 200;
             return (
               <g key={feat.name}>
-                <text x="0" y={y + 10} className="fill-zinc-400" fontSize="10" dominantBaseline="middle">
+                <text x="0" y={y + 10} className="fill-muted-foreground" fontSize="10" dominantBaseline="middle">
                   {feat.name}
                 </text>
                 {/* FICO bar */}
@@ -459,7 +459,7 @@ function CreditScoringTab() {
             {showShap ? "Hide detail" : "Show example"}
           </button>
         </div>
-        <p className="text-xs text-zinc-500 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           SHAP (SHapley Additive exPlanations) decomposes a model prediction into per-feature
           contributions, enabling regulators to audit individual decisions under ECOA/FCRA.
         </p>
@@ -476,8 +476,8 @@ function CreditScoringTab() {
                   const barW = Math.abs(item.value) * 160;
                   return (
                     <div key={item.feature} className="flex items-center gap-2 text-xs">
-                      <span className="w-40 text-zinc-400 truncate flex-shrink-0">{item.feature}</span>
-                      <div className="flex-1 relative h-5 bg-zinc-800 rounded overflow-hidden">
+                      <span className="w-40 text-muted-foreground truncate flex-shrink-0">{item.feature}</span>
+                      <div className="flex-1 relative h-5 bg-muted rounded overflow-hidden">
                         <div
                           className={cn(
                             "absolute top-0 h-full rounded",
@@ -485,7 +485,7 @@ function CreditScoringTab() {
                           )}
                           style={{ width: `${(barW / 160) * 50}%` }}
                         />
-                        <span className="absolute inset-0 flex items-center px-2 text-zinc-300 font-mono text-xs">
+                        <span className="absolute inset-0 flex items-center px-2 text-muted-foreground font-mono text-xs">
                           {item.value > 0 ? "+" : ""}{item.value.toFixed(2)}
                         </span>
                       </div>
@@ -493,7 +493,7 @@ function CreditScoringTab() {
                   );
                 })}
               </div>
-              <p className="text-xs text-zinc-600 mt-2 italic">
+              <p className="text-xs text-muted-foreground mt-2 italic">
                 Positive SHAP → increases approval probability; Negative → decreases it.
               </p>
             </motion.div>
@@ -506,7 +506,7 @@ function CreditScoringTab() {
         <SectionTitle>Fairness & Bias Concerns</SectionTitle>
         <div className="space-y-2">
           {FAIRNESS_ITEMS.map((item) => (
-            <div key={item.concern} className="flex items-start gap-3 p-2 bg-zinc-800/30 rounded-lg">
+            <div key={item.concern} className="flex items-start gap-3 p-2 bg-muted/30 rounded-lg">
               <AlertTriangle
                 className={cn(
                   "w-4 h-4 mt-0.5 flex-shrink-0",
@@ -514,12 +514,12 @@ function CreditScoringTab() {
                     ? "text-rose-400"
                     : item.severity === "medium"
                     ? "text-amber-400"
-                    : "text-zinc-500"
+                    : "text-muted-foreground"
                 )}
               />
               <div>
-                <div className="text-sm font-medium text-zinc-200">{item.concern}</div>
-                <div className="text-xs text-zinc-500">{item.detail}</div>
+                <div className="text-sm font-medium text-foreground">{item.concern}</div>
+                <div className="text-xs text-muted-foreground">{item.detail}</div>
               </div>
               <InfoBadge
                 color={
@@ -625,7 +625,7 @@ function FraudDetectionTab() {
         ].map((s) => (
           <Card key={s.label}>
             <div className={cn("text-xl font-bold font-mono", s.color)}>{s.value}</div>
-            <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
           </Card>
         ))}
       </div>
@@ -642,24 +642,24 @@ function FraudDetectionTab() {
                 "p-3 rounded-lg border cursor-pointer transition-colors",
                 selected === i
                   ? "border-primary/50 bg-primary/10"
-                  : "border-zinc-800 hover:bg-zinc-800/40"
+                  : "border-border hover:bg-muted/40"
               )}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-zinc-200">{m.method}</span>
+                <span className="text-sm font-medium text-foreground">{m.method}</span>
                 <div className="flex gap-2">
                   <InfoBadge color={m.scalable ? "emerald" : "amber"}>
                     {m.scalable ? "Scalable" : "Limited"}
                   </InfoBadge>
-                  <span className="text-xs text-zinc-500">{m.latency}</span>
+                  <span className="text-xs text-muted-foreground">{m.latency}</span>
                 </div>
               </div>
-              <p className="text-xs text-zinc-500 mb-2">{m.description}</p>
+              <p className="text-xs text-muted-foreground mb-2">{m.description}</p>
               <div className="flex gap-4">
                 <div className="flex-1">
-                  <div className="text-xs text-zinc-600 mb-1">Precision</div>
+                  <div className="text-xs text-muted-foreground mb-1">Precision</div>
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-zinc-700 rounded-full overflow-hidden">
+                    <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
                         className="h-full bg-emerald-500 rounded-full"
                         style={{ width: `${m.precision * 100}%` }}
@@ -671,9 +671,9 @@ function FraudDetectionTab() {
                   </div>
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs text-zinc-600 mb-1">Recall</div>
+                  <div className="text-xs text-muted-foreground mb-1">Recall</div>
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-zinc-700 rounded-full overflow-hidden">
+                    <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
                         className="h-full bg-primary rounded-full"
                         style={{ width: `${m.recall * 100}%` }}
@@ -732,22 +732,22 @@ function FraudDetectionTab() {
           <div className="space-y-2">
             {FP_COSTS.map((row) => (
               <div key={row.threshold} className="flex items-center gap-2 text-xs">
-                <span className="w-14 text-zinc-400 flex-shrink-0">θ={row.threshold}</span>
+                <span className="w-14 text-muted-foreground flex-shrink-0">θ={row.threshold}</span>
                 <span className="w-16 text-rose-400">FP: {row.fpRate}%</span>
                 <span className="w-16 text-amber-400">FN: {row.fnRate}%</span>
-                <div className="flex-1 h-4 bg-zinc-800 rounded overflow-hidden relative">
+                <div className="flex-1 h-4 bg-muted rounded overflow-hidden relative">
                   <div
                     className="h-full bg-primary/60 rounded"
                     style={{ width: `${(row.cost / 12) * 100}%` }}
                   />
-                  <span className="absolute inset-0 flex items-center px-2 text-zinc-300 font-mono">
+                  <span className="absolute inset-0 flex items-center px-2 text-muted-foreground font-mono">
                     ${row.cost.toFixed(1)}B
                   </span>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-xs text-zinc-600 mt-3 italic">
+          <p className="text-xs text-muted-foreground mt-3 italic">
             Optimal threshold balances false positive review cost against missed fraud losses.
           </p>
         </Card>
@@ -759,7 +759,7 @@ function FraudDetectionTab() {
           <Layers className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
           <div>
             <div className="text-sm font-semibold text-primary mb-1">Graph Neural Networks for Fraud Rings</div>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               GNNs model transactions as a directed graph where nodes are accounts and edges are transfers.
               Message-passing aggregates neighborhood features to detect coordinated fraud rings that
               appear legitimate when analyzed in isolation — catching ~34% more ring fraud than
@@ -851,14 +851,14 @@ function AIResearchTab() {
         <SectionTitle>NLP Earnings Call Analysis Pipeline</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {NLP_PIPELINE.map((item, i) => (
-            <div key={item.step} className="bg-zinc-800/40 rounded-lg p-3 relative">
+            <div key={item.step} className="bg-muted/40 rounded-lg p-3 relative">
               <div className="flex items-center gap-2 mb-1">
                 <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center font-bold">
                   {i + 1}
                 </span>
-                <span className="text-sm font-semibold text-zinc-200">{item.step}</span>
+                <span className="text-sm font-semibold text-foreground">{item.step}</span>
               </div>
-              <p className="text-xs text-zinc-500">{item.detail}</p>
+              <p className="text-xs text-muted-foreground">{item.detail}</p>
             </div>
           ))}
         </div>
@@ -870,10 +870,10 @@ function AIResearchTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left text-zinc-500 text-xs font-medium pb-2 pr-3">Tool</th>
+              <tr className="border-b border-border">
+                <th className="text-left text-muted-foreground text-xs font-medium pb-2 pr-3">Tool</th>
                 {capCols.map((c) => (
-                  <th key={c} className="text-center text-zinc-500 text-xs font-medium pb-2 px-2 whitespace-nowrap">
+                  <th key={c} className="text-center text-muted-foreground text-xs font-medium pb-2 px-2 whitespace-nowrap">
                     {c}
                   </th>
                 ))}
@@ -885,13 +885,13 @@ function AIResearchTab() {
                   key={tool.name}
                   onClick={() => setActiveCapTable(i)}
                   className={cn(
-                    "border-b border-zinc-800/50 cursor-pointer transition-colors hover:bg-zinc-800/30",
-                    activeCapTable === i && "bg-zinc-800/50"
+                    "border-b border-border/50 cursor-pointer transition-colors hover:bg-muted/30",
+                    activeCapTable === i && "bg-muted/50"
                   )}
                 >
                   <td className="py-2 pr-3">
-                    <div className="text-zinc-200 font-medium text-xs">{tool.name}</div>
-                    <div className="text-zinc-600 text-xs">{tool.category}</div>
+                    <div className="text-foreground font-medium text-xs">{tool.name}</div>
+                    <div className="text-muted-foreground text-xs">{tool.category}</div>
                   </td>
                   {(capMatrix[tool.name] ?? []).map((has, j) => (
                     <td key={j} className="py-2 px-2 text-center">
@@ -914,9 +914,9 @@ function AIResearchTab() {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
-            className="mt-3 p-3 bg-zinc-800/40 rounded-lg"
+            className="mt-3 p-3 bg-muted/40 rounded-lg"
           >
-            <div className="text-xs font-semibold text-zinc-300 mb-1">
+            <div className="text-xs font-semibold text-muted-foreground mb-1">
               {AI_TOOLS[activeCapTable].name} — Key capabilities
             </div>
             <div className="flex flex-wrap gap-1.5">
@@ -953,14 +953,14 @@ function AIResearchTab() {
               accuracy: "63%",
             },
           ].map((item) => (
-            <div key={item.filing} className="bg-zinc-800/40 rounded-lg p-3">
-              <div className="text-xs font-semibold text-zinc-200 mb-1">{item.filing}</div>
-              <p className="text-xs text-zinc-500 mb-2">{item.signal}</p>
+            <div key={item.filing} className="bg-muted/40 rounded-lg p-3">
+              <div className="text-xs font-semibold text-foreground mb-1">{item.filing}</div>
+              <p className="text-xs text-muted-foreground mb-2">{item.signal}</p>
               <div className="flex items-center justify-between">
                 <InfoBadge color={item.direction === "Bearish" ? "rose" : "amber"}>
                   {item.direction}
                 </InfoBadge>
-                <span className="text-xs text-zinc-500">Accuracy: <span className="text-zinc-300">{item.accuracy}</span></span>
+                <span className="text-xs text-muted-foreground">Accuracy: <span className="text-muted-foreground">{item.accuracy}</span></span>
               </div>
             </div>
           ))}
@@ -972,7 +972,7 @@ function AIResearchTab() {
         <SectionTitle>LLM Risks in Finance</SectionTitle>
         <div className="space-y-2">
           {LLM_RISKS.map((item) => (
-            <div key={item.risk} className="flex items-start gap-3 p-2 bg-zinc-800/30 rounded-lg">
+            <div key={item.risk} className="flex items-start gap-3 p-2 bg-muted/30 rounded-lg">
               <AlertTriangle
                 className={cn(
                   "w-4 h-4 mt-0.5 flex-shrink-0",
@@ -980,12 +980,12 @@ function AIResearchTab() {
                     ? "text-rose-400"
                     : item.severity === "high"
                     ? "text-amber-400"
-                    : "text-zinc-500"
+                    : "text-muted-foreground"
                 )}
               />
               <div className="flex-1">
-                <div className="text-sm font-medium text-zinc-200">{item.risk}</div>
-                <div className="text-xs text-zinc-500">{item.detail}</div>
+                <div className="text-sm font-medium text-foreground">{item.risk}</div>
+                <div className="text-xs text-muted-foreground">{item.detail}</div>
               </div>
               <InfoBadge
                 color={
@@ -1090,7 +1090,7 @@ function RiskRegulationTab() {
         <SectionTitle>SR 11-7 Model Risk Management Framework</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {SR117_COMPONENTS.map((item) => (
-            <div key={item.component} className="flex items-start gap-3 p-3 bg-zinc-800/40 rounded-lg">
+            <div key={item.component} className="flex items-start gap-3 p-3 bg-muted/40 rounded-lg">
               <div className="flex-shrink-0">
                 {item.status === "Required" ? (
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
@@ -1099,8 +1099,8 @@ function RiskRegulationTab() {
                 )}
               </div>
               <div>
-                <div className="text-sm font-semibold text-zinc-200">{item.component}</div>
-                <div className="text-xs text-zinc-500">{item.description}</div>
+                <div className="text-sm font-semibold text-foreground">{item.component}</div>
+                <div className="text-xs text-muted-foreground">{item.description}</div>
               </div>
               <InfoBadge color={item.status === "Required" ? "emerald" : "blue"}>
                 {item.status}
@@ -1203,7 +1203,7 @@ function RiskRegulationTab() {
               { color: "bg-primary", label: "Medium (4–8)" },
               { color: "bg-emerald-500", label: "Low (<4)" },
             ].map((item) => (
-              <span key={item.label} className="flex items-center gap-1.5 text-zinc-500">
+              <span key={item.label} className="flex items-center gap-1.5 text-muted-foreground">
                 <span className={cn("w-3 h-3 rounded-sm inline-block opacity-80", item.color)} />
                 {item.label}
               </span>
@@ -1217,14 +1217,14 @@ function RiskRegulationTab() {
         <SectionTitle>Global Explainability Requirements</SectionTitle>
         <div className="space-y-2">
           {EXPLAINABILITY_REQS.map((item) => (
-            <div key={item.regulation} className="flex items-start gap-3 p-2 bg-zinc-800/30 rounded-lg">
+            <div key={item.regulation} className="flex items-start gap-3 p-2 bg-muted/30 rounded-lg">
               <Lock className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-sm font-medium text-zinc-200">{item.regulation}</span>
+                  <span className="text-sm font-medium text-foreground">{item.regulation}</span>
                   <InfoBadge color="violet">{item.scope}</InfoBadge>
                 </div>
-                <div className="text-xs text-zinc-500">{item.requirement}</div>
+                <div className="text-xs text-muted-foreground">{item.requirement}</div>
               </div>
             </div>
           ))}
@@ -1236,13 +1236,13 @@ function RiskRegulationTab() {
         <SectionTitle>Global Regulatory Sandboxes</SectionTitle>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {SANDBOXES.map((s) => (
-            <div key={s.regulator} className="bg-zinc-800/40 rounded-lg p-3">
+            <div key={s.regulator} className="bg-muted/40 rounded-lg p-3">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-semibold text-zinc-200">{s.regulator}</span>
+                <span className="text-sm font-semibold text-foreground">{s.regulator}</span>
                 <InfoBadge color="blue">{s.program.split(" ")[0]}</InfoBadge>
               </div>
-              <div className="text-xs text-zinc-500 mb-0.5 font-medium">{s.program}</div>
-              <div className="text-xs text-zinc-600">{s.focus}</div>
+              <div className="text-xs text-muted-foreground mb-0.5 font-medium">{s.program}</div>
+              <div className="text-xs text-muted-foreground">{s.focus}</div>
             </div>
           ))}
         </div>
@@ -1254,7 +1254,7 @@ function RiskRegulationTab() {
           <AlertTriangle className="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5" />
           <div>
             <div className="text-sm font-semibold text-rose-300 mb-1">AI Hallucinations in Finance — Key Risks</div>
-            <ul className="text-xs text-zinc-400 space-y-1 list-disc list-inside">
+            <ul className="text-xs text-muted-foreground space-y-1 list-disc list-inside">
               <li>Fabricated financial data or analyst reports used in investment memos</li>
               <li>Incorrect regulatory citations in compliance filings</li>
               <li>Wrong earnings figures injected into automated research workflows</li>
@@ -1283,7 +1283,7 @@ export default function AIFinancePage() {
   void rand(); void rand(); void rand();
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Page header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1291,8 +1291,8 @@ export default function AIFinancePage() {
             <Brain className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100 tracking-tight">AI & ML in Finance</h1>
-            <p className="text-sm text-zinc-500">
+            <h1 className="text-2xl font-bold text-foreground tracking-tight">AI & ML in Finance</h1>
+            <p className="text-sm text-muted-foreground">
               Machine learning, natural language processing, and AI governance across capital markets
             </p>
           </div>
@@ -1309,7 +1309,7 @@ export default function AIFinancePage() {
           ].map(({ icon: Icon, label, color }) => (
             <div
               key={label}
-              className="flex items-center gap-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded-full text-xs text-zinc-400"
+              className="flex items-center gap-1.5 px-2.5 py-1 bg-card border border-border rounded-full text-xs text-muted-foreground"
             >
               <Icon className={cn("w-3 h-3", color)} />
               {label}
@@ -1320,12 +1320,12 @@ export default function AIFinancePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="ml-trading" className="w-full">
-        <TabsList className="bg-zinc-900 border border-zinc-800 h-auto flex-wrap gap-1 p-1 mb-6">
+        <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1 mb-6">
           {TABS.map(({ id, label, Icon }) => (
             <TabsTrigger
               key={id}
               value={id}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}

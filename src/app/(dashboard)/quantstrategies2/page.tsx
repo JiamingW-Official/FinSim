@@ -679,29 +679,29 @@ function OUFormulaCard() {
   return (
     <Card className="bg-[#0f172a] border-[#1e293b]">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
           Ornstein-Uhlenbeck Spread Model
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3 text-xs">
-        <div className="bg-[#1e293b]/60 rounded-md px-3 py-2 font-mono text-slate-300 text-[11px] leading-5">
+        <div className="bg-[#1e293b]/60 rounded-md px-3 py-2 font-mono text-muted-foreground text-[11px] leading-5">
           <p>dS_t = κ(μ - S_t)dt + σ dW_t</p>
-          <p className="text-slate-500 mt-1">κ = mean-reversion speed, μ = long-run mean</p>
-          <p className="text-slate-500">σ = diffusion, W_t = Brownian motion</p>
+          <p className="text-muted-foreground mt-1">κ = mean-reversion speed, μ = long-run mean</p>
+          <p className="text-muted-foreground">σ = diffusion, W_t = Brownian motion</p>
         </div>
         <div className="grid grid-cols-2 gap-2">
           <div className="bg-[#1e293b]/40 rounded p-2">
-            <p className="text-slate-500 mb-0.5">Half-life of reversion</p>
+            <p className="text-muted-foreground mb-0.5">Half-life of reversion</p>
             <p className="font-mono text-emerald-400">t₁/₂ = ln(2) / κ</p>
           </div>
           <div className="bg-[#1e293b]/40 rounded p-2">
-            <p className="text-slate-500 mb-0.5">Entry threshold (±)</p>
+            <p className="text-muted-foreground mb-0.5">Entry threshold (±)</p>
             <p className="font-mono text-primary">|z| &gt; 2.0σ</p>
           </div>
         </div>
         <div className="bg-[#1e293b]/40 rounded p-2">
-          <p className="text-slate-500 mb-0.5">Kalman Filter hedge ratio update</p>
+          <p className="text-muted-foreground mb-0.5">Kalman Filter hedge ratio update</p>
           <p className="font-mono text-sky-400 text-xs">
             K_t = P_t H^T (H P_t H^T + R)⁻¹ ; β_t = β_{"{t-1}"} + K_t(y_t - H·β_{"{t-1}"})
           </p>
@@ -731,7 +731,7 @@ function StatArbTab() {
           "Regime Detection",
           "Crowding Risk",
         ].map((c) => (
-          <Badge key={c} variant="outline" className="text-xs text-slate-400 border-slate-700">
+          <Badge key={c} variant="outline" className="text-xs text-muted-foreground border-border">
             {c}
           </Badge>
         ))}
@@ -740,14 +740,14 @@ function StatArbTab() {
       {/* Z-Score chart */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Shuffle className="w-4 h-4 text-primary" />
             Spread Z-Score — Entry &amp; Exit Signals
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ZScoreSVG />
-          <div className="flex gap-4 mt-2 text-xs text-slate-500">
+          <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
             <span>
               <span className="text-emerald-400">●</span> Enter long spread at z &lt; −2σ
             </span>
@@ -767,7 +767,7 @@ function StatArbTab() {
       {/* Pairs performance table */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-sky-400" />
             Cointegrated Pairs — Performance Metrics
           </CardTitle>
@@ -776,7 +776,7 @@ function StatArbTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[#1e293b] text-slate-500">
+                <tr className="border-b border-[#1e293b] text-muted-foreground">
                   <th className="text-left px-4 py-2">Pair</th>
                   <th className="text-right px-3 py-2">Corr</th>
                   <th className="text-right px-3 py-2">Coint p</th>
@@ -793,19 +793,19 @@ function StatArbTab() {
                     className="border-b border-[#1e293b]/50 hover:bg-[#1e293b]/40 cursor-pointer transition-colors"
                     onClick={() => setSelectedPair(selectedPair?.ticker1 === p.ticker1 ? null : p)}
                   >
-                    <td className="px-4 py-2 text-slate-200 font-medium">
+                    <td className="px-4 py-2 text-foreground font-medium">
                       {p.ticker1} / {p.ticker2}
                     </td>
                     <td className="px-3 py-2 text-right text-emerald-400">{p.correlation.toFixed(2)}</td>
                     <td className={`px-3 py-2 text-right ${p.cointegP < 0.05 ? "text-emerald-400" : "text-amber-400"}`}>
                       {p.cointegP.toFixed(3)}
                     </td>
-                    <td className="px-3 py-2 text-right text-slate-300">{p.halfLife.toFixed(1)}d</td>
+                    <td className="px-3 py-2 text-right text-muted-foreground">{p.halfLife.toFixed(1)}d</td>
                     <td className={`px-3 py-2 text-right ${p.sharpe > 1 ? "text-emerald-400" : "text-amber-400"}`}>
                       {p.sharpe.toFixed(2)}
                     </td>
                     <td className="px-3 py-2 text-right text-sky-400">{(p.hitRate * 100).toFixed(0)}%</td>
-                    <td className="px-3 py-2 text-right text-slate-400">{p.avgHoldDays.toFixed(1)}d</td>
+                    <td className="px-3 py-2 text-right text-muted-foreground">{p.avgHoldDays.toFixed(1)}d</td>
                   </tr>
                 ))}
               </tbody>
@@ -821,20 +821,20 @@ function StatArbTab() {
               >
                 <div className="px-4 py-3 bg-[#1e293b]/40 border-t border-[#1e293b] grid grid-cols-3 gap-3 text-xs">
                   <div>
-                    <p className="text-slate-500">Cointegration Status</p>
+                    <p className="text-muted-foreground">Cointegration Status</p>
                     <p className={`font-medium mt-0.5 ${selectedPair.cointegP < 0.05 ? "text-emerald-400" : "text-amber-400"}`}>
                       {selectedPair.cointegP < 0.05 ? "Cointegrated (p < 5%)" : "Weak cointegration"}
                     </p>
                   </div>
                   <div>
-                    <p className="text-slate-500">Reversion speed</p>
+                    <p className="text-muted-foreground">Reversion speed</p>
                     <p className="text-primary font-medium mt-0.5">
                       κ = {(Math.log(2) / selectedPair.halfLife).toFixed(4)} /day
                     </p>
                   </div>
                   <div>
-                    <p className="text-slate-500">Crowding risk</p>
-                    <p className={`font-medium mt-0.5 ${selectedPair.correlation > 0.88 ? "text-rose-400" : "text-slate-300"}`}>
+                    <p className="text-muted-foreground">Crowding risk</p>
+                    <p className={`font-medium mt-0.5 ${selectedPair.correlation > 0.88 ? "text-rose-400" : "text-muted-foreground"}`}>
                       {selectedPair.correlation > 0.88 ? "High — popular pair" : "Moderate"}
                     </p>
                   </div>
@@ -849,11 +849,11 @@ function StatArbTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300">Distance Method</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Distance Method</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-xs text-slate-400">
+          <CardContent className="space-y-2 text-xs text-muted-foreground">
             <p>Ranks pairs by sum of squared price-ratio deviations from historical mean.</p>
-            <ul className="space-y-1 list-disc list-inside text-slate-500">
+            <ul className="space-y-1 list-disc list-inside text-muted-foreground">
               <li>No statistical assumptions required</li>
               <li>Simple to implement, low overfitting risk</li>
               <li>Breaks down in trending regimes</li>
@@ -866,11 +866,11 @@ function StatArbTab() {
         </Card>
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300">Cointegration Method</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Cointegration Method</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-xs text-slate-400">
+          <CardContent className="space-y-2 text-xs text-muted-foreground">
             <p>Engle-Granger / Johansen test for long-run equilibrium relationship between price series.</p>
-            <ul className="space-y-1 list-disc list-inside text-slate-500">
+            <ul className="space-y-1 list-disc list-inside text-muted-foreground">
               <li>Statistically rigorous p-value threshold</li>
               <li>Estimates hedge ratio from OLS regression</li>
               <li>Dynamic via Kalman Filter updates</li>
@@ -886,29 +886,29 @@ function StatArbTab() {
       {/* PCA Stat Arb note */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
             PCA Eigenportfolios
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-xs text-slate-400 space-y-2">
+        <CardContent className="text-xs text-muted-foreground space-y-2">
           <p>
             Decompose the returns covariance matrix into principal components. The residual (idiosyncratic)
             returns of each stock against the first 5–10 eigenvectors form mean-reverting spreads.
           </p>
           <div className="grid grid-cols-3 gap-2 mt-2">
             {[
-              { label: "PC1 (Market)", var: "38.4%", color: "text-slate-300" },
+              { label: "PC1 (Market)", var: "38.4%", color: "text-muted-foreground" },
               { label: "PC2 (Size)", var: "11.2%", color: "text-sky-400" },
               { label: "PC3 (Value)", var: "7.8%", color: "text-primary" },
             ].map(({ label, var: v, color }) => (
               <div key={label} className="bg-[#1e293b]/40 rounded p-2 text-center">
                 <p className={`font-medium text-[11px] ${color}`}>{label}</p>
-                <p className="text-slate-500 text-xs">Explains {v}</p>
+                <p className="text-muted-foreground text-xs">Explains {v}</p>
               </div>
             ))}
           </div>
-          <p className="text-slate-500 text-xs mt-1">
+          <p className="text-muted-foreground text-xs mt-1">
             Residuals from the first k PCs exhibit half-lives of 3–15 days, suitable for stat arb strategies.
           </p>
         </CardContent>
@@ -938,7 +938,7 @@ function MLFinanceTab() {
           "RL Execution",
           "MLOps",
         ].map((c) => (
-          <Badge key={c} variant="outline" className="text-xs text-slate-400 border-slate-700">
+          <Badge key={c} variant="outline" className="text-xs text-muted-foreground border-border">
             {c}
           </Badge>
         ))}
@@ -947,14 +947,14 @@ function MLFinanceTab() {
       {/* Feature importance */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Brain className="w-4 h-4 text-primary" />
             Feature Importance — Mean |SHAP| Values
           </CardTitle>
         </CardHeader>
         <CardContent>
           <FeatureImportanceSVG />
-          <div className="flex gap-4 mt-2 text-xs text-slate-500">
+          <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
             <span><span className="text-primary">■</span> Momentum factors</span>
             <span><span className="text-emerald-400">■</span> Quality / value</span>
             <span><span className="text-amber-400">■</span> Alternative</span>
@@ -966,7 +966,7 @@ function MLFinanceTab() {
       {/* Model comparison */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-sky-400" />
             Model Comparison — IC / ICIR / Sharpe
           </CardTitle>
@@ -980,7 +980,7 @@ function MLFinanceTab() {
                 className={`px-3 py-1 rounded text-xs border transition-colors ${
                   activeModel.name === m.name
                     ? "border-primary bg-primary/10 text-primary"
-                    : "border-slate-700 text-slate-500 hover:border-slate-600"
+                    : "border-border text-muted-foreground hover:border-slate-600"
                 }`}
               >
                 {m.name}
@@ -1003,7 +1003,7 @@ function MLFinanceTab() {
                 { label: "Max DD", value: `${activeModel.maxDD.toFixed(1)}%`, color: "text-rose-400" },
               ].map(({ label, value, color }) => (
                 <div key={label} className="bg-[#1e293b]/50 rounded-lg p-3 text-center">
-                  <p className="text-slate-500 text-xs mb-1">{label}</p>
+                  <p className="text-muted-foreground text-xs mb-1">{label}</p>
                   <p className={`text-lg font-bold ${color}`}>{value}</p>
                 </div>
               ))}
@@ -1011,12 +1011,12 @@ function MLFinanceTab() {
           </AnimatePresence>
 
           <div className="bg-[#1e293b]/30 rounded p-3 text-xs space-y-1">
-            <p className="text-slate-400">
-              <span className="text-slate-200">Features: </span>
+            <p className="text-muted-foreground">
+              <span className="text-foreground">Features: </span>
               {activeModel.features.join(", ")}
             </p>
-            <p className="text-slate-400">
-              <span className="text-slate-200">Overfitting risk: </span>
+            <p className="text-muted-foreground">
+              <span className="text-foreground">Overfitting risk: </span>
               <span className={overfitColor(activeModel.overfit)}>{activeModel.overfit.toUpperCase()}</span>
             </p>
           </div>
@@ -1027,12 +1027,12 @@ function MLFinanceTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
               Overfitting Traps
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-xs text-slate-400">
+          <CardContent className="space-y-2 text-xs text-muted-foreground">
             {[
               { trap: "Backtest overfitting", fix: "Out-of-sample holdout + combinatorial purging" },
               { trap: "Multiple testing problem", fix: "Bonferroni / BHY correction on p-values" },
@@ -1043,8 +1043,8 @@ function MLFinanceTab() {
               <div key={trap} className="flex gap-2">
                 <AlertTriangle className="w-3 h-3 text-amber-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-slate-300">{trap}</p>
-                  <p className="text-slate-500 text-xs">{fix}</p>
+                  <p className="text-muted-foreground">{trap}</p>
+                  <p className="text-muted-foreground text-xs">{fix}</p>
                 </div>
               </div>
             ))}
@@ -1053,12 +1053,12 @@ function MLFinanceTab() {
 
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <CheckCircle className="w-4 h-4 text-emerald-400" />
               Walk-Forward vs K-Fold
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-3 text-xs text-slate-400">
+          <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="bg-[#1e293b]/40 rounded p-2">
               <p className="text-emerald-400 font-medium mb-1">Walk-Forward (Correct)</p>
               <p>Train on t₀→t; test on t+1→t+k. Roll forward. Respects time causality. Recommended for finance.</p>
@@ -1079,9 +1079,9 @@ function MLFinanceTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300">FinBERT Sentiment</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">FinBERT Sentiment</CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-slate-400 space-y-2">
+          <CardContent className="text-xs text-muted-foreground space-y-2">
             <p>Fine-tuned BERT model on financial news, earnings calls, and analyst reports.</p>
             <div className="space-y-1">
               {[
@@ -1091,29 +1091,29 @@ function MLFinanceTab() {
               ].map(({ label, v, max }) => (
                 <div key={label}>
                   <div className="flex justify-between mb-0.5">
-                    <span className="text-slate-500">{label}</span>
+                    <span className="text-muted-foreground">{label}</span>
                     <span className="text-sky-400">{v.toFixed(3)}</span>
                   </div>
                   <Progress value={(v / max) * 100} className="h-1.5" />
                 </div>
               ))}
             </div>
-            <p className="text-slate-500 text-xs">Signals decay within 1–3 days post-publication.</p>
+            <p className="text-muted-foreground text-xs">Signals decay within 1–3 days post-publication.</p>
           </CardContent>
         </Card>
 
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300">RL for Execution</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">RL for Execution</CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-slate-400 space-y-2">
+          <CardContent className="text-xs text-muted-foreground space-y-2">
             <p>Agent learns execution policy to minimise implementation shortfall + market impact.</p>
-            <div className="bg-[#1e293b]/40 rounded p-2 font-mono text-xs text-slate-300">
+            <div className="bg-[#1e293b]/40 rounded p-2 font-mono text-xs text-muted-foreground">
               <p>State: (inventory, time_remaining, spread, vol)</p>
               <p>Action: quantity_to_trade ∈ [0, max_slice]</p>
               <p>Reward: −(impact_cost + timing_risk)</p>
             </div>
-            <p className="text-slate-500 text-xs">
+            <p className="text-muted-foreground text-xs">
               Outperforms TWAP/VWAP by 15–30% in simulated environments with intraday vol patterns.
             </p>
           </CardContent>
@@ -1123,7 +1123,7 @@ function MLFinanceTab() {
       {/* MLOps */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <SlidersHorizontal className="w-4 h-4 text-sky-400" />
             MLOps for Finance — Production Lifecycle
           </CardTitle>
@@ -1136,15 +1136,15 @@ function MLFinanceTab() {
               { step: "Champion/Challenger", color: "bg-emerald-500/20 text-emerald-300" },
               { step: "Drift Detection", color: "bg-amber-500/20 text-amber-300" },
               { step: "Scheduled Retrain", color: "bg-rose-500/20 text-rose-300" },
-              { step: "Shadow Mode", color: "bg-slate-500/20 text-slate-300" },
+              { step: "Shadow Mode", color: "bg-slate-500/20 text-muted-foreground" },
             ].map(({ step, color }, i) => (
               <div key={step} className="flex items-center gap-1">
                 <span className={`px-2 py-0.5 rounded text-xs font-medium ${color}`}>{step}</span>
-                {i < 5 && <ArrowRight className="w-3 h-3 text-slate-600" />}
+                {i < 5 && <ArrowRight className="w-3 h-3 text-muted-foreground" />}
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             IC degradation &gt;20% over 60-day rolling window triggers retraining pipeline.
             Model weights are versioned; rollback in &lt;2 minutes.
           </p>
@@ -1174,7 +1174,7 @@ function HFTMarketMakingTab() {
           "Kill Switch",
           "Regime Awareness",
         ].map((c) => (
-          <Badge key={c} variant="outline" className="text-xs text-slate-400 border-slate-700">
+          <Badge key={c} variant="outline" className="text-xs text-muted-foreground border-border">
             {c}
           </Badge>
         ))}
@@ -1183,16 +1183,16 @@ function HFTMarketMakingTab() {
       {/* AS Model */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-amber-400" />
             Avellaneda-Stoikov Optimal Spread
           </CardTitle>
         </CardHeader>
         <CardContent className="text-xs space-y-3">
-          <div className="bg-[#1e293b]/60 rounded-md px-3 py-2 font-mono text-slate-300 text-[11px] leading-5">
+          <div className="bg-[#1e293b]/60 rounded-md px-3 py-2 font-mono text-muted-foreground text-[11px] leading-5">
             <p>δ* = γ·σ²·(T-t) + (2/γ)·ln(1 + γ/κ)</p>
-            <p className="text-slate-500 mt-1">δ* = optimal half-spread</p>
-            <p className="text-slate-500">γ = risk aversion, σ² = variance, κ = order arrival rate</p>
+            <p className="text-muted-foreground mt-1">δ* = optimal half-spread</p>
+            <p className="text-muted-foreground">γ = risk aversion, σ² = variance, κ = order arrival rate</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
@@ -1208,9 +1208,9 @@ function HFTMarketMakingTab() {
                   ) : (
                     <TrendingDown className="w-3 h-3 text-rose-400" />
                   )}
-                  <p className="text-slate-300 text-xs font-medium">{label}</p>
+                  <p className="text-muted-foreground text-xs font-medium">{label}</p>
                 </div>
-                <p className="text-slate-500 text-xs">{effect}</p>
+                <p className="text-muted-foreground text-xs">{effect}</p>
               </div>
             ))}
           </div>
@@ -1220,14 +1220,14 @@ function HFTMarketMakingTab() {
       {/* Inventory chart */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             Inventory Position Over Time — Mean Reversion Control
           </CardTitle>
         </CardHeader>
         <CardContent>
           <InventorySVG />
-          <p className="text-xs text-slate-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Market maker skews quotes to attract order flow that reduces inventory. Soft limits trigger
             spread widening; hard limits (kill switch) halt quoting.
           </p>
@@ -1237,7 +1237,7 @@ function HFTMarketMakingTab() {
       {/* Regime table */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-sky-400" />
             P&amp;L by Market Regime — Per 1,000 quotes
           </CardTitle>
@@ -1259,14 +1259,14 @@ function HFTMarketMakingTab() {
                   ${r.pnl.toLocaleString()}
                 </span>
               </div>
-              <div className="grid grid-cols-3 gap-2 mt-2 text-xs text-slate-500">
-                <span>Spread: <span className="text-slate-300">{r.spread.toFixed(1)}bp</span></span>
+              <div className="grid grid-cols-3 gap-2 mt-2 text-xs text-muted-foreground">
+                <span>Spread: <span className="text-muted-foreground">{r.spread.toFixed(1)}bp</span></span>
                 <span>Inventory: <span className="text-amber-400">{r.inventory}</span></span>
                 <span>Adv-sel: <span className="text-rose-400">${r.adverseSelCost}</span></span>
               </div>
             </div>
           ))}
-          <p className="text-xs text-slate-500 pt-1">
+          <p className="text-xs text-muted-foreground pt-1">
             P&amp;L = Spread Earned − Adverse Selection Cost − Inventory Risk. Trending/shock regimes
             flip P&amp;L negative due to adverse selection dominating.
           </p>
@@ -1277,7 +1277,7 @@ function HFTMarketMakingTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <Cpu className="w-4 h-4 text-sky-400" />
               Hardware Latency Budget
             </CardTitle>
@@ -1292,10 +1292,10 @@ function HFTMarketMakingTab() {
               { stage: "Exchange ACK", lat: "30–200 μs", tech: "Co-location advantage", color: "text-primary" },
             ].map(({ stage, lat, tech, color }) => (
               <div key={stage} className="flex items-center justify-between border-b border-[#1e293b]/50 pb-1">
-                <span className="text-slate-400">{stage}</span>
+                <span className="text-muted-foreground">{stage}</span>
                 <div className="text-right">
                   <span className={`font-mono font-medium ${color}`}>{lat}</span>
-                  <p className="text-[11px] text-slate-600">{tech}</p>
+                  <p className="text-[11px] text-muted-foreground">{tech}</p>
                 </div>
               </div>
             ))}
@@ -1304,12 +1304,12 @@ function HFTMarketMakingTab() {
 
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-rose-400" />
               Risk Controls &amp; Kill Switch
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs space-y-2 text-slate-400">
+          <CardContent className="text-xs space-y-2 text-muted-foreground">
             {[
               { ctrl: "Order rate limiter", desc: "Max N orders/sec per venue" },
               { ctrl: "Fat-finger check", desc: "Price ±X% from NBBO rejected" },
@@ -1321,8 +1321,8 @@ function HFTMarketMakingTab() {
               <div key={ctrl} className="flex gap-2">
                 <CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-slate-300">{ctrl}</p>
-                  <p className="text-slate-600 text-xs">{desc}</p>
+                  <p className="text-muted-foreground">{ctrl}</p>
+                  <p className="text-muted-foreground text-xs">{desc}</p>
                 </div>
               </div>
             ))}
@@ -1333,10 +1333,10 @@ function HFTMarketMakingTab() {
       {/* OBI signal */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300">Order Book Imbalance Signal</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Order Book Imbalance Signal</CardTitle>
         </CardHeader>
-        <CardContent className="text-xs text-slate-400 space-y-2">
-          <div className="bg-[#1e293b]/60 rounded px-3 py-2 font-mono text-[11px] text-slate-300">
+        <CardContent className="text-xs text-muted-foreground space-y-2">
+          <div className="bg-[#1e293b]/60 rounded px-3 py-2 font-mono text-[11px] text-muted-foreground">
             OBI = (BidVol − AskVol) / (BidVol + AskVol) ∈ [−1, +1]
           </div>
           <p>
@@ -1346,11 +1346,11 @@ function HFTMarketMakingTab() {
           <div className="grid grid-cols-3 gap-2 mt-2">
             {[
               { range: "OBI &gt; 0.3", signal: "Lean ask (buy)", color: "text-emerald-400" },
-              { range: "OBI ≈ 0", signal: "Symmetric quotes", color: "text-slate-300" },
+              { range: "OBI ≈ 0", signal: "Symmetric quotes", color: "text-muted-foreground" },
               { range: "OBI &lt; −0.3", signal: "Lean bid (sell)", color: "text-rose-400" },
             ].map(({ range, signal, color }) => (
               <div key={range} className="bg-[#1e293b]/40 rounded p-2 text-center">
-                <p className="font-mono text-xs text-slate-400">{range}</p>
+                <p className="font-mono text-xs text-muted-foreground">{range}</p>
                 <p className={`text-xs mt-0.5 font-medium ${color}`}>{signal}</p>
               </div>
             ))}
@@ -1381,7 +1381,7 @@ function ExecutionTab() {
           "Pre-Trade Analytics",
           "Post-Trade TCA",
         ].map((c) => (
-          <Badge key={c} variant="outline" className="text-xs text-slate-400 border-slate-700">
+          <Badge key={c} variant="outline" className="text-xs text-muted-foreground border-border">
             {c}
           </Badge>
         ))}
@@ -1390,14 +1390,14 @@ function ExecutionTab() {
       {/* AC optimal execution chart */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <GitMerge className="w-4 h-4 text-emerald-400" />
             Almgren-Chriss: Optimal Execution Trajectory (1,000 shares)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <ACExecutionSVG />
-          <p className="text-xs text-slate-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             The AC model minimises E[cost] + λ·Var[cost]. Higher risk aversion (λ) accelerates
             execution (more front-loading). Lower λ allows passive execution, reducing market impact at
             the cost of higher timing risk.
@@ -1408,7 +1408,7 @@ function ExecutionTab() {
       {/* Market impact curve */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
             Market Impact Model: η × (Q/ADV)^0.6
           </CardTitle>
@@ -1422,9 +1422,9 @@ function ExecutionTab() {
               { q: "25% ADV", imp: "~30bp", note: "Significant market move" },
             ].map(({ q, imp, note }) => (
               <div key={q} className="bg-[#1e293b]/40 rounded p-2 text-center">
-                <p className="text-slate-500">{q}</p>
+                <p className="text-muted-foreground">{q}</p>
                 <p className="text-primary font-bold">{imp}</p>
-                <p className="text-slate-600 text-xs">{note}</p>
+                <p className="text-muted-foreground text-xs">{note}</p>
               </div>
             ))}
           </div>
@@ -1434,7 +1434,7 @@ function ExecutionTab() {
       {/* IS Breakdown */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Implementation Shortfall Decomposition
           </CardTitle>
@@ -1449,20 +1449,20 @@ function ExecutionTab() {
             ].map(({ component, bps, pct, color, desc }) => (
               <div key={component}>
                 <div className="flex items-center justify-between mb-1 text-xs">
-                  <span className="text-slate-300">{component}</span>
+                  <span className="text-muted-foreground">{component}</span>
                   <div className="flex gap-3 text-right">
-                    <span className="text-slate-400">{bps.toFixed(1)}bp</span>
-                    <span className="text-slate-500 w-8">{pct}%</span>
+                    <span className="text-muted-foreground">{bps.toFixed(1)}bp</span>
+                    <span className="text-muted-foreground w-8">{pct}%</span>
                   </div>
                 </div>
                 <div className="h-2 bg-[#1e293b] rounded-full overflow-hidden">
                   <div className={`h-full ${color} rounded-full`} style={{ width: `${pct}%` }} />
                 </div>
-                <p className="text-xs text-slate-600 mt-0.5">{desc}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{desc}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Total IS: <span className="text-rose-400 font-bold">17.2 bps</span> vs arrival price.
             Post-trade TCA benchmarks this against VWAP, close, and PWP (pre-weighted price).
           </p>
@@ -1472,7 +1472,7 @@ function ExecutionTab() {
       {/* Algo comparison table */}
       <Card className="bg-[#0f172a] border-[#1e293b]">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Clock className="w-4 h-4 text-sky-400" />
             Execution Algorithm Comparison
           </CardTitle>
@@ -1481,7 +1481,7 @@ function ExecutionTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-[#1e293b] text-slate-500">
+                <tr className="border-b border-[#1e293b] text-muted-foreground">
                   <th className="text-left px-4 py-2">Algorithm</th>
                   <th className="text-left px-3 py-2">Objective</th>
                   <th className="text-left px-3 py-2">Best For</th>
@@ -1500,10 +1500,10 @@ function ExecutionTab() {
                   >
                     <td className="px-4 py-2">
                       <p className={`font-bold ${a.color}`}>{a.name}</p>
-                      <p className="text-slate-600 text-xs">{a.fullName}</p>
+                      <p className="text-muted-foreground text-xs">{a.fullName}</p>
                     </td>
-                    <td className="px-3 py-2 text-slate-400">{a.objective}</td>
-                    <td className="px-3 py-2 text-slate-500">{a.bestFor}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{a.objective}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{a.bestFor}</td>
                     <td className={`px-3 py-2 text-right font-mono font-bold ${a.avgPI < 4 ? "text-emerald-400" : "text-amber-400"}`}>
                       {a.avgPI.toFixed(1)}
                     </td>
@@ -1522,9 +1522,9 @@ function ExecutionTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300">Venue Selection</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Venue Selection</CardTitle>
           </CardHeader>
-          <CardContent className="text-xs space-y-2 text-slate-400">
+          <CardContent className="text-xs space-y-2 text-muted-foreground">
             {[
               {
                 venue: "Lit Exchange (NYSE/NASDAQ)",
@@ -1557,13 +1557,13 @@ function ExecutionTab() {
             ].map(({ venue, fill, impact, color, note }) => (
               <div key={venue} className="border-b border-[#1e293b]/50 pb-2">
                 <div className="flex justify-between items-center">
-                  <span className="text-slate-300 font-medium">{venue}</span>
+                  <span className="text-muted-foreground font-medium">{venue}</span>
                   <div className="flex gap-2 text-right">
                     <span className="text-sky-400">{fill} fill</span>
                     <span className={color}>{impact} impact</span>
                   </div>
                 </div>
-                <p className="text-slate-600 text-xs mt-0.5">{note}</p>
+                <p className="text-muted-foreground text-xs mt-0.5">{note}</p>
               </div>
             ))}
           </CardContent>
@@ -1571,9 +1571,9 @@ function ExecutionTab() {
 
         <Card className="bg-[#0f172a] border-[#1e293b]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300">Pre/Post Trade Analytics</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">Pre/Post Trade Analytics</CardTitle>
           </CardHeader>
-          <CardContent className="text-xs space-y-3 text-slate-400">
+          <CardContent className="text-xs space-y-3 text-muted-foreground">
             <div className="bg-[#1e293b]/40 rounded p-2">
               <p className="text-sky-400 font-medium mb-1">Pre-Trade Cost Estimate</p>
               <p>Estimate expected IS, market impact, and spread cost before order submission.
@@ -1609,7 +1609,7 @@ export default function QuantStrategies2Page() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#020817] text-slate-100 p-6">
+    <div className="min-h-screen bg-[#020817] text-foreground p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1621,8 +1621,8 @@ export default function QuantStrategies2Page() {
             <Activity className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">Advanced Quantitative Strategies II</h1>
-            <p className="text-sm text-slate-500">
+            <h1 className="text-2xl font-bold text-foreground">Advanced Quantitative Strategies II</h1>
+            <p className="text-sm text-muted-foreground">
               Statistical arbitrage · Machine learning · HFT market-making · Optimal execution
             </p>
           </div>
@@ -1640,7 +1640,7 @@ export default function QuantStrategies2Page() {
               key={label}
               className="flex items-center gap-2 bg-[#0f172a] border border-[#1e293b] rounded-lg px-3 py-1.5 text-xs"
             >
-              <span className="text-slate-500">{label}</span>
+              <span className="text-muted-foreground">{label}</span>
               <span className={`font-bold ${color}`}>{value}</span>
             </div>
           ))}
@@ -1654,7 +1654,7 @@ export default function QuantStrategies2Page() {
             <TabsTrigger
               key={id}
               value={id}
-              className="text-xs data-[state=active]:bg-[#1e293b] data-[state=active]:text-slate-100 text-slate-500 px-3 py-1.5 flex items-center gap-1.5"
+              className="text-xs data-[state=active]:bg-[#1e293b] data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5 flex items-center gap-1.5"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}

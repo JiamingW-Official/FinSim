@@ -794,13 +794,13 @@ function ThreeFundBuilder() {
               <span className="text-sm font-medium text-amber-400">Bonds (BND)</span>
               <span className="text-sm font-bold text-white">{bondsAlloc}%</span>
             </div>
-            <div className="h-4 rounded bg-slate-800 overflow-hidden">
+            <div className="h-4 rounded bg-muted overflow-hidden">
               <div
                 className="h-full bg-amber-500 transition-all"
                 style={{ width: `${bondsAlloc}%` }}
               />
             </div>
-            <p className="text-xs text-slate-500 mt-1">Auto-calculated from remainder</p>
+            <p className="text-xs text-muted-foreground mt-1">Auto-calculated from remainder</p>
           </div>
         </div>
 
@@ -818,17 +818,17 @@ function ThreeFundBuilder() {
             </text>
           </svg>
           <div className="grid grid-cols-3 gap-2 w-full">
-            <div className="bg-slate-800 rounded-lg p-3 text-center">
+            <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-lg font-bold text-green-400">{expectedReturn.toFixed(1)}%</div>
-              <div className="text-xs text-slate-400">Exp. Return</div>
+              <div className="text-xs text-muted-foreground">Exp. Return</div>
             </div>
-            <div className="bg-slate-800 rounded-lg p-3 text-center">
+            <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-lg font-bold text-amber-400">{expectedVol.toFixed(1)}%</div>
-              <div className="text-xs text-slate-400">Volatility</div>
+              <div className="text-xs text-muted-foreground">Volatility</div>
             </div>
-            <div className="bg-slate-800 rounded-lg p-3 text-center">
+            <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-lg font-bold text-indigo-400">{sharpe.toFixed(2)}</div>
-              <div className="text-xs text-slate-400">Sharpe</div>
+              <div className="text-xs text-muted-foreground">Sharpe</div>
             </div>
           </div>
         </div>
@@ -862,7 +862,7 @@ function ThreeFundBuilder() {
             pct: bondsAlloc,
           },
         ].map((f) => (
-          <div key={f.ticker} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700">
+          <div key={f.ticker} className="bg-muted/60 rounded-lg p-3 border border-border">
             <div className="flex items-center justify-between mb-1">
               <span className="font-bold text-sm" style={{ color: f.color }}>
                 {f.ticker}
@@ -871,8 +871,8 @@ function ThreeFundBuilder() {
                 {f.er}
               </Badge>
             </div>
-            <div className="text-xs text-slate-300 font-medium">{f.name}</div>
-            <div className="text-xs text-slate-500 mt-1">{f.desc}</div>
+            <div className="text-xs text-muted-foreground font-medium">{f.name}</div>
+            <div className="text-xs text-muted-foreground mt-1">{f.desc}</div>
             <div className="mt-2 text-base font-bold text-white">{f.pct}%</div>
           </div>
         ))}
@@ -909,7 +909,7 @@ function ETFTable() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <label className="text-sm text-slate-400">Initial Investment</label>
+        <label className="text-sm text-muted-foreground">Initial Investment</label>
         <div className="flex items-center gap-2 flex-1 max-w-xs">
           <span className="text-green-400 font-bold">${initialInvest.toLocaleString()}</span>
           <Slider
@@ -928,7 +928,7 @@ function ETFTable() {
           <thead>
             <tr>
               {cols.map((c) => (
-                <th key={c} className="text-left text-xs text-slate-400 pb-2 pr-3 whitespace-nowrap border-b border-slate-700">
+                <th key={c} className="text-left text-xs text-muted-foreground pb-2 pr-3 whitespace-nowrap border-b border-border">
                   {c}
                 </th>
               ))}
@@ -936,23 +936,23 @@ function ETFTable() {
           </thead>
           <tbody>
             {netCostRows.map((etf, i) => (
-              <tr key={etf.ticker} className={cn("border-b border-slate-800/50", i % 2 === 0 && "bg-slate-800/20")}>
+              <tr key={etf.ticker} className={cn("border-b border-border/50", i % 2 === 0 && "bg-muted/20")}>
                 <td className="py-2.5 pr-3">
                   <span className="font-bold" style={{ color: etf.color }}>
                     {etf.ticker}
                   </span>
-                  <div className="text-xs text-slate-500">{etf.name}</div>
+                  <div className="text-xs text-muted-foreground">{etf.name}</div>
                 </td>
                 <td className="py-2.5 pr-3 font-mono text-amber-400">{etf.expenseRatio.toFixed(4)}%</td>
-                <td className="py-2.5 pr-3 font-mono text-slate-300">{etf.trackingError.toFixed(3)}%</td>
-                <td className="py-2.5 pr-3 font-mono text-slate-300">{etf.bidAsk.toFixed(3)}%</td>
-                <td className="py-2.5 pr-3 font-mono text-slate-300">${etf.aumB}</td>
+                <td className="py-2.5 pr-3 font-mono text-muted-foreground">{etf.trackingError.toFixed(3)}%</td>
+                <td className="py-2.5 pr-3 font-mono text-muted-foreground">{etf.bidAsk.toFixed(3)}%</td>
+                <td className="py-2.5 pr-3 font-mono text-muted-foreground">${etf.aumB}</td>
                 <td className="py-2.5 pr-3 font-mono text-green-400">
                   {etf.lendingIncome > 0 ? `+${etf.lendingIncome.toFixed(3)}%` : "–"}
                 </td>
                 <td className="py-2.5 pr-3 font-mono text-muted-foreground">{etf.totalCostDrag.toFixed(4)}%</td>
                 <td className="py-2.5 pr-3 font-mono">
-                  <span className={etf.costDollar > 5000 ? "text-red-400" : "text-slate-300"}>
+                  <span className={etf.costDollar > 5000 ? "text-red-400" : "text-muted-foreground"}>
                     ${etf.costDollar.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </span>
                 </td>
@@ -962,9 +962,9 @@ function ETFTable() {
         </table>
       </div>
 
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardContent className="pt-4">
-          <p className="text-sm text-slate-300 font-medium mb-2">30-Year Cost Drag (10% gross return assumed)</p>
+          <p className="text-sm text-muted-foreground font-medium mb-2">30-Year Cost Drag (10% gross return assumed)</p>
           <CostDragChart />
         </CardContent>
       </Card>
@@ -986,10 +986,10 @@ function ActivePassiveSection() {
   return (
     <div className="space-y-6">
       {/* SPIVA Chart */}
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-base text-white">SPIVA Scorecard — % of Active Funds Underperforming Index</CardTitle>
-          <p className="text-xs text-slate-400">Source: S&P Dow Jones SPIVA Report 2024. Data as of Dec 2023.</p>
+          <p className="text-xs text-muted-foreground">Source: S&P Dow Jones SPIVA Report 2024. Data as of Dec 2023.</p>
         </CardHeader>
         <CardContent>
           <SPIVAChart />
@@ -998,7 +998,7 @@ function ActivePassiveSection() {
 
       {/* Fee math */}
       <div className="flex items-center gap-3">
-        <label className="text-sm text-slate-400 whitespace-nowrap">Holding Period</label>
+        <label className="text-sm text-muted-foreground whitespace-nowrap">Holding Period</label>
         <span className="text-indigo-400 font-bold w-12">{horizon}Y</span>
         <Slider
           min={1}
@@ -1041,19 +1041,19 @@ function ActivePassiveSection() {
             icon: <AlertTriangle className="w-4 h-4" />,
           },
         ].map((stat) => (
-          <div key={stat.label} className="bg-slate-800 rounded-lg p-3 border border-slate-700">
-            <div className="flex items-center gap-1 text-slate-400 mb-1 text-xs">
+          <div key={stat.label} className="bg-muted rounded-lg p-3 border border-border">
+            <div className="flex items-center gap-1 text-muted-foreground mb-1 text-xs">
               {stat.icon}
               {stat.label}
             </div>
             <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
-            <div className="text-xs text-slate-500">{stat.sub}</div>
+            <div className="text-xs text-muted-foreground">{stat.sub}</div>
           </div>
         ))}
       </div>
 
       {/* Evidence bullets */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">Why Passive Usually Wins</CardTitle>
         </CardHeader>
@@ -1086,14 +1086,14 @@ function ActivePassiveSection() {
               ) : (
                 <Info className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
               )}
-              <span className="text-slate-300">{item.text}</span>
+              <span className="text-muted-foreground">{item.text}</span>
             </div>
           ))}
         </CardContent>
       </Card>
 
       {/* Alpha decay chart */}
-      <Card className="bg-slate-900 border-slate-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-base text-white">Cumulative Performance: Passive vs Active (simulated)</CardTitle>
         </CardHeader>
@@ -1191,7 +1191,7 @@ function FactorSection() {
           <thead>
             <tr>
               {["ETF", "Factor", "Expense", "Premium (ann.)", "Sharpe", "Max DD", ""].map((c) => (
-                <th key={c} className="text-left text-xs text-slate-400 pb-2 pr-3 border-b border-slate-700 whitespace-nowrap">
+                <th key={c} className="text-left text-xs text-muted-foreground pb-2 pr-3 border-b border-border whitespace-nowrap">
                   {c}
                 </th>
               ))}
@@ -1203,15 +1203,15 @@ function FactorSection() {
                 key={etf.ticker}
                 onClick={() => setSelected(selected === etf.ticker ? null : etf.ticker)}
                 className={cn(
-                  "border-b border-slate-800/50 cursor-pointer transition-colors",
-                  selected === etf.ticker ? "bg-slate-700/40" : "hover:bg-slate-800/30"
+                  "border-b border-border/50 cursor-pointer transition-colors",
+                  selected === etf.ticker ? "bg-muted/40" : "hover:bg-muted/30"
                 )}
               >
                 <td className="py-2.5 pr-3">
                   <span className="font-bold" style={{ color: etf.color }}>
                     {etf.ticker}
                   </span>
-                  <div className="text-xs text-slate-500">{etf.name}</div>
+                  <div className="text-xs text-muted-foreground">{etf.name}</div>
                 </td>
                 <td className="py-2.5 pr-3">
                   <Badge
@@ -1226,7 +1226,7 @@ function FactorSection() {
                 <td className="py-2.5 pr-3 font-mono text-green-400">+{etf.premiumAnnual}%</td>
                 <td className="py-2.5 pr-3 font-mono text-indigo-400">{etf.sharpe}</td>
                 <td className="py-2.5 pr-3 font-mono text-red-400">{etf.maxDD}%</td>
-                <td className="py-2.5 pr-3 text-slate-500 text-xs">{selected === etf.ticker ? "▲" : "▼"}</td>
+                <td className="py-2.5 pr-3 text-muted-foreground text-xs">{selected === etf.ticker ? "▲" : "▼"}</td>
               </tr>
             ))}
           </tbody>
@@ -1234,7 +1234,7 @@ function FactorSection() {
       </div>
 
       {/* Factor premium evidence */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-white">Factor Premium Evidence (simulated 25-year, $100 start)</CardTitle>
         </CardHeader>
@@ -1283,14 +1283,14 @@ function FactorSection() {
             risk: "Expensive multiples amplify downside in rate hike cycles.",
           },
         ].map((f) => (
-          <div key={f.factor} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700">
+          <div key={f.factor} className="bg-muted/60 rounded-lg p-3 border border-border">
             <div className="font-semibold text-sm mb-1" style={{ color: f.color }}>
               {f.factor}
             </div>
-            <div className="text-xs text-slate-300 mb-2">{f.desc}</div>
+            <div className="text-xs text-muted-foreground mb-2">{f.desc}</div>
             <div className="flex items-start gap-1">
               <AlertTriangle className="w-3 h-3 text-amber-400 mt-0.5 flex-shrink-0" />
-              <span className="text-xs text-slate-400">{f.risk}</span>
+              <span className="text-xs text-muted-foreground">{f.risk}</span>
             </div>
           </div>
         ))}
@@ -1311,7 +1311,7 @@ export default function IndexInvestingPage() {
   const methodData = useMemo(() => METHODS, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-white p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1328,7 +1328,7 @@ export default function IndexInvestingPage() {
             Passive Strategy Suite
           </Badge>
         </div>
-        <p className="text-slate-400 text-sm ml-12">
+        <p className="text-muted-foreground text-sm ml-12">
           Index funds, ETF selection, factor premiums, portfolio construction, and the active vs. passive debate.
         </p>
       </motion.div>
@@ -1346,9 +1346,9 @@ export default function IndexInvestingPage() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="bg-slate-900 border border-slate-800 rounded-lg p-3"
+            className="bg-card border border-border rounded-lg p-3"
           >
-            <div className="flex items-center gap-1.5 text-slate-400 text-xs mb-1">
+            <div className="flex items-center gap-1.5 text-muted-foreground text-xs mb-1">
               {stat.icon}
               {stat.label}
             </div>
@@ -1359,7 +1359,7 @@ export default function IndexInvestingPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="universe" className="space-y-4">
-        <TabsList className="bg-slate-900 border border-slate-800 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
           {[
             { value: "universe", label: "Index Universe", icon: <Globe className="w-3.5 h-3.5" /> },
             { value: "etfselect", label: "ETF Selection", icon: <DollarSign className="w-3.5 h-3.5" /> },
@@ -1381,7 +1381,7 @@ export default function IndexInvestingPage() {
         {/* ── TAB 1: Index Universe ───────────────────────────────────────────── */}
         <TabsContent value="universe" className="space-y-4">
           {/* Indices table */}
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <Globe className="w-4 h-4 text-indigo-400" />
@@ -1394,7 +1394,7 @@ export default function IndexInvestingPage() {
                   <thead>
                     <tr>
                       {["Index", "Asset Class", "Methodology", "# Stocks", "Ann. Return", "Volatility", "YTD"].map((c) => (
-                        <th key={c} className="text-left text-xs text-slate-400 pb-2 pr-3 border-b border-slate-700 whitespace-nowrap">
+                        <th key={c} className="text-left text-xs text-muted-foreground pb-2 pr-3 border-b border-border whitespace-nowrap">
                           {c}
                         </th>
                       ))}
@@ -1406,19 +1406,19 @@ export default function IndexInvestingPage() {
                         key={idx2.ticker}
                         onClick={() => setSelectedIndex(i)}
                         className={cn(
-                          "border-b border-slate-800/50 cursor-pointer transition-colors",
-                          selectedIndex === i ? "bg-slate-700/40" : "hover:bg-slate-800/30"
+                          "border-b border-border/50 cursor-pointer transition-colors",
+                          selectedIndex === i ? "bg-muted/40" : "hover:bg-muted/30"
                         )}
                       >
                         <td className="py-2.5 pr-3">
                           <span className="font-bold" style={{ color: idx2.color }}>
                             {idx2.name}
                           </span>
-                          <div className="text-xs text-slate-500">{idx2.ticker}</div>
+                          <div className="text-xs text-muted-foreground">{idx2.ticker}</div>
                         </td>
-                        <td className="py-2.5 pr-3 text-slate-300 text-xs">{idx2.asset}</td>
-                        <td className="py-2.5 pr-3 text-slate-400 text-xs">{idx2.methodology}</td>
-                        <td className="py-2.5 pr-3 font-mono text-slate-300">{idx2.constituents.toLocaleString()}</td>
+                        <td className="py-2.5 pr-3 text-muted-foreground text-xs">{idx2.asset}</td>
+                        <td className="py-2.5 pr-3 text-muted-foreground text-xs">{idx2.methodology}</td>
+                        <td className="py-2.5 pr-3 font-mono text-muted-foreground">{idx2.constituents.toLocaleString()}</td>
                         <td className="py-2.5 pr-3 font-mono text-green-400">+{idx2.annualReturn}%</td>
                         <td className="py-2.5 pr-3 font-mono text-amber-400">{idx2.volatility}%</td>
                         <td className="py-2.5 pr-3 font-mono">
@@ -1436,7 +1436,7 @@ export default function IndexInvestingPage() {
 
           {/* Selected index detail */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-slate-900 border-slate-700">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
                   <span style={{ color: idx.color }} className="font-bold">
@@ -1448,12 +1448,12 @@ export default function IndexInvestingPage() {
               <CardContent>
                 <IndexSizeChart index={idx} />
                 <div className="mt-3 grid grid-cols-2 gap-2">
-                  <div className="bg-slate-800 rounded-lg p-2">
-                    <div className="text-xs text-slate-400">Annual Return (hist.)</div>
+                  <div className="bg-muted rounded-lg p-2">
+                    <div className="text-xs text-muted-foreground">Annual Return (hist.)</div>
                     <div className="text-sm font-bold text-green-400">+{idx.annualReturn}%</div>
                   </div>
-                  <div className="bg-slate-800 rounded-lg p-2">
-                    <div className="text-xs text-slate-400">Volatility (ann.)</div>
+                  <div className="bg-muted rounded-lg p-2">
+                    <div className="text-xs text-muted-foreground">Volatility (ann.)</div>
                     <div className="text-sm font-bold text-amber-400">{idx.volatility}%</div>
                   </div>
                 </div>
@@ -1461,7 +1461,7 @@ export default function IndexInvestingPage() {
             </Card>
 
             {/* Methodology Comparison */}
-            <Card className="bg-slate-900 border-slate-700">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Target className="w-4 h-4 text-muted-foreground" />
@@ -1470,21 +1470,21 @@ export default function IndexInvestingPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {methodData.map((m) => (
-                  <div key={m.name} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700">
+                  <div key={m.name} className="bg-muted/60 rounded-lg p-3 border border-border">
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-semibold text-sm" style={{ color: m.color }}>
                         {m.name}
                       </span>
-                      <Badge variant="outline" className="text-xs text-slate-400">
+                      <Badge variant="outline" className="text-xs text-muted-foreground">
                         Turnover: {m.turnover}
                       </Badge>
                     </div>
-                    <div className="text-xs text-slate-500 mb-2">Example: {m.example}</div>
+                    <div className="text-xs text-muted-foreground mb-2">Example: {m.example}</div>
                     <div className="grid grid-cols-2 gap-2">
                       <div>
                         <div className="text-xs text-green-400 font-medium mb-1">Pros</div>
                         {m.pros.map((p) => (
-                          <div key={p} className="flex items-center gap-1 text-xs text-slate-300">
+                          <div key={p} className="flex items-center gap-1 text-xs text-muted-foreground">
                             <CheckCircle className="w-2.5 h-2.5 text-green-400 flex-shrink-0" />
                             {p}
                           </div>
@@ -1493,7 +1493,7 @@ export default function IndexInvestingPage() {
                       <div>
                         <div className="text-xs text-red-400 font-medium mb-1">Cons</div>
                         {m.cons.map((c) => (
-                          <div key={c} className="flex items-center gap-1 text-xs text-slate-300">
+                          <div key={c} className="flex items-center gap-1 text-xs text-muted-foreground">
                             <AlertTriangle className="w-2.5 h-2.5 text-amber-400 flex-shrink-0" />
                             {c}
                           </div>
@@ -1509,7 +1509,7 @@ export default function IndexInvestingPage() {
 
         {/* ── TAB 2: ETF Selection ────────────────────────────────────────────── */}
         <TabsContent value="etfselect" className="space-y-4">
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-amber-400" />
@@ -1543,14 +1543,14 @@ export default function IndexInvestingPage() {
                 desc: "ETFs can lend shares to short sellers and earn income, which partially offsets the expense ratio. Vanguard passes all proceeds to shareholders.",
               },
             ].map((c) => (
-              <div key={c.title} className="bg-slate-800/60 rounded-lg p-4 border border-slate-700">
+              <div key={c.title} className="bg-muted/60 rounded-lg p-4 border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   {c.icon}
                   <span className="font-semibold text-sm" style={{ color: c.color }}>
                     {c.title}
                   </span>
                 </div>
-                <p className="text-xs text-slate-400">{c.desc}</p>
+                <p className="text-xs text-muted-foreground">{c.desc}</p>
               </div>
             ))}
           </div>
@@ -1558,13 +1558,13 @@ export default function IndexInvestingPage() {
 
         {/* ── TAB 3: Factor ETFs ──────────────────────────────────────────────── */}
         <TabsContent value="factors" className="space-y-4">
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-primary" />
                 Smart Beta / Factor ETF Comparison
               </CardTitle>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-muted-foreground">
                 Factor premiums are excess returns above the market that compensate for systematic risk exposures.
               </p>
             </CardHeader>
@@ -1576,13 +1576,13 @@ export default function IndexInvestingPage() {
 
         {/* ── TAB 4: Portfolio Construction ───────────────────────────────────── */}
         <TabsContent value="portfolio" className="space-y-4">
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <PieChart className="w-4 h-4 text-indigo-400" />
                 Three-Fund Portfolio Builder
               </CardTitle>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-muted-foreground">
                 The simplest diversified portfolio: US stocks + International stocks + Bonds.
               </p>
             </CardHeader>
@@ -1592,19 +1592,19 @@ export default function IndexInvestingPage() {
           </Card>
 
           {/* Glide path */}
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <Target className="w-4 h-4 text-muted-foreground" />
                 Glide Path Simulator — Equity Allocation Over Time
               </CardTitle>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-muted-foreground">
                 Rule of thumb: Equity % = 110 − Age. Adjust your age to see recommended allocation shift.
               </p>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
-                <label className="text-sm text-slate-400 whitespace-nowrap">Your Age</label>
+                <label className="text-sm text-muted-foreground whitespace-nowrap">Your Age</label>
                 <span className="text-indigo-400 font-bold w-10">{age}</span>
                 <Slider
                   min={20}
@@ -1637,31 +1637,31 @@ export default function IndexInvestingPage() {
                     fund: "BND",
                   },
                 ].map((al) => (
-                  <div key={al.label} className="bg-slate-800 rounded-lg p-3 text-center">
+                  <div key={al.label} className="bg-muted rounded-lg p-3 text-center">
                     <div className={cn("text-2xl font-bold", al.color)}>{al.value}</div>
-                    <div className="text-xs text-slate-400">{al.label}</div>
-                    <div className="text-xs text-slate-500 mt-1">{al.fund}</div>
+                    <div className="text-xs text-muted-foreground">{al.label}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{al.fund}</div>
                   </div>
                 ))}
               </div>
 
               {/* Rebalancing info */}
-              <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+              <div className="bg-muted/50 rounded-lg p-4 border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   <Info className="w-4 h-4 text-muted-foreground" />
                   <span className="font-semibold text-sm text-white">Rebalancing Guidelines</span>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-400">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
                   <div>
-                    <span className="text-slate-200 font-medium">Calendar Rebalancing</span>
+                    <span className="text-foreground font-medium">Calendar Rebalancing</span>
                     <br />Rebalance once per year. Simple, low friction. Works well in tax-advantaged accounts.
                   </div>
                   <div>
-                    <span className="text-slate-200 font-medium">Threshold Rebalancing</span>
+                    <span className="text-foreground font-medium">Threshold Rebalancing</span>
                     <br />Rebalance when any asset class drifts ±5% from target. More responsive to market moves.
                   </div>
                   <div>
-                    <span className="text-slate-200 font-medium">Cash Flow Rebalancing</span>
+                    <span className="text-foreground font-medium">Cash Flow Rebalancing</span>
                     <br />Direct new contributions to underweight assets. Zero transaction costs, tax-efficient.
                   </div>
                 </div>
@@ -1672,13 +1672,13 @@ export default function IndexInvestingPage() {
 
         {/* ── TAB 5: Active vs Passive ────────────────────────────────────────── */}
         <TabsContent value="active" className="space-y-4">
-          <Card className="bg-slate-900 border-slate-700">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <Shield className="w-4 h-4 text-green-400" />
                 Active vs. Passive — The Evidence
               </CardTitle>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-muted-foreground">
                 SPIVA data, survivorship bias, fee math, and why the market-beaters are rare.
               </p>
             </CardHeader>

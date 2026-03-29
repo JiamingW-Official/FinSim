@@ -257,9 +257,9 @@ function DonutChart() {
       </svg>
       <div className="grid grid-cols-2 gap-x-6 gap-y-1">
         {REVENUE_SEGMENTS.map((s) => (
-          <div key={s.label} className="flex items-center gap-1.5 text-xs text-slate-300">
+          <div key={s.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: s.color }} />
-            {s.label} <span className="text-slate-500">{s.pct}%</span>
+            {s.label} <span className="text-muted-foreground">{s.pct}%</span>
           </div>
         ))}
       </div>
@@ -640,7 +640,7 @@ export default function NeobanksPage() {
   const handleRevChange = useCallback((v: number[]) => setMonthlyRevPerUser(v[0]), []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -650,11 +650,11 @@ export default function NeobanksPage() {
         {/* Header */}
         <div className="flex items-start justify-between flex-wrap gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
               <Building2 className="w-6 h-6 text-indigo-400" />
               Neobank & Challenger Bank Economics
             </h1>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-muted-foreground text-sm mt-1">
               Unit economics, revenue models, regulatory dynamics, and competitive landscape vs traditional banks
             </p>
           </div>
@@ -670,7 +670,7 @@ export default function NeobanksPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="business-model" className="w-full">
-          <TabsList className="bg-slate-900 border border-slate-800 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="business-model" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs sm:text-sm">
               <DollarSign className="w-3.5 h-3.5 mr-1" /> Business Model
             </TabsTrigger>
@@ -691,9 +691,9 @@ export default function NeobanksPage() {
               <motion.div key="bm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
 
                 {/* Comparison Table */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <Users className="w-4 h-4 text-indigo-400" /> Neobank Profiles — Key Metrics
                     </CardTitle>
                   </CardHeader>
@@ -701,9 +701,9 @@ export default function NeobanksPage() {
                     <div className="overflow-x-auto">
                       <table className="w-full text-xs">
                         <thead>
-                          <tr className="border-b border-slate-800">
+                          <tr className="border-b border-border">
                             {["Bank", "Customers", "Revenue", "Valuation", "Rev/User", "CAC", "Market", "Profitable"].map((h) => (
-                              <th key={h} className="text-left py-2 px-3 text-slate-400 font-medium whitespace-nowrap">
+                              <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium whitespace-nowrap">
                                 {h}
                               </th>
                             ))}
@@ -711,24 +711,24 @@ export default function NeobanksPage() {
                         </thead>
                         <tbody>
                           {NEOBANKS.map((nb) => (
-                            <tr key={nb.name} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
+                            <tr key={nb.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                               <td className="py-2.5 px-3">
                                 <div className="flex items-center gap-2">
                                   <span
                                     className="w-2 h-2 rounded-full flex-shrink-0"
                                     style={{ background: nb.color }}
                                   />
-                                  <span className="font-medium text-slate-200">
+                                  <span className="font-medium text-foreground">
                                     {nb.flag} {nb.name}
                                   </span>
                                 </div>
                               </td>
-                              <td className="py-2.5 px-3 text-slate-300">{nb.customers}M</td>
-                              <td className="py-2.5 px-3 text-slate-300">${nb.revenue}B</td>
-                              <td className="py-2.5 px-3 text-slate-300">${nb.valuation}B</td>
-                              <td className="py-2.5 px-3 text-slate-300">${nb.revenuePerUser}</td>
-                              <td className="py-2.5 px-3 text-slate-300">${nb.cac}</td>
-                              <td className="py-2.5 px-3 text-slate-400">{nb.market}</td>
+                              <td className="py-2.5 px-3 text-muted-foreground">{nb.customers}M</td>
+                              <td className="py-2.5 px-3 text-muted-foreground">${nb.revenue}B</td>
+                              <td className="py-2.5 px-3 text-muted-foreground">${nb.valuation}B</td>
+                              <td className="py-2.5 px-3 text-muted-foreground">${nb.revenuePerUser}</td>
+                              <td className="py-2.5 px-3 text-muted-foreground">${nb.cac}</td>
+                              <td className="py-2.5 px-3 text-muted-foreground">{nb.market}</td>
                               <td className="py-2.5 px-3">
                                 <Badge
                                   variant="outline"
@@ -742,7 +742,7 @@ export default function NeobanksPage() {
                         </tbody>
                       </table>
                     </div>
-                    <p className="text-xs text-slate-500 mt-3">
+                    <p className="text-xs text-muted-foreground mt-3">
                       * Revenue/User = annual revenue ÷ active customers. CAC = blended customer acquisition cost (USD). Data as of 2024.
                     </p>
                   </CardContent>
@@ -750,31 +750,31 @@ export default function NeobanksPage() {
 
                 {/* Revenue Breakdown + Product Roadmap */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200">
+                      <CardTitle className="text-sm font-semibold text-foreground">
                         Revenue Mix (Industry Average)
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <DonutChart />
-                      <div className="mt-4 space-y-2 text-xs text-slate-400">
+                      <div className="mt-4 space-y-2 text-xs text-muted-foreground">
                         <p>
-                          <span className="text-slate-200 font-medium">Interchange:</span> Card swipe fees (~1.5–2%) split between card network and issuer.
+                          <span className="text-foreground font-medium">Interchange:</span> Card swipe fees (~1.5–2%) split between card network and issuer.
                         </p>
                         <p>
-                          <span className="text-slate-200 font-medium">Interest Income:</span> Rapidly growing as neobanks expand lending books.
+                          <span className="text-foreground font-medium">Interest Income:</span> Rapidly growing as neobanks expand lending books.
                         </p>
                         <p>
-                          <span className="text-slate-200 font-medium">Premium Subs:</span> Metal/Plus tiers — Revolut Metal ($16.99/mo), Monzo Premium (£15/mo).
+                          <span className="text-foreground font-medium">Premium Subs:</span> Metal/Plus tiers — Revolut Metal ($16.99/mo), Monzo Premium (£15/mo).
                         </p>
                       </div>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Zap className="w-4 h-4 text-amber-400" /> Product Evolution Roadmap
                       </CardTitle>
                     </CardHeader>
@@ -790,17 +790,17 @@ export default function NeobanksPage() {
                                 {i + 1}
                               </div>
                               {i < ROADMAP_STAGES.length - 1 && (
-                                <div className="w-px flex-1 bg-slate-700 mt-1" />
+                                <div className="w-px flex-1 bg-muted mt-1" />
                               )}
                             </div>
                             <div className="pb-3">
-                              <p className="text-xs font-semibold text-slate-300 mb-1">{stage.year}</p>
+                              <p className="text-xs font-semibold text-muted-foreground mb-1">{stage.year}</p>
                               <div className="flex flex-wrap gap-1">
                                 {stage.features.map((f) => (
                                   <Badge
                                     key={f}
                                     variant="outline"
-                                    className="text-xs border-slate-700 text-slate-400 py-0"
+                                    className="text-xs border-border text-muted-foreground py-0"
                                   >
                                     {f}
                                   </Badge>
@@ -823,9 +823,9 @@ export default function NeobanksPage() {
               <motion.div key="ue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
 
                 {/* CAC Calculator */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <TrendingUp className="w-4 h-4 text-indigo-400" /> CAC Payback Period Calculator
                     </CardTitle>
                   </CardHeader>
@@ -833,8 +833,8 @@ export default function NeobanksPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                       <div>
                         <div className="flex justify-between text-xs mb-2">
-                          <span className="text-slate-400">Customer Acquisition Cost (CAC)</span>
-                          <span className="text-slate-200 font-semibold">${cac}</span>
+                          <span className="text-muted-foreground">Customer Acquisition Cost (CAC)</span>
+                          <span className="text-foreground font-semibold">${cac}</span>
                         </div>
                         <Slider
                           min={5}
@@ -844,15 +844,15 @@ export default function NeobanksPage() {
                           onValueChange={handleCACChange}
                           className="w-full"
                         />
-                        <div className="flex justify-between text-xs text-slate-600 mt-1">
+                        <div className="flex justify-between text-xs text-muted-foreground mt-1">
                           <span>$5 (Nubank)</span>
                           <span>$150 (legacy neobank)</span>
                         </div>
                       </div>
                       <div>
                         <div className="flex justify-between text-xs mb-2">
-                          <span className="text-slate-400">Monthly Revenue per Active User</span>
-                          <span className="text-slate-200 font-semibold">${monthlyRevPerUser}</span>
+                          <span className="text-muted-foreground">Monthly Revenue per Active User</span>
+                          <span className="text-foreground font-semibold">${monthlyRevPerUser}</span>
                         </div>
                         <Slider
                           min={1}
@@ -862,7 +862,7 @@ export default function NeobanksPage() {
                           onValueChange={handleRevChange}
                           className="w-full"
                         />
-                        <div className="flex justify-between text-xs text-slate-600 mt-1">
+                        <div className="flex justify-between text-xs text-muted-foreground mt-1">
                           <span>$1 (early stage)</span>
                           <span>$25 (mature)</span>
                         </div>
@@ -877,15 +877,15 @@ export default function NeobanksPage() {
                         { label: "LTV / CAC", value: ltvCacRatio, color: parseFloat(ltvCacRatio as string) >= 3 ? "text-emerald-400" : "text-amber-400" },
                         { label: "Payback", value: paybackMonths <= 36 ? `${paybackMonths}mo` : ">36mo", color: paybackMonths <= 18 ? "text-emerald-400" : paybackMonths <= 30 ? "text-amber-400" : "text-red-400" },
                       ].map((kpi) => (
-                        <div key={kpi.label} className="bg-slate-800 rounded-lg p-3 text-center">
-                          <p className="text-xs text-slate-400">{kpi.label}</p>
+                        <div key={kpi.label} className="bg-muted rounded-lg p-3 text-center">
+                          <p className="text-xs text-muted-foreground">{kpi.label}</p>
                           <p className={`text-xl font-bold ${kpi.color} mt-1`}>{kpi.value}</p>
                         </div>
                       ))}
                     </div>
 
                     <CACPaybackChart cac={cac} monthlyRevPerUser={monthlyRevPerUser} />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       Assumes 65% gross margin. LTV = monthly GP × 24 months horizon. Industry benchmark: LTV/CAC &gt; 3× considered healthy.
                     </p>
                   </CardContent>
@@ -893,29 +893,29 @@ export default function NeobanksPage() {
 
                 {/* Cohort Retention + Funnel */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200">
+                      <CardTitle className="text-sm font-semibold text-foreground">
                         Cohort Retention by Year
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <CohortRetentionChart />
-                      <p className="text-xs text-slate-500 mt-2">
+                      <p className="text-xs text-muted-foreground mt-2">
                         Retention improving YoY as neobanks deepen product stickiness. 2023 cohort 52% better than 2020 at M24.
                       </p>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200">
+                      <CardTitle className="text-sm font-semibold text-foreground">
                         Engagement Funnel
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <FunnelChart />
-                      <p className="text-xs text-slate-500 mt-3">
+                      <p className="text-xs text-muted-foreground mt-3">
                         Only ~9% of sign-ups become unit-profitable. Key lever: converting actives to premium tiers (14%).
                       </p>
                     </CardContent>
@@ -923,9 +923,9 @@ export default function NeobanksPage() {
                 </div>
 
                 {/* Breakeven insight */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <Shield className="w-4 h-4 text-emerald-400" /> Breakeven Analysis — Key Levers
                     </CardTitle>
                   </CardHeader>
@@ -951,9 +951,9 @@ export default function NeobanksPage() {
                           color: "amber",
                         },
                       ].map((item) => (
-                        <div key={item.lever} className="bg-slate-800 rounded-lg p-4 space-y-2">
+                        <div key={item.lever} className="bg-muted rounded-lg p-4 space-y-2">
                           <div className="flex items-center justify-between">
-                            <p className="text-sm font-semibold text-slate-200">{item.lever}</p>
+                            <p className="text-sm font-semibold text-foreground">{item.lever}</p>
                             <Badge
                               variant="outline"
                               className={`text-xs border-${item.color}-500/40 text-${item.color}-400`}
@@ -961,7 +961,7 @@ export default function NeobanksPage() {
                               {item.impact} Impact
                             </Badge>
                           </div>
-                          <p className="text-xs text-slate-400 leading-relaxed">{item.desc}</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -977,15 +977,15 @@ export default function NeobanksPage() {
               <motion.div key="vt" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
 
                 {/* Cost-to-Income Ratio */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <BarChart3 className="w-4 h-4 text-indigo-400" /> Cost-to-Income Ratio (CIR) — Traditional vs Neobank
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CIRChart />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       Lower CIR = more efficient. Note: Mature neobanks (Nubank 52%, Starling 48%) already beat traditional banks. High-growth neobanks (Monzo 85%) still invest heavily in growth.
                     </p>
                   </CardContent>
@@ -993,9 +993,9 @@ export default function NeobanksPage() {
 
                 {/* NIM + Acquisition Cost comparison */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200">
+                      <CardTitle className="text-sm font-semibold text-foreground">
                         Net Interest Margin (NIM) Comparison
                       </CardTitle>
                     </CardHeader>
@@ -1006,10 +1006,10 @@ export default function NeobanksPage() {
                           const maxNIM = 4.5;
                           return (
                             <div key={b.name} className="flex items-center gap-3">
-                              <span className={`text-xs w-20 flex-shrink-0 ${isNeo ? "text-indigo-300" : "text-slate-400"}`}>
+                              <span className={`text-xs w-20 flex-shrink-0 ${isNeo ? "text-indigo-300" : "text-muted-foreground"}`}>
                                 {b.name}
                               </span>
-                              <div className="flex-1 bg-slate-800 rounded-full h-5 overflow-hidden">
+                              <div className="flex-1 bg-muted rounded-full h-5 overflow-hidden">
                                 <div
                                   className="h-full rounded-full flex items-center justify-end pr-2 text-xs text-white font-medium"
                                   style={{
@@ -1023,7 +1023,7 @@ export default function NeobanksPage() {
                               </div>
                               <Badge
                                 variant="outline"
-                                className={`text-xs flex-shrink-0 ${isNeo ? "border-indigo-500/40 text-indigo-400" : "border-slate-600 text-slate-500"}`}
+                                className={`text-xs flex-shrink-0 ${isNeo ? "border-indigo-500/40 text-indigo-400" : "border-slate-600 text-muted-foreground"}`}
                               >
                                 {isNeo ? "Neo" : "Trad"}
                               </Badge>
@@ -1031,15 +1031,15 @@ export default function NeobanksPage() {
                           );
                         })}
                       </div>
-                      <p className="text-xs text-slate-500 mt-3">
+                      <p className="text-xs text-muted-foreground mt-3">
                         Nubank's 4.2% NIM exceeds major US banks due to high-rate Brazilian credit cards. Most neobanks still have low NIM as lending books mature.
                       </p>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200">
+                      <CardTitle className="text-sm font-semibold text-foreground">
                         Digital vs Branch Acquisition Cost
                       </CardTitle>
                     </CardHeader>
@@ -1056,10 +1056,10 @@ export default function NeobanksPage() {
                           const maxCost = 380;
                           return (
                             <div key={item.channel} className="flex items-center gap-3">
-                              <span className={`text-xs w-36 flex-shrink-0 ${item.type === "neobank" ? "text-indigo-300" : "text-slate-400"}`}>
+                              <span className={`text-xs w-36 flex-shrink-0 ${item.type === "neobank" ? "text-indigo-300" : "text-muted-foreground"}`}>
                                 {item.channel}
                               </span>
-                              <div className="flex-1 bg-slate-800 rounded-full h-4 overflow-hidden">
+                              <div className="flex-1 bg-muted rounded-full h-4 overflow-hidden">
                                 <div
                                   className="h-full rounded-full"
                                   style={{
@@ -1069,12 +1069,12 @@ export default function NeobanksPage() {
                                   }}
                                 />
                               </div>
-                              <span className="text-xs text-slate-300 w-10 text-right">${item.cost}</span>
+                              <span className="text-xs text-muted-foreground w-10 text-right">${item.cost}</span>
                             </div>
                           );
                         })}
                       </div>
-                      <p className="text-xs text-slate-500 mt-3">
+                      <p className="text-xs text-muted-foreground mt-3">
                         Digital-native distribution: neobanks spend 10–30× less per acquired customer vs traditional branch networks.
                       </p>
                     </CardContent>
@@ -1082,15 +1082,15 @@ export default function NeobanksPage() {
                 </div>
 
                 {/* Feature Cadence */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <Zap className="w-4 h-4 text-amber-400" /> Speed of Innovation — Feature Releases per Year
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <FeatureCadenceChart />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       Neobanks ship weekly (Revolut: 52 major releases/yr) vs traditional banks on quarterly or annual release cycles constrained by legacy core banking systems.
                     </p>
                   </CardContent>
@@ -1098,9 +1098,9 @@ export default function NeobanksPage() {
 
                 {/* Regulatory + Embedded Finance */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Shield className="w-4 h-4 text-red-400" /> Regulatory Capital Requirements
                       </CardTitle>
                     </CardHeader>
@@ -1114,23 +1114,23 @@ export default function NeobanksPage() {
                         { item: "Brazil (BCB open finance)", req: "Payment Initiation License — lower barrier", color: "text-emerald-400" },
                       ].map((r) => (
                         <div key={r.item} className="flex items-start gap-2">
-                          <ChevronRight className="w-3.5 h-3.5 text-slate-500 mt-0.5 flex-shrink-0" />
+                          <ChevronRight className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
                           <div>
                             <span className={`font-medium ${r.color}`}>{r.item}: </span>
-                            <span className="text-slate-400">{r.req}</span>
+                            <span className="text-muted-foreground">{r.req}</span>
                           </div>
                         </div>
                       ))}
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <ArrowRight className="w-4 h-4 text-emerald-400" /> Embedded Finance Advantage
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-3 text-xs text-slate-400">
+                    <CardContent className="space-y-3 text-xs text-muted-foreground">
                       {[
                         {
                           title: "Open Banking APIs",
@@ -1149,8 +1149,8 @@ export default function NeobanksPage() {
                           desc: "Transaction-level data on millions of users enables superior credit underwriting — Nubank's loss rate is 50% lower than peer Brazilian lenders.",
                         },
                       ].map((item) => (
-                        <div key={item.title} className="bg-slate-800 rounded-lg p-3">
-                          <p className="font-medium text-slate-200 mb-1">{item.title}</p>
+                        <div key={item.title} className="bg-muted rounded-lg p-3">
+                          <p className="font-medium text-foreground mb-1">{item.title}</p>
                           <p className="leading-relaxed">{item.desc}</p>
                         </div>
                       ))}
@@ -1167,15 +1167,15 @@ export default function NeobanksPage() {
               <motion.div key="md" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
 
                 {/* Global Users Chart */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <Globe className="w-4 h-4 text-indigo-400" /> Global Neobank Users (Millions, 2018–2024)
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <GlobalUsersChart />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       CAGR of ~57% 2018–2024. Forecast 500M+ by 2026. Emerging markets (LatAm, Africa) growing fastest.
                     </p>
                   </CardContent>
@@ -1183,23 +1183,23 @@ export default function NeobanksPage() {
 
                 {/* Penetration + Profitability */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200">
+                      <CardTitle className="text-sm font-semibold text-foreground">
                         Market Penetration by Region
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <RegionPenetrationChart />
-                      <p className="text-xs text-slate-500 mt-2">
+                      <p className="text-xs text-muted-foreground mt-2">
                         Latin America leads globally driven by Nubank's 95M+ customers in Brazil, Mexico, and Colombia.
                       </p>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-3">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <TrendingUp className="w-4 h-4 text-emerald-400" /> Profitability Timeline
                       </CardTitle>
                     </CardHeader>
@@ -1209,7 +1209,7 @@ export default function NeobanksPage() {
                           const isFuture = p.year > 2025;
                           return (
                             <div key={p.name} className="flex items-center gap-3">
-                              <span className="text-xs text-slate-400 w-16 flex-shrink-0">{p.name}</span>
+                              <span className="text-xs text-muted-foreground w-16 flex-shrink-0">{p.name}</span>
                               <div className="flex-1 flex items-center gap-2">
                                 <div
                                   className="h-7 rounded-lg flex items-center justify-center text-xs font-semibold text-white px-3"
@@ -1223,14 +1223,14 @@ export default function NeobanksPage() {
                                   {isFuture ? `Est. ${p.year}` : `Profitable ${p.year}`}
                                 </div>
                                 {isFuture && (
-                                  <span className="text-xs text-slate-500 italic">forecast</span>
+                                  <span className="text-xs text-muted-foreground italic">forecast</span>
                                 )}
                               </div>
                             </div>
                           );
                         })}
                       </div>
-                      <p className="text-xs text-slate-500 mt-3">
+                      <p className="text-xs text-muted-foreground mt-3">
                         4 of 6 major neobanks now profitable (2024). Starling first to profitability (2022). N26 targeting 2027 after costly US exit.
                       </p>
                     </CardContent>
@@ -1239,13 +1239,13 @@ export default function NeobanksPage() {
 
                 {/* Consolidation + BNPL + BaaS */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-1.5">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1.5">
                         <BarChart3 className="w-4 h-4 text-amber-400" /> Consolidation Predictions
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="text-xs text-slate-400 space-y-2">
+                    <CardContent className="text-xs text-muted-foreground space-y-2">
                       <p>The neobank space will consolidate from ~400 globally to ~50–80 by 2028. Key drivers:</p>
                       <ul className="space-y-1.5 mt-2">
                         {[
@@ -1263,13 +1263,13 @@ export default function NeobanksPage() {
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-1.5">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1.5">
                         <DollarSign className="w-4 h-4 text-emerald-400" /> BNPL Integration
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="text-xs text-slate-400 space-y-2">
+                    <CardContent className="text-xs text-muted-foreground space-y-2">
                       <p>Buy-Now-Pay-Later embedded in neobank apps is a major ARPU driver:</p>
                       <ul className="space-y-1.5 mt-2">
                         {[
@@ -1287,13 +1287,13 @@ export default function NeobanksPage() {
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-1.5">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-1.5">
                         <Zap className="w-4 h-4 text-primary" /> Banking-as-a-Service (BaaS)
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="text-xs text-slate-400 space-y-2">
+                    <CardContent className="text-xs text-muted-foreground space-y-2">
                       <p>Leading neobanks monetizing infrastructure as a platform business:</p>
                       <ul className="space-y-1.5 mt-2">
                         {[
@@ -1313,9 +1313,9 @@ export default function NeobanksPage() {
                 </div>
 
                 {/* Key takeaways */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-semibold text-slate-200">Key Takeaways</CardTitle>
+                    <CardTitle className="text-sm font-semibold text-foreground">Key Takeaways</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
@@ -1342,8 +1342,8 @@ export default function NeobanksPage() {
                         },
                       ].map((item) => (
                         <div key={item.title} className={`border-l-2 pl-3 ${item.color}`}>
-                          <p className="font-semibold text-slate-200 mb-1">{item.title}</p>
-                          <p className="text-slate-400 leading-relaxed">{item.desc}</p>
+                          <p className="font-semibold text-foreground mb-1">{item.title}</p>
+                          <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                         </div>
                       ))}
                     </div>

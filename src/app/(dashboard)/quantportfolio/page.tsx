@@ -592,11 +592,11 @@ function StrategyTurnoverSVG() {
 
 function InfoRow({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="flex items-start justify-between py-2 border-b border-slate-800 last:border-0">
-      <span className="text-slate-400 text-sm">{label}</span>
+    <div className="flex items-start justify-between py-2 border-b border-border last:border-0">
+      <span className="text-muted-foreground text-sm">{label}</span>
       <div className="text-right">
-        <span className="text-slate-100 text-sm font-medium">{value}</span>
-        {sub && <p className="text-slate-500 text-xs mt-0.5">{sub}</p>}
+        <span className="text-foreground text-sm font-medium">{value}</span>
+        {sub && <p className="text-muted-foreground text-xs mt-0.5">{sub}</p>}
       </div>
     </div>
   );
@@ -613,21 +613,21 @@ interface ConceptCardProps {
 function ConceptCard({ title, description, details, accent, icon }: ConceptCardProps) {
   const [expanded, setExpanded] = useState(false);
   return (
-    <Card className="bg-slate-900 border-slate-800">
+    <Card className="bg-card border-border">
       <CardHeader className="pb-2">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2">
             <div className={`p-1.5 rounded ${accent}`}>{icon}</div>
-            <CardTitle className="text-sm text-slate-100">{title}</CardTitle>
+            <CardTitle className="text-sm text-foreground">{title}</CardTitle>
           </div>
           <button
             onClick={() => setExpanded((e) => !e)}
-            className="text-slate-500 hover:text-slate-300 transition-colors flex-shrink-0"
+            className="text-muted-foreground hover:text-muted-foreground transition-colors flex-shrink-0"
           >
             {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
         </div>
-        <p className="text-slate-400 text-xs mt-1">{description}</p>
+        <p className="text-muted-foreground text-xs mt-1">{description}</p>
       </CardHeader>
       <AnimatePresence initial={false}>
         {expanded && (
@@ -641,8 +641,8 @@ function ConceptCard({ title, description, details, accent, icon }: ConceptCardP
             <CardContent className="pt-0 pb-3">
               <ul className="space-y-1.5">
                 {details.map((d, i) => (
-                  <li key={i} className="flex items-start gap-2 text-slate-400 text-xs">
-                    <span className="text-slate-600 mt-0.5">&#x2022;</span>
+                  <li key={i} className="flex items-start gap-2 text-muted-foreground text-xs">
+                    <span className="text-muted-foreground mt-0.5">&#x2022;</span>
                     <span>{d}</span>
                   </li>
                 ))}
@@ -666,7 +666,7 @@ export default function QuantPortfolioPage() {
   const selectedViewObj = BL_VIEWS.find((v) => v.id === selectedView) ?? null;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -674,8 +674,8 @@ export default function QuantPortfolioPage() {
             <PieChart className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-slate-100">Quantitative Portfolio Construction</h1>
-            <p className="text-slate-400 text-sm">
+            <h1 className="text-xl font-semibold text-foreground">Quantitative Portfolio Construction</h1>
+            <p className="text-muted-foreground text-sm">
               Mean-variance optimization, Black-Litterman, risk parity, and cost-aware rebalancing
             </p>
           </div>
@@ -687,29 +687,29 @@ export default function QuantPortfolioPage() {
             { label: "Risk Model",    value: "Ledoit-Wolf" },
             { label: "Rebal",         value: "Threshold + Tax" },
           ].map((chip) => (
-            <div key={chip.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs">
-              <span className="text-slate-400">{chip.label}:</span>
-              <span className="text-slate-200 font-medium">{chip.value}</span>
+            <div key={chip.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted border border-border text-xs">
+              <span className="text-muted-foreground">{chip.label}:</span>
+              <span className="text-foreground font-medium">{chip.value}</span>
             </div>
           ))}
         </div>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid grid-cols-4 bg-slate-900 border border-slate-800 mb-6 w-full">
-          <TabsTrigger value="mvo" className="text-xs data-[state=active]:bg-slate-800">
+        <TabsList className="grid grid-cols-4 bg-card border border-border mb-6 w-full">
+          <TabsTrigger value="mvo" className="text-xs data-[state=active]:bg-muted">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
             Mean-Variance
           </TabsTrigger>
-          <TabsTrigger value="bl" className="text-xs data-[state=active]:bg-slate-800">
+          <TabsTrigger value="bl" className="text-xs data-[state=active]:bg-muted">
             <Activity className="w-3.5 h-3.5 mr-1.5" />
             Black-Litterman
           </TabsTrigger>
-          <TabsTrigger value="rp" className="text-xs data-[state=active]:bg-slate-800">
+          <TabsTrigger value="rp" className="text-xs data-[state=active]:bg-muted">
             <Shield className="w-3.5 h-3.5 mr-1.5" />
             Risk Parity
           </TabsTrigger>
-          <TabsTrigger value="tc" className="text-xs data-[state=active]:bg-slate-800">
+          <TabsTrigger value="tc" className="text-xs data-[state=active]:bg-muted">
             <ArrowRightLeft className="w-3.5 h-3.5 mr-1.5" />
             Txn Cost Opt
           </TabsTrigger>
@@ -722,7 +722,7 @@ export default function QuantPortfolioPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <SlidersHorizontal className="w-4 h-4 text-indigo-400" />
@@ -731,7 +731,7 @@ export default function QuantPortfolioPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="text-xs text-slate-400 mb-2">Constraint Mode</p>
+                    <p className="text-xs text-muted-foreground mb-2">Constraint Mode</p>
                     <div className="flex gap-2">
                       {(["long-only", "unconstrained"] as const).map((c) => (
                         <button
@@ -740,7 +740,7 @@ export default function QuantPortfolioPage() {
                           className={`flex-1 py-1.5 rounded text-xs font-medium border transition-colors ${
                             selectedConstraint === c
                               ? "bg-indigo-600 border-indigo-500 text-white"
-                              : "bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200"
+                              : "bg-muted border-border text-muted-foreground hover:text-foreground"
                           }`}
                         >
                           {c === "long-only" ? "Long-Only" : "Unconstrained"}
@@ -755,7 +755,7 @@ export default function QuantPortfolioPage() {
                     )}
                   </div>
                   <div>
-                    <p className="text-xs text-slate-400 mb-2">Covariance Estimator</p>
+                    <p className="text-xs text-muted-foreground mb-2">Covariance Estimator</p>
                     <div className="space-y-1.5">
                       {(
                         [
@@ -769,12 +769,12 @@ export default function QuantPortfolioPage() {
                           onClick={() => setCovMethod(m.key)}
                           className={`w-full text-left px-3 py-2 rounded border text-xs transition-colors ${
                             covMethod === m.key
-                              ? "bg-slate-800 border-indigo-500/50 text-slate-100"
-                              : "bg-slate-900 border-slate-700 text-slate-400 hover:border-slate-600"
+                              ? "bg-muted border-indigo-500/50 text-foreground"
+                              : "bg-card border-border text-muted-foreground hover:border-slate-600"
                           }`}
                         >
                           <span className="font-medium block">{m.label}</span>
-                          <span className="text-slate-500">{m.sub}</span>
+                          <span className="text-muted-foreground">{m.sub}</span>
                         </button>
                       ))}
                     </div>
@@ -782,7 +782,7 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Target className="w-4 h-4 text-sky-400" />
@@ -809,13 +809,13 @@ export default function QuantPortfolioPage() {
 
             {/* Frontier + concept cards */}
             <div className="lg:col-span-2 space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-indigo-400" />
                     Efficient Frontier — 5-Asset Universe (Seed 913)
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     20 random feasible portfolios (grey). Indigo curve = efficient frontier. Circle = Min-Var. Triangle = Max Sharpe. Yellow dashed = CML (rf=2.5%).
                   </p>
                 </CardHeader>
@@ -885,13 +885,13 @@ export default function QuantPortfolioPage() {
         <TabsContent value="bl" className="data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Activity className="w-4 h-4 text-indigo-400" />
                     Investor Views
                   </CardTitle>
-                  <p className="text-slate-400 text-xs">Click a view to inspect confidence and weight impact</p>
+                  <p className="text-muted-foreground text-xs">Click a view to inspect confidence and weight impact</p>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {BL_VIEWS.map((view) => (
@@ -901,11 +901,11 @@ export default function QuantPortfolioPage() {
                       className={`w-full text-left px-3 py-2.5 rounded border text-xs transition-colors ${
                         selectedView === view.id
                           ? "bg-indigo-600/20 border-indigo-500/50"
-                          : "bg-slate-800 border-slate-700 hover:border-slate-600"
+                          : "bg-muted border-border hover:border-slate-600"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium text-slate-200">{view.asset}</span>
+                        <span className="font-medium text-foreground">{view.asset}</span>
                         <Badge
                           variant="outline"
                           className={`text-xs ${view.type === "absolute" ? "border-sky-500/50 text-sky-400" : "border-primary/50 text-primary"}`}
@@ -913,11 +913,11 @@ export default function QuantPortfolioPage() {
                           {view.type}
                         </Badge>
                       </div>
-                      <p className="text-slate-400">{view.view}</p>
+                      <p className="text-muted-foreground">{view.view}</p>
                       <div className="flex items-center gap-2 mt-1.5">
-                        <span className="text-slate-500">Confidence:</span>
+                        <span className="text-muted-foreground">Confidence:</span>
                         <Progress value={view.confidence * 100} className="h-1.5 flex-1" />
-                        <span className="text-slate-300 font-medium">{(view.confidence * 100).toFixed(0)}%</span>
+                        <span className="text-muted-foreground font-medium">{(view.confidence * 100).toFixed(0)}%</span>
                       </div>
                     </button>
                   ))}
@@ -951,10 +951,10 @@ export default function QuantPortfolioPage() {
                 )}
               </AnimatePresence>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Info className="w-4 h-4 text-slate-400" />
+                    <Info className="w-4 h-4 text-muted-foreground" />
                     Tau Parameter
                   </CardTitle>
                 </CardHeader>
@@ -968,13 +968,13 @@ export default function QuantPortfolioPage() {
             </div>
 
             <div className="lg:col-span-2 space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <GitMerge className="w-4 h-4 text-indigo-400" />
                     BL Process Flow
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     Reverse optimization extracts implied returns from cap weights. Views are blended via Bayes. tau governs how strongly views override equilibrium.
                   </p>
                 </CardHeader>
@@ -983,13 +983,13 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-indigo-400" />
                     Output Weights: BL vs Cap Weight Benchmark
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     Views boost US Equity (+6%) and EM (+5%). Bonds cut 10% on inflation view. All positions remain within implementable range.
                   </p>
                 </CardHeader>
@@ -1036,34 +1036,34 @@ export default function QuantPortfolioPage() {
         <TabsContent value="rp" className="data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Shield className="w-4 h-4 text-sky-400" />
                     Asset Risk Contributions
                   </CardTitle>
-                  <p className="text-slate-400 text-xs">ERC targets equal 20% risk contribution per asset regardless of weight</p>
+                  <p className="text-muted-foreground text-xs">ERC targets equal 20% risk contribution per asset regardless of weight</p>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {RISK_PARITY_ASSETS.map((asset) => (
                     <div key={asset.ticker} className="space-y-1">
                       <div className="flex items-center justify-between text-xs">
                         <span className="font-medium" style={{ color: asset.color }}>{asset.ticker}</span>
-                        <span className="text-slate-400">{asset.name}</span>
+                        <span className="text-muted-foreground">{asset.name}</span>
                       </div>
                       <div className="grid grid-cols-3 gap-1 text-xs text-center">
                         {[
-                          { label: "Mkt Cap", val: `${asset.mktWeight}%`,  cls: "text-slate-400"  },
+                          { label: "Mkt Cap", val: `${asset.mktWeight}%`,  cls: "text-muted-foreground"  },
                           { label: "Equal",   val: "20%",                   cls: "text-sky-400"   },
                           { label: "ERC",     val: `${asset.ercWeight}%`,   cls: "text-indigo-400" },
                         ].map((cell) => (
                           <div key={cell.label}>
-                            <div className="text-slate-500 text-xs">{cell.label}</div>
+                            <div className="text-muted-foreground text-xs">{cell.label}</div>
                             <div className={`font-medium ${cell.cls}`}>{cell.val}</div>
                           </div>
                         ))}
                       </div>
-                      <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-1 bg-muted rounded-full overflow-hidden">
                         <div className="h-full rounded-full" style={{ width: `${asset.ercWeight * 2}%`, backgroundColor: asset.color }} />
                       </div>
                     </div>
@@ -1071,14 +1071,14 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm">Crisis Period Comparison</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {CRISIS_PERIODS.map((cp) => (
                     <div key={cp.name}>
-                      <p className="text-xs font-medium text-slate-300 mb-1">{cp.name}</p>
+                      <p className="text-xs font-medium text-muted-foreground mb-1">{cp.name}</p>
                       <div className="grid grid-cols-3 gap-1 text-xs text-center">
                         {[
                           { label: "Risk Parity", val: cp.rp  },
@@ -1086,7 +1086,7 @@ export default function QuantPortfolioPage() {
                           { label: "Equal Wt",     val: cp.ew  },
                         ].map((cell) => (
                           <div key={cell.label}>
-                            <div className="text-slate-500 text-xs">{cell.label}</div>
+                            <div className="text-muted-foreground text-xs">{cell.label}</div>
                             <div className={`font-medium ${cell.val >= 0 ? "text-green-400" : "text-red-400"}`}>
                               {cell.val >= 0 ? "+" : ""}{cell.val}%
                             </div>
@@ -1100,13 +1100,13 @@ export default function QuantPortfolioPage() {
             </div>
 
             <div className="lg:col-span-2 space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-sky-400" />
                     Weight Comparison: Market Cap vs Equal Weight vs ERC
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     ERC heavily overweights Bonds and Commodities vs cap weight because their low volatility means each dollar contributes less portfolio risk.
                   </p>
                 </CardHeader>
@@ -1115,13 +1115,13 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-indigo-400" />
                     All-Weather Performance (Indexed 100, 2008 to 2019)
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     Red shading = crisis periods. Risk Parity uses leverage on bonds to equalize risk. Shallower drawdowns in most crises except rate shocks.
                   </p>
                 </CardHeader>
@@ -1192,7 +1192,7 @@ export default function QuantPortfolioPage() {
         <TabsContent value="tc" className="data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-green-400" />
@@ -1208,7 +1208,7 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <RefreshCw className="w-4 h-4 text-sky-400" />
@@ -1222,10 +1222,10 @@ export default function QuantPortfolioPage() {
                     { name: "Factor Drift",   period: "Factor exposure",    pro: "Maintains factor purity",    con: "Complex, model-dependent" },
                     { name: "Vol Target",     period: "Vol regime shift",   pro: "Dynamic risk management",    con: "High turnover in vol spikes" },
                   ].map((t) => (
-                    <div key={t.name} className="px-3 py-2 rounded bg-slate-800 border border-slate-700 text-xs">
+                    <div key={t.name} className="px-3 py-2 rounded bg-muted border border-border text-xs">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-medium text-slate-200">{t.name}</span>
-                        <Badge variant="outline" className="text-xs border-slate-600 text-slate-400">{t.period}</Badge>
+                        <span className="font-medium text-foreground">{t.name}</span>
+                        <Badge variant="outline" className="text-xs border-slate-600 text-muted-foreground">{t.period}</Badge>
                       </div>
                       <div className="grid grid-cols-2 gap-1 text-xs">
                         <span className="text-green-400">+ {t.pro}</span>
@@ -1236,7 +1236,7 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Target className="w-4 h-4 text-amber-400" />
@@ -1254,13 +1254,13 @@ export default function QuantPortfolioPage() {
             </div>
 
             <div className="lg:col-span-2 space-y-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <TrendingUp className="w-4 h-4 text-indigo-400" />
                     Turnover vs Net Sharpe Tradeoff
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     Adding a turnover penalty lambda reduces churn but compresses net Sharpe. Green zone = optimal range (~20-55% annual turnover for typical institutional strategies).
                   </p>
                 </CardHeader>
@@ -1269,13 +1269,13 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Activity className="w-4 h-4 text-green-400" />
                     No-Trade Band: Asset Weight Drift vs Target
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     Green = actual weight. Indigo band = ±3% no-trade zone. Rebalancing only triggers when weight exits the band, dramatically reducing unnecessary turnover.
                   </p>
                 </CardHeader>
@@ -1284,13 +1284,13 @@ export default function QuantPortfolioPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-amber-400" />
                     Annual Turnover by Strategy Type
                   </CardTitle>
-                  <p className="text-slate-500 text-xs">
+                  <p className="text-muted-foreground text-xs">
                     Higher turnover erodes alpha through market impact, commissions, and bid-ask spread. Even 100 bps/year in frictions compounds to materially lower terminal wealth.
                   </p>
                 </CardHeader>

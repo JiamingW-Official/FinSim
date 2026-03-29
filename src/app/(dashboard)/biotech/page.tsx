@@ -341,7 +341,7 @@ function PipelineTracker() {
     <div className="space-y-6">
       {/* Controls */}
       <div className="flex items-center gap-3 flex-wrap">
-        <span className="text-sm text-zinc-400">Sort by:</span>
+        <span className="text-sm text-muted-foreground">Sort by:</span>
         {(["runway", "marketCap", "ticker"] as const).map((opt) => (
           <button
             key={opt}
@@ -350,7 +350,7 @@ function PipelineTracker() {
               "px-3 py-1 rounded text-xs font-medium transition-colors",
               sortBy === opt
                 ? "bg-primary text-white"
-                : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                : "bg-muted text-muted-foreground hover:bg-muted"
             )}
           >
             {opt === "runway" ? "Cash Runway" : opt === "marketCap" ? "Market Cap" : "Ticker"}
@@ -364,7 +364,7 @@ function PipelineTracker() {
           const runwayMonths = co.quarterlyBurn > 0
             ? Math.round((co.cash / co.quarterlyBurn) * 3)
             : null;
-          const runwayColor = runwayMonths === null ? "text-zinc-400"
+          const runwayColor = runwayMonths === null ? "text-muted-foreground"
             : runwayMonths < 12 ? "text-rose-400"
             : runwayMonths < 24 ? "text-amber-400"
             : "text-emerald-400";
@@ -378,37 +378,37 @@ function PipelineTracker() {
                 "rounded-lg border transition-colors cursor-pointer",
                 isSelected
                   ? "border-primary bg-muted/30"
-                  : "border-zinc-800 bg-zinc-900/60 hover:border-zinc-600"
+                  : "border-border bg-card/60 hover:border-border"
               )}
               onClick={() => setSelectedCompany(isSelected ? null : co)}
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-bold text-white font-mono bg-zinc-800 px-2 py-0.5 rounded">
+                    <span className="text-sm font-bold text-white font-mono bg-muted px-2 py-0.5 rounded">
                       {co.ticker}
                     </span>
-                    <span className="text-sm text-zinc-300">{co.name}</span>
+                    <span className="text-sm text-muted-foreground">{co.name}</span>
                     <Badge
                       variant="outline"
-                      className="text-xs border-zinc-700 text-zinc-400"
+                      className="text-xs border-border text-muted-foreground"
                     >
                       {co.subsector}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-4 text-xs">
-                    <span className="text-zinc-400">
-                      MCap: <span className="text-zinc-200">{fmtB(co.marketCap)}</span>
+                    <span className="text-muted-foreground">
+                      MCap: <span className="text-foreground">{fmtB(co.marketCap)}</span>
                     </span>
                     {runwayMonths !== null && (
-                      <span className="text-zinc-400">
+                      <span className="text-muted-foreground">
                         Runway: <span className={runwayColor}>{runwayMonths}mo</span>
                       </span>
                     )}
                     {isSelected ? (
-                      <ChevronUp className="w-4 h-4 text-zinc-400" />
+                      <ChevronUp className="w-4 h-4 text-muted-foreground" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-zinc-400" />
+                      <ChevronDown className="w-4 h-4 text-muted-foreground" />
                     )}
                   </div>
                 </div>
@@ -425,12 +425,12 @@ function PipelineTracker() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pb-4 border-t border-zinc-800 pt-4">
+                    <div className="px-4 pb-4 border-t border-border pt-4">
                       <div className="grid grid-cols-1 gap-2">
                         {co.pipeline.map((drug, i) => (
                           <div
                             key={i}
-                            className="flex items-center justify-between bg-zinc-800/60 rounded p-3"
+                            className="flex items-center justify-between bg-muted/60 rounded p-3"
                           >
                             <div className="flex items-center gap-3">
                               <div
@@ -439,7 +439,7 @@ function PipelineTracker() {
                               />
                               <div>
                                 <span className="text-sm font-medium text-white">{drug.name}</span>
-                                <span className="text-xs text-zinc-400 ml-2">— {drug.indication}</span>
+                                <span className="text-xs text-muted-foreground ml-2">— {drug.indication}</span>
                               </div>
                             </div>
                             <div className="flex items-center gap-3 text-xs">
@@ -451,10 +451,10 @@ function PipelineTracker() {
                                   {drug.designation}
                                 </Badge>
                               )}
-                              <span className="text-zinc-400">
+                              <span className="text-muted-foreground">
                                 PoA: <span className="text-white font-medium">{fmtPct(drug.poA)}</span>
                               </span>
-                              <span className="text-zinc-400">
+                              <span className="text-muted-foreground">
                                 Readout: <span className="text-primary">{drug.nextReadout}</span>
                               </span>
                               <span
@@ -472,22 +472,22 @@ function PipelineTracker() {
                       </div>
                       {/* Cash burn analysis */}
                       {co.quarterlyBurn > 0 && (
-                        <div className="mt-3 p-3 bg-zinc-900 rounded flex items-center gap-6 text-xs">
+                        <div className="mt-3 p-3 bg-card rounded flex items-center gap-6 text-xs">
                           <div>
-                            <span className="text-zinc-400">Cash: </span>
+                            <span className="text-muted-foreground">Cash: </span>
                             <span className="text-white font-medium">{fmtM(co.cash)}</span>
                           </div>
                           <div>
-                            <span className="text-zinc-400">Quarterly Burn: </span>
+                            <span className="text-muted-foreground">Quarterly Burn: </span>
                             <span className="text-rose-400 font-medium">{fmtM(co.quarterlyBurn)}</span>
                           </div>
                           <div>
-                            <span className="text-zinc-400">Annual Burn Rate: </span>
+                            <span className="text-muted-foreground">Annual Burn Rate: </span>
                             <span className="text-rose-400 font-medium">{fmtM(co.quarterlyBurn * 4)}</span>
                           </div>
                           {runwayMonths !== null && (
                             <div>
-                              <span className="text-zinc-400">Runway: </span>
+                              <span className="text-muted-foreground">Runway: </span>
                               <span className={cn("font-bold", runwayColor)}>{runwayMonths} months</span>
                             </div>
                           )}
@@ -504,19 +504,19 @@ function PipelineTracker() {
 
       {/* Binary Event Calendar */}
       <div>
-        <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
           <Calendar className="w-4 h-4 text-primary" />
           Binary Event Calendar
         </h3>
-        <div className="rounded-lg border border-zinc-800 overflow-hidden">
+        <div className="rounded-lg border border-border overflow-hidden">
           <table className="w-full text-xs">
             <thead>
-              <tr className="bg-zinc-900 border-b border-zinc-800">
-                <th className="text-left p-3 text-zinc-400 font-medium">Date</th>
-                <th className="text-left p-3 text-zinc-400 font-medium">Ticker</th>
-                <th className="text-left p-3 text-zinc-400 font-medium">Event</th>
-                <th className="text-left p-3 text-zinc-400 font-medium">Drug/Notes</th>
-                <th className="text-right p-3 text-zinc-400 font-medium">Implied Move</th>
+              <tr className="bg-card border-b border-border">
+                <th className="text-left p-3 text-muted-foreground font-medium">Date</th>
+                <th className="text-left p-3 text-muted-foreground font-medium">Ticker</th>
+                <th className="text-left p-3 text-muted-foreground font-medium">Event</th>
+                <th className="text-left p-3 text-muted-foreground font-medium">Drug/Notes</th>
+                <th className="text-right p-3 text-muted-foreground font-medium">Implied Move</th>
               </tr>
             </thead>
             <tbody>
@@ -532,16 +532,16 @@ function PipelineTracker() {
                 return (
                   <tr
                     key={i}
-                    className="border-b border-zinc-800/60 hover:bg-zinc-800/30 transition-colors"
+                    className="border-b border-border/60 hover:bg-muted/30 transition-colors"
                   >
-                    <td className="p-3 text-zinc-300 font-mono">{ev.date}</td>
+                    <td className="p-3 text-muted-foreground font-mono">{ev.date}</td>
                     <td className="p-3">
-                      <span className="font-mono font-bold text-white bg-zinc-800 px-1.5 py-0.5 rounded">
+                      <span className="font-mono font-bold text-white bg-muted px-1.5 py-0.5 rounded">
                         {ev.ticker}
                       </span>
                     </td>
                     <td className={cn("p-3 font-medium", eventColor)}>{ev.eventType}</td>
-                    <td className="p-3 text-zinc-400">{ev.drug}</td>
+                    <td className="p-3 text-muted-foreground">{ev.drug}</td>
                     <td className="p-3 text-right">
                       <span
                         className={cn(
@@ -550,7 +550,7 @@ function PipelineTracker() {
                             ? "text-rose-400"
                             : ev.impliedMove > 20
                             ? "text-amber-400"
-                            : "text-zinc-300"
+                            : "text-muted-foreground"
                         )}
                       >
                         ±{ev.impliedMove}%
@@ -566,20 +566,20 @@ function PipelineTracker() {
 
       {/* Risk matrix */}
       <div>
-        <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
           <Shield className="w-4 h-4 text-amber-400" />
           Phase Approval Probability Matrix
         </h3>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {STAGE_ORDER.map((stage) => (
-            <div key={stage} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3 text-center">
+            <div key={stage} className="bg-card border border-border rounded-lg p-3 text-center">
               <div
                 className="text-xl font-bold mb-1"
                 style={{ color: STAGE_COLORS[stage] }}
               >
                 {fmtPct(STAGE_POA[stage])}
               </div>
-              <div className="text-xs text-zinc-400">{stage}</div>
+              <div className="text-xs text-muted-foreground">{stage}</div>
             </div>
           ))}
         </div>
@@ -700,17 +700,17 @@ function DrugEconomics() {
           { label: "Success Rate", value: "0.01%", sub: "Compound → Approval", color: "text-primary" },
           { label: "Phase III Success", value: "58%", sub: "FDA NDA approval", color: "text-emerald-400" },
         ].map((stat) => (
-          <div key={stat.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-4">
+          <div key={stat.label} className="bg-card border border-border rounded-lg p-4">
             <div className={cn("text-2xl font-bold", stat.color)}>{stat.value}</div>
-            <div className="text-xs font-medium text-zinc-300 mt-1">{stat.label}</div>
-            <div className="text-xs text-zinc-500">{stat.sub}</div>
+            <div className="text-xs font-medium text-muted-foreground mt-1">{stat.label}</div>
+            <div className="text-xs text-muted-foreground">{stat.sub}</div>
           </div>
         ))}
       </div>
 
       {/* Success Probability Waterfall */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">
           Success Probability Waterfall: 10,000 Compounds → 1 Approved Drug
         </h3>
         <svg viewBox={`0 0 ${W} ${H + 60}`} className="w-full">
@@ -770,14 +770,14 @@ function DrugEconomics() {
       </div>
 
       {/* Development Timeline */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4">Drug Development Timeline</h3>
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Drug Development Timeline</h3>
         <TimelineSVG />
       </div>
 
       {/* NPV Calculator */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-emerald-400" />
           Risk-Adjusted NPV Calculator
         </h3>
@@ -790,7 +790,7 @@ function DrugEconomics() {
             { label: "Prob. of Approval (%)", value: poA, min: 5, max: 95, step: 1, setter: setPoA },
           ].map((param) => (
             <div key={param.label}>
-              <label className="text-xs text-zinc-400 mb-1 block">{param.label}</label>
+              <label className="text-xs text-muted-foreground mb-1 block">{param.label}</label>
               <input
                 type="range"
                 min={param.min}
@@ -806,12 +806,12 @@ function DrugEconomics() {
             </div>
           ))}
         </div>
-        <div className="bg-zinc-800/60 rounded-lg p-4 flex items-center justify-between">
+        <div className="bg-muted/60 rounded-lg p-4 flex items-center justify-between">
           <div>
-            <div className="text-xs text-zinc-400">Risk-Adjusted NPV (rNPV)</div>
+            <div className="text-xs text-muted-foreground">Risk-Adjusted NPV (rNPV)</div>
             <div className="text-2xl font-bold text-emerald-400">{fmtM(Math.round(npv))}</div>
           </div>
-          <div className="text-xs text-zinc-500 max-w-xs">
+          <div className="text-xs text-muted-foreground max-w-xs">
             Based on {poA}% PoA × 10-year discounted cash flows at {discountRate}% discount rate.
             Peak sales of {fmtM(peakSales)}/yr at 30% net margin.
           </div>
@@ -819,8 +819,8 @@ function DrugEconomics() {
       </div>
 
       {/* Patent Cliff */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Top Patent Cliffs (2023–2032)
         </h3>
@@ -962,7 +962,7 @@ function ValuationFramework() {
     <div className="space-y-6">
       {/* Company selector */}
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-sm text-zinc-400">Select company:</span>
+        <span className="text-sm text-muted-foreground">Select company:</span>
         {COMPANIES.slice(0, 8).map((c) => (
           <button
             key={c.ticker}
@@ -971,7 +971,7 @@ function ValuationFramework() {
               "px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors",
               selectedTicker === c.ticker
                 ? "bg-primary text-white"
-                : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                : "bg-muted text-muted-foreground hover:bg-muted"
             )}
           >
             {c.ticker}
@@ -980,11 +980,11 @@ function ValuationFramework() {
       </div>
 
       {/* Sum-of-parts panel */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-1">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-1">
           {co.name} ({co.ticker}) — Sum-of-Parts rNPV
         </h3>
-        <p className="text-xs text-zinc-500 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Each pipeline asset valued at probability-adjusted NPV using phase success rates
         </p>
         <div className="space-y-3">
@@ -1010,7 +1010,7 @@ function ValuationFramework() {
                       style={{ backgroundColor: STAGE_COLORS[drug.stage] }}
                     />
                     <span className="text-white font-medium">{drug.name}</span>
-                    <span className="text-zinc-500">({drug.indication})</span>
+                    <span className="text-muted-foreground">({drug.indication})</span>
                     <span
                       className="px-1.5 py-0.5 rounded text-xs"
                       style={{
@@ -1022,12 +1022,12 @@ function ValuationFramework() {
                     </span>
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="text-zinc-400">Gross NPV: <span className="text-zinc-300">{fmtM(Math.round(grossNPV))}</span></span>
-                    <span className="text-zinc-400">PoA: <span className="text-zinc-300">{fmtPct(STAGE_POA[drug.stage])}</span></span>
+                    <span className="text-muted-foreground">Gross NPV: <span className="text-muted-foreground">{fmtM(Math.round(grossNPV))}</span></span>
+                    <span className="text-muted-foreground">PoA: <span className="text-muted-foreground">{fmtPct(STAGE_POA[drug.stage])}</span></span>
                     <span className="text-emerald-400 font-bold">{fmtM(Math.round(riskAdjNPV))}</span>
                   </div>
                 </div>
-                <div className="w-full bg-zinc-800 rounded-full h-1.5">
+                <div className="w-full bg-muted rounded-full h-1.5">
                   <div
                     className="h-1.5 rounded-full transition-all"
                     style={{
@@ -1040,16 +1040,16 @@ function ValuationFramework() {
             );
           })}
         </div>
-        <div className="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between">
-          <span className="text-sm text-zinc-400">Total rNPV (pipeline)</span>
+        <div className="mt-4 pt-3 border-t border-border flex items-center justify-between">
+          <span className="text-sm text-muted-foreground">Total rNPV (pipeline)</span>
           <span className="text-lg font-bold text-emerald-400">{fmtM(Math.round(rnpv))}</span>
         </div>
         <div className="flex items-center justify-between mt-1">
-          <span className="text-xs text-zinc-500">Market Cap</span>
-          <span className="text-sm text-zinc-300">{fmtB(co.marketCap)}</span>
+          <span className="text-xs text-muted-foreground">Market Cap</span>
+          <span className="text-sm text-muted-foreground">{fmtB(co.marketCap)}</span>
         </div>
         <div className="flex items-center justify-between mt-1">
-          <span className="text-xs text-zinc-500">rNPV Premium / (Discount)</span>
+          <span className="text-xs text-muted-foreground">rNPV Premium / (Discount)</span>
           <span
             className={cn(
               "text-sm font-medium",
@@ -1062,24 +1062,24 @@ function ValuationFramework() {
       </div>
 
       {/* Comparables */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4">Valuation Multiples by Subsector</h3>
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Valuation Multiples by Subsector</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left p-2 text-zinc-400">Subsector</th>
-                <th className="text-left p-2 text-zinc-400">Primary Metric</th>
-                <th className="text-left p-2 text-zinc-400">Typical Range</th>
-                <th className="text-right p-2 text-zinc-400">Current Avg.</th>
+              <tr className="border-b border-border">
+                <th className="text-left p-2 text-muted-foreground">Subsector</th>
+                <th className="text-left p-2 text-muted-foreground">Primary Metric</th>
+                <th className="text-left p-2 text-muted-foreground">Typical Range</th>
+                <th className="text-right p-2 text-muted-foreground">Current Avg.</th>
               </tr>
             </thead>
             <tbody>
               {comparables.map((row, i) => (
-                <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
-                  <td className="p-2 text-zinc-300">{row.name}</td>
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
+                  <td className="p-2 text-muted-foreground">{row.name}</td>
                   <td className="p-2 text-primary font-mono">{row.metric}</td>
-                  <td className="p-2 text-zinc-400">{row.typical}</td>
+                  <td className="p-2 text-muted-foreground">{row.typical}</td>
                   <td className="p-2 text-right text-white font-medium">{row.current}</td>
                 </tr>
               ))}
@@ -1089,25 +1089,25 @@ function ValuationFramework() {
       </div>
 
       {/* M&A Case Studies */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-2 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
           <Target className="w-4 h-4 text-rose-400" />
           M&A Premium Examples — Big Pharma Pipeline Replacement
         </h3>
-        <p className="text-xs text-zinc-500 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Big pharma acquires at 50–100%+ premiums to replenish pipelines facing patent cliffs
         </p>
         <div className="space-y-2">
           {maDeals.map((deal, i) => (
-            <div key={i} className="flex items-start gap-3 bg-zinc-800/40 rounded p-3">
+            <div key={i} className="flex items-start gap-3 bg-muted/40 rounded p-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-xs font-bold text-white">{deal.acquirer}</span>
-                  <span className="text-xs text-zinc-500">acquires</span>
+                  <span className="text-xs text-muted-foreground">acquires</span>
                   <span className="text-xs font-bold text-primary">{deal.target}</span>
-                  <span className="text-xs text-zinc-400">({deal.year})</span>
+                  <span className="text-xs text-muted-foreground">({deal.year})</span>
                 </div>
-                <p className="text-xs text-zinc-500">{deal.rationale}</p>
+                <p className="text-xs text-muted-foreground">{deal.rationale}</p>
               </div>
               <div className="text-right shrink-0">
                 <div className="text-xs font-bold text-white">{deal.value}</div>
@@ -1164,30 +1164,30 @@ function SectorAnalysis() {
   return (
     <div className="space-y-6">
       {/* Subsector Comparison */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4">Subsector Comparison</h3>
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Subsector Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left p-2 text-zinc-400">Subsector</th>
-                <th className="text-right p-2 text-zinc-400">Revenue ($B)</th>
-                <th className="text-right p-2 text-zinc-400">R&D% Rev</th>
-                <th className="text-right p-2 text-zinc-400">Net Margin</th>
-                <th className="text-right p-2 text-zinc-400">Growth YoY</th>
-                <th className="text-left p-2 text-zinc-400">Examples</th>
+              <tr className="border-b border-border">
+                <th className="text-left p-2 text-muted-foreground">Subsector</th>
+                <th className="text-right p-2 text-muted-foreground">Revenue ($B)</th>
+                <th className="text-right p-2 text-muted-foreground">R&D% Rev</th>
+                <th className="text-right p-2 text-muted-foreground">Net Margin</th>
+                <th className="text-right p-2 text-muted-foreground">Growth YoY</th>
+                <th className="text-left p-2 text-muted-foreground">Examples</th>
               </tr>
             </thead>
             <tbody>
               {subsectorData.map((row, i) => (
-                <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
-                  <td className="p-2 text-zinc-300 font-medium">{row.name}</td>
-                  <td className="p-2 text-right text-zinc-200">${row.revenue}B</td>
+                <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
+                  <td className="p-2 text-muted-foreground font-medium">{row.name}</td>
+                  <td className="p-2 text-right text-foreground">${row.revenue}B</td>
                   <td className="p-2 text-right">
                     <span
                       className={cn(
                         "font-medium",
-                        row.rd > 30 ? "text-primary" : row.rd > 15 ? "text-amber-400" : "text-zinc-400"
+                        row.rd > 30 ? "text-primary" : row.rd > 15 ? "text-amber-400" : "text-muted-foreground"
                       )}
                     >
                       {row.rd}%
@@ -1195,11 +1195,11 @@ function SectorAnalysis() {
                   </td>
                   <td className="p-2 text-right text-emerald-400">{row.margin}%</td>
                   <td className="p-2 text-right">
-                    <span className={row.growth > 10 ? "text-emerald-400" : "text-zinc-300"}>
+                    <span className={row.growth > 10 ? "text-emerald-400" : "text-muted-foreground"}>
                       +{row.growth}%
                     </span>
                   </td>
-                  <td className="p-2 text-zinc-500 font-mono">{row.examples}</td>
+                  <td className="p-2 text-muted-foreground font-mono">{row.examples}</td>
                 </tr>
               ))}
             </tbody>
@@ -1208,14 +1208,14 @@ function SectorAnalysis() {
       </div>
 
       {/* Drug Categories */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4">Drug Categories by Indication</h3>
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Drug Categories by Indication</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {drugCategories.map((cat, i) => (
-            <div key={i} className="bg-zinc-800/40 rounded p-3 flex items-center justify-between">
+            <div key={i} className="bg-muted/40 rounded p-3 flex items-center justify-between">
               <div>
                 <div className="text-xs font-medium text-white">{cat.category}</div>
-                <div className="text-xs text-zinc-500 mt-0.5">Market: ${cat.marketSize}B | Growth: +{cat.growth}%/yr</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Market: ${cat.marketSize}B | Growth: +{cat.growth}%/yr</div>
               </div>
               <div className="text-right">
                 <div
@@ -1237,7 +1237,7 @@ function SectorAnalysis() {
                       ? "text-rose-400"
                       : cat.biosimilarRisk === "Moderate"
                       ? "text-amber-400"
-                      : "text-zinc-500"
+                      : "text-muted-foreground"
                   )}
                 >
                   Biosimilar: {cat.biosimilarRisk}
@@ -1249,8 +1249,8 @@ function SectorAnalysis() {
       </div>
 
       {/* Pricing Power: US vs International */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-amber-400" />
           US vs International Drug Pricing
         </h3>
@@ -1258,8 +1258,8 @@ function SectorAnalysis() {
       </div>
 
       {/* FDA Approvals */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4">FDA Approval Trends (NDA + BLA per Year)</h3>
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">FDA Approval Trends (NDA + BLA per Year)</h3>
         <svg viewBox={`0 0 ${W} ${H + 30}`} className="w-full" style={{ height: H + 30 }}>
           {fdaApprovals.map((yr, i) => {
             const x = i * groupGap + groupGap / 2 - barW / 2;
@@ -1291,9 +1291,9 @@ function SectorAnalysis() {
             { label: "Breakthrough Therapy", desc: "Preliminary evidence of substantial improvement over SOC", color: "text-primary" },
             { label: "Accelerated Approval", desc: "Based on surrogate endpoint; post-market confirmation required", color: "text-emerald-400" },
           ].map((d) => (
-            <div key={d.label} className="bg-zinc-800/40 rounded p-3">
+            <div key={d.label} className="bg-muted/40 rounded p-3">
               <div className={cn("text-xs font-semibold mb-1", d.color)}>{d.label}</div>
-              <div className="text-xs text-zinc-500">{d.desc}</div>
+              <div className="text-xs text-muted-foreground">{d.desc}</div>
             </div>
           ))}
         </div>
@@ -1392,12 +1392,12 @@ function BinaryEventTrading() {
   return (
     <div className="space-y-6">
       {/* Straddle Calculator */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-2 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
           ATM Straddle Calculator for Binary Events
         </h3>
-        <p className="text-xs text-zinc-500 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Buy ATM call + ATM put before catalysts to profit from large moves in either direction.
           Breakeven = ±straddle cost.
         </p>
@@ -1408,7 +1408,7 @@ function BinaryEventTrading() {
             { label: "Days to Event", value: daysToEvent, min: 5, max: 60, step: 1, setter: setDaysToEvent },
           ].map((p) => (
             <div key={p.label}>
-              <label className="text-xs text-zinc-400 mb-1 block">{p.label}</label>
+              <label className="text-xs text-muted-foreground mb-1 block">{p.label}</label>
               <input
                 type="range"
                 min={p.min}
@@ -1431,35 +1431,35 @@ function BinaryEventTrading() {
         />
 
         <div className="grid grid-cols-3 gap-4 mt-4">
-          <div className="bg-zinc-800/60 rounded p-3">
-            <div className="text-xs text-zinc-400">Straddle Cost</div>
+          <div className="bg-muted/60 rounded p-3">
+            <div className="text-xs text-muted-foreground">Straddle Cost</div>
             <div className="text-lg font-bold text-white">${straddleCost.toFixed(2)}</div>
-            <div className="text-xs text-zinc-500">per share</div>
+            <div className="text-xs text-muted-foreground">per share</div>
           </div>
-          <div className="bg-zinc-800/60 rounded p-3">
-            <div className="text-xs text-zinc-400">Breakeven Range</div>
+          <div className="bg-muted/60 rounded p-3">
+            <div className="text-xs text-muted-foreground">Breakeven Range</div>
             <div className="text-lg font-bold text-amber-400">±{breakeven.toFixed(1)}%</div>
-            <div className="text-xs text-zinc-500">
+            <div className="text-xs text-muted-foreground">
               ${(straddleUnderlying - straddleCost).toFixed(1)} – ${(straddleUnderlying + straddleCost).toFixed(1)}
             </div>
           </div>
-          <div className="bg-zinc-800/60 rounded p-3">
-            <div className="text-xs text-zinc-400">Max Loss</div>
+          <div className="bg-muted/60 rounded p-3">
+            <div className="text-xs text-muted-foreground">Max Loss</div>
             <div className="text-lg font-bold text-rose-400">${straddleCost.toFixed(2)}</div>
-            <div className="text-xs text-zinc-500">if stock stays flat</div>
+            <div className="text-xs text-muted-foreground">if stock stays flat</div>
           </div>
         </div>
       </div>
 
       {/* Historical Reactions */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4">Historical Stock Reactions to Binary Events</h3>
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Historical Stock Reactions to Binary Events</h3>
         <div className="space-y-2">
           {historicalReactions.map((ev, i) => (
-            <div key={i} className="flex items-center justify-between bg-zinc-800/40 rounded p-3">
+            <div key={i} className="flex items-center justify-between bg-muted/40 rounded p-3">
               <div className="flex-1">
                 <div className="text-xs font-medium text-white">{ev.event}</div>
-                <div className="text-xs text-zinc-500">n={ev.n} events • Range: {ev.range}</div>
+                <div className="text-xs text-muted-foreground">n={ev.n} events • Range: {ev.range}</div>
               </div>
               <div className="flex items-center gap-4">
                 <div
@@ -1470,7 +1470,7 @@ function BinaryEventTrading() {
                 >
                   {ev.avgReturn >= 0 ? "+" : ""}{ev.avgReturn}%
                 </div>
-                <div className="text-xs text-zinc-400">avg return</div>
+                <div className="text-xs text-muted-foreground">avg return</div>
               </div>
             </div>
           ))}
@@ -1478,8 +1478,8 @@ function BinaryEventTrading() {
       </div>
 
       {/* Position Sizing */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
           <Target className="w-4 h-4 text-primary" />
           Position Sizing for Binary Events
         </h3>
@@ -1490,34 +1490,34 @@ function BinaryEventTrading() {
             { label: "FDA Blue Chip", maxSize: "3–7%", why: "Large pharma, lower volatility", color: "text-primary" },
             { label: "Basket (10 names)", maxSize: "1–2% each", why: "Diversified across catalysts", color: "text-emerald-400" },
           ].map((ps) => (
-            <div key={ps.label} className="bg-zinc-800/40 rounded p-3">
-              <div className="text-xs font-medium text-zinc-300">{ps.label}</div>
+            <div key={ps.label} className="bg-muted/40 rounded p-3">
+              <div className="text-xs font-medium text-muted-foreground">{ps.label}</div>
               <div className={cn("text-lg font-bold mt-1", ps.color)}>{ps.maxSize}</div>
-              <div className="text-xs text-zinc-500 mt-1">{ps.why}</div>
+              <div className="text-xs text-muted-foreground mt-1">{ps.why}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Basket Approach */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-2 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
           <Layers className="w-4 h-4 text-emerald-400" />
           Catalyst Basket Simulation ($100K Portfolio)
         </h3>
-        <p className="text-xs text-zinc-500 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           Spreading small positions across 10 upcoming catalysts reduces variance vs concentrating in one.
         </p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left p-2 text-zinc-400">Ticker</th>
-                <th className="text-left p-2 text-zinc-400">Event</th>
-                <th className="text-left p-2 text-zinc-400">Date</th>
-                <th className="text-right p-2 text-zinc-400">Position</th>
-                <th className="text-right p-2 text-zinc-400">Result</th>
-                <th className="text-right p-2 text-zinc-400">P&L</th>
+              <tr className="border-b border-border">
+                <th className="text-left p-2 text-muted-foreground">Ticker</th>
+                <th className="text-left p-2 text-muted-foreground">Event</th>
+                <th className="text-left p-2 text-muted-foreground">Date</th>
+                <th className="text-right p-2 text-muted-foreground">Position</th>
+                <th className="text-right p-2 text-muted-foreground">Result</th>
+                <th className="text-right p-2 text-muted-foreground">P&L</th>
               </tr>
             </thead>
             <tbody>
@@ -1526,14 +1526,14 @@ function BinaryEventTrading() {
                   ? (c.positionPct / 100) * (c.move / 100) * 100000
                   : null;
                 return (
-                  <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
+                  <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                     <td className="p-2 font-mono font-bold text-white">{c.ticker}</td>
-                    <td className="p-2 text-zinc-400">{c.eventType}</td>
-                    <td className="p-2 text-zinc-500">{c.date}</td>
+                    <td className="p-2 text-muted-foreground">{c.eventType}</td>
+                    <td className="p-2 text-muted-foreground">{c.date}</td>
                     <td className="p-2 text-right text-primary">{c.positionPct.toFixed(1)}%</td>
                     <td className="p-2 text-right">
                       {c.result === "pending" ? (
-                        <span className="text-zinc-500">—</span>
+                        <span className="text-muted-foreground">—</span>
                       ) : (
                         <span
                           className={cn(
@@ -1551,7 +1551,7 @@ function BinaryEventTrading() {
                           {pnl >= 0 ? "+" : ""}${pnl.toFixed(0)}
                         </span>
                       ) : (
-                        <span className="text-zinc-500">Pending</span>
+                        <span className="text-muted-foreground">Pending</span>
                       )}
                     </td>
                   </tr>
@@ -1559,8 +1559,8 @@ function BinaryEventTrading() {
               })}
             </tbody>
             <tfoot>
-              <tr className="border-t border-zinc-700">
-                <td colSpan={5} className="p-2 text-right text-zinc-400 font-medium">
+              <tr className="border-t border-border">
+                <td colSpan={5} className="p-2 text-right text-muted-foreground font-medium">
                   Basket P&L:
                 </td>
                 <td className="p-2 text-right">
@@ -1580,8 +1580,8 @@ function BinaryEventTrading() {
       </div>
 
       {/* FDA Designations */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-        <h3 className="text-sm font-semibold text-zinc-300 mb-4 flex items-center gap-2">
+      <div className="bg-card border border-border rounded-lg p-5">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4 flex items-center gap-2">
           <Zap className="w-4 h-4 text-amber-400" />
           FDA Expedited Designations — Trading Implications
         </h3>
@@ -1623,11 +1623,11 @@ function BinaryEventTrading() {
             <div key={des.name} className={cn("border rounded-lg p-3 flex items-center justify-between", des.color)}>
               <div>
                 <div className={cn("text-xs font-bold", des.textColor)}>{des.name}</div>
-                <div className="text-xs text-zinc-400 mt-0.5">{des.granted}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{des.granted}</div>
               </div>
               <div className="text-right">
                 <div className="text-xs text-white font-medium">{des.impliedMove}</div>
-                <div className="text-xs text-zinc-500">{des.frequency} granted</div>
+                <div className="text-xs text-muted-foreground">{des.frequency} granted</div>
               </div>
             </div>
           ))}
@@ -1738,7 +1738,7 @@ function StraddlePayoffSVG({
 
 export default function BiotechPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1753,7 +1753,7 @@ export default function BiotechPage() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">Biotech & Pharma Investing</h1>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-muted-foreground">
                 Clinical pipeline tracker · Drug economics · Valuation · Binary events
               </p>
             </div>
@@ -1768,10 +1768,10 @@ export default function BiotechPage() {
               { label: "Avg Dev Cost", value: "$2.6B", sub: "All-in incl. failures", color: "text-rose-400" },
               { label: "M&A Premium", value: "50–100%", sub: "Big pharma acquisitions", color: "text-primary" },
             ].map((kpi) => (
-              <div key={kpi.label} className="bg-zinc-900 border border-zinc-800 rounded-lg p-3">
+              <div key={kpi.label} className="bg-card border border-border rounded-lg p-3">
                 <div className={cn("text-lg font-bold", kpi.color)}>{kpi.value}</div>
-                <div className="text-xs text-zinc-300 font-medium">{kpi.label}</div>
-                <div className="text-xs text-zinc-500">{kpi.sub}</div>
+                <div className="text-xs text-muted-foreground font-medium">{kpi.label}</div>
+                <div className="text-xs text-muted-foreground">{kpi.sub}</div>
               </div>
             ))}
           </div>
@@ -1779,7 +1779,7 @@ export default function BiotechPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="pipeline">
-          <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
             {[
               { value: "pipeline", label: "Pipeline Tracker", icon: <Pill className="w-3.5 h-3.5" /> },
               { value: "economics", label: "Drug Economics", icon: <DollarSign className="w-3.5 h-3.5" /> },
@@ -1790,7 +1790,7 @@ export default function BiotechPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-zinc-700 data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
               >
                 {tab.icon}
                 {tab.label}

@@ -473,8 +473,8 @@ function FundingStagesTab() {
   return (
     <div className="space-y-6">
       {/* Funnel SVG */}
-      <div className="rounded-xl bg-zinc-900 border border-zinc-800 p-4">
-        <p className="text-xs text-zinc-400 mb-3 uppercase tracking-wide font-medium">
+      <div className="rounded-xl bg-card border border-border p-4">
+        <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wide font-medium">
           Startup Funding Funnel — % Companies Reaching Each Stage
         </p>
         <svg
@@ -540,7 +540,7 @@ function FundingStagesTab() {
               "rounded-lg border p-2 text-center transition-all text-xs font-medium",
               selected.name === stage.name
                 ? "border-transparent text-white"
-                : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-500"
+                : "border-border bg-card text-muted-foreground hover:border-zinc-500"
             )}
             style={
               selected.name === stage.name
@@ -565,13 +565,13 @@ function FundingStagesTab() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
-          className="rounded-xl border bg-zinc-900 p-5"
+          className="rounded-xl border bg-card p-5"
           style={{ borderColor: selected.color + "55" }}
         >
           <div className="flex items-start justify-between mb-4">
             <div>
               <h3 className="text-xl font-bold text-white">{selected.name}</h3>
-              <p className="text-sm text-zinc-400 mt-1 max-w-xl">{selected.description}</p>
+              <p className="text-sm text-muted-foreground mt-1 max-w-xl">{selected.description}</p>
             </div>
             <Badge
               className="text-white text-xs px-3 py-1 mt-1"
@@ -590,9 +590,9 @@ function FundingStagesTab() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="rounded-lg bg-zinc-800 border border-zinc-700 p-3"
+                className="rounded-lg bg-muted border border-border p-3"
               >
-                <p className="text-xs text-zinc-500 mb-1">{item.label}</p>
+                <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
                 <p className="text-sm font-semibold text-white">{item.value}</p>
               </div>
             ))}
@@ -600,12 +600,12 @@ function FundingStagesTab() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs text-zinc-500 uppercase tracking-wide mb-2 font-medium">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2 font-medium">
                 Investor Types
               </p>
               <div className="space-y-1">
                 {selected.investors.map((inv) => (
-                  <div key={inv} className="flex items-center gap-2 text-sm text-zinc-300">
+                  <div key={inv} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <CheckCircle className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                     {inv}
                   </div>
@@ -613,12 +613,12 @@ function FundingStagesTab() {
               </div>
             </div>
             <div>
-              <p className="text-xs text-zinc-500 uppercase tracking-wide mb-2 font-medium">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2 font-medium">
                 Key Milestones
               </p>
               <div className="space-y-1">
                 {selected.milestones.map((m) => (
-                  <div key={m} className="flex items-center gap-2 text-sm text-zinc-300">
+                  <div key={m} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Target className="w-3.5 h-3.5 flex-shrink-0" style={{ color: selected.color }} />
                     {m}
                   </div>
@@ -748,8 +748,8 @@ function CapTableTab() {
   return (
     <div className="space-y-6">
       {/* Dilution waterfall */}
-      <div className="rounded-xl bg-zinc-900 border border-zinc-800 p-4">
-        <p className="text-xs text-zinc-400 mb-3 uppercase tracking-wide font-medium">
+      <div className="rounded-xl bg-card border border-border p-4">
+        <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wide font-medium">
           Ownership Dilution Waterfall
         </p>
         <svg viewBox={`0 0 ${waterW} ${waterH}`} className="w-full" preserveAspectRatio="xMidYMid meet">
@@ -791,16 +791,16 @@ function CapTableTab() {
       </div>
 
       {/* Cap table */}
-      <div className="rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden">
-        <div className="flex items-center justify-between p-4 border-b border-zinc-800">
+      <div className="rounded-xl bg-card border border-border overflow-hidden">
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <p className="text-sm font-semibold text-white">Cap Table</p>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-zinc-500">
+            <span className="text-xs text-muted-foreground">
               {totalShares.toLocaleString()} total shares
             </span>
             <button
               onClick={resetCap}
-              className="flex items-center gap-1 text-xs text-zinc-400 hover:text-white px-2 py-1 rounded border border-zinc-700 hover:border-zinc-500 transition-colors"
+              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-white px-2 py-1 rounded border border-border hover:border-zinc-500 transition-colors"
             >
               <RefreshCw className="w-3 h-3" /> Reset
             </button>
@@ -808,9 +808,9 @@ function CapTableTab() {
         </div>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-zinc-800">
+            <tr className="border-b border-border">
               {["Shareholder", "Type", "Shares", "Ownership %", "Post-round Value"].map((h) => (
-                <th key={h} className="text-left text-xs text-zinc-500 font-medium px-4 py-2">
+                <th key={h} className="text-left text-xs text-muted-foreground font-medium px-4 py-2">
                   {h}
                 </th>
               ))}
@@ -827,7 +827,7 @@ function CapTableTab() {
                 <>
                   <tr
                     key={sh.id}
-                    className="border-b border-zinc-800/60 hover:bg-zinc-800/40 cursor-pointer transition-colors"
+                    className="border-b border-border/60 hover:bg-muted/40 cursor-pointer transition-colors"
                     onClick={() => setExpandedRow(isExpanded ? null : sh.id)}
                   >
                     <td className="px-4 py-2.5">
@@ -848,30 +848,30 @@ function CapTableTab() {
                         {sh.type}
                       </Badge>
                     </td>
-                    <td className="px-4 py-2.5 text-zinc-300 font-mono text-xs">
+                    <td className="px-4 py-2.5 text-muted-foreground font-mono text-xs">
                       {sh.shares.toLocaleString()}
                     </td>
                     <td className="px-4 py-2.5">
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 h-1.5 bg-zinc-700 rounded-full overflow-hidden max-w-[80px]">
+                        <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden max-w-[80px]">
                           <div
                             className="h-full rounded-full"
                             style={{ width: `${pct}%`, backgroundColor: sh.color }}
                           />
                         </div>
-                        <span className="text-zinc-300 text-xs font-mono">
+                        <span className="text-muted-foreground text-xs font-mono">
                           {fmtPct(pct, 2)}
                         </span>
                       </div>
                     </td>
-                    <td className="px-4 py-2.5 text-zinc-300 text-xs font-mono">
+                    <td className="px-4 py-2.5 text-muted-foreground text-xs font-mono">
                       {fmtK(value)}
                     </td>
                   </tr>
                   {isExpanded && (
-                    <tr key={`${sh.id}-detail`} className="bg-zinc-800/30">
-                      <td colSpan={5} className="px-6 py-3 text-xs text-zinc-400">
-                        <strong className="text-zinc-300">Dilution history:</strong> Started with {sh.type === "investor" ? "0" : sh.shares.toLocaleString()} shares.
+                    <tr key={`${sh.id}-detail`} className="bg-muted/30">
+                      <td colSpan={5} className="px-6 py-3 text-xs text-muted-foreground">
+                        <strong className="text-muted-foreground">Dilution history:</strong> Started with {sh.type === "investor" ? "0" : sh.shares.toLocaleString()} shares.
                         {sh.type === "investor" && ` Received ${sh.shares.toLocaleString()} shares as part of funding round.`}
                         {sh.type === "founder" && ` Current dilution from ${state.completedRounds.length} round(s) completed so far.`}
                         {sh.type === "optionPool" && " Reserved for future employee grants."}
@@ -886,14 +886,14 @@ function CapTableTab() {
       </div>
 
       {/* Apply next round */}
-      <div className="rounded-xl border border-zinc-700 bg-zinc-900 p-4">
+      <div className="rounded-xl border border-border bg-card p-4">
         {nextRound ? (
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold text-white mb-1">
                 Next: {nextRound.name} Round
               </p>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-muted-foreground">
                 Pre-money: {fmtM(nextRound.preMoneyVal)} · Investment: {fmtM(nextRound.investment)} ·{" "}
                 {nextRound.newShares.toLocaleString()} new shares @ ${nextRound.pricePerShare.toFixed(2)}
               </p>
@@ -908,8 +908,8 @@ function CapTableTab() {
         ) : (
           <div className="text-center py-4">
             <CheckCircle className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
-            <p className="text-sm text-zinc-300 font-medium">All preset rounds completed!</p>
-            <p className="text-xs text-zinc-500 mt-1">
+            <p className="text-sm text-muted-foreground font-medium">All preset rounds completed!</p>
+            <p className="text-xs text-muted-foreground mt-1">
               Founders now own ~{fmtPct(
                 (state.shareholders
                   .filter((s) => s.type === "founder")
@@ -926,7 +926,7 @@ function CapTableTab() {
       {/* Legend */}
       <div className="flex flex-wrap gap-3">
         {state.shareholders.map((sh) => (
-          <div key={sh.id} className="flex items-center gap-1.5 text-xs text-zinc-400">
+          <div key={sh.id} className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: sh.color }} />
             {sh.name}
           </div>
@@ -959,7 +959,7 @@ function TermSheetTab() {
       </InfoBox>
 
       {/* Worked example box */}
-      <div className="rounded-xl bg-zinc-900 border border-zinc-800 p-4">
+      <div className="rounded-xl bg-card border border-border p-4">
         <p className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Worked Example: Series A Term Sheet
@@ -975,13 +975,13 @@ function TermSheetTab() {
             { label: "Liquidation pref", value: "1x non-participating" },
             { label: "Anti-dilution", value: "Broad-based WA" },
           ].map((item) => (
-            <div key={item.label} className="bg-zinc-800 rounded-lg p-2.5 border border-zinc-700">
-              <p className="text-zinc-500 mb-1">{item.label}</p>
+            <div key={item.label} className="bg-muted rounded-lg p-2.5 border border-border">
+              <p className="text-muted-foreground mb-1">{item.label}</p>
               <p className="font-semibold text-white">{item.value}</p>
             </div>
           ))}
         </div>
-        <div className="mt-3 text-xs text-zinc-400 space-y-1">
+        <div className="mt-3 text-xs text-muted-foreground space-y-1">
           <p>
             <span className="text-amber-400 font-medium">Option pool shuffle impact:</span> The 15%
             pool is carved out of the pre-money, reducing effective pre-money from $18M to ~$15.3M.
@@ -1004,11 +1004,11 @@ function TermSheetTab() {
               key={item.term}
               className={cn(
                 "rounded-xl border transition-all overflow-hidden",
-                isOpen ? "border-indigo-500/50 bg-zinc-900" : "border-zinc-800 bg-zinc-900"
+                isOpen ? "border-indigo-500/50 bg-card" : "border-border bg-card"
               )}
             >
               <button
-                className="w-full flex items-center justify-between p-4 text-left hover:bg-zinc-800/40 transition-colors"
+                className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/40 transition-colors"
                 onClick={() => setOpenTerm(isOpen ? null : item.term)}
               >
                 <div className="flex items-center gap-3">
@@ -1025,9 +1025,9 @@ function TermSheetTab() {
                   </span>
                 </div>
                 {isOpen ? (
-                  <ChevronUp className="w-4 h-4 text-zinc-400 flex-shrink-0" />
+                  <ChevronUp className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-zinc-400 flex-shrink-0" />
+                  <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 )}
               </button>
               <AnimatePresence>
@@ -1040,15 +1040,15 @@ function TermSheetTab() {
                     className="overflow-hidden"
                   >
                     <div className="px-4 pb-4 space-y-3 text-sm">
-                      <p className="text-zinc-300">{item.definition}</p>
+                      <p className="text-muted-foreground">{item.definition}</p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="rounded-lg bg-zinc-800 border border-zinc-700 p-3">
-                          <p className="text-xs text-zinc-500 mb-1 font-medium">Founder Impact</p>
-                          <p className="text-zinc-300 text-xs">{item.founderImpact}</p>
+                        <div className="rounded-lg bg-muted border border-border p-3">
+                          <p className="text-xs text-muted-foreground mb-1 font-medium">Founder Impact</p>
+                          <p className="text-muted-foreground text-xs">{item.founderImpact}</p>
                         </div>
-                        <div className="rounded-lg bg-zinc-800 border border-zinc-700 p-3">
-                          <p className="text-xs text-zinc-500 mb-1 font-medium">Example</p>
-                          <p className="text-zinc-300 text-xs">{item.example}</p>
+                        <div className="rounded-lg bg-muted border border-border p-3">
+                          <p className="text-xs text-muted-foreground mb-1 font-medium">Example</p>
+                          <p className="text-muted-foreground text-xs">{item.example}</p>
                         </div>
                       </div>
                     </div>
@@ -1097,7 +1097,7 @@ function ValuationTab() {
               "rounded-xl border p-3 text-left transition-all",
               selected.name === m.name
                 ? "text-white"
-                : "border-zinc-700 bg-zinc-900 text-zinc-400 hover:border-zinc-500"
+                : "border-border bg-card text-muted-foreground hover:border-zinc-500"
             )}
             style={
               selected.name === m.name
@@ -1108,7 +1108,7 @@ function ValuationTab() {
             <p className="text-sm font-semibold mb-1" style={selected.name === m.name ? { color: m.color } : {}}>
               {m.name}
             </p>
-            <p className="text-xs text-zinc-500">{m.stage}</p>
+            <p className="text-xs text-muted-foreground">{m.stage}</p>
           </button>
         ))}
       </div>
@@ -1120,18 +1120,18 @@ function ValuationTab() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.18 }}
-          className="rounded-xl border bg-zinc-900 p-5"
+          className="rounded-xl border bg-card p-5"
           style={{ borderColor: selected.color + "55" }}
         >
           <h3 className="text-base font-bold text-white mb-1">{selected.name}</h3>
-          <p className="text-sm text-zinc-400 mb-4">{selected.description}</p>
+          <p className="text-sm text-muted-foreground mb-4">{selected.description}</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <p className="text-xs text-zinc-500 uppercase tracking-wide font-medium mb-2">Steps</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-2">Steps</p>
               <ol className="space-y-1.5">
                 {selected.steps.map((step, i) => (
-                  <li key={i} className="flex gap-2 text-xs text-zinc-300">
+                  <li key={i} className="flex gap-2 text-xs text-muted-foreground">
                     <span
                       className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-xs font-bold"
                       style={{ backgroundColor: selected.color }}
@@ -1145,17 +1145,17 @@ function ValuationTab() {
             </div>
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-zinc-500 uppercase tracking-wide font-medium mb-1.5">Pros</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1.5">Pros</p>
                 {selected.pros.map((p) => (
-                  <div key={p} className="flex items-start gap-1.5 text-xs text-zinc-300 mb-1">
+                  <div key={p} className="flex items-start gap-1.5 text-xs text-muted-foreground mb-1">
                     <CheckCircle className="w-3 h-3 text-emerald-400 flex-shrink-0 mt-0.5" /> {p}
                   </div>
                 ))}
               </div>
               <div>
-                <p className="text-xs text-zinc-500 uppercase tracking-wide font-medium mb-1.5">Cons</p>
+                <p className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1.5">Cons</p>
                 {selected.cons.map((c) => (
-                  <div key={c} className="flex items-start gap-1.5 text-xs text-zinc-300 mb-1">
+                  <div key={c} className="flex items-start gap-1.5 text-xs text-muted-foreground mb-1">
                     <AlertTriangle className="w-3 h-3 text-amber-400 flex-shrink-0 mt-0.5" /> {c}
                   </div>
                 ))}
@@ -1165,13 +1165,13 @@ function ValuationTab() {
 
           {/* Interactive calculator for VC method */}
           {selected.name === "VC Method" && (
-            <div className="rounded-lg border border-zinc-700 bg-zinc-800 p-4 space-y-4">
-              <p className="text-xs font-semibold text-zinc-300 uppercase tracking-wide">
+            <div className="rounded-lg border border-border bg-muted p-4 space-y-4">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                 VC Method Calculator
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs text-zinc-400 mb-1 block">
+                  <label className="text-xs text-muted-foreground mb-1 block">
                     Expected Exit Value: {fmtM(exitVal)}
                   </label>
                   <input
@@ -1185,7 +1185,7 @@ function ValuationTab() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-zinc-400 mb-1 block">
+                  <label className="text-xs text-muted-foreground mb-1 block">
                     Target Return Multiple: {targetMult}x
                   </label>
                   <input
@@ -1205,8 +1205,8 @@ function ValuationTab() {
                   { label: "Max Pre-Money", value: fmtM(Math.max(0, vcPreMoney)) },
                   { label: "Investor Ownership", value: fmtPct(vcOwnership) },
                 ].map((item) => (
-                  <div key={item.label} className="bg-zinc-900 rounded-lg p-2.5 text-center">
-                    <p className="text-xs text-zinc-500 mb-1">{item.label}</p>
+                  <div key={item.label} className="bg-card rounded-lg p-2.5 text-center">
+                    <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
                     <p className="text-sm font-bold text-white">{item.value}</p>
                   </div>
                 ))}
@@ -1216,13 +1216,13 @@ function ValuationTab() {
 
           {/* Interactive calculator for Revenue Multiple */}
           {selected.name === "Revenue Multiple" && (
-            <div className="rounded-lg border border-zinc-700 bg-zinc-800 p-4 space-y-4">
-              <p className="text-xs font-semibold text-zinc-300 uppercase tracking-wide">
+            <div className="rounded-lg border border-border bg-muted p-4 space-y-4">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
                 Revenue Multiple Calculator
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-xs text-zinc-400 mb-1 block">
+                  <label className="text-xs text-muted-foreground mb-1 block">
                     ARR: {fmtM(revArr)}
                   </label>
                   <input
@@ -1236,7 +1236,7 @@ function ValuationTab() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-zinc-400 mb-1 block">
+                  <label className="text-xs text-muted-foreground mb-1 block">
                     EV/ARR Multiple: {revMult}x
                   </label>
                   <input
@@ -1250,8 +1250,8 @@ function ValuationTab() {
                   />
                 </div>
               </div>
-              <div className="bg-zinc-900 rounded-lg p-3 text-center">
-                <p className="text-xs text-zinc-500 mb-1">Implied Enterprise Value</p>
+              <div className="bg-card rounded-lg p-3 text-center">
+                <p className="text-xs text-muted-foreground mb-1">Implied Enterprise Value</p>
                 <p className="text-2xl font-bold text-primary">{fmtM(rmEV)}</p>
               </div>
             </div>
@@ -1260,22 +1260,22 @@ function ValuationTab() {
       </AnimatePresence>
 
       {/* Sensitivity table */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-4">
+      <div className="rounded-xl border border-border bg-card p-4">
         <p className="text-sm font-semibold text-white mb-3">
           VC Method Sensitivity Table — Pre-Money ($M)
         </p>
-        <p className="text-xs text-zinc-500 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Assumes $5M investment. Each cell: (Exit Value / Multiple) − $5M
         </p>
         <div className="overflow-x-auto">
           <table className="text-xs min-w-full">
             <thead>
               <tr>
-                <th className="text-left text-zinc-500 font-medium px-2 py-1.5 border-b border-zinc-800">
+                <th className="text-left text-muted-foreground font-medium px-2 py-1.5 border-b border-border">
                   Exit → / Mult ↓
                 </th>
                 {exits.map((e) => (
-                  <th key={e} className="text-center text-zinc-400 font-medium px-3 py-1.5 border-b border-zinc-800">
+                  <th key={e} className="text-center text-muted-foreground font-medium px-3 py-1.5 border-b border-border">
                     {fmtM(e)}
                   </th>
                 ))}
@@ -1283,8 +1283,8 @@ function ValuationTab() {
             </thead>
             <tbody>
               {multiples.map((mult) => (
-                <tr key={mult} className="border-b border-zinc-800/50">
-                  <td className="text-zinc-400 font-medium px-2 py-1.5">{mult}x</td>
+                <tr key={mult} className="border-b border-border/50">
+                  <td className="text-muted-foreground font-medium px-2 py-1.5">{mult}x</td>
                   {exits.map((exit) => {
                     const preMoney = exit / mult - investAmt;
                     const isPos = preMoney > 0;
@@ -1364,14 +1364,14 @@ function EmployeeOptionsTab() {
               "rounded-xl border p-4 transition-all cursor-pointer",
               (opt.name === "ISO") === isoMode
                 ? "border-indigo-500/60 bg-indigo-500/10"
-                : "border-zinc-700 bg-zinc-900 hover:border-zinc-500"
+                : "border-border bg-card hover:border-zinc-500"
             )}
             onClick={() => setIsoMode(opt.name === "ISO")}
           >
             <div className="flex items-center justify-between mb-3">
               <div>
                 <p className="text-sm font-bold text-white">{opt.name}</p>
-                <p className="text-xs text-zinc-400">{opt.fullName}</p>
+                <p className="text-xs text-muted-foreground">{opt.fullName}</p>
               </div>
               <Badge
                 variant="outline"
@@ -1394,8 +1394,8 @@ function EmployeeOptionsTab() {
                 { label: "Best for", value: opt.bestFor },
               ].map((row) => (
                 <div key={row.label} className="flex justify-between gap-2">
-                  <span className="text-zinc-500 flex-shrink-0">{row.label}:</span>
-                  <span className="text-zinc-300 text-right">{row.value}</span>
+                  <span className="text-muted-foreground flex-shrink-0">{row.label}:</span>
+                  <span className="text-muted-foreground text-right">{row.value}</span>
                 </div>
               ))}
             </div>
@@ -1404,14 +1404,14 @@ function EmployeeOptionsTab() {
       </div>
 
       {/* Options calculator */}
-      <div className="rounded-xl bg-zinc-900 border border-zinc-800 p-5 space-y-4">
+      <div className="rounded-xl bg-card border border-border p-5 space-y-4">
         <p className="text-sm font-semibold text-white flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Option Value Calculator
         </p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">
+            <label className="text-xs text-muted-foreground mb-1 block">
               Strike Price (409A): ${strikePrice.toFixed(2)}
             </label>
             <input
@@ -1425,7 +1425,7 @@ function EmployeeOptionsTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">
+            <label className="text-xs text-muted-foreground mb-1 block">
               Current FMV: ${currentFMV.toFixed(2)}
             </label>
             <input
@@ -1439,7 +1439,7 @@ function EmployeeOptionsTab() {
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">
+            <label className="text-xs text-muted-foreground mb-1 block">
               Options Granted: {numOptions.toLocaleString()}
             </label>
             <input
@@ -1466,8 +1466,8 @@ function EmployeeOptionsTab() {
               highlight: afterTaxValue > 0,
             },
           ].map((item) => (
-            <div key={item.label} className="bg-zinc-800 rounded-lg p-3 border border-zinc-700">
-              <p className="text-xs text-zinc-500 mb-1">{item.label}</p>
+            <div key={item.label} className="bg-muted rounded-lg p-3 border border-border">
+              <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
               <p
                 className={cn(
                   "text-sm font-bold",
@@ -1476,14 +1476,14 @@ function EmployeeOptionsTab() {
               >
                 {item.value}
               </p>
-              <p className="text-xs text-zinc-600 mt-0.5">{item.sub}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{item.sub}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Vesting schedule visualizer */}
-      <div className="rounded-xl bg-zinc-900 border border-zinc-800 p-4 space-y-4">
+      <div className="rounded-xl bg-card border border-border p-4 space-y-4">
         <div className="flex items-center justify-between">
           <p className="text-sm font-semibold text-white">Vesting Schedule Visualizer</p>
           <div className="flex gap-2">
@@ -1495,7 +1495,7 @@ function EmployeeOptionsTab() {
                   "text-xs px-2 py-1 rounded border transition-colors",
                   vestingIdx === i
                     ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                    : "border-zinc-700 text-zinc-500 hover:border-zinc-500"
+                    : "border-border text-muted-foreground hover:border-zinc-500"
                 )}
               >
                 {sch.label}
@@ -1505,7 +1505,7 @@ function EmployeeOptionsTab() {
         </div>
 
         <div>
-          <label className="text-xs text-zinc-400 mb-1 block">
+          <label className="text-xs text-muted-foreground mb-1 block">
             Months Worked: {monthsWorked} months ({(monthsWorked / 12).toFixed(1)} years)
           </label>
           <input
@@ -1568,12 +1568,12 @@ function EmployeeOptionsTab() {
           )}
         </svg>
 
-        <div className="flex gap-4 text-xs text-zinc-500">
+        <div className="flex gap-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded bg-indigo-500" /> Vested
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded bg-slate-700" /> Unvested
+            <div className="w-3 h-3 rounded bg-muted" /> Unvested
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 border border-dashed border-amber-400" /> Cliff date
@@ -1609,7 +1609,7 @@ export default function StartupFundingPage() {
   void _noise;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="mb-6">
@@ -1619,7 +1619,7 @@ export default function StartupFundingPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Startup Funding</h1>
-              <p className="text-sm text-zinc-400">
+              <p className="text-sm text-muted-foreground">
                 Funding rounds, cap tables, term sheets, valuation methods, employee equity
               </p>
             </div>
@@ -1635,7 +1635,7 @@ export default function StartupFundingPage() {
               <div
                 key={chip.label}
                 className={cn(
-                  "flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-zinc-700 bg-zinc-900",
+                  "flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-border bg-card",
                   chip.color
                 )}
               >
@@ -1648,7 +1648,7 @@ export default function StartupFundingPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="stages">
-          <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
             {[
               { value: "stages", label: "Funding Stages", icon: <TrendingUp className="w-3.5 h-3.5" /> },
               { value: "captable", label: "Cap Table", icon: <PieChart className="w-3.5 h-3.5" /> },
@@ -1659,7 +1659,7 @@ export default function StartupFundingPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-zinc-800 data-[state=active]:text-white text-zinc-400"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
               >
                 {tab.icon}
                 {tab.label}

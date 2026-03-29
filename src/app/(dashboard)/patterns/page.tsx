@@ -503,13 +503,13 @@ function PatternLibraryTab() {
       {/* Search + Filter Bar */}
       <div className="flex flex-wrap gap-3 items-center">
         <div className="relative flex-1 min-w-48">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search patterns..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-zinc-200 placeholder:text-zinc-600 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-9 pr-4 py-2 bg-card border border-border rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-indigo-500"
           />
         </div>
         {(["All", "Reversal", "Continuation", "Bilateral"] as const).map((cat) => (
@@ -520,7 +520,7 @@ function PatternLibraryTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               filterCat === cat
                 ? "bg-indigo-600 border-indigo-500 text-white"
-                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-600"
+                : "bg-card border-border text-muted-foreground hover:border-border"
             )}
           >
             {cat}
@@ -528,7 +528,7 @@ function PatternLibraryTab() {
         ))}
       </div>
 
-      <p className="text-xs text-zinc-500">{filtered.length} patterns</p>
+      <p className="text-xs text-muted-foreground">{filtered.length} patterns</p>
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
@@ -539,10 +539,10 @@ function PatternLibraryTab() {
               key={pattern.id}
               layout
               className={cn(
-                "rounded-xl border bg-zinc-900/60 overflow-hidden cursor-pointer transition-colors",
+                "rounded-xl border bg-card/60 overflow-hidden cursor-pointer transition-colors",
                 isExpanded
                   ? "border-indigo-500/50 col-span-1"
-                  : "border-zinc-800 hover:border-zinc-600"
+                  : "border-border hover:border-border"
               )}
               onClick={() => setExpandedId(isExpanded ? null : pattern.id)}
             >
@@ -550,7 +550,7 @@ function PatternLibraryTab() {
               <div className="p-4 pb-3">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="text-sm font-semibold text-zinc-100">{pattern.name}</h3>
+                    <h3 className="text-sm font-semibold text-foreground">{pattern.name}</h3>
                     <span
                       className={cn(
                         "inline-flex items-center gap-1 text-xs px-1.5 py-0.5 rounded border mt-1",
@@ -561,11 +561,11 @@ function PatternLibraryTab() {
                     </span>
                   </div>
                   <div className="flex flex-col items-end gap-1">
-                    <div className="flex items-center gap-1 text-xs text-zinc-400">
+                    <div className="flex items-center gap-1 text-xs text-muted-foreground">
                       {dirIcon(pattern.breakoutDir)}
                       <span>{pattern.breakoutDir}</span>
                     </div>
-                    <span className="text-xs text-zinc-500">{pattern.timeframe}</span>
+                    <span className="text-xs text-muted-foreground">{pattern.timeframe}</span>
                   </div>
                 </div>
 
@@ -581,10 +581,10 @@ function PatternLibraryTab() {
                 {/* Reliability bar */}
                 <div className="mt-3 space-y-1">
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">Reliability</span>
-                    <span className="text-zinc-300 font-medium">{pattern.reliability}%</span>
+                    <span className="text-muted-foreground">Reliability</span>
+                    <span className="text-muted-foreground font-medium">{pattern.reliability}%</span>
                   </div>
-                  <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                  <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                     <motion.div
                       className="h-full bg-gradient-to-r from-indigo-500 to-indigo-400 rounded-full"
                       initial={{ width: 0 }}
@@ -595,13 +595,13 @@ function PatternLibraryTab() {
                 </div>
 
                 <div className="flex items-center justify-between mt-3">
-                  <span className="text-xs text-zinc-500">
-                    Avg move: <span className="text-zinc-300">~{pattern.avgMove}%</span>
+                  <span className="text-xs text-muted-foreground">
+                    Avg move: <span className="text-muted-foreground">~{pattern.avgMove}%</span>
                   </span>
                   {isExpanded ? (
-                    <ChevronUp className="h-4 w-4 text-zinc-500" />
+                    <ChevronUp className="h-4 w-4 text-muted-foreground" />
                   ) : (
-                    <ChevronDown className="h-4 w-4 text-zinc-500" />
+                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
                   )}
                 </div>
               </div>
@@ -616,20 +616,20 @@ function PatternLibraryTab() {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-4 pb-4 space-y-3 border-t border-zinc-800 pt-3">
-                      <p className="text-xs text-zinc-400 leading-relaxed">{pattern.description}</p>
+                    <div className="px-4 pb-4 space-y-3 border-t border-border pt-3">
+                      <p className="text-xs text-muted-foreground leading-relaxed">{pattern.description}</p>
                       <div className="space-y-2">
                         <div className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-900/30">
                           <p className="text-xs font-medium text-emerald-400 mb-0.5">Entry Trigger</p>
-                          <p className="text-xs text-zinc-400">{pattern.entryTrigger}</p>
+                          <p className="text-xs text-muted-foreground">{pattern.entryTrigger}</p>
                         </div>
                         <div className="p-2 rounded-lg bg-red-950/40 border border-red-900/30">
                           <p className="text-xs font-medium text-red-400 mb-0.5">Stop Loss</p>
-                          <p className="text-xs text-zinc-400">{pattern.stopLoss}</p>
+                          <p className="text-xs text-muted-foreground">{pattern.stopLoss}</p>
                         </div>
                         <div className="p-2 rounded-lg bg-indigo-950/40 border border-indigo-900/30">
                           <p className="text-xs font-medium text-indigo-400 mb-0.5">Target Projection</p>
-                          <p className="text-xs text-zinc-400">{pattern.targetProjection}</p>
+                          <p className="text-xs text-muted-foreground">{pattern.targetProjection}</p>
                         </div>
                       </div>
                     </div>
@@ -737,23 +737,23 @@ function PatternQuizTab() {
       >
         <div className="text-6xl">{pct >= 80 ? "🏆" : pct >= 60 ? "⭐" : "📚"}</div>
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-zinc-100">Quiz Complete!</h2>
-          <p className="text-zinc-400 mt-1">
+          <h2 className="text-2xl font-bold text-foreground">Quiz Complete!</h2>
+          <p className="text-muted-foreground mt-1">
             You scored {score}/{total} ({pct}%)
           </p>
         </div>
         <div className="flex gap-6">
-          <div className="text-center p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+          <div className="text-center p-4 rounded-xl bg-card border border-border">
             <p className="text-2xl font-bold text-indigo-400">+{xpEarned}</p>
-            <p className="text-xs text-zinc-500 mt-1">XP Earned</p>
+            <p className="text-xs text-muted-foreground mt-1">XP Earned</p>
           </div>
-          <div className="text-center p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+          <div className="text-center p-4 rounded-xl bg-card border border-border">
             <p className="text-2xl font-bold text-emerald-400">{score}</p>
-            <p className="text-xs text-zinc-500 mt-1">Correct</p>
+            <p className="text-xs text-muted-foreground mt-1">Correct</p>
           </div>
-          <div className="text-center p-4 rounded-xl bg-zinc-900 border border-zinc-800">
+          <div className="text-center p-4 rounded-xl bg-card border border-border">
             <p className="text-2xl font-bold text-amber-400">{total - score}</p>
-            <p className="text-xs text-zinc-500 mt-1">Missed</p>
+            <p className="text-xs text-muted-foreground mt-1">Missed</p>
           </div>
         </div>
         <Button onClick={handleRestart} className="bg-indigo-600 hover:bg-indigo-500">
@@ -770,7 +770,7 @@ function PatternQuizTab() {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1.5 text-sm">
             <Trophy className="h-4 w-4 text-amber-400" />
-            <span className="text-zinc-300 font-medium">{score}/{total}</span>
+            <span className="text-muted-foreground font-medium">{score}/{total}</span>
           </div>
           {streak >= 2 && (
             <motion.div
@@ -786,14 +786,14 @@ function PatternQuizTab() {
         <div className="flex items-center gap-2">
           <Star className="h-4 w-4 text-indigo-400" />
           <span className="text-sm text-indigo-400 font-medium">+{xpEarned} XP</span>
-          <span className="text-xs text-zinc-600 ml-2">
+          <span className="text-xs text-muted-foreground ml-2">
             {currentQ + 1} / {quizPool.length}
           </span>
         </div>
       </div>
 
       {/* Progress bar */}
-      <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
         <motion.div
           className="h-full bg-indigo-500 rounded-full"
           animate={{ width: `${((currentQ) / quizPool.length) * 100}%` }}
@@ -810,11 +810,11 @@ function PatternQuizTab() {
           exit={{ opacity: 0, x: -40 }}
           transition={{ duration: 0.25 }}
         >
-          <Card className="p-6 bg-zinc-900/80 border-zinc-800">
-            <p className="text-sm text-zinc-400 mb-4">What chart pattern is shown below?</p>
+          <Card className="p-6 bg-card/80 border-border">
+            <p className="text-sm text-muted-foreground mb-4">What chart pattern is shown below?</p>
 
             {/* Chart illustration */}
-            <div className="flex justify-center py-4 border border-zinc-800 rounded-xl bg-zinc-950/50 mb-6">
+            <div className="flex justify-center py-4 border border-border rounded-xl bg-background/50 mb-6">
               <svg viewBox="0 0 200 90" width="300" height="135" className="overflow-visible">
                 {[20, 40, 60, 80].map((y) => (
                   <line key={y} x1="0" y1={y} x2="200" y2={y} stroke="#ffffff08" strokeWidth="0.5" />
@@ -843,13 +843,13 @@ function PatternQuizTab() {
                 const isSelected = idx === selected;
                 let cls = "p-3 rounded-lg border text-sm font-medium cursor-pointer transition-all text-left";
                 if (selected === null) {
-                  cls += " border-zinc-700 bg-zinc-800/50 text-zinc-300 hover:border-indigo-500 hover:bg-indigo-950/30";
+                  cls += " border-border bg-muted/50 text-muted-foreground hover:border-indigo-500 hover:bg-indigo-950/30";
                 } else if (isCorrect) {
                   cls += " border-emerald-500 bg-emerald-950/40 text-emerald-300";
                 } else if (isSelected) {
                   cls += " border-red-500 bg-red-950/40 text-red-300";
                 } else {
-                  cls += " border-zinc-800 bg-zinc-900/30 text-zinc-600 cursor-default";
+                  cls += " border-border bg-card/30 text-muted-foreground cursor-default";
                 }
                 return (
                   <button key={idx} className={cls} onClick={() => handleAnswer(idx)}>
@@ -869,9 +869,9 @@ function PatternQuizTab() {
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 p-3 rounded-lg bg-zinc-800/50 border border-zinc-700"
+                  className="mt-4 p-3 rounded-lg bg-muted/50 border border-border"
                 >
-                  <p className="text-xs text-zinc-300 leading-relaxed">{question.explanation}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{question.explanation}</p>
                   <Button
                     size="sm"
                     className="mt-3 bg-indigo-600 hover:bg-indigo-500"
@@ -968,7 +968,7 @@ function ScanSimulatorTab() {
   return (
     <div className="space-y-4">
       {/* Controls */}
-      <Card className="p-4 bg-zinc-900/60 border-zinc-800">
+      <Card className="p-4 bg-card/60 border-border">
         <div className="flex flex-wrap gap-3 items-center">
           <Button
             onClick={handleScan}
@@ -989,7 +989,7 @@ function ScanSimulatorTab() {
           </Button>
 
           <div className="flex items-center gap-1.5 ml-auto flex-wrap">
-            <Filter className="h-4 w-4 text-zinc-500" />
+            <Filter className="h-4 w-4 text-muted-foreground" />
             {(["All", "Reversal", "Continuation", "Bilateral"] as const).map((cat) => (
               <button
                 key={cat}
@@ -998,7 +998,7 @@ function ScanSimulatorTab() {
                   "px-2.5 py-1 rounded text-xs border transition-colors",
                   filterCat === cat
                     ? "bg-indigo-600 border-indigo-500 text-white"
-                    : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500"
+                    : "bg-muted border-border text-muted-foreground hover:border-zinc-500"
                 )}
               >
                 {cat}
@@ -1010,7 +1010,7 @@ function ScanSimulatorTab() {
                 "px-2.5 py-1 rounded text-xs border transition-colors",
                 filterConfirmed
                   ? "bg-emerald-700 border-emerald-600 text-white"
-                  : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:border-zinc-500"
+                  : "bg-muted border-border text-muted-foreground hover:border-zinc-500"
               )}
             >
               Confirmed Only
@@ -1018,7 +1018,7 @@ function ScanSimulatorTab() {
             <select
               value={minReliability}
               onChange={(e) => setMinReliability(Number(e.target.value))}
-              className="px-2 py-1 rounded text-xs bg-zinc-800 border border-zinc-700 text-zinc-400 focus:outline-none"
+              className="px-2 py-1 rounded text-xs bg-muted border border-border text-muted-foreground focus:outline-none"
             >
               <option value={0}>Any Reliability</option>
               <option value={65}>≥65%</option>
@@ -1032,7 +1032,7 @@ function ScanSimulatorTab() {
 
       {/* Results */}
       {!scanResults && !scanning && (
-        <div className="flex flex-col items-center justify-center py-20 text-zinc-600">
+        <div className="flex flex-col items-center justify-center py-20 text-muted-foreground">
           <ScanLine className="h-12 w-12 mb-4 opacity-30" />
           <p className="text-sm">Click "Scan Market" to detect patterns across 500+ stocks</p>
         </div>
@@ -1046,13 +1046,13 @@ function ScanSimulatorTab() {
           >
             <ScanLine className="h-10 w-10 text-indigo-400" />
           </motion.div>
-          <p className="text-sm text-zinc-400 mt-3">Scanning 500+ stocks for patterns…</p>
+          <p className="text-sm text-muted-foreground mt-3">Scanning 500+ stocks for patterns…</p>
         </div>
       )}
 
       {!scanning && scanResults && (
         <div className="space-y-3">
-          <p className="text-xs text-zinc-500">{filtered.length} patterns detected</p>
+          <p className="text-xs text-muted-foreground">{filtered.length} patterns detected</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {filtered.map((result, i) => (
               <motion.div
@@ -1061,10 +1061,10 @@ function ScanSimulatorTab() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06 }}
               >
-                <Card className="p-4 bg-zinc-900/60 border-zinc-800 hover:border-zinc-600 transition-colors">
+                <Card className="p-4 bg-card/60 border-border hover:border-border transition-colors">
                   <div className="flex gap-4">
                     {/* Mini chart */}
-                    <div className="shrink-0 border border-zinc-800 rounded-lg bg-zinc-950/50 p-1">
+                    <div className="shrink-0 border border-border rounded-lg bg-background/50 p-1">
                       <svg viewBox="0 0 105 75" width="90" height="64">
                         {[20, 40, 60].map((y) => (
                           <line key={y} x1="0" y1={y} x2="105" y2={y} stroke="#ffffff08" strokeWidth="0.5" />
@@ -1091,7 +1091,7 @@ function ScanSimulatorTab() {
                       <div className="flex items-start justify-between">
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-zinc-100 text-sm">{result.ticker}</span>
+                            <span className="font-bold text-foreground text-sm">{result.ticker}</span>
                             <span
                               className={cn(
                                 "text-xs px-1.5 py-0.5 rounded border",
@@ -1103,17 +1103,17 @@ function ScanSimulatorTab() {
                               {result.stage === "confirmed" ? "Confirmed" : "Forming"}
                             </span>
                           </div>
-                          <p className="text-xs text-zinc-500 mt-0.5">{result.company}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{result.company}</p>
                         </div>
                         <div className="text-right">
                           <p className="text-sm font-semibold text-indigo-400">{result.confidence}%</p>
-                          <p className="text-xs text-zinc-600">confidence</p>
+                          <p className="text-xs text-muted-foreground">confidence</p>
                         </div>
                       </div>
 
                       <div className="mt-2 space-y-1">
-                        <p className="text-xs text-zinc-300 font-medium">{result.pattern}</p>
-                        <div className="flex items-center gap-3 text-xs text-zinc-500">
+                        <p className="text-xs text-muted-foreground font-medium">{result.pattern}</p>
+                        <div className="flex items-center gap-3 text-xs text-muted-foreground">
                           <span className={cn(categoryColor(result.category), "px-1.5 py-0.5 rounded border")}>
                             {result.category}
                           </span>
@@ -1129,7 +1129,7 @@ function ScanSimulatorTab() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="mt-2 h-7 text-xs border-zinc-700 hover:border-indigo-500 hover:bg-indigo-950/30"
+                        className="mt-2 h-7 text-xs border-border hover:border-indigo-500 hover:bg-indigo-950/30"
                         onClick={() =>
                           toast.success(`${result.ticker} added to watchlist`, {
                             description: `Monitoring ${result.pattern} pattern`,
@@ -1194,7 +1194,7 @@ function PatternStatsTab() {
     <div className="space-y-6">
       {/* Market condition toggle */}
       <div className="flex items-center gap-3">
-        <span className="text-sm text-zinc-500">Market Condition:</span>
+        <span className="text-sm text-muted-foreground">Market Condition:</span>
         {(["Bull Market", "Bear Market", "Sideways"] as MarketCondition[]).map((cond) => (
           <button
             key={cond}
@@ -1207,7 +1207,7 @@ function PatternStatsTab() {
                   : cond === "Bear Market"
                   ? "bg-red-700 border-red-600 text-white"
                   : "bg-zinc-600 border-zinc-500 text-white"
-                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-600"
+                : "bg-card border-border text-muted-foreground hover:border-border"
             )}
           >
             {cond === "Bull Market" ? (
@@ -1222,8 +1222,8 @@ function PatternStatsTab() {
       </div>
 
       {/* Bar chart */}
-      <Card className="p-5 bg-zinc-900/60 border-zinc-800">
-        <h3 className="text-sm font-semibold text-zinc-200 mb-4">Win Rate by Pattern — {condition}</h3>
+      <Card className="p-5 bg-card/60 border-border">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Win Rate by Pattern — {condition}</h3>
         <div className="overflow-x-auto">
           <svg
             viewBox={`0 0 ${chartW + 20} ${chartH + 50}`}
@@ -1288,7 +1288,7 @@ function PatternStatsTab() {
             })}
           </svg>
         </div>
-        <div className="flex gap-4 mt-2 text-xs text-zinc-500">
+        <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-red-400 inline-block" />Reversal</span>
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-emerald-400 inline-block" />Continuation</span>
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-indigo-400 inline-block" />Bilateral</span>
@@ -1299,27 +1299,27 @@ function PatternStatsTab() {
       <Card className="p-5 bg-card border-border">
         <div className="flex items-center gap-2 mb-4">
           <Star className="h-4 w-4 text-amber-400" />
-          <h3 className="text-sm font-semibold text-zinc-200">Best Patterns for {condition}</h3>
+          <h3 className="text-sm font-semibold text-foreground">Best Patterns for {condition}</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {recommendations.map((rec, rank) => (
-            <div key={rec.name} className="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
+            <div key={rec.name} className="p-3 rounded-lg bg-card/60 border border-border">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-lg font-bold text-zinc-600">#{rank + 1}</span>
-                <span className="text-sm font-semibold text-zinc-200">{rec.name}</span>
+                <span className="text-lg font-bold text-muted-foreground">#{rank + 1}</span>
+                <span className="text-sm font-semibold text-foreground">{rec.name}</span>
               </div>
-              <div className="space-y-1 text-xs text-zinc-500">
+              <div className="space-y-1 text-xs text-muted-foreground">
                 <div className="flex justify-between">
                   <span>Win Rate</span>
                   <span className="text-emerald-400 font-medium">{rec.winRate}%</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Avg Move</span>
-                  <span className="text-zinc-300">~{rec.avgMove}%</span>
+                  <span className="text-muted-foreground">~{rec.avgMove}%</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Timeframe</span>
-                  <span className="text-zinc-400">{rec.timeframe.split(" / ")[0]}</span>
+                  <span className="text-muted-foreground">{rec.timeframe.split(" / ")[0]}</span>
                 </div>
               </div>
             </div>
@@ -1328,27 +1328,27 @@ function PatternStatsTab() {
       </Card>
 
       {/* Full table */}
-      <Card className="p-5 bg-zinc-900/60 border-zinc-800">
-        <h3 className="text-sm font-semibold text-zinc-200 mb-4">Historical Win Rate Table</h3>
+      <Card className="p-5 bg-card/60 border-border">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Historical Win Rate Table</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left pb-2 text-zinc-500 font-medium pr-4">Pattern</th>
-                <th className="text-left pb-2 text-zinc-500 font-medium pr-4">Category</th>
-                <th className="text-right pb-2 text-zinc-500 font-medium pr-4">Win Rate</th>
-                <th className="text-right pb-2 text-zinc-500 font-medium pr-4">Avg Move</th>
-                <th className="text-left pb-2 text-zinc-500 font-medium pr-4">Timeframe</th>
-                <th className="text-left pb-2 text-zinc-500 font-medium">Direction</th>
+              <tr className="border-b border-border">
+                <th className="text-left pb-2 text-muted-foreground font-medium pr-4">Pattern</th>
+                <th className="text-left pb-2 text-muted-foreground font-medium pr-4">Category</th>
+                <th className="text-right pb-2 text-muted-foreground font-medium pr-4">Win Rate</th>
+                <th className="text-right pb-2 text-muted-foreground font-medium pr-4">Avg Move</th>
+                <th className="text-left pb-2 text-muted-foreground font-medium pr-4">Timeframe</th>
+                <th className="text-left pb-2 text-muted-foreground font-medium">Direction</th>
               </tr>
             </thead>
             <tbody>
               {sorted.map((row, i) => (
                 <tr
                   key={row.name}
-                  className={cn("border-b border-zinc-800/50", i % 2 === 0 ? "bg-zinc-900/20" : "")}
+                  className={cn("border-b border-border/50", i % 2 === 0 ? "bg-card/20" : "")}
                 >
-                  <td className="py-2 pr-4 text-zinc-200 font-medium">{row.name}</td>
+                  <td className="py-2 pr-4 text-foreground font-medium">{row.name}</td>
                   <td className="py-2 pr-4">
                     <span className={cn("px-1.5 py-0.5 rounded border", categoryColor(row.category))}>
                       {row.category}
@@ -1362,18 +1362,18 @@ function PatternStatsTab() {
                           ? "text-emerald-400"
                           : row.winRate >= 65
                           ? "text-amber-400"
-                          : "text-zinc-400"
+                          : "text-muted-foreground"
                       )}
                     >
                       {row.winRate}%
                     </span>
                   </td>
-                  <td className="py-2 pr-4 text-right text-zinc-300">~{row.avgMove}%</td>
-                  <td className="py-2 pr-4 text-zinc-500">{row.timeframe}</td>
+                  <td className="py-2 pr-4 text-right text-muted-foreground">~{row.avgMove}%</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{row.timeframe}</td>
                   <td className="py-2">
                     <div className="flex items-center gap-1">
                       {dirIcon(row.breakoutDir)}
-                      <span className="text-zinc-400">{row.breakoutDir}</span>
+                      <span className="text-muted-foreground">{row.breakoutDir}</span>
                     </div>
                   </td>
                 </tr>
@@ -1390,15 +1390,15 @@ function PatternStatsTab() {
 
 export default function PatternsPage() {
   return (
-    <div className="p-6 space-y-6 min-h-full bg-zinc-950">
+    <div className="p-6 space-y-6 min-h-full bg-background">
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <BarChart2 className="h-5 w-5 text-indigo-400" />
-            <h1 className="text-xl font-bold text-zinc-100">Chart Pattern Recognition</h1>
+            <h1 className="text-xl font-bold text-foreground">Chart Pattern Recognition</h1>
           </div>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-muted-foreground">
             Master 20 classic patterns — library, interactive quiz, live scan, and statistics.
           </p>
         </div>
@@ -1415,20 +1415,20 @@ export default function PatternsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="library">
-        <TabsList className="bg-zinc-900 border border-zinc-800">
-          <TabsTrigger value="library" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm">
+        <TabsList className="bg-card border border-border">
+          <TabsTrigger value="library" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
             <BookOpen className="h-3.5 w-3.5 mr-1.5" />
             Pattern Library
           </TabsTrigger>
-          <TabsTrigger value="quiz" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm">
+          <TabsTrigger value="quiz" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
             <Trophy className="h-3.5 w-3.5 mr-1.5" />
             Pattern Quiz
           </TabsTrigger>
-          <TabsTrigger value="scan" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm">
+          <TabsTrigger value="scan" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
             <ScanLine className="h-3.5 w-3.5 mr-1.5" />
             Scan Simulator
           </TabsTrigger>
-          <TabsTrigger value="stats" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 text-sm">
+          <TabsTrigger value="stats" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
             <BarChart2 className="h-3.5 w-3.5 mr-1.5" />
             Statistics
           </TabsTrigger>

@@ -392,11 +392,11 @@ function StatChip({
   color?: string;
 }) {
   return (
-    <div className="flex flex-col items-center bg-neutral-800/60 rounded-lg px-4 py-3 border border-neutral-700/50">
+    <div className="flex flex-col items-center bg-muted/60 rounded-lg px-4 py-3 border border-border/50">
       <span className={cn("text-xl font-bold tabular-nums", color ?? "text-white")}>
         {value}
       </span>
-      <span className="text-xs text-neutral-400 mt-0.5 text-center">{label}</span>
+      <span className="text-xs text-muted-foreground mt-0.5 text-center">{label}</span>
     </div>
   );
 }
@@ -466,7 +466,7 @@ function DarkPoolLandscapeTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Donut chart */}
-        <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+        <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Dark Pool Market Share
@@ -519,7 +519,7 @@ function DarkPoolLandscapeTab() {
         </div>
 
         {/* Rankings table */}
-        <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+        <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Top 10 Dark Pools by Volume
@@ -540,24 +540,24 @@ function DarkPoolLandscapeTab() {
                 )}
                 onClick={() => setSelected(selected === pool.name ? null : pool.name)}
               >
-                <span className="text-xs text-neutral-500 w-4 tabular-nums">{i + 1}</span>
+                <span className="text-xs text-muted-foreground w-4 tabular-nums">{i + 1}</span>
                 <div
                   className="w-2.5 h-2.5 rounded-full shrink-0"
                   style={{ background: pool.color }}
                 />
                 <div className="flex-1 min-w-0">
                   <div className="text-xs font-medium text-white truncate">{pool.name}</div>
-                  <div className="text-xs text-neutral-500">{pool.operator}</div>
+                  <div className="text-xs text-muted-foreground">{pool.operator}</div>
                 </div>
                 <div className="text-right shrink-0">
                   <div className="text-xs font-semibold text-white tabular-nums">
                     ${pool.volume}B
                   </div>
-                  <div className="text-xs text-neutral-400">{pool.share}%</div>
+                  <div className="text-xs text-muted-foreground">{pool.share}%</div>
                 </div>
                 <Badge
                   variant="outline"
-                  className="text-[11px] px-1.5 py-0 border-neutral-600 text-neutral-400 shrink-0"
+                  className="text-[11px] px-1.5 py-0 border-neutral-600 text-muted-foreground shrink-0"
                 >
                   {pool.type === "Broker-Dealer" ? "BD" : pool.type === "Exchange-Owned" ? "EX" : "IND"}
                 </Badge>
@@ -590,12 +590,12 @@ function DarkPoolLandscapeTab() {
                 </div>
                 <div>
                   <div className="font-semibold text-white">{selectedPool.name}</div>
-                  <div className="text-xs text-neutral-400">
+                  <div className="text-xs text-muted-foreground">
                     {selectedPool.operator} · Founded {selectedPool.founded} · {selectedPool.type}
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-neutral-300">{selectedPool.description}</p>
+              <p className="text-sm text-muted-foreground">{selectedPool.description}</p>
               {/* Sparkline */}
               <div className="mt-3">
                 {(() => {
@@ -618,7 +618,7 @@ function DarkPoolLandscapeTab() {
                     </svg>
                   );
                 })()}
-                <div className="text-xs text-neutral-500 text-center">
+                <div className="text-xs text-muted-foreground text-center">
                   Simulated 20-day volume trend · ${selectedPool.volume}B avg/day
                 </div>
               </div>
@@ -628,7 +628,7 @@ function DarkPoolLandscapeTab() {
       </AnimatePresence>
 
       {/* ATS vs Exchange comparison */}
-      <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
           <Scale className="w-4 h-4 text-muted-foreground" />
           US Equity Volume Distribution (ATS vs Lit Exchanges)
@@ -636,7 +636,7 @@ function DarkPoolLandscapeTab() {
         <div className="space-y-3">
           {comparisons.map((c) => (
             <div key={c.label} className="flex items-center gap-3">
-              <div className="w-32 text-xs text-neutral-300 shrink-0">{c.label}</div>
+              <div className="w-32 text-xs text-muted-foreground shrink-0">{c.label}</div>
               <div className="flex-1 bg-neutral-700/40 rounded-full h-5 relative overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
@@ -652,7 +652,7 @@ function DarkPoolLandscapeTab() {
             </div>
           ))}
         </div>
-        <p className="text-[11px] text-neutral-500 mt-3">
+        <p className="text-[11px] text-muted-foreground mt-3">
           Source: FINRA ATS Transparency Data, CBOE Market Statistics (2024 estimates).
         </p>
       </div>
@@ -725,7 +725,7 @@ function WhyDarkPoolsTab() {
               "rounded-xl p-3 text-left border transition-colors",
               activeReason === i
                 ? "border-opacity-60 bg-opacity-20"
-                : "border-neutral-700/50 bg-neutral-800/40 hover:bg-neutral-700/40"
+                : "border-border/50 bg-muted/40 hover:bg-neutral-700/40"
             )}
             style={
               activeReason === i
@@ -768,14 +768,14 @@ function WhyDarkPoolsTab() {
               {reasons[activeReason].title}
             </h3>
           </div>
-          <p className="text-sm text-neutral-300 leading-relaxed mb-4">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4">
             {reasons[activeReason].content}
           </p>
           <div className="grid grid-cols-3 gap-3">
             {reasons[activeReason].stats.map((st) => (
               <div
                 key={st.label}
-                className="bg-neutral-900/60 rounded-lg p-3 border border-neutral-700/40"
+                className="bg-card/60 rounded-lg p-3 border border-border/40"
               >
                 <div
                   className="text-sm font-bold tabular-nums"
@@ -783,7 +783,7 @@ function WhyDarkPoolsTab() {
                 >
                   {st.value}
                 </div>
-                <div className="text-xs text-neutral-400 mt-0.5">{st.label}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{st.label}</div>
               </div>
             ))}
           </div>
@@ -791,7 +791,7 @@ function WhyDarkPoolsTab() {
       </AnimatePresence>
 
       {/* Price improvement table */}
-      <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
         <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           Price Improvement Statistics by Pool
@@ -799,7 +799,7 @@ function WhyDarkPoolsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-neutral-500 border-b border-neutral-700/50">
+              <tr className="text-muted-foreground border-b border-border/50">
                 <th className="text-left pb-2 font-medium">Dark Pool</th>
                 <th className="text-right pb-2 font-medium">Improvement (bps)</th>
                 <th className="text-right pb-2 font-medium">Fill Rate</th>
@@ -823,10 +823,10 @@ function WhyDarkPoolsTab() {
                     <td className="py-2 text-right tabular-nums text-emerald-400 font-semibold">
                       +{row.improvementBps.toFixed(1)}
                     </td>
-                    <td className="py-2 text-right tabular-nums text-neutral-300">
+                    <td className="py-2 text-right tabular-nums text-muted-foreground">
                       {row.fillRate}%
                     </td>
-                    <td className="py-2 text-right tabular-nums text-neutral-300">
+                    <td className="py-2 text-right tabular-nums text-muted-foreground">
                       ${row.avgSize.toLocaleString()}
                     </td>
                     <td className={cn("py-2 text-right font-medium", qualColor)}>{quality}</td>
@@ -836,13 +836,13 @@ function WhyDarkPoolsTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-neutral-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           Price improvement measured against NBBO midpoint at time of order submission.
         </p>
       </div>
 
       {/* Info leakage visual */}
-      <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
           <Info className="w-4 h-4 text-primary" />
           Information Leakage: Lit vs Dark Order Flow
@@ -935,7 +935,7 @@ function OrderTypesTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               selected === o.name
                 ? "bg-primary/30 border-primary/60 text-primary"
-                : "bg-neutral-800/60 border-neutral-700/50 text-neutral-400 hover:text-white hover:border-neutral-600"
+                : "bg-muted/60 border-border/50 text-muted-foreground hover:text-white hover:border-neutral-600"
             )}
           >
             {o.abbr} — {o.name.split(" ")[0]}
@@ -953,36 +953,36 @@ function OrderTypesTab() {
           transition={{ duration: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+          <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold text-white">{order.name}</h3>
               <Badge
                 variant="outline"
-                className="text-xs font-bold border-neutral-600 text-neutral-300"
+                className="text-xs font-bold border-neutral-600 text-muted-foreground"
               >
                 {order.abbr}
               </Badge>
             </div>
-            <p className="text-sm text-neutral-300 mb-4">{order.description}</p>
+            <p className="text-sm text-muted-foreground mb-4">{order.description}</p>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-neutral-500">Price Impact</span>
+                <span className="text-muted-foreground">Price Impact</span>
                 <span className={cn("font-semibold", impactColor[order.priceImpact])}>
                   {order.priceImpact}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-neutral-500">Complexity</span>
+                <span className="text-muted-foreground">Complexity</span>
                 <span className={cn("font-semibold", complexityColor[order.complexity])}>
                   {order.complexity}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-neutral-500">Fill Probability</span>
+                <span className="text-muted-foreground">Fill Probability</span>
                 <span className="font-semibold text-white">{order.fillProbability}</span>
               </div>
               <div className="flex items-center justify-between text-xs">
-                <span className="text-neutral-500">Dark Pool Friendly</span>
+                <span className="text-muted-foreground">Dark Pool Friendly</span>
                 {order.darkPoolFriendly ? (
                   <CheckCircle className="w-4 h-4 text-emerald-400" />
                 ) : (
@@ -991,13 +991,13 @@ function OrderTypesTab() {
               </div>
             </div>
           </div>
-          <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
-            <h4 className="text-xs font-semibold text-neutral-400 uppercase tracking-wide mb-2">
+          <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2">
               Best Use Case
             </h4>
-            <p className="text-sm text-neutral-300 mb-4">{order.useCase}</p>
-            <div className="bg-neutral-900/60 rounded-lg p-3 border border-neutral-700/30">
-              <div className="text-xs text-neutral-500 mb-1">Fill probability range</div>
+            <p className="text-sm text-muted-foreground mb-4">{order.useCase}</p>
+            <div className="bg-card/60 rounded-lg p-3 border border-border/30">
+              <div className="text-xs text-muted-foreground mb-1">Fill probability range</div>
               <div className="flex items-center gap-2">
                 <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
                   {(() => {
@@ -1029,7 +1029,7 @@ function OrderTypesTab() {
       </AnimatePresence>
 
       {/* Order routing decision tree SVG */}
-      <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
           <Network className="w-4 h-4 text-primary" />
           Order Routing Decision Tree
@@ -1183,7 +1183,7 @@ function HFTInteractionTab() {
               </div>
               <h3 className="text-sm font-semibold text-white">{c.title}</h3>
             </div>
-            <p className="text-xs text-neutral-300 leading-relaxed">{c.description}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{c.description}</p>
           </motion.div>
         ))}
       </div>
@@ -1197,7 +1197,7 @@ function HFTInteractionTab() {
       </div>
 
       {/* Timeline */}
-      <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
           <Clock className="w-4 h-4 text-primary" />
           HFT & Dark Pool Regulatory Timeline — click an event to expand
@@ -1237,7 +1237,7 @@ function HFTInteractionTab() {
           {(["regulation", "incident", "technology", "research"] as const).map((t) => (
             <div key={t} className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: typeColor[t] }} />
-              <span className="text-xs text-neutral-400">{typeLabel[t]}</span>
+              <span className="text-xs text-muted-foreground">{typeLabel[t]}</span>
             </div>
           ))}
         </div>
@@ -1251,7 +1251,7 @@ function HFTInteractionTab() {
                 "rounded-lg px-3 py-2.5 cursor-pointer border transition-colors",
                 activeEvent === i
                   ? "border-opacity-50"
-                  : "border-neutral-700/30 bg-neutral-900/30 hover:bg-neutral-700/20"
+                  : "border-border/30 bg-card/30 hover:bg-neutral-700/20"
               )}
               style={
                 activeEvent === i
@@ -1265,7 +1265,7 @@ function HFTInteractionTab() {
                   className="w-1.5 h-1.5 rounded-full shrink-0"
                   style={{ background: ev.color }}
                 />
-                <span className="text-xs text-neutral-500 w-8 shrink-0 tabular-nums">
+                <span className="text-xs text-muted-foreground w-8 shrink-0 tabular-nums">
                   {ev.year}
                 </span>
                 <span className="text-xs font-semibold text-white">{ev.title}</span>
@@ -1285,7 +1285,7 @@ function HFTInteractionTab() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-xs text-neutral-300 mt-2 pl-8 leading-relaxed">
+                    <p className="text-xs text-muted-foreground mt-2 pl-8 leading-relaxed">
                       {ev.description}
                     </p>
                   </motion.div>
@@ -1336,13 +1336,13 @@ function LitVsDarkTab() {
               <span style={{ color: c.color }}>{c.icon}</span>
               <h3 className="text-sm font-semibold text-white">{c.title}</h3>
             </div>
-            <p className="text-xs text-neutral-300 leading-relaxed">{c.text}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{c.text}</p>
           </div>
         ))}
       </div>
 
       {/* Toxicity metrics comparison */}
-      <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-primary" />
           Lit vs Dark: Key Microstructure Metrics
@@ -1350,11 +1350,11 @@ function LitVsDarkTab() {
         <div className="flex gap-4 mb-4 text-xs">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-sm bg-primary/70" />
-            <span className="text-neutral-400">Lit Market</span>
+            <span className="text-muted-foreground">Lit Market</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-sm bg-primary/70" />
-            <span className="text-neutral-400">Dark Pool</span>
+            <span className="text-muted-foreground">Dark Pool</span>
           </div>
         </div>
         <div className="space-y-4">
@@ -1366,20 +1366,20 @@ function LitVsDarkTab() {
             return (
               <div key={m.metric}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs text-neutral-300">{m.metric}</span>
+                  <span className="text-xs text-muted-foreground">{m.metric}</span>
                   <div className="flex items-center gap-2 text-xs">
-                    <span className={cn("tabular-nums", litBetter ? "text-emerald-400" : "text-neutral-400")}>
+                    <span className={cn("tabular-nums", litBetter ? "text-emerald-400" : "text-muted-foreground")}>
                       Lit: {m.lit}{m.unit}
                     </span>
                     <span className="text-neutral-600">·</span>
-                    <span className={cn("tabular-nums", darkBetter ? "text-emerald-400" : "text-neutral-400")}>
+                    <span className={cn("tabular-nums", darkBetter ? "text-emerald-400" : "text-muted-foreground")}>
                       Dark: {m.dark}{m.unit}
                     </span>
                   </div>
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-neutral-500 w-6">Lit</span>
+                    <span className="text-xs text-muted-foreground w-6">Lit</span>
                     <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
                       <motion.div
                         className="h-full rounded-full bg-primary/70"
@@ -1390,7 +1390,7 @@ function LitVsDarkTab() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-neutral-500 w-6">Dark</span>
+                    <span className="text-xs text-muted-foreground w-6">Dark</span>
                     <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
                       <motion.div
                         className="h-full rounded-full bg-primary/70"
@@ -1405,13 +1405,13 @@ function LitVsDarkTab() {
             );
           })}
         </div>
-        <p className="text-xs text-neutral-500 mt-4">
+        <p className="text-xs text-muted-foreground mt-4">
           Lower is better for impact/reversion/leakage metrics · Higher is better for fill rate/improvement.
         </p>
       </div>
 
       {/* Implementation shortfall breakdown SVG */}
-      <div className="bg-neutral-800/50 rounded-xl p-4 border border-neutral-700/50">
+      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
         <h3 className="text-sm font-semibold text-white mb-4 flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-amber-400" />
           Implementation Shortfall Decomposition
@@ -1522,7 +1522,7 @@ function LitVsDarkTab() {
             </div>
             <ul className="space-y-1.5">
               {card.points.map((p) => (
-                <li key={p} className="flex items-start gap-2 text-xs text-neutral-300">
+                <li key={p} className="flex items-start gap-2 text-xs text-muted-foreground">
                   <CheckCircle className="w-3 h-3 mt-0.5 shrink-0" style={{ color: card.color }} />
                   {p}
                 </li>
@@ -1554,7 +1554,7 @@ export default function DarkPoolsPage() {
             <h1 className="text-2xl font-bold text-white">
               Dark Pools & Market Microstructure
             </h1>
-            <p className="text-sm text-neutral-400 mt-1">
+            <p className="text-sm text-muted-foreground mt-1">
               Alternative Trading Systems, HFT dynamics, order routing, and the hidden plumbing of equity markets.
             </p>
           </div>
@@ -1562,7 +1562,7 @@ export default function DarkPoolsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="landscape" className="space-y-4">
-          <TabsList className="bg-neutral-900/80 border border-neutral-800 flex flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card/80 border border-border flex flex-wrap h-auto gap-1 p-1">
             {[
               { value: "landscape", label: "Dark Pool Landscape", icon: <Layers className="w-3.5 h-3.5" /> },
               { value: "why", label: "Why They Exist", icon: <Info className="w-3.5 h-3.5" /> },
@@ -1573,7 +1573,7 @@ export default function DarkPoolsPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-neutral-400 px-3 py-1.5 rounded-md"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-muted-foreground px-3 py-1.5 rounded-md"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>
@@ -1599,7 +1599,7 @@ export default function DarkPoolsPage() {
         </Tabs>
 
         {/* Footer disclaimer */}
-        <div className="text-xs text-neutral-600 border-t border-neutral-800 pt-4">
+        <div className="text-xs text-neutral-600 border-t border-border pt-4">
           Educational simulation only. Dark pool volume figures, price improvement statistics, and regulatory details are illustrative approximations based on publicly available research.
         </div>
       </div>

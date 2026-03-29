@@ -638,7 +638,7 @@ function CandlestickMasteryTab() {
   return (
     <div className="space-y-4">
       {/* Chart */}
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">60-Bar Price Chart</h3>
           <div className="flex gap-2">
@@ -647,8 +647,8 @@ function CandlestickMasteryTab() {
               size="sm"
               onClick={() => setShowOverlay(!showOverlay)}
               className={cn(
-                "h-7 text-xs border-gray-700",
-                showOverlay ? "bg-yellow-500/20 border-yellow-500 text-yellow-400" : "text-gray-400"
+                "h-7 text-xs border-border",
+                showOverlay ? "bg-yellow-500/20 border-yellow-500 text-yellow-400" : "text-muted-foreground"
               )}
             >
               {showOverlay ? <Eye className="h-3 w-3 mr-1" /> : <EyeOff className="h-3 w-3 mr-1" />}
@@ -673,13 +673,13 @@ function CandlestickMasteryTab() {
             size="sm"
             onClick={() => setFilter(f)}
             className={cn(
-              "h-7 text-xs border-gray-700 capitalize",
+              "h-7 text-xs border-border capitalize",
               filter === f
                 ? f === "bullish" ? "bg-green-500/20 border-green-500 text-green-400"
                   : f === "bearish" ? "bg-red-500/20 border-red-500 text-red-400"
-                  : f === "neutral" ? "bg-gray-500/20 border-gray-500 text-gray-300"
+                  : f === "neutral" ? "bg-gray-500/20 border-gray-500 text-muted-foreground"
                   : "bg-primary/20 border-primary text-primary"
-                : "text-gray-400"
+                : "text-muted-foreground"
             )}
           >
             {f}
@@ -700,15 +700,15 @@ function CandlestickMasteryTab() {
           >
             <Card
               className={cn(
-                "p-3 cursor-pointer border transition-all bg-gray-900",
+                "p-3 cursor-pointer border transition-all bg-card",
                 selectedPattern === pattern.id
                   ? "border-primary bg-primary/5"
-                  : "border-gray-800 hover:border-gray-600"
+                  : "border-border hover:border-gray-600"
               )}
               onClick={() => setSelectedPattern(selectedPattern === pattern.id ? null : pattern.id)}
             >
               <div className="flex items-center gap-3 mb-2">
-                <svg viewBox="0 0 50 30" className="w-[50px] h-[30px] flex-shrink-0 bg-gray-950 rounded border border-gray-800">
+                <svg viewBox="0 0 50 30" className="w-[50px] h-[30px] flex-shrink-0 bg-background rounded border border-border">
                   {pattern.svgPath}
                 </svg>
                 <div className="flex-1 min-w-0">
@@ -719,15 +719,15 @@ function CandlestickMasteryTab() {
                         "text-xs h-4 px-1",
                         pattern.sentiment === "bullish" ? "bg-green-500/20 text-green-400 border-green-500/30"
                         : pattern.sentiment === "bearish" ? "bg-red-500/20 text-red-400 border-red-500/30"
-                        : "bg-gray-500/20 text-gray-400 border-gray-500/30"
+                        : "bg-gray-500/20 text-muted-foreground border-gray-500/30"
                       )}
                     >
                       {pattern.sentiment}
                     </Badge>
                   </div>
                   <div className="flex items-center gap-2 mt-0.5">
-                    <span className="text-xs text-gray-400">Reliability:</span>
-                    <div className="flex-1 h-1 bg-gray-800 rounded-full">
+                    <span className="text-xs text-muted-foreground">Reliability:</span>
+                    <div className="flex-1 h-1 bg-muted rounded-full">
                       <div
                         className={cn(
                           "h-full rounded-full",
@@ -736,7 +736,7 @@ function CandlestickMasteryTab() {
                         style={{ width: `${pattern.reliability}%` }}
                       />
                     </div>
-                    <span className="text-xs text-gray-300">{pattern.reliability}%</span>
+                    <span className="text-xs text-muted-foreground">{pattern.reliability}%</span>
                   </div>
                 </div>
               </div>
@@ -750,18 +750,18 @@ function CandlestickMasteryTab() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <div className="pt-2 border-t border-gray-800 space-y-1.5 mt-1">
+                    <div className="pt-2 border-t border-border space-y-1.5 mt-1">
                       <div className="flex gap-1.5 flex-wrap">
-                        <Badge variant="outline" className="text-xs h-4 border-gray-700 text-gray-400">
+                        <Badge variant="outline" className="text-xs h-4 border-border text-muted-foreground">
                           {pattern.timeframe}
                         </Badge>
                       </div>
-                      <p className="text-xs text-gray-400"><span className="text-primary font-medium">Entry:</span> {pattern.entry}</p>
-                      <p className="text-xs text-gray-400"><span className="text-red-400 font-medium">Stop:</span> {pattern.stop}</p>
+                      <p className="text-xs text-muted-foreground"><span className="text-primary font-medium">Entry:</span> {pattern.entry}</p>
+                      <p className="text-xs text-muted-foreground"><span className="text-red-400 font-medium">Stop:</span> {pattern.stop}</p>
                       <Button
                         size="sm"
                         variant="outline"
-                        className="h-6 text-xs border-gray-700 text-yellow-400 hover:bg-yellow-500/10 w-full mt-1"
+                        className="h-6 text-xs border-border text-yellow-400 hover:bg-yellow-500/10 w-full mt-1"
                         onClick={(e) => { e.stopPropagation(); setShowOverlay(true); }}
                       >
                         <Eye className="h-2.5 w-2.5 mr-1" /> Find in chart
@@ -994,7 +994,7 @@ function TrendAnalysisTab() {
 
   return (
     <div className="space-y-4">
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Multi-EMA + Donchian Channel</h3>
           <div className="flex items-center gap-2">
@@ -1014,7 +1014,7 @@ function TrendAnalysisTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* ADX Gauge */}
-        <Card className="p-4 bg-gray-900 border-gray-800">
+        <Card className="p-4 bg-card border-border">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
             <Activity className="h-4 w-4 text-primary" />
             ADX Trend Strength
@@ -1029,15 +1029,15 @@ function TrendAnalysisTab() {
             ].map((row) => (
               <div key={row.range} className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: row.color }} />
-                <span className="text-xs text-gray-400 w-10">{row.range}</span>
-                <span className="text-xs text-gray-300">{row.label}</span>
+                <span className="text-xs text-muted-foreground w-10">{row.range}</span>
+                <span className="text-xs text-muted-foreground">{row.label}</span>
               </div>
             ))}
           </div>
         </Card>
 
         {/* EMA Levels */}
-        <Card className="p-4 bg-gray-900 border-gray-800">
+        <Card className="p-4 bg-card border-border">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
             <Layers className="h-4 w-4 text-orange-400" />
             Moving Average Levels
@@ -1048,10 +1048,10 @@ function TrendAnalysisTab() {
               { label: "EMA 50 (Medium)", value: ema50.findLast((v) => !isNaN(v)), color: "#f97316" },
               { label: "Current Price", value: closes[closes.length - 1], color: "#f3f4f6" },
             ].map((item) => (
-              <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-gray-800">
+              <div key={item.label} className="flex items-center justify-between py-1.5 border-b border-border">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-0.5 flex-shrink-0" style={{ background: item.color }} />
-                  <span className="text-xs text-gray-400">{item.label}</span>
+                  <span className="text-xs text-muted-foreground">{item.label}</span>
                 </div>
                 <span className="text-xs font-mono font-medium" style={{ color: item.color }}>
                   ${item.value?.toFixed(2) ?? "—"}
@@ -1059,8 +1059,8 @@ function TrendAnalysisTab() {
               </div>
             ))}
           </div>
-          <div className="mt-3 p-2 rounded bg-gray-800/50">
-            <p className="text-xs text-gray-400 leading-relaxed">
+          <div className="mt-3 p-2 rounded bg-muted/50">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               <span className="text-yellow-400 font-medium">Golden Cross:</span> EMA20 crosses above EMA50 — bullish signal.{" "}
               <span className="text-primary font-medium">Death Cross:</span> EMA20 crosses below EMA50 — bearish signal.
             </p>
@@ -1071,12 +1071,12 @@ function TrendAnalysisTab() {
       {/* Channel patterns */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {channelTypes.map((ch) => (
-          <Card key={ch.name} className="p-3 bg-gray-900 border-gray-800">
+          <Card key={ch.name} className="p-3 bg-card border-border">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full" style={{ background: ch.color }} />
               <h4 className="text-xs font-semibold text-white">{ch.name}</h4>
             </div>
-            <p className="text-xs text-gray-400 mb-1">{ch.desc}</p>
+            <p className="text-xs text-muted-foreground mb-1">{ch.desc}</p>
             <p className="text-xs" style={{ color: ch.color }}>
               <ArrowRight className="h-2.5 w-2.5 inline mr-0.5" />{ch.signal}
             </p>
@@ -1225,14 +1225,14 @@ function OscillatorTab() {
   return (
     <div className="space-y-4">
       {/* Panel 1: Price + BB */}
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-semibold text-white">Price + Bollinger Bands (20, 2σ)</h3>
           <div className="flex gap-2">
             {[{ color: "#6366f1", label: "Upper" }, { color: "#9ca3af", label: "Mid" }, { color: "#6366f1", label: "Lower" }, { color: "#f3f4f6", label: "Price" }].map((l) => (
               <div key={l.label} className="flex items-center gap-1">
                 <div className="w-3 h-0.5" style={{ background: l.color }} />
-                <span className="text-[11px] text-gray-500">{l.label}</span>
+                <span className="text-[11px] text-muted-foreground">{l.label}</span>
               </div>
             ))}
           </div>
@@ -1255,11 +1255,11 @@ function OscillatorTab() {
       </Card>
 
       {/* Panel 2: RSI */}
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-semibold text-white">RSI (14)</h3>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400">Current: <span className="font-mono text-white">{lastRSI.toFixed(1)}</span></span>
+            <span className="text-xs text-muted-foreground">Current: <span className="font-mono text-white">{lastRSI.toFixed(1)}</span></span>
             <Badge className="text-xs h-5 px-1.5" style={{ background: `${signalColor(rsiSignal)}20`, color: signalColor(rsiSignal), borderColor: `${signalColor(rsiSignal)}50` }}>
               {rsiSignal}
             </Badge>
@@ -1275,11 +1275,11 @@ function OscillatorTab() {
       </Card>
 
       {/* Panel 3: MACD */}
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-semibold text-white">MACD (12, 26, 9)</h3>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400">MACD: <span className="font-mono text-white">{lastMACD.toFixed(3)}</span></span>
+            <span className="text-xs text-muted-foreground">MACD: <span className="font-mono text-white">{lastMACD.toFixed(3)}</span></span>
             <Badge className="text-xs h-5 px-1.5" style={{ background: `${signalColor(macdSignal)}20`, color: signalColor(macdSignal), borderColor: `${signalColor(macdSignal)}50` }}>
               {macdSignal}
             </Badge>
@@ -1313,11 +1313,11 @@ function OscillatorTab() {
       </Card>
 
       {/* Panel 4: Stochastic */}
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-semibold text-white">Stochastic (14, 3)</h3>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-400">%K: <span className="font-mono text-white">{lastK.toFixed(1)}</span> %D: <span className="font-mono text-white">{lastD.toFixed(1)}</span></span>
+            <span className="text-xs text-muted-foreground">%K: <span className="font-mono text-white">{lastK.toFixed(1)}</span> %D: <span className="font-mono text-white">{lastD.toFixed(1)}</span></span>
             <Badge className="text-xs h-5 px-1.5" style={{ background: `${signalColor(stochSignal)}20`, color: signalColor(stochSignal), borderColor: `${signalColor(stochSignal)}50` }}>
               {stochSignal}
             </Badge>
@@ -1329,15 +1329,15 @@ function OscillatorTab() {
       {/* Confluence */}
       <Card className={cn(
         "p-3 border",
-        confluence.includes("High Conviction") ? "bg-green-500/5 border-green-500/30" : "bg-gray-900 border-gray-800"
+        confluence.includes("High Conviction") ? "bg-green-500/5 border-green-500/30" : "bg-card border-border"
       )}>
         <div className="flex items-center gap-2">
-          <Zap className={cn("h-4 w-4", confluence.includes("Bullish") ? "text-green-400" : confluence.includes("Bearish") ? "text-red-400" : "text-gray-400")} />
+          <Zap className={cn("h-4 w-4", confluence.includes("Bullish") ? "text-green-400" : confluence.includes("Bearish") ? "text-red-400" : "text-muted-foreground")} />
           <span className="text-sm font-semibold text-white">Indicator Confluence:</span>
           <span className="text-sm" style={{ color: confluence.includes("Bullish") ? "#10b981" : confluence.includes("Bearish") ? "#ef4444" : "#9ca3af" }}>
             {confluence}
           </span>
-          <span className="text-xs text-gray-500 ml-auto">{agreeing}/3 bullish signals</span>
+          <span className="text-xs text-muted-foreground ml-auto">{agreeing}/3 bullish signals</span>
         </div>
       </Card>
     </div>
@@ -1424,7 +1424,7 @@ function VolumeAnalysisTab() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Volume Profile */}
-        <Card className="p-4 bg-gray-900 border-gray-800 md:col-span-1">
+        <Card className="p-4 bg-card border-border md:col-span-1">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
             <BarChart2 className="h-4 w-4 text-primary" />
             Volume Profile
@@ -1435,8 +1435,8 @@ function VolumeAnalysisTab() {
               const isValueArea = pct > 50;
               return (
                 <div key={i} className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-gray-500 w-12 text-right">{lvl.price.toFixed(1)}</span>
-                  <div className="flex-1 h-4 bg-gray-800 rounded-sm overflow-hidden">
+                  <span className="text-xs font-mono text-muted-foreground w-12 text-right">{lvl.price.toFixed(1)}</span>
+                  <div className="flex-1 h-4 bg-muted rounded-sm overflow-hidden">
                     <div
                       className={cn("h-full transition-all", isValueArea ? "bg-primary" : "bg-primary/40")}
                       style={{ width: `${pct}%` }}
@@ -1447,11 +1447,11 @@ function VolumeAnalysisTab() {
               );
             })}
           </div>
-          <p className="text-xs text-gray-500 mt-2">VAP = Value Area Price (high activity)</p>
+          <p className="text-xs text-muted-foreground mt-2">VAP = Value Area Price (high activity)</p>
         </Card>
 
         {/* OBV + Price overlay */}
-        <Card className="p-4 bg-gray-900 border-gray-800 md:col-span-2">
+        <Card className="p-4 bg-card border-border md:col-span-2">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
             <Activity className="h-4 w-4 text-green-400" />
             OBV vs Price
@@ -1464,14 +1464,14 @@ function VolumeAnalysisTab() {
             <text x={W - padR} y={padT + 8} textAnchor="end" fontSize="7" fill="#6366f1">{priceMax.toFixed(0)}</text>
           </svg>
           <div className="flex gap-3 mt-2">
-            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-green-500" /><span className="text-xs text-gray-400">OBV</span></div>
-            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-indigo-400" style={{ borderTop: "1px dashed #6366f1" }} /><span className="text-xs text-gray-400">Price</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-green-500" /><span className="text-xs text-muted-foreground">OBV</span></div>
+            <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-indigo-400" style={{ borderTop: "1px dashed #6366f1" }} /><span className="text-xs text-muted-foreground">Price</span></div>
           </div>
         </Card>
       </div>
 
       {/* VWAP chart */}
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
           <Target className="h-4 w-4 text-yellow-400" />
           VWAP (Volume Weighted Average Price)
@@ -1492,9 +1492,9 @@ function VolumeAnalysisTab() {
           })()}
         </svg>
         <div className="flex gap-3 mt-2">
-          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-white" /><span className="text-xs text-gray-400">Price</span></div>
-          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-yellow-400" /><span className="text-xs text-gray-400">VWAP</span></div>
-          <span className="text-xs text-gray-500 ml-auto">Current VWAP: ${vwap[vwap.length - 1].toFixed(2)}</span>
+          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-white" /><span className="text-xs text-muted-foreground">Price</span></div>
+          <div className="flex items-center gap-1.5"><div className="w-3 h-0.5 bg-yellow-400" /><span className="text-xs text-muted-foreground">VWAP</span></div>
+          <span className="text-xs text-muted-foreground ml-auto">Current VWAP: ${vwap[vwap.length - 1].toFixed(2)}</span>
         </div>
       </Card>
 
@@ -1507,18 +1507,18 @@ function VolumeAnalysisTab() {
               "p-3 border transition-all",
               sig.active
                 ? sig.bullish ? "bg-green-500/5 border-green-500/40" : "bg-red-500/5 border-red-500/40"
-                : "bg-gray-900 border-gray-800"
+                : "bg-card border-border"
             )}
           >
             <div className="flex items-start gap-2">
               {sig.active ? (
                 <CheckCircle className={cn("h-4 w-4 mt-0.5 flex-shrink-0", sig.bullish ? "text-green-400" : "text-red-400")} />
               ) : (
-                <div className="h-4 w-4 mt-0.5 flex-shrink-0 rounded-full border border-gray-700" />
+                <div className="h-4 w-4 mt-0.5 flex-shrink-0 rounded-full border border-border" />
               )}
               <div>
                 <p className="text-xs font-semibold text-white">{sig.name}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{sig.desc}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{sig.desc}</p>
                 {sig.active && (
                   <Badge className="mt-1 text-[11px] h-4 px-1" style={{
                     background: sig.bullish ? "#10b98120" : "#ef444420",
@@ -1651,7 +1651,7 @@ function SRTab() {
   return (
     <div className="space-y-4">
       {/* Controls */}
-      <Card className="p-4 bg-gray-900 border-gray-800">
+      <Card className="p-4 bg-card border-border">
         <div className="flex flex-wrap gap-3 items-center mb-4">
           {[
             { label: "S/R Levels", active: showSR, toggle: () => setShowSR(!showSR), color: "yellow" },
@@ -1664,12 +1664,12 @@ function SRTab() {
               size="sm"
               onClick={btn.toggle}
               className={cn(
-                "h-7 text-xs border-gray-700 transition-colors",
+                "h-7 text-xs border-border transition-colors",
                 btn.active
                   ? btn.color === "yellow" ? "bg-yellow-500/20 border-yellow-500 text-yellow-400"
                     : btn.color === "purple" ? "bg-primary/20 border-primary text-primary"
                     : "bg-primary/20 border-primary text-primary"
-                  : "text-gray-400"
+                  : "text-muted-foreground"
               )}
             >
               {btn.active ? <Eye className="h-3 w-3 mr-1" /> : <EyeOff className="h-3 w-3 mr-1" />}
@@ -1680,16 +1680,16 @@ function SRTab() {
 
         {/* Fib range sliders */}
         {showFib && (
-          <div className="grid grid-cols-2 gap-4 mb-4 p-3 bg-gray-800/50 rounded-lg">
+          <div className="grid grid-cols-2 gap-4 mb-4 p-3 bg-muted/50 rounded-lg">
             <div>
-              <div className="flex justify-between text-xs text-gray-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Fib Swing Low (bar)</span>
                 <span className="text-primary">{fibLow} — ${fibLowPrice.toFixed(2)}</span>
               </div>
               <Slider value={[fibLow]} onValueChange={([v]) => setFibLow(Math.min(v, fibHigh - 5))} min={0} max={90} step={1} className="h-1" />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-gray-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Fib Swing High (bar)</span>
                 <span className="text-primary">{fibHigh} — ${fibHighPrice.toFixed(2)}</span>
               </div>
@@ -1764,21 +1764,21 @@ function SRTab() {
 
       {/* S/R level table */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="p-4 bg-gray-900 border-gray-800">
+        <Card className="p-4 bg-card border-border">
           <h3 className="text-sm font-semibold text-white mb-3">Auto-Detected S/R Levels</h3>
           <div className="space-y-1.5 max-h-56 overflow-y-auto">
             {srLevels.slice(-12).reverse().map((lvl, i) => (
-              <div key={i} className="flex items-center gap-2 py-1 border-b border-gray-800/50">
+              <div key={i} className="flex items-center gap-2 py-1 border-b border-border/50">
                 <div className={cn("w-1.5 h-1.5 rounded-full flex-shrink-0", lvl.type === "resistance" ? "bg-red-400" : "bg-green-400")} />
-                <span className="text-xs font-mono text-gray-200 w-14">${lvl.price.toFixed(2)}</span>
+                <span className="text-xs font-mono text-foreground w-14">${lvl.price.toFixed(2)}</span>
                 <span className={cn("text-xs capitalize", lvl.type === "resistance" ? "text-red-400" : "text-green-400")}>{lvl.type}</span>
-                <span className="text-xs text-gray-500 flex-1">{lvl.source}</span>
+                <span className="text-xs text-muted-foreground flex-1">{lvl.source}</span>
                 <Badge
                   className={cn(
                     "text-[11px] h-4 px-1",
                     lvl.strength === "strong" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
                     : lvl.strength === "medium" ? "bg-primary/20 text-primary border-border"
-                    : "bg-gray-500/20 text-gray-400 border-gray-500/30"
+                    : "bg-gray-500/20 text-muted-foreground border-gray-500/30"
                   )}
                 >
                   {lvl.strength} ({lvl.touches})
@@ -1789,44 +1789,44 @@ function SRTab() {
         </Card>
 
         {/* Pivot point table */}
-        <Card className="p-4 bg-gray-900 border-gray-800">
+        <Card className="p-4 bg-card border-border">
           <h3 className="text-sm font-semibold text-white mb-3">Classic Pivot Points</h3>
           <div className="space-y-1.5">
             {pivotLevels.map((pl) => (
-              <div key={pl.label} className="flex items-center gap-2 py-1 border-b border-gray-800/50">
+              <div key={pl.label} className="flex items-center gap-2 py-1 border-b border-border/50">
                 <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: pl.color }} />
                 <span className="text-xs font-semibold w-8" style={{ color: pl.color }}>{pl.label}</span>
-                <span className="text-xs font-mono text-gray-200">${pl.price.toFixed(2)}</span>
-                <span className="text-xs text-gray-500 ml-auto">
+                <span className="text-xs font-mono text-foreground">${pl.price.toFixed(2)}</span>
+                <span className="text-xs text-muted-foreground ml-auto">
                   {pl.label === "PP" ? "Pivot" : pl.label.startsWith("R") ? "Resistance" : "Support"}
                 </span>
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-500 mt-2">Based on previous session H/L/C</p>
+          <p className="text-xs text-muted-foreground mt-2">Based on previous session H/L/C</p>
         </Card>
       </div>
 
       {/* Fib explanation */}
       {showFib && (
-        <Card className="p-4 bg-gray-900 border-gray-800">
+        <Card className="p-4 bg-card border-border">
           <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
             <BookOpen className="h-4 w-4 text-primary" />
             Fibonacci Retracement Levels
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             {fibLevels.map((f) => (
-              <div key={f.label} className="p-2 rounded bg-gray-800/60 border border-gray-700/50">
+              <div key={f.label} className="p-2 rounded bg-muted/60 border border-border/50">
                 <div className="flex items-center gap-1.5 mb-1">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: f.color }} />
-                  <span className="text-xs font-semibold text-gray-200">{f.label}</span>
+                  <span className="text-xs font-semibold text-foreground">{f.label}</span>
                 </div>
                 <span className="text-xs font-mono" style={{ color: f.color }}>${f.price.toFixed(2)}</span>
               </div>
             ))}
           </div>
-          <div className="mt-2 p-2 rounded bg-gray-800/40">
-            <p className="text-xs text-gray-400 leading-relaxed">
+          <div className="mt-2 p-2 rounded bg-muted/40">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               <span className="text-yellow-400 font-medium">Key levels:</span> 38.2%, 50%, and 61.8% are the most watched retracement zones. Price often pauses or reverses at these levels. The 61.8% "golden ratio" is considered the strongest.
             </p>
           </div>
@@ -1850,7 +1850,7 @@ export default function TechAnalysisPage() {
   const [activeTab, setActiveTab] = useState<string>("candles");
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1865,7 +1865,7 @@ export default function TechAnalysisPage() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-white tracking-tight">Technical Analysis Masterclass</h1>
-              <p className="text-sm text-gray-400 mt-0.5">
+              <p className="text-sm text-muted-foreground mt-0.5">
                 Interactive charts · Pattern recognition · Indicators · Volume & S/R analysis
               </p>
             </div>
@@ -1874,13 +1874,13 @@ export default function TechAnalysisPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-gray-900 border border-gray-800 p-1 h-auto flex-wrap gap-1 mb-6">
+          <TabsList className="bg-card border border-border p-1 h-auto flex-wrap gap-1 mb-6">
             {TAB_CONFIG.map(({ id, label, icon: Icon }) => (
               <TabsTrigger
                 key={id}
                 value={id}
                 className={cn(
-                  "text-xs h-8 px-3 data-[state=active]:bg-gray-800 data-[state=active]:text-white text-gray-400 flex items-center gap-1.5 transition-colors"
+                  "text-xs h-8 px-3 data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground flex items-center gap-1.5 transition-colors"
                 )}
               >
                 <Icon className="h-3.5 w-3.5" />

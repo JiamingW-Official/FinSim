@@ -947,16 +947,16 @@ function StatCard({
   icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
 }) {
   return (
-    <Card className="bg-slate-900 border-slate-800">
+    <Card className="bg-card border-border">
       <CardContent className="pt-4 pb-3">
         <div className="flex items-center gap-2 mb-1">
           <Icon size={14} style={{ color }} />
-          <span className="text-xs text-slate-500">{label}</span>
+          <span className="text-xs text-muted-foreground">{label}</span>
         </div>
         <div className="text-xl font-bold" style={{ color }}>
           {value}
         </div>
-        {sub && <div className="text-xs text-slate-500 mt-0.5">{sub}</div>}
+        {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
       </CardContent>
     </Card>
   );
@@ -966,7 +966,7 @@ function SignalBadge({ signal }: { signal: AssetClass["signal"] }) {
   const map: Record<AssetClass["signal"], { label: string; cls: string }> = {
     strong_bull: { label: "Strong Bull", cls: "bg-emerald-900 text-emerald-300 border-emerald-700" },
     bull: { label: "Bull", cls: "bg-green-900 text-green-300 border-green-800" },
-    neutral: { label: "Neutral", cls: "bg-slate-800 text-slate-400 border-slate-700" },
+    neutral: { label: "Neutral", cls: "bg-muted text-muted-foreground border-border" },
     bear: { label: "Bear", cls: "bg-red-900 text-red-300 border-red-800" },
     strong_bear: { label: "Strong Bear", cls: "bg-red-950 text-red-400 border-red-900" },
   };
@@ -996,7 +996,7 @@ export default function CrossAssetMomPage() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1009,8 +1009,8 @@ export default function CrossAssetMomPage() {
             <TrendingUp size={22} className="text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">Cross-Asset Momentum</h1>
-            <p className="text-sm text-slate-500">
+            <h1 className="text-2xl font-bold text-foreground">Cross-Asset Momentum</h1>
+            <p className="text-sm text-muted-foreground">
               Time-series momentum, cross-sectional signals, trend following &amp; AQR evidence
             </p>
           </div>
@@ -1026,20 +1026,20 @@ export default function CrossAssetMomPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-slate-900 border border-slate-800 mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="factor" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400">
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsTrigger value="factor" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
             <Activity size={13} className="mr-1.5" />
             Momentum Factor
           </TabsTrigger>
-          <TabsTrigger value="trend" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400">
+          <TabsTrigger value="trend" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
             <GitBranch size={13} className="mr-1.5" />
             Trend Following
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400">
+          <TabsTrigger value="portfolio" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
             <Globe size={13} className="mr-1.5" />
             Multi-Asset Portfolio
           </TabsTrigger>
-          <TabsTrigger value="implementation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-slate-400">
+          <TabsTrigger value="implementation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
             <Zap size={13} className="mr-1.5" />
             Strategy Implementation
           </TabsTrigger>
@@ -1054,7 +1054,7 @@ export default function CrossAssetMomPage() {
             className="space-y-6"
           >
             {/* Definition */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base text-indigo-400 flex items-center gap-2">
                   <Info size={16} />
@@ -1062,19 +1062,19 @@ export default function CrossAssetMomPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Momentum is the empirical tendency for securities that have performed well over the past
                   3-12 months to continue outperforming in the near future. The canonical formulation uses
                   a{" "}
                   <span className="text-indigo-400 font-semibold">12-1 month lookback</span>: return from
                   12 months ago to 1 month ago, skipping the most recent month to avoid short-term reversal.
                 </p>
-                <div className="bg-slate-800 rounded-lg p-3 border border-slate-700">
-                  <p className="text-xs text-slate-400 font-mono mb-1">Signal formula:</p>
+                <div className="bg-muted rounded-lg p-3 border border-border">
+                  <p className="text-xs text-muted-foreground font-mono mb-1">Signal formula:</p>
                   <p className="text-sm text-emerald-400 font-mono">
                     MOM(t) = [P(t-1) / P(t-12)] - 1
                   </p>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     where P(t) is price at time t (monthly). Skip t-0 to t-1 to avoid 1-month reversal.
                   </p>
                 </div>
@@ -1084,9 +1084,9 @@ export default function CrossAssetMomPage() {
                     { title: "Cross-Sectional (XS-MOM)", body: "Rank all assets. Go long top decile, short bottom decile. Captures relative performance; beta-neutral within universe." },
                     { title: "Time-Series (TSMOM)", body: "Moskowitz, Ooi & Pedersen (2012). Each asset independently: long if past return > 0, short if < 0. Works across asset classes." },
                   ].map((item) => (
-                    <div key={item.title} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700/50">
+                    <div key={item.title} className="bg-muted/60 rounded-lg p-3 border border-border/50">
                       <p className="text-xs font-semibold text-indigo-300 mb-1">{item.title}</p>
-                      <p className="text-xs text-slate-400 leading-relaxed">{item.body}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{item.body}</p>
                     </div>
                   ))}
                 </div>
@@ -1094,13 +1094,13 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Cross-Sectional vs TSMOM diagram */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Cross-Sectional vs Time-Series Momentum</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Cross-Sectional vs Time-Series Momentum</CardTitle>
               </CardHeader>
               <CardContent>
                 <CrossSectionalVsTSMOMDiagram />
-                <p className="text-xs text-slate-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   XS-MOM requires a ranking within universe (long top / short bottom relative to peers);
                   TSMOM evaluates each asset against its own history — more robust in multi-asset portfolios.
                 </p>
@@ -1108,7 +1108,7 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Momentum crash */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base text-red-400 flex items-center gap-2">
                   <AlertTriangle size={15} />
@@ -1130,12 +1130,12 @@ export default function CrossAssetMomPage() {
                 <div className="grid grid-cols-3 gap-2 mt-3">
                   {[
                     { label: "Peak Drawdown", value: "-22.4%", color: "text-red-400" },
-                    { label: "Duration", value: "3 months", color: "text-slate-300" },
+                    { label: "Duration", value: "3 months", color: "text-muted-foreground" },
                     { label: "Recovery", value: "18 months", color: "text-amber-400" },
                   ].map((s) => (
-                    <div key={s.label} className="bg-slate-800 rounded p-2 text-center">
+                    <div key={s.label} className="bg-muted rounded p-2 text-center">
                       <p className={`text-sm font-bold ${s.color}`}>{s.value}</p>
-                      <p className="text-xs text-slate-500">{s.label}</p>
+                      <p className="text-xs text-muted-foreground">{s.label}</p>
                     </div>
                   ))}
                 </div>
@@ -1144,9 +1144,9 @@ export default function CrossAssetMomPage() {
 
             {/* Factor zoo + Sharpe by asset class */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base text-slate-300">Momentum in the Factor Zoo</CardTitle>
+                  <CardTitle className="text-base text-muted-foreground">Momentum in the Factor Zoo</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {[
@@ -1158,29 +1158,29 @@ export default function CrossAssetMomPage() {
                     { factor: "Quality (QMJ)", ic: 0.55, sr: 0.64, era: "AQR 2013", color: "#a855f7" },
                   ].map((f) => (
                     <div key={f.factor} className="flex items-center gap-3">
-                      <span className="text-xs text-slate-400 w-36 shrink-0">{f.factor}</span>
-                      <div className="flex-1 bg-slate-800 rounded h-3 overflow-hidden">
+                      <span className="text-xs text-muted-foreground w-36 shrink-0">{f.factor}</span>
+                      <div className="flex-1 bg-muted rounded h-3 overflow-hidden">
                         <div className="h-full rounded" style={{ width: `${f.sr * 100}%`, backgroundColor: f.color }} />
                       </div>
                       <span className="text-xs font-mono w-10 text-right" style={{ color: f.color }}>
                         {f.sr.toFixed(2)}
                       </span>
-                      <span className="text-xs text-slate-600 w-20 shrink-0">{f.era}</span>
+                      <span className="text-xs text-muted-foreground w-20 shrink-0">{f.era}</span>
                     </div>
                   ))}
-                  <p className="text-xs text-slate-500 pt-1">
+                  <p className="text-xs text-muted-foreground pt-1">
                     Momentum has the highest Sharpe ratio among traditional factors — also highest tail risk.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-base text-slate-300">Momentum Sharpe by Asset Class</CardTitle>
+                  <CardTitle className="text-base text-muted-foreground">Momentum Sharpe by Asset Class</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <MomentumSharpeBarChart />
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Crypto shows highest Sharpe but extreme drawdowns. Bonds and Rates most consistent.
                   </p>
                 </CardContent>
@@ -1188,9 +1188,9 @@ export default function CrossAssetMomPage() {
             </div>
 
             {/* Persistence evidence */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Momentum Persistence Evidence</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Momentum Persistence Evidence</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1200,14 +1200,14 @@ export default function CrossAssetMomPage() {
                     { period: "12-36 Months", alpha: "6.8% ann.", effect: "Fading, still positive", sentiment: "moderate", color: "#f59e0b" },
                     { period: "36+ Months", alpha: "-2.1% ann.", effect: "Reversal to value", sentiment: "negative", color: "#ef4444" },
                   ].map((p) => (
-                    <div key={p.period} className="bg-slate-800/60 border border-slate-700/50 rounded-lg p-3">
-                      <p className="text-xs font-semibold text-slate-300">{p.period}</p>
+                    <div key={p.period} className="bg-muted/60 border border-border/50 rounded-lg p-3">
+                      <p className="text-xs font-semibold text-muted-foreground">{p.period}</p>
                       <p className="text-lg font-bold mt-1" style={{ color: p.color }}>{p.alpha}</p>
-                      <p className="text-xs text-slate-500 mt-0.5">{p.effect}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{p.effect}</p>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-slate-500 mt-3">
+                <p className="text-xs text-muted-foreground mt-3">
                   Source: Jegadeesh &amp; Titman (1993), Asness, Moskowitz &amp; Pedersen (AQR) cross-asset studies.
                   12-1 month formation period maximizes risk-adjusted return across all major universes.
                 </p>
@@ -1225,7 +1225,7 @@ export default function CrossAssetMomPage() {
             className="space-y-6"
           >
             {/* CTA Overview */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base text-indigo-400 flex items-center gap-2">
                   <Globe size={15} />
@@ -1233,7 +1233,7 @@ export default function CrossAssetMomPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Commodity Trading Advisors (CTAs) are systematic managers that apply{" "}
                   <span className="text-indigo-400 font-semibold">trend following</span> across
                   futures markets — equities, bonds, currencies, commodities. The core premise: trends
@@ -1247,9 +1247,9 @@ export default function CrossAssetMomPage() {
                     { label: "Stock Corr (Crisis)", value: "-0.42", color: "#f59e0b" },
                     { label: "Crisis Alpha", value: "Yes", color: "#ec4899" },
                   ].map((s) => (
-                    <div key={s.label} className="bg-slate-800 rounded p-2 text-center">
+                    <div key={s.label} className="bg-muted rounded p-2 text-center">
                       <p className="text-base font-bold" style={{ color: s.color }}>{s.value}</p>
-                      <p className="text-xs text-slate-500">{s.label}</p>
+                      <p className="text-xs text-muted-foreground">{s.label}</p>
                     </div>
                   ))}
                 </div>
@@ -1257,34 +1257,34 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* MA Crossover */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Long/Short Signal Generation</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Long/Short Signal Generation</CardTitle>
               </CardHeader>
               <CardContent>
                 <MAcrossoverSVG />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                  <div className="bg-slate-800/60 rounded-lg p-3 border border-slate-700/50">
+                  <div className="bg-muted/60 rounded-lg p-3 border border-border/50">
                     <p className="text-xs font-semibold text-emerald-400 mb-1">Long Signal</p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-muted-foreground">
                       Fast MA &gt; Slow MA — asset is in uptrend. Position = +1 (or fraction based on conviction).
                       Typical: SMA20 crosses above SMA50.
                     </p>
                   </div>
-                  <div className="bg-slate-800/60 rounded-lg p-3 border border-slate-700/50">
+                  <div className="bg-muted/60 rounded-lg p-3 border border-border/50">
                     <p className="text-xs font-semibold text-red-400 mb-1">Short Signal</p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-muted-foreground">
                       Fast MA &lt; Slow MA — asset is in downtrend. Position = -1 (or fraction).
                       Shorting via futures is standard (no borrowing constraints).
                     </p>
                   </div>
                 </div>
-                <div className="mt-3 bg-slate-800 rounded-lg p-3 border border-slate-700">
-                  <p className="text-xs text-slate-400 font-mono mb-1">Volatility-Scaled Position Size:</p>
+                <div className="mt-3 bg-muted rounded-lg p-3 border border-border">
+                  <p className="text-xs text-muted-foreground font-mono mb-1">Volatility-Scaled Position Size:</p>
                   <p className="text-sm text-amber-400 font-mono">
                     position = signal × (vol_target / asset_vol) × account_value
                   </p>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     vol_target typically 10-15% annualized. asset_vol = rolling 60-day realized volatility.
                     This equalizes risk contribution regardless of asset class.
                   </p>
@@ -1293,13 +1293,13 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Regime diversification */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Diversification Benefit — Correlation by Regime</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Diversification Benefit — Correlation by Regime</CardTitle>
               </CardHeader>
               <CardContent>
                 <RegimeDiversificationSVG />
-                <p className="text-xs text-slate-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   CTAs exhibit negative correlation to equities precisely when equities crash (crisis/bear regimes),
                   making them powerful diversifiers. Unlike bonds, CTA correlation is asymmetric and regime-dependent.
                 </p>
@@ -1307,9 +1307,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* 5 Trend Models */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">5 Trend Models Comparison</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">5 Trend Models Comparison</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
@@ -1320,7 +1320,7 @@ export default function CrossAssetMomPage() {
                       className={`text-left rounded-lg p-3 border transition-all ${
                         selectedModel === m.shortName
                           ? "border-indigo-500 bg-indigo-900/20"
-                          : "border-slate-700/50 bg-slate-800/60 hover:border-slate-600"
+                          : "border-border/50 bg-muted/60 hover:border-slate-600"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
@@ -1329,19 +1329,19 @@ export default function CrossAssetMomPage() {
                         </span>
                         <span className="text-xs text-emerald-400 font-mono">{m.annualReturn}%</span>
                       </div>
-                      <p className="text-xs text-slate-400 mb-2">{m.description}</p>
+                      <p className="text-xs text-muted-foreground mb-2">{m.description}</p>
                       <div className="flex gap-3">
                         <div>
-                          <p className="text-xs text-slate-500">Sharpe</p>
-                          <p className="text-xs font-semibold text-slate-200">{m.sharpe}</p>
+                          <p className="text-xs text-muted-foreground">Sharpe</p>
+                          <p className="text-xs font-semibold text-foreground">{m.sharpe}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-slate-500">MaxDD</p>
+                          <p className="text-xs text-muted-foreground">MaxDD</p>
                           <p className="text-xs font-semibold text-red-400">{m.maxDrawdown}%</p>
                         </div>
                         <div>
-                          <p className="text-xs text-slate-500">WinRate</p>
-                          <p className="text-xs font-semibold text-slate-200">{m.winRate}%</p>
+                          <p className="text-xs text-muted-foreground">WinRate</p>
+                          <p className="text-xs font-semibold text-foreground">{m.winRate}%</p>
                         </div>
                       </div>
                     </button>
@@ -1361,15 +1361,15 @@ export default function CrossAssetMomPage() {
                       </p>
                       <div className="grid grid-cols-3 gap-3">
                         <div>
-                          <p className="text-xs text-slate-500">Annual Return</p>
+                          <p className="text-xs text-muted-foreground">Annual Return</p>
                           <p className="text-base font-bold text-emerald-400">{selectedTrendModel.annualReturn}%</p>
                         </div>
                         <div>
-                          <p className="text-xs text-slate-500">Sharpe Ratio</p>
+                          <p className="text-xs text-muted-foreground">Sharpe Ratio</p>
                           <p className="text-base font-bold text-indigo-300">{selectedTrendModel.sharpe}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-slate-500">Avg Hold (days)</p>
+                          <p className="text-xs text-muted-foreground">Avg Hold (days)</p>
                           <p className="text-base font-bold text-amber-400">{selectedTrendModel.avgHoldDays}</p>
                         </div>
                       </div>
@@ -1380,9 +1380,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Backtest */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Backtest Performance</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Backtest Performance</CardTitle>
               </CardHeader>
               <CardContent>
                 <BacktestPerformanceSVG />
@@ -1400,7 +1400,7 @@ export default function CrossAssetMomPage() {
             className="space-y-6"
           >
             {/* 8 Asset Class Signals */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base text-indigo-400 flex items-center gap-2">
                   <Globe size={15} />
@@ -1412,29 +1412,29 @@ export default function CrossAssetMomPage() {
                   {ASSET_CLASSES.map((a) => (
                     <div
                       key={a.shortName}
-                      className="bg-slate-800/60 border border-slate-700/50 rounded-lg p-3"
+                      className="bg-muted/60 border border-border/50 rounded-lg p-3"
                     >
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-bold text-slate-300">{a.shortName}</span>
+                        <span className="text-xs font-bold text-muted-foreground">{a.shortName}</span>
                         <SignalBadge signal={a.signal} />
                       </div>
-                      <p className="text-xs text-slate-500 mb-2">{a.name}</p>
+                      <p className="text-xs text-muted-foreground mb-2">{a.name}</p>
                       <div className="grid grid-cols-2 gap-1">
                         <div>
-                          <p className="text-xs text-slate-500">Mom Sharpe</p>
+                          <p className="text-xs text-muted-foreground">Mom Sharpe</p>
                           <p className="text-sm font-semibold" style={{ color: a.color }}>{a.momentumSharpe}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-slate-500">Ann. Ret</p>
+                          <p className="text-xs text-muted-foreground">Ann. Ret</p>
                           <p className="text-sm font-semibold text-emerald-400">{a.annualReturn}%</p>
                         </div>
                         <div>
-                          <p className="text-xs text-slate-500">Max DD</p>
+                          <p className="text-xs text-muted-foreground">Max DD</p>
                           <p className="text-sm font-semibold text-red-400">{a.maxDrawdown}%</p>
                         </div>
                         <div>
-                          <p className="text-xs text-slate-500">Vol</p>
-                          <p className="text-sm font-semibold text-slate-300">{a.volatility}%</p>
+                          <p className="text-xs text-muted-foreground">Vol</p>
+                          <p className="text-sm font-semibold text-muted-foreground">{a.volatility}%</p>
                         </div>
                       </div>
                     </div>
@@ -1444,22 +1444,22 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Portfolio Construction */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">
+                <CardTitle className="text-base text-muted-foreground">
                   Portfolio Construction — Equal Volatility Weighting
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Each asset receives a weight proportional to its{" "}
                   <span className="text-indigo-400 font-semibold">inverse volatility</span>, so that every
                   position contributes equally to portfolio risk. Multiply by the momentum signal (±1 or
                   continuous z-score) to get the final position size.
                 </p>
-                <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 font-mono text-sm">
+                <div className="bg-muted rounded-lg p-3 border border-border font-mono text-sm">
                   <p className="text-amber-400">w_i = (vol_target / vol_i) / Σ(vol_target / vol_j)</p>
-                  <p className="text-slate-500 text-xs mt-1">position_i = signal_i × w_i × portfolio_value</p>
+                  <p className="text-muted-foreground text-xs mt-1">position_i = signal_i × w_i × portfolio_value</p>
                 </div>
                 <div className="space-y-2">
                   {PORTFOLIO_ASSETS.map((a) => (
@@ -1468,16 +1468,16 @@ export default function CrossAssetMomPage() {
                       onClick={() =>
                         setSelectedAsset(selectedAsset === a.shortName ? null : a.shortName)
                       }
-                      className="w-full flex items-center gap-3 hover:bg-slate-800/50 rounded p-2 transition-colors text-left"
+                      className="w-full flex items-center gap-3 hover:bg-muted/50 rounded p-2 transition-colors text-left"
                     >
-                      <span className="text-xs text-slate-400 w-14 shrink-0">{a.shortName}</span>
-                      <div className="flex-1 bg-slate-800 rounded h-2">
+                      <span className="text-xs text-muted-foreground w-14 shrink-0">{a.shortName}</span>
+                      <div className="flex-1 bg-muted rounded h-2">
                         <div
                           className="h-full rounded"
                           style={{ width: `${(a.weight / 15) * 100}%`, backgroundColor: a.color }}
                         />
                       </div>
-                      <span className="text-xs font-mono text-slate-300 w-10 text-right">{a.weight.toFixed(1)}%</span>
+                      <span className="text-xs font-mono text-muted-foreground w-10 text-right">{a.weight.toFixed(1)}%</span>
                       <span
                         className={`text-xs font-mono w-14 text-right ${
                           a.signal >= 0 ? "text-emerald-400" : "text-red-400"
@@ -1511,19 +1511,19 @@ export default function CrossAssetMomPage() {
                       </p>
                       <div className="grid grid-cols-4 gap-2 text-xs">
                         <div>
-                          <span className="text-slate-500">Vol Target</span>
-                          <p className="font-mono text-slate-200">{selectedPortfolioAsset.volTarget}%</p>
+                          <span className="text-muted-foreground">Vol Target</span>
+                          <p className="font-mono text-foreground">{selectedPortfolioAsset.volTarget}%</p>
                         </div>
                         <div>
-                          <span className="text-slate-500">Current Vol</span>
+                          <span className="text-muted-foreground">Current Vol</span>
                           <p className="font-mono text-amber-400">{selectedPortfolioAsset.currentVol}%</p>
                         </div>
                         <div>
-                          <span className="text-slate-500">Weight</span>
-                          <p className="font-mono text-slate-200">{selectedPortfolioAsset.weight.toFixed(1)}%</p>
+                          <span className="text-muted-foreground">Weight</span>
+                          <p className="font-mono text-foreground">{selectedPortfolioAsset.weight.toFixed(1)}%</p>
                         </div>
                         <div>
-                          <span className="text-slate-500">Contribution</span>
+                          <span className="text-muted-foreground">Contribution</span>
                           <p className={`font-mono ${selectedPortfolioAsset.contribution >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                             {selectedPortfolioAsset.contribution >= 0 ? "+" : ""}
                             {selectedPortfolioAsset.contribution.toFixed(2)}
@@ -1537,9 +1537,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Diversification contribution */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Diversification Contribution</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Diversification Contribution</CardTitle>
               </CardHeader>
               <CardContent>
                 <DiversificationContributionSVG />
@@ -1547,13 +1547,13 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Correlation matrix */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">8×8 Correlation Matrix</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">8×8 Correlation Matrix</CardTitle>
               </CardHeader>
               <CardContent>
                 <CorrelationMatrixSVG />
-                <p className="text-xs text-slate-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   Blue = positive correlation, Red = negative. SPX-HYG strongly positive (0.72); UST10-HYG
                   negative (-0.41) — bonds hedge credit risk. BTC shows moderate equity correlation (0.44).
                 </p>
@@ -1561,9 +1561,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Crisis performance */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">
+                <CardTitle className="text-base text-muted-foreground">
                   Crisis Performance — 2001 to 2022
                 </CardTitle>
               </CardHeader>
@@ -1601,7 +1601,7 @@ export default function CrossAssetMomPage() {
             className="space-y-6"
           >
             {/* Signal Construction */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base text-indigo-400 flex items-center gap-2">
                   <Activity size={15} />
@@ -1630,12 +1630,12 @@ export default function CrossAssetMomPage() {
                       color: "#f59e0b",
                     },
                   ].map((item) => (
-                    <div key={item.title} className="bg-slate-800/60 border border-slate-700/50 rounded-lg p-3">
+                    <div key={item.title} className="bg-muted/60 border border-border/50 rounded-lg p-3">
                       <p className="text-xs font-semibold mb-1" style={{ color: item.color }}>
                         {item.title}
                       </p>
-                      <p className="text-xs text-slate-400 leading-relaxed mb-2">{item.desc}</p>
-                      <code className="text-xs text-slate-300 bg-slate-900 rounded px-2 py-1 block font-mono">
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
+                      <code className="text-xs text-muted-foreground bg-card rounded px-2 py-1 block font-mono">
                         {item.code}
                       </code>
                     </div>
@@ -1645,9 +1645,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Execution Costs */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Execution Costs</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Execution Costs</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -1658,9 +1658,9 @@ export default function CrossAssetMomPage() {
                     { source: "Slippage (signal delay)", cost: "0.05–0.30%", impact: "Medium", notes: "Executing 1 day late vs signal date — most impactful for fast signals", color: "#f59e0b" },
                     { source: "Financing (short positions)", cost: "0.50–2.0% ann.", impact: "Medium", notes: "Prime broker financing rate for short futures positions (varies by asset)", color: "#ec4899" },
                   ].map((row) => (
-                    <div key={row.source} className="flex items-center gap-3 py-2 border-b border-slate-800">
-                      <span className="text-xs text-slate-400 flex-1">{row.source}</span>
-                      <span className="text-xs font-mono text-slate-300 w-24 text-right">{row.cost}</span>
+                    <div key={row.source} className="flex items-center gap-3 py-2 border-b border-border">
+                      <span className="text-xs text-muted-foreground flex-1">{row.source}</span>
+                      <span className="text-xs font-mono text-muted-foreground w-24 text-right">{row.cost}</span>
                       <Badge
                         variant="outline"
                         className="w-16 text-center text-xs"
@@ -1668,7 +1668,7 @@ export default function CrossAssetMomPage() {
                       >
                         {row.impact}
                       </Badge>
-                      <span className="text-xs text-slate-500 w-56 hidden lg:block">{row.notes}</span>
+                      <span className="text-xs text-muted-foreground w-56 hidden lg:block">{row.notes}</span>
                     </div>
                   ))}
                 </div>
@@ -1684,14 +1684,14 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Factor combination */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">
+                <CardTitle className="text-base text-muted-foreground">
                   Momentum + Carry + Value Combination
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   AQR's research (Asness, Moskowitz, Pedersen 2013) shows that momentum, carry, and value are
                   negatively correlated factors. Combining them dramatically improves the Sharpe ratio.
                 </p>
@@ -1719,15 +1719,15 @@ export default function CrossAssetMomPage() {
                       correlation: "Negative to momentum",
                     },
                   ].map((f) => (
-                    <div key={f.name} className="bg-slate-800/60 border border-slate-700/50 rounded-lg p-3">
+                    <div key={f.name} className="bg-muted/60 border border-border/50 rounded-lg p-3">
                       <p className="text-sm font-bold mb-1" style={{ color: f.color }}>{f.name}</p>
-                      <p className="text-xs text-slate-400 mb-2">{f.description}</p>
+                      <p className="text-xs text-muted-foreground mb-2">{f.description}</p>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs text-slate-500">Sharpe:</span>
+                        <span className="text-xs text-muted-foreground">Sharpe:</span>
                         <span className="text-xs font-mono" style={{ color: f.color }}>{f.sharpe}</span>
                       </div>
                       <Progress value={f.sharpe * 100} className="h-1.5 mb-1" />
-                      <p className="text-xs text-slate-500">{f.correlation}</p>
+                      <p className="text-xs text-muted-foreground">{f.correlation}</p>
                     </div>
                   ))}
                 </div>
@@ -1735,14 +1735,14 @@ export default function CrossAssetMomPage() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-xs text-indigo-300 font-semibold">Combined Portfolio (1/3 each)</p>
-                      <p className="text-xs text-slate-400 mt-0.5">
+                      <p className="text-xs text-muted-foreground mt-0.5">
                         Sharpe rises from ~0.6 individually to ~1.1 combined — subadditive volatility through low
                         factor correlation. This is the theoretical foundation of multi-factor style premia.
                       </p>
                     </div>
                     <div className="text-right ml-4">
                       <p className="text-2xl font-bold text-indigo-300">1.12</p>
-                      <p className="text-xs text-slate-500">combined Sharpe</p>
+                      <p className="text-xs text-muted-foreground">combined Sharpe</p>
                     </div>
                   </div>
                 </div>
@@ -1750,9 +1750,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Pipeline */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Live Implementation Pipeline</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Live Implementation Pipeline</CardTitle>
               </CardHeader>
               <CardContent>
                 <SignalPipelineSVG />
@@ -1760,9 +1760,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Risk Management */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300 flex items-center gap-2">
+                <CardTitle className="text-base text-muted-foreground flex items-center gap-2">
                   <Shield size={14} />
                   Risk Management
                 </CardTitle>
@@ -1806,7 +1806,7 @@ export default function CrossAssetMomPage() {
                   ].map((section) => (
                     <div
                       key={section.title}
-                      className="bg-slate-800/60 border border-slate-700/50 rounded-lg p-3"
+                      className="bg-muted/60 border border-border/50 rounded-lg p-3"
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <section.icon size={13} style={{ color: section.color }} />
@@ -1816,7 +1816,7 @@ export default function CrossAssetMomPage() {
                       </div>
                       <ul className="space-y-1">
                         {section.rules.map((r) => (
-                          <li key={r} className="text-xs text-slate-400 flex gap-1.5">
+                          <li key={r} className="text-xs text-muted-foreground flex gap-1.5">
                             <span style={{ color: section.color }} className="mt-0.5">•</span>
                             {r}
                           </li>
@@ -1829,9 +1829,9 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* Return attribution */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-slate-300">Return Attribution</CardTitle>
+                <CardTitle className="text-base text-muted-foreground">Return Attribution</CardTitle>
               </CardHeader>
               <CardContent>
                 <ReturnAttributionSVG />
@@ -1842,10 +1842,10 @@ export default function CrossAssetMomPage() {
                     { label: "Diversification", pct: 21, note: "Cross-asset benefit", color: "#f59e0b" },
                     { label: "Carry", pct: 9, note: "Roll/coupon income", color: "#ec4899" },
                   ].map((s) => (
-                    <div key={s.label} className="bg-slate-800 rounded p-2">
+                    <div key={s.label} className="bg-muted rounded p-2">
                       <p className="text-base font-bold" style={{ color: s.color }}>{s.pct}%</p>
-                      <p className="text-xs text-slate-400">{s.label}</p>
-                      <p className="text-xs text-slate-600">{s.note}</p>
+                      <p className="text-xs text-muted-foreground">{s.label}</p>
+                      <p className="text-xs text-muted-foreground">{s.note}</p>
                     </div>
                   ))}
                 </div>
@@ -1853,7 +1853,7 @@ export default function CrossAssetMomPage() {
             </Card>
 
             {/* AQR Evidence */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-base text-indigo-400 flex items-center gap-2">
                   <Database size={15} />
@@ -1894,18 +1894,18 @@ export default function CrossAssetMomPage() {
                   ].map((p) => (
                     <div
                       key={p.paper}
-                      className="bg-slate-800/60 border border-slate-700/50 rounded-lg p-3"
+                      className="bg-muted/60 border border-border/50 rounded-lg p-3"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex-1">
                           <p className="text-xs font-semibold" style={{ color: p.color }}>
                             {p.paper}
                           </p>
-                          <p className="text-xs text-slate-300 font-medium mt-0.5">{p.title}</p>
-                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">{p.finding}</p>
+                          <p className="text-xs text-muted-foreground font-medium mt-0.5">{p.title}</p>
+                          <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{p.finding}</p>
                         </div>
                         <div className="text-right shrink-0 ml-2">
-                          <p className="text-xs text-slate-500">Sharpe</p>
+                          <p className="text-xs text-muted-foreground">Sharpe</p>
                           <p className="text-sm font-mono font-bold" style={{ color: p.color }}>
                             {p.sharpe}
                           </p>

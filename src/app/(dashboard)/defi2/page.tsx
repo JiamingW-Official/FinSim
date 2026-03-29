@@ -87,18 +87,18 @@ function StatCard({
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
-        {icon && <span className="text-zinc-400">{icon}</span>}
-        <span className="text-xs text-zinc-400">{label}</span>
+        {icon && <span className="text-muted-foreground">{icon}</span>}
+        <span className="text-xs text-muted-foreground">{label}</span>
       </div>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -138,11 +138,11 @@ function CompareRow({
 }) {
   return (
     <tr className="border-b border-white/5">
-      <td className="py-2.5 px-3 text-xs text-zinc-400">{label}</td>
+      <td className="py-2.5 px-3 text-xs text-muted-foreground">{label}</td>
       <td
         className={cn(
           "py-2.5 px-3 text-xs text-center",
-          better === 1 ? "text-emerald-400 font-semibold" : "text-zinc-300"
+          better === 1 ? "text-emerald-400 font-semibold" : "text-muted-foreground"
         )}
       >
         {v1}
@@ -150,7 +150,7 @@ function CompareRow({
       <td
         className={cn(
           "py-2.5 px-3 text-xs text-center",
-          better === 2 ? "text-emerald-400 font-semibold" : "text-zinc-300"
+          better === 2 ? "text-emerald-400 font-semibold" : "text-muted-foreground"
         )}
       >
         {v2}
@@ -350,22 +350,22 @@ function LiquidityTab() {
       <div>
         <SectionTitle><Layers size={14} className="text-primary" />Uniswap V3 Concentrated Liquidity</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-xs text-zinc-400 mb-4">
+          <p className="text-xs text-muted-foreground mb-4">
             V3 allows LPs to provide liquidity within custom price ranges (ticks). Capital concentrates at the current price, achieving up to <span className="text-primary font-semibold">4000x capital efficiency</span> vs V2. Positions become NFTs representing unique tick ranges.
           </p>
           <TickRangeSVG />
-          <div className="mt-4 text-xs text-zinc-500 italic">
+          <div className="mt-4 text-xs text-muted-foreground italic">
             Multiple V3 positions overlapping near current price (dashed line). Active range bracket marks where fees are earned.
           </div>
         </div>
 
         {/* Capital efficiency comparison */}
         <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4">
-          <div className="text-xs font-semibold text-zinc-300 mb-3">Capital Efficiency vs V2 Baseline</div>
+          <div className="text-xs font-semibold text-muted-foreground mb-3">Capital Efficiency vs V2 Baseline</div>
           <div className="space-y-2">
             {efficiencyData.map((d, i) => (
               <div key={i} className="flex items-center gap-3">
-                <div className="w-36 text-xs text-zinc-400 truncate">{d.label}</div>
+                <div className="w-36 text-xs text-muted-foreground truncate">{d.label}</div>
                 <div className="flex-1 h-5 bg-white/5 rounded overflow-hidden relative">
                   <div
                     className="h-full rounded transition-all"
@@ -392,7 +392,7 @@ function LiquidityTab() {
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="py-2.5 px-3 text-left text-xs font-semibold text-zinc-300">Feature</th>
+                <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Feature</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-indigo-400">Classic AMM (V2)</th>
                 <th className="py-2.5 px-3 text-center text-xs font-semibold text-primary">CLMM (V3)</th>
               </tr>
@@ -416,13 +416,13 @@ function LiquidityTab() {
         <div>
           <SectionTitle><Droplets size={14} className="text-muted-foreground" />Curve Stableswap Invariant</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               Curve blends the constant-product formula (x·y=k) with constant-sum (x+y=k) via amplification parameter A. Near the price peg, behavior is nearly constant-sum (minimal slippage). Far from peg, it reverts to constant-product to prevent drain.
             </p>
-            <div className="bg-zinc-900/50 rounded p-2 font-mono text-xs text-muted-foreground">
+            <div className="bg-card/50 rounded p-2 font-mono text-xs text-muted-foreground">
               An^n·Σxi + D = An^n·D + D^(n+1)/(n^n·Πxi)
             </div>
-            <ul className="space-y-1 text-xs text-zinc-400">
+            <ul className="space-y-1 text-xs text-muted-foreground">
               <li className="flex gap-2"><span className="text-muted-foreground">A</span><span>Amplification factor (50–2000). Higher A = tighter peg adherence.</span></li>
               <li className="flex gap-2"><span className="text-muted-foreground">D</span><span>Invariant representing total pool value when balanced.</span></li>
               <li className="flex gap-2"><span className="text-muted-foreground">n</span><span>Number of assets in pool (typically 2–4).</span></li>
@@ -432,7 +432,7 @@ function LiquidityTab() {
         <div>
           <SectionTitle><Layers size={14} className="text-emerald-400" />Balancer Weighted Pools</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               Balancer generalizes AMMs to N assets with arbitrary weights. A pool can be 80% ETH / 20% DAI, functioning as an auto-rebalancing index. Managed Pools allow dynamic weight changes (used for liquidity bootstrapping launches).
             </p>
             <div className="space-y-2">
@@ -444,7 +444,7 @@ function LiquidityTab() {
               ].map((row) => (
                 <div key={row.label} className="flex gap-2 text-xs">
                   <span className="text-emerald-400 font-semibold w-28 shrink-0">{row.label}</span>
-                  <span className="text-zinc-400">{row.desc}</span>
+                  <span className="text-muted-foreground">{row.desc}</span>
                 </div>
               ))}
             </div>
@@ -456,7 +456,7 @@ function LiquidityTab() {
       <div>
         <SectionTitle><Lock size={14} className="text-primary" />veTokenomics (Vote-Escrowed Model)</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-xs text-zinc-400 mb-4">
+          <p className="text-xs text-muted-foreground mb-4">
             Pioneered by Curve (veCRV), veTokenomics aligns long-term holders with protocol governance. Tokens locked longer receive more voting power and higher yield boosts — creating supply sink mechanics and reducing mercenary farming.
           </p>
           <VeTokenomicsSVG />
@@ -467,9 +467,9 @@ function LiquidityTab() {
               { label: "Protocol Revenue Share", value: "50%", note: "To veCRV holders" },
             ].map((s) => (
               <div key={s.label} className="rounded-lg border border-border bg-primary/5 p-3">
-                <div className="text-xs text-zinc-400">{s.label}</div>
+                <div className="text-xs text-muted-foreground">{s.label}</div>
                 <div className="text-base font-bold text-primary">{s.value}</div>
-                <div className="text-xs text-zinc-500">{s.note}</div>
+                <div className="text-xs text-muted-foreground">{s.note}</div>
               </div>
             ))}
           </div>
@@ -481,7 +481,7 @@ function LiquidityTab() {
         <div>
           <SectionTitle><Coins size={14} className="text-amber-400" />Protocol-Owned Liquidity (POL)</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               Olympus DAO introduced <span className="text-amber-300">bonding</span>: users sell LP tokens to the protocol at a discount for vested OHM. Protocol accumulates its own liquidity permanently — removing dependence on mercenary LPs. The model failed due to hyperinflation (7000% APY) — but POL as a concept remains influential.
             </p>
             <div className="space-y-1.5">
@@ -491,7 +491,7 @@ function LiquidityTab() {
                 { step: "3. Backs OHM", desc: "Each OHM backed by treasury assets ($1+ floor value enforced)" },
                 { step: "Failed", desc: "3,3 Ponzi dynamic: 7000% APY only works while new buyers enter" },
               ].map((r) => (
-                <div key={r.step} className={cn("flex gap-2 text-xs", r.step === "Failed" ? "text-rose-400" : "text-zinc-400")}>
+                <div key={r.step} className={cn("flex gap-2 text-xs", r.step === "Failed" ? "text-rose-400" : "text-muted-foreground")}>
                   <span className="font-semibold w-16 shrink-0">{r.step}</span>
                   <span>{r.desc}</span>
                 </div>
@@ -522,11 +522,11 @@ function LiquidityTab() {
                       m.color === "blue" && "text-primary",
                       m.color === "purple" && "text-primary"
                     )}>{m.icon}</span>
-                    <span className="text-xs font-semibold text-zinc-200">{m.name}</span>
+                    <span className="text-xs font-semibold text-foreground">{m.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-white/5 text-zinc-300 border-white/10 text-xs">{m.annualRevenue}</Badge>
-                    <ChevronDown size={12} className={cn("text-zinc-500 transition-transform", expandedMev === i && "rotate-180")} />
+                    <Badge className="bg-white/5 text-muted-foreground border-white/10 text-xs">{m.annualRevenue}</Badge>
+                    <ChevronDown size={12} className={cn("text-muted-foreground transition-transform", expandedMev === i && "rotate-180")} />
                   </div>
                 </div>
                 <AnimatePresence>
@@ -537,7 +537,7 @@ function LiquidityTab() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <p className="text-xs text-zinc-400 mt-2 pt-2 border-t border-white/10">{m.desc}</p>
+                      <p className="text-xs text-muted-foreground mt-2 pt-2 border-t border-white/10">{m.desc}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -714,19 +714,19 @@ function RWATab() {
           <table className="w-full min-w-[580px]">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="py-2.5 px-3 text-left text-xs font-semibold text-zinc-300">Protocol</th>
-                <th className="py-2.5 px-3 text-left text-xs font-semibold text-zinc-300">Focus</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">TVL</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">Collateral</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">KYC</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">Yield</th>
+                <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Protocol</th>
+                <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Focus</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">TVL</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Collateral</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">KYC</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Yield</th>
               </tr>
             </thead>
             <tbody>
               {RWA_PROTOCOLS.map((p) => (
                 <tr key={p.name} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="py-2.5 px-3 text-xs font-semibold text-zinc-200">{p.name}</td>
-                  <td className="py-2.5 px-3 text-xs text-zinc-400">{p.focus}</td>
+                  <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{p.name}</td>
+                  <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.focus}</td>
                   <td className="py-2.5 px-3 text-xs text-center text-emerald-400">{p.tvl}</td>
                   <td className="py-2.5 px-3 text-center">
                     <Badge className={cn("text-xs",
@@ -753,7 +753,7 @@ function RWATab() {
         <div>
           <SectionTitle><DollarSign size={14} className="text-emerald-400" />On-Chain Treasury Yield Capture</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               Protocols like USDM (Mountain Protocol) and stUSDT (Justin Sun) hold short-dated US Treasury bills and rebate yield to token holders. Unlike Tether/USDC which capture yield entirely, these pass-through products let DeFi users earn risk-free rates on-chain.
             </p>
             <div className="space-y-2">
@@ -765,12 +765,12 @@ function RWATab() {
               ].map((t) => (
                 <div key={t.label} className="flex items-center justify-between bg-white/5 rounded p-2">
                   <div>
-                    <span className="text-xs font-semibold text-zinc-200">{t.label}</span>
-                    <span className="text-xs text-zinc-500 ml-2">{t.asset}</span>
+                    <span className="text-xs font-semibold text-foreground">{t.label}</span>
+                    <span className="text-xs text-muted-foreground ml-2">{t.asset}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">{t.apy}</Badge>
-                    <span className="text-xs text-zinc-500">{t.chain}</span>
+                    <span className="text-xs text-muted-foreground">{t.chain}</span>
                   </div>
                 </div>
               ))}
@@ -994,28 +994,28 @@ function IntentTab() {
           <table className="w-full min-w-[540px]">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="py-2.5 px-3 text-left text-xs font-semibold text-zinc-300">Protocol</th>
-                <th className="py-2.5 px-3 text-left text-xs font-semibold text-zinc-300">Mechanism</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">MEV</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">Cross-Chain</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">Gasless</th>
+                <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Protocol</th>
+                <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Mechanism</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">MEV</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Cross-Chain</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Gasless</th>
               </tr>
             </thead>
             <tbody>
               {INTENT_PROTOCOLS.map((p) => (
                 <tr key={p.name} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="py-2.5 px-3 text-xs font-semibold text-zinc-200">{p.name}</td>
-                  <td className="py-2.5 px-3 text-xs text-zinc-400">{p.mechanism}</td>
+                  <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{p.name}</td>
+                  <td className="py-2.5 px-3 text-xs text-muted-foreground">{p.mechanism}</td>
                   <td className="py-2.5 px-3 text-center">
                     <Badge className={cn("text-xs", p.protection.includes("Full") ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : "bg-primary/20 text-primary border-border")}>
                       {p.protection.includes("Full") ? "Full" : "Partial"}
                     </Badge>
                   </td>
                   <td className="py-2.5 px-3 text-center">
-                    {p.crossChain ? <CheckCircle size={12} className="text-emerald-400 mx-auto" /> : <XCircle size={12} className="text-zinc-600 mx-auto" />}
+                    {p.crossChain ? <CheckCircle size={12} className="text-emerald-400 mx-auto" /> : <XCircle size={12} className="text-muted-foreground mx-auto" />}
                   </td>
                   <td className="py-2.5 px-3 text-center">
-                    {p.gasless ? <CheckCircle size={12} className="text-emerald-400 mx-auto" /> : <XCircle size={12} className="text-zinc-600 mx-auto" />}
+                    {p.gasless ? <CheckCircle size={12} className="text-emerald-400 mx-auto" /> : <XCircle size={12} className="text-muted-foreground mx-auto" />}
                   </td>
                 </tr>
               ))}
@@ -1039,7 +1039,7 @@ function IntentTab() {
               ].map((row) => (
                 <div key={row.label} className="flex gap-2 text-xs">
                   <span className="text-amber-400 font-semibold w-28 shrink-0 mt-0.5">{row.label}</span>
-                  <span className="text-zinc-400">{row.desc}</span>
+                  <span className="text-muted-foreground">{row.desc}</span>
                 </div>
               ))}
             </div>
@@ -1048,7 +1048,7 @@ function IntentTab() {
         <div>
           <SectionTitle><Network size={14} className="text-primary" />Cross-Chain Bridge Security Taxonomy</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
-            <p className="text-xs text-zinc-400 mb-2">Over $2.8B lost to bridge hacks 2021–2024. Security models differ fundamentally:</p>
+            <p className="text-xs text-muted-foreground mb-2">Over $2.8B lost to bridge hacks 2021–2024. Security models differ fundamentally:</p>
             {[
               {
                 type: "Optimistic Bridges",
@@ -1083,7 +1083,7 @@ function IntentTab() {
             ].map((b) => (
               <div key={b.type} className="rounded-lg border border-white/10 bg-white/5 p-2.5">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-zinc-200">{b.type}</span>
+                  <span className="text-xs font-semibold text-foreground">{b.type}</span>
                   <Badge className={cn("text-xs",
                     b.risk === "Very Low" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
                     b.risk === "Low" ? "bg-primary/20 text-primary border-border" :
@@ -1093,7 +1093,7 @@ function IntentTab() {
                     {b.risk} Risk
                   </Badge>
                 </div>
-                <p className="text-xs text-zinc-400">{b.desc}</p>
+                <p className="text-xs text-muted-foreground">{b.desc}</p>
               </div>
             ))}
           </div>
@@ -1104,13 +1104,13 @@ function IntentTab() {
       <div>
         <SectionTitle><DollarSign size={14} className="text-emerald-400" />Order Flow Auctions (OFA) Economics</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-xs text-zinc-400 mb-3">
+          <p className="text-xs text-muted-foreground mb-3">
             OFAs create markets for order flow — wallets (MetaMask, Rabby) sell exclusive right to fill user trades to market makers via auction. Market makers bid for flow and return <span className="text-emerald-300">price improvement</span> to users rather than extracting MEV.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-              <div className="text-xs font-semibold text-zinc-200 mb-1.5">Flow Auction Participants</div>
-              <ul className="space-y-1 text-xs text-zinc-400">
+              <div className="text-xs font-semibold text-foreground mb-1.5">Flow Auction Participants</div>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li><span className="text-indigo-400">Wallet</span> — routes orders to auction house</li>
                 <li><span className="text-indigo-400">Auction House</span> — Flashbots/CoW/MEV Blocker</li>
                 <li><span className="text-indigo-400">Market Maker</span> — bids for exclusive fill right</li>
@@ -1118,8 +1118,8 @@ function IntentTab() {
               </ul>
             </div>
             <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-              <div className="text-xs font-semibold text-zinc-200 mb-1.5">Value Distribution</div>
-              <ul className="space-y-1 text-xs text-zinc-400">
+              <div className="text-xs font-semibold text-foreground mb-1.5">Value Distribution</div>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li>User: <span className="text-emerald-400">60–80%</span> of MEV recovered</li>
                 <li>Wallet: <span className="text-primary">10–20%</span> kickback</li>
                 <li>Market Maker: <span className="text-amber-400">10–30%</span> profit</li>
@@ -1127,8 +1127,8 @@ function IntentTab() {
               </ul>
             </div>
             <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-              <div className="text-xs font-semibold text-zinc-200 mb-1.5">Active OFA Systems</div>
-              <ul className="space-y-1 text-xs text-zinc-400">
+              <div className="text-xs font-semibold text-foreground mb-1.5">Active OFA Systems</div>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li><span className="text-primary">MEV Blocker</span> — CoW Protocol</li>
                 <li><span className="text-primary">Flashbots Protect</span> — builders/searchers</li>
                 <li><span className="text-primary">1inch Fusion+</span> — resolvers pay user</li>
@@ -1216,7 +1216,7 @@ function YieldCompositionBar() {
       </div>
       <div className="flex flex-wrap gap-3">
         {segments.map((seg) => (
-          <div key={seg.label} className="flex items-center gap-1.5 text-xs text-zinc-400">
+          <div key={seg.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <div className="w-2.5 h-2.5 rounded-sm" style={{ background: seg.color }} />
             {seg.label}
           </div>
@@ -1312,7 +1312,7 @@ function RestakingTab() {
       <div>
         <SectionTitle><Percent size={14} className="text-emerald-400" />Restaking Yield Composition</SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-xs text-zinc-400 mb-3">Estimated breakdown of total LRT yield (~9.5% gross APY for diversified restaking)</p>
+          <p className="text-xs text-muted-foreground mb-3">Estimated breakdown of total LRT yield (~9.5% gross APY for diversified restaking)</p>
           <YieldCompositionBar />
           <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2">
             {[
@@ -1322,9 +1322,9 @@ function RestakingTab() {
               { label: "LRT Incentives", value: "~1.6%", note: "Protocol tokens" },
             ].map((item) => (
               <div key={item.label} className="rounded-lg border border-white/10 bg-white/5 p-2.5">
-                <div className="text-xs text-zinc-400">{item.label}</div>
+                <div className="text-xs text-muted-foreground">{item.label}</div>
                 <div className="text-sm font-bold text-emerald-400">{item.value}</div>
-                <div className="text-xs text-zinc-500">{item.note}</div>
+                <div className="text-xs text-muted-foreground">{item.note}</div>
               </div>
             ))}
           </div>
@@ -1338,18 +1338,18 @@ function RestakingTab() {
           <table className="w-full min-w-[540px]">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="py-2.5 px-3 text-left text-xs font-semibold text-zinc-300">Protocol</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">Token</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">TVL</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">Base Yield</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">AVS Add.</th>
-                <th className="py-2.5 px-3 text-center text-xs font-semibold text-zinc-300">Slash Risk</th>
+                <th className="py-2.5 px-3 text-left text-xs font-semibold text-muted-foreground">Protocol</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Token</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">TVL</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Base Yield</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">AVS Add.</th>
+                <th className="py-2.5 px-3 text-center text-xs font-semibold text-muted-foreground">Slash Risk</th>
               </tr>
             </thead>
             <tbody>
               {LRTS.map((l) => (
                 <tr key={l.token} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="py-2.5 px-3 text-xs font-semibold text-zinc-200">{l.name}</td>
+                  <td className="py-2.5 px-3 text-xs font-semibold text-foreground">{l.name}</td>
                   <td className="py-2.5 px-3 text-center">
                     <Badge className="bg-primary/20 text-primary border-border text-xs">{l.token}</Badge>
                   </td>
@@ -1385,7 +1385,7 @@ function RestakingTab() {
               <div className="flex items-center justify-between p-3">
                 <div className="flex items-center gap-2">
                   <span className="text-amber-400">{barrier.icon}</span>
-                  <span className="text-xs font-semibold text-zinc-200">{barrier.title}</span>
+                  <span className="text-xs font-semibold text-foreground">{barrier.title}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge className={cn("text-xs",
@@ -1393,7 +1393,7 @@ function RestakingTab() {
                   )}>
                     {barrier.severity}
                   </Badge>
-                  <ChevronRight size={12} className={cn("text-zinc-500 transition-transform", expandedInst === i && "rotate-90")} />
+                  <ChevronRight size={12} className={cn("text-muted-foreground transition-transform", expandedInst === i && "rotate-90")} />
                 </div>
               </div>
               <AnimatePresence>
@@ -1404,7 +1404,7 @@ function RestakingTab() {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-3 pb-3 text-xs text-zinc-400 border-t border-white/5 pt-2">
+                    <div className="px-3 pb-3 text-xs text-muted-foreground border-t border-white/5 pt-2">
                       {barrier.desc}
                     </div>
                   </motion.div>
@@ -1420,7 +1420,7 @@ function RestakingTab() {
         <div>
           <SectionTitle><Lock size={14} className="text-primary" />Permissioned DeFi Pools</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               Permissioned pools offer DeFi yield mechanics within a KYC/AML framework — bridging institutional compliance with on-chain efficiency.
             </p>
             {[
@@ -1447,16 +1447,16 @@ function RestakingTab() {
             ].map((pool) => (
               <div key={pool.name} className="rounded-lg border border-white/10 bg-white/5 p-2.5">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-semibold text-zinc-200">{pool.name}</span>
+                  <span className="text-xs font-semibold text-foreground">{pool.name}</span>
                   <Badge className={cn("text-xs",
                     pool.status === "Active" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
-                    pool.status === "Paused" ? "bg-zinc-500/20 text-zinc-400 border-zinc-500/30" :
+                    pool.status === "Paused" ? "bg-zinc-500/20 text-muted-foreground border-zinc-500/30" :
                     "bg-primary/20 text-primary border-border"
                   )}>
                     {pool.status}
                   </Badge>
                 </div>
-                <p className="text-xs text-zinc-400">{pool.desc}</p>
+                <p className="text-xs text-muted-foreground">{pool.desc}</p>
               </div>
             ))}
           </div>
@@ -1464,7 +1464,7 @@ function RestakingTab() {
         <div>
           <SectionTitle><Shield size={14} className="text-emerald-400" />DeFi Insurance Protocols</SectionTitle>
           <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-3">
-            <p className="text-xs text-zinc-400 mb-2">
+            <p className="text-xs text-muted-foreground mb-2">
               On-chain insurance provides partial coverage for smart contract exploits, oracle failures, and stablecoin depegs. Coverage is limited relative to total DeFi TVL.
             </p>
             {[
@@ -1495,11 +1495,11 @@ function RestakingTab() {
             ].map((ins) => (
               <div key={ins.name} className="rounded-lg border border-white/10 bg-white/5 p-2.5 space-y-1">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-zinc-200">{ins.name}</span>
+                  <span className="text-xs font-semibold text-foreground">{ins.name}</span>
                   <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">Cover: {ins.cover}</Badge>
                 </div>
-                <p className="text-xs text-zinc-400">{ins.model}</p>
-                <p className="text-xs text-zinc-500 italic">{ins.notable}</p>
+                <p className="text-xs text-muted-foreground">{ins.model}</p>
+                <p className="text-xs text-muted-foreground italic">{ins.notable}</p>
               </div>
             ))}
           </div>
@@ -1524,7 +1524,7 @@ void NOISE;
 
 export default function DeFi2Page() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1537,12 +1537,12 @@ export default function DeFi2Page() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">DeFi 2.0 & Advanced Protocols</h1>
-            <p className="text-sm text-zinc-400">Liquidity optimization, real-world assets on-chain, intent-based trading, restaking, and institutional DeFi</p>
+            <p className="text-sm text-muted-foreground">Liquidity optimization, real-world assets on-chain, intent-based trading, restaking, and institutional DeFi</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mt-3">
           {["Concentrated Liquidity", "veTokenomics", "RWA", "Intent Orders", "EigenLayer", "Institutional DeFi"].map((tag) => (
-            <Badge key={tag} className="bg-white/5 text-zinc-400 border-white/10 text-xs">{tag}</Badge>
+            <Badge key={tag} className="bg-white/5 text-muted-foreground border-white/10 text-xs">{tag}</Badge>
           ))}
         </div>
       </motion.div>

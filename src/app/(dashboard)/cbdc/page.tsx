@@ -90,18 +90,18 @@ function StatCard({
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
-        {icon && <span className="text-zinc-400">{icon}</span>}
-        <span className="text-xs text-zinc-400">{label}</span>
+        {icon && <span className="text-muted-foreground">{icon}</span>}
+        <span className="text-xs text-muted-foreground">{label}</span>
       </div>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -251,7 +251,7 @@ function PrivacySpectrumSVG() {
           );
         })}
       </svg>
-      <p className="text-xs text-zinc-500 mt-1">
+      <p className="text-xs text-muted-foreground mt-1">
         Most CBDC designs adopt tiered privacy: small transactions anonymous, large transactions traceable for AML compliance.
       </p>
     </div>
@@ -321,7 +321,7 @@ function DisintermediationRiskSVG() {
         <text x={5} y={134} fill="#52525b" fontSize={8}>0</text>
         <text x={5} y={14} fill="#52525b" fontSize={8}>100%</text>
       </svg>
-      <p className="text-xs text-zinc-500 mt-1">
+      <p className="text-xs text-muted-foreground mt-1">
         High CBDC adoption shifts funding away from commercial banks, reducing their capacity to lend. Most central banks target holding limits of €3,000–€5,000 per wallet.
       </p>
     </div>
@@ -351,7 +351,7 @@ function FundamentalsTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 pr-4 text-left text-zinc-400 font-medium">Attribute</th>
+                <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Attribute</th>
                 <th className="py-2 pr-4 text-left text-primary font-medium">Retail CBDC</th>
                 <th className="py-2 pr-4 text-left text-primary font-medium">Wholesale CBDC</th>
                 <th className="py-2 text-left text-amber-400 font-medium">Synthetic CBDC</th>
@@ -368,10 +368,10 @@ function FundamentalsTab() {
                 ["Examples", "e-CNY, digital euro, e-Rupee", "Project mBridge, Jura", "Narrow bank stablecoins"],
               ].map(([attr, retail, wholesale, synthetic], i) => (
                 <tr key={attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/2" : "")}>
-                  <td className="py-2 pr-4 text-zinc-400 font-medium">{attr}</td>
-                  <td className="py-2 pr-4 text-zinc-200">{retail}</td>
-                  <td className="py-2 pr-4 text-zinc-200">{wholesale}</td>
-                  <td className="py-2 text-zinc-200">{synthetic}</td>
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{attr}</td>
+                  <td className="py-2 pr-4 text-foreground">{retail}</td>
+                  <td className="py-2 pr-4 text-foreground">{wholesale}</td>
+                  <td className="py-2 text-foreground">{synthetic}</td>
                 </tr>
               ))}
             </tbody>
@@ -386,7 +386,7 @@ function FundamentalsTab() {
             <Shield className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-primary">Account-Based CBDC</span>
           </div>
-          <ul className="space-y-1.5 text-xs text-zinc-300">
+          <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Identity verification required at account opening</li>
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Full transaction audit trail — AML/CFT compliant</li>
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Easier to implement interest rates and holding limits</li>
@@ -399,7 +399,7 @@ function FundamentalsTab() {
             <Lock className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-primary">Token-Based CBDC</span>
           </div>
-          <ul className="space-y-1.5 text-xs text-zinc-300">
+          <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Bearer instrument — no account needed</li>
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Offline capable — works without connectivity</li>
             <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Privacy-preserving — cash-like pseudonymity</li>
@@ -429,16 +429,16 @@ function FundamentalsTab() {
                 onClick={() => setExpandedRow(expandedRow === i ? null : i)}
               >
                 <div className="flex items-center gap-3 text-left">
-                  <span className="text-xs font-medium text-zinc-300 w-36 shrink-0">{choice.dimension}</span>
+                  <span className="text-xs font-medium text-muted-foreground w-36 shrink-0">{choice.dimension}</span>
                   <div className="flex items-center gap-2">
                     <Badge className="bg-primary/20 text-primary border-border text-xs">{choice.optionA}</Badge>
-                    <span className="text-zinc-600 text-xs">vs</span>
+                    <span className="text-muted-foreground text-xs">vs</span>
                     <Badge className="bg-primary/20 text-primary border-border text-xs">{choice.optionB}</Badge>
                   </div>
                 </div>
                 {expandedRow === i
-                  ? <ChevronUp className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-                  : <ChevronDown className="w-3.5 h-3.5 text-zinc-400 shrink-0" />}
+                  ? <ChevronUp className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                  : <ChevronDown className="w-3.5 h-3.5 text-muted-foreground shrink-0" />}
               </button>
               <AnimatePresence>
                 {expandedRow === i && (
@@ -468,17 +468,17 @@ function FundamentalsTab() {
           <Banknote className="w-3.5 h-3.5 text-amber-400" />
           Tiered Remuneration Structure
         </SectionTitle>
-        <p className="text-xs text-zinc-300 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Tiered remuneration prevents CBDC from becoming a dominant savings vehicle while still rewarding everyday use. Different rates apply to different holding tiers.
         </p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-1.5 pr-4 text-left text-zinc-400">Tier</th>
-                <th className="py-1.5 pr-4 text-left text-zinc-400">Holding Limit</th>
-                <th className="py-1.5 pr-4 text-left text-zinc-400">Interest Rate</th>
-                <th className="py-1.5 text-left text-zinc-400">Purpose</th>
+                <th className="py-1.5 pr-4 text-left text-muted-foreground">Tier</th>
+                <th className="py-1.5 pr-4 text-left text-muted-foreground">Holding Limit</th>
+                <th className="py-1.5 pr-4 text-left text-muted-foreground">Interest Rate</th>
+                <th className="py-1.5 text-left text-muted-foreground">Purpose</th>
               </tr>
             </thead>
             <tbody>
@@ -489,9 +489,9 @@ function FundamentalsTab() {
               ].map(([tier, limit, rate, purpose]) => (
                 <tr key={tier} className="border-b border-white/5">
                   <td className="py-1.5 pr-4 text-amber-300 font-medium">{tier}</td>
-                  <td className="py-1.5 pr-4 text-zinc-200">{limit}</td>
-                  <td className="py-1.5 pr-4 text-zinc-200">{rate}</td>
-                  <td className="py-1.5 text-zinc-400">{purpose}</td>
+                  <td className="py-1.5 pr-4 text-foreground">{limit}</td>
+                  <td className="py-1.5 pr-4 text-foreground">{rate}</td>
+                  <td className="py-1.5 text-muted-foreground">{purpose}</td>
                 </tr>
               ))}
             </tbody>
@@ -677,7 +677,7 @@ function WorldMapSVG({ selected, onSelect }: { selected: string | null; onSelect
           {(["launched", "pilot", "research", "cancelled"] as CBDCStage[]).map((st) => (
             <div key={st} className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full" style={{ background: stageColor[st] }} />
-              <span className="text-zinc-400 capitalize">{st}</span>
+              <span className="text-muted-foreground capitalize">{st}</span>
             </div>
           ))}
         </div>
@@ -736,7 +736,7 @@ function WorldMapSVG({ selected, onSelect }: { selected: string | null; onSelect
           );
         })}
       </svg>
-      <p className="text-xs text-zinc-500 mt-1">Click a dot to see country details below.</p>
+      <p className="text-xs text-muted-foreground mt-1">Click a dot to see country details below.</p>
     </div>
   );
 }
@@ -792,37 +792,37 @@ function GlobalTrackerTab() {
                   <span className="text-base font-bold text-white">{selectedCard.name}</span>
                   <StageBadge stage={selectedCard.stage} />
                 </div>
-                <div className="text-xs text-zinc-400">{selectedCard.country}</div>
+                <div className="text-xs text-muted-foreground">{selectedCard.country}</div>
               </div>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-3 text-xs">
               <div>
-                <span className="text-zinc-500 block">Technology</span>
-                <span className="text-zinc-200">{selectedCard.tech}</span>
+                <span className="text-muted-foreground block">Technology</span>
+                <span className="text-foreground">{selectedCard.tech}</span>
               </div>
               <div>
-                <span className="text-zinc-500 block">Use Case</span>
-                <span className="text-zinc-200">{selectedCard.useCase}</span>
+                <span className="text-muted-foreground block">Use Case</span>
+                <span className="text-foreground">{selectedCard.useCase}</span>
               </div>
               <div>
-                <span className="text-zinc-500 block">Timeline</span>
-                <span className="text-zinc-200">{selectedCard.timeline}</span>
+                <span className="text-muted-foreground block">Timeline</span>
+                <span className="text-foreground">{selectedCard.timeline}</span>
               </div>
               {selectedCard.adoption && (
                 <div>
-                  <span className="text-zinc-500 block">Adoption</span>
-                  <span className="text-zinc-200">{selectedCard.adoption}</span>
+                  <span className="text-muted-foreground block">Adoption</span>
+                  <span className="text-foreground">{selectedCard.adoption}</span>
                 </div>
               )}
             </div>
-            <p className="text-xs text-zinc-300 leading-relaxed">{selectedCard.detail}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{selectedCard.detail}</p>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Filter buttons */}
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-xs text-zinc-400">Filter:</span>
+        <span className="text-xs text-muted-foreground">Filter:</span>
         {(["all", "launched", "pilot", "research", "cancelled"] as const).map((f) => (
           <button
             key={f}
@@ -831,7 +831,7 @@ function GlobalTrackerTab() {
               "px-3 py-1 rounded-full text-xs capitalize border transition-colors",
               filter === f
                 ? "bg-primary/30 border-primary/50 text-primary"
-                : "border-white/10 text-zinc-400 hover:border-white/20"
+                : "border-white/10 text-muted-foreground hover:border-white/20"
             )}
           >
             {f}
@@ -859,13 +859,13 @@ function GlobalTrackerTab() {
             <div className="flex items-center justify-between mb-1.5">
               <div className="flex items-center gap-1.5">
                 <span className="text-lg">{c.flag}</span>
-                <span className="text-sm font-semibold text-zinc-100">{c.country}</span>
+                <span className="text-sm font-semibold text-foreground">{c.country}</span>
               </div>
               <StageBadge stage={c.stage} />
             </div>
             <div className="text-xs font-medium text-primary mb-1">{c.name}</div>
-            <div className="text-xs text-zinc-400">{c.useCase}</div>
-            <div className="text-xs text-zinc-500 mt-1">{c.timeline}</div>
+            <div className="text-xs text-muted-foreground">{c.useCase}</div>
+            <div className="text-xs text-muted-foreground mt-1">{c.timeline}</div>
           </motion.div>
         ))}
       </div>
@@ -930,7 +930,7 @@ function BankRunRiskSVG() {
         {/* axis */}
         <line x1={10} y1={140} x2={530} y2={140} stroke="#3f3f46" strokeWidth={1} />
       </svg>
-      <p className="text-xs text-zinc-500 mt-1">
+      <p className="text-xs text-muted-foreground mt-1">
         Holding limits (e.g. €3,000) dramatically reduce run risk by capping CBDC as a safe-haven during financial stress — shown in the "Crisis (€3K limit)" scenario.
       </p>
     </div>
@@ -974,7 +974,7 @@ function FinancialInclusionSVG() {
         })}
         {/* legend */}
       </svg>
-      <div className="flex items-center gap-4 mt-1 text-xs text-zinc-500">
+      <div className="flex items-center gap-4 mt-1 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
           <div className="w-8 h-2.5 rounded-sm bg-emerald-500/25" />
           <span>Current unbanked rate</span>
@@ -1045,10 +1045,10 @@ function MonetaryPolicyTab() {
             )}>
               <div className="flex items-center gap-2 mb-2">
                 {item.icon}
-                <span className="text-sm font-semibold text-zinc-100">{item.title}</span>
+                <span className="text-sm font-semibold text-foreground">{item.title}</span>
               </div>
-              <p className="text-xs text-zinc-300 leading-relaxed mb-2">{item.desc}</p>
-              <div className="text-xs text-zinc-500 italic border-l-2 border-white/10 pl-2">{item.example}</div>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-2">{item.desc}</p>
+              <div className="text-xs text-muted-foreground italic border-l-2 border-white/10 pl-2">{item.example}</div>
             </div>
           ))}
         </div>
@@ -1068,7 +1068,7 @@ function MonetaryPolicyTab() {
         </SectionTitle>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <h4 className="text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wide">Traditional Transmission</h4>
+            <h4 className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Traditional Transmission</h4>
             <div className="space-y-1.5">
               {[
                 ["Central Bank Rate Decision", "Day 0", "zinc"],
@@ -1078,14 +1078,14 @@ function MonetaryPolicyTab() {
                 ["Inflation Impact", "Months 6–18", "rose"],
               ].map(([step, time, color]) => (
                 <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-white/5">
-                  <span className="text-zinc-300">{step as string}</span>
-                  <span className={cn("font-medium", color === "rose" ? "text-rose-400" : color === "amber" ? "text-amber-400" : "text-zinc-400")}>{time as string}</span>
+                  <span className="text-muted-foreground">{step as string}</span>
+                  <span className={cn("font-medium", color === "rose" ? "text-rose-400" : color === "amber" ? "text-amber-400" : "text-muted-foreground")}>{time as string}</span>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <h4 className="text-xs font-medium text-zinc-400 mb-2 uppercase tracking-wide">CBDC Transmission</h4>
+            <h4 className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">CBDC Transmission</h4>
             <div className="space-y-1.5">
               {[
                 ["Central Bank Rate Decision", "Day 0", "zinc"],
@@ -1095,8 +1095,8 @@ function MonetaryPolicyTab() {
                 ["Inflation Impact", "Weeks 4–12", "blue"],
               ].map(([step, time, color]) => (
                 <div key={step as string} className="flex items-center justify-between text-xs px-2 py-1.5 rounded bg-white/5">
-                  <span className="text-zinc-300">{step as string}</span>
-                  <span className={cn("font-medium", color === "emerald" ? "text-emerald-400" : color === "blue" ? "text-primary" : "text-zinc-400")}>{time as string}</span>
+                  <span className="text-muted-foreground">{step as string}</span>
+                  <span className={cn("font-medium", color === "emerald" ? "text-emerald-400" : color === "blue" ? "text-primary" : "text-muted-foreground")}>{time as string}</span>
                 </div>
               ))}
             </div>
@@ -1134,12 +1134,12 @@ function MonetaryPolicyTab() {
             item.color === "rose" ? "border-rose-500/30 bg-rose-500/5" : "border-amber-500/30 bg-amber-500/5"
           )}>
             <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-semibold text-zinc-100">{item.title}</span>
+              <span className="text-sm font-semibold text-foreground">{item.title}</span>
               <Badge className={cn("text-xs", item.color === "rose" ? "bg-rose-500/20 text-rose-300 border-rose-500/30" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
                 {item.risk} Risk
               </Badge>
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">{item.desc}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>
@@ -1240,7 +1240,7 @@ function MBridgeFlowSVG() {
         {/* Bottom info */}
         <text x={centerX} y={210} fill="#71717a" fontSize={8} textAnchor="middle">Settlement: T+0 atomic swap via mBridge shared ledger</text>
       </svg>
-      <p className="text-xs text-zinc-500 mt-1">
+      <p className="text-xs text-muted-foreground mt-1">
         mBridge (BIS Innovation Hub + HKMA + PBoC + BOT + CBUAE) completed MVP in 2024. $22M in real transactions. First multi-CBDC platform to achieve live cross-border settlement.
       </p>
     </div>
@@ -1271,7 +1271,7 @@ function CrossBorderTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 pr-4 text-left text-zinc-400 font-medium">Dimension</th>
+                <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Dimension</th>
                 <th className="py-2 pr-4 text-left text-primary font-medium">SWIFT Network</th>
                 <th className="py-2 text-left text-emerald-400 font-medium">Multi-CBDC Platform</th>
               </tr>
@@ -1290,9 +1290,9 @@ function CrossBorderTab() {
                 ["Governance", "Cooperative (Belgian HQ)", "BIS + member central banks"],
               ].map(([dim, swift, cbdc]) => (
                 <tr key={dim as string} className="border-b border-white/5 hover:bg-white/3 transition-colors">
-                  <td className="py-2 pr-4 text-zinc-400 font-medium">{dim as string}</td>
-                  <td className="py-2 pr-4 text-zinc-300">{swift as string}</td>
-                  <td className="py-2 text-zinc-300">{cbdc as string}</td>
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{dim as string}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{swift as string}</td>
+                  <td className="py-2 text-muted-foreground">{cbdc as string}</td>
                 </tr>
               ))}
             </tbody>
@@ -1359,18 +1359,18 @@ function CrossBorderTab() {
           ].map((proj) => (
             <div key={proj.name} className="rounded-lg border border-white/10 bg-white/3 p-3">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-sm font-semibold text-zinc-100">{proj.name}</span>
+                <span className="text-sm font-semibold text-foreground">{proj.name}</span>
                 <Badge className={cn("text-xs", proj.statusColor === "emerald" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : proj.statusColor === "blue" ? "bg-primary/20 text-primary border-border" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
                   {proj.status}
                 </Badge>
               </div>
-              <div className="text-xs text-zinc-500 mb-1">
-                <span className="text-zinc-400">Participants: </span>{proj.participants}
+              <div className="text-xs text-muted-foreground mb-1">
+                <span className="text-muted-foreground">Participants: </span>{proj.participants}
               </div>
-              <div className="text-xs text-zinc-500 mb-2">
-                <span className="text-zinc-400">Tech: </span>{proj.tech}
+              <div className="text-xs text-muted-foreground mb-2">
+                <span className="text-muted-foreground">Tech: </span>{proj.tech}
               </div>
-              <p className="text-xs text-zinc-300 leading-relaxed">{proj.desc}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{proj.desc}</p>
             </div>
           ))}
         </div>
@@ -1404,15 +1404,15 @@ function CrossBorderTab() {
                   className={cn(
                     "text-xs px-2 py-1 rounded",
                     node === "→"
-                      ? "text-zinc-500"
-                      : "border border-white/10 bg-white/5 text-zinc-300"
+                      ? "text-muted-foreground"
+                      : "border border-white/10 bg-white/5 text-muted-foreground"
                   )}
                 >
                   {node}
                 </span>
               ))}
             </div>
-            <p className="text-xs text-zinc-500 mt-1.5">4 banks, 3 FX conversions, T+2 days, 1–6% fees</p>
+            <p className="text-xs text-muted-foreground mt-1.5">4 banks, 3 FX conversions, T+2 days, 1–6% fees</p>
           </div>
           <div>
             <h4 className="text-xs font-medium text-emerald-400 mb-2 flex items-center gap-1.5">
@@ -1433,7 +1433,7 @@ function CrossBorderTab() {
                   className={cn(
                     "text-xs px-2 py-1 rounded",
                     node === "→"
-                      ? "text-zinc-500"
+                      ? "text-muted-foreground"
                       : "border border-emerald-500/30 bg-emerald-500/5 text-emerald-200"
                   )}
                 >
@@ -1441,7 +1441,7 @@ function CrossBorderTab() {
                 </span>
               ))}
             </div>
-            <p className="text-xs text-zinc-500 mt-1.5">1 platform, 1 atomic FX swap, T+0 seconds, ~0.1% fee</p>
+            <p className="text-xs text-muted-foreground mt-1.5">1 platform, 1 atomic FX swap, T+0 seconds, ~0.1% fee</p>
           </div>
         </div>
       </div>
@@ -1465,7 +1465,7 @@ export default function CBDCPage() {
   void _noise;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1480,12 +1480,12 @@ export default function CBDCPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Central Bank Digital Currencies</h1>
-              <p className="text-sm text-zinc-400">CBDC design, global adoption, monetary policy &amp; cross-border payments</p>
+              <p className="text-sm text-muted-foreground">CBDC design, global adoption, monetary policy &amp; cross-border payments</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {["134 Countries Active", "11 Live CBDCs", "mBridge MVP 2024", "T+0 Settlement"].map((tag) => (
-              <Badge key={tag} className="bg-white/5 text-zinc-300 border-white/10 text-xs">{tag}</Badge>
+              <Badge key={tag} className="bg-white/5 text-muted-foreground border-white/10 text-xs">{tag}</Badge>
             ))}
           </div>
         </motion.div>
@@ -1493,16 +1493,16 @@ export default function CBDCPage() {
         {/* Tabs */}
         <Tabs defaultValue="fundamentals">
           <TabsList className="bg-white/5 border border-white/10 mb-6 h-auto flex-wrap gap-1 p-1">
-            <TabsTrigger value="fundamentals" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-zinc-400 text-xs sm:text-sm">
+            <TabsTrigger value="fundamentals" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
               CBDC Fundamentals
             </TabsTrigger>
-            <TabsTrigger value="global" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-zinc-400 text-xs sm:text-sm">
+            <TabsTrigger value="global" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
               Global Tracker
             </TabsTrigger>
-            <TabsTrigger value="monetary" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-zinc-400 text-xs sm:text-sm">
+            <TabsTrigger value="monetary" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
               Monetary Policy
             </TabsTrigger>
-            <TabsTrigger value="crossborder" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-zinc-400 text-xs sm:text-sm">
+            <TabsTrigger value="crossborder" className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-200 text-muted-foreground text-xs sm:text-sm">
               Cross-Border Payments
             </TabsTrigger>
           </TabsList>

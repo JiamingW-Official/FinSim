@@ -809,7 +809,7 @@ export default function DebtCapitalMarketsPage() {
                         <tr key={row.rank} className="border-b border-border/50 hover:bg-muted/10 transition-colors">
                           <td className="px-4 py-2.5">
                             {row.rank <= 3 ? (
-                              <span className={`font-bold text-xs ${row.rank === 1 ? "text-amber-400" : row.rank === 2 ? "text-slate-300" : "text-amber-700"}`}>
+                              <span className={`font-bold text-xs ${row.rank === 1 ? "text-amber-400" : row.rank === 2 ? "text-muted-foreground" : "text-amber-700"}`}>
                                 {row.rank}
                               </span>
                             ) : (

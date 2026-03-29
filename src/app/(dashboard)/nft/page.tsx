@@ -714,11 +714,11 @@ function MarketOverview() {
           { label: "Avg 7d Change", value: `${avgChange >= 0 ? "+" : ""}${avgChange.toFixed(1)}%`, icon: TrendingUp, color: avgChange >= 0 ? "text-green-400" : "text-red-400" },
           { label: "Active Collections", value: "94,200+", icon: Image, color: "text-amber-400" },
         ].map((kpi) => (
-          <Card key={kpi.label} className="bg-slate-800/60 border-slate-700">
+          <Card key={kpi.label} className="bg-muted/60 border-border">
             <CardContent className="pt-4 pb-4">
               <div className="flex items-center gap-2 mb-1">
                 <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
-                <span className="text-xs text-slate-400">{kpi.label}</span>
+                <span className="text-xs text-muted-foreground">{kpi.label}</span>
               </div>
               <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
             </CardContent>
@@ -727,17 +727,17 @@ function MarketOverview() {
       </div>
 
       {/* Collections table */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-slate-200">Top NFT Collections</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Top NFT Collections</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-700">
+                <tr className="border-b border-border">
                   {["Collection", "Floor", "7d Vol", "Holders", "7d Change", "Mkt Cap", "Listed %", "Chain"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left text-slate-400 font-medium">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -748,22 +748,22 @@ function MarketOverview() {
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.04 }}
-                    className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors"
+                    className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                   >
-                    <td className="px-3 py-2 font-medium text-slate-200">{c.name}</td>
+                    <td className="px-3 py-2 font-medium text-foreground">{c.name}</td>
                     <td className="px-3 py-2 text-primary">{fmtETH(c.floorPrice)}</td>
-                    <td className="px-3 py-2 text-slate-300">{fmtUSD(c.volume7d)}</td>
-                    <td className="px-3 py-2 text-slate-300">{c.holders.toLocaleString()}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{fmtUSD(c.volume7d)}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{c.holders.toLocaleString()}</td>
                     <td className={`px-3 py-2 font-medium ${clr(c.change7d)}`}>
                       {c.change7d >= 0 ? "+" : ""}{c.change7d.toFixed(1)}%
                     </td>
-                    <td className="px-3 py-2 text-slate-300">{fmtUSD(c.marketCap)}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{fmtUSD(c.marketCap)}</td>
                     <td className="px-3 py-2">
-                      <Progress value={c.listedPct * 4} className="h-1.5 w-16 bg-slate-700" />
-                      <span className="text-slate-400 mt-0.5 block">{c.listedPct}%</span>
+                      <Progress value={c.listedPct * 4} className="h-1.5 w-16 bg-muted" />
+                      <span className="text-muted-foreground mt-0.5 block">{c.listedPct}%</span>
                     </td>
                     <td className="px-3 py-2">
-                      <Badge variant="outline" className="text-xs border-slate-600 text-slate-400">
+                      <Badge variant="outline" className="text-xs border-slate-600 text-muted-foreground">
                         {c.blockchain}
                       </Badge>
                     </td>
@@ -776,10 +776,10 @@ function MarketOverview() {
       </Card>
 
       {/* Volume chart */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm font-semibold text-slate-200">Weekly Volume (12 Weeks) — Organic vs. Wash Estimate</CardTitle>
+            <CardTitle className="text-sm font-semibold text-foreground">Weekly Volume (12 Weeks) — Organic vs. Wash Estimate</CardTitle>
             <Badge variant="outline" className="text-xs border-red-500/40 text-red-400">
               Wash Trading ~18% Avg
             </Badge>
@@ -798,10 +798,10 @@ function CollectionAnalysis() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Rarity histogram */}
-        <Card className="bg-slate-800/60 border-slate-700">
+        <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-slate-200">Rarity Score Distribution</CardTitle>
-            <p className="text-xs text-slate-400">Supply count by rarity tier — value accrues to right tail</p>
+            <CardTitle className="text-sm font-semibold text-foreground">Rarity Score Distribution</CardTitle>
+            <p className="text-xs text-muted-foreground">Supply count by rarity tier — value accrues to right tail</p>
           </CardHeader>
           <CardContent>
             <RarityHistogram />
@@ -809,10 +809,10 @@ function CollectionAnalysis() {
         </Card>
 
         {/* Holder distribution */}
-        <Card className="bg-slate-800/60 border-slate-700">
+        <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-slate-200">Holder Distribution</CardTitle>
-            <p className="text-xs text-slate-400">Wallet concentration by holding size</p>
+            <CardTitle className="text-sm font-semibold text-foreground">Holder Distribution</CardTitle>
+            <p className="text-xs text-muted-foreground">Wallet concentration by holding size</p>
           </CardHeader>
           <CardContent>
             <HolderDistributionChart />
@@ -821,10 +821,10 @@ function CollectionAnalysis() {
       </div>
 
       {/* Listing depth */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-slate-200">Listing Depth Chart — Cumulative Listings by Price Multiple</CardTitle>
-          <p className="text-xs text-slate-400">
+          <CardTitle className="text-sm font-semibold text-foreground">Listing Depth Chart — Cumulative Listings by Price Multiple</CardTitle>
+          <p className="text-xs text-muted-foreground">
             Steeper curve near floor = thin liquidity wall; wide spread = deep market with low slippage risk
           </p>
         </CardHeader>
@@ -834,9 +834,9 @@ function CollectionAnalysis() {
       </Card>
 
       {/* Whale concentration metrics */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-slate-200">Whale Concentration Metrics</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Whale Concentration Metrics</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -846,12 +846,12 @@ function CollectionAnalysis() {
               { label: "Gini Coefficient", value: "0.71", sub: "concentration", status: "moderate" },
               { label: "Unique Holders", value: "6,392", sub: "/ 10,000 supply", status: "healthy" },
             ].map((m) => (
-              <div key={m.label} className="bg-slate-700/40 rounded-lg p-3 text-center">
-                <p className="text-xs text-slate-400 mb-1">{m.label}</p>
+              <div key={m.label} className="bg-muted/40 rounded-lg p-3 text-center">
+                <p className="text-xs text-muted-foreground mb-1">{m.label}</p>
                 <p className={`text-lg font-bold ${m.status === "healthy" ? "text-green-400" : m.status === "moderate" ? "text-amber-400" : "text-red-400"}`}>
                   {m.value}
                 </p>
-                <p className="text-xs text-slate-500 mt-0.5">{m.sub}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{m.sub}</p>
               </div>
             ))}
           </div>
@@ -871,10 +871,10 @@ function PricingModels() {
   return (
     <div className="space-y-6">
       {/* Hedonic regression concept */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-slate-200">Hedonic Regression — Trait-Adjusted Pricing Model</CardTitle>
-          <p className="text-xs text-slate-400">
+          <CardTitle className="text-sm font-semibold text-foreground">Hedonic Regression — Trait-Adjusted Pricing Model</CardTitle>
+          <p className="text-xs text-muted-foreground">
             Each trait contributes independently to price. Model: ln(Price) = α + β₁·Rarity + ε
           </p>
         </CardHeader>
@@ -886,8 +886,8 @@ function PricingModels() {
               { label: "Base Floor (α)", value: "42.3 ETH", color: "text-primary" },
               { label: "Rarity Coefficient (β₁)", value: "+0.018", color: "text-primary" },
             ].map((s) => (
-              <div key={s.label} className="bg-slate-700/40 rounded-lg p-2 text-center">
-                <p className="text-slate-400">{s.label}</p>
+              <div key={s.label} className="bg-muted/40 rounded-lg p-2 text-center">
+                <p className="text-muted-foreground">{s.label}</p>
                 <p className={`font-bold mt-0.5 ${s.color}`}>{s.value}</p>
               </div>
             ))}
@@ -896,37 +896,37 @@ function PricingModels() {
       </Card>
 
       {/* Trait pricing table */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-slate-200">Trait-Based Price Premiums</CardTitle>
+          <CardTitle className="text-sm font-semibold text-foreground">Trait-Based Price Premiums</CardTitle>
         </CardHeader>
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-700">
+                <tr className="border-b border-border">
                   {["Trait", "Rarity %", "Floor Mult.", "Avg Sale (ETH)", "Sample Size", "Signal"].map((h) => (
-                    <th key={h} className="px-3 py-2 text-left text-slate-400 font-medium">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {TRAIT_PRICING.map((tp, i) => (
-                  <tr key={i} className="border-b border-slate-700/50 hover:bg-slate-700/30">
-                    <td className="px-3 py-2 font-medium text-slate-200">{tp.trait}</td>
-                    <td className="px-3 py-2 text-slate-300">{tp.rarity}%</td>
-                    <td className={`px-3 py-2 font-semibold ${tp.floorMultiplier > 3 ? "text-green-400" : tp.floorMultiplier > 1.5 ? "text-amber-400" : "text-slate-400"}`}>
+                  <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
+                    <td className="px-3 py-2 font-medium text-foreground">{tp.trait}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{tp.rarity}%</td>
+                    <td className={`px-3 py-2 font-semibold ${tp.floorMultiplier > 3 ? "text-green-400" : tp.floorMultiplier > 1.5 ? "text-amber-400" : "text-muted-foreground"}`}>
                       {tp.floorMultiplier.toFixed(1)}x
                     </td>
                     <td className="px-3 py-2 text-primary">{tp.avgSalePrice} ETH</td>
-                    <td className="px-3 py-2 text-slate-400">{tp.sampleSize}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{tp.sampleSize}</td>
                     <td className="px-3 py-2">
                       {tp.sampleSize < 100 ? (
                         <Badge variant="outline" className="border-amber-500/40 text-amber-400 text-xs">Thin Data</Badge>
                       ) : tp.floorMultiplier > 4 ? (
                         <Badge variant="outline" className="border-green-500/40 text-green-400 text-xs">Strong Premium</Badge>
                       ) : (
-                        <Badge variant="outline" className="border-slate-600 text-slate-400 text-xs">Normal</Badge>
+                        <Badge variant="outline" className="border-slate-600 text-muted-foreground text-xs">Normal</Badge>
                       )}
                     </td>
                   </tr>
@@ -938,10 +938,10 @@ function PricingModels() {
       </Card>
 
       {/* Wash trading signals */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-slate-200">Wash Trading Detection Signals</CardTitle>
-          <p className="text-xs text-slate-400">On-chain heuristics for identifying artificial volume inflation</p>
+          <CardTitle className="text-sm font-semibold text-foreground">Wash Trading Detection Signals</CardTitle>
+          <p className="text-xs text-muted-foreground">On-chain heuristics for identifying artificial volume inflation</p>
         </CardHeader>
         <CardContent className="space-y-3">
           {WASH_SIGNALS.map((ws, i) => (
@@ -950,14 +950,14 @@ function PricingModels() {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.06 }}
-              className="flex items-start gap-3 p-3 bg-slate-700/40 rounded-lg"
+              className="flex items-start gap-3 p-3 bg-muted/40 rounded-lg"
             >
               <div className={`mt-0.5 flex-shrink-0 ${ws.detected ? "text-red-400" : "text-green-400"}`}>
                 {ws.detected ? <AlertTriangle className="w-4 h-4" /> : <CheckCircle className="w-4 h-4" />}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-sm font-medium text-slate-200">{ws.signal}</span>
+                  <span className="text-sm font-medium text-foreground">{ws.signal}</span>
                   <Badge variant="outline" className={`text-xs border ${severityColor(ws.severity)}`}>
                     {ws.severity}
                   </Badge>
@@ -965,7 +965,7 @@ function PricingModels() {
                     <Badge variant="outline" className="text-xs border-red-500/40 text-red-400">Detected</Badge>
                   )}
                 </div>
-                <p className="text-xs text-slate-400">{ws.description}</p>
+                <p className="text-xs text-muted-foreground">{ws.description}</p>
               </div>
             </motion.div>
           ))}
@@ -986,14 +986,14 @@ function NFTFinancialization() {
       color: "text-primary",
       content: (
         <div className="space-y-4">
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             NFT lending protocols allow holders to borrow ETH/stablecoins against their NFTs without selling. The NFT is locked in a smart contract escrow. If the borrower defaults, the lender claims the NFT. Key risk: floor price volatility can trigger liquidations rapidly.
           </p>
           <div className="grid grid-cols-1 gap-3">
             {LENDING_PROTOCOLS.map((lp) => (
-              <div key={lp.name} className="bg-slate-700/40 rounded-lg p-3">
+              <div key={lp.name} className="bg-muted/40 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-semibold text-slate-200 text-sm">{lp.name}</span>
+                  <span className="font-semibold text-foreground text-sm">{lp.name}</span>
                   <div className="flex gap-2">
                     <Badge variant="outline" className="text-xs border-primary/40 text-primary">
                       {lp.maxLtv}% LTV
@@ -1005,15 +1005,15 @@ function NFTFinancialization() {
                 </div>
                 <div className="grid grid-cols-3 gap-3 text-xs">
                   <div>
-                    <p className="text-slate-500">TVL</p>
-                    <p className="text-slate-300 font-medium">${lp.tvl}M</p>
+                    <p className="text-muted-foreground">TVL</p>
+                    <p className="text-muted-foreground font-medium">${lp.tvl}M</p>
                   </div>
                   <div>
-                    <p className="text-slate-500">Collections</p>
-                    <p className="text-slate-300 font-medium">{lp.collections}</p>
+                    <p className="text-muted-foreground">Collections</p>
+                    <p className="text-muted-foreground font-medium">{lp.collections}</p>
                   </div>
                   <div>
-                    <p className="text-slate-500">Liquidation Rate</p>
+                    <p className="text-muted-foreground">Liquidation Rate</p>
                     <p className={`font-medium ${lp.liquidations > 5 ? "text-red-400" : "text-green-400"}`}>
                       {lp.liquidations}%
                     </p>
@@ -1037,29 +1037,29 @@ function NFTFinancialization() {
       color: "text-primary",
       content: (
         <div className="space-y-4">
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             Fractionalization splits a high-value NFT into fungible ERC-20 tokens, enabling partial ownership. This democratizes access to blue-chip NFTs and creates liquid trading markets for otherwise illiquid assets.
           </p>
           <div className="grid grid-cols-2 gap-3">
             {FRACTION_PROTOCOLS.map((fp) => (
-              <div key={fp.name} className="bg-slate-700/40 rounded-lg p-3">
-                <p className="font-semibold text-slate-200 text-sm mb-1">{fp.name}</p>
+              <div key={fp.name} className="bg-muted/40 rounded-lg p-3">
+                <p className="font-semibold text-foreground text-sm mb-1">{fp.name}</p>
                 <div className="space-y-1 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-slate-400">TVL</span>
+                    <span className="text-muted-foreground">TVL</span>
                     <span className="text-primary">${fp.tvlM}M</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Collections</span>
-                    <span className="text-slate-300">{fp.collections}</span>
+                    <span className="text-muted-foreground">Collections</span>
+                    <span className="text-muted-foreground">{fp.collections}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Mechanism</span>
-                    <span className="text-slate-300">{fp.mechanism}</span>
+                    <span className="text-muted-foreground">Mechanism</span>
+                    <span className="text-muted-foreground">{fp.mechanism}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-400">Avg Fraction</span>
-                    <span className="text-slate-300">${fp.avgFractionPrice}</span>
+                    <span className="text-muted-foreground">Avg Fraction</span>
+                    <span className="text-muted-foreground">${fp.avgFractionPrice}</span>
                   </div>
                 </div>
               </div>
@@ -1080,7 +1080,7 @@ function NFTFinancialization() {
       color: "text-green-400",
       content: (
         <div className="space-y-3">
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             NFT creators historically earned 2.5–10% on every secondary sale. The rise of zero-royalty marketplaces (Blur, X2Y2) has disrupted this model, forcing projects to enforce on-chain royalties via transfer hooks.
           </p>
           <div className="grid grid-cols-2 gap-3">
@@ -1090,8 +1090,8 @@ function NFTFinancialization() {
               { label: "Royalty Bypass Rate", value: "~72%", color: "text-red-400" },
               { label: "Creator Revenue Loss", value: "$1.8B+", color: "text-red-400" },
             ].map((m) => (
-              <div key={m.label} className="bg-slate-700/40 rounded p-3 text-center">
-                <p className="text-xs text-slate-400">{m.label}</p>
+              <div key={m.label} className="bg-muted/40 rounded p-3 text-center">
+                <p className="text-xs text-muted-foreground">{m.label}</p>
                 <p className={`font-bold text-lg mt-1 ${m.color}`}>{m.value}</p>
               </div>
             ))}
@@ -1111,7 +1111,7 @@ function NFTFinancialization() {
       color: "text-amber-400",
       content: (
         <div className="space-y-3">
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             IP rights in NFTs range from full CC0 (public domain) to limited personal use. Projects like BAYC grant holders full commercial rights — enabling merchandise, films, and brand licensing. This creates a &quot;brand equity floor&quot; independent of speculative trading.
           </p>
           <div className="space-y-2">
@@ -1121,12 +1121,12 @@ function NFTFinancialization() {
               { name: "Personal Use Only", desc: "Display/PFP use only; no commercialization.", example: "Most PFP projects" },
               { name: "Licensed IP", desc: "Project retains IP; holders get product revenue share.", example: "Azuki Elementals" },
             ].map((t) => (
-              <div key={t.name} className="bg-slate-700/40 rounded-lg p-3">
+              <div key={t.name} className="bg-muted/40 rounded-lg p-3">
                 <div className="flex items-start justify-between">
-                  <p className="text-sm font-medium text-slate-200">{t.name}</p>
+                  <p className="text-sm font-medium text-foreground">{t.name}</p>
                   <Badge variant="outline" className="text-xs border-amber-500/30 text-amber-400 ml-2 flex-shrink-0">{t.example}</Badge>
                 </div>
-                <p className="text-xs text-slate-400 mt-1">{t.desc}</p>
+                <p className="text-xs text-muted-foreground mt-1">{t.desc}</p>
               </div>
             ))}
           </div>
@@ -1140,16 +1140,16 @@ function NFTFinancialization() {
       {sections.map((sec) => {
         const isOpen = expandedSection === sec.id;
         return (
-          <Card key={sec.id} className="bg-slate-800/60 border-slate-700">
+          <Card key={sec.id} className="bg-muted/60 border-border">
             <button
               onClick={() => setExpandedSection(isOpen ? null : sec.id)}
-              className="w-full flex items-center justify-between px-4 py-3 hover:bg-slate-700/30 transition-colors rounded-t-xl"
+              className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted/30 transition-colors rounded-t-xl"
             >
               <div className="flex items-center gap-3">
                 <sec.icon className={`w-4 h-4 ${sec.color}`} />
-                <span className="font-semibold text-slate-200 text-sm">{sec.title}</span>
+                <span className="font-semibold text-foreground text-sm">{sec.title}</span>
               </div>
-              {isOpen ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+              {isOpen ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
             </button>
             <AnimatePresence initial={false}>
               {isOpen && (
@@ -1193,9 +1193,9 @@ function InvestmentFramework() {
     <div className="space-y-6">
       {/* Weight overview donut */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="bg-slate-800/60 border-slate-700">
+        <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-slate-200">Scoring Weight Distribution</CardTitle>
+            <CardTitle className="text-sm font-semibold text-foreground">Scoring Weight Distribution</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -1206,9 +1206,9 @@ function InvestmentFramework() {
                   <div key={cat}>
                     <div className="flex justify-between text-xs mb-1">
                       <span className={categoryColors[cat]}>{cat}</span>
-                      <span className="text-slate-400">{catWeight}%</span>
+                      <span className="text-muted-foreground">{catWeight}%</span>
                     </div>
-                    <Progress value={pct} className="h-2 bg-slate-700" />
+                    <Progress value={pct} className="h-2 bg-muted" />
                   </div>
                 );
               })}
@@ -1216,9 +1216,9 @@ function InvestmentFramework() {
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-800/60 border-slate-700">
+        <Card className="bg-muted/60 border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-semibold text-slate-200">Quick Score — Example Rating</CardTitle>
+            <CardTitle className="text-sm font-semibold text-foreground">Quick Score — Example Rating</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -1231,23 +1231,23 @@ function InvestmentFramework() {
                 <div key={row.label}>
                   <div className="flex justify-between text-xs mb-1">
                     <span className={categoryColors[row.label]}>{row.label}</span>
-                    <span className="text-slate-300">
+                    <span className="text-muted-foreground">
                       {row.score}/{row.max * (row.label === "Creator Brand" ? 1 : 1)} pts
                     </span>
                   </div>
-                  <Progress value={(row.score / row.max) * 100} className="h-1.5 bg-slate-700" />
+                  <Progress value={(row.score / row.max) * 100} className="h-1.5 bg-muted" />
                 </div>
               ))}
-              <div className="mt-3 p-3 bg-slate-700/60 rounded-lg flex items-center justify-between">
+              <div className="mt-3 p-3 bg-muted/60 rounded-lg flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-slate-400">Total Score</p>
-                  <p className="text-2xl font-bold text-green-400">153<span className="text-sm text-slate-400">/200</span></p>
+                  <p className="text-xs text-muted-foreground">Total Score</p>
+                  <p className="text-2xl font-bold text-green-400">153<span className="text-sm text-muted-foreground">/200</span></p>
                 </div>
                 <div className="text-center">
                   <Badge className="bg-green-500/20 text-green-400 border border-green-500/30 text-sm px-3">
                     B+ Rating
                   </Badge>
-                  <p className="text-xs text-slate-500 mt-1">Strong Buy Zone</p>
+                  <p className="text-xs text-muted-foreground mt-1">Strong Buy Zone</p>
                 </div>
               </div>
             </div>
@@ -1261,8 +1261,8 @@ function InvestmentFramework() {
           onClick={() => setSelectedCategory(null)}
           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
             selectedCategory === null
-              ? "bg-slate-600 text-slate-100"
-              : "bg-slate-800/60 text-slate-400 hover:bg-slate-700/60"
+              ? "bg-slate-600 text-foreground"
+              : "bg-muted/60 text-muted-foreground hover:bg-muted/60"
           }`}
         >
           All Criteria
@@ -1273,8 +1273,8 @@ function InvestmentFramework() {
             onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
             className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
               selectedCategory === cat
-                ? "bg-slate-600 text-slate-100"
-                : "bg-slate-800/60 text-slate-400 hover:bg-slate-700/60"
+                ? "bg-slate-600 text-foreground"
+                : "bg-muted/60 text-muted-foreground hover:bg-muted/60"
             }`}
           >
             {cat}
@@ -1283,14 +1283,14 @@ function InvestmentFramework() {
       </div>
 
       {/* Rubric table */}
-      <Card className="bg-slate-800/60 border-slate-700">
+      <Card className="bg-muted/60 border-border">
         <CardContent className="p-0">
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-700">
+                <tr className="border-b border-border">
                   {["Category", "Criterion", "Weight", "Description", "Green-Flag Signals"].map((h) => (
-                    <th key={h} className="px-3 py-2.5 text-left text-slate-400 font-medium">{h}</th>
+                    <th key={h} className="px-3 py-2.5 text-left text-muted-foreground font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -1301,24 +1301,24 @@ function InvestmentFramework() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: i * 0.05 }}
-                    className="border-b border-slate-700/50 hover:bg-slate-700/20 align-top"
+                    className="border-b border-border/50 hover:bg-muted/20 align-top"
                   >
                     <td className="px-3 py-3">
                       <span className={`font-semibold ${categoryColors[c.category]}`}>{c.category}</span>
                     </td>
-                    <td className="px-3 py-3 font-medium text-slate-200">{c.criterion}</td>
+                    <td className="px-3 py-3 font-medium text-foreground">{c.criterion}</td>
                     <td className="px-3 py-3">
-                      <Badge variant="outline" className="border-slate-600 text-slate-300 font-bold">
+                      <Badge variant="outline" className="border-slate-600 text-muted-foreground font-bold">
                         {c.weight}%
                       </Badge>
                     </td>
-                    <td className="px-3 py-3 text-slate-400 max-w-xs">{c.description}</td>
+                    <td className="px-3 py-3 text-muted-foreground max-w-xs">{c.description}</td>
                     <td className="px-3 py-3">
                       <ul className="space-y-0.5">
                         {c.signals.map((sig) => (
                           <li key={sig} className="flex items-center gap-1.5">
                             <CheckCircle className="w-3 h-3 text-green-400 flex-shrink-0" />
-                            <span className="text-slate-400">{sig}</span>
+                            <span className="text-muted-foreground">{sig}</span>
                           </li>
                         ))}
                       </ul>
@@ -1359,7 +1359,7 @@ export default function NFTPage() {
   );
 
   return (
-    <div className="p-6 space-y-6 min-h-screen bg-slate-900 text-slate-200">
+    <div className="p-6 space-y-6 min-h-screen bg-card text-foreground">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1372,19 +1372,19 @@ export default function NFTPage() {
               <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
                 <Image className="w-4 h-4 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold text-slate-100">NFT Markets</h1>
+              <h1 className="text-2xl font-bold text-foreground">NFT Markets</h1>
             </div>
-            <p className="text-sm text-slate-400 ml-11">
+            <p className="text-sm text-muted-foreground ml-11">
               Digital collectibles analysis — pricing models, financialization, and investment framework
             </p>
           </div>
           <div className="flex flex-col items-end gap-1">
             <div className="flex items-center gap-2">
-              <Globe className="w-4 h-4 text-slate-400" />
-              <span className="text-xs text-slate-400">NFT Market Cap</span>
+              <Globe className="w-4 h-4 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">NFT Market Cap</span>
             </div>
             <span className="text-xl font-bold text-primary">{fmtUSD(totalMcap)}</span>
-            <Badge variant="outline" className="text-xs border-slate-600 text-slate-400">
+            <Badge variant="outline" className="text-xs border-slate-600 text-muted-foreground">
               Ethereum + Solana
             </Badge>
           </div>
@@ -1401,9 +1401,9 @@ export default function NFTPage() {
         {COLLECTIONS.slice(0, 6).map((c) => (
           <div
             key={c.name}
-            className="flex-shrink-0 bg-slate-800/60 border border-slate-700 rounded-lg px-3 py-2 flex items-center gap-3"
+            className="flex-shrink-0 bg-muted/60 border border-border rounded-lg px-3 py-2 flex items-center gap-3"
           >
-            <span className="text-xs font-medium text-slate-300">{c.name}</span>
+            <span className="text-xs font-medium text-muted-foreground">{c.name}</span>
             <span className="text-xs text-primary">{fmtETH(c.floorPrice)}</span>
             <span className={`text-xs font-medium flex items-center gap-0.5 ${clr(c.change7d)}`}>
               {c.change7d >= 0 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
@@ -1415,24 +1415,24 @@ export default function NFTPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="grid grid-cols-5 w-full bg-slate-800/60 h-9">
-          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+        <TabsList className="grid grid-cols-5 w-full bg-muted/60 h-9">
+          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
             <BarChart3 className="w-3 h-3 mr-1" />
             Market Overview
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+          <TabsTrigger value="analysis" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
             <Activity className="w-3 h-3 mr-1" />
             Collection Analysis
           </TabsTrigger>
-          <TabsTrigger value="pricing" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+          <TabsTrigger value="pricing" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
             <Star className="w-3 h-3 mr-1" />
             Pricing Models
           </TabsTrigger>
-          <TabsTrigger value="finance" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+          <TabsTrigger value="finance" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
             <Zap className="w-3 h-3 mr-1" />
             Financialization
           </TabsTrigger>
-          <TabsTrigger value="framework" className="text-xs data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100">
+          <TabsTrigger value="framework" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
             <Award className="w-3 h-3 mr-1" />
             Investment Framework
           </TabsTrigger>

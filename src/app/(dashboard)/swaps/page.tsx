@@ -230,7 +230,7 @@ function SelectInput({
         className="bg-white/5 border border-white/10 rounded-lg px-3 h-9 text-sm text-white outline-none"
       >
         {options.map((o) => (
-          <option key={o.value} value={o.value} className="bg-zinc-900">
+          <option key={o.value} value={o.value} className="bg-card">
             {o.label}
           </option>
         ))}
@@ -1689,9 +1689,9 @@ export default function SwapsPage() {
   const [activeTab, setActiveTab] = useState("irs");
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       {/* Header */}
-      <div className="border-b border-white/10 bg-zinc-900/60 backdrop-blur px-6 py-4">
+      <div className="border-b border-white/10 bg-card/60 backdrop-blur px-6 py-4">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-sky-600/20 border border-sky-500/30 flex items-center justify-center">
             <ArrowLeftRight className="w-4 h-4 text-sky-400" />

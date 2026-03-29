@@ -353,7 +353,7 @@ function BondUniverseTab({
                 "px-3 py-1 rounded text-xs font-medium transition-colors",
                 ratingFilter === f
                   ? "bg-primary text-white"
-                  : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                  : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {f === "all" ? "All Ratings" : f === "ig" ? "Inv. Grade" : f === "hy" ? "High Yield" : "Distressed"}
@@ -369,7 +369,7 @@ function BondUniverseTab({
                 "px-3 py-1 rounded text-xs font-medium transition-colors",
                 sectorFilter === s
                   ? "bg-indigo-600 text-white"
-                  : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                  : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {s === "all" ? "All Sectors" : s}
@@ -385,7 +385,7 @@ function BondUniverseTab({
                 "px-3 py-1 rounded text-xs font-medium transition-colors",
                 callableFilter === f
                   ? "bg-primary text-white"
-                  : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                  : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {f === "all" ? "All Types" : f.charAt(0).toUpperCase() + f.slice(1)}
@@ -395,9 +395,9 @@ function BondUniverseTab({
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-slate-700">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <table className="w-full text-xs">
-          <thead className="bg-slate-800 text-slate-400">
+          <thead className="bg-muted text-muted-foreground">
             <tr>
               <th className="text-left px-3 py-2">Bond / Issuer</th>
               <th className="text-left px-3 py-2">Sector</th>
@@ -449,22 +449,22 @@ function BondUniverseTab({
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.02 }}
                 className={cn(
-                  "border-t border-slate-700/50 hover:bg-slate-800/50 cursor-pointer transition-colors",
-                  selectedBond?.id === bond.id && "bg-slate-800"
+                  "border-t border-border/50 hover:bg-muted/50 cursor-pointer transition-colors",
+                  selectedBond?.id === bond.id && "bg-muted"
                 )}
                 onClick={() => setSelectedBond(bond.id === selectedBond?.id ? null : bond)}
               >
                 <td className="px-3 py-2">
                   <div className="font-medium text-white">{bond.name}</div>
-                  <div className="text-slate-500">{bond.issuer}</div>
+                  <div className="text-muted-foreground">{bond.issuer}</div>
                 </td>
-                <td className="px-3 py-2 text-slate-400">{bond.sector}</td>
-                <td className="px-3 py-2 text-right text-slate-300">{fmtPct(bond.coupon)}</td>
-                <td className="px-3 py-2 text-right text-slate-300">{bond.maturity}Y</td>
-                <td className="px-3 py-2 text-right text-slate-300">${bond.price.toFixed(2)}</td>
+                <td className="px-3 py-2 text-muted-foreground">{bond.sector}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{fmtPct(bond.coupon)}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{bond.maturity}Y</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">${bond.price.toFixed(2)}</td>
                 <td className="px-3 py-2 text-right font-semibold text-primary">{fmtPct(bond.ytm)}</td>
-                <td className="px-3 py-2 text-right text-slate-300">{bond.modDur.toFixed(2)}</td>
-                <td className="px-3 py-2 text-right text-slate-300">{bond.convexity.toFixed(2)}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{bond.modDur.toFixed(2)}</td>
+                <td className="px-3 py-2 text-right text-muted-foreground">{bond.convexity.toFixed(2)}</td>
                 <td className="px-3 py-2 text-right">
                   <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded border", ratingBg(bond.rating))}>
                     {bond.rating}
@@ -477,13 +477,13 @@ function BondUniverseTab({
                   <div className="flex gap-1 justify-center">
                     {bond.callable && <span className="text-xs px-1 bg-orange-500/20 text-orange-400 rounded">CALL</span>}
                     {bond.putable && <span className="text-xs px-1 bg-muted text-muted-foreground rounded">PUT</span>}
-                    {!bond.callable && !bond.putable && <span className="text-xs text-slate-600">—</span>}
+                    {!bond.callable && !bond.putable && <span className="text-xs text-muted-foreground">—</span>}
                   </div>
                 </td>
                 <td className="px-3 py-2 text-center">
                   <button
                     onClick={(e) => { e.stopPropagation(); onAddBond(bond); }}
-                    className="p-1 rounded hover:bg-emerald-500/20 text-slate-500 hover:text-emerald-400 transition-colors"
+                    className="p-1 rounded hover:bg-emerald-500/20 text-muted-foreground hover:text-emerald-400 transition-colors"
                   >
                     <PlusCircle className="w-4 h-4" />
                   </button>
@@ -503,41 +503,41 @@ function BondUniverseTab({
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-muted/60 rounded-lg border border-border p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
               <div>
-                <div className="text-slate-500 text-xs mb-1">Macaulay Duration</div>
+                <div className="text-muted-foreground text-xs mb-1">Macaulay Duration</div>
                 <div className="text-white font-semibold">{selectedBond.duration.toFixed(3)} yrs</div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs mb-1">Modified Duration</div>
+                <div className="text-muted-foreground text-xs mb-1">Modified Duration</div>
                 <div className="text-white font-semibold">{selectedBond.modDur.toFixed(3)} yrs</div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs mb-1">Convexity</div>
+                <div className="text-muted-foreground text-xs mb-1">Convexity</div>
                 <div className="text-white font-semibold">{selectedBond.convexity.toFixed(4)}</div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs mb-1">DV01 (per $1M face)</div>
+                <div className="text-muted-foreground text-xs mb-1">DV01 (per $1M face)</div>
                 <div className="text-white font-semibold">{fmtUSD(selectedBond.modDur * selectedBond.price * 1000 * 0.0001, 2)}</div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs mb-1">Price (par = 1000)</div>
+                <div className="text-muted-foreground text-xs mb-1">Price (par = 1000)</div>
                 <div className="text-white font-semibold">${selectedBond.price.toFixed(4)}</div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs mb-1">+100bps price chg</div>
+                <div className="text-muted-foreground text-xs mb-1">+100bps price chg</div>
                 <div className="text-red-400 font-semibold">
                   {priceChange(selectedBond.price, selectedBond.modDur, selectedBond.convexity, 1.0).toFixed(2)}
                 </div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs mb-1">-100bps price chg</div>
+                <div className="text-muted-foreground text-xs mb-1">-100bps price chg</div>
                 <div className="text-emerald-400 font-semibold">
                   +{Math.abs(priceChange(selectedBond.price, selectedBond.modDur, selectedBond.convexity, -1.0)).toFixed(2)}
                 </div>
               </div>
               <div>
-                <div className="text-slate-500 text-xs mb-1">Spread to Treasury</div>
+                <div className="text-muted-foreground text-xs mb-1">Spread to Treasury</div>
                 <div className={cn("font-semibold", selectedBond.spreadBps > 200 ? "text-red-400" : selectedBond.spreadBps > 100 ? "text-amber-400" : "text-emerald-400")}>
                   {selectedBond.spreadBps > 0 ? `+${selectedBond.spreadBps}` : selectedBond.spreadBps} bps
                 </div>
@@ -611,15 +611,15 @@ function YieldCurveTab() {
           { label: "5s/30s Spread", value: `${Number(spread5s30s) > 0 ? "+" : ""}${spread5s30s}%`, color: Number(spread5s30s) > 0 ? "text-emerald-400" : "text-amber-400" },
           { label: "Fed Dots Terminal", value: "3.75%", color: "text-primary" },
         ].map((item) => (
-          <div key={item.label} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700">
-            <div className="text-slate-500 text-xs mb-1">{item.label}</div>
+          <div key={item.label} className="bg-muted/60 rounded-lg p-3 border border-border">
+            <div className="text-muted-foreground text-xs mb-1">{item.label}</div>
             <div className={cn("text-lg font-bold", item.color)}>{item.value}</div>
           </div>
         ))}
       </div>
 
       {/* Chart + overlays */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Treasury Yield Curve</h3>
           <div className="flex gap-2">
@@ -708,7 +708,7 @@ function YieldCurveTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
           >
-            <div className="bg-slate-800/60 rounded-lg border border-border p-4">
+            <div className="bg-muted/60 rounded-lg border border-border p-4">
               <h3 className="text-sm font-semibold text-white mb-3">
                 {selectedBond2.tenor.label} Treasury — YTM {fmtPct(selectedBond2.ytm)} — Price Sensitivity
               </h3>
@@ -722,8 +722,8 @@ function YieldCurveTab() {
                   const chg = priceChange(approxPrice, approxDuration, approxConvexity, sc.bps);
                   const pct = (chg / approxPrice) * 100;
                   return (
-                    <div key={sc.label} className="bg-slate-700/50 rounded p-3">
-                      <div className="text-slate-500 text-xs mb-1">{sc.label} shift</div>
+                    <div key={sc.label} className="bg-muted/50 rounded p-3">
+                      <div className="text-muted-foreground text-xs mb-1">{sc.label} shift</div>
                       <div className={cn("text-base font-bold", sc.color)}>
                         {chg > 0 ? "+" : ""}{chg.toFixed(3)}
                       </div>
@@ -734,7 +734,7 @@ function YieldCurveTab() {
                   );
                 })}
               </div>
-              <div className="mt-3 text-xs text-slate-500">
+              <div className="mt-3 text-xs text-muted-foreground">
                 Approx. Modified Duration: {approxDuration.toFixed(2)} yrs | Convexity: {approxConvexity.toFixed(4)}
               </div>
             </div>
@@ -810,18 +810,18 @@ function PortfolioBuilderTab({
           { label: "Wtd. Avg. YTM", value: stats ? fmtPct(stats.waYtm) : "—", color: "text-indigo-400" },
           { label: "Portfolio DV01", value: stats ? fmtUSD(stats.dv01, 0) : "—", color: "text-amber-400" },
         ].map((s) => (
-          <div key={s.label} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700">
-            <div className="text-slate-500 text-xs mb-1">{s.label}</div>
+          <div key={s.label} className="bg-muted/60 rounded-lg p-3 border border-border">
+            <div className="text-muted-foreground text-xs mb-1">{s.label}</div>
             <div className={cn("text-lg font-bold", s.color)}>{s.value}</div>
           </div>
         ))}
       </div>
 
       {/* Target duration */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Duration Target</h3>
-          <span className="text-xs text-slate-400">
+          <span className="text-xs text-muted-foreground">
             Gap: {stats ? `${(stats.waDuration - targetDuration).toFixed(2)}y` : "—"}
           </span>
         </div>
@@ -836,13 +836,13 @@ function PortfolioBuilderTab({
         </div>
         {stats && (
           <div className="mt-2">
-            <div className="flex justify-between text-xs text-slate-500 mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span>0y</span>
               <span>Portfolio {stats.waDuration.toFixed(2)}y</span>
               <span>Target {targetDuration.toFixed(1)}y</span>
               <span>20y</span>
             </div>
-            <div className="relative h-3 bg-slate-700 rounded-full">
+            <div className="relative h-3 bg-muted rounded-full">
               <div
                 className="absolute h-3 bg-primary/30 rounded-full"
                 style={{ width: `${(stats.waDuration / 20) * 100}%` }}
@@ -857,7 +857,7 @@ function PortfolioBuilderTab({
       </div>
 
       {/* Strategy comparison */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center gap-3 mb-3">
           <h3 className="text-sm font-semibold text-white">Strategy Templates</h3>
           <div className="flex gap-1">
@@ -867,7 +867,7 @@ function PortfolioBuilderTab({
                 onClick={() => setAllocationMode(m)}
                 className={cn(
                   "px-3 py-1 rounded text-xs font-medium transition-colors capitalize",
-                  allocationMode === m ? "bg-primary text-white" : "bg-slate-700 text-slate-400 hover:bg-slate-600"
+                  allocationMode === m ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-slate-600"
                 )}
               >
                 {m}
@@ -881,8 +881,8 @@ function PortfolioBuilderTab({
             const pct = (item.weight * 100).toFixed(0);
             return (
               <div key={item.bond.id} className="flex items-center gap-3">
-                <div className="w-28 text-xs text-slate-400 truncate">{item.bond.name}</div>
-                <div className="flex-1 h-5 bg-slate-700 rounded overflow-hidden">
+                <div className="w-28 text-xs text-muted-foreground truncate">{item.bond.name}</div>
+                <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${item.weight * 100}%` }}
@@ -891,12 +891,12 @@ function PortfolioBuilderTab({
                   />
                 </div>
                 <div className="w-10 text-xs text-right text-primary">{pct}%</div>
-                <div className="w-16 text-xs text-right text-slate-400">{item.bond.modDur.toFixed(1)}y dur</div>
+                <div className="w-16 text-xs text-right text-muted-foreground">{item.bond.modDur.toFixed(1)}y dur</div>
               </div>
             );
           })}
         </div>
-        <div className="mt-3 text-xs text-slate-500">
+        <div className="mt-3 text-xs text-muted-foreground">
           {allocationMode === "barbell" ? "Concentrates in short and long ends — benefits from twist flattener, exposed to parallel shifts." :
             allocationMode === "bullet" ? "Clusters around a single maturity — lower reinvestment risk, higher convexity focus." :
               "Evenly distributes across maturities — provides steady cash flows and predictable duration."}
@@ -904,7 +904,7 @@ function PortfolioBuilderTab({
       </div>
 
       {/* Portfolio holdings */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Current Holdings</h3>
           <button
@@ -915,7 +915,7 @@ function PortfolioBuilderTab({
           </button>
         </div>
         {portfolio.length === 0 ? (
-          <div className="text-center py-8 text-slate-500">
+          <div className="text-center py-8 text-muted-foreground">
             <Landmark className="w-8 h-8 mx-auto mb-2 opacity-30" />
             <p className="text-sm">No bonds added yet. Go to Bond Universe tab to add bonds.</p>
           </div>
@@ -928,19 +928,19 @@ function PortfolioBuilderTab({
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="flex items-center gap-3 bg-slate-700/40 rounded px-3 py-2"
+                className="flex items-center gap-3 bg-muted/40 rounded px-3 py-2"
               >
                 <div className="flex-1">
                   <div className="text-xs font-medium text-white">{p.bond.name}</div>
-                  <div className="text-xs text-slate-500">{p.bond.rating} · {fmtPct(p.bond.ytm)} YTM · {p.bond.modDur.toFixed(1)}y dur</div>
+                  <div className="text-xs text-muted-foreground">{p.bond.rating} · {fmtPct(p.bond.ytm)} YTM · {p.bond.modDur.toFixed(1)}y dur</div>
                 </div>
                 <div className="text-right">
                   <div className="text-xs font-semibold text-white">{fmtM(p.notional)}</div>
-                  <div className="text-xs text-slate-500">{((p.notional / Math.max(totalNotional, 1)) * 100).toFixed(1)}%</div>
+                  <div className="text-xs text-muted-foreground">{((p.notional / Math.max(totalNotional, 1)) * 100).toFixed(1)}%</div>
                 </div>
                 <button
                   onClick={() => onRemove(p.bond.id)}
-                  className="p-1 rounded hover:bg-red-500/20 text-slate-600 hover:text-red-400 transition-colors"
+                  className="p-1 rounded hover:bg-red-500/20 text-muted-foreground hover:text-red-400 transition-colors"
                 >
                   <Trash2 className="w-3 h-3" />
                 </button>
@@ -1012,7 +1012,7 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
 
   if (portfolio.length === 0) {
     return (
-      <div className="text-center py-16 text-slate-500">
+      <div className="text-center py-16 text-muted-foreground">
         <BarChart3 className="w-10 h-10 mx-auto mb-3 opacity-30" />
         <p>Add bonds to your portfolio first to see risk analysis.</p>
       </div>
@@ -1029,15 +1029,15 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
           { label: "DV01 (PVBP)", value: stats ? fmtUSD(stats.dv01, 0) : "—", color: "text-amber-400" },
           { label: "TY Futures Hedge", value: stats ? `${stats.hedgeRatio.toFixed(0)} contracts` : "—", color: "text-orange-400" },
         ].map((s) => (
-          <div key={s.label} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700">
-            <div className="text-slate-500 text-xs mb-1">{s.label}</div>
+          <div key={s.label} className="bg-muted/60 rounded-lg p-3 border border-border">
+            <div className="text-muted-foreground text-xs mb-1">{s.label}</div>
             <div className={cn("text-lg font-bold", s.color)}>{s.value}</div>
           </div>
         ))}
       </div>
 
       {/* Duration contribution bar chart */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">Duration Contribution by Bond</h3>
         <div className="space-y-2">
           {portfolio.map((p) => {
@@ -1045,8 +1045,8 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
             const pct = contrib / maxDurContrib;
             return (
               <div key={p.bond.id} className="flex items-center gap-3">
-                <div className="w-36 text-xs text-slate-400 truncate">{p.bond.name}</div>
-                <div className="flex-1 h-5 bg-slate-700 rounded overflow-hidden">
+                <div className="w-36 text-xs text-muted-foreground truncate">{p.bond.name}</div>
+                <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${pct * 100}%` }}
@@ -1062,7 +1062,7 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
       </div>
 
       {/* Parallel shift scenarios */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">Parallel Rate Shift Scenarios</h3>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
           {scenarios.map((sc) => (
@@ -1071,10 +1071,10 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
               onClick={() => setSelectedShift(sc.bps as -200 | -100 | -50 | 50 | 100 | 200)}
               className={cn(
                 "rounded-lg p-3 border transition-colors text-center",
-                selectedShift === sc.bps ? "border-primary bg-primary/10" : "border-slate-700 bg-slate-700/30 hover:bg-slate-700/50"
+                selectedShift === sc.bps ? "border-primary bg-primary/10" : "border-border bg-muted/30 hover:bg-muted/50"
               )}
             >
-              <div className="text-xs text-slate-400 mb-1">{sc.bps > 0 ? "+" : ""}{sc.bps}bps</div>
+              <div className="text-xs text-muted-foreground mb-1">{sc.bps > 0 ? "+" : ""}{sc.bps}bps</div>
               <div className={cn("text-sm font-bold", sc.totalChg >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {sc.totalChg >= 0 ? "+" : ""}{fmtM(sc.totalChg)}
               </div>
@@ -1091,20 +1091,20 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
       </div>
 
       {/* Non-parallel shifts */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">Non-Parallel Shift Analysis</h3>
         <div className="grid grid-cols-3 gap-3">
           {nonParallelScenarios.map((sc) => (
-            <div key={sc.name} className="bg-slate-700/40 rounded-lg p-3">
+            <div key={sc.name} className="bg-muted/40 rounded-lg p-3">
               <div className="text-sm font-semibold text-white mb-1">{sc.name}</div>
-              <div className="text-xs text-slate-500 mb-2">{sc.desc}</div>
+              <div className="text-xs text-muted-foreground mb-2">{sc.desc}</div>
               <div className={cn("text-base font-bold", sc.change >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {sc.change >= 0 ? "+" : ""}{fmtM(sc.change)}
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-3 text-xs text-slate-500">
+        <div className="mt-3 text-xs text-muted-foreground">
           Key Rate Duration (KRD) analysis shows sensitivity to individual points on the curve. Barbell portfolios benefit from steepeners; bullet portfolios suffer from butterfly twists.
         </div>
       </div>
@@ -1188,13 +1188,13 @@ function CreditAnalysisTab() {
           const min2 = Math.min(...item.history) - 10;
           const max2 = Math.max(...item.history) + 10;
           return (
-            <div key={item.label} className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+            <div key={item.label} className="bg-muted/60 rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-sm font-semibold text-white">{item.label}</h3>
                 <span className="text-xl font-bold" style={{ color: item.color }}>{item.spread}bps</span>
               </div>
               <div className="flex gap-4 text-xs mb-2">
-                <span className="text-slate-500">24M avg: <span className="text-slate-300">{item.avg}bps</span></span>
+                <span className="text-muted-foreground">24M avg: <span className="text-muted-foreground">{item.avg}bps</span></span>
                 <span className={item.spread > item.avg ? "text-amber-400" : "text-emerald-400"}>
                   vs avg: {item.spread > item.avg ? "+" : ""}{item.spread - item.avg}bps
                 </span>
@@ -1213,11 +1213,11 @@ function CreditAnalysisTab() {
       </div>
 
       {/* Credit scorecard */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Credit Scorecard</h3>
           <select
-            className="bg-slate-700 border border-slate-600 text-slate-300 text-xs rounded px-2 py-1"
+            className="bg-muted border border-slate-600 text-muted-foreground text-xs rounded px-2 py-1"
             value={selectedBond3?.id ?? ""}
             onChange={(e) => setSelectedBond3(BONDS.find((b) => b.id === e.target.value) ?? null)}
           >
@@ -1229,12 +1229,12 @@ function CreditAnalysisTab() {
             {[
               { label: "Credit Score", value: `${scorecard.score}/100`, color: scorecard.score >= 60 ? "text-emerald-400" : scorecard.score >= 35 ? "text-amber-400" : "text-red-400" },
               { label: "Prob. of Default (1Y)", value: fmtPct(scorecard.pd, 3), color: scorecard.pd < 0.5 ? "text-emerald-400" : scorecard.pd < 2 ? "text-amber-400" : "text-red-400" },
-              { label: "Loss Given Default", value: fmtPct(scorecard.lgd, 0), color: "text-slate-300" },
+              { label: "Loss Given Default", value: fmtPct(scorecard.lgd, 0), color: "text-muted-foreground" },
               { label: "Expected Loss", value: fmtPct(scorecard.expectedLoss, 4), color: scorecard.expectedLoss < 0.1 ? "text-emerald-400" : "text-amber-400" },
               { label: "Spread Duration", value: `${scorecard.spreadDuration.toFixed(2)}y`, color: "text-primary" },
             ].map((m) => (
-              <div key={m.label} className="bg-slate-700/50 rounded p-3">
-                <div className="text-slate-500 text-xs mb-1">{m.label}</div>
+              <div key={m.label} className="bg-muted/50 rounded p-3">
+                <div className="text-muted-foreground text-xs mb-1">{m.label}</div>
                 <div className={cn("text-base font-bold", m.color)}>{m.value}</div>
               </div>
             ))}
@@ -1243,14 +1243,14 @@ function CreditAnalysisTab() {
       </div>
 
       {/* Relative value */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">IG Corporate Relative Value</h3>
         <div className="space-y-2">
           {relativeValue.map((rv) => (
             <div key={rv.bond.id} className="flex items-center gap-3">
-              <div className="w-36 text-xs text-slate-400 truncate">{rv.bond.name}</div>
-              <div className="w-12 text-xs text-right text-slate-300">{rv.bond.spreadBps}bps</div>
-              <div className="flex-1 h-4 bg-slate-700 rounded overflow-hidden relative">
+              <div className="w-36 text-xs text-muted-foreground truncate">{rv.bond.name}</div>
+              <div className="w-12 text-xs text-right text-muted-foreground">{rv.bond.spreadBps}bps</div>
+              <div className="flex-1 h-4 bg-muted rounded overflow-hidden relative">
                 <div className="absolute top-0 bottom-0 w-px bg-slate-500" style={{ left: "50%" }} />
                 <motion.div
                   initial={{ width: 0 }}
@@ -1261,7 +1261,7 @@ function CreditAnalysisTab() {
                 />
               </div>
               <span className={cn("text-xs w-16 text-right font-medium",
-                rv.label === "Wide" ? "text-amber-400" : rv.label === "Tight" ? "text-emerald-400" : "text-slate-400"
+                rv.label === "Wide" ? "text-amber-400" : rv.label === "Tight" ? "text-emerald-400" : "text-muted-foreground"
               )}>
                 {rv.label} {rv.vsMedian > 0 ? "+" : ""}{rv.vsMedian}bps
               </span>
@@ -1271,11 +1271,11 @@ function CreditAnalysisTab() {
       </div>
 
       {/* Fallen angel tracker */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-semibold text-white">Fallen Angel Watch</h3>
-          <span className="text-xs text-slate-500">— IG bonds at risk of HY downgrade</span>
+          <span className="text-xs text-muted-foreground">— IG bonds at risk of HY downgrade</span>
         </div>
         <div className="space-y-2">
           {fallenAngels.map((b) => (
@@ -1283,15 +1283,15 @@ function CreditAnalysisTab() {
               <AlertTriangle className="w-3 h-3 text-amber-400 flex-shrink-0" />
               <div className="flex-1">
                 <span className="text-xs font-medium text-white">{b.name}</span>
-                <span className="text-xs text-slate-500 ml-2">{b.issuer}</span>
+                <span className="text-xs text-muted-foreground ml-2">{b.issuer}</span>
               </div>
               <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
               <span className="text-xs text-amber-400">+{b.spreadBps}bps</span>
-              <span className="text-xs text-slate-500">Watch</span>
+              <span className="text-xs text-muted-foreground">Watch</span>
             </div>
           ))}
         </div>
-        <div className="mt-2 text-xs text-slate-500">
+        <div className="mt-2 text-xs text-muted-foreground">
           Fallen angels often see sharp spread widening as HY funds cannot hold IG mandates, creating forced selling.
         </div>
       </div>
@@ -1373,12 +1373,12 @@ function TaxExemptTab() {
   return (
     <div className="space-y-5">
       {/* Tax rate inputs */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-4">Tax Parameters</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <div className="flex justify-between mb-2">
-              <label className="text-xs text-slate-400">Federal Marginal Rate</label>
+              <label className="text-xs text-muted-foreground">Federal Marginal Rate</label>
               <span className="text-primary font-bold text-sm">{marginalRate}%</span>
             </div>
             <div className="flex gap-2">
@@ -1388,7 +1388,7 @@ function TaxExemptTab() {
                   onClick={() => setMarginalRate(r)}
                   className={cn(
                     "flex-1 py-1 rounded text-xs font-medium transition-colors",
-                    marginalRate === r ? "bg-primary text-white" : "bg-slate-700 text-slate-400 hover:bg-slate-600"
+                    marginalRate === r ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-slate-600"
                   )}
                 >
                   {r}%
@@ -1398,7 +1398,7 @@ function TaxExemptTab() {
           </div>
           <div>
             <div className="flex justify-between mb-2">
-              <label className="text-xs text-slate-400">State Income Tax Rate</label>
+              <label className="text-xs text-muted-foreground">State Income Tax Rate</label>
               <span className="text-indigo-400 font-bold text-sm">{stateRate}%</span>
             </div>
             <input
@@ -1407,7 +1407,7 @@ function TaxExemptTab() {
               onChange={(e) => setStateRate(parseFloat(e.target.value))}
               className="w-full accent-indigo-500"
             />
-            <div className="flex justify-between text-xs text-slate-600 mt-1">
+            <div className="flex justify-between text-xs text-muted-foreground mt-1">
               <span>0% (TX/FL)</span>
               <span>9.3% (CA)</span>
               <span>13.3% (CA top)</span>
@@ -1420,18 +1420,18 @@ function TaxExemptTab() {
             onChange={(e) => setInState(e.target.checked)}
             className="accent-primary"
           />
-          <label htmlFor="instate" className="text-xs text-slate-400">
+          <label htmlFor="instate" className="text-xs text-muted-foreground">
             In-state resident (qualifies for triple tax-exempt on in-state munis)
           </label>
         </div>
       </div>
 
       {/* After-tax comparison table */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">After-Tax Return Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
-            <thead className="text-slate-400 border-b border-slate-700">
+            <thead className="text-muted-foreground border-b border-border">
               <tr>
                 <th className="text-left py-2">Bond Type</th>
                 <th className="text-right py-2">Coupon</th>
@@ -1453,9 +1453,9 @@ function TaxExemptTab() {
                 const tsyAfterTax = 4.25 * (1 - marginalRate / 100);
                 const vs = afterTax - tsyAfterTax;
                 return (
-                  <tr key={b.label} className="border-b border-slate-700/50 hover:bg-slate-700/20">
+                  <tr key={b.label} className="border-b border-border/50 hover:bg-muted/20">
                     <td className="py-2 text-white">{b.label}</td>
-                    <td className="py-2 text-right text-slate-300">{b.coupon.toFixed(2)}%</td>
+                    <td className="py-2 text-right text-muted-foreground">{b.coupon.toFixed(2)}%</td>
                     <td className="py-2 text-right">
                       <span className={cn(
                         "px-1.5 py-0.5 rounded text-xs",
@@ -1465,7 +1465,7 @@ function TaxExemptTab() {
                       </span>
                     </td>
                     <td className="py-2 text-right font-semibold text-primary">{afterTax.toFixed(3)}%</td>
-                    <td className="py-2 text-right text-slate-300">{teYield.toFixed(3)}%</td>
+                    <td className="py-2 text-right text-muted-foreground">{teYield.toFixed(3)}%</td>
                     <td className={cn("py-2 text-right font-medium", vs > 0 ? "text-emerald-400" : "text-red-400")}>
                       {vs > 0 ? "+" : ""}{vs.toFixed(3)}%
                     </td>
@@ -1475,13 +1475,13 @@ function TaxExemptTab() {
             </tbody>
           </table>
         </div>
-        <div className="mt-2 text-xs text-slate-500">
+        <div className="mt-2 text-xs text-muted-foreground">
           At {marginalRate}% federal + {stateRate}% state tax. Tax-equivalent yield = muni yield / (1 - marginal rate).
         </div>
       </div>
 
       {/* Muni bond detail list */}
-      <div className="bg-slate-800/60 rounded-lg border border-slate-700 p-4">
+      <div className="bg-muted/60 rounded-lg border border-border p-4">
         <h3 className="text-sm font-semibold text-white mb-3">Municipal Bond Universe</h3>
         <div className="space-y-2">
           {MUNI_BONDS.map((b) => {
@@ -1494,20 +1494,20 @@ function TaxExemptTab() {
                 layout
                 className={cn(
                   "rounded-lg border p-3 cursor-pointer transition-colors",
-                  isSelected ? "border-primary/50 bg-primary/5" : "border-slate-700 hover:border-slate-600 hover:bg-slate-700/30"
+                  isSelected ? "border-primary/50 bg-primary/5" : "border-border hover:border-slate-600 hover:bg-muted/30"
                 )}
                 onClick={() => setSelectedMuni(isSelected ? null : b)}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-semibold text-white">{b.name}</span>
-                    <span className="text-xs text-slate-500">{b.state} · {b.type}</span>
+                    <span className="text-xs text-muted-foreground">{b.state} · {b.type}</span>
                     {b.amt && <span className="text-xs px-1 bg-red-500/20 text-red-400 rounded">AMT</span>}
                     {isTriple && <span className="text-xs px-1 bg-orange-500/20 text-orange-400 rounded">3x Exempt</span>}
                   </div>
                   <div className="flex items-center gap-3">
                     <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
-                    <span className="text-xs text-slate-400">{b.coupon.toFixed(2)}%</span>
+                    <span className="text-xs text-muted-foreground">{b.coupon.toFixed(2)}%</span>
                     <span className="text-xs font-semibold text-primary">TEY: {teYield.toFixed(2)}%</span>
                   </div>
                 </div>
@@ -1519,12 +1519,12 @@ function TaxExemptTab() {
                       exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="mt-2 pt-2 border-t border-slate-700 text-xs text-slate-400">
+                      <div className="mt-2 pt-2 border-t border-border text-xs text-muted-foreground">
                         {b.description}
                         <div className="mt-2 grid grid-cols-3 gap-2">
-                          <div><span className="text-slate-600">Maturity:</span> <span className="text-slate-300">{b.maturity}Y</span></div>
-                          <div><span className="text-slate-600">Fed Exempt:</span> <span className="text-emerald-400">Yes</span></div>
-                          <div><span className="text-slate-600">AMT Risk:</span> <span className={b.amt ? "text-red-400" : "text-emerald-400"}>{b.amt ? "Yes" : "No"}</span></div>
+                          <div><span className="text-muted-foreground">Maturity:</span> <span className="text-muted-foreground">{b.maturity}Y</span></div>
+                          <div><span className="text-muted-foreground">Fed Exempt:</span> <span className="text-emerald-400">Yes</span></div>
+                          <div><span className="text-muted-foreground">AMT Risk:</span> <span className={b.amt ? "text-red-400" : "text-emerald-400"}>{b.amt ? "Yes" : "No"}</span></div>
                         </div>
                       </div>
                     </motion.div>
@@ -1538,21 +1538,21 @@ function TaxExemptTab() {
 
       {/* AMT/BAB explainer */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-slate-800/60 rounded-lg border border-amber-500/20 p-4">
+        <div className="bg-muted/60 rounded-lg border border-amber-500/20 p-4">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             <h3 className="text-sm font-semibold text-amber-400">AMT Private Activity Bonds</h3>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-muted-foreground">
             Private Activity Bonds finance private projects (airports, hospitals, stadiums) using municipal credit. While federally tax-exempt for most investors, AMT taxpayers must include this income in AMT calculations. Always check your AMT exposure before buying PABs.
           </p>
         </div>
-        <div className="bg-slate-800/60 rounded-lg border border-primary/20 p-4">
+        <div className="bg-muted/60 rounded-lg border border-primary/20 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Landmark className="w-4 h-4 text-primary" />
             <h3 className="text-sm font-semibold text-primary">Build America Bonds (BABs)</h3>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-muted-foreground">
             Introduced in 2009 stimulus, BABs are taxable municipal bonds where the federal government subsidizes 35% of the interest cost. Issuers get lower borrowing rates; investors get higher taxable yields. They trade in both institutional and retail markets and can offer attractive after-tax returns vs Treasuries.
           </p>
         </div>
@@ -1594,7 +1594,7 @@ export default function FixedIncomePage() {
   const portfolioCount = portfolio.length;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1607,7 +1607,7 @@ export default function FixedIncomePage() {
               <Landmark className="w-6 h-6 text-primary" />
               Fixed Income
             </h1>
-            <p className="text-slate-400 text-sm mt-1">
+            <p className="text-muted-foreground text-sm mt-1">
               Bond universe, yield curve analysis, portfolio construction and risk management
             </p>
           </div>
@@ -1616,15 +1616,15 @@ export default function FixedIncomePage() {
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2"
+                className="flex items-center gap-2 bg-muted border border-border rounded-lg px-3 py-2"
               >
                 <DollarSign className="w-4 h-4 text-emerald-400" />
                 <div>
-                  <div className="text-xs text-slate-500">Portfolio</div>
+                  <div className="text-xs text-muted-foreground">Portfolio</div>
                   <div className="text-sm font-semibold text-white">{fmtM(totalNotional)}</div>
                 </div>
                 <div className="ml-1">
-                  <div className="text-xs text-slate-500">Bonds</div>
+                  <div className="text-xs text-muted-foreground">Bonds</div>
                   <div className="text-sm font-semibold text-primary">{portfolioCount}</div>
                 </div>
               </motion.div>
@@ -1635,7 +1635,7 @@ export default function FixedIncomePage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="flex flex-wrap h-auto gap-1 bg-slate-900/60 border border-slate-800 rounded-lg p-1 mb-5">
+        <TabsList className="flex flex-wrap h-auto gap-1 bg-card/60 border border-border rounded-lg p-1 mb-5">
           {[
             { value: "universe", label: "Bond Universe", icon: Globe },
             { value: "yieldcurve", label: "Yield Curve", icon: TrendingUp },
@@ -1647,7 +1647,7 @@ export default function FixedIncomePage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 hover:text-slate-200 transition-colors"
+              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground hover:text-foreground transition-colors"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}

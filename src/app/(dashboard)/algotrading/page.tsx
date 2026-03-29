@@ -411,16 +411,16 @@ function MonthlyHeatmap() {
       <table className="w-full text-xs border-collapse">
         <thead>
           <tr>
-            <th className="text-left text-zinc-500 font-normal pr-3 py-1 w-12">Year</th>
+            <th className="text-left text-muted-foreground font-normal pr-3 py-1 w-12">Year</th>
             {["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"].map((m) => (
-              <th key={m} className="text-center text-zinc-500 font-normal px-1 py-1 w-10">{m}</th>
+              <th key={m} className="text-center text-muted-foreground font-normal px-1 py-1 w-10">{m}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {monthlyReturns.map((row) => (
             <tr key={row.year}>
-              <td className="text-zinc-400 pr-3 py-1">{row.year}</td>
+              <td className="text-muted-foreground pr-3 py-1">{row.year}</td>
               {row.months.map((m) => (
                 <td key={m.label} className="px-0.5 py-0.5 text-center">
                   <div
@@ -428,7 +428,7 @@ function MonthlyHeatmap() {
                       "rounded px-1 py-0.5 text-xs font-medium tabular-nums",
                       m.ret >= 2 ? "bg-emerald-500/30 text-emerald-300" :
                       m.ret >= 0.5 ? "bg-emerald-500/15 text-emerald-400" :
-                      m.ret >= -0.5 ? "bg-zinc-700/50 text-zinc-400" :
+                      m.ret >= -0.5 ? "bg-muted/50 text-muted-foreground" :
                       m.ret >= -2 ? "bg-red-500/15 text-red-400" :
                       "bg-red-500/30 text-red-300"
                     )}
@@ -505,7 +505,7 @@ export default function AlgoTradingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
       <motion.div {...fadeUp}>
         <div className="flex items-center gap-3 mb-1">
@@ -513,8 +513,8 @@ export default function AlgoTradingPage() {
             <Zap className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-zinc-100">Algorithmic Trading &amp; Market Microstructure</h1>
-            <p className="text-sm text-zinc-500">Order types, execution algorithms, market impact models, and HFT strategies</p>
+            <h1 className="text-xl font-semibold text-foreground">Algorithmic Trading &amp; Market Microstructure</h1>
+            <p className="text-sm text-muted-foreground">Order types, execution algorithms, market impact models, and HFT strategies</p>
           </div>
         </div>
 
@@ -526,14 +526,14 @@ export default function AlgoTradingPage() {
             { label: "VWAP Shortfall", value: `${VWAP_SHORTFALL > 0 ? "+" : ""}${VWAP_SHORTFALL} bps`, sub: "vs benchmark", icon: <BarChart2 className="w-4 h-4 text-orange-400" />, col: "text-orange-400" },
             { label: "Backtest Sharpe", value: sharpe.toFixed(2), sub: "momentum strategy", icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, col: "text-emerald-400" },
           ].map((k) => (
-            <Card key={k.label} className="bg-zinc-900/60 border-zinc-800">
+            <Card key={k.label} className="bg-card/60 border-border">
               <CardContent className="p-3">
                 <div className="flex items-center gap-2 mb-1">
                   {k.icon}
-                  <span className="text-xs text-zinc-500">{k.label}</span>
+                  <span className="text-xs text-muted-foreground">{k.label}</span>
                 </div>
                 <div className={cn("text-lg font-semibold tabular-nums", k.col)}>{k.value}</div>
-                <div className="text-xs text-zinc-600">{k.sub}</div>
+                <div className="text-xs text-muted-foreground">{k.sub}</div>
               </CardContent>
             </Card>
           ))}
@@ -543,7 +543,7 @@ export default function AlgoTradingPage() {
       {/* Tabs */}
       <motion.div {...fadeUp} transition={{ delay: 0.1, duration: 0.4 }}>
         <Tabs defaultValue="orders">
-          <TabsList className="bg-zinc-900 border border-zinc-800 flex flex-wrap gap-0 h-auto">
+          <TabsList className="bg-card border border-border flex flex-wrap gap-0 h-auto">
             {[
               { value: "orders", label: "Order Types" },
               { value: "execution", label: "TWAP/VWAP" },
@@ -586,32 +586,32 @@ export default function AlgoTradingPage() {
                     <CardTitle className={cn("text-sm mt-2", ot.color)}>{ot.name}</CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 pt-0 space-y-2">
-                    <p className="text-xs text-zinc-400 leading-relaxed">{ot.description}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{ot.description}</p>
                     <div className="flex items-start gap-1.5">
-                      <ChevronRight className="w-3 h-3 text-zinc-500 mt-0.5 shrink-0" />
-                      <p className="text-xs text-zinc-500 leading-relaxed">{ot.whenToUse}</p>
+                      <ChevronRight className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
+                      <p className="text-xs text-muted-foreground leading-relaxed">{ot.whenToUse}</p>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="p-4 pb-2">
-                <CardTitle className="text-sm text-zinc-300">Order Priority Rules</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Order Priority Rules</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-zinc-400">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
                   <div>
-                    <div className="text-zinc-300 font-medium mb-1">Price-Time Priority</div>
+                    <div className="text-muted-foreground font-medium mb-1">Price-Time Priority</div>
                     <p>Orders are matched first by best price, then by time of submission. Limit orders at better prices always execute first.</p>
                   </div>
                   <div>
-                    <div className="text-zinc-300 font-medium mb-1">Pro-Rata Allocation</div>
+                    <div className="text-muted-foreground font-medium mb-1">Pro-Rata Allocation</div>
                     <p>Some exchanges (CME interest rates) split fills proportional to order size, favoring larger participants at the same price level.</p>
                   </div>
                   <div>
-                    <div className="text-zinc-300 font-medium mb-1">Maker-Taker Fees</div>
+                    <div className="text-muted-foreground font-medium mb-1">Maker-Taker Fees</div>
                     <p>Limit orders earn a rebate (maker); market orders pay a fee (taker). Shapes strategy — rebate-driven algos post limits to collect spread + rebate.</p>
                   </div>
                 </div>
@@ -623,42 +623,42 @@ export default function AlgoTradingPage() {
           <TabsContent value="execution" className="data-[state=inactive]:hidden mt-4 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div className="flex flex-col gap-2">
-                <Card className="bg-zinc-900/60 border-zinc-800">
+                <Card className="bg-card/60 border-border">
                   <CardContent className="p-3">
-                    <div className="text-xs text-zinc-500 mb-1">Arrival Price</div>
-                    <div className="text-base font-semibold text-zinc-200 tabular-nums">${ARRIVAL_PRICE.toFixed(3)}</div>
+                    <div className="text-xs text-muted-foreground mb-1">Arrival Price</div>
+                    <div className="text-base font-semibold text-foreground tabular-nums">${ARRIVAL_PRICE.toFixed(3)}</div>
                   </CardContent>
                 </Card>
-                <Card className="bg-zinc-900/60 border-zinc-800">
+                <Card className="bg-card/60 border-border">
                   <CardContent className="p-3">
-                    <div className="text-xs text-zinc-500 mb-1">Avg Execution Price</div>
+                    <div className="text-xs text-muted-foreground mb-1">Avg Execution Price</div>
                     <div className="text-base font-semibold text-amber-400 tabular-nums">${AVG_ACTUAL.toFixed(3)}</div>
                   </CardContent>
                 </Card>
-                <Card className="bg-zinc-900/60 border-zinc-800">
+                <Card className="bg-card/60 border-border">
                   <CardContent className="p-3">
-                    <div className="text-xs text-zinc-500 mb-1">Implementation Shortfall</div>
+                    <div className="text-xs text-muted-foreground mb-1">Implementation Shortfall</div>
                     <div className={cn("text-base font-semibold tabular-nums", IMPL_SHORTFALL_BPS >= 0 ? "text-red-400" : "text-emerald-400")}>
                       {IMPL_SHORTFALL_BPS > 0 ? "+" : ""}{IMPL_SHORTFALL_BPS} bps
                     </div>
                   </CardContent>
                 </Card>
-                <Card className="bg-zinc-900/60 border-zinc-800">
+                <Card className="bg-card/60 border-border">
                   <CardContent className="p-3">
-                    <div className="text-xs text-zinc-500 mb-1">vs TWAP / VWAP</div>
-                    <div className="text-sm font-medium text-zinc-300 tabular-nums">
+                    <div className="text-xs text-muted-foreground mb-1">vs TWAP / VWAP</div>
+                    <div className="text-sm font-medium text-muted-foreground tabular-nums">
                       <span className={TWAP_SHORTFALL >= 0 ? "text-red-400" : "text-emerald-400"}>{TWAP_SHORTFALL > 0 ? "+" : ""}{TWAP_SHORTFALL}</span>
-                      <span className="text-zinc-600 mx-1">/</span>
+                      <span className="text-muted-foreground mx-1">/</span>
                       <span className={VWAP_SHORTFALL >= 0 ? "text-red-400" : "text-emerald-400"}>{VWAP_SHORTFALL > 0 ? "+" : ""}{VWAP_SHORTFALL}</span>
-                      <span className="text-zinc-600 text-xs ml-1">bps</span>
+                      <span className="text-muted-foreground text-xs ml-1">bps</span>
                     </div>
                   </CardContent>
                 </Card>
               </div>
               <div className="md:col-span-2">
-                <Card className="bg-zinc-900/60 border-zinc-800 h-full">
+                <Card className="bg-card/60 border-border h-full">
                   <CardHeader className="p-4 pb-1">
-                    <CardTitle className="text-sm text-zinc-300">Execution vs Benchmark (20 Periods)</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">Execution vs Benchmark (20 Periods)</CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 pt-2">
                     <ExecutionChart />
@@ -667,19 +667,19 @@ export default function AlgoTradingPage() {
               </div>
             </div>
 
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="p-4 pb-2">
-                <CardTitle className="text-sm text-zinc-300">Algorithm Mechanics</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Algorithm Mechanics</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-zinc-400">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-muted-foreground">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-3 h-0.5 bg-emerald-400" style={{ borderTop: "1.5px dashed #34d399" }}></div>
                       <span className="text-emerald-400 font-medium">TWAP — Time Weighted Average Price</span>
                     </div>
                     <p className="leading-relaxed">Divides total order into equal-sized child orders across N time slices. Simple and predictable but ignores volume distribution — may consume disproportionate liquidity during low-volume periods.</p>
-                    <div className="mt-2 p-2 bg-zinc-800/50 rounded text-zinc-500 font-mono">
+                    <div className="mt-2 p-2 bg-muted/50 rounded text-muted-foreground font-mono">
                       slice_qty = total_qty / N<br />
                       interval = T / N
                     </div>
@@ -690,7 +690,7 @@ export default function AlgoTradingPage() {
                       <span className="text-orange-400 font-medium">VWAP — Volume Weighted Average Price</span>
                     </div>
                     <p className="leading-relaxed">Schedules participation according to a historical intraday volume profile. More sophisticated — trades heavier near open/close when volume is highest, minimizing market impact relative to natural flow.</p>
-                    <div className="mt-2 p-2 bg-zinc-800/50 rounded text-zinc-500 font-mono">
+                    <div className="mt-2 p-2 bg-muted/50 rounded text-muted-foreground font-mono">
                       slice_qty[t] = total_qty &times; vol_pct[t]<br />
                       where &Sigma;vol_pct[t] = 1
                     </div>
@@ -704,13 +704,13 @@ export default function AlgoTradingPage() {
           <TabsContent value="impact" className="data-[state=inactive]:hidden mt-4 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-4">
-                <Card className="bg-zinc-900/60 border-zinc-800">
+                <Card className="bg-card/60 border-border">
                   <CardHeader className="p-4 pb-2">
-                    <CardTitle className="text-sm text-zinc-300">Parameters</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">Parameters</CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 pt-0 space-y-5">
                     <div>
-                      <div className="flex justify-between text-xs text-zinc-400 mb-2">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-2">
                         <span>Trade Size</span>
                         <span className="text-amber-400 font-medium tabular-nums">{tradeSize}% of ADV</span>
                       </div>
@@ -724,7 +724,7 @@ export default function AlgoTradingPage() {
                       />
                     </div>
                     <div>
-                      <div className="flex justify-between text-xs text-zinc-400 mb-2">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-2">
                         <span>Urgency Factor</span>
                         <span className="text-orange-400 font-medium tabular-nums">{urgency.toFixed(1)}</span>
                       </div>
@@ -736,16 +736,16 @@ export default function AlgoTradingPage() {
                         step={1}
                         className="w-full"
                       />
-                      <div className="flex justify-between text-xs text-zinc-600 mt-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mt-1">
                         <span>Patient</span>
                         <span>Urgent</span>
                       </div>
                     </div>
-                    <Card className="bg-zinc-800/60 border-zinc-700">
+                    <Card className="bg-muted/60 border-border">
                       <CardContent className="p-3">
-                        <div className="text-xs text-zinc-500 mb-1">Estimated Market Impact</div>
+                        <div className="text-xs text-muted-foreground mb-1">Estimated Market Impact</div>
                         <div className="text-2xl font-bold text-amber-400 tabular-nums">{impactBps.toFixed(1)} bps</div>
-                        <div className="text-xs text-zinc-600 mt-0.5">
+                        <div className="text-xs text-muted-foreground mt-0.5">
                           ≈ ${(impactBps / 10000 * 100).toFixed(3)} per $100 notional
                         </div>
                       </CardContent>
@@ -754,9 +754,9 @@ export default function AlgoTradingPage() {
                 </Card>
               </div>
               <div className="md:col-span-2">
-                <Card className="bg-zinc-900/60 border-zinc-800">
+                <Card className="bg-card/60 border-border">
                   <CardHeader className="p-4 pb-1">
-                    <CardTitle className="text-sm text-zinc-300">Impact Curve (Almgren-Chriss Simplified)</CardTitle>
+                    <CardTitle className="text-sm text-muted-foreground">Impact Curve (Almgren-Chriss Simplified)</CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 pt-2">
                     <MarketImpactChart urgency={urgency} />
@@ -765,26 +765,26 @@ export default function AlgoTradingPage() {
               </div>
             </div>
 
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="p-4 pb-2">
-                <CardTitle className="text-sm text-zinc-300">Model Reference</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Model Reference</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                  <div className="p-3 bg-zinc-800/50 rounded">
-                    <div className="text-zinc-300 font-medium mb-1">Temporary Impact</div>
-                    <div className="font-mono text-zinc-400 mb-1.5">h(v) = &eta; &sigma; (v/ADV)^0.6</div>
-                    <p className="text-zinc-500">Decays after order completion. Proportional to participation rate raised to a power (&lt;1 = concave — economies of scale in spreading).</p>
+                  <div className="p-3 bg-muted/50 rounded">
+                    <div className="text-muted-foreground font-medium mb-1">Temporary Impact</div>
+                    <div className="font-mono text-muted-foreground mb-1.5">h(v) = &eta; &sigma; (v/ADV)^0.6</div>
+                    <p className="text-muted-foreground">Decays after order completion. Proportional to participation rate raised to a power (&lt;1 = concave — economies of scale in spreading).</p>
                   </div>
-                  <div className="p-3 bg-zinc-800/50 rounded">
-                    <div className="text-zinc-300 font-medium mb-1">Permanent Impact</div>
-                    <div className="font-mono text-zinc-400 mb-1.5">g(v) = &gamma; (v/ADV)</div>
-                    <p className="text-zinc-500">Persists indefinitely. Information leakage — large buy signals demand, permanently shifting the price level up regardless of trading speed.</p>
+                  <div className="p-3 bg-muted/50 rounded">
+                    <div className="text-muted-foreground font-medium mb-1">Permanent Impact</div>
+                    <div className="font-mono text-muted-foreground mb-1.5">g(v) = &gamma; (v/ADV)</div>
+                    <p className="text-muted-foreground">Persists indefinitely. Information leakage — large buy signals demand, permanently shifting the price level up regardless of trading speed.</p>
                   </div>
-                  <div className="p-3 bg-zinc-800/50 rounded">
-                    <div className="text-zinc-300 font-medium mb-1">Urgency Trade-off</div>
-                    <div className="font-mono text-zinc-400 mb-1.5">TC = f(speed, mkt_risk)</div>
-                    <p className="text-zinc-500">Fast execution reduces timing risk (price drift) but increases market impact. Optimal trajectory minimizes total cost = impact + price risk.</p>
+                  <div className="p-3 bg-muted/50 rounded">
+                    <div className="text-muted-foreground font-medium mb-1">Urgency Trade-off</div>
+                    <div className="font-mono text-muted-foreground mb-1.5">TC = f(speed, mkt_risk)</div>
+                    <p className="text-muted-foreground">Fast execution reduces timing risk (price drift) but increases market impact. Optimal trajectory minimizes total cost = impact + price risk.</p>
                   </div>
                 </div>
               </CardContent>
@@ -795,14 +795,14 @@ export default function AlgoTradingPage() {
           <TabsContent value="hft" className="data-[state=inactive]:hidden mt-4 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {hftStrategies.map((strat) => (
-                <Card key={strat.name} className="bg-zinc-900/60 border-zinc-800">
+                <Card key={strat.name} className="bg-card/60 border-border">
                   <CardHeader className="p-4 pb-2">
                     <div className="flex items-center gap-3">
-                      <div className="p-1.5 rounded bg-zinc-800 border border-zinc-700">
+                      <div className="p-1.5 rounded bg-muted border border-border">
                         {strat.icon}
                       </div>
                       <div>
-                        <CardTitle className="text-sm text-zinc-100">{strat.name}</CardTitle>
+                        <CardTitle className="text-sm text-foreground">{strat.name}</CardTitle>
                         <Badge className={cn("text-xs px-1.5 py-0 mt-1 border", strat.tagColor)}>
                           {strat.tag}
                         </Badge>
@@ -811,30 +811,30 @@ export default function AlgoTradingPage() {
                   </CardHeader>
                   <CardContent className="p-4 pt-0 space-y-3">
                     <div>
-                      <div className="text-xs text-zinc-500 uppercase tracking-wide mb-1">Mechanics</div>
-                      <p className="text-xs text-zinc-400 leading-relaxed">{strat.mechanics}</p>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Mechanics</div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{strat.mechanics}</p>
                     </div>
                     <div>
-                      <div className="text-xs text-zinc-500 uppercase tracking-wide mb-1">Profitability</div>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Profitability</div>
                       <div className="flex items-start gap-1.5">
                         <ArrowUpRight className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
-                        <p className="text-xs text-zinc-400 leading-relaxed">{strat.profitability}</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{strat.profitability}</p>
                       </div>
                     </div>
                     <div>
-                      <div className="text-xs text-zinc-500 uppercase tracking-wide mb-1">Regulatory / Risk</div>
+                      <div className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Regulatory / Risk</div>
                       <div className="flex items-start gap-1.5">
                         <AlertTriangle className="w-3 h-3 text-amber-400 mt-0.5 shrink-0" />
-                        <p className="text-xs text-zinc-400 leading-relaxed">{strat.concern}</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed">{strat.concern}</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="p-4 pb-2">
-                <CardTitle className="text-sm text-zinc-300">Microstructure Concepts</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Microstructure Concepts</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
@@ -844,9 +844,9 @@ export default function AlgoTradingPage() {
                     { term: "Adverse Selection", def: "Market makers get picked off when informed traders know price will move — the core risk of passive quoting." },
                     { term: "Lit vs Dark Pools", def: "Lit exchanges display pre-trade quotes; dark pools offer anonymous midpoint crossing with zero pre-trade transparency." },
                   ].map((c) => (
-                    <div key={c.term} className="p-3 bg-zinc-800/50 rounded">
-                      <div className="text-zinc-300 font-medium mb-1">{c.term}</div>
-                      <p className="text-zinc-500 leading-relaxed">{c.def}</p>
+                    <div key={c.term} className="p-3 bg-muted/50 rounded">
+                      <div className="text-muted-foreground font-medium mb-1">{c.term}</div>
+                      <p className="text-muted-foreground leading-relaxed">{c.def}</p>
                     </div>
                   ))}
                 </div>
@@ -865,13 +865,13 @@ export default function AlgoTradingPage() {
                 { label: "Avg Win", value: `+${(avgWin * 100).toFixed(2)}%`, icon: <ArrowUpRight className="w-4 h-4 text-emerald-400" />, col: "text-emerald-400" },
                 { label: "Avg Loss", value: `-${(avgLoss * 100).toFixed(2)}%`, icon: <ArrowDownRight className="w-4 h-4 text-red-400" />, col: "text-red-400" },
                 { label: "Win/Loss Ratio", value: (avgWin / avgLoss).toFixed(2), icon: <BarChart2 className="w-4 h-4 text-amber-400" />, col: "text-amber-400" },
-                { label: "Total Trades", value: String(dailyRets.length), icon: <Zap className="w-4 h-4 text-zinc-400" />, col: "text-zinc-300" },
+                { label: "Total Trades", value: String(dailyRets.length), icon: <Zap className="w-4 h-4 text-muted-foreground" />, col: "text-muted-foreground" },
               ].map((k) => (
-                <Card key={k.label} className="bg-zinc-900/60 border-zinc-800">
+                <Card key={k.label} className="bg-card/60 border-border">
                   <CardContent className="p-3">
                     <div className="flex items-center gap-2 mb-1">
                       {k.icon}
-                      <span className="text-xs text-zinc-500">{k.label}</span>
+                      <span className="text-xs text-muted-foreground">{k.label}</span>
                     </div>
                     <div className={cn("text-lg font-semibold tabular-nums", k.col)}>{k.value}</div>
                   </CardContent>
@@ -880,18 +880,18 @@ export default function AlgoTradingPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-zinc-900/60 border-zinc-800">
+              <Card className="bg-card/60 border-border">
                 <CardHeader className="p-4 pb-1">
-                  <CardTitle className="text-sm text-zinc-300">Equity Curve — Momentum Strategy (60-Day Backtest)</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">Equity Curve — Momentum Strategy (60-Day Backtest)</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 pt-2">
                   <EquityCurveChart />
-                  <p className="text-xs text-zinc-600 mt-2">Red area = drawdown depth (top); green = cumulative equity</p>
+                  <p className="text-xs text-muted-foreground mt-2">Red area = drawdown depth (top); green = cumulative equity</p>
                 </CardContent>
               </Card>
-              <Card className="bg-zinc-900/60 border-zinc-800">
+              <Card className="bg-card/60 border-border">
                 <CardHeader className="p-4 pb-1">
-                  <CardTitle className="text-sm text-zinc-300">Monthly Returns Heatmap</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">Monthly Returns Heatmap</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 pt-2">
                   <MonthlyHeatmap />
@@ -903,7 +903,7 @@ export default function AlgoTradingPage() {
               <CardContent className="p-4">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-                  <div className="text-xs text-zinc-400 space-y-1">
+                  <div className="text-xs text-muted-foreground space-y-1">
                     <div className="text-amber-400 font-medium">Common Backtesting Pitfalls</div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
                       {[
@@ -911,9 +911,9 @@ export default function AlgoTradingPage() {
                         { title: "Survivorship Bias", desc: "Testing only on stocks that exist today. Firms that went bankrupt are missing. This inflates historical returns." },
                         { title: "Overfitting", desc: "Too many parameters tuned on in-sample data. Use walk-forward analysis and out-of-sample validation to avoid curve-fitting." },
                       ].map((p) => (
-                        <div key={p.title} className="p-2 bg-zinc-900/60 rounded">
+                        <div key={p.title} className="p-2 bg-card/60 rounded">
                           <div className="text-amber-400 font-medium mb-0.5">{p.title}</div>
-                          <p className="text-zinc-500 leading-relaxed">{p.desc}</p>
+                          <p className="text-muted-foreground leading-relaxed">{p.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -925,27 +925,27 @@ export default function AlgoTradingPage() {
 
           {/* ── Execution Quality ─────────────────────────────────────── */}
           <TabsContent value="quality" className="data-[state=inactive]:hidden mt-4 space-y-4">
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="p-4 pb-2">
-                <CardTitle className="text-sm text-zinc-300">Execution Quality Metrics — Sample Order Flow</CardTitle>
+                <CardTitle className="text-sm text-muted-foreground">Execution Quality Metrics — Sample Order Flow</CardTitle>
               </CardHeader>
               <CardContent className="p-4 pt-0">
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
-                        <th className="text-left text-zinc-500 font-normal py-2 pr-4">Metric</th>
-                        <th className="text-right text-zinc-500 font-normal py-2 px-4">Measured</th>
-                        <th className="text-right text-zinc-500 font-normal py-2 px-4">Benchmark</th>
-                        <th className="text-right text-zinc-500 font-normal py-2 pl-4">Status</th>
+                      <tr className="border-b border-border">
+                        <th className="text-left text-muted-foreground font-normal py-2 pr-4">Metric</th>
+                        <th className="text-right text-muted-foreground font-normal py-2 px-4">Measured</th>
+                        <th className="text-right text-muted-foreground font-normal py-2 px-4">Benchmark</th>
+                        <th className="text-right text-muted-foreground font-normal py-2 pl-4">Status</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-800/50">
                       {EXEC_METRICS.map((row) => (
-                        <tr key={row.metric} className="hover:bg-zinc-800/20">
-                          <td className="py-2.5 pr-4 text-zinc-300 font-medium">{row.metric}</td>
-                          <td className="py-2.5 px-4 text-right text-zinc-200 tabular-nums font-mono">{row.value}</td>
-                          <td className="py-2.5 px-4 text-right text-zinc-500 tabular-nums font-mono">{row.benchmark}</td>
+                        <tr key={row.metric} className="hover:bg-muted/20">
+                          <td className="py-2.5 pr-4 text-muted-foreground font-medium">{row.metric}</td>
+                          <td className="py-2.5 px-4 text-right text-foreground tabular-nums font-mono">{row.value}</td>
+                          <td className="py-2.5 px-4 text-right text-muted-foreground tabular-nums font-mono">{row.benchmark}</td>
                           <td className="py-2.5 pl-4 text-right">
                             <Badge
                               className={cn(
@@ -967,9 +967,9 @@ export default function AlgoTradingPage() {
             </Card>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-zinc-900/60 border-zinc-800">
+              <Card className="bg-card/60 border-border">
                 <CardHeader className="p-4 pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Metric Definitions</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">Metric Definitions</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 pt-0 space-y-2.5">
                   {[
@@ -981,27 +981,27 @@ export default function AlgoTradingPage() {
                     <div key={d.term} className="flex gap-2 text-xs">
                       <Shield className="w-3 h-3 text-indigo-400 mt-0.5 shrink-0" />
                       <div>
-                        <span className="text-zinc-300 font-medium">{d.term}: </span>
-                        <span className="text-zinc-500">{d.def}</span>
+                        <span className="text-muted-foreground font-medium">{d.term}: </span>
+                        <span className="text-muted-foreground">{d.def}</span>
                       </div>
                     </div>
                   ))}
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900/60 border-zinc-800">
+              <Card className="bg-card/60 border-border">
                 <CardHeader className="p-4 pb-2">
-                  <CardTitle className="text-sm text-zinc-300">Regulatory Context (SEC Rule 605/606)</CardTitle>
+                  <CardTitle className="text-sm text-muted-foreground">Regulatory Context (SEC Rule 605/606)</CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 pt-0 space-y-3 text-xs text-zinc-400">
+                <CardContent className="p-4 pt-0 space-y-3 text-xs text-muted-foreground">
                   <p className="leading-relaxed">
-                    <span className="text-zinc-300 font-medium">Rule 605</span> requires market centers to publish monthly execution quality statistics including effective spreads, realized spreads, price improvement rates, and fill rates.
+                    <span className="text-muted-foreground font-medium">Rule 605</span> requires market centers to publish monthly execution quality statistics including effective spreads, realized spreads, price improvement rates, and fill rates.
                   </p>
                   <p className="leading-relaxed">
-                    <span className="text-zinc-300 font-medium">Rule 606</span> requires brokers to disclose order routing practices quarterly, including payment for order flow (PFOF) arrangements and venues receiving retail flow.
+                    <span className="text-muted-foreground font-medium">Rule 606</span> requires brokers to disclose order routing practices quarterly, including payment for order flow (PFOF) arrangements and venues receiving retail flow.
                   </p>
                   <p className="leading-relaxed">
-                    <span className="text-zinc-300 font-medium">Best Execution</span> obligation requires brokers to seek the most favorable terms for clients, considering price, speed, likelihood of fill, and total transaction costs — not just headline price.
+                    <span className="text-muted-foreground font-medium">Best Execution</span> obligation requires brokers to seek the most favorable terms for clients, considering price, speed, likelihood of fill, and total transaction costs — not just headline price.
                   </p>
                 </CardContent>
               </Card>

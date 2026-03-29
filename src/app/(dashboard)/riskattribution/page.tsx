@@ -244,9 +244,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
 }
@@ -255,7 +255,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
       <h3 className="text-base font-semibold text-white">{title}</h3>
-      {sub && <p className="text-xs text-zinc-400 mt-0.5">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
 }
@@ -342,16 +342,16 @@ function BHBTab() {
           <thead>
             <tr className="border-b border-white/10">
               {["Sector", "Port Wt", "Bmk Wt", "Port Ret", "Bmk Ret", "Alloc", "Sel", "Inter", "Total"].map((h) => (
-                <th key={h} className="px-3 py-2 text-left text-zinc-400 font-medium whitespace-nowrap">{h}</th>
+                <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {BHB_DATA.map((row) => (
               <tr key={row.sector} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                <td className="px-3 py-2 text-zinc-200 font-medium">{row.sector}</td>
-                <td className="px-3 py-2 text-zinc-300">{(row.pw * 100).toFixed(1)}%</td>
-                <td className="px-3 py-2 text-zinc-300">{(row.bw * 100).toFixed(1)}%</td>
+                <td className="px-3 py-2 text-foreground font-medium">{row.sector}</td>
+                <td className="px-3 py-2 text-muted-foreground">{(row.pw * 100).toFixed(1)}%</td>
+                <td className="px-3 py-2 text-muted-foreground">{(row.bw * 100).toFixed(1)}%</td>
                 <td className={cn("px-3 py-2 font-mono", pctColor(row.pr))}>{pct(row.pr, 1)}</td>
                 <td className={cn("px-3 py-2 font-mono", pctColor(row.br))}>{pct(row.br, 1)}</td>
                 <td className={cn("px-3 py-2 font-mono", pctColor(row.alloc))}>{pct(row.alloc, 2)}</td>
@@ -366,7 +366,7 @@ function BHBTab() {
 
       <div className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4 flex gap-3">
         <Info className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
-        <p className="text-xs text-zinc-400">
+        <p className="text-xs text-muted-foreground">
           <span className="text-indigo-300 font-semibold">Brinson-Hood-Beebower</span> (1986) decomposes active return into three sources.
           <strong className="text-white"> Allocation effect</strong> rewards over/underweighting sectors with above/below benchmark returns.
           <strong className="text-white"> Selection effect</strong> rewards picking stocks that beat the sector benchmark.
@@ -494,7 +494,7 @@ function FactorTab() {
           <thead>
             <tr className="border-b border-white/10">
               {["Factor", "Beta Exposure", "Factor Return", "Contribution", "% of Total"].map((h) => (
-                <th key={h} className="px-3 py-2 text-left text-zinc-400 font-medium">{h}</th>
+                <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">{h}</th>
               ))}
             </tr>
           </thead>
@@ -504,13 +504,13 @@ function FactorTab() {
                 <td className="px-3 py-2">
                   <span className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: f.color }} />
-                    <span className="text-zinc-200 font-medium">{f.name}</span>
+                    <span className="text-foreground font-medium">{f.name}</span>
                   </span>
                 </td>
-                <td className="px-3 py-2 font-mono text-zinc-300">{f.beta.toFixed(3)}</td>
-                <td className="px-3 py-2 font-mono text-zinc-300">{pct(f.contribution / Math.abs(f.beta), 2)}</td>
+                <td className="px-3 py-2 font-mono text-muted-foreground">{f.beta.toFixed(3)}</td>
+                <td className="px-3 py-2 font-mono text-muted-foreground">{pct(f.contribution / Math.abs(f.beta), 2)}</td>
                 <td className={cn("px-3 py-2 font-mono font-semibold", pctColor(f.contribution))}>{pct(f.contribution)}</td>
-                <td className="px-3 py-2 font-mono text-zinc-400">
+                <td className="px-3 py-2 font-mono text-muted-foreground">
                   {Math.abs(totalReturn) > 0 ? ((f.contribution / totalReturn) * 100).toFixed(1) : "—"}%
                 </td>
               </tr>
@@ -518,7 +518,7 @@ function FactorTab() {
             <tr className="border-t border-white/20">
               <td className="px-3 py-2 text-white font-bold" colSpan={3}>Total Portfolio Return</td>
               <td className={cn("px-3 py-2 font-mono font-bold", pctColor(totalReturn))}>{pct(totalReturn)}</td>
-              <td className="px-3 py-2 font-mono text-zinc-400">100%</td>
+              <td className="px-3 py-2 font-mono text-muted-foreground">100%</td>
             </tr>
           </tbody>
         </table>
@@ -576,7 +576,7 @@ function ActiveShareTab() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <SectionHeading title="Conviction Level Simulator" sub="Drag the slider to adjust portfolio concentration" />
         <div className="flex items-center gap-4 mb-6">
-          <span className="text-xs text-zinc-400 w-20">Conviction</span>
+          <span className="text-xs text-muted-foreground w-20">Conviction</span>
           <Slider
             value={[conviction]}
             min={0}
@@ -593,7 +593,7 @@ function ActiveShareTab() {
           <StatCard label="Tracking Error" value={`${trackingError.toFixed(2)}%`} sub="Annualised volatility of alpha" />
           <StatCard label="Information Ratio" value={irVal(conviction)} sub="Alpha per unit of TE" highlight="neutral" />
           <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <p className="text-xs text-zinc-400 mb-1">Classification</p>
+            <p className="text-xs text-muted-foreground mb-1">Classification</p>
             <p className={cn("text-base font-bold", zoneColor)}>{zone}</p>
             {activeShare < 60 && (
               <p className="text-xs text-rose-400/80 mt-1 flex items-center gap-1">
@@ -650,12 +650,12 @@ function ActiveShareTab() {
           <text x={xPos + 10} y={yPos - 4} fontSize={9} fill="#a5b4fc">{activeShare.toFixed(1)}% / {trackingError.toFixed(2)}%</text>
         </svg>
 
-        <p className="text-xs text-zinc-500 text-center mt-1">TE (x-axis) vs Active Share (y-axis)</p>
+        <p className="text-xs text-muted-foreground text-center mt-1">TE (x-axis) vs Active Share (y-axis)</p>
       </div>
 
       <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 flex gap-3">
         <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-        <p className="text-xs text-zinc-400">
+        <p className="text-xs text-muted-foreground">
           <span className="text-amber-300 font-semibold">Closet indexers</span> charge active fees while holding a portfolio nearly identical to the benchmark (Active Share &lt;60%). Academic research (Cremers &amp; Petajisto 2009) shows truly active funds with AS &gt;80% significantly outperform. A high IR above 0.5 indicates skill; below 0.3 suggests random returns may explain performance.
         </p>
       </div>
@@ -741,21 +741,21 @@ function RiskContribTab() {
           <thead>
             <tr className="border-b border-white/10">
               {["#", "Ticker", "Weight", "Standalone Vol", "MCTR", "% Risk Contrib", "Risk Bar"].map((h) => (
-                <th key={h} className="px-3 py-2 text-left text-zinc-400 font-medium whitespace-nowrap">{h}</th>
+                <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {POSITIONS.map((pos, i) => (
               <tr key={pos.ticker} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                <td className="px-3 py-2 text-zinc-500">{i + 1}</td>
+                <td className="px-3 py-2 text-muted-foreground">{i + 1}</td>
                 <td className="px-3 py-2 text-white font-bold">{pos.ticker}</td>
-                <td className="px-3 py-2 font-mono text-zinc-300">{(pos.weight * 100).toFixed(1)}%</td>
-                <td className="px-3 py-2 font-mono text-zinc-300">{(pos.vol * 100).toFixed(1)}%</td>
-                <td className={cn("px-3 py-2 font-mono", pos.mctr > 0.03 ? "text-rose-400" : "text-zinc-300")}>
+                <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.weight * 100).toFixed(1)}%</td>
+                <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.vol * 100).toFixed(1)}%</td>
+                <td className={cn("px-3 py-2 font-mono", pos.mctr > 0.03 ? "text-rose-400" : "text-muted-foreground")}>
                   {(pos.mctr * 100).toFixed(3)}%
                 </td>
-                <td className="px-3 py-2 font-mono font-bold text-zinc-200">{(pos.pctContrib * 100).toFixed(2)}%</td>
+                <td className="px-3 py-2 font-mono font-bold text-foreground">{(pos.pctContrib * 100).toFixed(2)}%</td>
                 <td className="px-3 py-2 w-28">
                   <div className="h-2 rounded-full bg-white/10 overflow-hidden">
                     <div
@@ -833,7 +833,7 @@ function ScenarioTab() {
             );
           })}
         </svg>
-        <p className="text-xs text-zinc-500 mt-2 text-center">Green = portfolio outperforms in scenario | White = benchmark bar</p>
+        <p className="text-xs text-muted-foreground mt-2 text-center">Green = portfolio outperforms in scenario | White = benchmark bar</p>
       </div>
 
       <div className="space-y-3">
@@ -844,20 +844,20 @@ function ScenarioTab() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-semibold text-white">{sc.name}</p>
-                  <p className="text-xs text-zinc-400 mt-0.5">{sc.description}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{sc.description}</p>
                 </div>
                 <div className="text-right shrink-0">
                   <div className="flex gap-4">
                     <div>
-                      <p className="text-xs text-zinc-500">Portfolio</p>
+                      <p className="text-xs text-muted-foreground">Portfolio</p>
                       <p className={cn("text-sm font-bold font-mono", pctColor(sc.portfolioImpact))}>{pct(sc.portfolioImpact, 1)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-500">Benchmark</p>
+                      <p className="text-xs text-muted-foreground">Benchmark</p>
                       <p className={cn("text-sm font-bold font-mono", pctColor(sc.benchmarkImpact))}>{pct(sc.benchmarkImpact, 1)}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-500">Excess</p>
+                      <p className="text-xs text-muted-foreground">Excess</p>
                       <p className={cn("text-sm font-bold font-mono", pctColor(excess))}>{pct(excess, 2)}</p>
                     </div>
                   </div>
@@ -989,7 +989,7 @@ function HistoryTab() {
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-1.5">
               <div className="w-3 h-0.5 rounded-full" style={{ background: color }} />
-              <span className="text-xs text-zinc-400">{label}</span>
+              <span className="text-xs text-muted-foreground">{label}</span>
             </div>
           ))}
         </div>
@@ -1000,7 +1000,7 @@ function HistoryTab() {
           <thead>
             <tr className="border-b border-white/10">
               {["Month", "Cum. Alpha", "Alloc Effect", "Sel Effect", "Monthly Delta"].map((h) => (
-                <th key={h} className="px-3 py-2 text-left text-zinc-400 font-medium">{h}</th>
+                <th key={h} className="px-3 py-2 text-left text-muted-foreground font-medium">{h}</th>
               ))}
             </tr>
           </thead>
@@ -1010,7 +1010,7 @@ function HistoryTab() {
               const delta = h.cumAlpha - prev;
               return (
                 <tr key={h.month} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                  <td className="px-3 py-2 text-zinc-300 font-medium">{h.month} &apos;25</td>
+                  <td className="px-3 py-2 text-muted-foreground font-medium">{h.month} &apos;25</td>
                   <td className={cn("px-3 py-2 font-mono font-bold", pctColor(h.cumAlpha))}>{pct(h.cumAlpha)}</td>
                   <td className={cn("px-3 py-2 font-mono", pctColor(h.allocEffect))}>{pct(h.allocEffect)}</td>
                   <td className={cn("px-3 py-2 font-mono", pctColor(h.selEffect))}>{pct(h.selEffect)}</td>
@@ -1051,7 +1051,7 @@ export default function RiskAttributionPage() {
         </div>
         <div>
           <h1 className="text-2xl font-bold text-white">Portfolio Risk Attribution</h1>
-          <p className="text-sm text-zinc-400 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Decompose sources of active return and risk — BHB attribution, factor exposures, active share, and scenario stress testing.
           </p>
         </div>

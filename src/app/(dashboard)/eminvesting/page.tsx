@@ -472,7 +472,7 @@ export default function EMInvestingPage() {
   void sv;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -484,10 +484,10 @@ export default function EMInvestingPage() {
           <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-500/20">
             <Globe className="w-5 h-5 text-orange-400" />
           </div>
-          <h1 className="text-2xl font-bold text-zinc-100">Emerging Markets Investing</h1>
+          <h1 className="text-2xl font-bold text-foreground">Emerging Markets Investing</h1>
           <Badge variant="outline" className="border-orange-500/30 text-orange-400 text-xs">Advanced</Badge>
         </div>
-        <p className="text-zinc-400 text-sm max-w-2xl">
+        <p className="text-muted-foreground text-sm max-w-2xl">
           EM equity, EM sovereign and corporate debt, country risk frameworks, capital flow dynamics, and frontier market opportunities — from MSCI classification to impossible trinity.
         </p>
       </motion.div>
@@ -505,13 +505,13 @@ export default function EMInvestingPage() {
           { label: "EM Debt Universe", value: "$9.4T", sub: "Hard + local currency", icon: <DollarSign className="w-4 h-4" />, color: "text-primary" },
           { label: "Global Remittances", value: "$800B+", sub: "Annual EM inflows", icon: <ArrowRight className="w-4 h-4" />, color: "text-primary" },
         ].map((chip, i) => (
-          <Card key={`chip-${i}`} className="bg-zinc-900 border-zinc-800">
+          <Card key={`chip-${i}`} className="bg-card border-border">
             <CardContent className="p-3 flex items-center gap-3">
-              <div className={cn("p-1.5 rounded-md bg-zinc-800", chip.color)}>{chip.icon}</div>
+              <div className={cn("p-1.5 rounded-md bg-muted", chip.color)}>{chip.icon}</div>
               <div>
                 <div className={cn("text-lg font-bold leading-none", chip.color)}>{chip.value}</div>
-                <div className="text-zinc-500 text-xs mt-0.5">{chip.label}</div>
-                <div className="text-zinc-600 text-xs">{chip.sub}</div>
+                <div className="text-muted-foreground text-xs mt-0.5">{chip.label}</div>
+                <div className="text-muted-foreground text-xs">{chip.sub}</div>
               </div>
             </CardContent>
           </Card>
@@ -520,7 +520,7 @@ export default function EMInvestingPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           {[
             { id: "equity", label: "EM Equity", icon: <TrendingUp className="w-3.5 h-3.5" /> },
             { id: "debt", label: "EM Debt", icon: <Landmark className="w-3.5 h-3.5" /> },
@@ -541,15 +541,15 @@ export default function EMInvestingPage() {
         <TabsContent value="equity" className="data-[state=inactive]:hidden space-y-5">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {/* MSCI EM Composition */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Globe className="w-4 h-4 text-orange-400" />MSCI EM Index Composition
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <MSCIDonut />
-                <div className="mt-2 text-xs text-zinc-500 space-y-1">
+                <div className="mt-2 text-xs text-muted-foreground space-y-1">
                   <p>China + Taiwan + Korea = 54% of MSCI EM — heavy concentration risk.</p>
                   <p>MSCI reviews EM classification annually — Saudi Arabia added 2019, ongoing India ADR/GDR vs direct debate.</p>
                 </div>
@@ -557,15 +557,15 @@ export default function EMInvestingPage() {
             </Card>
 
             {/* EM vs DM Returns */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-indigo-400" />EM vs DM Rolling 10-Year Returns
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <EMvsDMChart />
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   EM outperformed strongly in the 2000s commodity supercycle. DM dominance returned post-2013 as USD strengthened and China slowed.
                   The valuation gap (P/E 12x EM vs 18x DM) suggests long-run mean reversion potential.
                 </p>
@@ -574,9 +574,9 @@ export default function EMInvestingPage() {
           </div>
 
           {/* EM Valuation Discount */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-emerald-400" />EM vs DM Valuation Discount
               </CardTitle>
             </CardHeader>
@@ -588,8 +588,8 @@ export default function EMInvestingPage() {
                   { metric: "EV/EBITDA", em: "7.8x", dm: "12.3x", discount: "−37%" },
                   { metric: "Div Yield", em: "3.2%", dm: "1.9%", discount: "+68%" },
                 ].map((v, i) => (
-                  <div key={`val-${i}`} className="bg-zinc-800/60 rounded-lg p-3 text-center">
-                    <div className="text-xs text-zinc-500 mb-1">{v.metric}</div>
+                  <div key={`val-${i}`} className="bg-muted/60 rounded-lg p-3 text-center">
+                    <div className="text-xs text-muted-foreground mb-1">{v.metric}</div>
                     <div className="flex justify-between text-xs mb-1">
                       <span className="text-orange-400 font-medium">EM {v.em}</span>
                       <span className="text-indigo-400 font-medium">DM {v.dm}</span>
@@ -598,29 +598,29 @@ export default function EMInvestingPage() {
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 The EM discount reflects: (1) governance risk premium — state-owned enterprise dominance, minority shareholder protections; (2) political risk; (3) liquidity and access restrictions (China A-share lock-ups, India T+3 settlement, Saudi Tadawul foreign ownership caps); (4) currency tail-risk. Discount narrows during risk-on cycles.
               </p>
             </CardContent>
           </Card>
 
           {/* EM Equity Drivers */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-amber-400" />EM Equity Return Drivers
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
                 {EM_DRIVERS.map((d, i) => (
-                  <div key={`driver-${i}`} className="flex items-start gap-3 p-2.5 bg-zinc-800/50 rounded-lg">
+                  <div key={`driver-${i}`} className="flex items-start gap-3 p-2.5 bg-muted/50 rounded-lg">
                     <div className={cn("text-xs font-bold rounded px-1.5 py-0.5 shrink-0 mt-0.5", d.dir === "pos" ? "bg-emerald-500/20 text-emerald-400" : d.dir === "neg" ? "bg-red-500/20 text-red-400" : "bg-amber-500/20 text-amber-400")}>
                       {d.impact}
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-zinc-300">{d.driver}</div>
-                      <div className="text-xs text-zinc-500">{d.note}</div>
+                      <div className="text-xs font-medium text-muted-foreground">{d.driver}</div>
+                      <div className="text-xs text-muted-foreground">{d.note}</div>
                     </div>
                   </div>
                 ))}
@@ -629,9 +629,9 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* Factor Premiums */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-primary" />EM Factor Premiums (vs DM)
               </CardTitle>
             </CardHeader>
@@ -639,26 +639,26 @@ export default function EMInvestingPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
-                      <th className="text-left py-2 text-zinc-500">Factor</th>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-2 text-muted-foreground">Factor</th>
                       <th className="text-right py-2 text-orange-400">EM Alpha</th>
                       <th className="text-right py-2 text-indigo-400">DM Alpha</th>
-                      <th className="text-left py-2 pl-4 text-zinc-500">Why it differs</th>
+                      <th className="text-left py-2 pl-4 text-muted-foreground">Why it differs</th>
                     </tr>
                   </thead>
                   <tbody>
                     {EM_FACTOR_PREMIUMS.map((f, i) => (
-                      <tr key={`fac-${i}`} className="border-b border-zinc-800/50">
-                        <td className="py-2 text-zinc-300 font-medium">{f.factor}</td>
+                      <tr key={`fac-${i}`} className="border-b border-border/50">
+                        <td className="py-2 text-muted-foreground font-medium">{f.factor}</td>
                         <td className="py-2 text-right text-orange-400 font-mono">{f.emAlpha}</td>
                         <td className="py-2 text-right text-indigo-400 font-mono">{f.dmAlpha}</td>
-                        <td className="py-2 pl-4 text-zinc-500">{f.why}</td>
+                        <td className="py-2 pl-4 text-muted-foreground">{f.why}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-zinc-600 mt-3">
+              <p className="text-xs text-muted-foreground mt-3">
                 EM ETF structures: ADR (American Depositary Receipts), GDR (Global DRs), direct listing (India SEBI-registered, China A-shares via Stock Connect), synthetic (swap-based). MSCI EM classification criteria require market accessibility score, size/liquidity requirements, and foreign investor inclusion.
               </p>
             </CardContent>
@@ -668,9 +668,9 @@ export default function EMInvestingPage() {
         {/* ── TAB 2: EM Debt ── */}
         <TabsContent value="debt" className="data-[state=inactive]:hidden space-y-5">
           {/* Hard vs Local */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-primary" />Hard Currency vs Local Currency EM Debt
               </CardTitle>
             </CardHeader>
@@ -690,14 +690,14 @@ export default function EMInvestingPage() {
                 ].map((seg, i) => (
                   <div key={`hc-lc-${i}`} className="p-3 rounded-lg border" style={{ borderColor: seg.color + "40" }}>
                     <div className="text-sm font-bold mb-1" style={{ color: seg.color }}>{seg.type}</div>
-                    <div className="text-xs text-zinc-500 mb-2">Index: {seg.index}</div>
+                    <div className="text-xs text-muted-foreground mb-2">Index: {seg.index}</div>
                     <div className="mb-2">
                       <div className="text-xs text-emerald-400 font-medium mb-1">Pros</div>
-                      {seg.pros.map((p, j) => <div key={`pro-${i}-${j}`} className="text-xs text-zinc-400 flex gap-1.5 mb-0.5"><span className="text-emerald-500">+</span>{p}</div>)}
+                      {seg.pros.map((p, j) => <div key={`pro-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-0.5"><span className="text-emerald-500">+</span>{p}</div>)}
                     </div>
                     <div>
                       <div className="text-xs text-red-400 font-medium mb-1">Cons</div>
-                      {seg.cons.map((c, j) => <div key={`con-${i}-${j}`} className="text-xs text-zinc-400 flex gap-1.5 mb-0.5"><span className="text-red-500">−</span>{c}</div>)}
+                      {seg.cons.map((c, j) => <div key={`con-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-0.5"><span className="text-red-500">−</span>{c}</div>)}
                     </div>
                   </div>
                 ))}
@@ -706,9 +706,9 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* EMBI+ Spread History */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-indigo-400" />EMBI+ Spread History 2000–2024
               </CardTitle>
             </CardHeader>
@@ -720,9 +720,9 @@ export default function EMInvestingPage() {
                   { event: "2008 GFC contagion", bps: "680 bps peak", color: "text-orange-400" },
                   { event: "2020 COVID taper tantrum", bps: "520 bps peak", color: "text-amber-400" },
                 ].map((e, i) => (
-                  <div key={`embi-evt-${i}`} className="text-xs bg-zinc-800/50 rounded p-2">
+                  <div key={`embi-evt-${i}`} className="text-xs bg-muted/50 rounded p-2">
                     <div className={cn("font-medium", e.color)}>{e.bps}</div>
-                    <div className="text-zinc-500 mt-0.5">{e.event}</div>
+                    <div className="text-muted-foreground mt-0.5">{e.event}</div>
                   </div>
                 ))}
               </div>
@@ -730,15 +730,15 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* Sovereign Rating Distribution */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-amber-400" />EM Sovereign Rating Distribution
               </CardTitle>
             </CardHeader>
             <CardContent>
               <SovereignRatingBar />
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Most EM sovereigns are BB/B rated. High-yield EM accounts for ~60% of the EMBI+ universe. Investment-grade EM (Chile, Mexico, China, Indonesia) trades with tighter spreads and attracts pension/insurance flows.
               </p>
             </CardContent>
@@ -746,44 +746,44 @@ export default function EMInvestingPage() {
 
           {/* EM Inflation & Carry */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Percent className="w-4 h-4 text-emerald-400" />EM Inflation Dynamics
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
-                <div className="p-2.5 bg-zinc-800/50 rounded-lg">
+                <div className="p-2.5 bg-muted/50 rounded-lg">
                   <div className="text-xs font-medium text-emerald-400 mb-1">Commodity Exporters (Brazil, Russia, SA, GCC)</div>
-                  <p className="text-xs text-zinc-500">Energy/food export revenues buffer fiscal position. Inflation driven by domestic demand & currency strength. Central banks can cut rates when commodity boom supports FX.</p>
+                  <p className="text-xs text-muted-foreground">Energy/food export revenues buffer fiscal position. Inflation driven by domestic demand & currency strength. Central banks can cut rates when commodity boom supports FX.</p>
                 </div>
-                <div className="p-2.5 bg-zinc-800/50 rounded-lg">
+                <div className="p-2.5 bg-muted/50 rounded-lg">
                   <div className="text-xs font-medium text-orange-400 mb-1">Commodity Importers (Turkey, India, Egypt)</div>
-                  <p className="text-xs text-zinc-500">Oil price spikes hit current account and inflation simultaneously. FX depreciation is inflationary — creating a vicious cycle. IMF programmes often required to break the cycle.</p>
+                  <p className="text-xs text-muted-foreground">Oil price spikes hit current account and inflation simultaneously. FX depreciation is inflationary — creating a vicious cycle. IMF programmes often required to break the cycle.</p>
                 </div>
-                <div className="p-2.5 bg-zinc-800/50 rounded-lg">
+                <div className="p-2.5 bg-muted/50 rounded-lg">
                   <div className="text-xs font-medium text-primary mb-1">Carry Trade in EM Rates</div>
-                  <p className="text-xs text-zinc-500">Brazil SELIC 10.5%, Indonesia 6.25%, Mexico 11%: attractive carry. Risk: sudden stop + FX depreciation can reverse carry in days. REER overvaluation signals vulnerability.</p>
+                  <p className="text-xs text-muted-foreground">Brazil SELIC 10.5%, Indonesia 6.25%, Mexico 11%: attractive carry. Risk: sudden stop + FX depreciation can reverse carry in days. REER overvaluation signals vulnerability.</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Landmark className="w-4 h-4 text-primary" />Dedicated EM Debt Managers
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   {EM_DEBT_FUNDS.map((f, i) => (
-                    <div key={`emdf-${i}`} className="flex items-center justify-between p-2 bg-zinc-800/50 rounded-lg">
+                    <div key={`emdf-${i}`} className="flex items-center justify-between p-2 bg-muted/50 rounded-lg">
                       <div>
-                        <div className="text-xs font-medium text-zinc-300">{f.manager}</div>
-                        <div className="text-xs text-zinc-500">{f.flagship}</div>
-                        <div className="text-xs text-zinc-600 italic">{f.style}</div>
+                        <div className="text-xs font-medium text-muted-foreground">{f.manager}</div>
+                        <div className="text-xs text-muted-foreground">{f.flagship}</div>
+                        <div className="text-xs text-muted-foreground italic">{f.style}</div>
                       </div>
-                      <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400 shrink-0">{f.aum}</Badge>
+                      <Badge variant="outline" className="text-xs border-border text-muted-foreground shrink-0">{f.aum}</Badge>
                     </div>
                   ))}
                 </div>
@@ -792,21 +792,21 @@ export default function EMInvestingPage() {
           </div>
 
           {/* China / BRI */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-400" />China BRI Bonds & EM Corporate Dollarization Risks
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="p-3 bg-zinc-800/50 rounded-lg border border-red-500/20">
+                <div className="p-3 bg-muted/50 rounded-lg border border-red-500/20">
                   <div className="text-xs font-bold text-red-400 mb-1">Belt & Road Initiative (BRI) Debt Diplomacy</div>
-                  <p className="text-xs text-zinc-500">China's BRI has committed $1T+ in infrastructure loans to 140+ countries. Critics cite: opaque terms, collateral clauses (Hambantota port, Zambia copper mines), limited transparency, and debt relief conditionality. Refinancing risks concentrated in 2024–2027.</p>
+                  <p className="text-xs text-muted-foreground">China's BRI has committed $1T+ in infrastructure loans to 140+ countries. Critics cite: opaque terms, collateral clauses (Hambantota port, Zambia copper mines), limited transparency, and debt relief conditionality. Refinancing risks concentrated in 2024–2027.</p>
                 </div>
-                <div className="p-3 bg-zinc-800/50 rounded-lg border border-amber-500/20">
+                <div className="p-3 bg-muted/50 rounded-lg border border-amber-500/20">
                   <div className="text-xs font-bold text-amber-400 mb-1">EM Corporate Dollar Debt Risks</div>
-                  <p className="text-xs text-zinc-500">EM corporates issued $400B+ in USD bonds. Risks: (1) Revenue/cost FX mismatch — local revenue, USD debt service; (2) Refinancing cliff — large maturities 2025–2027; (3) Rising USD rates increase refinancing cost; (4) China property (Evergrande, Sunac) — $300B+ restructuring overhang.</p>
+                  <p className="text-xs text-muted-foreground">EM corporates issued $400B+ in USD bonds. Risks: (1) Revenue/cost FX mismatch — local revenue, USD debt service; (2) Refinancing cliff — large maturities 2025–2027; (3) Rising USD rates increase refinancing cost; (4) China property (Evergrande, Sunac) — $300B+ restructuring overhang.</p>
                 </div>
               </div>
             </CardContent>
@@ -816,9 +816,9 @@ export default function EMInvestingPage() {
         {/* ── TAB 3: Country Risk ── */}
         <TabsContent value="risk" className="data-[state=inactive]:hidden space-y-5">
           {/* Risk Framework */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-red-400" />Country Risk Framework
               </CardTitle>
             </CardHeader>
@@ -835,7 +835,7 @@ export default function EMInvestingPage() {
                     <AnimatePresence initial={false}>
                       <ul className="space-y-1">
                         {cat.components.map((c, j) => (
-                          <li key={`rfc-${i}-${j}`} className="text-xs text-zinc-500 flex gap-1.5">
+                          <li key={`rfc-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5">
                             <span style={{ color: cat.color }}>•</span>{c}
                           </li>
                         ))}
@@ -844,11 +844,11 @@ export default function EMInvestingPage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-3 p-3 bg-zinc-800/40 rounded-lg">
-                <div className="text-xs font-medium text-zinc-400 mb-1">Key Risk Rating Providers</div>
+              <div className="mt-3 p-3 bg-muted/40 rounded-lg">
+                <div className="text-xs font-medium text-muted-foreground mb-1">Key Risk Rating Providers</div>
                 <div className="flex flex-wrap gap-2">
                   {["ICRG (PRS Group)", "EIU Country Risk Service", "Oxford Analytica", "S&P/Moody's/Fitch Sovereign", "World Bank CPIA Score", "IMF Article IV Consultations"].map((r, i) => (
-                    <Badge key={`rp-${i}`} variant="outline" className="text-xs border-zinc-700 text-zinc-500">{r}</Badge>
+                    <Badge key={`rp-${i}`} variant="outline" className="text-xs border-border text-muted-foreground">{r}</Badge>
                   ))}
                 </div>
               </div>
@@ -856,15 +856,15 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* Vulnerability Radar */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-indigo-400" />EM Vulnerability Indicators — Radar Chart
               </CardTitle>
             </CardHeader>
             <CardContent>
               <VulnerabilityRadar />
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Radar scores represent resilience (higher = more resilient). Turkey scores low on Reserves and External accounts; India shows balanced resilience across factors.
                 Key IMF/World Bank indicators: CA/GDP, Debt/GDP, FX reserves/months imports, primary fiscal balance, real GDP growth vs debt dynamics.
               </p>
@@ -872,9 +872,9 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* IMF / Debt Sustainability */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Landmark className="w-4 h-4 text-primary" />Debt Sustainability Analysis (DSA) & IMF Programmes
               </CardTitle>
             </CardHeader>
@@ -885,10 +885,10 @@ export default function EMInvestingPage() {
                   { title: "IMF Programme Dynamics", items: ["SBA (Stand-By Arrangement) — short-term BOP", "EFF (Extended Fund Facility) — medium-term structural", "Conditionality: fiscal targets, CB independence, structural reform", "Tranching: disbursements tied to programme reviews", "Signal effect: lowers spreads for other creditors"] },
                   { title: "Contagion Channels", items: ["Trade linkages — export demand shock", "Financial linkages — bank exposure, cross-holdings", "Confidence/sentiment spillover", "Commodity price channel (EM pairs)", "Reserve currency / dollar funding stress"] },
                 ].map((s, i) => (
-                  <div key={`dsa-${i}`} className="p-3 bg-zinc-800/50 rounded-lg">
-                    <div className="text-xs font-medium text-zinc-300 mb-2">{s.title}</div>
+                  <div key={`dsa-${i}`} className="p-3 bg-muted/50 rounded-lg">
+                    <div className="text-xs font-medium text-muted-foreground mb-2">{s.title}</div>
                     {s.items.map((item, j) => (
-                      <div key={`dsa-i-${i}-${j}`} className="text-xs text-zinc-500 flex gap-1.5 mb-0.5">
+                      <div key={`dsa-i-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-0.5">
                         <span className="text-primary shrink-0">•</span>{item}
                       </div>
                     ))}
@@ -899,9 +899,9 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* Case Studies */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />EM Crisis Case Studies
               </CardTitle>
             </CardHeader>
@@ -918,9 +918,9 @@ export default function EMInvestingPage() {
                       <Badge className="text-xs shrink-0" style={{ background: cs.color + "25", color: cs.color, border: `1px solid ${cs.color}40` }}>
                         {cs.country} {cs.year}
                       </Badge>
-                      <span className="text-xs font-medium text-zinc-300">{cs.event}</span>
+                      <span className="text-xs font-medium text-muted-foreground">{cs.event}</span>
                     </div>
-                    {expandedCase === i ? <TrendingDown className="w-3.5 h-3.5 text-zinc-500" /> : <TrendingUp className="w-3.5 h-3.5 text-zinc-500" />}
+                    {expandedCase === i ? <TrendingDown className="w-3.5 h-3.5 text-muted-foreground" /> : <TrendingUp className="w-3.5 h-3.5 text-muted-foreground" />}
                   </div>
                   <AnimatePresence initial={false}>
                     {expandedCase === i && (
@@ -932,13 +932,13 @@ export default function EMInvestingPage() {
                         className="overflow-hidden"
                       >
                         <div className="px-3 pb-3 grid grid-cols-1 md:grid-cols-2 gap-2">
-                          <div className="p-2 bg-zinc-800/60 rounded">
+                          <div className="p-2 bg-muted/60 rounded">
                             <div className="text-xs font-medium text-amber-400 mb-1">Trigger</div>
-                            <p className="text-xs text-zinc-400">{cs.trigger}</p>
+                            <p className="text-xs text-muted-foreground">{cs.trigger}</p>
                           </div>
-                          <div className="p-2 bg-zinc-800/60 rounded">
+                          <div className="p-2 bg-muted/60 rounded">
                             <div className="text-xs font-medium text-red-400 mb-1">Outcome</div>
-                            <p className="text-xs text-zinc-400">{cs.outcome}</p>
+                            <p className="text-xs text-muted-foreground">{cs.outcome}</p>
                           </div>
                         </div>
                       </motion.div>
@@ -950,10 +950,10 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* Frontier vs EM */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Info className="w-4 h-4 text-zinc-400" />Frontier vs EM Classification Criteria
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
+                <Info className="w-4 h-4 text-muted-foreground" />Frontier vs EM Classification Criteria
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -965,8 +965,8 @@ export default function EMInvestingPage() {
                 ].map((t, i) => (
                   <div key={`tier-${i}`} className="p-3 rounded-lg border" style={{ borderColor: t.color + "40" }}>
                     <div className="text-xs font-bold mb-1" style={{ color: t.color }}>{t.tier}</div>
-                    <div className="text-xs text-zinc-400 font-medium mb-1">Examples: <span className="text-zinc-500 font-normal">{t.examples}</span></div>
-                    <p className="text-xs text-zinc-600">{t.criteria}</p>
+                    <div className="text-xs text-muted-foreground font-medium mb-1">Examples: <span className="text-muted-foreground font-normal">{t.examples}</span></div>
+                    <p className="text-xs text-muted-foreground">{t.criteria}</p>
                   </div>
                 ))}
               </div>
@@ -977,9 +977,9 @@ export default function EMInvestingPage() {
         {/* ── TAB 4: Capital Flows & FX ── */}
         <TabsContent value="flows" className="data-[state=inactive]:hidden space-y-5">
           {/* Capital Flow Cycle */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <RefreshCw className="w-4 h-4 text-emerald-400" />EM Capital Flow Cycle
               </CardTitle>
             </CardHeader>
@@ -992,9 +992,9 @@ export default function EMInvestingPage() {
                   { label: "FDI (sticky)", stat: "$600B+ annual", color: "text-primary" },
                   { label: "Portfolio (hot money)", stat: "Most volatile", color: "text-amber-400" },
                 ].map((s, i) => (
-                  <div key={`cfc-${i}`} className="text-center p-2 bg-zinc-800/50 rounded">
+                  <div key={`cfc-${i}`} className="text-center p-2 bg-muted/50 rounded">
                     <div className={cn("text-sm font-bold", s.color)}>{s.stat}</div>
-                    <div className="text-xs text-zinc-500">{s.label}</div>
+                    <div className="text-xs text-muted-foreground">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -1002,9 +1002,9 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* Push vs Pull */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <ArrowUpDown className="w-4 h-4 text-indigo-400" />Push vs Pull Factors for EM Capital Flows
               </CardTitle>
             </CardHeader>
@@ -1014,16 +1014,16 @@ export default function EMInvestingPage() {
                   <div key={`pp-${i}`} className="p-3 rounded-lg border" style={{ borderColor: pp.color + "40" }}>
                     <div className="text-xs font-bold mb-2" style={{ color: pp.color }}>{pp.type}</div>
                     {pp.factors.map((f, j) => (
-                      <div key={`ppf-${i}-${j}`} className="text-xs text-zinc-400 flex gap-1.5 mb-1">
+                      <div key={`ppf-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-1">
                         <span style={{ color: pp.color }}>→</span>{f}
                       </div>
                     ))}
                   </div>
                 ))}
               </div>
-              <div className="mt-3 p-3 bg-zinc-800/50 rounded-lg">
+              <div className="mt-3 p-3 bg-muted/50 rounded-lg">
                 <div className="text-xs font-medium text-amber-400 mb-1">Sudden Stop Mechanics</div>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-muted-foreground">
                   A "sudden stop" (Calvo 1998) is an abrupt capital account reversal. Typically: foreign creditors refuse to roll over short-term debt → FX reserves drain → currency collapses → interest rates spike → growth contraction. Original Sin (EM borrowing in USD rather than local FX) amplifies the damage. Requires IMF support or debt restructuring.
                 </p>
               </div>
@@ -1032,9 +1032,9 @@ export default function EMInvestingPage() {
 
           {/* Impossible Trinity */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />Impossible Trinity (Trilemma)
                 </CardTitle>
               </CardHeader>
@@ -1046,9 +1046,9 @@ export default function EMInvestingPage() {
                     { choice: "Brazil / Mexico", picks: "Free capital + independent policy", gave: "Floating FX (managed float)" },
                     { choice: "Hong Kong / Saudi", picks: "Fixed rate + free capital", gave: "No monetary independence (Fed-linked rates)" },
                   ].map((ex, i) => (
-                    <div key={`tri-ex-${i}`} className="text-xs p-2 bg-zinc-800/50 rounded flex gap-2">
+                    <div key={`tri-ex-${i}`} className="text-xs p-2 bg-muted/50 rounded flex gap-2">
                       <span className="text-amber-400 shrink-0 font-medium">{ex.choice}:</span>
-                      <span className="text-zinc-400">Chose <span className="text-emerald-400">{ex.picks}</span> → gave up <span className="text-red-400">{ex.gave}</span></span>
+                      <span className="text-muted-foreground">Chose <span className="text-emerald-400">{ex.picks}</span> → gave up <span className="text-red-400">{ex.gave}</span></span>
                     </div>
                   ))}
                 </div>
@@ -1056,23 +1056,23 @@ export default function EMInvestingPage() {
             </Card>
 
             {/* FX Reserve Adequacy */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <ShieldAlert className="w-4 h-4 text-primary" />FX Reserve Adequacy Metrics
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {FX_RESERVE_METRICS.map((m, i) => (
-                  <div key={`fxr-${i}`} className="p-2.5 bg-zinc-800/50 rounded-lg">
+                  <div key={`fxr-${i}`} className="p-2.5 bg-muted/50 rounded-lg">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-medium text-zinc-300">{m.metric}</span>
+                      <span className="text-xs font-medium text-muted-foreground">{m.metric}</span>
                       <Badge className="text-xs" style={{ background: m.color + "25", color: m.color, border: `1px solid ${m.color}40` }}>{m.threshold}</Badge>
                     </div>
-                    <p className="text-xs text-zinc-500">{m.rationale}</p>
+                    <p className="text-xs text-muted-foreground">{m.rationale}</p>
                   </div>
                 ))}
-                <p className="text-xs text-zinc-600 pt-1">
+                <p className="text-xs text-muted-foreground pt-1">
                   FX Intervention: Sterilized (CB sells FX + issues domestic bonds — neutral money supply) vs Unsterilized (FX sale reduces money supply, tightens conditions). EM CBs intervene heavily during crises.
                 </p>
               </CardContent>
@@ -1080,9 +1080,9 @@ export default function EMInvestingPage() {
           </div>
 
           {/* Deglobalization + CBDCs */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Globe className="w-4 h-4 text-primary" />CBDCs in Emerging Markets & Digital Finance
               </CardTitle>
             </CardHeader>
@@ -1090,37 +1090,37 @@ export default function EMInvestingPage() {
               <div className="overflow-x-auto mb-3">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
-                      <th className="text-left py-2 text-zinc-500">Country</th>
-                      <th className="text-left py-2 text-zinc-500">System</th>
-                      <th className="text-left py-2 text-zinc-500">Status</th>
-                      <th className="text-left py-2 text-zinc-500">Feature / Ambition</th>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-2 text-muted-foreground">Country</th>
+                      <th className="text-left py-2 text-muted-foreground">System</th>
+                      <th className="text-left py-2 text-muted-foreground">Status</th>
+                      <th className="text-left py-2 text-muted-foreground">Feature / Ambition</th>
                     </tr>
                   </thead>
                   <tbody>
                     {CBDC_DATA.map((c, i) => (
-                      <tr key={`cbdc-${i}`} className="border-b border-zinc-800/50">
+                      <tr key={`cbdc-${i}`} className="border-b border-border/50">
                         <td className="py-2 font-medium" style={{ color: c.color }}>{c.country}</td>
-                        <td className="py-2 text-zinc-300">{c.system}</td>
+                        <td className="py-2 text-muted-foreground">{c.system}</td>
                         <td className="py-2">
-                          <Badge className="text-xs border-zinc-700 text-zinc-400" variant="outline">{c.status}</Badge>
+                          <Badge className="text-xs border-border text-muted-foreground" variant="outline">{c.status}</Badge>
                         </td>
-                        <td className="py-2 text-zinc-500">{c.feature}</td>
+                        <td className="py-2 text-muted-foreground">{c.feature}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="p-3 bg-zinc-800/50 rounded-lg">
+                <div className="p-3 bg-muted/50 rounded-lg">
                   <div className="text-xs font-medium text-emerald-400 mb-1">Remittance Flows ($800B+ annually)</div>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-muted-foreground">
                     Remittances are the largest and most stable EM capital inflow — exceeding FDI in many countries (Philippines 9% of GDP, Mexico 3.5%, Egypt 7%). Digital rails (UPI, PIX, M-Pesa) are disrupting costly correspondent banking (avg cost 6.2% → target 3%). Blockchain-based corridors (Ripple, Stellar) emerging.
                   </p>
                 </div>
-                <div className="p-3 bg-zinc-800/50 rounded-lg">
+                <div className="p-3 bg-muted/50 rounded-lg">
                   <div className="text-xs font-medium text-amber-400 mb-1">Deglobalization Impact on EM</div>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-muted-foreground">
                     US-China tech/trade decoupling fragments EM supply chains. "Friend-shoring" benefits Mexico (nearshoring boom), Vietnam, India (Apple diversification). China-adjacent EMs (Cambodia, Myanmar) face headwinds. EM debt market access may narrow if sanctions risk rises for countries aligned with Russia/China.
                   </p>
                 </div>
@@ -1129,9 +1129,9 @@ export default function EMInvestingPage() {
           </Card>
 
           {/* China capital account */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <RefreshCw className="w-4 h-4 text-red-400" />China Capital Account Liberalisation
               </CardTitle>
             </CardHeader>
@@ -1145,7 +1145,7 @@ export default function EMInvestingPage() {
                   <div key={`cca-${i}`} className="p-3 rounded-lg border" style={{ borderColor: sec.color + "40" }}>
                     <div className="text-xs font-bold mb-2" style={{ color: sec.color }}>{sec.title}</div>
                     {sec.items.map((item, j) => (
-                      <div key={`ccai-${i}-${j}`} className="text-xs text-zinc-500 flex gap-1.5 mb-1">
+                      <div key={`ccai-${i}-${j}`} className="text-xs text-muted-foreground flex gap-1.5 mb-1">
                         <span style={{ color: sec.color }}>•</span>{item}
                       </div>
                     ))}

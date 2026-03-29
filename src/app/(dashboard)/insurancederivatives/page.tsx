@@ -460,7 +460,7 @@ export default function InsuranceDerivativesPage() {
             <Shield className="h-6 w-6 text-amber-400" />
             Insurance-Linked Securities & CAT Bonds
           </h1>
-          <p className="text-sm text-zinc-400 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Catastrophe bond market, ILS structures, trigger types, and weather derivatives
           </p>
         </div>
@@ -476,7 +476,7 @@ export default function InsuranceDerivativesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="market">
-        <TabsList className="bg-zinc-900 border border-zinc-800">
+        <TabsList className="bg-card border border-border">
           <TabsTrigger value="market">CAT Bond Market</TabsTrigger>
           <TabsTrigger value="risk">Risk Modeling</TabsTrigger>
           <TabsTrigger value="ils">ILS vs Reinsurance</TabsTrigger>
@@ -488,23 +488,23 @@ export default function InsuranceDerivativesPage() {
         {/* ── Tab 1: CAT Bond Market ── */}
         <TabsContent value="market" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardContent className="pt-4 pb-3">
-                <p className="text-xs text-zinc-500">Total ILS Market</p>
+                <p className="text-xs text-muted-foreground">Total ILS Market</p>
                 <p className="text-2xl font-semibold text-white mt-1">$105.4B</p>
                 <p className="text-xs text-emerald-400 mt-1">+12% YoY</p>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardContent className="pt-4 pb-3">
-                <p className="text-xs text-zinc-500">Avg CAT Bond Spread</p>
+                <p className="text-xs text-muted-foreground">Avg CAT Bond Spread</p>
                 <p className="text-2xl font-semibold text-white mt-1">SOFR + 6.8%</p>
                 <p className="text-xs text-amber-400 mt-1">Near 10yr highs</p>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardContent className="pt-4 pb-3">
-                <p className="text-xs text-zinc-500">Active Issuances (2024)</p>
+                <p className="text-xs text-muted-foreground">Active Issuances (2024)</p>
                 <p className="text-2xl font-semibold text-white mt-1">48 Tranches</p>
                 <p className="text-xs text-primary mt-1">$16.2B new issuance</p>
               </CardContent>
@@ -513,22 +513,22 @@ export default function InsuranceDerivativesPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-2">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium text-zinc-300">Active CAT Bonds</CardTitle>
+                  <CardTitle className="text-sm font-medium text-muted-foreground">Active CAT Bonds</CardTitle>
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-zinc-800">
-                          <th className="text-left text-zinc-500 px-4 py-2 font-medium">Bond</th>
-                          <th className="text-left text-zinc-500 px-4 py-2 font-medium">Peril</th>
-                          <th className="text-left text-zinc-500 px-4 py-2 font-medium">Trigger</th>
-                          <th className="text-right text-zinc-500 px-4 py-2 font-medium">Coupon</th>
-                          <th className="text-right text-zinc-500 px-4 py-2 font-medium">EL%</th>
-                          <th className="text-right text-zinc-500 px-4 py-2 font-medium">Size ($M)</th>
-                          <th className="text-center text-zinc-500 px-4 py-2 font-medium">Rating</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left text-muted-foreground px-4 py-2 font-medium">Bond</th>
+                          <th className="text-left text-muted-foreground px-4 py-2 font-medium">Peril</th>
+                          <th className="text-left text-muted-foreground px-4 py-2 font-medium">Trigger</th>
+                          <th className="text-right text-muted-foreground px-4 py-2 font-medium">Coupon</th>
+                          <th className="text-right text-muted-foreground px-4 py-2 font-medium">EL%</th>
+                          <th className="text-right text-muted-foreground px-4 py-2 font-medium">Size ($M)</th>
+                          <th className="text-center text-muted-foreground px-4 py-2 font-medium">Rating</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -537,13 +537,13 @@ export default function InsuranceDerivativesPage() {
                             key={b.id}
                             onClick={() => setSelectedBond(b.id === selectedBond ? null : b.id)}
                             className={cn(
-                              "border-b border-zinc-800/50 cursor-pointer hover:bg-zinc-800/40 transition-colors",
-                              selectedBond === b.id && "bg-zinc-800/60"
+                              "border-b border-border/50 cursor-pointer hover:bg-muted/40 transition-colors",
+                              selectedBond === b.id && "bg-muted/60"
                             )}
                           >
                             <td className="px-4 py-2.5">
                               <p className="text-white font-medium">{b.name}</p>
-                              <p className="text-zinc-500">{b.issuer}</p>
+                              <p className="text-muted-foreground">{b.issuer}</p>
                             </td>
                             <td className="px-4 py-2.5">
                               <span className={cn("flex items-center gap-1", PERIL_COLORS[b.peril])}>
@@ -562,7 +562,7 @@ export default function InsuranceDerivativesPage() {
                             <td className="px-4 py-2.5 text-right text-amber-400">{b.expectedLoss.toFixed(1)}%</td>
                             <td className="px-4 py-2.5 text-right text-white">${b.outstanding}</td>
                             <td className="px-4 py-2.5 text-center">
-                              <Badge variant="outline" className="text-xs text-zinc-300 border-zinc-700">
+                              <Badge variant="outline" className="text-xs text-muted-foreground border-border">
                                 {b.rating}
                               </Badge>
                             </td>
@@ -578,29 +578,29 @@ export default function InsuranceDerivativesPage() {
             {/* Selected Bond Detail */}
             <div>
               {bond ? (
-                <Card className="bg-zinc-900 border-zinc-800 h-full">
+                <Card className="bg-card border-border h-full">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium text-zinc-300">{bond.name}</CardTitle>
-                    <p className="text-xs text-zinc-500">{bond.issuer}</p>
+                    <CardTitle className="text-sm font-medium text-muted-foreground">{bond.name}</CardTitle>
+                    <p className="text-xs text-muted-foreground">{bond.issuer}</p>
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs">
                     <div className="grid grid-cols-2 gap-2">
-                      <div className="bg-zinc-800/60 rounded p-2">
-                        <p className="text-zinc-500">Coupon</p>
+                      <div className="bg-muted/60 rounded p-2">
+                        <p className="text-muted-foreground">Coupon</p>
                         <p className="text-emerald-400 font-medium text-base">
                           {(bond.sofr + bond.spread).toFixed(2)}%
                         </p>
-                        <p className="text-zinc-600">SOFR+{bond.spread}%</p>
+                        <p className="text-muted-foreground">SOFR+{bond.spread}%</p>
                       </div>
-                      <div className="bg-zinc-800/60 rounded p-2">
-                        <p className="text-zinc-500">Expected Loss</p>
+                      <div className="bg-muted/60 rounded p-2">
+                        <p className="text-muted-foreground">Expected Loss</p>
                         <p className="text-amber-400 font-medium text-base">{bond.expectedLoss.toFixed(1)}%</p>
-                        <p className="text-zinc-600">Annual</p>
+                        <p className="text-muted-foreground">Annual</p>
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <p className="text-zinc-500">Attachment / Exhaustion Layer</p>
-                      <div className="relative h-6 bg-zinc-800 rounded overflow-hidden">
+                      <p className="text-muted-foreground">Attachment / Exhaustion Layer</p>
+                      <div className="relative h-6 bg-muted rounded overflow-hidden">
                         <div
                           className="absolute h-full bg-amber-500/40 border-l-2 border-r-2 border-amber-500"
                           style={{
@@ -608,8 +608,8 @@ export default function InsuranceDerivativesPage() {
                             width: `${((bond.exhaustion - bond.attachment) / 500) * 100}%`,
                           }}
                         />
-                        <span className="absolute left-1 top-1 text-zinc-400 text-xs">${bond.attachment}M</span>
-                        <span className="absolute right-1 top-1 text-zinc-400 text-xs">${bond.exhaustion}M</span>
+                        <span className="absolute left-1 top-1 text-muted-foreground text-xs">${bond.attachment}M</span>
+                        <span className="absolute right-1 top-1 text-muted-foreground text-xs">${bond.exhaustion}M</span>
                       </div>
                     </div>
                     <div className="space-y-1.5">
@@ -621,19 +621,19 @@ export default function InsuranceDerivativesPage() {
                         { label: "Multiples on EL", value: `${(bond.spread / bond.expectedLoss).toFixed(1)}×` },
                       ].map((r) => (
                         <div key={r.label} className="flex justify-between">
-                          <span className="text-zinc-500">{r.label}</span>
-                          <span className="text-zinc-200">{r.value}</span>
+                          <span className="text-muted-foreground">{r.label}</span>
+                          <span className="text-foreground">{r.value}</span>
                         </div>
                       ))}
                     </div>
                   </CardContent>
                 </Card>
               ) : (
-                <Card className="bg-zinc-900 border-zinc-800 h-full flex items-center justify-center">
+                <Card className="bg-card border-border h-full flex items-center justify-center">
                   <div className="text-center p-6">
-                    <Shield className="h-8 w-8 text-zinc-600 mx-auto mb-2" />
-                    <p className="text-zinc-500 text-sm">Select a bond</p>
-                    <p className="text-zinc-600 text-xs mt-1">Click any row for details</p>
+                    <Shield className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                    <p className="text-muted-foreground text-sm">Select a bond</p>
+                    <p className="text-muted-foreground text-xs mt-1">Click any row for details</p>
                   </div>
                 </Card>
               )}
@@ -644,25 +644,25 @@ export default function InsuranceDerivativesPage() {
         {/* ── Tab 2: Risk Modeling ── */}
         <TabsContent value="risk" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Activity className="h-4 w-4 text-amber-400" />
                   Loss Exceedance Probability Curve
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Probability of exceeding a given industry loss level</p>
+                <p className="text-xs text-muted-foreground">Probability of exceeding a given industry loss level</p>
               </CardHeader>
               <CardContent>
                 <LossExceedanceCurve />
-                <p className="text-xs text-zinc-500 mt-2 text-center">
+                <p className="text-xs text-muted-foreground mt-2 text-center">
                   X-axis: Return period (log scale) — Y-axis: Gross industry loss ($B)
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="h-4 w-4 text-primary" />
                   Return Period Event Loss Table
                 </CardTitle>
@@ -670,18 +670,18 @@ export default function InsuranceDerivativesPage() {
               <CardContent>
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
-                      <th className="text-left text-zinc-500 py-2 font-medium">Return Period</th>
-                      <th className="text-left text-zinc-500 py-2 font-medium">Annual Prob.</th>
-                      <th className="text-right text-zinc-500 py-2 font-medium">Industry Loss</th>
-                      <th className="text-right text-zinc-500 py-2 font-medium">CAT Bond Layer</th>
+                    <tr className="border-b border-border">
+                      <th className="text-left text-muted-foreground py-2 font-medium">Return Period</th>
+                      <th className="text-left text-muted-foreground py-2 font-medium">Annual Prob.</th>
+                      <th className="text-right text-muted-foreground py-2 font-medium">Industry Loss</th>
+                      <th className="text-right text-muted-foreground py-2 font-medium">CAT Bond Layer</th>
                     </tr>
                   </thead>
                   <tbody>
                     {EXCEEDANCE_POINTS.map((p) => (
-                      <tr key={p.returnPeriod} className="border-b border-zinc-800/50">
+                      <tr key={p.returnPeriod} className="border-b border-border/50">
                         <td className="py-2 text-white font-medium">{p.returnPeriod}-year</td>
-                        <td className="py-2 text-zinc-400">{p.annualProb.toFixed(2)}%</td>
+                        <td className="py-2 text-muted-foreground">{p.annualProb.toFixed(2)}%</td>
                         <td className="py-2 text-right text-amber-400">${p.loss}B</td>
                         <td className="py-2 text-right">
                           {p.loss >= 80 ? (
@@ -724,14 +724,14 @@ export default function InsuranceDerivativesPage() {
                 icon: <AlertTriangle className="h-5 w-5 text-red-400" />,
               },
             ].map((item) => (
-              <Card key={item.label} className="bg-zinc-900 border-zinc-800">
+              <Card key={item.label} className="bg-card border-border">
                 <CardContent className="pt-4 pb-3">
                   <div className="flex items-start gap-3">
                     {item.icon}
                     <div>
-                      <p className="text-xs text-zinc-500">{item.label}</p>
+                      <p className="text-xs text-muted-foreground">{item.label}</p>
                       <p className={cn("text-2xl font-semibold mt-1", item.color)}>{item.value}</p>
-                      <p className="text-xs text-zinc-500 mt-1">{item.sub}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{item.sub}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -739,9 +739,9 @@ export default function InsuranceDerivativesPage() {
             ))}
           </div>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300">Catastrophe Risk Model Components</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Catastrophe Risk Model Components</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
@@ -753,7 +753,7 @@ export default function InsuranceDerivativesPage() {
                 ].map((s) => (
                   <div key={s.stage} className={cn("rounded-lg border p-3", s.color)}>
                     <p className="text-white font-medium mb-1">{s.stage}</p>
-                    <p className="text-zinc-400">{s.desc}</p>
+                    <p className="text-muted-foreground">{s.desc}</p>
                   </div>
                 ))}
               </div>
@@ -764,42 +764,42 @@ export default function InsuranceDerivativesPage() {
         {/* ── Tab 3: ILS vs Reinsurance ── */}
         <TabsContent value="ils" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300">ILS vs Traditional Reinsurance</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">ILS vs Traditional Reinsurance</CardTitle>
               </CardHeader>
               <CardContent>
                 <ILSComparisonChart />
                 <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
                   <div className="bg-emerald-500/10 border border-emerald-500/20 rounded p-2">
                     <p className="text-emerald-300 font-medium">ILS Advantage</p>
-                    <p className="text-zinc-400 mt-1">Near-zero correlation to equities makes ILS a powerful diversifier in multi-asset portfolios.</p>
+                    <p className="text-muted-foreground mt-1">Near-zero correlation to equities makes ILS a powerful diversifier in multi-asset portfolios.</p>
                   </div>
                   <div className="bg-primary/10 border border-border rounded p-2">
                     <p className="text-primary font-medium">Reinsurance Advantage</p>
-                    <p className="text-zinc-400 mt-1">Long-standing relationships, broader peril coverage, and established claims handling expertise.</p>
+                    <p className="text-muted-foreground mt-1">Long-standing relationships, broader peril coverage, and established claims handling expertise.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300">Comparison Table</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Comparison Table</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
-                      <th className="text-left text-zinc-500 px-4 py-2 font-medium">Metric</th>
+                    <tr className="border-b border-border">
+                      <th className="text-left text-muted-foreground px-4 py-2 font-medium">Metric</th>
                       <th className="text-left text-emerald-500 px-4 py-2 font-medium">ILS / CAT Bond</th>
                       <th className="text-left text-primary px-4 py-2 font-medium">Traditional Re</th>
                     </tr>
                   </thead>
                   <tbody>
                     {ILS_COMPARISON.map((row, i) => (
-                      <tr key={i} className="border-b border-zinc-800/50">
-                        <td className="px-4 py-2 text-zinc-400">{row.metric}</td>
+                      <tr key={i} className="border-b border-border/50">
+                        <td className="px-4 py-2 text-muted-foreground">{row.metric}</td>
                         <td className="px-4 py-2 text-emerald-300">{row.ils}</td>
                         <td className="px-4 py-2 text-primary">{row.trad}</td>
                       </tr>
@@ -810,22 +810,22 @@ export default function InsuranceDerivativesPage() {
             </Card>
           </div>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300">CAT Bond SPV Structure</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">CAT Bond SPV Structure</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between gap-2 text-xs overflow-x-auto pb-2">
                 {[
                   { label: "Cedent\n(Sponsor)", sub: "Insurance / Re co.", color: "bg-primary/20 border-primary/40" },
-                  { label: "Reinsurance\nAgreement", sub: "Premium payments", color: "bg-zinc-800 border-zinc-700", arrow: true },
+                  { label: "Reinsurance\nAgreement", sub: "Premium payments", color: "bg-muted border-border", arrow: true },
                   { label: "SPV\n(Special Purpose Vehicle)", sub: "Cayman / Bermuda", color: "bg-amber-500/20 border-amber-500/40" },
-                  { label: "CAT Bond\nIssuance", sub: "Principal proceeds", color: "bg-zinc-800 border-zinc-700", arrow: true },
+                  { label: "CAT Bond\nIssuance", sub: "Principal proceeds", color: "bg-muted border-border", arrow: true },
                   { label: "Capital Market\nInvestors", sub: "Hedge funds, pension, ILS funds", color: "bg-emerald-500/20 border-emerald-500/40" },
                 ].map((node, i) => (
                   <div key={i} className="flex items-center gap-2 flex-shrink-0">
                     {node.arrow ? (
-                      <div className="flex flex-col items-center text-zinc-500 px-1">
+                      <div className="flex flex-col items-center text-muted-foreground px-1">
                         <TrendingUp className="h-3 w-3" />
                       </div>
                     ) : null}
@@ -833,12 +833,12 @@ export default function InsuranceDerivativesPage() {
                       {node.label.split("\n").map((l, li) => (
                         <p key={li} className={cn("font-medium", li === 0 ? "text-white" : "text-white")}>{l}</p>
                       ))}
-                      <p className="text-zinc-500 text-xs mt-0.5">{node.sub}</p>
+                      <p className="text-muted-foreground text-xs mt-0.5">{node.sub}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Collateral held in AAA-rated money market funds or US Treasuries in the SPV. Loss payments flow from SPV to cedent; surviving principal returned to investors at maturity.
               </p>
             </CardContent>
@@ -849,21 +849,21 @@ export default function InsuranceDerivativesPage() {
         <TabsContent value="triggers" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {TRIGGER_TYPES.map((t) => (
-              <Card key={t.type} className="bg-zinc-900 border-zinc-800">
+              <Card key={t.type} className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-white flex items-center gap-2">
                     <Badge variant="outline" className={cn("text-xs", TRIGGER_COLORS[t.type])}>
                       {t.type}
                     </Badge>
                   </CardTitle>
-                  <p className="text-xs text-zinc-400 mt-2">{t.description}</p>
+                  <p className="text-xs text-muted-foreground mt-2">{t.description}</p>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div>
                     <p className="text-xs text-emerald-400 font-medium mb-1.5">Advantages</p>
                     <ul className="space-y-1">
                       {t.pros.map((p) => (
-                        <li key={p} className="flex items-start gap-1.5 text-xs text-zinc-300">
+                        <li key={p} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                           <CheckCircle className="h-3 w-3 text-emerald-400 mt-0.5 flex-shrink-0" />
                           {p}
                         </li>
@@ -874,22 +874,22 @@ export default function InsuranceDerivativesPage() {
                     <p className="text-xs text-red-400 font-medium mb-1.5">Disadvantages</p>
                     <ul className="space-y-1">
                       {t.cons.map((c) => (
-                        <li key={c} className="flex items-start gap-1.5 text-xs text-zinc-300">
+                        <li key={c} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                           <XCircle className="h-3 w-3 text-red-400 mt-0.5 flex-shrink-0" />
                           {c}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="border-t border-zinc-800 pt-2 space-y-1 text-xs">
+                  <div className="border-t border-border pt-2 space-y-1 text-xs">
                     {[
                       { label: "Basis Risk", value: t.basisRisk },
                       { label: "Moral Hazard", value: t.moralHazard },
                       { label: "Settlement", value: t.settleTime },
                     ].map((r) => (
                       <div key={r.label} className="flex justify-between">
-                        <span className="text-zinc-500">{r.label}</span>
-                        <span className="text-zinc-200">{r.value}</span>
+                        <span className="text-muted-foreground">{r.label}</span>
+                        <span className="text-foreground">{r.value}</span>
                       </div>
                     ))}
                   </div>
@@ -898,15 +898,15 @@ export default function InsuranceDerivativesPage() {
             ))}
           </div>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300">Basis Risk vs Moral Hazard Trade-off</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Basis Risk vs Moral Hazard Trade-off</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="relative h-24 bg-zinc-800/40 rounded-lg overflow-hidden">
+              <div className="relative h-24 bg-muted/40 rounded-lg overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-between px-6">
                   <div className="text-center">
-                    <p className="text-xs text-zinc-500">Moral Hazard</p>
+                    <p className="text-xs text-muted-foreground">Moral Hazard</p>
                     <div className="flex gap-1.5 mt-2 items-end">
                       {[
                         { label: "Indemnity", h: 80, color: "bg-primary" },
@@ -915,17 +915,17 @@ export default function InsuranceDerivativesPage() {
                       ].map((b) => (
                         <div key={b.label} className="flex flex-col items-center gap-1">
                           <div className={cn("w-8 rounded-sm", b.color)} style={{ height: `${b.h * 0.5}px` }} />
-                          <p className="text-xs text-zinc-500">{b.label}</p>
+                          <p className="text-xs text-muted-foreground">{b.label}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <div className="text-center px-8 text-xs text-zinc-400">
+                  <div className="text-center px-8 text-xs text-muted-foreground">
                     <p className="text-amber-400 font-medium">Key Trade-off</p>
                     <p className="mt-1">Reducing moral hazard introduces basis risk — the mismatch between trigger payment and actual loss.</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs text-zinc-500">Basis Risk</p>
+                    <p className="text-xs text-muted-foreground">Basis Risk</p>
                     <div className="flex gap-1.5 mt-2 items-end">
                       {[
                         { label: "Indemnity", h: 5, color: "bg-primary" },
@@ -934,7 +934,7 @@ export default function InsuranceDerivativesPage() {
                       ].map((b) => (
                         <div key={b.label} className="flex flex-col items-center gap-1">
                           <div className={cn("w-8 rounded-sm", b.color)} style={{ height: `${b.h * 0.5}px` }} />
-                          <p className="text-xs text-zinc-500">{b.label}</p>
+                          <p className="text-xs text-muted-foreground">{b.label}</p>
                         </div>
                       ))}
                     </div>
@@ -948,17 +948,17 @@ export default function InsuranceDerivativesPage() {
         {/* ── Tab 5: Portfolio Construction ── */}
         <TabsContent value="portfolio" className="data-[state=inactive]:hidden space-y-4 mt-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Layers className="h-4 w-4 text-emerald-400" />
                   Risk / Return by Peril Type
                 </CardTitle>
-                <p className="text-xs text-zinc-500">CAT bonds vs traditional assets — annualized</p>
+                <p className="text-xs text-muted-foreground">CAT bonds vs traditional assets — annualized</p>
               </CardHeader>
               <CardContent>
                 <PortfolioScatterChart />
-                <div className="flex gap-4 mt-2 text-xs text-zinc-500 justify-center">
+                <div className="flex gap-4 mt-2 text-xs text-muted-foreground justify-center">
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />Hurricane</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-orange-400 inline-block" />Earthquake</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-primary inline-block" />Flood</span>
@@ -967,32 +967,32 @@ export default function InsuranceDerivativesPage() {
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300">Portfolio Diversification Benefit</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Portfolio Diversification Benefit</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   {[
-                    { label: "60/40 Sharpe Ratio", value: "0.68", note: "Without ILS", color: "text-zinc-300" },
+                    { label: "60/40 Sharpe Ratio", value: "0.68", note: "Without ILS", color: "text-muted-foreground" },
                     { label: "60/40 + 10% ILS Sharpe", value: "0.84", note: "+24% improvement", color: "text-emerald-400" },
                     { label: "ILS Correlation to S&P 500", value: "0.03", note: "Near-zero", color: "text-primary" },
                     { label: "ILS Correlation to AGG", value: "-0.02", note: "Slightly negative", color: "text-primary" },
                   ].map((m) => (
-                    <div key={m.label} className="bg-zinc-800/60 rounded p-2.5">
-                      <p className="text-zinc-500">{m.label}</p>
+                    <div key={m.label} className="bg-muted/60 rounded p-2.5">
+                      <p className="text-muted-foreground">{m.label}</p>
                       <p className={cn("text-xl font-semibold mt-1", m.color)}>{m.value}</p>
-                      <p className="text-zinc-500 mt-0.5">{m.note}</p>
+                      <p className="text-muted-foreground mt-0.5">{m.note}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="border border-zinc-800 rounded-lg p-3 space-y-2 text-xs">
-                  <p className="text-zinc-300 font-medium">Why ILS Diversifies</p>
-                  <p className="text-zinc-400">
+                <div className="border border-border rounded-lg p-3 space-y-2 text-xs">
+                  <p className="text-muted-foreground font-medium">Why ILS Diversifies</p>
+                  <p className="text-muted-foreground">
                     CAT bond returns are driven by natural catastrophe occurrence — entirely uncorrelated with interest rates, credit cycles, equity valuations, or GDP growth. A hurricane does not care about Fed policy.
                   </p>
-                  <p className="text-zinc-400">
+                  <p className="text-muted-foreground">
                     This makes ILS one of the few genuinely uncorrelated return streams available to institutional investors, alongside commodities and certain private credit strategies.
                   </p>
                 </div>
@@ -1003,9 +1003,9 @@ export default function InsuranceDerivativesPage() {
                     { label: "Min Portfolio Size", value: "$50M+", color: "text-primary" },
                     { label: "Typical Liquidity", value: "Secondary mkt", color: "text-amber-400" },
                   ].map((s) => (
-                    <div key={s.label} className="bg-zinc-800/40 rounded p-2 text-center">
+                    <div key={s.label} className="bg-muted/40 rounded p-2 text-center">
                       <p className={cn("font-semibold", s.color)}>{s.value}</p>
-                      <p className="text-zinc-500 mt-0.5">{s.label}</p>
+                      <p className="text-muted-foreground mt-0.5">{s.label}</p>
                     </div>
                   ))}
                 </div>
@@ -1013,18 +1013,18 @@ export default function InsuranceDerivativesPage() {
             </Card>
           </div>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300">Peril Correlation Matrix</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Peril Correlation Matrix</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="overflow-x-auto">
                 <table className="text-xs w-full max-w-md">
                   <thead>
                     <tr>
-                      <th className="text-left text-zinc-500 py-1.5 pr-4 font-medium" />
+                      <th className="text-left text-muted-foreground py-1.5 pr-4 font-medium" />
                       {["US Hurricane", "US Earthquake", "EU Flood", "JP Typhoon", "US Equities"].map((h) => (
-                        <th key={h} className="text-center text-zinc-500 py-1.5 px-2 font-medium">{h}</th>
+                        <th key={h} className="text-center text-muted-foreground py-1.5 px-2 font-medium">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -1036,14 +1036,14 @@ export default function InsuranceDerivativesPage() {
                       { row: "JP Typhoon", vals: [0.05, 0.08, 0.02, 1.00, 0.02] },
                       { row: "US Equities", vals: [0.03, 0.02, 0.01, 0.02, 1.00] },
                     ].map((r) => (
-                      <tr key={r.row} className="border-b border-zinc-800/50">
-                        <td className="text-zinc-400 py-1.5 pr-4">{r.row}</td>
+                      <tr key={r.row} className="border-b border-border/50">
+                        <td className="text-muted-foreground py-1.5 pr-4">{r.row}</td>
                         {r.vals.map((v, i) => (
                           <td
                             key={i}
                             className={cn(
                               "text-center py-1.5 px-2 font-mono",
-                              v === 1.0 ? "text-zinc-500" : v < 0.1 ? "text-emerald-400" : "text-amber-400"
+                              v === 1.0 ? "text-muted-foreground" : v < 0.1 ? "text-emerald-400" : "text-amber-400"
                             )}
                           >
                             {v.toFixed(2)}
@@ -1054,7 +1054,7 @@ export default function InsuranceDerivativesPage() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-zinc-500 mt-2">Near-zero correlations across all peril pairs confirm the diversification benefits of a multi-peril ILS portfolio.</p>
+              <p className="text-xs text-muted-foreground mt-2">Near-zero correlations across all peril pairs confirm the diversification benefits of a multi-peril ILS portfolio.</p>
             </CardContent>
           </Card>
         </TabsContent>
@@ -1095,7 +1095,7 @@ export default function InsuranceDerivativesPage() {
                     <div>
                       <p className={cn("font-semibold text-sm", item.color)}>{item.label}</p>
                       <p className="text-white text-xs font-medium mt-0.5">{item.value}</p>
-                      <p className="text-zinc-400 text-xs mt-1">{item.desc}</p>
+                      <p className="text-muted-foreground text-xs mt-1">{item.desc}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -1104,29 +1104,29 @@ export default function InsuranceDerivativesPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <Thermometer className="h-4 w-4 text-amber-400" />
                   Temperature vs 30-Year Average
                 </CardTitle>
-                <p className="text-xs text-zinc-500">Basis for HDD/CDD settlement — 65°F reference</p>
+                <p className="text-xs text-muted-foreground">Basis for HDD/CDD settlement — 65°F reference</p>
               </CardHeader>
               <CardContent>
                 <WeatherDerivativesChart />
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                   <DollarSign className="h-4 w-4 text-emerald-400" />
                   Temperature Swap Structure
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-xs">
-                <div className="border border-zinc-800 rounded-lg p-3">
-                  <p className="text-zinc-300 font-medium mb-2">Example: HDD Swap — Chicago Winter</p>
+                <div className="border border-border rounded-lg p-3">
+                  <p className="text-muted-foreground font-medium mb-2">Example: HDD Swap — Chicago Winter</p>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { label: "Reference Station", value: "Chicago O'Hare (ORD)" },
@@ -1137,23 +1137,23 @@ export default function InsuranceDerivativesPage() {
                       { label: "Settlement", value: "Cash, 30 days post-period" },
                     ].map((r) => (
                       <div key={r.label}>
-                        <p className="text-zinc-500">{r.label}</p>
-                        <p className="text-zinc-200">{r.value}</p>
+                        <p className="text-muted-foreground">{r.label}</p>
+                        <p className="text-foreground">{r.value}</p>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="border border-zinc-800 rounded-lg p-3">
-                  <p className="text-zinc-300 font-medium mb-1">Payoff Formula</p>
-                  <p className="text-zinc-400 font-mono bg-zinc-800/60 rounded p-2 text-xs">
+                <div className="border border-border rounded-lg p-3">
+                  <p className="text-muted-foreground font-medium mb-1">Payoff Formula</p>
+                  <p className="text-muted-foreground font-mono bg-muted/60 rounded p-2 text-xs">
                     Payoff = (Actual HDD − Strike) × $5,000<br />
                     Capped at max payout; floored at zero for buyer
                   </p>
-                  <p className="text-zinc-500 mt-2">A utility expecting high heating demand buys HDDs to hedge revenue risk from a warm winter.</p>
+                  <p className="text-muted-foreground mt-2">A utility expecting high heating demand buys HDDs to hedge revenue risk from a warm winter.</p>
                 </div>
 
                 <div>
-                  <p className="text-zinc-400 font-medium mb-2">Agriculture Risk Hedging Applications</p>
+                  <p className="text-muted-foreground font-medium mb-2">Agriculture Risk Hedging Applications</p>
                   <div className="space-y-1.5">
                     {[
                       { crop: "Corn / Soybeans", weather: "Growing season rainfall", hedge: "Precipitation swap (buy rain)" },
@@ -1161,9 +1161,9 @@ export default function InsuranceDerivativesPage() {
                       { crop: "Wheat", weather: "Drought risk index", hedge: "PDSI-linked derivative" },
                       { crop: "Wine Grapes", weather: "Harvest temp & moisture", hedge: "Custom parametric structure" },
                     ].map((r) => (
-                      <div key={r.crop} className="flex items-center gap-2 bg-zinc-800/40 rounded p-2">
-                        <span className="text-zinc-300 w-28 flex-shrink-0">{r.crop}</span>
-                        <span className="text-zinc-500 flex-1">{r.weather}</span>
+                      <div key={r.crop} className="flex items-center gap-2 bg-muted/40 rounded p-2">
+                        <span className="text-muted-foreground w-28 flex-shrink-0">{r.crop}</span>
+                        <span className="text-muted-foreground flex-1">{r.weather}</span>
                         <span className="text-emerald-400">{r.hedge}</span>
                       </div>
                     ))}
@@ -1173,9 +1173,9 @@ export default function InsuranceDerivativesPage() {
             </Card>
           </div>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300">Weather Derivatives Market Overview</CardTitle>
+              <CardTitle className="text-sm font-medium text-muted-foreground">Weather Derivatives Market Overview</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
@@ -1185,10 +1185,10 @@ export default function InsuranceDerivativesPage() {
                   { label: "Primary Users", value: "Energy Utilities", sub: "+ Agriculture & Tourism", color: "text-emerald-400" },
                   { label: "OTC vs Exchange", value: "~70% OTC", sub: "Custom structures dominate", color: "text-primary" },
                 ].map((s) => (
-                  <div key={s.label} className="bg-zinc-800/40 rounded-lg p-3">
-                    <p className="text-zinc-500">{s.label}</p>
+                  <div key={s.label} className="bg-muted/40 rounded-lg p-3">
+                    <p className="text-muted-foreground">{s.label}</p>
                     <p className={cn("text-xl font-semibold mt-1", s.color)}>{s.value}</p>
-                    <p className="text-zinc-500 mt-0.5">{s.sub}</p>
+                    <p className="text-muted-foreground mt-0.5">{s.sub}</p>
                   </div>
                 ))}
               </div>

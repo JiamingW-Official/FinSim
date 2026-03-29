@@ -422,7 +422,7 @@ function BusinessCycleClock() {
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">Business Cycle Clock</h2>
-          <p className="text-xs text-slate-400">Current phase drives optimal sector allocation</p>
+          <p className="text-xs text-muted-foreground">Current phase drives optimal sector allocation</p>
         </div>
         <Badge className="ml-auto bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
           Current: {CURRENT_PHASE}
@@ -431,7 +431,7 @@ function BusinessCycleClock() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* SVG Clock */}
-        <Card className="bg-slate-900 border-slate-700/50">
+        <Card className="bg-card border-border/50">
           <CardContent className="pt-4 flex items-center justify-center">
             <svg viewBox="0 0 400 400" className="w-full max-w-sm" style={{ maxHeight: 340 }}>
               {/* Background ring */}
@@ -527,19 +527,19 @@ function BusinessCycleClock() {
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <Card className="bg-slate-900 border-slate-700/50" style={{ borderLeftColor: activeData.color, borderLeftWidth: 3 }}>
+              <Card className="bg-card border-border/50" style={{ borderLeftColor: activeData.color, borderLeftWidth: 3 }}>
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-semibold" style={{ color: activeData.color }}>
                     {activePhase} Phase
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4 space-y-3">
-                  <p className="text-xs text-slate-300">{activeData.description}</p>
+                  <p className="text-xs text-muted-foreground">{activeData.description}</p>
                   <div>
-                    <p className="text-xs text-slate-400 mb-2 font-medium">Key Characteristics</p>
+                    <p className="text-xs text-muted-foreground mb-2 font-medium">Key Characteristics</p>
                     <ul className="space-y-1">
                       {activeData.characteristics.map((c) => (
-                        <li key={c} className="flex items-start gap-2 text-xs text-slate-300">
+                        <li key={c} className="flex items-start gap-2 text-xs text-muted-foreground">
                           <ChevronRight className="w-3 h-3 mt-0.5 flex-shrink-0" style={{ color: activeData.color }} />
                           {c}
                         </li>
@@ -549,9 +549,9 @@ function BusinessCycleClock() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-700/50">
+              <Card className="bg-card border-border/50">
                 <CardHeader className="pb-2 pt-4 px-4">
-                  <CardTitle className="text-xs font-semibold text-slate-300">Best Sectors This Phase</CardTitle>
+                  <CardTitle className="text-xs font-semibold text-muted-foreground">Best Sectors This Phase</CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-4">
                   <div className="flex flex-wrap gap-2">
@@ -559,10 +559,10 @@ function BusinessCycleClock() {
                       const sec = SECTORS.find(s => s.etf === etf);
                       if (!sec) return null;
                       return (
-                        <span key={etf} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-200 border border-slate-700">
+                        <span key={etf} className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium bg-muted text-foreground border border-border">
                           <span className="w-2 h-2 rounded-full" style={{ backgroundColor: sec.color }} />
                           {etf}
-                          <span className="text-slate-400">— {sec.name}</span>
+                          <span className="text-muted-foreground">— {sec.name}</span>
                         </span>
                       );
                     })}
@@ -570,9 +570,9 @@ function BusinessCycleClock() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-700/50">
+              <Card className="bg-card border-border/50">
                 <CardContent className="px-4 py-3">
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-muted-foreground">
                     <span className="font-semibold text-white">Transition signal: </span>
                     {activePhase === "Recovery" && "Watch for PMI crossing 55 and yield curve steepening — signals shift to Expansion."}
                     {activePhase === "Expansion" && "Watch for PMI topping out, yield curve flattening, Fed rate hikes accelerating — signals shift to Slowdown."}
@@ -596,7 +596,7 @@ function BusinessCycleClock() {
               "rounded-lg border p-3 text-left transition-all",
               activePhase === p.phase
                 ? "border-opacity-70 bg-opacity-10"
-                : "border-slate-700 bg-slate-900 hover:border-slate-500",
+                : "border-border bg-card hover:border-slate-500",
             )}
             style={activePhase === p.phase ? {
               borderColor: p.color,
@@ -610,7 +610,7 @@ function BusinessCycleClock() {
                 <span className="ml-auto text-xs font-bold" style={{ color: p.color }}>NOW</span>
               )}
             </div>
-            <p className="text-xs text-slate-400 leading-snug">{p.description.split(",")[0]}</p>
+            <p className="text-xs text-muted-foreground leading-snug">{p.description.split(",")[0]}</p>
           </button>
         ))}
       </div>
@@ -658,12 +658,12 @@ function SectorPerformance() {
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">Sector Performance by Cycle Phase</h2>
-          <p className="text-xs text-slate-400">Historical average annualized returns per phase (GICS sectors)</p>
+          <p className="text-xs text-muted-foreground">Historical average annualized returns per phase (GICS sectors)</p>
         </div>
       </div>
 
       {/* Heatmap SVG */}
-      <Card className="bg-slate-900 border-slate-700/50 overflow-hidden">
+      <Card className="bg-card border-border/50 overflow-hidden">
         <CardContent className="pt-4 pb-4 overflow-x-auto">
           <svg
             viewBox={`0 0 ${svgW} ${svgH}`}
@@ -745,7 +745,7 @@ function SectorPerformance() {
 
       {/* Legend */}
       <div className="flex items-center gap-6 px-1">
-        <span className="text-xs text-slate-400">Return Legend:</span>
+        <span className="text-xs text-muted-foreground">Return Legend:</span>
         {[
           { label: "> +10%", bg: "#166534", text: "#86efac" },
           { label: "+2 to +10%", bg: "#1a4228", text: "#86efac" },
@@ -757,13 +757,13 @@ function SectorPerformance() {
             <span className="w-8 h-4 rounded text-center text-xs leading-4" style={{ backgroundColor: item.bg, color: item.text }}>
               {" "}
             </span>
-            <span className="text-xs text-slate-400">{item.label}</span>
+            <span className="text-xs text-muted-foreground">{item.label}</span>
           </div>
         ))}
       </div>
 
       {/* Performance table */}
-      <Card className="bg-slate-900 border-slate-700/50">
+      <Card className="bg-card border-border/50">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">Phase Return Summary Table</CardTitle>
         </CardHeader>
@@ -771,8 +771,8 @@ function SectorPerformance() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-700/50">
-                  <th className="px-4 py-2 text-left text-slate-400 font-medium">Sector</th>
+                <tr className="border-b border-border/50">
+                  <th className="px-4 py-2 text-left text-muted-foreground font-medium">Sector</th>
                   <th className="px-3 py-2 text-center text-green-400 font-medium">Recovery</th>
                   <th className="px-3 py-2 text-center text-primary font-medium">Expansion</th>
                   <th className="px-3 py-2 text-center text-yellow-400 font-medium">Slowdown</th>
@@ -781,12 +781,12 @@ function SectorPerformance() {
               </thead>
               <tbody>
                 {SECTORS.map((sec, i) => (
-                  <tr key={sec.etf} className={cn("border-b border-slate-800", i % 2 === 0 ? "bg-transparent" : "bg-slate-800/20")}>
+                  <tr key={sec.etf} className={cn("border-b border-border", i % 2 === 0 ? "bg-transparent" : "bg-muted/20")}>
                     <td className="px-4 py-2">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full" style={{ backgroundColor: sec.color }} />
                         <span className="font-semibold text-white">{sec.etf}</span>
-                        <span className="text-slate-400">{sec.name}</span>
+                        <span className="text-muted-foreground">{sec.name}</span>
                       </div>
                     </td>
                     {phases.map((ph) => (
@@ -822,7 +822,7 @@ function RotationSignals() {
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">Rotation Signals Dashboard</h2>
-          <p className="text-xs text-slate-400">PMI, yield curve, credit spreads, earnings revisions as rotation triggers</p>
+          <p className="text-xs text-muted-foreground">PMI, yield curve, credit spreads, earnings revisions as rotation triggers</p>
         </div>
       </div>
 
@@ -836,10 +836,10 @@ function RotationSignals() {
         <CardContent className="px-5 py-4">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div>
-              <p className="text-xs text-slate-400 mb-1">Overall Rotation Signal</p>
+              <p className="text-xs text-muted-foreground mb-1">Overall Rotation Signal</p>
               <div className="flex items-center gap-3">
                 <SignalBadge signal={overallSignal} />
-                <span className="text-sm text-slate-300">
+                <span className="text-sm text-muted-foreground">
                   {overallSignal === "bearish"
                     ? "Rotate toward defensives: XLV, XLP, XLU"
                     : overallSignal === "bullish"
@@ -865,7 +865,7 @@ function RotationSignals() {
             <motion.div key={sig.id} layout>
               <Card
                 className={cn(
-                  "bg-slate-900 border-slate-700/50 cursor-pointer transition-all hover:border-slate-500",
+                  "bg-card border-border/50 cursor-pointer transition-all hover:border-slate-500",
                   isOpen && "border-slate-500",
                 )}
                 onClick={() => setExpanded(isOpen ? null : sig.id)}
@@ -874,16 +874,16 @@ function RotationSignals() {
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <p className="text-sm font-semibold text-white">{sig.name}</p>
-                      <p className="text-xs text-slate-400">{sig.description}</p>
+                      <p className="text-xs text-muted-foreground">{sig.description}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
                       <SignalBadge signal={sig.signal} />
-                      <span className="text-xs font-mono text-slate-200 bg-slate-800 px-2 py-0.5 rounded">
+                      <span className="text-xs font-mono text-foreground bg-muted px-2 py-0.5 rounded">
                         {sig.currentValue}
                       </span>
                     </div>
                   </div>
-                  <p className="text-xs text-slate-300 italic">{sig.implication}</p>
+                  <p className="text-xs text-muted-foreground italic">{sig.implication}</p>
 
                   <AnimatePresence>
                     {isOpen && (
@@ -894,8 +894,8 @@ function RotationSignals() {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-2 border-t border-slate-700/50 mt-1">
-                          <div className="flex items-start gap-2 text-xs text-slate-300">
+                        <div className="pt-2 border-t border-border/50 mt-1">
+                          <div className="flex items-start gap-2 text-xs text-muted-foreground">
                             <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-primary" />
                             <p>{sig.detail}</p>
                           </div>
@@ -904,7 +904,7 @@ function RotationSignals() {
                     )}
                   </AnimatePresence>
 
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     {isOpen ? "Click to collapse" : "Click for analysis"}
                   </p>
                 </CardContent>
@@ -915,7 +915,7 @@ function RotationSignals() {
       </div>
 
       {/* Cycle positioning recommendation */}
-      <Card className="bg-slate-900 border-slate-700/50">
+      <Card className="bg-card border-border/50">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">Current Cycle Positioning</CardTitle>
         </CardHeader>
@@ -944,7 +944,7 @@ function RotationSignals() {
                     return (
                       <div key={etf} className="flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: sec?.color }} />
-                        <span className="text-xs text-slate-300">{etf}</span>
+                        <span className="text-xs text-muted-foreground">{etf}</span>
                       </div>
                     );
                   })}
@@ -952,7 +952,7 @@ function RotationSignals() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-muted-foreground">
             Based on {CURRENT_PHASE} phase signals. Signals update when PMI, yield curve, or credit spreads cross key thresholds.
           </p>
         </CardContent>
@@ -996,12 +996,12 @@ function FactorRotation() {
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">Factor Rotation by Business Cycle</h2>
-          <p className="text-xs text-slate-400">Value, Growth, Quality, Momentum, Low-Vol factor returns per phase</p>
+          <p className="text-xs text-muted-foreground">Value, Growth, Quality, Momentum, Low-Vol factor returns per phase</p>
         </div>
       </div>
 
       {/* Factor cycle chart */}
-      <Card className="bg-slate-900 border-slate-700/50">
+      <Card className="bg-card border-border/50">
         <CardHeader className="pb-1 pt-4 px-4">
           <CardTitle className="text-sm">Factor Return by Cycle Phase (avg annualized %)</CardTitle>
         </CardHeader>
@@ -1086,7 +1086,7 @@ function FactorRotation() {
             {FACTORS.map((f) => (
               <div key={f.name} className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: f.color }} />
-                <span className="text-xs text-slate-300">{f.name}</span>
+                <span className="text-xs text-muted-foreground">{f.name}</span>
               </div>
             ))}
           </div>
@@ -1101,7 +1101,7 @@ function FactorRotation() {
             <Card
               key={factor.name}
               className={cn(
-                "bg-slate-900 border-slate-700/50 transition-all",
+                "bg-card border-border/50 transition-all",
                 isCurrent && "ring-1",
               )}
               style={(isCurrent ? { ringColor: factor.color, borderColor: factor.color } : {}) as React.CSSProperties}
@@ -1119,15 +1119,15 @@ function FactorRotation() {
                 </div>
               </CardHeader>
               <CardContent className="px-4 pb-4 space-y-3">
-                <p className="text-xs text-slate-300">{factor.description}</p>
+                <p className="text-xs text-muted-foreground">{factor.description}</p>
                 <div className="grid grid-cols-2 gap-2">
                   <div className="rounded p-2 bg-green-500/10 border border-green-500/20">
                     <p className="text-xs text-green-400 font-medium mb-0.5">Best Phase</p>
-                    <p className="text-xs text-slate-200">{factor.bestPhase}</p>
+                    <p className="text-xs text-foreground">{factor.bestPhase}</p>
                   </div>
                   <div className="rounded p-2 bg-red-500/10 border border-red-500/20">
                     <p className="text-xs text-red-400 font-medium mb-0.5">Worst Phase</p>
-                    <p className="text-xs text-slate-200">{factor.worstPhase}</p>
+                    <p className="text-xs text-foreground">{factor.worstPhase}</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-4 gap-1">
@@ -1135,7 +1135,7 @@ function FactorRotation() {
                     const val = FACTOR_RETURNS[factor.name]?.[ph] ?? 0;
                     return (
                       <div key={ph} className="text-center">
-                        <p className="text-xs text-slate-500 mb-0.5">{ph.slice(0, 3)}</p>
+                        <p className="text-xs text-muted-foreground mb-0.5">{ph.slice(0, 3)}</p>
                         <p className={cn("text-xs font-mono font-semibold", val > 0 ? "text-green-400" : "text-red-400")}>
                           {val > 0 ? "+" : ""}{val.toFixed(1)}
                         </p>
@@ -1178,13 +1178,13 @@ function ETFImplementation() {
         </div>
         <div>
           <h2 className="text-base font-semibold text-white">ETF Implementation & Tactical Allocation</h2>
-          <p className="text-xs text-slate-400">SPDR sector ETFs (XL-series) with tactical weights per cycle phase</p>
+          <p className="text-xs text-muted-foreground">SPDR sector ETFs (XL-series) with tactical weights per cycle phase</p>
         </div>
       </div>
 
       {/* Phase selector */}
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="text-xs text-slate-400">View allocation for phase:</span>
+        <span className="text-xs text-muted-foreground">View allocation for phase:</span>
         {(["Recovery", "Expansion", "Slowdown", "Contraction"] as CyclePhase[]).map((ph) => (
           <button
             key={ph}
@@ -1193,7 +1193,7 @@ function ETFImplementation() {
               "px-3 py-1 rounded text-xs font-medium border transition-all",
               selectedPhase === ph
                 ? "text-white"
-                : "border-slate-700 text-slate-400 hover:border-slate-500 hover:text-slate-200 bg-transparent",
+                : "border-border text-muted-foreground hover:border-slate-500 hover:text-foreground bg-transparent",
             )}
             style={selectedPhase === ph ? {
               backgroundColor: `${phaseColors[ph]}25`,
@@ -1208,7 +1208,7 @@ function ETFImplementation() {
       </div>
 
       {/* Allocation chart */}
-      <Card className="bg-slate-900 border-slate-700/50">
+      <Card className="bg-card border-border/50">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">
             Tactical Allocation — <span style={{ color: phaseColors[selectedPhase] }}>{selectedPhase} Phase</span>
@@ -1261,7 +1261,7 @@ function ETFImplementation() {
       </Card>
 
       {/* ETF details table */}
-      <Card className="bg-slate-900 border-slate-700/50">
+      <Card className="bg-card border-border/50">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">SPDR Sector ETF Reference</CardTitle>
         </CardHeader>
@@ -1269,16 +1269,16 @@ function ETFImplementation() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-700/50 bg-slate-800/50">
-                  <th className="px-4 py-2 text-left text-slate-400 font-medium">ETF</th>
-                  <th className="px-3 py-2 text-left text-slate-400 font-medium">Sector</th>
-                  <th className="px-3 py-2 text-center text-slate-400 font-medium">Exp. Ratio</th>
-                  <th className="px-3 py-2 text-center text-slate-400 font-medium">AUM ($B)</th>
-                  <th className="px-3 py-2 text-center text-slate-400 font-medium">Beta</th>
-                  <th className="px-3 py-2 text-center text-slate-400 font-medium">
+                <tr className="border-b border-border/50 bg-muted/50">
+                  <th className="px-4 py-2 text-left text-muted-foreground font-medium">ETF</th>
+                  <th className="px-3 py-2 text-left text-muted-foreground font-medium">Sector</th>
+                  <th className="px-3 py-2 text-center text-muted-foreground font-medium">Exp. Ratio</th>
+                  <th className="px-3 py-2 text-center text-muted-foreground font-medium">AUM ($B)</th>
+                  <th className="px-3 py-2 text-center text-muted-foreground font-medium">Beta</th>
+                  <th className="px-3 py-2 text-center text-muted-foreground font-medium">
                     {selectedPhase} Wt.
                   </th>
-                  <th className="px-3 py-2 text-left text-slate-400 font-medium hidden lg:table-cell">Best Phases</th>
+                  <th className="px-3 py-2 text-left text-muted-foreground font-medium hidden lg:table-cell">Best Phases</th>
                 </tr>
               </thead>
               <tbody>
@@ -1286,20 +1286,20 @@ function ETFImplementation() {
                   const pct = alloc[sec.etf] ?? 0;
                   const isBest = sec.bestPhases.includes(selectedPhase);
                   return (
-                    <tr key={sec.etf} className={cn("border-b border-slate-800", i % 2 === 0 ? "" : "bg-slate-800/20")}>
+                    <tr key={sec.etf} className={cn("border-b border-border", i % 2 === 0 ? "" : "bg-muted/20")}>
                       <td className="px-4 py-2">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
                           <span className="font-semibold text-white">{sec.etf}</span>
                         </div>
                       </td>
-                      <td className="px-3 py-2 text-slate-300">{sec.name}</td>
-                      <td className="px-3 py-2 text-center text-slate-300">{sec.expenseRatio.toFixed(2)}%</td>
-                      <td className="px-3 py-2 text-center text-slate-300">${sec.aumB.toFixed(1)}B</td>
+                      <td className="px-3 py-2 text-muted-foreground">{sec.name}</td>
+                      <td className="px-3 py-2 text-center text-muted-foreground">{sec.expenseRatio.toFixed(2)}%</td>
+                      <td className="px-3 py-2 text-center text-muted-foreground">${sec.aumB.toFixed(1)}B</td>
                       <td className="px-3 py-2 text-center">
                         <span className={cn(
                           "font-mono",
-                          sec.beta > 1.1 ? "text-red-400" : sec.beta < 0.7 ? "text-green-400" : "text-slate-300"
+                          sec.beta > 1.1 ? "text-red-400" : sec.beta < 0.7 ? "text-green-400" : "text-muted-foreground"
                         )}>
                           {sec.beta.toFixed(2)}
                         </span>
@@ -1309,8 +1309,8 @@ function ETFImplementation() {
                           "font-semibold",
                           pct >= 15 ? "text-green-400"
                           : pct >= 8 ? "text-primary"
-                          : pct >= 3 ? "text-slate-300"
-                          : "text-slate-500",
+                          : pct >= 3 ? "text-muted-foreground"
+                          : "text-muted-foreground",
                         )}>
                           {pct}%
                         </span>
@@ -1378,7 +1378,7 @@ function ETFImplementation() {
             ],
           },
         ].map(({ icon, color, title, points }) => (
-          <Card key={title} className="bg-slate-900 border-slate-700/50">
+          <Card key={title} className="bg-card border-border/50">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm flex items-center gap-2">
                 <span className={cn(
@@ -1395,8 +1395,8 @@ function ETFImplementation() {
             <CardContent className="px-4 pb-4">
               <ul className="space-y-1.5">
                 {points.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-xs text-slate-300">
-                    <CheckCircle className="w-3 h-3 mt-0.5 flex-shrink-0 text-slate-500" />
+                  <li key={p} className="flex items-start gap-2 text-xs text-muted-foreground">
+                    <CheckCircle className="w-3 h-3 mt-0.5 flex-shrink-0 text-muted-foreground" />
                     {p}
                   </li>
                 ))}
@@ -1418,7 +1418,7 @@ export default function SectorRotationPage() {
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-xl font-bold text-white">Sector Rotation Strategy</h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Business cycle investing — allocate to sectors and factors that historically outperform each economic phase
           </p>
         </div>
@@ -1441,14 +1441,14 @@ export default function SectorRotationPage() {
           { label: "Avoid", value: "XLY", sub: "Consumer Disc. -5.1%", icon: <TrendingDown className="w-4 h-4" />, color: "#ef4444" },
           { label: "Best Factor", value: "Quality", sub: "+5.8% avg slowdown", icon: <Shield className="w-4 h-4" />, color: "#6366f1" },
         ].map(({ label, value, sub, icon, color }) => (
-          <Card key={label} className="bg-slate-900 border-slate-700/50">
+          <Card key={label} className="bg-card border-border/50">
             <CardContent className="px-4 py-3">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-slate-400">{label}</span>
+                <span className="text-xs text-muted-foreground">{label}</span>
                 <span style={{ color }}>{icon}</span>
               </div>
               <p className="text-lg font-bold text-white" style={{ color }}>{value}</p>
-              <p className="text-xs text-slate-400">{sub}</p>
+              <p className="text-xs text-muted-foreground">{sub}</p>
             </CardContent>
           </Card>
         ))}
@@ -1456,20 +1456,20 @@ export default function SectorRotationPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="clock" className="space-y-4">
-        <TabsList className="bg-slate-800 border border-slate-700/50 h-auto flex-wrap">
-          <TabsTrigger value="clock" className="data-[state=active]:bg-slate-700 text-xs">
+        <TabsList className="bg-muted border border-border/50 h-auto flex-wrap">
+          <TabsTrigger value="clock" className="data-[state=active]:bg-muted text-xs">
             Business Cycle Clock
           </TabsTrigger>
-          <TabsTrigger value="performance" className="data-[state=active]:bg-slate-700 text-xs">
+          <TabsTrigger value="performance" className="data-[state=active]:bg-muted text-xs">
             Sector Performance
           </TabsTrigger>
-          <TabsTrigger value="signals" className="data-[state=active]:bg-slate-700 text-xs">
+          <TabsTrigger value="signals" className="data-[state=active]:bg-muted text-xs">
             Rotation Signals
           </TabsTrigger>
-          <TabsTrigger value="factors" className="data-[state=active]:bg-slate-700 text-xs">
+          <TabsTrigger value="factors" className="data-[state=active]:bg-muted text-xs">
             Factor Rotation
           </TabsTrigger>
-          <TabsTrigger value="etf" className="data-[state=active]:bg-slate-700 text-xs">
+          <TabsTrigger value="etf" className="data-[state=active]:bg-muted text-xs">
             ETF Implementation
           </TabsTrigger>
         </TabsList>

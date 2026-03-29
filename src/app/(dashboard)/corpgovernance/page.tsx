@@ -362,7 +362,7 @@ const scoreBg = (v: number) =>
 const statusColor: Record<ActivistCampaign["status"], string> = {
   Ongoing: "bg-primary/20 text-primary",
   Settled: "bg-emerald-500/20 text-emerald-400",
-  Withdrawn: "bg-zinc-500/20 text-zinc-400",
+  Withdrawn: "bg-zinc-500/20 text-muted-foreground",
   Won: "bg-primary/20 text-primary",
 };
 
@@ -392,9 +392,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
 }
@@ -467,7 +467,7 @@ function OwnershipDonut({ data }: { data: Shareholder[] }) {
         <text x={CX} y={CY - 6} textAnchor="middle" className="fill-white text-xs font-bold" fontSize={11}>
           {total.toFixed(1)}%
         </text>
-        <text x={CX} y={CY + 9} textAnchor="middle" className="fill-zinc-400 text-xs" fontSize={9}>
+        <text x={CX} y={CY + 9} textAnchor="middle" className="fill-muted-foreground text-xs" fontSize={9}>
           tracked
         </text>
       </svg>
@@ -475,7 +475,7 @@ function OwnershipDonut({ data }: { data: Shareholder[] }) {
         {slices.map((sl) => (
           <div key={sl.t} className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full" style={{ background: sl.color }} />
-            <span className="text-xs text-zinc-300 w-24">{sl.t}</span>
+            <span className="text-xs text-muted-foreground w-24">{sl.t}</span>
             <span className="text-xs font-semibold text-white">{sl.pct}%</span>
           </div>
         ))}
@@ -552,12 +552,12 @@ function ProxyVoteSimulator() {
                   </Badge>
                   <span className="text-xs font-semibold text-white">{res.title}</span>
                 </div>
-                <p className="text-xs text-zinc-400">{res.description}</p>
+                <p className="text-xs text-muted-foreground">{res.description}</p>
                 <div className="flex items-center gap-3 mt-1.5">
-                  <span className="text-xs text-zinc-500">
+                  <span className="text-xs text-muted-foreground">
                     Board: <span className={res.boardRec === "For" ? "text-emerald-400" : "text-rose-400"}>{res.boardRec}</span>
                   </span>
-                  <span className="text-xs text-zinc-500">
+                  <span className="text-xs text-muted-foreground">
                     ISS: <span className={res.issScore === "For" ? "text-emerald-400" : "text-rose-400"}>{res.issScore}</span>
                   </span>
                 </div>
@@ -575,7 +575,7 @@ function ProxyVoteSimulator() {
                           : v === "Against"
                           ? "bg-rose-500 border-rose-500 text-white"
                           : "bg-zinc-500 border-zinc-500 text-white"
-                        : "border-white/10 text-zinc-400 hover:border-white/30 hover:text-white"
+                        : "border-white/10 text-muted-foreground hover:border-white/30 hover:text-white"
                     )}
                   >
                     {v}
@@ -592,19 +592,19 @@ function ProxyVoteSimulator() {
           animate={{ opacity: 1, y: 0 }}
           className="rounded-xl border border-white/20 bg-white/5 p-4"
         >
-          <p className="text-xs text-zinc-400 mb-2 font-semibold">Your Ballot Summary ({total}/{PROXY_RESOLUTIONS.length} voted)</p>
+          <p className="text-xs text-muted-foreground mb-2 font-semibold">Your Ballot Summary ({total}/{PROXY_RESOLUTIONS.length} voted)</p>
           <div className="flex gap-4">
             <div className="text-center">
               <p className="text-xl font-bold text-emerald-400">{forCount}</p>
-              <p className="text-xs text-zinc-500">For</p>
+              <p className="text-xs text-muted-foreground">For</p>
             </div>
             <div className="text-center">
               <p className="text-xl font-bold text-rose-400">{againstCount}</p>
-              <p className="text-xs text-zinc-500">Against</p>
+              <p className="text-xs text-muted-foreground">Against</p>
             </div>
             <div className="text-center">
-              <p className="text-xl font-bold text-zinc-400">{total - forCount - againstCount}</p>
-              <p className="text-xs text-zinc-500">Abstain</p>
+              <p className="text-xl font-bold text-muted-foreground">{total - forCount - againstCount}</p>
+              <p className="text-xs text-muted-foreground">Abstain</p>
             </div>
           </div>
         </motion.div>
@@ -662,7 +662,7 @@ export default function CorpGovernancePage() {
   const [expandedDefense, setExpandedDefense] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-white p-4 md:p-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -675,7 +675,7 @@ export default function CorpGovernancePage() {
             <Building2 className="w-5 h-5 text-indigo-400" />
             <h1 className="text-xl font-bold text-white">Corporate Governance & Shareholder Activism</h1>
           </div>
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-muted-foreground">
             Analyze board composition, proxy battles, and governance quality across public companies.
           </p>
         </div>
@@ -718,7 +718,7 @@ export default function CorpGovernancePage() {
                           "text-xs px-2 py-1 rounded-md border transition-all",
                           selectedCompany.ticker === c.ticker
                             ? "bg-indigo-500 border-indigo-500 text-white"
-                            : "border-white/10 text-zinc-400 hover:border-white/30"
+                            : "border-white/10 text-muted-foreground hover:border-white/30"
                         )}
                       >
                         {c.ticker}
@@ -728,19 +728,19 @@ export default function CorpGovernancePage() {
                   <div className="space-y-2">
                     <p className="text-sm font-medium text-white">{selectedCompany.name}</p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="flex justify-between"><span className="text-zinc-400">Board Size</span><span className="text-white font-medium">{selectedCompany.boardSize} members</span></div>
-                      <div className="flex justify-between"><span className="text-zinc-400">Independent</span><span className={cn("font-medium", scoreColor(selectedCompany.independentPct))}>{selectedCompany.independentPct}%</span></div>
-                      <div className="flex justify-between"><span className="text-zinc-400">Female Directors</span><span className={cn("font-medium", scoreColor(selectedCompany.femalePct))}>{selectedCompany.femalePct}%</span></div>
-                      <div className="flex justify-between"><span className="text-zinc-400">Avg. Tenure</span><span className={cn("font-medium", selectedCompany.avgTenure > 10 ? "text-rose-400" : "text-emerald-400")}>{selectedCompany.avgTenure} yrs</span></div>
-                      <div className="flex justify-between"><span className="text-zinc-400">CEO/Chair Split</span><span className={cn("font-medium", selectedCompany.ceoChairSplit ? "text-emerald-400" : "text-rose-400")}>{selectedCompany.ceoChairSplit ? "Yes" : "No"}</span></div>
-                      <div className="flex justify-between"><span className="text-zinc-400">Staggered Board</span><span className={cn("font-medium", selectedCompany.staggeredBoard ? "text-rose-400" : "text-emerald-400")}>{selectedCompany.staggeredBoard ? "Yes" : "No"}</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">Board Size</span><span className="text-white font-medium">{selectedCompany.boardSize} members</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">Independent</span><span className={cn("font-medium", scoreColor(selectedCompany.independentPct))}>{selectedCompany.independentPct}%</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">Female Directors</span><span className={cn("font-medium", scoreColor(selectedCompany.femalePct))}>{selectedCompany.femalePct}%</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">Avg. Tenure</span><span className={cn("font-medium", selectedCompany.avgTenure > 10 ? "text-rose-400" : "text-emerald-400")}>{selectedCompany.avgTenure} yrs</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">CEO/Chair Split</span><span className={cn("font-medium", selectedCompany.ceoChairSplit ? "text-emerald-400" : "text-rose-400")}>{selectedCompany.ceoChairSplit ? "Yes" : "No"}</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">Staggered Board</span><span className={cn("font-medium", selectedCompany.staggeredBoard ? "text-rose-400" : "text-emerald-400")}>{selectedCompany.staggeredBoard ? "Yes" : "No"}</span></div>
                       {selectedCompany.classifiedDirectors > 0 && (
-                        <div className="flex justify-between col-span-2"><span className="text-zinc-400">Classified Directors</span><span className="text-amber-400 font-medium">{selectedCompany.classifiedDirectors} classes</span></div>
+                        <div className="flex justify-between col-span-2"><span className="text-muted-foreground">Classified Directors</span><span className="text-amber-400 font-medium">{selectedCompany.classifiedDirectors} classes</span></div>
                       )}
                     </div>
                     <div className="mt-3">
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-zinc-400">Governance Score</span>
+                        <span className="text-muted-foreground">Governance Score</span>
                         <span className={cn("font-bold", scoreColor(selectedCompany.govScore))}>{selectedCompany.govScore}/100</span>
                       </div>
                       <ScoreBar value={selectedCompany.govScore} />
@@ -752,7 +752,7 @@ export default function CorpGovernancePage() {
                 <h3 className="text-sm font-semibold text-white mb-3">Full Comparison Table</h3>
                 <table className="w-full text-xs min-w-[580px]">
                   <thead>
-                    <tr className="text-zinc-500 border-b border-white/10">
+                    <tr className="text-muted-foreground border-b border-white/10">
                       <th className="text-left pb-2 font-medium">Company</th>
                       <th className="text-center pb-2 font-medium">Size</th>
                       <th className="text-center pb-2 font-medium">Indep %</th>
@@ -766,8 +766,8 @@ export default function CorpGovernancePage() {
                   <tbody>
                     {BOARD_COMPANIES.map((c) => (
                       <tr key={c.ticker} className="border-b border-white/5 hover:bg-white/5 transition-colors">
-                        <td className="py-2 font-medium text-white">{c.name} <span className="text-zinc-500">({c.ticker})</span></td>
-                        <td className="text-center py-2 text-zinc-300">{c.boardSize}</td>
+                        <td className="py-2 font-medium text-white">{c.name} <span className="text-muted-foreground">({c.ticker})</span></td>
+                        <td className="text-center py-2 text-muted-foreground">{c.boardSize}</td>
                         <td className={cn("text-center py-2 font-medium", scoreColor(c.independentPct))}>{c.independentPct}%</td>
                         <td className={cn("text-center py-2 font-medium", scoreColor(c.femalePct))}>{c.femalePct}%</td>
                         <td className={cn("text-center py-2", c.avgTenure > 10 ? "text-rose-400" : "text-emerald-400")}>{c.avgTenure}y</td>
@@ -797,11 +797,11 @@ export default function CorpGovernancePage() {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm font-semibold text-white">{c.fund}</span>
-                        <span className="text-xs text-zinc-500">→</span>
+                        <span className="text-xs text-muted-foreground">→</span>
                         <span className="text-sm font-medium text-indigo-300">{c.target}</span>
-                        <Badge className="text-xs bg-zinc-700/50 text-zinc-300">{c.ticker}</Badge>
+                        <Badge className="text-xs bg-muted/50 text-muted-foreground">{c.ticker}</Badge>
                       </div>
-                      <div className="flex items-center gap-3 text-xs text-zinc-400">
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
                         <span>Stake: <span className="text-white font-medium">{c.stakePct}%</span></span>
                         <span>Stock reaction: <span className={cn("font-medium", c.stockReaction >= 0 ? "text-emerald-400" : "text-rose-400")}>{c.stockReaction >= 0 ? "+" : ""}{c.stockReaction}%</span></span>
                       </div>
@@ -809,10 +809,10 @@ export default function CorpGovernancePage() {
                     <Badge className={cn("text-xs flex-shrink-0", statusColor[c.status])}>{c.status}</Badge>
                   </div>
                   <div className="mt-2">
-                    <p className="text-xs text-zinc-500 mb-1.5">Key Demands:</p>
+                    <p className="text-xs text-muted-foreground mb-1.5">Key Demands:</p>
                     <div className="flex flex-wrap gap-1.5">
                       {c.demands.map((d) => (
-                        <span key={d} className="text-xs bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-zinc-300">{d}</span>
+                        <span key={d} className="text-xs bg-white/5 border border-white/10 rounded-md px-2 py-0.5 text-muted-foreground">{d}</span>
                       ))}
                     </div>
                   </div>
@@ -842,7 +842,7 @@ export default function CorpGovernancePage() {
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <p className="text-xs font-semibold text-white">{e.company}</p>
-                        <p className="text-xs text-zinc-500">{e.ticker}</p>
+                        <p className="text-xs text-muted-foreground">{e.ticker}</p>
                       </div>
                       <EsgRadarMini score={e} />
                     </div>
@@ -855,7 +855,7 @@ export default function CorpGovernancePage() {
                       ].map((m) => (
                         <div key={m.label}>
                           <div className="flex justify-between text-xs mb-0.5">
-                            <span className="text-zinc-500">{m.label}</span>
+                            <span className="text-muted-foreground">{m.label}</span>
                             <span className={cn("font-medium", scoreColor(m.value))}>{m.value}</span>
                           </div>
                           <ScoreBar value={m.value} />
@@ -863,7 +863,7 @@ export default function CorpGovernancePage() {
                       ))}
                     </div>
                     <div className="mt-3 flex justify-between items-center">
-                      <span className="text-xs text-zinc-500">Overall Score</span>
+                      <span className="text-xs text-muted-foreground">Overall Score</span>
                       <Badge className={cn("text-xs font-bold", scoreBg(e.overall))}>{e.overall}</Badge>
                     </div>
                   </div>
@@ -872,9 +872,9 @@ export default function CorpGovernancePage() {
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                 <h3 className="text-sm font-semibold text-white mb-3">Score Interpretation</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500 mt-0.5 flex-shrink-0" /><div><p className="text-emerald-400 font-medium">80–100: Strong Governance</p><p className="text-zinc-400 mt-0.5">Majority independent board, pay tied to performance, robust shareholder rights, full disclosure</p></div></div>
-                  <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-amber-500 mt-0.5 flex-shrink-0" /><div><p className="text-amber-400 font-medium">65–79: Adequate Governance</p><p className="text-zinc-400 mt-0.5">Some concerns — tenure concentration, partial disclosure gaps, or minor pay misalignment</p></div></div>
-                  <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-rose-500 mt-0.5 flex-shrink-0" /><div><p className="text-rose-400 font-medium">Below 65: Governance Risk</p><p className="text-zinc-400 mt-0.5">Material weaknesses — entrenched board, pay-for-no-performance, activist target profile</p></div></div>
+                  <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500 mt-0.5 flex-shrink-0" /><div><p className="text-emerald-400 font-medium">80–100: Strong Governance</p><p className="text-muted-foreground mt-0.5">Majority independent board, pay tied to performance, robust shareholder rights, full disclosure</p></div></div>
+                  <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-amber-500 mt-0.5 flex-shrink-0" /><div><p className="text-amber-400 font-medium">65–79: Adequate Governance</p><p className="text-muted-foreground mt-0.5">Some concerns — tenure concentration, partial disclosure gaps, or minor pay misalignment</p></div></div>
+                  <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-rose-500 mt-0.5 flex-shrink-0" /><div><p className="text-rose-400 font-medium">Below 65: Governance Risk</p><p className="text-muted-foreground mt-0.5">Material weaknesses — entrenched board, pay-for-no-performance, activist target profile</p></div></div>
                 </div>
               </div>
             </motion.div>
@@ -896,11 +896,11 @@ export default function CorpGovernancePage() {
                   >
                     <div>
                       <p className="text-sm font-semibold text-white">{def.name}</p>
-                      <p className="text-xs text-zinc-400 mt-0.5">{def.mechanism}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{def.mechanism}</p>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0 ml-3">
-                      <Badge className="text-xs bg-zinc-700/50 text-zinc-300 hidden sm:block">{def.prevalence}</Badge>
-                      <TrendingUp className={cn("w-4 h-4 transition-transform", expandedDefense === def.name ? "rotate-90 text-indigo-400" : "text-zinc-500")} />
+                      <Badge className="text-xs bg-muted/50 text-muted-foreground hidden sm:block">{def.prevalence}</Badge>
+                      <TrendingUp className={cn("w-4 h-4 transition-transform", expandedDefense === def.name ? "rotate-90 text-indigo-400" : "text-muted-foreground")} />
                     </div>
                   </button>
                   {expandedDefense === def.name && (
@@ -915,7 +915,7 @@ export default function CorpGovernancePage() {
                           <p className="text-xs font-semibold text-emerald-400 mb-2 flex items-center gap-1"><CheckCircle className="w-3 h-3" />Advantages</p>
                           <ul className="space-y-1">
                             {def.pros.map((p) => (
-                              <li key={p} className="text-xs text-zinc-300 flex items-start gap-1.5">
+                              <li key={p} className="text-xs text-muted-foreground flex items-start gap-1.5">
                                 <span className="text-emerald-500 mt-0.5">+</span>{p}
                               </li>
                             ))}
@@ -925,14 +925,14 @@ export default function CorpGovernancePage() {
                           <p className="text-xs font-semibold text-rose-400 mb-2 flex items-center gap-1"><XCircle className="w-3 h-3" />Disadvantages</p>
                           <ul className="space-y-1">
                             {def.cons.map((c) => (
-                              <li key={c} className="text-xs text-zinc-300 flex items-start gap-1.5">
+                              <li key={c} className="text-xs text-muted-foreground flex items-start gap-1.5">
                                 <span className="text-rose-500 mt-0.5">−</span>{c}
                               </li>
                             ))}
                           </ul>
                         </div>
                       </div>
-                      <p className="text-xs text-zinc-500 mt-3">Prevalence: {def.prevalence}</p>
+                      <p className="text-xs text-muted-foreground mt-3">Prevalence: {def.prevalence}</p>
                     </motion.div>
                   )}
                 </div>
@@ -949,25 +949,25 @@ export default function CorpGovernancePage() {
                   <OwnershipDonut data={SHAREHOLDERS} />
                   <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                     <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-                      <p className="text-zinc-400 mb-1">Passive (Index)</p>
+                      <p className="text-muted-foreground mb-1">Passive (Index)</p>
                       <p className="text-xl font-bold text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Index").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
                     <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-                      <p className="text-zinc-400 mb-1">Active Managers</p>
+                      <p className="text-muted-foreground mb-1">Active Managers</p>
                       <p className="text-xl font-bold text-emerald-400">
                         {SHAREHOLDERS.filter((s) => s.type === "Active").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
                     <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-                      <p className="text-zinc-400 mb-1">Hedge Funds</p>
+                      <p className="text-muted-foreground mb-1">Hedge Funds</p>
                       <p className="text-xl font-bold text-amber-400">
                         {SHAREHOLDERS.filter((s) => s.type === "Hedge Fund").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
                     </div>
                     <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-                      <p className="text-zinc-400 mb-1">Insiders</p>
+                      <p className="text-muted-foreground mb-1">Insiders</p>
                       <p className="text-xl font-bold text-primary">
                         {SHAREHOLDERS.filter((s) => s.type === "Insider").reduce((a, b) => a + b.pct, 0).toFixed(1)}%
                       </p>
@@ -979,10 +979,10 @@ export default function CorpGovernancePage() {
                   <div className="space-y-2">
                     {SHAREHOLDERS.sort((a, b) => b.pct - a.pct).map((sh, i) => (
                       <div key={sh.name} className="flex items-center gap-3">
-                        <span className="text-xs text-zinc-600 w-4">{i + 1}</span>
+                        <span className="text-xs text-muted-foreground w-4">{i + 1}</span>
                         <div className="flex-1">
                           <div className="flex justify-between text-xs mb-0.5">
-                            <span className="text-zinc-200 font-medium">{sh.name}</span>
+                            <span className="text-foreground font-medium">{sh.name}</span>
                             <span className="text-white font-semibold">{sh.pct}%</span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -1004,16 +1004,16 @@ export default function CorpGovernancePage() {
                 <h3 className="text-sm font-semibold text-white mb-3">Voting Power Dynamics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                   <div className="space-y-1.5">
-                    <p className="text-zinc-400 font-medium flex items-center gap-1"><TrendingUp className="w-3 h-3 text-primary" />Index Funds (Passive)</p>
-                    <p className="text-zinc-300">Control ~20.5% of votes but historically rubber-stamp management. The "Big Three" (Vanguard, BlackRock, State Street) are increasingly exercising stewardship via proxy voting guidelines.</p>
+                    <p className="text-muted-foreground font-medium flex items-center gap-1"><TrendingUp className="w-3 h-3 text-primary" />Index Funds (Passive)</p>
+                    <p className="text-muted-foreground">Control ~20.5% of votes but historically rubber-stamp management. The "Big Three" (Vanguard, BlackRock, State Street) are increasingly exercising stewardship via proxy voting guidelines.</p>
                   </div>
                   <div className="space-y-1.5">
-                    <p className="text-zinc-400 font-medium flex items-center gap-1"><TrendingDown className="w-3 h-3 text-amber-400" />Hedge Funds (Active)</p>
-                    <p className="text-zinc-300">Pershing Square&apos;s 7.7% stake represents meaningful voting power. Hedge funds leverage smaller stakes through proxy campaigns, media pressure, and coalition-building with other institutions.</p>
+                    <p className="text-muted-foreground font-medium flex items-center gap-1"><TrendingDown className="w-3 h-3 text-amber-400" />Hedge Funds (Active)</p>
+                    <p className="text-muted-foreground">Pershing Square&apos;s 7.7% stake represents meaningful voting power. Hedge funds leverage smaller stakes through proxy campaigns, media pressure, and coalition-building with other institutions.</p>
                   </div>
                   <div className="space-y-1.5">
-                    <p className="text-zinc-400 font-medium flex items-center gap-1"><AlertTriangle className="w-3 h-3 text-primary" />Insider Holdings</p>
-                    <p className="text-zinc-300">7.5% insider ownership aligns management incentives with shareholders. High insider ownership can also entrench leadership — context matters (founder vs. legacy management).</p>
+                    <p className="text-muted-foreground font-medium flex items-center gap-1"><AlertTriangle className="w-3 h-3 text-primary" />Insider Holdings</p>
+                    <p className="text-muted-foreground">7.5% insider ownership aligns management incentives with shareholders. High insider ownership can also entrench leadership — context matters (founder vs. legacy management).</p>
                   </div>
                 </div>
               </div>

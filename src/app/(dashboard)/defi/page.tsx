@@ -94,18 +94,18 @@ function StatCard({
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
-        {icon && <span className="text-zinc-400">{icon}</span>}
-        <span className="text-xs text-zinc-400">{label}</span>
+        {icon && <span className="text-muted-foreground">{icon}</span>}
+        <span className="text-xs text-muted-foreground">{label}</span>
       </div>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -159,7 +159,7 @@ function TypeBadge({ type }: { type: string }) {
     vault: "bg-orange-500/20 text-orange-300 border-orange-500/30",
   };
   return (
-    <Badge className={cn("text-xs", map[type] ?? "bg-zinc-500/20 text-zinc-300")}>
+    <Badge className={cn("text-xs", map[type] ?? "bg-zinc-500/20 text-muted-foreground")}>
       {type.toUpperCase()}
     </Badge>
   );
@@ -300,7 +300,7 @@ function YieldDashboard() {
             />
           ))}
         </svg>
-        <div className="flex justify-between text-xs text-zinc-500 mt-1">
+        <div className="flex justify-between text-xs text-muted-foreground mt-1">
           {["Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb"].map((m) => (
             <span key={m}>{m}</span>
           ))}
@@ -309,7 +309,7 @@ function YieldDashboard() {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-2 items-center">
-        <span className="text-xs text-zinc-400">Protocol:</span>
+        <span className="text-xs text-muted-foreground">Protocol:</span>
         {["All", "Aave V3", "Curve Finance", "Uniswap V3", "Lido"].map((p) => (
           <button
             key={p}
@@ -318,13 +318,13 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterProtocol === p
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
             )}
           >
             {p}
           </button>
         ))}
-        <span className="text-xs text-zinc-400 ml-2">Type:</span>
+        <span className="text-xs text-muted-foreground ml-2">Type:</span>
         {["All", "lending", "lp", "staking", "vault"].map((t) => (
           <button
             key={t}
@@ -333,13 +333,13 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterType === t
                 ? "border-primary bg-primary/20 text-primary"
-                : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
             )}
           >
             {t.toUpperCase()}
           </button>
         ))}
-        <span className="text-xs text-zinc-400 ml-2">APY:</span>
+        <span className="text-xs text-muted-foreground ml-2">APY:</span>
         {["All", "<5%", "5-20%", ">20%"].map((a) => (
           <button
             key={a}
@@ -348,13 +348,13 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterAPY === a
                 ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
             )}
           >
             {a}
           </button>
         ))}
-        <span className="text-xs text-zinc-400 ml-2">Risk:</span>
+        <span className="text-xs text-muted-foreground ml-2">Risk:</span>
         {["All", "Low", "Medium", "High"].map((r) => (
           <button
             key={r}
@@ -363,7 +363,7 @@ function YieldDashboard() {
               "px-2 py-1 rounded text-xs border transition-colors",
               filterRisk === r
                 ? "border-rose-500 bg-rose-500/20 text-rose-300"
-                : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
             )}
           >
             {r}
@@ -375,7 +375,7 @@ function YieldDashboard() {
             "px-3 py-1 rounded text-xs border transition-colors ml-2",
             realYield
               ? "border-amber-500 bg-amber-500/20 text-amber-300"
-              : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+              : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
           )}
         >
           {realYield ? "Real Yield ON" : "Real Yield OFF"}
@@ -386,7 +386,7 @@ function YieldDashboard() {
       <div className="rounded-xl border border-white/10 bg-white/5 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-xs text-zinc-500">
+            <tr className="border-b border-white/10 text-xs text-muted-foreground">
               <th className="text-left p-3">Protocol</th>
               <th className="text-left p-3">Pair</th>
               <th className="text-left p-3">Type</th>
@@ -409,17 +409,17 @@ function YieldDashboard() {
                   transition={{ delay: idx * 0.02 }}
                   className="border-b border-white/5 hover:bg-white/5 transition-colors"
                 >
-                  <td className="p-3 font-medium text-zinc-200">{opp.protocol}</td>
-                  <td className="p-3 text-zinc-300">{opp.pair}</td>
+                  <td className="p-3 font-medium text-foreground">{opp.protocol}</td>
+                  <td className="p-3 text-muted-foreground">{opp.pair}</td>
                   <td className="p-3"><TypeBadge type={opp.type} /></td>
                   <td className="p-3 text-right text-emerald-400">{fmtPct(opp.baseAPY)}</td>
-                  <td className={cn("p-3 text-right", realYield ? "text-zinc-600 line-through" : "text-amber-400")}>
+                  <td className={cn("p-3 text-right", realYield ? "text-muted-foreground line-through" : "text-amber-400")}>
                     {fmtPct(opp.rewardAPY)}
                   </td>
                   <td className={cn("p-3 text-right font-bold", totalAPY >= 20 ? "text-rose-400" : totalAPY >= 10 ? "text-amber-400" : "text-emerald-400")}>
                     {fmtPct(totalAPY)}
                   </td>
-                  <td className="p-3 text-right text-zinc-300">{fmtB(opp.tvl)}</td>
+                  <td className="p-3 text-right text-muted-foreground">{fmtB(opp.tvl)}</td>
                   <td className="p-3"><RiskBadge score={opp.riskScore} /></td>
                   <td className="p-3 text-center">
                     {opp.audited ? (
@@ -513,7 +513,7 @@ function LiquidityPoolSimulator() {
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-4">
           <SectionTitle>LP Configuration</SectionTitle>
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">Token Pair</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Token Pair</label>
             <div className="flex flex-wrap gap-2">
               {LP_PAIRS.map((p, i) => (
                 <button
@@ -523,7 +523,7 @@ function LiquidityPoolSimulator() {
                     "px-3 py-1.5 rounded-lg text-xs border transition-colors",
                     selectedPair === i
                       ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                      : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                      : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
                   )}
                 >
                   {p.label}
@@ -532,7 +532,7 @@ function LiquidityPoolSimulator() {
             </div>
           </div>
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">LP Deposit Amount</label>
+            <label className="text-xs text-muted-foreground mb-1 block">LP Deposit Amount</label>
             <div className="flex gap-2 flex-wrap">
               {[1000, 5000, 10000, 50000, 100000].map((v) => (
                 <button
@@ -542,7 +542,7 @@ function LiquidityPoolSimulator() {
                     "px-3 py-1.5 rounded-lg text-xs border transition-colors",
                     lpAmount === v
                       ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                      : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                      : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
                   )}
                 >
                   {fmtUSD(v, 0)}
@@ -557,7 +557,7 @@ function LiquidityPoolSimulator() {
                 "px-3 py-1.5 rounded-lg text-xs border transition-colors",
                 v3Mode
                   ? "border-primary bg-primary/20 text-primary"
-                  : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                  : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
               )}
             >
               {v3Mode ? "Uniswap V3 (Concentrated)" : "Uniswap V2 (Full Range)"}
@@ -566,7 +566,7 @@ function LiquidityPoolSimulator() {
           {v3Mode && (
             <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
               <div>
-                <label className="text-xs text-zinc-400 mb-1 block">Price Range Low (ratio vs current): {rangeLow.toFixed(2)}x</label>
+                <label className="text-xs text-muted-foreground mb-1 block">Price Range Low (ratio vs current): {rangeLow.toFixed(2)}x</label>
                 <input
                   type="range"
                   min={0.1}
@@ -578,7 +578,7 @@ function LiquidityPoolSimulator() {
                 />
               </div>
               <div>
-                <label className="text-xs text-zinc-400 mb-1 block">Price Range High (ratio vs current): {rangeHigh.toFixed(2)}x</label>
+                <label className="text-xs text-muted-foreground mb-1 block">Price Range High (ratio vs current): {rangeHigh.toFixed(2)}x</label>
                 <input
                   type="range"
                   min={1.05}
@@ -631,7 +631,7 @@ function LiquidityPoolSimulator() {
               current
             </text>
           </svg>
-          <p className="text-xs text-zinc-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             r = price ratio (new/original). IL = 0 at r=1. Symmetric: 2x up = 2x down IL.
           </p>
         </div>
@@ -644,7 +644,7 @@ function LiquidityPoolSimulator() {
         </div>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-xs text-zinc-500 uppercase">
+            <tr className="border-b border-white/10 text-xs text-muted-foreground uppercase">
               <th className="text-left p-3">Price Change</th>
               <th className="text-right p-3">IL %</th>
               <th className="text-right p-3">IL (USD)</th>
@@ -657,14 +657,14 @@ function LiquidityPoolSimulator() {
             {scenarios.map((sc) => (
               <tr key={sc.ratio} className="border-b border-white/5 hover:bg-white/5">
                 <td className="p-3">
-                  <span className={cn("font-medium", sc.ratio < 1 ? "text-rose-400" : sc.ratio > 1 ? "text-emerald-400" : "text-zinc-300")}>
+                  <span className={cn("font-medium", sc.ratio < 1 ? "text-rose-400" : sc.ratio > 1 ? "text-emerald-400" : "text-muted-foreground")}>
                     {sc.ratio === 1 ? "No change" : sc.ratio > 1 ? `+${((sc.ratio - 1) * 100).toFixed(0)}%` : `-${((1 - sc.ratio) * 100).toFixed(0)}%`}
                   </span>
                 </td>
                 <td className="p-3 text-right text-rose-400">{fmtPct(sc.il * 100)}</td>
                 <td className="p-3 text-right text-rose-400">{fmtUSD(sc.ilDollars, 0)}</td>
                 <td className="p-3 text-right text-emerald-400">{fmtUSD(sc.feeDollarsAnnual, 0)}</td>
-                <td className="p-3 text-right text-zinc-300">
+                <td className="p-3 text-right text-muted-foreground">
                   {sc.daysToBreakeven === Infinity ? "Never" : `${sc.daysToBreakeven.toFixed(0)}d`}
                 </td>
                 {v3Mode && (
@@ -791,9 +791,9 @@ function StakingCalculator() {
                 : "border-white/10 bg-white/5 hover:border-white/20"
             )}
           >
-            <div className="font-bold text-sm text-zinc-100">{opt.symbol}</div>
+            <div className="font-bold text-sm text-foreground">{opt.symbol}</div>
             <div className="text-xs text-emerald-400">{fmtPct(opt.baseAPY)} APY</div>
-            <div className="text-xs text-zinc-500">{opt.lockupDays === 0 ? "No lock" : `${opt.lockupDays}d lock`}</div>
+            <div className="text-xs text-muted-foreground">{opt.lockupDays === 0 ? "No lock" : `${opt.lockupDays}d lock`}</div>
           </button>
         ))}
       </div>
@@ -803,13 +803,13 @@ function StakingCalculator() {
         <div className="rounded-xl border border-white/10 bg-white/5 p-4 space-y-4">
           <SectionTitle>Staking Configuration</SectionTitle>
           <div className="p-3 rounded-lg bg-white/5 border border-white/10">
-            <p className="text-sm font-medium text-zinc-200">{asset.name} ({asset.symbol})</p>
-            <p className="text-xs text-zinc-400 mt-1">{asset.description}</p>
+            <p className="text-sm font-medium text-foreground">{asset.name} ({asset.symbol})</p>
+            <p className="text-xs text-muted-foreground mt-1">{asset.description}</p>
             <div className="grid grid-cols-2 gap-2 mt-2 text-xs">
-              <span className="text-zinc-500">Min stake: <span className="text-zinc-300">{asset.minStake} {asset.symbol}</span></span>
-              <span className="text-zinc-500">Lockup: <span className="text-zinc-300">{asset.lockupDays === 0 ? "None" : `${asset.lockupDays} days`}</span></span>
-              <span className="text-zinc-500">Slash risk: <span className={cn(asset.slashingRisk <= 2 ? "text-emerald-400" : asset.slashingRisk <= 3 ? "text-amber-400" : "text-rose-400")}>{asset.slashingRisk}/10</span></span>
-              <span className="text-zinc-500">Base APY: <span className="text-emerald-400">{fmtPct(asset.baseAPY)}</span></span>
+              <span className="text-muted-foreground">Min stake: <span className="text-muted-foreground">{asset.minStake} {asset.symbol}</span></span>
+              <span className="text-muted-foreground">Lockup: <span className="text-muted-foreground">{asset.lockupDays === 0 ? "None" : `${asset.lockupDays} days`}</span></span>
+              <span className="text-muted-foreground">Slash risk: <span className={cn(asset.slashingRisk <= 2 ? "text-emerald-400" : asset.slashingRisk <= 3 ? "text-amber-400" : "text-rose-400")}>{asset.slashingRisk}/10</span></span>
+              <span className="text-muted-foreground">Base APY: <span className="text-emerald-400">{fmtPct(asset.baseAPY)}</span></span>
             </div>
           </div>
 
@@ -824,18 +824,18 @@ function StakingCalculator() {
               )}
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-zinc-200">
-                  {useLiquidStaking ? <Unlock size={14} className="inline mr-1 text-muted-foreground" /> : <Lock size={14} className="inline mr-1 text-zinc-400" />}
+                <span className="text-sm font-medium text-foreground">
+                  {useLiquidStaking ? <Unlock size={14} className="inline mr-1 text-muted-foreground" /> : <Lock size={14} className="inline mr-1 text-muted-foreground" />}
                   Liquid Staking ({asset.liquidStaking.token})
                 </span>
-                <span className="text-xs text-zinc-400">-{asset.liquidStaking.discount}% fee</span>
+                <span className="text-xs text-muted-foreground">-{asset.liquidStaking.discount}% fee</span>
               </div>
-              <p className="text-xs text-zinc-500 mt-1">Earn yield while maintaining liquidity to use in DeFi</p>
+              <p className="text-xs text-muted-foreground mt-1">Earn yield while maintaining liquidity to use in DeFi</p>
             </button>
           )}
 
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">Investment Amount</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Investment Amount</label>
             <div className="flex gap-2 flex-wrap">
               {[1000, 5000, 10000, 50000].map((v) => (
                 <button
@@ -845,7 +845,7 @@ function StakingCalculator() {
                     "px-3 py-1.5 rounded text-xs border transition-colors",
                     amount === v
                       ? "border-emerald-500 bg-emerald-500/20 text-emerald-300"
-                      : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                      : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
                   )}
                 >
                   {fmtUSD(v, 0)}
@@ -855,7 +855,7 @@ function StakingCalculator() {
           </div>
 
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">Time Horizon: {years} years</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Time Horizon: {years} years</label>
             <input
               type="range"
               min={1}
@@ -908,17 +908,17 @@ function StakingCalculator() {
             const barW = Math.min((alt.apy / 20) * 100, 100);
             return (
               <div key={alt.label} className="flex items-center gap-3">
-                <span className="w-32 text-xs text-zinc-300 shrink-0">{alt.label}</span>
+                <span className="w-32 text-xs text-muted-foreground shrink-0">{alt.label}</span>
                 <div className="flex-1 bg-white/5 rounded h-5 relative overflow-hidden">
                   <div
                     className="h-full bg-indigo-500/40 rounded"
                     style={{ width: `${barW}%` }}
                   />
-                  <span className="absolute inset-0 flex items-center px-2 text-xs text-zinc-300">
+                  <span className="absolute inset-0 flex items-center px-2 text-xs text-muted-foreground">
                     {fmtPct(alt.apy)} APY — +{fmtUSD(gain, 0)} ({years}yr)
                   </span>
                 </div>
-                <span className="text-xs text-zinc-500 shrink-0 w-16 text-right">{alt.risk}</span>
+                <span className="text-xs text-muted-foreground shrink-0 w-16 text-right">{alt.risk}</span>
               </div>
             );
           })}
@@ -931,7 +931,7 @@ function StakingCalculator() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-zinc-500 uppercase">
+              <tr className="text-xs text-muted-foreground uppercase">
                 <th className="text-left p-2">Behavior</th>
                 <th className="text-right p-2">Probability</th>
                 <th className="text-right p-2">Slash %</th>
@@ -940,7 +940,7 @@ function StakingCalculator() {
             <tbody>
               {slashScenarios.map((sc) => (
                 <tr key={sc.behavior} className="border-t border-white/5">
-                  <td className="p-2 text-zinc-300">{sc.behavior}</td>
+                  <td className="p-2 text-muted-foreground">{sc.behavior}</td>
                   <td className="p-2 text-right text-amber-400">{sc.probability}</td>
                   <td className="p-2 text-right text-rose-400">{sc.slash}</td>
                 </tr>
@@ -1034,7 +1034,7 @@ function LendingAnalyzer() {
               "px-3 py-2 rounded-lg text-xs border transition-colors",
               selectedMarket === i
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-200"
-                : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
             )}
           >
             {m.protocol} — {m.asset}
@@ -1069,7 +1069,7 @@ function LendingAnalyzer() {
           ))}
           <text x={0} y={utilizationCurveH + 14} fontSize="7" fill="#71717a" textAnchor="start">0% util</text>
         </svg>
-        <p className="text-xs text-zinc-500 mt-1">
+        <p className="text-xs text-muted-foreground mt-1">
           When utilization &gt; kink ({market.kink}%), borrow rates spike dramatically to incentivize repayments and new deposits.
         </p>
       </div>
@@ -1080,20 +1080,20 @@ function LendingAnalyzer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
-              <label className="text-xs text-zinc-400 mb-1 block">Collateral Value (USD)</label>
+              <label className="text-xs text-muted-foreground mb-1 block">Collateral Value (USD)</label>
               <div className="flex gap-2 flex-wrap">
                 {[5000, 10000, 25000, 50000].map((v) => (
-                  <button key={v} onClick={() => setCollateral(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", collateral === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-white/10 bg-white/5 text-zinc-400")}>
+                  <button key={v} onClick={() => setCollateral(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", collateral === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-white/10 bg-white/5 text-muted-foreground")}>
                     {fmtUSD(v, 0)}
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <label className="text-xs text-zinc-400 mb-1 block">Borrow Amount (USD)</label>
+              <label className="text-xs text-muted-foreground mb-1 block">Borrow Amount (USD)</label>
               <div className="flex gap-2 flex-wrap">
                 {[1000, 3000, 5000, 7000].map((v) => (
-                  <button key={v} onClick={() => setBorrowAmount(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", borrowAmount === v ? "border-rose-500 bg-rose-500/20 text-rose-300" : "border-white/10 bg-white/5 text-zinc-400")}>
+                  <button key={v} onClick={() => setBorrowAmount(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", borrowAmount === v ? "border-rose-500 bg-rose-500/20 text-rose-300" : "border-white/10 bg-white/5 text-muted-foreground")}>
                     {fmtUSD(v, 0)}
                   </button>
                 ))}
@@ -1102,18 +1102,18 @@ function LendingAnalyzer() {
           </div>
           <div className="space-y-3">
             <div className="p-4 rounded-lg border border-white/10 bg-white/5">
-              <div className="text-xs text-zinc-400 mb-1">Health Factor</div>
+              <div className="text-xs text-muted-foreground mb-1">Health Factor</div>
               <div className={cn("text-3xl font-bold", healthFactor >= 2 ? "text-emerald-400" : healthFactor >= 1.3 ? "text-amber-400" : "text-rose-400")}>
                 {healthFactor.toFixed(2)}
               </div>
-              <div className="text-xs text-zinc-500 mt-1">
+              <div className="text-xs text-muted-foreground mt-1">
                 Liquidation at HF &lt; 1.0 — Current: {healthFactor < 1 ? "LIQUIDATABLE" : healthFactor < 1.3 ? "Danger zone" : healthFactor < 2 ? "Caution" : "Safe"}
               </div>
             </div>
-            <div className="text-xs text-zinc-400">
-              <span className="text-zinc-300">Loan-to-Value: </span>{fmtPct((borrowAmount / collateral) * 100, 1)}
+            <div className="text-xs text-muted-foreground">
+              <span className="text-muted-foreground">Loan-to-Value: </span>{fmtPct((borrowAmount / collateral) * 100, 1)}
               &nbsp;&nbsp;
-              <span className="text-zinc-300">Liquidation threshold: </span>{fmtPct(liquidationPrice * 100, 1)} drop
+              <span className="text-muted-foreground">Liquidation threshold: </span>{fmtPct(liquidationPrice * 100, 1)} drop
             </div>
           </div>
         </div>
@@ -1124,7 +1124,7 @@ function LendingAnalyzer() {
         <SectionTitle><RefreshCw size={14} /> Recursive Lending (Leverage Loop)</SectionTitle>
         <div className="space-y-3">
           <div>
-            <label className="text-xs text-zinc-400 mb-1 block">Leverage Loops: {loopLeverage}x</label>
+            <label className="text-xs text-muted-foreground mb-1 block">Leverage Loops: {loopLeverage}x</label>
             <input type="range" min={1} max={5} step={0.5} value={loopLeverage} onChange={(e) => setLoopLeverage(Number(e.target.value))} className="w-full accent-indigo-500" />
           </div>
           <div className="grid grid-cols-3 gap-3">
@@ -1132,13 +1132,13 @@ function LendingAnalyzer() {
             <StatCard label="Borrow Rate" value={fmtPct(borrowRate)} highlight="warn" />
             <StatCard label="Net APY (looped)" value={fmtPct(loopNetAPY)} highlight={loopNetAPY > 0 ? "pos" : "neg"} />
           </div>
-          <div className="text-xs text-zinc-400 space-y-1">
+          <div className="text-xs text-muted-foreground space-y-1">
             <p>Example with {fmtUSD(10000, 0)} and {loopLeverage}x leverage:</p>
             {Array.from({ length: Math.min(Math.ceil(loopLeverage), 5) }, (_, i) => {
               const depositAmt = 10000 * Math.pow(0.75, i);
               const borrowAmt = depositAmt * 0.75;
               return (
-                <p key={i} className="text-zinc-300">
+                <p key={i} className="text-muted-foreground">
                   Loop {i + 1}: Deposit <span className="text-emerald-400">{fmtUSD(depositAmt, 0)}</span> → Borrow <span className="text-rose-400">{fmtUSD(borrowAmt, 0)}</span>
                 </p>
               );
@@ -1153,7 +1153,7 @@ function LendingAnalyzer() {
       {/* Flash loans */}
       <div className="rounded-xl border border-white/10 bg-white/5 p-4">
         <SectionTitle><Zap size={14} className="text-yellow-400" /> Flash Loan Mechanics</SectionTitle>
-        <p className="text-xs text-zinc-400 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Flash loans are uncollateralized loans that must be borrowed and repaid within a single transaction block. If repayment fails, the entire transaction reverts.
         </p>
         <div className="flex flex-col gap-2 text-xs">
@@ -1165,7 +1165,7 @@ function LendingAnalyzer() {
             { step: "5", action: "Keep arbitrage profit (all in 1 transaction)", color: "text-primary" },
           ].map((s) => (
             <div key={s.step} className="flex items-center gap-2">
-              <span className="w-5 h-5 rounded-full bg-white/10 text-zinc-300 flex items-center justify-center shrink-0">{s.step}</span>
+              <span className="w-5 h-5 rounded-full bg-white/10 text-muted-foreground flex items-center justify-center shrink-0">{s.step}</span>
               <span className={s.color}>{s.action}</span>
             </div>
           ))}
@@ -1179,8 +1179,8 @@ function LendingAnalyzer() {
           {PROTOCOL_HACKS.map((hack) => (
             <div key={hack.protocol} className="flex items-center gap-3 p-2 rounded-lg border border-white/5">
               <div className="flex-1">
-                <span className="text-sm font-medium text-zinc-200">{hack.protocol}</span>
-                <span className="text-xs text-zinc-500 ml-2">{hack.date}</span>
+                <span className="text-sm font-medium text-foreground">{hack.protocol}</span>
+                <span className="text-xs text-muted-foreground ml-2">{hack.date}</span>
               </div>
               <span className="text-rose-400 font-bold text-sm">{fmtB(hack.amount)}</span>
               {hack.recovered ? (
@@ -1324,9 +1324,9 @@ function YieldStrategyBuilder() {
               selected === i ? COLOR_MAP[st.color] : "border-white/10 bg-white/5 hover:border-white/20"
             )}
           >
-            <div className="font-bold text-xs text-zinc-100">{st.label}</div>
+            <div className="font-bold text-xs text-foreground">{st.label}</div>
             <div className="text-xs text-emerald-400 mt-1">{fmtPct(st.totalAPY)} APY</div>
-            <div className="text-xs text-zinc-500">Sharpe: {st.sharpe.toFixed(1)}</div>
+            <div className="text-xs text-muted-foreground">Sharpe: {st.sharpe.toFixed(1)}</div>
           </button>
         ))}
       </div>
@@ -1343,7 +1343,7 @@ function YieldStrategyBuilder() {
         {/* Strategy steps */}
         <div className="rounded-xl border border-white/10 bg-white/5 p-4">
           <SectionTitle>{strategy.label} — Strategy Steps</SectionTitle>
-          <p className="text-xs text-zinc-400 mb-4">{strategy.description}</p>
+          <p className="text-xs text-muted-foreground mb-4">{strategy.description}</p>
           <div className="space-y-3">
             {strategy.steps.map((step, i) => (
               <motion.div
@@ -1353,21 +1353,21 @@ function YieldStrategyBuilder() {
                 transition={{ delay: i * 0.05 }}
                 className="flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5"
               >
-                <span className="w-6 h-6 rounded-full bg-white/10 text-zinc-300 text-xs flex items-center justify-center shrink-0">{i + 1}</span>
+                <span className="w-6 h-6 rounded-full bg-white/10 text-muted-foreground text-xs flex items-center justify-center shrink-0">{i + 1}</span>
                 <div className="flex-1">
-                  <div className="text-sm text-zinc-200">{step.action}</div>
-                  <div className="text-xs text-zinc-500">{step.protocol}</div>
+                  <div className="text-sm text-foreground">{step.action}</div>
+                  <div className="text-xs text-muted-foreground">{step.protocol}</div>
                 </div>
                 <div className="text-right">
                   <div className="text-xs text-emerald-400">{fmtPct(step.apy)} APY</div>
-                  <div className="text-xs text-zinc-500">{step.allocation}% alloc</div>
+                  <div className="text-xs text-muted-foreground">{step.allocation}% alloc</div>
                 </div>
               </motion.div>
             ))}
           </div>
           <div className="mt-3 p-2 rounded-lg bg-white/5 border border-white/10 text-xs">
             <div className="flex justify-between">
-              <span className="text-zinc-400">Risk-Adj. Return (Sharpe-equiv)</span>
+              <span className="text-muted-foreground">Risk-Adj. Return (Sharpe-equiv)</span>
               <span className={cn("font-bold", strategy.sharpe >= 1.5 ? "text-emerald-400" : strategy.sharpe >= 0.8 ? "text-amber-400" : "text-rose-400")}>
                 {strategy.sharpe.toFixed(1)}
               </span>
@@ -1413,17 +1413,17 @@ function YieldStrategyBuilder() {
           </svg>
           <div className="mt-3 space-y-2">
             <div>
-              <label className="text-xs text-zinc-400 mb-1 block">Investment: {fmtUSD(investment, 0)}</label>
+              <label className="text-xs text-muted-foreground mb-1 block">Investment: {fmtUSD(investment, 0)}</label>
               <div className="flex gap-2 flex-wrap">
                 {[10000, 50000, 100000, 500000].map((v) => (
-                  <button key={v} onClick={() => setInvestment(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", investment === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-white/10 bg-white/5 text-zinc-400")}>
+                  <button key={v} onClick={() => setInvestment(v)} className={cn("px-2 py-1 rounded text-xs border transition-colors", investment === v ? "border-emerald-500 bg-emerald-500/20 text-emerald-300" : "border-white/10 bg-white/5 text-muted-foreground")}>
                     {fmtB(v)}
                   </button>
                 ))}
               </div>
             </div>
             <div>
-              <label className="text-xs text-zinc-400 mb-1 block">Years: {years}</label>
+              <label className="text-xs text-muted-foreground mb-1 block">Years: {years}</label>
               <input type="range" min={1} max={10} value={years} onChange={(e) => setYears(Number(e.target.value))} className="w-full accent-indigo-500" />
             </div>
           </div>
@@ -1512,7 +1512,7 @@ function ProtocolRankings() {
     <div className="space-y-6">
       {/* Sort controls */}
       <div className="flex flex-wrap gap-2 items-center">
-        <span className="text-xs text-zinc-400">Sort by:</span>
+        <span className="text-xs text-muted-foreground">Sort by:</span>
         {[
           { key: "tvl" as const, label: "TVL" },
           { key: "rev" as const, label: "Revenue (30d)" },
@@ -1526,7 +1526,7 @@ function ProtocolRankings() {
               "px-3 py-1.5 rounded text-xs border transition-colors",
               sortBy === s.key
                 ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                : "border-white/10 bg-white/5 text-zinc-400 hover:border-white/20"
+                : "border-white/10 bg-white/5 text-muted-foreground hover:border-white/20"
             )}
           >
             {s.label}
@@ -1541,7 +1541,7 @@ function ProtocolRankings() {
         </div>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10 text-xs text-zinc-500 uppercase">
+            <tr className="border-b border-white/10 text-xs text-muted-foreground uppercase">
               <th className="text-left p-3">#</th>
               <th className="text-left p-3">Protocol</th>
               <th className="text-left p-3">Category</th>
@@ -1561,16 +1561,16 @@ function ProtocolRankings() {
                   className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer"
                   onClick={() => setExpandedRow(expandedRow === idx ? null : idx)}
                 >
-                  <td className="p-3 text-zinc-500 font-mono">{p.rank}</td>
+                  <td className="p-3 text-muted-foreground font-mono">{p.rank}</td>
                   <td className="p-3">
-                    <div className="font-medium text-zinc-200">{p.name}</div>
-                    <div className="text-xs text-zinc-500">{p.token}</div>
+                    <div className="font-medium text-foreground">{p.name}</div>
+                    <div className="text-xs text-muted-foreground">{p.token}</div>
                   </td>
                   <td className="p-3">
-                    <Badge className="bg-white/10 text-zinc-300 border-white/10 text-xs">{p.category}</Badge>
+                    <Badge className="bg-white/10 text-muted-foreground border-white/10 text-xs">{p.category}</Badge>
                   </td>
                   <td className="p-3 text-right">
-                    <div className="text-zinc-200">{fmtB(p.tvl)}</div>
+                    <div className="text-foreground">{fmtB(p.tvl)}</div>
                     <div className="w-full bg-white/5 h-1 rounded mt-1">
                       <div className="h-full bg-indigo-500/60 rounded" style={{ width: `${(p.tvl / maxTVL) * 100}%` }} />
                     </div>
@@ -1579,22 +1579,22 @@ function ProtocolRankings() {
                     {p.tvlChange30d >= 0 ? "+" : ""}{fmtPct(p.tvlChange30d, 1)}
                   </td>
                   <td className="p-3 text-right">
-                    <div className="text-zinc-200">{fmtB(p.rev30d)}</div>
+                    <div className="text-foreground">{fmtB(p.rev30d)}</div>
                     <div className="w-full bg-white/5 h-1 rounded mt-1">
                       <div className="h-full bg-emerald-500/60 rounded" style={{ width: `${(p.rev30d / maxRev) * 100}%` }} />
                     </div>
                   </td>
-                  <td className={cn("p-3 text-right font-mono text-xs", p.pe <= 25 ? "text-emerald-400" : p.pe <= 50 ? "text-amber-400" : "text-zinc-400")}>
+                  <td className={cn("p-3 text-right font-mono text-xs", p.pe <= 25 ? "text-emerald-400" : p.pe <= 50 ? "text-amber-400" : "text-muted-foreground")}>
                     {p.pe}x
                   </td>
-                  <td className="p-3 text-right text-xs text-zinc-300 font-mono">
+                  <td className="p-3 text-right text-xs text-muted-foreground font-mono">
                     {(p.revTVL).toFixed(2)}%
                   </td>
                   <td className="p-3 text-center">
                     {expandedRow === idx ? (
-                      <ChevronUp size={14} className="text-zinc-400 mx-auto" />
+                      <ChevronUp size={14} className="text-muted-foreground mx-auto" />
                     ) : (
-                      <ChevronDown size={14} className="text-zinc-400 mx-auto" />
+                      <ChevronDown size={14} className="text-muted-foreground mx-auto" />
                     )}
                   </td>
                 </tr>
@@ -1607,11 +1607,11 @@ function ProtocolRankings() {
                       exit={{ opacity: 0 }}
                     >
                       <td colSpan={9} className="px-6 py-3 bg-white/5">
-                        <p className="text-xs text-zinc-400">
-                          <span className="text-zinc-300 font-medium">Protocol Moat: </span>{p.moat}
+                        <p className="text-xs text-muted-foreground">
+                          <span className="text-muted-foreground font-medium">Protocol Moat: </span>{p.moat}
                         </p>
-                        <p className="text-xs text-zinc-500 mt-1">
-                          Token <span className="text-zinc-300">{p.token}</span> @ ${p.tokenPrice} &nbsp;|&nbsp;
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Token <span className="text-muted-foreground">{p.token}</span> @ ${p.tokenPrice} &nbsp;|&nbsp;
                           30d Rev change: <span className={p.revChange30d >= 0 ? "text-emerald-400" : "text-rose-400"}>{p.revChange30d >= 0 ? "+" : ""}{fmtPct(p.revChange30d, 1)}</span>
                         </p>
                       </td>
@@ -1630,13 +1630,13 @@ function ProtocolRankings() {
         <div className="space-y-2">
           {cats.map(([cat, rev]) => (
             <div key={cat} className="flex items-center gap-3">
-              <span className="w-28 text-xs text-zinc-300 shrink-0">{cat}</span>
+              <span className="w-28 text-xs text-muted-foreground shrink-0">{cat}</span>
               <div className="flex-1 bg-white/5 rounded h-5 relative overflow-hidden">
                 <div
                   className="h-full bg-indigo-500/40 rounded transition-all"
                   style={{ width: `${(rev / maxCatRev) * 100}%` }}
                 />
-                <span className="absolute inset-0 flex items-center px-2 text-xs text-zinc-300">
+                <span className="absolute inset-0 flex items-center px-2 text-xs text-muted-foreground">
                   {fmtB(rev)}
                 </span>
               </div>
@@ -1651,7 +1651,7 @@ function ProtocolRankings() {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-zinc-500 uppercase border-b border-white/10">
+              <tr className="text-xs text-muted-foreground uppercase border-b border-white/10">
                 <th className="text-left p-2">Product</th>
                 <th className="text-right p-2">DeFi Rate</th>
                 <th className="text-right p-2">CeFi Rate</th>
@@ -1662,22 +1662,22 @@ function ProtocolRankings() {
             <tbody>
               {DEFI_VS_CEFI.map((row) => (
                 <tr key={row.product} className="border-b border-white/5 hover:bg-white/5">
-                  <td className="p-2 text-zinc-200">{row.product}</td>
+                  <td className="p-2 text-foreground">{row.product}</td>
                   <td className="p-2 text-right">
                     {row.defiRate > 0 ? (
                       <span className="text-indigo-400">{fmtPct(row.defiRate)}</span>
                     ) : (
-                      <span className="text-zinc-600">N/A</span>
+                      <span className="text-muted-foreground">N/A</span>
                     )}
                   </td>
                   <td className="p-2 text-right">
                     {row.cefiRate > 0 ? (
                       <span className="text-emerald-400">{fmtPct(row.cefiRate)}</span>
                     ) : (
-                      <span className="text-zinc-600">N/A</span>
+                      <span className="text-muted-foreground">N/A</span>
                     )}
                   </td>
-                  <td className="p-2 text-zinc-500 text-xs">{row.cefiPlatform}</td>
+                  <td className="p-2 text-muted-foreground text-xs">{row.cefiPlatform}</td>
                   <td className="p-2 text-center">
                     <Badge
                       className={cn(
@@ -1710,7 +1710,7 @@ function ProtocolRankings() {
 
 export default function DefiPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -1725,8 +1725,8 @@ export default function DefiPage() {
                 <Droplets size={20} className="text-indigo-400" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-zinc-100">DeFi Simulator</h1>
-                <p className="text-sm text-zinc-400">Yield Farming, Staking & Liquidity Protocol Lab</p>
+                <h1 className="text-2xl font-bold text-foreground">DeFi Simulator</h1>
+                <p className="text-sm text-muted-foreground">Yield Farming, Staking & Liquidity Protocol Lab</p>
               </div>
             </div>
           </div>
@@ -1744,7 +1744,7 @@ export default function DefiPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="yield">
-          <TabsList className="bg-zinc-900 border border-white/10 h-auto flex-wrap gap-1 p-1">
+          <TabsList className="bg-card border border-white/10 h-auto flex-wrap gap-1 p-1">
             {[
               { value: "yield", label: "Yield Dashboard", icon: <BarChart3 size={13} /> },
               { value: "lp", label: "LP Simulator", icon: <Droplets size={13} /> },
@@ -1756,7 +1756,7 @@ export default function DefiPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-zinc-400 flex items-center gap-1.5 text-xs px-3 py-2"
+                className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground flex items-center gap-1.5 text-xs px-3 py-2"
               >
                 {tab.icon}
                 {tab.label}

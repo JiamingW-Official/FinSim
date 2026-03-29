@@ -328,11 +328,11 @@ function MinkyCycleChart() {
       </svg>
       <div className="grid grid-cols-5 gap-1">
         {phases.map((ph) => (
-          <div key={ph.label} className="bg-zinc-800/50 rounded p-2">
+          <div key={ph.label} className="bg-muted/50 rounded p-2">
             <div className="text-xs font-semibold mb-0.5" style={{ color: ph.color }}>
               {ph.label}
             </div>
-            <div className="text-[11px] text-zinc-400 leading-tight">{ph.desc}</div>
+            <div className="text-[11px] text-muted-foreground leading-tight">{ph.desc}</div>
           </div>
         ))}
       </div>
@@ -481,7 +481,7 @@ function EarlyWarningDashboard() {
             )}
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="text-[11px] text-zinc-300 font-medium">{ind.label}</span>
+              <span className="text-[11px] text-muted-foreground font-medium">{ind.label}</span>
               <Badge
                 variant="outline"
                 className={cn(
@@ -494,9 +494,9 @@ function EarlyWarningDashboard() {
             </div>
             <div className={cn("text-lg font-bold", isDanger ? "text-red-400" : "text-yellow-400")}>
               {ind.value}
-              <span className="text-xs text-zinc-500 ml-1">{ind.unit}</span>
+              <span className="text-xs text-muted-foreground ml-1">{ind.unit}</span>
             </div>
-            <div className="text-[11px] text-zinc-500 mt-0.5">Threshold: {ind.threshold} {ind.unit}</div>
+            <div className="text-[11px] text-muted-foreground mt-0.5">Threshold: {ind.threshold} {ind.unit}</div>
           </div>
         );
       })}
@@ -519,9 +519,9 @@ function CrisisAnatomyTab() {
   return (
     <div className="space-y-5">
       {/* Minsky Cycle */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
             Minsky Cycle — 5 Phases of Financial Instability
           </CardTitle>
@@ -532,9 +532,9 @@ function CrisisAnatomyTab() {
       </Card>
 
       {/* Crisis Timeline */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-orange-400" />
             8 Major Crises — Duration & Magnitude
           </CardTitle>
@@ -546,9 +546,9 @@ function CrisisAnatomyTab() {
 
       <div className="grid grid-cols-2 gap-4">
         {/* Precursors */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <FileWarning className="w-4 h-4 text-yellow-400" />
               Common Crisis Precursors
             </CardTitle>
@@ -558,9 +558,9 @@ function CrisisAnatomyTab() {
               {precursors.map((p) => (
                 <li key={p.label} className="flex items-start gap-2">
                   <CheckCircle
-                    className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", p.checked ? "text-red-400" : "text-zinc-600")}
+                    className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", p.checked ? "text-red-400" : "text-muted-foreground")}
                   />
-                  <span className="text-[11px] text-zinc-300 leading-tight">{p.label}</span>
+                  <span className="text-[11px] text-muted-foreground leading-tight">{p.label}</span>
                 </li>
               ))}
             </ul>
@@ -568,9 +568,9 @@ function CrisisAnatomyTab() {
         </Card>
 
         {/* Early Warning Dashboard */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 text-red-400" />
               Early Warning Indicators
             </CardTitle>
@@ -582,9 +582,9 @@ function CrisisAnatomyTab() {
       </div>
 
       {/* Credit Cycle */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-primary" />
             Credit Boom-to-Bust Cycle
           </CardTitle>
@@ -592,21 +592,21 @@ function CrisisAnatomyTab() {
         <CardContent className="space-y-3">
           <CreditCycleChart />
           <div className="grid grid-cols-3 gap-2 text-[11px]">
-            <div className="bg-zinc-800/50 rounded p-2">
+            <div className="bg-muted/50 rounded p-2">
               <div className="text-indigo-400 font-semibold mb-1">Fire Sale Dynamics</div>
-              <div className="text-zinc-400 leading-tight">
+              <div className="text-muted-foreground leading-tight">
                 Forced selling → price drops → margin calls → more selling. Bid-ask spreads widen 10–50×. Illiquid assets repriced instantly.
               </div>
             </div>
-            <div className="bg-zinc-800/50 rounded p-2">
+            <div className="bg-muted/50 rounded p-2">
               <div className="text-primary font-semibold mb-1">Liquidity Spiral</div>
-              <div className="text-zinc-400 leading-tight">
+              <div className="text-muted-foreground leading-tight">
                 Asset prices fall → haircuts rise → funding shrinks → more selling → prices fall further. Amplified by leverage.
               </div>
             </div>
-            <div className="bg-zinc-800/50 rounded p-2">
+            <div className="bg-muted/50 rounded p-2">
               <div className="text-orange-400 font-semibold mb-1">Contagion Channels</div>
-              <div className="text-zinc-400 leading-tight">
+              <div className="text-muted-foreground leading-tight">
                 Trade links, bank balance sheets, portfolio rebalancing, FX reserves, sentiment. EM more susceptible via capital flows.
               </div>
             </div>
@@ -659,7 +659,7 @@ function CrisisGenerationModels() {
   return (
     <div className="grid grid-cols-3 gap-3">
       {models.map((m) => (
-        <Card key={m.gen} className="bg-zinc-900 border-zinc-700">
+        <Card key={m.gen} className="bg-card border-border">
           <CardContent className="p-4 space-y-2">
             <div className="flex items-center gap-2">
               <div
@@ -669,18 +669,18 @@ function CrisisGenerationModels() {
                 {m.icon}
               </div>
               <div>
-                <div className="text-[11px] font-bold text-zinc-100">{m.gen}: {m.title}</div>
-                <div className="text-[11px] text-zinc-500">{m.economists}</div>
+                <div className="text-[11px] font-bold text-foreground">{m.gen}: {m.title}</div>
+                <div className="text-[11px] text-muted-foreground">{m.economists}</div>
               </div>
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">{m.mechanism}</p>
-            <div className="bg-zinc-800 rounded p-2">
-              <div className="text-[11px] text-zinc-500 mb-0.5">Examples</div>
-              <div className="text-xs text-zinc-300">{m.examples}</div>
+            <p className="text-xs text-muted-foreground leading-relaxed">{m.mechanism}</p>
+            <div className="bg-muted rounded p-2">
+              <div className="text-[11px] text-muted-foreground mb-0.5">Examples</div>
+              <div className="text-xs text-muted-foreground">{m.examples}</div>
             </div>
-            <div className="bg-zinc-800/60 rounded p-2 border-l-2" style={{ borderColor: m.color }}>
-              <div className="text-[11px] text-zinc-500 mb-0.5">Key Insight</div>
-              <div className="text-xs text-zinc-300 leading-snug">{m.keyInsight}</div>
+            <div className="bg-muted/60 rounded p-2 border-l-2" style={{ borderColor: m.color }}>
+              <div className="text-[11px] text-muted-foreground mb-0.5">Key Insight</div>
+              <div className="text-xs text-muted-foreground leading-snug">{m.keyInsight}</div>
             </div>
           </CardContent>
         </Card>
@@ -759,13 +759,13 @@ function FXReserveMetrics() {
   return (
     <div className="space-y-2">
       {metrics.map((m) => (
-        <div key={m.rule} className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
+        <div key={m.rule} className="bg-muted/50 rounded-lg p-3 border border-border">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[12px] font-bold text-zinc-100">{m.rule}</span>
+            <span className="text-[12px] font-bold text-foreground">{m.rule}</span>
             <Badge variant="outline" className="text-[11px] border-cyan-500 text-muted-foreground">{m.threshold}</Badge>
           </div>
-          <p className="text-xs text-zinc-400 mb-1">{m.desc}</p>
-          <p className="text-xs text-zinc-500 italic">{m.rationale}</p>
+          <p className="text-xs text-muted-foreground mb-1">{m.desc}</p>
+          <p className="text-xs text-muted-foreground italic">{m.rationale}</p>
         </div>
       ))}
     </div>
@@ -790,7 +790,7 @@ function CarryUnwindExplainer() {
           >
             {s.step}
           </div>
-          <span className="text-[11px] text-zinc-300 leading-tight mt-0.5">{s.text}</span>
+          <span className="text-[11px] text-muted-foreground leading-tight mt-0.5">{s.text}</span>
         </div>
       ))}
     </div>
@@ -803,9 +803,9 @@ function CurrencyCrisesTab() {
   return (
     <div className="space-y-5">
       {/* Generation Models */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-orange-400" />
             Currency Crisis Generation Models
           </CardTitle>
@@ -816,9 +816,9 @@ function CurrencyCrisesTab() {
       </Card>
 
       {/* Anatomy SVG */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <ArrowDownRight className="w-4 h-4 text-red-400" />
             Crisis Anatomy: Peg Defense to Contagion
           </CardTitle>
@@ -829,9 +829,9 @@ function CurrencyCrisesTab() {
       </Card>
 
       {/* Case Studies */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary" />
             6 Historical Case Studies
           </CardTitle>
@@ -846,12 +846,12 @@ function CurrencyCrisesTab() {
                   "rounded-lg p-3 border text-left transition-colors",
                   selectedCase === i
                     ? "border-indigo-500 bg-indigo-950/40"
-                    : "border-zinc-700 bg-zinc-800/50 hover:border-zinc-500"
+                    : "border-border bg-muted/50 hover:border-zinc-500"
                 )}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-[12px] font-bold text-zinc-100">{cs.country}</span>
-                  <span className="text-xs text-zinc-400">{cs.year}</span>
+                  <span className="text-[12px] font-bold text-foreground">{cs.country}</span>
+                  <span className="text-xs text-muted-foreground">{cs.year}</span>
                 </div>
                 <div className="flex items-center gap-1 mb-1">
                   <ArrowDownRight className="w-3 h-3 text-red-400" />
@@ -879,21 +879,21 @@ function CurrencyCrisesTab() {
                 exit={{ opacity: 0, height: 0 }}
                 className="overflow-hidden mt-3"
               >
-                <div className="bg-zinc-800 rounded-lg p-4 space-y-2">
-                  <div className="text-sm font-bold text-zinc-100">
+                <div className="bg-muted rounded-lg p-4 space-y-2">
+                  <div className="text-sm font-bold text-foreground">
                     {CURRENCY_CRISES[selectedCase].country} {CURRENCY_CRISES[selectedCase].year}
                   </div>
                   <div>
                     <span className="text-xs text-red-400 font-semibold uppercase tracking-wide">Trigger: </span>
-                    <span className="text-[11px] text-zinc-300">{CURRENCY_CRISES[selectedCase].trigger}</span>
+                    <span className="text-[11px] text-muted-foreground">{CURRENCY_CRISES[selectedCase].trigger}</span>
                   </div>
                   <div>
                     <span className="text-xs text-yellow-400 font-semibold uppercase tracking-wide">Response: </span>
-                    <span className="text-[11px] text-zinc-300">{CURRENCY_CRISES[selectedCase].response}</span>
+                    <span className="text-[11px] text-muted-foreground">{CURRENCY_CRISES[selectedCase].response}</span>
                   </div>
                   <div>
                     <span className="text-xs text-green-400 font-semibold uppercase tracking-wide">Outcome: </span>
-                    <span className="text-[11px] text-zinc-300">{CURRENCY_CRISES[selectedCase].outcome}</span>
+                    <span className="text-[11px] text-muted-foreground">{CURRENCY_CRISES[selectedCase].outcome}</span>
                   </div>
                 </div>
               </motion.div>
@@ -904,9 +904,9 @@ function CurrencyCrisesTab() {
 
       <div className="grid grid-cols-2 gap-4">
         {/* FX Reserve Metrics */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-muted-foreground" />
               FX Reserve Adequacy Rules
             </CardTitle>
@@ -917,17 +917,17 @@ function CurrencyCrisesTab() {
         </Card>
 
         {/* Carry Unwind */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <Zap className="w-4 h-4 text-yellow-400" />
               Carry Trade Unwind Mechanics
             </CardTitle>
           </CardHeader>
           <CardContent>
             <CarryUnwindExplainer />
-            <div className="mt-3 bg-zinc-800/50 rounded p-2">
-              <div className="text-[11px] text-zinc-500 mb-1">IMF Conditionality (typical program)</div>
+            <div className="mt-3 bg-muted/50 rounded p-2">
+              <div className="text-[11px] text-muted-foreground mb-1">IMF Conditionality (typical program)</div>
               <div className="grid grid-cols-2 gap-1">
                 {[
                   "Fiscal consolidation (-3–5% GDP)",
@@ -939,7 +939,7 @@ function CurrencyCrisesTab() {
                 ].map((c) => (
                   <div key={c} className="flex items-center gap-1">
                     <div className="w-1 h-1 rounded-full bg-cyan-400 shrink-0" />
-                    <span className="text-[11px] text-zinc-400">{c}</span>
+                    <span className="text-[11px] text-muted-foreground">{c}</span>
                   </div>
                 ))}
               </div>
@@ -1086,7 +1086,7 @@ function CreditorHierarchy() {
   return (
     <div className="space-y-1.5">
       {tiers.map((t) => (
-        <div key={t.rank} className="flex items-start gap-3 bg-zinc-800/40 rounded p-2">
+        <div key={t.rank} className="flex items-start gap-3 bg-muted/40 rounded p-2">
           <div
             className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-black shrink-0"
             style={{ backgroundColor: t.color }}
@@ -1095,12 +1095,12 @@ function CreditorHierarchy() {
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-semibold text-zinc-100">{t.creditor}</span>
+              <span className="text-[11px] font-semibold text-foreground">{t.creditor}</span>
               <Badge variant="outline" className="text-[8px] px-1 py-0" style={{ borderColor: t.color, color: t.color }}>
                 {t.type}
               </Badge>
             </div>
-            <div className="text-xs text-zinc-400 mt-0.5">{t.status}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{t.status}</div>
           </div>
         </div>
       ))}
@@ -1139,28 +1139,28 @@ function PostDefaultRecovery() {
   return (
     <div className="space-y-2">
       {cases.map((c) => (
-        <div key={c.country} className="bg-zinc-800/50 rounded-lg p-3">
+        <div key={c.country} className="bg-muted/50 rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[12px] font-bold text-zinc-100">{c.country} ({c.year})</span>
+            <span className="text-[12px] font-bold text-foreground">{c.country} ({c.year})</span>
             <Badge variant="outline" className="text-[11px]" style={{ borderColor: c.color, color: c.color }}>
               {c.haircut}% haircut
             </Badge>
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <div className="text-[11px] text-zinc-500 mb-1">Market Access Recovery</div>
+              <div className="text-[11px] text-muted-foreground mb-1">Market Access Recovery</div>
               <div className="flex items-center gap-1">
-                <div className="flex-1 h-1.5 bg-zinc-700 rounded-full">
+                <div className="flex-1 h-1.5 bg-muted rounded-full">
                   <div
                     className="h-full rounded-full"
                     style={{ width: `${(c.recoveryYears / 8) * 100}%`, backgroundColor: c.color }}
                   />
                 </div>
-                <span className="text-xs text-zinc-300">{c.recoveryYears}y</span>
+                <span className="text-xs text-muted-foreground">{c.recoveryYears}y</span>
               </div>
             </div>
             <div>
-              <div className="text-[11px] text-zinc-500 mb-1">Avg GDP Growth Post-Restructuring</div>
+              <div className="text-[11px] text-muted-foreground mb-1">Avg GDP Growth Post-Restructuring</div>
               <span className="text-[11px] font-semibold" style={{ color: c.color }}>+{c.gdpRecovery}% p.a.</span>
             </div>
           </div>
@@ -1174,9 +1174,9 @@ function SovereignDebtTab() {
   return (
     <div className="space-y-5">
       {/* Scatter */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-red-400" />
             Sovereign Default History (1800–2024) — Bubble Size = Default Amount
           </CardTitle>
@@ -1187,9 +1187,9 @@ function SovereignDebtTab() {
       </Card>
 
       {/* Restructuring Process */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Clock className="w-4 h-4 text-primary" />
             Debt Restructuring Process
           </CardTitle>
@@ -1197,21 +1197,21 @@ function SovereignDebtTab() {
         <CardContent className="space-y-3">
           <DebtRestructuringProcess />
           <div className="grid grid-cols-3 gap-2 text-xs">
-            <div className="bg-zinc-800/50 rounded p-2">
+            <div className="bg-muted/50 rounded p-2">
               <div className="text-yellow-400 font-semibold mb-1">Brady Bonds (1989)</div>
-              <div className="text-zinc-400 leading-tight">
+              <div className="text-muted-foreground leading-tight">
                 US Treasury-collateralized bonds exchanged for defaulted bank debt. Created liquid EM debt market. Mexico, Argentina, Brazil benefited.
               </div>
             </div>
-            <div className="bg-zinc-800/50 rounded p-2">
+            <div className="bg-muted/50 rounded p-2">
               <div className="text-muted-foreground font-semibold mb-1">CDS as Distress Signal</div>
-              <div className="text-zinc-400 leading-tight">
+              <div className="text-muted-foreground leading-tight">
                 Sovereign CDS spreads &gt;300bps = elevated risk. &gt;500bps = distress. &gt;1000bps = near-default. CDS basis trade: buy bonds, buy CDS for arb.
               </div>
             </div>
-            <div className="bg-zinc-800/50 rounded p-2">
+            <div className="bg-muted/50 rounded p-2">
               <div className="text-primary font-semibold mb-1">Debt Sustainability (DSA)</div>
-              <div className="text-zinc-400 leading-tight">
+              <div className="text-muted-foreground leading-tight">
                 IMF framework: project debt/GDP under baseline + stress scenarios. Debt sustainable if converges to benchmark without extraordinary measures.
               </div>
             </div>
@@ -1221,9 +1221,9 @@ function SovereignDebtTab() {
 
       <div className="grid grid-cols-2 gap-4">
         {/* Creditor Hierarchy */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <Layers className="w-4 h-4 text-orange-400" />
               Creditor Hierarchy & Holdouts
             </CardTitle>
@@ -1232,7 +1232,7 @@ function SovereignDebtTab() {
             <CreditorHierarchy />
             <div className="mt-2 bg-red-950/20 border border-red-500/30 rounded p-2">
               <div className="text-[11px] text-red-400 font-semibold mb-1">NML Capital vs Argentina (2012)</div>
-              <div className="text-[11px] text-zinc-400">
+              <div className="text-[11px] text-muted-foreground">
                 Hedge fund bought defaulted bonds at 20 cents, refused 2001 restructuring. Won NY court judgment blocking all payments to other creditors until holdouts paid in full (pari passu). Argentina locked out of markets until 2016.
               </div>
             </div>
@@ -1240,9 +1240,9 @@ function SovereignDebtTab() {
         </Card>
 
         {/* Post-default recovery */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <ArrowUpRight className="w-4 h-4 text-green-400" />
               Post-Default Recovery Analysis
             </CardTitle>
@@ -1356,7 +1356,7 @@ function SorosCaseStudy() {
             <span className="text-[11px] text-yellow-400 font-semibold">{t.date}</span>
           </div>
           <div className="flex-1">
-            <span className="text-xs text-zinc-300 leading-snug">{t.event}</span>
+            <span className="text-xs text-muted-foreground leading-snug">{t.event}</span>
           </div>
         </div>
       ))}
@@ -1387,8 +1387,8 @@ function PositioningChecklist() {
           >
             {item.action}
           </Badge>
-          <span className="text-[11px] font-medium text-zinc-100 w-40 shrink-0">{item.asset}</span>
-          <span className="text-xs text-zinc-400">{item.rationale}</span>
+          <span className="text-[11px] font-medium text-foreground w-40 shrink-0">{item.asset}</span>
+          <span className="text-xs text-muted-foreground">{item.rationale}</span>
         </div>
       ))}
     </div>
@@ -1412,7 +1412,7 @@ function PostCrisisSignals() {
       {signals.map((sig, i) => (
         <li key={i} className="flex items-start gap-2">
           <CheckCircle className="w-3.5 h-3.5 text-green-400 mt-0.5 shrink-0" />
-          <span className="text-[11px] text-zinc-300 leading-tight">{sig}</span>
+          <span className="text-[11px] text-muted-foreground leading-tight">{sig}</span>
         </li>
       ))}
     </ul>
@@ -1432,9 +1432,9 @@ function CrisisInvestingTab() {
   return (
     <div className="space-y-5">
       {/* Bottom Timing Chart */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-red-400" />
             Historical Crisis Bottom Timing — Avg -52% Peak-to-Trough, 18-Month Recovery
           </CardTitle>
@@ -1442,16 +1442,16 @@ function CrisisInvestingTab() {
         <CardContent>
           <CrisisBottomChart />
           <div className="grid grid-cols-3 gap-2 mt-2">
-            <div className="bg-zinc-800/50 rounded p-2 text-center">
-              <div className="text-xs text-zinc-500">Avg Decline</div>
+            <div className="bg-muted/50 rounded p-2 text-center">
+              <div className="text-xs text-muted-foreground">Avg Decline</div>
               <div className="text-xl font-bold text-red-400">-52%</div>
             </div>
-            <div className="bg-zinc-800/50 rounded p-2 text-center">
-              <div className="text-xs text-zinc-500">Avg Recovery</div>
+            <div className="bg-muted/50 rounded p-2 text-center">
+              <div className="text-xs text-muted-foreground">Avg Recovery</div>
               <div className="text-xl font-bold text-green-400">18mo</div>
             </div>
-            <div className="bg-zinc-800/50 rounded p-2 text-center">
-              <div className="text-xs text-zinc-500">Best Entry Window</div>
+            <div className="bg-muted/50 rounded p-2 text-center">
+              <div className="text-xs text-muted-foreground">Best Entry Window</div>
               <div className="text-xl font-bold text-yellow-400">±6mo</div>
             </div>
           </div>
@@ -1459,9 +1459,9 @@ function CrisisInvestingTab() {
       </Card>
 
       {/* Entry Triggers */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-yellow-400" />
             Distressed Sovereign Entry Triggers
           </CardTitle>
@@ -1469,10 +1469,10 @@ function CrisisInvestingTab() {
         <CardContent>
           <div className="grid grid-cols-4 gap-2">
             {entryTriggers.map((t) => (
-              <div key={t.metric} className="bg-zinc-800/50 rounded-lg p-3 border border-zinc-700">
-                <div className="text-xs text-zinc-400 mb-1">{t.metric}</div>
+              <div key={t.metric} className="bg-muted/50 rounded-lg p-3 border border-border">
+                <div className="text-xs text-muted-foreground mb-1">{t.metric}</div>
                 <div className="text-[12px] font-bold mb-1" style={{ color: t.color }}>{t.threshold}</div>
-                <div className="text-[11px] text-zinc-500">{t.meaning}</div>
+                <div className="text-[11px] text-muted-foreground">{t.meaning}</div>
               </div>
             ))}
           </div>
@@ -1480,9 +1480,9 @@ function CrisisInvestingTab() {
       </Card>
 
       {/* Investment Themes */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-indigo-400" />
             5 Major Crisis Investment Themes
           </CardTitle>
@@ -1497,11 +1497,11 @@ function CrisisInvestingTab() {
                     "w-full rounded-lg p-3 border text-left transition-colors",
                     selectedTheme === i
                       ? "border-indigo-500 bg-indigo-950/30"
-                      : "border-zinc-700 bg-zinc-800/50 hover:border-zinc-500"
+                      : "border-border bg-muted/50 hover:border-zinc-500"
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[12px] font-bold text-zinc-100">{theme.title}</span>
+                    <span className="text-[12px] font-bold text-foreground">{theme.title}</span>
                     <div className="flex items-center gap-2">
                       <Badge
                         variant="outline"
@@ -1516,10 +1516,10 @@ function CrisisInvestingTab() {
                       >
                         {theme.riskLevel.toUpperCase()}
                       </Badge>
-                      <span className="text-zinc-500 text-xs">{selectedTheme === i ? "▲" : "▼"}</span>
+                      <span className="text-muted-foreground text-xs">{selectedTheme === i ? "▲" : "▼"}</span>
                     </div>
                   </div>
-                  <p className="text-xs text-zinc-400 mt-1 leading-snug">{theme.description}</p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-snug">{theme.description}</p>
                 </button>
                 <AnimatePresence>
                   {selectedTheme === i && (
@@ -1529,18 +1529,18 @@ function CrisisInvestingTab() {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="bg-zinc-800 rounded-b-lg p-3 border-x border-b border-indigo-500/50 space-y-1.5">
+                      <div className="bg-muted rounded-b-lg p-3 border-x border-b border-indigo-500/50 space-y-1.5">
                         <div>
                           <span className="text-[11px] text-primary font-semibold uppercase">Examples: </span>
-                          <span className="text-xs text-zinc-300">{theme.examples}</span>
+                          <span className="text-xs text-muted-foreground">{theme.examples}</span>
                         </div>
                         <div>
                           <span className="text-[11px] text-green-400 font-semibold uppercase">Entry: </span>
-                          <span className="text-xs text-zinc-300">{theme.entry}</span>
+                          <span className="text-xs text-muted-foreground">{theme.entry}</span>
                         </div>
                         <div>
                           <span className="text-[11px] text-yellow-400 font-semibold uppercase">Timing: </span>
-                          <span className="text-xs text-zinc-300">{theme.timing}</span>
+                          <span className="text-xs text-muted-foreground">{theme.timing}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -1554,9 +1554,9 @@ function CrisisInvestingTab() {
 
       <div className="grid grid-cols-2 gap-4">
         {/* Soros Case Study */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-yellow-400" />
               Soros 1992 Sterling Trade
             </CardTitle>
@@ -1565,7 +1565,7 @@ function CrisisInvestingTab() {
             <SorosCaseStudy />
             <div className="mt-3 bg-yellow-950/20 border border-yellow-500/30 rounded p-2">
               <div className="text-[11px] text-yellow-400 font-semibold mb-1">Key Lesson</div>
-              <div className="text-[11px] text-zinc-400">
+              <div className="text-[11px] text-muted-foreground">
                 A government commitment to a fixed rate is only credible if the underlying macro supports it.
                 When unemployment was rising, the political cost of defending the peg exceeded its benefit — Soros bet on this asymmetry.
               </div>
@@ -1574,9 +1574,9 @@ function CrisisInvestingTab() {
         </Card>
 
         {/* Positioning Checklist */}
-        <Card className="bg-zinc-900 border-zinc-700">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-orange-400" />
               Crisis Positioning Checklist
             </CardTitle>
@@ -1588,9 +1588,9 @@ function CrisisInvestingTab() {
       </div>
 
       {/* Post-crisis recovery signals */}
-      <Card className="bg-zinc-900 border-zinc-700">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <ArrowUpRight className="w-4 h-4 text-green-400" />
             Post-Crisis Structural Reform Signals
           </CardTitle>
@@ -1599,16 +1599,16 @@ function CrisisInvestingTab() {
           <div className="grid grid-cols-2 gap-4">
             <PostCrisisSignals />
             <div className="space-y-2">
-              <div className="text-[11px] text-zinc-300 font-semibold mb-2">Recovery Framework</div>
+              <div className="text-[11px] text-muted-foreground font-semibold mb-2">Recovery Framework</div>
               {[
                 { phase: "Stabilization (0–6mo)", desc: "Stop the bleeding: IMF, rate hikes, austerity" },
                 { phase: "Adjustment (6–18mo)", desc: "Current account improves, FX stabilizes" },
                 { phase: "Reform (12–36mo)", desc: "Structural changes: banking reform, privatization" },
                 { phase: "Rebound (18–48mo)", desc: "Growth returns, spreads tighten, re-rating" },
               ].map((p) => (
-                <div key={p.phase} className="bg-zinc-800/50 rounded p-2">
+                <div key={p.phase} className="bg-muted/50 rounded p-2">
                   <div className="text-xs font-semibold text-indigo-400 mb-0.5">{p.phase}</div>
-                  <div className="text-[11px] text-zinc-400">{p.desc}</div>
+                  <div className="text-[11px] text-muted-foreground">{p.desc}</div>
                 </div>
               ))}
             </div>
@@ -1623,7 +1623,7 @@ function CrisisInvestingTab() {
 
 export default function MacroCrisisPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-6 space-y-5">
         {/* Header */}
         <motion.div
@@ -1637,8 +1637,8 @@ export default function MacroCrisisPage() {
               <AlertTriangle className="w-5 h-5 text-red-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-zinc-100">Global Macro Crises</h1>
-              <p className="text-[12px] text-zinc-500">
+              <h1 className="text-xl font-bold text-foreground">Global Macro Crises</h1>
+              <p className="text-[12px] text-muted-foreground">
                 Anatomy of financial crises, currency crises, sovereign defaults, and crisis investing
               </p>
             </div>
@@ -1647,17 +1647,17 @@ export default function MacroCrisisPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="anatomy">
-          <TabsList className="bg-zinc-900 border border-zinc-700 grid grid-cols-4 w-full">
-            <TabsTrigger value="anatomy" className="text-[11px] data-[state=active]:bg-zinc-700">
+          <TabsList className="bg-card border border-border grid grid-cols-4 w-full">
+            <TabsTrigger value="anatomy" className="text-[11px] data-[state=active]:bg-muted">
               Crisis Anatomy
             </TabsTrigger>
-            <TabsTrigger value="currency" className="text-[11px] data-[state=active]:bg-zinc-700">
+            <TabsTrigger value="currency" className="text-[11px] data-[state=active]:bg-muted">
               Currency Crises
             </TabsTrigger>
-            <TabsTrigger value="sovereign" className="text-[11px] data-[state=active]:bg-zinc-700">
+            <TabsTrigger value="sovereign" className="text-[11px] data-[state=active]:bg-muted">
               Sovereign Debt
             </TabsTrigger>
-            <TabsTrigger value="investing" className="text-[11px] data-[state=active]:bg-zinc-700">
+            <TabsTrigger value="investing" className="text-[11px] data-[state=active]:bg-muted">
               Crisis Investing
             </TabsTrigger>
           </TabsList>

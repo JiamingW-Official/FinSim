@@ -191,13 +191,13 @@ function Metric({ label, value, sub, color = "default" }: { label: string; value
     green: "border-green-500/30 bg-green-500/5 text-green-400",
     red: "border-red-500/30 bg-red-500/5 text-red-400",
     amber: "border-amber-500/30 bg-amber-500/5 text-amber-400",
-    default: "border-neutral-700 bg-neutral-800/50 text-neutral-100",
+    default: "border-border bg-muted/50 text-foreground",
   };
   return (
     <div className={`rounded-lg border p-3 ${colors[color]}`}>
-      <div className="text-xs text-neutral-500 mb-1">{label}</div>
+      <div className="text-xs text-muted-foreground mb-1">{label}</div>
       <div className="text-lg font-mono font-semibold">{value}</div>
-      {sub && <div className="text-xs text-neutral-500 mt-0.5">{sub}</div>}
+      {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
     </div>
   );
 }
@@ -212,7 +212,7 @@ function InfoBox({ children }: { children: React.ReactNode }) {
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-sm font-semibold text-neutral-300 mb-3">{children}</h3>;
+  return <h3 className="text-sm font-semibold text-muted-foreground mb-3">{children}</h3>;
 }
 
 // ─── COVERED CALL TAB ─────────────────────────────────────────────────────────
@@ -257,7 +257,7 @@ function CoveredCallTab() {
 
       {/* Sliders */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4 space-y-4">
+        <div className="rounded-lg border border-border bg-card p-4 space-y-4">
           <SectionTitle>Parameters</SectionTitle>
           {[
             { label: `Spot Price: $${spotPrice}`, min: 50, max: 500, val: spotPrice, set: setSpotPrice, step: 1 },
@@ -267,7 +267,7 @@ function CoveredCallTab() {
             { label: `Shares: ${shares}`, min: 100, max: 1000, val: shares, set: setShares, step: 100 },
           ].map(({ label, min, max, val, set, step }) => (
             <div key={label.split(":")[0]}>
-              <div className="flex justify-between text-xs text-neutral-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>{label}</span>
               </div>
               <Slider min={min} max={max} step={step} value={[val]} onValueChange={([v]) => set(v)} className="w-full" />
@@ -290,10 +290,10 @@ function CoveredCallTab() {
       </div>
 
       {/* Payoff */}
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
+      <div className="rounded-lg border border-border bg-card p-4">
         <SectionTitle>Payoff at Expiration</SectionTitle>
         <PayoffSVG points={points} breakevens={[breakeven]} />
-        <div className="flex gap-4 text-xs text-neutral-500 mt-2 flex-wrap">
+        <div className="flex gap-4 text-xs text-muted-foreground mt-2 flex-wrap">
           <span className="text-green-400">— Covered Call P&L</span>
           <span className="text-amber-400">- - Breakeven ${breakeven.toFixed(2)}</span>
           <span>Strike ${K.toFixed(2)} | {dte}DTE | IV {iv}%</span>
@@ -306,7 +306,7 @@ function CoveredCallTab() {
           <div className="flex items-center gap-1.5 text-green-400 font-medium mb-1.5">
             <CheckCircle2 size={13} /> Best Conditions
           </div>
-          <ul className="text-neutral-400 space-y-1 text-xs list-disc list-inside">
+          <ul className="text-muted-foreground space-y-1 text-xs list-disc list-inside">
             <li>Mildly bullish or neutral outlook</li>
             <li>High IV environment (sell expensive premium)</li>
             <li>Stock you're comfortable holding long-term</li>
@@ -317,7 +317,7 @@ function CoveredCallTab() {
           <div className="flex items-center gap-1.5 text-red-400 font-medium mb-1.5">
             <AlertTriangle size={13} /> Assignment Risk
           </div>
-          <ul className="text-neutral-400 space-y-1 text-xs list-disc list-inside">
+          <ul className="text-muted-foreground space-y-1 text-xs list-disc list-inside">
             <li>Shares called away if price exceeds strike at expiry</li>
             <li>Early assignment risk near ex-dividend dates</li>
             <li>Roll the call up/out to avoid assignment</li>
@@ -367,7 +367,7 @@ function CashSecuredPutTab() {
       </InfoBox>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4 space-y-4">
+        <div className="rounded-lg border border-border bg-card p-4 space-y-4">
           <SectionTitle>Parameters</SectionTitle>
           {[
             { label: `Spot Price: $${spotPrice}`, min: 50, max: 500, val: spotPrice, set: setSpotPrice, step: 1 },
@@ -376,7 +376,7 @@ function CashSecuredPutTab() {
             { label: `DTE: ${dte} days`, min: 7, max: 90, val: dte, set: setDte, step: 1 },
           ].map(({ label, min, max, val, set, step }) => (
             <div key={label.split(":")[0]}>
-              <div className="text-xs text-neutral-400 mb-1">{label}</div>
+              <div className="text-xs text-muted-foreground mb-1">{label}</div>
               <Slider min={min} max={max} step={step} value={[val]} onValueChange={([v]) => set(v)} className="w-full" />
             </div>
           ))}
@@ -404,10 +404,10 @@ function CashSecuredPutTab() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
+      <div className="rounded-lg border border-border bg-card p-4">
         <SectionTitle>Payoff at Expiration</SectionTitle>
         <PayoffSVG points={points} breakevens={[breakeven]} />
-        <div className="flex gap-4 text-xs text-neutral-500 mt-2 flex-wrap">
+        <div className="flex gap-4 text-xs text-muted-foreground mt-2 flex-wrap">
           <span className="text-green-400">— CSP P&L</span>
           <span className="text-amber-400">- - Breakeven ${breakeven.toFixed(2)}</span>
           <span>Strike ${K.toFixed(2)} | {dte}DTE | IV {iv}%</span>
@@ -419,7 +419,7 @@ function CashSecuredPutTab() {
           <div className="flex items-center gap-1.5 text-green-400 font-medium text-sm mb-1.5">
             <CheckCircle2 size={13} /> Best Conditions
           </div>
-          <ul className="text-neutral-400 space-y-1 text-xs list-disc list-inside">
+          <ul className="text-muted-foreground space-y-1 text-xs list-disc list-inside">
             <li>Bullish or neutral on the underlying</li>
             <li>Willing to buy shares at the strike price</li>
             <li>High IV for maximum premium collection</li>
@@ -430,7 +430,7 @@ function CashSecuredPutTab() {
           <div className="flex items-center gap-1.5 text-amber-400 font-medium text-sm mb-1.5">
             <AlertTriangle size={13} /> Margin Considerations
           </div>
-          <ul className="text-neutral-400 space-y-1 text-xs list-disc list-inside">
+          <ul className="text-muted-foreground space-y-1 text-xs list-disc list-inside">
             <li>Must hold full cash amount (${marginRequired.toFixed(0)}) in account</li>
             <li>Some brokers allow margin → reduces capital tie-up</li>
             <li>ROC is higher with margin (but risk increases)</li>
@@ -499,7 +499,7 @@ function IronCondorTab() {
       </InfoBox>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4 space-y-4">
+        <div className="rounded-lg border border-border bg-card p-4 space-y-4">
           <SectionTitle>Parameters</SectionTitle>
           {[
             { label: `Spot Price: $${spotPrice}`, min: 50, max: 500, val: spotPrice, set: setSpotPrice, step: 1 },
@@ -510,7 +510,7 @@ function IronCondorTab() {
             { label: `DTE: ${dte} days`, min: 14, max: 90, val: dte, set: setDte, step: 1 },
           ].map(({ label, min, max, val, set, step }) => (
             <div key={label.split(":")[0]}>
-              <div className="text-xs text-neutral-400 mb-1">{label}</div>
+              <div className="text-xs text-muted-foreground mb-1">{label}</div>
               <Slider min={min} max={max} step={step} value={[val]} onValueChange={([v]) => set(v)} className="w-full" />
             </div>
           ))}
@@ -518,7 +518,7 @@ function IronCondorTab() {
 
         <div className="space-y-3">
           {/* 4-leg breakdown */}
-          <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-3">
+          <div className="rounded-lg border border-border bg-card p-3">
             <SectionTitle>4-Leg Breakdown</SectionTitle>
             <div className="space-y-1.5 text-xs font-mono">
               {[
@@ -531,14 +531,14 @@ function IronCondorTab() {
                   <Badge variant="outline" className={`text-xs ${leg.action === "SELL" ? "border-green-500/50 text-green-400" : "border-red-500/50 text-red-400"}`}>
                     {leg.action}
                   </Badge>
-                  <span className="text-neutral-300">{leg.type} ${leg.strike.toFixed(1)}</span>
+                  <span className="text-muted-foreground">{leg.type} ${leg.strike.toFixed(1)}</span>
                   <span className={leg.dir > 0 ? "text-green-400" : "text-red-400"}>
                     {leg.dir > 0 ? "+" : "-"}${leg.premium.toFixed(2)}
                   </span>
                 </div>
               ))}
-              <div className="border-t border-neutral-700 pt-1.5 flex justify-between font-semibold">
-                <span className="text-neutral-300">Net Credit</span>
+              <div className="border-t border-border pt-1.5 flex justify-between font-semibold">
+                <span className="text-muted-foreground">Net Credit</span>
                 <span className="text-green-400">+${netCredit.toFixed(2)}</span>
               </div>
             </div>
@@ -555,10 +555,10 @@ function IronCondorTab() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
+      <div className="rounded-lg border border-border bg-card p-4">
         <SectionTitle>Payoff at Expiration</SectionTitle>
         <PayoffSVG points={points} breakevens={[lowerBE, upperBE]} />
-        <div className="flex gap-4 text-xs text-neutral-500 mt-2 flex-wrap">
+        <div className="flex gap-4 text-xs text-muted-foreground mt-2 flex-wrap">
           <span className="text-green-400">— Iron Condor P&L</span>
           <span className="text-amber-400">- - Breakevens</span>
           <span>Profit zone: ${lowerBE.toFixed(1)} – ${upperBE.toFixed(1)}</span>
@@ -566,25 +566,25 @@ function IronCondorTab() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-3">
-          <div className="text-neutral-400 font-medium mb-1.5">Adjustment: IV Spike</div>
-          <div className="text-neutral-500 space-y-1">
+        <div className="rounded-lg border border-border bg-card p-3">
+          <div className="text-muted-foreground font-medium mb-1.5">Adjustment: IV Spike</div>
+          <div className="text-muted-foreground space-y-1">
             <div>• Buy back the short option in the threatened wing</div>
             <div>• Roll the wing further OTM for credit if possible</div>
             <div>• Consider closing entire condor at 2× credit</div>
           </div>
         </div>
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-3">
-          <div className="text-neutral-400 font-medium mb-1.5">Management Rules</div>
-          <div className="text-neutral-500 space-y-1">
+        <div className="rounded-lg border border-border bg-card p-3">
+          <div className="text-muted-foreground font-medium mb-1.5">Management Rules</div>
+          <div className="text-muted-foreground space-y-1">
             <div>• Close at 50% of max profit (take the win)</div>
             <div>• Stop loss at 2× the credit received</div>
             <div>• Consider rolling 21 DTE if untested</div>
           </div>
         </div>
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-3">
-          <div className="text-neutral-400 font-medium mb-1.5">Best Conditions</div>
-          <div className="text-neutral-500 space-y-1">
+        <div className="rounded-lg border border-border bg-card p-3">
+          <div className="text-muted-foreground font-medium mb-1.5">Best Conditions</div>
+          <div className="text-muted-foreground space-y-1">
             <div>• High IV with range-bound price action</div>
             <div>• Post-earnings, post-event environment</div>
             <div>• VIX elevated (20+) for fatter premiums</div>
@@ -661,7 +661,7 @@ function CalendarSpreadTab() {
       </InfoBox>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4 space-y-4">
+        <div className="rounded-lg border border-border bg-card p-4 space-y-4">
           <div className="flex items-center justify-between mb-1">
             <SectionTitle>Parameters</SectionTitle>
             <div className="flex gap-1">
@@ -672,7 +672,7 @@ function CalendarSpreadTab() {
                   className={`px-2.5 py-0.5 rounded text-xs font-medium transition-colors ${
                     (t === "Call") === isCall
                       ? "bg-primary text-white"
-                      : "bg-neutral-800 text-neutral-400 hover:text-neutral-200"
+                      : "bg-muted text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {t}
@@ -689,14 +689,14 @@ function CalendarSpreadTab() {
             { label: `Back DTE: ${backDte} days`, min: 30, max: 120, val: backDte, set: setBackDte, step: 1 },
           ].map(({ label, min, max, val, set, step }) => (
             <div key={label.split(":")[0]}>
-              <div className="text-xs text-neutral-400 mb-1">{label}</div>
+              <div className="text-xs text-muted-foreground mb-1">{label}</div>
               <Slider min={min} max={max} step={step} value={[val]} onValueChange={([v]) => set(v)} className="w-full" />
             </div>
           ))}
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-3">
+          <div className="rounded-lg border border-border bg-card p-3">
             <SectionTitle>Leg Breakdown</SectionTitle>
             <div className="space-y-2 text-xs font-mono">
               <div className="flex justify-between">
@@ -707,8 +707,8 @@ function CalendarSpreadTab() {
                 <span className="text-green-400">BUY {backDte}DTE {isCall ? "Call" : "Put"} ${K.toFixed(1)}</span>
                 <span className="text-red-400">-${backPrem.toFixed(2)}</span>
               </div>
-              <div className="border-t border-neutral-700 pt-1.5 flex justify-between font-semibold">
-                <span className="text-neutral-300">Net Debit</span>
+              <div className="border-t border-border pt-1.5 flex justify-between font-semibold">
+                <span className="text-muted-foreground">Net Debit</span>
                 <span className="text-red-400">-${netDebit.toFixed(2)}</span>
               </div>
             </div>
@@ -725,7 +725,7 @@ function CalendarSpreadTab() {
             <div className="font-semibold mb-1">
               {isContango ? "Front IV > Back IV — Ideal contango structure" : "Back IV > Front IV — Consider waiting for event"}
             </div>
-            <div className="text-neutral-500">
+            <div className="text-muted-foreground">
               {isContango
                 ? "Front month is pricing in a near-term event. Selling elevated front IV while holding cheaper back month enhances profitability."
                 : "IV term structure is inverted. The trade still works but requires more price stability."}
@@ -734,28 +734,28 @@ function CalendarSpreadTab() {
         </div>
       </div>
 
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
+      <div className="rounded-lg border border-border bg-card p-4">
         <SectionTitle>Estimated Payoff at Front Expiry</SectionTitle>
         <PayoffSVG points={points} breakevens={[]} />
-        <div className="flex gap-4 text-xs text-neutral-500 mt-2 flex-wrap">
+        <div className="flex gap-4 text-xs text-muted-foreground mt-2 flex-wrap">
           <span className="text-green-400">— Calendar P&L at front expiry</span>
           <span>Strike ${K.toFixed(1)} | Front {frontDte}DTE IV {frontIv}% | Back {backDte}DTE IV {backIv}%</span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-3">
-          <div className="text-neutral-400 font-medium mb-1.5">Adjustment Mechanics</div>
-          <div className="text-neutral-500 space-y-1">
+        <div className="rounded-lg border border-border bg-card p-3">
+          <div className="text-muted-foreground font-medium mb-1.5">Adjustment Mechanics</div>
+          <div className="text-muted-foreground space-y-1">
             <div>• Roll short strike if price moves 1 SD away</div>
             <div>• Convert to diagonal: move short strike directionally</div>
             <div>• Add a second calendar at different strike (double calendar)</div>
             <div>• Close and re-establish after front expiry</div>
           </div>
         </div>
-        <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-3">
-          <div className="text-neutral-400 font-medium mb-1.5">Delta Neutral Maintenance</div>
-          <div className="text-neutral-500 space-y-1">
+        <div className="rounded-lg border border-border bg-card p-3">
+          <div className="text-muted-foreground font-medium mb-1.5">Delta Neutral Maintenance</div>
+          <div className="text-muted-foreground space-y-1">
             <div>• Net delta ≈ 0 when ATM — ideal entry</div>
             <div>• As stock moves, position gains directionality</div>
             <div>• Hedge with shares or micro-futures to stay neutral</div>
@@ -905,24 +905,24 @@ function StrategyComparisonTab() {
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
               selectedIvScenario === s.key
                 ? "border-primary bg-primary/10 text-primary"
-                : "border-neutral-700 bg-neutral-800 text-neutral-400 hover:text-neutral-200"
+                : "border-border bg-muted text-muted-foreground hover:text-foreground"
             }`}
           >
             {s.label}
-            <span className="ml-1.5 text-neutral-500">{s.desc}</span>
+            <span className="ml-1.5 text-muted-foreground">{s.desc}</span>
           </button>
         ))}
       </div>
 
       {/* Annual Yield Table */}
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 overflow-hidden">
-        <div className="p-3 border-b border-neutral-800 text-sm font-medium text-neutral-300">
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <div className="p-3 border-b border-border text-sm font-medium text-muted-foreground">
           Annual Yield Comparison — IV {iv}% | {dte} DTE | ${spotPrice} Spot
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-800 text-neutral-500">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left px-4 py-2 font-medium">Strategy</th>
                 <th className="text-right px-4 py-2 font-medium">Annual Yield</th>
                 <th className="text-right px-4 py-2 font-medium">Prob of Profit</th>
@@ -938,11 +938,11 @@ function StrategyComparisonTab() {
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.05 }}
-                  className="border-b border-neutral-800/50 hover:bg-neutral-800/30 transition-colors"
+                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
-                  <td className="px-4 py-2.5 font-medium text-neutral-200">{s.name}</td>
+                  <td className="px-4 py-2.5 font-medium text-foreground">{s.name}</td>
                   <td className="px-4 py-2.5 text-right">
-                    <span className={`font-mono font-semibold ${s.annualYield > 20 ? "text-green-400" : s.annualYield > 10 ? "text-green-300" : "text-neutral-300"}`}>
+                    <span className={`font-mono font-semibold ${s.annualYield > 20 ? "text-green-400" : s.annualYield > 10 ? "text-green-300" : "text-muted-foreground"}`}>
                       {s.annualYield.toFixed(1)}%
                     </span>
                   </td>
@@ -951,15 +951,15 @@ function StrategyComparisonTab() {
                       <div className="w-16 h-1.5 rounded-full bg-neutral-700 overflow-hidden">
                         <div className="h-full bg-green-500 rounded-full" style={{ width: `${Math.min(s.pop, 100)}%` }} />
                       </div>
-                      <span className="font-mono text-neutral-300">{s.pop.toFixed(0)}%</span>
+                      <span className="font-mono text-muted-foreground">{s.pop.toFixed(0)}%</span>
                     </div>
                   </td>
                   <td className="px-4 py-2.5 text-right font-mono text-red-400">
                     {s.maxLossMultiple < 1 ? `~${(s.maxLossMultiple * 100).toFixed(0)}% capital` : "Full position"}
                   </td>
-                  <td className="px-4 py-2.5 text-right font-mono text-neutral-300">{s.deltaExposure}</td>
+                  <td className="px-4 py-2.5 text-right font-mono text-muted-foreground">{s.deltaExposure}</td>
                   <td className="px-4 py-2.5 text-left">
-                    <Badge variant="outline" className="text-xs border-neutral-700 text-neutral-400">
+                    <Badge variant="outline" className="text-xs border-border text-muted-foreground">
                       {s.bestFor}
                     </Badge>
                   </td>
@@ -978,18 +978,18 @@ function StrategyComparisonTab() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.07 }}
-            className="rounded-lg border border-neutral-800 bg-neutral-900 p-4"
+            className="rounded-lg border border-border bg-card p-4"
           >
-            <div className="text-sm font-medium text-neutral-200 mb-3">{s.name} — Greeks</div>
+            <div className="text-sm font-medium text-foreground mb-3">{s.name} — Greeks</div>
             <div className="grid grid-cols-4 gap-2">
               {[
-                { label: "Delta", val: s.greeks.delta, color: parseFloat(s.greeks.delta) > 0 ? "text-green-400" : "text-neutral-300" },
+                { label: "Delta", val: s.greeks.delta, color: parseFloat(s.greeks.delta) > 0 ? "text-green-400" : "text-muted-foreground" },
                 { label: "Theta/day", val: s.greeks.theta, color: "text-green-400" },
                 { label: "Vega", val: s.greeks.vega, color: s.greeks.vega.startsWith("+") ? "text-green-400" : "text-red-400" },
-                { label: "Gamma", val: s.greeks.gamma, color: s.greeks.gamma.startsWith("-") ? "text-red-400" : "text-neutral-300" },
+                { label: "Gamma", val: s.greeks.gamma, color: s.greeks.gamma.startsWith("-") ? "text-red-400" : "text-muted-foreground" },
               ].map(({ label, val, color }) => (
                 <div key={label} className="text-center">
-                  <div className="text-xs text-neutral-500 mb-0.5">{label}</div>
+                  <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
                   <div className={`text-xs font-mono font-semibold ${color}`}>{val}</div>
                 </div>
               ))}
@@ -999,7 +999,7 @@ function StrategyComparisonTab() {
       </div>
 
       {/* Conditions Guide */}
-      <div className="rounded-lg border border-neutral-800 bg-neutral-900 p-4">
+      <div className="rounded-lg border border-border bg-card p-4">
         <SectionTitle>When to Use Each Strategy</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
           {[
@@ -1024,11 +1024,11 @@ function StrategyComparisonTab() {
               conditions: ["Expect near-term event with vol crush", "Want minimal directional exposure", "Front month IV elevated vs back", "Looking for cheap gamma long position"],
             },
           ].map((s) => (
-            <div key={s.name} className="rounded border border-neutral-700 p-3">
-              <div className="flex items-center gap-1.5 font-medium text-neutral-200 mb-1.5">
+            <div key={s.name} className="rounded border border-border p-3">
+              <div className="flex items-center gap-1.5 font-medium text-foreground mb-1.5">
                 {s.icon} {s.name}
               </div>
-              <ul className="text-neutral-500 space-y-0.5 list-disc list-inside">
+              <ul className="text-muted-foreground space-y-0.5 list-disc list-inside">
                 {s.conditions.map((c) => (
                   <li key={c}>{c}</li>
                 ))}
@@ -1059,7 +1059,7 @@ export default function OptionsIncomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100">
+    <div className="min-h-screen bg-neutral-950 text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="space-y-1">
@@ -1068,20 +1068,20 @@ export default function OptionsIncomePage() {
               <TrendingUp size={16} className="text-green-400" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-neutral-100">Options Income Strategies</h1>
-              <p className="text-sm text-neutral-500">Education & simulator for premium-selling strategies</p>
+              <h1 className="text-xl font-semibold text-foreground">Options Income Strategies</h1>
+              <p className="text-sm text-muted-foreground">Education & simulator for premium-selling strategies</p>
             </div>
           </div>
         </motion.div>
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-0">
-          <TabsList className="flex gap-1 p-1 bg-neutral-900 border border-neutral-800 rounded-xl h-auto w-full">
+          <TabsList className="flex gap-1 p-1 bg-card border border-border rounded-xl h-auto w-full">
             {tabs.map((t) => (
               <TabsTrigger
                 key={t.id}
                 value={t.id}
-                className="flex-1 flex items-center gap-1.5 py-2 px-2 text-xs font-medium rounded-lg data-[state=active]:bg-neutral-800 data-[state=active]:text-neutral-100 text-neutral-500 hover:text-neutral-300 transition-colors"
+                className="flex-1 flex items-center gap-1.5 py-2 px-2 text-xs font-medium rounded-lg data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground hover:text-muted-foreground transition-colors"
               >
                 {t.icon}
                 <span className="hidden sm:inline">{t.label}</span>

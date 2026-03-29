@@ -1154,7 +1154,7 @@ function MarketAnalysisTab() {
                 const statusColors: Record<NotableIPO["status"], string> = {
                   success: "text-green-400",
                   mixed: "text-amber-400",
-                  withdrawn: "text-gray-400",
+                  withdrawn: "text-muted-foreground",
                   decline: "text-red-400",
                 };
                 return (
@@ -1171,10 +1171,10 @@ function MarketAnalysisTab() {
                     <td className="px-3 py-2.5 text-right text-white/85">
                       {ipo.firstDayClose > 0 ? `$${ipo.firstDayClose}` : "—"}
                     </td>
-                    <td className={cn("px-3 py-2.5 text-right font-medium", firstDayChg === null ? "text-gray-500" : firstDayChg >= 0 ? "text-green-400" : "text-red-400")}>
+                    <td className={cn("px-3 py-2.5 text-right font-medium", firstDayChg === null ? "text-muted-foreground" : firstDayChg >= 0 ? "text-green-400" : "text-red-400")}>
                       {firstDayChg === null ? "—" : fmtPct(firstDayChg)}
                     </td>
-                    <td className={cn("px-3 py-2.5 text-right font-medium", ipo.oneYearReturn === null ? "text-gray-500" : ipo.oneYearReturn >= 0 ? "text-green-400" : "text-red-400")}>
+                    <td className={cn("px-3 py-2.5 text-right font-medium", ipo.oneYearReturn === null ? "text-muted-foreground" : ipo.oneYearReturn >= 0 ? "text-green-400" : "text-red-400")}>
                       {ipo.oneYearReturn === null ? "—" : fmtPct(ipo.oneYearReturn)}
                     </td>
                     <td className="px-4 py-2.5 text-white/45 max-w-[220px]">

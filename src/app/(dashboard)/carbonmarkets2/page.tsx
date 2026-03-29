@@ -340,9 +340,9 @@ function EuEtsTab() {
   return (
     <div className="space-y-6">
       {/* Allowance Price Chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart2 size={15} className="text-primary" />
             EU ETS Allowance Price (EUA) 2015–2024 — €/tonne CO₂
           </CardTitle>
@@ -392,9 +392,9 @@ function EuEtsTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Cap Reduction */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <TrendingDown size={14} className="text-red-400" />
               Cap Reduction Trajectory (Mt CO₂e)
             </CardTitle>
@@ -429,9 +429,9 @@ function EuEtsTab() {
         </Card>
 
         {/* Allocation Split */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+            <CardTitle className="text-sm text-foreground flex items-center gap-2">
               <BarChart2 size={14} className="text-emerald-400" />
               Free Allocation vs Auction Split
             </CardTitle>
@@ -445,17 +445,17 @@ function EuEtsTab() {
               { label: "Pulp & Paper", free: 70, auction: 30, color: "bg-lime-500" },
             ].map((row) => (
               <div key={row.label} className="space-y-1">
-                <div className="flex justify-between text-xs text-zinc-400">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   <span>{row.label}</span>
-                  <span className="text-zinc-500">{row.free}% free / {row.auction}% auction</span>
+                  <span className="text-muted-foreground">{row.free}% free / {row.auction}% auction</span>
                 </div>
-                <div className="flex h-3 rounded overflow-hidden bg-zinc-800">
+                <div className="flex h-3 rounded overflow-hidden bg-muted">
                   <div className={`${row.color} opacity-70`} style={{ width: `${row.free}%` }} />
                   <div className="bg-primary/80 opacity-50" style={{ width: `${row.auction}%` }} />
                 </div>
               </div>
             ))}
-            <div className="flex gap-4 text-xs text-zinc-500 pt-1">
+            <div className="flex gap-4 text-xs text-muted-foreground pt-1">
               <span className="flex items-center gap-1"><span className="w-3 h-2 bg-orange-500 rounded opacity-70 inline-block" />Free Allocation</span>
               <span className="flex items-center gap-1"><span className="w-3 h-2 bg-primary/80 rounded opacity-50 inline-block" />Auction Revenue</span>
             </div>
@@ -464,24 +464,24 @@ function EuEtsTab() {
       </div>
 
       {/* CBAM */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Shield size={14} className="text-primary" />
             Carbon Border Adjustment Mechanism (CBAM)
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="bg-zinc-800 rounded-lg p-3 space-y-2">
+            <div className="bg-muted rounded-lg p-3 space-y-2">
               <p className="text-primary font-medium">How CBAM Works</p>
-              <p className="text-zinc-400 text-xs leading-relaxed">
+              <p className="text-muted-foreground text-xs leading-relaxed">
                 Importers of covered goods buy CBAM certificates at the weekly average EU ETS price. Certificates are surrendered for embedded carbon in imports.
               </p>
             </div>
-            <div className="bg-zinc-800 rounded-lg p-3 space-y-2">
+            <div className="bg-muted rounded-lg p-3 space-y-2">
               <p className="text-primary font-medium">Covered Sectors (Phase-in)</p>
-              <ul className="text-zinc-400 text-xs space-y-1">
+              <ul className="text-muted-foreground text-xs space-y-1">
                 <li className="flex items-center gap-1"><CheckCircle size={10} className="text-emerald-400" />Cement</li>
                 <li className="flex items-center gap-1"><CheckCircle size={10} className="text-emerald-400" />Iron & Steel</li>
                 <li className="flex items-center gap-1"><CheckCircle size={10} className="text-emerald-400" />Aluminium</li>
@@ -490,13 +490,13 @@ function EuEtsTab() {
                 <li className="flex items-center gap-1"><CheckCircle size={10} className="text-emerald-400" />Hydrogen</li>
               </ul>
             </div>
-            <div className="bg-zinc-800 rounded-lg p-3 space-y-2">
+            <div className="bg-muted rounded-lg p-3 space-y-2">
               <p className="text-emerald-300 font-medium">Timeline</p>
-              <ul className="text-zinc-400 text-xs space-y-1">
-                <li><span className="text-zinc-300">Oct 2023</span> — Reporting phase begins</li>
-                <li><span className="text-zinc-300">Jan 2026</span> — Financial obligation starts</li>
-                <li><span className="text-zinc-300">2034</span> — Free allocation fully phased out</li>
-                <li><span className="text-zinc-300">2026+</span> — Scope expands to more sectors</li>
+              <ul className="text-muted-foreground text-xs space-y-1">
+                <li><span className="text-muted-foreground">Oct 2023</span> — Reporting phase begins</li>
+                <li><span className="text-muted-foreground">Jan 2026</span> — Financial obligation starts</li>
+                <li><span className="text-muted-foreground">2034</span> — Free allocation fully phased out</li>
+                <li><span className="text-muted-foreground">2026+</span> — Scope expands to more sectors</li>
               </ul>
             </div>
           </div>
@@ -504,16 +504,16 @@ function EuEtsTab() {
       </Card>
 
       {/* MSR */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Info size={14} className="text-muted-foreground" />
             Market Stability Reserve (MSR)
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-            <div className="space-y-2 text-zinc-400 text-xs leading-relaxed">
+            <div className="space-y-2 text-muted-foreground text-xs leading-relaxed">
               <p>The MSR automatically adjusts supply of allowances to stabilise the market. When the Total Number of Allowances in Circulation (TNAC) exceeds 833 Mt, allowances are withheld from auctions. Below 400 Mt, they are released.</p>
               <p>Post-2023 rule: Allowances in the MSR above the previous year&apos;s auction volume are <span className="text-red-300">permanently cancelled</span>, removing the overhang permanently.</p>
             </div>
@@ -524,10 +524,10 @@ function EuEtsTab() {
                 { label: "Annual Intake Rate", val: "24% of TNAC", dir: "Withheld", color: "text-orange-400" },
                 { label: "Post-2023 Cancellation", val: "Above auction vol", dir: "Permanent", color: "text-primary" },
               ].map((item) => (
-                <div key={item.label} className="flex justify-between items-center bg-zinc-800 rounded px-3 py-1.5">
-                  <span className="text-zinc-400 text-xs">{item.label}</span>
+                <div key={item.label} className="flex justify-between items-center bg-muted rounded px-3 py-1.5">
+                  <span className="text-muted-foreground text-xs">{item.label}</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-zinc-200 text-xs">{item.val}</span>
+                    <span className="text-foreground text-xs">{item.val}</span>
                     <Badge variant="outline" className={`text-xs ${item.color} border-current`}>{item.dir}</Badge>
                   </div>
                 </div>
@@ -538,18 +538,18 @@ function EuEtsTab() {
       </Card>
 
       {/* Sector Coverage Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Factory size={14} className="text-orange-400" />
             EU ETS Sector Coverage
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs text-zinc-300">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
-                <tr className="border-b border-zinc-800 text-zinc-500">
+                <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left py-2 pr-4">Sector</th>
                   <th className="text-center py-2 pr-4">Coverage</th>
                   <th className="text-center py-2 pr-4">Free Alloc.</th>
@@ -558,21 +558,21 @@ function EuEtsTab() {
               </thead>
               <tbody>
                 {SECTOR_COVERAGE.map((row) => (
-                  <tr key={row.sector} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                  <tr key={row.sector} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="py-2 pr-4">
                       <span className={`flex items-center gap-2 ${row.color}`}>
                         {row.icon}
-                        <span className="text-zinc-300">{row.sector}</span>
+                        <span className="text-muted-foreground">{row.sector}</span>
                       </span>
                     </td>
-                    <td className="text-center py-2 pr-4 text-zinc-400">{row.coverage}</td>
+                    <td className="text-center py-2 pr-4 text-muted-foreground">{row.coverage}</td>
                     <td className="text-center py-2 pr-4">
                       <span className={row.freeAlloc === "0%" ? "text-emerald-400" : "text-orange-400"}>
                         {row.freeAlloc}
                       </span>
                     </td>
                     <td className="text-center py-2">
-                      <Badge variant="outline" className="text-zinc-400 border-zinc-700 text-xs">{row.phase}</Badge>
+                      <Badge variant="outline" className="text-muted-foreground border-border text-xs">{row.phase}</Badge>
                     </td>
                   </tr>
                 ))}
@@ -604,9 +604,9 @@ function VoluntaryTab() {
   return (
     <div className="space-y-6">
       {/* Credit type taxonomy */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Leaf size={14} className="text-emerald-400" />
             Carbon Credit Type Taxonomy
           </CardTitle>
@@ -618,20 +618,20 @@ function VoluntaryTab() {
                 key={ct.abbr}
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelected(selected === ct.abbr ? null : ct.abbr)}
-                className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === ct.abbr ? "border-primary bg-zinc-800" : "border-zinc-800 bg-zinc-850 hover:border-zinc-700"}`}
+                className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === ct.abbr ? "border-primary bg-muted" : "border-border bg-zinc-850 hover:border-border"}`}
                 style={{ background: selected === ct.abbr ? undefined : "#18181b" }}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <span style={{ color: ct.color }}>{ct.icon}</span>
-                    <span className="text-xs font-medium text-zinc-200">{ct.abbr}</span>
+                    <span className="text-xs font-medium text-foreground">{ct.abbr}</span>
                   </div>
-                  <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400">{ct.volume} Mt</Badge>
+                  <Badge variant="outline" className="text-xs border-border text-muted-foreground">{ct.volume} Mt</Badge>
                 </div>
-                <p className="text-xs text-zinc-400 mb-1">{ct.name}</p>
-                <p className="text-xs text-zinc-500">{ct.registry}</p>
+                <p className="text-xs text-muted-foreground mb-1">{ct.name}</p>
+                <p className="text-xs text-muted-foreground">{ct.registry}</p>
                 <div className="flex justify-between mt-2 text-xs">
-                  <span className="text-zinc-500">Price range:</span>
+                  <span className="text-muted-foreground">Price range:</span>
                   <span style={{ color: ct.color }}>${ct.priceMin}–${ct.priceMax}/t</span>
                 </div>
               </motion.div>
@@ -641,9 +641,9 @@ function VoluntaryTab() {
       </Card>
 
       {/* Price by project type bar chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart2 size={14} className="text-yellow-400" />
             Average Credit Price by Project Type ($/tonne CO₂e, log scale)
           </CardTitle>
@@ -680,18 +680,18 @@ function VoluntaryTab() {
       </Card>
 
       {/* Verra VCS vs Gold Standard */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Shield size={14} className="text-primary" />
             Verra VCS vs Gold Standard Comparison
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
           <div className="overflow-x-auto">
-            <table className="w-full text-xs text-zinc-300">
+            <table className="w-full text-xs text-muted-foreground">
               <thead>
-                <tr className="border-b border-zinc-800 text-zinc-500">
+                <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left py-2 pr-4">Dimension</th>
                   <th className="text-center py-2 pr-4 text-primary">Verra VCS</th>
                   <th className="text-center py-2 text-yellow-400">Gold Standard</th>
@@ -708,10 +708,10 @@ function VoluntaryTab() {
                   { dim: "Registry Transparency", vcs: "Public APX registry", gs: "Public Impact Registry" },
                   { dim: "ICVCM CCP Status", vcs: "Pursuing approval", gs: "Pursuing approval" },
                 ].map((row) => (
-                  <tr key={row.dim} className="hover:bg-zinc-800/30 transition-colors">
-                    <td className="py-2 pr-4 text-zinc-400">{row.dim}</td>
-                    <td className="text-center py-2 pr-4 text-zinc-300">{row.vcs}</td>
-                    <td className="text-center py-2 text-zinc-300">{row.gs}</td>
+                  <tr key={row.dim} className="hover:bg-muted/30 transition-colors">
+                    <td className="py-2 pr-4 text-muted-foreground">{row.dim}</td>
+                    <td className="text-center py-2 pr-4 text-muted-foreground">{row.vcs}</td>
+                    <td className="text-center py-2 text-muted-foreground">{row.gs}</td>
                   </tr>
                 ))}
               </tbody>
@@ -721,18 +721,18 @@ function VoluntaryTab() {
       </Card>
 
       {/* Quality Framework */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <CheckCircle size={14} className="text-emerald-400" />
             Credit Quality Framework
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0 space-y-3">
           {QUALITY_CRITERIA.map((qc) => (
-            <div key={qc.key} className="bg-zinc-800 rounded-lg p-3">
+            <div key={qc.key} className="bg-muted rounded-lg p-3">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-medium text-zinc-200">{qc.criterion}</span>
+                <span className="text-sm font-medium text-foreground">{qc.criterion}</span>
                 <div className="flex gap-1">
                   {Array.from({ length: qc.pass }).map((_, i) => (
                     <CheckCircle key={`p-${i}`} size={12} className="text-emerald-400" />
@@ -742,25 +742,25 @@ function VoluntaryTab() {
                   ))}
                 </div>
               </div>
-              <p className="text-xs text-zinc-400">{qc.description}</p>
+              <p className="text-xs text-muted-foreground">{qc.description}</p>
             </div>
           ))}
         </CardContent>
       </Card>
 
       {/* Greenwashing Cases */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <AlertTriangle size={14} className="text-red-400" />
             Greenwashing Case Studies
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0 space-y-3">
           {GREENWASHING_CASES.map((gc) => (
-            <div key={gc.company} className="bg-zinc-800 rounded-lg p-3 space-y-1.5">
+            <div key={gc.company} className="bg-muted rounded-lg p-3 space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-zinc-200">{gc.company}</span>
+                <span className="text-sm font-medium text-foreground">{gc.company}</span>
                 <Badge
                   variant="outline"
                   className={`text-xs border-current ${gc.severity === "Critical" ? "text-red-500" : gc.severity === "High" ? "text-orange-400" : "text-yellow-400"}`}
@@ -769,7 +769,7 @@ function VoluntaryTab() {
                 </Badge>
               </div>
               <p className="text-xs text-primary italic">&ldquo;{gc.claim}&rdquo;</p>
-              <p className="text-xs text-zinc-400">{gc.issue}</p>
+              <p className="text-xs text-muted-foreground">{gc.issue}</p>
             </div>
           ))}
         </CardContent>
@@ -824,16 +824,16 @@ function NatureTab() {
             risk: "Low-medium; sea level rise risk long-term",
           },
         ].map((pt) => (
-          <Card key={pt.type} className="bg-zinc-900 border-zinc-800">
+          <Card key={pt.type} className="bg-card border-border">
             <CardContent className="pt-3 pb-3 space-y-2">
               <div className={`flex items-center gap-2 ${pt.color}`}>
                 {pt.icon}
-                <span className="text-sm font-medium text-zinc-200">{pt.type}</span>
+                <span className="text-sm font-medium text-foreground">{pt.type}</span>
               </div>
-              <p className="text-xs text-zinc-400">{pt.mech}</p>
+              <p className="text-xs text-muted-foreground">{pt.mech}</p>
               <div className="flex justify-between text-xs">
                 <span className="text-emerald-400">{pt.creds}</span>
-                <span className="text-zinc-500">{pt.risk}</span>
+                <span className="text-muted-foreground">{pt.risk}</span>
               </div>
             </CardContent>
           </Card>
@@ -841,9 +841,9 @@ function NatureTab() {
       </div>
 
       {/* Project comparison */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Globe size={14} className="text-muted-foreground" />
             Project Co-Benefits & Risk Scoring
           </CardTitle>
@@ -854,16 +854,16 @@ function NatureTab() {
               key={p.name}
               whileHover={{ scale: 1.01 }}
               onClick={() => setSelected(selected === i ? null : i)}
-              className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === i ? "border-cyan-600 bg-zinc-800" : "border-zinc-800 hover:border-zinc-700"}`}
+              className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === i ? "border-cyan-600 bg-muted" : "border-border hover:border-border"}`}
               style={{ background: selected === i ? undefined : "#18181b" }}
             >
               <div className="flex items-center justify-between mb-2">
                 <div>
-                  <span className="text-sm font-medium text-zinc-200">{p.name}</span>
-                  <span className="ml-2 text-xs text-zinc-500">{p.region}</span>
+                  <span className="text-sm font-medium text-foreground">{p.name}</span>
+                  <span className="ml-2 text-xs text-muted-foreground">{p.region}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400">{p.type}</Badge>
+                  <Badge variant="outline" className="text-xs border-border text-muted-foreground">{p.type}</Badge>
                   <span className="text-xs text-emerald-400">${p.creditPerHa}/ha/yr</span>
                 </div>
               </div>
@@ -874,19 +874,19 @@ function NatureTab() {
                   { label: "Water", val: p.coBeeWater, color: "bg-cyan-500" },
                 ].map((cb) => (
                   <div key={cb.label}>
-                    <div className="flex justify-between text-xs text-zinc-500 mb-0.5">
+                    <div className="flex justify-between text-xs text-muted-foreground mb-0.5">
                       <span>{cb.label}</span>
                       <span>{cb.val}</span>
                     </div>
-                    <div className="h-1.5 bg-zinc-700 rounded overflow-hidden">
+                    <div className="h-1.5 bg-muted rounded overflow-hidden">
                       <div className={`${cb.color} h-full rounded opacity-75`} style={{ width: `${cb.val}%` }} />
                     </div>
                   </div>
                 ))}
               </div>
               <div className="flex gap-4 text-xs">
-                <span className="text-zinc-500">Permanence: <span className={riskColor(p.permanenceRisk)}>{p.permanenceRisk}</span></span>
-                <span className="text-zinc-500">Tenure: <span className={riskColor(p.tenureRisk)}>{p.tenureRisk}</span></span>
+                <span className="text-muted-foreground">Permanence: <span className={riskColor(p.permanenceRisk)}>{p.permanenceRisk}</span></span>
+                <span className="text-muted-foreground">Tenure: <span className={riskColor(p.tenureRisk)}>{p.tenureRisk}</span></span>
               </div>
             </motion.div>
           ))}
@@ -894,15 +894,15 @@ function NatureTab() {
       </Card>
 
       {/* Buffer Pools */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Shield size={14} className="text-orange-400" />
             Permanence Risk & Buffer Pools
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0 space-y-3">
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             Buffer pools hold a percentage of issued credits as insurance against reversals (fire, disease, illegal logging). If reversal occurs, buffer credits are cancelled rather than re-debiting buyers.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -911,11 +911,11 @@ function NatureTab() {
               { risk: "Medium Risk", buffer: "15–25%", color: "text-yellow-400", examples: "Borneo peatland, S. American ARR" },
               { risk: "High Risk", buffer: "25–40%", color: "text-red-400", examples: "Tropical REDD+, frontier forests" },
             ].map((b) => (
-              <div key={b.risk} className="bg-zinc-800 rounded-lg p-3 text-center space-y-1">
+              <div key={b.risk} className="bg-muted rounded-lg p-3 text-center space-y-1">
                 <p className={`text-sm font-medium ${b.color}`}>{b.risk}</p>
-                <p className="text-xl font-bold text-zinc-200">{b.buffer}</p>
-                <p className="text-xs text-zinc-500">Buffer withheld</p>
-                <p className="text-xs text-zinc-500 mt-1">{b.examples}</p>
+                <p className="text-xl font-bold text-foreground">{b.buffer}</p>
+                <p className="text-xs text-muted-foreground">Buffer withheld</p>
+                <p className="text-xs text-muted-foreground mt-1">{b.examples}</p>
               </div>
             ))}
           </div>
@@ -923,24 +923,24 @@ function NatureTab() {
       </Card>
 
       {/* ICVCM Core Carbon Principles */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <CheckCircle size={14} className="text-emerald-400" />
             ICVCM Core Carbon Principles (CCPs)
           </CardTitle>
         </CardHeader>
         <CardContent className="pt-0">
-          <p className="text-xs text-zinc-400 mb-3 leading-relaxed">
+          <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
             The Integrity Council for the Voluntary Carbon Market (ICVCM) published 10 CCPs in 2023 to define a high-integrity floor standard. Carbon programmes must pass assessment to receive the CCP label.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {ICVCM_PRINCIPLES.map((p) => (
-              <div key={p.id} className="bg-zinc-800 rounded-lg p-2.5 flex gap-2">
+              <div key={p.id} className="bg-muted rounded-lg p-2.5 flex gap-2">
                 <span className="text-xs font-mono text-primary shrink-0 mt-0.5">{p.id}</span>
                 <div>
-                  <p className="text-xs font-medium text-zinc-300">{p.name}</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">{p.desc}</p>
+                  <p className="text-xs font-medium text-muted-foreground">{p.name}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{p.desc}</p>
                 </div>
               </div>
             ))}
@@ -1021,14 +1021,14 @@ function CorporateTab() {
             ],
           },
         ].map((f) => (
-          <Card key={f.label} className={`bg-zinc-900 border ${f.border}`}>
+          <Card key={f.label} className={`bg-card border ${f.border}`}>
             <CardHeader className="pb-2">
               <CardTitle className={`text-sm ${f.color}`}>{f.label}</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <ul className="space-y-1.5">
                 {f.points.map((pt, i) => (
-                  <li key={i} className="flex gap-2 text-xs text-zinc-400">
+                  <li key={i} className="flex gap-2 text-xs text-muted-foreground">
                     <span className={`${f.color} shrink-0 mt-0.5`}>•</span>
                     {pt}
                   </li>
@@ -1040,9 +1040,9 @@ function CorporateTab() {
       </div>
 
       {/* Abatement Cost Curve */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <BarChart2 size={14} className="text-primary" />
             Marginal Abatement Cost (MAC) Curve
           </CardTitle>
@@ -1086,7 +1086,7 @@ function CorporateTab() {
               { color: "bg-orange-500", label: "Medium-cost abatement" },
               { color: "bg-red-500", label: "High-cost / frontier" },
             ].map((l) => (
-              <div key={l.label} className="flex items-center gap-1.5 text-xs text-zinc-400">
+              <div key={l.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <span className={`w-3 h-2 ${l.color} rounded opacity-75 shrink-0`} />
                 {l.label}
               </div>
@@ -1096,9 +1096,9 @@ function CorporateTab() {
       </Card>
 
       {/* Corporate entities */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Factory size={14} className="text-orange-400" />
             Corporate Emissions Profiles & Strategies
           </CardTitle>
@@ -1110,11 +1110,11 @@ function CorporateTab() {
             const s2Pct = (co.scope2 / total) * 100;
             const s3Pct = (co.scope3 / total) * 100;
             return (
-              <div key={co.name} className="bg-zinc-800 rounded-lg p-3 space-y-2">
+              <div key={co.name} className="bg-muted rounded-lg p-3 space-y-2">
                 <div className="flex items-center justify-between">
                   <div>
-                    <span className="text-sm font-medium text-zinc-200">{co.name}</span>
-                    <span className="ml-2 text-xs text-zinc-500">{co.sector}</span>
+                    <span className="text-sm font-medium text-foreground">{co.name}</span>
+                    <span className="ml-2 text-xs text-muted-foreground">{co.sector}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge
@@ -1126,14 +1126,14 @@ function CorporateTab() {
                     {co.sbtAligned ? (
                       <Badge variant="outline" className="text-xs text-primary border-border">SBTi</Badge>
                     ) : (
-                      <Badge variant="outline" className="text-xs text-zinc-500 border-zinc-700">No SBTi</Badge>
+                      <Badge variant="outline" className="text-xs text-muted-foreground border-border">No SBTi</Badge>
                     )}
-                    <span className="text-xs text-zinc-500">NZ {co.netZeroYear}</span>
+                    <span className="text-xs text-muted-foreground">NZ {co.netZeroYear}</span>
                   </div>
                 </div>
                 {/* Scope breakdown bar */}
                 <div>
-                  <div className="flex justify-between text-xs text-zinc-500 mb-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mb-1">
                     <span>Scope breakdown ({total.toFixed(1)} MtCO₂e)</span>
                     <span>{co.offsetPct}% offset externally</span>
                   </div>
@@ -1142,11 +1142,11 @@ function CorporateTab() {
                     <div className="bg-yellow-500 opacity-80" style={{ width: `${s2Pct}%` }} title={`S2: ${co.scope2}Mt`} />
                     <div className="bg-primary opacity-70" style={{ width: `${s3Pct}%` }} title={`S3: ${co.scope3}Mt`} />
                   </div>
-                  <div className="flex gap-4 text-xs text-zinc-500 mt-1">
+                  <div className="flex gap-4 text-xs text-muted-foreground mt-1">
                     <span className="flex items-center gap-1"><span className="w-2 h-2 bg-red-500 rounded opacity-80 inline-block" />S1 {co.scope1}Mt</span>
                     <span className="flex items-center gap-1"><span className="w-2 h-2 bg-yellow-500 rounded opacity-80 inline-block" />S2 {co.scope2}Mt</span>
                     <span className="flex items-center gap-1"><span className="w-2 h-2 bg-primary rounded opacity-70 inline-block" />S3 {co.scope3}Mt</span>
-                    <span className="ml-auto text-zinc-600">Internal abatement: ${co.abatementCost}/t</span>
+                    <span className="ml-auto text-muted-foreground">Internal abatement: ${co.abatementCost}/t</span>
                   </div>
                 </div>
               </div>
@@ -1156,9 +1156,9 @@ function CorporateTab() {
       </Card>
 
       {/* Offset Quality Tiers */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <Shield size={14} className="text-muted-foreground" />
             Offset Quality Tiers
           </CardTitle>
@@ -1188,12 +1188,12 @@ function CorporateTab() {
                 priceRange: "$1–8/t",
               },
             ].map((tier) => (
-              <div key={tier.tier} className={`bg-zinc-800 rounded-lg p-3 border ${tier.border}`}>
+              <div key={tier.tier} className={`bg-muted rounded-lg p-3 border ${tier.border}`}>
                 <p className={`text-sm font-medium ${tier.color} mb-2`}>{tier.tier}</p>
-                <p className={`text-lg font-bold text-zinc-200 mb-2`}>{tier.priceRange}</p>
+                <p className={`text-lg font-bold text-foreground mb-2`}>{tier.priceRange}</p>
                 <ul className="space-y-1">
                   {tier.criteria.map((c, i) => (
-                    <li key={i} className="flex gap-1.5 text-xs text-zinc-400">
+                    <li key={i} className="flex gap-1.5 text-xs text-muted-foreground">
                       <span className={`${tier.color} shrink-0`}>•</span>
                       {c}
                     </li>
@@ -1206,9 +1206,9 @@ function CorporateTab() {
       </Card>
 
       {/* Transition Plans */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+          <CardTitle className="text-sm text-foreground flex items-center gap-2">
             <TrendingUp size={14} className="text-primary" />
             Credible Transition Plan Checklist
           </CardTitle>
@@ -1227,15 +1227,15 @@ function CorporateTab() {
               { item: "Paris-aligned lobbying position", required: false },
               { item: "Annual progress report with assurance", required: true },
             ].map((row, i) => (
-              <div key={i} className="flex items-center gap-2 bg-zinc-800 rounded px-3 py-1.5">
+              <div key={i} className="flex items-center gap-2 bg-muted rounded px-3 py-1.5">
                 {row.required ? (
                   <CheckCircle size={12} className="text-emerald-400 shrink-0" />
                 ) : (
                   <Info size={12} className="text-primary shrink-0" />
                 )}
-                <span className="text-xs text-zinc-300">{row.item}</span>
+                <span className="text-xs text-muted-foreground">{row.item}</span>
                 {row.required && (
-                  <Badge variant="outline" className="ml-auto text-xs text-zinc-500 border-zinc-700">Required</Badge>
+                  <Badge variant="outline" className="ml-auto text-xs text-muted-foreground border-border">Required</Badge>
                 )}
               </div>
             ))}
@@ -1258,7 +1258,7 @@ export default function CarbonMarkets2Page() {
   void _unused;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -1269,9 +1269,9 @@ export default function CarbonMarkets2Page() {
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Leaf className="text-emerald-400" size={22} />
-            <h1 className="text-2xl font-semibold text-zinc-100">Carbon Markets Deep Dive</h1>
+            <h1 className="text-2xl font-semibold text-foreground">Carbon Markets Deep Dive</h1>
           </div>
-          <p className="text-sm text-zinc-400">
+          <p className="text-sm text-muted-foreground">
             EU ETS mechanics, voluntary carbon markets, nature-based solutions, credit quality frameworks, and corporate net-zero strategies.
           </p>
         </div>
@@ -1284,11 +1284,11 @@ export default function CarbonMarkets2Page() {
             { label: "CBAM Start", value: "Jan 2026", sub: "Financial obligations", color: "text-primary" },
             { label: "ICVCM CCPs", value: "10 Principles", sub: "Published 2023", color: "text-yellow-400" },
           ].map((stat) => (
-            <Card key={stat.label} className="bg-zinc-900 border-zinc-800">
+            <Card key={stat.label} className="bg-card border-border">
               <CardContent className="pt-3 pb-3">
-                <p className="text-xs text-zinc-500">{stat.label}</p>
+                <p className="text-xs text-muted-foreground">{stat.label}</p>
                 <p className={`text-lg font-bold ${stat.color}`}>{stat.value}</p>
-                <p className="text-xs text-zinc-500">{stat.sub}</p>
+                <p className="text-xs text-muted-foreground">{stat.sub}</p>
               </CardContent>
             </Card>
           ))}
@@ -1296,17 +1296,17 @@ export default function CarbonMarkets2Page() {
 
         {/* Tabs */}
         <Tabs defaultValue="eu-ets">
-          <TabsList className="bg-zinc-900 border border-zinc-800 flex-wrap h-auto gap-1">
-            <TabsTrigger value="eu-ets" className="data-[state=active]:bg-zinc-700 text-xs">
+          <TabsList className="bg-card border border-border flex-wrap h-auto gap-1">
+            <TabsTrigger value="eu-ets" className="data-[state=active]:bg-muted text-xs">
               EU ETS
             </TabsTrigger>
-            <TabsTrigger value="voluntary" className="data-[state=active]:bg-zinc-700 text-xs">
+            <TabsTrigger value="voluntary" className="data-[state=active]:bg-muted text-xs">
               Voluntary Carbon
             </TabsTrigger>
-            <TabsTrigger value="nature" className="data-[state=active]:bg-zinc-700 text-xs">
+            <TabsTrigger value="nature" className="data-[state=active]:bg-muted text-xs">
               Nature-Based Solutions
             </TabsTrigger>
-            <TabsTrigger value="corporate" className="data-[state=active]:bg-zinc-700 text-xs">
+            <TabsTrigger value="corporate" className="data-[state=active]:bg-muted text-xs">
               Corporate Strategy
             </TabsTrigger>
           </TabsList>

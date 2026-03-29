@@ -560,17 +560,17 @@ function PBServiceScorecard({ services }: { services: PBService[] }) {
     <div className="space-y-3">
       {services.map((svc) => (
         <div key={svc.name} className="flex items-center gap-3">
-          <div className="w-7 h-7 rounded-lg bg-slate-800 flex items-center justify-center text-indigo-400 shrink-0">
+          <div className="w-7 h-7 rounded-lg bg-muted flex items-center justify-center text-indigo-400 shrink-0">
             {svc.icon}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between mb-1">
-              <span className="text-sm font-medium text-slate-200 truncate">{svc.name}</span>
+              <span className="text-sm font-medium text-foreground truncate">{svc.name}</span>
               <span className={cn("text-xs font-bold ml-2", svc.score >= 90 ? "text-emerald-400" : svc.score >= 80 ? "text-muted-foreground" : "text-amber-400")}>
                 {svc.score}/100
               </span>
             </div>
-            <div className="w-full bg-slate-800 rounded-full h-1.5">
+            <div className="w-full bg-muted rounded-full h-1.5">
               <div
                 className="h-1.5 rounded-full transition-all duration-500"
                 style={{
@@ -579,7 +579,7 @@ function PBServiceScorecard({ services }: { services: PBService[] }) {
                 }}
               />
             </div>
-            <p className="text-xs text-slate-500 mt-0.5">{svc.description}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{svc.description}</p>
           </div>
         </div>
       ))}
@@ -622,8 +622,8 @@ function FeePieChart({ fees }: { fees: FeeBreakdown[] }) {
         {fees.map((fee) => (
           <div key={fee.label} className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: fee.color }} />
-            <span className="text-xs text-slate-400 flex-1">{fee.label}</span>
-            <span className="text-xs font-bold text-slate-200">{fee.pct}%</span>
+            <span className="text-xs text-muted-foreground flex-1">{fee.label}</span>
+            <span className="text-xs font-bold text-foreground">{fee.pct}%</span>
           </div>
         ))}
       </div>
@@ -668,22 +668,22 @@ export default function PrimeBrokeragePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Building2 className="w-6 h-6 text-indigo-400" />
-            <h1 className="text-2xl font-bold text-slate-100">Prime Brokerage</h1>
+            <h1 className="text-2xl font-bold text-foreground">Prime Brokerage</h1>
           </div>
-          <p className="text-slate-400 text-sm max-w-xl">
+          <p className="text-muted-foreground text-sm max-w-xl">
             Securities lending, margin financing, rehypothecation, custody, and institutional-grade operational services for hedge funds.
           </p>
         </div>
         <div className="flex gap-2 flex-wrap">
           <Badge className="bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 text-xs">Institutional</Badge>
           <Badge className="bg-cyan-500/15 text-muted-foreground border border-cyan-500/30 text-xs">Prime Finance</Badge>
-          <Badge className="bg-slate-700 text-slate-300 text-xs">Seed 840</Badge>
+          <Badge className="bg-muted text-muted-foreground text-xs">Seed 840</Badge>
         </div>
       </div>
 
@@ -695,14 +695,14 @@ export default function PrimeBrokeragePage() {
           { label: "Avg Utilization Rate", value: `${avgUtil.toFixed(1)}%`, sub: "Weighted by borrow rate", icon: <Activity className="w-4 h-4 text-muted-foreground" />, color: "text-muted-foreground" },
           { label: "GC Securities", value: `${gcCount} / ${securities.length}`, sub: "General collateral", icon: <ShieldCheck className="w-4 h-4 text-emerald-400" />, color: "text-emerald-400" },
         ].map((kpi) => (
-          <Card key={kpi.label} className="bg-slate-900 border-slate-800">
+          <Card key={kpi.label} className="bg-card border-border">
             <CardContent className="pt-4 pb-3 px-4">
               <div className="flex items-center gap-2 mb-1">
                 {kpi.icon}
-                <p className="text-xs text-slate-500 truncate">{kpi.label}</p>
+                <p className="text-xs text-muted-foreground truncate">{kpi.label}</p>
               </div>
               <p className={cn("text-xl font-bold", kpi.color)}>{kpi.value}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{kpi.sub}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{kpi.sub}</p>
             </CardContent>
           </Card>
         ))}
@@ -710,7 +710,7 @@ export default function PrimeBrokeragePage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-slate-900 border border-slate-800 w-full flex gap-1 h-auto p-1 flex-wrap">
+        <TabsList className="bg-card border border-border w-full flex gap-1 h-auto p-1 flex-wrap">
           {[
             { value: "lending", label: "Securities Lending", icon: <RefreshCw className="w-3.5 h-3.5" /> },
             { value: "margin", label: "Margin & Leverage", icon: <Scale className="w-3.5 h-3.5" /> },
@@ -736,9 +736,9 @@ export default function PrimeBrokeragePage() {
               <motion.div key="lending" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* Lendable Inventory Table */}
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <BarChart3 className="w-4 h-4 text-indigo-400" />
                         Lendable Inventory
                       </CardTitle>
@@ -747,23 +747,23 @@ export default function PrimeBrokeragePage() {
                       <div className="overflow-x-auto">
                         <table className="w-full text-xs">
                           <thead>
-                            <tr className="border-b border-slate-800 bg-slate-800/50">
-                              <th className="text-left px-3 py-2 text-slate-400 font-medium">Ticker</th>
-                              <th className="text-left px-3 py-2 text-slate-400 font-medium hidden md:table-cell">Sector</th>
-                              <th className="text-right px-3 py-2 text-slate-400 font-medium">Rate (bps)</th>
-                              <th className="text-center px-3 py-2 text-slate-400 font-medium">Avail.</th>
-                              <th className="text-right px-3 py-2 text-slate-400 font-medium hidden sm:table-cell">Util %</th>
-                              <th className="text-center px-3 py-2 text-slate-400 font-medium hidden md:table-cell">Type</th>
+                            <tr className="border-b border-border bg-muted/50">
+                              <th className="text-left px-3 py-2 text-muted-foreground font-medium">Ticker</th>
+                              <th className="text-left px-3 py-2 text-muted-foreground font-medium hidden md:table-cell">Sector</th>
+                              <th className="text-right px-3 py-2 text-muted-foreground font-medium">Rate (bps)</th>
+                              <th className="text-center px-3 py-2 text-muted-foreground font-medium">Avail.</th>
+                              <th className="text-right px-3 py-2 text-muted-foreground font-medium hidden sm:table-cell">Util %</th>
+                              <th className="text-center px-3 py-2 text-muted-foreground font-medium hidden md:table-cell">Type</th>
                             </tr>
                           </thead>
                           <tbody>
                             {securities.map((sec, i) => (
                               <tr
                                 key={sec.ticker}
-                                className={cn("border-b border-slate-800/50 hover:bg-slate-800/40 transition-colors", i % 2 === 0 ? "bg-slate-900/50" : "")}
+                                className={cn("border-b border-border/50 hover:bg-muted/40 transition-colors", i % 2 === 0 ? "bg-card/50" : "")}
                               >
-                                <td className="px-3 py-2 font-mono font-bold text-slate-200">{sec.ticker}</td>
-                                <td className="px-3 py-2 text-slate-400 hidden md:table-cell truncate max-w-[100px]">{sec.sector}</td>
+                                <td className="px-3 py-2 font-mono font-bold text-foreground">{sec.ticker}</td>
+                                <td className="px-3 py-2 text-muted-foreground hidden md:table-cell truncate max-w-[100px]">{sec.sector}</td>
                                 <td className="px-3 py-2 text-right font-mono text-amber-300">{sec.borrowRate.toLocaleString()}</td>
                                 <td className="px-3 py-2 text-center">
                                   <span className={cn("px-1.5 py-0.5 rounded text-xs font-semibold", availabilityBg(sec.availability))}>
@@ -787,9 +787,9 @@ export default function PrimeBrokeragePage() {
                   </Card>
 
                   {/* Borrow Cost Bar Chart */}
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <TrendingUp className="w-4 h-4 text-muted-foreground" />
                         Borrow Cost by Security
                       </CardTitle>
@@ -798,7 +798,7 @@ export default function PrimeBrokeragePage() {
                       <BorrowCostBarChart securities={securities} />
                       <div className="flex gap-4 mt-2 justify-center">
                         {[["#f43f5e", "Scarce (HTB)"], ["#f59e0b", "Hard (HTB)"], ["#22d3ee", "Easy (GC)"]].map(([color, label]) => (
-                          <div key={label} className="flex items-center gap-1.5 text-xs text-slate-400">
+                          <div key={label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                             <div className="w-2 h-2 rounded-sm" style={{ background: color }} />
                             {label}
                           </div>
@@ -810,33 +810,33 @@ export default function PrimeBrokeragePage() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* HTB vs GC Split */}
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Layers className="w-4 h-4 text-primary" />
                         Hard-to-Borrow vs General Collateral
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div>
-                        <div className="flex justify-between text-xs text-slate-400 mb-1">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-1">
                           <span>Hard-to-Borrow (HTB)</span>
                           <span className="font-bold text-rose-400">{htbCount} securities ({((htbCount / securities.length) * 100).toFixed(0)}%)</span>
                         </div>
-                        <div className="w-full bg-slate-800 rounded-full h-2.5">
+                        <div className="w-full bg-muted rounded-full h-2.5">
                           <div className="h-2.5 rounded-full bg-rose-500" style={{ width: `${(htbCount / securities.length) * 100}%` }} />
                         </div>
                       </div>
                       <div>
-                        <div className="flex justify-between text-xs text-slate-400 mb-1">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-1">
                           <span>General Collateral (GC)</span>
                           <span className="font-bold text-emerald-400">{gcCount} securities ({((gcCount / securities.length) * 100).toFixed(0)}%)</span>
                         </div>
-                        <div className="w-full bg-slate-800 rounded-full h-2.5">
+                        <div className="w-full bg-muted rounded-full h-2.5">
                           <div className="h-2.5 rounded-full bg-emerald-500" style={{ width: `${(gcCount / securities.length) * 100}%` }} />
                         </div>
                       </div>
-                      <div className="rounded-lg bg-slate-800/60 p-3 space-y-1.5 text-xs text-slate-400">
+                      <div className="rounded-lg bg-muted/60 p-3 space-y-1.5 text-xs text-muted-foreground">
                         <p><span className="text-rose-400 font-semibold">HTB</span> — Restricted supply; high short interest; borrow rate typically {">"}200bps. Often meme or speculative stocks.</p>
                         <p><span className="text-emerald-400 font-semibold">GC</span> — Abundant supply; low borrow cost; liquid large-cap equities and ETFs. Rate typically 5–50bps.</p>
                       </div>
@@ -844,16 +844,16 @@ export default function PrimeBrokeragePage() {
                   </Card>
 
                   {/* Utilization Gauge */}
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Activity className="w-4 h-4 text-muted-foreground" />
                         Average Utilization Rate
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="flex flex-col items-center gap-3">
                       <UtilizationGauge pct={avgUtil} />
-                      <div className="w-full rounded-lg bg-slate-800/60 p-3 text-xs text-slate-400 space-y-1">
+                      <div className="w-full rounded-lg bg-muted/60 p-3 text-xs text-muted-foreground space-y-1">
                         <p className="flex justify-between"><span>Highest Utilization</span><span className="text-rose-400 font-bold">{Math.max(...securities.map(s => s.utilizationPct)).toFixed(1)}%</span></p>
                         <p className="flex justify-between"><span>Lowest Utilization</span><span className="text-emerald-400 font-bold">{Math.min(...securities.map(s => s.utilizationPct)).toFixed(1)}%</span></p>
                         <p className="flex justify-between"><span>Securities {">"} 80% Util</span><span className="text-amber-400 font-bold">{securities.filter(s => s.utilizationPct > 80).length}</span></p>
@@ -873,16 +873,16 @@ export default function PrimeBrokeragePage() {
               <motion.div key="margin" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
                 <div className="grid md:grid-cols-3 gap-4">
                   {/* Leverage Slider */}
-                  <Card className="bg-slate-900 border-slate-800 md:col-span-1">
+                  <Card className="bg-card border-border md:col-span-1">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Scale className="w-4 h-4 text-indigo-400" />
                         Portfolio Margin Calculator
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-5">
                       <div>
-                        <div className="flex justify-between text-xs text-slate-400 mb-2">
+                        <div className="flex justify-between text-xs text-muted-foreground mb-2">
                           <span>Leverage Multiplier</span>
                           <span className="text-indigo-300 font-bold text-base">{leverage}x</span>
                         </div>
@@ -894,14 +894,14 @@ export default function PrimeBrokeragePage() {
                           onValueChange={([v]) => setLeverage(v)}
                           className="cursor-pointer"
                         />
-                        <div className="flex justify-between text-xs text-slate-600 mt-1">
+                        <div className="flex justify-between text-xs text-muted-foreground mt-1">
                           <span>1x (No leverage)</span>
                           <span>10x (Max)</span>
                         </div>
                       </div>
                       <div className="space-y-2.5 text-xs">
                         {[
-                          { label: "Portfolio Value (Equity)", value: `$${(portfolioValue / 1e6).toFixed(1)}M`, color: "text-slate-200" },
+                          { label: "Portfolio Value (Equity)", value: `$${(portfolioValue / 1e6).toFixed(1)}M`, color: "text-foreground" },
                           { label: "Leveraged Exposure", value: `$${(leveragedValue / 1e6).toFixed(1)}M`, color: "text-indigo-300" },
                           { label: "Amount Borrowed", value: `$${(borrowedAmount / 1e6).toFixed(2)}M`, color: "text-amber-300" },
                           { label: "Initial Margin Required", value: `${(100 / leverage).toFixed(1)}%`, color: "text-muted-foreground" },
@@ -910,7 +910,7 @@ export default function PrimeBrokeragePage() {
                           { label: "Margin Call Trigger (Drop)", value: `${marginCallDropPct > 0 ? marginCallDropPct.toFixed(1) : "—"}%`, color: "text-rose-400" },
                         ].map((row) => (
                           <div key={row.label} className="flex justify-between items-center">
-                            <span className="text-slate-400">{row.label}</span>
+                            <span className="text-muted-foreground">{row.label}</span>
                             <span className={cn("font-mono font-semibold", row.color)}>{row.value}</span>
                           </div>
                         ))}
@@ -925,16 +925,16 @@ export default function PrimeBrokeragePage() {
                   </Card>
 
                   {/* Margin Call Threshold SVG */}
-                  <Card className="bg-slate-900 border-slate-800 md:col-span-2">
+                  <Card className="bg-card border-border md:col-span-2">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <TrendingDown className="w-4 h-4 text-rose-400" />
                         Equity vs Portfolio Drop — {leverage}x Leverage
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <MarginCallSVG leverage={leverage} />
-                      <p className="text-xs text-slate-500 mt-2 text-center">
+                      <p className="text-xs text-muted-foreground mt-2 text-center">
                         At {leverage}x leverage, a {(100 / leverage).toFixed(1)}% drop in asset value wipes out equity entirely.
                       </p>
                     </CardContent>
@@ -942,9 +942,9 @@ export default function PrimeBrokeragePage() {
                 </div>
 
                 {/* Initial vs Maintenance Margin Comparison */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <Info className="w-4 h-4 text-muted-foreground" />
                       Initial vs Maintenance Margin — Concept Guide
                     </CardTitle>
@@ -984,10 +984,10 @@ export default function PrimeBrokeragePage() {
                             <h3 className={cn("font-semibold text-sm", panel.titleColor)}>{panel.title}</h3>
                             <span className={cn("text-xl font-bold", panel.titleColor)}>{panel.pct}</span>
                           </div>
-                          <p className="text-xs text-slate-400">{panel.desc}</p>
+                          <p className="text-xs text-muted-foreground">{panel.desc}</p>
                           <ul className="space-y-1">
                             {panel.bullets.map((b) => (
-                              <li key={b} className="flex items-center gap-1.5 text-xs text-slate-300">
+                              <li key={b} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                                 <CheckCircle className="w-3 h-3 text-emerald-400 shrink-0" />
                                 {b}
                               </li>
@@ -1009,9 +1009,9 @@ export default function PrimeBrokeragePage() {
             {activeTab === "rehypo" && (
               <motion.div key="rehypo" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
                 {/* Chain Diagram + Regulatory Note */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <ArrowRight className="w-4 h-4 text-muted-foreground" />
                       Collateral Chain Diagram
                     </CardTitle>
@@ -1026,10 +1026,10 @@ export default function PrimeBrokeragePage() {
                       ].map((s) => (
                         <div key={s.step} className={cn("rounded-lg border p-3 space-y-1", s.color)}>
                           <div className="flex items-center gap-2">
-                            <span className="w-5 h-5 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center shrink-0">{s.step}</span>
-                            <span className="font-semibold text-slate-200">{s.title}</span>
+                            <span className="w-5 h-5 rounded-full bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center shrink-0">{s.step}</span>
+                            <span className="font-semibold text-foreground">{s.title}</span>
                           </div>
-                          <p className="text-slate-400 pl-7">{s.desc}</p>
+                          <p className="text-muted-foreground pl-7">{s.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -1038,9 +1038,9 @@ export default function PrimeBrokeragePage() {
 
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* Haircut Table */}
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <ShieldCheck className="w-4 h-4 text-primary" />
                         Haircut Table by Asset Class
                       </CardTitle>
@@ -1049,17 +1049,17 @@ export default function PrimeBrokeragePage() {
                       <div className="overflow-x-auto">
                         <table className="w-full text-xs">
                           <thead>
-                            <tr className="border-b border-slate-800 bg-slate-800/50">
-                              <th className="text-left px-3 py-2 text-slate-400 font-medium">Asset Class</th>
-                              <th className="text-right px-3 py-2 text-slate-400 font-medium">Haircut</th>
-                              <th className="text-right px-3 py-2 text-slate-400 font-medium hidden sm:table-cell">Liquidity</th>
-                              <th className="text-center px-3 py-2 text-slate-400 font-medium hidden md:table-cell">Tenor</th>
+                            <tr className="border-b border-border bg-muted/50">
+                              <th className="text-left px-3 py-2 text-muted-foreground font-medium">Asset Class</th>
+                              <th className="text-right px-3 py-2 text-muted-foreground font-medium">Haircut</th>
+                              <th className="text-right px-3 py-2 text-muted-foreground font-medium hidden sm:table-cell">Liquidity</th>
+                              <th className="text-center px-3 py-2 text-muted-foreground font-medium hidden md:table-cell">Tenor</th>
                             </tr>
                           </thead>
                           <tbody>
                             {haircutTable.map((row, i) => (
-                              <tr key={row.assetClass} className={cn("border-b border-slate-800/50 hover:bg-slate-800/40 transition-colors", i % 2 === 0 ? "" : "bg-slate-800/20")}>
-                                <td className="px-3 py-2 text-slate-300 font-medium">{row.assetClass}</td>
+                              <tr key={row.assetClass} className={cn("border-b border-border/50 hover:bg-muted/40 transition-colors", i % 2 === 0 ? "" : "bg-muted/20")}>
+                                <td className="px-3 py-2 text-muted-foreground font-medium">{row.assetClass}</td>
                                 <td className="px-3 py-2 text-right font-mono">
                                   <span className={cn("font-bold", row.haircut <= 5 ? "text-emerald-400" : row.haircut <= 15 ? "text-amber-400" : "text-rose-400")}>
                                     {row.haircut}%
@@ -1067,16 +1067,16 @@ export default function PrimeBrokeragePage() {
                                 </td>
                                 <td className="px-3 py-2 text-right hidden sm:table-cell">
                                   <div className="flex items-center justify-end gap-1.5">
-                                    <div className="w-14 bg-slate-800 rounded-full h-1.5">
+                                    <div className="w-14 bg-muted rounded-full h-1.5">
                                       <div
                                         className="h-1.5 rounded-full"
                                         style={{ width: `${row.liquidityScore}%`, background: row.liquidityScore > 80 ? "#10b981" : row.liquidityScore > 60 ? "#f59e0b" : "#f43f5e" }}
                                       />
                                     </div>
-                                    <span className="text-slate-400 font-mono text-xs">{row.liquidityScore}</span>
+                                    <span className="text-muted-foreground font-mono text-xs">{row.liquidityScore}</span>
                                   </div>
                                 </td>
-                                <td className="px-3 py-2 text-center text-slate-500 hidden md:table-cell font-mono text-xs">{row.typicalTenor}</td>
+                                <td className="px-3 py-2 text-center text-muted-foreground hidden md:table-cell font-mono text-xs">{row.typicalTenor}</td>
                               </tr>
                             ))}
                           </tbody>
@@ -1087,32 +1087,32 @@ export default function PrimeBrokeragePage() {
 
                   {/* Collateral Transformation Waterfall + 140% Rule */}
                   <div className="space-y-4">
-                    <Card className="bg-slate-900 border-slate-800">
+                    <Card className="bg-card border-border">
                       <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                        <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                           <DollarSign className="w-4 h-4 text-amber-400" />
                           Collateral Transformation Waterfall
                         </CardTitle>
                       </CardHeader>
                       <CardContent>
                         <CollateralWaterfallSVG />
-                        <p className="text-xs text-slate-500 mt-1 text-center">Starting from 100 units of posted collateral</p>
+                        <p className="text-xs text-muted-foreground mt-1 text-center">Starting from 100 units of posted collateral</p>
                       </CardContent>
                     </Card>
 
-                    <Card className="bg-slate-900 border-slate-800 border-amber-500/30">
+                    <Card className="bg-card border-border border-amber-500/30">
                       <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-semibold text-amber-300 flex items-center gap-2">
                           <Lock className="w-4 h-4 text-amber-400" />
                           Regulatory Limits — 140% Rule (UK/US)
                         </CardTitle>
                       </CardHeader>
-                      <CardContent className="space-y-2 text-xs text-slate-400">
+                      <CardContent className="space-y-2 text-xs text-muted-foreground">
                         <p>Under <span className="text-amber-300 font-semibold">UK FCA Client Money Rules</span> and the US SEC Customer Protection Rule, a prime broker may rehypothecate no more than <span className="text-amber-300 font-bold">140%</span> of a client&apos;s net debit balance.</p>
                         <div className="rounded-lg bg-amber-500/10 border border-amber-500/20 p-2.5 space-y-1">
                           <p><span className="text-amber-300 font-semibold">Example:</span> If client debit balance = $10M, PB can re-use up to $14M of client collateral.</p>
-                          <p><span className="text-slate-300 font-semibold">Post-MF Global:</span> Many institutional clients now restrict rehypothecation in their prime brokerage agreements.</p>
-                          <p><span className="text-slate-300 font-semibold">AIFMD (EU):</span> Requires explicit client consent in each instance; much stricter than US regime.</p>
+                          <p><span className="text-muted-foreground font-semibold">Post-MF Global:</span> Many institutional clients now restrict rehypothecation in their prime brokerage agreements.</p>
+                          <p><span className="text-muted-foreground font-semibold">AIFMD (EU):</span> Requires explicit client consent in each instance; much stricter than US regime.</p>
                         </div>
                       </CardContent>
                     </Card>
@@ -1130,9 +1130,9 @@ export default function PrimeBrokeragePage() {
               <motion.div key="services" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* Service Scorecard */}
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-emerald-400" />
                         Service Quality Scorecard
                       </CardTitle>
@@ -1143,16 +1143,16 @@ export default function PrimeBrokeragePage() {
                   </Card>
 
                   {/* Fee Breakdown Pie */}
-                  <Card className="bg-slate-900 border-slate-800">
+                  <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <DollarSign className="w-4 h-4 text-amber-400" />
                         PB Revenue Structure
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <FeePieChart fees={fees} />
-                      <div className="mt-3 rounded-lg bg-slate-800/60 p-3 text-xs text-slate-400 space-y-1">
+                      <div className="mt-3 rounded-lg bg-muted/60 p-3 text-xs text-muted-foreground space-y-1">
                         <p>Financing and securities lending together account for <span className="text-amber-300 font-bold">65%</span> of PB revenue, making the prime finance book the core profit driver.</p>
                         <p>Execution commissions have declined due to zero-commission retail brokers pressuring institutional rates.</p>
                       </div>
@@ -1161,9 +1161,9 @@ export default function PrimeBrokeragePage() {
                 </div>
 
                 {/* Prime vs Mini-Prime Comparison */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <Scale className="w-4 h-4 text-muted-foreground" />
                       Prime Broker vs Mini-Prime Comparison
                     </CardTitle>
@@ -1172,16 +1172,16 @@ export default function PrimeBrokeragePage() {
                     <div className="overflow-x-auto">
                       <table className="w-full text-xs">
                         <thead>
-                          <tr className="border-b border-slate-800 bg-slate-800/50">
-                            <th className="text-left px-4 py-2.5 text-slate-400 font-medium w-1/3">Feature</th>
+                          <tr className="border-b border-border bg-muted/50">
+                            <th className="text-left px-4 py-2.5 text-muted-foreground font-medium w-1/3">Feature</th>
                             <th className="text-center px-4 py-2.5 text-indigo-300 font-semibold">Prime Broker</th>
                             <th className="text-center px-4 py-2.5 text-muted-foreground font-semibold">Mini-Prime / Introducing</th>
                           </tr>
                         </thead>
                         <tbody>
                           {pbComparison.map((row, i) => (
-                            <tr key={row.feature} className={cn("border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors", i % 2 === 0 ? "" : "bg-slate-800/20")}>
-                              <td className="px-4 py-2.5 text-slate-400 font-medium">{row.feature}</td>
+                            <tr key={row.feature} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors", i % 2 === 0 ? "" : "bg-muted/20")}>
+                              <td className="px-4 py-2.5 text-muted-foreground font-medium">{row.feature}</td>
                               <td className="px-4 py-2.5 text-center">
                                 <div className="flex items-center justify-center gap-1.5">
                                   {row.primePositive ? (
@@ -1197,9 +1197,9 @@ export default function PrimeBrokeragePage() {
                                   {!row.primePositive ? (
                                     <TrendingUp className="w-3 h-3 text-emerald-400 shrink-0" />
                                   ) : (
-                                    <TrendingDown className="w-3 h-3 text-slate-500 shrink-0" />
+                                    <TrendingDown className="w-3 h-3 text-muted-foreground shrink-0" />
                                   )}
-                                  <span className={cn("font-medium", !row.primePositive ? "text-emerald-300" : "text-slate-400")}>{row.miniPrime}</span>
+                                  <span className={cn("font-medium", !row.primePositive ? "text-emerald-300" : "text-muted-foreground")}>{row.miniPrime}</span>
                                 </div>
                               </td>
                             </tr>
@@ -1211,9 +1211,9 @@ export default function PrimeBrokeragePage() {
                 </Card>
 
                 {/* Operational Due Diligence Checklist */}
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+                    <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
                       <FileText className="w-4 h-4 text-primary" />
                       Operational Due Diligence (ODD) Checklist
                     </CardTitle>
@@ -1240,7 +1240,7 @@ export default function PrimeBrokeragePage() {
                           </div>
                           <ul className="space-y-1.5">
                             {cat.items.map((item) => (
-                              <li key={item} className="flex items-start gap-1.5 text-[11px] text-slate-400">
+                              <li key={item} className="flex items-start gap-1.5 text-[11px] text-muted-foreground">
                                 {cat.passed ? (
                                   <CheckCircle className="w-3 h-3 text-emerald-500 shrink-0 mt-0.5" />
                                 ) : (
@@ -1253,7 +1253,7 @@ export default function PrimeBrokeragePage() {
                         </div>
                       ))}
                     </div>
-                    <div className="mt-3 rounded-lg bg-slate-800/60 p-3 text-xs text-slate-400 flex items-start gap-2">
+                    <div className="mt-3 rounded-lg bg-muted/60 p-3 text-xs text-muted-foreground flex items-start gap-2">
                       <Info className="w-3.5 h-3.5 text-muted-foreground shrink-0 mt-0.5" />
                       <span>ODD is conducted by institutional allocators (pensions, endowments, FoHFs) before committing capital. A failed category in <span className="text-amber-300 font-semibold">Personnel Background</span> can delay or prevent allocation regardless of performance track record.</span>
                     </div>

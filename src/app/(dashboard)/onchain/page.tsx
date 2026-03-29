@@ -409,10 +409,10 @@ interface StatCardProps {
 function StatCard({ label, value, change, sub, icon, color = "text-indigo-400" }: StatCardProps) {
   const isPos = (change ?? 0) >= 0;
   return (
-    <Card className="bg-slate-900 border-slate-800">
+    <Card className="bg-card border-border">
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-2">
-          <span className={cn("p-2 rounded-lg bg-slate-800", color)}>{icon}</span>
+          <span className={cn("p-2 rounded-lg bg-muted", color)}>{icon}</span>
           {change !== undefined && (
             <Badge
               variant="outline"
@@ -426,9 +426,9 @@ function StatCard({ label, value, change, sub, icon, color = "text-indigo-400" }
             </Badge>
           )}
         </div>
-        <p className="text-2xl font-bold text-slate-100 mt-2">{value}</p>
-        <p className="text-xs text-slate-400 mt-1">{label}</p>
-        {sub && <p className="text-xs text-slate-500 mt-0.5">{sub}</p>}
+        <p className="text-2xl font-bold text-foreground mt-2">{value}</p>
+        <p className="text-xs text-muted-foreground mt-1">{label}</p>
+        {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
       </CardContent>
     </Card>
   );
@@ -531,7 +531,7 @@ export default function OnchainPage() {
   const netFlow = exchangeInflow - exchangeOutflow;
 
   return (
-    <div className="flex flex-col gap-6 p-6 min-h-screen bg-slate-950 text-slate-100">
+    <div className="flex flex-col gap-6 p-6 min-h-screen bg-background text-foreground">
       {/* Header */}
       <motion.div
         initial="hidden"
@@ -541,11 +541,11 @@ export default function OnchainPage() {
         className="flex items-center justify-between"
       >
         <div>
-          <h1 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
             <Network className="w-6 h-6 text-indigo-400" />
             On-Chain Analytics
           </h1>
-          <p className="text-sm text-slate-400 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Blockchain intelligence — BTC &amp; ETH network data, DeFi metrics, miner &amp; validator health
           </p>
         </div>
@@ -565,7 +565,7 @@ export default function OnchainPage() {
         transition={{ duration: 0.4, delay: 0.1 }}
       >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-slate-900 border border-slate-800 h-10 mb-6">
+          <TabsList className="bg-card border border-border h-10 mb-6">
             <TabsTrigger value="network" className="data-[state=active]:bg-indigo-600 text-xs px-3">
               <Activity className="w-3.5 h-3.5 mr-1.5" />
               Network Health
@@ -593,7 +593,7 @@ export default function OnchainPage() {
             <div className="flex flex-col gap-6">
               {/* BTC stat cards */}
               <div>
-                <h2 className="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
+                <h2 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
                   <Bitcoin className="w-4 h-4 text-amber-400" />
                   Bitcoin Network
                 </h2>
@@ -641,9 +641,9 @@ export default function OnchainPage() {
                   { title: "Transaction Count", data: txCountSeries, color: "#4ade80" },
                   { title: "Fee Rate (sats/vB)", data: feesSeries, color: "#a78bfa" },
                 ].map((chart) => (
-                  <Card key={chart.title} className="bg-slate-900 border-slate-800">
+                  <Card key={chart.title} className="bg-card border-border">
                     <CardHeader className="pb-2 pt-4 px-4">
-                      <CardTitle className="text-xs text-slate-400 font-medium">{chart.title}</CardTitle>
+                      <CardTitle className="text-xs text-muted-foreground font-medium">{chart.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="px-4 pb-4">
                       <Sparkline data={chart.data} width={280} height={72} color={chart.color} />
@@ -653,9 +653,9 @@ export default function OnchainPage() {
               </div>
 
               {/* BTC vs ETH comparison */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     BTC vs ETH — Network Comparison
                   </CardTitle>
                 </CardHeader>
@@ -663,11 +663,11 @@ export default function OnchainPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-slate-800">
-                          <th className="text-left py-2 text-xs text-slate-500 font-medium">Metric</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-2 text-xs text-muted-foreground font-medium">Metric</th>
                           <th className="text-right py-2 text-xs font-medium text-amber-400">Bitcoin</th>
                           <th className="text-right py-2 text-xs font-medium text-indigo-400">Ethereum</th>
-                          <th className="text-right py-2 text-xs text-slate-500 font-medium">Leader</th>
+                          <th className="text-right py-2 text-xs text-muted-foreground font-medium">Leader</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-800/50">
@@ -701,8 +701,8 @@ export default function OnchainPage() {
                           { metric: "Issuance / yr", btc: "~1.7%", eth: "~0.6%", leader: "ETH" },
                           { metric: "Validators / Nodes", btc: "18,400 nodes", eth: "1.04M validators", leader: "ETH" },
                         ].map((row) => (
-                          <tr key={row.metric} className="hover:bg-slate-800/30 transition-colors">
-                            <td className="py-2 text-slate-300 text-xs">{row.metric}</td>
+                          <tr key={row.metric} className="hover:bg-muted/30 transition-colors">
+                            <td className="py-2 text-muted-foreground text-xs">{row.metric}</td>
                             <td className="py-2 text-right text-xs text-amber-300 font-mono">{row.btc}</td>
                             <td className="py-2 text-right text-xs text-indigo-300 font-mono">{row.eth}</td>
                             <td className="py-2 text-right">
@@ -732,12 +732,12 @@ export default function OnchainPage() {
           <TabsContent value="holders" className="data-[state=inactive]:hidden">
             <div className="flex flex-col gap-6">
               {/* UTXO Age Bands */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     HODLer Waves — UTXO Age Bands (12-Month View)
                   </CardTitle>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Proportion of BTC supply last moved within each time band. Rising long-term bands = conviction holding.
                   </p>
                 </CardHeader>
@@ -745,10 +745,10 @@ export default function OnchainPage() {
                   <StackedBarChart />
                   <div className="flex flex-wrap gap-2 mt-3">
                     {UTXO_BANDS.map((b) => (
-                      <div key={b.label} className="flex items-center gap-1.5 text-xs text-slate-400">
+                      <div key={b.label} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <span className="w-2.5 h-2.5 rounded-sm" style={{ background: b.color }} />
                         {b.label}
-                        <span className="text-slate-500">{b.pct.toFixed(1)}%</span>
+                        <span className="text-muted-foreground">{b.pct.toFixed(1)}%</span>
                       </div>
                     ))}
                   </div>
@@ -773,10 +773,10 @@ export default function OnchainPage() {
                   color="text-emerald-400"
                   change={-1.4}
                 />
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between mb-2">
-                      <span className="p-2 rounded-lg bg-slate-800 text-indigo-400">
+                      <span className="p-2 rounded-lg bg-muted text-indigo-400">
                         <BarChart3 className="w-4 h-4" />
                       </span>
                       <Badge
@@ -789,20 +789,20 @@ export default function OnchainPage() {
                         {netFlow > 0 ? "Net Inflow" : "Net Outflow"}
                       </Badge>
                     </div>
-                    <p className="text-2xl font-bold text-slate-100 mt-2">
+                    <p className="text-2xl font-bold text-foreground mt-2">
                       {netFlow > 0 ? "+" : ""}
                       {fmtNum(netFlow)} BTC
                     </p>
-                    <p className="text-xs text-slate-400 mt-1">Net Exchange Flow (24h)</p>
-                    <p className="text-xs text-slate-500 mt-0.5">Positive = bearish pressure</p>
+                    <p className="text-xs text-muted-foreground mt-1">Net Exchange Flow (24h)</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Positive = bearish pressure</p>
                   </CardContent>
                 </Card>
               </div>
 
               {/* Whale wallet tracker */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     Whale Wallet Tracker — Top BTC Addresses
                   </CardTitle>
                 </CardHeader>
@@ -810,20 +810,20 @@ export default function OnchainPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-slate-800">
-                          <th className="text-left py-2 text-xs text-slate-500 font-medium">Address</th>
-                          <th className="text-left py-2 text-xs text-slate-500 font-medium">Label</th>
-                          <th className="text-right py-2 text-xs text-slate-500 font-medium">Balance</th>
-                          <th className="text-right py-2 text-xs text-slate-500 font-medium">24h Change</th>
-                          <th className="text-right py-2 text-xs text-slate-500 font-medium">Status</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-2 text-xs text-muted-foreground font-medium">Address</th>
+                          <th className="text-left py-2 text-xs text-muted-foreground font-medium">Label</th>
+                          <th className="text-right py-2 text-xs text-muted-foreground font-medium">Balance</th>
+                          <th className="text-right py-2 text-xs text-muted-foreground font-medium">24h Change</th>
+                          <th className="text-right py-2 text-xs text-muted-foreground font-medium">Status</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-800/50">
                         {WHALE_WALLETS.map((w) => (
-                          <tr key={w.address} className="hover:bg-slate-800/30 transition-colors">
-                            <td className="py-2 text-xs font-mono text-slate-400">{w.address}</td>
-                            <td className="py-2 text-xs text-slate-300">{w.label}</td>
-                            <td className="py-2 text-right text-xs font-mono text-slate-200">{w.balance}</td>
+                          <tr key={w.address} className="hover:bg-muted/30 transition-colors">
+                            <td className="py-2 text-xs font-mono text-muted-foreground">{w.address}</td>
+                            <td className="py-2 text-xs text-muted-foreground">{w.label}</td>
+                            <td className="py-2 text-right text-xs font-mono text-foreground">{w.balance}</td>
                             <td className="py-2 text-right text-xs font-mono">
                               <span
                                 className={cn(
@@ -831,7 +831,7 @@ export default function OnchainPage() {
                                     ? "text-emerald-400"
                                     : w.change24h < 0
                                     ? "text-red-400"
-                                    : "text-slate-500"
+                                    : "text-muted-foreground"
                                 )}
                               >
                                 {w.change24h > 0 ? "+" : ""}
@@ -847,7 +847,7 @@ export default function OnchainPage() {
                                     ? "text-emerald-400 bg-emerald-900/20"
                                     : w.type === "distributing"
                                     ? "text-red-400 bg-red-900/20"
-                                    : "text-slate-400 bg-slate-800"
+                                    : "text-muted-foreground bg-muted"
                                 )}
                               >
                                 {w.type}
@@ -903,9 +903,9 @@ export default function OnchainPage() {
               </div>
 
               {/* TVL by protocol table */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     TVL by Protocol — Top 10
                   </CardTitle>
                 </CardHeader>
@@ -913,14 +913,14 @@ export default function OnchainPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                       <thead>
-                        <tr className="border-b border-slate-800">
-                          <th className="text-left py-2 text-xs text-slate-500 font-medium">#</th>
-                          <th className="text-left py-2 text-xs text-slate-500 font-medium">Protocol</th>
-                          <th className="text-left py-2 text-xs text-slate-500 font-medium">Chain</th>
-                          <th className="text-left py-2 text-xs text-slate-500 font-medium">Category</th>
-                          <th className="text-right py-2 text-xs text-slate-500 font-medium">TVL</th>
-                          <th className="text-right py-2 text-xs text-slate-500 font-medium">7d Change</th>
-                          <th className="text-right py-2 text-xs text-slate-500 font-medium">Share</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-2 text-xs text-muted-foreground font-medium">#</th>
+                          <th className="text-left py-2 text-xs text-muted-foreground font-medium">Protocol</th>
+                          <th className="text-left py-2 text-xs text-muted-foreground font-medium">Chain</th>
+                          <th className="text-left py-2 text-xs text-muted-foreground font-medium">Category</th>
+                          <th className="text-right py-2 text-xs text-muted-foreground font-medium">TVL</th>
+                          <th className="text-right py-2 text-xs text-muted-foreground font-medium">7d Change</th>
+                          <th className="text-right py-2 text-xs text-muted-foreground font-medium">Share</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-800/50">
@@ -928,16 +928,16 @@ export default function OnchainPage() {
                           const totalTVL = TVL_DATA.reduce((a, b) => a + b.tvl, 0);
                           const share = (row.tvl / totalTVL) * 100;
                           return (
-                            <tr key={row.protocol} className="hover:bg-slate-800/30 transition-colors">
-                              <td className="py-2 text-xs text-slate-500 font-mono">{i + 1}</td>
-                              <td className="py-2 text-xs font-semibold text-slate-200">{row.protocol}</td>
-                              <td className="py-2 text-xs text-slate-400">{row.chain}</td>
+                            <tr key={row.protocol} className="hover:bg-muted/30 transition-colors">
+                              <td className="py-2 text-xs text-muted-foreground font-mono">{i + 1}</td>
+                              <td className="py-2 text-xs font-semibold text-foreground">{row.protocol}</td>
+                              <td className="py-2 text-xs text-muted-foreground">{row.chain}</td>
                               <td className="py-2">
-                                <Badge variant="outline" className="text-xs border-slate-700 text-slate-400 bg-slate-800">
+                                <Badge variant="outline" className="text-xs border-border text-muted-foreground bg-muted">
                                   {row.category}
                                 </Badge>
                               </td>
-                              <td className="py-2 text-right text-xs font-mono text-slate-200">{fmtB(row.tvl)}</td>
+                              <td className="py-2 text-right text-xs font-mono text-foreground">{fmtB(row.tvl)}</td>
                               <td className="py-2 text-right text-xs font-mono">
                                 <span className={row.change7d >= 0 ? "text-emerald-400" : "text-red-400"}>
                                   {fmtPct(row.change7d)}
@@ -945,9 +945,9 @@ export default function OnchainPage() {
                               </td>
                               <td className="py-2 text-right">
                                 <div className="flex items-center justify-end gap-2">
-                                  <span className="text-xs text-slate-400">{share.toFixed(1)}%</span>
+                                  <span className="text-xs text-muted-foreground">{share.toFixed(1)}%</span>
                                   <div className="w-16">
-                                    <Progress value={share} className="h-1.5 bg-slate-800" />
+                                    <Progress value={share} className="h-1.5 bg-muted" />
                                   </div>
                                 </div>
                               </td>
@@ -961,9 +961,9 @@ export default function OnchainPage() {
               </Card>
 
               {/* Stablecoin breakdown */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     Stablecoin Supply Breakdown
                   </CardTitle>
                 </CardHeader>
@@ -971,16 +971,16 @@ export default function OnchainPage() {
                   <div className="space-y-3">
                     {STABLECOINS.map((sc) => (
                       <div key={sc.name} className="flex items-center gap-3">
-                        <span className="w-12 text-xs font-semibold text-slate-300">{sc.name}</span>
+                        <span className="w-12 text-xs font-semibold text-muted-foreground">{sc.name}</span>
                         <div className="flex-1">
                           <Progress
                             value={sc.pct}
-                            className="h-3 bg-slate-800"
+                            className="h-3 bg-muted"
                             style={{ "--progress-color": sc.color } as React.CSSProperties}
                           />
                         </div>
-                        <span className="w-20 text-right text-xs font-mono text-slate-400">{fmtB(sc.supply)}</span>
-                        <span className="w-10 text-right text-xs text-slate-500">{sc.pct}%</span>
+                        <span className="w-20 text-right text-xs font-mono text-muted-foreground">{fmtB(sc.supply)}</span>
+                        <span className="w-10 text-right text-xs text-muted-foreground">{sc.pct}%</span>
                       </div>
                     ))}
                   </div>
@@ -988,9 +988,9 @@ export default function OnchainPage() {
               </Card>
 
               {/* DEX vs CEX bar chart */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     DEX Volume vs CEX — 24h Spot Volume
                   </CardTitle>
                 </CardHeader>
@@ -1042,9 +1042,9 @@ export default function OnchainPage() {
 
               {/* Pool distribution + details */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-slate-300">
+                    <CardTitle className="text-sm font-semibold text-muted-foreground">
                       Mining Pool Distribution (30d)
                     </CardTitle>
                   </CardHeader>
@@ -1058,11 +1058,11 @@ export default function OnchainPage() {
                               className="w-2.5 h-2.5 rounded-sm flex-shrink-0"
                               style={{ background: pool.color }}
                             />
-                            <span className="text-xs text-slate-300 flex-1">{pool.name}</span>
+                            <span className="text-xs text-muted-foreground flex-1">{pool.name}</span>
                             <div className="w-24">
-                              <Progress value={pool.pct} className="h-1.5 bg-slate-800" />
+                              <Progress value={pool.pct} className="h-1.5 bg-muted" />
                             </div>
-                            <span className="text-xs text-slate-400 w-10 text-right">{pool.pct}%</span>
+                            <span className="text-xs text-muted-foreground w-10 text-right">{pool.pct}%</span>
                           </div>
                         ))}
                       </div>
@@ -1070,9 +1070,9 @@ export default function OnchainPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-semibold text-slate-300">
+                    <CardTitle className="text-sm font-semibold text-muted-foreground">
                       ETH Staking Overview
                     </CardTitle>
                   </CardHeader>
@@ -1091,25 +1091,25 @@ export default function OnchainPage() {
                           className="w-2.5 h-2.5 rounded-sm flex-shrink-0"
                           style={{ background: item.color }}
                         />
-                        <span className="text-xs text-slate-300 flex-1 min-w-0 truncate">{item.label}</span>
+                        <span className="text-xs text-muted-foreground flex-1 min-w-0 truncate">{item.label}</span>
                         <div className="w-28">
-                          <Progress value={item.pct} className="h-2 bg-slate-800" />
+                          <Progress value={item.pct} className="h-2 bg-muted" />
                         </div>
-                        <span className="text-xs text-slate-400 w-10 text-right">{item.pct}%</span>
+                        <span className="text-xs text-muted-foreground w-10 text-right">{item.pct}%</span>
                       </div>
                     ))}
-                    <div className="pt-2 border-t border-slate-800">
+                    <div className="pt-2 border-t border-border">
                       <div className="flex justify-between text-xs">
-                        <span className="text-slate-500">Total ETH Staked</span>
-                        <span className="text-slate-200 font-mono">33.2M ETH</span>
+                        <span className="text-muted-foreground">Total ETH Staked</span>
+                        <span className="text-foreground font-mono">33.2M ETH</span>
                       </div>
                       <div className="flex justify-between text-xs mt-1">
-                        <span className="text-slate-500">Annualized Reward</span>
+                        <span className="text-muted-foreground">Annualized Reward</span>
                         <span className="text-emerald-400 font-mono">+3.8% APR</span>
                       </div>
                       <div className="flex justify-between text-xs mt-1">
-                        <span className="text-slate-500">Withdrawal Queue</span>
-                        <span className="text-slate-300 font-mono">~2,400 ETH</span>
+                        <span className="text-muted-foreground">Withdrawal Queue</span>
+                        <span className="text-muted-foreground font-mono">~2,400 ETH</span>
                       </div>
                     </div>
                   </CardContent>
@@ -1117,9 +1117,9 @@ export default function OnchainPage() {
               </div>
 
               {/* Miner revenue sparkline */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     Miner Revenue (60-Day Trend)
                   </CardTitle>
                 </CardHeader>
@@ -1179,10 +1179,10 @@ export default function OnchainPage() {
                   const isOS = numVal <= sig.threshold.os;
                   const zone = isOB ? "overbought" : isOS ? "oversold" : "neutral";
                   return (
-                    <Card key={sig.name} className="bg-slate-900 border-slate-800">
+                    <Card key={sig.name} className="bg-card border-border">
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between mb-2">
-                          <span className={cn("p-2 rounded-lg bg-slate-800", sig.color)}>{sig.icon}</span>
+                          <span className={cn("p-2 rounded-lg bg-muted", sig.color)}>{sig.icon}</span>
                           <Badge
                             variant="outline"
                             className={cn(
@@ -1191,15 +1191,15 @@ export default function OnchainPage() {
                                 ? "text-red-400 bg-red-900/30"
                                 : zone === "oversold"
                                 ? "text-emerald-400 bg-emerald-900/30"
-                                : "text-slate-400 bg-slate-800"
+                                : "text-muted-foreground bg-muted"
                             )}
                           >
                             {zone}
                           </Badge>
                         </div>
-                        <p className="text-2xl font-bold text-slate-100 mt-2">{sig.value}</p>
-                        <p className="text-xs text-slate-400 mt-1">{sig.name}</p>
-                        <p className="text-xs text-slate-500 mt-0.5">{sig.desc}</p>
+                        <p className="text-2xl font-bold text-foreground mt-2">{sig.value}</p>
+                        <p className="text-xs text-muted-foreground mt-1">{sig.name}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{sig.desc}</p>
                       </CardContent>
                     </Card>
                   );
@@ -1208,9 +1208,9 @@ export default function OnchainPage() {
 
               {/* Signal charts */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-1">
-                    <CardTitle className="text-xs text-slate-400 font-medium">MVRV Ratio (60d)</CardTitle>
+                    <CardTitle className="text-xs text-muted-foreground font-medium">MVRV Ratio (60d)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <SignalChart
@@ -1222,15 +1222,15 @@ export default function OnchainPage() {
                       min={0.5}
                       max={5}
                     />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       MVRV &gt; 3.5 = historically overbought (cycle tops). &lt; 1.0 = capitulation zone.
                     </p>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-1">
-                    <CardTitle className="text-xs text-slate-400 font-medium">NVT Signal (60d)</CardTitle>
+                    <CardTitle className="text-xs text-muted-foreground font-medium">NVT Signal (60d)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <SignalChart
@@ -1242,15 +1242,15 @@ export default function OnchainPage() {
                       min={20}
                       max={200}
                     />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       High NVT = network overvalued vs on-chain activity. Low NVT = undervalued.
                     </p>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-1">
-                    <CardTitle className="text-xs text-slate-400 font-medium">Puell Multiple (60d)</CardTitle>
+                    <CardTitle className="text-xs text-muted-foreground font-medium">Puell Multiple (60d)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <SignalChart
@@ -1262,15 +1262,15 @@ export default function OnchainPage() {
                       min={0}
                       max={6}
                     />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       Measures miner profitability vs historical average. Extreme highs precede sell pressure.
                     </p>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-900 border-slate-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-1">
-                    <CardTitle className="text-xs text-slate-400 font-medium">SOPR (60d)</CardTitle>
+                    <CardTitle className="text-xs text-muted-foreground font-medium">SOPR (60d)</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <SignalChart
@@ -1282,7 +1282,7 @@ export default function OnchainPage() {
                       min={0.93}
                       max={1.1}
                     />
-                    <p className="text-xs text-slate-500 mt-2">
+                    <p className="text-xs text-muted-foreground mt-2">
                       SOPR &gt; 1 = coins sold at profit. Dropping below 1 = sellers capitulating (potential reversal).
                     </p>
                   </CardContent>
@@ -1290,9 +1290,9 @@ export default function OnchainPage() {
               </div>
 
               {/* Signal interpretation guide */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-slate-300">
+                  <CardTitle className="text-sm font-semibold text-muted-foreground">
                     On-Chain Signal Interpretation Guide
                   </CardTitle>
                 </CardHeader>
@@ -1330,23 +1330,23 @@ export default function OnchainPage() {
                     ].map((item) => (
                       <div
                         key={item.signal}
-                        className="p-3 rounded-lg border border-slate-800 bg-slate-950"
+                        className="p-3 rounded-lg border border-border bg-background"
                       >
                         <div className="flex items-center gap-2 mb-2">
                           <span className="w-2 h-2 rounded-full" style={{ background: item.color }} />
-                          <span className="text-xs font-semibold text-slate-200">{item.signal}</span>
+                          <span className="text-xs font-semibold text-foreground">{item.signal}</span>
                         </div>
                         <div className="space-y-1">
                           <p className="text-xs text-emerald-400">
-                            <span className="text-slate-500 mr-1">Bull:</span>
+                            <span className="text-muted-foreground mr-1">Bull:</span>
                             <span dangerouslySetInnerHTML={{ __html: item.bull }} />
                           </p>
                           <p className="text-xs text-red-400">
-                            <span className="text-slate-500 mr-1">Bear:</span>
+                            <span className="text-muted-foreground mr-1">Bear:</span>
                             {item.bear}
                           </p>
-                          <p className="text-xs text-slate-400">
-                            <span className="text-slate-500 mr-1">Neutral:</span>
+                          <p className="text-xs text-muted-foreground">
+                            <span className="text-muted-foreground mr-1">Neutral:</span>
                             {item.neutral}
                           </p>
                         </div>

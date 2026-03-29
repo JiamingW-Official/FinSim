@@ -682,16 +682,16 @@ export default function CleantechPage() {
 
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 bg-emerald-500/10 rounded-lg">
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
-          <h1 className="text-2xl font-semibold text-gray-100">Clean Technology & Energy Transition</h1>
+          <h1 className="text-2xl font-semibold text-foreground">Clean Technology & Energy Transition</h1>
         </div>
-        <p className="text-gray-400 text-sm ml-12">
+        <p className="text-muted-foreground text-sm ml-12">
           Renewable capacity, cost trajectories, investment vehicles, and policy landscape
         </p>
       </div>
@@ -707,14 +707,14 @@ export default function CleantechPage() {
           { label: "Onshore Wind LCOE", value: "$26/MWh", icon: TrendingDown, color: "text-orange-400", sub: "Cheapest energy ever" },
         ].map((kpi) => (
           <div key={kpi.label}>
-            <Card className="bg-gray-900 border-gray-800">
+            <Card className="bg-card border-border">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-gray-400 text-xs">{kpi.label}</span>
+                  <span className="text-muted-foreground text-xs">{kpi.label}</span>
                   <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
                 </div>
                 <div className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</div>
-                <div className="text-gray-500 text-xs mt-1">{kpi.sub}</div>
+                <div className="text-muted-foreground text-xs mt-1">{kpi.sub}</div>
               </CardContent>
             </Card>
           </div>
@@ -723,7 +723,7 @@ export default function CleantechPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-gray-900 border border-gray-800 mb-6 flex-wrap h-auto">
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto">
           <TabsTrigger value="overview" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
             Energy Transition
           </TabsTrigger>
@@ -746,7 +746,7 @@ export default function CleantechPage() {
           <div>
             {/* Capacity Growth Chart */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <BarChart2 className="w-4 h-4 text-emerald-400" />
@@ -761,7 +761,7 @@ export default function CleantechPage() {
 
             {/* LCOE Comparison */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-amber-400" />
@@ -772,8 +772,8 @@ export default function CleantechPage() {
                   <div className="space-y-2">
                     {LCOE_DATA.map((row) => (
                       <div key={row.source} className="flex items-center gap-3">
-                        <span className="text-gray-300 text-xs w-32 shrink-0">{row.source}</span>
-                        <div className="flex-1 bg-gray-800 rounded-full h-4 relative overflow-hidden">
+                        <span className="text-muted-foreground text-xs w-32 shrink-0">{row.source}</span>
+                        <div className="flex-1 bg-muted rounded-full h-4 relative overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all"
                             style={{
@@ -793,7 +793,7 @@ export default function CleantechPage() {
                         ) : (
                           <span className="w-3 h-3 shrink-0" />
                         )}
-                        <span className="text-gray-500 text-xs w-44 shrink-0 hidden md:block">{row.note}</span>
+                        <span className="text-muted-foreground text-xs w-44 shrink-0 hidden md:block">{row.note}</span>
                       </div>
                     ))}
                   </div>
@@ -803,7 +803,7 @@ export default function CleantechPage() {
 
             {/* IEA Net Zero Pathway */}
             <div>
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Globe className="w-4 h-4 text-primary" />
@@ -814,18 +814,18 @@ export default function CleantechPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-gray-800">
-                          <th className="text-left text-gray-400 py-2">Metric</th>
-                          <th className="text-right text-gray-400 py-2">Current (2025)</th>
-                          <th className="text-right text-gray-400 py-2">NZE 2030</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left text-muted-foreground py-2">Metric</th>
+                          <th className="text-right text-muted-foreground py-2">Current (2025)</th>
+                          <th className="text-right text-muted-foreground py-2">NZE 2030</th>
                           <th className="text-right text-amber-400 py-2">NZE 2050</th>
                         </tr>
                       </thead>
                       <tbody>
                         {NZE_PATHWAY.map((row) => (
-                          <tr key={row.metric} className="border-b border-gray-800/50 hover:bg-gray-800/30">
-                            <td className="py-2 text-gray-300">{row.metric}</td>
-                            <td className="py-2 text-right text-gray-200">{row.current}</td>
+                          <tr key={row.metric} className="border-b border-border/50 hover:bg-muted/30">
+                            <td className="py-2 text-muted-foreground">{row.metric}</td>
+                            <td className="py-2 text-right text-foreground">{row.current}</td>
                             <td className="py-2 text-right text-muted-foreground">{row.nze2030}</td>
                             <td className="py-2 text-right text-amber-300 font-semibold">{row.nze2050}</td>
                           </tr>
@@ -833,7 +833,7 @@ export default function CleantechPage() {
                       </tbody>
                     </table>
                   </div>
-                  <div className="mt-3 flex items-start gap-2 text-xs text-gray-500">
+                  <div className="mt-3 flex items-start gap-2 text-xs text-muted-foreground">
                     <Info className="w-3 h-3 mt-0.5 shrink-0" />
                     <span>NZE = Net Zero Emissions scenario. Source: IEA World Energy Outlook 2024. Current values are 2025 estimates.</span>
                   </div>
@@ -848,7 +848,7 @@ export default function CleantechPage() {
           <div>
             {/* Learning Curve */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <TrendingDown className="w-4 h-4 text-amber-400" />
@@ -864,9 +864,9 @@ export default function CleantechPage() {
                       { label: "Learning rate (solar)", value: "~24% per 2x", color: "text-amber-400" },
                       { label: "Learning rate (wind)", value: "~18% per 2x", color: "text-primary" },
                     ].map((s) => (
-                      <div key={s.label} className="bg-gray-800 rounded p-2">
+                      <div key={s.label} className="bg-muted rounded p-2">
                         <div className={`text-base font-bold ${s.color}`}>{s.value}</div>
-                        <div className="text-gray-400">{s.label}</div>
+                        <div className="text-muted-foreground">{s.label}</div>
                       </div>
                     ))}
                   </div>
@@ -876,7 +876,7 @@ export default function CleantechPage() {
 
             {/* Companies */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Sun className="w-4 h-4 text-amber-400" />
@@ -886,11 +886,11 @@ export default function CleantechPage() {
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {CLEAN_COMPANIES.map((co) => (
-                      <div key={co.ticker} className="bg-gray-800 rounded-lg p-3">
+                      <div key={co.ticker} className="bg-muted rounded-lg p-3">
                         <div className="flex items-start justify-between mb-1">
                           <div>
-                            <span className="font-semibold text-gray-100 text-sm">{co.ticker}</span>
-                            <span className="text-gray-400 text-xs ml-2">{co.name}</span>
+                            <span className="font-semibold text-foreground text-sm">{co.ticker}</span>
+                            <span className="text-muted-foreground text-xs ml-2">{co.name}</span>
                           </div>
                           <span
                             className={`text-xs font-semibold ${co.ytdReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}
@@ -899,15 +899,15 @@ export default function CleantechPage() {
                             {co.ytdReturn.toFixed(1)}% YTD
                           </span>
                         </div>
-                        <Badge variant="outline" className="text-xs text-gray-400 border-gray-700 mb-2">
+                        <Badge variant="outline" className="text-xs text-muted-foreground border-border mb-2">
                           {co.segment}
                         </Badge>
-                        <p className="text-gray-400 text-xs">{co.description}</p>
+                        <p className="text-muted-foreground text-xs">{co.description}</p>
                         <div className="mt-2 flex gap-4 text-xs">
-                          <span className="text-gray-500">Mkt Cap: <span className="text-gray-300">${co.mktCap}B</span></span>
-                          <span className="text-gray-500">P/E: <span className="text-gray-300">{co.pe ?? "N/A"}</span></span>
+                          <span className="text-muted-foreground">Mkt Cap: <span className="text-muted-foreground">${co.mktCap}B</span></span>
+                          <span className="text-muted-foreground">P/E: <span className="text-muted-foreground">{co.pe ?? "N/A"}</span></span>
                           {co.capacityGW > 0 && (
-                            <span className="text-gray-500">Capacity: <span className="text-emerald-400">{co.capacityGW} GW</span></span>
+                            <span className="text-muted-foreground">Capacity: <span className="text-emerald-400">{co.capacityGW} GW</span></span>
                           )}
                         </div>
                       </div>
@@ -920,7 +920,7 @@ export default function CleantechPage() {
             {/* Capacity Factors & Grid Parity */}
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Capacity Factor Comparison</CardTitle>
                   </CardHeader>
@@ -935,21 +935,21 @@ export default function CleantechPage() {
                         { tech: "Gas Peaker", cf: 15, color: "#ef4444" },
                       ].map((item) => (
                         <div key={item.tech} className="flex items-center gap-2">
-                          <span className="text-gray-300 w-36 shrink-0">{item.tech}</span>
-                          <div className="flex-1 bg-gray-800 rounded-full h-3">
+                          <span className="text-muted-foreground w-36 shrink-0">{item.tech}</span>
+                          <div className="flex-1 bg-muted rounded-full h-3">
                             <div
                               className="h-full rounded-full"
                               style={{ width: `${item.cf}%`, backgroundColor: item.color, opacity: 0.85 }}
                             />
                           </div>
-                          <span className="text-gray-300 w-8 text-right">{item.cf}%</span>
+                          <span className="text-muted-foreground w-8 text-right">{item.cf}%</span>
                         </div>
                       ))}
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Grid Parity Milestones</CardTitle>
                   </CardHeader>
@@ -971,7 +971,7 @@ export default function CleantechPage() {
                           )}
                           <div>
                             <span className="text-amber-400 font-medium mr-1">{m.year}</span>
-                            <span className="text-gray-300">{m.region}</span>
+                            <span className="text-muted-foreground">{m.region}</span>
                           </div>
                         </div>
                       ))}
@@ -988,7 +988,7 @@ export default function CleantechPage() {
           <div>
             {/* Battery Cost Chart */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Battery className="w-4 h-4 text-emerald-400" />
@@ -997,7 +997,7 @@ export default function CleantechPage() {
                 </CardHeader>
                 <CardContent>
                   <BatteryCostChart data={storageCosts} />
-                  <div className="mt-3 flex items-start gap-2 text-xs text-gray-500">
+                  <div className="mt-3 flex items-start gap-2 text-xs text-muted-foreground">
                     <Info className="w-3 h-3 mt-0.5 shrink-0" />
                     <span>
                       BloombergNEF battery price survey. $100/kWh threshold widely considered inflection for EV cost parity
@@ -1010,7 +1010,7 @@ export default function CleantechPage() {
 
             {/* EV Adoption Chart */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Zap className="w-4 h-4 text-orange-400" />
@@ -1026,7 +1026,7 @@ export default function CleantechPage() {
             {/* Grid-Scale Storage Economics */}
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Grid-Scale Storage Economics</CardTitle>
                   </CardHeader>
@@ -1052,15 +1052,15 @@ export default function CleantechPage() {
                           margin: "Niche industrial + islands",
                         },
                       ].map((item) => (
-                        <div key={item.metric} className="bg-gray-800 rounded p-3">
-                          <div className="font-semibold text-gray-200 mb-1">{item.metric}</div>
-                          <div className="flex justify-between text-gray-400 mb-0.5">
+                        <div key={item.metric} className="bg-muted rounded p-3">
+                          <div className="font-semibold text-foreground mb-1">{item.metric}</div>
+                          <div className="flex justify-between text-muted-foreground mb-0.5">
                             <span>Capex:</span><span className="text-amber-400">{item.capex}</span>
                           </div>
-                          <div className="flex justify-between text-gray-400 mb-0.5">
-                            <span>Revenue streams:</span><span className="text-gray-300 text-right ml-2">{item.revenue}</span>
+                          <div className="flex justify-between text-muted-foreground mb-0.5">
+                            <span>Revenue streams:</span><span className="text-muted-foreground text-right ml-2">{item.revenue}</span>
                           </div>
-                          <div className="flex justify-between text-gray-400">
+                          <div className="flex justify-between text-muted-foreground">
                             <span>Economics:</span><span className="text-emerald-400">{item.margin}</span>
                           </div>
                         </div>
@@ -1069,14 +1069,14 @@ export default function CleantechPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Green Hydrogen Economics</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3 text-xs">
-                      <div className="bg-gray-800 rounded p-3">
-                        <div className="font-semibold text-gray-200 mb-2">Production Cost by Route ($/kg H₂)</div>
+                      <div className="bg-muted rounded p-3">
+                        <div className="font-semibold text-foreground mb-2">Production Cost by Route ($/kg H₂)</div>
                         {[
                           { route: "Grey (SMR from gas)", cost: 1.5, color: "#6b7280" },
                           { route: "Blue (SMR + CCS)", cost: 2.8, color: "#3b82f6" },
@@ -1084,7 +1084,7 @@ export default function CleantechPage() {
                           { route: "Green 2030E (IEA NZE)", cost: 2.0, color: "#34d399" },
                         ].map((r) => (
                           <div key={r.route} className="flex items-center gap-2 mb-1">
-                            <span className="text-gray-400 w-36 shrink-0">{r.route}</span>
+                            <span className="text-muted-foreground w-36 shrink-0">{r.route}</span>
                             <div className="flex-1 bg-gray-700 rounded-full h-2.5">
                               <div
                                 className="h-full rounded-full"
@@ -1097,9 +1097,9 @@ export default function CleantechPage() {
                           </div>
                         ))}
                       </div>
-                      <div className="bg-gray-800 rounded p-3">
-                        <div className="font-semibold text-gray-200 mb-1">Key Cost Drivers</div>
-                        <ul className="text-gray-400 space-y-1">
+                      <div className="bg-muted rounded p-3">
+                        <div className="font-semibold text-foreground mb-1">Key Cost Drivers</div>
+                        <ul className="text-muted-foreground space-y-1">
                           <li className="flex items-start gap-1.5"><Zap className="w-3 h-3 mt-0.5 text-amber-400 shrink-0" />Electricity cost: ~65–70% of green H₂ cost</li>
                           <li className="flex items-start gap-1.5"><Battery className="w-3 h-3 mt-0.5 text-emerald-400 shrink-0" />Electrolyzer capex declining ~18%/yr</li>
                           <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 mt-0.5 text-primary shrink-0" />IRA 45V credit: up to $3/kg incentive</li>
@@ -1118,7 +1118,7 @@ export default function CleantechPage() {
           <div>
             {/* ETF Table */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <BarChart2 className="w-4 h-4 text-primary" />
@@ -1129,35 +1129,35 @@ export default function CleantechPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-gray-800">
-                          <th className="text-left text-gray-400 py-2">Ticker</th>
-                          <th className="text-left text-gray-400 py-2 hidden md:table-cell">Name</th>
-                          <th className="text-right text-gray-400 py-2">AUM ($B)</th>
-                          <th className="text-right text-gray-400 py-2">Exp. Ratio</th>
-                          <th className="text-right text-gray-400 py-2">YTD</th>
-                          <th className="text-right text-gray-400 py-2 hidden md:table-cell">Holdings</th>
-                          <th className="text-left text-gray-400 py-2 hidden lg:table-cell">Focus</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left text-muted-foreground py-2">Ticker</th>
+                          <th className="text-left text-muted-foreground py-2 hidden md:table-cell">Name</th>
+                          <th className="text-right text-muted-foreground py-2">AUM ($B)</th>
+                          <th className="text-right text-muted-foreground py-2">Exp. Ratio</th>
+                          <th className="text-right text-muted-foreground py-2">YTD</th>
+                          <th className="text-right text-muted-foreground py-2 hidden md:table-cell">Holdings</th>
+                          <th className="text-left text-muted-foreground py-2 hidden lg:table-cell">Focus</th>
                         </tr>
                       </thead>
                       <tbody>
                         {CLEAN_ETFS.map((etf) => (
-                          <tr key={etf.ticker} className="border-b border-gray-800/50 hover:bg-gray-800/30">
+                          <tr key={etf.ticker} className="border-b border-border/50 hover:bg-muted/30">
                             <td className="py-2 font-semibold text-primary">{etf.ticker}</td>
-                            <td className="py-2 text-gray-300 hidden md:table-cell">{etf.name}</td>
-                            <td className="py-2 text-right text-gray-200">{etf.aum.toFixed(2)}</td>
-                            <td className="py-2 text-right text-gray-200">{etf.expenseRatio.toFixed(2)}%</td>
+                            <td className="py-2 text-muted-foreground hidden md:table-cell">{etf.name}</td>
+                            <td className="py-2 text-right text-foreground">{etf.aum.toFixed(2)}</td>
+                            <td className="py-2 text-right text-foreground">{etf.expenseRatio.toFixed(2)}%</td>
                             <td className={`py-2 text-right font-semibold ${etf.ytd >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                               {etf.ytd >= 0 ? "+" : ""}
                               {etf.ytd.toFixed(1)}%
                             </td>
-                            <td className="py-2 text-right text-gray-300 hidden md:table-cell">{etf.holdings}</td>
-                            <td className="py-2 text-gray-400 hidden lg:table-cell">{etf.focus}</td>
+                            <td className="py-2 text-right text-muted-foreground hidden md:table-cell">{etf.holdings}</td>
+                            <td className="py-2 text-muted-foreground hidden lg:table-cell">{etf.focus}</td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
-                  <div className="mt-3 text-xs text-gray-500 flex items-start gap-2">
+                  <div className="mt-3 text-xs text-muted-foreground flex items-start gap-2">
                     <Info className="w-3 h-3 mt-0.5 shrink-0" />
                     <span>Top holding for each ETF as of Q1 2026. AUM in USD billions. YTD performance through March 2026.</span>
                   </div>
@@ -1168,27 +1168,27 @@ export default function CleantechPage() {
             {/* YieldCo & Green Bonds */}
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">YieldCo Structures</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs">
-                    <p className="text-gray-400">
+                    <p className="text-muted-foreground">
                       YieldCos are publicly listed subsidiaries that own contracted, cash-flowing renewable energy assets.
                       They distribute most of their cash flows as dividends.
                     </p>
-                    <div className="bg-gray-800 rounded p-3">
-                      <div className="font-semibold text-gray-200 mb-2">Key Characteristics</div>
-                      <ul className="space-y-1 text-gray-400">
+                    <div className="bg-muted rounded p-3">
+                      <div className="font-semibold text-foreground mb-2">Key Characteristics</div>
+                      <ul className="space-y-1 text-muted-foreground">
                         <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Long-term PPAs (15–25 yr) provide stable cash flows</li>
                         <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Target dividend yield: 4–7%; dividend growth: 5–8%/yr</li>
                         <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Leverage: typically 60–70% debt/capital</li>
                         <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Drop-down pipeline from sponsor company</li>
                       </ul>
                     </div>
-                    <div className="bg-gray-800 rounded p-3">
-                      <div className="font-semibold text-gray-200 mb-1">Notable YieldCos</div>
-                      <div className="grid grid-cols-2 gap-1 text-gray-300">
+                    <div className="bg-muted rounded p-3">
+                      <div className="font-semibold text-foreground mb-1">Notable YieldCos</div>
+                      <div className="grid grid-cols-2 gap-1 text-muted-foreground">
                         {["BEP (Brookfield Renewable)", "NEP (NextEra Energy Partners)", "CWEN (Clearway Energy)", "AY (Atlantica Sustainable)"].map((n) => (
                           <div key={n} className="text-xs">{n}</div>
                         ))}
@@ -1197,27 +1197,27 @@ export default function CleantechPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm">Green Bonds & Infrastructure Funds</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3 text-xs">
-                    <div className="bg-gray-800 rounded p-3">
-                      <div className="font-semibold text-gray-200 mb-2">Green Bond Market (2025)</div>
+                    <div className="bg-muted rounded p-3">
+                      <div className="font-semibold text-foreground mb-2">Green Bond Market (2025)</div>
                       {[
                         { label: "Annual issuance", value: "$620B" },
                         { label: "Cumulative outstanding", value: "$4.2T" },
                         { label: "Avg yield premium vs vanilla", value: "−5 to −8 bps (greenium)" },
                         { label: "Largest issuers", value: "EU, China, US, Germany" },
                       ].map((r) => (
-                        <div key={r.label} className="flex justify-between text-gray-400 mb-1">
+                        <div key={r.label} className="flex justify-between text-muted-foreground mb-1">
                           <span>{r.label}</span>
-                          <span className="text-gray-200 font-medium">{r.value}</span>
+                          <span className="text-foreground font-medium">{r.value}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="bg-gray-800 rounded p-3">
-                      <div className="font-semibold text-gray-200 mb-2">Infrastructure Fund Examples</div>
+                    <div className="bg-muted rounded p-3">
+                      <div className="font-semibold text-foreground mb-2">Infrastructure Fund Examples</div>
                       {[
                         { name: "Macquarie Green Infrastructure", focus: "Solar/Wind/Storage, global" },
                         { name: "Blackrock Climate Finance", focus: "Transition assets, private credit" },
@@ -1226,7 +1226,7 @@ export default function CleantechPage() {
                       ].map((f) => (
                         <div key={f.name} className="mb-1">
                           <span className="text-emerald-400 font-medium">{f.name}: </span>
-                          <span className="text-gray-400">{f.focus}</span>
+                          <span className="text-muted-foreground">{f.focus}</span>
                         </div>
                       ))}
                     </div>
@@ -1237,7 +1237,7 @@ export default function CleantechPage() {
 
             {/* Risk factors */}
             <div>
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-amber-400">Key Investment Risks</CardTitle>
                 </CardHeader>
@@ -1248,9 +1248,9 @@ export default function CleantechPage() {
                       { title: "Policy Reversal Risk", desc: "Subsidies and tax credits can be reduced or eliminated. IRA rollback risk elevated post-election cycles." },
                       { title: "Grid Integration Costs", desc: "Curtailment, transmission congestion, and integration costs can reduce effective returns for solar/wind projects." },
                     ].map((r) => (
-                      <div key={r.title} className="bg-gray-800 rounded p-3 border border-amber-900/30">
+                      <div key={r.title} className="bg-muted rounded p-3 border border-amber-900/30">
                         <div className="font-semibold text-amber-300 mb-1">{r.title}</div>
-                        <p className="text-gray-400">{r.desc}</p>
+                        <p className="text-muted-foreground">{r.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -1265,7 +1265,7 @@ export default function CleantechPage() {
           <div>
             {/* IRA Highlights */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-green-400" />
@@ -1282,12 +1282,12 @@ export default function CleantechPage() {
                       { credit: "EV Consumer Credit §30D", amount: "$7,500", desc: "New EV tax credit. Income limits apply. Vehicle must meet North American final assembly rules." },
                       { credit: "Commercial EV Credit §45W", amount: "Up to $7,500", desc: "For commercial EVs and fleet vehicles. No domestic assembly requirement." },
                     ].map((item) => (
-                      <div key={item.credit} className="bg-gray-800 rounded p-3">
+                      <div key={item.credit} className="bg-muted rounded p-3">
                         <div className="flex items-start justify-between mb-1">
-                          <span className="font-semibold text-gray-200">{item.credit}</span>
+                          <span className="font-semibold text-foreground">{item.credit}</span>
                           <Badge className="bg-green-900/50 text-green-300 border-green-800 text-xs ml-2 shrink-0">{item.amount}</Badge>
                         </div>
-                        <p className="text-gray-400">{item.desc}</p>
+                        <p className="text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -1297,7 +1297,7 @@ export default function CleantechPage() {
 
             {/* Policy Timeline */}
             <div>
-              <Card className="bg-gray-900 border-gray-800 mb-4">
+              <Card className="bg-card border-border mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-orange-400" />
@@ -1320,7 +1320,7 @@ export default function CleantechPage() {
                             <Badge variant="outline" className="text-xs border-current py-0">{item.region}</Badge>
                             <span className="font-semibold">{item.event}</span>
                           </div>
-                          <p className="text-gray-400">{item.detail}</p>
+                          <p className="text-muted-foreground">{item.detail}</p>
                         </div>
                       );
                     })}
@@ -1331,7 +1331,7 @@ export default function CleantechPage() {
 
             {/* Carbon Pricing */}
             <div>
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
                     <Globe className="w-4 h-4 text-primary" />
@@ -1342,33 +1342,33 @@ export default function CleantechPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-gray-800">
-                          <th className="text-left text-gray-400 py-2">Region / System</th>
-                          <th className="text-right text-gray-400 py-2">Price ($/tCO₂)</th>
-                          <th className="text-right text-gray-400 py-2">Coverage (%)</th>
-                          <th className="text-left text-gray-400 py-2 hidden md:table-cell">Mechanism</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left text-muted-foreground py-2">Region / System</th>
+                          <th className="text-right text-muted-foreground py-2">Price ($/tCO₂)</th>
+                          <th className="text-right text-muted-foreground py-2">Coverage (%)</th>
+                          <th className="text-left text-muted-foreground py-2 hidden md:table-cell">Mechanism</th>
                         </tr>
                       </thead>
                       <tbody>
                         {CARBON_PRICES.map((row) => (
-                          <tr key={row.region} className="border-b border-gray-800/50 hover:bg-gray-800/30">
-                            <td className="py-2 text-gray-200">{row.region}</td>
+                          <tr key={row.region} className="border-b border-border/50 hover:bg-muted/30">
+                            <td className="py-2 text-foreground">{row.region}</td>
                             <td className="py-2 text-right">
                               <span
-                                className={`font-semibold ${row.priceUsd >= 50 ? "text-red-400" : row.priceUsd >= 30 ? "text-amber-400" : "text-gray-300"}`}
+                                className={`font-semibold ${row.priceUsd >= 50 ? "text-red-400" : row.priceUsd >= 30 ? "text-amber-400" : "text-muted-foreground"}`}
                               >
                                 ${row.priceUsd}
                               </span>
                             </td>
-                            <td className="py-2 text-right text-gray-300">{row.coverage}%</td>
-                            <td className="py-2 text-gray-400 hidden md:table-cell">{row.mechanism}</td>
+                            <td className="py-2 text-right text-muted-foreground">{row.coverage}%</td>
+                            <td className="py-2 text-muted-foreground hidden md:table-cell">{row.mechanism}</td>
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
-                  <div className="mt-4 bg-gray-800 rounded p-3 text-xs">
-                    <div className="font-semibold text-gray-200 mb-2">Impact on Fossil vs Renewables</div>
+                  <div className="mt-4 bg-muted rounded p-3 text-xs">
+                    <div className="font-semibold text-foreground mb-2">Impact on Fossil vs Renewables</div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div>
                         <div className="text-red-400 font-medium mb-1">Fossil Fuel Cost Increase ($/MWh added)</div>
@@ -1377,7 +1377,7 @@ export default function CleantechPage() {
                           { source: "Gas CCGT (at $68/tCO₂)", increase: "+$27" },
                           { source: "Gas Peaker (at $68/tCO₂)", increase: "+$34" },
                         ].map((r) => (
-                          <div key={r.source} className="flex justify-between text-gray-400 py-0.5">
+                          <div key={r.source} className="flex justify-between text-muted-foreground py-0.5">
                             <span>{r.source}</span>
                             <span className="text-red-400 font-semibold">{r.increase}</span>
                           </div>
@@ -1385,7 +1385,7 @@ export default function CleantechPage() {
                       </div>
                       <div>
                         <div className="text-emerald-400 font-medium mb-1">Renewables Benefit</div>
-                        <ul className="space-y-1 text-gray-400">
+                        <ul className="space-y-1 text-muted-foreground">
                           <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Widens cost advantage of solar/wind over fossils</li>
                           <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />Improves dispatch priority in merit-order markets</li>
                           <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />EU CBAM creates level playing field vs imports</li>
@@ -1401,7 +1401,7 @@ export default function CleantechPage() {
       </Tabs>
 
       {/* Footer disclaimer */}
-      <div className="mt-6 flex items-start gap-2 text-xs text-gray-600">
+      <div className="mt-6 flex items-start gap-2 text-xs text-muted-foreground">
         <Info className="w-3 h-3 mt-0.5 shrink-0" />
         <span>
           FinSim educational simulation. Data and projections are illustrative, derived from IEA, BloombergNEF, and IRENA

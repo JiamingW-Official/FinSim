@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { Calendar, ChevronDown, ChevronUp, Star } from "lucide-react";
 import { useSeasonStore } from "@/stores/season-store";
 import { getCurrentSeason, getSeasonDaysRemaining, getSeasonTier, getNextTierXP } from "@/data/seasons/current-season";
 
@@ -42,30 +42,30 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.005 }}
       whileTap={{ scale: 0.995 }}
-      className="w-full rounded-xl border border-amber-500/20 bg-card p-3 text-left transition-colors hover:bg-muted/50"
+      className="w-full rounded-xl border border-border bg-card p-3 text-left transition-colors hover:bg-muted/50"
     >
       <div className="flex items-center gap-3">
         {/* Season icon */}
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/15 text-lg">
-          🏆
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-lg">
+          <Star className="h-4 w-4 text-primary" />
         </div>
 
         {/* Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="text-xs font-bold text-amber-300 truncate">{season.name}</h3>
+            <h3 className="text-xs font-bold text-foreground truncate">{season.name}</h3>
             <span className={cn(
               "text-xs font-bold",
-              currentTier >= 20 ? "text-amber-400" : "text-zinc-600",
+              currentTier >= 20 ? "text-primary" : "text-muted-foreground",
             )}>
               Tier {currentTier}/20
             </span>
           </div>
 
           {/* Progress bar */}
-          <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-white/5">
+          <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-muted">
             <motion.div
-              className="h-full rounded-full bg-amber-500"
+              className="h-full rounded-full bg-primary"
               initial={{ width: 0 }}
               animate={{ width: `${Math.min(100, Math.max(0, progressPercent))}%` }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -73,12 +73,12 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
           </div>
 
           <div className="mt-1 flex items-center gap-2 text-xs">
-            <span className="text-amber-400/70 tabular-nums">{progress.seasonXP} XP</span>
+            <span className="text-primary/70 tabular-nums">{progress.seasonXP} XP</span>
             {nextTier && (
-              <span className="text-zinc-600">/ {nextTier.required} for Tier {nextTier.tierNumber}</span>
+              <span className="text-muted-foreground">/ {nextTier.required} for Tier {nextTier.tierNumber}</span>
             )}
             {currentTier >= 20 && (
-              <span className="text-amber-400 font-bold">MAX TIER</span>
+              <span className="text-primary font-bold">MAX TIER</span>
             )}
           </div>
         </div>
@@ -87,7 +87,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
         <div className="flex flex-col items-end gap-1">
           <div className={cn(
             "flex items-center gap-1 text-xs",
-            daysUrgent ? "text-red-400 font-bold" : "text-zinc-500",
+            daysUrgent ? "text-red-400 font-bold" : "text-muted-foreground",
           )}>
             <Calendar className="h-3 w-3" />
             {daysDisplay}
@@ -96,7 +96,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
             animate={{ rotate: expanded ? 180 : 0 }}
             transition={{ duration: 0.2 }}
           >
-            <ChevronDown className="h-3.5 w-3.5 text-zinc-600" />
+            <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
           </motion.div>
         </div>
       </div>

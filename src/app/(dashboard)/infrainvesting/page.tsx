@@ -77,16 +77,16 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
-      <span className="text-xs text-zinc-400">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -398,7 +398,7 @@ function AssetClassesTab() {
             >
               <div className="text-2xl mb-1">{sec.icon}</div>
               <div className="text-sm font-semibold text-white">{sec.name}</div>
-              <div className="text-xs text-zinc-500 mt-0.5">{sec.segment}</div>
+              <div className="text-xs text-muted-foreground mt-0.5">{sec.segment}</div>
               <div className="flex items-center justify-between mt-2">
                 <span className="text-xs text-emerald-400 font-medium">{sec.yieldTarget}</span>
                 <Badge
@@ -429,10 +429,10 @@ function AssetClassesTab() {
                     <span className="font-semibold text-white">{selected.name}</span>
                     <Badge variant="outline" className="text-xs">{selected.segment}</Badge>
                   </div>
-                  <p className="text-sm text-zinc-300 leading-relaxed">{selected.desc}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{selected.desc}</p>
                   <div className="mt-2 flex flex-wrap gap-3 text-xs">
-                    <span className="text-zinc-400">Return target: <span className="text-emerald-400 font-medium">{selected.yieldTarget}</span></span>
-                    <span className="text-zinc-400">Inflation link: <span className="text-primary">{selected.inflationLink}</span></span>
+                    <span className="text-muted-foreground">Return target: <span className="text-emerald-400 font-medium">{selected.yieldTarget}</span></span>
+                    <span className="text-muted-foreground">Inflation link: <span className="text-primary">{selected.inflationLink}</span></span>
                   </div>
                 </div>
               </div>
@@ -575,10 +575,10 @@ function AssetClassesTab() {
                   {tier.returnTarget}
                 </span>
               </div>
-              <div className="flex-1 text-sm text-zinc-400">{tier.desc}</div>
+              <div className="flex-1 text-sm text-muted-foreground">{tier.desc}</div>
               <div className="flex flex-col gap-1 text-xs text-right">
-                <span className="text-zinc-500">Leverage: <span className="text-zinc-300">{tier.leverage}</span></span>
-                <span className="text-zinc-500 text-xs">{tier.examples}</span>
+                <span className="text-muted-foreground">Leverage: <span className="text-muted-foreground">{tier.leverage}</span></span>
+                <span className="text-muted-foreground text-xs">{tier.examples}</span>
               </div>
             </div>
           ))}
@@ -803,7 +803,7 @@ function ProjectFinanceTab() {
               ].map((row) => (
                 <div key={row.level} className="flex gap-2 items-start">
                   <span className="font-mono text-xs min-w-[70px]" style={{ color: row.color }}>{row.level}</span>
-                  <span className="text-xs text-zinc-300">{row.status}</span>
+                  <span className="text-xs text-muted-foreground">{row.status}</span>
                 </div>
               ))}
             </div>
@@ -821,10 +821,10 @@ function ProjectFinanceTab() {
             <div key={ra.name} className="rounded-xl border border-white/10 bg-white/5 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Badge variant="outline" className="font-mono text-xs">{ra.name}</Badge>
-                <span className="text-xs text-zinc-500">{ra.months}</span>
+                <span className="text-xs text-muted-foreground">{ra.months}</span>
               </div>
-              <div className="text-xs font-semibold text-zinc-200 mb-1">{ra.full}</div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{ra.purpose}</p>
+              <div className="text-xs font-semibold text-foreground mb-1">{ra.full}</div>
+              <p className="text-xs text-muted-foreground leading-relaxed">{ra.purpose}</p>
             </div>
           ))}
         </div>
@@ -846,8 +846,8 @@ function ProjectFinanceTab() {
                   {m.riskBearing} risk
                 </span>
               </div>
-              <div className="text-xs font-semibold text-zinc-200 mb-1">{m.full}</div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{m.desc}</p>
+              <div className="text-xs font-semibold text-foreground mb-1">{m.full}</div>
+              <p className="text-xs text-muted-foreground leading-relaxed">{m.desc}</p>
             </div>
           ))}
         </div>
@@ -867,14 +867,14 @@ function ProjectFinanceTab() {
             >
               <span className="text-base flex-shrink-0">{item.icon}</span>
               <div className="flex-1">
-                <div className="text-sm text-zinc-200">{item.item}</div>
+                <div className="text-sm text-foreground">{item.item}</div>
                 <AnimatePresence>
                   {expandedPhase === item.item && (
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="text-xs text-zinc-400 mt-1 overflow-hidden"
+                      className="text-xs text-muted-foreground mt-1 overflow-hidden"
                     >
                       {item.detail}
                     </motion.div>
@@ -882,9 +882,9 @@ function ProjectFinanceTab() {
                 </AnimatePresence>
               </div>
               {expandedPhase === item.item ? (
-                <ChevronUp size={14} className="text-zinc-500 mt-0.5 flex-shrink-0" />
+                <ChevronUp size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
               ) : (
-                <ChevronDown size={14} className="text-zinc-500 mt-0.5 flex-shrink-0" />
+                <ChevronDown size={14} className="text-muted-foreground mt-0.5 flex-shrink-0" />
               )}
             </button>
           ))}
@@ -1169,7 +1169,7 @@ function EnergyTransitionTab() {
                   {policy.type}
                 </Badge>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{policy.detail}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{policy.detail}</p>
             </div>
           ))}
         </div>
@@ -1188,7 +1188,7 @@ function EnergyTransitionTab() {
             ].map((item) => (
               <div key={item.label} className="flex gap-2 text-xs">
                 <span className="font-medium text-emerald-300 min-w-[110px]">{item.label}</span>
-                <span className="text-zinc-300">{item.detail}</span>
+                <span className="text-muted-foreground">{item.detail}</span>
               </div>
             ))}
           </div>
@@ -1307,13 +1307,13 @@ function InstitutionalTab() {
               <div className="flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="font-semibold text-white">{fm.name}</span>
-                  <span className="text-xs text-zinc-500">{fm.hq}</span>
+                  <span className="text-xs text-muted-foreground">{fm.hq}</span>
                 </div>
-                <div className="text-xs text-zinc-400 mt-0.5">{fm.focus}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{fm.focus}</div>
               </div>
               <div className="flex-shrink-0 text-right">
                 <div className="text-lg font-bold" style={{ color: fm.color }}>${fm.aum}B</div>
-                <div className="text-xs text-zinc-500">AUM</div>
+                <div className="text-xs text-muted-foreground">AUM</div>
               </div>
             </div>
           ))}
@@ -1334,8 +1334,8 @@ function InstitutionalTab() {
               return (
                 <div key={pf.fund}>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-zinc-200 font-medium">{pf.fund}</span>
-                    <span className="text-zinc-500">{pf.country} · ${pf.aum}B AUM</span>
+                    <span className="text-foreground font-medium">{pf.fund}</span>
+                    <span className="text-muted-foreground">{pf.country} · ${pf.aum}B AUM</span>
                   </div>
                   <div className="relative h-4 bg-white/10 rounded-full overflow-hidden">
                     <div
@@ -1354,7 +1354,7 @@ function InstitutionalTab() {
                 </div>
               );
             })}
-            <div className="text-xs text-zinc-600 text-right pt-1">
+            <div className="text-xs text-muted-foreground text-right pt-1">
               Dashed line = target allocation. Most funds under-allocated vs. target.
             </div>
           </div>
@@ -1517,11 +1517,11 @@ function InstitutionalTab() {
           <Globe size={14} /> Listed vs Unlisted Infrastructure Comparison
         </SectionTitle>
         <div className="rounded-xl border border-white/10 bg-white/5 overflow-hidden">
-          <div className="grid grid-cols-4 bg-white/10 text-xs font-semibold text-zinc-300 px-4 py-2">
+          <div className="grid grid-cols-4 bg-white/10 text-xs font-semibold text-muted-foreground px-4 py-2">
             <span>Attribute</span>
             <span className="text-center text-primary">Listed</span>
             <span className="text-center text-emerald-400">Unlisted</span>
-            <span className="text-center text-zinc-500">Winner</span>
+            <span className="text-center text-muted-foreground">Winner</span>
           </div>
           {LISTED_VS_UNLISTED.map((row, i) => (
             <div
@@ -1531,9 +1531,9 @@ function InstitutionalTab() {
                 i % 2 === 0 ? "bg-white/5" : "bg-transparent"
               )}
             >
-              <span className="text-zinc-300 font-medium">{row.attribute}</span>
-              <span className="text-center text-zinc-400">{row.listed}</span>
-              <span className="text-center text-zinc-400">{row.unlisted}</span>
+              <span className="text-muted-foreground font-medium">{row.attribute}</span>
+              <span className="text-center text-muted-foreground">{row.listed}</span>
+              <span className="text-center text-muted-foreground">{row.unlisted}</span>
               <span className={cn("text-center font-medium", row.winner === "listed" ? "text-primary" : "text-emerald-400")}>
                 {row.winner === "listed" ? "Listed" : "Unlisted"}
               </span>
@@ -1561,8 +1561,8 @@ function InstitutionalTab() {
                   {idx.type}
                 </Badge>
                 <div>
-                  <div className="text-sm text-zinc-200 font-medium">{idx.name}</div>
-                  <div className="text-xs text-zinc-500 mt-0.5">{idx.provider} — {idx.coverage}</div>
+                  <div className="text-sm text-foreground font-medium">{idx.name}</div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{idx.provider} — {idx.coverage}</div>
                 </div>
               </div>
             ))}
@@ -1605,14 +1605,14 @@ function InstitutionalTab() {
                   <span className="text-sm font-semibold text-white">{fee.type}</span>
                 </div>
                 <div className="grid grid-cols-2 gap-1 text-xs">
-                  <span className="text-zinc-500">Mgmt fee:</span>
-                  <span className="text-zinc-200">{fee.mgmt}</span>
-                  <span className="text-zinc-500">Carried interest:</span>
-                  <span className="text-zinc-200">{fee.carry}</span>
-                  <span className="text-zinc-500">Hurdle rate:</span>
-                  <span className="text-zinc-200">{fee.hurdle}</span>
-                  <span className="text-zinc-500">Catch-up:</span>
-                  <span className="text-zinc-200">{fee.catchup}</span>
+                  <span className="text-muted-foreground">Mgmt fee:</span>
+                  <span className="text-foreground">{fee.mgmt}</span>
+                  <span className="text-muted-foreground">Carried interest:</span>
+                  <span className="text-foreground">{fee.carry}</span>
+                  <span className="text-muted-foreground">Hurdle rate:</span>
+                  <span className="text-foreground">{fee.hurdle}</span>
+                  <span className="text-muted-foreground">Catch-up:</span>
+                  <span className="text-foreground">{fee.catchup}</span>
                 </div>
               </div>
             ))}
@@ -1629,7 +1629,7 @@ export default function InfraInvestingPage() {
   const [activeTab, setActiveTab] = useState("asset-classes");
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Page Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1643,7 +1643,7 @@ export default function InfraInvestingPage() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Infrastructure Investing</h1>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-muted-foreground">
               Asset classes · Project finance · Energy transition · Institutional allocation
             </p>
           </div>
@@ -1655,7 +1655,7 @@ export default function InfraInvestingPage() {
             { icon: <Globe size={12} />, label: "$1.1T AUM" },
             { icon: <Zap size={12} />, label: "Energy Transition" },
           ].map(({ icon, label }) => (
-            <Badge key={label} variant="outline" className="text-xs flex items-center gap-1 text-zinc-400 border-white/15">
+            <Badge key={label} variant="outline" className="text-xs flex items-center gap-1 text-muted-foreground border-white/15">
               {icon} {label}
             </Badge>
           ))}

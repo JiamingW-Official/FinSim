@@ -161,8 +161,8 @@ function HBar({ label, value, maxVal, color = "#6366f1" }: { label: string; valu
   const pct = Math.min(100, (value / maxVal) * 100);
   return (
     <div className="flex items-center gap-3 py-1">
-      <span className="text-xs text-slate-400 w-14 shrink-0">{label}</span>
-      <div className="flex-1 bg-slate-800 rounded-full h-2 overflow-hidden">
+      <span className="text-xs text-muted-foreground w-14 shrink-0">{label}</span>
+      <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
         <motion.div
           className="h-2 rounded-full"
           style={{ backgroundColor: color }}
@@ -171,7 +171,7 @@ function HBar({ label, value, maxVal, color = "#6366f1" }: { label: string; valu
           transition={{ duration: 0.7, ease: "easeOut" }}
         />
       </div>
-      <span className="text-xs text-slate-300 w-12 text-right">{value.toFixed(1)}%</span>
+      <span className="text-xs text-muted-foreground w-12 text-right">{value.toFixed(1)}%</span>
     </div>
   );
 }
@@ -180,10 +180,10 @@ function HBar({ label, value, maxVal, color = "#6366f1" }: { label: string; valu
 
 function StatCard({ label, value, sub, color = "text-white" }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
-      <div className="text-xs text-slate-400 mb-1">{label}</div>
+    <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
+      <div className="text-xs text-muted-foreground mb-1">{label}</div>
       <div className={cn("text-xl font-bold", color)}>{value}</div>
-      {sub && <div className="text-xs text-slate-500 mt-0.5">{sub}</div>}
+      {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
     </div>
   );
 }
@@ -193,8 +193,8 @@ function StatCard({ label, value, sub, color = "text-white" }: { label: string; 
 function SectionHeader({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-sm font-semibold text-slate-200">{title}</h3>
-      {sub && <p className="text-xs text-slate-500 mt-0.5">{sub}</p>}
+      <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+      {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
 }
@@ -255,45 +255,45 @@ function RiskMetricsDashboard() {
       <div>
         <SectionHeader title="Portfolio Risk Metrics" sub="Based on current positions & 1-day horizon" />
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700/40 text-center">
+          <div className="bg-muted/60 rounded-xl p-3 border border-border/40 text-center">
             <GaugeSVG
               value={Math.min(99, (Math.abs(var95) / PORTFOLIO_VALUE) * 2000)}
               label={`$${(var95 / 1000).toFixed(1)}k`}
               sublabel="VaR 95%"
               greenMax={30} yellowMax={60}
             />
-            <div className="text-xs text-slate-400 mt-1">Value at Risk 95%</div>
-            <div className="text-xs text-slate-500">1-day</div>
+            <div className="text-xs text-muted-foreground mt-1">Value at Risk 95%</div>
+            <div className="text-xs text-muted-foreground">1-day</div>
           </div>
-          <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700/40 text-center">
+          <div className="bg-muted/60 rounded-xl p-3 border border-border/40 text-center">
             <GaugeSVG
               value={Math.min(99, (Math.abs(var99) / PORTFOLIO_VALUE) * 1500)}
               label={`$${(var99 / 1000).toFixed(1)}k`}
               sublabel="VaR 99%"
               greenMax={30} yellowMax={60}
             />
-            <div className="text-xs text-slate-400 mt-1">Value at Risk 99%</div>
-            <div className="text-xs text-slate-500">1-day</div>
+            <div className="text-xs text-muted-foreground mt-1">Value at Risk 99%</div>
+            <div className="text-xs text-muted-foreground">1-day</div>
           </div>
-          <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700/40 text-center">
+          <div className="bg-muted/60 rounded-xl p-3 border border-border/40 text-center">
             <GaugeSVG
               value={Math.min(99, maxDD * 1.2)}
               label={`${maxDD.toFixed(1)}%`}
               sublabel="Max Drawdown"
               greenMax={20} yellowMax={50}
             />
-            <div className="text-xs text-slate-400 mt-1">Max Drawdown</div>
-            <div className="text-xs text-slate-500">historical est.</div>
+            <div className="text-xs text-muted-foreground mt-1">Max Drawdown</div>
+            <div className="text-xs text-muted-foreground">historical est.</div>
           </div>
-          <div className="bg-slate-800/60 rounded-xl p-3 border border-slate-700/40 text-center">
+          <div className="bg-muted/60 rounded-xl p-3 border border-border/40 text-center">
             <GaugeSVG
               value={Math.min(99, realizedVol * 2)}
               label={`${realizedVol.toFixed(1)}%`}
               sublabel="Realized Vol"
               greenMax={25} yellowMax={55}
             />
-            <div className="text-xs text-slate-400 mt-1">Realized Volatility</div>
-            <div className="text-xs text-slate-500">annualized</div>
+            <div className="text-xs text-muted-foreground mt-1">Realized Volatility</div>
+            <div className="text-xs text-muted-foreground">annualized</div>
           </div>
         </div>
       </div>
@@ -309,7 +309,7 @@ function RiskMetricsDashboard() {
       {/* Risk decomposition + VaR budget */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Pie: factor vs idiosyncratic */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Risk Decomposition" sub="Factor risk vs idiosyncratic risk" />
           <div className="flex items-center gap-6">
             <svg width={160} height={140} viewBox="0 0 160 140">
@@ -322,17 +322,17 @@ function RiskMetricsDashboard() {
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-sm bg-indigo-500" />
                 <div>
-                  <div className="text-sm font-medium text-slate-200">Factor Risk</div>
+                  <div className="text-sm font-medium text-foreground">Factor Risk</div>
                   <div className="text-lg font-bold text-indigo-400">{factorRisk}%</div>
-                  <div className="text-xs text-slate-500">Market, sector, size</div>
+                  <div className="text-xs text-muted-foreground">Market, sector, size</div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-sm bg-amber-500" />
                 <div>
-                  <div className="text-sm font-medium text-slate-200">Idiosyncratic</div>
+                  <div className="text-sm font-medium text-foreground">Idiosyncratic</div>
                   <div className="text-lg font-bold text-amber-400">{idioRisk}%</div>
-                  <div className="text-xs text-slate-500">Stock-specific risk</div>
+                  <div className="text-xs text-muted-foreground">Stock-specific risk</div>
                 </div>
               </div>
             </div>
@@ -340,7 +340,7 @@ function RiskMetricsDashboard() {
         </div>
 
         {/* VaR budget */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Risk Budget (VaR Contribution)" sub="Each position's % contribution to portfolio VaR" />
           <div className="space-y-1">
             {varContributions.map(({ ticker, contrib }) => (
@@ -477,12 +477,12 @@ function VaRModels() {
   return (
     <div className="space-y-6">
       {/* Model comparison table */}
-      <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+      <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
         <SectionHeader title="VaR Model Comparison" sub="1-day VaR as % of portfolio" />
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-xs text-slate-400 border-b border-slate-700">
+              <tr className="text-xs text-muted-foreground border-b border-border">
                 <th className="text-left py-2 font-medium">Model</th>
                 <th className="text-right py-2 font-medium">VaR 95%</th>
                 <th className="text-right py-2 font-medium">VaR 99%</th>
@@ -496,12 +496,12 @@ function VaRModels() {
                 { model: "Parametric",     v95: var95param, v99: var99param, assume: "Normal dist.",  best: "Speed" },
                 { model: "Monte Carlo",    v95: var95mc,   v99: var99mc,   assume: "Simulation",   best: "Complex portfolios" },
               ].map(row => (
-                <tr key={row.model} className="border-b border-slate-700/30 hover:bg-slate-700/20">
-                  <td className="py-2 text-slate-200 font-medium">{row.model}</td>
+                <tr key={row.model} className="border-b border-border/30 hover:bg-muted/20">
+                  <td className="py-2 text-foreground font-medium">{row.model}</td>
                   <td className="py-2 text-right text-amber-400">{(row.v95 * 100).toFixed(2)}%</td>
                   <td className="py-2 text-right text-red-400">{(row.v99 * 100).toFixed(2)}%</td>
-                  <td className="py-2 text-right text-slate-400">{row.assume}</td>
-                  <td className="py-2 text-right text-slate-400">{row.best}</td>
+                  <td className="py-2 text-right text-muted-foreground">{row.assume}</td>
+                  <td className="py-2 text-right text-muted-foreground">{row.best}</td>
                 </tr>
               ))}
             </tbody>
@@ -511,7 +511,7 @@ function VaRModels() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Historical simulation histogram */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Historical Simulation" sub="500-day return distribution" />
           <svg width={histW} height={histH} viewBox={`0 0 ${histW} ${histH}`} className="w-full">
             {counts.map((c, i) => {
@@ -542,7 +542,7 @@ function VaRModels() {
         </div>
 
         {/* Parametric: normal vs fat tail */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Parametric vs Fat-Tail" sub="Normal dist. vs empirical" />
           <svg width={histW} height={histH} viewBox={`0 0 ${histW} ${histH}`} className="w-full">
             {/* Normal curve */}
@@ -563,14 +563,14 @@ function VaRModels() {
             <text x={pad.l + gW / 2} y={pad.t + 10} textAnchor="middle" fontSize={8} fill="#6366f1">Normal</text>
             <text x={pad.l + gW * 0.85} y={pad.t + 20} textAnchor="middle" fontSize={8} fill="#f59e0b">Fat-tail</text>
           </svg>
-          <p className="text-xs text-slate-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Fat-tail distribution has heavier tails — underestimates extreme losses if using normal model.
           </p>
         </div>
       </div>
 
       {/* Monte Carlo fan chart */}
-      <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+      <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
         <SectionHeader title="Monte Carlo VaR" sub="1,000 portfolio simulations — 30-day horizon fan chart" />
         <svg width={fanW} height={fanH} viewBox={`0 0 ${fanW} ${fanH}`} className="w-full">
           {fanPaths.map((sim, i) => (
@@ -587,23 +587,23 @@ function VaRModels() {
           <text x={fanPad.l + fanGW / 2} y={fanH - 5} textAnchor="middle" fontSize={8} fill="#94a3b8">Days</text>
         </svg>
         <div className="grid grid-cols-3 gap-3 mt-3 text-center text-xs">
-          <div className="bg-slate-700/40 rounded p-2">
-            <div className="text-slate-400">MC VaR 95%</div>
+          <div className="bg-muted/40 rounded p-2">
+            <div className="text-muted-foreground">MC VaR 95%</div>
             <div className="font-bold text-amber-400">{(var95mc * 100).toFixed(2)}%</div>
           </div>
-          <div className="bg-slate-700/40 rounded p-2">
-            <div className="text-slate-400">MC VaR 99%</div>
+          <div className="bg-muted/40 rounded p-2">
+            <div className="text-muted-foreground">MC VaR 99%</div>
             <div className="font-bold text-red-400">{(var99mc * 100).toFixed(2)}%</div>
           </div>
-          <div className="bg-slate-700/40 rounded p-2">
-            <div className="text-slate-400">Simulations</div>
-            <div className="font-bold text-slate-200">1,000</div>
+          <div className="bg-muted/40 rounded p-2">
+            <div className="text-muted-foreground">Simulations</div>
+            <div className="font-bold text-foreground">1,000</div>
           </div>
         </div>
       </div>
 
       {/* Backtesting */}
-      <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+      <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
         <SectionHeader title="VaR Backtesting — Traffic Light Test" sub="Count VaR breaches over 250 trading days" />
         <div className="flex items-center gap-6">
           <div
@@ -611,13 +611,13 @@ function VaRModels() {
             style={{ borderColor: backtestColor }}
           >
             <span className="text-2xl font-bold" style={{ color: backtestColor }}>{breaches}</span>
-            <span className="text-xs text-slate-400">breaches</span>
+            <span className="text-xs text-muted-foreground">breaches</span>
           </div>
           <div>
             <Badge style={{ backgroundColor: backtestColor + "33", color: backtestColor, borderColor: backtestColor + "55" }}>
               {backtestStatus}
             </Badge>
-            <div className="mt-2 space-y-1 text-xs text-slate-400">
+            <div className="mt-2 space-y-1 text-xs text-muted-foreground">
               <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-green-500 inline-block" /> &lt;5 breaches → Green Zone (model accurate)</div>
               <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-amber-500 inline-block" /> 5–9 breaches → Yellow Zone (under review)</div>
               <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-500 inline-block" /> ≥10 breaches → Red Zone (model rejected)</div>
@@ -694,16 +694,16 @@ function StressTesting() {
             return (
               <motion.div
                 key={sc.name}
-                className="bg-slate-800/60 rounded-xl border border-slate-700/40 overflow-hidden"
+                className="bg-muted/60 rounded-xl border border-border/40 overflow-hidden"
                 layout
               >
                 <button
-                  className="w-full flex items-center justify-between p-3 hover:bg-slate-700/20"
+                  className="w-full flex items-center justify-between p-3 hover:bg-muted/20"
                   onClick={() => setExpandedScenario(isExpanded ? null : i)}
                 >
                   <div className="flex items-center gap-3">
                     <Badge variant="outline" className="text-xs shrink-0">{sc.year}</Badge>
-                    <span className="text-sm font-medium text-slate-200">{sc.name}</span>
+                    <span className="text-sm font-medium text-foreground">{sc.name}</span>
                   </div>
                   <div className="flex items-center gap-4">
                     <span className={cn("text-sm font-bold", totalImpact < 0 ? "text-red-400" : "text-green-400")}>
@@ -712,7 +712,7 @@ function StressTesting() {
                     <span className={cn("text-xs", totalImpact < 0 ? "text-red-400/70" : "text-green-400/70")}>
                       {dollarImpact >= 0 ? "+" : ""}${(dollarImpact / 1000).toFixed(0)}k
                     </span>
-                    {isExpanded ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+                    {isExpanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                   </div>
                 </button>
                 <AnimatePresence>
@@ -725,26 +725,26 @@ function StressTesting() {
                       className="px-3 pb-3"
                     >
                       <div className="grid grid-cols-3 gap-3 text-xs">
-                        <div className="bg-slate-700/40 rounded p-2">
-                          <div className="text-slate-400">Equity Impact</div>
+                        <div className="bg-muted/40 rounded p-2">
+                          <div className="text-muted-foreground">Equity Impact</div>
                           <div className={cn("font-bold text-sm", equityImpact < 0 ? "text-red-400" : "text-green-400")}>
                             {(equityImpact * 100).toFixed(1)}%
                           </div>
-                          <div className="text-slate-500">Equity shock: {(sc.equityShock * 100).toFixed(0)}%</div>
+                          <div className="text-muted-foreground">Equity shock: {(sc.equityShock * 100).toFixed(0)}%</div>
                         </div>
-                        <div className="bg-slate-700/40 rounded p-2">
-                          <div className="text-slate-400">Bond Impact</div>
+                        <div className="bg-muted/40 rounded p-2">
+                          <div className="text-muted-foreground">Bond Impact</div>
                           <div className={cn("font-bold text-sm", bondImpact > 0 ? "text-green-400" : "text-red-400")}>
                             {bondImpact >= 0 ? "+" : ""}{(bondImpact * 100).toFixed(1)}%
                           </div>
-                          <div className="text-slate-500">Bond shock: {(sc.bondShock * 100).toFixed(0)}%</div>
+                          <div className="text-muted-foreground">Bond shock: {(sc.bondShock * 100).toFixed(0)}%</div>
                         </div>
-                        <div className="bg-slate-700/40 rounded p-2">
-                          <div className="text-slate-400">Dollar P&L</div>
+                        <div className="bg-muted/40 rounded p-2">
+                          <div className="text-muted-foreground">Dollar P&L</div>
                           <div className={cn("font-bold text-sm", dollarImpact < 0 ? "text-red-400" : "text-green-400")}>
                             {dollarImpact >= 0 ? "+" : ""}${(dollarImpact / 1000).toFixed(0)}k
                           </div>
-                          <div className="text-slate-500">of ${(PORTFOLIO_VALUE / 1000).toFixed(0)}k portfolio</div>
+                          <div className="text-muted-foreground">of ${(PORTFOLIO_VALUE / 1000).toFixed(0)}k portfolio</div>
                         </div>
                       </div>
                     </motion.div>
@@ -758,32 +758,32 @@ function StressTesting() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Custom scenario */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Hypothetical Shock Scenario" sub="Adjust sliders to model custom stress event" />
           <div className="space-y-4">
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Equity Shock</span>
                 <span className="text-red-400 font-medium">{equityShock[0]}%</span>
               </div>
               <Slider value={equityShock} onValueChange={setEquityShock} min={-60} max={20} step={1} className="w-full" />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Rate Shock (bps)</span>
                 <span className="text-amber-400 font-medium">+{rateShock[0]} bps</span>
               </div>
               <Slider value={rateShock} onValueChange={setRateShock} min={-200} max={400} step={10} className="w-full" />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Credit Spread (bps)</span>
                 <span className="text-orange-400 font-medium">+{creditShock[0]} bps</span>
               </div>
               <Slider value={creditShock} onValueChange={setCreditShock} min={0} max={500} step={10} className="w-full" />
             </div>
-            <div className="mt-3 pt-3 border-t border-slate-700/40">
-              <div className="text-xs text-slate-400 mb-1">Portfolio Impact</div>
+            <div className="mt-3 pt-3 border-t border-border/40">
+              <div className="text-xs text-muted-foreground mb-1">Portfolio Impact</div>
               <div className={cn("text-2xl font-bold", customImpact() < 0 ? "text-red-400" : "text-green-400")}>
                 {customImpact() >= 0 ? "+" : ""}{(customImpact() * 100).toFixed(2)}%
               </div>
@@ -796,12 +796,12 @@ function StressTesting() {
 
         {/* Reverse stress + correlation spike */}
         <div className="space-y-4">
-          <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+          <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
             <SectionHeader title="Reverse Stress Test" sub="How severe must equity fall to lose 20% of portfolio?" />
             <div className="text-center py-3">
               <div className="text-3xl font-bold text-red-400">{(reverseShock * 100).toFixed(1)}%</div>
-              <div className="text-xs text-slate-500 mt-1">Required equity decline</div>
-              <div className="mt-3 text-xs text-slate-400 bg-slate-700/40 rounded p-2">
+              <div className="text-xs text-muted-foreground mt-1">Required equity decline</div>
+              <div className="mt-3 text-xs text-muted-foreground bg-muted/40 rounded p-2">
                 With current rate scenario ({rateShock[0]} bps), equities would need to fall{" "}
                 <span className="text-red-400 font-semibold">{Math.abs(reverseShock * 100).toFixed(1)}%</span>{" "}
                 to cause a -20% portfolio loss.
@@ -809,7 +809,7 @@ function StressTesting() {
             </div>
           </div>
 
-          <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+          <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
             <SectionHeader title="Crisis Correlation Spike" sub="Correlations rise in stress — diversification fails" />
             <svg width={corrW} height={corrH} viewBox={`0 0 ${corrW} ${corrH}`} className="w-full">
               <polyline points={corrPoints} fill="none" stroke="#6366f1" strokeWidth={2} />
@@ -819,20 +819,20 @@ function StressTesting() {
               <text x={corrPad.l + corrGW * 0.5} y={corrPad.t + corrGH * (1 - (crisisCorr - 0.3) / 0.8) - 4} textAnchor="middle" fontSize={8} fill="#ef4444">Crisis</text>
             </svg>
             <div className="grid grid-cols-2 gap-2 mt-2 text-xs text-center">
-              <div className="bg-slate-700/40 rounded p-1">
-                <div className="text-slate-400">Normal Corr.</div>
+              <div className="bg-muted/40 rounded p-1">
+                <div className="text-muted-foreground">Normal Corr.</div>
                 <div className="font-bold text-green-400">{normalCorr.toFixed(2)}</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-1">
-                <div className="text-slate-400">Crisis Corr.</div>
+              <div className="bg-muted/40 rounded p-1">
+                <div className="text-muted-foreground">Crisis Corr.</div>
                 <div className="font-bold text-red-400">{crisisCorr.toFixed(2)}</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-1">
-                <div className="text-slate-400">Portfolio Vol (normal)</div>
-                <div className="font-bold text-slate-200">{(portfolioVolNormal * 100).toFixed(1)}%</div>
+              <div className="bg-muted/40 rounded p-1">
+                <div className="text-muted-foreground">Portfolio Vol (normal)</div>
+                <div className="font-bold text-foreground">{(portfolioVolNormal * 100).toFixed(1)}%</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-1">
-                <div className="text-slate-400">Portfolio Vol (crisis)</div>
+              <div className="bg-muted/40 rounded p-1">
+                <div className="text-muted-foreground">Portfolio Vol (crisis)</div>
                 <div className="font-bold text-red-400">{(portfolioVolCrisis * 100).toFixed(1)}%</div>
               </div>
             </div>
@@ -944,7 +944,7 @@ function DrawdownAnalysis() {
   return (
     <div className="space-y-6">
       {/* Underwater chart */}
-      <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+      <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
         <SectionHeader title="Underwater Chart — 3-Year Drawdown" sub="Percentage below previous peak" />
         <svg width={uwW} height={uwH} viewBox={`0 0 ${uwW} ${uwH}`} className="w-full">
           <path d={areaPath} fill="#ef444422" />
@@ -969,22 +969,22 @@ function DrawdownAnalysis() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Monthly heatmap */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Monthly Return Heatmap" sub="Color intensity by return magnitude" />
           <div className="overflow-x-auto">
             <table className="text-xs border-collapse w-full">
               <thead>
                 <tr>
-                  <th className="text-left py-1 pr-2 text-slate-400 font-normal">Year</th>
+                  <th className="text-left py-1 pr-2 text-muted-foreground font-normal">Year</th>
                   {MONTHS.map(m => (
-                    <th key={m} className="text-center py-1 px-0.5 text-slate-400 font-normal w-7">{m}</th>
+                    <th key={m} className="text-center py-1 px-0.5 text-muted-foreground font-normal w-7">{m}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {YEARS.map(yr => (
                   <tr key={yr}>
-                    <td className="pr-2 text-slate-400 font-medium">{yr}</td>
+                    <td className="pr-2 text-muted-foreground font-medium">{yr}</td>
                     {MONTHS.map((_, mi) => {
                       const data = monthlyReturns.find(d => d.year === yr && d.month === mi + 1);
                       const ret = data?.ret ?? 0;
@@ -1008,25 +1008,25 @@ function DrawdownAnalysis() {
 
         {/* Recovery analysis + pain gauge */}
         <div className="space-y-4">
-          <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+          <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
             <SectionHeader title="Drawdown Episodes" sub="Peak → Trough → Recovery timeline" />
             <div className="space-y-2">
               {episodes.map(ep => (
-                <div key={ep.label} className="text-xs bg-slate-700/30 rounded p-2">
+                <div key={ep.label} className="text-xs bg-muted/30 rounded p-2">
                   <div className="flex justify-between mb-1">
-                    <span className="font-medium text-slate-200">{ep.label}</span>
+                    <span className="font-medium text-foreground">{ep.label}</span>
                     <span className="text-red-400 font-bold">{(ep.dd * 100).toFixed(1)}%</span>
                   </div>
-                  <div className="flex gap-1 items-center text-slate-400">
+                  <div className="flex gap-1 items-center text-muted-foreground">
                     <span>{ep.peak}</span>
-                    <span className="text-slate-600">→</span>
+                    <span className="text-muted-foreground">→</span>
                     <span className="text-red-400">{ep.trough}</span>
-                    <span className="text-slate-600">→</span>
-                    <span className={ep.recovery ? "text-green-400" : "text-slate-500"}>
+                    <span className="text-muted-foreground">→</span>
+                    <span className={ep.recovery ? "text-green-400" : "text-muted-foreground"}>
                       {ep.recovery ?? "Recovering..."}
                     </span>
                   </div>
-                  <div className="mt-1 flex gap-2 text-slate-500">
+                  <div className="mt-1 flex gap-2 text-muted-foreground">
                     <span>Down: {ep.days}d</span>
                     {ep.recovDays && <span>Recovery: {ep.recovDays}d</span>}
                   </div>
@@ -1035,10 +1035,10 @@ function DrawdownAnalysis() {
             </div>
           </div>
 
-          <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+          <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
             <SectionHeader title="Psychology Pain Index" sub="Duration × Magnitude composite" />
             <div className="flex items-center gap-4">
-              <div className="flex-1 bg-slate-700/40 rounded-full h-3 overflow-hidden">
+              <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
                 <motion.div
                   className="h-3 rounded-full"
                   style={{
@@ -1050,9 +1050,9 @@ function DrawdownAnalysis() {
                   transition={{ duration: 1 }}
                 />
               </div>
-              <span className="text-lg font-bold text-slate-200 shrink-0">{painIndex.toFixed(0)}/100</span>
+              <span className="text-lg font-bold text-foreground shrink-0">{painIndex.toFixed(0)}/100</span>
             </div>
-            <p className="text-xs text-slate-500 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               {painIndex < 30 ? "Low pain — short, shallow drawdowns." : painIndex < 60 ? "Moderate pain — some prolonged losses." : "High pain — significant losses with long recovery."}
             </p>
           </div>
@@ -1122,51 +1122,51 @@ function PositionSizing() {
   return (
     <div className="space-y-6">
       {/* Kelly criterion */}
-      <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+      <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
         <SectionHeader title="Kelly Criterion" sub="Optimal position size to maximize long-run growth rate" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Win Probability (p)</span>
                 <span className="text-indigo-400 font-medium">{(p * 100).toFixed(0)}%</span>
               </div>
               <Slider value={winProb} onValueChange={setWinProb} min={0.3} max={0.8} step={0.01} />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Win/Loss Ratio (b)</span>
                 <span className="text-indigo-400 font-medium">{b.toFixed(1)}:1</span>
               </div>
               <Slider value={winLossRatio} onValueChange={setWinLossRatio} min={0.5} max={5} step={0.1} />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Kelly Fraction</span>
                 <span className="text-indigo-400 font-medium">{kellyFraction[0].toFixed(2)}x (Fractional Kelly)</span>
               </div>
               <Slider value={kellyFraction} onValueChange={setKellyFraction} min={0.25} max={1} step={0.05} />
             </div>
             <div className="grid grid-cols-2 gap-3 mt-2">
-              <div className="bg-slate-700/40 rounded p-3 text-center">
-                <div className="text-xs text-slate-400">Full Kelly f*</div>
+              <div className="bg-muted/40 rounded p-3 text-center">
+                <div className="text-xs text-muted-foreground">Full Kelly f*</div>
                 <div className={cn("text-xl font-bold", kellyFull > 0 ? "text-green-400" : "text-red-400")}>
                   {(kellyFull * 100).toFixed(1)}%
                 </div>
               </div>
-              <div className="bg-slate-700/40 rounded p-3 text-center">
-                <div className="text-xs text-slate-400">Fractional Kelly</div>
+              <div className="bg-muted/40 rounded p-3 text-center">
+                <div className="text-xs text-muted-foreground">Fractional Kelly</div>
                 <div className={cn("text-xl font-bold", kellyFractional > 0 ? "text-indigo-400" : "text-red-400")}>
                   {(kellyFractional * 100).toFixed(1)}%
                 </div>
               </div>
             </div>
-            <div className="text-xs text-slate-500 bg-slate-700/30 rounded p-2">
+            <div className="text-xs text-muted-foreground bg-muted/30 rounded p-2">
               f* = (b×p − q) / b = ({b.toFixed(1)}×{p.toFixed(2)} − {q.toFixed(2)}) / {b.toFixed(1)} = {(kellyFull * 100).toFixed(1)}%
             </div>
           </div>
           <div>
-            <div className="text-xs text-slate-400 mb-2">Expected Growth Rate vs Kelly Fraction</div>
+            <div className="text-xs text-muted-foreground mb-2">Expected Growth Rate vs Kelly Fraction</div>
             <svg width={growthW} height={growthH} viewBox={`0 0 ${growthW} ${growthH}`} className="w-full">
               <polyline points={growthPoints.join(" ")} fill="none" stroke="#6366f1" strokeWidth={2} />
               {growthPoints.map((pt, i) => {
@@ -1190,38 +1190,38 @@ function PositionSizing() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Fixed fractional */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Fixed Fractional Position Sizing" sub="Risk a fixed % of account per trade" />
           <div className="space-y-4">
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Risk per Trade</span>
                 <span className="text-indigo-400">{riskPct[0]}%</span>
               </div>
               <Slider value={riskPct} onValueChange={setRiskPct} min={0.5} max={5} step={0.25} />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Stop Loss %</span>
                 <span className="text-red-400">{stopPct[0]}%</span>
               </div>
               <Slider value={stopPct} onValueChange={setStopPct} min={1} max={20} step={0.5} />
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Dollar Risk</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Dollar Risk</div>
                 <div className="font-bold text-red-400">${dollarRisk.toLocaleString()}</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Position Size</div>
-                <div className="font-bold text-slate-200">${positionSize.toLocaleString("en", { maximumFractionDigits: 0 })}</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Position Size</div>
+                <div className="font-bold text-foreground">${positionSize.toLocaleString("en", { maximumFractionDigits: 0 })}</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Max Shares ($150)</div>
-                <div className="font-bold text-slate-200">{maxShares} shares</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Max Shares ($150)</div>
+                <div className="font-bold text-foreground">{maxShares} shares</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">% of Portfolio</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">% of Portfolio</div>
                 <div className="font-bold text-indigo-400">{((positionSize / accountSize) * 100).toFixed(1)}%</div>
               </div>
             </div>
@@ -1229,14 +1229,14 @@ function PositionSizing() {
         </div>
 
         {/* Risk parity */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Risk Parity Sizing" sub="Equal risk contribution per position" />
           <div className="space-y-1 mb-3">
             {riskParityShares.map(p => (
               <HBar key={p.ticker} label={p.ticker} value={p.weight * 100} maxVal={100} color="#a78bfa" />
             ))}
           </div>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted-foreground">
             Risk parity allocates more capital to lower-volatility assets, equalizing each position's contribution to total portfolio risk.
           </p>
         </div>
@@ -1244,7 +1244,7 @@ function PositionSizing() {
 
       {/* Concentration + stop loss */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Concentration Limits" sub="Current vs recommended maximums" />
           <div className="space-y-3">
             {[
@@ -1254,18 +1254,18 @@ function PositionSizing() {
             ].map(item => (
               <div key={item.label} className="text-xs">
                 <div className="flex justify-between mb-1">
-                  <span className="text-slate-300">{item.label}</span>
+                  <span className="text-muted-foreground">{item.label}</span>
                   <div className="flex items-center gap-2">
                     <span className={cn("font-bold", item.current > item.limit ? "text-red-400" : "text-green-400")}>
                       {item.current.toFixed(1)}{item.unit}
                     </span>
-                    <span className="text-slate-500">/ {item.limit}{item.unit} limit</span>
+                    <span className="text-muted-foreground">/ {item.limit}{item.unit} limit</span>
                     {item.current > item.limit
                       ? <AlertTriangle className="w-3 h-3 text-red-400" />
                       : <Shield className="w-3 h-3 text-green-400" />}
                   </div>
                 </div>
-                <div className="bg-slate-700 rounded-full h-1.5 overflow-hidden">
+                <div className="bg-muted rounded-full h-1.5 overflow-hidden">
                   <div
                     className="h-1.5 rounded-full"
                     style={{
@@ -1279,32 +1279,32 @@ function PositionSizing() {
           </div>
         </div>
 
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Stop Loss Placement" sub="ATR-based vs support-based comparison" />
           <div className="space-y-3 text-sm">
-            <div className="bg-slate-700/40 rounded p-3">
+            <div className="bg-muted/40 rounded p-3">
               <div className="flex justify-between mb-1">
-                <span className="text-slate-300 font-medium">ATR-Based Stop</span>
+                <span className="text-muted-foreground font-medium">ATR-Based Stop</span>
                 <Badge variant="outline" className="text-xs">2.5× ATR</Badge>
               </div>
               <div className="text-red-400 font-bold">${atrStop.toFixed(2)} below entry</div>
-              <div className="text-xs text-slate-500 mt-1">Stop = Entry − 2.5 × ATR(14) = ${(150 - atrStop).toFixed(2)}</div>
+              <div className="text-xs text-muted-foreground mt-1">Stop = Entry − 2.5 × ATR(14) = ${(150 - atrStop).toFixed(2)}</div>
             </div>
-            <div className="bg-slate-700/40 rounded p-3">
+            <div className="bg-muted/40 rounded p-3">
               <div className="flex justify-between mb-1">
-                <span className="text-slate-300 font-medium">Support-Based Stop</span>
+                <span className="text-muted-foreground font-medium">Support-Based Stop</span>
                 <Badge variant="outline" className="text-xs">Below key level</Badge>
               </div>
               <div className="text-red-400 font-bold">${supportStop.toFixed(2)} below support</div>
-              <div className="text-xs text-slate-500 mt-1">Stop = ${(150 - supportStop).toFixed(2)} (1% below structural support)</div>
+              <div className="text-xs text-muted-foreground mt-1">Stop = ${(150 - supportStop).toFixed(2)} (1% below structural support)</div>
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-slate-700/30 rounded p-2 text-center">
-                <div className="text-slate-400">ATR Stop P&L Risk</div>
+              <div className="bg-muted/30 rounded p-2 text-center">
+                <div className="text-muted-foreground">ATR Stop P&L Risk</div>
                 <div className="font-bold text-red-400">${(atrStop * maxShares).toLocaleString()}</div>
               </div>
-              <div className="bg-slate-700/30 rounded p-2 text-center">
-                <div className="text-slate-400">Support Stop P&L Risk</div>
+              <div className="bg-muted/30 rounded p-2 text-center">
+                <div className="text-muted-foreground">Support Stop P&L Risk</div>
                 <div className="font-bold text-red-400">${(supportStop * maxShares).toLocaleString()}</div>
               </div>
             </div>
@@ -1380,60 +1380,60 @@ function HedgingTools() {
     <div className="space-y-6">
       {/* Equity hedge */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Equity Hedge — SPY Puts" sub="Long portfolio + protective puts" />
           <div className="space-y-4">
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Put Strike (% of spot)</span>
                 <span className="text-indigo-400">{putStrike[0]}% OTM</span>
               </div>
               <Slider value={putStrike} onValueChange={setPutStrike} min={80} max={100} step={1} />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Hedge Ratio</span>
                 <span className="text-indigo-400">{(hedgeRatio[0] * 100).toFixed(0)}%</span>
               </div>
               <Slider value={hedgeRatio} onValueChange={setHedgeRatio} min={0.1} max={1} step={0.05} />
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Put Premium</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Put Premium</div>
                 <div className="font-bold text-red-400">${(putPremium / 1000).toFixed(1)}k</div>
-                <div className="text-slate-500">{(putCost * 100).toFixed(1)}% of notional</div>
+                <div className="text-muted-foreground">{(putCost * 100).toFixed(1)}% of notional</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Protection Floor</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Protection Floor</div>
                 <div className="font-bold text-green-400">{putStrike[0]}% of portfolio</div>
-                <div className="text-slate-500">Max loss limited below</div>
+                <div className="text-muted-foreground">Max loss limited below</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Notional Hedged</div>
-                <div className="font-bold text-slate-200">${(putNotional / 1000).toFixed(0)}k</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Notional Hedged</div>
+                <div className="font-bold text-foreground">${(putNotional / 1000).toFixed(0)}k</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Annual Cost (est.)</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Annual Cost (est.)</div>
                 <div className="font-bold text-amber-400">${(putPremium * 4 / 1000).toFixed(1)}k</div>
-                <div className="text-slate-500">4× quarterly renewal</div>
+                <div className="text-muted-foreground">4× quarterly renewal</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Options collar */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="Options Collar Strategy" sub="Sell OTM calls, buy OTM puts (near zero-cost)" />
           <div className="space-y-3">
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Call Strike (upside cap)</span>
                 <span className="text-green-400">{collarCall[0]}%</span>
               </div>
               <Slider value={collarCall} onValueChange={setCollarCall} min={101} max={120} step={1} />
             </div>
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>Put Strike (downside floor)</span>
                 <span className="text-red-400">{collarPut[0]}%</span>
               </div>
@@ -1448,16 +1448,16 @@ function HedgingTools() {
               <text x={colPad.l - 2} y={colPad.t + colGH / 2 + 4} textAnchor="end" fontSize={8} fill="#94a3b8">0</text>
             </svg>
             <div className="grid grid-cols-3 gap-2 text-xs text-center">
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Call Premium</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Call Premium</div>
                 <div className="font-bold text-green-400">+${(callPremiumEarned / 1000).toFixed(1)}k</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Put Premium</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Put Premium</div>
                 <div className="font-bold text-red-400">-${(putPremiumPaid / 1000).toFixed(1)}k</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Net Cost</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Net Cost</div>
                 <div className={cn("font-bold", collarCost < 0 ? "text-green-400" : "text-red-400")}>
                   {collarCost >= 0 ? "-" : "+"}${(Math.abs(collarCost) / 1000).toFixed(1)}k
                 </div>
@@ -1469,32 +1469,32 @@ function HedgingTools() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* VIX hedge */}
-        <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+        <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
           <SectionHeader title="VIX Tail Risk Hedge" sub="Long VIX calls as portfolio insurance" />
           <div className="space-y-3">
             <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
+              <div className="flex justify-between text-xs text-muted-foreground mb-1">
                 <span>VIX Call Strike</span>
                 <span className="text-indigo-400">{vixCallStrike[0]}</span>
               </div>
               <Slider value={vixCallStrike} onValueChange={setVixCallStrike} min={18} max={50} step={1} />
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Annual VIX Call Cost</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Annual VIX Call Cost</div>
                 <div className="font-bold text-red-400">${(vixCallCost / 1000).toFixed(1)}k</div>
-                <div className="text-slate-500">{((vixCallCost / portfolioValue) * 100).toFixed(2)}% of portfolio</div>
+                <div className="text-muted-foreground">{((vixCallCost / portfolioValue) * 100).toFixed(2)}% of portfolio</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Drawdown Protection</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Drawdown Protection</div>
                 <div className="font-bold text-green-400">{(vixCallProtection * 100).toFixed(0)}% offset</div>
-                <div className="text-slate-500">During spike events</div>
+                <div className="text-muted-foreground">During spike events</div>
               </div>
             </div>
-            <div className="bg-slate-700/30 rounded p-3 text-xs">
-              <div className="text-slate-300 font-medium mb-1">VIX-Equity Correlation in Crises</div>
-              <div className="space-y-1 text-slate-400">
-                <div className="flex justify-between"><span>Normal market (VIX &lt;20)</span><span className="text-slate-300">−0.65</span></div>
+            <div className="bg-muted/30 rounded p-3 text-xs">
+              <div className="text-muted-foreground font-medium mb-1">VIX-Equity Correlation in Crises</div>
+              <div className="space-y-1 text-muted-foreground">
+                <div className="flex justify-between"><span>Normal market (VIX &lt;20)</span><span className="text-muted-foreground">−0.65</span></div>
                 <div className="flex justify-between"><span>Stress (VIX 20–30)</span><span className="text-amber-400">−0.78</span></div>
                 <div className="flex justify-between"><span>Crisis (VIX &gt;30)</span><span className="text-red-400">−0.91</span></div>
               </div>
@@ -1504,31 +1504,31 @@ function HedgingTools() {
 
         {/* Beta hedge + hedge ratio calculator */}
         <div className="space-y-4">
-          <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+          <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
             <SectionHeader title="Beta Hedge — Short SPY Futures" sub="Neutralize market beta exposure" />
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Portfolio Beta</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Portfolio Beta</div>
                 <div className="font-bold text-amber-400">{portfolioBeta.toFixed(2)}</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Hedged Beta</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Hedged Beta</div>
                 <div className="font-bold text-green-400">{hedgedBeta.toFixed(2)}</div>
-                <div className="text-slate-500">After {(hedgeRatio[0] * 100).toFixed(0)}% hedge</div>
+                <div className="text-muted-foreground">After {(hedgeRatio[0] * 100).toFixed(0)}% hedge</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">SPY Contracts Short</div>
-                <div className="font-bold text-slate-200">{(spyFuturesShort * hedgeRatio[0]).toFixed(1)}</div>
-                <div className="text-slate-500">$500k notional each</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">SPY Contracts Short</div>
+                <div className="font-bold text-foreground">{(spyFuturesShort * hedgeRatio[0]).toFixed(1)}</div>
+                <div className="text-muted-foreground">$500k notional each</div>
               </div>
-              <div className="bg-slate-700/40 rounded p-2">
-                <div className="text-slate-400">Residual Alpha Exposure</div>
+              <div className="bg-muted/40 rounded p-2">
+                <div className="text-muted-foreground">Residual Alpha Exposure</div>
                 <div className="font-bold text-indigo-400">{((1 - hedgeRatio[0]) * 100).toFixed(0)}%</div>
               </div>
             </div>
           </div>
 
-          <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700/40">
+          <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
             <SectionHeader title="Hedge Ratio Calculator" sub="Optimal ratio = ρ × (σ_portfolio / σ_hedge)" />
             <div className="space-y-2 text-xs">
               {[
@@ -1536,16 +1536,16 @@ function HedgingTools() {
                 { label: "Portfolio Vol (σ_p)", value: `${(portVol * 100).toFixed(1)}%` },
                 { label: "Hedge Vol (σ_h = SPY)", value: `${(spyVol * 100).toFixed(1)}%` },
               ].map(row => (
-                <div key={row.label} className="flex justify-between py-1 border-b border-slate-700/30">
-                  <span className="text-slate-400">{row.label}</span>
-                  <span className="text-slate-200 font-medium">{row.value}</span>
+                <div key={row.label} className="flex justify-between py-1 border-b border-border/30">
+                  <span className="text-muted-foreground">{row.label}</span>
+                  <span className="text-foreground font-medium">{row.value}</span>
                 </div>
               ))}
               <div className="pt-2 flex justify-between">
-                <span className="text-slate-300 font-medium">Optimal Hedge Ratio</span>
+                <span className="text-muted-foreground font-medium">Optimal Hedge Ratio</span>
                 <span className="text-indigo-400 font-bold text-sm">{calcHedgeRatio.toFixed(3)}</span>
               </div>
-              <div className="text-slate-500 bg-slate-700/30 rounded p-2 mt-1">
+              <div className="text-muted-foreground bg-muted/30 rounded p-2 mt-1">
                 h* = {correlation} × ({(portVol * 100).toFixed(1)}% / {(spyVol * 100).toFixed(1)}%) = {calcHedgeRatio.toFixed(3)}
               </div>
             </div>
@@ -1573,7 +1573,7 @@ export default function RiskManagementPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1587,8 +1587,8 @@ export default function RiskManagementPage() {
               <Shield className="w-5 h-5 text-red-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-100">Portfolio Risk Management</h1>
-              <p className="text-xs text-slate-500">
+              <h1 className="text-xl font-bold text-foreground">Portfolio Risk Management</h1>
+              <p className="text-xs text-muted-foreground">
                 VaR • Stress Testing • Drawdown Analysis • Position Sizing • Hedging Tools
               </p>
             </div>
@@ -1597,14 +1597,14 @@ export default function RiskManagementPage() {
           {/* Quick stats */}
           <div className="flex flex-wrap gap-2 mt-3">
             {[
-              { label: "Portfolio Value", value: "$500k", color: "text-slate-200" },
+              { label: "Portfolio Value", value: "$500k", color: "text-foreground" },
               { label: "Positions", value: "7", color: "text-indigo-400" },
               { label: "Daily VaR 95%", value: "~$4.2k", color: "text-amber-400" },
               { label: "Max DD (est.)", value: "~18%", color: "text-red-400" },
               { label: "Diversification Ratio", value: "1.31×", color: "text-green-400" },
             ].map(s => (
-              <div key={s.label} className="bg-slate-800/60 rounded-lg px-3 py-1.5 text-xs border border-slate-700/40 flex items-center gap-2">
-                <span className="text-slate-400">{s.label}</span>
+              <div key={s.label} className="bg-muted/60 rounded-lg px-3 py-1.5 text-xs border border-border/40 flex items-center gap-2">
+                <span className="text-muted-foreground">{s.label}</span>
                 <span className={cn("font-semibold", s.color)}>{s.value}</span>
               </div>
             ))}
@@ -1613,14 +1613,14 @@ export default function RiskManagementPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-slate-800/80 border border-slate-700/40 flex-wrap h-auto p-1 gap-0.5 mb-6">
+          <TabsList className="bg-muted/80 border border-border/40 flex-wrap h-auto p-1 gap-0.5 mb-6">
             {tabs.map(tab => {
               const Icon = tab.icon;
               return (
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100 text-slate-400 text-xs flex items-center gap-1.5 px-3 py-1.5"
+                  className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs flex items-center gap-1.5 px-3 py-1.5"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {tab.label}

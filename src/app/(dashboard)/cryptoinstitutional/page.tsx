@@ -55,11 +55,11 @@ function StatChip({
   color: string;
 }) {
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardContent className="pt-4 pb-3">
         <div className={cn("text-xl font-bold font-mono", color)}>{value}</div>
-        <div className="text-xs text-zinc-300 mt-0.5">{label}</div>
-        <div className="text-xs text-zinc-500">{sub}</div>
+        <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
+        <div className="text-xs text-muted-foreground">{sub}</div>
       </CardContent>
     </Card>
   );
@@ -79,15 +79,15 @@ function CollapsibleCard({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardHeader
         className="pb-2 cursor-pointer select-none"
         onClick={() => setOpen((o) => !o)}
       >
-        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
           {icon}
           {title}
-          <span className="ml-auto text-zinc-600">
+          <span className="ml-auto text-muted-foreground">
             {open ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </span>
         </CardTitle>
@@ -407,7 +407,7 @@ function Tab1EtfContent() {
         icon={<Layers className="w-4 h-4 text-indigo-400" />}
       >
         <EtfMechanismSVG />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Authorized Participants (large broker-dealers) interact directly with the ETF issuer to create and redeem
           large blocks (creation units). Cash creations mean the AP delivers dollars; the issuer then purchases
           spot BTC through a custodian (Coinbase Prime for most US spot ETFs). This arbitrage keeps ETF price close to NAV.
@@ -419,7 +419,7 @@ function Tab1EtfContent() {
         icon={<BarChart2 className="w-4 h-4 text-emerald-400" />}
       >
         <EtfShareChart />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           BlackRock IBIT dominated inflows, reaching $52B AUM within 11 months — fastest ETF to $50B ever.
           Grayscale GBTC suffered continuous outflows after conversion from trust as investors switched to lower-fee
           alternatives. Fidelity FBTC established a strong second place driven by direct institutional relationships.
@@ -431,7 +431,7 @@ function Tab1EtfContent() {
         icon={<TrendingUp className="w-4 h-4 text-indigo-400" />}
       >
         <BtcAumChart />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Spot Bitcoin ETFs launched January 11, 2024. AUM crossed $50B by April and $100B by year-end, driven by
           rising BTC prices and steady institutional accumulation. ETF flows became a key institutional demand signal
           tracked by market participants — sustained daily inflows indicate institutional buying pressure.
@@ -451,7 +451,7 @@ function Tab1EtfContent() {
             significantly eroding returns vs spot price performance.
           </div>
         </div>
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Spot ETFs eliminated the contango drag problem. Grayscale GBTC at 1.5% remains expensive but holds
           legacy investors with embedded gains. The BTC Mini Trust at 0.15% is the lowest-cost option available.
         </p>
@@ -473,7 +473,7 @@ function Tab1EtfContent() {
                 ? "border-border"
                 : ev.status === "Pending"
                 ? "border-border"
-                : "border-zinc-700";
+                : "border-border";
             const badgeColor =
               ev.status === "Approved"
                 ? "#22c55e"
@@ -485,7 +485,7 @@ function Tab1EtfContent() {
             return (
               <div key={i} className={cn("border rounded p-2 text-xs", borderCol)}>
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-zinc-500">{ev.date}</span>
+                  <span className="font-mono text-muted-foreground">{ev.date}</span>
                   <Badge
                     className="text-xs"
                     style={{
@@ -497,7 +497,7 @@ function Tab1EtfContent() {
                     {ev.status}
                   </Badge>
                 </div>
-                <div className="text-zinc-300 mt-1">{ev.event}</div>
+                <div className="text-muted-foreground mt-1">{ev.event}</div>
               </div>
             );
           })}
@@ -516,7 +516,7 @@ function Tab1EtfContent() {
         defaultOpen={false}
       >
         <BasisTradeSVG />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Institutional traders exploit the premium between CME BTC futures and spot price. Long spot ETF,
           short CME futures locks in the futures premium. During bull markets, annualized basis ranged 10-20%.
           Risk: futures premium collapses in bear markets, turning the trade negative. ETF liquidity made this
@@ -533,10 +533,10 @@ function Tab1EtfContent() {
           {allocationData.map((row) => (
             <div key={row.tier} className="space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="text-zinc-300">{row.tier}</span>
-                <span className="text-zinc-400">{row.note}</span>
+                <span className="text-muted-foreground">{row.tier}</span>
+                <span className="text-muted-foreground">{row.note}</span>
               </div>
-              <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${Math.min(row.crypto * 4, 100)}%` }}
@@ -548,7 +548,7 @@ function Tab1EtfContent() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           Industry consensus has coalesced around 1-3% Bitcoin allocation as the &quot;meaningful but not reckless&quot;
           range. Fidelity Digital Assets research suggests even 1% BTC improved the Sharpe ratio of 60/40 portfolios
           over 2014-2023. ETF wrapper removed custody/operational barriers for conservative institutions.
@@ -793,7 +793,7 @@ function Tab2StablecoinContent() {
         icon={<Layers className="w-4 h-4 text-emerald-400" />}
       >
         <StablecoinTaxonomySVG />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Four distinct models exist. Fiat-backed (USDT, USDC) hold 1:1 reserves in cash/equivalents — dominant
           but requires trust in issuer. Crypto-backed (DAI) over-collateralise with on-chain assets (150%+).
           Algorithmic stables (UST) proved catastrophically fragile. Yield-bearing stables tokenize real-world
@@ -806,7 +806,7 @@ function Tab2StablecoinContent() {
         icon={<TrendingUp className="w-4 h-4 text-emerald-400" />}
       >
         <StablecoinGrowthChart />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Stablecoin market cap grew from ~$10B in early 2020 to a peak of ~$180B in early 2022 fueled by DeFi
           summer and institutional adoption. The May 2022 UST collapse and 2022 bear market caused a retrenchment
           to $130B. Recovery through 2024 driven by payments adoption and yield-bearing stablecoins.
@@ -821,14 +821,14 @@ function Tab2StablecoinContent() {
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
           <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded">
             <div className="font-medium text-amber-300 mb-1">Tether (USDT)</div>
-            <div className="text-zinc-400">
+            <div className="text-muted-foreground">
               Historically opaque; now publishes quarterly attestations (not full audits). Holds ~$65B in T-bills.
               Tether Inc. is among the most profitable companies per employee — earns full T-bill yield on reserves.
             </div>
           </div>
           <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded">
             <div className="font-medium text-indigo-300 mb-1">Circle (USDC)</div>
-            <div className="text-zinc-400">
+            <div className="text-muted-foreground">
               Monthly attestations by major accounting firms. Reserves held in segregated accounts at regulated
               US banks and BNY Mellon. More transparent but suffered the March 2023 SVB scare.
             </div>
@@ -842,10 +842,10 @@ function Tab2StablecoinContent() {
       >
         <div className="space-y-3">
           {depegEvents.map((ev) => (
-            <div key={ev.coin} className="border border-zinc-800 rounded p-3 space-y-2">
+            <div key={ev.coin} className="border border-border rounded p-3 space-y-2">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-sm font-bold text-zinc-200">{ev.coin}</span>
-                <span className="font-mono text-xs text-zinc-500">{ev.date}</span>
+                <span className="text-sm font-bold text-foreground">{ev.coin}</span>
+                <span className="font-mono text-xs text-muted-foreground">{ev.date}</span>
                 <span
                   className={cn(
                     "font-mono font-bold text-sm ml-auto",
@@ -869,8 +869,8 @@ function Tab2StablecoinContent() {
                   {ev.severity}
                 </Badge>
               </div>
-              <div className="text-xs text-zinc-400">{ev.cause}</div>
-              <div className="text-xs text-zinc-500">Recovery: {ev.recovery}</div>
+              <div className="text-xs text-muted-foreground">{ev.cause}</div>
+              <div className="text-xs text-muted-foreground">Recovery: {ev.recovery}</div>
             </div>
           ))}
         </div>
@@ -884,9 +884,9 @@ function Tab2StablecoinContent() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
+              <tr className="border-b border-border">
                 {["Stablecoin", "Mechanism", "Yield", "Chain", "Access"].map((h) => (
-                  <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">
+                  <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium">
                     {h}
                   </th>
                 ))}
@@ -894,18 +894,18 @@ function Tab2StablecoinContent() {
             </thead>
             <tbody>
               {yieldStables.map((row, i) => (
-                <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
                   <td className="py-2 px-3 text-amber-400 font-medium">{row.name}</td>
-                  <td className="py-2 px-3 text-zinc-300">{row.mechanism}</td>
+                  <td className="py-2 px-3 text-muted-foreground">{row.mechanism}</td>
                   <td className="py-2 px-3 text-emerald-400 font-mono">{row.yield}</td>
-                  <td className="py-2 px-3 text-zinc-400">{row.chain}</td>
-                  <td className="py-2 px-3 text-zinc-500">{row.note}</td>
+                  <td className="py-2 px-3 text-muted-foreground">{row.chain}</td>
+                  <td className="py-2 px-3 text-muted-foreground">{row.note}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           With risk-free rates above 4%, yield-bearing stablecoins became the fastest growing stablecoin segment.
           Tokenized T-bill products (USDY, USDM) offer compliant access to institutional-grade yield on-chain.
           sDAI uses MakerDAO&apos;s DSR which routes DAI collateral into real-world assets.
@@ -920,7 +920,7 @@ function Tab2StablecoinContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
           <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded space-y-2">
             <div className="font-medium text-indigo-300">EU MiCA — Asset-Referenced Tokens</div>
-            <ul className="space-y-1 text-zinc-400">
+            <ul className="space-y-1 text-muted-foreground">
               <li>• Issuers must be authorized as credit/e-money institutions</li>
               <li>• 1:1 reserve requirement, minimum own funds EUR 350K</li>
               <li>• &quot;Significant&quot; stablecoins (&gt;10M users or &gt;EUR 5B) face stricter rules</li>
@@ -930,7 +930,7 @@ function Tab2StablecoinContent() {
           </div>
           <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded space-y-2">
             <div className="font-medium text-emerald-300">US GENIUS Act (2025 proposed)</div>
-            <ul className="space-y-1 text-zinc-400">
+            <ul className="space-y-1 text-muted-foreground">
               <li>• Requires 1:1 backing with USD, T-bills, or insured deposits</li>
               <li>• Monthly public reserve disclosure required</li>
               <li>• Federal charter for issuers above $10B market cap</li>
@@ -1127,7 +1127,7 @@ function Tab3PrimeBrokerageContent() {
         icon={<Layers className="w-4 h-4 text-indigo-400" />}
       >
         <CryptoPBServicesSVG />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Crypto prime brokers offer a full suite mirroring traditional prime brokerage: custody, OTC execution,
           margin lending, securities lending, reporting, and multi-venue best execution. Unlike TradFi PBs,
           crypto PBs must operate 24/7 and handle blockchain-native assets including NFTs and DeFi tokens.
@@ -1142,11 +1142,11 @@ function Tab3PrimeBrokerageContent() {
           {marginData.map((row) => (
             <div key={row.asset} className="space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="text-zinc-300">{row.asset}</span>
-                <span className="text-zinc-400">{row.note}</span>
+                <span className="text-muted-foreground">{row.asset}</span>
+                <span className="text-muted-foreground">{row.note}</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden flex-1">
+                <div className="h-2 bg-muted rounded-full overflow-hidden flex-1">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${row.ltv}%` }}
@@ -1162,7 +1162,7 @@ function Tab3PrimeBrokerageContent() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           LTV (loan-to-value) limits how much can be borrowed against collateral. BTC at 50% LTV means $1M BTC
           collateral supports a max $500K loan. Crypto LTVs are far lower than TradFi equity margins (typically
           70-80%) due to higher price volatility and thinner liquidation markets.
@@ -1176,9 +1176,9 @@ function Tab3PrimeBrokerageContent() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
+              <tr className="border-b border-border">
                 {["Provider", "Key Strengths", "Cust.", "OTC", "Lend", "Margin"].map((h) => (
-                  <th key={h} className="text-left py-2 px-3 text-zinc-400 font-medium">
+                  <th key={h} className="text-left py-2 px-3 text-muted-foreground font-medium">
                     {h}
                   </th>
                 ))}
@@ -1186,9 +1186,9 @@ function Tab3PrimeBrokerageContent() {
             </thead>
             <tbody>
               {pbProviders.map((pb, i) => (
-                <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
                   <td className="py-2 px-3 text-primary font-medium">{pb.name}</td>
-                  <td className="py-2 px-3 text-zinc-400">{pb.strengths}</td>
+                  <td className="py-2 px-3 text-muted-foreground">{pb.strengths}</td>
                   {([pb.custody, pb.otc, pb.lending, pb.margin] as boolean[]).map((has, j) => (
                     <td key={j} className="py-2 px-3 text-center">
                       <span className={has ? "text-emerald-400" : "text-zinc-700"}>{has ? "✓" : "—"}</span>
@@ -1210,7 +1210,7 @@ function Tab3PrimeBrokerageContent() {
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
           <div className="p-3 bg-red-500/10 border border-red-500/20 rounded space-y-1">
             <div className="font-medium text-red-300">Immediate Impact</div>
-            <ul className="text-zinc-400 space-y-0.5">
+            <ul className="text-muted-foreground space-y-0.5">
               <li>• BlockFi files Chapter 11 (had FTX credit exposure)</li>
               <li>• Genesis halts withdrawals, later files for bankruptcy</li>
               <li>• Voyager Digital had already failed pre-FTX</li>
@@ -1219,7 +1219,7 @@ function Tab3PrimeBrokerageContent() {
           </div>
           <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded space-y-1">
             <div className="font-medium text-emerald-300">Structural Changes Post-FTX</div>
-            <ul className="text-zinc-400 space-y-0.5">
+            <ul className="text-muted-foreground space-y-0.5">
               <li>• Segregated custody became non-negotiable requirement</li>
               <li>• Proof-of-reserves audits now expected from all exchanges</li>
               <li>• Rehypothecation practices heavily scrutinized</li>
@@ -1239,8 +1239,8 @@ function Tab3PrimeBrokerageContent() {
             <div key={i} className="flex gap-3 text-xs">
               <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
               <div>
-                <div className="text-zinc-200 font-medium">{r.risk}</div>
-                <div className="text-zinc-500">{r.desc}</div>
+                <div className="text-foreground font-medium">{r.risk}</div>
+                <div className="text-muted-foreground">{r.desc}</div>
               </div>
             </div>
           ))}
@@ -1547,7 +1547,7 @@ function Tab4OnchainContent() {
         icon={<TrendingDown className="w-4 h-4 text-amber-400" />}
       >
         <ExchangeReservesChart />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Bitcoin exchange reserves have been in a multi-year decline as holders self-custody via hardware wallets
           and institutional custodians. Lower exchange-held supply reduces instant selling capacity. Glassnode data
           shows exchange reserves at lowest since 2017. Institutions buying via spot ETFs bypass exchanges entirely,
@@ -1563,20 +1563,20 @@ function Tab4OnchainContent() {
         <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
           <div className="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded">
             <div className="font-medium text-emerald-300">MVRV &lt; 1 — Accumulation Zone</div>
-            <div className="text-zinc-400 mt-1">
+            <div className="text-muted-foreground mt-1">
               Realized cap exceeds market cap, meaning the average holder is underwater. Historically excellent
               buying zone. Occurred in Dec 2018, Mar 2020, and late 2022.
             </div>
           </div>
           <div className="p-2 bg-red-500/10 border border-red-500/20 rounded">
             <div className="font-medium text-red-300">MVRV &gt; 3.5 — Distribution Risk</div>
-            <div className="text-zinc-400 mt-1">
+            <div className="text-muted-foreground mt-1">
               Market cap is 3.5x realized cap — average holder has large unrealized gains and incentive to sell.
               BTC cycle peaks have historically occurred at MVRV of 3.5-4+.
             </div>
           </div>
         </div>
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Realized Cap aggregates the value of each BTC at the price it last moved on-chain — a proxy for the
           aggregate cost basis of all holders. MVRV = Market Cap / Realized Cap. Values above 2 signal caution
           and the ratio is one of the most reliable cycle timing tools in crypto.
@@ -1588,7 +1588,7 @@ function Tab4OnchainContent() {
         icon={<Database className="w-4 h-4 text-primary" />}
       >
         <HodlWavesSVG />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           HODL waves classify BTC supply by how long coins have been dormant. During bull markets, older coins
           (2y+) begin moving as long-term holders take profits — visible as old bands shrinking and young bands
           growing. Currently ~70%+ of supply has not moved in over one year, indicating strong conviction holding.
@@ -1603,9 +1603,9 @@ function Tab4OnchainContent() {
       >
         <div className="space-y-3">
           {keyMetrics.map((m, i) => (
-            <div key={i} className="border border-zinc-800 rounded p-3 space-y-1">
+            <div key={i} className="border border-border rounded p-3 space-y-1">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-zinc-200">{m.metric}</span>
+                <span className="text-xs font-medium text-foreground">{m.metric}</span>
                 <Badge
                   className="text-xs ml-auto"
                   style={{
@@ -1617,7 +1617,7 @@ function Tab4OnchainContent() {
                   {m.signal}
                 </Badge>
               </div>
-              <div className="text-xs text-zinc-500">{m.interpretation}</div>
+              <div className="text-xs text-muted-foreground">{m.interpretation}</div>
             </div>
           ))}
         </div>
@@ -1630,7 +1630,7 @@ function Tab4OnchainContent() {
       >
         <div className="space-y-2">
           {platforms.map((p, i) => (
-            <div key={i} className="flex gap-3 items-start text-xs border border-zinc-800 rounded p-3">
+            <div key={i} className="flex gap-3 items-start text-xs border border-border rounded p-3">
               <div className="shrink-0">
                 <Badge
                   className="text-xs"
@@ -1644,13 +1644,13 @@ function Tab4OnchainContent() {
                 </Badge>
               </div>
               <div>
-                <div className="text-zinc-200 font-medium">{p.name}</div>
-                <div className="text-zinc-500 mt-0.5">{p.specialty}</div>
+                <div className="text-foreground font-medium">{p.name}</div>
+                <div className="text-muted-foreground mt-0.5">{p.specialty}</div>
               </div>
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           On-chain analytics has matured into a distinct alternative data category. Institutional desks at
           Fidelity Digital Assets, Galaxy Digital, and major macro funds use Glassnode and CryptoQuant as standard
           tooling alongside traditional technical and fundamental analysis.
@@ -1665,7 +1665,7 @@ function Tab4OnchainContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
           <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded space-y-2">
             <div className="font-medium text-amber-300">1,000+ BTC Wallets (~2,100 addresses)</div>
-            <ul className="text-zinc-400 space-y-1">
+            <ul className="text-muted-foreground space-y-1">
               <li>• Combined holdings represent ~40% of circulating BTC</li>
               <li>• Includes exchanges, custodians, ETF cold wallets</li>
               <li>• Accumulation by this cohort historically precedes rallies</li>
@@ -1674,7 +1674,7 @@ function Tab4OnchainContent() {
           </div>
           <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded space-y-2">
             <div className="font-medium text-indigo-300">Limitations of Wallet Analysis</div>
-            <ul className="text-zinc-400 space-y-1">
+            <ul className="text-muted-foreground space-y-1">
               <li>• Exchange wallets aggregate many users into one address</li>
               <li>• Entity clustering errors can misclassify wallets</li>
               <li>• Privacy tools (CoinJoin, Lightning) obscure flows</li>
@@ -1684,7 +1684,7 @@ function Tab4OnchainContent() {
         </div>
         <div className="mt-3 p-3 bg-primary/10 border border-border rounded text-xs">
           <div className="font-medium text-primary mb-1">Nansen Smart Money Labels</div>
-          <div className="text-zinc-400">
+          <div className="text-muted-foreground">
             Nansen&apos;s entity database labels ~200M wallets including exchanges, protocols, VC funds (a16z, Paradigm),
             and known traders. Tracking when labeled &quot;smart money&quot; wallets accumulate a token has predictive value —
             though front-running activity has reduced the edge over time as the approach became widely known.
@@ -1709,8 +1709,8 @@ export default function CryptoInstitutionalPage() {
             <Bitcoin className="w-6 h-6 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100">Institutional Crypto</h1>
-            <p className="text-sm text-zinc-500">
+            <h1 className="text-2xl font-bold text-foreground">Institutional Crypto</h1>
+            <p className="text-sm text-muted-foreground">
               Bitcoin ETFs · Stablecoin Ecosystem · Crypto Prime Brokerage · On-Chain Analytics
             </p>
           </div>
@@ -1734,7 +1734,7 @@ export default function CryptoInstitutionalPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="etfs">
-        <TabsList className="bg-zinc-900 border border-zinc-800 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
           <TabsTrigger
             value="etfs"
             className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white"

@@ -435,7 +435,7 @@ function ConvictionBadge({ level }: { level: Conviction }) {
       ? "bg-emerald-900/60 text-emerald-300 border-emerald-700/50"
       : level === "Medium"
       ? "bg-yellow-900/60 text-yellow-300 border-yellow-700/50"
-      : "bg-slate-800 text-slate-400 border-slate-700/50";
+      : "bg-muted text-muted-foreground border-border/50";
   return (
     <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full border", cls)}>
       {level}
@@ -453,9 +453,9 @@ function RegimeDashboard() {
   return (
     <div className="space-y-6">
       {/* 2×2 Quadrant */}
-      <Card className="bg-slate-900/60 border-slate-700/50">
+      <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-sky-400" />
             Economic Regime Quadrant
           </CardTitle>
@@ -463,13 +463,13 @@ function RegimeDashboard() {
         <CardContent>
           <div className="relative">
             {/* Axis labels */}
-            <div className="flex justify-between text-xs text-slate-500 mb-1 px-12">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1 px-12">
               <span>Low Inflation</span>
               <span>High Inflation</span>
             </div>
             <div className="flex gap-0.5">
               {/* Y axis */}
-              <div className="flex flex-col justify-between text-xs text-slate-500 pr-2 w-12 shrink-0">
+              <div className="flex flex-col justify-between text-xs text-muted-foreground pr-2 w-12 shrink-0">
                 <span className="text-right leading-tight">High Growth</span>
                 <span className="text-right leading-tight">Low Growth</span>
               </div>
@@ -496,7 +496,7 @@ function RegimeDashboard() {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-xs text-slate-400 leading-tight">{r.description}</p>
+                      <p className="text-xs text-muted-foreground leading-tight">{r.description}</p>
                     </motion.div>
                   );
                 })}
@@ -507,9 +507,9 @@ function RegimeDashboard() {
       </Card>
 
       {/* Signal Strength Meters */}
-      <Card className="bg-slate-900/60 border-slate-700/50">
+      <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-yellow-400" />
             Regime Signal Strength
           </CardTitle>
@@ -519,10 +519,10 @@ function RegimeDashboard() {
             {SIGNAL_STRENGTH.map((sig) => (
               <div key={sig.label}>
                 <div className="flex justify-between text-xs mb-1">
-                  <span className="text-slate-400">{sig.label}</span>
-                  <span className="text-slate-300 font-mono">{sig.value}/100</span>
+                  <span className="text-muted-foreground">{sig.label}</span>
+                  <span className="text-muted-foreground font-mono">{sig.value}/100</span>
                 </div>
-                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <motion.div
                     className={cn("h-full rounded-full", sig.color)}
                     initial={{ width: 0 }}
@@ -537,9 +537,9 @@ function RegimeDashboard() {
       </Card>
 
       {/* Asset Returns by Regime */}
-      <Card className="bg-slate-900/60 border-slate-700/50">
+      <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-primary" />
             Asset Class Returns by Regime (Historical Avg)
           </CardTitle>
@@ -547,14 +547,14 @@ function RegimeDashboard() {
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700/50">
-                <th className="text-left text-slate-500 py-2 pr-4 font-medium">Asset</th>
+              <tr className="border-b border-border/50">
+                <th className="text-left text-muted-foreground py-2 pr-4 font-medium">Asset</th>
                 {REGIMES.map((r) => (
                   <th
                     key={r.name}
                     className={cn(
                       "text-center py-2 px-3 font-medium",
-                      r.name === CURRENT_REGIME ? r.color : "text-slate-500"
+                      r.name === CURRENT_REGIME ? r.color : "text-muted-foreground"
                     )}
                   >
                     {r.name}
@@ -564,8 +564,8 @@ function RegimeDashboard() {
             </thead>
             <tbody>
               {REGIMES[0].assets.map((asset, i) => (
-                <tr key={asset.name} className="border-b border-slate-800/50">
-                  <td className="text-slate-300 py-2 pr-4">{asset.name}</td>
+                <tr key={asset.name} className="border-b border-border/50">
+                  <td className="text-muted-foreground py-2 pr-4">{asset.name}</td>
                   {REGIMES.map((r) => (
                     <td key={r.name} className="text-center py-2 px-3">
                       <ReturnBadge value={r.assets[i].return} />
@@ -625,14 +625,14 @@ function LeadingIndicators() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.07 }}
           >
-            <Card className="bg-slate-900/60 border-slate-700/50">
+            <Card className="bg-card/60 border-border/50">
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-3 flex-1 min-w-0">
                     <SignalIcon color={ind.signal} />
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <span className="text-sm font-medium text-slate-200">{ind.name}</span>
+                        <span className="text-sm font-medium text-foreground">{ind.name}</span>
                         <span className="text-base font-mono font-semibold text-white">
                           {ind.value}
                         </span>
@@ -641,13 +641,13 @@ function LeadingIndicators() {
                             "text-xs font-mono",
                             ind.change.startsWith("+") || ind.change.startsWith("-8")
                               ? "text-emerald-400"
-                              : "text-slate-400"
+                              : "text-muted-foreground"
                           )}
                         >
                           {ind.change}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{ind.description}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{ind.description}</p>
                     </div>
                   </div>
                   <Sparkline data={ind.sparkData} color={sparkColor} />
@@ -802,9 +802,9 @@ function RateCyclePlaybook() {
     <div className="space-y-6">
       {/* Cycle Wheel + Phase Selector */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-slate-900/60 border-slate-700/50">
+        <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <RefreshCw className="w-4 h-4 text-sky-400" />
               Rate Cycle Position
             </CardTitle>
@@ -812,15 +812,15 @@ function RateCyclePlaybook() {
           <CardContent>
             <CycleWheel currentPhase={CURRENT_PHASE} />
             <div className="flex items-center justify-center gap-2 mt-2">
-              <span className="text-xs text-slate-400">Current Phase:</span>
+              <span className="text-xs text-muted-foreground">Current Phase:</span>
               <span className="text-sm font-semibold text-emerald-400">{CURRENT_PHASE}</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900/60 border-slate-700/50">
+        <Card className="bg-card/60 border-border/50">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-slate-300">Phase Selector</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Phase Selector</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {CYCLE_PHASES.map((phase) => {
@@ -832,11 +832,11 @@ function RateCyclePlaybook() {
                   onClick={() => setSelectedPhase(phase)}
                   className={cn(
                     "w-full text-left rounded-lg p-3 border transition-all",
-                    active ? cn(pi.bg, pi.border) : "bg-slate-800/40 border-slate-700/30 hover:bg-slate-800/70"
+                    active ? cn(pi.bg, pi.border) : "bg-muted/40 border-border/30 hover:bg-muted/70"
                   )}
                 >
                   <div className="flex items-center justify-between">
-                    <span className={cn("text-sm font-medium", active ? pi.color : "text-slate-400")}>
+                    <span className={cn("text-sm font-medium", active ? pi.color : "text-muted-foreground")}>
                       {phase}
                     </span>
                     {phase === CURRENT_PHASE && (
@@ -846,7 +846,7 @@ function RateCyclePlaybook() {
                     )}
                   </div>
                   {active && (
-                    <p className="text-xs text-slate-400 mt-1">{pi.description}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{pi.description}</p>
                   )}
                 </button>
               );
@@ -856,9 +856,9 @@ function RateCyclePlaybook() {
       </div>
 
       {/* Asset Performance Table */}
-      <Card className="bg-slate-900/60 border-slate-700/50">
+      <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-primary" />
             Historical Asset Performance per Rate Cycle Phase
           </CardTitle>
@@ -866,14 +866,14 @@ function RateCyclePlaybook() {
         <CardContent className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700/50">
-                <th className="text-left text-slate-500 py-2 pr-4 font-medium">Asset</th>
+              <tr className="border-b border-border/50">
+                <th className="text-left text-muted-foreground py-2 pr-4 font-medium">Asset</th>
                 {CYCLE_PHASES.map((ph) => (
                   <th
                     key={ph}
                     className={cn(
                       "text-center py-2 px-3 font-medium",
-                      ph === selectedPhase ? PHASE_INFO[ph].color : "text-slate-500"
+                      ph === selectedPhase ? PHASE_INFO[ph].color : "text-muted-foreground"
                     )}
                   >
                     {ph}
@@ -883,14 +883,14 @@ function RateCyclePlaybook() {
             </thead>
             <tbody>
               {ASSET_PERF.map((row) => (
-                <tr key={row.asset} className="border-b border-slate-800/50">
-                  <td className="text-slate-300 py-2 pr-4 whitespace-nowrap">{row.asset}</td>
+                <tr key={row.asset} className="border-b border-border/50">
+                  <td className="text-muted-foreground py-2 pr-4 whitespace-nowrap">{row.asset}</td>
                   {(["hiking", "peak", "cutting", "trough"] as const).map((ph, i) => (
                     <td
                       key={ph}
                       className={cn(
                         "text-center py-2 px-3",
-                        CYCLE_PHASES[i] === selectedPhase ? "bg-slate-800/40 rounded" : ""
+                        CYCLE_PHASES[i] === selectedPhase ? "bg-muted/40 rounded" : ""
                       )}
                     >
                       <ReturnBadge value={row[ph]} />
@@ -914,7 +914,7 @@ function MagnitudeBadge({ magnitude }: { magnitude: CrossAssetSignal["magnitude"
       ? "bg-muted text-primary border-border"
       : magnitude === "moderate"
       ? "bg-muted text-primary border-border"
-      : "bg-slate-800 text-slate-400 border-slate-700/50";
+      : "bg-muted text-muted-foreground border-border/50";
   return (
     <span className={cn("text-xs font-medium px-2 py-0.5 rounded-full border capitalize", cls)}>
       {magnitude}
@@ -929,7 +929,7 @@ function EffectChip({ effect }: { effect: "positive" | "negative" | "neutral" })
     );
   if (effect === "negative")
     return <ArrowDownRight className="inline w-3 h-3 text-red-400 mr-0.5" />;
-  return <MinusCircle className="inline w-3 h-3 text-slate-500 mr-0.5" />;
+  return <MinusCircle className="inline w-3 h-3 text-muted-foreground mr-0.5" />;
 }
 
 function CrossAssetSignals() {
@@ -950,13 +950,13 @@ function CrossAssetSignals() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08 }}
           >
-            <Card className="bg-slate-900/60 border-slate-700/50">
+            <Card className="bg-card/60 border-border/50">
               <CardContent className="pt-4 pb-4">
                 <div className="flex items-start gap-3">
                   {dirIcon}
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                      <span className="text-sm font-semibold text-slate-200">{sig.driver}</span>
+                      <span className="text-sm font-semibold text-foreground">{sig.driver}</span>
                       <span
                         className={cn(
                           "text-xs font-medium px-2 py-0.5 rounded-full",
@@ -969,7 +969,7 @@ function CrossAssetSignals() {
                       </span>
                       <MagnitudeBadge magnitude={sig.magnitude} />
                     </div>
-                    <p className="text-xs text-slate-400 mb-3">{sig.impact}</p>
+                    <p className="text-xs text-muted-foreground mb-3">{sig.impact}</p>
                     <div className="flex flex-wrap gap-2">
                       {sig.assets.map((a) => {
                         const cls =
@@ -977,7 +977,7 @@ function CrossAssetSignals() {
                             ? "bg-emerald-950/40 text-emerald-300 border-emerald-700/30"
                             : a.effect === "negative"
                             ? "bg-red-950/40 text-red-300 border-red-700/30"
-                            : "bg-slate-800/60 text-slate-400 border-slate-700/30";
+                            : "bg-muted/60 text-muted-foreground border-border/30";
                         return (
                           <span
                             key={a.name}
@@ -998,9 +998,9 @@ function CrossAssetSignals() {
       })}
 
       {/* Dollar Index SVG Bar Chart */}
-      <Card className="bg-slate-900/60 border-slate-700/50">
+      <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-yellow-400" />
             USD Correlation Map (12-month rolling)
           </CardTitle>
@@ -1022,7 +1022,7 @@ function CrossAssetSignals() {
                   const pct = Math.abs(c.value) * 100;
                   return (
                     <div key={c.label} className="flex items-center gap-3">
-                      <span className="text-xs text-slate-400 w-24 text-right shrink-0">
+                      <span className="text-xs text-muted-foreground w-24 text-right shrink-0">
                         {c.label}
                       </span>
                       <div className="flex-1 flex items-center gap-1">
@@ -1062,7 +1062,7 @@ function CrossAssetSignals() {
                     </div>
                   );
                 })}
-                <div className="flex justify-between text-xs text-slate-500 mt-1 px-24">
+                <div className="flex justify-between text-xs text-muted-foreground mt-1 px-24">
                   <span>-1.0 (inverse)</span>
                   <span>+1.0 (direct)</span>
                 </div>
@@ -1082,7 +1082,7 @@ function TradeIdeas() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-2 text-xs text-slate-400 bg-slate-800/40 rounded-lg px-4 py-2">
+      <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/40 rounded-lg px-4 py-2">
         <AlertTriangle className="w-3.5 h-3.5 text-yellow-400 shrink-0" />
         Educational content only. Not financial advice. Always conduct your own due diligence.
       </div>
@@ -1105,7 +1105,7 @@ function TradeIdeas() {
           >
             <Card
               className={cn(
-                "bg-slate-900/60 border-slate-700/50 cursor-pointer transition-all hover:border-slate-600/70",
+                "bg-card/60 border-border/50 cursor-pointer transition-all hover:border-slate-600/70",
                 isOpen && "border-slate-600/80"
               )}
               onClick={() => setExpanded(isOpen ? null : idea.id)}
@@ -1124,10 +1124,10 @@ function TradeIdeas() {
                     </div>
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                        <span className="text-sm font-semibold text-slate-200">{idea.title}</span>
+                        <span className="text-sm font-semibold text-foreground">{idea.title}</span>
                         <ConvictionBadge level={idea.conviction} />
                       </div>
-                      <span className="text-xs text-slate-500">{idea.asset}</span>
+                      <span className="text-xs text-muted-foreground">{idea.asset}</span>
                     </div>
                   </div>
                   <motion.div
@@ -1135,7 +1135,7 @@ function TradeIdeas() {
                     transition={{ duration: 0.2 }}
                     className="shrink-0 mt-1"
                   >
-                    <TrendingUp className="w-4 h-4 text-slate-500 rotate-90" />
+                    <TrendingUp className="w-4 h-4 text-muted-foreground rotate-90" />
                   </motion.div>
                 </div>
 
@@ -1149,15 +1149,15 @@ function TradeIdeas() {
                       className="overflow-hidden"
                     >
                       <div className="mt-4 space-y-3">
-                        <p className="text-xs text-slate-400 leading-relaxed">
-                          <span className="text-slate-300 font-medium">Rationale: </span>
+                        <p className="text-xs text-muted-foreground leading-relaxed">
+                          <span className="text-muted-foreground font-medium">Rationale: </span>
                           {idea.rationale}
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                          <div className="bg-slate-800/50 rounded-lg p-3 border border-slate-700/30">
-                            <div className="text-xs text-slate-500 uppercase mb-1">Entry</div>
-                            <div className="text-xs text-slate-200 font-medium">{idea.entry}</div>
+                          <div className="bg-muted/50 rounded-lg p-3 border border-border/30">
+                            <div className="text-xs text-muted-foreground uppercase mb-1">Entry</div>
+                            <div className="text-xs text-foreground font-medium">{idea.entry}</div>
                           </div>
                           <div className="bg-emerald-950/30 rounded-lg p-3 border border-emerald-700/30">
                             <div className="text-xs text-emerald-500 uppercase mb-1">Target</div>
@@ -1171,8 +1171,8 @@ function TradeIdeas() {
 
                         <div className="flex items-center gap-2 text-xs">
                           <Zap className="w-3.5 h-3.5 text-yellow-400 shrink-0" />
-                          <span className="text-slate-400">
-                            <span className="text-slate-300">Catalyst: </span>
+                          <span className="text-muted-foreground">
+                            <span className="text-muted-foreground">Catalyst: </span>
                             {idea.catalyst}
                           </span>
                         </div>
@@ -1187,9 +1187,9 @@ function TradeIdeas() {
       })}
 
       {/* Summary SVG Bar Chart — Conviction Breakdown */}
-      <Card className="bg-slate-900/60 border-slate-700/50">
+      <Card className="bg-card/60 border-border/50">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Conviction Distribution
           </CardTitle>
@@ -1267,7 +1267,7 @@ export default function MacroTradingPage() {
   const [activeTab, setActiveTab] = useState<TabValue>("regime");
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
@@ -1276,12 +1276,12 @@ export default function MacroTradingPage() {
               <Globe className="w-5 h-5 text-sky-400" />
               Macro Trading
             </h1>
-            <p className="text-sm text-slate-400 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               Economic regime analysis, rate cycle playbook, and cross-asset signals
             </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs text-slate-500">Regime:</span>
+            <span className="text-xs text-muted-foreground">Regime:</span>
             <Badge className="bg-emerald-900/60 text-emerald-300 border-emerald-700/50 border">
               {CURRENT_REGIME}
             </Badge>
@@ -1297,12 +1297,12 @@ export default function MacroTradingPage() {
           onValueChange={(v) => setActiveTab(v as TabValue)}
           className="w-full"
         >
-          <TabsList className="flex w-full overflow-x-auto gap-1 bg-slate-900/60 border border-slate-700/50 p-1 rounded-xl h-auto">
+          <TabsList className="flex w-full overflow-x-auto gap-1 bg-card/60 border border-border/50 p-1 rounded-xl h-auto">
             {TABS.map(({ value, label, icon: Icon }) => (
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-lg data-[state=active]:bg-slate-700 data-[state=active]:text-white text-slate-400"
+                className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-lg data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
                 <span>{label}</span>

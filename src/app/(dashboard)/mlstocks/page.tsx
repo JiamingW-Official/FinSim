@@ -285,7 +285,7 @@ function corrColor(v: number): string {
 function signalColor(sig: StockSignal["signal"]): string {
   if (sig === "Strong Buy") return "text-green-400";
   if (sig === "Buy") return "text-emerald-400";
-  if (sig === "Neutral") return "text-zinc-400";
+  if (sig === "Neutral") return "text-muted-foreground";
   if (sig === "Sell") return "text-orange-400";
   return "text-red-400";
 }
@@ -716,7 +716,7 @@ export default function MLStocksPage() {
   const totalFeatures = useMemo(() => FEATURE_CATEGORIES.reduce((s, c) => s + c.count, 0), []);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -729,8 +729,8 @@ export default function MLStocksPage() {
             <Brain className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-zinc-100">Machine Learning in Stock Selection</h1>
-            <p className="text-xs text-zinc-500">Factor models, feature engineering, model architectures, backtesting &amp; live signal generation</p>
+            <h1 className="text-xl font-semibold text-foreground">Machine Learning in Stock Selection</h1>
+            <p className="text-xs text-muted-foreground">Factor models, feature engineering, model architectures, backtesting &amp; live signal generation</p>
           </div>
         </div>
 
@@ -750,7 +750,7 @@ export default function MLStocksPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-zinc-900 border border-zinc-800 mb-4 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="features" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
             <Database className="w-3 h-3 mr-1" />Feature Engineering
           </TabsTrigger>
@@ -769,28 +769,28 @@ export default function MLStocksPage() {
         <TabsContent value="features" className="data-[state=inactive]:hidden space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Feature categories */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200">Feature Categories ({totalFeatures} total features)</CardTitle>
+                <CardTitle className="text-sm text-foreground">Feature Categories ({totalFeatures} total features)</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {FEATURE_CATEGORIES.map(cat => (
-                  <div key={cat.name} className={`rounded-lg p-3 border border-zinc-700/50 ${cat.bgColor}`}>
+                  <div key={cat.name} className={`rounded-lg p-3 border border-border/50 ${cat.bgColor}`}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <span className={cat.color}>{cat.icon}</span>
                         <span className={`text-sm font-medium ${cat.color}`}>{cat.name}</span>
                       </div>
-                      <span className="text-xs text-zinc-400">{cat.count} features</span>
+                      <span className="text-xs text-muted-foreground">{cat.count} features</span>
                     </div>
                     <div className="mb-2">
                       <Progress value={cat.importance * 100 / 0.28 * 100} className="h-1.5" />
-                      <span className="text-xs text-zinc-500 mt-1 block">Importance: {(cat.importance * 100).toFixed(0)}%</span>
+                      <span className="text-xs text-muted-foreground mt-1 block">Importance: {(cat.importance * 100).toFixed(0)}%</span>
                     </div>
                     <ul className="grid grid-cols-2 gap-0.5">
                       {cat.features.map(f => (
-                        <li key={f} className="text-xs text-zinc-400 flex items-start gap-1">
-                          <span className="text-zinc-600 mt-0.5">•</span>{f}
+                        <li key={f} className="text-xs text-muted-foreground flex items-start gap-1">
+                          <span className="text-muted-foreground mt-0.5">•</span>{f}
                         </li>
                       ))}
                     </ul>
@@ -801,18 +801,18 @@ export default function MLStocksPage() {
 
             {/* Right column: importance chart + heatmap + concepts */}
             <div className="space-y-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Feature Importance</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Feature Importance</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <FeatureImportanceChart />
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">8×8 Correlation Matrix</CardTitle>
+                  <CardTitle className="text-sm text-foreground">8×8 Correlation Matrix</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CorrelationHeatmap />
@@ -825,16 +825,16 @@ export default function MLStocksPage() {
                     ].map(l => (
                       <div key={l.label} className="flex items-center gap-1">
                         <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: l.color, opacity: 0.8 }} />
-                        <span className="text-xs text-zinc-500">{l.label}</span>
+                        <span className="text-xs text-muted-foreground">{l.label}</span>
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Key Preprocessing Concepts</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Key Preprocessing Concepts</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {[
@@ -859,9 +859,9 @@ export default function MLStocksPage() {
                       color: "text-green-400",
                     },
                   ].map(item => (
-                    <div key={item.title} className="bg-zinc-800/50 rounded-lg p-3">
+                    <div key={item.title} className="bg-muted/50 rounded-lg p-3">
                       <p className={`text-xs font-semibold mb-1 ${item.color}`}>{item.title}</p>
-                      <p className="text-xs text-zinc-400">{item.desc}</p>
+                      <p className="text-xs text-muted-foreground">{item.desc}</p>
                     </div>
                   ))}
                 </CardContent>
@@ -874,48 +874,48 @@ export default function MLStocksPage() {
         <TabsContent value="models" className="data-[state=inactive]:hidden space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Model comparison table */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-200">Model Comparison Table</CardTitle>
+                <CardTitle className="text-sm text-foreground">Model Comparison Table</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
-                        <th className="text-left py-2 text-zinc-500 font-medium">Model</th>
-                        <th className="text-right py-2 text-zinc-500 font-medium">Sharpe</th>
-                        <th className="text-right py-2 text-zinc-500 font-medium">IC</th>
-                        <th className="text-right py-2 text-zinc-500 font-medium">Train</th>
-                        <th className="text-right py-2 text-zinc-500 font-medium">Interp.</th>
-                        <th className="text-right py-2 text-zinc-500 font-medium">Data</th>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-2 text-muted-foreground font-medium">Model</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Sharpe</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">IC</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Train</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Interp.</th>
+                        <th className="text-right py-2 text-muted-foreground font-medium">Data</th>
                       </tr>
                     </thead>
                     <tbody>
                       {MODELS.map((m, i) => (
                         <tr
                           key={m.name}
-                          className="border-b border-zinc-800/50 cursor-pointer hover:bg-zinc-800/30 transition-colors"
+                          className="border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors"
                           onClick={() => setExpandedModel(expandedModel === i ? null : i)}
                         >
                           <td className="py-2">
                             <div className="flex items-center gap-2">
                               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: m.color }} />
                               <span style={{ color: m.color }} className="font-medium">{m.shortName}</span>
-                              <Badge variant="outline" className="text-zinc-500 border-zinc-700 text-xs py-0">{m.type}</Badge>
+                              <Badge variant="outline" className="text-muted-foreground border-border text-xs py-0">{m.type}</Badge>
                             </div>
                           </td>
-                          <td className="text-right py-2 text-zinc-200">{m.sharpe.toFixed(2)}</td>
-                          <td className="text-right py-2 text-zinc-200">{m.ic.toFixed(3)}</td>
-                          <td className="text-right py-2 text-zinc-400">{m.trainTime}</td>
+                          <td className="text-right py-2 text-foreground">{m.sharpe.toFixed(2)}</td>
+                          <td className="text-right py-2 text-foreground">{m.ic.toFixed(3)}</td>
+                          <td className="text-right py-2 text-muted-foreground">{m.trainTime}</td>
                           <td className="text-right py-2">
                             <div className="flex items-center justify-end gap-1">
-                              <div className="w-12 bg-zinc-800 rounded-full h-1.5">
+                              <div className="w-12 bg-muted rounded-full h-1.5">
                                 <div className="h-1.5 rounded-full" style={{ width: `${m.interpretability}%`, backgroundColor: m.color }} />
                               </div>
                             </div>
                           </td>
-                          <td className="text-right py-2 text-zinc-400">{m.dataNeed}</td>
+                          <td className="text-right py-2 text-muted-foreground">{m.dataNeed}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -929,12 +929,12 @@ export default function MLStocksPage() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="mt-3 rounded-lg p-3 border border-zinc-700 bg-zinc-800/40"
+                      className="mt-3 rounded-lg p-3 border border-border bg-muted/40"
                     >
                       <p className="text-xs font-semibold mb-1" style={{ color: MODELS[expandedModel].color }}>
                         {MODELS[expandedModel].name}
                       </p>
-                      <p className="text-xs text-zinc-400">
+                      <p className="text-xs text-muted-foreground">
                         Sharpe {MODELS[expandedModel].sharpe.toFixed(2)} · IC {MODELS[expandedModel].ic.toFixed(3)} · {MODELS[expandedModel].dataNeed} data requirement · Training: {MODELS[expandedModel].trainTime}
                       </p>
                     </motion.div>
@@ -945,31 +945,31 @@ export default function MLStocksPage() {
 
             {/* Charts */}
             <div className="space-y-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Bias-Variance Tradeoff</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Bias-Variance Tradeoff</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <BiasVarianceCurve />
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Walk-Forward Validation</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Walk-Forward Validation</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <WalkForwardDiagram />
-                  <p className="text-xs text-zinc-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     Each fold expands the training window while the test window rolls forward. Prevents data leakage and tests generalization across time regimes.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Model selection guidance */}
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Model Selection Guidelines</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Model Selection Guidelines</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {[
@@ -980,7 +980,7 @@ export default function MLStocksPage() {
                     { cond: "Production deployment", rec: "Ensemble — diversification reduces model-specific drawdowns", color: "text-amber-400" },
                   ].map(g => (
                     <div key={g.cond} className="flex gap-2 text-xs">
-                      <span className="text-zinc-500 shrink-0">{g.cond}:</span>
+                      <span className="text-muted-foreground shrink-0">{g.cond}:</span>
                       <span className={g.color}>{g.rec}</span>
                     </div>
                   ))}
@@ -995,30 +995,30 @@ export default function MLStocksPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Overfitting chart + transaction costs */}
             <div className="space-y-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Overfitting Cliff</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Overfitting Cliff</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <OverfittingChart />
-                  <p className="text-xs text-zinc-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     In-sample Sharpe climbs with complexity but out-of-sample collapses after the overfit threshold. The gap between curves measures overfit severity.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Walk-Forward Optimization</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Walk-Forward Optimization</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <WalkForwardDiagram />
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Realistic Transaction Cost Model</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Realistic Transaction Cost Model</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
@@ -1029,12 +1029,12 @@ export default function MLStocksPage() {
                       { cost: "Slippage", est: "1–3 bps", note: "Signal delay between decision and execution" },
                       { cost: "Total (round-trip)", est: "14–48 bps", note: "Must be earned by alpha signal daily" },
                     ].map(row => (
-                      <div key={row.cost} className="flex items-start justify-between text-xs py-1.5 border-b border-zinc-800/50">
+                      <div key={row.cost} className="flex items-start justify-between text-xs py-1.5 border-b border-border/50">
                         <div>
-                          <span className="text-zinc-200 font-medium">{row.cost}</span>
-                          <span className="text-zinc-500 ml-2">{row.note}</span>
+                          <span className="text-foreground font-medium">{row.cost}</span>
+                          <span className="text-muted-foreground ml-2">{row.note}</span>
                         </div>
-                        <Badge variant="outline" className="border-zinc-700 text-zinc-300 ml-2 shrink-0">{row.est}</Badge>
+                        <Badge variant="outline" className="border-border text-muted-foreground ml-2 shrink-0">{row.est}</Badge>
                       </div>
                     ))}
                   </div>
@@ -1044,9 +1044,9 @@ export default function MLStocksPage() {
 
             {/* Pitfalls + regime */}
             <div className="space-y-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">5 Common Backtesting Pitfalls</CardTitle>
+                  <CardTitle className="text-sm text-foreground">5 Common Backtesting Pitfalls</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {PITFALLS.map((p, i) => (
@@ -1076,7 +1076,7 @@ export default function MLStocksPage() {
                             exit={{ opacity: 0, height: 0 }}
                             className="px-3 pb-3 space-y-1"
                           >
-                            <p className="text-xs text-zinc-400">{p.description}</p>
+                            <p className="text-xs text-muted-foreground">{p.description}</p>
                             <div className="flex items-start gap-1 mt-1">
                               <CheckCircle className="w-3 h-3 text-green-400 shrink-0 mt-0.5" />
                               <p className="text-xs text-green-400">{p.solution}</p>
@@ -1089,9 +1089,9 @@ export default function MLStocksPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Regime Identification (HMM)</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Regime Identification (HMM)</CardTitle>
                 </CardHeader>
                 <CardContent>
                   {/* Simple HMM diagram */}
@@ -1120,7 +1120,7 @@ export default function MLStocksPage() {
                       </marker>
                     </defs>
                   </svg>
-                  <p className="text-xs text-zinc-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     Train separate models per regime. HMM infers hidden state from volatility, trend strength, and correlation. Switch factor weights dynamically.
                   </p>
                 </CardContent>
@@ -1134,9 +1134,9 @@ export default function MLStocksPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Left column */}
             <div className="space-y-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Signal Generation Pipeline</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Signal Generation Pipeline</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <SignalPipelineSVG />
@@ -1146,21 +1146,21 @@ export default function MLStocksPage() {
                       { label: "Feature Calc", val: "~ 50ms", color: "text-primary" },
                       { label: "Model Infer", val: "< 10ms", color: "text-orange-400" },
                     ].map(m => (
-                      <div key={m.label} className="bg-zinc-800/50 rounded-lg p-2 text-center">
+                      <div key={m.label} className="bg-muted/50 rounded-lg p-2 text-center">
                         <p className={`text-sm font-bold ${m.color}`}>{m.val}</p>
-                        <p className="text-xs text-zinc-500">{m.label}</p>
+                        <p className="text-xs text-muted-foreground">{m.label}</p>
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">IC / ICIR Framework</CardTitle>
+                  <CardTitle className="text-sm text-foreground">IC / ICIR Framework</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="bg-zinc-800/50 rounded-lg p-3 font-mono text-xs space-y-1">
+                  <div className="bg-muted/50 rounded-lg p-3 font-mono text-xs space-y-1">
                     <p className="text-green-400">IC = rank_corr(predictions_t, returns_{"{t+1}"})</p>
                     <p className="text-primary">ICIR = mean(IC) / std(IC)</p>
                     <p className="text-amber-400">IC_t2: IR ≥ 0.5 for live deployment</p>
@@ -1172,32 +1172,32 @@ export default function MLStocksPage() {
                       { label: "XGBoost IC", val: "0.074", note: "Deployable", color: "text-primary" },
                       { label: "LSTM IC", val: "0.068", note: "Borderline", color: "text-amber-400" },
                     ].map(m => (
-                      <div key={m.label} className="bg-zinc-800/50 rounded-lg p-2">
+                      <div key={m.label} className="bg-muted/50 rounded-lg p-2">
                         <p className={`text-sm font-bold ${m.color}`}>{m.val}</p>
-                        <p className="text-xs text-zinc-400">{m.label}</p>
-                        <p className="text-xs text-zinc-600">{m.note}</p>
+                        <p className="text-xs text-muted-foreground">{m.label}</p>
+                        <p className="text-xs text-muted-foreground">{m.note}</p>
                       </div>
                     ))}
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Signal Decay (Alpha Half-Life)</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Signal Decay (Alpha Half-Life)</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <SignalDecayChart />
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Ensemble Combining</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Ensemble Combining</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <EnsembleCombiningSVG />
-                  <p className="text-xs text-zinc-500 mt-2">
+                  <p className="text-xs text-muted-foreground mt-2">
                     Weights optimized by minimizing IC correlation (maximize diversification). Rebalanced monthly via rolling 60-day IC covariance matrix.
                   </p>
                 </CardContent>
@@ -1206,38 +1206,38 @@ export default function MLStocksPage() {
 
             {/* Right column: signal table + monitoring */}
             <div className="space-y-4">
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">10-Stock Signal Rankings</CardTitle>
+                  <CardTitle className="text-sm text-foreground">10-Stock Signal Rankings</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-zinc-800">
-                          <th className="text-left py-1.5 text-zinc-500">Ticker</th>
-                          <th className="text-left py-1.5 text-zinc-500">Sector</th>
-                          <th className="text-right py-1.5 text-zinc-500">Score</th>
-                          <th className="text-right py-1.5 text-zinc-500">Mom</th>
-                          <th className="text-right py-1.5 text-zinc-500">Val</th>
-                          <th className="text-right py-1.5 text-zinc-500">Qual</th>
-                          <th className="text-right py-1.5 text-zinc-500">Sent</th>
-                          <th className="text-right py-1.5 text-zinc-500">Signal</th>
+                        <tr className="border-b border-border">
+                          <th className="text-left py-1.5 text-muted-foreground">Ticker</th>
+                          <th className="text-left py-1.5 text-muted-foreground">Sector</th>
+                          <th className="text-right py-1.5 text-muted-foreground">Score</th>
+                          <th className="text-right py-1.5 text-muted-foreground">Mom</th>
+                          <th className="text-right py-1.5 text-muted-foreground">Val</th>
+                          <th className="text-right py-1.5 text-muted-foreground">Qual</th>
+                          <th className="text-right py-1.5 text-muted-foreground">Sent</th>
+                          <th className="text-right py-1.5 text-muted-foreground">Signal</th>
                         </tr>
                       </thead>
                       <tbody>
                         {SORTED_SIGNALS.map((sig, i) => {
-                          const scoreColor = sig.score > 20 ? "text-green-400" : sig.score > 0 ? "text-emerald-400" : sig.score > -20 ? "text-zinc-400" : "text-red-400";
+                          const scoreColor = sig.score > 20 ? "text-green-400" : sig.score > 0 ? "text-emerald-400" : sig.score > -20 ? "text-muted-foreground" : "text-red-400";
                           const fmtScore = (v: number) => (v >= 0 ? "+" : "") + v.toFixed(1);
                           return (
-                            <tr key={sig.ticker} className="border-b border-zinc-800/50 hover:bg-zinc-800/20 transition-colors">
+                            <tr key={sig.ticker} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
                               <td className="py-1.5">
                                 <div className="flex items-center gap-1">
-                                  <span className="text-zinc-500 w-4">{i + 1}</span>
-                                  <span className="text-zinc-100 font-semibold">{sig.ticker}</span>
+                                  <span className="text-muted-foreground w-4">{i + 1}</span>
+                                  <span className="text-foreground font-semibold">{sig.ticker}</span>
                                 </div>
                               </td>
-                              <td className="py-1.5 text-zinc-500">{sig.sector}</td>
+                              <td className="py-1.5 text-muted-foreground">{sig.sector}</td>
                               <td className={`py-1.5 text-right font-bold ${scoreColor}`}>{fmtScore(sig.score)}</td>
                               <td className={`py-1.5 text-right ${sig.momentum >= 0 ? "text-green-400" : "text-red-400"}`}>{fmtScore(sig.momentum)}</td>
                               <td className={`py-1.5 text-right ${sig.value >= 0 ? "text-green-400" : "text-red-400"}`}>{fmtScore(sig.value)}</td>
@@ -1254,13 +1254,13 @@ export default function MLStocksPage() {
                       </tbody>
                     </table>
                   </div>
-                  <p className="text-xs text-zinc-600 mt-2">Score = weighted sum of factor z-scores (Mom 30%, Val 25%, Qual 25%, Sent 20%)</p>
+                  <p className="text-xs text-muted-foreground mt-2">Score = weighted sum of factor z-scores (Mom 30%, Val 25%, Qual 25%, Sent 20%)</p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-zinc-900 border-zinc-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-200">Model Monitoring — Drift Detection</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Model Monitoring — Drift Detection</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   {[
@@ -1297,9 +1297,9 @@ export default function MLStocksPage() {
                       ok: true,
                     },
                   ].map(row => (
-                    <div key={row.metric} className="bg-zinc-800/50 rounded-lg p-2.5">
+                    <div key={row.metric} className="bg-muted/50 rounded-lg p-2.5">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-medium text-zinc-200">{row.metric}</span>
+                        <span className="text-xs font-medium text-foreground">{row.metric}</span>
                         <div className="flex items-center gap-1">
                           {row.ok
                             ? <CheckCircle className="w-3 h-3 text-green-400" />
@@ -1311,7 +1311,7 @@ export default function MLStocksPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 bg-zinc-700 rounded-full h-1.5">
+                        <div className="flex-1 bg-muted rounded-full h-1.5">
                           <div
                             className="h-1.5 rounded-full"
                             style={{
@@ -1320,13 +1320,13 @@ export default function MLStocksPage() {
                             }}
                           />
                         </div>
-                        <span className="text-xs text-zinc-400">{row.value.toFixed(3)} / {row.threshold.toFixed(3)}</span>
+                        <span className="text-xs text-muted-foreground">{row.value.toFixed(3)} / {row.threshold.toFixed(3)}</span>
                       </div>
-                      <p className="text-xs text-zinc-600 mt-1">{row.note}</p>
+                      <p className="text-xs text-muted-foreground mt-1">{row.note}</p>
                     </div>
                   ))}
-                  <div className="bg-zinc-800/30 rounded-lg p-3 mt-1">
-                    <p className="text-xs text-zinc-400">
+                  <div className="bg-muted/30 rounded-lg p-3 mt-1">
+                    <p className="text-xs text-muted-foreground">
                       <span className="text-amber-400 font-semibold">Action required:</span> IC Rolling 20-day dropped below threshold. Retrain on last 252 trading days or activate Ridge fallback model until recovery confirmed.
                     </p>
                   </div>

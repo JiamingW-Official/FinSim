@@ -118,20 +118,20 @@ export default function OptionsPage() {
         onValueChange={setActiveTab}
         className="flex flex-1 flex-col overflow-hidden"
       >
-        <TabsList className="h-8 w-full shrink-0 justify-start rounded-none border-b border-border bg-card px-2 gap-0">
-          <TabsTrigger value="chains" className={TAB_TRIGGER_CLASS}>
+        <TabsList className="h-8 w-full shrink-0 justify-start rounded-none border-b border-border bg-card px-2 gap-0 overflow-x-auto flex-nowrap">
+          <TabsTrigger value="chains" className={TAB_TRIGGER_CLASS + " shrink-0"}>
             Chains
           </TabsTrigger>
-          <TabsTrigger value="strategy" className={TAB_TRIGGER_CLASS}>
+          <TabsTrigger value="strategy" className={TAB_TRIGGER_CLASS + " shrink-0"}>
             Strategy
           </TabsTrigger>
-          <TabsTrigger value="analysis" className={TAB_TRIGGER_CLASS}>
+          <TabsTrigger value="analysis" className={TAB_TRIGGER_CLASS + " shrink-0"}>
             Analysis
           </TabsTrigger>
-          <TabsTrigger value="greeks" className={TAB_TRIGGER_CLASS}>
+          <TabsTrigger value="greeks" className={TAB_TRIGGER_CLASS + " shrink-0"}>
             Greeks
           </TabsTrigger>
-          <TabsTrigger value="flow" className={TAB_TRIGGER_CLASS}>
+          <TabsTrigger value="flow" className={TAB_TRIGGER_CLASS + " shrink-0"}>
             Flow
           </TabsTrigger>
         </TabsList>
@@ -395,6 +395,10 @@ export default function OptionsPage() {
           </AnimatePresence>
         </div>
       </Tabs>
+      {/* Mobile order entry — visible below md */}
+      <div className="md:hidden shrink-0 border-t border-border">
+        <OptionsOrderEntry spotPrice={spotPrice} analytics={analytics} />
+      </div>
       <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60">
         For educational purposes only. Not financial advice. All data is simulated.
       </p>

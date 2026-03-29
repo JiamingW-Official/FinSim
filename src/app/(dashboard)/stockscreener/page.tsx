@@ -1227,7 +1227,7 @@ function CustomScreenTab() {
             <CardContent className="p-0">
               <div className="overflow-x-auto max-h-[420px] overflow-y-auto">
                 <table className="w-full text-sm">
-                  <thead className="sticky top-0 bg-neutral-900/95 backdrop-blur-sm z-10">
+                  <thead className="sticky top-0 bg-card/95 backdrop-blur-sm z-10">
                     <tr className="border-b border-white/[0.06]">
                       {["Ticker", "Sector", "P/E", "ROE %", "D/E", "Rev Growth", "FCF Yield", "Gross Margin", "Beta"].map((h) => (
                         <th key={h} className={cn("px-3 py-2 text-xs font-medium text-white/40", h === "Ticker" || h === "Sector" ? "text-left" : "text-right")}>

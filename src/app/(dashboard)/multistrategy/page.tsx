@@ -207,9 +207,9 @@ function PodStructureTab() {
   return (
     <div className="space-y-6">
       {/* Architecture SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <GitBranch className="h-4 w-4 text-indigo-400" />
             Pod Architecture — Centralized Risk → PM Books
           </CardTitle>
@@ -280,33 +280,33 @@ function PodStructureTab() {
 
       {/* Stats summary */}
       <div className="grid grid-cols-3 gap-3">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
-            <p className="text-xs text-zinc-500">Total AUM</p>
-            <p className="text-2xl font-bold text-zinc-100">${(totalAum / 1000).toFixed(1)}B</p>
-            <p className="text-xs text-zinc-500">{pods.length} active pods</p>
+            <p className="text-xs text-muted-foreground">Total AUM</p>
+            <p className="text-2xl font-bold text-foreground">${(totalAum / 1000).toFixed(1)}B</p>
+            <p className="text-xs text-muted-foreground">{pods.length} active pods</p>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
-            <p className="text-xs text-zinc-500">Annual Pod Cost</p>
-            <p className="text-2xl font-bold text-zinc-100">${totalCost}M</p>
-            <p className="text-xs text-zinc-500">{((totalCost / totalAum) * 100).toFixed(2)}% of AUM</p>
+            <p className="text-xs text-muted-foreground">Annual Pod Cost</p>
+            <p className="text-2xl font-bold text-foreground">${totalCost}M</p>
+            <p className="text-xs text-muted-foreground">{((totalCost / totalAum) * 100).toFixed(2)}% of AUM</p>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
-            <p className="text-xs text-zinc-500">Avg Pod Sharpe</p>
-            <p className="text-2xl font-bold text-zinc-100">{fmt(avgSharpe)}</p>
-            <p className="text-xs text-zinc-500">Portfolio Sharpe ~1.8</p>
+            <p className="text-xs text-muted-foreground">Avg Pod Sharpe</p>
+            <p className="text-2xl font-bold text-foreground">{fmt(avgSharpe)}</p>
+            <p className="text-xs text-muted-foreground">Portfolio Sharpe ~1.8</p>
           </CardContent>
         </Card>
       </div>
 
       {/* PM P&L attribution table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Users className="h-4 w-4 text-indigo-400" />
             PM P&amp;L Attribution &amp; Draw-Down Triggers
           </CardTitle>
@@ -315,17 +315,17 @@ function PodStructureTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left py-2 pr-3 text-zinc-500 font-medium">Pod</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">AUM</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">YTD P&amp;L</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">Sharpe</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">DD Now</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">Hard Stop</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">Status</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">Staff</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">Cost/yr</th>
-                  <th className="text-right py-2 px-2 text-zinc-500 font-medium">Seed</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Pod</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">AUM</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">YTD P&amp;L</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">Sharpe</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">DD Now</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">Hard Stop</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">Status</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">Staff</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">Cost/yr</th>
+                  <th className="text-right py-2 px-2 text-muted-foreground font-medium">Seed</th>
                 </tr>
               </thead>
               <tbody>
@@ -335,32 +335,32 @@ function PodStructureTab() {
                   const statusBg = pod.status === "active" ? "bg-emerald-900/30 border-emerald-800" : pod.status === "flat" ? "bg-amber-900/30 border-amber-800" : "bg-red-900/30 border-red-800";
                   const seedColor = pod.seeding === "internal" ? "bg-indigo-900/40 text-indigo-300 border-indigo-800" : pod.seeding === "external" ? "bg-cyan-900/40 text-muted-foreground border-cyan-800" : "bg-muted/60 text-primary border-border";
                   return (
-                    <tr key={pod.id} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                    <tr key={pod.id} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                       <td className="py-2 pr-3">
-                        <p className="font-medium text-zinc-200">{pod.name}</p>
-                        <p className="text-zinc-500">{pod.strategy}</p>
+                        <p className="font-medium text-foreground">{pod.name}</p>
+                        <p className="text-muted-foreground">{pod.strategy}</p>
                       </td>
-                      <td className="text-right px-2 text-zinc-300">${(pod.aum / 1000).toFixed(1)}B</td>
+                      <td className="text-right px-2 text-muted-foreground">${(pod.aum / 1000).toFixed(1)}B</td>
                       <td className={`text-right px-2 font-medium ${pod.ytdPnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                         {pod.ytdPnl >= 0 ? "+" : ""}{pod.ytdPnl}%
                       </td>
-                      <td className="text-right px-2 text-zinc-300">{fmt(pod.sharpe)}</td>
+                      <td className="text-right px-2 text-muted-foreground">{fmt(pod.sharpe)}</td>
                       <td className="text-right px-2">
                         <div className="flex items-center justify-end gap-1">
-                          <span className="text-zinc-300">{fmt(pod.drawdown)}%</span>
-                          <div className="w-12 bg-zinc-800 rounded-full h-1.5">
+                          <span className="text-muted-foreground">{fmt(pod.drawdown)}%</span>
+                          <div className="w-12 bg-muted rounded-full h-1.5">
                             <div className="h-1.5 rounded-full" style={{ width: `${Math.min(ddPct, 100)}%`, background: ddPct > 75 ? "#ef4444" : ddPct > 50 ? "#f59e0b" : "#22c55e" }} />
                           </div>
                         </div>
                       </td>
-                      <td className="text-right px-2 text-zinc-500">{pod.drawdownLimit}%</td>
+                      <td className="text-right px-2 text-muted-foreground">{pod.drawdownLimit}%</td>
                       <td className="text-right px-2">
                         <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs border ${statusBg} ${statusColor}`}>
                           {pod.status.toUpperCase()}
                         </span>
                       </td>
-                      <td className="text-right px-2 text-zinc-300">{pod.headcount}</td>
-                      <td className="text-right px-2 text-zinc-300">${pod.annualCost}M</td>
+                      <td className="text-right px-2 text-muted-foreground">{pod.headcount}</td>
+                      <td className="text-right px-2 text-muted-foreground">${pod.annualCost}M</td>
                       <td className="text-right px-2">
                         <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-xs border ${seedColor}`}>
                           {pod.seeding}
@@ -376,26 +376,26 @@ function PodStructureTab() {
       </Card>
 
       {/* Capital allocation process */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Target className="h-4 w-4 text-muted-foreground" />
             Capital Allocation Process
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
+            <div className="p-3 bg-muted/50 rounded-lg border border-border">
               <p className="text-xs font-semibold text-indigo-400 mb-2">Sharpe-Based Sizing</p>
-              <p className="text-xs text-zinc-400 leading-relaxed">Pods with Sharpe &gt; 1.5 receive additional capital allocation. Capital is proportional to risk-adjusted returns over trailing 12 months. New pods receive minimum $250M seed regardless of track record.</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">Pods with Sharpe &gt; 1.5 receive additional capital allocation. Capital is proportional to risk-adjusted returns over trailing 12 months. New pods receive minimum $250M seed regardless of track record.</p>
             </div>
-            <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
+            <div className="p-3 bg-muted/50 rounded-lg border border-border">
               <p className="text-xs font-semibold text-muted-foreground mb-2">Risk Budget / Kelly</p>
-              <p className="text-xs text-zinc-400 leading-relaxed">Each pod receives a VaR budget (e.g. $X per $1B AUM). Kelly fraction applied at half-Kelly to avoid over-sizing. Correlated pods share a combined VaR bucket — reducing capital when correlation spikes.</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">Each pod receives a VaR budget (e.g. $X per $1B AUM). Kelly fraction applied at half-Kelly to avoid over-sizing. Correlated pods share a combined VaR bucket — reducing capital when correlation spikes.</p>
             </div>
-            <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
+            <div className="p-3 bg-muted/50 rounded-lg border border-border">
               <p className="text-xs font-semibold text-amber-400 mb-2">Onboarding New PMs</p>
-              <p className="text-xs text-zinc-400 leading-relaxed">PM typically brings team of 2–5 analysts. 3–6 month ramp period with $100–250M initial capital. After 12 months of live performance, reviewed for full allocation. Seeding arrangements: internal (no co-invest) vs. co-invest (PM contributes 5% of managed capital).</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">PM typically brings team of 2–5 analysts. 3–6 month ramp period with $100–250M initial capital. After 12 months of live performance, reviewed for full allocation. Seeding arrangements: internal (no co-invest) vs. co-invest (PM contributes 5% of managed capital).</p>
             </div>
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3">
@@ -409,8 +409,8 @@ function PodStructureTab() {
               return (
                 <div key={t.trigger} className={`p-3 rounded-lg border ${bg}`}>
                   <p className={`text-xs font-semibold ${tc} mb-1`}>{t.trigger}</p>
-                  <p className="text-xs font-mono text-zinc-300 mb-1">{t.level}</p>
-                  <p className="text-xs text-zinc-500">{t.action}</p>
+                  <p className="text-xs font-mono text-muted-foreground mb-1">{t.level}</p>
+                  <p className="text-xs text-muted-foreground">{t.action}</p>
                 </div>
               );
             })}
@@ -444,9 +444,9 @@ function StrategyAllocationTab() {
   return (
     <div className="space-y-6">
       {/* Stacked allocation bar */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Layers className="h-4 w-4 text-indigo-400" />
             Capital Allocation Across Strategies
           </CardTitle>
@@ -492,7 +492,7 @@ function StrategyAllocationTab() {
             {allocs.map((a) => (
               <div key={a.name} className="flex items-center gap-1.5">
                 <div className="w-2.5 h-2.5 rounded-sm" style={{ background: a.color }} />
-                <span className="text-xs text-zinc-400">{a.name} ({a.pct}%)</span>
+                <span className="text-xs text-muted-foreground">{a.name} ({a.pct}%)</span>
               </div>
             ))}
           </div>
@@ -501,34 +501,34 @@ function StrategyAllocationTab() {
 
       {/* Diversification benefit */}
       <div className="grid grid-cols-2 gap-3">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
-            <p className="text-xs text-zinc-500 mb-2">Diversification Benefit</p>
+            <p className="text-xs text-muted-foreground mb-2">Diversification Benefit</p>
             <div className="flex items-end gap-4">
               <div>
-                <p className="text-xs text-zinc-500">Portfolio Sharpe</p>
+                <p className="text-xs text-muted-foreground">Portfolio Sharpe</p>
                 <p className="text-2xl font-bold text-emerald-400">{fmt(portfolioSharpe)}</p>
               </div>
-              <div className="text-zinc-600 text-xl mb-1">vs</div>
+              <div className="text-muted-foreground text-xl mb-1">vs</div>
               <div>
-                <p className="text-xs text-zinc-500">Avg Pod Sharpe</p>
-                <p className="text-2xl font-bold text-zinc-400">{fmt(avgPodSharpe)}</p>
+                <p className="text-xs text-muted-foreground">Avg Pod Sharpe</p>
+                <p className="text-2xl font-bold text-muted-foreground">{fmt(avgPodSharpe)}</p>
               </div>
             </div>
             <p className="text-xs text-emerald-500 mt-2">+{fmt(portfolioSharpe - avgPodSharpe)} Sharpe lift from diversification</p>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4 pb-3">
-            <p className="text-xs text-zinc-500 mb-2">Capacity Management</p>
+            <p className="text-xs text-muted-foreground mb-2">Capacity Management</p>
             <div className="space-y-1.5 mt-1">
               {allocs.slice(0, 4).map((a) => (
                 <div key={a.name} className="flex items-center gap-2">
-                  <span className="text-xs text-zinc-400 w-24 shrink-0">{a.name}</span>
-                  <div className="flex-1 bg-zinc-800 rounded-full h-1.5">
+                  <span className="text-xs text-muted-foreground w-24 shrink-0">{a.name}</span>
+                  <div className="flex-1 bg-muted rounded-full h-1.5">
                     <div className="h-1.5 rounded-full" style={{ width: `${Math.min((a.pct / 35) * 100, 100)}%`, background: a.color }} />
                   </div>
-                  <span className="text-xs text-zinc-500 w-10 text-right">Cap ${a.capacity}B</span>
+                  <span className="text-xs text-muted-foreground w-10 text-right">Cap ${a.capacity}B</span>
                 </div>
               ))}
             </div>
@@ -537,9 +537,9 @@ function StrategyAllocationTab() {
       </div>
 
       {/* Correlation heatmap */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="h-4 w-4 text-muted-foreground" />
             Pod Cross-Correlation Heatmap
           </CardTitle>
@@ -567,7 +567,7 @@ function StrategyAllocationTab() {
               ))
             )}
           </svg>
-          <div className="flex items-center gap-3 justify-center mt-2 text-xs text-zinc-500">
+          <div className="flex items-center gap-3 justify-center mt-2 text-xs text-muted-foreground">
             <div className="flex items-center gap-1"><div className="w-3 h-3 rounded" style={{ background: correlColor(0.9) }} /><span>High (&gt;0.5)</span></div>
             <div className="flex items-center gap-1"><div className="w-3 h-3 rounded" style={{ background: correlColor(0.2) }} /><span>Low (0.1–0.3)</span></div>
             <div className="flex items-center gap-1"><div className="w-3 h-3 rounded" style={{ background: correlColor(-0.2) }} /><span>Negative</span></div>
@@ -577,9 +577,9 @@ function StrategyAllocationTab() {
 
       {/* Dynamic reallocation & flight to quality */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">Dynamic Reallocation Rules</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Dynamic Reallocation Rules</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {[
@@ -591,16 +591,16 @@ function StrategyAllocationTab() {
             ].map((r) => (
               <div key={r.rule} className="flex gap-2 text-xs">
                 <Badge variant="outline" className="shrink-0 text-indigo-300 border-indigo-800 bg-indigo-900/20 h-5 text-xs">{r.rule}</Badge>
-                <span className="text-zinc-400">{r.action}</span>
+                <span className="text-muted-foreground">{r.action}</span>
               </div>
             ))}
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-zinc-300">Flight-to-Quality Capital Rotation</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Flight-to-Quality Capital Rotation</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-2 text-xs text-zinc-400">
+          <CardContent className="space-y-2 text-xs text-muted-foreground">
             <p>During drawdowns or volatility spikes, capital rotates from directional strategies toward:</p>
             <ul className="space-y-1 ml-3">
               <li className="flex gap-2"><span className="text-muted-foreground">•</span> Merger arb (event-driven, low beta, defined catalysts)</li>
@@ -608,7 +608,7 @@ function StrategyAllocationTab() {
               <li className="flex gap-2"><span className="text-muted-foreground">•</span> Vol selling pods (elevated VIX = higher premium income)</li>
               <li className="flex gap-2"><span className="text-muted-foreground">•</span> Cash reserves — undeployed capital earns T-bill rate (3–5%)</li>
             </ul>
-            <p className="text-zinc-500 mt-2">Multi-strat advantage: capital can be redeployed in days vs. months for single-strat funds. Explains outperformance in 2022 market stress year.</p>
+            <p className="text-muted-foreground mt-2">Multi-strat advantage: capital can be redeployed in days vs. months for single-strat funds. Explains outperformance in 2022 market stress year.</p>
           </CardContent>
         </Card>
       </div>
@@ -641,9 +641,9 @@ function RiskManagementTab() {
   return (
     <div className="space-y-6">
       {/* Centralized risk desk SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <ShieldAlert className="h-4 w-4 text-red-400" />
             Centralized Risk Desk Architecture
           </CardTitle>
@@ -677,9 +677,9 @@ function RiskManagementTab() {
       </Card>
 
       {/* Risk metrics */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="h-4 w-4 text-indigo-400" />
             Portfolio Risk Metrics vs Limits
           </CardTitle>
@@ -687,17 +687,17 @@ function RiskManagementTab() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {metrics.map((m) => (
-              <div key={m.label} className="flex items-center gap-3 p-2 bg-zinc-800/40 rounded-lg">
+              <div key={m.label} className="flex items-center gap-3 p-2 bg-muted/40 rounded-lg">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs text-zinc-400">{m.label}</span>
-                    <span className="text-xs font-mono text-zinc-200">{m.value}</span>
+                    <span className="text-xs text-muted-foreground">{m.label}</span>
+                    <span className="text-xs font-mono text-foreground">{m.value}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 bg-zinc-700 rounded-full h-1.5">
+                    <div className="flex-1 bg-muted rounded-full h-1.5">
                       <div className="h-1.5 rounded-full transition-all" style={{ width: `${m.pctUsed}%`, background: m.pctUsed > 80 ? "#ef4444" : m.pctUsed > 65 ? "#f59e0b" : "#22c55e" }} />
                     </div>
-                    <span className="text-xs text-zinc-600 shrink-0">Limit: {m.limit}</span>
+                    <span className="text-xs text-muted-foreground shrink-0">Limit: {m.limit}</span>
                   </div>
                 </div>
               </div>
@@ -707,9 +707,9 @@ function RiskManagementTab() {
       </Card>
 
       {/* Factor exposures */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Scale className="h-4 w-4 text-amber-400" />
             Aggregated Factor Exposures Across All Pods
           </CardTitle>
@@ -743,9 +743,9 @@ function RiskManagementTab() {
       </Card>
 
       {/* Stress test results */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="h-4 w-4 text-orange-400" />
             Stress Testing — All Books Simultaneously
           </CardTitle>
@@ -753,19 +753,19 @@ function RiskManagementTab() {
         <CardContent>
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left py-2 pr-4 text-zinc-500 font-medium">Scenario</th>
-                <th className="text-right py-2 px-3 text-zinc-500 font-medium">Multi-Strat P&amp;L</th>
-                <th className="text-right py-2 px-3 text-zinc-500 font-medium">Hedge Fund Index</th>
-                <th className="text-right py-2 px-3 text-zinc-500 font-medium">Worst Pod</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Scenario</th>
+                <th className="text-right py-2 px-3 text-muted-foreground font-medium">Multi-Strat P&amp;L</th>
+                <th className="text-right py-2 px-3 text-muted-foreground font-medium">Hedge Fund Index</th>
+                <th className="text-right py-2 px-3 text-muted-foreground font-medium">Worst Pod</th>
               </tr>
             </thead>
             <tbody>
               {stressScenarios.map((sc) => {
                 const pnlColor = sc.portfolioLoss.startsWith("+") ? "text-emerald-400" : "text-red-400";
                 return (
-                  <tr key={sc.name} className="border-b border-zinc-800/40 hover:bg-zinc-800/20">
-                    <td className="py-2 pr-4 text-zinc-300">{sc.name}</td>
+                  <tr key={sc.name} className="border-b border-border/40 hover:bg-muted/20">
+                    <td className="py-2 pr-4 text-muted-foreground">{sc.name}</td>
                     <td className={`text-right px-3 font-mono font-medium ${pnlColor}`}>{sc.portfolioLoss}</td>
                     <td className="text-right px-3 font-mono text-red-500">{sc.hedgeLoss}</td>
                     <td className="text-right px-3 font-mono text-amber-400">{sc.podWorst}</td>
@@ -775,13 +775,13 @@ function RiskManagementTab() {
             </tbody>
           </table>
           <div className="mt-4 grid grid-cols-2 gap-3">
-            <div className="p-3 bg-zinc-800/40 rounded-lg text-xs space-y-1">
-              <p className="font-semibold text-zinc-300">Leverage Limits</p>
-              <p className="text-zinc-400">Gross: typically 5–8x NAV across portfolio. Quant pods may run 10–15x intra-pod but offset across books. Portfolio net exposure target: 15–30% long bias.</p>
+            <div className="p-3 bg-muted/40 rounded-lg text-xs space-y-1">
+              <p className="font-semibold text-muted-foreground">Leverage Limits</p>
+              <p className="text-muted-foreground">Gross: typically 5–8x NAV across portfolio. Quant pods may run 10–15x intra-pod but offset across books. Portfolio net exposure target: 15–30% long bias.</p>
             </div>
-            <div className="p-3 bg-zinc-800/40 rounded-lg text-xs space-y-1">
-              <p className="font-semibold text-zinc-300">Tail Risk Overlay</p>
-              <p className="text-zinc-400">Portfolio-level SPX puts (3–5% OTM, 3-month tenor). Tail risk cost ~40–80bps/year. Correlation swaps when cross-pod correlations spike above 0.5 threshold.</p>
+            <div className="p-3 bg-muted/40 rounded-lg text-xs space-y-1">
+              <p className="font-semibold text-muted-foreground">Tail Risk Overlay</p>
+              <p className="text-muted-foreground">Portfolio-level SPX puts (3–5% OTM, 3-month tenor). Tail risk cost ~40–80bps/year. Correlation swaps when cross-pod correlations spike above 0.5 threshold.</p>
             </div>
           </div>
         </CardContent>
@@ -818,9 +818,9 @@ function EconomicsTab() {
   return (
     <div className="space-y-6">
       {/* AUM bar chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <DollarSign className="h-4 w-4 text-emerald-400" />
             AUM — Top Multi-Strategy Hedge Funds
           </CardTitle>
@@ -857,9 +857,9 @@ function EconomicsTab() {
       </Card>
 
       {/* Return comparison line chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
             Annual Returns: Multi-Strat vs Single-Strat vs S&amp;P 500
           </CardTitle>
@@ -906,9 +906,9 @@ function EconomicsTab() {
       </Card>
 
       {/* Expense model */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Percent className="h-4 w-4 text-amber-400" />
             Pass-Through Expense Model — The Multi-Strat Difference
           </CardTitle>
@@ -918,23 +918,23 @@ function EconomicsTab() {
             <div className="p-3 bg-amber-900/20 border border-amber-800 rounded-lg">
               <p className="text-xs font-semibold text-amber-400 mb-2">What Investors Pay</p>
               <div className="space-y-1.5 text-xs">
-                <div className="flex justify-between text-zinc-300">
+                <div className="flex justify-between text-muted-foreground">
                   <span>Management Fee</span><span className="font-mono">0%–1%</span>
                 </div>
-                <div className="flex justify-between text-zinc-300">
+                <div className="flex justify-between text-muted-foreground">
                   <span>Pass-Through Expenses</span><span className="font-mono text-amber-400">4–7%</span>
                 </div>
-                <div className="flex justify-between text-zinc-300">
+                <div className="flex justify-between text-muted-foreground">
                   <span>Performance Fee</span><span className="font-mono">20–30%</span>
                 </div>
-                <div className="flex justify-between font-semibold text-zinc-200 pt-1 border-t border-amber-800">
+                <div className="flex justify-between font-semibold text-foreground pt-1 border-t border-amber-800">
                   <span>Total Cost on Gross</span><span className="font-mono text-amber-400">5–8%/yr</span>
                 </div>
               </div>
             </div>
-            <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
-              <p className="text-xs font-semibold text-zinc-300 mb-2">Pass-Through Includes</p>
-              <ul className="space-y-1 text-xs text-zinc-400">
+            <div className="p-3 bg-muted/50 rounded-lg border border-border">
+              <p className="text-xs font-semibold text-muted-foreground mb-2">Pass-Through Includes</p>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li className="flex gap-1.5"><CircleDot className="h-2.5 w-2.5 mt-0.5 text-indigo-400 shrink-0" />PM compensation (salary + bonus)</li>
                 <li className="flex gap-1.5"><CircleDot className="h-2.5 w-2.5 mt-0.5 text-indigo-400 shrink-0" />Research data (Bloomberg, FactSet, alt data)</li>
                 <li className="flex gap-1.5"><CircleDot className="h-2.5 w-2.5 mt-0.5 text-indigo-400 shrink-0" />Technology infrastructure</li>
@@ -944,9 +944,9 @@ function EconomicsTab() {
                 <li className="flex gap-1.5"><CircleDot className="h-2.5 w-2.5 mt-0.5 text-indigo-400 shrink-0" />Office space + travel</li>
               </ul>
             </div>
-            <div className="p-3 bg-zinc-800/50 rounded-lg border border-zinc-700">
-              <p className="text-xs font-semibold text-zinc-300 mb-2">Why Investors Still Pay</p>
-              <ul className="space-y-1 text-xs text-zinc-400">
+            <div className="p-3 bg-muted/50 rounded-lg border border-border">
+              <p className="text-xs font-semibold text-muted-foreground mb-2">Why Investors Still Pay</p>
+              <ul className="space-y-1 text-xs text-muted-foreground">
                 <li className="flex gap-1.5"><span className="text-emerald-400">+</span> Consistent 10–25% annual net returns</li>
                 <li className="flex gap-1.5"><span className="text-emerald-400">+</span> Low correlation to public markets</li>
                 <li className="flex gap-1.5"><span className="text-emerald-400">+</span> Positive in down years (2022: +28%)</li>
@@ -960,24 +960,24 @@ function EconomicsTab() {
 
           {/* Capacity & talent war */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-3 bg-zinc-800/40 rounded-lg border border-zinc-700 text-xs">
-              <p className="font-semibold text-zinc-300 mb-2 flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-indigo-400" /> Capacity Constraints at $50B+</p>
-              <p className="text-zinc-400 leading-relaxed">When AUM exceeds ~$50B, alpha generation becomes harder. More capital chasing the same opportunities compresses spreads. Funds either: (1) return capital to investors, (2) expand into new strategies, or (3) grow headcount — with diminishing returns on each additional pod. Citadel ($63B) and Millennium ($68B) have reached this threshold, pushing into more exotic/niche strategies to maintain edge.</p>
+            <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs">
+              <p className="font-semibold text-muted-foreground mb-2 flex items-center gap-1.5"><Building2 className="h-3.5 w-3.5 text-indigo-400" /> Capacity Constraints at $50B+</p>
+              <p className="text-muted-foreground leading-relaxed">When AUM exceeds ~$50B, alpha generation becomes harder. More capital chasing the same opportunities compresses spreads. Funds either: (1) return capital to investors, (2) expand into new strategies, or (3) grow headcount — with diminishing returns on each additional pod. Citadel ($63B) and Millennium ($68B) have reached this threshold, pushing into more exotic/niche strategies to maintain edge.</p>
             </div>
-            <div className="p-3 bg-zinc-800/40 rounded-lg border border-zinc-700 text-xs">
-              <p className="font-semibold text-zinc-300 mb-2 flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-amber-400" /> Talent War &amp; Compensation Inflation</p>
-              <p className="text-zinc-400 leading-relaxed">Top PMs earn $5–50M+/year via pass-through model. Multi-strats are in constant competition for talent — a proven PM with $2B+ AUM and 15%+ returns commands $10–30M guaranteed. Non-compete clauses (typically 1 year) drive bidding wars. Analyst salaries at multi-strats 2–3× investment banking peers. Compensation is the #1 expense, making the pass-through model essential for firm economics.</p>
+            <div className="p-3 bg-muted/40 rounded-lg border border-border text-xs">
+              <p className="font-semibold text-muted-foreground mb-2 flex items-center gap-1.5"><Zap className="h-3.5 w-3.5 text-amber-400" /> Talent War &amp; Compensation Inflation</p>
+              <p className="text-muted-foreground leading-relaxed">Top PMs earn $5–50M+/year via pass-through model. Multi-strats are in constant competition for talent — a proven PM with $2B+ AUM and 15%+ returns commands $10–30M guaranteed. Non-compete clauses (typically 1 year) drive bidding wars. Analyst salaries at multi-strats 2–3× investment banking peers. Compensation is the #1 expense, making the pass-through model essential for firm economics.</p>
             </div>
           </div>
 
           {/* Fund comparison chips */}
           <div className="mt-4 grid grid-cols-2 md:grid-cols-5 gap-2">
             {funds.map((f) => (
-              <div key={f.name} className="p-2.5 bg-zinc-800/50 rounded-lg border border-zinc-700 text-center">
-                <p className="text-xs font-semibold text-zinc-200 mb-1">{f.name}</p>
+              <div key={f.name} className="p-2.5 bg-muted/50 rounded-lg border border-border text-center">
+                <p className="text-xs font-semibold text-foreground mb-1">{f.name}</p>
                 <p className="text-lg font-bold" style={{ color: f.color }}>${f.aum}B</p>
-                <p className="text-xs text-zinc-500 mt-0.5">Exp: {f.expenseRatio}%</p>
-                <p className="text-xs text-zinc-500">Perf: {f.perfFee}%</p>
+                <p className="text-xs text-muted-foreground mt-0.5">Exp: {f.expenseRatio}%</p>
+                <p className="text-xs text-muted-foreground">Perf: {f.perfFee}%</p>
                 <p className={`text-xs font-medium mt-1 ${f.returnYtd >= 10 ? "text-emerald-400" : "text-amber-400"}`}>+{f.returnYtd}% YTD</p>
               </div>
             ))}
@@ -994,7 +994,7 @@ export default function MultiStrategyPage() {
   const [activeTab, setActiveTab] = useState("pods");
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Header */}
         <motion.div
@@ -1008,8 +1008,8 @@ export default function MultiStrategyPage() {
               <Layers className="h-5 w-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-zinc-100">Multi-Strategy Hedge Funds</h1>
-              <p className="text-sm text-zinc-500">Millennium / Point72 / Citadel model — pod architecture, risk, and economics</p>
+              <h1 className="text-xl font-bold text-foreground">Multi-Strategy Hedge Funds</h1>
+              <p className="text-sm text-muted-foreground">Millennium / Point72 / Citadel model — pod architecture, risk, and economics</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
@@ -1038,17 +1038,17 @@ export default function MultiStrategyPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-zinc-900 border border-zinc-800 mb-6">
-            <TabsTrigger value="pods" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs">
+          <TabsList className="bg-card border border-border mb-6">
+            <TabsTrigger value="pods" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
               <Users className="h-3.5 w-3.5 mr-1.5" />Pod Structure
             </TabsTrigger>
-            <TabsTrigger value="allocation" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs">
+            <TabsTrigger value="allocation" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
               <Layers className="h-3.5 w-3.5 mr-1.5" />Strategy Allocation
             </TabsTrigger>
-            <TabsTrigger value="risk" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs">
+            <TabsTrigger value="risk" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
               <ShieldAlert className="h-3.5 w-3.5 mr-1.5" />Risk Management
             </TabsTrigger>
-            <TabsTrigger value="economics" className="data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs">
+            <TabsTrigger value="economics" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
               <DollarSign className="h-3.5 w-3.5 mr-1.5" />Economics
             </TabsTrigger>
           </TabsList>

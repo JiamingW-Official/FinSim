@@ -156,9 +156,9 @@ function MergerArbitrageTab() {
           { label: "Avg. Annualized Return", value: "8–12%", color: "text-sky-400" },
           { label: "2022–24 Break Rate", value: "~7%", color: "text-amber-400" },
         ].map((stat) => (
-          <Card key={stat.label} className="bg-zinc-900 border-zinc-800">
+          <Card key={stat.label} className="bg-card border-border">
             <CardContent className="p-3">
-              <p className="text-xs text-zinc-500 mb-1">{stat.label}</p>
+              <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
               <p className={cn("text-xl font-bold", stat.color)}>{stat.value}</p>
             </CardContent>
           </Card>
@@ -166,7 +166,7 @@ function MergerArbitrageTab() {
       </div>
 
       {/* Arb formula */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-indigo-400" />
@@ -174,30 +174,30 @@ function MergerArbitrageTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="rounded-lg bg-zinc-800/60 p-4 font-mono text-sm space-y-2">
+          <div className="rounded-lg bg-muted/60 p-4 font-mono text-sm space-y-2">
             <p className="text-indigo-300">Gross Spread = Deal Price − Current Price</p>
             <p className="text-indigo-300">Annualized Return = (Gross Spread / Current Price) × (365 / Days to Close)</p>
             <p className="text-amber-300 mt-2">EV = (p × Gross Spread) − ((1−p) × Break Loss)</p>
-            <p className="text-zinc-500 text-xs mt-1">where p = deal completion probability, Break Loss = Current − Unaffected Price</p>
+            <p className="text-muted-foreground text-xs mt-1">where p = deal completion probability, Break Loss = Current − Unaffected Price</p>
           </div>
-          <div className="rounded-lg bg-zinc-800/40 p-3">
-            <p className="text-xs text-zinc-400 font-semibold uppercase mb-2">Example Calculation</p>
+          <div className="rounded-lg bg-muted/40 p-3">
+            <p className="text-xs text-muted-foreground font-semibold uppercase mb-2">Example Calculation</p>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div><span className="text-zinc-500">Deal Price:</span> <span className="text-zinc-200">$50.00</span></div>
-              <div><span className="text-zinc-500">Current Price:</span> <span className="text-zinc-200">$48.50</span></div>
-              <div><span className="text-zinc-500">Gross Spread:</span> <span className="text-emerald-400">$1.50 (3.1%)</span></div>
-              <div><span className="text-zinc-500">Days to Close:</span> <span className="text-zinc-200">120</span></div>
-              <div><span className="text-zinc-500">Annualized Return:</span> <span className="text-emerald-400">9.4%</span></div>
-              <div><span className="text-zinc-500">Break Loss (unaffected $38):</span> <span className="text-red-400">−$10.50</span></div>
-              <div><span className="text-zinc-500">Completion Prob:</span> <span className="text-zinc-200">92%</span></div>
-              <div><span className="text-zinc-500">EV per Share:</span> <span className="text-emerald-400">$0.54</span></div>
+              <div><span className="text-muted-foreground">Deal Price:</span> <span className="text-foreground">$50.00</span></div>
+              <div><span className="text-muted-foreground">Current Price:</span> <span className="text-foreground">$48.50</span></div>
+              <div><span className="text-muted-foreground">Gross Spread:</span> <span className="text-emerald-400">$1.50 (3.1%)</span></div>
+              <div><span className="text-muted-foreground">Days to Close:</span> <span className="text-foreground">120</span></div>
+              <div><span className="text-muted-foreground">Annualized Return:</span> <span className="text-emerald-400">9.4%</span></div>
+              <div><span className="text-muted-foreground">Break Loss (unaffected $38):</span> <span className="text-red-400">−$10.50</span></div>
+              <div><span className="text-muted-foreground">Completion Prob:</span> <span className="text-foreground">92%</span></div>
+              <div><span className="text-muted-foreground">EV per Share:</span> <span className="text-emerald-400">$0.54</span></div>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Arb spread chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
@@ -206,14 +206,14 @@ function MergerArbitrageTab() {
         </CardHeader>
         <CardContent>
           <ArbSpreadChart />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Spreads narrow post-announcement as deal certainty rises, widen on regulatory risk events (DOJ/CFIUS), then converge to zero at close.
           </p>
         </CardContent>
       </Card>
 
       {/* Cash vs Stock deal treatment */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
@@ -247,17 +247,17 @@ function MergerArbitrageTab() {
               mechanics: "Allocate capital proportionally. Consider CVR value independently (binary outcomes, milestone-based).",
             },
           ].map((d) => (
-            <div key={d.type} className="rounded-lg bg-zinc-800/60 p-3">
+            <div key={d.type} className="rounded-lg bg-muted/60 p-3">
               <p className={cn("text-sm font-semibold mb-1", d.color)}>{d.type}</p>
-              <p className="text-xs text-zinc-300 mb-1">{d.desc}</p>
-              <p className="text-xs text-zinc-500 italic">{d.mechanics}</p>
+              <p className="text-xs text-muted-foreground mb-1">{d.desc}</p>
+              <p className="text-xs text-muted-foreground italic">{d.mechanics}</p>
             </div>
           ))}
         </CardContent>
       </Card>
 
       {/* Risk factors */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
@@ -266,21 +266,21 @@ function MergerArbitrageTab() {
         </CardHeader>
         <CardContent className="space-y-2">
           {RISK_FACTORS.map((rf, i) => (
-            <motion.div key={rf.name} className="rounded-lg bg-zinc-800/40 p-3 cursor-pointer"
+            <motion.div key={rf.name} className="rounded-lg bg-muted/40 p-3 cursor-pointer"
               onClick={() => setExpanded(expanded === i ? null : i)}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", severityColor(rf.severity))}>
                     {rf.severity.toUpperCase()}
                   </span>
-                  <span className="text-sm text-zinc-200">{rf.name}</span>
+                  <span className="text-sm text-foreground">{rf.name}</span>
                 </div>
-                {expanded === i ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+                {expanded === i ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
               </div>
               <AnimatePresence>
                 {expanded === i && (
                   <motion.p initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }} className="text-xs text-zinc-400 mt-2 overflow-hidden">
+                    exit={{ height: 0, opacity: 0 }} className="text-xs text-muted-foreground mt-2 overflow-hidden">
                     {rf.description}
                   </motion.p>
                 )}
@@ -291,10 +291,10 @@ function MergerArbitrageTab() {
       </Card>
 
       {/* Deal table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <FileText className="w-4 h-4 text-zinc-400" />
+            <FileText className="w-4 h-4 text-muted-foreground" />
             Notable M&A Deals 2022–2024 (Illustrative)
           </CardTitle>
         </CardHeader>
@@ -302,20 +302,20 @@ function MergerArbitrageTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Target", "Acquirer", "Deal $", "Mkt $", "Type", "Break %", "Outcome"].map((h) => (
-                    <th key={h} className="text-left text-zinc-500 pb-2 pr-3 font-medium">{h}</th>
+                    <th key={h} className="text-left text-muted-foreground pb-2 pr-3 font-medium">{h}</th>
                   ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800/50">
                 {DEAL_TABLE.map((row) => (
-                    <tr key={row.target} className="hover:bg-zinc-800/30 transition-colors">
-                      <td className="py-2 pr-3 text-zinc-200 font-medium">{row.target}</td>
-                      <td className="py-2 pr-3 text-zinc-400">{row.acquirer}</td>
-                      <td className="py-2 pr-3 text-zinc-200">${row.dealPrice}</td>
-                      <td className="py-2 pr-3 text-zinc-200">${row.currentPrice}</td>
-                      <td className="py-2 pr-3 text-zinc-400">{row.dealType}</td>
+                    <tr key={row.target} className="hover:bg-muted/30 transition-colors">
+                      <td className="py-2 pr-3 text-foreground font-medium">{row.target}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{row.acquirer}</td>
+                      <td className="py-2 pr-3 text-foreground">${row.dealPrice}</td>
+                      <td className="py-2 pr-3 text-foreground">${row.currentPrice}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{row.dealType}</td>
                       <td className={cn("py-2 pr-3", row.breakProb > 30 ? "text-red-400" : "text-amber-400")}>{row.breakProb}%</td>
                       <td className="py-2 pr-3">
                         <span className={cn("px-2 py-0.5 rounded-full text-xs",
@@ -334,7 +334,7 @@ function MergerArbitrageTab() {
       </Card>
 
       {/* 2022-2024 regulatory environment */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Shield className="w-4 h-4 text-red-400" />
@@ -351,7 +351,7 @@ function MergerArbitrageTab() {
           ].map((pt, i) => (
             <div key={i} className="flex items-start gap-2">
               <AlertTriangle className="w-3 h-3 text-red-400 mt-0.5 flex-shrink-0" />
-              <p className="text-xs text-zinc-400">{pt}</p>
+              <p className="text-xs text-muted-foreground">{pt}</p>
             </div>
           ))}
         </CardContent>
@@ -449,7 +449,7 @@ function ActivismTab() {
   return (
     <div className="space-y-6">
       {/* Playbook SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Zap className="w-4 h-4 text-primary" />
@@ -458,7 +458,7 @@ function ActivismTab() {
         </CardHeader>
         <CardContent>
           <ActivistPlaybookSVG />
-          <div className="mt-3 grid grid-cols-1 gap-2 text-xs text-zinc-400">
+          <div className="mt-3 grid grid-cols-1 gap-2 text-xs text-muted-foreground">
             <p><span className="text-primary font-medium">13D filing:</span> Required within 10 days of crossing 5% beneficial ownership threshold; discloses intent (Schedule 13D for active intent vs 13G for passive).</p>
             <p><span className="text-amber-300 font-medium">Wolf pack tactics:</span> Multiple funds coordinate near-simultaneously without formal agreement; each stays below 5% to delay disclosure.</p>
             <p><span className="text-emerald-300 font-medium">Settlement rate:</span> ~70% of campaigns settle before annual meeting; board seats granted without full proxy fight.</p>
@@ -467,7 +467,7 @@ function ActivismTab() {
       </Card>
 
       {/* Value creation levers */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -476,11 +476,11 @@ function ActivismTab() {
         </CardHeader>
         <CardContent className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {VALUE_LEVERS.map((lv) => (
-            <div key={lv.label} className="flex items-start gap-3 rounded-lg bg-zinc-800/50 p-3">
+            <div key={lv.label} className="flex items-start gap-3 rounded-lg bg-muted/50 p-3">
               <lv.icon className="w-4 h-4 text-indigo-400 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-zinc-200">{lv.label}</p>
-                <p className="text-xs text-zinc-500 mt-0.5">{lv.desc}</p>
+                <p className="text-xs font-semibold text-foreground">{lv.label}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{lv.desc}</p>
               </div>
             </div>
           ))}
@@ -488,14 +488,14 @@ function ActivismTab() {
       </Card>
 
       {/* Activist funds */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2 cursor-pointer" onClick={() => setShowFunds(!showFunds)}>
           <CardTitle className="text-sm flex items-center justify-between">
             <span className="flex items-center gap-2">
               <Users className="w-4 h-4 text-amber-400" />
               Major Activist Hedge Funds
             </span>
-            {showFunds ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+            {showFunds ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
           </CardTitle>
         </CardHeader>
         <AnimatePresence>
@@ -504,14 +504,14 @@ function ActivismTab() {
               exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
               <CardContent className="space-y-3">
                 {ACTIVIST_FUNDS.map((f) => (
-                  <div key={f.name} className="rounded-lg bg-zinc-800/50 p-3">
+                  <div key={f.name} className="rounded-lg bg-muted/50 p-3">
                     <div className="flex items-center justify-between mb-1">
-                      <p className="text-sm font-semibold text-zinc-200">{f.name}</p>
-                      <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400">{f.aum}</Badge>
+                      <p className="text-sm font-semibold text-foreground">{f.name}</p>
+                      <Badge variant="outline" className="text-xs border-border text-muted-foreground">{f.aum}</Badge>
                     </div>
                     <p className="text-xs text-indigo-300 mb-1">{f.style}</p>
-                    <p className="text-xs text-zinc-400 mb-1"><span className="text-zinc-500">Notable wins: </span>{f.wins}</p>
-                    <p className="text-xs text-zinc-500 italic">{f.notable}</p>
+                    <p className="text-xs text-muted-foreground mb-1"><span className="text-muted-foreground">Notable wins: </span>{f.wins}</p>
+                    <p className="text-xs text-muted-foreground italic">{f.notable}</p>
                   </div>
                 ))}
               </CardContent>
@@ -521,7 +521,7 @@ function ActivismTab() {
       </Card>
 
       {/* Rights offerings */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <FileText className="w-4 h-4 text-sky-400" />
@@ -529,23 +529,23 @@ function ActivismTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-sky-300 mb-2">Rights Offering</p>
-            <p className="text-xs text-zinc-400">Company offers existing shareholders right to buy new shares at discount (typ. 15–25%) to market price. Non-transferable (basic) or tradeable (renounceable). Theoretical ex-rights price (TERP) = (Shares × Price + New Shares × Offer Price) / Total Shares.</p>
+            <p className="text-xs text-muted-foreground">Company offers existing shareholders right to buy new shares at discount (typ. 15–25%) to market price. Non-transferable (basic) or tradeable (renounceable). Theoretical ex-rights price (TERP) = (Shares × Price + New Shares × Offer Price) / Total Shares.</p>
           </div>
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-amber-300 mb-2">Dutch Auction Tender</p>
-            <p className="text-xs text-zinc-400">Company specifies range (e.g., $45–$50). Shareholders tender shares at price they will accept. Company buys at lowest clearing price that lets it purchase target quantity. All successful tenderers receive the same clearing price. Favors price discovery over fixed-price tender.</p>
+            <p className="text-xs text-muted-foreground">Company specifies range (e.g., $45–$50). Shareholders tender shares at price they will accept. Company buys at lowest clearing price that lets it purchase target quantity. All successful tenderers receive the same clearing price. Favors price discovery over fixed-price tender.</p>
           </div>
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-primary mb-2">Odd-Lot Tender Premium</p>
-            <p className="text-xs text-zinc-400">Shareholders with fewer than 100 shares (odd lots) often get priority or slight premium in tender offers. Retail arb: buy &lt;100 share lots to participate without proration — especially valuable in heavily oversubscribed deals.</p>
+            <p className="text-xs text-muted-foreground">Shareholders with fewer than 100 shares (odd lots) often get priority or slight premium in tender offers. Retail arb: buy &lt;100 share lots to participate without proration — especially valuable in heavily oversubscribed deals.</p>
           </div>
         </CardContent>
       </Card>
 
       {/* Poison pill defenses */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Shield className="w-4 h-4 text-red-400" />
@@ -554,11 +554,11 @@ function ActivismTab() {
         </CardHeader>
         <CardContent className="space-y-2">
           {POISON_PILL_DEFENSES.map((d) => (
-            <div key={d.name} className="flex items-start gap-2 rounded-lg bg-zinc-800/40 p-2">
+            <div key={d.name} className="flex items-start gap-2 rounded-lg bg-muted/40 p-2">
               <Shield className="w-3 h-3 text-red-400 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-zinc-200">{d.name}</p>
-                <p className="text-xs text-zinc-500">{d.desc}</p>
+                <p className="text-xs font-semibold text-foreground">{d.name}</p>
+                <p className="text-xs text-muted-foreground">{d.desc}</p>
               </div>
             </div>
           ))}
@@ -684,7 +684,7 @@ function SpinoffsTab() {
   return (
     <div className="space-y-6">
       {/* Comparison SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Layers className="w-4 h-4 text-indigo-400" />
@@ -697,7 +697,7 @@ function SpinoffsTab() {
       </Card>
 
       {/* Value creation */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -712,11 +712,11 @@ function SpinoffsTab() {
             { title: "Separate Capital Allocation", desc: "SpinCo can pursue acquisitions or capex independent of parent's conservatism; access own debt markets at appropriate leverage." },
             { title: "Tax-Free to Shareholders", desc: "IRC §355 allows tax-free distribution if company holds SpinCo ≥5 years post-spin; no capital gains on distribution." },
           ].map((item, i) => (
-            <div key={i} className="flex items-start gap-2 rounded-lg bg-zinc-800/40 p-3">
+            <div key={i} className="flex items-start gap-2 rounded-lg bg-muted/40 p-3">
               <CheckCircle className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-zinc-200">{item.title}</p>
-                <p className="text-xs text-zinc-500 mt-0.5">{item.desc}</p>
+                <p className="text-xs font-semibold text-foreground">{item.title}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -724,7 +724,7 @@ function SpinoffsTab() {
       </Card>
 
       {/* Form 10-12B timeline */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Clock className="w-4 h-4 text-amber-400" />
@@ -747,8 +747,8 @@ function SpinoffsTab() {
                   <span className="text-xs text-amber-400 font-medium">{ph.time}</span>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-zinc-200">{ph.phase}</p>
-                  <p className="text-xs text-zinc-500">{ph.desc}</p>
+                  <p className="text-xs font-semibold text-foreground">{ph.phase}</p>
+                  <p className="text-xs text-muted-foreground">{ph.desc}</p>
                 </div>
               </div>
             ))}
@@ -757,7 +757,7 @@ function SpinoffsTab() {
       </Card>
 
       {/* Performance chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-sky-400" />
@@ -766,12 +766,12 @@ function SpinoffsTab() {
         </CardHeader>
         <CardContent>
           <SpinoffPerfChart />
-          <p className="text-xs text-zinc-500 mt-2">Academically, spin-offs have outperformed parents by 5–10% on average in year 1, though high variance. Forced selling by index funds post-distribution creates entry opportunities.</p>
+          <p className="text-xs text-muted-foreground mt-2">Academically, spin-offs have outperformed parents by 5–10% on average in year 1, though high variance. Forced selling by index funds post-distribution creates entry opportunities.</p>
         </CardContent>
       </Card>
 
       {/* Morris Trust */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <FileText className="w-4 h-4 text-primary" />
@@ -779,17 +779,17 @@ function SpinoffsTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-primary mb-1">Morris Trust</p>
-            <p className="text-xs text-zinc-400">Parent spins off unwanted subsidiary tax-free, then the subsidiary merges with an acquirer. The parent's shareholders must receive ≥50% of the combined entity. Used to divest divisions without triggering gain on sale.</p>
+            <p className="text-xs text-muted-foreground">Parent spins off unwanted subsidiary tax-free, then the subsidiary merges with an acquirer. The parent's shareholders must receive ≥50% of the combined entity. Used to divest divisions without triggering gain on sale.</p>
           </div>
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-indigo-300 mb-1">Reverse Morris Trust</p>
-            <p className="text-xs text-zinc-400">The acquirer is the SpinCo in a Reverse Morris Trust — the buyer merges with the spun-off entity and the target company's shareholders own &lt;50%. Allows buyer to acquire a business tax-free by pairing acquisition with target's spin-off.</p>
+            <p className="text-xs text-muted-foreground">The acquirer is the SpinCo in a Reverse Morris Trust — the buyer merges with the spun-off entity and the target company's shareholders own &lt;50%. Allows buyer to acquire a business tax-free by pairing acquisition with target's spin-off.</p>
           </div>
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-amber-300 mb-1">Insider Selling Post-Spin</p>
-            <p className="text-xs text-zinc-400">Officers and directors often receive SpinCo grants aligned to parent tenure. Many sell immediately post-distribution (restricted window opens). Monitor 144/4 filings in first 90 days; heavy insider selling can signal weak SpinCo fundamentals.</p>
+            <p className="text-xs text-muted-foreground">Officers and directors often receive SpinCo grants aligned to parent tenure. Many sell immediately post-distribution (restricted window opens). Monitor 144/4 filings in first 90 days; heavy insider selling can signal weak SpinCo fundamentals.</p>
           </div>
         </CardContent>
       </Card>
@@ -940,7 +940,7 @@ function DistressedSPACTab() {
   return (
     <div className="space-y-6">
       {/* Distressed timeline */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
@@ -956,9 +956,9 @@ function DistressedSPACTab() {
               { term: "DIP Financing", desc: "Debtor-in-possession lenders get super-priority claim; high yield to compensate for risk; often a form of loan-to-own strategy." },
               { term: "Cramdown", desc: "Court confirms plan over objection of a class; senior creditors can cram down junior classes as long as plan is fair and equitable." },
             ].map((item) => (
-              <div key={item.term} className="rounded-lg bg-zinc-800/40 p-2">
-                <p className="text-xs font-semibold text-zinc-200">{item.term}</p>
-                <p className="text-xs text-zinc-500">{item.desc}</p>
+              <div key={item.term} className="rounded-lg bg-muted/40 p-2">
+                <p className="text-xs font-semibold text-foreground">{item.term}</p>
+                <p className="text-xs text-muted-foreground">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -966,7 +966,7 @@ function DistressedSPACTab() {
       </Card>
 
       {/* SPAC lifecycle */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
@@ -998,9 +998,9 @@ function DistressedSPACTab() {
                 desc: "In 2021–22, many SPAC shareholders redeemed 80–95% of shares at trust NAV before vote; sponsors unable to fund de-SPAC without PIPE financing.",
               },
             ].map((m) => (
-              <div key={m.label} className="rounded-lg bg-zinc-800/50 p-3">
+              <div key={m.label} className="rounded-lg bg-muted/50 p-3">
                 <p className={cn("text-xs font-semibold mb-1", m.color)}>{m.label}</p>
-                <p className="text-xs text-zinc-400">{m.desc}</p>
+                <p className="text-xs text-muted-foreground">{m.desc}</p>
               </div>
             ))}
           </div>
@@ -1008,7 +1008,7 @@ function DistressedSPACTab() {
       </Card>
 
       {/* SPAC performance */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-amber-400" />
@@ -1020,12 +1020,12 @@ function DistressedSPACTab() {
           <div className="mt-3 space-y-1">
             {SPAC_PERF_DATA.map((d) => (
               <div key={d.era} className="flex items-center gap-2">
-                <span className="text-xs text-zinc-500 w-8">{d.era}</span>
-                <span className="text-xs text-zinc-500">({d.count} deals)</span>
+                <span className="text-xs text-muted-foreground w-8">{d.era}</span>
+                <span className="text-xs text-muted-foreground">({d.count} deals)</span>
                 <span className={cn("text-xs font-medium ml-auto", d.avgReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {fmtPct(d.avgReturn)}
                 </span>
-                <span className="text-xs text-zinc-600 hidden sm:block">{d.note}</span>
+                <span className="text-xs text-muted-foreground hidden sm:block">{d.note}</span>
               </div>
             ))}
           </div>
@@ -1033,7 +1033,7 @@ function DistressedSPACTab() {
       </Card>
 
       {/* De-SPAC vs IPO */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <Layers className="w-4 h-4 text-sky-400" />
@@ -1044,10 +1044,10 @@ function DistressedSPACTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left text-zinc-500 pb-2 pr-4">Dimension</th>
-                  <th className="text-left text-zinc-500 pb-2 pr-4">De-SPAC</th>
-                  <th className="text-left text-zinc-500 pb-2">Traditional IPO</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-muted-foreground pb-2 pr-4">Dimension</th>
+                  <th className="text-left text-muted-foreground pb-2 pr-4">De-SPAC</th>
+                  <th className="text-left text-muted-foreground pb-2">Traditional IPO</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-800/40">
@@ -1060,28 +1060,28 @@ function DistressedSPACTab() {
                   ["Lock-up", "Typically 6 months", "180 days standard"],
                   ["Average post-deal return", "−30% (2020–2024)", "+5% first day"],
                 ].map(([dim, spac, ipo]) => (
-                  <tr key={dim} className="hover:bg-zinc-800/20">
-                    <td className="py-2 pr-4 text-zinc-400 font-medium">{dim}</td>
-                    <td className="py-2 pr-4 text-zinc-300">{spac}</td>
-                    <td className="py-2 text-zinc-300">{ipo}</td>
+                  <tr key={dim} className="hover:bg-muted/20">
+                    <td className="py-2 pr-4 text-muted-foreground font-medium">{dim}</td>
+                    <td className="py-2 pr-4 text-muted-foreground">{spac}</td>
+                    <td className="py-2 text-muted-foreground">{ipo}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-zinc-600 mt-2">*PSLRA safe harbor for projections was removed by SEC SPAC rules 2024 for de-SPAC transactions.</p>
+          <p className="text-xs text-muted-foreground mt-2">*PSLRA safe harbor for projections was removed by SEC SPAC rules 2024 for de-SPAC transactions.</p>
         </CardContent>
       </Card>
 
       {/* SEC 2024 rules */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2 cursor-pointer" onClick={() => setShowRegs(!showRegs)}>
           <CardTitle className="text-sm flex items-center justify-between">
             <span className="flex items-center gap-2">
               <Shield className="w-4 h-4 text-red-400" />
               SEC Blank Check Regulations (2024 SPAC Rules)
             </span>
-            {showRegs ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+            {showRegs ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
           </CardTitle>
         </CardHeader>
         <AnimatePresence>
@@ -1099,7 +1099,7 @@ function DistressedSPACTab() {
                 ].map((pt, i) => (
                   <div key={i} className="flex items-start gap-2">
                     <AlertTriangle className="w-3 h-3 text-red-400 mt-0.5 flex-shrink-0" />
-                    <p className="text-xs text-zinc-400">{pt}</p>
+                    <p className="text-xs text-muted-foreground">{pt}</p>
                   </div>
                 ))}
               </CardContent>
@@ -1109,7 +1109,7 @@ function DistressedSPACTab() {
       </Card>
 
       {/* Warrant pricing */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
@@ -1117,17 +1117,17 @@ function DistressedSPACTab() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-mono text-amber-300 mb-1">Warrant Strike = $11.50 | Maturity = 5 years post-merger</p>
-            <p className="text-xs text-zinc-400">Public warrants (1/2 unit) trade on exchange; redeem for $0.01 if stock &gt;$18 for 20/30 days (cashless redemption). Black-Scholes inputs: high vol (60–90%), long maturity → substantial time value even for deeply OTM warrants.</p>
+            <p className="text-xs text-muted-foreground">Public warrants (1/2 unit) trade on exchange; redeem for $0.01 if stock &gt;$18 for 20/30 days (cashless redemption). Black-Scholes inputs: high vol (60–90%), long maturity → substantial time value even for deeply OTM warrants.</p>
           </div>
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-sky-300 mb-1">Unit Decomposition Arb</p>
-            <p className="text-xs text-zinc-400">Units typically split into shares + warrants after 52 days. If unit trades below theoretical (share + warrant) value, buy units and split → arbitrage. Common in first few months post-IPO; gap typically closes within days.</p>
+            <p className="text-xs text-muted-foreground">Units typically split into shares + warrants after 52 days. If unit trades below theoretical (share + warrant) value, buy units and split → arbitrage. Common in first few months post-IPO; gap typically closes within days.</p>
           </div>
-          <div className="rounded-lg bg-zinc-800/60 p-3">
+          <div className="rounded-lg bg-muted/60 p-3">
             <p className="text-xs font-semibold text-primary mb-1">Pure Arb Strategy (Pre-Deal)</p>
-            <p className="text-xs text-zinc-400">Buy SPAC at or below $10.00 trust NAV; hold for trust interest (3–5% annualized in 2022–24 high-rate environment); redeem at NAV if bad deal announced. Collect warrants as free option. Low-risk carry trade during search period.</p>
+            <p className="text-xs text-muted-foreground">Buy SPAC at or below $10.00 trust NAV; hold for trust interest (3–5% annualized in 2022–24 high-rate environment); redeem at NAV if bad deal announced. Collect warrants as free option. Low-risk carry trade during search period.</p>
           </div>
         </CardContent>
       </Card>
@@ -1141,7 +1141,7 @@ function DistressedSPACTab() {
 
 export default function EventDrivenPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1149,8 +1149,8 @@ export default function EventDrivenPage() {
             <Zap className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-zinc-100">Event-Driven Investment Strategies</h1>
-            <p className="text-sm text-zinc-500">Merger arb · Activism · Spin-offs · Distressed · SPACs</p>
+            <h1 className="text-xl font-bold text-foreground">Event-Driven Investment Strategies</h1>
+            <p className="text-sm text-muted-foreground">Merger arb · Activism · Spin-offs · Distressed · SPACs</p>
           </div>
         </div>
         <div className="flex flex-wrap gap-2 mt-3">
@@ -1159,8 +1159,8 @@ export default function EventDrivenPage() {
             { label: "Return Driver", value: "Corporate Events → Price Convergence", color: "text-emerald-400" },
             { label: "Time Horizon", value: "Days to 18 Months", color: "text-amber-400" },
           ].map((chip) => (
-            <div key={chip.label} className="flex items-center gap-1.5 rounded-full bg-zinc-900 border border-zinc-800 px-3 py-1">
-              <span className="text-xs text-zinc-500">{chip.label}:</span>
+            <div key={chip.label} className="flex items-center gap-1.5 rounded-full bg-card border border-border px-3 py-1">
+              <span className="text-xs text-muted-foreground">{chip.label}:</span>
               <span className={cn("text-xs font-medium", chip.color)}>{chip.value}</span>
             </div>
           ))}
@@ -1169,7 +1169,7 @@ export default function EventDrivenPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="merger" className="w-full">
-        <TabsList className="grid grid-cols-2 gap-1 sm:grid-cols-4 bg-zinc-900 border border-zinc-800 rounded-lg p-1 h-auto mb-6">
+        <TabsList className="grid grid-cols-2 gap-1 sm:grid-cols-4 bg-card border border-border rounded-lg p-1 h-auto mb-6">
           {[
             { value: "merger", label: "Merger Arb", icon: TrendingUp },
             { value: "activism", label: "Activism", icon: Users },
@@ -1177,7 +1177,7 @@ export default function EventDrivenPage() {
             { value: "distressed", label: "Distressed & SPACs", icon: AlertTriangle },
           ].map(({ value, label, icon: Icon }) => (
             <TabsTrigger key={value} value={value}
-              className="flex items-center gap-1.5 data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-2 py-1.5 rounded-md transition-colors">
+              className="flex items-center gap-1.5 data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-2 py-1.5 rounded-md transition-colors">
               <Icon className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{label}</span>
               <span className="sm:hidden">{label.split(" ")[0]}</span>

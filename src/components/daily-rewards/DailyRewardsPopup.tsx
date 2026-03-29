@@ -10,7 +10,7 @@ import { soundEngine } from "@/services/audio/sound-engine";
 const DAY_ICONS: React.ElementType[] = [Gift, Star, Coins, Flame, Gem, Rocket, Crown];
 
 // Confetti colors and shapes
-const CONFETTI_COLORS = ["#f59e0b", "#10b981", "#8b5cf6", "#ec4899", "#06b6d4", "#f97316", "#3b82f6"];
+const CONFETTI_COLORS = ["#f59e0b", "#10b981", "#34d399", "#06b6d4", "#f97316", "#facc15", "#a3e635"];
 
 export function DailyRewardsPopup() {
   const canClaim = useDailyRewardsStore((s) => s.canClaimToday());

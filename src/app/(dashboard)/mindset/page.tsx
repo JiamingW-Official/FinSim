@@ -852,9 +852,9 @@ function BiasAssessment() {
         className="space-y-6"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-gray-900/60 border-gray-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-gray-200">
+              <CardTitle className="text-sm font-semibold text-foreground">
                 Your Bias Radar
               </CardTitle>
             </CardHeader>
@@ -863,9 +863,9 @@ function BiasAssessment() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-900/60 border-gray-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-gray-200">
+              <CardTitle className="text-sm font-semibold text-foreground">
                 Top 3 Dominant Biases
               </CardTitle>
             </CardHeader>
@@ -874,8 +874,8 @@ function BiasAssessment() {
                 <div key={r.bias} className="space-y-1">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-500 w-4">#{i + 1}</span>
-                      <span className="text-sm font-medium text-gray-200">{r.label}</span>
+                      <span className="text-xs text-muted-foreground w-4">#{i + 1}</span>
+                      <span className="text-sm font-medium text-foreground">{r.label}</span>
                     </div>
                     <Badge
                       variant="outline"
@@ -885,16 +885,16 @@ function BiasAssessment() {
                     </Badge>
                   </div>
                   <Progress value={(r.count / 10) * 100} className="h-1.5" />
-                  <p className="text-xs text-gray-500">{r.description}</p>
+                  <p className="text-xs text-muted-foreground">{r.description}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
         </div>
 
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-gray-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Personalized Debiasing Tips
             </CardTitle>
           </CardHeader>
@@ -902,14 +902,14 @@ function BiasAssessment() {
             {top2.map((r) => (
               <div
                 key={r.bias}
-                className="rounded-lg border border-gray-700/50 p-4 space-y-2"
+                className="rounded-lg border border-border/50 p-4 space-y-2"
                 style={{ borderLeftColor: r.color, borderLeftWidth: 3 }}
               >
                 <div className="flex items-center gap-2">
                   <Lightbulb className="h-4 w-4" style={{ color: r.color }} />
-                  <span className="text-sm font-semibold text-gray-200">{r.label}</span>
+                  <span className="text-sm font-semibold text-foreground">{r.label}</span>
                 </div>
-                <p className="text-xs text-gray-400 leading-relaxed">{r.tip}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{r.tip}</p>
               </div>
             ))}
           </CardContent>
@@ -923,7 +923,7 @@ function BiasAssessment() {
             setSubmitted(false);
             setCurrentQ(0);
           }}
-          className="border-gray-700 text-gray-300"
+          className="border-border text-muted-foreground"
         >
           <RefreshCw className="h-3 w-3 mr-2" />
           Retake Assessment
@@ -937,10 +937,10 @@ function BiasAssessment() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-muted-foreground">
           Question {currentQ + 1} of {QUIZ_QUESTIONS.length}
         </span>
-        <span className="text-xs text-gray-500">{totalAnswered} answered</span>
+        <span className="text-xs text-muted-foreground">{totalAnswered} answered</span>
       </div>
       <Progress value={((currentQ) / QUIZ_QUESTIONS.length) * 100} className="h-1" />
 
@@ -952,9 +952,9 @@ function BiasAssessment() {
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.2 }}
         >
-          <Card className="bg-gray-900/60 border-gray-800">
+          <Card className="bg-card/60 border-border">
             <CardContent className="pt-6 space-y-5">
-              <p className="text-sm text-gray-200 leading-relaxed">{q.scenario}</p>
+              <p className="text-sm text-foreground leading-relaxed">{q.scenario}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {q.choices.map((choice, ci) => {
                   const selected = answers[q.id] === choice.bias;
@@ -971,10 +971,10 @@ function BiasAssessment() {
                         "text-left p-3 rounded-lg border text-xs transition-all",
                         selected
                           ? "border-indigo-500 bg-indigo-900/30 text-indigo-200"
-                          : "border-gray-700 bg-gray-800/40 text-gray-400 hover:border-gray-600 hover:text-gray-300"
+                          : "border-border bg-muted/40 text-muted-foreground hover:border-gray-600 hover:text-muted-foreground"
                       )}
                     >
-                      <span className="font-medium text-gray-500 mr-2">
+                      <span className="font-medium text-muted-foreground mr-2">
                         {["A", "B", "C", "D"][ci]}.
                       </span>
                       {choice.text}
@@ -993,7 +993,7 @@ function BiasAssessment() {
           size="sm"
           disabled={currentQ === 0}
           onClick={() => setCurrentQ((c) => c - 1)}
-          className="border-gray-700 text-gray-300"
+          className="border-border text-muted-foreground"
         >
           Previous
         </Button>
@@ -1028,7 +1028,7 @@ function BiasAssessment() {
             size="sm"
             disabled={!answers[q.id]}
             onClick={() => setCurrentQ((c) => c + 1)}
-            className="border-gray-700 text-gray-300"
+            className="border-border text-muted-foreground"
           >
             Next
           </Button>
@@ -1062,9 +1062,9 @@ function DecisionFramework() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
-          <Card className="bg-gray-900/60 border-gray-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-gray-200">
+              <CardTitle className="text-sm font-semibold text-foreground">
                 Pre-Trade Checklist
               </CardTitle>
             </CardHeader>
@@ -1079,17 +1079,17 @@ function DecisionFramework() {
                       "w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-all",
                       checked
                         ? "border-green-800/60 bg-green-950/30"
-                        : "border-gray-700/50 bg-gray-800/20 hover:border-gray-600/50"
+                        : "border-border/50 bg-muted/20 hover:border-gray-600/50"
                     )}
                   >
                     {checked ? (
                       <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
                     ) : (
-                      <Circle className="h-4 w-4 text-gray-600 mt-0.5 shrink-0" />
+                      <Circle className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="text-xs text-gray-300">{item.question}</p>
-                      <span className="text-xs text-gray-600">{item.category}</span>
+                      <p className="text-xs text-muted-foreground">{item.question}</p>
+                      <span className="text-xs text-muted-foreground">{item.category}</span>
                     </div>
                   </button>
                 );
@@ -1099,15 +1099,15 @@ function DecisionFramework() {
         </div>
 
         <div className="space-y-4">
-          <Card className="bg-gray-900/60 border-gray-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-gray-200">
+              <CardTitle className="text-sm font-semibold text-foreground">
                 Trade Quality
               </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col items-center gap-3">
               <QualityMeter score={score} />
-              <p className="text-xs text-gray-500 text-center">
+              <p className="text-xs text-muted-foreground text-center">
                 {score >= 8
                   ? "Strong process. Execute with conviction."
                   : score >= 6
@@ -1121,9 +1121,9 @@ function DecisionFramework() {
         </div>
       </div>
 
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-gray-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Investment Thesis Builder
           </CardTitle>
         </CardHeader>
@@ -1140,21 +1140,21 @@ function DecisionFramework() {
               ] as [keyof typeof thesisFields, string][]
             ).map(([key, label]) => (
               <div key={key} className="space-y-1">
-                <label className="text-xs text-gray-500">{label}</label>
+                <label className="text-xs text-muted-foreground">{label}</label>
                 <input
                   value={thesisFields[key]}
                   onChange={(e) =>
                     setThesisFields((prev) => ({ ...prev, [key]: e.target.value }))
                   }
                   placeholder={label}
-                  className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-1.5 text-xs text-gray-200 placeholder-gray-600 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-muted border border-border rounded-md px-3 py-1.5 text-xs text-foreground placeholder-gray-600 focus:outline-none focus:border-indigo-500"
                 />
               </div>
             ))}
           </div>
           {thesisFields.ticker && thesisFields.catalyst && (
             <div className="mt-4 rounded-lg border border-indigo-800/40 bg-indigo-950/20 p-3">
-              <p className="text-xs text-gray-300 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 <span className="font-semibold text-indigo-300">{thesisFields.ticker}</span>
                 {thesisFields.catalyst && ` — catalyst: ${thesisFields.catalyst}`}
                 {thesisFields.timeline && ` over ${thesisFields.timeline}`}
@@ -1167,19 +1167,19 @@ function DecisionFramework() {
         </CardContent>
       </Card>
 
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader>
           <button
             onClick={() => setShowJournal((v) => !v)}
             className="flex items-center justify-between w-full"
           >
-            <CardTitle className="text-sm font-semibold text-gray-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Decision Journal
             </CardTitle>
             {showJournal ? (
-              <ChevronUp className="h-4 w-4 text-gray-500" />
+              <ChevronUp className="h-4 w-4 text-muted-foreground" />
             ) : (
-              <ChevronDown className="h-4 w-4 text-gray-500" />
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
             )}
           </button>
         </CardHeader>
@@ -1188,9 +1188,9 @@ function DecisionFramework() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-gray-800">
+                  <tr className="border-b border-border">
                     {["Date", "Ticker", "Thesis", "Outcome", "P&L"].map((h) => (
-                      <th key={h} className="text-left py-2 pr-4 text-gray-500 font-medium">
+                      <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium">
                         {h}
                       </th>
                     ))}
@@ -1198,10 +1198,10 @@ function DecisionFramework() {
                 </thead>
                 <tbody>
                   {journalEntries.map((e, i) => (
-                    <tr key={i} className="border-b border-gray-800/40">
-                      <td className="py-2 pr-4 text-gray-500">{e.date}</td>
-                      <td className="py-2 pr-4 font-medium text-gray-200">{e.ticker}</td>
-                      <td className="py-2 pr-4 text-gray-400 max-w-[200px] truncate">{e.thesis}</td>
+                    <tr key={i} className="border-b border-border/40">
+                      <td className="py-2 pr-4 text-muted-foreground">{e.date}</td>
+                      <td className="py-2 pr-4 font-medium text-foreground">{e.ticker}</td>
+                      <td className="py-2 pr-4 text-muted-foreground max-w-[200px] truncate">{e.thesis}</td>
                       <td className="py-2 pr-4">
                         <Badge
                           variant="outline"
@@ -1211,7 +1211,7 @@ function DecisionFramework() {
                               ? "bg-green-900/30 text-green-400"
                               : e.outcome === "loss"
                               ? "bg-red-900/30 text-red-400"
-                              : "bg-gray-800 text-gray-500"
+                              : "bg-muted text-muted-foreground"
                           )}
                         >
                           {e.outcome}
@@ -1220,7 +1220,7 @@ function DecisionFramework() {
                       <td
                         className={cn(
                           "py-2 font-medium",
-                          e.pnl > 0 ? "text-green-400" : e.pnl < 0 ? "text-red-400" : "text-gray-500"
+                          e.pnl > 0 ? "text-green-400" : e.pnl < 0 ? "text-red-400" : "text-muted-foreground"
                         )}
                       >
                         {e.pnl !== 0
@@ -1280,9 +1280,9 @@ function EmotionalIntelligence() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-gray-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Market Emotion Cycle
             </CardTitle>
           </CardHeader>
@@ -1299,7 +1299,7 @@ function EmotionalIntelligence() {
                     "px-2 py-1 rounded text-xs transition-all border",
                     i === cycleIndex
                       ? "border-transparent text-white"
-                      : "border-gray-700 text-gray-500 hover:border-gray-600"
+                      : "border-border text-muted-foreground hover:border-gray-600"
                   )}
                   style={i === cycleIndex ? { backgroundColor: phase.color + "40", borderColor: phase.color } : {}}
                 >
@@ -1311,14 +1311,14 @@ function EmotionalIntelligence() {
         </Card>
 
         <div className="space-y-4">
-          <Card className="bg-gray-900/60 border-gray-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-gray-200">
+              <CardTitle className="text-sm font-semibold text-foreground">
                 How Am I Feeling Today?
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span>Fearful</span>
                 <span>Greedy</span>
               </div>
@@ -1342,7 +1342,7 @@ function EmotionalIntelligence() {
                   {emotionLabel}
                 </Badge>
               </div>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-muted-foreground">
                 {emotionScore <= 3
                   ? "You are in fear territory. Fear-driven trades tend to underperform. Consider waiting 24 hours before major decisions."
                   : emotionScore <= 6
@@ -1352,9 +1352,9 @@ function EmotionalIntelligence() {
             </CardContent>
           </Card>
 
-          <Card className="bg-gray-900/60 border-gray-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader>
-              <CardTitle className="text-sm font-semibold text-gray-200">
+              <CardTitle className="text-sm font-semibold text-foreground">
                 Rules for Trading While Emotional
               </CardTitle>
             </CardHeader>
@@ -1364,15 +1364,15 @@ function EmotionalIntelligence() {
                 return (
                   <div
                     key={rule.priority}
-                    className="flex items-start gap-3 p-2.5 rounded-lg bg-gray-800/40"
+                    className="flex items-start gap-3 p-2.5 rounded-lg bg-muted/40"
                   >
                     <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-xs font-bold text-gray-500 w-4">
+                      <span className="text-xs font-bold text-muted-foreground w-4">
                         {rule.priority}
                       </span>
                       <Icon className="h-3.5 w-3.5 text-indigo-400" />
                     </div>
-                    <p className="text-xs text-gray-400">{rule.rule}</p>
+                    <p className="text-xs text-muted-foreground">{rule.rule}</p>
                   </div>
                 );
               })}
@@ -1381,14 +1381,14 @@ function EmotionalIntelligence() {
         </div>
       </div>
 
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-gray-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Emotion Score vs Monthly Return
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-muted-foreground">
             Do higher mood scores correlate with better or worse performance? The regression line suggests
             {" "}<span className="text-indigo-300">overconfident greed tends to precede underperformance</span>.
           </p>
@@ -1447,7 +1447,7 @@ function ProcessOutcome() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Icon className="h-4 w-4" style={{ color: q.color }} />
-                  <span className="font-semibold text-sm text-gray-100">{q.label}</span>
+                  <span className="font-semibold text-sm text-foreground">{q.label}</span>
                 </div>
                 <div className="flex gap-2">
                   <Badge
@@ -1466,7 +1466,7 @@ function ProcessOutcome() {
                   </Badge>
                 </div>
               </div>
-              <p className="text-xs text-gray-400 leading-relaxed">{q.description}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{q.description}</p>
               <p className="text-xs font-medium" style={{ color: q.color }}>
                 {q.sublabel}
               </p>
@@ -1475,14 +1475,14 @@ function ProcessOutcome() {
         })}
       </div>
 
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-gray-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Luck vs Skill Separator
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             You need at least <span className="text-indigo-300 font-semibold">30 trades</span> to distinguish
             skill from luck. With fewer trades, a 60% win rate could easily be explained by random variation.
             At 100 trades, a 55% win rate with consistent process is statistically meaningful.
@@ -1493,19 +1493,19 @@ function ProcessOutcome() {
               { trades: 30, confidence: "~70%", label: "Minimum signal" },
               { trades: 100, confidence: "~95%", label: "High confidence" },
             ].map((item) => (
-              <div key={item.trades} className="rounded-lg bg-gray-800/40 p-3 space-y-1">
-                <div className="text-xl font-bold text-gray-200">{item.trades}</div>
+              <div key={item.trades} className="rounded-lg bg-muted/40 p-3 space-y-1">
+                <div className="text-xl font-bold text-foreground">{item.trades}</div>
                 <div className="text-xs text-indigo-400 font-medium">{item.confidence}</div>
-                <div className="text-xs text-gray-600">{item.label}</div>
+                <div className="text-xs text-muted-foreground">{item.label}</div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-gray-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             Process Scorecard — Last 5 Trades
           </CardTitle>
         </CardHeader>
@@ -1515,11 +1515,11 @@ function ProcessOutcome() {
             return (
               <div
                 key={trade.id}
-                className="flex items-center gap-4 p-3 rounded-lg bg-gray-800/30 border border-gray-700/40"
+                className="flex items-center gap-4 p-3 rounded-lg bg-muted/30 border border-border/40"
               >
                 <div className="w-16 shrink-0">
-                  <span className="text-sm font-semibold text-gray-200">{trade.ticker}</span>
-                  <div className="text-xs text-gray-600">{trade.date}</div>
+                  <span className="text-sm font-semibold text-foreground">{trade.ticker}</span>
+                  <div className="text-xs text-muted-foreground">{trade.date}</div>
                 </div>
                 <Badge
                   variant="outline"
@@ -1534,8 +1534,8 @@ function ProcessOutcome() {
                 </Badge>
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs text-gray-500">Process Quality</span>
-                    <span className="text-xs font-medium text-gray-300">{rating}/10</span>
+                    <span className="text-xs text-muted-foreground">Process Quality</span>
+                    <span className="text-xs font-medium text-muted-foreground">{rating}/10</span>
                   </div>
                   <input
                     type="range"
@@ -1555,7 +1555,7 @@ function ProcessOutcome() {
             );
           })}
           {Object.keys(processRatings).length > 0 && (
-            <div className="rounded-lg border border-indigo-800/40 bg-indigo-950/20 p-3 text-xs text-gray-300">
+            <div className="rounded-lg border border-indigo-800/40 bg-indigo-950/20 p-3 text-xs text-muted-foreground">
               Average process score:{" "}
               <span className="font-bold text-indigo-300">{avgProcess.toFixed(1)}/10</span>.{" "}
               {avgProcess >= 7
@@ -1599,7 +1599,7 @@ function MentalModelsTab() {
             <Card
               key={i}
               className={cn(
-                "bg-gray-900/60 border-gray-800 transition-all",
+                "bg-card/60 border-border transition-all",
                 isOpen && "border-indigo-700/60"
               )}
             >
@@ -1607,7 +1607,7 @@ function MentalModelsTab() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{model.icon}</span>
-                    <CardTitle className="text-sm font-semibold text-gray-200">
+                    <CardTitle className="text-sm font-semibold text-foreground">
                       {model.name}
                     </CardTitle>
                   </div>
@@ -1618,7 +1618,7 @@ function MentalModelsTab() {
                         "p-1 rounded text-xs transition-colors",
                         inCombo
                           ? "bg-indigo-700/40 text-indigo-300"
-                          : "text-gray-600 hover:text-gray-400"
+                          : "text-muted-foreground hover:text-muted-foreground"
                       )}
                       title="Add to combination"
                     >
@@ -1626,7 +1626,7 @@ function MentalModelsTab() {
                     </button>
                     <button
                       onClick={() => setExpanded(isOpen ? null : i)}
-                      className="p-1 rounded text-gray-600 hover:text-gray-400 transition-colors"
+                      className="p-1 rounded text-muted-foreground hover:text-muted-foreground transition-colors"
                     >
                       {isOpen ? (
                         <ChevronUp className="h-3 w-3" />
@@ -1638,7 +1638,7 @@ function MentalModelsTab() {
                 </div>
               </CardHeader>
               <CardContent className="space-y-2">
-                <p className="text-xs text-gray-400 leading-relaxed">{model.definition}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{model.definition}</p>
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
@@ -1647,18 +1647,18 @@ function MentalModelsTab() {
                       exit={{ opacity: 0, height: 0 }}
                       className="overflow-hidden"
                     >
-                      <div className="space-y-2 pt-2 border-t border-gray-700/40">
+                      <div className="space-y-2 pt-2 border-t border-border/40">
                         <div>
                           <span className="text-xs font-medium text-indigo-400">Investing Application</span>
-                          <p className="text-xs text-gray-400 mt-0.5">{model.application}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{model.application}</p>
                         </div>
                         <div>
                           <span className="text-xs font-medium text-green-400">Example</span>
-                          <p className="text-xs text-gray-400 mt-0.5">{model.example}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{model.example}</p>
                         </div>
                         <div>
                           <span className="text-xs font-medium text-amber-400">When It Breaks Down</span>
-                          <p className="text-xs text-gray-400 mt-0.5">{model.breakdown}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{model.breakdown}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -1688,10 +1688,10 @@ function MentalModelsTab() {
                   </Badge>
                 ))}
               </div>
-              <p className="text-xs text-gray-300 leading-relaxed">{comboInsight}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{comboInsight}</p>
               <button
                 onClick={() => setSelectedCombo([])}
-                className="text-xs text-gray-500 hover:text-gray-400"
+                className="text-xs text-muted-foreground hover:text-muted-foreground"
               >
                 Clear selection
               </button>
@@ -1744,9 +1744,9 @@ function PerformanceReview() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-gray-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               12-Month Performance Journal
             </CardTitle>
           </CardHeader>
@@ -1764,7 +1764,7 @@ function PerformanceReview() {
                     className="rounded-lg p-2 text-center space-y-1"
                     style={{ backgroundColor: bg }}
                   >
-                    <div className="text-xs text-gray-400 font-medium">{d.month}</div>
+                    <div className="text-xs text-muted-foreground font-medium">{d.month}</div>
                     <div
                       className={cn(
                         "text-sm font-bold",
@@ -1774,7 +1774,7 @@ function PerformanceReview() {
                       {isPos ? "+" : ""}
                       {d.returnPct.toFixed(1)}%
                     </div>
-                    <div className="text-xs text-gray-500">Mood {d.moodScore}</div>
+                    <div className="text-xs text-muted-foreground">Mood {d.moodScore}</div>
                   </div>
                 );
               })}
@@ -1782,14 +1782,14 @@ function PerformanceReview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-gray-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Mood vs Next Month Return
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               A negative slope suggests that high mood scores (greed) predict lower future returns — the contrarian signal.
             </p>
             <div className="flex justify-center">
@@ -1806,9 +1806,9 @@ function PerformanceReview() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-gray-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Mistake Tracker
             </CardTitle>
           </CardHeader>
@@ -1820,8 +1820,8 @@ function PerformanceReview() {
                   return (
                     <div key={cat} className="space-y-1.5">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs text-gray-400">{mistakeLabels[cat]}</span>
-                        <span className="text-xs font-medium text-gray-300">{count}x</span>
+                        <span className="text-xs text-muted-foreground">{mistakeLabels[cat]}</span>
+                        <span className="text-xs font-medium text-muted-foreground">{count}x</span>
                       </div>
                       <Progress value={pct} className="h-1.5" />
                     </div>
@@ -1832,9 +1832,9 @@ function PerformanceReview() {
             <div className="mt-4">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-gray-800">
+                  <tr className="border-b border-border">
                     {["Date", "Ticker", "Loss", "Category"].map((h) => (
-                      <th key={h} className="text-left py-1.5 pr-3 text-gray-500 font-medium">
+                      <th key={h} className="text-left py-1.5 pr-3 text-muted-foreground font-medium">
                         {h}
                       </th>
                     ))}
@@ -1842,16 +1842,16 @@ function PerformanceReview() {
                 </thead>
                 <tbody>
                   {mistakes.map((m, i) => (
-                    <tr key={i} className="border-b border-gray-800/30">
-                      <td className="py-1.5 pr-3 text-gray-600">{m.date}</td>
-                      <td className="py-1.5 pr-3 font-medium text-gray-300">{m.ticker}</td>
+                    <tr key={i} className="border-b border-border/30">
+                      <td className="py-1.5 pr-3 text-muted-foreground">{m.date}</td>
+                      <td className="py-1.5 pr-3 font-medium text-muted-foreground">{m.ticker}</td>
                       <td className="py-1.5 pr-3 text-red-400">
                         -${m.loss.toFixed(0)}
                       </td>
                       <td className="py-1.5">
                         <Badge
                           variant="outline"
-                          className="text-xs border-gray-700 text-gray-500"
+                          className="text-xs border-border text-muted-foreground"
                         >
                           {mistakeLabels[m.category]}
                         </Badge>
@@ -1860,7 +1860,7 @@ function PerformanceReview() {
                   ))}
                 </tbody>
               </table>
-              <div className="mt-2 text-xs text-gray-500 text-right">
+              <div className="mt-2 text-xs text-muted-foreground text-right">
                 Total tracked losses:{" "}
                 <span className="text-red-400 font-medium">${totalLoss.toFixed(0)}</span>
               </div>
@@ -1868,14 +1868,14 @@ function PerformanceReview() {
           </CardContent>
         </Card>
 
-        <Card className="bg-gray-900/60 border-gray-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader>
-            <CardTitle className="text-sm font-semibold text-gray-200">
+            <CardTitle className="text-sm font-semibold text-foreground">
               Learning Velocity
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-muted-foreground">
               Are you making the same mistakes repeatedly? Track mistake recurrence below.
             </p>
             {(Object.entries(mistakeCounts) as [MistakeEntry["category"], number][]).map(
@@ -1886,12 +1886,12 @@ function PerformanceReview() {
                     key={cat}
                     className={cn(
                       "flex items-center justify-between p-2.5 rounded-lg",
-                      isRepeating ? "bg-red-950/30 border border-red-900/40" : "bg-gray-800/30 border border-gray-700/30"
+                      isRepeating ? "bg-red-950/30 border border-red-900/40" : "bg-muted/30 border border-border/30"
                     )}
                   >
-                    <span className="text-xs text-gray-300">{mistakeLabels[cat]}</span>
+                    <span className="text-xs text-muted-foreground">{mistakeLabels[cat]}</span>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-500">{count}x</span>
+                      <span className="text-xs text-muted-foreground">{count}x</span>
                       {isRepeating ? (
                         <Badge className="bg-red-900/30 text-red-400 border-0 text-xs">
                           Repeating
@@ -1910,14 +1910,14 @@ function PerformanceReview() {
         </Card>
       </div>
 
-      <Card className="bg-gray-900/60 border-gray-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader>
-          <CardTitle className="text-sm font-semibold text-gray-200">
+          <CardTitle className="text-sm font-semibold text-foreground">
             90-Day Improvement Plan
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-muted-foreground">
             Select a focus area and track weekly check-ins.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -1929,14 +1929,14 @@ function PerformanceReview() {
                   "text-left p-3 rounded-lg border transition-all",
                   selectedFocus === ai
                     ? "border-indigo-600 bg-indigo-950/40"
-                    : "border-gray-700 bg-gray-800/20 hover:border-gray-600"
+                    : "border-border bg-muted/20 hover:border-gray-600"
                 )}
               >
                 <div className="flex items-center gap-2 mb-1">
                   <Target className="h-3.5 w-3.5 text-indigo-400" />
-                  <span className="text-xs font-semibold text-gray-200">{area.focus}</span>
+                  <span className="text-xs font-semibold text-foreground">{area.focus}</span>
                 </div>
-                <p className="text-xs text-gray-500">4-week structured program</p>
+                <p className="text-xs text-muted-foreground">4-week structured program</p>
               </button>
             ))}
           </div>
@@ -1963,17 +1963,17 @@ function PerformanceReview() {
                           "w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-all",
                           done
                             ? "border-green-800/40 bg-green-950/20"
-                            : "border-gray-700/40 bg-gray-800/20 hover:border-gray-600/40"
+                            : "border-border/40 bg-muted/20 hover:border-gray-600/40"
                         )}
                       >
                         {done ? (
                           <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
                         ) : (
-                          <Circle className="h-4 w-4 text-gray-600 mt-0.5 shrink-0" />
+                          <Circle className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
                         )}
                         <div>
-                          <span className="text-xs text-gray-500 font-medium">Week {wi + 1}:</span>
-                          <p className="text-xs text-gray-400 mt-0.5">{task}</p>
+                          <span className="text-xs text-muted-foreground font-medium">Week {wi + 1}:</span>
+                          <p className="text-xs text-muted-foreground mt-0.5">{task}</p>
                         </div>
                       </button>
                     );
@@ -1992,7 +1992,7 @@ function PerformanceReview() {
 
 export default function MindsetPage() {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-8 space-y-6">
         {/* Header */}
         <motion.div
@@ -2002,16 +2002,16 @@ export default function MindsetPage() {
         >
           <div className="flex items-center gap-3">
             <Brain className="h-6 w-6 text-indigo-400" />
-            <h1 className="text-2xl font-bold text-gray-100">Investment Psychology</h1>
+            <h1 className="text-2xl font-bold text-foreground">Investment Psychology</h1>
           </div>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-muted-foreground">
             Understand your biases, sharpen your decision-making process, and build mental resilience.
           </p>
         </motion.div>
 
         {/* Tabs */}
         <Tabs defaultValue="bias" className="space-y-6">
-          <TabsList className="bg-gray-900 border border-gray-800 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
             {[
               { value: "bias", label: "Bias Assessment", icon: Brain },
               { value: "framework", label: "Decision Framework", icon: CheckCircle2 },
@@ -2023,7 +2023,7 @@ export default function MindsetPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-gray-400"
+                className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground"
               >
                 <Icon className="h-3 w-3 mr-1.5" />
                 {label}

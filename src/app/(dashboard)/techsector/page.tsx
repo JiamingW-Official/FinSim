@@ -58,7 +58,7 @@ function posNegClass(v: number): string {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-zinc-300 mb-3 flex items-center gap-2">
+    <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
       {children}
     </h3>
   );
@@ -83,9 +83,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4 flex flex-col gap-1">
-      <span className="text-xs text-zinc-400">{label}</span>
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
-      {sub && <span className="text-xs text-zinc-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -126,14 +126,14 @@ function MiniBar({
   const pct = Math.min(100, (value / max) * 100);
   return (
     <div className="flex items-center gap-2">
-      {label && <span className="text-xs text-zinc-400 w-20 shrink-0 truncate">{label}</span>}
+      {label && <span className="text-xs text-muted-foreground w-20 shrink-0 truncate">{label}</span>}
       <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
         <div
           className={cn("h-full rounded-full", color)}
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-xs text-zinc-300 w-12 text-right shrink-0">
+      <span className="text-xs text-muted-foreground w-12 text-right shrink-0">
         {value.toFixed(1)}{suffix}
       </span>
     </div>
@@ -356,7 +356,7 @@ function SaasTab() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">SaaS Metrics Dashboard</h2>
-          <p className="text-sm text-zinc-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             Key operating metrics for cloud software companies
           </p>
         </div>
@@ -420,14 +420,14 @@ function SaasTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Ticker</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">ARR Growth</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">NRR</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">LTV/CAC</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Gross Margin</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">FCF Margin</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Rule of 40</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Magic #</th>
+                <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">ARR Growth</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">NRR</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">LTV/CAC</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Gross Margin</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">FCF Margin</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Rule of 40</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Magic #</th>
               </tr>
             </thead>
             <tbody>
@@ -444,18 +444,18 @@ function SaasTab() {
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-mono font-bold text-white">{c.ticker}</span>
-                    <span className="text-zinc-500 ml-1.5">{c.name}</span>
+                    <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
                     <span className={posNegClass(c.arrGrowth)}>{fmtPct(c.arrGrowth, 0)}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.nrr >= 120 ? "text-emerald-400 font-bold" : c.nrr >= 110 ? "text-primary" : "text-zinc-300"}>
+                    <span className={c.nrr >= 120 ? "text-emerald-400 font-bold" : c.nrr >= 110 ? "text-primary" : "text-muted-foreground"}>
                       {c.nrr}%
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{fmtX(c.ltvCacRatio)}</td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{c.grossMargin}%</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{fmtX(c.ltvCacRatio)}</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{c.grossMargin}%</td>
                   <td className="px-3 py-2.5 text-right">
                     <span className={posNegClass(c.fcfMargin)}>{c.fcfMargin}%</span>
                   </td>
@@ -525,7 +525,7 @@ function SaasTab() {
           <div className="space-y-2">
             {sorted.map((c, i) => (
               <div key={c.ticker} className="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2">
-                <span className="text-zinc-500 text-xs w-4">{i + 1}</span>
+                <span className="text-muted-foreground text-xs w-4">{i + 1}</span>
                 <span className="font-mono text-xs font-bold text-white w-12">{c.ticker}</span>
                 <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
                   <div
@@ -533,7 +533,7 @@ function SaasTab() {
                     style={{ width: `${Math.min(100, ((c.nrr - 100) / 35) * 100)}%` }}
                   />
                 </div>
-                <span className={cn("text-xs font-bold w-10 text-right", c.nrr >= 120 ? "text-emerald-400" : "text-zinc-300")}>
+                <span className={cn("text-xs font-bold w-10 text-right", c.nrr >= 120 ? "text-emerald-400" : "text-muted-foreground")}>
                   {c.nrr}%
                 </span>
               </div>
@@ -603,7 +603,7 @@ function SaasTab() {
                 />
               ))}
             </svg>
-            <p className="text-xs text-zinc-500 text-center mt-1">
+            <p className="text-xs text-muted-foreground text-center mt-1">
               Revenue indexed to 100 at cohort inception — expansion + upsell drives 131% growth by 2026
             </p>
           </div>
@@ -648,7 +648,7 @@ function AiInfraTab() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">AI & Infrastructure</h2>
-          <p className="text-sm text-zinc-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             AI hyperscalers, chip markets, cloud dynamics, and monetization
           </p>
         </div>
@@ -671,12 +671,12 @@ function AiInfraTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Company</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">AI Revenue</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">AI Growth</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Capex (Bn)</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Op. Margin</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Cloud Share</th>
+                <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Company</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">AI Revenue</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">AI Growth</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Capex (Bn)</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Op. Margin</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Cloud Share</th>
               </tr>
             </thead>
             <tbody>
@@ -691,19 +691,19 @@ function AiInfraTab() {
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-mono font-bold text-white">{h.ticker}</span>
-                    <span className="text-zinc-500 ml-1.5">{h.name}</span>
+                    <span className="text-muted-foreground ml-1.5">{h.name}</span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{fmtB(h.aiRevenue)}</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{fmtB(h.aiRevenue)}</td>
                   <td className="px-3 py-2.5 text-right">
                     <span className={posNegClass(h.aiGrowth)}>{fmtPct(h.aiGrowth, 0)}</span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">${h.capexBn}B</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">${h.capexBn}B</td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={h.operatingMargin >= 40 ? "text-emerald-400" : "text-zinc-300"}>
+                    <span className={h.operatingMargin >= 40 ? "text-emerald-400" : "text-muted-foreground"}>
                       {h.operatingMargin}%
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-zinc-400">
+                  <td className="px-3 py-2.5 text-right text-muted-foreground">
                     {h.cloudShare > 0 ? `${h.cloudShare}%` : "—"}
                   </td>
                 </tr>
@@ -751,8 +751,8 @@ function AiInfraTab() {
               {AI_CHIP_SHARES.map((seg) => (
                 <div key={seg.name} className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: seg.color }} />
-                  <span className="text-xs text-zinc-300 flex-1">{seg.name}</span>
-                  <span className="text-xs font-bold text-zinc-200">{seg.pct}%</span>
+                  <span className="text-xs text-muted-foreground flex-1">{seg.name}</span>
+                  <span className="text-xs font-bold text-foreground">{seg.pct}%</span>
                 </div>
               ))}
             </div>
@@ -794,8 +794,8 @@ function AiInfraTab() {
               {CLOUD_SHARE.map((seg) => (
                 <div key={seg.name} className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-sm shrink-0" style={{ background: seg.color }} />
-                  <span className="text-xs text-zinc-300 flex-1">{seg.name}</span>
-                  <span className="text-xs font-bold text-zinc-200">{seg.pct}%</span>
+                  <span className="text-xs text-muted-foreground flex-1">{seg.name}</span>
+                  <span className="text-xs font-bold text-foreground">{seg.pct}%</span>
                 </div>
               ))}
             </div>
@@ -811,15 +811,15 @@ function AiInfraTab() {
         <div className="space-y-2">
           {AI_ADOPTION_STAGES.map((stage) => (
             <div key={stage.stage} className="flex items-center gap-3 rounded-lg bg-white/5 px-3 py-2.5">
-              <span className="text-xs font-semibold text-zinc-200 w-32 shrink-0">{stage.stage}</span>
+              <span className="text-xs font-semibold text-foreground w-32 shrink-0">{stage.stage}</span>
               <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-primary rounded-full"
                   style={{ width: `${stage.pct}%` }}
                 />
               </div>
-              <span className="text-xs font-bold text-zinc-300 w-8 text-right">{stage.pct}%</span>
-              <span className="text-xs text-zinc-500 hidden md:block max-w-xs">{stage.description}</span>
+              <span className="text-xs font-bold text-muted-foreground w-8 text-right">{stage.pct}%</span>
+              <span className="text-xs text-muted-foreground hidden md:block max-w-xs">{stage.description}</span>
             </div>
           ))}
         </div>
@@ -883,7 +883,7 @@ function AiInfraTab() {
                   style={{ width: `${item.score}%` }}
                 />
               </div>
-              <p className="text-xs text-zinc-400">{item.status}</p>
+              <p className="text-xs text-muted-foreground">{item.status}</p>
             </div>
           ))}
         </div>
@@ -914,7 +914,7 @@ function SemiCycleTab() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">Semiconductor Cycle</h2>
-          <p className="text-sm text-zinc-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             Inventory cycles, AI-driven demand, geopolitical risk, and market structure
           </p>
         </div>
@@ -955,8 +955,8 @@ function SemiCycleTab() {
                 />
                 <span className="text-xs font-bold text-white">{phase.phase}</span>
               </div>
-              <span className="text-xs text-zinc-400 font-mono">{phase.year}</span>
-              <p className="text-xs text-zinc-500 leading-relaxed">{phase.description}</p>
+              <span className="text-xs text-muted-foreground font-mono">{phase.year}</span>
+              <p className="text-xs text-muted-foreground leading-relaxed">{phase.description}</p>
             </div>
           ))}
         </div>
@@ -971,13 +971,13 @@ function SemiCycleTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Company</th>
-                <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Segment</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Rev Growth</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Gross Margin</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Inventory (mo)</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Book/Bill</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">AI Exposure</th>
+                <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Company</th>
+                <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Segment</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Rev Growth</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Gross Margin</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Inventory (mo)</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Book/Bill</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">AI Exposure</th>
               </tr>
             </thead>
             <tbody>
@@ -992,17 +992,17 @@ function SemiCycleTab() {
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-mono font-bold text-white">{c.ticker}</span>
-                    <span className="text-zinc-500 ml-1.5">{c.name}</span>
+                    <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5">
-                    <Badge variant="outline" className="text-zinc-300 border-white/20 text-xs">
+                    <Badge variant="outline" className="text-muted-foreground border-white/20 text-xs">
                       {c.segment}
                     </Badge>
                   </td>
                   <td className="px-3 py-2.5 text-right">
                     <span className={posNegClass(c.revGrowth)}>{fmtPct(c.revGrowth, 0)}</span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{c.grossMargin}%</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{c.grossMargin}%</td>
                   <td className="px-3 py-2.5 text-right">
                     <span className={c.inventory > 3.5 ? "text-rose-400" : c.inventory > 2.5 ? "text-amber-400" : "text-emerald-400"}>
                       {c.inventory.toFixed(1)} mo
@@ -1014,7 +1014,7 @@ function SemiCycleTab() {
                     </span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.aiExposure >= 50 ? "text-emerald-400" : c.aiExposure >= 30 ? "text-primary" : "text-zinc-400"}>
+                    <span className={c.aiExposure >= 50 ? "text-emerald-400" : c.aiExposure >= 30 ? "text-primary" : "text-muted-foreground"}>
                       {c.aiExposure}%
                     </span>
                   </td>
@@ -1099,7 +1099,7 @@ function MegaCapTab() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">Mega-Cap Tech Comparison</h2>
-          <p className="text-sm text-zinc-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             FAANGM deep dive: revenue mix, valuation, capital return, risks
           </p>
         </div>
@@ -1128,7 +1128,7 @@ function MegaCapTab() {
               "px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors",
               selected === c.ticker
                 ? "bg-primary text-white"
-                : "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white"
+                : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-white"
             )}
           >
             {c.ticker}
@@ -1155,16 +1155,16 @@ function MegaCapTab() {
                   { label: "Market Cap", value: fmtB(company.marketCapT * 1000) },
                   { label: "Revenue", value: fmtB(company.revenueB) },
                   { label: "Rev Growth", value: fmtPct(company.revGrowth, 0), cls: posNegClass(company.revGrowth) },
-                  { label: "Op Margin", value: `${company.operatingMargin}%`, cls: company.operatingMargin >= 40 ? "text-emerald-400" : "text-zinc-200" },
+                  { label: "Op Margin", value: `${company.operatingMargin}%`, cls: company.operatingMargin >= 40 ? "text-emerald-400" : "text-foreground" },
                   { label: "P/E", value: `${company.pe}x` },
                   { label: "P/FCF", value: `${company.pFcf}x` },
                   { label: "EV/EBITDA", value: `${company.evEbitda}x` },
-                  { label: "Buyback Yield", value: `${company.buybackYield}%`, cls: company.buybackYield > 1 ? "text-emerald-400" : "text-zinc-400" },
+                  { label: "Buyback Yield", value: `${company.buybackYield}%`, cls: company.buybackYield > 1 ? "text-emerald-400" : "text-muted-foreground" },
                   { label: "Net Cash", value: fmtB(Math.abs(company.netCashB)), cls: company.netCashB >= 0 ? "text-emerald-400" : "text-rose-400" },
                 ].map((m) => (
                   <div key={m.label} className="flex justify-between text-xs border-b border-white/5 py-1.5">
-                    <span className="text-zinc-400">{m.label}</span>
-                    <span className={cn("font-mono font-bold", m.cls ?? "text-zinc-200")}>{m.value}</span>
+                    <span className="text-muted-foreground">{m.label}</span>
+                    <span className={cn("font-mono font-bold", m.cls ?? "text-foreground")}>{m.value}</span>
                   </div>
                 ))}
               </div>
@@ -1208,8 +1208,8 @@ function MegaCapTab() {
                   {company.segments.map((seg) => (
                     <div key={seg.name} className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-sm shrink-0" style={{ background: seg.color }} />
-                      <span className="text-xs text-zinc-300 flex-1">{seg.name}</span>
-                      <span className="text-xs font-bold text-zinc-200">{seg.pct}%</span>
+                      <span className="text-xs text-muted-foreground flex-1">{seg.name}</span>
+                      <span className="text-xs font-bold text-foreground">{seg.pct}%</span>
                     </div>
                   ))}
                 </div>
@@ -1228,14 +1228,14 @@ function MegaCapTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10 bg-white/5">
-                <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Ticker</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Market Cap</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Rev Growth</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Op Margin</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">P/E</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">P/FCF</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">EV/EBITDA</th>
-                <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Buyback %</th>
+                <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Market Cap</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Rev Growth</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Op Margin</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">P/E</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">P/FCF</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">EV/EBITDA</th>
+                <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Buyback %</th>
               </tr>
             </thead>
             <tbody>
@@ -1249,20 +1249,20 @@ function MegaCapTab() {
                   )}
                 >
                   <td className="px-3 py-2.5 font-mono font-bold text-white">{c.ticker}</td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{fmtB(c.marketCapT * 1000)}</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{fmtB(c.marketCapT * 1000)}</td>
                   <td className="px-3 py-2.5 text-right">
                     <span className={posNegClass(c.revGrowth)}>{fmtPct(c.revGrowth, 0)}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.operatingMargin >= 40 ? "text-emerald-400" : "text-zinc-300"}>
+                    <span className={c.operatingMargin >= 40 ? "text-emerald-400" : "text-muted-foreground"}>
                       {c.operatingMargin}%
                     </span>
                   </td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{c.pe}x</td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{c.pFcf}x</td>
-                  <td className="px-3 py-2.5 text-right text-zinc-200">{c.evEbitda}x</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{c.pe}x</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{c.pFcf}x</td>
+                  <td className="px-3 py-2.5 text-right text-foreground">{c.evEbitda}x</td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.buybackYield > 1 ? "text-emerald-400" : "text-zinc-400"}>
+                    <span className={c.buybackYield > 1 ? "text-emerald-400" : "text-muted-foreground"}>
                       {c.buybackYield}%
                     </span>
                   </td>
@@ -1304,13 +1304,13 @@ function MegaCapTab() {
                     "text-xs",
                     item.risk === "High" ? "text-rose-300 border-rose-500/40"
                     : item.risk === "Medium" ? "text-amber-300 border-amber-500/40"
-                    : "text-zinc-300 border-zinc-500/40"
+                    : "text-muted-foreground border-zinc-500/40"
                   )}
                 >
                   {item.risk} Risk
                 </Badge>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -1354,7 +1354,7 @@ function FintechTab() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-lg font-bold text-white">Fintech &amp; Internet</h2>
-          <p className="text-sm text-zinc-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             Payments, e-commerce, social media, gig economy, gaming, and infrastructure
           </p>
         </div>
@@ -1378,7 +1378,7 @@ function FintechTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border",
               activeCategory === cat
                 ? "bg-primary text-white border-primary"
-                : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white"
+                : "bg-white/5 text-muted-foreground border-white/10 hover:bg-white/10 hover:text-white"
             )}
           >
             {cat}
@@ -1391,12 +1391,12 @@ function FintechTab() {
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-white/10 bg-white/5">
-              <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Ticker</th>
-              <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Category</th>
-              <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Rev Growth</th>
-              <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">Op Margin</th>
-              <th className="text-left px-3 py-2.5 text-zinc-400 font-medium">Key Metric</th>
-              <th className="text-right px-3 py-2.5 text-zinc-400 font-medium">P/E</th>
+              <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Ticker</th>
+              <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Category</th>
+              <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Rev Growth</th>
+              <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">Op Margin</th>
+              <th className="text-left px-3 py-2.5 text-muted-foreground font-medium">Key Metric</th>
+              <th className="text-right px-3 py-2.5 text-muted-foreground font-medium">P/E</th>
             </tr>
           </thead>
           <tbody>
@@ -1411,10 +1411,10 @@ function FintechTab() {
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-mono font-bold text-white">{c.ticker}</span>
-                    <span className="text-zinc-500 ml-1.5">{c.name}</span>
+                    <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5">
-                    <span className={cn("text-xs px-1.5 py-0.5 rounded border", CATEGORY_COLORS[c.category] ?? "bg-zinc-500/20 text-zinc-300 border-zinc-500/30")}>
+                    <span className={cn("text-xs px-1.5 py-0.5 rounded border", CATEGORY_COLORS[c.category] ?? "bg-zinc-500/20 text-muted-foreground border-zinc-500/30")}>
                       {c.category}
                     </span>
                   </td>
@@ -1422,16 +1422,16 @@ function FintechTab() {
                     <span className={posNegClass(c.revGrowth)}>{fmtPct(c.revGrowth, 0)}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.operatingMargin >= 0 ? (c.operatingMargin >= 20 ? "text-emerald-400" : "text-zinc-300") : "text-rose-400"}>
+                    <span className={c.operatingMargin >= 0 ? (c.operatingMargin >= 20 ? "text-emerald-400" : "text-muted-foreground") : "text-rose-400"}>
                       {c.operatingMargin > 0 ? "+" : ""}{c.operatingMargin}%
                     </span>
                   </td>
                   <td className="px-3 py-2.5">
-                    <span className="text-zinc-400">{c.keyMetric}: </span>
-                    <span className="text-zinc-200">{c.keyValue}</span>
+                    <span className="text-muted-foreground">{c.keyMetric}: </span>
+                    <span className="text-foreground">{c.keyValue}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.pe > 0 ? "text-zinc-200" : "text-zinc-500"}>
+                    <span className={c.pe > 0 ? "text-foreground" : "text-muted-foreground"}>
                       {c.pe > 0 ? `${c.pe}x` : "N/M"}
                     </span>
                   </td>
@@ -1452,18 +1452,18 @@ function FintechTab() {
             <div className="space-y-3">
               {PAYMENT_TAKE_RATES.map((p) => (
                 <div key={p.name} className="flex items-center gap-3">
-                  <span className="text-xs text-zinc-300 w-24 shrink-0">{p.name}</span>
+                  <span className="text-xs text-muted-foreground w-24 shrink-0">{p.name}</span>
                   <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full"
                       style={{ width: `${Math.min(100, (p.rate / 3) * 100)}%`, background: p.color }}
                     />
                   </div>
-                  <span className="text-xs font-bold text-zinc-200 w-12 text-right">{p.rate.toFixed(2)}%</span>
+                  <span className="text-xs font-bold text-foreground w-12 text-right">{p.rate.toFixed(2)}%</span>
                 </div>
               ))}
             </div>
-            <p className="text-xs text-zinc-500 mt-3">
+            <p className="text-xs text-muted-foreground mt-3">
               V/MA are network fees; PayPal/Block/Stripe are merchant-facing all-in rates. Higher take rate = more value-add services but more competitive pressure from alternatives.
             </p>
           </div>
@@ -1497,7 +1497,7 @@ function FintechTab() {
                 );
               })}
             </svg>
-            <p className="text-xs text-zinc-500">Meta&apos;s US/Canada ARPU is 4x its global average — shows massive monetization gap across regions</p>
+            <p className="text-xs text-muted-foreground">Meta&apos;s US/Canada ARPU is 4x its global average — shows massive monetization gap across regions</p>
           </div>
         </div>
       </div>
@@ -1521,7 +1521,7 @@ function FintechTab() {
 
 export default function TechSectorPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Page header */}
         <motion.div
@@ -1536,7 +1536,7 @@ export default function TechSectorPage() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">Technology Sector</h1>
-              <p className="text-sm text-zinc-400">SaaS · AI/Infra · Semiconductors · Mega-Cap · Fintech</p>
+              <p className="text-sm text-muted-foreground">SaaS · AI/Infra · Semiconductors · Mega-Cap · Fintech</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -1566,9 +1566,9 @@ export default function TechSectorPage() {
             <div key={item.label} className="rounded-xl border border-white/10 bg-white/5 p-3 flex gap-2.5 items-start">
               <div className="mt-0.5">{item.icon}</div>
               <div>
-                <div className="text-xs text-zinc-400">{item.label}</div>
+                <div className="text-xs text-muted-foreground">{item.label}</div>
                 <div className="text-sm font-bold text-white">{item.value}</div>
-                <div className="text-xs text-zinc-500">{item.sub}</div>
+                <div className="text-xs text-muted-foreground">{item.sub}</div>
               </div>
             </div>
           ))}
@@ -1582,19 +1582,19 @@ export default function TechSectorPage() {
         >
           <Tabs defaultValue="saas" className="space-y-4">
             <TabsList className="bg-white/5 border border-white/10 h-auto flex-wrap gap-1 p-1">
-              <TabsTrigger value="saas" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="saas" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
                 SaaS Metrics
               </TabsTrigger>
-              <TabsTrigger value="ai" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="ai" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
                 AI &amp; Infrastructure
               </TabsTrigger>
-              <TabsTrigger value="semi" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="semi" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
                 Semiconductor Cycle
               </TabsTrigger>
-              <TabsTrigger value="megacap" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="megacap" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
                 Mega-Cap Tech
               </TabsTrigger>
-              <TabsTrigger value="fintech" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="fintech" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
                 Fintech &amp; Internet
               </TabsTrigger>
             </TabsList>

@@ -229,9 +229,9 @@ function PaymentRailsTab() {
   return (
     <div className="space-y-6">
       {/* SVG Flow Diagram */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
             Card Transaction Flow
           </CardTitle>
@@ -300,9 +300,9 @@ function PaymentRailsTab() {
       </Card>
 
       {/* Comparison Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-indigo-400" />
             Payment Rail Comparison
           </CardTitle>
@@ -311,41 +311,41 @@ function PaymentRailsTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left py-3 px-4 text-zinc-400 font-medium">Rail</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Speed</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Cost</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Max Amount</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Settlement</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Volume Score</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 text-muted-foreground font-medium">Rail</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Speed</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Cost</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Max Amount</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Settlement</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Volume Score</th>
                 </tr>
               </thead>
               <tbody>
                 {PAYMENT_RAILS.map((rail) => (
                   <tr
                     key={rail.name}
-                    className={`border-b border-zinc-800/50 cursor-pointer transition-colors ${selected === rail.name ? "bg-zinc-800/60" : "hover:bg-zinc-800/30"}`}
+                    className={`border-b border-border/50 cursor-pointer transition-colors ${selected === rail.name ? "bg-muted/60" : "hover:bg-muted/30"}`}
                     onClick={() => setSelected(selected === rail.name ? null : rail.name)}
                   >
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full" style={{ background: rail.color }} />
-                        <span className="text-zinc-200 font-medium">{rail.name}</span>
+                        <span className="text-foreground font-medium">{rail.name}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-3 text-zinc-300">{rail.speed}</td>
-                    <td className="py-3 px-3 text-zinc-300">{rail.costRange}</td>
-                    <td className="py-3 px-3 text-zinc-300">{rail.maxAmount}</td>
-                    <td className="py-3 px-3 text-zinc-400">{rail.settlementType}</td>
+                    <td className="py-3 px-3 text-muted-foreground">{rail.speed}</td>
+                    <td className="py-3 px-3 text-muted-foreground">{rail.costRange}</td>
+                    <td className="py-3 px-3 text-muted-foreground">{rail.maxAmount}</td>
+                    <td className="py-3 px-3 text-muted-foreground">{rail.settlementType}</td>
                     <td className="py-3 px-3">
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 bg-zinc-700 rounded h-1.5">
+                        <div className="flex-1 bg-muted rounded h-1.5">
                           <div
                             className="h-1.5 rounded"
                             style={{ width: `${rail.volume}%`, background: rail.color }}
                           />
                         </div>
-                        <span className="text-zinc-400 w-8">{rail.volume}</span>
+                        <span className="text-muted-foreground w-8">{rail.volume}</span>
                       </div>
                     </td>
                   </tr>
@@ -363,9 +363,9 @@ function PaymentRailsTab() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader>
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Info className="w-4 h-4 text-indigo-400" />
                 {selectedRail.name} — Use Cases
               </CardTitle>
@@ -390,13 +390,13 @@ function PaymentRailsTab() {
           { icon: <Globe className="w-4 h-4 text-emerald-400" />, title: "SWIFT gpi", body: "SWIFT's global payments initiative enables same-day cross-border transfers for 50%+ of transactions.", color: "teal" },
           { icon: <Shield className="w-4 h-4 text-primary" />, title: "Fedwire RTGS", body: "Fedwire settles $4+ trillion daily — the backbone of US large-value payments since 1918.", color: "blue" },
         ].map((card) => (
-          <Card key={card.title} className="bg-zinc-900 border-zinc-800">
+          <Card key={card.title} className="bg-card border-border">
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-2">
                 {card.icon}
-                <span className="text-sm font-semibold text-zinc-200">{card.title}</span>
+                <span className="text-sm font-semibold text-foreground">{card.title}</span>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{card.body}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
             </CardContent>
           </Card>
         ))}
@@ -439,9 +439,9 @@ function CardEconomicsTab() {
   return (
     <div className="space-y-6">
       {/* Card Type Selector */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <CreditCard className="w-4 h-4 text-indigo-400" />
             Select Card Type — Interchange Rates
           </CardTitle>
@@ -455,7 +455,7 @@ function CardEconomicsTab() {
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                   activeCard.cardType === tier.cardType
                     ? "bg-indigo-600 border-indigo-500 text-white"
-                    : "bg-zinc-800 border-zinc-700 text-zinc-300 hover:border-zinc-600"
+                    : "bg-muted border-border text-muted-foreground hover:border-border"
                 }`}
               >
                 {tier.cardType}
@@ -466,9 +466,9 @@ function CardEconomicsTab() {
       </Card>
 
       {/* Waterfall SVG */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-indigo-400" />
             Fee Waterfall — {activeCard.cardType} (% of $100 sale)
           </CardTitle>
@@ -526,9 +526,9 @@ function CardEconomicsTab() {
       </Card>
 
       {/* Fee Breakdown Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300">Fee Breakdown — Who Gets What</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Fee Breakdown — Who Gets What</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -539,8 +539,8 @@ function CardEconomicsTab() {
               { party: "Merchant Discount Rate", pct: activeCard.total, color: "#6366f1", desc: "Total cost to merchant" },
             ].map((item) => (
               <div key={item.party} className="flex items-center gap-4">
-                <div className="w-40 text-xs text-zinc-300 font-medium shrink-0">{item.party}</div>
-                <div className="flex-1 bg-zinc-800 rounded h-2">
+                <div className="w-40 text-xs text-muted-foreground font-medium shrink-0">{item.party}</div>
+                <div className="flex-1 bg-muted rounded h-2">
                   <div
                     className="h-2 rounded"
                     style={{ width: `${(item.pct / 4) * 100}%`, background: item.color }}
@@ -549,7 +549,7 @@ function CardEconomicsTab() {
                 <div className="w-16 text-right text-xs font-mono" style={{ color: item.color }}>
                   {item.pct.toFixed(2)}%
                 </div>
-                <div className="hidden md:block w-56 text-xs text-zinc-500">{item.desc}</div>
+                <div className="hidden md:block w-56 text-xs text-muted-foreground">{item.desc}</div>
               </div>
             ))}
           </div>
@@ -558,24 +558,24 @@ function CardEconomicsTab() {
 
       {/* MDR Info Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4 space-y-2">
             <div className="flex items-center gap-2 text-indigo-400 text-sm font-semibold">
               <DollarSign className="w-4 h-4" />
               Durbin Amendment Impact
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               The Durbin Amendment (2010) capped debit interchange at ~$0.21 + 0.05% for large banks, cutting issuer revenue ~70%. Small banks are exempt, creating a two-tier system.
             </p>
           </CardContent>
         </Card>
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardContent className="pt-4 space-y-2">
             <div className="flex items-center gap-2 text-emerald-400 text-sm font-semibold">
               <TrendingUp className="w-4 h-4" />
               Interchange Economics
             </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               US merchants paid $172B in card fees in 2023. Visa and Mastercard combined earned ~$50B in revenue. Rewards cards cost merchants ~0.5% more than basic cards.
             </p>
           </CardContent>
@@ -625,9 +625,9 @@ function DigitalWalletsTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Pie Chart */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <Smartphone className="w-4 h-4 text-indigo-400" />
               Global Digital Wallet Market Share (2024)
             </CardTitle>
@@ -677,9 +677,9 @@ function DigitalWalletsTab() {
         </Card>
 
         {/* Wallet Legend + Details */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader>
-            <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <Users className="w-4 h-4 text-indigo-400" />
               Wallet Details
             </CardTitle>
@@ -689,19 +689,19 @@ function DigitalWalletsTab() {
               {WALLET_SHARES.filter(w => w.name !== "Other").map((w) => (
                 <div
                   key={w.name}
-                  className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${hovered === w.name ? "bg-zinc-800" : "hover:bg-zinc-800/40"}`}
+                  className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer transition-colors ${hovered === w.name ? "bg-muted" : "hover:bg-muted/40"}`}
                   onMouseEnter={() => setHovered(w.name)}
                   onMouseLeave={() => setHovered(null)}
                 >
                   <div className="w-3 h-3 rounded-full shrink-0" style={{ background: w.color }} />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold text-zinc-200">{w.name}</span>
-                      <span className="text-xs text-zinc-400">{w.share}%</span>
+                      <span className="text-xs font-semibold text-foreground">{w.name}</span>
+                      <span className="text-xs text-muted-foreground">{w.share}%</span>
                     </div>
-                    <div className="text-xs text-zinc-500">{w.users} users · {w.model}</div>
+                    <div className="text-xs text-muted-foreground">{w.users} users · {w.model}</div>
                   </div>
-                  <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400 shrink-0">
+                  <Badge variant="outline" className="text-xs border-border text-muted-foreground shrink-0">
                     {w.founded > 0 ? w.founded : "—"}
                   </Badge>
                 </div>
@@ -712,9 +712,9 @@ function DigitalWalletsTab() {
       </div>
 
       {/* Network Effects Chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
             Network Effects Score (1–10)
           </CardTitle>
@@ -723,8 +723,8 @@ function DigitalWalletsTab() {
           <div className="space-y-3">
             {networkEffectsData.map((item) => (
               <div key={item.name} className="flex items-center gap-3">
-                <div className="w-20 text-xs text-zinc-300">{item.name}</div>
-                <div className="flex-1 bg-zinc-800 rounded h-3">
+                <div className="w-20 text-xs text-muted-foreground">{item.name}</div>
+                <div className="flex-1 bg-muted rounded h-3">
                   <motion.div
                     className="h-3 rounded"
                     style={{ background: item.color }}
@@ -739,7 +739,7 @@ function DigitalWalletsTab() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-zinc-500 mt-4">
+          <p className="text-xs text-muted-foreground mt-4">
             Network effects score combines: user base size, merchant acceptance, cross-border reach, and integration density.
           </p>
         </CardContent>
@@ -752,13 +752,13 @@ function DigitalWalletsTab() {
           { icon: <Lock className="w-4 h-4 text-indigo-400" />, title: "Tokenization", body: "Apple Pay and Google Pay use device tokens so merchants never see the real card number — reducing fraud by ~80%." },
           { icon: <Globe className="w-4 h-4 text-emerald-400" />, title: "BNPL Integration", body: "Buy Now Pay Later volume reached $400B globally in 2024. Wallets that offer BNPL see 23% higher transaction rates." },
         ].map((card) => (
-          <Card key={card.title} className="bg-zinc-900 border-zinc-800">
+          <Card key={card.title} className="bg-card border-border">
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-2">
                 {card.icon}
-                <span className="text-sm font-semibold text-zinc-200">{card.title}</span>
+                <span className="text-sm font-semibold text-foreground">{card.title}</span>
               </div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{card.body}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
             </CardContent>
           </Card>
         ))}
@@ -799,12 +799,12 @@ function CBDCTab() {
           const colors = { Live: "emerald", Pilot: "yellow", Research: "indigo" };
           const hexMap = { Live: "#10b981", Pilot: "#f59e0b", Research: "#6366f1" };
           return (
-            <Card key={st} className="bg-zinc-900 border-zinc-800">
+            <Card key={st} className="bg-card border-border">
               <CardContent className="pt-4 text-center">
                 <div className="text-3xl font-bold mb-1" style={{ color: hexMap[st] }}>
                   {statusCounts[st]}
                 </div>
-                <div className="text-xs text-zinc-400">{st}</div>
+                <div className="text-xs text-muted-foreground">{st}</div>
               </CardContent>
             </Card>
           );
@@ -820,7 +820,7 @@ function CBDCTab() {
             className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
               filter === f
                 ? "bg-indigo-600 border-indigo-500 text-white"
-                : "bg-zinc-800 border-zinc-700 text-zinc-300 hover:border-zinc-600"
+                : "bg-muted border-border text-muted-foreground hover:border-border"
             }`}
           >
             {f}
@@ -829,9 +829,9 @@ function CBDCTab() {
       </div>
 
       {/* CBDC Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-indigo-400" />
             CBDC Projects Worldwide
           </CardTitle>
@@ -840,20 +840,20 @@ function CBDCTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left py-3 px-4 text-zinc-400 font-medium">Country</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Name</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Status</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Since</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Type</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium hidden md:table-cell">Note</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 text-muted-foreground font-medium">Country</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Name</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Status</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Since</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Type</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium hidden md:table-cell">Note</th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.map((proj) => (
-                  <tr key={proj.name} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
-                    <td className="py-3 px-4 text-zinc-200 font-medium">{proj.country}</td>
-                    <td className="py-3 px-3 text-zinc-300">{proj.name}</td>
+                  <tr key={proj.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                    <td className="py-3 px-4 text-foreground font-medium">{proj.country}</td>
+                    <td className="py-3 px-3 text-muted-foreground">{proj.name}</td>
                     <td className="py-3 px-3">
                       <Badge
                         variant="outline"
@@ -863,9 +863,9 @@ function CBDCTab() {
                         {proj.status}
                       </Badge>
                     </td>
-                    <td className="py-3 px-3 text-zinc-400">{proj.launched}</td>
-                    <td className="py-3 px-3 text-zinc-400">{proj.retailWholesale}</td>
-                    <td className="py-3 px-3 text-zinc-500 hidden md:table-cell">{proj.note}</td>
+                    <td className="py-3 px-3 text-muted-foreground">{proj.launched}</td>
+                    <td className="py-3 px-3 text-muted-foreground">{proj.retailWholesale}</td>
+                    <td className="py-3 px-3 text-muted-foreground hidden md:table-cell">{proj.note}</td>
                   </tr>
                 ))}
               </tbody>
@@ -875,9 +875,9 @@ function CBDCTab() {
       </Card>
 
       {/* FedNow vs Digital Dollar */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <ArrowRight className="w-4 h-4 text-indigo-400" />
             FedNow vs. Digital Dollar
           </CardTitle>
@@ -914,7 +914,7 @@ function CBDCTab() {
                 <div className="text-sm font-semibold" style={{ color: item.color }}>{item.title}</div>
                 <ul className="space-y-1">
                   {item.points.map((pt, i) => (
-                    <li key={i} className="flex items-start gap-2 text-xs text-zinc-400">
+                    <li key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                       <CheckCircle className="w-3 h-3 mt-0.5 shrink-0" style={{ color: item.color }} />
                       {pt}
                     </li>
@@ -927,9 +927,9 @@ function CBDCTab() {
       </Card>
 
       {/* Stablecoins */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Lock className="w-4 h-4 text-indigo-400" />
             Major Stablecoins — Private Digital Dollars
           </CardTitle>
@@ -938,20 +938,20 @@ function CBDCTab() {
           <div className="space-y-3">
             {stablecoins.map((sc) => (
               <div key={sc.name} className="flex items-center gap-4">
-                <div className="w-36 text-xs text-zinc-200 font-medium shrink-0">{sc.name}</div>
-                <div className="w-16 text-xs text-zinc-400 shrink-0">{sc.supply}</div>
-                <div className="w-36 text-xs text-zinc-500 hidden md:block shrink-0">{sc.backing}</div>
-                <div className="flex-1 bg-zinc-800 rounded h-2">
+                <div className="w-36 text-xs text-foreground font-medium shrink-0">{sc.name}</div>
+                <div className="w-16 text-xs text-muted-foreground shrink-0">{sc.supply}</div>
+                <div className="w-36 text-xs text-muted-foreground hidden md:block shrink-0">{sc.backing}</div>
+                <div className="flex-1 bg-muted rounded h-2">
                   <div
                     className="h-2 rounded bg-indigo-500"
                     style={{ width: `${sc.trust * 10}%` }}
                   />
                 </div>
-                <div className="w-16 text-right text-xs text-zinc-400">Trust {sc.trust}/10</div>
+                <div className="w-16 text-right text-xs text-muted-foreground">Trust {sc.trust}/10</div>
               </div>
             ))}
           </div>
-          <p className="text-xs text-zinc-500 mt-4">
+          <p className="text-xs text-muted-foreground mt-4">
             Stablecoins processed $27T in transactions in 2024 — exceeding Visa's annual volume. USDT alone handles $50B+ daily.
           </p>
         </CardContent>
@@ -991,9 +991,9 @@ function PaymentStocksTab() {
   return (
     <div className="space-y-6">
       {/* Comparison Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-indigo-400" />
             Payment Company Fundamentals
           </CardTitle>
@@ -1002,35 +1002,35 @@ function PaymentStocksTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left py-3 px-4 text-zinc-400 font-medium">Ticker</th>
-                  <th className="text-left py-3 px-3 text-zinc-400 font-medium">Company</th>
-                  <th className="text-right py-3 px-3 text-zinc-400 font-medium">P/E</th>
-                  <th className="text-right py-3 px-3 text-zinc-400 font-medium">Rev Growth</th>
-                  <th className="text-right py-3 px-3 text-zinc-400 font-medium">Take Rate</th>
-                  <th className="text-right py-3 px-3 text-zinc-400 font-medium">Volume</th>
-                  <th className="text-right py-3 px-3 text-zinc-400 font-medium hidden md:table-cell">Mkt Cap</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-4 text-muted-foreground font-medium">Ticker</th>
+                  <th className="text-left py-3 px-3 text-muted-foreground font-medium">Company</th>
+                  <th className="text-right py-3 px-3 text-muted-foreground font-medium">P/E</th>
+                  <th className="text-right py-3 px-3 text-muted-foreground font-medium">Rev Growth</th>
+                  <th className="text-right py-3 px-3 text-muted-foreground font-medium">Take Rate</th>
+                  <th className="text-right py-3 px-3 text-muted-foreground font-medium">Volume</th>
+                  <th className="text-right py-3 px-3 text-muted-foreground font-medium hidden md:table-cell">Mkt Cap</th>
                 </tr>
               </thead>
               <tbody>
                 {PAYMENT_STOCKS.map((stock) => (
-                  <tr key={stock.ticker} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                  <tr key={stock.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full" style={{ background: stock.color }} />
-                        <span className="font-mono font-bold text-zinc-200">{stock.ticker}</span>
+                        <span className="font-mono font-bold text-foreground">{stock.ticker}</span>
                       </div>
                     </td>
-                    <td className="py-3 px-3 text-zinc-300">{stock.name}</td>
-                    <td className="py-3 px-3 text-right text-zinc-300">{stock.peRatio}x</td>
+                    <td className="py-3 px-3 text-muted-foreground">{stock.name}</td>
+                    <td className="py-3 px-3 text-right text-muted-foreground">{stock.peRatio}x</td>
                     <td className="py-3 px-3 text-right">
-                      <span className={stock.revenueGrowth >= 10 ? "text-emerald-400" : "text-zinc-300"}>
+                      <span className={stock.revenueGrowth >= 10 ? "text-emerald-400" : "text-muted-foreground"}>
                         +{stock.revenueGrowth}%
                       </span>
                     </td>
-                    <td className="py-3 px-3 text-right text-zinc-300">{stock.takeRate.toFixed(2)}%</td>
-                    <td className="py-3 px-3 text-right text-zinc-300">{stock.volume}</td>
-                    <td className="py-3 px-3 text-right text-zinc-300 hidden md:table-cell">{stock.marketCap}</td>
+                    <td className="py-3 px-3 text-right text-muted-foreground">{stock.takeRate.toFixed(2)}%</td>
+                    <td className="py-3 px-3 text-right text-muted-foreground">{stock.volume}</td>
+                    <td className="py-3 px-3 text-right text-muted-foreground hidden md:table-cell">{stock.marketCap}</td>
                   </tr>
                 ))}
               </tbody>
@@ -1040,9 +1040,9 @@ function PaymentStocksTab() {
       </Card>
 
       {/* Revenue Growth Chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader>
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-indigo-400" />
             Indexed Revenue Growth (2017 = 100)
           </CardTitle>
@@ -1125,14 +1125,14 @@ function PaymentStocksTab() {
             color: "#f59e0b",
           },
         ].map((card) => (
-          <Card key={card.title} className="bg-zinc-900 border-zinc-800">
+          <Card key={card.title} className="bg-card border-border">
             <CardContent className="pt-4">
               <div className="flex items-center gap-2 mb-1">
                 {card.icon}
-                <span className="text-sm font-semibold text-zinc-200">{card.title}</span>
+                <span className="text-sm font-semibold text-foreground">{card.title}</span>
               </div>
               <div className="text-xs mb-2" style={{ color: card.color }}>{card.subtitle}</div>
-              <p className="text-xs text-zinc-400 leading-relaxed">{card.body}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
             </CardContent>
           </Card>
         ))}
@@ -1145,7 +1145,7 @@ function PaymentStocksTab() {
 
 export default function PaymentsPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1159,8 +1159,8 @@ export default function PaymentsPage() {
               <CreditCard className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-zinc-100">Payment Systems</h1>
-              <p className="text-sm text-zinc-400">Fintech infrastructure, digital payments, and the future of money</p>
+              <h1 className="text-2xl font-bold text-foreground">Payment Systems</h1>
+              <p className="text-sm text-muted-foreground">Fintech infrastructure, digital payments, and the future of money</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-3 mt-4">
@@ -1172,7 +1172,7 @@ export default function PaymentsPage() {
             ].map((chip) => (
               <div
                 key={chip.label}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-zinc-900 border border-zinc-800 rounded-full text-xs text-zinc-300"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-card border border-border rounded-full text-xs text-muted-foreground"
               >
                 <span className="text-indigo-400">{chip.icon}</span>
                 <span dangerouslySetInnerHTML={{ __html: chip.label }} />
@@ -1183,7 +1183,7 @@ export default function PaymentsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="rails">
-          <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card border border-border mb-6 flex flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="rails" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
               Payment Rails
             </TabsTrigger>

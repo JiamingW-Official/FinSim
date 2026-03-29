@@ -360,7 +360,7 @@ function Avatar({ initials, color, size = "md" }: { initials: string; color: str
 
 function RankBadge({ rank }: { rank: number }) {
   if (rank === 1) return <Crown className="h-4 w-4 text-yellow-400" />;
-  if (rank === 2) return <Medal className="h-4 w-4 text-slate-400" />;
+  if (rank === 2) return <Medal className="h-4 w-4 text-muted-foreground" />;
   if (rank === 3) return <Medal className="h-4 w-4 text-amber-600" />;
   return <span className="text-xs font-mono text-muted-foreground/60 w-4 text-center">{rank}</span>;
 }
@@ -393,7 +393,7 @@ function PodiumCard({ trader, place }: { trader: Trader; place: 1 | 2 | 3 }) {
     2: "border-slate-400/60 bg-slate-400/10",
     3: "border-amber-600/60 bg-amber-600/10",
   };
-  const crownColors = { 1: "text-yellow-400", 2: "text-slate-400", 3: "text-amber-600" };
+  const crownColors = { 1: "text-yellow-400", 2: "text-muted-foreground", 3: "text-amber-600" };
 
   return (
     <div className={cn("flex flex-col items-center gap-2", place === 1 ? "order-2" : place === 2 ? "order-1" : "order-3")}>
@@ -1209,7 +1209,7 @@ function CommunityStatsTab() {
     { bucket: "-20", count: 18, color: "fill-rose-500" },
     { bucket: "-10", count: 28, color: "fill-rose-400" },
     { bucket: "-5", count: 42, color: "fill-rose-300" },
-    { bucket: "0", count: 65, color: "fill-slate-400" },
+    { bucket: "0", count: 65, color: "fill-muted-foreground" },
     { bucket: "+5", count: 87, color: "fill-emerald-300" },
     { bucket: "+10", count: 73, color: "fill-emerald-400" },
     { bucket: "+20", count: 51, color: "fill-emerald-500" },

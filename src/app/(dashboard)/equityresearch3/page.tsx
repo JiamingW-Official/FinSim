@@ -650,18 +650,18 @@ function SOTPTab() {
           { label: "SOTP / Share", value: `$${Math.round(SOTP_PER_SHARE)}`, sub: "Post discount + debt", color: "text-muted-foreground" },
           { label: "Upside vs. Market", value: `+${Math.round(upside)}%`, sub: `Current $${CURRENT_PRICE}`, color: "text-emerald-400" },
         ].map((kpi, i) => (
-          <div key={i} className="bg-gray-800 border border-gray-700 rounded-lg p-3">
-            <p className="text-xs text-gray-400">{kpi.label}</p>
+          <div key={i} className="bg-muted border border-border rounded-lg p-3">
+            <p className="text-xs text-muted-foreground">{kpi.label}</p>
             <p className={cn("text-xl font-bold mt-0.5", kpi.color)}>{kpi.value}</p>
-            <p className="text-xs text-gray-500 mt-0.5">{kpi.sub}</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{kpi.sub}</p>
           </div>
         ))}
       </div>
 
       {/* Donut + Segment table */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+        <div className="bg-muted border border-border rounded-xl p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <PieChart className="w-4 h-4 text-primary" />
             Asset Value Composition
           </h3>
@@ -681,8 +681,8 @@ function SOTPTab() {
               {donutSlices.map((sl, i) => (
                 <div key={i} className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ backgroundColor: sl.color }} />
-                  <span className="text-xs text-gray-300 flex-1">{sl.name}</span>
-                  <span className="text-xs font-mono text-gray-400">{Math.round(sl.pct * 100)}%</span>
+                  <span className="text-xs text-muted-foreground flex-1">{sl.name}</span>
+                  <span className="text-xs font-mono text-muted-foreground">{Math.round(sl.pct * 100)}%</span>
                 </div>
               ))}
             </div>
@@ -690,8 +690,8 @@ function SOTPTab() {
         </div>
 
         {/* Waterfall */}
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
+        <div className="bg-muted border border-border rounded-xl p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Waterfall Bridge to Equity
           </h3>
@@ -701,24 +701,24 @@ function SOTPTab() {
 
       {/* Segment Cards */}
       <div className="space-y-2">
-        <h3 className="text-sm font-semibold text-gray-200">Segment Valuation Detail</h3>
+        <h3 className="text-sm font-semibold text-foreground">Segment Valuation Detail</h3>
         {SOTP_SEGMENTS.map((seg, i) => (
           <motion.div
             key={i}
-            className="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden cursor-pointer"
+            className="bg-muted border border-border rounded-xl overflow-hidden cursor-pointer"
             onClick={() => setExpandedSeg(expandedSeg === i ? null : i)}
           >
             <div className="flex items-center gap-3 p-3">
               <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: seg.color }} />
-              <span className="text-sm font-medium text-gray-200 flex-1">{seg.name}</span>
-              <span className="text-xs text-gray-400 mr-2">
+              <span className="text-sm font-medium text-foreground flex-1">{seg.name}</span>
+              <span className="text-xs text-muted-foreground mr-2">
                 {seg.multiple} {seg.multipleVal}×
               </span>
-              <span className="text-sm font-mono font-bold text-gray-100">
+              <span className="text-sm font-mono font-bold text-foreground">
                 ${Math.round(seg.impliedValue / 100) / 10}B
               </span>
               <ChevronDown
-                className={cn("w-4 h-4 text-gray-500 transition-transform", expandedSeg === i && "rotate-180")}
+                className={cn("w-4 h-4 text-muted-foreground transition-transform", expandedSeg === i && "rotate-180")}
               />
             </div>
             <AnimatePresence>
@@ -730,20 +730,20 @@ function SOTPTab() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-4 pb-3 pt-1 border-t border-gray-700">
-                    <p className="text-xs text-gray-400 mb-2">{seg.description}</p>
+                  <div className="px-4 pb-3 pt-1 border-t border-border">
+                    <p className="text-xs text-muted-foreground mb-2">{seg.description}</p>
                     <div className="grid grid-cols-3 gap-2 text-xs">
                       <div>
-                        <span className="text-gray-500">Revenue</span>
-                        <p className="font-mono text-gray-200">${seg.revenue}M</p>
+                        <span className="text-muted-foreground">Revenue</span>
+                        <p className="font-mono text-foreground">${seg.revenue}M</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">EBITDA</span>
-                        <p className="font-mono text-gray-200">${seg.ebitda}M</p>
+                        <span className="text-muted-foreground">EBITDA</span>
+                        <p className="font-mono text-foreground">${seg.ebitda}M</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Margin</span>
-                        <p className="font-mono text-gray-200">{Math.round((seg.ebitda / seg.revenue) * 100)}%</p>
+                        <span className="text-muted-foreground">Margin</span>
+                        <p className="font-mono text-foreground">{Math.round((seg.ebitda / seg.revenue) * 100)}%</p>
                       </div>
                     </div>
                   </div>
@@ -755,8 +755,8 @@ function SOTPTab() {
       </div>
 
       {/* Holding Company Discount */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Conglomerate Discount — Causes & Unlocking Value
         </h3>
@@ -766,17 +766,17 @@ function SOTPTab() {
             { title: "Capital Allocation Risk", desc: "HQ may subsidize weak divisions from strong ones. 'Conglomerate tax' on returns as management attention is diluted." },
             { title: "Conglomerate Discount", desc: "Historically 15–30% of gross NAV. Narrows when activists push spin-offs, when segments are disclosed, or at spin-off announcement." },
           ].map((item, i) => (
-            <div key={i} className="bg-gray-900 rounded-lg p-3">
+            <div key={i} className="bg-card rounded-lg p-3">
               <p className="text-xs font-semibold text-amber-400 mb-1">{item.title}</p>
-              <p className="text-xs text-gray-400">{item.desc}</p>
+              <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
 
         {/* Discount gauge */}
         <div className="flex items-center gap-3">
-          <span className="text-xs text-gray-400 w-28">Typical Range:</span>
-          <div className="flex-1 h-4 bg-gray-900 rounded-full overflow-hidden relative">
+          <span className="text-xs text-muted-foreground w-28">Typical Range:</span>
+          <div className="flex-1 h-4 bg-card rounded-full overflow-hidden relative">
             <div className="h-full bg-gradient-to-r from-green-600 via-amber-500 to-red-600 w-full rounded-full opacity-30" />
             <div
               className="absolute top-0 h-full w-1.5 bg-amber-400 rounded-full"
@@ -785,7 +785,7 @@ function SOTPTab() {
           </div>
           <span className="text-xs font-mono text-amber-400 w-10">-{Math.round(HOLDING_CO_DISCOUNT * 100)}%</span>
         </div>
-        <div className="flex justify-between text-xs text-gray-600 mt-0.5 px-32">
+        <div className="flex justify-between text-xs text-muted-foreground mt-0.5 px-32">
           <span>-5%</span>
           <span>-20%</span>
           <span>-40%</span>
@@ -793,7 +793,7 @@ function SOTPTab() {
 
         {/* Unlocking mechanisms */}
         <div className="mt-3 space-y-1.5">
-          <p className="text-xs font-semibold text-gray-300">Value Unlocking Mechanisms</p>
+          <p className="text-xs font-semibold text-muted-foreground">Value Unlocking Mechanisms</p>
           {[
             { label: "Pure-play Spin-Off", detail: "Separates high-multiple from low-multiple businesses. Parent retains some shares. Market re-rates each independently." },
             { label: "Tracking Stock", detail: "Separate share class tracking one division's economics. Avoids tax friction of full spin-off. Less clean than pure spin." },
@@ -802,7 +802,7 @@ function SOTPTab() {
           ].map((m, i) => (
             <div key={i} className="flex gap-2 items-start">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 flex-shrink-0" />
-              <span className="text-xs text-gray-300">
+              <span className="text-xs text-muted-foreground">
                 <span className="font-semibold">{m.label}: </span>
                 {m.detail}
               </span>
@@ -812,39 +812,39 @@ function SOTPTab() {
       </div>
 
       {/* Net-Net & Graham */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-green-400" />
           Graham Net-Net & Asset-Heavy Liquidation Value
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <p className="text-xs font-semibold text-green-400 mb-1">Net Current Asset Value (NCAV)</p>
-            <p className="text-xs text-gray-400 mb-2">
+            <p className="text-xs text-muted-foreground mb-2">
               Graham's net-net framework: buy stocks trading below 2/3 of (Current Assets − All Liabilities). Extremely conservative; assets valued at liquidation, not going-concern.
             </p>
             <div className="font-mono text-xs space-y-0.5">
               <div className="flex justify-between">
-                <span className="text-gray-400">Current Assets</span>
+                <span className="text-muted-foreground">Current Assets</span>
                 <span className="text-primary">+$X</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">All Liabilities</span>
+                <span className="text-muted-foreground">All Liabilities</span>
                 <span className="text-red-400">−$Y</span>
               </div>
-              <div className="flex justify-between border-t border-gray-700 pt-0.5 mt-0.5">
-                <span className="text-gray-200 font-bold">NCAV</span>
+              <div className="flex justify-between border-t border-border pt-0.5 mt-0.5">
+                <span className="text-foreground font-bold">NCAV</span>
                 <span className="text-muted-foreground font-bold">=$Z</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-400">Buy threshold</span>
+                <span className="text-muted-foreground">Buy threshold</span>
                 <span className="text-emerald-400">≤ 2/3 of NCAV</span>
               </div>
             </div>
           </div>
           <div>
             <p className="text-xs font-semibold text-amber-400 mb-1">Berkshire-Style NAV Investing</p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-muted-foreground">
               For holding companies like BRK, value = sum of operating subsidiaries at fair value + publicly-traded portfolio at market + cash − debt. Buffett explicitly tracks look-through earnings.
             </p>
             <div className="mt-2 space-y-1 text-xs">
@@ -856,7 +856,7 @@ function SOTPTab() {
               ].map((pt, i) => (
                 <div key={i} className="flex gap-1.5 items-start">
                   <ChevronRight className="w-3 h-3 text-amber-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-400">{pt}</span>
+                  <span className="text-muted-foreground">{pt}</span>
                 </div>
               ))}
             </div>
@@ -900,16 +900,16 @@ function PrimaryResearchTab() {
     <div className="space-y-6">
       {/* Info advantage pyramid */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 flex flex-col items-center">
+        <div className="bg-muted border border-border rounded-xl p-4 flex flex-col items-center">
           <InfoPyramidSVG />
-          <p className="text-xs text-gray-500 text-center mt-2">
+          <p className="text-xs text-muted-foreground text-center mt-2">
             Bottom layers are crowded. Alpha lives in primary research.
           </p>
         </div>
 
         {/* Channel framework */}
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+        <div className="bg-muted border border-border rounded-xl p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Network className="w-4 h-4 text-primary" />
             Channel Check Framework
           </h3>
@@ -921,15 +921,15 @@ function PrimaryResearchTab() {
                   "rounded-lg p-2.5 cursor-pointer border transition-colors",
                   activeLevel === i
                     ? "border-primary bg-muted/40"
-                    : "border-gray-700 bg-gray-900 hover:border-gray-600"
+                    : "border-border bg-card hover:border-gray-600"
                 )}
                 onClick={() => setActiveLevel(activeLevel === i ? null : i)}
               >
                 <div className="flex items-center gap-2">
-                  <div className={cn("text-gray-400")}>{level.icon}</div>
-                  <span className="text-sm font-medium text-gray-200">{level.name}</span>
+                  <div className={cn("text-muted-foreground")}>{level.icon}</div>
+                  <span className="text-sm font-medium text-foreground">{level.name}</span>
                   <ChevronDown
-                    className={cn("w-3.5 h-3.5 text-gray-500 ml-auto transition-transform", activeLevel === i && "rotate-180")}
+                    className={cn("w-3.5 h-3.5 text-muted-foreground ml-auto transition-transform", activeLevel === i && "rotate-180")}
                   />
                 </div>
                 <AnimatePresence>
@@ -942,7 +942,7 @@ function PrimaryResearchTab() {
                       className="mt-2 space-y-1 overflow-hidden"
                     >
                       {level.insights.map((ins, j) => (
-                        <li key={j} className="text-xs text-gray-400 flex gap-1.5 items-start">
+                        <li key={j} className="text-xs text-muted-foreground flex gap-1.5 items-start">
                           <span className="text-primary mt-0.5">•</span>
                           {ins}
                         </li>
@@ -957,45 +957,45 @@ function PrimaryResearchTab() {
       </div>
 
       {/* Expert networks */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           Expert Network Landscape
         </h3>
         <div className="grid md:grid-cols-2 gap-3">
           {expertNetworks.map((en, i) => (
-            <div key={i} className="bg-gray-900 rounded-lg p-3 border border-gray-700">
+            <div key={i} className="bg-card rounded-lg p-3 border border-border">
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-xs font-bold text-white bg-primary px-2 py-0.5 rounded">{en.name}</span>
               </div>
-              <p className="text-xs text-gray-400">{en.description}</p>
+              <p className="text-xs text-muted-foreground">{en.description}</p>
             </div>
           ))}
         </div>
         <div className="mt-3 p-3 bg-amber-950/30 border border-amber-800/50 rounded-lg">
           <p className="text-xs text-amber-300 font-semibold mb-1">Compliance & Mosaic Theory</p>
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-muted-foreground">
             Expert calls are legal when experts share publicly available information or non-material opinions. Material non-public information (MNPI) from former insiders violates insider trading laws. Always use compliance-approved call protocols.
           </p>
         </div>
       </div>
 
       {/* Scuttlebutt */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-1 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-1 flex items-center gap-2">
           <Search className="w-4 h-4 text-emerald-400" />
           Scuttlebutt Investing — Phil Fisher Method
         </h3>
-        <p className="text-xs text-gray-500 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Fisher coined &ldquo;scuttlebutt&rdquo; in 1958: systematic gathering of qualitative business intelligence from customers, suppliers, competitors, and employees before building a financial model.
         </p>
         <div className="grid md:grid-cols-2 gap-3">
           {scuttlebuttPrinciples.map((pr, i) => (
-            <div key={i} className="flex gap-2 items-start bg-gray-900 rounded-lg p-2.5">
+            <div key={i} className="flex gap-2 items-start bg-card rounded-lg p-2.5">
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-gray-200">{pr.label}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{pr.detail}</p>
+                <p className="text-xs font-semibold text-foreground">{pr.label}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{pr.detail}</p>
               </div>
             </div>
           ))}
@@ -1003,8 +1003,8 @@ function PrimaryResearchTab() {
       </div>
 
       {/* Alt Data */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <Zap className="w-4 h-4 text-muted-foreground" />
           Alternative Data Sources
         </h3>
@@ -1013,22 +1013,22 @@ function PrimaryResearchTab() {
             <motion.div
               key={i}
               className={cn(
-                "bg-gray-900 rounded-lg p-3 border cursor-pointer transition-colors",
-                activeMethod === i ? "border-cyan-600" : "border-gray-700 hover:border-gray-600"
+                "bg-card rounded-lg p-3 border cursor-pointer transition-colors",
+                activeMethod === i ? "border-cyan-600" : "border-border hover:border-gray-600"
               )}
               onClick={() => setActiveMethod(i)}
             >
               <div className="flex items-center gap-2 mb-1">
                 <div className="text-muted-foreground">{src.icon}</div>
-                <span className="text-xs font-semibold text-gray-200">{src.name}</span>
+                <span className="text-xs font-semibold text-foreground">{src.name}</span>
               </div>
-              <p className="text-xs text-gray-500">{src.detail}</p>
+              <p className="text-xs text-muted-foreground">{src.detail}</p>
             </motion.div>
           ))}
         </div>
-        <div className="mt-3 p-2.5 bg-gray-900 rounded-lg border border-gray-700">
-          <p className="text-xs text-gray-400">
-            <span className="font-semibold text-gray-300">Proprietary Survey Design: </span>
+        <div className="mt-3 p-2.5 bg-card rounded-lg border border-border">
+          <p className="text-xs text-muted-foreground">
+            <span className="font-semibold text-muted-foreground">Proprietary Survey Design: </span>
             Consumer surveys (n=500–2000) or enterprise CIO surveys testing intent-to-purchase, Net Promoter Scores, and vendor preference shifts. Panel providers include Qualtrics, SurveyMonkey, and Dynata. Statistical significance requires careful sample design.
           </p>
         </div>
@@ -1044,7 +1044,7 @@ function ForensicTab() {
   const severityColor = (s: "high" | "medium" | "low") =>
     s === "high" ? "text-red-400 bg-red-950/40 border-red-800/50" :
     s === "medium" ? "text-amber-400 bg-amber-950/40 border-amber-800/50" :
-    "text-gray-400 bg-gray-900 border-gray-700";
+    "text-muted-foreground bg-card border-border";
 
   const severityDot = (s: "high" | "medium" | "low") =>
     s === "high" ? "bg-red-500" : s === "medium" ? "bg-amber-500" : "bg-gray-500";
@@ -1057,7 +1057,7 @@ function ForensicTab() {
           <Microscope className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-sm font-semibold text-amber-300 mb-1">Forensic Accounting Overview</p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-muted-foreground">
               Forensic accounting examines whether reported financials accurately reflect economic reality. Short sellers, credit analysts, and deep-value investors use these frameworks to detect earnings management, fraud, and distress before prices adjust. The goal is not to find fraud in every company — but to identify when the quality of reported earnings is materially lower than consensus assumes.
             </p>
           </div>
@@ -1067,15 +1067,15 @@ function ForensicTab() {
       {/* Flags checklist */}
       <div className="space-y-3">
         {FORENSIC_FLAGS.map((cat, i) => (
-          <div key={i} className="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
+          <div key={i} className="bg-muted border border-border rounded-xl overflow-hidden">
             <button
               className="w-full flex items-center gap-3 p-3 hover:bg-gray-750 text-left"
               onClick={() => setExpandedCategory(expandedCategory === i ? null : i)}
             >
               <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
-              <span className="text-sm font-semibold text-gray-200 flex-1">{cat.category}</span>
-              <span className="text-xs text-gray-500 mr-2">{cat.flags.length} flags</span>
-              <ChevronDown className={cn("w-4 h-4 text-gray-500 transition-transform", expandedCategory === i && "rotate-180")} />
+              <span className="text-sm font-semibold text-foreground flex-1">{cat.category}</span>
+              <span className="text-xs text-muted-foreground mr-2">{cat.flags.length} flags</span>
+              <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", expandedCategory === i && "rotate-180")} />
             </button>
             <AnimatePresence>
               {expandedCategory === i && (
@@ -1086,7 +1086,7 @@ function ForensicTab() {
                   transition={{ duration: 0.2 }}
                   className="overflow-hidden"
                 >
-                  <div className="px-3 pb-3 space-y-2 border-t border-gray-700">
+                  <div className="px-3 pb-3 space-y-2 border-t border-border">
                     {cat.flags.map((flag, j) => {
                       const key = `${i}-${j}`;
                       return (
@@ -1094,7 +1094,7 @@ function ForensicTab() {
                           <div className="flex items-start gap-2">
                             <div className={cn("w-2 h-2 rounded-full mt-1.5 flex-shrink-0", severityDot(flag.severity))} />
                             <span className="text-xs font-medium flex-1">{flag.label}</span>
-                            <span className={cn("text-xs font-semibold uppercase px-1.5 py-0.5 rounded", flag.severity === "high" ? "bg-red-900/60 text-red-300" : flag.severity === "medium" ? "bg-amber-900/60 text-amber-300" : "bg-gray-800 text-gray-400")}>
+                            <span className={cn("text-xs font-semibold uppercase px-1.5 py-0.5 rounded", flag.severity === "high" ? "bg-red-900/60 text-red-300" : flag.severity === "medium" ? "bg-amber-900/60 text-amber-300" : "bg-muted text-muted-foreground")}>
                               {flag.severity}
                             </span>
                           </div>
@@ -1104,7 +1104,7 @@ function ForensicTab() {
                                 initial={{ height: 0, opacity: 0 }}
                                 animate={{ height: "auto", opacity: 1 }}
                                 exit={{ height: 0, opacity: 0 }}
-                                className="text-xs text-gray-400 mt-1.5 ml-4 overflow-hidden"
+                                className="text-xs text-muted-foreground mt-1.5 ml-4 overflow-hidden"
                               >
                                 {flag.detail}
                               </motion.p>
@@ -1122,30 +1122,30 @@ function ForensicTab() {
       </div>
 
       {/* Beneish M-Score */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-1 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-1 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-red-400" />
           Beneish M-Score — Earnings Manipulation Detection
         </h3>
-        <p className="text-xs text-gray-500 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Eight accounting ratios combined into a single score. M-Score &gt; −1.78 suggests likely manipulation. Identified Enron before collapse.
         </p>
         <div className="grid md:grid-cols-2 gap-2">
           {BENEISH_VARS.map((v, i) => (
-            <div key={i} className="bg-gray-900 rounded-lg p-2.5 border border-gray-700">
+            <div key={i} className="bg-card rounded-lg p-2.5 border border-border">
               <div className="flex items-center gap-2 mb-0.5">
                 <span className="text-xs font-mono font-bold text-red-400">{v.abbrev}</span>
-                <span className="text-xs text-gray-400">{v.name}</span>
+                <span className="text-xs text-muted-foreground">{v.name}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-gray-500 italic">{v.interpretation}</span>
+                <span className="text-xs text-muted-foreground italic">{v.interpretation}</span>
                 <span className="text-xs font-mono text-amber-400 ml-2 flex-shrink-0">{v.threshold}</span>
               </div>
             </div>
           ))}
         </div>
-        <div className="mt-3 p-2.5 bg-gray-900 rounded-lg border border-gray-700">
-          <p className="text-xs text-gray-400">
+        <div className="mt-3 p-2.5 bg-card rounded-lg border border-border">
+          <p className="text-xs text-muted-foreground">
             <span className="font-semibold text-red-400">Formula: </span>
             M = −4.84 + 0.92×DSRI + 0.528×GMI + 0.404×AQI + 0.892×SGI + 0.115×DEPI − 0.172×SGAI + 4.679×TATA − 0.327×LVGI.
             Score above −1.78: probable manipulator. Score below −2.22: likely non-manipulator.
@@ -1155,12 +1155,12 @@ function ForensicTab() {
 
       {/* Altman Z & Zmijewski */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
+        <div className="bg-muted border border-border rounded-xl p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-orange-400" />
             Altman Z-Score
           </h3>
-          <p className="text-xs text-gray-500 mb-2">Predicts bankruptcy probability using 5 financial ratios. Originally for manufacturing; Z&apos; model for private, Z&ldquo; for non-manufacturers.</p>
+          <p className="text-xs text-muted-foreground mb-2">Predicts bankruptcy probability using 5 financial ratios. Originally for manufacturing; Z&apos; model for private, Z&ldquo; for non-manufacturers.</p>
           <div className="space-y-1 text-xs font-mono">
             {[
               { var: "X1", def: "Working Capital / Assets", wt: "×1.2" },
@@ -1169,26 +1169,26 @@ function ForensicTab() {
               { var: "X4", def: "Market Cap / Book Liabilities", wt: "×0.6" },
               { var: "X5", def: "Revenue / Assets", wt: "×1.0" },
             ].map((row, i) => (
-              <div key={i} className="flex gap-2 text-gray-400">
+              <div key={i} className="flex gap-2 text-muted-foreground">
                 <span className="text-orange-400 w-4">{row.var}</span>
                 <span className="flex-1">{row.def}</span>
-                <span className="text-gray-300">{row.wt}</span>
+                <span className="text-muted-foreground">{row.wt}</span>
               </div>
             ))}
           </div>
           <div className="mt-2 space-y-0.5 text-xs">
-            <div className="flex justify-between"><span className="text-emerald-400">Z &gt; 2.99</span><span className="text-gray-400">Safe zone</span></div>
-            <div className="flex justify-between"><span className="text-amber-400">1.81–2.99</span><span className="text-gray-400">Grey zone</span></div>
-            <div className="flex justify-between"><span className="text-red-400">Z &lt; 1.81</span><span className="text-gray-400">Distress zone</span></div>
+            <div className="flex justify-between"><span className="text-emerald-400">Z &gt; 2.99</span><span className="text-muted-foreground">Safe zone</span></div>
+            <div className="flex justify-between"><span className="text-amber-400">1.81–2.99</span><span className="text-muted-foreground">Grey zone</span></div>
+            <div className="flex justify-between"><span className="text-red-400">Z &lt; 1.81</span><span className="text-muted-foreground">Distress zone</span></div>
           </div>
         </div>
 
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
+        <div className="bg-muted border border-border rounded-xl p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Short Seller Report Anatomy
           </h3>
-          <p className="text-xs text-gray-500 mb-2">Well-constructed short reports follow a predictable structure. Understanding the template helps separate signal from noise.</p>
+          <p className="text-xs text-muted-foreground mb-2">Well-constructed short reports follow a predictable structure. Understanding the template helps separate signal from noise.</p>
           <div className="space-y-2">
             {[
               { section: "Executive Summary", detail: "Key allegations in 2–3 bullets. Sets the narrative before the detail." },
@@ -1200,8 +1200,8 @@ function ForensicTab() {
               <div key={i} className="flex gap-2 items-start">
                 <span className="text-xs font-mono text-primary w-5 mt-0.5">{i + 1}.</span>
                 <div>
-                  <p className="text-xs font-semibold text-gray-200">{s.section}</p>
-                  <p className="text-xs text-gray-500">{s.detail}</p>
+                  <p className="text-xs font-semibold text-foreground">{s.section}</p>
+                  <p className="text-xs text-muted-foreground">{s.detail}</p>
                 </div>
               </div>
             ))}
@@ -1234,8 +1234,8 @@ function ThesisTab() {
   return (
     <div className="space-y-6">
       {/* Thesis steps */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <Target className="w-4 h-4 text-primary" />
           Differentiated Thesis Construction Framework
         </h3>
@@ -1248,7 +1248,7 @@ function ThesisTab() {
               onClick={() => setActiveStep(i)}
               className={cn(
                 "text-xs px-2.5 py-1 rounded-lg font-semibold transition-colors",
-                activeStep === i ? "bg-primary text-white" : "bg-gray-700 text-gray-400 hover:bg-gray-600"
+                activeStep === i ? "bg-primary text-white" : "bg-gray-700 text-muted-foreground hover:bg-gray-600"
               )}
             >
               {step.step}
@@ -1263,24 +1263,24 @@ function ThesisTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="bg-gray-900 rounded-xl p-4 border border-gray-700"
+            className="bg-card rounded-xl p-4 border border-border"
           >
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono text-gray-500">{THESIS_STEPS[activeStep].step}</span>
-              <h4 className="text-sm font-bold text-gray-100">{THESIS_STEPS[activeStep].title}</h4>
+              <span className="text-xs font-mono text-muted-foreground">{THESIS_STEPS[activeStep].step}</span>
+              <h4 className="text-sm font-bold text-foreground">{THESIS_STEPS[activeStep].title}</h4>
             </div>
-            <p className="text-xs text-gray-400 mb-3">{THESIS_STEPS[activeStep].description}</p>
+            <p className="text-xs text-muted-foreground mb-3">{THESIS_STEPS[activeStep].description}</p>
             <div className="bg-muted/40 border border-border rounded-lg p-2.5">
               <p className="text-xs text-primary font-semibold mb-0.5">Example</p>
-              <p className="text-xs text-gray-400 italic">{THESIS_STEPS[activeStep].example}</p>
+              <p className="text-xs text-muted-foreground italic">{THESIS_STEPS[activeStep].example}</p>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
       {/* Variant perception */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-2 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
           <Lightbulb className="w-4 h-4 text-yellow-400" />
           Variant Perception — Howard Marks Framework
         </h3>
@@ -1302,20 +1302,20 @@ function ThesisTab() {
               icon: <BookOpen className="w-4 h-4 text-primary" />,
             },
           ].map((item, i) => (
-            <div key={i} className="bg-gray-900 rounded-lg p-3 border border-gray-700">
+            <div key={i} className="bg-card rounded-lg p-3 border border-border">
               <div className="flex items-center gap-2 mb-1">
                 {item.icon}
-                <p className="text-xs font-semibold text-gray-200">{item.label}</p>
+                <p className="text-xs font-semibold text-foreground">{item.label}</p>
               </div>
-              <p className="text-xs text-gray-500">{item.desc}</p>
+              <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* TAM / SAM / SOM */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           TAM / SAM / SOM Market Sizing
         </h3>
@@ -1333,14 +1333,14 @@ function ThesisTab() {
                   />
                 </div>
                 <span className="text-xs font-bold" style={{ color: t.color }}>{t.label}</span>
-                <span className="text-xs text-gray-500 text-center">{t.desc}</span>
+                <span className="text-xs text-muted-foreground text-center">{t.desc}</span>
               </div>
             );
           })}
         </div>
-        <div className="bg-gray-900 rounded-lg p-2.5 border border-gray-700">
-          <p className="text-xs text-gray-400">
-            <span className="font-semibold text-gray-300">Bottom-up vs. Top-down: </span>
+        <div className="bg-card rounded-lg p-2.5 border border-border">
+          <p className="text-xs text-muted-foreground">
+            <span className="font-semibold text-muted-foreground">Bottom-up vs. Top-down: </span>
             Top-down (TAM × share) is common in sell-side reports but often inflated. Bottom-up (unit volume × price × penetration by segment) is more rigorous. Always triangulate both. If the bottom-up SOM is &lt;5% of TAM, question the TAM definition.
           </p>
         </div>
@@ -1348,16 +1348,16 @@ function ThesisTab() {
 
       {/* Moat radar */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4 flex flex-col items-center">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 w-full flex items-center gap-2">
+        <div className="bg-muted border border-border rounded-xl p-4 flex flex-col items-center">
+          <h3 className="text-sm font-semibold text-foreground mb-3 w-full flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Economic Moat Durability
           </h3>
           <MoatRadarSVG moats={MOAT_TYPES} />
         </div>
 
-        <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-          <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+        <div className="bg-muted border border-border rounded-xl p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Moat Classification
           </h3>
@@ -1367,13 +1367,13 @@ function ThesisTab() {
                 key={i}
                 className={cn(
                   "rounded-lg p-2.5 cursor-pointer border transition-colors",
-                  activeMoat === i ? "border-primary bg-muted/30" : "border-gray-700 bg-gray-900 hover:border-gray-600"
+                  activeMoat === i ? "border-primary bg-muted/30" : "border-border bg-card hover:border-gray-600"
                 )}
                 onClick={() => setActiveMoat(activeMoat === i ? null : i)}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold text-gray-200">{moat.name}</span>
-                  <div className="flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden ml-2">
+                  <span className="text-xs font-bold text-foreground">{moat.name}</span>
+                  <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden ml-2">
                     <div className="h-full bg-primary rounded-full" style={{ width: `${moat.durability}%` }} />
                   </div>
                   <span className="text-xs font-mono text-primary">{moat.durability}</span>
@@ -1387,10 +1387,10 @@ function ThesisTab() {
                       transition={{ duration: 0.18 }}
                       className="overflow-hidden mt-2"
                     >
-                      <p className="text-xs text-gray-400 mb-1.5">{moat.description}</p>
+                      <p className="text-xs text-muted-foreground mb-1.5">{moat.description}</p>
                       <div className="flex flex-wrap gap-1.5">
                         {moat.examples.map((ex, j) => (
-                          <span key={j} className="text-xs bg-gray-800 border border-gray-600 px-1.5 py-0.5 rounded text-gray-300">{ex}</span>
+                          <span key={j} className="text-xs bg-muted border border-gray-600 px-1.5 py-0.5 rounded text-muted-foreground">{ex}</span>
                         ))}
                       </div>
                     </motion.div>
@@ -1403,18 +1403,18 @@ function ThesisTab() {
       </div>
 
       {/* Idea generation */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-muted-foreground" />
           Idea Generation Sources
         </h3>
         <div className="grid md:grid-cols-2 gap-3">
           {ideaGenSources.map((src, i) => (
-            <div key={i} className="flex gap-2 items-start bg-gray-900 rounded-lg p-2.5 border border-gray-700">
+            <div key={i} className="flex gap-2 items-start bg-card rounded-lg p-2.5 border border-border">
               <ChevronRight className="w-3.5 h-3.5 text-muted-foreground mt-0.5 flex-shrink-0" />
               <div>
-                <p className="text-xs font-semibold text-gray-200">{src.label}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{src.detail}</p>
+                <p className="text-xs font-semibold text-foreground">{src.label}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{src.detail}</p>
               </div>
             </div>
           ))}
@@ -1422,8 +1422,8 @@ function ThesisTab() {
       </div>
 
       {/* Position sizing */}
-      <div className="bg-gray-800 border border-gray-700 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-gray-200 mb-3 flex items-center gap-2">
+      <div className="bg-muted border border-border rounded-xl p-4">
+        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <Activity className="w-4 h-4 text-rose-400" />
           Position Sizing & When to Sell
         </h3>
@@ -1436,11 +1436,11 @@ function ThesisTab() {
                 { label: "Tier 2 — Core holdings", size: "2–4%", criteria: "Good setup, medium conviction, monitoring phase" },
                 { label: "Tier 3 — Exploratory", size: "0.5–2%", criteria: "Early research, thesis forming, position starter" },
               ].map((tier, i) => (
-                <div key={i} className="flex gap-2 items-start bg-gray-900 rounded p-2">
+                <div key={i} className="flex gap-2 items-start bg-card rounded p-2">
                   <span className="text-xs font-bold text-rose-400 w-16 flex-shrink-0">{tier.size}</span>
                   <div>
-                    <p className="text-xs font-semibold text-gray-200">{tier.label}</p>
-                    <p className="text-xs text-gray-500">{tier.criteria}</p>
+                    <p className="text-xs font-semibold text-foreground">{tier.label}</p>
+                    <p className="text-xs text-muted-foreground">{tier.criteria}</p>
                   </div>
                 </div>
               ))}
@@ -1459,8 +1459,8 @@ function ThesisTab() {
                 <div key={i} className="flex gap-2 items-start">
                   <XCircle className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
                   <div className="text-xs">
-                    <span className="font-semibold text-gray-200">{item.trigger}: </span>
-                    <span className="text-gray-500">{item.action}</span>
+                    <span className="font-semibold text-foreground">{item.trigger}: </span>
+                    <span className="text-muted-foreground">{item.action}</span>
                   </div>
                 </div>
               ))}
@@ -1479,7 +1479,7 @@ export default function EquityResearch3Page() {
   void r();
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
         {/* Header */}
         <div>
@@ -1490,14 +1490,14 @@ export default function EquityResearch3Page() {
           <h1 className="text-2xl font-bold text-white">
             SOTP · Primary Research · Forensic Accounting · Thesis Construction
           </h1>
-          <p className="text-sm text-gray-400 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Professional-grade frameworks used by top-tier buy-side analysts and fundamental short sellers.
           </p>
         </div>
 
         {/* Tabs */}
         <Tabs defaultValue="sotp" className="w-full">
-          <TabsList className="grid grid-cols-4 w-full bg-gray-800 border border-gray-700 rounded-xl p-1 h-auto">
+          <TabsList className="grid grid-cols-4 w-full bg-muted border border-border rounded-xl p-1 h-auto">
             {[
               { value: "sotp", label: "SOTP & Conglomerates", icon: <PieChart className="w-3.5 h-3.5" /> },
               { value: "primary", label: "Primary Research", icon: <Search className="w-3.5 h-3.5" /> },

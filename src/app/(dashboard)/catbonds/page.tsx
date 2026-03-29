@@ -130,7 +130,7 @@ const PERILS: PerilData[] = [
   { peril: "Europe Windstorm", share: 12, icon: <Wind size={14} />, color: "#60a5fa", colorClass: "text-primary" },
   { peril: "Wildfire", share: 8, icon: <Flame size={14} />, color: "#f97316", colorClass: "text-orange-400" },
   { peril: "Flood", share: 7, icon: <Droplets size={14} />, color: "#06b6d4", colorClass: "text-muted-foreground" },
-  { peril: "Multi-Peril", share: 5, icon: <Globe size={14} />, color: "#6b7280", colorClass: "text-gray-400" },
+  { peril: "Multi-Peril", share: 5, icon: <Globe size={14} />, color: "#6b7280", colorClass: "text-muted-foreground" },
 ];
 
 interface CatBond {

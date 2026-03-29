@@ -279,7 +279,7 @@ const ReturnBadge = ({ value }: { value: number }) => (
   <span
     className={cn(
       "text-xs font-semibold",
-      value > 0 ? "text-emerald-400" : value < 0 ? "text-red-400" : "text-zinc-400"
+      value > 0 ? "text-emerald-400" : value < 0 ? "text-red-400" : "text-muted-foreground"
     )}
   >
     {value > 0 ? "+" : ""}{value.toFixed(1)}%
@@ -288,7 +288,7 @@ const ReturnBadge = ({ value }: { value: number }) => (
 
 const RiskBar = ({ value, max = 10 }: { value: number; max?: number }) => (
   <div className="flex items-center gap-2">
-    <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+    <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
       <div
         className={cn(
           "h-full rounded-full transition-all",
@@ -297,7 +297,7 @@ const RiskBar = ({ value, max = 10 }: { value: number; max?: number }) => (
         style={{ width: `${(value / max) * 100}%` }}
       />
     </div>
-    <span className="text-xs text-zinc-400 w-6 text-right">{value}/10</span>
+    <span className="text-xs text-muted-foreground w-6 text-right">{value}/10</span>
   </div>
 );
 
@@ -325,7 +325,7 @@ function MarketOverviewTab() {
 
   const SortHeader = ({ label, k }: { label: string; k: keyof IndexData }) => (
     <th
-      className="px-3 py-2 text-left text-xs font-medium text-zinc-400 cursor-pointer select-none whitespace-nowrap hover:text-zinc-200 transition-colors"
+      className="px-3 py-2 text-left text-xs font-medium text-muted-foreground cursor-pointer select-none whitespace-nowrap hover:text-foreground transition-colors"
       onClick={() => handleSort(k)}
     >
       {label} {sortKey === k ? (sortDir === "desc" ? "↓" : "↑") : ""}
@@ -342,10 +342,10 @@ function MarketOverviewTab() {
           { label: "Best 1Y", value: INDICES.reduce((a, b) => a.oneYear > b.oneYear ? a : b), color: "text-emerald-400" },
           { label: "Best 5Y", value: INDICES.reduce((a, b) => a.fiveYear > b.fiveYear ? a : b), color: "text-emerald-400" },
         ].map(({ label, value, color }) => (
-          <Card key={label} className="bg-zinc-900/60 border-zinc-800">
+          <Card key={label} className="bg-card/60 border-border">
             <CardContent className="p-3">
-              <p className="text-xs text-zinc-500 mb-1">{label}</p>
-              <p className="text-sm font-semibold text-zinc-100">{value.name}</p>
+              <p className="text-xs text-muted-foreground mb-1">{label}</p>
+              <p className="text-sm font-semibold text-foreground">{value.name}</p>
               <p className={cn("text-lg font-bold", color)}>
                 {label.includes("YTD")
                   ? fmt(value.ytd)
@@ -359,9 +359,9 @@ function MarketOverviewTab() {
       </div>
 
       {/* Index table */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-primary" />
             Major Global Indices
           </CardTitle>
@@ -370,10 +370,10 @@ function MarketOverviewTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   <SortHeader label="Index" k="name" />
                   <SortHeader label="Region" k="region" />
-                  <th className="px-3 py-2 text-left text-xs font-medium text-zinc-400">Type</th>
+                  <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Type</th>
                   <SortHeader label="Level" k="level" />
                   <SortHeader label="YTD" k="ytd" />
                   <SortHeader label="1Y" k="oneYear" />
@@ -388,15 +388,15 @@ function MarketOverviewTab() {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.04 }}
-                    className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors"
+                    className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                   >
                     <td className="px-3 py-2.5">
                       <div>
-                        <p className="font-medium text-zinc-100">{idx.name}</p>
-                        <p className="text-xs text-zinc-500">{idx.ticker}</p>
+                        <p className="font-medium text-foreground">{idx.name}</p>
+                        <p className="text-xs text-muted-foreground">{idx.ticker}</p>
                       </div>
                     </td>
-                    <td className="px-3 py-2.5 text-zinc-300">{idx.region}</td>
+                    <td className="px-3 py-2.5 text-muted-foreground">{idx.region}</td>
                     <td className="px-3 py-2.5">
                       <Badge
                         variant="outline"
@@ -410,11 +410,11 @@ function MarketOverviewTab() {
                         {idx.type}
                       </Badge>
                     </td>
-                    <td className="px-3 py-2.5 font-mono text-zinc-200">{idx.level.toLocaleString()}</td>
+                    <td className="px-3 py-2.5 font-mono text-foreground">{idx.level.toLocaleString()}</td>
                     <td className="px-3 py-2.5"><ReturnBadge value={idx.ytd} /></td>
                     <td className="px-3 py-2.5"><ReturnBadge value={idx.oneYear} /></td>
                     <td className="px-3 py-2.5"><ReturnBadge value={idx.fiveYear} /></td>
-                    <td className="px-3 py-2.5 text-zinc-400 text-xs">{idx.currency}</td>
+                    <td className="px-3 py-2.5 text-muted-foreground text-xs">{idx.currency}</td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -424,9 +424,9 @@ function MarketOverviewTab() {
       </Card>
 
       {/* SVG Return Comparison Bar Chart */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             YTD Return Comparison
           </CardTitle>
@@ -546,7 +546,7 @@ function ValuationTab() {
               "px-3 py-1 text-xs font-medium rounded-md border transition-colors",
               filterType === f
                 ? "bg-primary border-primary text-white"
-                : "border-zinc-700 text-zinc-400 hover:border-zinc-500"
+                : "border-border text-muted-foreground hover:border-zinc-500"
             )}
           >
             {f === "all" ? "All Markets" : f === "DM" ? "Developed" : "Emerging"}
@@ -556,7 +556,7 @@ function ValuationTab() {
 
       {/* Cheap / Expensive panels */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-zinc-900/60 border-zinc-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold text-emerald-400 flex items-center gap-2">
               <TrendingUp className="w-4 h-4" />
@@ -565,21 +565,21 @@ function ValuationTab() {
           </CardHeader>
           <CardContent className="space-y-2">
             {cheapest.map(v => (
-              <div key={v.code} className="flex items-center justify-between py-1 border-b border-zinc-800/60 last:border-0">
+              <div key={v.code} className="flex items-center justify-between py-1 border-b border-border/60 last:border-0">
                 <div>
-                  <span className="text-sm font-medium text-zinc-200">{v.country}</span>
+                  <span className="text-sm font-medium text-foreground">{v.country}</span>
                   <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{v.type}</Badge>
                 </div>
                 <div className="text-right">
                   <span className="text-sm font-bold text-emerald-400">{v.pe.toFixed(1)}x</span>
-                  <span className="text-xs text-zinc-500 ml-2">P/E</span>
+                  <span className="text-xs text-muted-foreground ml-2">P/E</span>
                 </div>
               </div>
             ))}
           </CardContent>
         </Card>
 
-        <Card className="bg-zinc-900/60 border-zinc-800">
+        <Card className="bg-card/60 border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-semibold text-red-400 flex items-center gap-2">
               <TrendingDown className="w-4 h-4" />
@@ -588,14 +588,14 @@ function ValuationTab() {
           </CardHeader>
           <CardContent className="space-y-2">
             {expensive.map(v => (
-              <div key={v.code} className="flex items-center justify-between py-1 border-b border-zinc-800/60 last:border-0">
+              <div key={v.code} className="flex items-center justify-between py-1 border-b border-border/60 last:border-0">
                 <div>
-                  <span className="text-sm font-medium text-zinc-200">{v.country}</span>
+                  <span className="text-sm font-medium text-foreground">{v.country}</span>
                   <Badge variant="outline" className={cn("ml-2 text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{v.type}</Badge>
                 </div>
                 <div className="text-right">
                   <span className="text-sm font-bold text-red-400">{v.pe.toFixed(1)}x</span>
-                  <span className="text-xs text-zinc-500 ml-2">P/E</span>
+                  <span className="text-xs text-muted-foreground ml-2">P/E</span>
                 </div>
               </div>
             ))}
@@ -604,9 +604,9 @@ function ValuationTab() {
       </div>
 
       {/* Valuation table */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Valuation Metrics by Market
           </CardTitle>
@@ -615,9 +615,9 @@ function ValuationTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Country", "Type", "P/E", "P/B", "Div. Yield", "EPS Growth", "Region"].map(h => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-zinc-400 whitespace-nowrap">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -631,17 +631,17 @@ function ValuationTab() {
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       transition={{ delay: i * 0.03 }}
-                      className="border-b border-zinc-800/40 hover:bg-zinc-800/20 transition-colors"
+                      className="border-b border-border/40 hover:bg-muted/20 transition-colors"
                     >
-                      <td className="px-3 py-2 font-medium text-zinc-200">{v.country}</td>
+                      <td className="px-3 py-2 font-medium text-foreground">{v.country}</td>
                       <td className="px-3 py-2">
                         <Badge variant="outline" className={cn("text-xs", v.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{v.type}</Badge>
                       </td>
-                      <td className={cn("px-3 py-2 font-semibold", v.pe < 12 ? "text-emerald-400" : v.pe > 20 ? "text-red-400" : "text-zinc-200")}>{v.pe.toFixed(1)}x</td>
-                      <td className="px-3 py-2 text-zinc-300">{v.pb.toFixed(1)}x</td>
+                      <td className={cn("px-3 py-2 font-semibold", v.pe < 12 ? "text-emerald-400" : v.pe > 20 ? "text-red-400" : "text-foreground")}>{v.pe.toFixed(1)}x</td>
+                      <td className="px-3 py-2 text-muted-foreground">{v.pb.toFixed(1)}x</td>
                       <td className="px-3 py-2 text-emerald-400">{fmtNoSign(v.divYield)}</td>
-                      <td className={cn("px-3 py-2 font-medium", v.epsGrowth > 10 ? "text-emerald-400" : v.epsGrowth < 5 ? "text-amber-400" : "text-zinc-300")}>{fmt(v.epsGrowth)}</td>
-                      <td className="px-3 py-2 text-zinc-500 text-xs">{v.region}</td>
+                      <td className={cn("px-3 py-2 font-medium", v.epsGrowth > 10 ? "text-emerald-400" : v.epsGrowth < 5 ? "text-amber-400" : "text-muted-foreground")}>{fmt(v.epsGrowth)}</td>
+                      <td className="px-3 py-2 text-muted-foreground text-xs">{v.region}</td>
                     </motion.tr>
                   ))}
                 </AnimatePresence>
@@ -652,9 +652,9 @@ function ValuationTab() {
       </Card>
 
       {/* SVG Scatter: P/E vs EPS Growth */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             P/E vs. EPS Growth (PEG Analysis)
           </CardTitle>
@@ -740,7 +740,7 @@ function CountryDeepDivesTab() {
               "flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border transition-all",
               selectedCountry === c.code
                 ? "bg-primary/20 border-primary text-primary"
-                : "border-zinc-700 text-zinc-400 hover:border-zinc-500"
+                : "border-border text-muted-foreground hover:border-zinc-500"
             )}
           >
             <span>{c.flag}</span>
@@ -760,27 +760,27 @@ function CountryDeepDivesTab() {
         >
           {/* Left: Market overview */}
           <div className="space-y-4">
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                   <span className="text-xl">{profile.flag}</span>
                   {profile.name} — Overview
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-3 gap-3">
-                  <div className="bg-zinc-800/50 rounded p-2 text-center">
-                    <p className="text-xs text-zinc-500">Market Cap</p>
-                    <p className="text-base font-bold text-zinc-100">${profile.marketCap}T</p>
+                  <div className="bg-muted/50 rounded p-2 text-center">
+                    <p className="text-xs text-muted-foreground">Market Cap</p>
+                    <p className="text-base font-bold text-foreground">${profile.marketCap}T</p>
                   </div>
-                  <div className="bg-zinc-800/50 rounded p-2 text-center">
-                    <p className="text-xs text-zinc-500">GDP Growth</p>
-                    <p className={cn("text-base font-bold", profile.gdpGrowth > 3 ? "text-emerald-400" : profile.gdpGrowth > 1 ? "text-zinc-200" : "text-amber-400")}>
+                  <div className="bg-muted/50 rounded p-2 text-center">
+                    <p className="text-xs text-muted-foreground">GDP Growth</p>
+                    <p className={cn("text-base font-bold", profile.gdpGrowth > 3 ? "text-emerald-400" : profile.gdpGrowth > 1 ? "text-foreground" : "text-amber-400")}>
                       {fmt(profile.gdpGrowth)}
                     </p>
                   </div>
-                  <div className="bg-zinc-800/50 rounded p-2 text-center">
-                    <p className="text-xs text-zinc-500">FX YTD</p>
+                  <div className="bg-muted/50 rounded p-2 text-center">
+                    <p className="text-xs text-muted-foreground">FX YTD</p>
                     <p className={cn("text-base font-bold", profile.fxYtd >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {fmt(profile.fxYtd)}
                     </p>
@@ -788,33 +788,33 @@ function CountryDeepDivesTab() {
                 </div>
 
                 <div>
-                  <p className="text-xs text-zinc-500 mb-1">Political Risk</p>
+                  <p className="text-xs text-muted-foreground mb-1">Political Risk</p>
                   <RiskBar value={profile.politicalRisk} />
                 </div>
 
                 <div>
-                  <p className="text-xs text-zinc-500 mb-2">Currency: <span className="text-zinc-300 font-medium">{profile.currency}</span></p>
-                  <p className="text-xs text-zinc-400 leading-relaxed">{profile.description}</p>
+                  <p className="text-xs text-muted-foreground mb-2">Currency: <span className="text-muted-foreground font-medium">{profile.currency}</span></p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{profile.description}</p>
                 </div>
               </CardContent>
             </Card>
 
             {/* Top stocks */}
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold text-zinc-300">Top Holdings</CardTitle>
+                <CardTitle className="text-sm font-semibold text-muted-foreground">Top Holdings</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {profile.topStocks.map((stk, i) => (
                   <div key={stk.ticker} className="flex items-center gap-2">
-                    <span className="text-xs text-zinc-600 w-3">{i + 1}</span>
+                    <span className="text-xs text-muted-foreground w-3">{i + 1}</span>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-semibold text-primary">{stk.ticker}</span>
-                        <span className="text-xs text-zinc-400">{stk.weight.toFixed(1)}%</span>
+                        <span className="text-xs text-muted-foreground">{stk.weight.toFixed(1)}%</span>
                       </div>
-                      <p className="text-xs text-zinc-500 truncate">{stk.name}</p>
-                      <div className="mt-0.5 h-1 bg-zinc-800 rounded-full overflow-hidden">
+                      <p className="text-xs text-muted-foreground truncate">{stk.name}</p>
+                      <div className="mt-0.5 h-1 bg-muted rounded-full overflow-hidden">
                         <div className="h-full bg-primary/50 rounded-full" style={{ width: `${(stk.weight / 12) * 100}%` }} />
                       </div>
                     </div>
@@ -825,9 +825,9 @@ function CountryDeepDivesTab() {
           </div>
 
           {/* Right: Sectors SVG */}
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-semibold text-zinc-300">Sector Breakdown</CardTitle>
+              <CardTitle className="text-sm font-semibold text-muted-foreground">Sector Breakdown</CardTitle>
             </CardHeader>
             <CardContent>
               <svg viewBox="0 0 340 200" className="w-full" style={{ maxHeight: 220 }}>
@@ -866,9 +866,9 @@ function CurrencyImpactTab() {
           { label: "Most Volatile FX",       val: "BRL 14.3%", color: "text-amber-400" },
           { label: "Highest Hedge Cost",     val: "BRL 7.8%",  color: "text-orange-400" },
         ].map(c => (
-          <Card key={c.label} className="bg-zinc-900/60 border-zinc-800">
+          <Card key={c.label} className="bg-card/60 border-border">
             <CardContent className="p-3">
-              <p className="text-xs text-zinc-500">{c.label}</p>
+              <p className="text-xs text-muted-foreground">{c.label}</p>
               <p className={cn("text-base font-bold mt-1", c.color)}>{c.val}</p>
             </CardContent>
           </Card>
@@ -876,9 +876,9 @@ function CurrencyImpactTab() {
       </div>
 
       {/* Main currency table */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-primary" />
             Local vs. USD Returns (US Investor Perspective)
           </CardTitle>
@@ -887,9 +887,9 @@ function CurrencyImpactTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Country", "Currency", "Local Return", "USD Return", "FX Effect", "Hedge Cost/yr", "FX Volatility"].map(h => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-zinc-400 whitespace-nowrap">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -900,11 +900,11 @@ function CurrencyImpactTab() {
                     initial={{ opacity: 0, x: -6 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="border-b border-zinc-800/40 hover:bg-zinc-800/20 transition-colors"
+                    className="border-b border-border/40 hover:bg-muted/20 transition-colors"
                   >
-                    <td className="px-3 py-2.5 font-medium text-zinc-200">{row.country}</td>
+                    <td className="px-3 py-2.5 font-medium text-foreground">{row.country}</td>
                     <td className="px-3 py-2.5">
-                      <Badge variant="outline" className="border-zinc-700 text-zinc-400 text-xs">{row.currency}</Badge>
+                      <Badge variant="outline" className="border-border text-muted-foreground text-xs">{row.currency}</Badge>
                     </td>
                     <td className="px-3 py-2.5"><ReturnBadge value={row.localReturn} /></td>
                     <td className="px-3 py-2.5"><ReturnBadge value={row.usdReturn} /></td>
@@ -914,7 +914,7 @@ function CurrencyImpactTab() {
                       </span>
                     </td>
                     <td className="px-3 py-2.5 text-amber-400 text-xs">{fmtNoSign(row.hedgeCost)}</td>
-                    <td className="px-3 py-2.5 text-zinc-400 text-xs">{fmtNoSign(row.volatility)}</td>
+                    <td className="px-3 py-2.5 text-muted-foreground text-xs">{fmtNoSign(row.volatility)}</td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -924,9 +924,9 @@ function CurrencyImpactTab() {
       </Card>
 
       {/* SVG: Currency Volatility vs Hedge Cost */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             FX Volatility vs. Hedge Cost Analysis
           </CardTitle>
@@ -991,9 +991,9 @@ function CurrencyImpactTab() {
       </Card>
 
       {/* Hedging explainer */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Info className="w-4 h-4 text-primary" />
             Hedging Decision Framework
           </CardTitle>
@@ -1036,7 +1036,7 @@ function CurrencyImpactTab() {
                 <p className={cn("text-xs font-semibold mb-2", sec.color.split(" ")[0])}>{sec.title}</p>
                 <ul className="space-y-1">
                   {sec.points.map((p, i) => (
-                    <li key={i} className="flex items-start gap-1.5 text-xs text-zinc-400">
+                    <li key={i} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                       <Minus className="w-3 h-3 mt-0.5 flex-shrink-0" />
                       {p}
                     </li>
@@ -1087,9 +1087,9 @@ function EMvsDMTab() {
           { label: "DM Avg Volatility", val: dmAvgVol.toFixed(1) + "%", color: "text-primary" },
           { label: "EM Avg Volatility", val: emAvgVol.toFixed(1) + "%", color: "text-amber-400" },
         ].map(c => (
-          <Card key={c.label} className="bg-zinc-900/60 border-zinc-800">
+          <Card key={c.label} className="bg-card/60 border-border">
             <CardContent className="p-3">
-              <p className="text-xs text-zinc-500">{c.label}</p>
+              <p className="text-xs text-muted-foreground">{c.label}</p>
               <p className={cn("text-xl font-bold mt-1", c.color)}>{c.val}</p>
             </CardContent>
           </Card>
@@ -1097,9 +1097,9 @@ function EMvsDMTab() {
       </div>
 
       {/* Risk/Return Scatter */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             Risk / Return Scatter — EM vs DM (10-Year Annualized)
           </CardTitle>
@@ -1156,9 +1156,9 @@ function EMvsDMTab() {
       </Card>
 
       {/* Factor comparison */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-primary" />
             EM vs. DM: Key Factor Comparison
           </CardTitle>
@@ -1167,7 +1167,7 @@ function EMvsDMTab() {
           {factors.map(f => (
             <div key={f.name} className="space-y-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-zinc-300">{f.name}</span>
+                <span className="text-xs font-medium text-muted-foreground">{f.name}</span>
                 <div className="flex items-center gap-3 text-xs">
                   <span className="text-primary">DM {f.dmScore.toFixed(1)}</span>
                   <span className="text-amber-400">EM {f.emScore.toFixed(1)}</span>
@@ -1175,26 +1175,26 @@ function EMvsDMTab() {
               </div>
               <div className="grid grid-cols-2 gap-1">
                 <div className="flex items-center gap-1.5">
-                  <div className="h-1.5 rounded-full bg-zinc-800 flex-1 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-muted flex-1 overflow-hidden">
                     <div className="h-full bg-primary/70 rounded-full" style={{ width: `${(f.dmScore / 10) * 100}%` }} />
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <div className="h-1.5 rounded-full bg-zinc-800 flex-1 overflow-hidden">
+                  <div className="h-1.5 rounded-full bg-muted flex-1 overflow-hidden">
                     <div className="h-full bg-amber-500/70 rounded-full" style={{ width: `${(f.emScore / 10) * 100}%` }} />
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-zinc-500 leading-relaxed">{f.insight}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{f.insight}</p>
             </div>
           ))}
         </CardContent>
       </Card>
 
       {/* EM data table */}
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary" />
             Detailed Metrics
           </CardTitle>
@@ -1203,9 +1203,9 @@ function EMvsDMTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-zinc-800">
+                <tr className="border-b border-border">
                   {["Market", "Type", "10Y Return", "Volatility", "Sharpe", "Pol. Risk", "Gov. Score", "Demog. Score", "Risk Premium"].map(h => (
-                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-zinc-400 whitespace-nowrap">{h}</th>
+                    <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground whitespace-nowrap">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -1216,24 +1216,24 @@ function EMvsDMTab() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: i * 0.04 }}
-                    className="border-b border-zinc-800/40 hover:bg-zinc-800/20 transition-colors"
+                    className="border-b border-border/40 hover:bg-muted/20 transition-colors"
                   >
-                    <td className="px-3 py-2 font-medium text-zinc-200 whitespace-nowrap">{d.name}</td>
+                    <td className="px-3 py-2 font-medium text-foreground whitespace-nowrap">{d.name}</td>
                     <td className="px-3 py-2">
                       <Badge variant="outline" className={cn("text-xs", d.type === "EM" ? "border-amber-700 text-amber-400" : "border-border text-primary")}>{d.type}</Badge>
                     </td>
                     <td className="px-3 py-2"><ReturnBadge value={d.annualReturn} /></td>
-                    <td className="px-3 py-2 text-zinc-400 text-xs">{fmtNoSign(d.volatility)}</td>
-                    <td className={cn("px-3 py-2 text-xs font-semibold", d.sharpe > 0.6 ? "text-emerald-400" : d.sharpe > 0.3 ? "text-zinc-300" : "text-amber-400")}>
+                    <td className="px-3 py-2 text-muted-foreground text-xs">{fmtNoSign(d.volatility)}</td>
+                    <td className={cn("px-3 py-2 text-xs font-semibold", d.sharpe > 0.6 ? "text-emerald-400" : d.sharpe > 0.3 ? "text-muted-foreground" : "text-amber-400")}>
                       {d.sharpe.toFixed(2)}
                     </td>
                     <td className="px-3 py-2">
                       <RiskBar value={d.politicalRisk} />
                     </td>
-                    <td className={cn("px-3 py-2 text-xs", d.govScore > 7 ? "text-emerald-400" : d.govScore > 5 ? "text-zinc-300" : "text-amber-400")}>
+                    <td className={cn("px-3 py-2 text-xs", d.govScore > 7 ? "text-emerald-400" : d.govScore > 5 ? "text-muted-foreground" : "text-amber-400")}>
                       {d.govScore.toFixed(1)}
                     </td>
-                    <td className={cn("px-3 py-2 text-xs", d.demographicScore > 7 ? "text-emerald-400" : d.demographicScore > 5 ? "text-zinc-300" : "text-red-400")}>
+                    <td className={cn("px-3 py-2 text-xs", d.demographicScore > 7 ? "text-emerald-400" : d.demographicScore > 5 ? "text-muted-foreground" : "text-red-400")}>
                       {d.demographicScore.toFixed(1)}
                     </td>
                     <td className={cn("px-3 py-2 text-xs font-semibold", d.riskPremium > 3 ? "text-amber-400" : "text-primary")}>
@@ -1260,9 +1260,9 @@ export default function GlobalEquityPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Globe className="w-5 h-5 text-primary" />
-            <h1 className="text-xl font-semibold text-zinc-100">Global Equity Markets</h1>
+            <h1 className="text-xl font-semibold text-foreground">Global Equity Markets</h1>
           </div>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-muted-foreground">
             International equity analysis — country comparisons, valuations, currency impact, and EM vs DM dynamics
           </p>
         </div>
@@ -1287,22 +1287,22 @@ export default function GlobalEquityPage() {
           { label: "Avg. Global P/E", val: "16.2x", icon: BarChart2 },
           { label: "Avg. Div Yield", val: "2.8%", icon: DollarSign },
         ].map(({ label, val, icon: Icon }) => (
-          <div key={label} className="flex items-center gap-2 bg-zinc-900/60 border border-zinc-800 rounded-lg px-3 py-1.5">
+          <div key={label} className="flex items-center gap-2 bg-card/60 border border-border rounded-lg px-3 py-1.5">
             <Icon className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs text-zinc-500">{label}</span>
-            <span className="text-xs font-semibold text-zinc-200">{val}</span>
+            <span className="text-xs text-muted-foreground">{label}</span>
+            <span className="text-xs font-semibold text-foreground">{val}</span>
           </div>
         ))}
       </div>
 
       {/* Tabs */}
       <Tabs defaultValue="overview" className="space-y-4">
-        <TabsList className="bg-zinc-900 border border-zinc-800">
-          <TabsTrigger value="overview"   className="data-[state=active]:bg-zinc-800 text-xs">Market Overview</TabsTrigger>
-          <TabsTrigger value="valuation"  className="data-[state=active]:bg-zinc-800 text-xs">Valuation</TabsTrigger>
-          <TabsTrigger value="countries"  className="data-[state=active]:bg-zinc-800 text-xs">Country Deep Dives</TabsTrigger>
-          <TabsTrigger value="currency"   className="data-[state=active]:bg-zinc-800 text-xs">Currency Impact</TabsTrigger>
-          <TabsTrigger value="emdm"       className="data-[state=active]:bg-zinc-800 text-xs">EM vs DM</TabsTrigger>
+        <TabsList className="bg-card border border-border">
+          <TabsTrigger value="overview"   className="data-[state=active]:bg-muted text-xs">Market Overview</TabsTrigger>
+          <TabsTrigger value="valuation"  className="data-[state=active]:bg-muted text-xs">Valuation</TabsTrigger>
+          <TabsTrigger value="countries"  className="data-[state=active]:bg-muted text-xs">Country Deep Dives</TabsTrigger>
+          <TabsTrigger value="currency"   className="data-[state=active]:bg-muted text-xs">Currency Impact</TabsTrigger>
+          <TabsTrigger value="emdm"       className="data-[state=active]:bg-muted text-xs">EM vs DM</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview"  className="data-[state=inactive]:hidden mt-0"><MarketOverviewTab /></TabsContent>

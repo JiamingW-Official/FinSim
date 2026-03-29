@@ -244,7 +244,7 @@ function AssetClassOverview() {
   return (
     <div className="space-y-6">
       {/* Asset Class Table */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-semibold text-white">Asset Class Characteristics</h3>
           <div className="flex gap-1">
@@ -256,7 +256,7 @@ function AssetClassOverview() {
                   "px-2 py-1 rounded text-xs capitalize transition-colors",
                   selectedCategory === cat
                     ? "bg-indigo-600 text-white"
-                    : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"
+                    : "bg-muted text-muted-foreground hover:bg-neutral-700"
                 )}
               >
                 {cat}
@@ -267,13 +267,13 @@ function AssetClassOverview() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-800">
-                <th className="text-left py-2 px-2 text-neutral-500 font-medium">Asset Class</th>
-                <th className="text-right py-2 px-2 text-neutral-500 font-medium">Exp. Return</th>
-                <th className="text-right py-2 px-2 text-neutral-500 font-medium">Volatility</th>
-                <th className="text-right py-2 px-2 text-neutral-500 font-medium">Beta</th>
-                <th className="text-right py-2 px-2 text-neutral-500 font-medium">Sharpe</th>
-                <th className="text-right py-2 px-2 text-neutral-500 font-medium w-32">Risk/Return</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 px-2 text-muted-foreground font-medium">Asset Class</th>
+                <th className="text-right py-2 px-2 text-muted-foreground font-medium">Exp. Return</th>
+                <th className="text-right py-2 px-2 text-muted-foreground font-medium">Volatility</th>
+                <th className="text-right py-2 px-2 text-muted-foreground font-medium">Beta</th>
+                <th className="text-right py-2 px-2 text-muted-foreground font-medium">Sharpe</th>
+                <th className="text-right py-2 px-2 text-muted-foreground font-medium w-32">Risk/Return</th>
               </tr>
             </thead>
             <tbody>
@@ -285,14 +285,14 @@ function AssetClassOverview() {
                   onMouseEnter={() => setHovered(asset.id)}
                   onMouseLeave={() => setHovered(null)}
                   className={cn(
-                    "border-b border-neutral-800/50 transition-colors cursor-default",
-                    hovered === asset.id ? "bg-neutral-800/60" : "hover:bg-neutral-800/30"
+                    "border-b border-border/50 transition-colors cursor-default",
+                    hovered === asset.id ? "bg-muted/60" : "hover:bg-muted/30"
                   )}
                 >
                   <td className="py-2 px-2">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: asset.color }} />
-                      <span className="text-neutral-200">{asset.name}</span>
+                      <span className="text-foreground">{asset.name}</span>
                       <Badge className="text-xs px-1 py-0 capitalize" style={{ background: asset.color + "22", color: asset.color, borderColor: asset.color + "44" }}>
                         {asset.category}
                       </Badge>
@@ -301,7 +301,7 @@ function AssetClassOverview() {
                   <td className="py-2 px-2 text-right text-emerald-400 font-medium">{fmtPct(asset.expectedReturn)}</td>
                   <td className="py-2 px-2 text-right text-amber-400">{fmtPct(asset.volatility)}</td>
                   <td className="py-2 px-2 text-right">
-                    <span className={cn("font-medium", asset.beta < 0 ? "text-primary" : asset.beta < 0.3 ? "text-neutral-400" : "text-neutral-200")}>
+                    <span className={cn("font-medium", asset.beta < 0 ? "text-primary" : asset.beta < 0.3 ? "text-muted-foreground" : "text-foreground")}>
                       {asset.beta.toFixed(2)}
                     </span>
                   </td>
@@ -328,10 +328,10 @@ function AssetClassOverview() {
       </Card>
 
       {/* Scatter Plot */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-4">Return vs. Risk (Efficient Frontier)</h3>
         <div className="overflow-x-auto">
-          <svg width={W} height={H} className="text-neutral-500">
+          <svg width={W} height={H} className="text-muted-foreground">
             {/* Grid lines */}
             {[4, 6, 8, 10, 12, 14].map(ret => (
               <line key={ret} x1={pad.left} y1={toY(ret)} x2={W - pad.right} y2={toY(ret)} stroke="#262626" strokeWidth={1} />
@@ -408,9 +408,9 @@ function AssetClassOverview() {
       </Card>
 
       {/* Correlation Matrix */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-1">Correlation Matrix</h3>
-        <p className="text-xs text-neutral-500 mb-4">Red = high positive correlation, Blue = negative (diversifying)</p>
+        <p className="text-xs text-muted-foreground mb-4">Red = high positive correlation, Blue = negative (diversifying)</p>
         <div className="overflow-x-auto">
           <svg width={600} height={360}>
             {CORRELATIONS.map((row, i) =>
@@ -550,10 +550,10 @@ function PortfolioBuilder() {
             variant="outline"
             onClick={() => applyPreset(p)}
             className={cn(
-              "text-xs border-neutral-700",
+              "text-xs border-border",
               activePreset === p.name
                 ? "bg-indigo-600 border-indigo-500 text-white hover:bg-indigo-700"
-                : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
+                : "bg-muted text-muted-foreground hover:bg-neutral-700"
             )}
           >
             {p.name}
@@ -563,7 +563,7 @@ function PortfolioBuilder() {
           size="sm"
           variant="outline"
           onClick={normalize}
-          className="text-xs border-neutral-700 bg-neutral-800 text-neutral-300 hover:bg-neutral-700 ml-auto"
+          className="text-xs border-border bg-muted text-muted-foreground hover:bg-neutral-700 ml-auto"
         >
           <RefreshCw className="w-3 h-3 mr-1" />
           Normalize to 100%
@@ -573,7 +573,7 @@ function PortfolioBuilder() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Sliders */}
         <div className="lg:col-span-2 space-y-3">
-          <Card className="bg-neutral-900 border-neutral-800 p-4">
+          <Card className="bg-card border-border p-4">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-semibold text-white">Allocation Sliders</h3>
               <Badge className={cn("text-xs", totalOk ? "bg-emerald-900/50 text-emerald-400 border-emerald-800" : "bg-red-900/50 text-red-400 border-red-800")}>
@@ -589,13 +589,13 @@ function PortfolioBuilder() {
                       next[i] = !next[i];
                       setLocked(next);
                     }}
-                    className="flex-shrink-0 text-neutral-500 hover:text-neutral-300 transition-colors"
+                    className="flex-shrink-0 text-muted-foreground hover:text-muted-foreground transition-colors"
                     title={locked[i] ? "Unlock" : "Lock"}
                   >
                     {locked[i] ? <Lock className="w-3 h-3 text-amber-400" /> : <Unlock className="w-3 h-3" />}
                   </button>
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: asset.color }} />
-                  <span className="text-xs text-neutral-300 w-32 flex-shrink-0">{asset.shortName}</span>
+                  <span className="text-xs text-muted-foreground w-32 flex-shrink-0">{asset.shortName}</span>
                   <div className="flex-1">
                     <Slider
                       value={[weights[i]]}
@@ -618,7 +618,7 @@ function PortfolioBuilder() {
         {/* Right panel: donut + metrics */}
         <div className="space-y-4">
           {/* Donut */}
-          <Card className="bg-neutral-900 border-neutral-800 p-4">
+          <Card className="bg-card border-border p-4">
             <h3 className="text-sm font-semibold text-white mb-3">Allocation</h3>
             <div className="flex justify-center">
               <svg width={160} height={160} viewBox="-80 -80 160 160">
@@ -641,7 +641,7 @@ function PortfolioBuilder() {
                 .map(s => (
                   <div key={s.i} className="flex items-center gap-2 text-xs">
                     <div className="w-2 h-2 rounded-full" style={{ background: s.color }} />
-                    <span className="text-neutral-400 flex-1">{s.name}</span>
+                    <span className="text-muted-foreground flex-1">{s.name}</span>
                     <span className="text-white">{s.weight.toFixed(1)}%</span>
                   </div>
                 ))}
@@ -649,7 +649,7 @@ function PortfolioBuilder() {
           </Card>
 
           {/* Metrics */}
-          <Card className="bg-neutral-900 border-neutral-800 p-4">
+          <Card className="bg-card border-border p-4">
             <h3 className="text-sm font-semibold text-white mb-3">Portfolio Metrics</h3>
             <div className="space-y-3">
               {[
@@ -661,8 +661,8 @@ function PortfolioBuilder() {
               ].map(item => (
                 <div key={item.label} className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
-                    <item.icon className="w-3.5 h-3.5 text-neutral-500" />
-                    <span className="text-xs text-neutral-400">{item.label}</span>
+                    <item.icon className="w-3.5 h-3.5 text-muted-foreground" />
+                    <span className="text-xs text-muted-foreground">{item.label}</span>
                   </div>
                   <span className={cn("text-sm font-semibold", item.color)}>{item.value}</span>
                 </div>
@@ -673,7 +673,7 @@ function PortfolioBuilder() {
       </div>
 
       {/* Efficient Frontier overlay */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-4">Your Portfolio on the Efficient Frontier</h3>
         <svg width={EW} height={EH}>
           {/* Grid */}
@@ -826,14 +826,14 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
   return (
     <div className="space-y-6">
       {/* Monte Carlo Fan Chart */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <div className="flex items-center justify-between mb-1">
           <h3 className="text-sm font-semibold text-white">Monte Carlo Simulation — 500 Scenarios, 30 Years</h3>
           <Badge className="bg-indigo-900/50 text-indigo-300 border-indigo-800 text-xs">
             Starting: $100K
           </Badge>
         </div>
-        <p className="text-xs text-neutral-500 mb-4">Shaded bands show 10th–25th, 25th–50th, 50th–75th, 75th–90th percentile outcomes</p>
+        <p className="text-xs text-muted-foreground mb-4">Shaded bands show 10th–25th, 25th–50th, 50th–75th, 75th–90th percentile outcomes</p>
 
         <div className="overflow-x-auto">
           <svg width={FCW} height={FCH}>
@@ -885,26 +885,26 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
           </svg>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-neutral-800">
+        <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-border">
           <div className="text-center">
-            <p className="text-xs text-neutral-500">Prob. of $1M+</p>
+            <p className="text-xs text-muted-foreground">Prob. of $1M+</p>
             <p className="text-xl font-bold text-emerald-400">{fmtPct(mcResult.probMillion * 100, 0)}</p>
           </div>
           <div className="text-center">
-            <p className="text-xs text-neutral-500">Median Outcome</p>
+            <p className="text-xs text-muted-foreground">Median Outcome</p>
             <p className="text-xl font-bold text-indigo-400">{fmtK(mcResult.p50[mcResult.YEARS])}</p>
           </div>
           <div className="text-center">
-            <p className="text-xs text-neutral-500">Worst 5th %ile</p>
+            <p className="text-xs text-muted-foreground">Worst 5th %ile</p>
             <p className="text-xl font-bold text-red-400">{fmtK(mcResult.worst5th)}</p>
           </div>
         </div>
       </Card>
 
       {/* Historical Scenarios */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-1">Historical Stress Test</h3>
-        <p className="text-xs text-neutral-500 mb-4">Portfolio return vs S&P 500 in each historical scenario</p>
+        <p className="text-xs text-muted-foreground mb-4">Portfolio return vs S&P 500 in each historical scenario</p>
 
         <div className="overflow-x-auto">
           <svg width={BW} height={BH}>
@@ -965,19 +965,19 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-800">
-                <th className="text-left py-2 text-neutral-500">Scenario</th>
-                <th className="text-right py-2 text-neutral-500">Your Portfolio</th>
-                <th className="text-right py-2 text-neutral-500">S&P 500</th>
-                <th className="text-right py-2 text-neutral-500">Difference</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground">Scenario</th>
+                <th className="text-right py-2 text-muted-foreground">Your Portfolio</th>
+                <th className="text-right py-2 text-muted-foreground">S&P 500</th>
+                <th className="text-right py-2 text-muted-foreground">Difference</th>
               </tr>
             </thead>
             <tbody>
               {historicalReturns.map(sc => {
                 const diff = sc.portReturn - sc.spReturn;
                 return (
-                  <tr key={sc.name} className="border-b border-neutral-800/50">
-                    <td className="py-2 text-neutral-300">{sc.name}</td>
+                  <tr key={sc.name} className="border-b border-border/50">
+                    <td className="py-2 text-muted-foreground">{sc.name}</td>
                     <td className={cn("py-2 text-right font-medium", sc.portReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {sc.portReturn.toFixed(1)}%
                     </td>
@@ -1118,7 +1118,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
               "flex items-center gap-2 px-3 py-2 rounded-lg border text-xs transition-colors",
               selected.has(s.key)
                 ? "border-transparent text-white"
-                : "border-neutral-700 bg-neutral-800/50 text-neutral-500"
+                : "border-border bg-muted/50 text-muted-foreground"
             )}
             style={selected.has(s.key) ? { background: results[s.key].color + "22", borderColor: results[s.key].color + "88", color: results[s.key].color } : {}}
           >
@@ -1129,7 +1129,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
       </div>
 
       {/* Chart */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-1">Portfolio Value Over 20 Years — $100K Starting</h3>
         <div className="overflow-x-auto">
           <svg width={W} height={H}>
@@ -1170,18 +1170,18 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
       </Card>
 
       {/* Results table */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-4">Strategy Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-800">
-                <th className="text-left py-2 text-neutral-500">Strategy</th>
-                <th className="text-right py-2 text-neutral-500">Ending Value</th>
-                <th className="text-right py-2 text-neutral-500">Total Return</th>
-                <th className="text-right py-2 text-neutral-500">Rebalances</th>
-                <th className="text-right py-2 text-neutral-500">Total Cost</th>
-                <th className="text-right py-2 text-neutral-500">Rebal Premium</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground">Strategy</th>
+                <th className="text-right py-2 text-muted-foreground">Ending Value</th>
+                <th className="text-right py-2 text-muted-foreground">Total Return</th>
+                <th className="text-right py-2 text-muted-foreground">Rebalances</th>
+                <th className="text-right py-2 text-muted-foreground">Total Cost</th>
+                <th className="text-right py-2 text-muted-foreground">Rebal Premium</th>
               </tr>
             </thead>
             <tbody>
@@ -1192,18 +1192,18 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
                 const baseReturn = ((results.none.values[MONTHS] - 100_000) / 100_000) * 100;
                 const premium = totalReturn - baseReturn;
                 return (
-                  <tr key={s.key} className="border-b border-neutral-800/50">
+                  <tr key={s.key} className="border-b border-border/50">
                     <td className="py-2">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
-                        <span className="text-neutral-200">{s.label}</span>
+                        <span className="text-foreground">{s.label}</span>
                       </div>
                     </td>
                     <td className="py-2 text-right font-semibold" style={{ color: r.color }}>{fmtK(endVal)}</td>
                     <td className={cn("py-2 text-right font-medium", totalReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {totalReturn.toFixed(1)}%
                     </td>
-                    <td className="py-2 text-right text-neutral-300">{r.rebalCount}×</td>
+                    <td className="py-2 text-right text-muted-foreground">{r.rebalCount}×</td>
                     <td className="py-2 text-right text-amber-400">{fmtK(r.totalCost)}</td>
                     <td className={cn("py-2 text-right font-medium", premium >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {s.key === "none" ? "—" : `${premium >= 0 ? "+" : ""}${premium.toFixed(1)}%`}
@@ -1214,8 +1214,8 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
             </tbody>
           </table>
         </div>
-        <div className="mt-4 p-3 bg-neutral-800/50 rounded-lg">
-          <p className="text-xs text-neutral-400">
+        <div className="mt-4 p-3 bg-muted/50 rounded-lg">
+          <p className="text-xs text-muted-foreground">
             <span className="text-amber-400 font-medium">Cost assumptions:</span> 0.1% transaction cost per trade, 15% long-term capital gains tax on 30% of rebalanced gains.
             Rebalancing premium shows excess return vs. no-rebalancing strategy.
           </p>
@@ -1345,28 +1345,28 @@ function LifecyclePlanning() {
   return (
     <div className="space-y-6">
       {/* Controls */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-4">Personal Parameters</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
-            <label className="text-xs text-neutral-400 block mb-2">Current Age: <span className="text-white font-semibold">{currentAge}</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Current Age: <span className="text-white font-semibold">{currentAge}</span></label>
             <Slider value={[currentAge]} onValueChange={([v]) => setCurrentAge(v)} min={20} max={75} step={1} />
           </div>
           <div>
-            <label className="text-xs text-neutral-400 block mb-2">Retirement Age: <span className="text-white font-semibold">{retirementAge}</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Retirement Age: <span className="text-white font-semibold">{retirementAge}</span></label>
             <Slider value={[retirementAge]} onValueChange={([v]) => setRetirementAge(v)} min={50} max={75} step={1} />
           </div>
           <div>
-            <label className="text-xs text-neutral-400 block mb-2">Portfolio Value: <span className="text-white font-semibold">{fmtK(portfolioVal)}</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Portfolio Value: <span className="text-white font-semibold">{fmtK(portfolioVal)}</span></label>
             <Slider value={[portfolioVal]} onValueChange={([v]) => setPortfolioVal(v)} min={100_000} max={5_000_000} step={50_000} />
           </div>
           <div>
-            <label className="text-xs text-neutral-400 block mb-2">Safe Withdrawal Rate: <span className="text-white font-semibold">{swr.toFixed(1)}%</span></label>
+            <label className="text-xs text-muted-foreground block mb-2">Safe Withdrawal Rate: <span className="text-white font-semibold">{swr.toFixed(1)}%</span></label>
             <Slider value={[swr]} onValueChange={([v]) => setSwr(v)} min={2} max={7} step={0.1} />
           </div>
         </div>
         <div className="mt-4">
-          <label className="text-xs text-neutral-400 block mb-2">Risk Tolerance: <span className="text-white font-semibold">{toleranceLabels[riskTolerance]}</span></label>
+          <label className="text-xs text-muted-foreground block mb-2">Risk Tolerance: <span className="text-white font-semibold">{toleranceLabels[riskTolerance]}</span></label>
           <div className="flex gap-2">
             {toleranceLabels.map((label, i) => (
               <button
@@ -1374,7 +1374,7 @@ function LifecyclePlanning() {
                 onClick={() => setRiskTolerance(i)}
                 className={cn(
                   "px-3 py-1.5 rounded text-xs transition-colors",
-                  riskTolerance === i ? "bg-indigo-600 text-white" : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"
+                  riskTolerance === i ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-neutral-700"
                 )}
               >
                 {label}
@@ -1385,9 +1385,9 @@ function LifecyclePlanning() {
       </Card>
 
       {/* Glide Path Chart */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-1">Asset Allocation Glide Path</h3>
-        <p className="text-xs text-neutral-500 mb-4">Recommended stock allocation at each age for your risk tolerance</p>
+        <p className="text-xs text-muted-foreground mb-4">Recommended stock allocation at each age for your risk tolerance</p>
         <div className="overflow-x-auto">
           <svg width={GW} height={GH}>
             {/* Grid */}
@@ -1453,24 +1453,24 @@ function LifecyclePlanning() {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-800">
-                <th className="text-left py-2 text-neutral-500">Age</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground">Age</th>
                 {GLIDE_PATH_AGES.map(age => (
-                  <th key={age} className={cn("text-center py-2 text-neutral-500", age === currentAge && "text-amber-400")}>{age}</th>
+                  <th key={age} className={cn("text-center py-2 text-muted-foreground", age === currentAge && "text-amber-400")}>{age}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-neutral-800/50">
-                <td className="py-2 text-neutral-400">Stocks</td>
+              <tr className="border-b border-border/50">
+                <td className="py-2 text-muted-foreground">Stocks</td>
                 {glidePath.map(p => (
                   <td key={p.age} className={cn("py-2 text-center font-medium", p.age === currentAge ? "text-amber-400" : "text-indigo-400")}>
                     {p.stockPct.toFixed(0)}%
                   </td>
                 ))}
               </tr>
-              <tr className="border-b border-neutral-800/50">
-                <td className="py-2 text-neutral-400">Bonds</td>
+              <tr className="border-b border-border/50">
+                <td className="py-2 text-muted-foreground">Bonds</td>
                 {glidePath.map(p => (
                   <td key={p.age} className={cn("py-2 text-center", p.age === currentAge ? "text-amber-400" : "text-primary")}>
                     {p.bondPct.toFixed(0)}%
@@ -1478,9 +1478,9 @@ function LifecyclePlanning() {
                 ))}
               </tr>
               <tr>
-                <td className="py-2 text-neutral-400">Alts</td>
+                <td className="py-2 text-muted-foreground">Alts</td>
                 {glidePath.map(p => (
-                  <td key={p.age} className="py-2 text-center text-neutral-500">
+                  <td key={p.age} className="py-2 text-center text-muted-foreground">
                     {p.altPct}%
                   </td>
                 ))}
@@ -1491,7 +1491,7 @@ function LifecyclePlanning() {
       </Card>
 
       {/* Target Date Fund Comparison */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <h3 className="text-sm font-semibold text-white mb-4">Target Date Fund Comparison</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {TARGET_DATE_FUNDS.map(fund => {
@@ -1503,7 +1503,7 @@ function LifecyclePlanning() {
             ];
             let cumAngle = -Math.PI / 2;
             return (
-              <div key={fund.name} className="bg-neutral-800/50 rounded-lg p-3 text-center">
+              <div key={fund.name} className="bg-muted/50 rounded-lg p-3 text-center">
                 <p className="text-xs font-semibold text-white mb-2">{fund.name}</p>
                 <svg width={100} height={100} className="mx-auto">
                   <g transform="translate(50,50)">
@@ -1534,7 +1534,7 @@ function LifecyclePlanning() {
                   {segments.map(seg => (
                     <div key={seg.label} className="flex justify-between">
                       <span style={{ color: seg.color }}>{seg.label}</span>
-                      <span className="text-neutral-400">{seg.pct}%</span>
+                      <span className="text-muted-foreground">{seg.pct}%</span>
                     </div>
                   ))}
                 </div>
@@ -1545,11 +1545,11 @@ function LifecyclePlanning() {
       </Card>
 
       {/* Sequence of Returns */}
-      <Card className="bg-neutral-900 border-neutral-800 p-5">
+      <Card className="bg-card border-border p-5">
         <div className="flex items-start justify-between mb-1">
           <div>
             <h3 className="text-sm font-semibold text-white">Sequence of Returns Risk</h3>
-            <p className="text-xs text-neutral-500 mt-0.5">
+            <p className="text-xs text-muted-foreground mt-0.5">
               Same average return, different order — dramatically different outcomes.
               Annual withdrawal: {fmtK(sorResult.annualWithdrawal)}
             </p>
@@ -1613,8 +1613,8 @@ function LifecyclePlanning() {
           </svg>
         </div>
 
-        <div className="mt-4 p-3 bg-neutral-800/50 rounded-lg">
-          <p className="text-xs text-neutral-400">
+        <div className="mt-4 p-3 bg-muted/50 rounded-lg">
+          <p className="text-xs text-muted-foreground">
             <span className="text-amber-400 font-medium">Key insight:</span> A {swr.toFixed(1)}% withdrawal rate from a {fmtK(portfolioVal)} portfolio
             ({fmtK(sorResult.annualWithdrawal)}/yr) has a <span className="text-white font-semibold">{fmtPct(swrProb * 100, 0)} probability</span> of lasting 30 years.
             Early sequence risk is the greatest threat to retirement security — avoid large early withdrawals in down markets.
@@ -1650,11 +1650,11 @@ export default function AllocationPage() {
               <h1 className="text-xl font-bold text-white">Multi-Asset Allocation Simulator</h1>
               <Badge className="bg-indigo-900/50 text-indigo-300 border-indigo-800 text-xs">12 Asset Classes</Badge>
             </div>
-            <p className="text-sm text-neutral-400 ml-11">
+            <p className="text-sm text-muted-foreground ml-11">
               Build, analyze, and optimize portfolios across equities, fixed income, and alternatives
             </p>
           </div>
-          <div className="flex items-center gap-2 text-xs text-neutral-500">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Info className="w-3.5 h-3.5" />
             <span>Educational simulation only</span>
           </div>
@@ -1676,13 +1676,13 @@ export default function AllocationPage() {
               { label: "Market Beta", value: m.beta.toFixed(2), color: "text-primary", icon: BarChart3, bg: "bg-primary/10" },
             ];
           })().map(item => (
-            <Card key={item.label} className="bg-neutral-900 border-neutral-800 p-3">
+            <Card key={item.label} className="bg-card border-border p-3">
               <div className="flex items-center gap-2">
                 <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center", item.bg)}>
                   <item.icon className={cn("w-3.5 h-3.5", item.color)} />
                 </div>
                 <div>
-                  <p className="text-xs text-neutral-500">{item.label}</p>
+                  <p className="text-xs text-muted-foreground">{item.label}</p>
                   <p className={cn("text-base font-bold", item.color)}>{item.value}</p>
                 </div>
               </div>
@@ -1697,7 +1697,7 @@ export default function AllocationPage() {
           transition={{ duration: 0.4, delay: 0.15 }}
         >
           <Tabs value={tab} onValueChange={setTab}>
-            <TabsList className="bg-neutral-900 border border-neutral-800 mb-6 flex flex-wrap h-auto gap-1 p-1">
+            <TabsList className="bg-card border border-border mb-6 flex flex-wrap h-auto gap-1 p-1">
               {[
                 { value: "overview",    label: "Asset Classes",      icon: Layers },
                 { value: "builder",     label: "Portfolio Builder",   icon: PieChart },
@@ -1708,7 +1708,7 @@ export default function AllocationPage() {
                 <TabsTrigger
                   key={t.value}
                   value={t.value}
-                  className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white data-[state=inactive]:text-neutral-400"
+                  className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white data-[state=inactive]:text-muted-foreground"
                 >
                   <t.icon className="w-3.5 h-3.5" />
                   {t.label}

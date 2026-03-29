@@ -210,8 +210,8 @@ function RoboLandscape() {
   return (
     <div className="space-y-6">
       {/* AUM Bar Chart */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
-        <h3 className="text-sm font-semibold text-neutral-300 mb-4">Assets Under Management (Billions)</h3>
+      <Card className="p-5 bg-card border-border">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Assets Under Management (Billions)</h3>
         <svg viewBox="0 0 620 200" className="w-full">
           {PROVIDERS.map((p, i) => {
             const barH = (p.aum / maxAUM) * 150;
@@ -243,20 +243,20 @@ function RoboLandscape() {
       </Card>
 
       {/* Comparison Table */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800 overflow-x-auto">
-        <h3 className="text-sm font-semibold text-neutral-300 mb-4">Platform Comparison</h3>
+      <Card className="p-5 bg-card border-border overflow-x-auto">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Platform Comparison</h3>
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-neutral-800">
-              <th className="text-left pb-2 text-neutral-500 font-medium">Platform</th>
-              <th className="text-right pb-2 text-neutral-500 font-medium">AUM</th>
-              <th className="text-right pb-2 text-neutral-500 font-medium">Fee</th>
-              <th className="text-right pb-2 text-neutral-500 font-medium">Min.</th>
-              <th className="text-center pb-2 text-neutral-500 font-medium">TLH</th>
-              <th className="text-center pb-2 text-neutral-500 font-medium">DI</th>
-              <th className="text-center pb-2 text-neutral-500 font-medium">Human</th>
-              <th className="text-center pb-2 text-neutral-500 font-medium">ESG</th>
-              <th className="text-right pb-2 text-neutral-500 font-medium">Rating</th>
+            <tr className="border-b border-border">
+              <th className="text-left pb-2 text-muted-foreground font-medium">Platform</th>
+              <th className="text-right pb-2 text-muted-foreground font-medium">AUM</th>
+              <th className="text-right pb-2 text-muted-foreground font-medium">Fee</th>
+              <th className="text-right pb-2 text-muted-foreground font-medium">Min.</th>
+              <th className="text-center pb-2 text-muted-foreground font-medium">TLH</th>
+              <th className="text-center pb-2 text-muted-foreground font-medium">DI</th>
+              <th className="text-center pb-2 text-muted-foreground font-medium">Human</th>
+              <th className="text-center pb-2 text-muted-foreground font-medium">ESG</th>
+              <th className="text-right pb-2 text-muted-foreground font-medium">Rating</th>
             </tr>
           </thead>
           <tbody>
@@ -264,8 +264,8 @@ function RoboLandscape() {
               <motion.tr
                 key={p.name}
                 className={cn(
-                  "border-b border-neutral-800/50 cursor-pointer transition-colors",
-                  selected === p.name ? "bg-neutral-800/60" : "hover:bg-neutral-800/30"
+                  "border-b border-border/50 cursor-pointer transition-colors",
+                  selected === p.name ? "bg-muted/60" : "hover:bg-muted/30"
                 )}
                 onClick={() => setSelected(selected === p.name ? null : p.name)}
               >
@@ -275,12 +275,12 @@ function RoboLandscape() {
                       className="w-2 h-2 rounded-full flex-shrink-0"
                       style={{ backgroundColor: p.color }}
                     />
-                    <span className="font-medium text-neutral-200">{p.name}</span>
+                    <span className="font-medium text-foreground">{p.name}</span>
                   </div>
                 </td>
-                <td className="text-right text-neutral-300">{fmtB(p.aum)}</td>
-                <td className="text-right text-neutral-300">{p.fee === 0 ? <Badge variant="secondary" className="text-xs">Free</Badge> : fmtPct(p.fee)}</td>
-                <td className="text-right text-neutral-300">{p.min === 0 ? "$0" : fmtDollars(p.min)}</td>
+                <td className="text-right text-muted-foreground">{fmtB(p.aum)}</td>
+                <td className="text-right text-muted-foreground">{p.fee === 0 ? <Badge variant="secondary" className="text-xs">Free</Badge> : fmtPct(p.fee)}</td>
+                <td className="text-right text-muted-foreground">{p.min === 0 ? "$0" : fmtDollars(p.min)}</td>
                 <td className="text-center">{p.taxLoss ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-neutral-600">—</span>}</td>
                 <td className="text-center">{p.directIndex ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-neutral-600">—</span>}</td>
                 <td className="text-center">{p.humanAccess ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-neutral-600">—</span>}</td>
@@ -307,11 +307,11 @@ function RoboLandscape() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
             >
-              <Card className="p-5 bg-neutral-900 border-neutral-800">
+              <Card className="p-5 bg-card border-border">
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h3 className="font-semibold text-neutral-100" style={{ color: p.color }}>{p.name}</h3>
-                    <p className="text-xs text-neutral-400 mt-1">{p.description}</p>
+                    <h3 className="font-semibold text-foreground" style={{ color: p.color }}>{p.name}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{p.description}</p>
                   </div>
                   <Badge style={{ backgroundColor: p.color + "30", color: p.color, borderColor: p.color + "60" }} variant="outline">
                     {p.rating} / 5
@@ -324,9 +324,9 @@ function RoboLandscape() {
                     { label: "Minimum", val: p.min === 0 ? "None" : fmtDollars(p.min) },
                     { label: "Features", val: [p.taxLoss && "TLH", p.directIndex && "DI", p.esg && "ESG", p.humanAccess && "Human"].filter(Boolean).join(" · ") || "—" },
                   ].map(({ label, val }) => (
-                    <div key={label} className="bg-neutral-800/50 rounded-lg p-3">
-                      <p className="text-xs text-neutral-500">{label}</p>
-                      <p className="text-sm font-semibold text-neutral-200 mt-0.5">{val}</p>
+                    <div key={label} className="bg-muted/50 rounded-lg p-3">
+                      <p className="text-xs text-muted-foreground">{label}</p>
+                      <p className="text-sm font-semibold text-foreground mt-0.5">{val}</p>
                     </div>
                   ))}
                 </div>
@@ -343,12 +343,12 @@ function RoboLandscape() {
           { icon: DollarSign, color: "text-emerald-400", label: "Avg Fee", val: "0.14%", sub: "vs 1.02% human advisor" },
           { icon: Users, color: "text-primary", label: "Users", val: "4.5M+", sub: "Active robo accounts" },
         ].map(({ icon: Icon, color, label, val, sub }) => (
-          <Card key={label} className="p-4 bg-neutral-900 border-neutral-800 flex items-center gap-3">
+          <Card key={label} className="p-4 bg-card border-border flex items-center gap-3">
             <Icon className={cn("w-8 h-8 flex-shrink-0", color)} />
             <div>
-              <p className="text-xs text-neutral-500">{label}</p>
-              <p className="text-lg font-bold text-neutral-100">{val}</p>
-              <p className="text-xs text-neutral-500">{sub}</p>
+              <p className="text-xs text-muted-foreground">{label}</p>
+              <p className="text-lg font-bold text-foreground">{val}</p>
+              <p className="text-xs text-muted-foreground">{sub}</p>
             </div>
           </Card>
         ))}
@@ -429,9 +429,9 @@ function PortfolioConstruction() {
   return (
     <div className="space-y-6">
       {/* Risk Tolerance Slider */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
+      <Card className="p-5 bg-card border-border">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-semibold text-neutral-300">Risk Tolerance</h3>
+          <h3 className="text-sm font-semibold text-muted-foreground">Risk Tolerance</h3>
           <Badge variant="outline" className={cn(
             "border-current",
             riskTolerance < 33 ? "text-emerald-400" : riskTolerance < 66 ? "text-amber-400" : "text-red-400"
@@ -456,8 +456,8 @@ function PortfolioConstruction() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Efficient Frontier SVG */}
-        <Card className="p-5 bg-neutral-900 border-neutral-800">
-          <h3 className="text-sm font-semibold text-neutral-300 mb-4">Efficient Frontier (MPT)</h3>
+        <Card className="p-5 bg-card border-border">
+          <h3 className="text-sm font-semibold text-muted-foreground mb-4">Efficient Frontier (MPT)</h3>
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
             {/* Grid lines */}
             {[3, 5, 7, 9].map((ret) => (
@@ -536,8 +536,8 @@ function PortfolioConstruction() {
         </Card>
 
         {/* Allocation Pie */}
-        <Card className="p-5 bg-neutral-900 border-neutral-800">
-          <h3 className="text-sm font-semibold text-neutral-300 mb-4">Recommended Allocation</h3>
+        <Card className="p-5 bg-card border-border">
+          <h3 className="text-sm font-semibold text-muted-foreground mb-4">Recommended Allocation</h3>
           <div className="flex items-center gap-6">
             <svg viewBox="0 0 120 120" className="w-28 h-28 flex-shrink-0">
               {pieSlices.map((sl) => (
@@ -549,20 +549,20 @@ function PortfolioConstruction() {
                 <div key={al.label} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-sm flex-shrink-0" style={{ backgroundColor: al.color }} />
-                    <span className="text-sm text-neutral-300">{al.label}</span>
+                    <span className="text-sm text-muted-foreground">{al.label}</span>
                   </div>
-                  <span className="text-sm font-semibold text-neutral-100">{al.pct}%</span>
+                  <span className="text-sm font-semibold text-foreground">{al.pct}%</span>
                 </div>
               ))}
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 mt-4">
-            <div className="bg-neutral-800/50 rounded-lg p-3">
-              <p className="text-xs text-neutral-500">Expected Return</p>
+            <div className="bg-muted/50 rounded-lg p-3">
+              <p className="text-xs text-muted-foreground">Expected Return</p>
               <p className="text-base font-bold text-emerald-400">{fmtPct(currentPortfolio.ret)}</p>
             </div>
-            <div className="bg-neutral-800/50 rounded-lg p-3">
-              <p className="text-xs text-neutral-500">Expected Risk (σ)</p>
+            <div className="bg-muted/50 rounded-lg p-3">
+              <p className="text-xs text-muted-foreground">Expected Risk (σ)</p>
               <p className="text-base font-bold text-amber-400">{fmtPct(currentPortfolio.risk)}</p>
             </div>
           </div>
@@ -570,8 +570,8 @@ function PortfolioConstruction() {
       </div>
 
       {/* Rebalancing Rules */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
-        <h3 className="text-sm font-semibold text-neutral-300 mb-4">Rebalancing Rules & Tax-Loss Harvesting Automation</h3>
+      <Card className="p-5 bg-card border-border">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Rebalancing Rules & Tax-Loss Harvesting Automation</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[
             {
@@ -593,10 +593,10 @@ function PortfolioConstruction() {
               desc: "New deposits directed to underweight assets first, minimizing taxable rebalancing events.",
             },
           ].map(({ icon: Icon, color, title, desc }) => (
-            <div key={title} className="bg-neutral-800/50 rounded-lg p-4">
+            <div key={title} className="bg-muted/50 rounded-lg p-4">
               <Icon className={cn("w-5 h-5 mb-2", color)} />
-              <p className="text-sm font-semibold text-neutral-200 mb-1">{title}</p>
-              <p className="text-xs text-neutral-500 leading-relaxed">{desc}</p>
+              <p className="text-sm font-semibold text-foreground mb-1">{title}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
@@ -654,13 +654,13 @@ function CostComparison() {
   return (
     <div className="space-y-6">
       {/* Controls */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
-        <h3 className="text-sm font-semibold text-neutral-300 mb-4">Simulation Parameters</h3>
+      <Card className="p-5 bg-card border-border">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Simulation Parameters</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <div className="flex justify-between mb-2">
-              <label className="text-xs text-neutral-400">Initial Investment</label>
-              <span className="text-xs font-semibold text-neutral-200">{fmtDollars(initialAmount)}</span>
+              <label className="text-xs text-muted-foreground">Initial Investment</label>
+              <span className="text-xs font-semibold text-foreground">{fmtDollars(initialAmount)}</span>
             </div>
             <Slider
               value={[initialAmount]}
@@ -672,8 +672,8 @@ function CostComparison() {
           </div>
           <div>
             <div className="flex justify-between mb-2">
-              <label className="text-xs text-neutral-400">Annual Return (Gross)</label>
-              <span className="text-xs font-semibold text-neutral-200">{fmtPct(annualReturn, 1)}</span>
+              <label className="text-xs text-muted-foreground">Annual Return (Gross)</label>
+              <span className="text-xs font-semibold text-foreground">{fmtPct(annualReturn, 1)}</span>
             </div>
             <Slider
               value={[annualReturn]}
@@ -687,8 +687,8 @@ function CostComparison() {
       </Card>
 
       {/* Cost Drag Chart */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
-        <h3 className="text-sm font-semibold text-neutral-300 mb-4">30-Year Compounding Cost Drag</h3>
+      <Card className="p-5 bg-card border-border">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">30-Year Compounding Cost Drag</h3>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
           {/* Grid */}
           {[0.25, 0.5, 0.75, 1].map((t) => {
@@ -736,13 +736,13 @@ function CostComparison() {
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {scenarios.map((sc) => (
-          <Card key={sc.label} className="p-4 bg-neutral-900 border-neutral-800">
+          <Card key={sc.label} className="p-4 bg-card border-border">
             <div className="flex items-center gap-2 mb-2">
               <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: sc.color }} />
-              <p className="text-xs text-neutral-400">{sc.label}</p>
+              <p className="text-xs text-muted-foreground">{sc.label}</p>
             </div>
-            <p className="text-xl font-bold text-neutral-100">{fmtDollars(sc.final)}</p>
-            <p className="text-xs text-neutral-500 mt-1">30-year terminal value</p>
+            <p className="text-xl font-bold text-foreground">{fmtDollars(sc.final)}</p>
+            <p className="text-xs text-muted-foreground mt-1">30-year terminal value</p>
           </Card>
         ))}
       </div>
@@ -755,7 +755,7 @@ function CostComparison() {
             <p className="text-xs font-semibold text-red-400">Human Advisor Cost Drag</p>
           </div>
           <p className="text-2xl font-bold text-red-300">{fmtDollars(costDrag)}</p>
-          <p className="text-xs text-neutral-500 mt-1">Lost to fees vs DIY over 30 years on {fmtDollars(initialAmount)} at {annualReturn}% gross</p>
+          <p className="text-xs text-muted-foreground mt-1">Lost to fees vs DIY over 30 years on {fmtDollars(initialAmount)} at {annualReturn}% gross</p>
         </Card>
         <Card className="p-4 bg-emerald-950/30 border-emerald-900/40">
           <div className="flex items-center gap-2 mb-1">
@@ -763,7 +763,7 @@ function CostComparison() {
             <p className="text-xs font-semibold text-emerald-400">Robo vs Human Savings</p>
           </div>
           <p className="text-2xl font-bold text-emerald-300">{fmtDollars(roboSavings)}</p>
-          <p className="text-xs text-neutral-500 mt-1">Saved by choosing robo over human advisor over 30 years</p>
+          <p className="text-xs text-muted-foreground mt-1">Saved by choosing robo over human advisor over 30 years</p>
         </Card>
       </div>
     </div>
@@ -869,25 +869,25 @@ function SmartFeatures() {
           <Card key={title} className={cn("p-5 border", bg)}>
             <div className="flex items-start justify-between mb-3">
               <Icon className={cn("w-6 h-6", color)} />
-              <Badge variant="outline" className="text-xs border-neutral-700 text-neutral-400">{badge}</Badge>
+              <Badge variant="outline" className="text-xs border-border text-muted-foreground">{badge}</Badge>
             </div>
-            <h3 className="font-semibold text-neutral-100 mb-0.5">{title}</h3>
+            <h3 className="font-semibold text-foreground mb-0.5">{title}</h3>
             <div className="flex items-baseline gap-1.5 mb-2">
               <span className={cn("text-xl font-bold", color)}>{stat}</span>
-              <span className="text-xs text-neutral-500">{statLabel}</span>
+              <span className="text-xs text-muted-foreground">{statLabel}</span>
             </div>
-            <p className="text-xs text-neutral-400 leading-relaxed">{desc}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
           </Card>
         ))}
       </div>
 
       {/* Risk Questionnaire */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
-        <h3 className="text-sm font-semibold text-neutral-300 mb-4">Risk Profile Questionnaire</h3>
+      <Card className="p-5 bg-card border-border">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Risk Profile Questionnaire</h3>
         <div className="space-y-5">
           {QUIZ_QUESTIONS.map((q, qi) => (
             <div key={qi}>
-              <p className="text-sm text-neutral-200 mb-2">{qi + 1}. {q.q}</p>
+              <p className="text-sm text-foreground mb-2">{qi + 1}. {q.q}</p>
               <div className="flex flex-wrap gap-2">
                 {q.options.map((opt, oi) => (
                   <button
@@ -902,7 +902,7 @@ function SmartFeatures() {
                       "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
                       answers[qi] === oi
                         ? "bg-primary border-primary text-white"
-                        : "bg-neutral-800 border-neutral-700 text-neutral-400 hover:border-neutral-600"
+                        : "bg-muted border-border text-muted-foreground hover:border-neutral-600"
                     )}
                   >
                     {opt}
@@ -926,10 +926,10 @@ function SmartFeatures() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="mt-5 p-4 bg-neutral-800/60 rounded-xl border border-neutral-700"
+              className="mt-5 p-4 bg-muted/60 rounded-xl border border-border"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-semibold text-neutral-200">Your Risk Profile</span>
+                <span className="text-sm font-semibold text-foreground">Your Risk Profile</span>
                 <span className={cn("text-sm font-bold", riskLabel.color)}>{riskLabel.label}</span>
               </div>
               <div className="w-full bg-neutral-700 rounded-full h-2 mb-2">
@@ -940,8 +940,8 @@ function SmartFeatures() {
                   transition={{ duration: 0.8 }}
                 />
               </div>
-              <p className="text-xs text-neutral-500">Score: {totalScore}/{maxScore} ({pct.toFixed(0)}%)</p>
-              <p className="text-xs text-neutral-400 mt-2">
+              <p className="text-xs text-muted-foreground">Score: {totalScore}/{maxScore} ({pct.toFixed(0)}%)</p>
+              <p className="text-xs text-muted-foreground mt-2">
                 {pct < 30
                   ? "A conservative allocation (e.g., 30% equity / 60% bonds / 10% cash) suits your lower risk appetite and shorter horizon."
                   : pct < 60
@@ -1020,17 +1020,17 @@ function AIAndFuture() {
             desc: "Money in bank account auto-swept to optimal vehicle. Bills paid from checking, excess to HYSA or investment portfolio based on cash flow forecast.",
           },
         ].map(({ icon: Icon, color, title, desc }) => (
-          <Card key={title} className="p-4 bg-neutral-900 border-neutral-800">
+          <Card key={title} className="p-4 bg-card border-border">
             <Icon className={cn("w-6 h-6 mb-2", color)} />
-            <p className="text-sm font-semibold text-neutral-200 mb-1.5">{title}</p>
-            <p className="text-xs text-neutral-500 leading-relaxed">{desc}</p>
+            <p className="text-sm font-semibold text-foreground mb-1.5">{title}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
           </Card>
         ))}
       </div>
 
       {/* Adoption Timeline */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
-        <h3 className="text-sm font-semibold text-neutral-300 mb-5">Robo-Advisor Adoption Timeline</h3>
+      <Card className="p-5 bg-card border-border">
+        <h3 className="text-sm font-semibold text-muted-foreground mb-5">Robo-Advisor Adoption Timeline</h3>
         <div className="relative">
           {/* Spine */}
           <div className="absolute left-6 top-0 bottom-0 w-px bg-neutral-700" />
@@ -1047,10 +1047,10 @@ function AIAndFuture() {
                   className={cn(
                     "w-12 h-12 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 border-2 relative z-10",
                     ev.status === "past"
-                      ? "bg-neutral-800 border-neutral-600 text-neutral-400"
+                      ? "bg-muted border-neutral-600 text-muted-foreground"
                       : ev.status === "current"
                       ? "bg-primary border-primary text-white"
-                      : "bg-neutral-900 border-dashed border-neutral-600 text-neutral-600"
+                      : "bg-card border-dashed border-neutral-600 text-neutral-600"
                   )}
                 >
                   {ev.year}
@@ -1061,7 +1061,7 @@ function AIAndFuture() {
                       className={cn(
                         "text-sm font-semibold",
                         ev.status === "past"
-                          ? "text-neutral-300"
+                          ? "text-muted-foreground"
                           : ev.status === "current"
                           ? "text-primary"
                           : "text-neutral-600"
@@ -1073,10 +1073,10 @@ function AIAndFuture() {
                       <Badge className="text-xs bg-primary/20 text-primary border-border">Now</Badge>
                     )}
                     {ev.status === "future" && (
-                      <Badge variant="outline" className="text-xs border-neutral-700 text-neutral-600">Projected</Badge>
+                      <Badge variant="outline" className="text-xs border-border text-neutral-600">Projected</Badge>
                     )}
                   </div>
-                  <p className="text-xs text-neutral-500 mt-0.5 leading-relaxed">{ev.desc}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{ev.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -1085,12 +1085,12 @@ function AIAndFuture() {
       </Card>
 
       {/* Robo vs Human Performance Insight */}
-      <Card className="p-5 bg-neutral-900 border-neutral-800">
+      <Card className="p-5 bg-card border-border">
         <div className="flex items-start gap-3">
           <Info className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
           <div>
-            <h3 className="text-sm font-semibold text-neutral-200 mb-2">Research Insight: Do Robos Outperform?</h3>
-            <p className="text-xs text-neutral-400 leading-relaxed">
+            <h3 className="text-sm font-semibold text-foreground mb-2">Research Insight: Do Robos Outperform?</h3>
+            <p className="text-xs text-muted-foreground leading-relaxed">
               DALBAR research shows average investor underperforms the S&P 500 by ~1.5% annually due to behavioral errors.
               Robo-advisors eliminate panic selling and forced rebalancing, closing a significant portion of this gap.
               Vanguard's Advisor Alpha study estimates 3% annual value-add from behavioral coaching alone — the primary advantage
@@ -1102,9 +1102,9 @@ function AIAndFuture() {
                 { label: "TLH alpha (est.)", val: "+0.5%/yr", color: "text-emerald-400" },
                 { label: "Behavioral alpha", val: "+1.5%/yr", color: "text-primary" },
               ].map(({ label, val, color }) => (
-                <div key={label} className="bg-neutral-800/50 rounded-lg p-3 text-center">
+                <div key={label} className="bg-muted/50 rounded-lg p-3 text-center">
                   <p className={cn("text-base font-bold", color)}>{val}</p>
-                  <p className="text-xs text-neutral-500 mt-0.5">{label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{label}</p>
                 </div>
               ))}
             </div>
@@ -1121,7 +1121,7 @@ export default function RoboAdvisorPage() {
   const [tab, setTab] = useState("landscape");
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-4 sm:p-6">
+    <div className="min-h-screen bg-neutral-950 text-foreground p-4 sm:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1130,16 +1130,16 @@ export default function RoboAdvisorPage() {
       >
         <div className="flex items-center gap-3 mb-1">
           <Cpu className="w-7 h-7 text-primary" />
-          <h1 className="text-2xl font-bold text-neutral-100">Robo-Advisor & Wealth Tech</h1>
+          <h1 className="text-2xl font-bold text-foreground">Robo-Advisor & Wealth Tech</h1>
         </div>
-        <p className="text-sm text-neutral-500">
+        <p className="text-sm text-muted-foreground">
           Automated investing, MPT portfolio construction, cost analysis, smart features, and the algorithmic future of wealth management.
         </p>
       </motion.div>
 
       {/* Tabs */}
       <Tabs value={tab} onValueChange={setTab}>
-        <TabsList className="mb-6 bg-neutral-900 border border-neutral-800 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="mb-6 bg-card border border-border flex-wrap h-auto gap-1 p-1">
           {[
             { value: "landscape", label: "Robo Landscape", icon: BarChart3 },
             { value: "construction", label: "Portfolio Construction", icon: PieChart },

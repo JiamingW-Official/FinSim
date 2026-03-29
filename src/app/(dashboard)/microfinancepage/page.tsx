@@ -312,16 +312,16 @@ function OSSCalculator() {
       : "Subsidy Dependent";
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardHeader>
-        <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
           <Calculator className="w-4 h-4 text-primary" />
           Operational Self-Sufficiency (OSS) Calculator
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-5">
         <div className="space-y-2">
-          <div className="flex justify-between text-xs text-zinc-400">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>Total Revenue (USD thousands)</span>
             <span className="text-white font-mono">${revenue}k</span>
           </div>
@@ -334,7 +334,7 @@ function OSSCalculator() {
           />
         </div>
         <div className="space-y-2">
-          <div className="flex justify-between text-xs text-zinc-400">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>Total Expenses (USD thousands)</span>
             <span className="text-white font-mono">${expenses}k</span>
           </div>
@@ -414,7 +414,7 @@ function OSSCalculator() {
           >
             {ossLabel}
           </Badge>
-          <p className="text-xs text-zinc-500 text-center max-w-xs">
+          <p className="text-xs text-muted-foreground text-center max-w-xs">
             OSS = Revenue / (Financial Expenses + Loan Loss Provisions + Operating Expenses). Above 100% means the MFI covers all costs without donor subsidy.
           </p>
         </div>
@@ -440,28 +440,28 @@ function PARGauge({
     par90 < 3 ? "#10b981" : par90 < 6 ? "#f59e0b" : "#ef4444";
 
   return (
-    <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-4 space-y-3">
-      <p className="text-xs font-medium text-zinc-300">{name}</p>
+    <div className="bg-card border border-border rounded-lg p-4 space-y-3">
+      <p className="text-xs font-medium text-muted-foreground">{name}</p>
       <div className="space-y-2">
         <div className="flex justify-between text-xs">
-          <span className="text-zinc-500">PAR 30</span>
+          <span className="text-muted-foreground">PAR 30</span>
           <span style={{ color: par30Color }} className="font-mono font-bold">
             {par30.toFixed(1)}%
           </span>
         </div>
-        <div className="w-full bg-zinc-800 rounded-full h-2">
+        <div className="w-full bg-muted rounded-full h-2">
           <div
             className="h-2 rounded-full transition-all"
             style={{ width: `${Math.min(par30 * 5, 100)}%`, backgroundColor: par30Color }}
           />
         </div>
         <div className="flex justify-between text-xs mt-1">
-          <span className="text-zinc-500">PAR 90</span>
+          <span className="text-muted-foreground">PAR 90</span>
           <span style={{ color: par90Color }} className="font-mono font-bold">
             {par90.toFixed(1)}%
           </span>
         </div>
-        <div className="w-full bg-zinc-800 rounded-full h-2">
+        <div className="w-full bg-muted rounded-full h-2">
           <div
             className="h-2 rounded-full transition-all"
             style={{ width: `${Math.min(par90 * 5, 100)}%`, backgroundColor: par90Color }}
@@ -503,9 +503,9 @@ function BorrowerDonut() {
   const iy2 = cy + innerR * Math.sin(-Math.PI / 2);
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardHeader>
-        <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
           <PieChart className="w-4 h-4 text-pink-400" />
           Borrower Demographics (Global MFI Average)
         </CardTitle>
@@ -537,11 +537,11 @@ function BorrowerDonut() {
           <div className="flex gap-4 text-xs">
             <div className="flex items-center gap-1">
               <div className="w-3 h-3 rounded-full bg-pink-500" />
-              <span className="text-zinc-400">Women 68%</span>
+              <span className="text-muted-foreground">Women 68%</span>
             </div>
             <div className="flex items-center gap-1">
               <div className="w-3 h-3 rounded-full bg-primary" />
-              <span className="text-zinc-400">Men 32%</span>
+              <span className="text-muted-foreground">Men 32%</span>
             </div>
           </div>
         </div>
@@ -551,12 +551,12 @@ function BorrowerDonut() {
           {segments.map((seg) => (
             <div key={seg.label} className="space-y-1">
               <div className="flex justify-between text-xs">
-                <span className="text-zinc-400">{seg.label}</span>
+                <span className="text-muted-foreground">{seg.label}</span>
                 <span className="font-mono" style={{ color: seg.color }}>
                   {seg.pct}%
                 </span>
               </div>
-              <div className="w-full bg-zinc-800 rounded-full h-1.5">
+              <div className="w-full bg-muted rounded-full h-1.5">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${seg.pct}%` }}
@@ -567,7 +567,7 @@ function BorrowerDonut() {
               </div>
             </div>
           ))}
-          <div className="pt-2 text-xs text-zinc-500 space-y-1">
+          <div className="pt-2 text-xs text-muted-foreground space-y-1">
             <p>Source: MIX Market / CGAP 2023 aggregates across 1,400+ MFIs</p>
             <p>Targeting women borrowers correlates with higher repayment rates and stronger household welfare outcomes in most RCT studies.</p>
           </div>
@@ -619,9 +619,9 @@ function MPesaChart() {
     ` L ${lastX} ${baseY} Z`;
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardHeader>
-        <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
           <Smartphone className="w-4 h-4 text-green-400" />
           M-Pesa Kenya: Mobile Money Penetration 2007–2024
         </CardTitle>
@@ -704,13 +704,13 @@ function MPesaChart() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
           {[
-            { label: "2007 Launch", value: "500K users", color: "text-zinc-400" },
+            { label: "2007 Launch", value: "500K users", color: "text-muted-foreground" },
             { label: "2024 Users", value: "52 million", color: "text-green-400" },
             { label: "Penetration", value: "92% adults", color: "text-green-400" },
             { label: "GDP via M-Pesa", value: "~45% Kenya GDP", color: "text-amber-400" },
           ].map((stat) => (
-            <div key={stat.label} className="bg-zinc-800 rounded p-3 text-center">
-              <p className="text-xs text-zinc-500">{stat.label}</p>
+            <div key={stat.label} className="bg-muted rounded p-3 text-center">
+              <p className="text-xs text-muted-foreground">{stat.label}</p>
               <p className={`text-sm font-bold mt-1 ${stat.color}`}>{stat.value}</p>
             </div>
           ))}
@@ -724,9 +724,9 @@ function MPesaChart() {
 
 function GrameenFlowDiagram() {
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardHeader>
-        <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
           <Users className="w-4 h-4 text-amber-400" />
           Grameen Bank Group Lending Model
         </CardTitle>
@@ -784,7 +784,7 @@ function GrameenFlowDiagram() {
 
         {/* Solidarity vs Individual comparison */}
         <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-zinc-800 rounded-lg p-4 space-y-2">
+          <div className="bg-muted rounded-lg p-4 space-y-2">
             <p className="text-xs font-semibold text-amber-400 flex items-center gap-1">
               <Users className="w-3 h-3" /> Group / Solidarity Lending
             </p>
@@ -796,13 +796,13 @@ function GrameenFlowDiagram() {
               "Higher admin cost per loan",
               "Default rate typically 1–4%",
             ].map((item) => (
-              <div key={item} className="flex items-start gap-2 text-xs text-zinc-400">
+              <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
                 <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
                 <span>{item}</span>
               </div>
             ))}
           </div>
-          <div className="bg-zinc-800 rounded-lg p-4 space-y-2">
+          <div className="bg-muted rounded-lg p-4 space-y-2">
             <p className="text-xs font-semibold text-primary flex items-center gap-1">
               <Building className="w-3 h-3" /> Individual Lending
             </p>
@@ -814,7 +814,7 @@ function GrameenFlowDiagram() {
               "Serves more established MSMEs",
               "Higher risk of moral hazard",
             ].map((item) => (
-              <div key={item} className="flex items-start gap-2 text-xs text-zinc-400">
+              <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
                 <ArrowRight className="w-3 h-3 text-primary mt-0.5 shrink-0" />
                 <span>{item}</span>
               </div>
@@ -863,29 +863,29 @@ function InterestRateExplainer() {
   ];
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardHeader>
-        <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+        <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Why Microfinance Interest Rates Are High (20–80% APR)
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         {reasons.map((r) => (
-          <div key={r.label} className="flex gap-3 bg-zinc-800 rounded-lg p-3">
+          <div key={r.label} className="flex gap-3 bg-muted rounded-lg p-3">
             <r.icon className={`w-4 h-4 mt-0.5 shrink-0 ${r.color}`} />
             <div>
               <p className={`text-xs font-semibold ${r.color}`}>{r.label}</p>
-              <p className="text-xs text-zinc-400 mt-0.5">{r.detail}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{r.detail}</p>
             </div>
           </div>
         ))}
-        <div className="bg-zinc-800 rounded-lg p-3 border border-zinc-700">
-          <p className="text-xs text-zinc-300 font-semibold flex items-center gap-1">
+        <div className="bg-muted rounded-lg p-3 border border-border">
+          <p className="text-xs text-muted-foreground font-semibold flex items-center gap-1">
             <Info className="w-3 h-3 text-primary" />
             Controversy
           </p>
-          <p className="text-xs text-zinc-400 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Critics like Muhammad Yunus argue commercial MFIs (e.g., Compartamos charging 68% APR) exploit vulnerable borrowers. Defenders note rates are still far below informal moneylenders (200–500%) and enable access otherwise unavailable. The debate drives regulation: many countries now cap MFI rates at 24–36% APR.
           </p>
         </div>
@@ -1007,7 +1007,7 @@ export default function MicrofinancepagePage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-7xl mx-auto p-4 sm:p-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -1024,7 +1024,7 @@ export default function MicrofinancepagePage() {
               <h1 className="text-xl font-bold text-white">
                 Microfinance &amp; Financial Inclusion
               </h1>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Microloan models · MFI financial health · Impact evidence · Mobile money innovation
               </p>
             </div>
@@ -1040,9 +1040,9 @@ export default function MicrofinancepagePage() {
             ].map((chip) => (
               <div
                 key={chip.label}
-                className="bg-zinc-900 border border-zinc-800 rounded-full px-3 py-1 flex items-center gap-2"
+                className="bg-card border border-border rounded-full px-3 py-1 flex items-center gap-2"
               >
-                <span className="text-xs text-zinc-500">{chip.label}</span>
+                <span className="text-xs text-muted-foreground">{chip.label}</span>
                 <span className="text-xs font-semibold text-white">{chip.value}</span>
               </div>
             ))}
@@ -1051,17 +1051,17 @@ export default function MicrofinancepagePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="models">
-          <TabsList className="bg-zinc-900 border border-zinc-800 flex flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="models" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsList className="bg-card border border-border flex flex-wrap h-auto gap-1 p-1">
+            <TabsTrigger value="models" className="text-xs data-[state=active]:bg-muted">
               Microfinance Models
             </TabsTrigger>
-            <TabsTrigger value="health" className="text-xs data-[state=active]:bg-zinc-700">
+            <TabsTrigger value="health" className="text-xs data-[state=active]:bg-muted">
               MFI Financial Health
             </TabsTrigger>
-            <TabsTrigger value="impact" className="text-xs data-[state=active]:bg-zinc-700">
+            <TabsTrigger value="impact" className="text-xs data-[state=active]:bg-muted">
               Impact Metrics
             </TabsTrigger>
-            <TabsTrigger value="mobile" className="text-xs data-[state=active]:bg-zinc-700">
+            <TabsTrigger value="mobile" className="text-xs data-[state=active]:bg-muted">
               Mobile Money &amp; Innovation
             </TabsTrigger>
           </TabsList>
@@ -1071,9 +1071,9 @@ export default function MicrofinancepagePage() {
             <GrameenFlowDiagram />
 
             {/* MFI Types */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Building className="w-4 h-4 text-primary" />
                   MFI Types Comparison
                 </CardTitle>
@@ -1082,12 +1082,12 @@ export default function MicrofinancepagePage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
+                      <tr className="border-b border-border">
                         {["Type", "Regulated", "Avg Loan", "Clients", "Profit Motive", "Description"].map(
                           (h) => (
                             <th
                               key={h}
-                              className="text-left py-2 px-3 text-zinc-500 font-medium"
+                              className="text-left py-2 px-3 text-muted-foreground font-medium"
                             >
                               {h}
                             </th>
@@ -1099,20 +1099,20 @@ export default function MicrofinancepagePage() {
                       {MFI_TYPES.map((mfi, i) => (
                         <tr
                           key={mfi.type}
-                          className={`border-b border-zinc-800/50 ${i % 2 === 0 ? "bg-zinc-900/50" : ""}`}
+                          className={`border-b border-border/50 ${i % 2 === 0 ? "bg-card/50" : ""}`}
                         >
                           <td className="py-2 px-3 font-medium text-white">{mfi.type}</td>
                           <td className="py-2 px-3">
                             {mfi.regulated ? (
                               <CheckCircle className="w-3.5 h-3.5 text-green-500" />
                             ) : (
-                              <XCircle className="w-3.5 h-3.5 text-zinc-600" />
+                              <XCircle className="w-3.5 h-3.5 text-muted-foreground" />
                             )}
                           </td>
                           <td className="py-2 px-3 font-mono text-amber-400">
                             ${mfi.avgLoanSize.toLocaleString()}
                           </td>
-                          <td className="py-2 px-3 text-zinc-400">{mfi.clients}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{mfi.clients}</td>
                           <td className="py-2 px-3">
                             {mfi.profitMotif ? (
                               <Badge className="bg-primary/20 text-primary border-primary/40 text-xs">
@@ -1124,7 +1124,7 @@ export default function MicrofinancepagePage() {
                               </Badge>
                             )}
                           </td>
-                          <td className="py-2 px-3 text-zinc-400 max-w-xs">{mfi.description}</td>
+                          <td className="py-2 px-3 text-muted-foreground max-w-xs">{mfi.description}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1134,9 +1134,9 @@ export default function MicrofinancepagePage() {
             </Card>
 
             {/* Average Loan Size by Region */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-primary" />
                   Average Loan Size by Region (USD)
                 </CardTitle>
@@ -1147,8 +1147,8 @@ export default function MicrofinancepagePage() {
                     const maxVal = 3200;
                     return (
                       <div key={r.region} className="flex items-center gap-3">
-                        <span className="text-xs text-zinc-400 w-44 shrink-0">{r.region}</span>
-                        <div className="flex-1 bg-zinc-800 rounded-full h-5 overflow-hidden">
+                        <span className="text-xs text-muted-foreground w-44 shrink-0">{r.region}</span>
+                        <div className="flex-1 bg-muted rounded-full h-5 overflow-hidden">
                           <motion.div
                             initial={{ width: 0 }}
                             animate={{ width: `${(r.avgLoanUSD / maxVal) * 100}%` }}
@@ -1168,7 +1168,7 @@ export default function MicrofinancepagePage() {
                     );
                   })}
                 </div>
-                <p className="text-xs text-zinc-500 mt-3">
+                <p className="text-xs text-muted-foreground mt-3">
                   Large regional variance reflects GDP per capita, regulatory maturity, and target client segment. Eastern Europe MFIs primarily serve SMEs while South Asia targets ultra-poor households.
                 </p>
               </CardContent>
@@ -1180,9 +1180,9 @@ export default function MicrofinancepagePage() {
           {/* ── Tab 2: MFI Financial Health ───────────────────────────────────── */}
           <TabsContent value="health" className="data-[state=inactive]:hidden space-y-6 mt-4">
             {/* PAR overview grid */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-red-400" />
                   Portfolio at Risk (PAR) — Select MFI
                 </CardTitle>
@@ -1196,7 +1196,7 @@ export default function MicrofinancepagePage() {
                       className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
                         selectedMFI.name === mfi.name
                           ? "bg-primary text-white"
-                          : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700"
+                          : "bg-muted text-muted-foreground hover:bg-muted"
                       }`}
                     >
                       {mfi.name}
@@ -1251,11 +1251,11 @@ export default function MicrofinancepagePage() {
                     ].map((metric) => (
                       <div
                         key={metric.label}
-                        className="flex items-center justify-between bg-zinc-800 rounded px-3 py-2"
+                        className="flex items-center justify-between bg-muted rounded px-3 py-2"
                       >
                         <div>
-                          <p className="text-xs font-medium text-zinc-300">{metric.label}</p>
-                          <p className="text-xs text-zinc-500">{metric.desc}</p>
+                          <p className="text-xs font-medium text-muted-foreground">{metric.label}</p>
+                          <p className="text-xs text-muted-foreground">{metric.desc}</p>
                         </div>
                         <span
                           className="text-sm font-bold font-mono"
@@ -1273,9 +1273,9 @@ export default function MicrofinancepagePage() {
             <OSSCalculator />
 
             {/* Full MFI comparison table */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-green-400" />
                   8-MFI Financial Benchmarks
                 </CardTitle>
@@ -1284,7 +1284,7 @@ export default function MicrofinancepagePage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-zinc-800">
+                      <tr className="border-b border-border">
                         {[
                           "MFI",
                           "Country",
@@ -1298,7 +1298,7 @@ export default function MicrofinancepagePage() {
                         ].map((h) => (
                           <th
                             key={h}
-                            className="text-left py-2 px-2 text-zinc-500 font-medium whitespace-nowrap"
+                            className="text-left py-2 px-2 text-muted-foreground font-medium whitespace-nowrap"
                           >
                             {h}
                           </th>
@@ -1309,13 +1309,13 @@ export default function MicrofinancepagePage() {
                       {MFI_TABLE.map((mfi, i) => (
                         <tr
                           key={mfi.name}
-                          className={`border-b border-zinc-800/50 cursor-pointer hover:bg-zinc-800/60 ${
-                            selectedMFI.name === mfi.name ? "bg-muted/40" : i % 2 === 0 ? "bg-zinc-900/40" : ""
+                          className={`border-b border-border/50 cursor-pointer hover:bg-muted/60 ${
+                            selectedMFI.name === mfi.name ? "bg-muted/40" : i % 2 === 0 ? "bg-card/40" : ""
                           }`}
                           onClick={() => setSelectedMFI(mfi)}
                         >
                           <td className="py-2 px-2 font-medium text-white whitespace-nowrap">{mfi.name}</td>
-                          <td className="py-2 px-2 text-zinc-400">{mfi.country}</td>
+                          <td className="py-2 px-2 text-muted-foreground">{mfi.country}</td>
                           <td
                             className="py-2 px-2 font-mono"
                             style={{ color: mfi.par30 < 5 ? "#10b981" : mfi.par30 < 10 ? "#f59e0b" : "#ef4444" }}
@@ -1374,10 +1374,10 @@ export default function MicrofinancepagePage() {
                       color: "text-primary",
                     },
                   ].map((b) => (
-                    <div key={b.label} className="bg-zinc-800 rounded p-3">
-                      <p className="text-xs text-zinc-500">{b.label}</p>
+                    <div key={b.label} className="bg-muted rounded p-3">
+                      <p className="text-xs text-muted-foreground">{b.label}</p>
                       <p className={`text-lg font-bold font-mono mt-1 ${b.color}`}>{b.value}</p>
-                      <p className="text-xs text-zinc-600 mt-0.5">{b.note}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{b.note}</p>
                     </div>
                   ))}
                 </div>
@@ -1390,20 +1390,20 @@ export default function MicrofinancepagePage() {
             {/* KPI Grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               {impactMetrics.map((m) => (
-                <Card key={m.label} className="bg-zinc-900 border-zinc-800">
+                <Card key={m.label} className="bg-card border-border">
                   <CardContent className="p-4 flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
-                      <m.icon className="w-4 h-4 text-zinc-400" />
+                    <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center shrink-0">
+                      <m.icon className="w-4 h-4 text-muted-foreground" />
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-500">{m.label}</p>
+                      <p className="text-xs text-muted-foreground">{m.label}</p>
                       <p
                         className={`text-sm font-bold mt-0.5 ${
                           m.trend === "up"
                             ? "text-green-400"
                             : m.trend === "down"
                             ? "text-red-400"
-                            : "text-zinc-300"
+                            : "text-muted-foreground"
                         }`}
                       >
                         {m.value}
@@ -1417,9 +1417,9 @@ export default function MicrofinancepagePage() {
             <BorrowerDonut />
 
             {/* Social Performance Framework */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Shield className="w-4 h-4 text-muted-foreground" />
                   Social Performance Standards (SPTF / CERISE)
                 </CardTitle>
@@ -1464,9 +1464,9 @@ export default function MicrofinancepagePage() {
                       score: 58,
                     },
                   ].map((pillar) => (
-                    <div key={pillar.pillar} className="bg-zinc-800 rounded-lg p-4 space-y-3">
+                    <div key={pillar.pillar} className="bg-muted rounded-lg p-4 space-y-3">
                       <div className="flex justify-between items-center">
-                        <p className="text-xs font-semibold text-zinc-300">{pillar.pillar}</p>
+                        <p className="text-xs font-semibold text-muted-foreground">{pillar.pillar}</p>
                         <span
                           className={`text-xs font-mono font-bold ${
                             pillar.score >= 75
@@ -1482,8 +1482,8 @@ export default function MicrofinancepagePage() {
                       <Progress value={pillar.score} className="h-1.5" />
                       <ul className="space-y-1">
                         {pillar.indicators.map((ind) => (
-                          <li key={ind} className="flex items-start gap-1.5 text-xs text-zinc-400">
-                            <CheckCircle className="w-3 h-3 text-zinc-600 mt-0.5 shrink-0" />
+                          <li key={ind} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                            <CheckCircle className="w-3 h-3 text-muted-foreground mt-0.5 shrink-0" />
                             {ind}
                           </li>
                         ))}
@@ -1495,7 +1495,7 @@ export default function MicrofinancepagePage() {
                   <p className="text-xs font-semibold text-amber-400 flex items-center gap-1">
                     <AlertTriangle className="w-3 h-3" /> Mission Drift Concern
                   </p>
-                  <p className="text-xs text-zinc-400 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     As MFIs commercialize and pursue investor returns, evidence shows gradual upscaling to wealthier clients. The Andhra Pradesh, India crisis (2010) illustrates how aggressive commercialization — with multiple competing lenders per borrower and bonus-driven collections — can cause harm at scale. SPTF standards aim to codify responsible practice, but enforcement is voluntary for most MFIs.
                   </p>
                 </div>
@@ -1503,9 +1503,9 @@ export default function MicrofinancepagePage() {
             </Card>
 
             {/* RCT Evidence */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-primary" />
                   Randomized Control Trial (RCT) Evidence Summary
                 </CardTitle>
@@ -1518,27 +1518,27 @@ export default function MicrofinancepagePage() {
                       className={`flex gap-3 rounded-lg p-3 ${
                         study.positive
                           ? "bg-green-500/10 border border-green-500/20"
-                          : "bg-zinc-800 border border-zinc-700"
+                          : "bg-muted border border-border"
                       }`}
                     >
                       <div className="shrink-0 mt-0.5">
                         {study.positive ? (
                           <CheckCircle className="w-4 h-4 text-green-500" />
                         ) : (
-                          <XCircle className="w-4 h-4 text-zinc-500" />
+                          <XCircle className="w-4 h-4 text-muted-foreground" />
                         )}
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-zinc-300">{study.study}</p>
-                        <p className="text-xs text-zinc-500 mb-1">{study.location}</p>
-                        <p className="text-xs text-zinc-400">{study.finding}</p>
+                        <p className="text-xs font-semibold text-muted-foreground">{study.study}</p>
+                        <p className="text-xs text-muted-foreground mb-1">{study.location}</p>
+                        <p className="text-xs text-muted-foreground">{study.finding}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="mt-4 bg-zinc-800 rounded-lg p-3">
-                  <p className="text-xs font-semibold text-zinc-300">Meta-Analytic Consensus</p>
-                  <p className="text-xs text-zinc-400 mt-1">
+                <div className="mt-4 bg-muted rounded-lg p-3">
+                  <p className="text-xs font-semibold text-muted-foreground">Meta-Analytic Consensus</p>
+                  <p className="text-xs text-muted-foreground mt-1">
                     Banerjee et al. (2015) synthesized 6 RCTs and found: microfinance expands business investment but has no average effect on consumption or income poverty. Effects are highly heterogeneous — existing entrepreneurs benefit most; pure subsistence households see little change. Access to savings products and insurance may be more powerful poverty-reduction tools than credit alone.
                   </p>
                 </div>
@@ -1553,20 +1553,20 @@ export default function MicrofinancepagePage() {
             {/* Digital features grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {digitalFeatures.map((feat) => (
-                <Card key={feat.title} className="bg-zinc-900 border-zinc-800">
+                <Card key={feat.title} className="bg-card border-border">
                   <CardContent className="p-4 space-y-2">
                     <feat.icon className={`w-5 h-5 ${feat.color}`} />
                     <p className="text-xs font-semibold text-white">{feat.title}</p>
-                    <p className="text-xs text-zinc-400">{feat.desc}</p>
+                    <p className="text-xs text-muted-foreground">{feat.desc}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
             {/* Agent banking network SVG */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Globe className="w-4 h-4 text-green-400" />
                   Agent Banking Network Model
                 </CardTitle>
@@ -1634,8 +1634,8 @@ export default function MicrofinancepagePage() {
                     { label: "India Business Corr.", value: "1.2M+", color: "text-amber-400" },
                     { label: "Africa Total Agents", value: "3.7M+", color: "text-primary" },
                   ].map((stat) => (
-                    <div key={stat.label} className="bg-zinc-800 rounded p-3 text-center">
-                      <p className="text-xs text-zinc-500">{stat.label}</p>
+                    <div key={stat.label} className="bg-muted rounded p-3 text-center">
+                      <p className="text-xs text-muted-foreground">{stat.label}</p>
                       <p className={`text-sm font-bold mt-1 ${stat.color}`}>{stat.value}</p>
                     </div>
                   ))}
@@ -1644,24 +1644,24 @@ export default function MicrofinancepagePage() {
             </Card>
 
             {/* Challenges */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-red-400" />
                   Key Challenges &amp; Risks
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {challenges.map((ch) => (
-                  <div key={ch.label} className="flex gap-3 bg-zinc-800 rounded-lg p-3">
+                  <div key={ch.label} className="flex gap-3 bg-muted rounded-lg p-3">
                     <Badge
                       className={`text-xs border shrink-0 mt-0.5 ${severityColor[ch.severity]}`}
                     >
                       {ch.severity}
                     </Badge>
                     <div>
-                      <p className="text-xs font-semibold text-zinc-300">{ch.label}</p>
-                      <p className="text-xs text-zinc-400 mt-0.5">{ch.detail}</p>
+                      <p className="text-xs font-semibold text-muted-foreground">{ch.label}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{ch.detail}</p>
                     </div>
                   </div>
                 ))}
@@ -1669,9 +1669,9 @@ export default function MicrofinancepagePage() {
             </Card>
 
             {/* CBDC opportunity */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader>
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <CreditCard className="w-4 h-4 text-amber-400" />
                   CBDC Opportunity for Financial Inclusion
                 </CardTitle>
@@ -1687,7 +1687,7 @@ export default function MicrofinancepagePage() {
                       "Lower cost than card rails; no Visa/Mastercard fees",
                       "Identity layer via digital ID reduces KYC costs",
                     ].map((item) => (
-                      <div key={item} className="flex items-start gap-2 text-xs text-zinc-400">
+                      <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
                         <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 shrink-0" />
                         {item}
                       </div>
@@ -1702,7 +1702,7 @@ export default function MicrofinancepagePage() {
                       "Cybersecurity risk for central bank systems",
                       "Regulatory fragmentation across jurisdictions",
                     ].map((item) => (
-                      <div key={item} className="flex items-start gap-2 text-xs text-zinc-400">
+                      <div key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
                         <XCircle className="w-3 h-3 text-red-500 mt-0.5 shrink-0" />
                         {item}
                       </div>
@@ -1711,7 +1711,7 @@ export default function MicrofinancepagePage() {
                 </div>
                 <div className="mt-4 bg-primary/10 border border-border rounded-lg p-3">
                   <p className="text-xs font-semibold text-primary">Live CBDC Inclusion Programs</p>
-                  <p className="text-xs text-zinc-400 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Nigeria eNaira (2021): 13M wallets registered, though adoption lagged. Bahamas Sand Dollar: offline card enables reaching remote Out Islands. India Digital Rupee pilot (2022–): RBI targeting financial inclusion via offline CBDC in UP and Bihar states. Most experts view tiered CBDC (small wallets = no KYC) as the best path to serving the unbanked.
                   </p>
                 </div>

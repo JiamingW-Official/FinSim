@@ -149,15 +149,15 @@ function MetricCard({ label, value, sub, icon: Icon, trend }: {
   icon: React.ElementType;
   trend?: "up" | "down" | "neutral";
 }) {
-  const trendColor = trend === "up" ? "text-green-400" : trend === "down" ? "text-red-400" : "text-slate-400";
+  const trendColor = trend === "up" ? "text-green-400" : trend === "down" ? "text-red-400" : "text-muted-foreground";
   return (
-    <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 flex flex-col gap-2">
-      <div className="flex items-center gap-2 text-slate-400 text-xs">
+    <div className="bg-muted/60 border border-border/50 rounded-xl p-4 flex flex-col gap-2">
+      <div className="flex items-center gap-2 text-muted-foreground text-xs">
         <Icon className="w-3.5 h-3.5" />
         <span>{label}</span>
       </div>
       <div className={cn("text-xl font-bold", trendColor)}>{value}</div>
-      {sub && <div className="text-xs text-slate-500">{sub}</div>}
+      {sub && <div className="text-xs text-muted-foreground">{sub}</div>}
     </div>
   );
 }
@@ -180,34 +180,34 @@ function StructureTab() {
     <div className="space-y-6">
       {/* Conduit vs SASB */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-slate-800/60 border border-border rounded-xl p-5 space-y-3">
+        <div className="bg-muted/60 border border-border rounded-xl p-5 space-y-3">
           <div className="flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             <span className="font-semibold text-primary text-sm">Conduit CMBS</span>
           </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Pool of <strong className="text-slate-300">50–100+ loans</strong> from multiple originators across property types. Diversification reduces single-asset risk. Standard deal size $0.5B–$2B.
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Pool of <strong className="text-muted-foreground">50–100+ loans</strong> from multiple originators across property types. Diversification reduces single-asset risk. Standard deal size $0.5B–$2B.
           </p>
           <ul className="space-y-1">
             {["Loan granularity 30–100 loans", "Mix of property types & geographies", "10-year IO common on top loans", "Sequential/pro-rata pay structures", "B-piece buyers perform loan diligence"].map((item) => (
-              <li key={item} className="flex items-start gap-1.5 text-xs text-slate-400">
+              <li key={item} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                 <span className="text-primary mt-0.5">•</span>
                 {item}
               </li>
             ))}
           </ul>
         </div>
-        <div className="bg-slate-800/60 border border-border rounded-xl p-5 space-y-3">
+        <div className="bg-muted/60 border border-border rounded-xl p-5 space-y-3">
           <div className="flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             <span className="font-semibold text-primary text-sm">Single-Asset / Single-Borrower (SASB)</span>
           </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
-            <strong className="text-slate-300">One loan on one asset</strong> (or portfolio of same borrower). Higher concentration risk but deeper asset-specific diligence. Trophy assets command premium pricing.
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            <strong className="text-muted-foreground">One loan on one asset</strong> (or portfolio of same borrower). Higher concentration risk but deeper asset-specific diligence. Trophy assets command premium pricing.
           </p>
           <ul className="space-y-1">
             {["One borrower / one property", "$500M–$3B+ deal sizes", "Full IO common during loan term", "Asset-specific risk dominant", "Investor-specific call protection"].map((item) => (
-              <li key={item} className="flex items-start gap-1.5 text-xs text-slate-400">
+              <li key={item} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                 <span className="text-primary mt-0.5">•</span>
                 {item}
               </li>
@@ -217,8 +217,8 @@ function StructureTab() {
       </div>
 
       {/* Trust Flow Diagram */}
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <ArrowRight className="w-4 h-4 text-primary" />
           CMBS Trust Structure
         </h3>
@@ -264,8 +264,8 @@ function StructureTab() {
 
       {/* Capital Stack */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
             Capital Stack (8 Tranches)
           </h3>
@@ -278,7 +278,7 @@ function StructureTab() {
               </g>
             ))}
           </svg>
-          <p className="text-xs text-slate-500 text-center mt-2">Click a tranche to learn more</p>
+          <p className="text-xs text-muted-foreground text-center mt-2">Click a tranche to learn more</p>
         </div>
 
         <div className="space-y-3">
@@ -287,20 +287,20 @@ function StructureTab() {
               const t = TRANCHES.find((x) => x.name === expanded);
               if (!t) return null;
               return (
-                <motion.div key={expanded} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-slate-900/80 border rounded-xl p-4 space-y-2" style={{ borderColor: t.color + "66" }}>
+                <motion.div key={expanded} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-card/80 border rounded-xl p-4 space-y-2" style={{ borderColor: t.color + "66" }}>
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-sm" style={{ color: t.color }}>{t.name} — {t.rating}</span>
-                    <button onClick={() => setExpanded(null)} className="text-slate-500 hover:text-slate-300 text-xs">✕</button>
+                    <button onClick={() => setExpanded(null)} className="text-muted-foreground hover:text-muted-foreground text-xs">✕</button>
                   </div>
-                  <p className="text-xs text-slate-400 leading-relaxed">{t.description}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{t.description}</p>
                   <div className="grid grid-cols-2 gap-2 text-xs">
-                    <div className="bg-slate-800 rounded p-2">
-                      <div className="text-slate-500">Size</div>
-                      <div className="font-semibold text-slate-200">{t.size}% of deal</div>
+                    <div className="bg-muted rounded p-2">
+                      <div className="text-muted-foreground">Size</div>
+                      <div className="font-semibold text-foreground">{t.size}% of deal</div>
                     </div>
-                    <div className="bg-slate-800 rounded p-2">
-                      <div className="text-slate-500">Spread</div>
-                      <div className="font-semibold text-slate-200">+{t.spread} bps</div>
+                    <div className="bg-muted rounded p-2">
+                      <div className="text-muted-foreground">Spread</div>
+                      <div className="font-semibold text-foreground">+{t.spread} bps</div>
                     </div>
                   </div>
                 </motion.div>
@@ -308,8 +308,8 @@ function StructureTab() {
             })()}
           </AnimatePresence>
 
-          <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 space-y-3">
-            <h4 className="text-xs font-semibold text-slate-300 uppercase tracking-wide">Servicer Roles</h4>
+          <div className="bg-muted/60 border border-border/50 rounded-xl p-4 space-y-3">
+            <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Servicer Roles</h4>
             {[
               { role: "Master Servicer", desc: "Collects P&I from all performing loans; advances scheduled payments to certificate holders when borrowers are current.", color: "text-primary" },
               { role: "Special Servicer", desc: "Takes over when loan becomes 60+ days delinquent. Negotiates workouts, foreclosures, REO sales. Compensated via workout fees.", color: "text-amber-400" },
@@ -318,7 +318,7 @@ function StructureTab() {
             ].map((item) => (
               <div key={item.role} className="flex gap-3">
                 <div className={cn("text-xs font-semibold w-32 shrink-0 pt-0.5", item.color)}>{item.role}</div>
-                <div className="text-xs text-slate-400 leading-relaxed">{item.desc}</div>
+                <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
               </div>
             ))}
           </div>
@@ -369,31 +369,31 @@ function LoanAnalysisTab() {
   return (
     <div className="space-y-6">
       {/* Loans table */}
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-slate-700/50 flex items-center gap-2">
+      <div className="bg-muted/60 border border-border/50 rounded-xl overflow-hidden">
+        <div className="px-5 py-3 border-b border-border/50 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-primary" />
-          <span className="text-sm font-semibold text-slate-200">Sample Loan Pool (8 Loans)</span>
+          <span className="text-sm font-semibold text-foreground">Sample Loan Pool (8 Loans)</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700/50">
+              <tr className="border-b border-border/50">
                 {["ID", "Property Type", "City", "DSCR", "LTV%", "Coupon%", "Bal($M)", "Maturity", "IO Mo.", "Status"].map((h) => (
-                  <th key={h} className="px-3 py-2.5 text-left text-slate-400 font-medium whitespace-nowrap">{h}</th>
+                  <th key={h} className="px-3 py-2.5 text-left text-muted-foreground font-medium whitespace-nowrap">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {LOANS.map((loan, i) => (
-                <tr key={loan.id} className={cn("border-b border-slate-700/30 hover:bg-slate-700/20 transition-colors", i % 2 === 0 ? "" : "bg-slate-800/30")}>
-                  <td className="px-3 py-2 font-mono text-slate-300">{loan.id}</td>
+                <tr key={loan.id} className={cn("border-b border-border/30 hover:bg-muted/20 transition-colors", i % 2 === 0 ? "" : "bg-muted/30")}>
+                  <td className="px-3 py-2 font-mono text-muted-foreground">{loan.id}</td>
                   <td className="px-3 py-2">
                     <span className="inline-flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: sectorColors[loan.propertyType] }} />
-                      <span className="text-slate-300">{loan.propertyType}</span>
+                      <span className="text-muted-foreground">{loan.propertyType}</span>
                     </span>
                   </td>
-                  <td className="px-3 py-2 text-slate-400 whitespace-nowrap">{loan.city}</td>
+                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{loan.city}</td>
                   <td className="px-3 py-2">
                     <span className={cn("font-semibold", loan.dscr >= 1.25 ? "text-green-400" : loan.dscr >= 1.0 ? "text-amber-400" : "text-red-400")}>
                       {loan.dscr.toFixed(2)}x
@@ -404,10 +404,10 @@ function LoanAnalysisTab() {
                       {loan.ltv}%
                     </span>
                   </td>
-                  <td className="px-3 py-2 text-slate-300">{loan.coupon.toFixed(2)}%</td>
-                  <td className="px-3 py-2 text-slate-300 font-mono">${loan.balance}M</td>
-                  <td className="px-3 py-2 text-slate-400 whitespace-nowrap">{loan.maturity}</td>
-                  <td className="px-3 py-2 text-slate-400">{loan.ioMonths > 0 ? `${loan.ioMonths}mo` : "—"}</td>
+                  <td className="px-3 py-2 text-muted-foreground">{loan.coupon.toFixed(2)}%</td>
+                  <td className="px-3 py-2 text-muted-foreground font-mono">${loan.balance}M</td>
+                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{loan.maturity}</td>
+                  <td className="px-3 py-2 text-muted-foreground">{loan.ioMonths > 0 ? `${loan.ioMonths}mo` : "—"}</td>
                   <td className="px-3 py-2">
                     {loan.watchlist
                       ? <InfoBadge text="Watchlist" color="amber" />
@@ -423,8 +423,8 @@ function LoanAnalysisTab() {
       {/* Scatter + NOI stress */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* DSCR vs LTV Scatter */}
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-3 flex items-center gap-2">
+        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             DSCR vs LTV Scatter
           </h3>
@@ -473,13 +473,13 @@ function LoanAnalysisTab() {
         </div>
 
         {/* NOI Stress Test */}
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5 space-y-4">
-          <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+        <div className="bg-muted/60 border border-border/50 rounded-xl p-5 space-y-4">
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-amber-400" />
             NOI Stress Testing — Occupancy
           </h3>
           <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs text-slate-400">
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span>Occupancy Rate</span>
               <span className="font-bold text-amber-300 text-sm">{occupancy}%</span>
             </div>
@@ -488,7 +488,7 @@ function LoanAnalysisTab() {
               onChange={(e) => setOccupancy(parseInt(e.target.value))}
               className="w-full accent-amber-400"
             />
-            <div className="flex justify-between text-xs text-slate-500">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span>50% (Severe Stress)</span>
               <span>100% (Full)</span>
             </div>
@@ -496,9 +496,9 @@ function LoanAnalysisTab() {
           <div className="space-y-2">
             {stressedLoans.map((loan) => (
               <div key={loan.id} className="flex items-center gap-2 text-xs">
-                <span className="font-mono text-slate-500 w-12">{loan.id}</span>
-                <span className="w-20 text-slate-400 truncate">{loan.propertyType}</span>
-                <div className="flex-1 bg-slate-700 rounded-full h-1.5 relative">
+                <span className="font-mono text-muted-foreground w-12">{loan.id}</span>
+                <span className="w-20 text-muted-foreground truncate">{loan.propertyType}</span>
+                <div className="flex-1 bg-muted rounded-full h-1.5 relative">
                   <div
                     className={cn("h-1.5 rounded-full transition-all duration-300", loan.stressedDSCR >= 1.25 ? "bg-green-500" : loan.stressedDSCR >= 1.0 ? "bg-amber-500" : "bg-red-500")}
                     style={{ width: `${Math.min(100, (loan.stressedDSCR / 2.0) * 100)}%` }}
@@ -508,17 +508,17 @@ function LoanAnalysisTab() {
                 <span className={cn("font-semibold w-10 text-right", loan.stressedDSCR >= 1.25 ? "text-green-400" : loan.stressedDSCR >= 1.0 ? "text-amber-400" : "text-red-400")}>
                   {loan.stressedDSCR.toFixed(2)}x
                 </span>
-                <span className="text-slate-500 w-12 text-right">{loan.debtYield.toFixed(1)}%DY</span>
+                <span className="text-muted-foreground w-12 text-right">{loan.debtYield.toFixed(1)}%DY</span>
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-500">DY = Debt Yield = NOI / Loan Balance. Target: &gt;8% for AAA underwriting.</p>
+          <p className="text-xs text-muted-foreground">DY = Debt Yield = NOI / Loan Balance. Target: &gt;8% for AAA underwriting.</p>
         </div>
       </div>
 
       {/* Property Sector Heatmap */}
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-green-400" />
           Property Sector Heatmap
         </h3>
@@ -534,12 +534,12 @@ function LoanAnalysisTab() {
               sector.trend === "bullish" ? "text-green-400" : sector.trend === "neutral" ? "text-amber-400" : "text-red-400";
             return (
               <div key={sector.name} className={cn("border rounded-xl p-4 space-y-2", heatColor)}>
-                <div className="font-semibold text-sm text-slate-200">{sector.name}</div>
-                <div className="text-xs text-slate-400">Weight: <span className="text-slate-200 font-medium">{sector.weight}%</span></div>
+                <div className="font-semibold text-sm text-foreground">{sector.name}</div>
+                <div className="text-xs text-muted-foreground">Weight: <span className="text-foreground font-medium">{sector.weight}%</span></div>
                 <div className={cn("text-xs font-semibold", trendColor)}>
                   {sector.trend === "bullish" ? "▲" : sector.trend === "neutral" ? "—" : "▼"} NOI {sector.noigrowth > 0 ? "+" : ""}{sector.noigrowth}% YoY
                 </div>
-                <div className="text-xs text-slate-500">Vacancy: <span className={sector.vacancyRate > 15 ? "text-red-400" : "text-slate-300"}>{sector.vacancyRate}%</span></div>
+                <div className="text-xs text-muted-foreground">Vacancy: <span className={sector.vacancyRate > 15 ? "text-red-400" : "text-muted-foreground"}>{sector.vacancyRate}%</span></div>
               </div>
             );
           })}
@@ -591,8 +591,8 @@ function PerformanceTab() {
       </div>
 
       {/* Delinquency bar chart */}
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-red-400" />
           12-Month Delinquency Rate (30+ Days)
         </h3>
@@ -631,16 +631,16 @@ function PerformanceTab() {
 
       {/* Vintage loss rates + Prepayment speeds */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-red-400" />
             Realized Loss Rate by Vintage
           </h3>
           <div className="space-y-2.5">
             {vintageData.map((v) => (
               <div key={v.vintage} className="flex items-center gap-3 text-xs">
-                <span className="text-slate-400 w-10 font-mono">{v.vintage}</span>
-                <div className="flex-1 bg-slate-700 rounded-full h-2">
+                <span className="text-muted-foreground w-10 font-mono">{v.vintage}</span>
+                <div className="flex-1 bg-muted rounded-full h-2">
                   <div
                     className={cn("h-2 rounded-full transition-all", v.lossRate > 3 ? "bg-red-500" : v.lossRate > 1.5 ? "bg-amber-500" : "bg-green-500")}
                     style={{ width: `${(v.lossRate / 4) * 100}%` }}
@@ -652,11 +652,11 @@ function PerformanceTab() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">2020 vintage elevated due to pandemic hotel/retail stress.</p>
+          <p className="text-xs text-muted-foreground mt-3">2020 vintage elevated due to pandemic hotel/retail stress.</p>
         </div>
 
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-primary" />
             Prepayment Speeds by Property Type (CPR%)
           </h3>
@@ -665,16 +665,16 @@ function PerformanceTab() {
               const color = sectorColors[p.sector] ?? "#64748b";
               return (
                 <div key={p.sector} className="flex items-center gap-3 text-xs">
-                  <span className="text-slate-400 w-20">{p.sector}</span>
-                  <div className="flex-1 bg-slate-700 rounded-full h-2">
+                  <span className="text-muted-foreground w-20">{p.sector}</span>
+                  <div className="flex-1 bg-muted rounded-full h-2">
                     <div className="h-2 rounded-full transition-all" style={{ width: `${(p.cpr / 25) * 100}%`, backgroundColor: color }} />
                   </div>
-                  <span className="w-12 text-right font-semibold text-slate-300">{p.cpr}% CPR</span>
+                  <span className="w-12 text-right font-semibold text-muted-foreground">{p.cpr}% CPR</span>
                 </div>
               );
             })}
           </div>
-          <p className="text-xs text-slate-500 mt-3">Industrial/multifamily high CPR driven by refi activity. Office low CPR = extension risk.</p>
+          <p className="text-xs text-muted-foreground mt-3">Industrial/multifamily high CPR driven by refi activity. Office low CPR = extension risk.</p>
         </div>
       </div>
     </div>
@@ -739,8 +739,8 @@ function TradingTab() {
       </div>
 
       {/* CMBX Spread Chart */}
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
           CMBX Index Spreads — 12 Month (IG vs HY)
         </h3>
@@ -777,25 +777,25 @@ function TradingTab() {
 
       {/* Bid/Ask liquidity table + Extension risk */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-green-400" />
             Bid/Ask Liquidity by Tranche
           </h3>
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-slate-700/50">
-                <th className="py-2 text-left text-slate-400">Tranche</th>
-                <th className="py-2 text-right text-slate-400">Bid (bps)</th>
-                <th className="py-2 text-right text-slate-400">Ask (bps)</th>
-                <th className="py-2 text-right text-slate-400">Width</th>
-                <th className="py-2 text-right text-slate-400">Depth</th>
+              <tr className="border-b border-border/50">
+                <th className="py-2 text-left text-muted-foreground">Tranche</th>
+                <th className="py-2 text-right text-muted-foreground">Bid (bps)</th>
+                <th className="py-2 text-right text-muted-foreground">Ask (bps)</th>
+                <th className="py-2 text-right text-muted-foreground">Width</th>
+                <th className="py-2 text-right text-muted-foreground">Depth</th>
               </tr>
             </thead>
             <tbody>
               {liquidity.map((l) => (
-                <tr key={l.tranche} className="border-b border-slate-700/30">
-                  <td className="py-2 text-slate-300 font-medium">{l.tranche}</td>
+                <tr key={l.tranche} className="border-b border-border/30">
+                  <td className="py-2 text-muted-foreground font-medium">{l.tranche}</td>
                   <td className="py-2 text-right text-green-400 font-mono">+{l.bid}</td>
                   <td className="py-2 text-right text-red-400 font-mono">+{l.ask}</td>
                   <td className="py-2 text-right text-amber-400 font-mono">{l.ask - l.bid}</td>
@@ -804,11 +804,11 @@ function TradingTab() {
               ))}
             </tbody>
           </table>
-          <p className="text-xs text-slate-500 mt-3">Wider bid/ask in mezzanine tranches reflects reduced dealer appetite for credit risk.</p>
+          <p className="text-xs text-muted-foreground mt-3">Wider bid/ask in mezzanine tranches reflects reduced dealer appetite for credit risk.</p>
         </div>
 
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5 space-y-4">
-          <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+        <div className="bg-muted/60 border border-border/50 rounded-xl p-5 space-y-4">
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Clock className="w-4 h-4 text-orange-400" />
             Extension Risk Analysis — Office Sector
           </h3>
@@ -820,10 +820,10 @@ function TradingTab() {
               { label: "Discount to par (SASB)", value: "-22%", note: "Trophy NYC office" },
               { label: "B-piece implied loss", value: "35–65%", note: "Scenario analysis" },
             ].map((item) => (
-              <div key={item.label} className="flex items-start justify-between gap-3 border-b border-slate-700/30 pb-2">
+              <div key={item.label} className="flex items-start justify-between gap-3 border-b border-border/30 pb-2">
                 <div>
-                  <div className="text-xs text-slate-300">{item.label}</div>
-                  <div className="text-xs text-slate-500">{item.note}</div>
+                  <div className="text-xs text-muted-foreground">{item.label}</div>
+                  <div className="text-xs text-muted-foreground">{item.note}</div>
                 </div>
                 <div className="text-sm font-bold text-orange-300 whitespace-nowrap">{item.value}</div>
               </div>
@@ -838,16 +838,16 @@ function TradingTab() {
       </div>
 
       {/* Trading desk workflow */}
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+      <div className="bg-muted/60 border border-border/50 rounded-xl overflow-hidden">
         <button
           onClick={() => setShowWorkflow(!showWorkflow)}
-          className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold text-slate-200 hover:bg-slate-700/30 transition-colors"
+          className="w-full flex items-center justify-between px-5 py-4 text-sm font-semibold text-foreground hover:bg-muted/30 transition-colors"
         >
           <span className="flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             CMBS Trading Desk Workflow
           </span>
-          {showWorkflow ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+          {showWorkflow ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
         </button>
         <AnimatePresence>
           {showWorkflow && (
@@ -869,7 +869,7 @@ function TradingTab() {
                     <div className={cn("text-xs font-bold", phase.color.split(" ")[1])}>{phase.step}</div>
                     <ul className="space-y-1">
                       {phase.items.map((item) => (
-                        <li key={item} className="flex items-start gap-1.5 text-xs text-slate-400">
+                        <li key={item} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                           <span className="mt-0.5 shrink-0" style={{ color: phase.color.split(" ")[1].replace("text-", "") }}>›</span>
                           {item}
                         </li>
@@ -889,7 +889,7 @@ function TradingTab() {
 // ── Page ─────────────────────────────────────────────────────────────────────
 export default function CMBSPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 lg:p-8">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-6">
         <div className="flex items-start gap-4">
@@ -897,8 +897,8 @@ export default function CMBSPage() {
             <Building2 className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">Commercial Mortgage-Backed Securities</h1>
-            <p className="text-sm text-slate-400 mt-1">
+            <h1 className="text-2xl font-bold text-foreground">Commercial Mortgage-Backed Securities</h1>
+            <p className="text-sm text-muted-foreground mt-1">
               CMBS structure, DSCR/LTV analysis, property sectors, IO periods, and CMBS trading mechanics
             </p>
             <div className="flex flex-wrap gap-2 mt-2">
@@ -913,7 +913,7 @@ export default function CMBSPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure">
-        <TabsList className="grid grid-cols-2 sm:grid-cols-4 bg-slate-800/60 border border-slate-700/50 rounded-xl p-1 mb-6 h-auto gap-1">
+        <TabsList className="grid grid-cols-2 sm:grid-cols-4 bg-muted/60 border border-border/50 rounded-xl p-1 mb-6 h-auto gap-1">
           {[
             { value: "structure", label: "CMBS Structure", icon: Layers },
             { value: "loans", label: "Loan Analysis", icon: Building2 },
@@ -923,7 +923,7 @@ export default function CMBSPage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100 text-slate-400 rounded-lg transition-all"
+              className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground rounded-lg transition-all"
             >
               <Icon className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{label}</span>

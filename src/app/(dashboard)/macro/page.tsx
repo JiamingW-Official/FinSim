@@ -400,7 +400,7 @@ function StatChip({
 }) {
   const positive = delta >= 0;
   return (
-    <Card className="bg-gray-900 border-gray-800">
+    <Card className="bg-card border-border">
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-1">
           <span className="text-xs text-muted-foreground">{label}</span>
@@ -583,7 +583,7 @@ export default function MacroDashboardPage() {
   const fadeIn = { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.35 } };
 
   return (
-    <div className="p-6 space-y-6 min-h-screen bg-gray-950 text-white">
+    <div className="p-6 space-y-6 min-h-screen bg-background text-white">
       {/* Header */}
       <motion.div {...fadeIn} className="flex items-center justify-between">
         <div>
@@ -599,7 +599,7 @@ export default function MacroDashboardPage() {
           <Badge className={`border ${regimeColor} font-semibold text-sm px-3 py-1`}>
             {regimeLabel}
           </Badge>
-          <Badge variant="outline" className="text-xs text-muted-foreground border-gray-700">
+          <Badge variant="outline" className="text-xs text-muted-foreground border-border">
             as of Q1 2026
           </Badge>
         </div>
@@ -625,7 +625,7 @@ export default function MacroDashboardPage() {
         transition={{ duration: 0.4, delay: 0.2 }}
       >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-gray-900 border border-gray-800 h-10 mb-4">
+          <TabsList className="bg-card border border-border h-10 mb-4">
             <TabsTrigger value="growth" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
               <BarChart2 size={12} className="mr-1.5" /> Growth
             </TabsTrigger>
@@ -648,7 +648,7 @@ export default function MacroDashboardPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* GDP Chart */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <TrendingUp size={14} className="text-indigo-400" />
@@ -669,7 +669,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* PMI Chart */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <Activity size={14} className="text-emerald-400" />
@@ -690,7 +690,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Industrial Production */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <BarChart2 size={14} className="text-amber-400" />
@@ -707,7 +707,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Retail Sales */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <DollarSign size={14} className="text-pink-400" />
@@ -725,7 +725,7 @@ export default function MacroDashboardPage() {
               </div>
 
               {/* Combined overlay */}
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white">Growth Composite Overlay</CardTitle>
                 </CardHeader>
@@ -746,7 +746,7 @@ export default function MacroDashboardPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* CPI & PCE */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <TrendingDown size={14} className="text-red-400" />
@@ -761,11 +761,11 @@ export default function MacroDashboardPage() {
                     />
                     <ChartLegend series={[cpiSeries, pceSeries]} />
                     <div className="grid grid-cols-2 gap-2 mt-3">
-                      <div className="bg-gray-800 rounded p-2 text-center">
+                      <div className="bg-muted rounded p-2 text-center">
                         <div className="text-xs text-muted-foreground">CPI (latest)</div>
                         <div className="text-lg font-bold text-red-400">2.8%</div>
                       </div>
-                      <div className="bg-gray-800 rounded p-2 text-center">
+                      <div className="bg-muted rounded p-2 text-center">
                         <div className="text-xs text-muted-foreground">Core PCE (latest)</div>
                         <div className="text-lg font-bold text-orange-400">2.8%</div>
                       </div>
@@ -774,7 +774,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* TIPS Breakeven */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <Activity size={14} className="text-primary" />
@@ -798,7 +798,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Wage Growth */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <DollarSign size={14} className="text-emerald-400" />
@@ -819,7 +819,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Inflation breakdown */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white">CPI Component Breakdown</CardTitle>
                   </CardHeader>
@@ -839,7 +839,7 @@ export default function MacroDashboardPage() {
                             {comp.contribution >= 0 ? "+" : ""}{comp.contribution.toFixed(1)}pp
                           </span>
                         </div>
-                        <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                           <div
                             className={`h-full rounded-full ${comp.color}`}
                             style={{ width: `${Math.abs(comp.contribution) / 2 * 100}%`, opacity: comp.contribution < 0 ? 0.5 : 1 }}
@@ -855,7 +855,7 @@ export default function MacroDashboardPage() {
               </div>
 
               {/* Full overlay */}
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white">Inflation Overview (24-Month Trend)</CardTitle>
                 </CardHeader>
@@ -876,7 +876,7 @@ export default function MacroDashboardPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* Unemployment */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <Users size={14} className="text-indigo-400" />
@@ -899,7 +899,7 @@ export default function MacroDashboardPage() {
                         { label: "U-6 (broad)", value: "7.4%" },
                         { label: "Long-term unemp", value: "1.2%" },
                       ].map((m) => (
-                        <div key={m.label} className="bg-gray-800 rounded p-2 text-center">
+                        <div key={m.label} className="bg-muted rounded p-2 text-center">
                           <div className="text-xs text-muted-foreground">{m.label}</div>
                           <div className="text-sm font-bold text-white">{m.value}</div>
                         </div>
@@ -909,7 +909,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* JOLTS */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <BarChart2 size={14} className="text-emerald-400" />
@@ -930,7 +930,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* LFP */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <Activity size={14} className="text-amber-400" />
@@ -951,7 +951,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Wage pressure heatmap */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white">Sector Wage Pressure</CardTitle>
                   </CardHeader>
@@ -968,7 +968,7 @@ export default function MacroDashboardPage() {
                     ].map((sec) => (
                       <div key={sec.sector} className="flex items-center gap-3">
                         <div className="w-36 text-xs text-muted-foreground truncate shrink-0">{sec.sector}</div>
-                        <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full"
                             style={{
@@ -999,7 +999,7 @@ export default function MacroDashboardPage() {
               </div>
 
               {/* All labor series */}
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white">Labor Market Composite (24-Month)</CardTitle>
                 </CardHeader>
@@ -1019,7 +1019,7 @@ export default function MacroDashboardPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {/* GDP Growth Heatmap */}
-                <Card className="bg-gray-900 border-gray-800 lg:col-span-1">
+                <Card className="bg-card border-border lg:col-span-1">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <Globe size={14} className="text-indigo-400" />
@@ -1047,7 +1047,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Inflation Heatmap */}
-                <Card className="bg-gray-900 border-gray-800 lg:col-span-1">
+                <Card className="bg-card border-border lg:col-span-1">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <AlertTriangle size={14} className="text-amber-400" />
@@ -1075,7 +1075,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Current Account Heatmap */}
-                <Card className="bg-gray-900 border-gray-800 lg:col-span-1">
+                <Card className="bg-card border-border lg:col-span-1">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <DollarSign size={14} className="text-primary" />
@@ -1104,7 +1104,7 @@ export default function MacroDashboardPage() {
               </div>
 
               {/* G7 comparison table */}
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white">G7 Macro Snapshot</CardTitle>
                 </CardHeader>
@@ -1112,7 +1112,7 @@ export default function MacroDashboardPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-gray-800">
+                        <tr className="border-b border-border">
                           <th className="text-left py-2 text-muted-foreground font-medium">Country</th>
                           <th className="text-right py-2 text-muted-foreground font-medium">GDP Growth</th>
                           <th className="text-right py-2 text-muted-foreground font-medium">Inflation</th>
@@ -1131,7 +1131,7 @@ export default function MacroDashboardPage() {
                           { c: "Italy", gdp: 0.7, cpi: 0.9, unemp: 6.7, rate: 4.50, ca: 0.2 },
                           { c: "Japan", gdp: 1.9, cpi: 2.8, unemp: 2.5, rate: 0.10, ca: 3.5 },
                         ].map((row) => (
-                          <tr key={row.c} className="border-b border-gray-800/50 hover:bg-gray-800/30 transition-colors">
+                          <tr key={row.c} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                             <td className="py-2 font-semibold text-white">{row.c}</td>
                             <td className={`text-right py-2 ${row.gdp < 0 ? "text-red-400" : row.gdp > 2 ? "text-emerald-400" : "text-amber-400"}`}>
                               {row.gdp > 0 ? "+" : ""}{row.gdp.toFixed(1)}%
@@ -1159,7 +1159,7 @@ export default function MacroDashboardPage() {
             <div className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {/* Regime Quadrant */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <Layers size={14} className="text-indigo-400" />
@@ -1182,7 +1182,7 @@ export default function MacroDashboardPage() {
                 </Card>
 
                 {/* Leading Indicators Scorecard */}
-                <Card className="bg-gray-900 border-gray-800">
+                <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                       <Activity size={14} className="text-emerald-400" />
@@ -1232,7 +1232,7 @@ export default function MacroDashboardPage() {
               </div>
 
               {/* NBER cycle tracker */}
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                     <Layers size={14} className="text-primary" />
@@ -1259,7 +1259,7 @@ export default function MacroDashboardPage() {
               </Card>
 
               {/* Recession risk indicators */}
-              <Card className="bg-gray-900 border-gray-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold text-white flex items-center gap-2">
                     <AlertTriangle size={14} className="text-amber-400" />
@@ -1283,7 +1283,7 @@ export default function MacroDashboardPage() {
                             ? "bg-emerald-500/5 border-emerald-500/20"
                             : item.status === "warn"
                             ? "bg-amber-500/5 border-amber-500/20"
-                            : "bg-gray-800/50 border-gray-700"
+                            : "bg-muted/50 border-border"
                         }`}
                       >
                         <div className="flex items-center justify-between mb-1">
@@ -1293,12 +1293,12 @@ export default function MacroDashboardPage() {
                           ) : item.status === "warn" ? (
                             <AlertTriangle size={12} className="text-amber-400" />
                           ) : (
-                            <Minus size={12} className="text-gray-400" />
+                            <Minus size={12} className="text-muted-foreground" />
                           )}
                         </div>
                         <div
                           className={`text-sm font-bold mb-1 ${
-                            item.status === "safe" ? "text-emerald-400" : item.status === "warn" ? "text-amber-400" : "text-gray-300"
+                            item.status === "safe" ? "text-emerald-400" : item.status === "warn" ? "text-amber-400" : "text-muted-foreground"
                           }`}
                         >
                           {item.value}
@@ -1315,7 +1315,7 @@ export default function MacroDashboardPage() {
       </motion.div>
 
       {/* Footer */}
-      <div className="text-xs text-muted-foreground border-t border-gray-800 pt-4">
+      <div className="text-xs text-muted-foreground border-t border-border pt-4">
         Data shown is simulated for educational purposes. Sources modeled after BEA, BLS, Federal Reserve, ISM, Conference Board, NY Fed. Last updated: Q1 2026.
       </div>
     </div>

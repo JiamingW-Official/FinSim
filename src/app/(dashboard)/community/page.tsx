@@ -811,7 +811,7 @@ function TopTradersTab() {
               {i < 3 && (
                 <span className={cn(
                   "absolute -top-1 -right-1 text-[8px] leading-none",
-                  i === 0 ? "text-yellow-400" : i === 1 ? "text-gray-300" : "text-amber-600",
+                  i === 0 ? "text-yellow-400" : i === 1 ? "text-muted-foreground" : "text-amber-600",
                 )}>
                   {i === 0 ? "★" : i === 1 ? "✦" : "◆"}
                 </span>

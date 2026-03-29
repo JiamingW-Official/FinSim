@@ -36,11 +36,11 @@ export function SeasonRewardTrack() {
       className="relative overflow-hidden"
     >
       {/* Scroll hint gradients */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex w-8 items-center bg-gradient-to-r from-[#0a0e17] to-transparent">
-        <ChevronLeft className="h-4 w-4 text-zinc-600" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex w-8 items-center bg-gradient-to-r from-background to-transparent">
+        <ChevronLeft className="h-4 w-4 text-muted-foreground" />
       </div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 flex w-8 items-center justify-end bg-gradient-to-l from-[#0a0e17] to-transparent">
-        <ChevronRight className="h-4 w-4 text-zinc-600" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 flex w-8 items-center justify-end bg-gradient-to-l from-background to-transparent">
+        <ChevronRight className="h-4 w-4 text-muted-foreground" />
       </div>
 
       <div
@@ -60,7 +60,7 @@ export function SeasonRewardTrack() {
                 <div
                   className={cn(
                     "h-0.5 w-4 shrink-0",
-                    isClaimed ? "bg-amber-500/50" : isAvailable ? "bg-amber-500/30" : "bg-zinc-800",
+                    isClaimed ? "bg-primary/50" : isAvailable ? "bg-primary/30" : "bg-border",
                   )}
                 />
               )}
@@ -75,12 +75,12 @@ export function SeasonRewardTrack() {
                   className={cn(
                     "season-tier-unlock relative flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl border-2 transition-all",
                     isClaimed
-                      ? "border-amber-500/50 bg-amber-500/10 text-amber-400"
+                      ? "border-primary/50 bg-primary/10 text-primary"
                       : isAvailable
-                        ? "border-amber-500 bg-amber-500/20 text-amber-300 cursor-pointer"
+                        ? "border-primary bg-primary/20 text-primary cursor-pointer"
                         : isCurrent
-                          ? "border-zinc-600 bg-zinc-800/50 text-zinc-400"
-                          : "border-zinc-800 bg-zinc-900/50 text-zinc-700 cursor-not-allowed",
+                          ? "border-border bg-muted/50 text-muted-foreground"
+                          : "border-border bg-muted/30 text-muted-foreground/50 cursor-not-allowed",
                   )}
                 >
                   {isClaimed ? (
@@ -95,9 +95,9 @@ export function SeasonRewardTrack() {
 
                 {/* Tooltip on hover — group class on parent div enables group-hover */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-20">
-                  <div className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 shadow-xl whitespace-nowrap text-center">
-                    <p className="text-xs font-bold text-zinc-200">{tier.reward.label}</p>
-                    <p className="text-[11px] text-zinc-500 mt-0.5">{tier.xpRequired} XP required</p>
+                  <div className="rounded-lg border border-border bg-card px-3 py-2 shadow-xl whitespace-nowrap text-center">
+                    <p className="text-xs font-bold text-foreground">{tier.reward.label}</p>
+                    <p className="text-[11px] text-muted-foreground mt-0.5">{tier.xpRequired} XP required</p>
                   </div>
                 </div>
               </div>

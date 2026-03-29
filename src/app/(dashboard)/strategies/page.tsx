@@ -461,7 +461,7 @@ function StrategyCard({
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-sm font-semibold text-zinc-100 truncate">{strategy.name}</h3>
+            <h3 className="text-sm font-semibold text-foreground truncate">{strategy.name}</h3>
             <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${meta.bg} ${meta.color}`}>
               {meta.label}
             </span>
@@ -470,13 +470,13 @@ function StrategyCard({
       </div>
 
       {/* Description */}
-      <p className="text-xs text-zinc-500 leading-relaxed line-clamp-3">{strategy.description}</p>
+      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{strategy.description}</p>
 
       {/* Parameters */}
       <ul className="space-y-0.5">
         {strategy.parameters.map((p, i) => (
-          <li key={i} className="text-xs text-zinc-600 flex items-start gap-1.5">
-            <span className="mt-0.5 h-1 w-1 shrink-0 rounded-full bg-zinc-700" />
+          <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
+            <span className="mt-0.5 h-1 w-1 shrink-0 rounded-full bg-muted" />
             {p}
           </li>
         ))}
@@ -485,21 +485,21 @@ function StrategyCard({
       {/* Stats row */}
       <div className="grid grid-cols-4 gap-2 rounded-lg border border-white/5 bg-black/20 px-3 py-2">
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[11px] text-zinc-600">Sharpe</span>
+          <span className="text-[11px] text-muted-foreground">Sharpe</span>
           <span className={`text-xs font-bold tabular-nums ${sharpeColor}`}>
             {resultSharpe ?? strategy.sharpe}
           </span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[11px] text-zinc-600">Win%</span>
-          <span className="text-xs font-bold tabular-nums text-zinc-300">{strategy.winRate}%</span>
+          <span className="text-[11px] text-muted-foreground">Win%</span>
+          <span className="text-xs font-bold tabular-nums text-muted-foreground">{strategy.winRate}%</span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[11px] text-zinc-600">Best Yr</span>
+          <span className="text-[11px] text-muted-foreground">Best Yr</span>
           <span className="text-xs font-bold tabular-nums text-emerald-400">+{strategy.bestYear}%</span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
-          <span className="text-[11px] text-zinc-600">Worst Yr</span>
+          <span className="text-[11px] text-muted-foreground">Worst Yr</span>
           <span className="text-xs font-bold tabular-nums text-rose-400">{strategy.worstYear}%</span>
         </div>
       </div>
@@ -508,8 +508,8 @@ function StrategyCard({
       {backtestState === "running" && (
         <div className="space-y-1">
           <div className="flex items-center justify-between text-xs">
-            <span className="text-zinc-500">Running backtest...</span>
-            <span className="text-zinc-400 tabular-nums">{progress}%</span>
+            <span className="text-muted-foreground">Running backtest...</span>
+            <span className="text-muted-foreground tabular-nums">{progress}%</span>
           </div>
           <div className="h-1 w-full rounded-full bg-white/5 overflow-hidden">
             <div
@@ -533,8 +533,8 @@ function StrategyCard({
           disabled={backtestState === "running"}
           className={`flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium transition-colors ${
             backtestState === "running"
-              ? "cursor-not-allowed bg-white/5 text-zinc-600"
-              : "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-zinc-200"
+              ? "cursor-not-allowed bg-white/5 text-muted-foreground"
+              : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-foreground"
           }`}
         >
           <Play className="h-3 w-3" />
@@ -593,9 +593,9 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-zinc-200 truncate">{strategy.name}</span>
+          <span className="text-sm font-medium text-foreground truncate">{strategy.name}</span>
         </div>
-        <div className="flex items-center gap-3 mt-0.5 text-xs text-zinc-600">
+        <div className="flex items-center gap-3 mt-0.5 text-xs text-muted-foreground">
           <span>Modified {timeAgo(strategy.savedAt)}</span>
           <span>{strategy.entryConditions.length} entry / {strategy.exitConditions.length} exit rules</span>
           {strategy.stopLossPercent !== null && <span>SL {strategy.stopLossPercent}%</span>}
@@ -606,7 +606,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
       <div className="flex items-center gap-4 shrink-0">
         {strategy.lastBacktestSharpe != null && (
           <div className="text-center">
-            <div className="text-[11px] text-zinc-600">Sharpe</div>
+            <div className="text-[11px] text-muted-foreground">Sharpe</div>
             <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-primary" : "text-amber-400"}`}>
               {strategy.lastBacktestSharpe.toFixed(2)}
             </div>
@@ -614,7 +614,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         )}
         {strategy.lastBacktestReturn != null && (
           <div className="text-center">
-            <div className="text-[11px] text-zinc-600">Return</div>
+            <div className="text-[11px] text-muted-foreground">Return</div>
             <div className={`text-xs font-bold tabular-nums ${strategy.lastBacktestReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
               {strategy.lastBacktestReturn >= 0 ? "+" : ""}{strategy.lastBacktestReturn.toFixed(1)}%
             </div>
@@ -624,16 +624,16 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
 
       {/* Actions */}
       <div className="flex items-center gap-1 shrink-0">
-        <button onClick={onEdit} className="rounded p-1.5 text-zinc-600 hover:bg-white/5 hover:text-zinc-300 transition-colors" title="Edit">
+        <button onClick={onEdit} className="rounded p-1.5 text-muted-foreground hover:bg-white/5 hover:text-muted-foreground transition-colors" title="Edit">
           <Edit2 className="h-3.5 w-3.5" />
         </button>
-        <button onClick={onBacktest} className="rounded p-1.5 text-zinc-600 hover:bg-white/5 hover:text-primary transition-colors" title="Backtest">
+        <button onClick={onBacktest} className="rounded p-1.5 text-muted-foreground hover:bg-white/5 hover:text-primary transition-colors" title="Backtest">
           <Play className="h-3.5 w-3.5" />
         </button>
-        <button onClick={onExport} className="rounded p-1.5 text-zinc-600 hover:bg-white/5 hover:text-zinc-300 transition-colors" title="Export JSON">
+        <button onClick={onExport} className="rounded p-1.5 text-muted-foreground hover:bg-white/5 hover:text-muted-foreground transition-colors" title="Export JSON">
           <Download className="h-3.5 w-3.5" />
         </button>
-        <button onClick={onDelete} className="rounded p-1.5 text-zinc-600 hover:bg-rose-500/10 hover:text-rose-400 transition-colors" title="Delete">
+        <button onClick={onDelete} className="rounded p-1.5 text-muted-foreground hover:bg-rose-500/10 hover:text-rose-400 transition-colors" title="Delete">
           <Trash2 className="h-3.5 w-3.5" />
         </button>
       </div>
@@ -675,13 +675,13 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
   const numericB = (s: string) => parseFloat(s.replace(/[^0-9.-]/g, ""));
 
   return (
-    <div className="rounded-xl border border-white/10 bg-zinc-900 p-5 space-y-4">
+    <div className="rounded-xl border border-white/10 bg-card p-5 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <GitCompare className="h-4 w-4 text-primary" />
-          <span className="text-sm font-semibold text-zinc-200">Strategy Comparison</span>
+          <span className="text-sm font-semibold text-foreground">Strategy Comparison</span>
         </div>
-        <button onClick={onClose} className="text-zinc-600 hover:text-zinc-400 transition-colors">
+        <button onClick={onClose} className="text-muted-foreground hover:text-muted-foreground transition-colors">
           <X className="h-4 w-4" />
         </button>
       </div>
@@ -690,7 +690,7 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
         <div className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
           <span className="text-xs font-semibold text-primary">{a.name}</span>
         </div>
-        <span className="flex items-center text-xs text-zinc-600">vs</span>
+        <span className="flex items-center text-xs text-muted-foreground">vs</span>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2">
           <span className="text-xs font-semibold text-primary">{b.name}</span>
         </div>
@@ -704,9 +704,9 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
           const bWins = row.higherBetter ? nB > nA : nB < nA;
           return (
             <div key={row.label} className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-1 border-b border-white/[0.04] last:border-0">
-              <div className={`text-right text-xs tabular-nums font-medium ${aWins ? "text-emerald-400" : "text-zinc-400"}`}>{row.aVal}</div>
-              <div className="text-center text-xs text-zinc-600 w-24">{row.label}</div>
-              <div className={`text-left text-xs tabular-nums font-medium ${bWins ? "text-emerald-400" : "text-zinc-400"}`}>{row.bVal}</div>
+              <div className={`text-right text-xs tabular-nums font-medium ${aWins ? "text-emerald-400" : "text-muted-foreground"}`}>{row.aVal}</div>
+              <div className="text-center text-xs text-muted-foreground w-24">{row.label}</div>
+              <div className={`text-left text-xs tabular-nums font-medium ${bWins ? "text-emerald-400" : "text-muted-foreground"}`}>{row.bVal}</div>
             </div>
           );
         })}
@@ -829,10 +829,10 @@ export default function StrategiesPage() {
           <BookMarked className="h-4 w-4 text-primary" />
         </div>
         <div>
-          <h1 className="text-sm font-bold text-zinc-100">Strategy Library</h1>
-          <p className="text-xs text-zinc-500">Browse, customize, and build trading strategies</p>
+          <h1 className="text-sm font-bold text-foreground">Strategy Library</h1>
+          <p className="text-xs text-muted-foreground">Browse, customize, and build trading strategies</p>
         </div>
-        <div className="ml-auto flex items-center gap-3 text-xs text-zinc-500">
+        <div className="ml-auto flex items-center gap-3 text-xs text-muted-foreground">
           <span>{PREBUILT_STRATEGIES.length} pre-built strategies</span>
           <span>{savedStrategies.length} saved</span>
         </div>
@@ -847,13 +847,13 @@ export default function StrategiesPage() {
             className={`flex items-center gap-2 px-5 py-2.5 text-xs font-medium transition-colors ${
               activeTab === tab.id
                 ? "border-b-2 border-primary text-primary"
-                : "text-zinc-500 hover:text-zinc-300"
+                : "text-muted-foreground hover:text-muted-foreground"
             }`}
           >
             <tab.icon className="h-3.5 w-3.5" />
             {tab.label}
             {tab.id === "my-strategies" && savedStrategies.length > 0 && (
-              <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px] text-zinc-400">
+              <span className="rounded-full bg-white/10 px-1.5 py-0.5 text-[11px] text-muted-foreground">
                 {savedStrategies.length}
               </span>
             )}
@@ -876,7 +876,7 @@ export default function StrategiesPage() {
           <div className="flex h-full flex-col overflow-hidden">
             {/* Category filter bar */}
             <div className="flex items-center gap-2 border-b border-white/5 bg-black/10 px-6 py-2.5">
-              <span className="text-xs text-zinc-600 mr-1">Filter:</span>
+              <span className="text-xs text-muted-foreground mr-1">Filter:</span>
               {(["all", "trend", "mean-reversion", "momentum", "breakout"] as const).map((cat) => {
                 const meta = cat === "all" ? null : CATEGORY_META[cat];
                 return (
@@ -886,16 +886,16 @@ export default function StrategiesPage() {
                     className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                       categoryFilter === cat
                         ? cat === "all"
-                          ? "bg-zinc-700 text-zinc-100"
+                          ? "bg-muted text-foreground"
                           : `${meta!.bg} ${meta!.color} ring-1 ring-white/10`
-                        : "bg-white/5 text-zinc-500 hover:bg-white/10 hover:text-zinc-300"
+                        : "bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-muted-foreground"
                     }`}
                   >
                     {cat === "all" ? "All" : CATEGORY_META[cat].label}
                   </button>
                 );
               })}
-              <span className="ml-auto text-xs text-zinc-600">{filteredStrategies.length} strategies</span>
+              <span className="ml-auto text-xs text-muted-foreground">{filteredStrategies.length} strategies</span>
             </div>
 
             {/* Cards grid */}
@@ -934,7 +934,7 @@ export default function StrategiesPage() {
                     )}
                     <button
                       onClick={() => setSelectedIds([])}
-                      className="text-zinc-600 hover:text-zinc-400 transition-colors"
+                      className="text-muted-foreground hover:text-muted-foreground transition-colors"
                     >
                       <X className="h-3.5 w-3.5" />
                     </button>
@@ -954,8 +954,8 @@ export default function StrategiesPage() {
                 {savedStrategies.length === 0 ? (
                   <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/10 py-20 text-center">
                     <Layers className="h-10 w-10 text-zinc-700 mb-3" />
-                    <p className="text-sm font-medium text-zinc-500">No strategies saved yet</p>
-                    <p className="text-xs text-zinc-600 mt-1 max-w-xs">
+                    <p className="text-sm font-medium text-muted-foreground">No strategies saved yet</p>
+                    <p className="text-xs text-muted-foreground mt-1 max-w-xs">
                       Clone a pre-built strategy from the Library or build your own in the Builder tab
                     </p>
                     <button
@@ -1011,8 +1011,8 @@ export default function StrategiesPage() {
                 {/* Save to Library button row */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-sm font-bold text-zinc-200">Visual Strategy Builder</h2>
-                    <p className="text-xs text-zinc-500 mt-0.5">
+                    <h2 className="text-sm font-bold text-foreground">Visual Strategy Builder</h2>
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       Define entry/exit conditions, then save to your library
                     </p>
                   </div>
@@ -1098,7 +1098,7 @@ function StrategyBuilderWrapper({
               {" — load it from the dropdown below"}
             </span>
           </div>
-          <button onClick={onClearClone} className="text-zinc-600 hover:text-zinc-400 transition-colors">
+          <button onClick={onClearClone} className="text-muted-foreground hover:text-muted-foreground transition-colors">
             <X className="h-3.5 w-3.5" />
           </button>
         </div>
@@ -1126,7 +1126,7 @@ function StrategyBuilderWrapper({
           </button>
           <button
             onClick={() => setPendingStrategy(null)}
-            className="text-zinc-600 hover:text-zinc-400 transition-colors"
+            className="text-muted-foreground hover:text-muted-foreground transition-colors"
           >
             <X className="h-3.5 w-3.5" />
           </button>

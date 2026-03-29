@@ -651,7 +651,7 @@ function BusinessModelsTab() {
 
   const disruptionBadge = (level: InsurtechCategory["disruptionLevel"]) => {
     const styles: Record<InsurtechCategory["disruptionLevel"], string> = {
-      low: "bg-slate-500/20 text-slate-400",
+      low: "bg-slate-500/20 text-muted-foreground",
       medium: "bg-amber-500/20 text-amber-400",
       high: "bg-primary/20 text-primary",
       extreme: "bg-primary/20 text-primary",
@@ -769,7 +769,7 @@ function BusinessModelsTab() {
                       <span className="text-[11px] rounded-full bg-primary/20 text-primary px-2 py-0.5 font-semibold">Incumbent</span>
                     )}
                     {row.winner === "tie" && (
-                      <span className="text-[11px] rounded-full bg-slate-500/20 text-slate-400 px-2 py-0.5 font-semibold">Tie</span>
+                      <span className="text-[11px] rounded-full bg-slate-500/20 text-muted-foreground px-2 py-0.5 font-semibold">Tie</span>
                     )}
                   </td>
                 </tr>
@@ -891,7 +891,7 @@ function ParametricTab() {
               <span
                 className={cn(
                   "text-[11px] rounded-full px-2 py-0.5 font-semibold",
-                  isTriggered ? "bg-emerald-500/20 text-emerald-400" : "bg-slate-500/20 text-slate-400",
+                  isTriggered ? "bg-emerald-500/20 text-emerald-400" : "bg-slate-500/20 text-muted-foreground",
                 )}
               >
                 {isTriggered ? "TRIGGERED" : "NOT TRIGGERED"}

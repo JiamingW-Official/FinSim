@@ -440,8 +440,8 @@ function MertonPanel() {
         {/* Asset Value */}
         <div className="space-y-2">
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">Asset Value</span>
-            <span className="text-zinc-100 font-semibold">${assetValue}M</span>
+            <span className="text-muted-foreground">Asset Value</span>
+            <span className="text-foreground font-semibold">${assetValue}M</span>
           </div>
           <Slider
             value={[assetValue]}
@@ -451,7 +451,7 @@ function MertonPanel() {
             onValueChange={(v) => setAssetValue(v[0])}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-zinc-500">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>$200M</span><span>$1,500M</span>
           </div>
         </div>
@@ -459,8 +459,8 @@ function MertonPanel() {
         {/* Debt Face */}
         <div className="space-y-2">
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">Debt Face Value</span>
-            <span className="text-zinc-100 font-semibold">${debtFace}M</span>
+            <span className="text-muted-foreground">Debt Face Value</span>
+            <span className="text-foreground font-semibold">${debtFace}M</span>
           </div>
           <Slider
             value={[debtFace]}
@@ -470,7 +470,7 @@ function MertonPanel() {
             onValueChange={(v) => setDebtFace(v[0])}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-zinc-500">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>$100M</span><span>$1,200M</span>
           </div>
         </div>
@@ -478,8 +478,8 @@ function MertonPanel() {
         {/* Asset Volatility */}
         <div className="space-y-2">
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">Asset Volatility</span>
-            <span className="text-zinc-100 font-semibold">{assetVol}%</span>
+            <span className="text-muted-foreground">Asset Volatility</span>
+            <span className="text-foreground font-semibold">{assetVol}%</span>
           </div>
           <Slider
             value={[assetVol]}
@@ -489,7 +489,7 @@ function MertonPanel() {
             onValueChange={(v) => setAssetVol(v[0])}
             className="w-full"
           />
-          <div className="flex justify-between text-xs text-zinc-500">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>5%</span><span>80%</span>
           </div>
         </div>
@@ -498,8 +498,8 @@ function MertonPanel() {
       {/* Results */}
       <div className="grid grid-cols-2 gap-3">
         {/* PD Gauge */}
-        <div className="bg-zinc-800/50 rounded-lg p-3 flex flex-col items-center">
-          <p className="text-xs text-zinc-400 mb-1">Probability of Default</p>
+        <div className="bg-muted/50 rounded-lg p-3 flex flex-col items-center">
+          <p className="text-xs text-muted-foreground mb-1">Probability of Default</p>
           <svg viewBox={`0 0 ${GW} ${GH}`} className="w-40">
             <defs>
               <linearGradient id="gaugeGrad" x1="1" y1="0" x2="0" y2="0">
@@ -536,32 +536,32 @@ function MertonPanel() {
         </div>
 
         {/* Key Metrics */}
-        <div className="bg-zinc-800/50 rounded-lg p-3 space-y-2">
-          <p className="text-xs text-zinc-400 font-medium mb-2">Merton Outputs</p>
+        <div className="bg-muted/50 rounded-lg p-3 space-y-2">
+          <p className="text-xs text-muted-foreground font-medium mb-2">Merton Outputs</p>
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">Distance-to-Default</span>
+            <span className="text-muted-foreground">Distance-to-Default</span>
             <span className={`font-semibold ${dtdColor}`}>{result.distanceToDefault.toFixed(2)}σ</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">Credit Spread</span>
-            <span className="text-zinc-100 font-semibold">{result.spread.toFixed(0)} bps</span>
+            <span className="text-muted-foreground">Credit Spread</span>
+            <span className="text-foreground font-semibold">{result.spread.toFixed(0)} bps</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">d₁</span>
-            <span className="text-zinc-300">{result.d1.toFixed(3)}</span>
+            <span className="text-muted-foreground">d₁</span>
+            <span className="text-muted-foreground">{result.d1.toFixed(3)}</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">d₂</span>
-            <span className="text-zinc-300">{result.d2.toFixed(3)}</span>
+            <span className="text-muted-foreground">d₂</span>
+            <span className="text-muted-foreground">{result.d2.toFixed(3)}</span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">Asset / Debt Ratio</span>
+            <span className="text-muted-foreground">Asset / Debt Ratio</span>
             <span className={assetValue >= debtFace ? "text-emerald-400 font-semibold" : "text-red-400 font-semibold"}>
               {(assetValue / debtFace).toFixed(2)}x
             </span>
           </div>
           <div className="flex justify-between text-xs">
-            <span className="text-zinc-400">Default Signal</span>
+            <span className="text-muted-foreground">Default Signal</span>
             <span className={pdColor + " font-semibold"}>
               {result.pd < 5 ? "Safe" : result.pd < 20 ? "Watch" : result.pd < 50 ? "At Risk" : "Distressed"}
             </span>
@@ -569,8 +569,8 @@ function MertonPanel() {
         </div>
       </div>
 
-      <div className="bg-zinc-800/30 rounded p-3 text-xs text-zinc-400 leading-relaxed">
-        <span className="text-zinc-200 font-medium">Merton (1974) Structural Model: </span>
+      <div className="bg-muted/30 rounded p-3 text-xs text-muted-foreground leading-relaxed">
+        <span className="text-foreground font-medium">Merton (1974) Structural Model: </span>
         Treats equity as a call option on firm assets with strike = debt face. When asset value
         falls below debt at maturity, default occurs. Distance-to-Default (d₂) measures standard
         deviations between current asset value and default threshold — a key input to credit ratings.
@@ -625,29 +625,29 @@ function CovenantTracker() {
                 ? "bg-red-950/20 border-red-500/20"
                 : isTight
                 ? "bg-yellow-950/20 border-yellow-500/20"
-                : "bg-zinc-800/40 border-zinc-700/30"
+                : "bg-muted/40 border-border/30"
             }`}
           >
             <div className="flex items-center justify-between mb-1">
               <div>
-                <span className="text-sm font-medium text-zinc-100">{c.name}</span>
-                <span className="text-xs text-zinc-500 ml-2">{c.metric}</span>
+                <span className="text-sm font-medium text-foreground">{c.name}</span>
+                <span className="text-xs text-muted-foreground ml-2">{c.metric}</span>
               </div>
               {statusBadge(status)}
             </div>
             <div className="flex items-center gap-3 mt-2">
-              <div className="flex-1 bg-zinc-700/40 rounded-full h-2 overflow-hidden">
+              <div className="flex-1 bg-muted/40 rounded-full h-2 overflow-hidden">
                 <div
                   className="h-2 rounded-full transition-all"
                   style={{ width: `${Math.min(pct, 100)}%`, backgroundColor: barColor }}
                 />
               </div>
-              <div className="text-xs text-zinc-300 w-32 text-right">
+              <div className="text-xs text-muted-foreground w-32 text-right">
                 <span className={isBreached ? "text-red-400 font-semibold" : isTight ? "text-yellow-400 font-semibold" : "text-emerald-400"}>
                   {c.current}{c.unit}
                 </span>
-                <span className="text-zinc-500 mx-1">/</span>
-                <span className="text-zinc-400">
+                <span className="text-muted-foreground mx-1">/</span>
+                <span className="text-muted-foreground">
                   {c.direction === "below" ? "max " : "min "}
                   {c.limit}{c.unit}
                 </span>
@@ -657,8 +657,8 @@ function CovenantTracker() {
         );
       })}
 
-      <div className="bg-zinc-800/30 rounded p-3 text-xs text-zinc-400 leading-relaxed mt-2">
-        <span className="text-zinc-200 font-medium">Covenant headroom</span> — the buffer between
+      <div className="bg-muted/30 rounded p-3 text-xs text-muted-foreground leading-relaxed mt-2">
+        <span className="text-foreground font-medium">Covenant headroom</span> — the buffer between
         current metrics and covenant limits. Tight headroom often precedes distressed exchanges or
         waivers. Maintenance covenants are tested quarterly; incurrence covenants only upon taking
         an action (e.g., additional debt issuance).
@@ -690,8 +690,8 @@ function DistressedScreener() {
             key={i}
             className={`rounded-lg border cursor-pointer transition-all ${
               isSelected
-                ? "bg-zinc-700/40 border-zinc-500/50"
-                : "bg-zinc-800/40 border-zinc-700/30 hover:border-zinc-600/50"
+                ? "bg-muted/40 border-zinc-500/50"
+                : "bg-muted/40 border-border/30 hover:border-border/50"
             }`}
             onClick={() => setSelected(isSelected ? null : i)}
           >
@@ -699,54 +699,54 @@ function DistressedScreener() {
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
                   <div>
-                    <span className="text-sm font-semibold text-zinc-100">{co.name}</span>
-                    <span className="text-xs text-zinc-500 ml-2 font-mono">{co.ticker}</span>
+                    <span className="text-sm font-semibold text-foreground">{co.name}</span>
+                    <span className="text-xs text-muted-foreground ml-2 font-mono">{co.ticker}</span>
                   </div>
                   <Badge className={`text-xs px-1.5 ${meta.color}`}>{meta.label}</Badge>
                 </div>
                 <ChevronRight
-                  className={`w-4 h-4 text-zinc-500 transition-transform ${isSelected ? "rotate-90" : ""}`}
+                  className={`w-4 h-4 text-muted-foreground transition-transform ${isSelected ? "rotate-90" : ""}`}
                 />
               </div>
               <div className="flex items-center gap-4 mt-2 flex-wrap">
                 <div className="text-xs">
-                  <span className="text-zinc-500">Price </span>
+                  <span className="text-muted-foreground">Price </span>
                   <span className={`font-semibold ${priceColor}`}>{co.price.toFixed(1)}¢</span>
                 </div>
                 <div className="text-xs">
-                  <span className="text-zinc-500">YTM </span>
+                  <span className="text-muted-foreground">YTM </span>
                   <span className="text-red-400 font-semibold">{co.ytm.toFixed(1)}%</span>
                 </div>
                 <div className="text-xs">
-                  <span className="text-zinc-500">Duration </span>
-                  <span className="text-zinc-300">{co.duration.toFixed(1)}yr</span>
+                  <span className="text-muted-foreground">Duration </span>
+                  <span className="text-muted-foreground">{co.duration.toFixed(1)}yr</span>
                 </div>
                 <div className="text-xs">
-                  <span className="text-zinc-500">Lev </span>
-                  <span className="text-zinc-300">{co.leverage.toFixed(1)}x</span>
+                  <span className="text-muted-foreground">Lev </span>
+                  <span className="text-muted-foreground">{co.leverage.toFixed(1)}x</span>
                 </div>
                 <div className="text-xs">
-                  <span className="text-zinc-500">EBITDA </span>
-                  <span className="text-zinc-300">${co.ebitda.toFixed(0)}M</span>
+                  <span className="text-muted-foreground">EBITDA </span>
+                  <span className="text-muted-foreground">${co.ebitda.toFixed(0)}M</span>
                 </div>
-                <Badge className="text-xs bg-zinc-700/50 text-zinc-400 border-zinc-600/30">{co.industry}</Badge>
+                <Badge className="text-xs bg-muted/50 text-muted-foreground border-border/30">{co.industry}</Badge>
               </div>
             </div>
             {isSelected && (
-              <div className="border-t border-zinc-700/40 px-3 py-2 space-y-2">
-                <p className="text-xs text-zinc-300 leading-relaxed">{co.situation}</p>
+              <div className="border-t border-border/40 px-3 py-2 space-y-2">
+                <p className="text-xs text-muted-foreground leading-relaxed">{co.situation}</p>
                 <div className="flex gap-2 flex-wrap">
-                  <div className="bg-zinc-800/60 rounded p-2 text-xs flex-1 min-w-24">
-                    <p className="text-zinc-500 mb-0.5">Implied Recovery</p>
+                  <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
+                    <p className="text-muted-foreground mb-0.5">Implied Recovery</p>
                     <p className={`font-semibold ${priceColor}`}>{co.price.toFixed(1)}¢ on $</p>
                   </div>
-                  <div className="bg-zinc-800/60 rounded p-2 text-xs flex-1 min-w-24">
-                    <p className="text-zinc-500 mb-0.5">Distress Ratio</p>
+                  <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
+                    <p className="text-muted-foreground mb-0.5">Distress Ratio</p>
                     <p className="text-red-400 font-semibold">{(co.ytm - 10).toFixed(0)} bps over HY</p>
                   </div>
-                  <div className="bg-zinc-800/60 rounded p-2 text-xs flex-1 min-w-24">
-                    <p className="text-zinc-500 mb-0.5">Coverage at EV</p>
-                    <p className="text-zinc-300 font-semibold">{((co.ebitda * 6) / (co.leverage * co.ebitda) * 100).toFixed(0)}%</p>
+                  <div className="bg-muted/60 rounded p-2 text-xs flex-1 min-w-24">
+                    <p className="text-muted-foreground mb-0.5">Coverage at EV</p>
+                    <p className="text-muted-foreground font-semibold">{((co.ebitda * 6) / (co.leverage * co.ebitda) * 100).toFixed(0)}%</p>
                   </div>
                 </div>
               </div>
@@ -798,11 +798,11 @@ export default function CapitalStructurePage() {
       {/* Header */}
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100 flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
             <Layers className="w-6 h-6 text-primary" />
             Capital Structure &amp; Distressed Investing
           </h1>
-          <p className="text-zinc-400 text-sm mt-1">
+          <p className="text-muted-foreground text-sm mt-1">
             Waterfall analysis, Merton credit model, covenant tracking, and distressed debt screening
           </p>
         </div>
@@ -810,7 +810,7 @@ export default function CapitalStructurePage() {
           <Badge className="bg-primary/15 text-primary border-border text-xs">
             <BarChart2 className="w-3 h-3 mr-1" /> EV ${ev}M
           </Badge>
-          <Badge className="bg-zinc-700/60 text-zinc-300 border-zinc-600/40 text-xs">
+          <Badge className="bg-muted/60 text-muted-foreground border-border/40 text-xs">
             <ShieldCheck className="w-3 h-3 mr-1" /> LTV {ltv}%
           </Badge>
         </div>
@@ -824,12 +824,12 @@ export default function CapitalStructurePage() {
           { label: "Est. Leverage", value: `${leverage}x`, icon: Activity, color: "text-orange-400" },
           { label: "Fulcrum Security", value: fulcrumInfo.split("—")[0].trim(), icon: Target, color: "text-primary" },
         ].map((k) => (
-          <Card key={k.label} className="bg-zinc-800/60 border-zinc-700/40">
+          <Card key={k.label} className="bg-muted/60 border-border/40">
             <CardContent className="p-3 flex items-center gap-2">
               <k.icon className={`w-4 h-4 ${k.color} shrink-0`} />
               <div>
-                <p className="text-xs text-zinc-500">{k.label}</p>
-                <p className="text-sm font-semibold text-zinc-100 leading-tight">{k.value}</p>
+                <p className="text-xs text-muted-foreground">{k.label}</p>
+                <p className="text-sm font-semibold text-foreground leading-tight">{k.value}</p>
               </div>
             </CardContent>
           </Card>
@@ -840,22 +840,22 @@ export default function CapitalStructurePage() {
       <div className="flex items-center gap-3 bg-muted/40 border border-border rounded-lg px-4 py-2.5">
         <AlertTriangle className="w-4 h-4 text-primary shrink-0" />
         <div className="text-xs">
-          <span className="text-zinc-400">Fulcrum Security at EV ${ev}M: </span>
+          <span className="text-muted-foreground">Fulcrum Security at EV ${ev}M: </span>
           <span className="text-primary font-semibold">{fulcrumInfo}</span>
         </div>
       </div>
 
       {/* EV Slider */}
-      <Card className="bg-zinc-800/60 border-zinc-700/40">
+      <Card className="bg-muted/60 border-border/40">
         <CardHeader className="pb-2 pt-4 px-4">
-          <CardTitle className="text-sm flex items-center gap-2 text-zinc-200">
+          <CardTitle className="text-sm flex items-center gap-2 text-foreground">
             <DollarSign className="w-4 h-4 text-emerald-400" />
             Enterprise Value Scenario
           </CardTitle>
         </CardHeader>
         <CardContent className="px-4 pb-4 space-y-3">
           <div className="flex items-center gap-4">
-            <span className="text-xs text-zinc-500 w-16">$100M</span>
+            <span className="text-xs text-muted-foreground w-16">$100M</span>
             <Slider
               value={[ev]}
               min={100}
@@ -864,15 +864,15 @@ export default function CapitalStructurePage() {
               onValueChange={(v) => setEv(v[0])}
               className="flex-1"
             />
-            <span className="text-xs text-zinc-500 w-16 text-right">$1,100M</span>
+            <span className="text-xs text-muted-foreground w-16 text-right">$1,100M</span>
           </div>
-          <div className="flex justify-between text-[11px] text-zinc-400 px-1">
+          <div className="flex justify-between text-[11px] text-muted-foreground px-1">
             {[200, 400, 600, 800, 1000].map((v) => (
               <button
                 key={v}
                 onClick={() => setEv(v)}
                 className={`px-2 py-0.5 rounded transition-colors ${
-                  Math.abs(ev - v) < 50 ? "bg-zinc-600 text-zinc-200" : "hover:text-zinc-200"
+                  Math.abs(ev - v) < 50 ? "bg-zinc-600 text-foreground" : "hover:text-foreground"
                 }`}
               >
                 ${v}M
@@ -882,10 +882,10 @@ export default function CapitalStructurePage() {
           {/* Capital stack legend */}
           <div className="flex flex-wrap gap-2 pt-1">
             {TRANCHES.map((t) => (
-              <div key={t.name} className="flex items-center gap-1.5 text-xs text-zinc-400">
+              <div key={t.name} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: t.color }} />
                 <span>{t.name.split(" ").slice(0, 2).join(" ")}</span>
-                <span className="text-zinc-600">${t.amount}M</span>
+                <span className="text-muted-foreground">${t.amount}M</span>
               </div>
             ))}
           </div>
@@ -894,26 +894,26 @@ export default function CapitalStructurePage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-zinc-800/60 border border-zinc-700/40 h-auto flex-wrap gap-1 p-1">
-          <TabsTrigger value="waterfall" className="text-xs data-[state=active]:bg-zinc-700">
+        <TabsList className="bg-muted/60 border border-border/40 h-auto flex-wrap gap-1 p-1">
+          <TabsTrigger value="waterfall" className="text-xs data-[state=active]:bg-muted">
             Waterfall
           </TabsTrigger>
-          <TabsTrigger value="merton" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="merton" className="text-xs data-[state=active]:bg-muted">
             Merton Model
           </TabsTrigger>
-          <TabsTrigger value="covenants" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="covenants" className="text-xs data-[state=active]:bg-muted">
             Covenants
           </TabsTrigger>
-          <TabsTrigger value="screener" className="text-xs data-[state=active]:bg-zinc-700">
+          <TabsTrigger value="screener" className="text-xs data-[state=active]:bg-muted">
             Distressed Screener
           </TabsTrigger>
         </TabsList>
 
         {/* Waterfall Tab */}
         <TabsContent value="waterfall" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-zinc-800/60 border-zinc-700/40">
+          <Card className="bg-muted/60 border-border/40">
             <CardHeader className="pb-2 pt-4 px-4">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-emerald-400" />
                 Recovery Waterfall at EV ${ev}M
               </CardTitle>
@@ -925,13 +925,13 @@ export default function CapitalStructurePage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-700/50">
-                      <th className="text-left py-1.5 text-zinc-500 font-medium">Tranche</th>
-                      <th className="text-right py-1.5 text-zinc-500 font-medium">Face ($M)</th>
-                      <th className="text-right py-1.5 text-zinc-500 font-medium">Coupon</th>
-                      <th className="text-right py-1.5 text-zinc-500 font-medium">Rating</th>
-                      <th className="text-right py-1.5 text-zinc-500 font-medium">Recovery</th>
-                      <th className="text-right py-1.5 text-zinc-500 font-medium">¢ on $</th>
+                    <tr className="border-b border-border/50">
+                      <th className="text-left py-1.5 text-muted-foreground font-medium">Tranche</th>
+                      <th className="text-right py-1.5 text-muted-foreground font-medium">Face ($M)</th>
+                      <th className="text-right py-1.5 text-muted-foreground font-medium">Coupon</th>
+                      <th className="text-right py-1.5 text-muted-foreground font-medium">Rating</th>
+                      <th className="text-right py-1.5 text-muted-foreground font-medium">Recovery</th>
+                      <th className="text-right py-1.5 text-muted-foreground font-medium">¢ on $</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -943,22 +943,22 @@ export default function CapitalStructurePage() {
                         const cents = t.amount > 0 ? (rec / t.amount) * 100 : 0;
                         const isFulcrum = rec > 0 && rec < t.amount;
                         return (
-                          <tr key={t.name} className={`border-b border-zinc-800/50 ${isFulcrum ? "bg-muted/30" : ""}`}>
+                          <tr key={t.name} className={`border-b border-border/50 ${isFulcrum ? "bg-muted/30" : ""}`}>
                             <td className="py-1.5 flex items-center gap-1.5">
                               <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: t.color }} />
-                              <span className={isFulcrum ? "text-primary font-medium" : "text-zinc-300"}>{t.name}</span>
+                              <span className={isFulcrum ? "text-primary font-medium" : "text-muted-foreground"}>{t.name}</span>
                               {isFulcrum && (
                                 <Badge className="text-[11px] bg-primary/20 text-primary border-border px-1 py-0">
                                   FULCRUM
                                 </Badge>
                               )}
                             </td>
-                            <td className="py-1.5 text-right text-zinc-300">${t.amount}</td>
-                            <td className="py-1.5 text-right text-zinc-400">
+                            <td className="py-1.5 text-right text-muted-foreground">${t.amount}</td>
+                            <td className="py-1.5 text-right text-muted-foreground">
                               {t.coupon > 0 ? t.coupon.toFixed(1) + "%" : "—"}
                             </td>
-                            <td className="py-1.5 text-right text-zinc-400">{t.rating}</td>
-                            <td className="py-1.5 text-right text-zinc-300">${rec.toFixed(0)}</td>
+                            <td className="py-1.5 text-right text-muted-foreground">{t.rating}</td>
+                            <td className="py-1.5 text-right text-muted-foreground">${rec.toFixed(0)}</td>
                             <td className={`py-1.5 text-right font-semibold ${cents >= 100 ? "text-emerald-400" : cents > 0 ? "text-yellow-400" : "text-red-400"}`}>
                               {cents >= 100 ? "100¢" : cents > 0 ? cents.toFixed(1) + "¢" : "0¢"}
                             </td>
@@ -970,8 +970,8 @@ export default function CapitalStructurePage() {
                 </table>
               </div>
 
-              <div className="bg-zinc-800/30 rounded p-3 text-xs text-zinc-400 leading-relaxed">
-                <span className="text-zinc-200 font-medium">Absolute Priority Rule (APR): </span>
+              <div className="bg-muted/30 rounded p-3 text-xs text-muted-foreground leading-relaxed">
+                <span className="text-foreground font-medium">Absolute Priority Rule (APR): </span>
                 In bankruptcy, each class must be paid in full before junior creditors receive
                 anything. The &quot;fulcrum security&quot; (highlighted in blue) is the pivotal tranche
                 that receives partial recovery — it drives reorganization negotiations and often
@@ -983,9 +983,9 @@ export default function CapitalStructurePage() {
 
         {/* Merton Model Tab */}
         <TabsContent value="merton" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-zinc-800/60 border-zinc-700/40">
+          <Card className="bg-muted/60 border-border/40">
             <CardHeader className="pb-2 pt-4 px-4">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Merton Structural Credit Model
               </CardTitle>
@@ -998,9 +998,9 @@ export default function CapitalStructurePage() {
 
         {/* Covenants Tab */}
         <TabsContent value="covenants" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-zinc-800/60 border-zinc-700/40">
+          <Card className="bg-muted/60 border-border/40">
             <CardHeader className="pb-2 pt-4 px-4">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-yellow-400" />
                 Debt Covenants Dashboard
               </CardTitle>
@@ -1013,9 +1013,9 @@ export default function CapitalStructurePage() {
 
         {/* Distressed Screener Tab */}
         <TabsContent value="screener" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-zinc-800/60 border-zinc-700/40">
+          <Card className="bg-muted/60 border-border/40">
             <CardHeader className="pb-2 pt-4 px-4">
-              <CardTitle className="text-sm text-zinc-200 flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-red-400" />
                 Distressed Debt Screener
                 <Badge className="ml-auto text-xs bg-red-500/15 text-red-400 border-red-500/25">
@@ -1052,12 +1052,12 @@ export default function CapitalStructurePage() {
             body: "Distressed debt can yield 20–40%+ if the investor correctly assesses recovery value — a blend of credit analysis and legal expertise.",
           },
         ].map((tip) => (
-          <div key={tip.title} className="bg-zinc-800/40 border border-zinc-700/30 rounded-lg p-3">
+          <div key={tip.title} className="bg-muted/40 border border-border/30 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-1.5">
               <tip.icon className={`w-4 h-4 ${tip.color} shrink-0`} />
-              <span className="text-xs font-semibold text-zinc-200">{tip.title}</span>
+              <span className="text-xs font-semibold text-foreground">{tip.title}</span>
             </div>
-            <p className="text-[11px] text-zinc-400 leading-relaxed">{tip.body}</p>
+            <p className="text-[11px] text-muted-foreground leading-relaxed">{tip.body}</p>
           </div>
         ))}
       </div>
@@ -1067,7 +1067,7 @@ export default function CapitalStructurePage() {
         <Button
           size="sm"
           variant="outline"
-          className="text-xs border-zinc-700 text-zinc-300 hover:text-zinc-100"
+          className="text-xs border-border text-muted-foreground hover:text-foreground"
           onClick={() => setEv(TOTAL_CAPITAL)}
         >
           Full Recovery EV
@@ -1075,7 +1075,7 @@ export default function CapitalStructurePage() {
         <Button
           size="sm"
           variant="outline"
-          className="text-xs border-zinc-700 text-zinc-300 hover:text-zinc-100"
+          className="text-xs border-border text-muted-foreground hover:text-foreground"
           onClick={() => setEv(450)}
         >
           Stress Case EV
@@ -1083,7 +1083,7 @@ export default function CapitalStructurePage() {
         <Button
           size="sm"
           variant="outline"
-          className="text-xs border-zinc-700 text-zinc-300 hover:text-zinc-100"
+          className="text-xs border-border text-muted-foreground hover:text-foreground"
           onClick={() => setEv(250)}
         >
           Liquidation EV

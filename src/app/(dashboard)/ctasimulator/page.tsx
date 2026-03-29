@@ -526,12 +526,12 @@ function RollingCorrSVG({ regimes }: { regimes: CorrelationRegime[] }) {
 
 // ── Stat chip ─────────────────────────────────────────────────────────────────
 
-function StatChip({ label, value, sub, color = "text-slate-200" }: { label: string; value: string; sub?: string; color?: string }) {
+function StatChip({ label, value, sub, color = "text-foreground" }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div className="flex flex-col gap-0.5 p-3 rounded-lg bg-slate-800/60 border border-slate-700/40">
-      <span className="text-xs text-slate-400">{label}</span>
+    <div className="flex flex-col gap-0.5 p-3 rounded-lg bg-muted/60 border border-border/40">
+      <span className="text-xs text-muted-foreground">{label}</span>
       <span className={`text-lg font-semibold ${color}`}>{value}</span>
-      {sub && <span className="text-xs text-slate-500">{sub}</span>}
+      {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
 }
@@ -583,7 +583,7 @@ export default function CTASimulatorPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -591,8 +591,8 @@ export default function CTASimulatorPage() {
             <Sigma className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-100">CTA Strategy Simulator</h1>
-            <p className="text-sm text-slate-400">Systematic macro & commodity trading advisor strategies</p>
+            <h1 className="text-2xl font-bold text-foreground">CTA Strategy Simulator</h1>
+            <p className="text-sm text-muted-foreground">Systematic macro & commodity trading advisor strategies</p>
           </div>
           <div className="ml-auto flex items-center gap-2">
             <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 text-xs">Managed Futures</Badge>
@@ -603,7 +603,7 @@ export default function CTASimulatorPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="flex flex-wrap gap-1 h-auto bg-slate-900/60 border border-slate-700/40 p-1 mb-6 rounded-xl">
+        <TabsList className="flex flex-wrap gap-1 h-auto bg-card/60 border border-border/40 p-1 mb-6 rounded-xl">
           {TABS.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}
@@ -664,21 +664,21 @@ export default function CTASimulatorPage() {
                     signals: ["Realized vol EWMA", "Inverse-vol position sizing", "Sector vol budgeting", "Correlation-adjusted ERC"],
                   },
                 ].map(({ title, icon: Icon, color, pct, desc, signals }) => (
-                  <Card key={title} className="bg-slate-900/60 border-slate-700/40">
+                  <Card key={title} className="bg-card/60 border-border/40">
                     <CardHeader className="pb-2">
                       <CardTitle className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Icon className={`w-4 h-4 text-${color}-400`} />
-                          <span className="text-sm text-slate-200">{title}</span>
+                          <span className="text-sm text-foreground">{title}</span>
                         </div>
                         <Badge className={`bg-${color}-500/10 text-${color}-400 border-${color}-500/20 text-xs`}>{pct}% of CTAs</Badge>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-xs text-slate-400 leading-relaxed mb-3">{desc}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed mb-3">{desc}</p>
                       <div className="flex flex-wrap gap-1">
                         {signals.map((sig) => (
-                          <span key={sig} className="px-2 py-0.5 rounded text-xs bg-slate-800 text-slate-300 border border-slate-700/30">{sig}</span>
+                          <span key={sig} className="px-2 py-0.5 rounded text-xs bg-muted text-muted-foreground border border-border/30">{sig}</span>
                         ))}
                       </div>
                     </CardContent>
@@ -687,7 +687,7 @@ export default function CTASimulatorPage() {
               </div>
 
               {/* Crisis alpha chart */}
-              <Card className="bg-slate-900/60 border-slate-700/40">
+              <Card className="bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
                     <Shield className="w-4 h-4 text-emerald-400" />
@@ -704,10 +704,10 @@ export default function CTASimulatorPage() {
                     ].map(({ year, cta, note }) => (
                       <div key={year} className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-xs font-medium text-slate-200">{year}</span>
+                          <span className="text-xs font-medium text-foreground">{year}</span>
                           <span className="text-sm font-bold text-emerald-400">{cta}</span>
                         </div>
-                        <p className="text-xs text-slate-400">{note}</p>
+                        <p className="text-xs text-muted-foreground">{note}</p>
                       </div>
                     ))}
                   </div>
@@ -725,7 +725,7 @@ export default function CTASimulatorPage() {
                 {[
                   { label: "Long Signals",  value: trendSignals.filter(s => s.signal === "long").length.toString(),  color: "text-emerald-400" },
                   { label: "Short Signals", value: trendSignals.filter(s => s.signal === "short").length.toString(), color: "text-red-400"     },
-                  { label: "Flat",          value: trendSignals.filter(s => s.signal === "flat").length.toString(),  color: "text-slate-400"   },
+                  { label: "Flat",          value: trendSignals.filter(s => s.signal === "flat").length.toString(),  color: "text-muted-foreground"   },
                   { label: "Avg Strength",  value: (trendSignals.reduce((a, b) => a + b.strength, 0) / trendSignals.length).toFixed(1) + "%", color: "text-primary" },
                 ].map(({ label, value, color }) => (
                   <StatChip key={label} label={label} value={value} color={color} />
@@ -733,7 +733,7 @@ export default function CTASimulatorPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card className="bg-slate-900/60 border-slate-700/40">
+                <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
                       <Activity className="w-4 h-4 text-primary" />
@@ -745,7 +745,7 @@ export default function CTASimulatorPage() {
                   </CardContent>
                 </Card>
 
-                <Card className="bg-slate-900/60 border-slate-700/40">
+                <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
                       <SlidersHorizontal className="w-4 h-4 text-primary" />
@@ -756,9 +756,9 @@ export default function CTASimulatorPage() {
                     <div className="overflow-auto">
                       <table className="w-full text-xs">
                         <thead>
-                          <tr className="border-b border-slate-700/40">
+                          <tr className="border-b border-border/40">
                             {["Market", "Category", "MA20", "MA60", "Signal", "Strength"].map((h) => (
-                              <th key={h} className="text-left py-1.5 px-2 text-slate-400 font-medium">{h}</th>
+                              <th key={h} className="text-left py-1.5 px-2 text-muted-foreground font-medium">{h}</th>
                             ))}
                           </tr>
                         </thead>
@@ -766,10 +766,10 @@ export default function CTASimulatorPage() {
                           {trendSignals.map((sig, i) => (
                             <tr
                               key={i}
-                              className={`border-b border-slate-800/60 cursor-pointer transition-colors ${selectedMarket === sig.market ? "bg-slate-700/30" : "hover:bg-slate-800/40"}`}
+                              className={`border-b border-border/60 cursor-pointer transition-colors ${selectedMarket === sig.market ? "bg-muted/30" : "hover:bg-muted/40"}`}
                               onClick={() => setSelectedMarket(selectedMarket === sig.market ? null : sig.market)}
                             >
-                              <td className="py-1.5 px-2 text-slate-200 font-medium">{sig.market}</td>
+                              <td className="py-1.5 px-2 text-foreground font-medium">{sig.market}</td>
                               <td className="py-1.5 px-2">
                                 <span className={`px-1.5 py-0.5 rounded text-xs ${
                                   sig.category === "equity" ? "bg-indigo-500/15 text-indigo-300" :
@@ -778,20 +778,20 @@ export default function CTASimulatorPage() {
                                   "bg-emerald-500/15 text-emerald-300"
                                 }`}>{sig.category}</span>
                               </td>
-                              <td className="py-1.5 px-2 text-slate-300">{sig.ma20}</td>
-                              <td className="py-1.5 px-2 text-slate-300">{sig.ma60}</td>
+                              <td className="py-1.5 px-2 text-muted-foreground">{sig.ma20}</td>
+                              <td className="py-1.5 px-2 text-muted-foreground">{sig.ma60}</td>
                               <td className="py-1.5 px-2">
-                                <span className={`font-semibold ${sig.signal === "long" ? "text-emerald-400" : sig.signal === "short" ? "text-red-400" : "text-slate-400"}`}>
+                                <span className={`font-semibold ${sig.signal === "long" ? "text-emerald-400" : sig.signal === "short" ? "text-red-400" : "text-muted-foreground"}`}>
                                   {sig.signal === "long" ? "↑ LONG" : sig.signal === "short" ? "↓ SHORT" : "— FLAT"}
                                 </span>
                               </td>
                               <td className="py-1.5 px-2">
                                 <div className="flex items-center gap-1.5">
-                                  <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden w-16">
+                                  <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden w-16">
                                     <div className={`h-full rounded-full ${sig.signal === "long" ? "bg-emerald-500" : sig.signal === "short" ? "bg-red-500" : "bg-slate-500"}`}
                                       style={{ width: `${sig.strength}%` }} />
                                   </div>
-                                  <span className="text-slate-300 w-8">{sig.strength}%</span>
+                                  <span className="text-muted-foreground w-8">{sig.strength}%</span>
                                 </div>
                               </td>
                             </tr>
@@ -804,12 +804,12 @@ export default function CTASimulatorPage() {
               </div>
 
               {/* MA crossover explanation */}
-              <Card className="mt-4 bg-slate-900/60 border-slate-700/40">
+              <Card className="mt-4 bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-slate-200">Moving Average Crossover Logic</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Moving Average Crossover Logic</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-400">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
                     <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
                       <p className="font-medium text-emerald-400 mb-1">Long Signal (Bullish)</p>
                       <p>MA(20) &gt; MA(60) × 1.01 — fast MA is 1%+ above slow MA. Strength proportional to percentage divergence. Enter long futures position sized by inverse vol.</p>
@@ -818,8 +818,8 @@ export default function CTASimulatorPage() {
                       <p className="font-medium text-red-400 mb-1">Short Signal (Bearish)</p>
                       <p>MA(20) &lt; MA(60) × 0.99 — fast MA is 1%+ below slow MA. Enter short futures position. Stop-loss at 2× ATR. Daily rebalance of position size to maintain vol target.</p>
                     </div>
-                    <div className="p-3 rounded-lg bg-slate-700/30 border border-slate-600/30">
-                      <p className="font-medium text-slate-300 mb-1">Flat (No Signal)</p>
+                    <div className="p-3 rounded-lg bg-muted/30 border border-slate-600/30">
+                      <p className="font-medium text-muted-foreground mb-1">Flat (No Signal)</p>
                       <p>MA(20) within ±1% band of MA(60). Market in consolidation or regime transition. Position reduced to zero or held at minimal size to avoid whipsaw losses in choppy periods.</p>
                     </div>
                   </div>
@@ -841,7 +841,7 @@ export default function CTASimulatorPage() {
               </div>
 
               {/* Vol target slider */}
-              <Card className="mb-4 bg-slate-900/60 border-slate-700/40">
+              <Card className="mb-4 bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
                     <Gauge className="w-4 h-4 text-primary" />
@@ -854,7 +854,7 @@ export default function CTASimulatorPage() {
                     onChange={(e) => setVolTarget(Number(e.target.value))}
                     className="w-full accent-purple-500"
                   />
-                  <div className="flex justify-between text-xs text-slate-500 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>6% (Conservative)</span>
                     <span>13% (Typical CTA)</span>
                     <span>20% (Aggressive)</span>
@@ -865,8 +865,8 @@ export default function CTASimulatorPage() {
                       { label: "Expected Max Drawdown",  value: `-${(volTarget * 1.5).toFixed(1)}%`, color: "text-red-400" },
                       { label: "Estimated Sharpe",       value: "0.55–0.75", color: "text-primary" },
                     ].map(({ label, value, color }) => (
-                      <div key={label} className="p-2 rounded bg-slate-800/60 border border-slate-700/30">
-                        <p className="text-xs text-slate-400">{label}</p>
+                      <div key={label} className="p-2 rounded bg-muted/60 border border-border/30">
+                        <p className="text-xs text-muted-foreground">{label}</p>
                         <p className={`text-sm font-semibold ${color}`}>{value}</p>
                       </div>
                     ))}
@@ -876,7 +876,7 @@ export default function CTASimulatorPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Heatmap */}
-                <Card className="bg-slate-900/60 border-slate-700/40">
+                <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
                       <PieChart className="w-4 h-4 text-emerald-400" />
@@ -900,7 +900,7 @@ export default function CTASimulatorPage() {
                 </Card>
 
                 {/* ERC explanation + table */}
-                <Card className="bg-slate-900/60 border-slate-700/40">
+                <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
                       <Layers className="w-4 h-4 text-primary" />
@@ -908,22 +908,22 @@ export default function CTASimulatorPage() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-xs text-slate-400 mb-3 leading-relaxed">
+                    <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
                       Each market contributes equally to total portfolio risk (1/N ≈ 5% each for 20 markets). Position size = (vol target × budget) / (market vol × √252). Daily rebalancing maintains the risk budget as volatilities shift.
                     </p>
                     <div className="overflow-auto max-h-48">
                       <table className="w-full text-xs">
                         <thead>
-                          <tr className="border-b border-slate-700/40">
+                          <tr className="border-b border-border/40">
                             {["Market", "Weight", "Ann.Vol", "Risk Contrib"].map((h) => (
-                              <th key={h} className="text-left py-1 px-1.5 text-slate-400 font-medium">{h}</th>
+                              <th key={h} className="text-left py-1 px-1.5 text-muted-foreground font-medium">{h}</th>
                             ))}
                           </tr>
                         </thead>
                         <tbody>
                           {allocations.slice(0, 12).map((a, i) => (
-                            <tr key={i} className="border-b border-slate-800/40 hover:bg-slate-800/30">
-                              <td className="py-1 px-1.5 text-slate-200">{a.market}</td>
+                            <tr key={i} className="border-b border-border/40 hover:bg-muted/30">
+                              <td className="py-1 px-1.5 text-foreground">{a.market}</td>
                               <td className="py-1 px-1.5 text-primary">{a.weight.toFixed(2)}%</td>
                               <td className="py-1 px-1.5 text-amber-300">{a.vol.toFixed(1)}%</td>
                               <td className="py-1 px-1.5 text-primary">{a.riskContrib.toFixed(2)}%</td>
@@ -953,7 +953,7 @@ export default function CTASimulatorPage() {
               </div>
 
               {/* Equity curve */}
-              <Card className="mb-4 bg-slate-900/60 border-slate-700/40">
+              <Card className="mb-4 bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
                     <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -967,7 +967,7 @@ export default function CTASimulatorPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Annual returns table */}
-                <Card className="bg-slate-900/60 border-slate-700/40">
+                <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
                       <BarChart3 className="w-4 h-4 text-primary" />
@@ -977,16 +977,16 @@ export default function CTASimulatorPage() {
                   <CardContent>
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="border-b border-slate-700/40">
+                        <tr className="border-b border-border/40">
                           {["Year", "CTA", "Equity", "60/40"].map((h) => (
-                            <th key={h} className="text-left py-1.5 px-2 text-slate-400 font-medium">{h}</th>
+                            <th key={h} className="text-left py-1.5 px-2 text-muted-foreground font-medium">{h}</th>
                           ))}
                         </tr>
                       </thead>
                       <tbody>
                         {annualReturns.map((r) => (
-                          <tr key={r.year} className="border-b border-slate-800/40 hover:bg-slate-800/30">
-                            <td className="py-1.5 px-2 text-slate-300 font-medium">{r.year}</td>
+                          <tr key={r.year} className="border-b border-border/40 hover:bg-muted/30">
+                            <td className="py-1.5 px-2 text-muted-foreground font-medium">{r.year}</td>
                             <td className={`py-1.5 px-2 font-semibold ${r.cta >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                               {r.cta >= 0 ? "+" : ""}{r.cta.toFixed(1)}%
                             </td>
@@ -1004,7 +1004,7 @@ export default function CTASimulatorPage() {
                 </Card>
 
                 {/* Drawdown chart */}
-                <Card className="bg-slate-900/60 border-slate-700/40">
+                <Card className="bg-card/60 border-border/40">
                   <CardHeader className="pb-2">
                     <CardTitle className="flex items-center gap-2 text-sm">
                       <TrendingDown className="w-4 h-4 text-red-400" />
@@ -1015,11 +1015,11 @@ export default function CTASimulatorPage() {
                     <DrawdownSVG drawdown={drawdown} />
                     <div className="mt-3 grid grid-cols-2 gap-3">
                       <div className="p-2 rounded bg-emerald-500/5 border border-emerald-500/20">
-                        <p className="text-xs text-slate-400">CTA Max DD</p>
+                        <p className="text-xs text-muted-foreground">CTA Max DD</p>
                         <p className="text-sm font-bold text-emerald-400">{Math.min(...drawdown.map((d) => d.cta)).toFixed(1)}%</p>
                       </div>
                       <div className="p-2 rounded bg-red-500/5 border border-red-500/20">
-                        <p className="text-xs text-slate-400">Equity Max DD</p>
+                        <p className="text-xs text-muted-foreground">Equity Max DD</p>
                         <p className="text-sm font-bold text-red-400">{Math.min(...drawdown.map((d) => d.equity)).toFixed(1)}%</p>
                       </div>
                     </div>
@@ -1042,7 +1042,7 @@ export default function CTASimulatorPage() {
               </div>
 
               {/* Rolling correlation chart */}
-              <Card className="mb-4 bg-slate-900/60 border-slate-700/40">
+              <Card className="mb-4 bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
                     <GitBranch className="w-4 h-4 text-primary" />
@@ -1057,11 +1057,11 @@ export default function CTASimulatorPage() {
               {/* Regime detail cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
                 {corrRegimes.map((r) => (
-                  <Card key={r.regime} className="bg-slate-900/60 border-slate-700/40">
+                  <Card key={r.regime} className="bg-card/60 border-border/40">
                     <CardContent className="pt-3">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: r.color }} />
-                        <span className="text-sm font-medium text-slate-200">{r.regime}</span>
+                        <span className="text-sm font-medium text-foreground">{r.regime}</span>
                       </div>
                       <div className="grid grid-cols-3 gap-2 mb-2">
                         {[
@@ -1070,21 +1070,21 @@ export default function CTASimulatorPage() {
                           { label: "EQ/BD",  val: r.equityBondCorr },
                         ].map(({ label, val }) => (
                           <div key={label} className="text-center">
-                            <p className="text-xs text-slate-400">{label}</p>
-                            <p className={`text-sm font-bold ${val < -0.1 ? "text-emerald-400" : val > 0.1 ? "text-red-400" : "text-slate-300"}`}>
+                            <p className="text-xs text-muted-foreground">{label}</p>
+                            <p className={`text-sm font-bold ${val < -0.1 ? "text-emerald-400" : val > 0.1 ? "text-red-400" : "text-muted-foreground"}`}>
                               {val > 0 ? "+" : ""}{val.toFixed(2)}
                             </p>
                           </div>
                         ))}
                       </div>
-                      <p className="text-xs text-slate-400 leading-relaxed">{r.note}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{r.note}</p>
                     </CardContent>
                   </Card>
                 ))}
               </div>
 
               {/* Portfolio benefit */}
-              <Card className="bg-slate-900/60 border-slate-700/40">
+              <Card className="bg-card/60 border-border/40">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-center gap-2 text-sm">
                     <Target className="w-4 h-4 text-amber-400" />
@@ -1102,15 +1102,15 @@ export default function CTASimulatorPage() {
                         <p className={`text-xs font-medium text-${color}-400 mb-2`}>{portfolio}</p>
                         <div className="space-y-1">
                           <div className="flex justify-between text-xs">
-                            <span className="text-slate-400">Sharpe Ratio</span>
+                            <span className="text-muted-foreground">Sharpe Ratio</span>
                             <span className={`font-semibold text-${color}-300`}>{sharpe}</span>
                           </div>
                           <div className="flex justify-between text-xs">
-                            <span className="text-slate-400">CAGR</span>
-                            <span className="text-slate-200">{cagr}%</span>
+                            <span className="text-muted-foreground">CAGR</span>
+                            <span className="text-foreground">{cagr}%</span>
                           </div>
                           <div className="flex justify-between text-xs">
-                            <span className="text-slate-400">Max Drawdown</span>
+                            <span className="text-muted-foreground">Max Drawdown</span>
                             <span className="text-red-300">{maxDD}%</span>
                           </div>
                         </div>
@@ -1120,7 +1120,7 @@ export default function CTASimulatorPage() {
                   <div className="mt-4 p-3 rounded-lg bg-amber-500/5 border border-amber-500/20">
                     <div className="flex items-start gap-2">
                       <Zap className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
-                      <p className="text-xs text-slate-300 leading-relaxed">
+                      <p className="text-xs text-muted-foreground leading-relaxed">
                         Adding a 20% CTA allocation (rebalanced from equity) historically improved Sharpe by ~0.15 and reduced max drawdown by ~9pp due to crisis alpha in stress periods. The benefit is most pronounced in inflation regimes (2022) and deflationary busts (2008) where equity-bond correlation turns positive and traditional diversification fails.
                       </p>
                     </div>
@@ -1133,7 +1133,7 @@ export default function CTASimulatorPage() {
       </Tabs>
 
       {/* Footer disclaimer */}
-      <p className="mt-8 text-xs text-slate-600 text-center">
+      <p className="mt-8 text-xs text-muted-foreground text-center">
         Simulated data for educational purposes only. Past performance of CTA strategies does not guarantee future results. Seed 742002.
       </p>
     </div>

@@ -451,12 +451,12 @@ function SectorHeatmap() {
         return (
           <div
             key={sec.name}
-            className="rounded-lg p-2.5 border border-slate-700"
+            className="rounded-lg p-2.5 border border-border"
             style={{ background: `rgba(59,130,246,${0.08 + intensity * 0.25})` }}
           >
-            <div className="text-xs font-medium text-slate-200 mb-1">{sec.name}</div>
-            <div className="text-xs text-slate-400">{sec.ipos} IPOs</div>
-            <div className="text-xs text-slate-400">${sec.volume.toFixed(1)}B</div>
+            <div className="text-xs font-medium text-foreground mb-1">{sec.name}</div>
+            <div className="text-xs text-muted-foreground">{sec.ipos} IPOs</div>
+            <div className="text-xs text-muted-foreground">${sec.volume.toFixed(1)}B</div>
             <div className={cn("text-[11px] font-semibold mt-1", isPos ? "text-green-400" : "text-red-400")}>
               {isPos ? "+" : ""}{sec.avgReturn.toFixed(1)}%
             </div>
@@ -511,10 +511,10 @@ function LBOWaterfallChart() {
 
 function InfoCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4">
+    <div className="rounded-xl border border-border bg-muted/50 p-4">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-primary">{icon}</span>
-        <span className="text-sm font-semibold text-slate-200">{title}</span>
+        <span className="text-sm font-semibold text-foreground">{title}</span>
       </div>
       {children}
     </div>
@@ -553,7 +553,7 @@ function IPOProcessTab() {
       {/* Timeline */}
       <InfoCard title="IPO Timeline: 9 Stages" icon={<Clock className="w-4 h-4" />}>
         <div className="relative">
-          <div className="absolute top-5 left-5 right-5 h-0.5 bg-slate-700" />
+          <div className="absolute top-5 left-5 right-5 h-0.5 bg-muted" />
           <div className="flex gap-1 overflow-x-auto pb-3">
             {IPO_STAGES.map((stage, i) => (
               <button
@@ -567,12 +567,12 @@ function IPOProcessTab() {
                   "relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all",
                   selectedStage?.id === stage.id
                     ? "bg-primary border-primary text-white"
-                    : "bg-slate-800 border-slate-600 text-slate-400 group-hover:border-primary group-hover:text-primary"
+                    : "bg-muted border-slate-600 text-muted-foreground group-hover:border-primary group-hover:text-primary"
                 )}>
                   {stage.icon}
                 </div>
-                <span className="text-[11px] text-slate-400 text-center leading-tight">{stage.name}</span>
-                <span className="text-[8px] text-slate-600">{stage.duration}</span>
+                <span className="text-[11px] text-muted-foreground text-center leading-tight">{stage.name}</span>
+                <span className="text-[8px] text-muted-foreground">{stage.duration}</span>
               </button>
             ))}
           </div>
@@ -589,14 +589,14 @@ function IPOProcessTab() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-primary">{selectedStage.icon}</span>
                   <span className="font-semibold text-primary">{selectedStage.name}</span>
-                  <span className="text-xs text-slate-500 ml-auto">{selectedStage.duration}</span>
+                  <span className="text-xs text-muted-foreground ml-auto">{selectedStage.duration}</span>
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed mb-3">{selectedStage.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-3">{selectedStage.description}</p>
                 <div>
-                  <span className="text-xs text-slate-500">Key Players</span>
+                  <span className="text-xs text-muted-foreground">Key Players</span>
                   <div className="flex flex-wrap gap-1.5 mt-1.5">
                     {selectedStage.keyPlayers.map((p) => (
-                      <span key={p} className="text-xs bg-slate-700/60 text-slate-300 rounded-full px-2 py-0.5">{p}</span>
+                      <span key={p} className="text-xs bg-muted/60 text-muted-foreground rounded-full px-2 py-0.5">{p}</span>
                     ))}
                   </div>
                 </div>
@@ -605,13 +605,13 @@ function IPOProcessTab() {
           )}
         </AnimatePresence>
         {!selectedStage && (
-          <p className="text-xs text-slate-500 mt-2 italic">Click a stage to learn more</p>
+          <p className="text-xs text-muted-foreground mt-2 italic">Click a stage to learn more</p>
         )}
       </InfoCard>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="S-1 Filing: What Investors Analyze" icon={<FileText className="w-4 h-4" />}>
-          <ul className="space-y-2 text-sm text-slate-300">
+          <ul className="space-y-2 text-sm text-muted-foreground">
             {[
               { label: "Business Model", desc: "Revenue drivers, unit economics, addressable market" },
               { label: "3-Year Financials", desc: "Revenue growth trajectory, gross margins, burn rate" },
@@ -622,7 +622,7 @@ function IPOProcessTab() {
             ].map((item) => (
               <li key={item.label} className="flex gap-2">
                 <ChevronRight className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
-                <span><span className="font-medium text-slate-200">{item.label}:</span> {item.desc}</span>
+                <span><span className="font-medium text-foreground">{item.label}:</span> {item.desc}</span>
               </li>
             ))}
           </ul>
@@ -630,8 +630,8 @@ function IPOProcessTab() {
 
         <InfoCard title="Allocation & Greenshoe Mechanics" icon={<Award className="w-4 h-4" />}>
           <div className="space-y-3 text-sm">
-            <div className="rounded-lg bg-slate-700/40 p-3">
-              <div className="font-medium text-slate-200 mb-1">Typical Allocation Split</div>
+            <div className="rounded-lg bg-muted/40 p-3">
+              <div className="font-medium text-foreground mb-1">Typical Allocation Split</div>
               <div className="space-y-1">
                 {[
                   { label: "Institutional (mutual funds, hedge funds)", pct: 70 },
@@ -640,18 +640,18 @@ function IPOProcessTab() {
                   { label: "Employee / directed shares", pct: 5 },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-2">
-                    <div className="w-28 text-xs text-slate-400 flex-shrink-0">{item.pct}%</div>
-                    <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                    <div className="w-28 text-xs text-muted-foreground flex-shrink-0">{item.pct}%</div>
+                    <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                       <div className="h-full bg-primary rounded-full" style={{ width: `${item.pct}%` }} />
                     </div>
-                    <div className="text-xs text-slate-400 w-52">{item.label}</div>
+                    <div className="text-xs text-muted-foreground w-52">{item.label}</div>
                   </div>
                 ))}
               </div>
             </div>
             <div className="rounded-lg bg-amber-900/20 border border-amber-700/40 p-3">
               <div className="font-medium text-amber-300 mb-1">Greenshoe Option</div>
-              <p className="text-xs text-slate-400">Underwriters short-sell 15% extra shares at IPO. If price rises, exercise option to buy from company. If price falls, buy in open market to stabilize. Net effect: price support for 30 days post-IPO.</p>
+              <p className="text-xs text-muted-foreground">Underwriters short-sell 15% extra shares at IPO. If price rises, exercise option to buy from company. If price falls, buy in open market to stabilize. Net effect: price support for 30 days post-IPO.</p>
             </div>
           </div>
         </InfoCard>
@@ -685,25 +685,25 @@ function IPOValuationTab() {
 
       <InfoCard title="IPO Return Performance" icon={<BarChart3 className="w-4 h-4" />}>
         <IPOReturnChart />
-        <p className="text-xs text-slate-500 mt-1">Green bars = total return since IPO. Blue bars = first day pop. Source: synthetic data.</p>
+        <p className="text-xs text-muted-foreground mt-1">Green bars = total return since IPO. Blue bars = first day pop. Source: synthetic data.</p>
       </InfoCard>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <InfoCard title="IPO Underpricing" icon={<DollarSign className="w-4 h-4" />}>
-          <p className="text-xs text-slate-300 leading-relaxed mb-3">Underwriters systematically price IPOs 10–15% below fair value. This "money left on the table" benefits institutional investors who flip shares on day 1.</p>
-          <div className="rounded-lg bg-slate-700/40 p-2">
-            <div className="text-xs text-slate-400 mb-1">Who wins / loses</div>
+          <p className="text-xs text-muted-foreground leading-relaxed mb-3">Underwriters systematically price IPOs 10–15% below fair value. This "money left on the table" benefits institutional investors who flip shares on day 1.</p>
+          <div className="rounded-lg bg-muted/40 p-2">
+            <div className="text-xs text-muted-foreground mb-1">Who wins / loses</div>
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-green-400">Win:</span><span className="text-slate-300">Institutional allocatees, underwriters (repeat business)</span>
+              <span className="text-green-400">Win:</span><span className="text-muted-foreground">Institutional allocatees, underwriters (repeat business)</span>
             </div>
             <div className="flex items-center gap-2 text-xs mt-1">
-              <span className="text-red-400">Lose:</span><span className="text-slate-300">Pre-IPO shareholders (diluted value), company (raised less)</span>
+              <span className="text-red-400">Lose:</span><span className="text-muted-foreground">Pre-IPO shareholders (diluted value), company (raised less)</span>
             </div>
           </div>
         </InfoCard>
 
         <InfoCard title="Long-Run Performance" icon={<TrendingDown className="w-4 h-4" />}>
-          <p className="text-xs text-slate-300 leading-relaxed mb-3">Landmark Ritter research (1991–2020): IPOs underperform comparable non-IPO stocks by 3–5% per year over 3 years post-IPO.</p>
+          <p className="text-xs text-muted-foreground leading-relaxed mb-3">Landmark Ritter research (1991–2020): IPOs underperform comparable non-IPO stocks by 3–5% per year over 3 years post-IPO.</p>
           <div className="space-y-1.5">
             {[
               { period: "Day 1", perf: "+20%", color: "text-green-400" },
@@ -712,7 +712,7 @@ function IPOValuationTab() {
               { period: "Year 3", perf: "-8%", color: "text-red-400" },
             ].map((row) => (
               <div key={row.period} className="flex justify-between text-xs">
-                <span className="text-slate-400">{row.period}</span>
+                <span className="text-muted-foreground">{row.period}</span>
                 <span className={cn("font-mono font-semibold", row.color)}>{row.perf}</span>
               </div>
             ))}
@@ -720,10 +720,10 @@ function IPOValuationTab() {
         </InfoCard>
 
         <InfoCard title="Lockup Expiration Effect" icon={<Lock className="w-4 h-4" />}>
-          <p className="text-xs text-slate-300 leading-relaxed mb-3">After 180-day lockup expires, insiders and VC funds can sell. Historically stocks decline -3% on average around lockup expiry.</p>
+          <p className="text-xs text-muted-foreground leading-relaxed mb-3">After 180-day lockup expires, insiders and VC funds can sell. Historically stocks decline -3% on average around lockup expiry.</p>
           <div className="rounded-lg bg-red-900/20 border border-red-700/40 p-2.5">
             <div className="text-xs font-medium text-red-300 mb-1.5">Warning Signs</div>
-            <ul className="space-y-0.5 text-xs text-slate-400">
+            <ul className="space-y-0.5 text-xs text-muted-foreground">
               <li>• High insider ownership + recent lockup</li>
               <li>• VC funds approaching fund lifecycle end</li>
               <li>• Stock still trading at premium to comps</li>
@@ -738,7 +738,7 @@ function IPOValuationTab() {
           {(["all", "profitable", "unprofitable", "lockup"] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors",
-                filter === f ? "bg-primary text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
+                filter === f ? "bg-primary text-white" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f === "all" ? "All" : f === "profitable" ? "Profitable" : f === "unprofitable" ? "Underwater" : "Lockup Expired"}
             </button>
           ))}
@@ -746,9 +746,9 @@ function IPOValuationTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs min-w-[600px]">
             <thead>
-              <tr className="border-b border-slate-700">
+              <tr className="border-b border-border">
                 {["Company", "Ticker", "Sector", "Offer", "Current", "Total Return", "1st Day", "Mkt Cap", "Date", "Lockup"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-3 text-slate-500 font-medium">{h}</th>
+                  <th key={h} className="text-left py-2 pr-3 text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -757,10 +757,10 @@ function IPOValuationTab() {
                 const ret = ((ipo.currentPrice - ipo.offerPrice) / ipo.offerPrice) * 100;
                 const firstDay = ((ipo.firstDayClose - ipo.offerPrice) / ipo.offerPrice) * 100;
                 return (
-                  <tr key={ipo.id} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
-                    <td className="py-2 pr-3 font-medium text-slate-200">{ipo.company}</td>
+                  <tr key={ipo.id} className="border-b border-border hover:bg-muted/40 transition-colors">
+                    <td className="py-2 pr-3 font-medium text-foreground">{ipo.company}</td>
                     <td className="pr-3 font-mono text-primary">{ipo.ticker}</td>
-                    <td className="pr-3 text-slate-400">{ipo.sector}</td>
+                    <td className="pr-3 text-muted-foreground">{ipo.sector}</td>
                     <td className="pr-3 font-mono">${ipo.offerPrice}</td>
                     <td className="pr-3 font-mono">${ipo.currentPrice}</td>
                     <td className={cn("pr-3 font-mono font-semibold", ret >= 0 ? "text-green-400" : "text-red-400")}>
@@ -769,11 +769,11 @@ function IPOValuationTab() {
                     <td className={cn("pr-3 font-mono", firstDay >= 0 ? "text-green-300" : "text-red-300")}>
                       {firstDay > 0 ? "+" : ""}{firstDay.toFixed(1)}%
                     </td>
-                    <td className="pr-3 text-slate-300">${ipo.marketCap}B</td>
-                    <td className="pr-3 text-slate-500">{ipo.date}</td>
+                    <td className="pr-3 text-muted-foreground">${ipo.marketCap}B</td>
+                    <td className="pr-3 text-muted-foreground">{ipo.date}</td>
                     <td>{ipo.lockupExpired
                       ? <span className="text-amber-400 font-medium">Expired</span>
-                      : <span className="text-slate-500">Active</span>}</td>
+                      : <span className="text-muted-foreground">Active</span>}</td>
                   </tr>
                 );
               })}
@@ -820,8 +820,8 @@ function SPACTab() {
                     {i + 1}
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-slate-200">{item.step}</div>
-                    <div className="text-xs text-slate-400 leading-relaxed">{item.desc}</div>
+                    <div className="text-xs font-semibold text-foreground">{item.step}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
                   </div>
                 </div>
               );
@@ -834,8 +834,8 @@ function SPACTab() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-slate-700">
-                    <th className="text-left py-1.5 text-slate-500">Dimension</th>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-1.5 text-muted-foreground">Dimension</th>
                     <th className="text-center py-1.5 text-primary">SPAC</th>
                     <th className="text-center py-1.5 text-primary">Traditional IPO</th>
                   </tr>
@@ -851,10 +851,10 @@ function SPACTab() {
                     ["Investor redemption", "Yes (trust)", "No"],
                     ["Performance record", "Worse post-deal", "Mixed"],
                   ].map(([dim, spac, trad]) => (
-                    <tr key={dim} className="hover:bg-slate-800/30">
-                      <td className="py-1.5 text-slate-400">{dim}</td>
-                      <td className="py-1.5 text-center text-slate-300">{spac}</td>
-                      <td className="py-1.5 text-center text-slate-300">{trad}</td>
+                    <tr key={dim} className="hover:bg-muted/30">
+                      <td className="py-1.5 text-muted-foreground">{dim}</td>
+                      <td className="py-1.5 text-center text-muted-foreground">{spac}</td>
+                      <td className="py-1.5 text-center text-muted-foreground">{trad}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -863,7 +863,7 @@ function SPACTab() {
           </InfoCard>
 
           <InfoCard title="Sponsor Economics (The Promote)" icon={<AlertTriangle className="w-4 h-4" />}>
-            <div className="rounded-lg bg-amber-900/20 border border-amber-700/40 p-3 text-xs text-slate-300 leading-relaxed">
+            <div className="rounded-lg bg-amber-900/20 border border-amber-700/40 p-3 text-xs text-muted-foreground leading-relaxed">
               <p>Sponsor typically pays <strong className="text-amber-300">~$25,000</strong> for <strong className="text-amber-300">20% of shares</strong> (the "promote") in a $200M SPAC. If deal closes, sponsor's shares are worth <strong className="text-amber-300">$40M</strong>. This creates misaligned incentives — sponsors are motivated to do <em>any</em> deal, not a <em>good</em> deal, before deadline.</p>
             </div>
           </InfoCard>
@@ -875,7 +875,7 @@ function SPACTab() {
           {(["all", "searching", "announced", "voting"] as const).map((f) => (
             <button key={f} onClick={() => setStatusFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors capitalize",
-                statusFilter === f ? "bg-primary text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
+                statusFilter === f ? "bg-primary text-white" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f}
             </button>
           ))}
@@ -883,22 +883,22 @@ function SPACTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs min-w-[640px]">
             <thead>
-              <tr className="border-b border-slate-700">
+              <tr className="border-b border-border">
                 {["SPAC", "Ticker", "Sponsor", "Target", "Trust/Sh", "Price", "Premium", "Deadline", "Raise"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-3 text-slate-500 font-medium">{h}</th>
+                  <th key={h} className="text-left py-2 pr-3 text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {filtered.map((sp) => {
                 const prem = ((sp.currentPrice - sp.trustValue) / sp.trustValue) * 100;
-                const statusColor = sp.status === "voting" ? "text-amber-400" : sp.status === "announced" ? "text-primary" : "text-slate-500";
+                const statusColor = sp.status === "voting" ? "text-amber-400" : sp.status === "announced" ? "text-primary" : "text-muted-foreground";
                 return (
-                  <tr key={sp.id} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
-                    <td className="py-2 pr-3 font-medium text-slate-200 max-w-[140px] truncate">{sp.name}</td>
+                  <tr key={sp.id} className="border-b border-border hover:bg-muted/40 transition-colors">
+                    <td className="py-2 pr-3 font-medium text-foreground max-w-[140px] truncate">{sp.name}</td>
                     <td className="pr-3 font-mono text-primary">{sp.ticker}</td>
-                    <td className="pr-3 text-slate-400 max-w-[100px] truncate">{sp.sponsor}</td>
-                    <td className={cn("pr-3", sp.target ? "text-slate-300" : "text-slate-600 italic")}>
+                    <td className="pr-3 text-muted-foreground max-w-[100px] truncate">{sp.sponsor}</td>
+                    <td className={cn("pr-3", sp.target ? "text-muted-foreground" : "text-muted-foreground italic")}>
                       {sp.target ?? "—"}
                     </td>
                     <td className="pr-3 font-mono">${sp.trustValue.toFixed(2)}</td>
@@ -906,8 +906,8 @@ function SPACTab() {
                     <td className={cn("pr-3 font-mono font-semibold", prem >= 0 ? "text-green-400" : "text-red-400")}>
                       {prem > 0 ? "+" : ""}{prem.toFixed(1)}%
                     </td>
-                    <td className="pr-3 text-slate-400">{sp.deadlineMonths}mo</td>
-                    <td className="pr-3 text-slate-300">${sp.raiseSize}M</td>
+                    <td className="pr-3 text-muted-foreground">{sp.deadlineMonths}mo</td>
+                    <td className="pr-3 text-muted-foreground">${sp.raiseSize}M</td>
                   </tr>
                 );
               })}
@@ -1012,22 +1012,22 @@ function SecondaryOfferingsTab() {
             purple: "text-primary",
           };
           return (
-            <div key={ot.name} className={cn("rounded-xl border bg-slate-800/50 p-4", borderMap[cardColor])}>
+            <div key={ot.name} className={cn("rounded-xl border bg-muted/50 p-4", borderMap[cardColor])}>
               <div className="flex items-center gap-2 mb-2">
                 <span className={iconColorMap[cardColor]}>{ot.icon}</span>
-                <span className="text-sm font-semibold text-slate-200">{ot.name}</span>
+                <span className="text-sm font-semibold text-foreground">{ot.name}</span>
                 <span className={cn("ml-auto text-xs rounded-full border px-2 py-0.5 capitalize", typeColor(ot.type))}>
                   {ot.type}
                 </span>
               </div>
-              <p className="text-xs text-slate-300 leading-relaxed mb-2">{ot.desc}</p>
-              <div className="rounded bg-slate-700/40 px-2 py-1.5 mb-1.5">
-                <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">Example: </span>
-                <span className="text-xs text-slate-300">{ot.example}</span>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-2">{ot.desc}</p>
+              <div className="rounded bg-muted/40 px-2 py-1.5 mb-1.5">
+                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Example: </span>
+                <span className="text-xs text-muted-foreground">{ot.example}</span>
               </div>
-              <div className="rounded bg-slate-700/40 px-2 py-1.5">
-                <span className="text-xs font-medium text-slate-400 uppercase tracking-wide">Market Impact: </span>
-                <span className="text-xs text-slate-300">{ot.impact}</span>
+              <div className="rounded bg-muted/40 px-2 py-1.5">
+                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Market Impact: </span>
+                <span className="text-xs text-muted-foreground">{ot.impact}</span>
               </div>
             </div>
           );
@@ -1067,10 +1067,10 @@ function DCMTab() {
               { step: "Settlement (T+3)", desc: "Bonds delivered to investors via DTC/Euroclear. Company receives proceeds" },
             ].map((item, i) => (
               <div key={i} className="flex gap-2.5">
-                <div className="mt-0.5 w-5 h-5 rounded-full bg-slate-700 flex-shrink-0 flex items-center justify-center text-primary text-xs font-bold">{i + 1}</div>
+                <div className="mt-0.5 w-5 h-5 rounded-full bg-muted flex-shrink-0 flex items-center justify-center text-primary text-xs font-bold">{i + 1}</div>
                 <div>
-                  <span className="text-xs font-medium text-slate-200">{item.step}: </span>
-                  <span className="text-xs text-slate-400">{item.desc}</span>
+                  <span className="text-xs font-medium text-foreground">{item.step}: </span>
+                  <span className="text-xs text-muted-foreground">{item.desc}</span>
                 </div>
               </div>
             ))}
@@ -1088,8 +1088,8 @@ function DCMTab() {
                 { label: "Equity", desc: "Residual claim; sponsor returns depend on exit multiple expansion" },
               ].map((item) => (
                 <div key={item.label}>
-                  <span className="font-medium text-slate-300">{item.label}: </span>
-                  <span className="text-slate-500">{item.desc}</span>
+                  <span className="font-medium text-muted-foreground">{item.label}: </span>
+                  <span className="text-muted-foreground">{item.desc}</span>
                 </div>
               ))}
             </div>
@@ -1099,8 +1099,8 @@ function DCMTab() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-slate-700">
-                    <th className="text-left py-1.5 text-slate-500">Feature</th>
+                  <tr className="border-b border-border">
+                    <th className="text-left py-1.5 text-muted-foreground">Feature</th>
                     <th className="text-center py-1.5 text-primary">Term Loan</th>
                     <th className="text-center py-1.5 text-amber-400">HY Bond</th>
                   </tr>
@@ -1114,10 +1114,10 @@ function DCMTab() {
                     ["Maturity", "5–7 years", "7–10 years"],
                     ["Min size", "$100M+", "$150M+"],
                   ].map(([feat, loan, bond]) => (
-                    <tr key={feat} className="hover:bg-slate-800/30">
-                      <td className="py-1.5 text-slate-400">{feat}</td>
-                      <td className="py-1.5 text-center text-slate-300">{loan}</td>
-                      <td className="py-1.5 text-center text-slate-300">{bond}</td>
+                    <tr key={feat} className="hover:bg-muted/30">
+                      <td className="py-1.5 text-muted-foreground">{feat}</td>
+                      <td className="py-1.5 text-center text-muted-foreground">{loan}</td>
+                      <td className="py-1.5 text-center text-muted-foreground">{bond}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1132,7 +1132,7 @@ function DCMTab() {
           {(["all", "investment-grade", "high-yield", "loan"] as const).map((f) => (
             <button key={f} onClick={() => setTypeFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors",
-                typeFilter === f ? "bg-primary text-white" : "bg-slate-700/50 text-slate-400 hover:bg-slate-700")}>
+                typeFilter === f ? "bg-primary text-white" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f === "all" ? "All" : f === "investment-grade" ? "Inv. Grade" : f === "high-yield" ? "High Yield" : "Loans"}
             </button>
           ))}
@@ -1140,9 +1140,9 @@ function DCMTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs min-w-[600px]">
             <thead>
-              <tr className="border-b border-slate-700">
+              <tr className="border-b border-border">
                 {["Issuer", "Sector", "Size", "Coupon", "Rating", "Tenor", "Type", "Use of Proceeds", "Date"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-3 text-slate-500 font-medium">{h}</th>
+                  <th key={h} className="text-left py-2 pr-3 text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1155,18 +1155,18 @@ function DCMTab() {
                     ? "bg-amber-900/40 text-amber-300"
                     : "bg-green-900/40 text-green-300";
                 return (
-                  <tr key={deal.id} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
-                    <td className="py-2 pr-3 font-medium text-slate-200">{deal.issuer}</td>
-                    <td className="pr-3 text-slate-400">{deal.sector}</td>
-                    <td className="pr-3 font-mono text-slate-300">${deal.size}B</td>
-                    <td className="pr-3 font-mono text-slate-300">{deal.coupon}%</td>
-                    <td className="pr-3 font-mono text-slate-400">{deal.rating}</td>
-                    <td className="pr-3 text-slate-400">{deal.tenor}</td>
+                  <tr key={deal.id} className="border-b border-border hover:bg-muted/40 transition-colors">
+                    <td className="py-2 pr-3 font-medium text-foreground">{deal.issuer}</td>
+                    <td className="pr-3 text-muted-foreground">{deal.sector}</td>
+                    <td className="pr-3 font-mono text-muted-foreground">${deal.size}B</td>
+                    <td className="pr-3 font-mono text-muted-foreground">{deal.coupon}%</td>
+                    <td className="pr-3 font-mono text-muted-foreground">{deal.rating}</td>
+                    <td className="pr-3 text-muted-foreground">{deal.tenor}</td>
                     <td className="pr-3">
                       <span className={cn("text-xs rounded-full px-2 py-0.5 font-medium", typeColor2)}>{typeLabel}</span>
                     </td>
-                    <td className="pr-3 text-slate-400 max-w-[160px] truncate">{deal.useOfProceeds}</td>
-                    <td className="text-slate-500">{deal.date}</td>
+                    <td className="pr-3 text-muted-foreground max-w-[160px] truncate">{deal.useOfProceeds}</td>
+                    <td className="text-muted-foreground">{deal.date}</td>
                   </tr>
                 );
               })}
@@ -1199,21 +1199,21 @@ function ECMAnalyticsTab() {
               <div key={entry.rank} className="flex items-center gap-2">
                 <div className={cn(
                   "w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0",
-                  entry.rank <= 3 ? "bg-amber-500/20 text-amber-300" : "bg-slate-700 text-slate-400"
+                  entry.rank <= 3 ? "bg-amber-500/20 text-amber-300" : "bg-muted text-muted-foreground"
                 )}>
                   {entry.rank}
                 </div>
-                <div className="text-xs text-slate-300 w-32 flex-shrink-0">{entry.bank}</div>
-                <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div className="text-xs text-muted-foreground w-32 flex-shrink-0">{entry.bank}</div>
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className={cn("h-full rounded-full", entry.rank <= 3 ? "bg-amber-500" : "bg-primary")}
                     style={{ width: `${(entry.volume / maxVol) * 100}%` }}
                   />
                 </div>
-                <div className="text-xs font-mono text-slate-300 w-14 text-right">${entry.volume}B</div>
-                <div className="text-xs text-slate-500 w-10 text-right">{entry.deals} deals</div>
+                <div className="text-xs font-mono text-muted-foreground w-14 text-right">${entry.volume}B</div>
+                <div className="text-xs text-muted-foreground w-10 text-right">{entry.deals} deals</div>
                 <div className={cn("text-xs w-8 text-right font-medium",
-                  entry.change > 0 ? "text-green-400" : entry.change < 0 ? "text-red-400" : "text-slate-600")}>
+                  entry.change > 0 ? "text-green-400" : entry.change < 0 ? "text-red-400" : "text-muted-foreground")}>
                   {entry.change > 0 ? `↑${entry.change}` : entry.change < 0 ? `↓${Math.abs(entry.change)}` : "—"}
                 </div>
               </div>
@@ -1240,9 +1240,9 @@ function ECMAnalyticsTab() {
                 return (
                   <div key={ind.label} className="flex items-center gap-2 text-xs">
                     <div className={cn("w-2 h-2 rounded-full flex-shrink-0", dotColor)} />
-                    <span className="text-slate-400 w-36">{ind.label}</span>
-                    <span className="font-mono font-semibold text-slate-200 w-20">{ind.value}</span>
-                    <span className="text-slate-500">{ind.note}</span>
+                    <span className="text-muted-foreground w-36">{ind.label}</span>
+                    <span className="font-mono font-semibold text-foreground w-20">{ind.value}</span>
+                    <span className="text-muted-foreground">{ind.note}</span>
                   </div>
                 );
               })}
@@ -1253,7 +1253,7 @@ function ECMAnalyticsTab() {
 
       <InfoCard title="IPO Market Cycles (2000–2026)" icon={<BarChart3 className="w-4 h-4" />}>
         <IPOCycleChart />
-        <div className="flex gap-6 mt-2 text-xs text-slate-500">
+        <div className="flex gap-6 mt-2 text-xs text-muted-foreground">
           <span><strong className="text-amber-400">Bubble years</strong>: 2000 (dotcom), 2007 (LBO/credit), 2021 (SPAC/rate zero)</span>
           <span><strong className="text-red-400">Dry years</strong>: 2001–2002 (dotcom bust), 2008 (GFC), 2022 (rate hike shock)</span>
         </div>
@@ -1267,33 +1267,33 @@ function ECMAnalyticsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs min-w-[560px]">
             <thead>
-              <tr className="border-b border-slate-700">
+              <tr className="border-b border-border">
                 {["Company", "Sector", "Exp. Size", "Expected", "Stage", "Last Valuation", "vs Peers"].map((h) => (
-                  <th key={h} className="text-left py-2 pr-4 text-slate-500 font-medium">{h}</th>
+                  <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {UPCOMING_IPOS.map((ipo) => {
                 const stageMap: Record<string, string> = {
-                  filed: "bg-slate-700/50 text-slate-400",
+                  filed: "bg-muted/50 text-muted-foreground",
                   roadshow: "bg-muted/60 text-primary",
                   pricing: "bg-green-900/40 text-green-300",
                 };
                 const impliedMultiple = ipo.lastValuation / (ipo.expectedSize * 8);
-                const multColor = impliedMultiple > 5 ? "text-amber-400" : impliedMultiple > 2 ? "text-primary" : "text-slate-400";
+                const multColor = impliedMultiple > 5 ? "text-amber-400" : impliedMultiple > 2 ? "text-primary" : "text-muted-foreground";
                 return (
-                  <tr key={ipo.id} className="border-b border-slate-800 hover:bg-slate-800/40 transition-colors">
-                    <td className="py-2 pr-4 font-medium text-slate-200">{ipo.company}</td>
-                    <td className="pr-4 text-slate-400">{ipo.sector}</td>
-                    <td className="pr-4 font-mono text-slate-300">${ipo.expectedSize}B</td>
-                    <td className="pr-4 text-slate-400">{ipo.expectedQ}</td>
+                  <tr key={ipo.id} className="border-b border-border hover:bg-muted/40 transition-colors">
+                    <td className="py-2 pr-4 font-medium text-foreground">{ipo.company}</td>
+                    <td className="pr-4 text-muted-foreground">{ipo.sector}</td>
+                    <td className="pr-4 font-mono text-muted-foreground">${ipo.expectedSize}B</td>
+                    <td className="pr-4 text-muted-foreground">{ipo.expectedQ}</td>
                     <td className="pr-4">
                       <span className={cn("text-xs rounded-full px-2 py-0.5 capitalize font-medium", stageMap[ipo.stage])}>
                         {ipo.stage}
                       </span>
                     </td>
-                    <td className="pr-4 font-mono text-slate-300">${ipo.lastValuation}B</td>
+                    <td className="pr-4 font-mono text-muted-foreground">${ipo.lastValuation}B</td>
                     <td className={cn("font-mono text-xs", multColor)}>
                       {impliedMultiple.toFixed(1)}× rev
                     </td>
@@ -1303,7 +1303,7 @@ function ECMAnalyticsTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-600 mt-2">*Vs Peers based on illustrative estimated revenue multiples. Not investment advice.</p>
+        <p className="text-xs text-muted-foreground mt-2">*Vs Peers based on illustrative estimated revenue multiples. Not investment advice.</p>
       </InfoCard>
     </div>
   );
@@ -1313,7 +1313,7 @@ function ECMAnalyticsTab() {
 
 export default function CapitalMarketsPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1325,19 +1325,19 @@ export default function CapitalMarketsPage() {
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
             <Building2 className="w-4 h-4 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-100">Capital Markets</h1>
+          <h1 className="text-2xl font-bold text-foreground">Capital Markets</h1>
           <span className="ml-2 text-xs bg-muted/60 border border-border text-primary rounded-full px-2 py-0.5">
             IPO · SPAC · DCM · ECM
           </span>
         </div>
-        <p className="text-sm text-slate-400 ml-11">
+        <p className="text-sm text-muted-foreground ml-11">
           Comprehensive guide to primary and secondary capital markets — from S-1 filing to bond issuance, SPAC mechanics, and ECM analytics.
         </p>
       </motion.div>
 
       {/* Tabs */}
       <Tabs defaultValue="ipo-process" className="w-full">
-        <TabsList className="bg-slate-900 border border-slate-700 mb-6 flex-wrap h-auto gap-0.5 p-1">
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-0.5 p-1">
           {[
             { value: "ipo-process", label: "IPO Process", icon: <Clock className="w-3.5 h-3.5" /> },
             { value: "ipo-valuation", label: "IPO Valuation", icon: <Percent className="w-3.5 h-3.5" /> },
@@ -1349,7 +1349,7 @@ export default function CapitalMarketsPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 px-3 py-1.5"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground px-3 py-1.5"
             >
               {tab.icon}
               {tab.label}

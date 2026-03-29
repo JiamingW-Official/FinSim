@@ -52,9 +52,9 @@ function StatChip({
 }) {
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", color)}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
 }
@@ -68,8 +68,8 @@ function InfoCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-4">
-      <p className="text-sm font-semibold text-zinc-200 mb-3">{title}</p>
+    <div className="rounded-xl border border-border bg-card p-4">
+      <p className="text-sm font-semibold text-foreground mb-3">{title}</p>
       <div className="text-xs space-y-1.5">{children}</div>
     </div>
   );
@@ -273,9 +273,9 @@ function SovereignTab() {
       </div>
 
       {/* Main table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary" />
             EM Sovereign Bond Monitor — click a row for detail
           </CardTitle>
@@ -283,7 +283,7 @@ function SovereignTab() {
         <CardContent className="overflow-x-auto p-0">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800 text-zinc-400">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 px-3 font-medium">Country</th>
                 <th className="text-right py-2 px-3 font-medium">USD Yield</th>
                 <th className="text-right py-2 px-3 font-medium">Local Yield</th>
@@ -300,22 +300,22 @@ function SovereignTab() {
                   key={b.country}
                   onClick={() => setSelected(selected === b.country ? null : b.country)}
                   className={cn(
-                    "border-b border-zinc-800/60 cursor-pointer transition-colors",
-                    selected === b.country ? "bg-muted/40" : "hover:bg-zinc-800/40"
+                    "border-b border-border/60 cursor-pointer transition-colors",
+                    selected === b.country ? "bg-muted/40" : "hover:bg-muted/40"
                   )}
                 >
-                  <td className="py-2 px-3 text-zinc-200 font-medium">
+                  <td className="py-2 px-3 text-foreground font-medium">
                     {b.country}
-                    <span className="ml-1.5 text-zinc-500">{b.iso}</span>
+                    <span className="ml-1.5 text-muted-foreground">{b.iso}</span>
                   </td>
-                  <td className="py-2 px-3 text-right font-mono text-zinc-300">{fmtPct(b.usdYield, 2)}</td>
-                  <td className="py-2 px-3 text-right font-mono text-zinc-300">{fmtPct(b.localYield, 2)}</td>
+                  <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(b.usdYield, 2)}</td>
+                  <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(b.localYield, 2)}</td>
                   <td className="py-2 px-3 text-right font-mono text-amber-400">{fmtBps(b.spreadUST)}</td>
                   <td className="py-2 px-3 text-right font-mono text-rose-400">{fmtBps(b.cdsBps)}</td>
                   <td className="py-2 px-3 text-center">
                     <span className={cn("font-bold", b.ratingColor)}>{b.rating}</span>
                   </td>
-                  <td className="py-2 px-3 text-right text-zinc-400">{fmtPct(b.debtGDP)}%</td>
+                  <td className="py-2 px-3 text-right text-muted-foreground">{fmtPct(b.debtGDP)}%</td>
                   <td className={cn("py-2 px-3 text-right font-mono", posColor(b.currentAccount))}>
                     {b.currentAccount >= 0 ? "+" : ""}
                     {fmtPct(b.currentAccount)}
@@ -330,7 +330,7 @@ function SovereignTab() {
       {/* Expanded detail */}
       {sel && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
-          <Card className="bg-zinc-900 border-border">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-primary">
                 {sel.country} — Debt Profile Detail
@@ -338,43 +338,43 @@ function SovereignTab() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mb-4">
-                <div className="bg-zinc-800 rounded p-3">
-                  <div className="text-zinc-400 mb-1">Basis (Local − USD)</div>
+                <div className="bg-muted rounded p-3">
+                  <div className="text-muted-foreground mb-1">Basis (Local − USD)</div>
                   <div className="text-white font-mono text-lg font-bold">
                     +{fmtPct(sel.localYield - sel.usdYield, 2)}
                   </div>
-                  <div className="text-zinc-500">FX risk premium</div>
+                  <div className="text-muted-foreground">FX risk premium</div>
                 </div>
-                <div className="bg-zinc-800 rounded p-3">
-                  <div className="text-zinc-400 mb-1">CDS / Spread Basis</div>
+                <div className="bg-muted rounded p-3">
+                  <div className="text-muted-foreground mb-1">CDS / Spread Basis</div>
                   <div className={cn("font-mono text-lg font-bold", sel.cdsBps < sel.spreadUST ? "text-emerald-400" : "text-rose-400")}>
                     {sel.spreadUST - sel.cdsBps > 0 ? "+" : ""}
                     {fmtBps(sel.spreadUST - sel.cdsBps)}
                   </div>
-                  <div className="text-zinc-500">Cash vs synthetic</div>
+                  <div className="text-muted-foreground">Cash vs synthetic</div>
                 </div>
-                <div className="bg-zinc-800 rounded p-3">
-                  <div className="text-zinc-400 mb-1">Debt/GDP</div>
+                <div className="bg-muted rounded p-3">
+                  <div className="text-muted-foreground mb-1">Debt/GDP</div>
                   <div className={cn("font-mono text-lg font-bold", sel.debtGDP > 70 ? "text-rose-400" : "text-amber-400")}>
                     {fmtPct(sel.debtGDP)}%
                   </div>
-                  <div className="text-zinc-500">{sel.debtGDP > 70 ? "Elevated" : "Moderate"} burden</div>
+                  <div className="text-muted-foreground">{sel.debtGDP > 70 ? "Elevated" : "Moderate"} burden</div>
                 </div>
-                <div className="bg-zinc-800 rounded p-3">
-                  <div className="text-zinc-400 mb-1">Current Account</div>
+                <div className="bg-muted rounded p-3">
+                  <div className="text-muted-foreground mb-1">Current Account</div>
                   <div className={cn("font-mono text-lg font-bold", posColor(sel.currentAccount))}>
                     {sel.currentAccount >= 0 ? "+" : ""}{fmtPct(sel.currentAccount)} GDP
                   </div>
-                  <div className="text-zinc-500">{sel.currentAccount < -3 ? "Significant deficit" : sel.currentAccount < 0 ? "Mild deficit" : "Surplus"}</div>
+                  <div className="text-muted-foreground">{sel.currentAccount < -3 ? "Significant deficit" : sel.currentAccount < 0 ? "Mild deficit" : "Surplus"}</div>
                 </div>
               </div>
               {/* Spread bar */}
               <div className="space-y-2 mt-2">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-400">Spread to UST vs EM peers (max 600 bps)</span>
+                  <span className="text-muted-foreground">Spread to UST vs EM peers (max 600 bps)</span>
                   <span className="text-amber-400 font-mono">{fmtBps(sel.spreadUST)}</span>
                 </div>
-                <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${Math.min((sel.spreadUST / 600) * 100, 100)}%` }}
@@ -389,9 +389,9 @@ function SovereignTab() {
       )}
 
       {/* Spread bar chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-amber-400" />
             Spread to US Treasuries (bps) — sorted by risk
           </CardTitle>
@@ -403,24 +403,24 @@ function SovereignTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="Reading EM Spreads">
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             The spread over US Treasuries compensates investors for default risk, liquidity risk, and EM risk premium.
             CDS spreads reflect pure default risk in the derivatives market.
           </p>
           <div className="mt-2 space-y-1">
-            <div className="flex justify-between"><span className="text-zinc-500">0-100 bps</span><span className="text-emerald-400">Investment grade, low risk</span></div>
-            <div className="flex justify-between"><span className="text-zinc-500">100-250 bps</span><span className="text-amber-400">Mid-grade, some fiscal stress</span></div>
-            <div className="flex justify-between"><span className="text-zinc-500">250-500 bps</span><span className="text-orange-400">Sub-investment grade</span></div>
-            <div className="flex justify-between"><span className="text-zinc-500">500+ bps</span><span className="text-rose-400">Distressed / pre-default</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">0-100 bps</span><span className="text-emerald-400">Investment grade, low risk</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">100-250 bps</span><span className="text-amber-400">Mid-grade, some fiscal stress</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">250-500 bps</span><span className="text-orange-400">Sub-investment grade</span></div>
+            <div className="flex justify-between"><span className="text-muted-foreground">500+ bps</span><span className="text-rose-400">Distressed / pre-default</span></div>
           </div>
         </InfoCard>
         <InfoCard title="EM Sovereign Rating Factors">
-          <div className="space-y-1.5 text-zinc-400">
-            <div><span className="text-zinc-200 font-medium">Fiscal space:</span> Debt/GDP ratio, primary balance, interest burden</div>
-            <div><span className="text-zinc-200 font-medium">External position:</span> Current account, FX reserves cover, external debt</div>
-            <div><span className="text-zinc-200 font-medium">Growth outlook:</span> Real GDP growth, per capita income trajectory</div>
-            <div><span className="text-zinc-200 font-medium">Monetary credibility:</span> CB independence, inflation history, FX regime</div>
-            <div><span className="text-zinc-200 font-medium">Political risk:</span> Governance, institutional quality, geopolitical exposure</div>
+          <div className="space-y-1.5 text-muted-foreground">
+            <div><span className="text-foreground font-medium">Fiscal space:</span> Debt/GDP ratio, primary balance, interest burden</div>
+            <div><span className="text-foreground font-medium">External position:</span> Current account, FX reserves cover, external debt</div>
+            <div><span className="text-foreground font-medium">Growth outlook:</span> Real GDP growth, per capita income trajectory</div>
+            <div><span className="text-foreground font-medium">Monetary credibility:</span> CB independence, inflation history, FX regime</div>
+            <div><span className="text-foreground font-medium">Political risk:</span> Governance, institutional quality, geopolitical exposure</div>
           </div>
         </InfoCard>
       </div>
@@ -500,9 +500,9 @@ function HardLocalTab() {
       </div>
 
       {/* EMBI vs GBI comparison */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Major EM Debt Benchmarks
           </CardTitle>
@@ -510,7 +510,7 @@ function HardLocalTab() {
         <CardContent className="overflow-x-auto p-0">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800 text-zinc-400">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 px-3 font-medium">Index</th>
                 <th className="text-right py-2 px-3 font-medium">Yield</th>
                 <th className="text-right py-2 px-3 font-medium">Duration</th>
@@ -520,12 +520,12 @@ function HardLocalTab() {
             </thead>
             <tbody>
               {embiFunds.map((f, i) => (
-                <tr key={i} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
+                <tr key={i} className="border-b border-border/60 hover:bg-muted/30">
                   <td className="py-2 px-3 text-primary font-medium">{f.name}</td>
                   <td className="py-2 px-3 text-right font-mono text-emerald-400">{fmtPct(f.yield, 2)}</td>
-                  <td className="py-2 px-3 text-right text-zinc-300">{f.duration} yr</td>
-                  <td className="py-2 px-3 text-right text-zinc-400">{f.assets}</td>
-                  <td className="py-2 px-3 text-zinc-400">{f.focus}</td>
+                  <td className="py-2 px-3 text-right text-muted-foreground">{f.duration} yr</td>
+                  <td className="py-2 px-3 text-right text-muted-foreground">{f.assets}</td>
+                  <td className="py-2 px-3 text-muted-foreground">{f.focus}</td>
                 </tr>
               ))}
             </tbody>
@@ -534,21 +534,21 @@ function HardLocalTab() {
       </Card>
 
       {/* FX carry table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-amber-400" />
             Local Currency Bond — Hedged Carry Analysis
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-xs text-zinc-500 mb-3">
+          <p className="text-xs text-muted-foreground mb-3">
             Net carry = local yield − USD hedging cost (3m FX forward cross-currency basis). Real yield shown before hedging.
           </p>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800 text-zinc-400">
+                <tr className="border-b border-border text-muted-foreground">
                   <th className="text-left py-2 px-3 font-medium">Country</th>
                   <th className="text-right py-2 px-3 font-medium">Local Yield</th>
                   <th className="text-right py-2 px-3 font-medium">Hedge Cost</th>
@@ -559,16 +559,16 @@ function HardLocalTab() {
               </thead>
               <tbody>
                 {fxCarry.map((c) => (
-                  <tr key={c.country} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
-                    <td className="py-2 px-3 text-zinc-200 font-medium">{c.country}</td>
-                    <td className="py-2 px-3 text-right font-mono text-zinc-300">{fmtPct(c.localYield, 2)}</td>
+                  <tr key={c.country} className="border-b border-border/60 hover:bg-muted/30">
+                    <td className="py-2 px-3 text-foreground font-medium">{c.country}</td>
+                    <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(c.localYield, 2)}</td>
                     <td className="py-2 px-3 text-right font-mono text-rose-400">−{fmtPct(c.hedgeCost, 1)}</td>
-                    <td className="py-2 px-3 text-right font-mono text-zinc-400">{fmtPct(c.realYield, 1)}</td>
+                    <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(c.realYield, 1)}</td>
                     <td className="py-2 px-3 text-right font-mono font-bold text-emerald-400">
                       {fmtPct(c.netCarry, 2)}
                     </td>
                     <td className="py-2 px-3">
-                      <div className="h-1.5 bg-zinc-800 rounded-full overflow-hidden w-24">
+                      <div className="h-1.5 bg-muted rounded-full overflow-hidden w-24">
                         <div
                           className="h-full rounded-full bg-emerald-500"
                           style={{ width: `${Math.min((c.netCarry / 18) * 100, 100)}%` }}
@@ -588,25 +588,25 @@ function HardLocalTab() {
         <InfoCard title="Hard Currency (USD) Bonds — Pros & Cons">
           <div className="space-y-1.5">
             <div className="text-emerald-400 font-semibold mb-1">Advantages</div>
-            <div className="text-zinc-400">No FX risk — returns in USD; familiar currency for DM investors</div>
-            <div className="text-zinc-400">Deeper liquidity; part of widely-tracked EMBI benchmarks</div>
-            <div className="text-zinc-400">Sovereign covenants under NY / English law (easier enforcement)</div>
+            <div className="text-muted-foreground">No FX risk — returns in USD; familiar currency for DM investors</div>
+            <div className="text-muted-foreground">Deeper liquidity; part of widely-tracked EMBI benchmarks</div>
+            <div className="text-muted-foreground">Sovereign covenants under NY / English law (easier enforcement)</div>
             <div className="mt-2 text-rose-400 font-semibold mb-1">Risks</div>
-            <div className="text-zinc-400">Duration risk from US rate movements (positive correlation with UST)</div>
-            <div className="text-zinc-400">Country must generate USD via exports or FX reserves to service debt</div>
-            <div className="text-zinc-400">US Fed tightening = wider spreads + principal losses</div>
+            <div className="text-muted-foreground">Duration risk from US rate movements (positive correlation with UST)</div>
+            <div className="text-muted-foreground">Country must generate USD via exports or FX reserves to service debt</div>
+            <div className="text-muted-foreground">US Fed tightening = wider spreads + principal losses</div>
           </div>
         </InfoCard>
         <InfoCard title="Local Currency Bonds — Pros & Cons">
           <div className="space-y-1.5">
             <div className="text-emerald-400 font-semibold mb-1">Advantages</div>
-            <div className="text-zinc-400">Higher nominal yields; no original sin (country borrows in own currency)</div>
-            <div className="text-zinc-400">Diversification from DM rates; local CB policy drives pricing</div>
-            <div className="text-zinc-400">FX appreciation adds to USD total return</div>
+            <div className="text-muted-foreground">Higher nominal yields; no original sin (country borrows in own currency)</div>
+            <div className="text-muted-foreground">Diversification from DM rates; local CB policy drives pricing</div>
+            <div className="text-muted-foreground">FX appreciation adds to USD total return</div>
             <div className="mt-2 text-rose-400 font-semibold mb-1">Risks</div>
-            <div className="text-zinc-400">FX depreciation can wipe out high nominal yield</div>
-            <div className="text-zinc-400">Liquidity can dry up in stress; exit timing critical</div>
-            <div className="text-zinc-400">Hedging cost erodes carry in high-differential markets</div>
+            <div className="text-muted-foreground">FX depreciation can wipe out high nominal yield</div>
+            <div className="text-muted-foreground">Liquidity can dry up in stress; exit timing critical</div>
+            <div className="text-muted-foreground">Hedging cost erodes carry in high-differential markets</div>
           </div>
         </InfoCard>
       </div>
@@ -669,9 +669,9 @@ function SpreadDecompositionTab() {
   return (
     <div className="space-y-6">
       {/* Waterfall */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-indigo-400" />
             EMBI Spread Decomposition — bps added to USD yield
           </CardTitle>
@@ -716,16 +716,16 @@ function SpreadDecompositionTab() {
               strokeDasharray="4,3"
             />
           </svg>
-          <p className="text-xs text-zinc-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Total avg EM yield ≈ {fmtPct(427 / 100 + 6.12, 2)} (US risk-free {fmtPct(4.27, 2)} + EM spread 612 bps for illustrative EMBI blend)
           </p>
         </CardContent>
       </Card>
 
       {/* Country Risk Heatmap */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Shield className="w-4 h-4 text-rose-400" />
             Country Risk Heatmap — score 0 (green) to 100 (red)
           </CardTitle>
@@ -800,7 +800,7 @@ function SpreadDecompositionTab() {
             ].map((l) => (
               <div key={l.label} className="flex items-center gap-1">
                 <div className="w-3 h-3 rounded" style={{ backgroundColor: l.color }} />
-                <span className="text-zinc-400">{l.label}</span>
+                <span className="text-muted-foreground">{l.label}</span>
               </div>
             ))}
           </div>
@@ -809,21 +809,21 @@ function SpreadDecompositionTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="Spread Driver: US Rates (Base)">
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             EM USD bonds are priced as spread over US Treasuries. When the Fed raises rates, UST yields rise and EM USD bond
             prices fall — this is duration risk entirely driven by DM monetary policy.
           </p>
-          <p className="text-zinc-500 mt-2">
+          <p className="text-muted-foreground mt-2">
             Historical note: 2013 Taper Tantrum sent EMBI spreads +150 bps in weeks; 2022 Fed hiking cycle
             added 180 bps to avg EMBI spread.
           </p>
         </InfoCard>
         <InfoCard title="Spread Driver: Country-Specific">
-          <p className="text-zinc-400">
+          <p className="text-muted-foreground">
             Idiosyncratic factors: election uncertainty, political interference with CB, sudden fiscal deterioration,
             commodity price shocks (for commodity exporters), or bank/corporate stress that threatens fiscal outlays.
           </p>
-          <p className="text-zinc-500 mt-2">
+          <p className="text-muted-foreground mt-2">
             Country-specific spread can widen independently of broader EM move — Turkey 2018 is the textbook example.
           </p>
         </InfoCard>
@@ -915,9 +915,9 @@ function CurrencyImpactTab() {
         <StatChip label="BRL Real Rate" value="+6.7%" sub="Nominal − CPI ex-ante" color="text-emerald-400" />
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-rose-400" />
             USD Total Return by FX Scenario (1-Year Horizon)
           </CardTitle>
@@ -925,27 +925,27 @@ function CurrencyImpactTab() {
         <CardContent className="overflow-x-auto p-0">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800 text-zinc-400">
+              <tr className="border-b border-border text-muted-foreground">
                 <th className="text-left py-2 px-3 font-medium">Country</th>
                 <th className="text-right py-2 px-3 font-medium">Local Yield</th>
                 <th className="text-right py-2 px-3 font-medium text-emerald-400">Bull (+FX)</th>
-                <th className="text-right py-2 px-3 font-medium text-zinc-300">Base (flat)</th>
+                <th className="text-right py-2 px-3 font-medium text-muted-foreground">Base (flat)</th>
                 <th className="text-right py-2 px-3 font-medium text-amber-400">Bear (-FX)</th>
                 <th className="text-right py-2 px-3 font-medium text-rose-400">Stress (-FX)</th>
               </tr>
             </thead>
             <tbody>
               {fxScenarios.map((sc) => (
-                <tr key={sc.country} className="border-b border-zinc-800/60 hover:bg-zinc-800/30">
-                  <td className="py-2 px-3 text-zinc-200 font-medium">
+                <tr key={sc.country} className="border-b border-border/60 hover:bg-muted/30">
+                  <td className="py-2 px-3 text-foreground font-medium">
                     {sc.country}
-                    <span className="ml-1.5 text-zinc-500 text-xs">{sc.iso}</span>
+                    <span className="ml-1.5 text-muted-foreground text-xs">{sc.iso}</span>
                   </td>
-                  <td className="py-2 px-3 text-right font-mono text-zinc-300">{fmtPct(sc.localYield, 2)}</td>
+                  <td className="py-2 px-3 text-right font-mono text-muted-foreground">{fmtPct(sc.localYield, 2)}</td>
                   <td className="py-2 px-3 text-right font-mono text-emerald-400">
                     +{fmtPct(totalReturn(sc.localYield, sc.fxBull), 1)}
                   </td>
-                  <td className="py-2 px-3 text-right font-mono text-zinc-300">
+                  <td className="py-2 px-3 text-right font-mono text-muted-foreground">
                     +{fmtPct(totalReturn(sc.localYield, sc.fxBase), 1)}
                   </td>
                   <td className={cn("py-2 px-3 text-right font-mono", posColor(totalReturn(sc.localYield, sc.fxBear)))}>
@@ -960,20 +960,20 @@ function CurrencyImpactTab() {
               ))}
             </tbody>
           </table>
-          <p className="text-xs text-zinc-500 px-3 py-2">
+          <p className="text-xs text-muted-foreground px-3 py-2">
             Simplified: USD return ≈ local yield + FX % change. Duration effect on price excluded. Turkey shows how even 43% yield can be negative in USD on FX stress.
           </p>
         </CardContent>
       </Card>
 
       {/* FX visual chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300">FX Break-Even Analysis — Yield vs Depreciation Tolerance</CardTitle>
+          <CardTitle className="text-sm font-medium text-muted-foreground">FX Break-Even Analysis — Yield vs Depreciation Tolerance</CardTitle>
         </CardHeader>
         <CardContent>
           <FxBreakevenChart data={fxScenarios} />
-          <p className="text-xs text-zinc-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             Break-even depreciation = local yield (flat FX = full carry earned). Turkey needs 43.5% FX depreciation to
             wipe out carry. India only tolerates 7.1% drop. Volatility risk is asymmetric.
           </p>
@@ -982,20 +982,20 @@ function CurrencyImpactTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="Key FX Risk Drivers in EM">
-          <div className="space-y-1.5 text-zinc-400">
-            <div><span className="text-zinc-200 font-medium">Fed Policy:</span> USD strengthens when Fed hikes or signals hawkish tightening; EM currencies and spreads both widen</div>
-            <div><span className="text-zinc-200 font-medium">Commodity Prices:</span> Commodity-exporter currencies (BRL, ZAR, COP) correlate with oil/metals prices</div>
-            <div><span className="text-zinc-200 font-medium">Current Account:</span> Persistent deficits require FX financing; vulnerable to sudden stops</div>
-            <div><span className="text-zinc-200 font-medium">CB Credibility:</span> Inflation-fighting track record supports carry; rate cuts that are behind-the-curve cause FX weakness</div>
-            <div><span className="text-zinc-200 font-medium">Risk Appetite:</span> VIX spikes → EM outflows → FX depreciation regardless of fundamentals</div>
+          <div className="space-y-1.5 text-muted-foreground">
+            <div><span className="text-foreground font-medium">Fed Policy:</span> USD strengthens when Fed hikes or signals hawkish tightening; EM currencies and spreads both widen</div>
+            <div><span className="text-foreground font-medium">Commodity Prices:</span> Commodity-exporter currencies (BRL, ZAR, COP) correlate with oil/metals prices</div>
+            <div><span className="text-foreground font-medium">Current Account:</span> Persistent deficits require FX financing; vulnerable to sudden stops</div>
+            <div><span className="text-foreground font-medium">CB Credibility:</span> Inflation-fighting track record supports carry; rate cuts that are behind-the-curve cause FX weakness</div>
+            <div><span className="text-foreground font-medium">Risk Appetite:</span> VIX spikes → EM outflows → FX depreciation regardless of fundamentals</div>
           </div>
         </InfoCard>
         <InfoCard title="Hedging Local Currency EM Bonds">
-          <div className="space-y-1.5 text-zinc-400">
-            <div><span className="text-zinc-200 font-medium">Cross-Currency Swap:</span> Exchange local rate cash flows for USD SOFR + spread. Full hedge but expensive for high-yielders.</div>
-            <div><span className="text-zinc-200 font-medium">FX Forward:</span> Sell local currency forward. Cost = interest rate differential (covered interest parity). Brazil hedge ≈ 6.4% p.a.</div>
-            <div><span className="text-zinc-200 font-medium">Options:</span> Buy USD call / local currency put for downside protection. Pays up front; retains upside FX.</div>
-            <div><span className="text-zinc-200 font-medium">Natural hedge:</span> Hold local currency bonds alongside commodity export equity positions with opposing FX exposures.</div>
+          <div className="space-y-1.5 text-muted-foreground">
+            <div><span className="text-foreground font-medium">Cross-Currency Swap:</span> Exchange local rate cash flows for USD SOFR + spread. Full hedge but expensive for high-yielders.</div>
+            <div><span className="text-foreground font-medium">FX Forward:</span> Sell local currency forward. Cost = interest rate differential (covered interest parity). Brazil hedge ≈ 6.4% p.a.</div>
+            <div><span className="text-foreground font-medium">Options:</span> Buy USD call / local currency put for downside protection. Pays up front; retains upside FX.</div>
+            <div><span className="text-foreground font-medium">Natural hedge:</span> Hold local currency bonds alongside commodity export equity positions with opposing FX exposures.</div>
           </div>
         </InfoCard>
       </div>
@@ -1065,14 +1065,14 @@ function CrisisHistoryTab() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatChip label="Worst Peak Spread" value="5,500 bps" sub="Argentina 2001 default" color="text-rose-400" />
         <StatChip label="Average Recovery" value="3–4 yrs" sub="Spread normalisation" color="text-amber-400" />
-        <StatChip label="EM Crises 1990–2026" value="12+" sub="Sovereign/currency crises" color="text-zinc-300" />
+        <StatChip label="EM Crises 1990–2026" value="12+" sub="Sovereign/currency crises" color="text-muted-foreground" />
         <StatChip label="Post-Crisis Return" value="+38% avg" sub="3yr after stress peak" color="text-emerald-400" />
       </div>
 
       {/* Timeline peak spread chart */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-rose-400" />
             Peak Spread at Crisis Apex (bps) — EMBI or country equivalent
           </CardTitle>
@@ -1105,7 +1105,7 @@ function CrisisHistoryTab() {
         {CRISES.map((c) => (
           <div
             key={c.year}
-            className="rounded-xl border border-zinc-800 bg-zinc-900 overflow-hidden cursor-pointer"
+            className="rounded-xl border border-border bg-card overflow-hidden cursor-pointer"
             onClick={() => setExpanded(expanded === c.year ? null : c.year)}
           >
             <div className="flex items-center gap-3 px-4 py-3">
@@ -1115,15 +1115,15 @@ function CrisisHistoryTab() {
               />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-bold text-zinc-400">{c.year}</span>
-                  <span className="text-sm font-semibold text-zinc-100">{c.name}</span>
-                  <Badge className="text-xs bg-zinc-800 text-zinc-300 border-zinc-700">{c.countries}</Badge>
+                  <span className="text-xs font-bold text-muted-foreground">{c.year}</span>
+                  <span className="text-sm font-semibold text-foreground">{c.name}</span>
+                  <Badge className="text-xs bg-muted text-muted-foreground border-border">{c.countries}</Badge>
                 </div>
-                <p className="text-xs text-zinc-500 mt-0.5 truncate">{c.trigger}</p>
+                <p className="text-xs text-muted-foreground mt-0.5 truncate">{c.trigger}</p>
               </div>
               <div className="text-right flex-shrink-0">
                 <div className="text-xs font-mono font-bold text-rose-400">{c.peakSpread.toLocaleString()} bps</div>
-                <div className="text-xs text-zinc-500">GDP: {c.gdpDrop}</div>
+                <div className="text-xs text-muted-foreground">GDP: {c.gdpDrop}</div>
               </div>
             </div>
             {expanded === c.year && (
@@ -1132,25 +1132,25 @@ function CrisisHistoryTab() {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2 }}
-                className="border-t border-zinc-800 px-4 py-3 bg-zinc-950/50"
+                className="border-t border-border px-4 py-3 bg-background/50"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                   <div>
-                    <div className="text-zinc-400 font-semibold mb-1">Crisis Trigger</div>
-                    <p className="text-zinc-300">{c.trigger}</p>
+                    <div className="text-muted-foreground font-semibold mb-1">Crisis Trigger</div>
+                    <p className="text-muted-foreground">{c.trigger}</p>
                   </div>
                   <div>
-                    <div className="text-zinc-400 font-semibold mb-1">Key Lesson</div>
-                    <p className="text-zinc-300">{c.lesson}</p>
+                    <div className="text-muted-foreground font-semibold mb-1">Key Lesson</div>
+                    <p className="text-muted-foreground">{c.lesson}</p>
                   </div>
                 </div>
                 <div className="flex gap-4 mt-3">
                   <div className="text-xs">
-                    <span className="text-zinc-500">Peak Spread: </span>
+                    <span className="text-muted-foreground">Peak Spread: </span>
                     <span className="text-rose-400 font-mono font-bold">{c.peakSpread.toLocaleString()} bps</span>
                   </div>
                   <div className="text-xs">
-                    <span className="text-zinc-500">GDP Impact: </span>
+                    <span className="text-muted-foreground">GDP Impact: </span>
                     <span className="text-rose-400 font-mono font-bold">{c.gdpDrop}</span>
                   </div>
                 </div>
@@ -1162,21 +1162,21 @@ function CrisisHistoryTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <InfoCard title="Common Precursors to EM Debt Crises">
-          <div className="space-y-1.5 text-zinc-400">
-            <div><span className="text-zinc-200 font-medium">1. FX peg + large CA deficit:</span> Requires constant capital inflows to sustain; vulnerable to sentiment shift</div>
-            <div><span className="text-zinc-200 font-medium">2. Short-term FX debt mismatches:</span> Borrowing USD short-term to finance local LT assets creates rollover risk</div>
-            <div><span className="text-zinc-200 font-medium">3. Commodity dependency + price collapse:</span> Export revenue falls → fiscal gap → sudden stop</div>
-            <div><span className="text-zinc-200 font-medium">4. CB independence compromised:</span> Politicised rate decisions → inflation spiral → FX collapse</div>
-            <div><span className="text-zinc-200 font-medium">5. Contagion:</span> Asset class sell-off affects fundamentally sound countries via EM ETF flows</div>
+          <div className="space-y-1.5 text-muted-foreground">
+            <div><span className="text-foreground font-medium">1. FX peg + large CA deficit:</span> Requires constant capital inflows to sustain; vulnerable to sentiment shift</div>
+            <div><span className="text-foreground font-medium">2. Short-term FX debt mismatches:</span> Borrowing USD short-term to finance local LT assets creates rollover risk</div>
+            <div><span className="text-foreground font-medium">3. Commodity dependency + price collapse:</span> Export revenue falls → fiscal gap → sudden stop</div>
+            <div><span className="text-foreground font-medium">4. CB independence compromised:</span> Politicised rate decisions → inflation spiral → FX collapse</div>
+            <div><span className="text-foreground font-medium">5. Contagion:</span> Asset class sell-off affects fundamentally sound countries via EM ETF flows</div>
           </div>
         </InfoCard>
         <InfoCard title="Post-Crisis Restructuring Playbook">
-          <div className="space-y-1.5 text-zinc-400">
-            <div><span className="text-zinc-200 font-medium">IMF Program:</span> Balance of payments support in exchange for fiscal adjustment (austerity). SBA, EFF, or FCL facilities.</div>
-            <div><span className="text-zinc-200 font-medium">Brady Bonds:</span> 1989 mechanism converting defaulted bank loans to tradable USD bonds — created the EM bond market.</div>
-            <div><span className="text-zinc-200 font-medium">PSI (Private Sector Involvement):</span> Voluntary haircuts by creditors — Greece 2012 is a DM example; EM more aggressive.</div>
-            <div><span className="text-zinc-200 font-medium">Paris Club:</span> Multilateral coordination of bilateral official creditor claims — supplements IMF program.</div>
-            <div><span className="text-zinc-200 font-medium">Common Framework:</span> G20 post-COVID framework for low-income EM debt; slow progress on Zambia, Ethiopia, Ghana.</div>
+          <div className="space-y-1.5 text-muted-foreground">
+            <div><span className="text-foreground font-medium">IMF Program:</span> Balance of payments support in exchange for fiscal adjustment (austerity). SBA, EFF, or FCL facilities.</div>
+            <div><span className="text-foreground font-medium">Brady Bonds:</span> 1989 mechanism converting defaulted bank loans to tradable USD bonds — created the EM bond market.</div>
+            <div><span className="text-foreground font-medium">PSI (Private Sector Involvement):</span> Voluntary haircuts by creditors — Greece 2012 is a DM example; EM more aggressive.</div>
+            <div><span className="text-foreground font-medium">Paris Club:</span> Multilateral coordination of bilateral official creditor claims — supplements IMF program.</div>
+            <div><span className="text-foreground font-medium">Common Framework:</span> G20 post-COVID framework for low-income EM debt; slow progress on Zambia, Ethiopia, Ghana.</div>
           </div>
         </InfoCard>
       </div>
@@ -1190,7 +1190,7 @@ function CrisisHistoryTab() {
 
 export default function EmDebtPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2 flex-wrap">
@@ -1198,8 +1198,8 @@ export default function EmDebtPage() {
             <Landmark className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100">Emerging Markets Debt</h1>
-            <p className="text-sm text-zinc-500">
+            <h1 className="text-2xl font-bold text-foreground">Emerging Markets Debt</h1>
+            <p className="text-sm text-muted-foreground">
               Sovereign bonds, hard vs local currency, spread decomposition, crisis history
             </p>
           </div>
@@ -1212,7 +1212,7 @@ export default function EmDebtPage() {
       </div>
 
       <Tabs defaultValue="sovereign">
-        <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 flex flex-wrap gap-1 h-auto p-1">
+        <TabsList className="bg-card border border-border mb-6 flex flex-wrap gap-1 h-auto p-1">
           <TabsTrigger
             value="sovereign"
             className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs px-3 py-1.5"

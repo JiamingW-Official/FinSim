@@ -59,9 +59,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
 }
@@ -72,7 +72,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
       <h3 className="text-base font-semibold text-white">{title}</h3>
-      {sub && <p className="text-xs text-zinc-400 mt-0.5">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
 }
@@ -81,7 +81,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
 
 function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
   const cls: Record<string, string> = {
-    zinc: "bg-zinc-800 text-zinc-300",
+    zinc: "bg-muted text-muted-foreground",
     emerald: "bg-emerald-900/50 text-emerald-300",
     amber: "bg-amber-900/50 text-amber-300",
     rose: "bg-rose-900/50 text-rose-300",
@@ -281,14 +281,14 @@ function DealStructureTab() {
         <div className="space-y-3">
           {commitments.map((c) => (
             <div key={c.tier} className="flex items-center gap-3">
-              <div className="w-48 text-xs text-zinc-300 shrink-0">{c.tier}</div>
+              <div className="w-48 text-xs text-muted-foreground shrink-0">{c.tier}</div>
               <div className="flex-1 h-5 bg-white/5 rounded overflow-hidden">
                 <div
                   className="h-full rounded"
                   style={{ width: `${c.pct}%`, backgroundColor: c.color }}
                 />
               </div>
-              <div className="text-xs font-mono text-zinc-200 w-16 text-right">${c.amount}M</div>
+              <div className="text-xs font-mono text-foreground w-16 text-right">${c.amount}M</div>
             </div>
           ))}
         </div>
@@ -301,7 +301,7 @@ function DealStructureTab() {
           {loanTypes.map((lt) => (
             <div key={lt.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
               <InfoPill text={lt.name} color={lt.color} />
-              <p className="text-xs text-zinc-400 mt-2">{lt.desc}</p>
+              <p className="text-xs text-muted-foreground mt-2">{lt.desc}</p>
             </div>
           ))}
         </div>
@@ -321,8 +321,8 @@ function DealStructureTab() {
                 </div>
                 <ul className="space-y-1">
                   {a.duties.map((d) => (
-                    <li key={d} className="flex items-start gap-2 text-xs text-zinc-400">
-                      <ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />
+                    <li key={d} className="flex items-start gap-2 text-xs text-muted-foreground">
+                      <ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />
                       {d}
                     </li>
                   ))}
@@ -340,7 +340,7 @@ function DealStructureTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 pr-4 text-left text-zinc-400 font-medium">Attribute</th>
+                <th className="py-2 pr-4 text-left text-muted-foreground font-medium">Attribute</th>
                 <th className="py-2 pr-4 text-left text-emerald-400 font-medium">Investment Grade</th>
                 <th className="py-2 text-left text-amber-400 font-medium">Leveraged</th>
               </tr>
@@ -348,7 +348,7 @@ function DealStructureTab() {
             <tbody>
               {igVsLev.map((row, i) => (
                 <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                  <td className="py-2 pr-4 text-zinc-300">{row.attr}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{row.attr}</td>
                   <td className="py-2 pr-4 text-emerald-300/80">{row.ig}</td>
                   <td className="py-2 text-amber-300/80">{row.lev}</td>
                 </tr>
@@ -368,8 +368,8 @@ function DealStructureTab() {
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap gap-2 items-center">
                   <span className="text-xs font-mono text-white">{e.range}</span>
-                  <span className="text-xs text-zinc-500">|</span>
-                  <span className="text-xs text-zinc-400">{e.payer}</span>
+                  <span className="text-xs text-muted-foreground">|</span>
+                  <span className="text-xs text-muted-foreground">{e.payer}</span>
                 </div>
               </div>
             </div>
@@ -384,7 +384,7 @@ function DealStructureTab() {
           {crossProv.map((cp) => (
             <div key={cp.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
               <InfoPill text={cp.name} color={cp.color} />
-              <p className="text-xs text-zinc-400 mt-2">{cp.desc}</p>
+              <p className="text-xs text-muted-foreground mt-2">{cp.desc}</p>
             </div>
           ))}
         </div>
@@ -488,9 +488,9 @@ function PricingMechanicsTab() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {sofr.map((s) => (
             <div key={s.tenor} className="rounded-lg border border-white/10 bg-white/5 p-4 text-center">
-              <div className="text-xs text-zinc-400 mb-1">{s.tenor}</div>
+              <div className="text-xs text-muted-foreground mb-1">{s.tenor}</div>
               <div className="text-2xl font-bold" style={{ color: s.color }}>{s.rate.toFixed(2)}%</div>
-              <div className="text-xs text-zinc-500 mt-1">CME Term SOFR</div>
+              <div className="text-xs text-muted-foreground mt-1">CME Term SOFR</div>
             </div>
           ))}
         </div>
@@ -606,22 +606,22 @@ function PricingMechanicsTab() {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-            <div className="text-xs text-zinc-400 mb-1">Face Value</div>
+            <div className="text-xs text-muted-foreground mb-1">Face Value</div>
             <div className="text-xl font-bold text-white">${faceVal}M</div>
-            <div className="text-xs text-zinc-500">Par amount</div>
+            <div className="text-xs text-muted-foreground">Par amount</div>
           </div>
           <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-            <div className="text-xs text-zinc-400 mb-1">Issue Price</div>
+            <div className="text-xs text-muted-foreground mb-1">Issue Price</div>
             <div className="text-xl font-bold text-amber-400">98.5¢</div>
-            <div className="text-xs text-zinc-500">Lender pays ${faceVal - oidDiscount}M</div>
+            <div className="text-xs text-muted-foreground">Lender pays ${faceVal - oidDiscount}M</div>
           </div>
           <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-            <div className="text-xs text-zinc-400 mb-1">OID Yield Boost</div>
+            <div className="text-xs text-muted-foreground mb-1">OID Yield Boost</div>
             <div className="text-xl font-bold text-emerald-400">+{oidAllInBps}bps</div>
-            <div className="text-xs text-zinc-500">On 5yr maturity assumption</div>
+            <div className="text-xs text-muted-foreground">On 5yr maturity assumption</div>
           </div>
         </div>
-        <div className="text-xs text-zinc-400 space-y-1">
+        <div className="text-xs text-muted-foreground space-y-1">
           <p>All-in Yield = Spread + OID amortisation + SOFR. The OID is earned over the loan&apos;s expected life.</p>
           <p>Soft call protection: 101 prepayment premium if borrower refinances within first 6 months (common in TLBs).</p>
         </div>
@@ -645,7 +645,7 @@ function PricingMechanicsTab() {
                   : "border-white/10 bg-white/5 hover:bg-white/10"
               )}
             >
-              <div className="w-24 text-xs font-mono text-zinc-300">{rl.leverage}</div>
+              <div className="w-24 text-xs font-mono text-muted-foreground">{rl.leverage}</div>
               <div className="flex-1 h-3 bg-white/5 rounded overflow-hidden">
                 <div
                   className="h-full rounded bg-primary transition-all"
@@ -684,16 +684,16 @@ function PricingMechanicsTab() {
               <InfoPill text={c.name} color={c.color} />
               <div className="mt-2 space-y-1">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Metric</span>
-                  <span className="text-zinc-300">{c.metric}</span>
+                  <span className="text-muted-foreground">Metric</span>
+                  <span className="text-muted-foreground">{c.metric}</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Threshold</span>
-                  <span className="text-zinc-300">{c.threshold}</span>
+                  <span className="text-muted-foreground">Threshold</span>
+                  <span className="text-muted-foreground">{c.threshold}</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Test</span>
-                  <span className="text-zinc-300">{c.test}</span>
+                  <span className="text-muted-foreground">Test</span>
+                  <span className="text-muted-foreground">{c.test}</span>
                 </div>
               </div>
             </div>
@@ -858,7 +858,7 @@ function SyndicationProcessTab() {
               )}
               style={activeStep === i ? { borderColor: t.color, color: t.color } : { color: "#94a3b8" }}
             >
-              <span className="text-zinc-500 mr-1">{t.weeks}</span>
+              <span className="text-muted-foreground mr-1">{t.weeks}</span>
               {t.step}
             </button>
           ))}
@@ -874,9 +874,9 @@ function SyndicationProcessTab() {
               style={{ borderColor: timeline[activeStep].color + "40" }}
             >
               <div className="text-sm font-semibold mb-1" style={{ color: timeline[activeStep].color }}>
-                {timeline[activeStep].step} <span className="text-zinc-500 font-normal text-xs">({timeline[activeStep].weeks})</span>
+                {timeline[activeStep].step} <span className="text-muted-foreground font-normal text-xs">({timeline[activeStep].weeks})</span>
               </div>
-              <p className="text-xs text-zinc-300">{timeline[activeStep].desc}</p>
+              <p className="text-xs text-muted-foreground">{timeline[activeStep].desc}</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -890,9 +890,9 @@ function SyndicationProcessTab() {
             <div key={st.type} className="rounded-lg border border-white/10 bg-white/5 p-4">
               <div className="flex items-center justify-between mb-2">
                 <InfoPill text={st.type} color={st.color} />
-                <span className="text-xs text-zinc-500">Risk: <span className="text-zinc-300">{st.risk}</span></span>
+                <span className="text-xs text-muted-foreground">Risk: <span className="text-muted-foreground">{st.risk}</span></span>
               </div>
-              <p className="text-xs text-zinc-400">{st.desc}</p>
+              <p className="text-xs text-muted-foreground">{st.desc}</p>
             </div>
           ))}
         </div>
@@ -906,9 +906,9 @@ function SyndicationProcessTab() {
             <div key={fl.name} className="rounded-lg border border-white/10 bg-white/5 p-3">
               <div className="flex items-center justify-between mb-1">
                 <InfoPill text={fl.name} color={fl.color} />
-                <span className="text-xs text-zinc-500">{fl.dir}</span>
+                <span className="text-xs text-muted-foreground">{fl.dir}</span>
               </div>
-              <p className="text-xs text-zinc-400 mt-2">{fl.desc}</p>
+              <p className="text-xs text-muted-foreground mt-2">{fl.desc}</p>
             </div>
           ))}
         </div>
@@ -923,23 +923,23 @@ function SyndicationProcessTab() {
               <InfoPill text={sm.category} color={sm.color} />
               <div className="mt-2 space-y-1 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-zinc-500">Spread</span>
-                  <span className="text-zinc-300">{sm.spread}</span>
+                  <span className="text-muted-foreground">Spread</span>
+                  <span className="text-muted-foreground">{sm.spread}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-zinc-500">Buyers</span>
-                  <span className="text-zinc-300">{sm.buyers}</span>
+                  <span className="text-muted-foreground">Buyers</span>
+                  <span className="text-muted-foreground">{sm.buyers}</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
         <div className="rounded-lg bg-white/5 border border-white/10 p-3">
-          <div className="text-xs font-semibold text-zinc-300 mb-2">LSTA Standard Documentation</div>
+          <div className="text-xs font-semibold text-muted-foreground mb-2">LSTA Standard Documentation</div>
           <ul className="space-y-1">
             {lstaFeatures.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-xs text-zinc-400">
-                <ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />
+              <li key={f} className="flex items-start gap-2 text-xs text-muted-foreground">
+                <ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />
                 {f}
               </li>
             ))}
@@ -1125,14 +1125,14 @@ function MarketDynamicsTab() {
           <div className="space-y-2">
             {proceeds.map((p) => (
               <div key={p.label} className="flex items-center gap-3">
-                <div className="w-28 text-xs text-zinc-300 shrink-0">{p.label}</div>
+                <div className="w-28 text-xs text-muted-foreground shrink-0">{p.label}</div>
                 <div className="flex-1 h-4 bg-white/5 rounded overflow-hidden">
                   <div
                     className="h-full rounded"
                     style={{ width: `${p.pct}%`, backgroundColor: p.color }}
                   />
                 </div>
-                <div className="text-xs font-mono text-zinc-200 w-8 text-right">{p.pct}%</div>
+                <div className="text-xs font-mono text-foreground w-8 text-right">{p.pct}%</div>
               </div>
             ))}
           </div>
@@ -1144,14 +1144,14 @@ function MarketDynamicsTab() {
           <div className="space-y-2">
             {sectors.map((sec) => (
               <div key={sec.name} className="flex items-center gap-3">
-                <div className="w-28 text-xs text-zinc-300 shrink-0">{sec.name}</div>
+                <div className="w-28 text-xs text-muted-foreground shrink-0">{sec.name}</div>
                 <div className="flex-1 h-4 bg-white/5 rounded overflow-hidden">
                   <div
                     className="h-full rounded"
                     style={{ width: `${sec.share * 4}%`, backgroundColor: sec.color }}
                   />
                 </div>
-                <div className="text-xs font-mono text-zinc-200 w-8 text-right">{sec.share}%</div>
+                <div className="text-xs font-mono text-foreground w-8 text-right">{sec.share}%</div>
               </div>
             ))}
           </div>
@@ -1195,7 +1195,7 @@ function MarketDynamicsTab() {
             85% cov-lite
           </text>
         </svg>
-        <div className="mt-2 text-xs text-zinc-500">
+        <div className="mt-2 text-xs text-muted-foreground">
           Driven by institutional investor (CLO) dominance — they prefer covenant-lite for portfolio flexibility.
           Investor shift from bank-hold to non-bank has weakened lender protections industry-wide.
         </div>
@@ -1210,14 +1210,14 @@ function MarketDynamicsTab() {
         <div className="space-y-2 mb-4">
           {institutionalShift.map((inv) => (
             <div key={inv.investor} className="flex items-center gap-3">
-              <div className="w-52 text-xs text-zinc-300 shrink-0">{inv.investor}</div>
+              <div className="w-52 text-xs text-muted-foreground shrink-0">{inv.investor}</div>
               <div className="flex-1 h-4 bg-white/5 rounded overflow-hidden">
                 <div
                   className="h-full rounded"
                   style={{ width: `${inv.share}%`, backgroundColor: inv.color }}
                 />
               </div>
-              <div className="text-xs font-mono text-zinc-200 w-8 text-right">{inv.share}%</div>
+              <div className="text-xs font-mono text-foreground w-8 text-right">{inv.share}%</div>
             </div>
           ))}
         </div>
@@ -1238,7 +1238,7 @@ function MarketDynamicsTab() {
           {esgFeatures.map((e) => (
             <div key={e.feature} className="rounded-lg border border-white/10 bg-white/5 p-3">
               <InfoPill text={e.feature} color={e.color} />
-              <p className="text-xs text-zinc-400 mt-2">{e.desc}</p>
+              <p className="text-xs text-muted-foreground mt-2">{e.desc}</p>
             </div>
           ))}
         </div>
@@ -1262,11 +1262,11 @@ function MarketDynamicsTab() {
               <Users size={14} className="text-primary" />
               <span className="text-sm font-semibold text-primary">Relationship Banking</span>
             </div>
-            <ul className="space-y-1 text-xs text-zinc-400">
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />MLA holds large slice; cross-sells advisory, FX, deposits</li>
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />Willing to accept tighter pricing for ancillary revenue</li>
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />Actively supports borrower through covenant breaches</li>
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />Repeat mandates from loyal borrower base</li>
+            <ul className="space-y-1 text-xs text-muted-foreground">
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />MLA holds large slice; cross-sells advisory, FX, deposits</li>
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />Willing to accept tighter pricing for ancillary revenue</li>
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />Actively supports borrower through covenant breaches</li>
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />Repeat mandates from loyal borrower base</li>
             </ul>
           </div>
           <div className="rounded-lg border border-orange-500/20 bg-orange-900/10 p-4">
@@ -1274,11 +1274,11 @@ function MarketDynamicsTab() {
               <Globe size={14} className="text-orange-400" />
               <span className="text-sm font-semibold text-orange-300">Transaction Banking</span>
             </div>
-            <ul className="space-y-1 text-xs text-zinc-400">
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />Originate-and-distribute; minimal hold; fee-driven</li>
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />Maximises spread / OID to attract institutional buyers</li>
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />Less tolerance for covenant waivers (dispersed lender base)</li>
-              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-zinc-600" />CLO and fund buyers drive terms more than banks</li>
+            <ul className="space-y-1 text-xs text-muted-foreground">
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />Originate-and-distribute; minimal hold; fee-driven</li>
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />Maximises spread / OID to attract institutional buyers</li>
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />Less tolerance for covenant waivers (dispersed lender base)</li>
+              <li className="flex items-start gap-2"><ArrowRight size={10} className="mt-0.5 shrink-0 text-muted-foreground" />CLO and fund buyers drive terms more than banks</li>
             </ul>
           </div>
         </div>
@@ -1300,7 +1300,7 @@ export default function SyndicatedLendingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-white p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}
@@ -1313,7 +1313,7 @@ export default function SyndicatedLendingPage() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Syndicated Lending</h1>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               How large corporate loans are arranged, priced, and distributed among multiple banks
             </p>
           </div>
@@ -1329,14 +1329,14 @@ export default function SyndicatedLendingPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure" className="space-y-4">
-        <TabsList className="grid grid-cols-2 md:grid-cols-4 bg-zinc-900 border border-white/10 h-auto p-1 gap-1">
+        <TabsList className="grid grid-cols-2 md:grid-cols-4 bg-card border border-white/10 h-auto p-1 gap-1">
           {tabs.map((t) => {
             const Icon = t.icon;
             return (
               <TabsTrigger
                 key={t.value}
                 value={t.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/10 data-[state=active]:text-white text-zinc-400 py-2 px-3"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-white/10 data-[state=active]:text-white text-muted-foreground py-2 px-3"
               >
                 <Icon size={13} />
                 {t.label}

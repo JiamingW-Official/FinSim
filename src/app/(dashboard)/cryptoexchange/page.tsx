@@ -689,7 +689,7 @@ export default function CryptoExchangePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4">
+    <div className="min-h-screen bg-background text-foreground p-4">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
@@ -697,8 +697,8 @@ export default function CryptoExchangePage() {
             <Activity className="w-4 h-4 text-amber-400" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-slate-100">Crypto Exchange</h1>
-            <p className="text-xs text-slate-500">Simulated trading environment</p>
+            <h1 className="text-xl font-semibold text-foreground">Crypto Exchange</h1>
+            <p className="text-xs text-muted-foreground">Simulated trading environment</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -706,31 +706,31 @@ export default function CryptoExchangePage() {
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block mr-1.5 animate-pulse" />
             Live
           </Badge>
-          <Badge variant="outline" className="border-slate-700 text-slate-400 text-xs">
+          <Badge variant="outline" className="border-border text-muted-foreground text-xs">
             Simulated
           </Badge>
         </div>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-slate-900 border border-slate-800 mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="spot" className="data-[state=active]:bg-slate-800 text-xs">
+        <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
+          <TabsTrigger value="spot" className="data-[state=active]:bg-muted text-xs">
             <BarChart2 className="w-3 h-3 mr-1.5" />
             Spot Trading
           </TabsTrigger>
-          <TabsTrigger value="perp" className="data-[state=active]:bg-slate-800 text-xs">
+          <TabsTrigger value="perp" className="data-[state=active]:bg-muted text-xs">
             <Zap className="w-3 h-3 mr-1.5" />
             Perpetuals
           </TabsTrigger>
-          <TabsTrigger value="market" className="data-[state=active]:bg-slate-800 text-xs">
+          <TabsTrigger value="market" className="data-[state=active]:bg-muted text-xs">
             <TrendingUp className="w-3 h-3 mr-1.5" />
             Market Overview
           </TabsTrigger>
-          <TabsTrigger value="defi" className="data-[state=active]:bg-slate-800 text-xs">
+          <TabsTrigger value="defi" className="data-[state=active]:bg-muted text-xs">
             <Layers className="w-3 h-3 mr-1.5" />
             DeFi Dashboard
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="data-[state=active]:bg-slate-800 text-xs">
+          <TabsTrigger value="portfolio" className="data-[state=active]:bg-muted text-xs">
             <Wallet className="w-3 h-3 mr-1.5" />
             Portfolio
           </TabsTrigger>
@@ -742,7 +742,7 @@ export default function CryptoExchangePage() {
             {/* Left: Pair selector + Chart */}
             <div className="xl:col-span-2 space-y-4">
               {/* Pair selector */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+              <div className="bg-card border border-border rounded-xl p-4">
                 <div className="flex items-center gap-2 flex-wrap mb-4">
                   {PAIRS.map((pair) => (
                     <button
@@ -752,7 +752,7 @@ export default function CryptoExchangePage() {
                         "px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
                         selectedPair === pair
                           ? "bg-indigo-600 text-white"
-                          : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                          : "bg-muted text-muted-foreground hover:bg-muted"
                       )}
                     >
                       {pair}
@@ -765,14 +765,14 @@ export default function CryptoExchangePage() {
                     key={`price-${tick}`}
                     initial={{ opacity: 0.6 }}
                     animate={{ opacity: 1 }}
-                    className="text-2xl font-bold text-slate-100 font-mono"
+                    className="text-2xl font-bold text-foreground font-mono"
                   >
                     {fmtPrice(midPrice)}
                   </motion.span>
                   <span className="text-sm text-green-400 font-mono">+1.87%</span>
-                  <span className="text-xs text-slate-500">24h</span>
-                  <div className="ml-auto flex items-center gap-4 text-xs text-slate-500">
-                    <span>Spread: <span className="text-slate-300 font-mono">{spreadBps} bps</span></span>
+                  <span className="text-xs text-muted-foreground">24h</span>
+                  <div className="ml-auto flex items-center gap-4 text-xs text-muted-foreground">
+                    <span>Spread: <span className="text-muted-foreground font-mono">{spreadBps} bps</span></span>
                     <span>Bid: <span className="text-green-400 font-mono">{bids[0] ? fmtPrice(bids[0].price) : "-"}</span></span>
                     <span>Ask: <span className="text-red-400 font-mono">{asks[0] ? fmtPrice(asks[0].price) : "-"}</span></span>
                   </div>
@@ -780,12 +780,12 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Candlestick chart */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+              <div className="bg-card border border-border rounded-xl p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-slate-300">Price Chart (30 bars)</span>
+                  <span className="text-sm font-medium text-muted-foreground">Price Chart (30 bars)</span>
                   <div className="flex gap-1">
                     {["1m", "5m", "15m", "1h", "4h", "1D"].map((tf) => (
-                      <button key={tf} className="px-2 py-0.5 rounded text-xs text-slate-500 hover:text-slate-300 hover:bg-slate-800 transition-colors">
+                      <button key={tf} className="px-2 py-0.5 rounded text-xs text-muted-foreground hover:text-muted-foreground hover:bg-muted transition-colors">
                         {tf}
                       </button>
                     ))}
@@ -795,9 +795,9 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Recent Trades */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-medium text-slate-300 mb-3">Recent Trades</h3>
-                <div className="grid grid-cols-3 text-xs text-slate-500 mb-2 px-1">
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Recent Trades</h3>
+                <div className="grid grid-cols-3 text-xs text-muted-foreground mb-2 px-1">
                   <span>Price (USDT)</span>
                   <span className="text-center">Amount</span>
                   <span className="text-right">Time</span>
@@ -809,13 +809,13 @@ export default function CryptoExchangePage() {
                         key={`trade-${i}-${tick}`}
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="grid grid-cols-3 text-xs px-1 py-0.5 rounded hover:bg-slate-800/50"
+                        className="grid grid-cols-3 text-xs px-1 py-0.5 rounded hover:bg-muted/50"
                       >
                         <span className={cn("font-mono", trade.side === "buy" ? "text-green-400" : "text-red-400")}>
                           {fmtPrice(trade.price)}
                         </span>
-                        <span className="text-center text-slate-300 font-mono">{trade.size.toFixed(4)}</span>
-                        <span className="text-right text-slate-500 font-mono">{trade.time}</span>
+                        <span className="text-center text-muted-foreground font-mono">{trade.size.toFixed(4)}</span>
+                        <span className="text-right text-muted-foreground font-mono">{trade.time}</span>
                       </motion.div>
                     ))}
                   </AnimatePresence>
@@ -826,9 +826,9 @@ export default function CryptoExchangePage() {
             {/* Right: Order Book + Order Form */}
             <div className="space-y-4">
               {/* Order Book */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-medium text-slate-300 mb-3">Order Book</h3>
-                <div className="grid grid-cols-3 text-xs text-slate-500 mb-2">
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Order Book</h3>
+                <div className="grid grid-cols-3 text-xs text-muted-foreground mb-2">
                   <span>Price</span>
                   <span className="text-center">Size</span>
                   <span className="text-right">Total</span>
@@ -841,14 +841,14 @@ export default function CryptoExchangePage() {
                       <div key={`ask-${i}`} className="relative grid grid-cols-3 text-xs py-0.5 px-1 rounded overflow-hidden">
                         <div className="absolute inset-0 right-0" style={{ width: `${barPct}%`, background: "rgba(239,68,68,0.08)", marginLeft: "auto" }} />
                         <span className="relative text-red-400 font-mono">{fmtPrice(a.price)}</span>
-                        <span className="relative text-center text-slate-300 font-mono">{a.size.toFixed(3)}</span>
-                        <span className="relative text-right text-slate-500 font-mono">{a.total.toFixed(3)}</span>
+                        <span className="relative text-center text-muted-foreground font-mono">{a.size.toFixed(3)}</span>
+                        <span className="relative text-right text-muted-foreground font-mono">{a.total.toFixed(3)}</span>
                       </div>
                     );
                   })}
                 </div>
                 {/* Spread */}
-                <div className="py-1 px-1 text-center text-xs text-slate-500 bg-slate-800/50 rounded mb-1">
+                <div className="py-1 px-1 text-center text-xs text-muted-foreground bg-muted/50 rounded mb-1">
                   Spread {spreadBps} bps
                 </div>
                 {/* Bids */}
@@ -859,8 +859,8 @@ export default function CryptoExchangePage() {
                       <div key={`bid-${i}`} className="relative grid grid-cols-3 text-xs py-0.5 px-1 rounded overflow-hidden">
                         <div className="absolute inset-0 right-0" style={{ width: `${barPct}%`, background: "rgba(34,197,94,0.08)", marginLeft: "auto" }} />
                         <span className="relative text-green-400 font-mono">{fmtPrice(b.price)}</span>
-                        <span className="relative text-center text-slate-300 font-mono">{b.size.toFixed(3)}</span>
-                        <span className="relative text-right text-slate-500 font-mono">{b.total.toFixed(3)}</span>
+                        <span className="relative text-center text-muted-foreground font-mono">{b.size.toFixed(3)}</span>
+                        <span className="relative text-right text-muted-foreground font-mono">{b.total.toFixed(3)}</span>
                       </div>
                     );
                   })}
@@ -868,8 +868,8 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Trade Form */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-medium text-slate-300 mb-3">Place Order</h3>
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Place Order</h3>
                 {/* Order type */}
                 <div className="flex gap-1 mb-3">
                   {(["market", "limit", "stop-limit"] as const).map((t) => (
@@ -878,7 +878,7 @@ export default function CryptoExchangePage() {
                       onClick={() => setOrderType(t)}
                       className={cn(
                         "flex-1 py-1 rounded text-xs font-medium transition-all",
-                        orderType === t ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-slate-700"
+                        orderType === t ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted"
                       )}
                     >
                       {t === "stop-limit" ? "Stop" : t.charAt(0).toUpperCase() + t.slice(1)}
@@ -889,13 +889,13 @@ export default function CryptoExchangePage() {
                 <div className="flex gap-1 mb-3">
                   <button
                     onClick={() => setOrderSide("buy")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-green-900/30 hover:text-green-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-white" : "bg-muted text-muted-foreground hover:bg-green-900/30 hover:text-green-400")}
                   >
                     Buy
                   </button>
                   <button
                     onClick={() => setOrderSide("sell")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-red-900/30 hover:text-red-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-white" : "bg-muted text-muted-foreground hover:bg-red-900/30 hover:text-red-400")}
                   >
                     Sell
                   </button>
@@ -903,53 +903,53 @@ export default function CryptoExchangePage() {
                 {/* Price inputs */}
                 {orderType === "stop-limit" && (
                   <div className="mb-2">
-                    <label className="text-xs text-slate-500 mb-1 block">Stop Price</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Stop Price</label>
                     <Input
                       value={stopPrice}
                       onChange={(e) => setStopPrice(e.target.value)}
                       placeholder={fmtPrice(midPrice * 0.99)}
-                      className="bg-slate-800 border-slate-700 text-slate-100 h-8 text-sm"
+                      className="bg-muted border-border text-foreground h-8 text-sm"
                     />
                   </div>
                 )}
                 {orderType !== "market" && (
                   <div className="mb-2">
-                    <label className="text-xs text-slate-500 mb-1 block">Limit Price</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Limit Price</label>
                     <Input
                       value={orderPrice}
                       onChange={(e) => setOrderPrice(e.target.value)}
                       placeholder={fmtPrice(midPrice)}
-                      className="bg-slate-800 border-slate-700 text-slate-100 h-8 text-sm"
+                      className="bg-muted border-border text-foreground h-8 text-sm"
                     />
                   </div>
                 )}
                 <div className="mb-3">
-                  <label className="text-xs text-slate-500 mb-1 block">Amount ({selectedPair.split("/")[0]})</label>
+                  <label className="text-xs text-muted-foreground mb-1 block">Amount ({selectedPair.split("/")[0]})</label>
                   <Input
                     value={orderSize}
                     onChange={(e) => setOrderSize(e.target.value)}
                     placeholder="0.001"
-                    className="bg-slate-800 border-slate-700 text-slate-100 h-8 text-sm"
+                    className="bg-muted border-border text-foreground h-8 text-sm"
                   />
                 </div>
                 {/* Quick size buttons */}
                 <div className="flex gap-1 mb-3">
                   {["25%", "50%", "75%", "100%"].map((pct) => (
-                    <button key={pct} className="flex-1 py-1 bg-slate-800 hover:bg-slate-700 text-xs text-slate-400 rounded transition-colors">
+                    <button key={pct} className="flex-1 py-1 bg-muted hover:bg-muted text-xs text-muted-foreground rounded transition-colors">
                       {pct}
                     </button>
                   ))}
                 </div>
-                <div className="text-xs text-slate-500 mb-3 space-y-1">
+                <div className="text-xs text-muted-foreground mb-3 space-y-1">
                   <div className="flex justify-between">
                     <span>Est. Total</span>
-                    <span className="text-slate-300 font-mono">
+                    <span className="text-muted-foreground font-mono">
                       ${((parseFloat(orderSize) || 0) * midPrice).toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span>Fee (0.1%)</span>
-                    <span className="text-slate-300 font-mono">
+                    <span className="text-muted-foreground font-mono">
                       ${((parseFloat(orderSize) || 0) * midPrice * 0.001).toFixed(4)}
                     </span>
                   </div>
@@ -970,13 +970,13 @@ export default function CryptoExchangePage() {
             {/* Main perp panel */}
             <div className="xl:col-span-2 space-y-4">
               {/* Perp pair selector + stats */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+              <div className="bg-card border border-border rounded-xl p-4">
                 <div className="flex items-center gap-3 mb-4">
                   {PERP_PAIRS.map((pair) => (
                     <button
                       key={pair}
                       onClick={() => setPerpPair(pair)}
-                      className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all", perpPair === pair ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-slate-700")}
+                      className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all", perpPair === pair ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted")}
                     >
                       {pair} PERP
                     </button>
@@ -994,49 +994,49 @@ export default function CryptoExchangePage() {
                   <span className="text-sm text-green-400">+2.14%</span>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <div className="bg-slate-800/50 rounded-lg p-3">
-                    <div className="text-xs text-slate-500 mb-1">Funding Rate</div>
+                  <div className="bg-muted/50 rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">Funding Rate</div>
                     <div className={cn("text-sm font-mono font-semibold", fundingRate >= 0 ? "text-red-400" : "text-green-400")}>
                       {fundingRate >= 0 ? "+" : ""}{(fundingRate * 100).toFixed(4)}%
                     </div>
-                    <div className="text-xs text-slate-600 mt-0.5">
+                    <div className="text-xs text-muted-foreground mt-0.5">
                       {fundingRate >= 0 ? "Longs pay shorts" : "Shorts pay longs"}
                     </div>
                   </div>
-                  <div className="bg-slate-800/50 rounded-lg p-3">
-                    <div className="text-xs text-slate-500 mb-1">Open Interest</div>
-                    <div className="text-sm font-mono font-semibold text-slate-200">{fmtCompact(openInterest[openInterest.length - 1])}</div>
+                  <div className="bg-muted/50 rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">Open Interest</div>
+                    <div className="text-sm font-mono font-semibold text-foreground">{fmtCompact(openInterest[openInterest.length - 1])}</div>
                   </div>
-                  <div className="bg-slate-800/50 rounded-lg p-3">
-                    <div className="text-xs text-slate-500 mb-1">24h Volume</div>
-                    <div className="text-sm font-mono font-semibold text-slate-200">{fmtCompact(perpPair === "BTC/USDT" ? 28_400_000_000 : 14_200_000_000)}</div>
+                  <div className="bg-muted/50 rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">24h Volume</div>
+                    <div className="text-sm font-mono font-semibold text-foreground">{fmtCompact(perpPair === "BTC/USDT" ? 28_400_000_000 : 14_200_000_000)}</div>
                   </div>
-                  <div className="bg-slate-800/50 rounded-lg p-3">
-                    <div className="text-xs text-slate-500 mb-1">Mark Price</div>
-                    <div className="text-sm font-mono font-semibold text-slate-200">{fmtPrice(perpPrice * 1.0002)}</div>
+                  <div className="bg-muted/50 rounded-lg p-3">
+                    <div className="text-xs text-muted-foreground mb-1">Mark Price</div>
+                    <div className="text-sm font-mono font-semibold text-foreground">{fmtPrice(perpPrice * 1.0002)}</div>
                   </div>
                 </div>
               </div>
 
               {/* Funding rate history */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-medium text-slate-300 mb-3">Funding Rate History (24h)</h3>
-                <div className="flex items-center gap-4 text-xs text-slate-500 mb-2">
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Funding Rate History (24h)</h3>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground mb-2">
                   <span className="flex items-center gap-1"><span className="w-2 h-2 bg-green-500 rounded-sm inline-block" /> Shorts pay</span>
                   <span className="flex items-center gap-1"><span className="w-2 h-2 bg-red-500 rounded-sm inline-block" /> Longs pay</span>
                 </div>
                 <FundingRateBarChart data={fundingHistory} />
-                <div className="flex justify-between mt-1 text-xs text-slate-600">
+                <div className="flex justify-between mt-1 text-xs text-muted-foreground">
                   <span>24h ago</span>
                   <span>Now</span>
                 </div>
               </div>
 
               {/* Open Interest trend */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-medium text-slate-300 mb-3">Open Interest Trend (30 periods)</h3>
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Open Interest Trend (30 periods)</h3>
                 <OpenInterestLine data={openInterest} />
-                <div className="flex justify-between mt-1 text-xs text-slate-600">
+                <div className="flex justify-between mt-1 text-xs text-muted-foreground">
                   <span>{fmtCompact(openInterest[0])}</span>
                   <span className="text-indigo-400">{fmtCompact(openInterest[openInterest.length - 1])}</span>
                 </div>
@@ -1046,29 +1046,29 @@ export default function CryptoExchangePage() {
             {/* Right: Long/Short gauge + Leverage form */}
             <div className="space-y-4">
               {/* Long/Short ratio */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-medium text-slate-300 mb-3">Long / Short Ratio</h3>
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Long / Short Ratio</h3>
                 <div className="flex justify-center mb-2">
                   <LongShortGauge longPct={longPct} />
                 </div>
                 <div className="flex justify-between text-xs mt-2">
                   <div className="text-center">
                     <div className="text-green-400 font-semibold text-sm">{longPct.toFixed(1)}%</div>
-                    <div className="text-slate-500">Longs</div>
+                    <div className="text-muted-foreground">Longs</div>
                   </div>
                   <div className="text-center">
                     <div className="text-red-400 font-semibold text-sm">{(100 - longPct).toFixed(1)}%</div>
-                    <div className="text-slate-500">Shorts</div>
+                    <div className="text-muted-foreground">Shorts</div>
                   </div>
                 </div>
               </div>
 
               {/* Leverage selector */}
-              <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-                <h3 className="text-sm font-medium text-slate-300 mb-3">Leverage & Margin</h3>
+              <div className="bg-card border border-border rounded-xl p-4">
+                <h3 className="text-sm font-medium text-muted-foreground mb-3">Leverage & Margin</h3>
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-slate-500">Leverage</span>
+                    <span className="text-xs text-muted-foreground">Leverage</span>
                     <span className="text-sm font-bold text-amber-400">{leverage}x</span>
                   </div>
                   <input
@@ -1079,7 +1079,7 @@ export default function CryptoExchangePage() {
                     onChange={(e) => setLeverage(+e.target.value)}
                     className="w-full accent-amber-500"
                   />
-                  <div className="flex justify-between text-xs text-slate-600 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>1x</span>
                     <span>25x</span>
                     <span>50x</span>
@@ -1091,58 +1091,58 @@ export default function CryptoExchangePage() {
                     <button
                       key={lv}
                       onClick={() => setLeverage(lv)}
-                      className={cn("px-2 py-1 rounded text-xs transition-all", leverage === lv ? "bg-amber-600 text-white" : "bg-slate-800 text-slate-400 hover:bg-slate-700")}
+                      className={cn("px-2 py-1 rounded text-xs transition-all", leverage === lv ? "bg-amber-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted")}
                     >
                       {lv}x
                     </button>
                   ))}
                 </div>
-                <Separator className="bg-slate-800 my-3" />
-                <h4 className="text-xs text-slate-500 mb-3">Liquidation Calculator</h4>
+                <Separator className="bg-muted my-3" />
+                <h4 className="text-xs text-muted-foreground mb-3">Liquidation Calculator</h4>
                 <div className="space-y-2 mb-3">
                   <div>
-                    <label className="text-xs text-slate-500 mb-1 block">Entry Price</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Entry Price</label>
                     <Input
                       value={orderPrice}
                       onChange={(e) => setOrderPrice(e.target.value)}
                       placeholder={fmtPrice(perpPrice)}
-                      className="bg-slate-800 border-slate-700 text-slate-100 h-8 text-sm"
+                      className="bg-muted border-border text-foreground h-8 text-sm"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-slate-500 mb-1 block">Position Size (contracts)</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Position Size (contracts)</label>
                     <Input
                       value={orderSize}
                       onChange={(e) => setOrderSize(e.target.value)}
                       placeholder="1"
-                      className="bg-slate-800 border-slate-700 text-slate-100 h-8 text-sm"
+                      className="bg-muted border-border text-foreground h-8 text-sm"
                     />
                   </div>
                 </div>
-                <div className="bg-slate-800/60 rounded-lg p-3 space-y-2 text-xs">
+                <div className="bg-muted/60 rounded-lg p-3 space-y-2 text-xs">
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Margin Required</span>
-                    <span className="text-slate-200 font-mono">${marginReq.toLocaleString()}</span>
+                    <span className="text-muted-foreground">Margin Required</span>
+                    <span className="text-foreground font-mono">${marginReq.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Liq. Price ({orderSide === "buy" ? "Long" : "Short"})</span>
+                    <span className="text-muted-foreground">Liq. Price ({orderSide === "buy" ? "Long" : "Short"})</span>
                     <span className="text-red-400 font-mono font-semibold">{fmtPrice(liqPrice)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-500">Liq. Distance</span>
+                    <span className="text-muted-foreground">Liq. Distance</span>
                     <span className="text-amber-400 font-mono">{(Math.abs(liqPrice - entryPrice) / entryPrice * 100).toFixed(2)}%</span>
                   </div>
                 </div>
                 <div className="flex gap-2 mt-3">
                   <button
                     onClick={() => setOrderSide("buy")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-white" : "bg-slate-800 text-slate-400 hover:text-green-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-white" : "bg-muted text-muted-foreground hover:text-green-400")}
                   >
                     Long {leverage}x
                   </button>
                   <button
                     onClick={() => setOrderSide("sell")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-white" : "bg-slate-800 text-slate-400 hover:text-red-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-white" : "bg-muted text-muted-foreground hover:text-red-400")}
                   >
                     Short {leverage}x
                   </button>
@@ -1155,8 +1155,8 @@ export default function CryptoExchangePage() {
         {/* ── Tab 3: Market Overview ──────────────────────────────────────────── */}
         <TabsContent value="market" className="data-[state=inactive]:hidden space-y-4">
           {/* Sector performance */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <h3 className="text-sm font-medium text-slate-300 mb-3">Sector Performance (24h)</h3>
+          <div className="bg-card border border-border rounded-xl p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">Sector Performance (24h)</h3>
             <div className="flex flex-wrap gap-2">
               {sectorPerf.map(({ sector, avg }) => (
                 <div
@@ -1166,7 +1166,7 @@ export default function CryptoExchangePage() {
                     avg >= 0 ? "bg-green-950/40 border-green-800/40" : "bg-red-950/40 border-red-800/40"
                   )}
                 >
-                  <div className="text-xs text-slate-400 mb-1">{sector}</div>
+                  <div className="text-xs text-muted-foreground mb-1">{sector}</div>
                   <div className={cn("text-sm font-bold font-mono", avg >= 0 ? "text-green-400" : "text-red-400")}>
                     {avg >= 0 ? "+" : ""}{avg}%
                   </div>
@@ -1176,12 +1176,12 @@ export default function CryptoExchangePage() {
           </div>
 
           {/* Top 20 table */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <h3 className="text-sm font-medium text-slate-300 mb-3">Top 20 by Market Cap</h3>
+          <div className="bg-card border border-border rounded-xl p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">Top 20 by Market Cap</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-slate-500 border-b border-slate-800">
+                  <tr className="text-muted-foreground border-b border-border">
                     <th className="text-left pb-2 pr-3 font-medium">#</th>
                     <th className="text-left pb-2 pr-3 font-medium">Asset</th>
                     <th className="text-right pb-2 pr-3 font-medium">Price</th>
@@ -1193,28 +1193,28 @@ export default function CryptoExchangePage() {
                 </thead>
                 <tbody>
                   {top20.map((coin, i) => (
-                    <tr key={coin.symbol} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
-                      <td className="py-2 pr-3 text-slate-600">{i + 1}</td>
+                    <tr key={coin.symbol} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                      <td className="py-2 pr-3 text-muted-foreground">{i + 1}</td>
                       <td className="py-2 pr-3">
                         <div className="flex items-center gap-2">
-                          <div className="w-5 h-5 rounded-full bg-slate-700 flex items-center justify-center text-slate-400" style={{ fontSize: 8 }}>
+                          <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-muted-foreground" style={{ fontSize: 8 }}>
                             {coin.symbol[0]}
                           </div>
                           <div>
-                            <div className="text-slate-200 font-medium">{coin.symbol}</div>
-                            <div className="text-slate-600">{coin.name}</div>
+                            <div className="text-foreground font-medium">{coin.symbol}</div>
+                            <div className="text-muted-foreground">{coin.name}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="py-2 pr-3 text-right font-mono text-slate-200">${fmtPrice(coin.price)}</td>
+                      <td className="py-2 pr-3 text-right font-mono text-foreground">${fmtPrice(coin.price)}</td>
                       <td className={cn("py-2 pr-3 text-right font-mono", coin.change24h >= 0 ? "text-green-400" : "text-red-400")}>
                         {coin.change24h >= 0 ? "+" : ""}{coin.change24h}%
                       </td>
                       <td className={cn("py-2 pr-3 text-right font-mono", coin.change7d >= 0 ? "text-green-400" : "text-red-400")}>
                         {coin.change7d >= 0 ? "+" : ""}{coin.change7d}%
                       </td>
-                      <td className="py-2 pr-3 text-right text-slate-400 font-mono">{fmtCompact(coin.marketCap)}</td>
-                      <td className="py-2 text-right text-slate-400 font-mono">{fmtCompact(coin.volume24h)}</td>
+                      <td className="py-2 pr-3 text-right text-muted-foreground font-mono">{fmtCompact(coin.marketCap)}</td>
+                      <td className="py-2 text-right text-muted-foreground font-mono">{fmtCompact(coin.volume24h)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -1224,7 +1224,7 @@ export default function CryptoExchangePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Top Gainers */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <h3 className="text-sm font-medium text-green-400 mb-3 flex items-center gap-2">
                 <ArrowUpRight className="w-4 h-4" /> Top Gainers (24h)
               </h3>
@@ -1232,8 +1232,8 @@ export default function CryptoExchangePage() {
                 {gainers.map((coin, i) => (
                   <div key={coin.symbol} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-slate-600 w-4">{i + 1}</span>
-                      <span className="text-sm font-medium text-slate-200">{coin.symbol}</span>
+                      <span className="text-xs text-muted-foreground w-4">{i + 1}</span>
+                      <span className="text-sm font-medium text-foreground">{coin.symbol}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <SparkSVG values={generateSparkData(i * 13 + 1)} color="#22c55e" />
@@ -1245,7 +1245,7 @@ export default function CryptoExchangePage() {
             </div>
 
             {/* Top Losers */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+            <div className="bg-card border border-border rounded-xl p-4">
               <h3 className="text-sm font-medium text-red-400 mb-3 flex items-center gap-2">
                 <ArrowDownRight className="w-4 h-4" /> Top Losers (24h)
               </h3>
@@ -1253,8 +1253,8 @@ export default function CryptoExchangePage() {
                 {losers.map((coin, i) => (
                   <div key={coin.symbol} className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-slate-600 w-4">{i + 1}</span>
-                      <span className="text-sm font-medium text-slate-200">{coin.symbol}</span>
+                      <span className="text-xs text-muted-foreground w-4">{i + 1}</span>
+                      <span className="text-sm font-medium text-foreground">{coin.symbol}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <SparkSVG values={generateSparkData(i * 17 + 7)} color="#ef4444" />
@@ -1266,8 +1266,8 @@ export default function CryptoExchangePage() {
             </div>
 
             {/* Volume leaders */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-300 mb-3 flex items-center gap-2">
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                 <BarChart2 className="w-4 h-4" /> Volume Leaders (24h)
               </h3>
               <div className="space-y-2">
@@ -1276,12 +1276,12 @@ export default function CryptoExchangePage() {
                   const pct = (coin.volume24h / maxVol) * 100;
                   return (
                     <div key={coin.symbol} className="flex items-center gap-2">
-                      <span className="text-xs text-slate-600 w-4">{i + 1}</span>
-                      <span className="text-xs font-medium text-slate-300 w-12">{coin.symbol}</span>
-                      <div className="flex-1 bg-slate-800 rounded-full h-1.5">
+                      <span className="text-xs text-muted-foreground w-4">{i + 1}</span>
+                      <span className="text-xs font-medium text-muted-foreground w-12">{coin.symbol}</span>
+                      <div className="flex-1 bg-muted rounded-full h-1.5">
                         <div className="bg-indigo-500 h-1.5 rounded-full" style={{ width: `${pct}%` }} />
                       </div>
-                      <span className="text-xs text-slate-500 font-mono w-14 text-right">{fmtCompact(coin.volume24h)}</span>
+                      <span className="text-xs text-muted-foreground font-mono w-14 text-right">{fmtCompact(coin.volume24h)}</span>
                     </div>
                   );
                 })}
@@ -1290,23 +1290,23 @@ export default function CryptoExchangePage() {
           </div>
 
           {/* New listings */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <h3 className="text-sm font-medium text-slate-300 mb-3 flex items-center gap-2">
+          <div className="bg-card border border-border rounded-xl p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
               <Zap className="w-4 h-4 text-amber-400" /> New Listings
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
               {newListings.map((listing) => (
-                <div key={listing.symbol} className="bg-slate-800/60 rounded-lg p-3 border border-slate-700/50">
+                <div key={listing.symbol} className="bg-muted/60 rounded-lg p-3 border border-border/50">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-bold text-slate-200">{listing.symbol}</span>
+                    <span className="text-sm font-bold text-foreground">{listing.symbol}</span>
                     <Badge variant="outline" className="text-xs border-amber-500/40 text-amber-400 px-1 py-0">NEW</Badge>
                   </div>
-                  <div className="text-xs text-slate-500 mb-2">{listing.name}</div>
-                  <div className="text-xs text-slate-600 mb-1">Listed: {listing.listDate}</div>
+                  <div className="text-xs text-muted-foreground mb-2">{listing.name}</div>
+                  <div className="text-xs text-muted-foreground mb-1">Listed: {listing.listDate}</div>
                   <div className={cn("text-sm font-bold font-mono", listing.change >= 0 ? "text-green-400" : "text-red-400")}>
                     {listing.change >= 0 ? "+" : ""}{listing.change}%
                   </div>
-                  <div className="text-xs text-slate-600">Since listing</div>
+                  <div className="text-xs text-muted-foreground">Since listing</div>
                 </div>
               ))}
             </div>
@@ -1317,14 +1317,14 @@ export default function CryptoExchangePage() {
         <TabsContent value="defi" className="data-[state=inactive]:hidden space-y-4">
           {/* DEX Volume */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-300 mb-3">DEX Volume (24h)</h3>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3">DEX Volume (24h)</h3>
               <DexBarChart labels={dexLabels} values={dexVolumes} />
             </div>
 
             {/* Protocol Revenue */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-300 mb-3">Protocol Revenue (7d fees)</h3>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3">Protocol Revenue (7d fees)</h3>
               <div className="space-y-3">
                 {protocolRevenue.map((p, i) => {
                   const maxRev = protocolRevenue[0].revenue;
@@ -1332,11 +1332,11 @@ export default function CryptoExchangePage() {
                   const colors = ["bg-indigo-500", "bg-emerald-500", "bg-amber-500", "bg-pink-500", "bg-cyan-500"];
                   return (
                     <div key={p.protocol} className="flex items-center gap-3">
-                      <span className="text-xs text-slate-400 w-16">{p.protocol}</span>
-                      <div className="flex-1 bg-slate-800 rounded-full h-2">
+                      <span className="text-xs text-muted-foreground w-16">{p.protocol}</span>
+                      <div className="flex-1 bg-muted rounded-full h-2">
                         <div className={cn("h-2 rounded-full", colors[i])} style={{ width: `${pct}%` }} />
                       </div>
-                      <span className="text-xs font-mono text-slate-300 w-16 text-right">{fmtCompact(p.revenue)}</span>
+                      <span className="text-xs font-mono text-muted-foreground w-16 text-right">{fmtCompact(p.revenue)}</span>
                     </div>
                   );
                 })}
@@ -1345,12 +1345,12 @@ export default function CryptoExchangePage() {
           </div>
 
           {/* Top Pools */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <h3 className="text-sm font-medium text-slate-300 mb-3">Top Liquidity Pools</h3>
+          <div className="bg-card border border-border rounded-xl p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">Top Liquidity Pools</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-slate-500 border-b border-slate-800">
+                  <tr className="text-muted-foreground border-b border-border">
                     <th className="text-left pb-2 pr-4 font-medium">Protocol</th>
                     <th className="text-left pb-2 pr-4 font-medium">Pair</th>
                     <th className="text-right pb-2 pr-4 font-medium">TVL</th>
@@ -1360,15 +1360,15 @@ export default function CryptoExchangePage() {
                 </thead>
                 <tbody>
                   {dexPools.map((pool, i) => (
-                    <tr key={i} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
+                    <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                       <td className="py-2 pr-4">
-                        <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300">{pool.protocol}</span>
+                        <span className="px-2 py-0.5 rounded bg-muted text-muted-foreground">{pool.protocol}</span>
                       </td>
-                      <td className="py-2 pr-4 text-slate-200 font-medium">{pool.pair}</td>
-                      <td className="py-2 pr-4 text-right font-mono text-slate-300">{fmtCompact(pool.tvl)}</td>
+                      <td className="py-2 pr-4 text-foreground font-medium">{pool.pair}</td>
+                      <td className="py-2 pr-4 text-right font-mono text-muted-foreground">{fmtCompact(pool.tvl)}</td>
                       <td className="py-2 pr-4 text-right font-mono text-green-400 font-semibold">{pool.apy.toFixed(1)}%</td>
                       <td className="py-2 text-right font-mono">
-                        <span className={cn("px-1.5 py-0.5 rounded text-xs", pool.volumeTvlRatio > 0.5 ? "bg-green-900/40 text-green-400" : "bg-slate-800 text-slate-400")}>
+                        <span className={cn("px-1.5 py-0.5 rounded text-xs", pool.volumeTvlRatio > 0.5 ? "bg-green-900/40 text-green-400" : "bg-muted text-muted-foreground")}>
                           {pool.volumeTvlRatio.toFixed(2)}x
                         </span>
                       </td>
@@ -1381,8 +1381,8 @@ export default function CryptoExchangePage() {
 
           {/* Yield opportunities + Bridge Volume */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-300 mb-3">Yield Opportunities (Risk-Adjusted)</h3>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3">Yield Opportunities (Risk-Adjusted)</h3>
               <div className="space-y-2">
                 {[
                   { name: "Aave USDC", apy: 6.1, risk: "Low", protocol: "Aave" },
@@ -1392,10 +1392,10 @@ export default function CryptoExchangePage() {
                   { name: "dYdX Perp", apy: 14.2, risk: "High", protocol: "dYdX" },
                   { name: "Balancer BPT", apy: 9.3, risk: "Medium", protocol: "Balancer" },
                 ].sort((a, b) => b.apy - a.apy).map((y, i) => (
-                  <div key={i} className="flex items-center justify-between bg-slate-800/40 rounded-lg px-3 py-2">
+                  <div key={i} className="flex items-center justify-between bg-muted/40 rounded-lg px-3 py-2">
                     <div>
-                      <div className="text-sm text-slate-200">{y.name}</div>
-                      <div className="text-xs text-slate-500">{y.protocol}</div>
+                      <div className="text-sm text-foreground">{y.name}</div>
+                      <div className="text-xs text-muted-foreground">{y.protocol}</div>
                     </div>
                     <div className="flex items-center gap-3">
                       <Badge
@@ -1417,8 +1417,8 @@ export default function CryptoExchangePage() {
             </div>
 
             {/* Bridge volume */}
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-300 mb-3 flex items-center gap-2">
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                 <GitMerge className="w-4 h-4" /> Bridge Volume (24h)
               </h3>
               <div className="space-y-2">
@@ -1432,16 +1432,16 @@ export default function CryptoExchangePage() {
                   };
                   return (
                     <div key={i} className="flex items-center gap-2 text-xs">
-                      <span className={cn("font-medium w-16", chainColors[flow.from] || "text-slate-300")}>{flow.from}</span>
-                      <span className="text-slate-600">→</span>
-                      <span className={cn("font-medium w-16", chainColors[flow.to] || "text-slate-300")}>{flow.to}</span>
-                      <div className="flex-1 bg-slate-800 rounded-full h-1.5 mx-2">
+                      <span className={cn("font-medium w-16", chainColors[flow.from] || "text-muted-foreground")}>{flow.from}</span>
+                      <span className="text-muted-foreground">→</span>
+                      <span className={cn("font-medium w-16", chainColors[flow.to] || "text-muted-foreground")}>{flow.to}</span>
+                      <div className="flex-1 bg-muted rounded-full h-1.5 mx-2">
                         <div
                           className="bg-indigo-500/60 h-1.5 rounded-full"
                           style={{ width: `${(flow.volume / 500_000_000) * 100}%` }}
                         />
                       </div>
-                      <span className="text-slate-400 font-mono w-14 text-right">{fmtCompact(flow.volume)}</span>
+                      <span className="text-muted-foreground font-mono w-14 text-right">{fmtCompact(flow.volume)}</span>
                     </div>
                   );
                 })}
@@ -1454,13 +1454,13 @@ export default function CryptoExchangePage() {
         <TabsContent value="portfolio" className="data-[state=inactive]:hidden space-y-4">
           {/* Summary cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <div className="text-xs text-slate-500 mb-1">Total Value</div>
-              <div className="text-xl font-bold text-slate-100 font-mono">${totalPortfolioValue.toFixed(2)}</div>
-              <div className="text-xs text-slate-500 mt-1">Starting: $10,000.00</div>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <div className="text-xs text-muted-foreground mb-1">Total Value</div>
+              <div className="text-xl font-bold text-foreground font-mono">${totalPortfolioValue.toFixed(2)}</div>
+              <div className="text-xs text-muted-foreground mt-1">Starting: $10,000.00</div>
             </div>
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <div className="text-xs text-slate-500 mb-1">Total P&L</div>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <div className="text-xs text-muted-foreground mb-1">Total P&L</div>
               <div className={cn("text-xl font-bold font-mono", totalPnl >= 0 ? "text-green-400" : "text-red-400")}>
                 {totalPnl >= 0 ? "+" : ""}${totalPnl.toFixed(2)}
               </div>
@@ -1468,34 +1468,34 @@ export default function CryptoExchangePage() {
                 {totalPnlPct >= 0 ? "+" : ""}{totalPnlPct.toFixed(2)}%
               </div>
             </div>
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <div className="text-xs text-slate-500 mb-1">USDT Balance</div>
-              <div className="text-xl font-bold text-slate-100 font-mono">${wallet.usdt.toFixed(2)}</div>
-              <div className="text-xs text-slate-500 mt-1">Available</div>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <div className="text-xs text-muted-foreground mb-1">USDT Balance</div>
+              <div className="text-xl font-bold text-foreground font-mono">${wallet.usdt.toFixed(2)}</div>
+              <div className="text-xs text-muted-foreground mt-1">Available</div>
             </div>
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <div className="text-xs text-slate-500 mb-1">Total Fees Paid</div>
-              <div className="text-xl font-bold text-slate-100 font-mono">
+            <div className="bg-card border border-border rounded-xl p-4">
+              <div className="text-xs text-muted-foreground mb-1">Total Fees Paid</div>
+              <div className="text-xl font-bold text-foreground font-mono">
                 ${(feesPaid.exchange + feesPaid.gas + feesPaid.bridge).toFixed(2)}
               </div>
-              <div className="text-xs text-slate-500 mt-1">All-time</div>
+              <div className="text-xs text-muted-foreground mt-1">All-time</div>
             </div>
           </div>
 
           {/* P&L equity curve */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <h3 className="text-sm font-medium text-slate-300 mb-3">30-Day Equity Curve</h3>
+          <div className="bg-card border border-border rounded-xl p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">30-Day Equity Curve</h3>
             <EquityCurveSVG data={equityCurve} />
           </div>
 
           {/* Holdings */}
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-            <h3 className="text-sm font-medium text-slate-300 mb-3 flex items-center gap-2">
+          <div className="bg-card border border-border rounded-xl p-4">
+            <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
               <PieChart className="w-4 h-4" /> Holdings
             </h3>
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-slate-500 border-b border-slate-800">
+                <tr className="text-muted-foreground border-b border-border">
                   <th className="text-left pb-2 pr-4 font-medium">Token</th>
                   <th className="text-right pb-2 pr-4 font-medium">Amount</th>
                   <th className="text-right pb-2 pr-4 font-medium">Avg Price</th>
@@ -1510,19 +1510,19 @@ export default function CryptoExchangePage() {
                   const pnl = h.amount * (h.currentPrice - h.avgPrice);
                   const pnlPct = ((h.currentPrice - h.avgPrice) / h.avgPrice) * 100;
                   return (
-                    <tr key={h.token} className="border-b border-slate-800/50 hover:bg-slate-800/30">
+                    <tr key={h.token} className="border-b border-border/50 hover:bg-muted/30">
                       <td className="py-3 pr-4">
                         <div className="flex items-center gap-2">
-                          <div className="w-6 h-6 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 text-xs font-bold">
+                          <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-xs font-bold">
                             {h.token[0]}
                           </div>
-                          <span className="text-slate-200 font-medium">{h.token}</span>
+                          <span className="text-foreground font-medium">{h.token}</span>
                         </div>
                       </td>
-                      <td className="py-3 pr-4 text-right font-mono text-slate-300">{h.amount}</td>
-                      <td className="py-3 pr-4 text-right font-mono text-slate-400">${h.avgPrice.toLocaleString()}</td>
-                      <td className="py-3 pr-4 text-right font-mono text-slate-200">${h.currentPrice.toLocaleString()}</td>
-                      <td className="py-3 pr-4 text-right font-mono text-slate-200">${value.toFixed(2)}</td>
+                      <td className="py-3 pr-4 text-right font-mono text-muted-foreground">{h.amount}</td>
+                      <td className="py-3 pr-4 text-right font-mono text-muted-foreground">${h.avgPrice.toLocaleString()}</td>
+                      <td className="py-3 pr-4 text-right font-mono text-foreground">${h.currentPrice.toLocaleString()}</td>
+                      <td className="py-3 pr-4 text-right font-mono text-foreground">${value.toFixed(2)}</td>
                       <td className="py-3 text-right">
                         <div className={cn("font-mono font-semibold", pnl >= 0 ? "text-green-400" : "text-red-400")}>
                           {pnl >= 0 ? "+" : ""}${pnl.toFixed(2)}
@@ -1535,18 +1535,18 @@ export default function CryptoExchangePage() {
                   );
                 })}
                 {/* USDT row */}
-                <tr className="border-b border-slate-800/50">
+                <tr className="border-b border-border/50">
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-2">
                       <div className="w-6 h-6 rounded-full bg-emerald-900 flex items-center justify-center text-emerald-400 text-xs font-bold">$</div>
-                      <span className="text-slate-200 font-medium">USDT</span>
+                      <span className="text-foreground font-medium">USDT</span>
                     </div>
                   </td>
-                  <td className="py-3 pr-4 text-right font-mono text-slate-300">{wallet.usdt.toFixed(2)}</td>
-                  <td className="py-3 pr-4 text-right font-mono text-slate-400">$1.00</td>
-                  <td className="py-3 pr-4 text-right font-mono text-slate-200">$1.00</td>
-                  <td className="py-3 pr-4 text-right font-mono text-slate-200">${wallet.usdt.toFixed(2)}</td>
-                  <td className="py-3 text-right font-mono text-slate-500">$0.00</td>
+                  <td className="py-3 pr-4 text-right font-mono text-muted-foreground">{wallet.usdt.toFixed(2)}</td>
+                  <td className="py-3 pr-4 text-right font-mono text-muted-foreground">$1.00</td>
+                  <td className="py-3 pr-4 text-right font-mono text-foreground">$1.00</td>
+                  <td className="py-3 pr-4 text-right font-mono text-foreground">${wallet.usdt.toFixed(2)}</td>
+                  <td className="py-3 text-right font-mono text-muted-foreground">$0.00</td>
                 </tr>
               </tbody>
             </table>
@@ -1554,8 +1554,8 @@ export default function CryptoExchangePage() {
 
           {/* Fees breakdown + Trade history */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-300 mb-3">Fees Paid (All-Time)</h3>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3">Fees Paid (All-Time)</h3>
               <div className="space-y-3">
                 {[
                   { label: "Exchange Fees (0.1%)", value: feesPaid.exchange, color: "bg-indigo-500" },
@@ -1566,37 +1566,37 @@ export default function CryptoExchangePage() {
                   return (
                     <div key={fee.label}>
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="text-slate-400">{fee.label}</span>
-                        <span className="font-mono text-slate-300">${fee.value.toFixed(2)}</span>
+                        <span className="text-muted-foreground">{fee.label}</span>
+                        <span className="font-mono text-muted-foreground">${fee.value.toFixed(2)}</span>
                       </div>
-                      <div className="bg-slate-800 rounded-full h-1.5">
+                      <div className="bg-muted rounded-full h-1.5">
                         <div className={cn("h-1.5 rounded-full", fee.color)} style={{ width: `${(fee.value / total) * 100}%` }} />
                       </div>
                     </div>
                   );
                 })}
-                <div className="pt-2 border-t border-slate-800 flex justify-between text-sm">
-                  <span className="text-slate-400">Total</span>
-                  <span className="font-mono font-semibold text-slate-200">${(feesPaid.exchange + feesPaid.gas + feesPaid.bridge).toFixed(2)}</span>
+                <div className="pt-2 border-t border-border flex justify-between text-sm">
+                  <span className="text-muted-foreground">Total</span>
+                  <span className="font-mono font-semibold text-foreground">${(feesPaid.exchange + feesPaid.gas + feesPaid.bridge).toFixed(2)}</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-900 border border-slate-800 rounded-xl p-4">
-              <h3 className="text-sm font-medium text-slate-300 mb-3">Trade History (Last 20)</h3>
+            <div className="bg-card border border-border rounded-xl p-4">
+              <h3 className="text-sm font-medium text-muted-foreground mb-3">Trade History (Last 20)</h3>
               <div className="overflow-y-auto max-h-64 space-y-1">
                 {tradeHistory.map((trade) => (
-                  <div key={trade.id} className="flex items-center justify-between text-xs px-2 py-1.5 rounded hover:bg-slate-800/50">
+                  <div key={trade.id} className="flex items-center justify-between text-xs px-2 py-1.5 rounded hover:bg-muted/50">
                     <div className="flex items-center gap-2">
                       <span className={cn("px-1.5 py-0.5 rounded font-medium", trade.side === "buy" ? "bg-green-900/50 text-green-400" : "bg-red-900/50 text-red-400")}>
                         {trade.side.toUpperCase()}
                       </span>
-                      <span className="text-slate-200">{trade.token}</span>
+                      <span className="text-foreground">{trade.token}</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="text-slate-500 font-mono">{trade.date}</span>
-                      <span className="text-slate-400 font-mono">{trade.amount}</span>
-                      <span className="text-slate-400 font-mono">@${trade.price.toLocaleString()}</span>
+                      <span className="text-muted-foreground font-mono">{trade.date}</span>
+                      <span className="text-muted-foreground font-mono">{trade.amount}</span>
+                      <span className="text-muted-foreground font-mono">@${trade.price.toLocaleString()}</span>
                       {trade.pnl !== null && (
                         <span className={cn("font-mono font-semibold", trade.pnl >= 0 ? "text-green-400" : "text-red-400")}>
                           {trade.pnl >= 0 ? "+" : ""}${trade.pnl.toFixed(2)}

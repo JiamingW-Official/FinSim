@@ -320,7 +320,7 @@ function SpotRateCard({ rate }: { rate: SpotRate }) {
       <Card className="bg-[#0f172a] border-[#1e293b] hover:border-[#334155] transition-colors">
         <CardContent className="pt-4 pb-3 px-4">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-slate-300 tracking-wider">
+            <span className="text-xs font-semibold text-muted-foreground tracking-wider">
               {rate.pair}
             </span>
             <Badge
@@ -339,7 +339,7 @@ function SpotRateCard({ rate }: { rate: SpotRate }) {
             <span className="text-2xl font-mono font-bold text-white">
               {rate.bid}
             </span>
-            <span className="text-sm font-mono text-slate-400 mb-0.5">
+            <span className="text-sm font-mono text-muted-foreground mb-0.5">
               {rate.ask}
             </span>
           </div>
@@ -368,18 +368,18 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
     <div className="overflow-x-auto">
       <table className="w-full text-xs font-mono border-separate border-spacing-0">
         <thead>
-          <tr className="text-slate-400">
+          <tr className="text-muted-foreground">
             <th colSpan={5} className="text-emerald-400 py-2 text-left pl-2">
               — CALLS ({expiry}) —
             </th>
-            <th className="text-slate-300 font-bold text-center py-2 px-2 border-x border-[#1e293b]">
+            <th className="text-muted-foreground font-bold text-center py-2 px-2 border-x border-[#1e293b]">
               STRIKE
             </th>
             <th colSpan={5} className="text-red-400 py-2 text-right pr-2">
               — PUTS ({expiry}) —
             </th>
           </tr>
-          <tr className="text-slate-500 border-b border-[#1e293b]">
+          <tr className="text-muted-foreground border-b border-[#1e293b]">
             <th className="text-left py-1 pl-2">Bid</th>
             <th className="text-left py-1">Ask</th>
             <th className="text-left py-1">IV%</th>
@@ -407,12 +407,12 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
               >
                 <td className="py-1.5 pl-2 text-emerald-300">{row.callBid}</td>
                 <td className="py-1.5 text-emerald-400">{row.callAsk}</td>
-                <td className="py-1.5 text-slate-300">{row.callIV}</td>
+                <td className="py-1.5 text-muted-foreground">{row.callIV}</td>
                 <td className="py-1.5 text-sky-400">{row.callDelta.toFixed(3)}</td>
                 <td className="py-1.5 text-primary">{row.callGamma.toFixed(4)}</td>
                 <td
                   className={`py-1.5 text-center font-bold px-2 border-x border-[#1e293b] ${
-                    isAtm ? "text-amber-400" : "text-slate-200"
+                    isAtm ? "text-amber-400" : "text-foreground"
                   }`}
                 >
                   {row.strike.toFixed(4)}
@@ -422,7 +422,7 @@ function OptionsChainTable({ rows, expiry }: { rows: OptionRow[]; expiry: string
                 </td>
                 <td className="py-1.5 text-right text-primary">{row.putGamma.toFixed(4)}</td>
                 <td className="py-1.5 text-right text-sky-400">{row.putDelta.toFixed(3)}</td>
-                <td className="py-1.5 text-right text-slate-300">{row.putIV}</td>
+                <td className="py-1.5 text-right text-muted-foreground">{row.putIV}</td>
                 <td className="py-1.5 text-right text-red-300">{row.putBid}</td>
                 <td className="py-1.5 pr-2 text-right text-red-400">{row.putAsk}</td>
               </tr>
@@ -439,7 +439,7 @@ function RRButterflyTable() {
     <div className="overflow-x-auto">
       <table className="w-full text-sm font-mono border-separate border-spacing-0">
         <thead>
-          <tr className="text-slate-400 border-b border-[#1e293b] text-xs">
+          <tr className="text-muted-foreground border-b border-[#1e293b] text-xs">
             <th className="text-left py-2 pl-3">Expiry</th>
             <th className="text-right py-2">ATM Vol (%)</th>
             <th className="text-right py-2">25D RR (%)</th>
@@ -449,7 +449,7 @@ function RRButterflyTable() {
         <tbody>
           {rrButterfly.map((row) => (
             <tr key={row.expiry} className="border-b border-[#0f172a] hover:bg-[#1e293b]/30 transition-colors">
-              <td className="py-2 pl-3 text-slate-200 font-semibold">{row.expiry}</td>
+              <td className="py-2 pl-3 text-foreground font-semibold">{row.expiry}</td>
               <td className="py-2 text-right text-amber-400">{row.atm.toFixed(3)}</td>
               <td
                 className={`py-2 text-right font-semibold ${
@@ -463,7 +463,7 @@ function RRButterflyTable() {
           ))}
         </tbody>
       </table>
-      <div className="mt-3 px-3 py-2 bg-[#0f172a] border border-[#1e293b] rounded text-xs text-slate-400 leading-relaxed">
+      <div className="mt-3 px-3 py-2 bg-[#0f172a] border border-[#1e293b] rounded text-xs text-muted-foreground leading-relaxed">
         <span className="text-amber-400 font-semibold">25D RR</span> = IV(25D Call) − IV(25D Put). Positive → call skew (EUR/USD call demand).{" "}
         <span className="text-primary font-semibold">25D Fly</span> = 0.5 × [IV(25D Call) + IV(25D Put)] − IV(ATM). Wing premium above ATM.
       </div>
@@ -627,13 +627,13 @@ function GKCalculator() {
 
   const inputCls =
     "w-full bg-[#0f172a] border border-[#334155] rounded px-2 py-1.5 text-sm font-mono text-white focus:outline-none focus:border-sky-500";
-  const labelCls = "text-xs text-slate-400 mb-1 block";
+  const labelCls = "text-xs text-muted-foreground mb-1 block";
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Inputs */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
           <DollarSign size={14} className="text-sky-400" /> Inputs
         </h3>
         <div className="grid grid-cols-2 gap-3">
@@ -703,7 +703,7 @@ function GKCalculator() {
             size="sm"
             variant={inputs.optionType === "call" ? "default" : "outline"}
             onClick={() => setField("optionType", "call")}
-            className={inputs.optionType === "call" ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "border-[#334155] text-slate-300 hover:bg-[#1e293b]"}
+            className={inputs.optionType === "call" ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "border-[#334155] text-muted-foreground hover:bg-[#1e293b]"}
           >
             Call
           </Button>
@@ -711,7 +711,7 @@ function GKCalculator() {
             size="sm"
             variant={inputs.optionType === "put" ? "default" : "outline"}
             onClick={() => setField("optionType", "put")}
-            className={inputs.optionType === "put" ? "bg-red-600 hover:bg-red-700 text-white" : "border-[#334155] text-slate-300 hover:bg-[#1e293b]"}
+            className={inputs.optionType === "put" ? "bg-red-600 hover:bg-red-700 text-white" : "border-[#334155] text-muted-foreground hover:bg-[#1e293b]"}
           >
             Put
           </Button>
@@ -720,12 +720,12 @@ function GKCalculator() {
 
       {/* Results */}
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
           <Activity size={14} className="text-primary" /> Results
         </h3>
         <div className="bg-[#0f172a] border border-[#1e293b] rounded-lg p-4 space-y-2">
           <div className="flex justify-between items-center border-b border-[#1e293b] pb-2 mb-3">
-            <span className="text-slate-400 text-sm">Option Price</span>
+            <span className="text-muted-foreground text-sm">Option Price</span>
             <span className="text-2xl font-mono font-bold text-white">
               {result.price.toFixed(5)}
             </span>
@@ -734,19 +734,19 @@ function GKCalculator() {
             { label: "Delta (Δ)", val: result.delta.toFixed(5), color: "text-sky-400" },
             { label: "Gamma (Γ)", val: result.gamma.toFixed(6), color: "text-primary" },
             { label: "Vega (ν)", val: result.vega.toFixed(6), color: "text-amber-400" },
-            { label: "d₁", val: result.d1.toFixed(5), color: "text-slate-300" },
-            { label: "d₂", val: result.d2.toFixed(5), color: "text-slate-300" },
+            { label: "d₁", val: result.d1.toFixed(5), color: "text-muted-foreground" },
+            { label: "d₂", val: result.d2.toFixed(5), color: "text-muted-foreground" },
           ].map(({ label, val, color }) => (
             <div key={label} className="flex justify-between text-sm">
-              <span className="text-slate-400">{label}</span>
+              <span className="text-muted-foreground">{label}</span>
               <span className={`font-mono font-semibold ${color}`}>{val}</span>
             </div>
           ))}
         </div>
         {/* Formula display */}
         <div className="bg-[#0a0f1e] border border-[#1e293b] rounded-lg p-3">
-          <p className="text-xs text-slate-500 leading-5 font-mono">
-            <span className="text-slate-400 font-semibold">Garman-Kohlhagen (1983):</span>
+          <p className="text-xs text-muted-foreground leading-5 font-mono">
+            <span className="text-muted-foreground font-semibold">Garman-Kohlhagen (1983):</span>
             <br />
             C = S·e<sup>-rf·T</sup>·N(d₁) − K·e<sup>-rd·T</sup>·N(d₂)
             <br />
@@ -754,7 +754,7 @@ function GKCalculator() {
             <br />
             d₂ = d₁ − σ√T
             <br />
-            <span className="text-slate-500">Extension of Black-Scholes for FX, with domestic rate rd and continuous foreign rate rf</span>
+            <span className="text-muted-foreground">Extension of Black-Scholes for FX, with domestic rate rd and continuous foreign rate rf</span>
           </p>
         </div>
       </div>
@@ -769,7 +769,7 @@ function CarryTradeTable() {
       <div className="overflow-x-auto">
         <table className="w-full text-sm border-separate border-spacing-0">
           <thead>
-            <tr className="text-slate-400 text-xs border-b border-[#1e293b]">
+            <tr className="text-muted-foreground text-xs border-b border-[#1e293b]">
               <th className="text-left py-2 pl-3">Pair</th>
               <th className="text-left py-2">Long CCY</th>
               <th className="text-right py-2">Long Rate</th>
@@ -807,7 +807,7 @@ function CarryTradeTable() {
                 <td className="py-2 text-right font-mono text-sky-400">
                   {ct.expectedCarry.toFixed(2)}%
                 </td>
-                <td className="py-2 text-right font-mono text-slate-300">
+                <td className="py-2 text-right font-mono text-muted-foreground">
                   {ct.annualizedRisk.toFixed(1)}%
                 </td>
                 <td className="py-2 pr-3 text-right font-mono">
@@ -831,7 +831,7 @@ function CarryTradeTable() {
 
       {/* Carry Bar Chart (SVG) */}
       <div className="mt-2">
-        <p className="text-xs text-slate-400 mb-2 pl-1">Interest Rate Differential by Pair</p>
+        <p className="text-xs text-muted-foreground mb-2 pl-1">Interest Rate Differential by Pair</p>
         <svg width="100%" viewBox={`0 0 500 ${sorted.length * 36 + 16}`} className="font-mono">
           {sorted.map((ct, i) => {
             const maxDiff = Math.max(...sorted.map((c) => c.differential));
@@ -852,7 +852,7 @@ function CarryTradeTable() {
         </svg>
       </div>
 
-      <div className="bg-[#0f172a] border border-amber-500/20 rounded-lg p-3 text-xs text-slate-400 leading-relaxed">
+      <div className="bg-[#0f172a] border border-amber-500/20 rounded-lg p-3 text-xs text-muted-foreground leading-relaxed">
         <span className="text-amber-400 font-semibold flex items-center gap-1 mb-1">
           <Info size={12} /> Carry Trade Risk
         </span>
@@ -871,7 +871,7 @@ export default function FXOptionsPage() {
 
   return (
     <motion.div
-      className="min-h-screen bg-[#060d1a] text-slate-100 p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-[#060d1a] text-foreground p-4 md:p-6 space-y-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -883,7 +883,7 @@ export default function FXOptionsPage() {
             <BarChart2 className="text-sky-400" size={24} />
             FX Options
           </h1>
-          <p className="text-sm text-slate-400 mt-0.5">
+          <p className="text-sm text-muted-foreground mt-0.5">
             Foreign Exchange derivatives — pricing, volatility & carry
           </p>
         </div>
@@ -892,7 +892,7 @@ export default function FXOptionsPage() {
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse" />
             London / NY Session
           </Badge>
-          <Badge variant="outline" className="border-slate-600 text-slate-400 text-xs">
+          <Badge variant="outline" className="border-slate-600 text-muted-foreground text-xs">
             <RefreshCw size={10} className="mr-1" />
             Simulated
           </Badge>
@@ -901,7 +901,7 @@ export default function FXOptionsPage() {
 
       {/* Spot Rates Strip */}
       <div>
-        <h2 className="text-xs font-semibold text-slate-500 mb-3 flex items-center gap-1.5">
+        <h2 className="text-xs font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
           <Activity size={12} /> Live Spot Rates
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -916,35 +916,35 @@ export default function FXOptionsPage() {
         <TabsList className="bg-[#0f172a] border border-[#1e293b] h-auto flex-wrap gap-0.5 p-1">
           <TabsTrigger
             value="chain"
-            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-slate-400 text-xs"
+            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-muted-foreground text-xs"
           >
             <Layers size={12} className="mr-1.5" />
             Options Chain
           </TabsTrigger>
           <TabsTrigger
             value="rr"
-            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-slate-400 text-xs"
+            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-muted-foreground text-xs"
           >
             <Activity size={12} className="mr-1.5" />
             RR &amp; Butterfly
           </TabsTrigger>
           <TabsTrigger
             value="surface"
-            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-slate-400 text-xs"
+            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-muted-foreground text-xs"
           >
             <BarChart2 size={12} className="mr-1.5" />
             Vol Surface
           </TabsTrigger>
           <TabsTrigger
             value="gk"
-            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-slate-400 text-xs"
+            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-muted-foreground text-xs"
           >
             <DollarSign size={12} className="mr-1.5" />
             G-K Pricer
           </TabsTrigger>
           <TabsTrigger
             value="carry"
-            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-slate-400 text-xs"
+            className="data-[state=active]:bg-sky-600/20 data-[state=active]:text-sky-300 text-muted-foreground text-xs"
           >
             <TrendingUp size={12} className="mr-1.5" />
             Carry Trades
@@ -958,12 +958,12 @@ export default function FXOptionsPage() {
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <CardTitle className="text-base text-white">
                   EUR/USD Vanilla Options Chain
-                  <span className="ml-2 text-xs font-normal text-slate-400">
+                  <span className="ml-2 text-xs font-normal text-muted-foreground">
                     Spot: {spot.toFixed(5)}
                   </span>
                 </CardTitle>
                 <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="text-xs text-slate-500 mr-1">Expiry:</span>
+                  <span className="text-xs text-muted-foreground mr-1">Expiry:</span>
                   {EXPIRIES.map((e) => (
                     <Button
                       key={e}
@@ -973,7 +973,7 @@ export default function FXOptionsPage() {
                       className={
                         selectedExpiry === e
                           ? "bg-sky-600 hover:bg-sky-700 text-white h-6 text-xs px-2"
-                          : "border-[#334155] text-slate-400 hover:bg-[#1e293b] h-6 text-xs px-2"
+                          : "border-[#334155] text-muted-foreground hover:bg-[#1e293b] h-6 text-xs px-2"
                       }
                     >
                       {e}
@@ -988,7 +988,7 @@ export default function FXOptionsPage() {
                 {[
                   { label: "Δ Delta", color: "text-sky-400" },
                   { label: "Γ Gamma", color: "text-primary" },
-                  { label: "IV Implied Vol", color: "text-slate-300" },
+                  { label: "IV Implied Vol", color: "text-muted-foreground" },
                 ].map(({ label, color }) => (
                   <span key={label} className={`${color} flex items-center gap-1`}>
                     <span className={`inline-block w-2 h-2 rounded-full bg-current`} />
@@ -1008,7 +1008,7 @@ export default function FXOptionsPage() {
               <CardTitle className="text-base text-white flex items-center gap-2">
                 <Activity size={16} className="text-primary" />
                 Risk Reversal &amp; Butterfly Structures
-                <span className="ml-1 text-xs font-normal text-slate-400">EUR/USD</span>
+                <span className="ml-1 text-xs font-normal text-muted-foreground">EUR/USD</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -1024,18 +1024,18 @@ export default function FXOptionsPage() {
               <CardTitle className="text-base text-white flex items-center gap-2">
                 <BarChart2 size={16} className="text-amber-400" />
                 Implied Volatility Surface
-                <span className="ml-1 text-xs font-normal text-slate-400">EUR/USD — Delta vs Tenor</span>
+                <span className="ml-1 text-xs font-normal text-muted-foreground">EUR/USD — Delta vs Tenor</span>
               </CardTitle>
             </CardHeader>
             <CardContent>
               <VolSurfaceHeatmap />
-              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-400">
+              <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">
                 <div className="bg-[#0f172a] border border-[#1e293b] rounded p-3">
-                  <p className="text-slate-300 font-semibold mb-1">Reading the Surface</p>
+                  <p className="text-muted-foreground font-semibold mb-1">Reading the Surface</p>
                   <p>Each cell shows the implied volatility for a given delta strike and tenor. Higher vol (red) indicates more expensive options; lower vol (blue) signals cheaper options relative to the surface.</p>
                 </div>
                 <div className="bg-[#0f172a] border border-[#1e293b] rounded p-3">
-                  <p className="text-slate-300 font-semibold mb-1">Skew &amp; Term Structure</p>
+                  <p className="text-muted-foreground font-semibold mb-1">Skew &amp; Term Structure</p>
                   <p>Negative skew = puts more expensive than calls (left column higher). Positive term structure = longer dated options carry more vol — normal in FX due to event uncertainty compounding over time.</p>
                 </div>
               </div>
@@ -1075,7 +1075,7 @@ export default function FXOptionsPage() {
       </Tabs>
 
       {/* Footer note */}
-      <p className="text-[11px] text-slate-600 text-center pb-2">
+      <p className="text-[11px] text-muted-foreground text-center pb-2">
         All data is synthetically generated for educational purposes. Prices do not represent real market quotes.
       </p>
     </motion.div>

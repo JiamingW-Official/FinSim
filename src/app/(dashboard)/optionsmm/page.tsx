@@ -210,22 +210,22 @@ function QuotingTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
             <ArrowUpDown className="text-primary" size={16} />
           </div>
-          <h2 className="text-lg font-semibold text-zinc-100">Options Bid-Ask Spread Decomposition</h2>
+          <h2 className="text-lg font-semibold text-foreground">Options Bid-Ask Spread Decomposition</h2>
         </div>
-        <p className="text-sm text-zinc-400 leading-relaxed">
+        <p className="text-sm text-muted-foreground leading-relaxed">
           An options market maker simultaneously posts bid and ask quotes, earning the spread on each trade. But the spread
           is not pure profit — it compensates for four distinct cost components.
         </p>
       </div>
 
       {/* Spread Components */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-zinc-200 mb-4">Spread Component Waterfall</h3>
+      <div className="bg-card border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Spread Component Waterfall</h3>
         <div className="space-y-3">
           {spreadComponents.map((c, i) => (
             <motion.div
@@ -235,19 +235,19 @@ function QuotingTab() {
               transition={{ delay: i * 0.08 }}
               className="flex items-center gap-3"
             >
-              <div className="w-36 text-xs text-zinc-300 font-medium">{c.label}</div>
-              <div className="flex-1 h-7 bg-zinc-800 rounded overflow-hidden">
+              <div className="w-36 text-xs text-muted-foreground font-medium">{c.label}</div>
+              <div className="flex-1 h-7 bg-muted rounded overflow-hidden">
                 <div
                   className={cn("h-full rounded", c.color, "opacity-80")}
                   style={{ width: `${c.pct * 100}%` }}
                 />
               </div>
-              <div className="w-10 text-xs text-zinc-400 text-right">{Math.round(c.pct * 100)}%</div>
-              <div className="w-48 text-xs text-zinc-500 hidden xl:block">{c.desc}</div>
+              <div className="w-10 text-xs text-muted-foreground text-right">{Math.round(c.pct * 100)}%</div>
+              <div className="w-48 text-xs text-muted-foreground hidden xl:block">{c.desc}</div>
             </motion.div>
           ))}
         </div>
-        <div className="mt-4 p-3 bg-zinc-800/60 rounded-lg text-xs text-zinc-400">
+        <div className="mt-4 p-3 bg-muted/60 rounded-lg text-xs text-muted-foreground">
           <span className="text-emerald-400 font-semibold">Key insight: </span>
           Only ~18% of the bid-ask spread represents net profit. The majority compensates for risk. A wider spread is not
           greed — it&apos;s pricing for uncertainty.
@@ -255,12 +255,12 @@ function QuotingTab() {
       </div>
 
       {/* Live Chain SVG */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-semibold text-zinc-200">Live Options Chain — SPY (Spot: ${spot})</h3>
+          <h3 className="text-sm font-semibold text-foreground">Live Options Chain — SPY (Spot: ${spot})</h3>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1">
-              <span className="text-xs text-zinc-500">Tick:</span>
+              <span className="text-xs text-muted-foreground">Tick:</span>
               {[0.01, 0.05, 0.10].map((t) => (
                 <button
                   key={t}
@@ -269,7 +269,7 @@ function QuotingTab() {
                     "px-2 py-1 text-xs rounded border transition-colors",
                     tick === t
                       ? "bg-primary/20 border-primary text-primary"
-                      : "border-zinc-700 text-zinc-500 hover:border-zinc-500"
+                      : "border-border text-muted-foreground hover:border-zinc-500"
                   )}
                 >
                   ${t.toFixed(2)}
@@ -278,7 +278,7 @@ function QuotingTab() {
             </div>
             <button
               onClick={() => setAnimKey((k) => k + 1)}
-              className="p-1.5 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-400"
+              className="p-1.5 rounded bg-muted hover:bg-muted text-muted-foreground"
             >
               <RefreshCw size={13} />
             </button>
@@ -297,7 +297,7 @@ function QuotingTab() {
               onClick={() => btn.set(!btn.active)}
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg border transition-colors",
-                btn.active ? "border-zinc-600 bg-zinc-800" : "border-zinc-800 text-zinc-600"
+                btn.active ? "border-border bg-muted" : "border-border text-muted-foreground"
               )}
             >
               {btn.active ? <Eye size={12} className={btn.color} /> : <EyeOff size={12} />}
@@ -317,22 +317,22 @@ function QuotingTab() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-zinc-800">
+                  <tr className="border-b border-border">
                     {showCalls && (
                       <>
                         <th className="text-left py-2 px-2 text-emerald-500 font-medium">Bid</th>
                         <th className="text-left py-2 px-2 text-emerald-500 font-medium">Ask</th>
-                        <th className="text-left py-2 px-2 text-zinc-500">Spread</th>
-                        <th className="text-left py-2 px-2 text-zinc-500">IV</th>
-                        <th className="text-left py-2 px-2 text-zinc-500">Δ</th>
+                        <th className="text-left py-2 px-2 text-muted-foreground">Spread</th>
+                        <th className="text-left py-2 px-2 text-muted-foreground">IV</th>
+                        <th className="text-left py-2 px-2 text-muted-foreground">Δ</th>
                       </>
                     )}
-                    <th className="text-center py-2 px-3 text-zinc-300 font-semibold">Strike</th>
+                    <th className="text-center py-2 px-3 text-muted-foreground font-semibold">Strike</th>
                     {showPuts && (
                       <>
-                        <th className="text-right py-2 px-2 text-zinc-500">Δ</th>
-                        <th className="text-right py-2 px-2 text-zinc-500">IV</th>
-                        <th className="text-right py-2 px-2 text-zinc-500">Spread</th>
+                        <th className="text-right py-2 px-2 text-muted-foreground">Δ</th>
+                        <th className="text-right py-2 px-2 text-muted-foreground">IV</th>
+                        <th className="text-right py-2 px-2 text-muted-foreground">Spread</th>
                         <th className="text-right py-2 px-2 text-rose-500 font-medium">Bid</th>
                         <th className="text-right py-2 px-2 text-rose-500 font-medium">Ask</th>
                       </>
@@ -350,15 +350,15 @@ function QuotingTab() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.04 }}
                         className={cn(
-                          "border-b border-zinc-800/50",
-                          isAtm && "bg-zinc-800/60"
+                          "border-b border-border/50",
+                          isAtm && "bg-muted/60"
                         )}
                       >
                         {showCalls && (
                           <>
                             <td className="py-1.5 px-2 text-emerald-400 font-mono">{fmt2(call.bid)}</td>
                             <td className="py-1.5 px-2 text-emerald-300 font-mono">{fmt2(call.ask)}</td>
-                            <td className="py-1.5 px-2 text-zinc-500 font-mono">{fmt2(call.spread)}</td>
+                            <td className="py-1.5 px-2 text-muted-foreground font-mono">{fmt2(call.spread)}</td>
                             <td className="py-1.5 px-2 text-primary font-mono">{fmtPct(call.iv)}</td>
                             <td className="py-1.5 px-2 text-primary font-mono">{fmt2(call.delta)}</td>
                           </>
@@ -367,7 +367,7 @@ function QuotingTab() {
                           <span
                             className={cn(
                               "font-semibold font-mono",
-                              isAtm ? "text-amber-400" : "text-zinc-300"
+                              isAtm ? "text-amber-400" : "text-muted-foreground"
                             )}
                           >
                             {call.strike}
@@ -380,7 +380,7 @@ function QuotingTab() {
                           <>
                             <td className="py-1.5 px-2 text-right text-rose-400 font-mono">{fmt2(put.delta)}</td>
                             <td className="py-1.5 px-2 text-right text-primary font-mono">{fmtPct(put.iv)}</td>
-                            <td className="py-1.5 px-2 text-right text-zinc-500 font-mono">{fmt2(put.spread)}</td>
+                            <td className="py-1.5 px-2 text-right text-muted-foreground font-mono">{fmt2(put.spread)}</td>
                             <td className="py-1.5 px-2 text-right text-rose-400 font-mono">{fmt2(put.bid)}</td>
                             <td className="py-1.5 px-2 text-right text-rose-300 font-mono">{fmt2(put.ask)}</td>
                           </>
@@ -397,12 +397,12 @@ function QuotingTab() {
 
       {/* Spread Determinants */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-zinc-200 mb-4">Spread Determinants</h3>
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4">Spread Determinants</h3>
           <div className="space-y-2">
             {determinants.map((d) => (
-              <div key={d.factor} className="flex items-start gap-3 p-2 bg-zinc-800/40 rounded-lg">
-                <div className="w-36 text-xs text-zinc-300 font-medium mt-0.5">{d.factor}</div>
+              <div key={d.factor} className="flex items-start gap-3 p-2 bg-muted/40 rounded-lg">
+                <div className="w-36 text-xs text-muted-foreground font-medium mt-0.5">{d.factor}</div>
                 <Badge
                   variant="outline"
                   className={cn(
@@ -412,28 +412,28 @@ function QuotingTab() {
                 >
                   {d.impact}
                 </Badge>
-                <div className="text-xs text-zinc-500">{d.reason}</div>
+                <div className="text-xs text-muted-foreground">{d.reason}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-zinc-200 mb-4">Minimum Tick Sizes (US Options)</h3>
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-4">Minimum Tick Sizes (US Options)</h3>
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left py-2 text-zinc-400">Program</th>
-                <th className="text-left py-2 text-zinc-400">Min Tick</th>
-                <th className="text-left py-2 text-zinc-400">Note</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground">Program</th>
+                <th className="text-left py-2 text-muted-foreground">Min Tick</th>
+                <th className="text-left py-2 text-muted-foreground">Note</th>
               </tr>
             </thead>
             <tbody>
               {tickTable.map((row, i) => (
-                <tr key={i} className="border-b border-zinc-800/40">
-                  <td className="py-1.5 text-zinc-300">{row.program}</td>
+                <tr key={i} className="border-b border-border/40">
+                  <td className="py-1.5 text-muted-foreground">{row.program}</td>
                   <td className="py-1.5 text-amber-400 font-mono font-semibold">{row.minTick}</td>
-                  <td className="py-1.5 text-zinc-500">{row.note}</td>
+                  <td className="py-1.5 text-muted-foreground">{row.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -446,10 +446,10 @@ function QuotingTab() {
       </div>
 
       {/* Quote Stuffing Protection */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="text-primary" size={16} />
-          <h3 className="text-sm font-semibold text-zinc-200">Quote Stuffing Protection & Market Rules</h3>
+          <h3 className="text-sm font-semibold text-foreground">Quote Stuffing Protection & Market Rules</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
           {[
@@ -469,9 +469,9 @@ function QuotingTab() {
               color: "text-amber-400",
             },
           ].map((item) => (
-            <div key={item.title} className="p-3 bg-zinc-800/50 rounded-lg">
+            <div key={item.title} className="p-3 bg-muted/50 rounded-lg">
               <div className={cn("font-semibold mb-2", item.color)}>{item.title}</div>
-              <p className="text-zinc-400 leading-relaxed">{item.desc}</p>
+              <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -555,7 +555,7 @@ function InventoryTab() {
   function corrColor(v: number): string {
     if (v >= 0.8) return "bg-emerald-500";
     if (v >= 0.5) return "bg-emerald-800";
-    if (v >= 0.1) return "bg-zinc-700";
+    if (v >= 0.1) return "bg-muted";
     if (v >= -0.3) return "bg-amber-900";
     return "bg-rose-800";
   }
@@ -573,8 +573,8 @@ function InventoryTab() {
   return (
     <div className="space-y-6">
       {/* Greeks Dashboard */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-zinc-200 mb-4">Greeks Inventory Dashboard</h3>
+      <div className="bg-card border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Greeks Inventory Dashboard</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
           {[
             { label: "Net Delta", value: fmt2(last.delta), unit: "Δ", color: "text-primary", bgColor: "bg-primary/10 border-border" },
@@ -583,7 +583,7 @@ function InventoryTab() {
             { label: "Net Theta", value: fmt2(last.theta), unit: "Θ", color: "text-emerald-400", bgColor: "bg-emerald-500/10 border-emerald-800" },
           ].map((g) => (
             <div key={g.label} className={cn("rounded-xl border p-3", g.bgColor)}>
-              <div className="text-xs text-zinc-500 mb-1">{g.label}</div>
+              <div className="text-xs text-muted-foreground mb-1">{g.label}</div>
               <div className={cn("text-xl font-bold font-mono", g.color)}>
                 {g.value}
                 <span className="text-sm ml-1 opacity-60">{g.unit}</span>
@@ -594,7 +594,7 @@ function InventoryTab() {
 
         {/* Delta over time */}
         <div className="mb-4">
-          <div className="text-xs text-zinc-500 mb-2">Delta inventory over time (target: 0)</div>
+          <div className="text-xs text-muted-foreground mb-2">Delta inventory over time (target: 0)</div>
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-28" preserveAspectRatio="none">
             <line x1={0} y1={H / 2} x2={W} y2={H / 2} stroke="#52525b" strokeWidth={1} strokeDasharray="4,4" />
             {data.map((d, i) => {
@@ -629,7 +629,7 @@ function InventoryTab() {
 
         {/* PnL */}
         <div>
-          <div className="text-xs text-zinc-500 mb-2">Cumulative P&amp;L (spread income minus hedge costs)</div>
+          <div className="text-xs text-muted-foreground mb-2">Cumulative P&amp;L (spread income minus hedge costs)</div>
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-28" preserveAspectRatio="none">
             <defs>
               <linearGradient id="pnlGrad" x1="0" y1="0" x2="0" y2="1">
@@ -651,10 +651,10 @@ function InventoryTab() {
 
       {/* Dynamic Hedging */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <RefreshCw className="text-primary" size={15} />
-            <h3 className="text-sm font-semibold text-zinc-200">Dynamic Hedging Frequency</h3>
+            <h3 className="text-sm font-semibold text-foreground">Dynamic Hedging Frequency</h3>
           </div>
           <div className="space-y-3 text-xs">
             {[
@@ -663,37 +663,37 @@ function InventoryTab() {
               { regime: "High vol (VIX 25-40)", freq: "Every 15-30m", cost: "High", note: "Gamma spikes, risk of large moves" },
               { regime: "Extreme (VIX > 40)", freq: "Quote-by-quote", cost: "Very High", note: "Crisis mode, widen spreads or pull" },
             ].map((r) => (
-              <div key={r.regime} className="flex items-center gap-3 p-2 bg-zinc-800/50 rounded">
-                <div className="w-36 text-zinc-300 font-medium">{r.regime}</div>
+              <div key={r.regime} className="flex items-center gap-3 p-2 bg-muted/50 rounded">
+                <div className="w-36 text-muted-foreground font-medium">{r.regime}</div>
                 <div className="flex-1">
                   <span className="text-amber-400 font-semibold">{r.freq}</span>
                 </div>
-                <div className="text-zinc-500">{r.note}</div>
+                <div className="text-muted-foreground">{r.note}</div>
               </div>
             ))}
           </div>
-          <div className="mt-3 p-3 bg-zinc-800/60 rounded text-xs text-zinc-400">
+          <div className="mt-3 p-3 bg-muted/60 rounded text-xs text-muted-foreground">
             Hedging cost = Γ × (ΔS)² × 0.5. Higher gamma positions require more frequent rebalancing. Transaction costs
             limit how often hedges can be placed.
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Lock className="text-rose-400" size={15} />
-            <h3 className="text-sm font-semibold text-zinc-200">Position &amp; Risk Limits</h3>
+            <h3 className="text-sm font-semibold text-foreground">Position &amp; Risk Limits</h3>
           </div>
           <div className="space-y-2 text-xs">
             {[
               { limit: "Delta limit", value: "±5,000 shares equiv.", color: "text-primary" },
               { limit: "Gamma limit", value: "±500 per $1 move", color: "text-amber-400" },
               { limit: "Vega limit", value: "±$50,000 per vol point", color: "text-primary" },
-              { limit: "Single-name conc.", value: "20% of book per ticker", color: "text-zinc-300" },
+              { limit: "Single-name conc.", value: "20% of book per ticker", color: "text-muted-foreground" },
               { limit: "Loss stop (daily)", value: "$250,000 hard stop", color: "text-rose-400" },
               { limit: "Loss stop (weekly)", value: "$800,000 review trigger", color: "text-rose-500" },
             ].map((l) => (
-              <div key={l.limit} className="flex items-center justify-between p-2 bg-zinc-800/40 rounded">
-                <span className="text-zinc-400">{l.limit}</span>
+              <div key={l.limit} className="flex items-center justify-between p-2 bg-muted/40 rounded">
+                <span className="text-muted-foreground">{l.limit}</span>
                 <span className={cn("font-mono font-semibold", l.color)}>{l.value}</span>
               </div>
             ))}
@@ -702,9 +702,9 @@ function InventoryTab() {
       </div>
 
       {/* Correlation Heatmap */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-zinc-200 mb-4">Cross-Asset Correlation Heatmap</h3>
-        <p className="text-xs text-zinc-500 mb-4">
+      <div className="bg-card border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Cross-Asset Correlation Heatmap</h3>
+        <p className="text-xs text-muted-foreground mb-4">
           MMs with positions across multiple underlyings can use correlation to net exposures. High correlation between
           SPY/QQQ means a long vega in SPY partially offsets a short vega in QQQ.
         </p>
@@ -714,7 +714,7 @@ function InventoryTab() {
               <tr>
                 <th className="w-12" />
                 {tickers.map((t) => (
-                  <th key={t} className="w-14 py-1 text-zinc-400 font-medium">
+                  <th key={t} className="w-14 py-1 text-muted-foreground font-medium">
                     {t}
                   </th>
                 ))}
@@ -723,7 +723,7 @@ function InventoryTab() {
             <tbody>
               {corrMatrix.map((row, ri) => (
                 <tr key={tickers[ri]}>
-                  <td className="text-zinc-400 font-medium pr-2 text-right">{tickers[ri]}</td>
+                  <td className="text-muted-foreground font-medium pr-2 text-right">{tickers[ri]}</td>
                   {row.map((val, ci) => (
                     <td key={ci} className="p-0.5">
                       <div
@@ -742,13 +742,13 @@ function InventoryTab() {
             </tbody>
           </table>
         </div>
-        <div className="flex items-center gap-3 mt-3 text-xs text-zinc-500">
+        <div className="flex items-center gap-3 mt-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded bg-emerald-500" />
             <span>High positive</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded bg-zinc-700" />
+            <div className="w-3 h-3 rounded bg-muted" />
             <span>Neutral</span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -759,30 +759,30 @@ function InventoryTab() {
       </div>
 
       {/* Pin Risk */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <Target className="text-amber-400" size={15} />
-          <h3 className="text-sm font-semibold text-zinc-200">Pin Risk Management Near Expiry</h3>
+          <h3 className="text-sm font-semibold text-foreground">Pin Risk Management Near Expiry</h3>
         </div>
-        <p className="text-xs text-zinc-500 mb-4">
+        <p className="text-xs text-muted-foreground mb-4">
           When spot price &quot;pins&quot; near a strike at expiry, the delta of the option swings violently between 0 and 1.
           A market maker with short gamma at that strike faces extreme hedging costs or unhedgeable gaps.
         </p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left py-2 text-zinc-400">Strike</th>
-                <th className="text-left py-2 text-zinc-400">Days to Expiry</th>
-                <th className="text-left py-2 text-zinc-400">Pin Risk Level</th>
-                <th className="text-left py-2 text-zinc-400">Notes</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground">Strike</th>
+                <th className="text-left py-2 text-muted-foreground">Days to Expiry</th>
+                <th className="text-left py-2 text-muted-foreground">Pin Risk Level</th>
+                <th className="text-left py-2 text-muted-foreground">Notes</th>
               </tr>
             </thead>
             <tbody>
               {pinRiskData.map((row) => (
-                <tr key={row.strike} className="border-b border-zinc-800/40">
-                  <td className="py-2 font-mono text-zinc-200">${row.strike}</td>
-                  <td className="py-2 text-zinc-400">{row.daysOut}d</td>
+                <tr key={row.strike} className="border-b border-border/40">
+                  <td className="py-2 font-mono text-foreground">${row.strike}</td>
+                  <td className="py-2 text-muted-foreground">{row.daysOut}d</td>
                   <td className="py-2">
                     <Badge
                       variant="outline"
@@ -792,13 +792,13 @@ function InventoryTab() {
                           ? "border-rose-600 text-rose-400"
                           : row.pinRisk === "Medium"
                           ? "border-amber-600 text-amber-400"
-                          : "border-zinc-600 text-zinc-400"
+                          : "border-border text-muted-foreground"
                       )}
                     >
                       {row.pinRisk}
                     </Badge>
                   </td>
-                  <td className="py-2 text-zinc-500">{row.note}</td>
+                  <td className="py-2 text-muted-foreground">{row.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -912,17 +912,17 @@ function AdverseSelectionTab() {
   return (
     <div className="space-y-6">
       {/* VPIN Section */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center">
             <Gauge className="text-rose-400" size={16} />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-zinc-200">VPIN — Flow Toxicity Metric</h3>
-            <p className="text-xs text-zinc-500">Volume-synchronized Probability of Informed Trading (Easley, Lopez de Prado, O&apos;Hara 2012)</p>
+            <h3 className="text-sm font-semibold text-foreground">VPIN — Flow Toxicity Metric</h3>
+            <p className="text-xs text-muted-foreground">Volume-synchronized Probability of Informed Trading (Easley, Lopez de Prado, O&apos;Hara 2012)</p>
           </div>
         </div>
-        <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+        <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
           VPIN estimates the fraction of order flow from informed traders. High VPIN (≥0.65) signals toxic flow — the MM
           is likely trading against someone who knows more. This leads to widened spreads, reduced quote size, or complete
           withdrawal from the market.
@@ -984,25 +984,25 @@ function AdverseSelectionTab() {
       </div>
 
       {/* Order Flow Intelligence */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-zinc-200 mb-4">Options Order Flow Intelligence</h3>
+      <div className="bg-card border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Options Order Flow Intelligence</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left py-2 text-zinc-400">Order Type</th>
-                <th className="text-left py-2 text-zinc-400">Size</th>
-                <th className="text-left py-2 text-zinc-400">Inference</th>
-                <th className="text-left py-2 text-zinc-400">MM Response</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground">Order Type</th>
+                <th className="text-left py-2 text-muted-foreground">Size</th>
+                <th className="text-left py-2 text-muted-foreground">Inference</th>
+                <th className="text-left py-2 text-muted-foreground">MM Response</th>
               </tr>
             </thead>
             <tbody>
               {orderTypes.map((o) => (
-                <tr key={o.type} className="border-b border-zinc-800/40">
-                  <td className="py-2 text-zinc-300 font-medium">{o.type}</td>
-                  <td className="py-2 text-zinc-500 font-mono">{o.size}</td>
+                <tr key={o.type} className="border-b border-border/40">
+                  <td className="py-2 text-muted-foreground font-medium">{o.type}</td>
+                  <td className="py-2 text-muted-foreground font-mono">{o.size}</td>
                   <td className={cn("py-2 font-semibold", o.color)}>{o.inference}</td>
-                  <td className="py-2 text-zinc-400">{o.action}</td>
+                  <td className="py-2 text-muted-foreground">{o.action}</td>
                 </tr>
               ))}
             </tbody>
@@ -1012,26 +1012,26 @@ function AdverseSelectionTab() {
 
       {/* Block Trades */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Layers className="text-primary" size={15} />
-            <h3 className="text-sm font-semibold text-zinc-200">Block Trade Mechanics</h3>
+            <h3 className="text-sm font-semibold text-foreground">Block Trade Mechanics</h3>
           </div>
-          <div className="space-y-3 text-xs text-zinc-400">
+          <div className="space-y-3 text-xs text-muted-foreground">
             <p>
               Block trades (large institutional orders) bypass the open market and are negotiated directly with a market
               maker. This protects the institution from market impact but exposes the MM to more adverse selection.
             </p>
             <div className="space-y-2">
               {[
-                { step: "1", desc: "Broker approaches MM with block inquiry (price + size)", color: "text-zinc-300" },
+                { step: "1", desc: "Broker approaches MM with block inquiry (price + size)", color: "text-muted-foreground" },
                 { step: "2", desc: "MM prices in adverse selection premium (typically 5-20%)", color: "text-amber-400" },
-                { step: "3", desc: "Trade executed at negotiated price, off-exchange", color: "text-zinc-300" },
+                { step: "3", desc: "Trade executed at negotiated price, off-exchange", color: "text-muted-foreground" },
                 { step: "4", desc: "MM immediately begins delta hedging to flatten exposure", color: "text-primary" },
-                { step: "5", desc: "MM unwinds position over time across multiple venues", color: "text-zinc-300" },
+                { step: "5", desc: "MM unwinds position over time across multiple venues", color: "text-muted-foreground" },
               ].map((s) => (
                 <div key={s.step} className="flex items-start gap-2">
-                  <div className="w-5 h-5 rounded-full bg-zinc-700 flex items-center justify-center text-xs text-zinc-400 shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground shrink-0 mt-0.5">
                     {s.step}
                   </div>
                   <span className={s.color}>{s.desc}</span>
@@ -1041,24 +1041,24 @@ function AdverseSelectionTab() {
           </div>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+        <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Eye className="text-primary" size={15} />
-            <h3 className="text-sm font-semibold text-zinc-200">Dark Pool Interplay</h3>
+            <h3 className="text-sm font-semibold text-foreground">Dark Pool Interplay</h3>
           </div>
-          <div className="space-y-3 text-xs text-zinc-400">
+          <div className="space-y-3 text-xs text-muted-foreground">
             <p>
               Dark pools allow large orders to execute without revealing size to the market. Options MMs interact with
               dark pools primarily through their equity hedging activity.
             </p>
             <div className="space-y-2">
               {[
-                { label: "Dark pool equity share", value: "~38% of US equity volume", color: "text-zinc-200" },
+                { label: "Dark pool equity share", value: "~38% of US equity volume", color: "text-foreground" },
                 { label: "Options MM dark activity", value: "Primarily for delta hedges", color: "text-primary" },
                 { label: "Information leakage", value: "Dark prints reveal institutional flow", color: "text-amber-400" },
                 { label: "Latency advantage", value: "HFT firms monitor dark prints for alpha", color: "text-rose-400" },
               ].map((item) => (
-                <div key={item.label} className="flex items-center justify-between p-2 bg-zinc-800/40 rounded">
+                <div key={item.label} className="flex items-center justify-between p-2 bg-muted/40 rounded">
                   <span>{item.label}</span>
                   <span className={cn("font-medium", item.color)}>{item.value}</span>
                 </div>
@@ -1069,27 +1069,27 @@ function AdverseSelectionTab() {
       </div>
 
       {/* Information Asymmetry */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-4">
           <AlertTriangle className="text-amber-400" size={15} />
-          <h3 className="text-sm font-semibold text-zinc-200">Information Asymmetry Examples</h3>
+          <h3 className="text-sm font-semibold text-foreground">Information Asymmetry Examples</h3>
         </div>
         <div className="space-y-3">
           {informationExamples.map((ex) => (
-            <div key={ex.scenario} className="p-4 bg-zinc-800/50 rounded-xl border border-zinc-700/50">
-              <div className="text-sm font-semibold text-zinc-200 mb-2">{ex.scenario}</div>
+            <div key={ex.scenario} className="p-4 bg-muted/50 rounded-xl border border-border/50">
+              <div className="text-sm font-semibold text-foreground mb-2">{ex.scenario}</div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 <div>
-                  <div className="text-zinc-500 mb-1">Detection signal</div>
+                  <div className="text-muted-foreground mb-1">Detection signal</div>
                   <div className="text-primary">{ex.detection}</div>
                 </div>
                 <div>
-                  <div className="text-zinc-500 mb-1">MM impact</div>
+                  <div className="text-muted-foreground mb-1">MM impact</div>
                   <div className="text-rose-400">{ex.impact}</div>
                 </div>
                 <div>
-                  <div className="text-zinc-500 mb-1">Real-world case</div>
-                  <div className="text-zinc-300">{ex.realCase}</div>
+                  <div className="text-muted-foreground mb-1">Real-world case</div>
+                  <div className="text-muted-foreground">{ex.realCase}</div>
                 </div>
               </div>
             </div>
@@ -1098,10 +1098,10 @@ function AdverseSelectionTab() {
       </div>
 
       {/* Trading Halts */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <Clock className="text-rose-400" size={15} />
-          <h3 className="text-sm font-semibold text-zinc-200">Trading Halt Triggers</h3>
+          <h3 className="text-sm font-semibold text-foreground">Trading Halt Triggers</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
           {[
@@ -1111,9 +1111,9 @@ function AdverseSelectionTab() {
             { trigger: "MM internal kill switch", desc: "Firm-level loss limit or risk limit breached", severity: "Voluntary" },
             { trigger: "Erroneous trade rule", desc: "Trades at prices significantly away from market", severity: "Exchange" },
           ].map((h) => (
-            <div key={h.trigger} className="p-3 bg-zinc-800/50 rounded-lg">
+            <div key={h.trigger} className="p-3 bg-muted/50 rounded-lg">
               <div className="flex items-center justify-between mb-1">
-                <span className="font-semibold text-zinc-200">{h.trigger}</span>
+                <span className="font-semibold text-foreground">{h.trigger}</span>
                 <Badge
                   variant="outline"
                   className={cn(
@@ -1122,13 +1122,13 @@ function AdverseSelectionTab() {
                       ? "border-rose-700 text-rose-400"
                       : h.severity === "Voluntary"
                       ? "border-emerald-700 text-emerald-400"
-                      : "border-zinc-600 text-zinc-400"
+                      : "border-border text-muted-foreground"
                   )}
                 >
                   {h.severity}
                 </Badge>
               </div>
-              <p className="text-zinc-500">{h.desc}</p>
+              <p className="text-muted-foreground">{h.desc}</p>
             </div>
           ))}
         </div>
@@ -1189,25 +1189,25 @@ function EconomicsTab() {
   return (
     <div className="space-y-6">
       {/* Profitability Model */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
             <DollarSign className="text-emerald-400" size={16} />
           </div>
-          <h3 className="text-sm font-semibold text-zinc-200">MM Profitability Model</h3>
+          <h3 className="text-sm font-semibold text-foreground">MM Profitability Model</h3>
         </div>
-        <div className="p-4 bg-zinc-800/50 rounded-xl font-mono text-xs mb-5">
-          <div className="text-zinc-400 mb-2">// Annual P&amp;L formula</div>
+        <div className="p-4 bg-muted/50 rounded-xl font-mono text-xs mb-5">
+          <div className="text-muted-foreground mb-2">// Annual P&amp;L formula</div>
           <div className="text-emerald-400">Net P&amp;L =</div>
-          <div className="text-zinc-300 ml-4">+ Spread Income (bid-ask × volume)</div>
+          <div className="text-muted-foreground ml-4">+ Spread Income (bid-ask × volume)</div>
           <div className="text-rose-400 ml-4">- Hedge Costs (delta rebalancing txn costs)</div>
           <div className="text-rose-500 ml-4">- Adverse Selection Losses</div>
-          <div className="text-zinc-500 ml-4">- Infrastructure &amp; Technology</div>
-          <div className="text-zinc-500 ml-4">- Regulatory Capital Costs</div>
+          <div className="text-muted-foreground ml-4">- Infrastructure &amp; Technology</div>
+          <div className="text-muted-foreground ml-4">- Regulatory Capital Costs</div>
         </div>
 
         {/* Monthly bars */}
-        <div className="text-xs text-zinc-500 mb-2">Monthly P&amp;L breakdown ($000s)</div>
+        <div className="text-xs text-muted-foreground mb-2">Monthly P&amp;L breakdown ($000s)</div>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-40 mb-2" preserveAspectRatio="none">
           {profitData.map((d, i) => {
             const x = i * (barW + 2);
@@ -1238,28 +1238,28 @@ function EconomicsTab() {
         <div className="flex gap-4 text-xs">
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded bg-emerald-500/60" />
-            <span className="text-zinc-500">Spread income</span>
+            <span className="text-muted-foreground">Spread income</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded bg-rose-500/60" />
-            <span className="text-zinc-500">Hedge costs</span>
+            <span className="text-muted-foreground">Hedge costs</span>
           </div>
           <div className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded bg-orange-500/60" />
-            <span className="text-zinc-500">Adverse selection</span>
+            <span className="text-muted-foreground">Adverse selection</span>
           </div>
         </div>
-        <div className="text-xs text-zinc-500 mt-1">Values in $000s. Net shown above bars.</div>
+        <div className="text-xs text-muted-foreground mt-1">Values in $000s. Net shown above bars.</div>
       </div>
 
       {/* Market Share */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-zinc-200 mb-4">Options MM Market Share (US)</h3>
+      <div className="bg-card border border-border rounded-xl p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">Options MM Market Share (US)</h3>
         <div className="space-y-3">
           {marketPlayers.map((p) => (
             <div key={p.name} className="flex items-center gap-3">
-              <div className="w-36 text-xs text-zinc-300 font-medium truncate">{p.name}</div>
-              <div className="flex-1 h-5 bg-zinc-800 rounded overflow-hidden">
+              <div className="w-36 text-xs text-muted-foreground font-medium truncate">{p.name}</div>
+              <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${p.share * 100}%` }}
@@ -1267,8 +1267,8 @@ function EconomicsTab() {
                   className={cn("h-full rounded", p.color, "opacity-70")}
                 />
               </div>
-              <div className="w-10 text-xs text-zinc-400 text-right">{Math.round(p.share * 100)}%</div>
-              <div className="w-48 text-xs text-zinc-500 hidden xl:block">{p.specialty}</div>
+              <div className="w-10 text-xs text-muted-foreground text-right">{Math.round(p.share * 100)}%</div>
+              <div className="w-48 text-xs text-muted-foreground hidden xl:block">{p.specialty}</div>
             </div>
           ))}
         </div>
@@ -1276,36 +1276,36 @@ function EconomicsTab() {
 
       {/* PFOF vs Maker-Taker */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-zinc-200 mb-3">Payment for Order Flow (PFOF)</h3>
-          <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3">Payment for Order Flow (PFOF)</h3>
+          <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
             MMs pay brokers for retail order flow because retail is typically uninformed (low VPIN). This &quot;payment&quot;
             is the expected profit from trading against uninformed flow, shared with the broker.
           </p>
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-zinc-800">
-                <th className="text-left py-2 text-zinc-400">Broker</th>
-                <th className="text-left py-2 text-zinc-400">PFOF/share</th>
-                <th className="text-left py-2 text-zinc-400">Model</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground">Broker</th>
+                <th className="text-left py-2 text-muted-foreground">PFOF/share</th>
+                <th className="text-left py-2 text-muted-foreground">Model</th>
               </tr>
             </thead>
             <tbody>
               {pfofData.map((r) => (
-                <tr key={r.broker} className="border-b border-zinc-800/40">
-                  <td className="py-1.5 text-zinc-300">{r.broker}</td>
-                  <td className={cn("py-1.5 font-mono font-semibold", r.pfof2022 === "$0.0000" ? "text-zinc-500" : "text-emerald-400")}>
+                <tr key={r.broker} className="border-b border-border/40">
+                  <td className="py-1.5 text-muted-foreground">{r.broker}</td>
+                  <td className={cn("py-1.5 font-mono font-semibold", r.pfof2022 === "$0.0000" ? "text-muted-foreground" : "text-emerald-400")}>
                     {r.pfof2022}
                   </td>
-                  <td className="py-1.5 text-zinc-500">{r.model}</td>
+                  <td className="py-1.5 text-muted-foreground">{r.model}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-zinc-200 mb-3">Maker-Taker vs PFOF Comparison</h3>
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3">Maker-Taker vs PFOF Comparison</h3>
           <div className="space-y-3 text-xs">
             {[
               {
@@ -1327,16 +1327,16 @@ function EconomicsTab() {
                 color: "text-emerald-400",
               },
             ].map((m) => (
-              <div key={m.model} className="p-3 bg-zinc-800/50 rounded-lg">
+              <div key={m.model} className="p-3 bg-muted/50 rounded-lg">
                 <div className={cn("font-semibold mb-2", m.color)}>{m.model}</div>
                 <div className="flex gap-2">
                   <div>
-                    <div className="text-zinc-500">Pro:</div>
+                    <div className="text-muted-foreground">Pro:</div>
                     <div className="text-emerald-300">{m.pro}</div>
                   </div>
-                  <div className="w-px bg-zinc-700 mx-1" />
+                  <div className="w-px bg-muted mx-1" />
                   <div>
-                    <div className="text-zinc-500">Con:</div>
+                    <div className="text-muted-foreground">Con:</div>
                     <div className="text-rose-300">{m.con}</div>
                   </div>
                 </div>
@@ -1347,17 +1347,17 @@ function EconomicsTab() {
       </div>
 
       {/* Latency Arms Race SVG */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="text-amber-400" size={15} />
-          <h3 className="text-sm font-semibold text-zinc-200">Latency Arms Race</h3>
+          <h3 className="text-sm font-semibold text-foreground">Latency Arms Race</h3>
         </div>
-        <p className="text-xs text-zinc-400 mb-5 leading-relaxed">
+        <p className="text-xs text-muted-foreground mb-5 leading-relaxed">
           Options MMs compete on speed. Being first to update quotes when the underlying moves avoids adverse selection
           from faster competitors. Each generation of speed improvement requires hundreds of millions in infrastructure.
         </p>
         <div className="relative">
-          <div className="absolute left-4 top-0 bottom-0 w-px bg-zinc-700" />
+          <div className="absolute left-4 top-0 bottom-0 w-px bg-muted" />
           <div className="space-y-4 pl-10">
             {latencyTimeline.map((item, i) => (
               <motion.div
@@ -1372,12 +1372,12 @@ function EconomicsTab() {
                     "absolute -left-6 mt-1 w-3 h-3 rounded-full border-2",
                     item.key
                       ? "border-amber-400 bg-amber-400/20"
-                      : "border-zinc-600 bg-zinc-800"
+                      : "border-border bg-muted"
                   )}
                 />
                 <div>
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className="text-xs font-semibold text-zinc-200">{item.year}</span>
+                    <span className="text-xs font-semibold text-foreground">{item.year}</span>
                     <span className="text-xs font-mono text-amber-400">{item.latency}</span>
                     {item.key && (
                       <Badge variant="outline" className="text-[11px] border-amber-700 text-amber-400">
@@ -1385,7 +1385,7 @@ function EconomicsTab() {
                       </Badge>
                     )}
                   </div>
-                  <span className="text-xs text-zinc-500">{item.tech}</span>
+                  <span className="text-xs text-muted-foreground">{item.tech}</span>
                 </div>
               </motion.div>
             ))}
@@ -1394,14 +1394,14 @@ function EconomicsTab() {
       </div>
 
       {/* 2020 Vol Spike Case Study */}
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
+      <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-4">
           <AlertTriangle className="text-rose-400" size={15} />
-          <h3 className="text-sm font-semibold text-zinc-200">Case Study: March 2020 Vol Spike</h3>
+          <h3 className="text-sm font-semibold text-foreground">Case Study: March 2020 Vol Spike</h3>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs">
           <div>
-            <div className="text-zinc-400 font-semibold mb-3">Timeline of Events</div>
+            <div className="text-muted-foreground font-semibold mb-3">Timeline of Events</div>
             <div className="space-y-2">
               {[
                 { date: "Feb 20, 2020", event: "S&P 500 peaks, VIX at 17", type: "neutral" },
@@ -1423,15 +1423,15 @@ function EconomicsTab() {
                     )}
                   />
                   <div>
-                    <span className="text-zinc-500">{e.date}: </span>
-                    <span className="text-zinc-300">{e.event}</span>
+                    <span className="text-muted-foreground">{e.date}: </span>
+                    <span className="text-muted-foreground">{e.event}</span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <div className="text-zinc-400 font-semibold mb-3">MM Behavior During Crisis</div>
+            <div className="text-muted-foreground font-semibold mb-3">MM Behavior During Crisis</div>
             <div className="space-y-2">
               {[
                 { behavior: "Spread widening", detail: "SPX options spreads widened 5-15x. Bid-ask on 1-month ATM calls went from $0.50 to $5+", color: "text-rose-400" },
@@ -1439,9 +1439,9 @@ function EconomicsTab() {
                 { behavior: "Delta hedging panic", detail: "Massive gamma from short-dated options forced constant equity sales, amplifying the sell-off", color: "text-rose-400" },
                 { behavior: "Skew explosion", detail: "Put skew hit multi-decade extremes. 25-delta put IV exceeded ATM IV by 15+ vol points", color: "text-primary" },
               ].map((b) => (
-                <div key={b.behavior} className="p-2.5 bg-zinc-800/50 rounded">
+                <div key={b.behavior} className="p-2.5 bg-muted/50 rounded">
                   <div className={cn("font-semibold mb-1", b.color)}>{b.behavior}</div>
-                  <div className="text-zinc-500 leading-relaxed">{b.detail}</div>
+                  <div className="text-muted-foreground leading-relaxed">{b.detail}</div>
                 </div>
               ))}
             </div>
@@ -1471,7 +1471,7 @@ export default function OptionsMmPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1486,7 +1486,7 @@ export default function OptionsMmPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-zinc-50">Options Market Making</h1>
-              <p className="text-sm text-zinc-500">
+              <p className="text-sm text-muted-foreground">
                 How market makers quote, manage inventory, detect adverse selection, and generate profits
               </p>
             </div>
@@ -1507,15 +1507,15 @@ export default function OptionsMmPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 w-full justify-start overflow-x-auto h-auto p-1 gap-1">
+          <TabsList className="bg-card border border-border mb-6 w-full justify-start overflow-x-auto h-auto p-1 gap-1">
             {tabs.map((tab) => (
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
                 className={cn(
                   "flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg transition-all",
-                  "data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100",
-                  "data-[state=inactive]:text-zinc-500 data-[state=inactive]:hover:text-zinc-300"
+                  "data-[state=active]:bg-muted data-[state=active]:text-foreground",
+                  "data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-muted-foreground"
                 )}
               >
                 {tab.icon}

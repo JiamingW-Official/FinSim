@@ -443,7 +443,7 @@ function FuturesCurveTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* SVG Term Structure Chart */}
-        <Card className="lg:col-span-2 bg-zinc-900 border-zinc-800">
+        <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <Activity className="w-4 h-4 text-primary" />
@@ -571,7 +571,7 @@ function FuturesCurveTab() {
             <div className="mt-3 overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="text-zinc-500">
+                  <tr className="text-muted-foreground">
                     <th className="text-left py-1">Contract</th>
                     <th className="text-right py-1">Price</th>
                     <th className="text-right py-1">vs Spot</th>
@@ -583,16 +583,16 @@ function FuturesCurveTab() {
                   {curve.contracts.map((c) => {
                     const vsSpot = ((c.price - curve.spot) / curve.spot) * 100;
                     return (
-                      <tr key={c.month} className="border-t border-zinc-800">
-                        <td className="py-1 text-zinc-300">{c.month}</td>
-                        <td className="py-1 text-right font-mono text-zinc-100">
+                      <tr key={c.month} className="border-t border-border">
+                        <td className="py-1 text-muted-foreground">{c.month}</td>
+                        <td className="py-1 text-right font-mono text-foreground">
                           {c.price > 100 ? fmt(c.price, 2) : fmt(c.price, 3)}
                         </td>
                         <td className={`py-1 text-right font-mono ${pos(vsSpot)}`}>
                           {fmtPct(vsSpot)}
                         </td>
-                        <td className="py-1 text-right text-zinc-400">{c.oi}</td>
-                        <td className="py-1 text-right text-zinc-400">{c.vol}</td>
+                        <td className="py-1 text-right text-muted-foreground">{c.oi}</td>
+                        <td className="py-1 text-right text-muted-foreground">{c.vol}</td>
                       </tr>
                     );
                   })}
@@ -604,73 +604,73 @@ function FuturesCurveTab() {
 
         {/* Analytics panel */}
         <div className="space-y-3">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs text-zinc-400 uppercase tracking-wide">
+              <CardTitle className="text-xs text-muted-foreground uppercase tracking-wide">
                 Roll & Yield Analysis
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-xs text-zinc-400">Spot Price</span>
-                <span className="text-sm font-mono font-semibold text-zinc-100">
+                <span className="text-xs text-muted-foreground">Spot Price</span>
+                <span className="text-sm font-mono font-semibold text-foreground">
                   ${curve.spot > 100 ? fmt(curve.spot, 2) : fmt(curve.spot, 3)}{" "}
-                  <span className="text-xs text-zinc-500">{curve.unit}</span>
+                  <span className="text-xs text-muted-foreground">{curve.unit}</span>
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-zinc-400">Roll Yield (ann.)</span>
+                <span className="text-xs text-muted-foreground">Roll Yield (ann.)</span>
                 <span className={`text-sm font-mono font-semibold ${pos(rollYield)}`}>
                   {fmtPct(rollYield)}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-zinc-400">Convenience Yield</span>
+                <span className="text-xs text-muted-foreground">Convenience Yield</span>
                 <span className="text-sm font-mono font-semibold text-amber-400">
                   {curve.convenienceYield.toFixed(2)}%
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-zinc-400">Storage Cost (ann.)</span>
-                <span className="text-sm font-mono text-zinc-300">
+                <span className="text-xs text-muted-foreground">Storage Cost (ann.)</span>
+                <span className="text-sm font-mono text-muted-foreground">
                   {curve.storageCost.toFixed(2)}%
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-xs text-zinc-400">Risk-Free Rate</span>
-                <span className="text-sm font-mono text-zinc-300">
+                <span className="text-xs text-muted-foreground">Risk-Free Rate</span>
+                <span className="text-sm font-mono text-muted-foreground">
                   {curve.riskFreeRate.toFixed(2)}%
                 </span>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs text-zinc-400 uppercase tracking-wide">
+              <CardTitle className="text-xs text-muted-foreground uppercase tracking-wide">
                 Cost-of-Carry Model
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs text-zinc-400">
-              <div className="font-mono bg-zinc-800 rounded p-2 text-center text-zinc-100">
+            <CardContent className="space-y-2 text-xs text-muted-foreground">
+              <div className="font-mono bg-muted rounded p-2 text-center text-foreground">
                 F = S × e<sup>(r+u-y)T</sup>
               </div>
               <p>Where:</p>
               <ul className="space-y-1 pl-2">
                 <li>
-                  <span className="text-zinc-300">r</span> = risk-free rate (
+                  <span className="text-muted-foreground">r</span> = risk-free rate (
                   {curve.riskFreeRate.toFixed(1)}%)
                 </li>
                 <li>
-                  <span className="text-zinc-300">u</span> = storage cost (
+                  <span className="text-muted-foreground">u</span> = storage cost (
                   {curve.storageCost.toFixed(1)}%)
                 </li>
                 <li>
-                  <span className="text-zinc-300">y</span> = convenience yield (
+                  <span className="text-muted-foreground">y</span> = convenience yield (
                   {curve.convenienceYield.toFixed(1)}%)
                 </li>
               </ul>
-              <div className="mt-2 p-2 rounded bg-zinc-800/50 text-zinc-300">
+              <div className="mt-2 p-2 rounded bg-muted/50 text-muted-foreground">
                 {curve.curveType === "contango" ? (
                   <span>
                     <span className="text-orange-400">Contango:</span> r+u &gt; y — holders
@@ -722,7 +722,7 @@ function SeasonalityTab() {
             variant={selectedComm === i ? "default" : "outline"}
             size="sm"
             onClick={() => setSelectedComm(i)}
-            className={selectedComm === i ? "" : "border-zinc-700 text-zinc-300"}
+            className={selectedComm === i ? "" : "border-border text-muted-foreground"}
           >
             {c.name}
           </Button>
@@ -731,7 +731,7 @@ function SeasonalityTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Bar chart */}
-        <Card className="lg:col-span-2 bg-zinc-900 border-zinc-800">
+        <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <BarChart2 className="w-4 h-4 text-primary" />
@@ -839,35 +839,35 @@ function SeasonalityTab() {
 
         {/* Stats panel */}
         <div className="space-y-3">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs text-zinc-400 uppercase tracking-wide">
+              <CardTitle className="text-xs text-muted-foreground uppercase tracking-wide">
                 Pattern Strength
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between text-xs mb-1">
-                <span className="text-zinc-400">Seasonal Strength</span>
-                <span className="text-zinc-200 font-semibold">{comm.patternStrength}%</span>
+                <span className="text-muted-foreground">Seasonal Strength</span>
+                <span className="text-foreground font-semibold">{comm.patternStrength}%</span>
               </div>
               <Progress value={comm.patternStrength} className="h-2" />
 
               <div className="grid grid-cols-2 gap-2 mt-3">
                 <div className="bg-emerald-950/40 border border-emerald-800 rounded p-2">
-                  <p className="text-xs text-zinc-400">Best Month</p>
+                  <p className="text-xs text-muted-foreground">Best Month</p>
                   <p className="text-sm font-bold text-emerald-400">
                     {SEASONAL_MONTHS[comm.bestMonth]}
                   </p>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-muted-foreground">
                     Index: {comm.monthlyIndex[comm.bestMonth].toFixed(1)}
                   </p>
                 </div>
                 <div className="bg-red-950/40 border border-red-800 rounded p-2">
-                  <p className="text-xs text-zinc-400">Worst Month</p>
+                  <p className="text-xs text-muted-foreground">Worst Month</p>
                   <p className="text-sm font-bold text-red-400">
                     {SEASONAL_MONTHS[comm.worstMonth]}
                   </p>
-                  <p className="text-xs text-zinc-500">
+                  <p className="text-xs text-muted-foreground">
                     Index: {comm.monthlyIndex[comm.worstMonth].toFixed(1)}
                   </p>
                 </div>
@@ -875,14 +875,14 @@ function SeasonalityTab() {
 
               <div className="mt-2 space-y-1 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-zinc-400">Peak-to-Trough</span>
-                  <span className="text-zinc-200">
+                  <span className="text-muted-foreground">Peak-to-Trough</span>
+                  <span className="text-foreground">
                     {(maxIdx - minIdx).toFixed(1)} pts
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-zinc-400">Annual Range</span>
-                  <span className="text-zinc-200">
+                  <span className="text-muted-foreground">Annual Range</span>
+                  <span className="text-foreground">
                     {((range / 100) * 100).toFixed(1)}%
                   </span>
                 </div>
@@ -890,9 +890,9 @@ function SeasonalityTab() {
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs text-zinc-400 uppercase tracking-wide">
+              <CardTitle className="text-xs text-muted-foreground uppercase tracking-wide">
                 All Commodities Comparison
               </CardTitle>
             </CardHeader>
@@ -903,10 +903,10 @@ function SeasonalityTab() {
                     className="w-2 h-2 rounded-full flex-shrink-0"
                     style={{ background: c.color }}
                   />
-                  <span className="text-xs text-zinc-300 flex-1">{c.name}</span>
+                  <span className="text-xs text-muted-foreground flex-1">{c.name}</span>
                   <div className="flex items-center gap-1">
                     <Progress value={c.patternStrength} className="h-1 w-16" />
-                    <span className="text-xs text-zinc-500 w-8 text-right">
+                    <span className="text-xs text-muted-foreground w-8 text-right">
                       {c.patternStrength}%
                     </span>
                   </div>
@@ -1010,7 +1010,7 @@ function HedgingTab() {
               setHedgeRatio(sc.hedgeRatio * 100);
               setPriceMove(0);
             }}
-            className={selectedHedge === i ? "" : "border-zinc-700 text-zinc-300"}
+            className={selectedHedge === i ? "" : "border-border text-muted-foreground"}
           >
             {sc.name}
           </Button>
@@ -1019,25 +1019,25 @@ function HedgingTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Controls + Chart */}
-        <Card className="lg:col-span-2 bg-zinc-900 border-zinc-800">
+        <Card className="lg:col-span-2 bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <Shield className="w-4 h-4 text-primary" />
               {scenario.name}
-              <span className="text-xs text-zinc-400 font-normal">
+              <span className="text-xs text-muted-foreground font-normal">
                 — {scenario.company}
               </span>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-xs text-zinc-400">{scenario.description}</p>
+            <p className="text-xs text-muted-foreground">{scenario.description}</p>
 
             {/* Sliders */}
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-400">Hedge Ratio</span>
-                  <span className="text-zinc-200 font-semibold">
+                  <span className="text-muted-foreground">Hedge Ratio</span>
+                  <span className="text-foreground font-semibold">
                     {hedgeRatio.toFixed(0)}%
                   </span>
                 </div>
@@ -1051,7 +1051,7 @@ function HedgingTab() {
               </div>
               <div className="space-y-2">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-400">Price Move</span>
+                  <span className="text-muted-foreground">Price Move</span>
                   <span className={`font-semibold text-xs ${pos(priceMove)}`}>
                     {fmtPct(priceMove)}
                   </span>
@@ -1151,18 +1151,18 @@ function HedgingTab() {
             {/* Current scenario P&L */}
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-red-950/30 border border-red-800/50 rounded p-3">
-                <p className="text-xs text-zinc-400">Unhedged P&amp;L</p>
+                <p className="text-xs text-muted-foreground">Unhedged P&amp;L</p>
                 <p className={`text-lg font-bold font-mono ${pos(totalUnhedgedPnL)}`}>
                   {fmtMoney(totalUnhedgedPnL)}
                 </p>
-                <p className="text-xs text-zinc-500">at {fmtPct(priceMove)} price move</p>
+                <p className="text-xs text-muted-foreground">at {fmtPct(priceMove)} price move</p>
               </div>
               <div className="bg-emerald-950/30 border border-emerald-800/50 rounded p-3">
-                <p className="text-xs text-zinc-400">Hedged P&amp;L</p>
+                <p className="text-xs text-muted-foreground">Hedged P&amp;L</p>
                 <p className={`text-lg font-bold font-mono ${pos(totalHedgedPnL)}`}>
                   {fmtMoney(totalHedgedPnL)}
                 </p>
-                <p className="text-xs text-zinc-500">incl. basis risk</p>
+                <p className="text-xs text-muted-foreground">incl. basis risk</p>
               </div>
             </div>
           </CardContent>
@@ -1170,70 +1170,70 @@ function HedgingTab() {
 
         {/* Hedge details */}
         <div className="space-y-3">
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs text-zinc-400 uppercase tracking-wide flex items-center gap-1">
+              <CardTitle className="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1">
                 <Calculator className="w-3 h-3" />
                 Hedge Calculator
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-xs">
               <div className="flex justify-between">
-                <span className="text-zinc-400">Commodity Exposure</span>
-                <span className="text-zinc-200 font-mono">
+                <span className="text-muted-foreground">Commodity Exposure</span>
+                <span className="text-foreground font-mono">
                   ${(scenario.exposure / 1_000_000).toFixed(1)}M
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400">Units Exposed</span>
-                <span className="text-zinc-200 font-mono">
+                <span className="text-muted-foreground">Units Exposed</span>
+                <span className="text-foreground font-mono">
                   {unitsExposed.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400">Hedge Ratio</span>
+                <span className="text-muted-foreground">Hedge Ratio</span>
                 <span className="text-amber-400 font-semibold">
                   {(effectiveHedgeRatio * 100).toFixed(0)}%
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400">Contract Size</span>
-                <span className="text-zinc-200 font-mono">
+                <span className="text-muted-foreground">Contract Size</span>
+                <span className="text-foreground font-mono">
                   {scenario.contractSize.toLocaleString()} {scenario.unit}
                 </span>
               </div>
-              <div className="flex justify-between border-t border-zinc-800 pt-2 mt-1">
-                <span className="text-zinc-300 font-semibold">Contracts Needed</span>
+              <div className="flex justify-between border-t border-border pt-2 mt-1">
+                <span className="text-muted-foreground font-semibold">Contracts Needed</span>
                 <span className="text-primary font-bold">{contractsNeeded}</span>
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-xs text-zinc-400 uppercase tracking-wide flex items-center gap-1">
+              <CardTitle className="text-xs text-muted-foreground uppercase tracking-wide flex items-center gap-1">
                 <AlertTriangle className="w-3 h-3 text-amber-400" />
                 Basis Risk
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-xs">
-              <p className="text-zinc-400">
+              <p className="text-muted-foreground">
                 Basis = Spot Price − Futures Price. Imperfect hedge creates residual
                 risk.
               </p>
               <div className="flex justify-between mt-2">
-                <span className="text-zinc-400">Basis Risk / Unit</span>
+                <span className="text-muted-foreground">Basis Risk / Unit</span>
                 <span className="text-amber-400 font-mono">
                   ${scenario.basisRisk.toFixed(2)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-zinc-400">Total Basis Cost</span>
+                <span className="text-muted-foreground">Total Basis Cost</span>
                 <span className="text-amber-400 font-mono">
                   {fmtMoney(basisLoss)}
                 </span>
               </div>
-              <div className="mt-2 p-2 bg-amber-950/30 border border-amber-800/40 rounded text-zinc-400">
+              <div className="mt-2 p-2 bg-amber-950/30 border border-amber-800/40 rounded text-muted-foreground">
                 Basis risk remains even with a perfect hedge ratio — arises from
                 location, quality, and timing differences.
               </div>
@@ -1292,7 +1292,7 @@ function SectorsTab() {
             size="sm"
             onClick={() => setActiveSector(sec)}
             className={
-              activeSector === sec ? "" : "border-zinc-700 text-zinc-300"
+              activeSector === sec ? "" : "border-border text-muted-foreground"
             }
           >
             {sectorIcons[sec]}
@@ -1303,7 +1303,7 @@ function SectorsTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* YTD Performance SVG */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-primary" />
@@ -1366,7 +1366,7 @@ function SectorsTab() {
         </Card>
 
         {/* Price table */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-primary" />
@@ -1376,7 +1376,7 @@ function SectorsTab() {
           <CardContent>
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-zinc-500">
+                <tr className="text-muted-foreground">
                   <th className="text-left py-1">Commodity</th>
                   <th className="text-right py-1">Price</th>
                   <th className="text-right py-1">1D</th>
@@ -1387,16 +1387,16 @@ function SectorsTab() {
               </thead>
               <tbody>
                 {commodities.map((c) => (
-                  <tr key={c.ticker} className="border-t border-zinc-800">
+                  <tr key={c.ticker} className="border-t border-border">
                     <td className="py-1.5">
                       <div className="flex flex-col">
-                        <span className="text-zinc-100 font-medium">{c.name}</span>
-                        <span className="text-zinc-500 text-xs">{c.ticker}</span>
+                        <span className="text-foreground font-medium">{c.name}</span>
+                        <span className="text-muted-foreground text-xs">{c.ticker}</span>
                       </div>
                     </td>
-                    <td className="py-1.5 text-right font-mono text-zinc-100">
+                    <td className="py-1.5 text-right font-mono text-foreground">
                       ${c.price > 100 ? fmt(c.price, 2) : fmt(c.price, 2)}
-                      <div className="text-xs text-zinc-500">{c.unit}</div>
+                      <div className="text-xs text-muted-foreground">{c.unit}</div>
                     </td>
                     <td className={`py-1.5 text-right font-mono ${pos(c.change1d)}`}>
                       {fmtPct(c.change1d)}
@@ -1418,7 +1418,7 @@ function SectorsTab() {
         </Card>
 
         {/* Supply/Demand table */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <Activity className="w-4 h-4 text-primary" />
@@ -1428,7 +1428,7 @@ function SectorsTab() {
           <CardContent className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="text-zinc-500">
+                <tr className="text-muted-foreground">
                   <th className="text-left py-1">Commodity</th>
                   <th className="text-right py-1">Supply</th>
                   <th className="text-right py-1">Demand</th>
@@ -1438,15 +1438,15 @@ function SectorsTab() {
               </thead>
               <tbody>
                 {SUPPLY_DEMAND.map((row) => (
-                  <tr key={row.commodity} className="border-t border-zinc-800">
-                    <td className="py-1.5 text-zinc-200 font-medium">{row.commodity}</td>
-                    <td className="py-1.5 text-right font-mono text-zinc-400">
+                  <tr key={row.commodity} className="border-t border-border">
+                    <td className="py-1.5 text-foreground font-medium">{row.commodity}</td>
+                    <td className="py-1.5 text-right font-mono text-muted-foreground">
                       {row.supply.toLocaleString()}
                     </td>
-                    <td className="py-1.5 text-right font-mono text-zinc-400">
+                    <td className="py-1.5 text-right font-mono text-muted-foreground">
                       {row.demand.toLocaleString()}
                     </td>
-                    <td className="py-1.5 text-right font-mono text-zinc-300">
+                    <td className="py-1.5 text-right font-mono text-muted-foreground">
                       {row.stocksUse}%
                     </td>
                     <td className="py-1.5 text-right">
@@ -1457,7 +1457,7 @@ function SectorsTab() {
                             ? "border-red-500 text-red-400 text-xs"
                             : row.trend === "loosening"
                             ? "border-emerald-500 text-emerald-400 text-xs"
-                            : "border-zinc-500 text-zinc-400 text-xs"
+                            : "border-zinc-500 text-muted-foreground text-xs"
                         }
                       >
                         {row.trend}
@@ -1471,7 +1471,7 @@ function SectorsTab() {
         </Card>
 
         {/* Key price drivers */}
-        <Card className="bg-zinc-900 border-zinc-800">
+        <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
               <Zap className="w-4 h-4 text-primary" />
@@ -1483,27 +1483,27 @@ function SectorsTab() {
               {KEY_DRIVERS[activeSector].map((driver, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm">
                   <span className="text-primary font-bold mt-0.5">{i + 1}.</span>
-                  <span className="text-zinc-300">{driver}</span>
+                  <span className="text-muted-foreground">{driver}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-4 pt-4 border-t border-zinc-800 space-y-2">
-              <p className="text-xs text-zinc-500 uppercase tracking-wide">
+            <div className="mt-4 pt-4 border-t border-border space-y-2">
+              <p className="text-xs text-muted-foreground uppercase tracking-wide">
                 Stocks-to-Use Interpretation
               </p>
               <div className="flex gap-3 text-xs">
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-red-400" />
-                  <span className="text-zinc-400">&lt;15% = Tight</span>
+                  <span className="text-muted-foreground">&lt;15% = Tight</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-amber-400" />
-                  <span className="text-zinc-400">15–25% = Normal</span>
+                  <span className="text-muted-foreground">15–25% = Normal</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span className="text-zinc-400">&gt;25% = Ample</span>
+                  <span className="text-muted-foreground">&gt;25% = Ample</span>
                 </div>
               </div>
             </div>
@@ -1518,7 +1518,7 @@ function SectorsTab() {
 
 export default function CommoditiesFuturesPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6 space-y-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
@@ -1526,7 +1526,7 @@ export default function CommoditiesFuturesPage() {
             <BarChart2 className="w-6 h-6 text-primary" />
             Commodities Futures
           </h1>
-          <p className="text-sm text-zinc-400 mt-1">
+          <p className="text-sm text-muted-foreground mt-1">
             Energy · Metals · Agriculture — term structure, seasonality, hedging
           </p>
         </div>
@@ -1552,17 +1552,17 @@ export default function CommoditiesFuturesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="curve" className="w-full">
-        <TabsList className="bg-zinc-900 border border-zinc-800">
-          <TabsTrigger value="curve" className="data-[state=active]:bg-zinc-800">
+        <TabsList className="bg-card border border-border">
+          <TabsTrigger value="curve" className="data-[state=active]:bg-muted">
             Futures Curve
           </TabsTrigger>
-          <TabsTrigger value="seasonality" className="data-[state=active]:bg-zinc-800">
+          <TabsTrigger value="seasonality" className="data-[state=active]:bg-muted">
             Seasonality
           </TabsTrigger>
-          <TabsTrigger value="hedging" className="data-[state=active]:bg-zinc-800">
+          <TabsTrigger value="hedging" className="data-[state=active]:bg-muted">
             Hedging
           </TabsTrigger>
-          <TabsTrigger value="sectors" className="data-[state=active]:bg-zinc-800">
+          <TabsTrigger value="sectors" className="data-[state=active]:bg-muted">
             Sectors
           </TabsTrigger>
         </TabsList>

@@ -659,46 +659,46 @@ function FundedRatioCalculator() {
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="text-xs text-slate-400 mb-1 block">Plan Assets ($M)</label>
+          <label className="text-xs text-muted-foreground mb-1 block">Plan Assets ($M)</label>
           <input
             type="number"
             value={assets}
             onChange={(e) => setAssets(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
         <div>
-          <label className="text-xs text-slate-400 mb-1 block">PBO / Liability ($M)</label>
+          <label className="text-xs text-muted-foreground mb-1 block">PBO / Liability ($M)</label>
           <input
             type="number"
             value={pbo}
             onChange={(e) => setPbo(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
         <div>
-          <label className="text-xs text-slate-400 mb-1 block">Discount Rate (%)</label>
+          <label className="text-xs text-muted-foreground mb-1 block">Discount Rate (%)</label>
           <input
             type="number"
             step={0.1}
             value={discountRate}
             onChange={(e) => setDiscountRate(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
         <div>
-          <label className="text-xs text-slate-400 mb-1 block">Payroll Growth (%)</label>
+          <label className="text-xs text-muted-foreground mb-1 block">Payroll Growth (%)</label>
           <input
             type="number"
             step={0.1}
             value={payrollGrowth}
             onChange={(e) => setPayrollGrowth(Number(e.target.value))}
-            className="w-full bg-slate-800 border border-slate-700 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
           />
         </div>
       </div>
       <div className="grid grid-cols-3 gap-3 pt-2">
-        <div className="bg-slate-800 rounded-lg p-3 text-center">
+        <div className="bg-muted rounded-lg p-3 text-center">
           <div
             className={`text-xl font-bold ${
               fundedRatio >= 100 ? "text-emerald-400" : fundedRatio >= 80 ? "text-yellow-400" : "text-red-400"
@@ -706,15 +706,15 @@ function FundedRatioCalculator() {
           >
             {fundedRatio}%
           </div>
-          <div className="text-xs text-slate-400 mt-1">Funded Ratio</div>
+          <div className="text-xs text-muted-foreground mt-1">Funded Ratio</div>
         </div>
-        <div className="bg-slate-800 rounded-lg p-3 text-center">
+        <div className="bg-muted rounded-lg p-3 text-center">
           <div className="text-xl font-bold text-red-400">${unfundedLiability.toLocaleString()}M</div>
-          <div className="text-xs text-slate-400 mt-1">Unfunded Liability</div>
+          <div className="text-xs text-muted-foreground mt-1">Unfunded Liability</div>
         </div>
-        <div className="bg-slate-800 rounded-lg p-3 text-center">
+        <div className="bg-muted rounded-lg p-3 text-center">
           <div className="text-xl font-bold text-primary">${requiredContrib.toLocaleString()}M</div>
-          <div className="text-xs text-slate-400 mt-1">Annual Contribution</div>
+          <div className="text-xs text-muted-foreground mt-1">Annual Contribution</div>
         </div>
       </div>
       <div className="bg-amber-950/30 border border-amber-800/40 rounded-lg p-3 text-xs text-amber-300">
@@ -734,7 +734,7 @@ export default function PensionManagementPage() {
   const fadeIn = { hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial="hidden"
@@ -749,7 +749,7 @@ export default function PensionManagementPage() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Pension Fund Management</h1>
-            <p className="text-sm text-slate-400">Institutional LDI · Asset-Liability Matching · Long-Horizon Investing</p>
+            <p className="text-sm text-muted-foreground">Institutional LDI · Asset-Liability Matching · Long-Horizon Investing</p>
           </div>
         </div>
         {/* Summary chips */}
@@ -760,8 +760,8 @@ export default function PensionManagementPage() {
             { label: "Liability Duration", value: "~15yr", color: "text-primary" },
             { label: "Avg Employer Contrib", value: "18.4%", color: "text-emerald-400" },
           ].map((chip) => (
-            <div key={chip.label} className="bg-slate-800/60 rounded-lg px-3 py-1.5 flex items-center gap-2">
-              <span className="text-xs text-slate-400">{chip.label}</span>
+            <div key={chip.label} className="bg-muted/60 rounded-lg px-3 py-1.5 flex items-center gap-2">
+              <span className="text-xs text-muted-foreground">{chip.label}</span>
               <span className={`text-sm font-bold ${chip.color}`}>{chip.value}</span>
             </div>
           ))}
@@ -770,7 +770,7 @@ export default function PensionManagementPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="overview">
-        <TabsList className="bg-slate-900 border border-slate-800 mb-4 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
             <Building2 className="w-3 h-3 mr-1" />Fund Overview
           </TabsTrigger>
@@ -793,7 +793,7 @@ export default function PensionManagementPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
             {/* DB vs DC Comparison */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-primary flex items-center gap-2">
                     <DollarSign className="w-4 h-4" />Defined Benefit (DB)
@@ -809,17 +809,17 @@ export default function PensionManagementPage() {
                     ["PBGC Insured", "Yes (private sector, max $87K/yr)"],
                   ].map(([k, v]) => (
                     <div key={k} className="flex justify-between gap-2">
-                      <span className="text-slate-400">{k}</span>
-                      <span className="text-slate-200 text-right max-w-[55%]">{v}</span>
+                      <span className="text-muted-foreground">{k}</span>
+                      <span className="text-foreground text-right max-w-[55%]">{v}</span>
                     </div>
                   ))}
-                  <div className="pt-2 border-t border-slate-800 text-slate-500 italic">
+                  <div className="pt-2 border-t border-border text-muted-foreground italic">
                     Declining in private sector; prevalent in public sector (85% of state/local workers)
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-primary flex items-center gap-2">
                     <Users className="w-4 h-4" />Defined Contribution (DC)
@@ -835,11 +835,11 @@ export default function PensionManagementPage() {
                     ["PBGC Insured", "No — no defined benefit to insure"],
                   ].map(([k, v]) => (
                     <div key={k} className="flex justify-between gap-2">
-                      <span className="text-slate-400">{k}</span>
-                      <span className="text-slate-200 text-right max-w-[55%]">{v}</span>
+                      <span className="text-muted-foreground">{k}</span>
+                      <span className="text-foreground text-right max-w-[55%]">{v}</span>
                     </div>
                   ))}
-                  <div className="pt-2 border-t border-slate-800 text-slate-500 italic">
+                  <div className="pt-2 border-t border-border text-muted-foreground italic">
                     401(k)/403(b) dominant in private sector; 2024 limit: $23,000 + $7,500 catch-up
                   </div>
                 </CardContent>
@@ -848,7 +848,7 @@ export default function PensionManagementPage() {
 
             {/* Funded Ratio Calculator + Gauge */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
                     <Target className="w-4 h-4 text-primary" />Funded Ratio Calculator
@@ -859,7 +859,7 @@ export default function PensionManagementPage() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
                     <Activity className="w-4 h-4 text-emerald-400" />Funded Status Gauge
@@ -869,7 +869,7 @@ export default function PensionManagementPage() {
                   <div className="flex flex-col items-center gap-3">
                     <FundedStatusGauge fundedRatio={selectedFundedRatio} />
                     <div className="w-full">
-                      <label className="text-xs text-slate-400 mb-1 block">
+                      <label className="text-xs text-muted-foreground mb-1 block">
                         Adjust Funded Ratio: {selectedFundedRatio}%
                       </label>
                       <input
@@ -887,9 +887,9 @@ export default function PensionManagementPage() {
                         { label: "Underfunded", range: "60–80%", color: "text-yellow-400" },
                         { label: "Healthy", range: "> 80%", color: "text-emerald-400" },
                       ].map((s) => (
-                        <div key={s.label} className="bg-slate-800 rounded p-2">
+                        <div key={s.label} className="bg-muted rounded p-2">
                           <div className={`font-bold ${s.color}`}>{s.label}</div>
-                          <div className="text-slate-500">{s.range}</div>
+                          <div className="text-muted-foreground">{s.range}</div>
                         </div>
                       ))}
                     </div>
@@ -899,7 +899,7 @@ export default function PensionManagementPage() {
             </div>
 
             {/* Top 10 US Pension Funds Table */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-primary" />Top 10 US Public Pension Funds
@@ -909,7 +909,7 @@ export default function PensionManagementPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="text-slate-400 border-b border-slate-800">
+                      <tr className="text-muted-foreground border-b border-border">
                         <th className="text-left pb-2 pr-2">#</th>
                         <th className="text-left pb-2 pr-2">Fund</th>
                         <th className="text-right pb-2 pr-2">AUM ($B)</th>
@@ -922,14 +922,14 @@ export default function PensionManagementPage() {
                     </thead>
                     <tbody>
                       {TOP_PENSION_FUNDS.map((f) => (
-                        <tr key={f.rank} className="border-b border-slate-800/50 hover:bg-slate-800/30 transition-colors">
-                          <td className="py-2 pr-2 text-slate-500">{f.rank}</td>
+                        <tr key={f.rank} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                          <td className="py-2 pr-2 text-muted-foreground">{f.rank}</td>
                           <td className="py-2 pr-2">
-                            <div className="text-slate-200 font-medium leading-tight max-w-[200px]">{f.name}</div>
-                            <div className="text-slate-500">{f.state}</div>
+                            <div className="text-foreground font-medium leading-tight max-w-[200px]">{f.name}</div>
+                            <div className="text-muted-foreground">{f.state}</div>
                           </td>
                           <td className="py-2 pr-2 text-right text-primary font-medium">${f.aum}</td>
-                          <td className="py-2 pr-2 text-right text-slate-300">{f.members.toLocaleString()}</td>
+                          <td className="py-2 pr-2 text-right text-muted-foreground">{f.members.toLocaleString()}</td>
                           <td className="py-2 pr-2 text-right">
                             <span
                               className={`font-bold ${
@@ -951,7 +951,7 @@ export default function PensionManagementPage() {
                     </tbody>
                   </table>
                 </div>
-                <div className="mt-3 text-xs text-slate-500 flex items-start gap-1">
+                <div className="mt-3 text-xs text-muted-foreground flex items-start gap-1">
                   <Info className="w-3 h-3 mt-0.5 shrink-0" />
                   Funded ratios use actuarial (smoothed) values at plan-assumed discount rates. Market-value ratios
                   using risk-free rates would be substantially lower for most plans.
@@ -966,7 +966,7 @@ export default function PensionManagementPage() {
           <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
               {/* Duration matching explanation */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-primary flex items-center gap-2">
                     <Scale className="w-4 h-4" />Duration Matching Principles
@@ -1005,21 +1005,21 @@ export default function PensionManagementPage() {
                       badgeColor: "bg-pink-600/20 text-pink-400",
                     },
                   ].map((item) => (
-                    <div key={item.title} className="p-2 bg-slate-800/50 rounded-lg">
+                    <div key={item.title} className="p-2 bg-muted/50 rounded-lg">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="font-medium text-slate-200">{item.title}</span>
+                        <span className="font-medium text-foreground">{item.title}</span>
                         <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${item.badgeColor}`}>
                           {item.badge}
                         </span>
                       </div>
-                      <p className="text-slate-400 leading-relaxed">{item.desc}</p>
+                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
                 </CardContent>
               </Card>
 
               {/* KRD bucketing table */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-primary" />Key Rate Duration Bucketing
@@ -1030,7 +1030,7 @@ export default function PensionManagementPage() {
                   <div className="overflow-x-auto mt-3">
                     <table className="w-full text-xs">
                       <thead>
-                        <tr className="text-slate-400 border-b border-slate-800">
+                        <tr className="text-muted-foreground border-b border-border">
                           <th className="text-left pb-2">Maturity</th>
                           <th className="text-right pb-2">Asset KRD</th>
                           <th className="text-right pb-2">Liability KRD</th>
@@ -1040,8 +1040,8 @@ export default function PensionManagementPage() {
                       </thead>
                       <tbody>
                         {KEY_RATE_DURATIONS.map((d) => (
-                          <tr key={d.maturity} className="border-b border-slate-800/50">
-                            <td className="py-1.5 text-slate-200 font-medium">{d.maturity}</td>
+                          <tr key={d.maturity} className="border-b border-border/50">
+                            <td className="py-1.5 text-foreground font-medium">{d.maturity}</td>
                             <td className="py-1.5 text-right text-primary">{d.assetDur.toFixed(1)}</td>
                             <td className="py-1.5 text-right text-red-300">{d.liabilityDur.toFixed(1)}</td>
                             <td className="py-1.5 text-right">
@@ -1062,7 +1062,7 @@ export default function PensionManagementPage() {
                       </tbody>
                     </table>
                   </div>
-                  <div className="mt-3 text-xs text-slate-500 flex items-start gap-1">
+                  <div className="mt-3 text-xs text-muted-foreground flex items-start gap-1">
                     <Info className="w-3 h-3 mt-0.5 shrink-0" />
                     Long-end mismatch at 20Y–30Y reflects typical pension liability concentration and under-hedged
                     long-duration exposure. Overlay swaps or long-strip Treasuries are common solutions.
@@ -1072,7 +1072,7 @@ export default function PensionManagementPage() {
             </div>
 
             {/* Physical vs Synthetic comparison */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white">Physical vs Synthetic LDI Implementation</CardTitle>
               </CardHeader>
@@ -1114,14 +1114,14 @@ export default function PensionManagementPage() {
                       ],
                     },
                   ].map((item) => (
-                    <div key={item.title} className={`p-3 bg-slate-800/50 rounded-lg border-l-2 ${item.color}`}>
+                    <div key={item.title} className={`p-3 bg-muted/50 rounded-lg border-l-2 ${item.color}`}>
                       <div className={`font-semibold mb-2 ${item.titleColor}`}>{item.title}</div>
                       <div className="grid grid-cols-2 gap-2">
                         <div>
                           <div className="text-emerald-400 font-medium mb-1">Pros</div>
                           <ul className="space-y-1">
                             {item.pros.map((p) => (
-                              <li key={p} className="flex items-start gap-1 text-slate-300">
+                              <li key={p} className="flex items-start gap-1 text-muted-foreground">
                                 <CheckCircle className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
                                 {p}
                               </li>
@@ -1132,7 +1132,7 @@ export default function PensionManagementPage() {
                           <div className="text-red-400 font-medium mb-1">Cons</div>
                           <ul className="space-y-1">
                             {item.cons.map((c) => (
-                              <li key={c} className="flex items-start gap-1 text-slate-300">
+                              <li key={c} className="flex items-start gap-1 text-muted-foreground">
                                 <AlertTriangle className="w-3 h-3 text-red-400 mt-0.5 shrink-0" />
                                 {c}
                               </li>
@@ -1160,7 +1160,7 @@ export default function PensionManagementPage() {
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
                     selectedScenario.name === sc.name
                       ? "border-primary bg-primary/20 text-primary"
-                      : "border-slate-700 bg-slate-800 text-slate-400 hover:border-slate-600"
+                      : "border-border bg-muted text-muted-foreground hover:border-slate-600"
                   }`}
                 >
                   {sc.name}
@@ -1170,7 +1170,7 @@ export default function PensionManagementPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
               {/* Selected scenario detail */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-primary" />
@@ -1180,13 +1180,13 @@ export default function PensionManagementPage() {
                 <CardContent>
                   <AllocationWaterfall scenario={selectedScenario} />
                   <div className="grid grid-cols-2 gap-3 mt-4">
-                    <div className="bg-slate-800 rounded-lg p-3 text-center">
+                    <div className="bg-muted rounded-lg p-3 text-center">
                       <div className="text-lg font-bold text-emerald-400">{selectedScenario.expectedReturn}%</div>
-                      <div className="text-xs text-slate-400">Expected Return</div>
+                      <div className="text-xs text-muted-foreground">Expected Return</div>
                     </div>
-                    <div className="bg-slate-800 rounded-lg p-3 text-center">
+                    <div className="bg-muted rounded-lg p-3 text-center">
                       <div className="text-lg font-bold text-orange-400">{selectedScenario.volatility}%</div>
-                      <div className="text-xs text-slate-400">Expected Volatility</div>
+                      <div className="text-xs text-muted-foreground">Expected Volatility</div>
                     </div>
                   </div>
                   <div className="space-y-2 mt-3">
@@ -1201,14 +1201,14 @@ export default function PensionManagementPage() {
                       .map((seg) => (
                         <div key={seg.label} className="flex items-center gap-2 text-xs">
                           <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: seg.color }} />
-                          <span className="text-slate-300 w-24">{seg.label}</span>
-                          <div className="flex-1 bg-slate-800 rounded-full h-2 overflow-hidden">
+                          <span className="text-muted-foreground w-24">{seg.label}</span>
+                          <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
                             <div
                               className="h-full rounded-full transition-all duration-500"
                               style={{ width: `${seg.value}%`, backgroundColor: seg.color }}
                             />
                           </div>
-                          <span className="text-slate-200 font-medium w-8 text-right">{seg.value}%</span>
+                          <span className="text-foreground font-medium w-8 text-right">{seg.value}%</span>
                         </div>
                       ))}
                   </div>
@@ -1216,7 +1216,7 @@ export default function PensionManagementPage() {
               </Card>
 
               {/* All scenarios comparison */}
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white">Scenario Comparison</CardTitle>
                 </CardHeader>
@@ -1228,11 +1228,11 @@ export default function PensionManagementPage() {
                       className={`p-3 rounded-lg border cursor-pointer transition-all ${
                         selectedScenario.name === sc.name
                           ? "border-primary/50 bg-muted/40"
-                          : "border-slate-800 bg-slate-800/30 hover:border-slate-700"
+                          : "border-border bg-muted/30 hover:border-border"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-medium text-slate-200">{sc.name}</span>
+                        <span className="text-xs font-medium text-foreground">{sc.name}</span>
                         <div className="flex gap-2 text-xs">
                           <span className="text-emerald-400">{sc.expectedReturn}% ret</span>
                           <span className="text-orange-400">{sc.volatility}% vol</span>
@@ -1261,7 +1261,7 @@ export default function PensionManagementPage() {
             </div>
 
             {/* Glide Path and Dynamic Triggers */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />Dynamic Allocation Glide Path & Triggers
@@ -1271,7 +1271,7 @@ export default function PensionManagementPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="text-slate-400 border-b border-slate-800">
+                      <tr className="text-muted-foreground border-b border-border">
                         <th className="text-left pb-2 pr-3">Funded Ratio</th>
                         <th className="text-right pb-2 pr-3">Equities</th>
                         <th className="text-right pb-2 pr-3">LDI / Bonds</th>
@@ -1289,13 +1289,13 @@ export default function PensionManagementPage() {
                         { fr: "90–100%", eq: 20, bond: 65, alt: 15, hedge: 80, action: "Liability-matching dominant; protect gains" },
                         { fr: "> 100%", eq: 10, bond: 80, alt: 10, hedge: 95, action: "Near full immunization; evaluate annuitization" },
                       ].map((row) => (
-                        <tr key={row.fr} className="border-b border-slate-800/50">
-                          <td className="py-2 pr-3 font-medium text-slate-200">{row.fr}</td>
+                        <tr key={row.fr} className="border-b border-border/50">
+                          <td className="py-2 pr-3 font-medium text-foreground">{row.fr}</td>
                           <td className="py-2 pr-3 text-right text-primary">{row.eq}%</td>
                           <td className="py-2 pr-3 text-right text-primary">{row.bond}%</td>
                           <td className="py-2 pr-3 text-right text-emerald-400">{row.alt}%</td>
                           <td className="py-2 pr-3 text-right text-amber-400">{row.hedge}%</td>
-                          <td className="py-2 text-slate-400">{row.action}</td>
+                          <td className="py-2 text-muted-foreground">{row.action}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1323,14 +1323,14 @@ export default function PensionManagementPage() {
                   Longevity: "text-primary",
                   Inflation: "text-orange-400",
                   Credit: "text-amber-400",
-                  Liquidity: "text-slate-400",
+                  Liquidity: "text-muted-foreground",
                 };
                 return (
-                  <div key={rf.name} className="bg-slate-900 border border-slate-800 rounded-xl p-3">
+                  <div key={rf.name} className="bg-card border border-border rounded-xl p-3">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div>
-                        <div className="text-sm font-medium text-slate-200">{rf.name}</div>
-                        <div className={`text-xs font-medium ${catColor[rf.category] ?? "text-slate-400"}`}>
+                        <div className="text-sm font-medium text-foreground">{rf.name}</div>
+                        <div className={`text-xs font-medium ${catColor[rf.category] ?? "text-muted-foreground"}`}>
                           {rf.category}
                         </div>
                       </div>
@@ -1339,26 +1339,26 @@ export default function PensionManagementPage() {
                       </span>
                     </div>
                     <div className="grid grid-cols-2 gap-2 mb-2 text-xs">
-                      <div className="bg-slate-800 rounded p-2 text-center">
+                      <div className="bg-muted rounded p-2 text-center">
                         <div className="text-red-400 font-bold">{rf.impactBps}bps</div>
-                        <div className="text-slate-500">Liability Impact</div>
+                        <div className="text-muted-foreground">Liability Impact</div>
                       </div>
-                      <div className="bg-slate-800 rounded p-2 text-center">
+                      <div className="bg-muted rounded p-2 text-center">
                         <div className="text-emerald-400 font-bold">{rf.hedgeRatio}%</div>
-                        <div className="text-slate-500">Hedged</div>
+                        <div className="text-muted-foreground">Hedged</div>
                       </div>
                     </div>
-                    <div className="text-xs text-slate-400 flex items-start gap-1">
+                    <div className="text-xs text-muted-foreground flex items-start gap-1">
                       <Shield className="w-3 h-3 text-primary mt-0.5 shrink-0" />
                       {rf.mitigant}
                     </div>
                     {/* Hedge progress bar */}
                     <div className="mt-2">
-                      <div className="flex justify-between text-xs text-slate-500 mb-1">
+                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
                         <span>Hedge coverage</span>
                         <span>{rf.hedgeRatio}%</span>
                       </div>
-                      <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                         <div
                           className="h-full rounded-full bg-primary transition-all"
                           style={{ width: `${rf.hedgeRatio}%` }}
@@ -1371,7 +1371,7 @@ export default function PensionManagementPage() {
             </div>
 
             {/* Stress Test Scenarios */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />Stress Test Scenarios
@@ -1381,7 +1381,7 @@ export default function PensionManagementPage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="text-slate-400 border-b border-slate-800">
+                      <tr className="text-muted-foreground border-b border-border">
                         <th className="text-left pb-2 pr-3">Scenario</th>
                         <th className="text-right pb-2 pr-3">Rate Shift</th>
                         <th className="text-right pb-2 pr-3">Equity Move</th>
@@ -1392,8 +1392,8 @@ export default function PensionManagementPage() {
                     </thead>
                     <tbody>
                       {STRESS_SCENARIOS.map((sc) => (
-                        <tr key={sc.name} className="border-b border-slate-800/50 hover:bg-slate-800/30">
-                          <td className="py-2 pr-3 font-medium text-slate-200">{sc.name}</td>
+                        <tr key={sc.name} className="border-b border-border/50 hover:bg-muted/30">
+                          <td className="py-2 pr-3 font-medium text-foreground">{sc.name}</td>
                           <td className="py-2 pr-3 text-right">
                             <span className={sc.rateShift > 0 ? "text-red-400" : "text-emerald-400"}>
                               {sc.rateShift > 0 ? "+" : ""}
@@ -1431,7 +1431,7 @@ export default function PensionManagementPage() {
                     </tbody>
                   </table>
                 </div>
-                <div className="mt-3 text-xs text-slate-500 flex items-start gap-1">
+                <div className="mt-3 text-xs text-muted-foreground flex items-start gap-1">
                   <Info className="w-3 h-3 mt-0.5 shrink-0" />
                   2022 shows that rising rates can improve funded ratios when liability sensitivity exceeds asset
                   sensitivity (partially LDI-hedged plans). 2008 illustrates the opposite for equity-heavy plans.
@@ -1440,7 +1440,7 @@ export default function PensionManagementPage() {
             </Card>
 
             {/* Risk attribution summary */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white">Risk Attribution Framework</CardTitle>
               </CardHeader>
@@ -1481,15 +1481,15 @@ export default function PensionManagementPage() {
                       icon: <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />,
                     },
                   ].map((section) => (
-                    <div key={section.title} className={`p-3 bg-slate-800/50 rounded-lg border-l-2 ${section.color}`}>
-                      <div className="flex items-center gap-1.5 mb-2 font-medium text-slate-200">
+                    <div key={section.title} className={`p-3 bg-muted/50 rounded-lg border-l-2 ${section.color}`}>
+                      <div className="flex items-center gap-1.5 mb-2 font-medium text-foreground">
                         {section.icon}
                         {section.title}
                       </div>
-                      <ul className="space-y-1 text-slate-400">
+                      <ul className="space-y-1 text-muted-foreground">
                         {section.items.map((item) => (
                           <li key={item} className="flex items-start gap-1">
-                            <span className="text-slate-600 mt-0.5">•</span>
+                            <span className="text-muted-foreground mt-0.5">•</span>
                             {item}
                           </li>
                         ))}
@@ -1506,14 +1506,14 @@ export default function PensionManagementPage() {
         <TabsContent value="esg" className="data-[state=inactive]:hidden space-y-4">
           <motion.div initial="hidden" animate="visible" variants={fadeIn} transition={{ duration: 0.3 }}>
             {/* Universal Owner concept */}
-            <Card className="bg-slate-900 border-slate-800 mb-4">
+            <Card className="bg-card border-border mb-4">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-emerald-400 flex items-center gap-2">
                   <Leaf className="w-4 h-4" />Universal Owner Framework
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-xs space-y-3">
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   Large pension funds owning diversified slices of the entire economy — the{" "}
                   <span className="text-emerald-400 font-medium">Universal Owner</span> concept (Hawley & Williams, 2000)
                   — face negative externalities from individual corporate behavior that harm the broader market. A company
@@ -1538,9 +1538,9 @@ export default function PensionManagementPage() {
                       color: "text-primary",
                     },
                   ].map((item) => (
-                    <div key={item.title} className="p-3 bg-slate-800/50 rounded-lg">
+                    <div key={item.title} className="p-3 bg-muted/50 rounded-lg">
                       <div className={`font-semibold mb-1 ${item.color}`}>{item.title}</div>
-                      <p className="text-slate-400 leading-relaxed">{item.desc}</p>
+                      <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -1548,7 +1548,7 @@ export default function PensionManagementPage() {
             </Card>
 
             {/* ESG Initiatives Table */}
-            <Card className="bg-slate-900 border-slate-800 mb-4">
+            <Card className="bg-card border-border mb-4">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-400" />Notable ESG & Stewardship Actions
@@ -1566,21 +1566,21 @@ export default function PensionManagementPage() {
                       "Long-Horizon": "bg-cyan-600/20 text-muted-foreground border-cyan-600/30",
                     };
                     return (
-                      <div key={init.fund + init.category} className="p-3 bg-slate-800/40 rounded-lg border border-slate-800 text-xs">
+                      <div key={init.fund + init.category} className="p-3 bg-muted/40 rounded-lg border border-border text-xs">
                         <div className="flex items-start justify-between gap-2 mb-1">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-medium text-slate-200">{init.fund}</span>
+                            <span className="font-medium text-foreground">{init.fund}</span>
                             <span
                               className={`text-xs px-1.5 py-0.5 rounded border font-medium ${catColors[init.category] ?? ""}`}
                             >
                               {init.category}
                             </span>
-                            <span className="text-slate-500">{init.year}</span>
+                            <span className="text-muted-foreground">{init.year}</span>
                           </div>
                           <span className="text-primary font-medium shrink-0">${init.aum}B</span>
                         </div>
-                        <div className="text-slate-300 mb-1">{init.action}</div>
-                        <div className="flex items-start gap-1 text-slate-500">
+                        <div className="text-muted-foreground mb-1">{init.action}</div>
+                        <div className="flex items-start gap-1 text-muted-foreground">
                           <ArrowUpRight className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
                           <span>{init.outcome}</span>
                         </div>
@@ -1593,7 +1593,7 @@ export default function PensionManagementPage() {
 
             {/* Proxy Voting & Engagement */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
                     <Users className="w-4 h-4 text-primary" />Proxy Voting Principles
@@ -1622,15 +1622,15 @@ export default function PensionManagementPage() {
                       desc: "Rotate auditors every 10 years; vote against audit committee members when non-audit fees exceed audit fees.",
                     },
                   ].map((item) => (
-                    <div key={item.title} className="p-2 bg-slate-800/40 rounded">
-                      <div className="font-medium text-slate-200 mb-0.5">{item.title}</div>
-                      <div className="text-slate-400">{item.desc}</div>
+                    <div key={item.title} className="p-2 bg-muted/40 rounded">
+                      <div className="font-medium text-foreground mb-0.5">{item.title}</div>
+                      <div className="text-muted-foreground">{item.desc}</div>
                     </div>
                   ))}
                 </CardContent>
               </Card>
 
-              <Card className="bg-slate-900 border-slate-800">
+              <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm text-white flex items-center gap-2">
                     <Target className="w-4 h-4 text-emerald-400" />CalPERS / CalSTRS Approach
@@ -1639,7 +1639,7 @@ export default function PensionManagementPage() {
                 <CardContent className="text-xs space-y-3">
                   <div className="p-3 bg-muted/30 border border-border rounded-lg">
                     <div className="font-semibold text-primary mb-2">CalPERS ($487B)</div>
-                    <ul className="space-y-1.5 text-slate-300">
+                    <ul className="space-y-1.5 text-muted-foreground">
                       {[
                         "Climate Action 100+ signatory — engages 170 high-emitting companies",
                         "2019: Divested from prison companies; 2020: gun manufacturers",
@@ -1656,7 +1656,7 @@ export default function PensionManagementPage() {
                   </div>
                   <div className="p-3 bg-muted/30 border border-border rounded-lg">
                     <div className="font-semibold text-primary mb-2">CalSTRS ($334B)</div>
-                    <ul className="space-y-1.5 text-slate-300">
+                    <ul className="space-y-1.5 text-muted-foreground">
                       {[
                         "Sustainable Investment & Stewardship Strategies (SISS) framework",
                         "Filed climate-disclosure resolutions for 20+ years pre-SEC mandate",
@@ -1671,7 +1671,7 @@ export default function PensionManagementPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className="text-xs text-slate-500 flex items-start gap-1 mt-2">
+                  <div className="text-xs text-muted-foreground flex items-start gap-1 mt-2">
                     <Info className="w-3 h-3 mt-0.5 shrink-0" />
                     Both funds demonstrate that long-horizon investors can improve risk-adjusted returns by engaging
                     on systemic ESG issues rather than purely divesting.
@@ -1681,7 +1681,7 @@ export default function PensionManagementPage() {
             </div>
 
             {/* Long-horizon investing metrics */}
-            <Card className="bg-slate-900 border-slate-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-white flex items-center gap-2">
                   <Clock className="w-4 h-4 text-amber-400" />Long-Horizon Investing Advantages
@@ -1715,10 +1715,10 @@ export default function PensionManagementPage() {
                       color: "text-amber-400",
                     },
                   ].map((item) => (
-                    <div key={item.metric} className="bg-slate-800 rounded-lg p-3 text-center">
+                    <div key={item.metric} className="bg-muted rounded-lg p-3 text-center">
                       <div className={`text-base font-bold ${item.color}`}>{item.value}</div>
-                      <div className="font-medium text-slate-200 mt-1">{item.metric}</div>
-                      <div className="text-slate-500 mt-0.5 text-xs">{item.desc}</div>
+                      <div className="font-medium text-foreground mt-1">{item.metric}</div>
+                      <div className="text-muted-foreground mt-0.5 text-xs">{item.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -1729,7 +1729,7 @@ export default function PensionManagementPage() {
       </Tabs>
 
       {/* Footer note */}
-      <div className="mt-6 text-xs text-slate-600 flex items-center gap-1">
+      <div className="mt-6 text-xs text-muted-foreground flex items-center gap-1">
         <Info className="w-3 h-3" />
         Data is illustrative and educational. Funded ratios, AUM, and return figures are approximate as of 2024 annual reports.
         Contribution rates reflect actuarially determined employer contributions.

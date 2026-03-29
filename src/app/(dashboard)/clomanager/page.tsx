@@ -236,9 +236,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
 }
@@ -247,7 +247,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
       <h3 className="text-base font-semibold text-white">{title}</h3>
-      {sub && <p className="text-xs text-zinc-400 mt-0.5">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
 }
@@ -277,7 +277,7 @@ function RatingBadge({ rating }: { rating: string }) {
       : rating === "BB" || rating === "BB-"
       ? "bg-orange-900/50 text-orange-300"
       : rating === "NR"
-      ? "bg-zinc-800 text-zinc-400"
+      ? "bg-muted text-muted-foreground"
       : "bg-rose-900/50 text-rose-300";
   return (
     <span className={cn("inline-block rounded-full px-2 py-0.5 text-xs font-medium", cls)}>
@@ -390,7 +390,7 @@ function StructureTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-zinc-400">
+              <tr className="border-b border-white/10 text-muted-foreground">
                 <th className="py-2 text-left">Tranche</th>
                 <th className="py-2 text-right">Size</th>
                 <th className="py-2 text-right">% Capital</th>
@@ -406,11 +406,11 @@ function StructureTab() {
                     <span className={cn("inline-block w-2 h-2 rounded-full mr-2", t.color)} />
                     {t.name}
                   </td>
-                  <td className="py-2 text-right text-zinc-200">{fmtMM(t.sizeMM)}</td>
-                  <td className="py-2 text-right text-zinc-200">{t.pctCapital}%</td>
-                  <td className="py-2 text-right text-zinc-300">{t.couponLabel}</td>
+                  <td className="py-2 text-right text-foreground">{fmtMM(t.sizeMM)}</td>
+                  <td className="py-2 text-right text-foreground">{t.pctCapital}%</td>
+                  <td className="py-2 text-right text-muted-foreground">{t.couponLabel}</td>
                   <td className="py-2 text-right"><RatingBadge rating={t.rating} /></td>
-                  <td className={cn("py-2 text-right", t.ocCushion > 0 ? "text-emerald-400" : "text-zinc-500")}>
+                  <td className={cn("py-2 text-right", t.ocCushion > 0 ? "text-emerald-400" : "text-muted-foreground")}>
                     {t.ocCushion > 0 ? `${fmt(t.ocCushion)}%` : "—"}
                   </td>
                 </tr>
@@ -442,15 +442,15 @@ function CoverageTab() {
             return (
               <div key={`${t.tranche}-${t.testType}`}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-medium text-zinc-200">{t.tranche} Note</span>
+                  <span className="text-sm font-medium text-foreground">{t.tranche} Note</span>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-zinc-400">
+                    <span className="text-xs text-muted-foreground">
                       {fmt(t.current)}% vs min {fmt(t.required)}%
                     </span>
                     <PassBadge pass={t.pass} />
                   </div>
                 </div>
-                <div className="relative h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <div className="relative h-2 bg-muted rounded-full overflow-hidden">
                   {/* Required min marker */}
                   <div
                     className="absolute top-0 bottom-0 w-0.5 bg-amber-400 z-10"
@@ -466,8 +466,8 @@ function CoverageTab() {
                   />
                 </div>
                 <div className="flex justify-between mt-0.5">
-                  <span className="text-xs text-zinc-500">0%</span>
-                  <span className="text-xs text-zinc-500">Required min</span>
+                  <span className="text-xs text-muted-foreground">0%</span>
+                  <span className="text-xs text-muted-foreground">Required min</span>
                 </div>
               </div>
             );
@@ -499,7 +499,7 @@ function CoverageTab() {
           <p className={cn("text-sm font-semibold", allPass ? "text-emerald-300" : "text-rose-300")}>
             {allPass ? "All Coverage Tests Passing" : "Coverage Test Breach Detected"}
           </p>
-          <p className="text-xs text-zinc-400 mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5">
             {allPass
               ? "CLO is in compliance. No diversion of interest or principal required."
               : "Interest diversion triggers active. Cash flow redirected to senior notes."}
@@ -524,7 +524,7 @@ function CoverageTab() {
           ].map((item) => (
             <div key={item.term} className="rounded-lg bg-white/5 p-3">
               <p className="text-xs font-semibold text-white mb-1">{item.term}</p>
-              <p className="text-xs text-zinc-400">{item.desc}</p>
+              <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -570,7 +570,7 @@ function PortfolioTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-zinc-400">
+              <tr className="border-b border-white/10 text-muted-foreground">
                 <th className="py-2 text-left">Issuer</th>
                 <th className="py-2 text-left">Industry</th>
                 <th className="py-2 text-right">Spread (bps)</th>
@@ -583,20 +583,20 @@ function PortfolioTab() {
             <tbody>
               {LOANS.map((l) => (
                 <tr key={l.issuer} className="border-b border-white/5 hover:bg-white/5">
-                  <td className="py-2 font-medium text-zinc-100 max-w-[140px] truncate">{l.issuer}</td>
-                  <td className="py-2 text-zinc-400">{l.industry}</td>
+                  <td className="py-2 font-medium text-foreground max-w-[140px] truncate">{l.issuer}</td>
+                  <td className="py-2 text-muted-foreground">{l.industry}</td>
                   <td className="py-2 text-right text-emerald-400 font-mono">{l.spread}</td>
-                  <td className="py-2 text-right text-zinc-300 font-mono">{l.maturity}</td>
+                  <td className="py-2 text-right text-muted-foreground font-mono">{l.maturity}</td>
                   <td className="py-2 text-right"><RatingBadge rating={l.rating} /></td>
-                  <td className="py-2 text-right text-zinc-200">{fmtMM(l.balance)}</td>
-                  <td className="py-2 text-right text-zinc-400">{fmt((l.balance / totalBal) * 100)}%</td>
+                  <td className="py-2 text-right text-foreground">{fmtMM(l.balance)}</td>
+                  <td className="py-2 text-right text-muted-foreground">{fmt((l.balance / totalBal) * 100)}%</td>
                 </tr>
               ))}
-              <tr className="border-t border-white/20 font-semibold text-zinc-200">
+              <tr className="border-t border-white/20 font-semibold text-foreground">
                 <td className="py-2 text-left" colSpan={2}>Totals / Averages</td>
                 <td className="py-2 text-right text-emerald-400 font-mono">{fmt(was, 0)}</td>
-                <td className="py-2 text-right text-zinc-400">{wal}yr WAL</td>
-                <td className="py-2 text-right text-zinc-400">{avgRating}</td>
+                <td className="py-2 text-right text-muted-foreground">{wal}yr WAL</td>
+                <td className="py-2 text-right text-muted-foreground">{avgRating}</td>
                 <td className="py-2 text-right">{fmtMM(totalBal)}</td>
                 <td className="py-2 text-right">100%</td>
               </tr>
@@ -612,14 +612,14 @@ function PortfolioTab() {
           <div className="space-y-2">
             {[...LOANS].sort((a, b) => b.balance - a.balance).map((l) => (
               <div key={l.issuer} className="flex items-center gap-2">
-                <span className="w-32 text-xs text-zinc-400 truncate">{l.issuer.split(" ")[0]}</span>
-                <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <span className="w-32 text-xs text-muted-foreground truncate">{l.issuer.split(" ")[0]}</span>
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className="h-full bg-primary rounded-full"
                     style={{ width: `${(l.balance / maxBal) * 100}%` }}
                   />
                 </div>
-                <span className="text-xs text-zinc-300 w-10 text-right">{fmtMM(l.balance)}</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{fmtMM(l.balance)}</span>
               </div>
             ))}
           </div>
@@ -631,8 +631,8 @@ function PortfolioTab() {
           <div className="space-y-2">
             {indEntries.map(([ind, bal], idx) => (
               <div key={ind} className="flex items-center gap-2">
-                <span className="w-28 text-xs text-zinc-400 truncate">{ind}</span>
-                <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <span className="w-28 text-xs text-muted-foreground truncate">{ind}</span>
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className="h-full rounded-full"
                     style={{
@@ -641,7 +641,7 @@ function PortfolioTab() {
                     }}
                   />
                 </div>
-                <span className="text-xs text-zinc-300 w-10 text-right">{fmt((bal / totalBal) * 100)}%</span>
+                <span className="text-xs text-muted-foreground w-10 text-right">{fmt((bal / totalBal) * 100)}%</span>
               </div>
             ))}
           </div>
@@ -696,7 +696,7 @@ function ReinvestmentTab() {
 
         <div>
           <div className="flex justify-between mb-2">
-            <span className="text-xs text-zinc-400">Reinvestment Spread</span>
+            <span className="text-xs text-muted-foreground">Reinvestment Spread</span>
             <span className="text-xs font-mono text-white">{reinvestSpread} bps</span>
           </div>
           <Slider
@@ -708,14 +708,14 @@ function ReinvestmentTab() {
             className="my-1"
           />
           <div className="flex justify-between mt-1">
-            <span className="text-xs text-zinc-600">300 bps (tight)</span>
-            <span className="text-xs text-zinc-600">650 bps (wide)</span>
+            <span className="text-xs text-muted-foreground">300 bps (tight)</span>
+            <span className="text-xs text-muted-foreground">650 bps (wide)</span>
           </div>
         </div>
 
         <div>
           <div className="flex justify-between mb-2">
-            <span className="text-xs text-zinc-400">Reinvestment Period Length</span>
+            <span className="text-xs text-muted-foreground">Reinvestment Period Length</span>
             <span className="text-xs font-mono text-white">{reinvestPeriod} years</span>
           </div>
           <Slider
@@ -727,14 +727,14 @@ function ReinvestmentTab() {
             className="my-1"
           />
           <div className="flex justify-between mt-1">
-            <span className="text-xs text-zinc-600">2 yr (short)</span>
-            <span className="text-xs text-zinc-600">6 yr (long)</span>
+            <span className="text-xs text-muted-foreground">2 yr (short)</span>
+            <span className="text-xs text-muted-foreground">6 yr (long)</span>
           </div>
         </div>
 
         <div>
           <div className="flex justify-between mb-2">
-            <span className="text-xs text-zinc-400">Annual Prepayment Rate (post-reinvestment)</span>
+            <span className="text-xs text-muted-foreground">Annual Prepayment Rate (post-reinvestment)</span>
             <span className="text-xs font-mono text-white">{prepayRate}%</span>
           </div>
           <Slider
@@ -746,8 +746,8 @@ function ReinvestmentTab() {
             className="my-1"
           />
           <div className="flex justify-between mt-1">
-            <span className="text-xs text-zinc-600">5% (slow)</span>
-            <span className="text-xs text-zinc-600">40% (fast)</span>
+            <span className="text-xs text-muted-foreground">5% (slow)</span>
+            <span className="text-xs text-muted-foreground">40% (fast)</span>
           </div>
         </div>
       </div>
@@ -758,7 +758,7 @@ function ReinvestmentTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-zinc-400">
+              <tr className="border-b border-white/10 text-muted-foreground">
                 <th className="py-2 text-left">Year</th>
                 <th className="py-2 text-center">Phase</th>
                 <th className="py-2 text-right">Prepay Rate</th>
@@ -769,13 +769,13 @@ function ReinvestmentTab() {
             <tbody>
               {schedule.map((row) => (
                 <tr key={row.yr} className="border-b border-white/5 hover:bg-white/5">
-                  <td className="py-2 font-mono text-zinc-300">Yr {row.yr}</td>
+                  <td className="py-2 font-mono text-muted-foreground">Yr {row.yr}</td>
                   <td className="py-2 text-center">
                     <Badge variant="outline" className={cn("text-xs", row.yr <= reinvestPeriod ? "border-primary/40 text-primary" : "border-amber-500/40 text-amber-400")}>
                       {row.yr <= reinvestPeriod ? "Reinvest" : "Amort"}
                     </Badge>
                   </td>
-                  <td className="py-2 text-right text-zinc-400 font-mono">
+                  <td className="py-2 text-right text-muted-foreground font-mono">
                     {row.yr <= reinvestPeriod ? "—" : `${row.prepaid}%`}
                   </td>
                   <td className="py-2 text-right text-primary font-mono">
@@ -821,7 +821,7 @@ function DefaultScenariosTab() {
             )}
           >
             <p className="text-sm font-semibold text-white mb-1">{sc.label}</p>
-            <p className="text-xs text-zinc-400">Default: {sc.defaultRate}% · Recovery: {sc.recovery}%</p>
+            <p className="text-xs text-muted-foreground">Default: {sc.defaultRate}% · Recovery: {sc.recovery}%</p>
             <p className={cn(
               "text-sm font-bold mt-2",
               sc.equityIRR >= 10 ? "text-emerald-400" : sc.equityIRR >= 0 ? "text-amber-400" : "text-rose-400"
@@ -851,8 +851,8 @@ function DefaultScenariosTab() {
             return (
               <div key={t.name} className="flex items-center gap-3">
                 <span className={cn("inline-block w-2 h-2 rounded-full shrink-0", t.color)} />
-                <span className="w-16 text-sm font-medium text-zinc-200">{t.name}</span>
-                <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                <span className="w-16 text-sm font-medium text-foreground">{t.name}</span>
+                <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div
                     className={cn(
                       "h-full rounded-full",
@@ -871,7 +871,7 @@ function DefaultScenariosTab() {
             );
           })}
         </div>
-        <p className="text-xs text-zinc-500 mt-4">
+        <p className="text-xs text-muted-foreground mt-4">
           Equity tranche absorbs first losses. Notes only impaired after equity is exhausted.
         </p>
       </div>
@@ -882,7 +882,7 @@ function DefaultScenariosTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-white/10 text-zinc-400">
+              <tr className="border-b border-white/10 text-muted-foreground">
                 <th className="py-2 text-left">Scenario</th>
                 <th className="py-2 text-right">Default Rate</th>
                 <th className="py-2 text-right">Recovery</th>
@@ -897,14 +897,14 @@ function DefaultScenariosTab() {
                 const loss = lgd * TOTAL_ASSETS;
                 return (
                   <tr key={sc.label} className="border-b border-white/5 hover:bg-white/5">
-                    <td className="py-2 font-medium text-zinc-200">{sc.label}</td>
-                    <td className="py-2 text-right font-mono text-zinc-300">{sc.defaultRate}%</td>
-                    <td className="py-2 text-right font-mono text-zinc-300">{sc.recovery}%</td>
+                    <td className="py-2 font-medium text-foreground">{sc.label}</td>
+                    <td className="py-2 text-right font-mono text-muted-foreground">{sc.defaultRate}%</td>
+                    <td className="py-2 text-right font-mono text-muted-foreground">{sc.recovery}%</td>
                     <td className="py-2 text-right font-mono text-rose-400">${fmt(loss)}M</td>
                     <td className={cn("py-2 text-right font-mono font-semibold", sc.equityIRR >= 10 ? "text-emerald-400" : sc.equityIRR >= 0 ? "text-amber-400" : "text-rose-400")}>
                       {sc.equityIRR >= 0 ? "+" : ""}{sc.equityIRR}%
                     </td>
-                    <td className="py-2 text-right text-zinc-400">{sc.firstLossPct}%</td>
+                    <td className="py-2 text-right text-muted-foreground">{sc.firstLossPct}%</td>
                   </tr>
                 );
               })}
@@ -1026,7 +1026,7 @@ function EquityReturnsTab() {
                   className={cn("w-full rounded-t-md", isNeg ? "bg-rose-600" : d.irr >= 10 ? "bg-emerald-500" : "bg-amber-500")}
                   style={{ height: `${Math.max(pct, 4)}%` }}
                 />
-                <span className="text-xs text-zinc-400 mt-1">{d.label}</span>
+                <span className="text-xs text-muted-foreground mt-1">{d.label}</span>
               </div>
             );
           })}
@@ -1045,7 +1045,7 @@ function EquityReturnsTab() {
             <div key={fee.name} className="rounded-lg bg-white/5 p-3">
               <p className={cn("text-xs font-semibold mb-1", fee.color)}>{fee.name}</p>
               <p className="text-sm font-bold text-white mb-1">{fee.rate}</p>
-              <p className="text-xs text-zinc-400">{fee.desc}</p>
+              <p className="text-xs text-muted-foreground">{fee.desc}</p>
             </div>
           ))}
         </div>
@@ -1073,10 +1073,10 @@ export default function CLOManagerPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-zinc-950 text-white"
+      className="min-h-screen bg-background text-white"
     >
       {/* Header */}
-      <div className="border-b border-white/10 bg-zinc-900/60 px-6 py-5">
+      <div className="border-b border-white/10 bg-card/60 px-6 py-5">
         <div className="flex items-center gap-3 mb-1">
           <DollarSign className="h-6 w-6 text-primary" />
           <h1 className="text-xl font-bold text-white">CLO Manager</h1>
@@ -1084,7 +1084,7 @@ export default function CLOManagerPage() {
             $500M CLO
           </Badge>
         </div>
-        <p className="text-sm text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           Collateralized Loan Obligation — full lifecycle simulation: structure, coverage tests, portfolio analytics, reinvestment, default scenarios, and equity returns.
         </p>
       </div>
@@ -1092,7 +1092,7 @@ export default function CLOManagerPage() {
       {/* Content */}
       <div className="px-6 py-6">
         <Tabs defaultValue="structure">
-          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-zinc-900/60 border border-white/10 p-1 rounded-xl">
+          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-card/60 border border-white/10 p-1 rounded-xl">
             {TABS.map(({ id, label, icon: Icon }) => (
               <TabsTrigger
                 key={id}

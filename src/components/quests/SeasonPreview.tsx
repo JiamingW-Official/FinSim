@@ -51,36 +51,36 @@ export function SeasonPreview() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {/* Season header */}
       <motion.div
         initial={{ opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-white/5 bg-white/[0.02] p-4"
+        className="rounded-xl border border-border bg-card p-4"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-xs font-bold text-zinc-600">Season Pass</p>
-            <h3 className="mt-0.5 text-sm font-bold text-zinc-100">{season.name}</h3>
+            <p className="text-xs font-bold text-muted-foreground">Season Pass</p>
+            <h3 className="mt-0.5 text-sm font-bold text-foreground">{season.name}</h3>
           </div>
           <div className="shrink-0 text-right">
-            <p className="text-xs text-zinc-600">Season XP</p>
-            <p className="text-lg font-bold tabular-nums text-zinc-200">{seasonXP.toLocaleString()}</p>
+            <p className="text-xs text-muted-foreground">Season XP</p>
+            <p className="text-lg font-bold tabular-nums text-foreground">{seasonXP.toLocaleString()}</p>
           </div>
         </div>
 
         {/* Progress to next tier */}
         {nextTierInfo && (
-          <div className="mt-3 space-y-1.5">
+          <div className="mt-4 space-y-1.5">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-zinc-600">Tier {currentTier} → Tier {nextTierInfo.tierNumber}</span>
-              <span className="font-bold text-zinc-400">
+              <span className="text-muted-foreground">Tier {currentTier} → Tier {nextTierInfo.tierNumber}</span>
+              <span className="font-bold text-foreground/70">
                 {nextTierInfo.current.toLocaleString()} / {nextTierInfo.required.toLocaleString()} XP
               </span>
             </div>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-white/5">
+            <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
               <motion.div
-                className="h-full rounded-full bg-cyan-500"
+                className="h-full rounded-full bg-primary"
                 initial={{ width: 0 }}
                 animate={{
                   width: `${Math.min(100, (nextTierInfo.current / nextTierInfo.required) * 100)}%`,
@@ -92,7 +92,7 @@ export function SeasonPreview() {
         )}
 
         {!nextTierInfo && (
-          <p className="mt-2 text-xs font-bold text-amber-400">Max tier reached for preview!</p>
+          <p className="mt-2 text-xs font-bold text-primary">Max tier reached for preview!</p>
         )}
       </motion.div>
 
@@ -113,12 +113,12 @@ export function SeasonPreview() {
               className={cn(
                 "flex items-center gap-3 rounded-lg border p-3 transition-all",
                 isClaimed
-                  ? "border-green-500/15 bg-green-500/5"
+                  ? "border-emerald-500/15 bg-emerald-500/5"
                   : canClaim
                     ? "border-amber-500/25 bg-amber-500/5"
                     : isCurrent
-                      ? "border-cyan-500/20 bg-cyan-500/5"
-                      : "border-white/5 bg-white/[0.01]",
+                      ? "border-primary/20 bg-primary/5"
+                      : "border-border bg-card",
               )}
             >
               {/* Tier number */}
@@ -126,10 +126,10 @@ export function SeasonPreview() {
                 className={cn(
                   "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border text-[11px] font-bold",
                   isClaimed
-                    ? "border-green-500/30 bg-green-500/15 text-green-400"
+                    ? "border-emerald-500/30 bg-emerald-500/15 text-emerald-400"
                     : isUnlocked
-                      ? "border-cyan-500/30 bg-cyan-500/10 text-muted-foreground"
-                      : "border-zinc-800 bg-zinc-900 text-zinc-700",
+                      ? "border-primary/30 bg-primary/10 text-primary"
+                      : "border-border bg-muted text-muted-foreground",
                 )}
               >
                 {isClaimed ? <Check className="h-3.5 w-3.5" /> : tier.tier}
@@ -141,13 +141,13 @@ export function SeasonPreview() {
                   <span
                     className={cn(
                       "text-[11px] font-bold",
-                      isUnlocked ? "text-zinc-300" : "text-zinc-700",
+                      isUnlocked ? "text-foreground" : "text-muted-foreground",
                     )}
                   >
                     {tier.xpRequired.toLocaleString()} Season XP
                   </span>
                   {isCurrent && !isClaimed && (
-                    <span className="rounded px-1 py-0.5 text-[11px] font-bold bg-cyan-500/15 text-muted-foreground uppercase tracking-wide">
+                    <span className="rounded px-1 py-0.5 text-[11px] font-bold bg-primary/15 text-primary uppercase tracking-wide">
                       Current
                     </span>
                   )}
@@ -155,7 +155,7 @@ export function SeasonPreview() {
                 <span
                   className={cn(
                     "text-xs",
-                    isUnlocked ? "text-zinc-500" : "text-zinc-800",
+                    isUnlocked ? "text-muted-foreground" : "text-muted-foreground/50",
                   )}
                 >
                   {tier.reward.label}
@@ -166,7 +166,7 @@ export function SeasonPreview() {
               <div
                 className={cn(
                   "flex shrink-0 items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-bold",
-                  isUnlocked ? rewardColor(tier.reward.type) : "text-zinc-800 bg-transparent border-zinc-800",
+                  isUnlocked ? rewardColor(tier.reward.type) : "text-muted-foreground/40 bg-transparent border-border",
                 )}
               >
                 <span>{rewardIcon(tier.reward.type)}</span>
@@ -175,7 +175,7 @@ export function SeasonPreview() {
 
               {/* Lock / claim */}
               {!isUnlocked && (
-                <Lock className="h-3.5 w-3.5 shrink-0 text-zinc-800" />
+                <Lock className="h-3.5 w-3.5 shrink-0 text-muted-foreground/40" />
               )}
 
               {canClaim && (
@@ -184,7 +184,7 @@ export function SeasonPreview() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleClaim(tier.tier, tier.reward.value)}
-                  className="flex shrink-0 items-center gap-1 rounded-lg bg-amber-500 px-2.5 py-1.5 text-xs font-bold text-black shadow-sm transition-colors hover:bg-amber-400"
+                  className="flex shrink-0 items-center gap-1 rounded-lg bg-primary px-2.5 py-1.5 text-xs font-bold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
                 >
                   <Gift className="h-3 w-3" />
                   Claim
@@ -200,7 +200,7 @@ export function SeasonPreview() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="flex items-center justify-center gap-1.5 py-2 text-[11px] text-zinc-700"
+        className="flex items-center justify-center gap-1.5 py-2 text-[11px] text-muted-foreground"
       >
         <span>+{season.rewardTiers.length - PREVIEW_TIER_COUNT} more tiers</span>
         <ChevronRight className="h-3 w-3" />

@@ -314,7 +314,7 @@ function CreditMigrationMatrix() {
     if (ri === ci) return "bg-indigo-900/60";
     if (ci === 7) return v > 0 ? "bg-red-900/60" : "";
     if (v > 5) return "bg-emerald-900/40";
-    if (v > 1) return "bg-zinc-800";
+    if (v > 1) return "bg-muted";
     return "";
   };
   return (
@@ -322,18 +322,18 @@ function CreditMigrationMatrix() {
       <table className="w-full text-xs border-collapse">
         <thead>
           <tr>
-            <th className="py-1 px-2 text-zinc-500 text-left">From \ To</th>
+            <th className="py-1 px-2 text-muted-foreground text-left">From \ To</th>
             {ratings.map((r) => (
-              <th key={r} className={cn("py-1 px-2 text-center font-mono", r === "D" ? "text-red-400" : "text-zinc-300")}>{r}</th>
+              <th key={r} className={cn("py-1 px-2 text-center font-mono", r === "D" ? "text-red-400" : "text-muted-foreground")}>{r}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {matrix.map((row, ri) => (
-            <tr key={ri} className="border-t border-zinc-800/50">
+            <tr key={ri} className="border-t border-border/50">
               <td className={cn("py-1 px-2 font-bold font-mono", ri === 7 ? "text-red-400" : "text-indigo-400")}>{ratings[ri]}</td>
               {row.map((v, ci) => (
-                <td key={ci} className={cn("py-1 px-2 text-center font-mono", cellColor(v, ri, ci), ri === ci ? "text-indigo-300 font-bold" : ci === 7 ? "text-red-300" : "text-zinc-400")}>
+                <td key={ci} className={cn("py-1 px-2 text-center font-mono", cellColor(v, ri, ci), ri === ci ? "text-indigo-300 font-bold" : ci === 7 ? "text-red-300" : "text-muted-foreground")}>
                   {v.toFixed(v >= 10 ? 0 : v >= 1 ? 1 : 2)}
                 </td>
               ))}
@@ -651,28 +651,28 @@ function ModelInventoryTable() {
     if (s === "Active") return "text-emerald-400";
     if (s === "Review") return "text-amber-400";
     if (s === "Monitor") return "text-orange-400";
-    return "text-zinc-400";
+    return "text-muted-foreground";
   };
   const psiColor = (v: number) => v > 0.1 ? "text-red-400" : v > 0.05 ? "text-amber-400" : "text-emerald-400";
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-zinc-800">
+          <tr className="border-b border-border">
             {["Model Name", "Type", "Tier", "PSI", "Gini", "Last Val", "Status"].map((h) => (
-              <th key={h} className="text-left py-2 px-2 text-zinc-400 font-medium">{h}</th>
+              <th key={h} className="text-left py-2 px-2 text-muted-foreground font-medium">{h}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {models.map((m, i) => (
-            <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
-              <td className="py-2 px-2 text-zinc-200 font-medium">{m.name}</td>
-              <td className="py-2 px-2 text-zinc-400">{m.type}</td>
+            <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
+              <td className="py-2 px-2 text-foreground font-medium">{m.name}</td>
+              <td className="py-2 px-2 text-muted-foreground">{m.type}</td>
               <td className={cn("py-2 px-2 font-medium", tierColor(m.tier))}>{m.tier}</td>
               <td className={cn("py-2 px-2 font-mono", psiColor(m.psi))}>{m.psi.toFixed(2)}</td>
               <td className="py-2 px-2 text-indigo-400 font-mono">{m.gini.toFixed(1)}</td>
-              <td className="py-2 px-2 text-zinc-400">{m.lastVal}</td>
+              <td className="py-2 px-2 text-muted-foreground">{m.lastVal}</td>
               <td className={cn("py-2 px-2 font-medium", statusColor(m.status))}>{m.status}</td>
             </tr>
           ))}
@@ -692,15 +692,15 @@ interface ConceptCardProps {
 function ConceptCard({ title, icon, children, defaultOpen = false }: ConceptCardProps) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <button
         className="w-full text-left"
         onClick={() => setOpen((v) => !v)}
       >
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center justify-between">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
             <span className="flex items-center gap-2">{icon}{title}</span>
-            {open ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+            {open ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
           </CardTitle>
         </CardHeader>
       </button>
@@ -725,17 +725,17 @@ function ConceptCard({ title, icon, children, defaultOpen = false }: ConceptCard
 // ── Formula block ──────────────────────────────────────────────────────────────
 function FormulaBlock({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-zinc-950 border border-zinc-800 rounded-lg px-4 py-3 font-mono text-sm text-indigo-300 my-2 overflow-x-auto">
+    <div className="bg-background border border-border rounded-lg px-4 py-3 font-mono text-sm text-indigo-300 my-2 overflow-x-auto">
       {children}
     </div>
   );
 }
 
 // ── Stat chip ─────────────────────────────────────────────────────────────────
-function Chip({ label, value, color = "text-zinc-200" }: { label: string; value: string; color?: string }) {
+function Chip({ label, value, color = "text-foreground" }: { label: string; value: string; color?: string }) {
   return (
-    <div className="bg-zinc-800/60 rounded-lg px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-xs text-zinc-500 uppercase tracking-wide">{label}</span>
+    <div className="bg-muted/60 rounded-lg px-3 py-2 flex flex-col gap-0.5">
+      <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={cn("text-sm font-bold font-mono", color)}>{value}</span>
     </div>
   );
@@ -754,8 +754,8 @@ export default function RiskModelsPage() {
           <ShieldAlert className="w-7 h-7 text-red-400" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Financial Risk Models</h1>
-          <p className="text-zinc-400 text-sm mt-1">
+          <h1 className="text-2xl font-bold text-foreground">Financial Risk Models</h1>
+          <p className="text-muted-foreground text-sm mt-1">
             VaR frameworks, credit risk methodology, stress testing, and model risk governance — the quantitative foundations of risk management.
           </p>
         </div>
@@ -770,17 +770,17 @@ export default function RiskModelsPage() {
       </div>
 
       <Tabs defaultValue="market" className="space-y-4">
-        <TabsList className="bg-zinc-900 border border-zinc-800">
-          <TabsTrigger value="market" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+        <TabsList className="bg-card border border-border">
+          <TabsTrigger value="market" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Market Risk
           </TabsTrigger>
-          <TabsTrigger value="credit" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+          <TabsTrigger value="credit" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Credit Risk
           </TabsTrigger>
-          <TabsTrigger value="stress" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+          <TabsTrigger value="stress" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Stress Testing
           </TabsTrigger>
-          <TabsTrigger value="modelrisk" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+          <TabsTrigger value="modelrisk" className="data-[state=active]:bg-muted text-xs sm:text-sm">
             Model Risk
           </TabsTrigger>
         </TabsList>
@@ -820,14 +820,14 @@ export default function RiskModelsPage() {
                 badgeColor: "bg-emerald-900/60 text-emerald-300",
               },
             ].map((m, i) => (
-              <Card key={i} className={cn("bg-zinc-900 border", m.color)}>
+              <Card key={i} className={cn("bg-card border", m.color)}>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold text-zinc-200">{m.method}</CardTitle>
-                  <p className="text-xs text-zinc-500">{m.aka}</p>
+                  <CardTitle className="text-sm font-semibold text-foreground">{m.method}</CardTitle>
+                  <p className="text-xs text-muted-foreground">{m.aka}</p>
                 </CardHeader>
                 <CardContent className="space-y-2">
-                  <div className="bg-zinc-950 rounded px-3 py-2 font-mono text-xs text-indigo-300">{m.formula}</div>
-                  <p className="text-xs text-zinc-400">{m.detail}</p>
+                  <div className="bg-background rounded px-3 py-2 font-mono text-xs text-indigo-300">{m.formula}</div>
+                  <p className="text-xs text-muted-foreground">{m.detail}</p>
                   <Badge className={m.badgeColor}>{m.badge}</Badge>
                 </CardContent>
               </Card>
@@ -835,9 +835,9 @@ export default function RiskModelsPage() {
           </div>
 
           {/* Historical VaR chart */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-indigo-400" />
                 Historical Simulation VaR — 500-Day P&L Distribution
               </CardTitle>
@@ -847,19 +847,19 @@ export default function RiskModelsPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-3">
                 <Chip label="99% VaR" value={`${Math.abs(sortedPnL[VAR_99_IDX]).toFixed(2)}%`} color="text-amber-400" />
                 <Chip label="CVaR 97.5%" value={`${Math.abs(sortedPnL.slice(0, Math.floor(500 * 0.025)).reduce((a, b) => a + b, 0) / Math.floor(500 * 0.025)).toFixed(2)}%`} color="text-red-400" />
-                <Chip label="Lookback" value="500 days" color="text-zinc-300" />
+                <Chip label="Lookback" value="500 days" color="text-muted-foreground" />
                 <Chip label="Confidence" value="99.0%" color="text-indigo-400" />
               </div>
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Red bars represent the 1% tail losses. CVaR (Expected Shortfall) at 97.5% is the average loss beyond the VaR threshold — a coherent risk measure satisfying sub-additivity, monotonicity, positive homogeneity, and translation invariance.
               </p>
             </CardContent>
           </Card>
 
           {/* Backtesting — Basel Traffic Light */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-amber-400" />
                 Backtesting: Basel Traffic Light Approach (250-day)
               </CardTitle>
@@ -874,8 +874,8 @@ export default function RiskModelsPage() {
                 ].map((z) => (
                   <div key={z.zone} className={cn("rounded-lg border p-3", z.bg)}>
                     <div className={cn("font-bold text-sm", z.color)}>{z.zone} Zone</div>
-                    <div className="text-xs text-zinc-400 mt-1">Exceptions: <span className="text-zinc-200">{z.exceptions}</span></div>
-                    <div className="text-xs text-zinc-400">Capital ×: <span className={z.color}>{z.multiplier}</span></div>
+                    <div className="text-xs text-muted-foreground mt-1">Exceptions: <span className="text-foreground">{z.exceptions}</span></div>
+                    <div className="text-xs text-muted-foreground">Capital ×: <span className={z.color}>{z.multiplier}</span></div>
                   </div>
                 ))}
               </div>
@@ -887,7 +887,7 @@ export default function RiskModelsPage() {
                 {baselZone === "green" ? <CheckCircle className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
                 Simulated outcome: <strong>{exceptionCount} exceptions</strong> — {baselZone.charAt(0).toUpperCase() + baselZone.slice(1)} Zone
               </div>
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Basel III requires daily backtesting of 99% 1-day VaR against actual and hypothetical P&L. P&L attribution compares actual (includes intraday) vs hypothetical (end-of-day revaluation using same risk factors). FRTB requires both comparisons to pass.
               </p>
             </CardContent>
@@ -901,34 +901,34 @@ export default function RiskModelsPage() {
           >
             <div className="space-y-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="bg-zinc-800/40 rounded-lg p-3 space-y-1">
-                  <div className="text-xs font-semibold text-zinc-300 uppercase tracking-wide">Basel 2.5 (Old)</div>
-                  <div className="text-xs text-zinc-400">• 10-day 99% VaR × multiplier</div>
-                  <div className="text-xs text-zinc-400">• Stressed VaR supplement</div>
-                  <div className="text-xs text-zinc-400">• IRC (Incremental Risk Charge)</div>
-                  <div className="text-xs text-zinc-400">• Not coherent (VaR violates sub-additivity)</div>
+                <div className="bg-muted/40 rounded-lg p-3 space-y-1">
+                  <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Basel 2.5 (Old)</div>
+                  <div className="text-xs text-muted-foreground">• 10-day 99% VaR × multiplier</div>
+                  <div className="text-xs text-muted-foreground">• Stressed VaR supplement</div>
+                  <div className="text-xs text-muted-foreground">• IRC (Incremental Risk Charge)</div>
+                  <div className="text-xs text-muted-foreground">• Not coherent (VaR violates sub-additivity)</div>
                 </div>
-                <div className="bg-zinc-800/40 rounded-lg p-3 space-y-1">
+                <div className="bg-muted/40 rounded-lg p-3 space-y-1">
                   <div className="text-xs font-semibold text-indigo-300 uppercase tracking-wide">FRTB IMA (New)</div>
-                  <div className="text-xs text-zinc-400">• 97.5% Expected Shortfall (ES)</div>
-                  <div className="text-xs text-zinc-400">• Liquidity horizons: 10/20/40/60/120d</div>
-                  <div className="text-xs text-zinc-400">• DRC (Default Risk Charge) replaces IRC</div>
-                  <div className="text-xs text-zinc-400">• Coherent, captures tail risk better</div>
+                  <div className="text-xs text-muted-foreground">• 97.5% Expected Shortfall (ES)</div>
+                  <div className="text-xs text-muted-foreground">• Liquidity horizons: 10/20/40/60/120d</div>
+                  <div className="text-xs text-muted-foreground">• DRC (Default Risk Charge) replaces IRC</div>
+                  <div className="text-xs text-muted-foreground">• Coherent, captures tail risk better</div>
                 </div>
               </div>
-              <div className="text-xs font-semibold text-zinc-300 mt-2">Sensitivity-Based Approach (SBA) — Standardised Method</div>
+              <div className="text-xs font-semibold text-muted-foreground mt-2">Sensitivity-Based Approach (SBA) — Standardised Method</div>
               <div className="grid grid-cols-3 gap-2">
                 {["Delta (Δ) — linear price sensitivity to risk factors", "Vega (ν) — sensitivity of options to implied vol", "Curvature — captures non-linear option risk (γ)"].map((item, i) => (
-                  <div key={i} className="bg-zinc-800/30 rounded p-2 text-xs text-zinc-400">{item}</div>
+                  <div key={i} className="bg-muted/30 rounded p-2 text-xs text-muted-foreground">{item}</div>
                 ))}
               </div>
             </div>
           </ConceptCard>
 
           {/* Correlation matrix */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-primary" />
                 Correlation Matrix Construction Methods
               </CardTitle>
@@ -937,7 +937,7 @@ export default function RiskModelsPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                 <div>
                   <CorrelationMatrixSVG />
-                  <p className="text-xs text-zinc-500 mt-2">Cross-asset correlation matrix. Green = positive correlation, red = negative.</p>
+                  <p className="text-xs text-muted-foreground mt-2">Cross-asset correlation matrix. Green = positive correlation, red = negative.</p>
                 </div>
                 <div className="space-y-3">
                   {[
@@ -945,9 +945,9 @@ export default function RiskModelsPage() {
                     { name: "Exponential Weighting (EWMA)", desc: "λ decay factor (RiskMetrics: λ=0.94 daily). Recent observations weighted more. Responds faster to regime changes." },
                     { name: "Factor Model", desc: "Decompose returns into systematic factors (market, sector, style). Correlation implied by factor loadings. Avoids full Σ matrix estimation for large portfolios." },
                   ].map((m, i) => (
-                    <div key={i} className="bg-zinc-800/40 rounded-lg p-3">
+                    <div key={i} className="bg-muted/40 rounded-lg p-3">
                       <div className="text-xs font-semibold text-indigo-300">{m.name}</div>
-                      <div className="text-xs text-zinc-400 mt-1">{m.desc}</div>
+                      <div className="text-xs text-muted-foreground mt-1">{m.desc}</div>
                     </div>
                   ))}
                 </div>
@@ -961,9 +961,9 @@ export default function RiskModelsPage() {
         ───────────────────────────────────────────────────────────────────── */}
         <TabsContent value="credit" className="space-y-4 data-[state=inactive]:hidden">
           {/* EL = PD × LGD × EAD */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Target className="w-4 h-4 text-amber-400" />
                 Expected Loss Framework: EL = PD × LGD × EAD
               </CardTitle>
@@ -993,13 +993,13 @@ export default function RiskModelsPage() {
                     color: "text-indigo-400",
                   },
                 ].map((c) => (
-                  <div key={c.abbr} className="bg-zinc-800/40 rounded-lg p-4 space-y-2">
+                  <div key={c.abbr} className="bg-muted/40 rounded-lg p-4 space-y-2">
                     <div className="flex items-center gap-2">
                       <span className={cn("text-2xl font-bold font-mono", c.color)}>{c.abbr}</span>
-                      <span className="text-xs text-zinc-400">{c.name}</span>
+                      <span className="text-xs text-muted-foreground">{c.name}</span>
                     </div>
-                    <p className="text-xs text-zinc-400">{c.def}</p>
-                    <div className="text-xs text-zinc-500 italic">{c.range}</div>
+                    <p className="text-xs text-muted-foreground">{c.def}</p>
+                    <div className="text-xs text-muted-foreground italic">{c.range}</div>
                   </div>
                 ))}
               </div>
@@ -1013,24 +1013,24 @@ export default function RiskModelsPage() {
 
           {/* Structural vs Reduced Form */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300">Merton Structural Model</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Merton Structural Model</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <MertonModelSVG />
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-muted-foreground">
                   Default occurs when firm asset value V falls below debt threshold D at maturity T. Equity = call option on firm value: <span className="text-indigo-300 font-mono">E = V·N(d₁) − D·e⁻ʳᵀ·N(d₂)</span>. PD = N(−d₂).
                 </p>
-                <p className="text-xs text-zinc-500">Blue paths = survival. Red paths = default (V &lt; D at T). Volatility of asset value σᵥ is key input — inferred from equity vol.</p>
+                <p className="text-xs text-muted-foreground">Blue paths = survival. Red paths = default (V &lt; D at T). Volatility of asset value σᵥ is key input — inferred from equity vol.</p>
               </CardContent>
             </Card>
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-zinc-300">Reduced Form Models</CardTitle>
+                <CardTitle className="text-sm font-medium text-muted-foreground">Reduced Form Models</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-xs text-zinc-400">
+                <p className="text-xs text-muted-foreground">
                   Default is modeled as a Poisson arrival with intensity λ (hazard rate). Default time τ is the first jump of a Poisson process.
                 </p>
                 <FormulaBlock>
@@ -1045,9 +1045,9 @@ export default function RiskModelsPage() {
                     { label: "Hull-White", note: "CDS calibration" },
                     { label: "SABR credit", note: "Stochastic LGD" },
                   ].map((m, i) => (
-                    <div key={i} className="bg-zinc-800/30 rounded p-2">
+                    <div key={i} className="bg-muted/30 rounded p-2">
                       <div className="text-xs text-indigo-300 font-medium">{m.label}</div>
-                      <div className="text-xs text-zinc-500">{m.note}</div>
+                      <div className="text-xs text-muted-foreground">{m.note}</div>
                     </div>
                   ))}
                 </div>
@@ -1056,16 +1056,16 @@ export default function RiskModelsPage() {
           </div>
 
           {/* Credit Migration Matrix */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <GitBranch className="w-4 h-4 text-primary" />
                 Credit Migration Matrix — 1-Year Rating Transition Probabilities (%)
               </CardTitle>
             </CardHeader>
             <CardContent>
               <CreditMigrationMatrix />
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Diagonal = probability of staying in rating; off-diagonal = transition probability. Multi-year matrices computed via matrix exponentiation: M(t) = M(1)^t. Used in credit VaR, CECL, IFRS 9, and scenario analysis.
               </p>
             </CardContent>
@@ -1079,35 +1079,35 @@ export default function RiskModelsPage() {
           >
             <div className="space-y-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="bg-zinc-800/30 rounded-lg p-3 space-y-1">
+                <div className="bg-muted/30 rounded-lg p-3 space-y-1">
                   <div className="text-xs font-semibold text-amber-300">F-IRB (Foundation)</div>
-                  <div className="text-xs text-zinc-400">Bank provides own <span className="text-zinc-200">PD</span> estimates.</div>
-                  <div className="text-xs text-zinc-400">Regulator provides LGD, EAD, M.</div>
-                  <div className="text-xs text-zinc-400">Corporate: LGD = 45%, EAD = drawn + 75% × undrawn.</div>
+                  <div className="text-xs text-muted-foreground">Bank provides own <span className="text-foreground">PD</span> estimates.</div>
+                  <div className="text-xs text-muted-foreground">Regulator provides LGD, EAD, M.</div>
+                  <div className="text-xs text-muted-foreground">Corporate: LGD = 45%, EAD = drawn + 75% × undrawn.</div>
                 </div>
-                <div className="bg-zinc-800/30 rounded-lg p-3 space-y-1">
+                <div className="bg-muted/30 rounded-lg p-3 space-y-1">
                   <div className="text-xs font-semibold text-emerald-300">A-IRB (Advanced)</div>
-                  <div className="text-xs text-zinc-400">Bank provides own <span className="text-zinc-200">PD, LGD, EAD, M</span>.</div>
-                  <div className="text-xs text-zinc-400">Higher data requirements (7yr history).</div>
-                  <div className="text-xs text-zinc-400">Lower capital floor (output floor: 72.5% of SA).</div>
+                  <div className="text-xs text-muted-foreground">Bank provides own <span className="text-foreground">PD, LGD, EAD, M</span>.</div>
+                  <div className="text-xs text-muted-foreground">Higher data requirements (7yr history).</div>
+                  <div className="text-xs text-muted-foreground">Lower capital floor (output floor: 72.5% of SA).</div>
                 </div>
               </div>
-              <div className="text-xs font-semibold text-zinc-300">AIRB Capital Formula (Simplified)</div>
+              <div className="text-xs font-semibold text-muted-foreground">AIRB Capital Formula (Simplified)</div>
               <FormulaBlock>
                 ρ = 0.12 × (1−exp(−50×PD)) / (1−exp(−50)) + 0.24 × [1 − (1−exp(−50×PD)) / (1−exp(−50))]{"\n"}
                 K = LGD × [N(√(1/1−ρ) × G(PD) + √(ρ/(1−ρ)) × G(0.999)) − PD]{"\n"}
                 RWA = K × 12.5 × EAD × M adjustment
               </FormulaBlock>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 ρ = asset correlation (sector-dependent). G = inverse normal CDF. 0.999 quantile = 99.9% confidence (1-in-1000yr loss). Maturity adjustment penalises longer-dated exposures.
               </p>
             </div>
           </ConceptCard>
 
           {/* CCR Exposure Profile */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
                 Counterparty Credit Risk: EE / PFE / EPE / CVA
               </CardTitle>
@@ -1121,14 +1121,14 @@ export default function RiskModelsPage() {
                   { abbr: "EPE", name: "Effective Positive Exposure", color: "text-emerald-400" },
                   { abbr: "CVA", name: "Credit Valuation Adjustment", color: "text-red-400" },
                 ].map((m) => (
-                  <div key={m.abbr} className="bg-zinc-800/30 rounded p-2">
+                  <div key={m.abbr} className="bg-muted/30 rounded p-2">
                     <div className={cn("text-xs font-bold font-mono", m.color)}>{m.abbr}</div>
-                    <div className="text-xs text-zinc-500">{m.name}</div>
+                    <div className="text-xs text-muted-foreground">{m.name}</div>
                   </div>
                 ))}
               </div>
               <FormulaBlock>CVA ≈ (1−R) × Σ EE(tᵢ) × [PD(tᵢ₋₁,tᵢ)] × D(tᵢ)</FormulaBlock>
-              <p className="text-xs text-zinc-500 mt-1">CVA is the market value of counterparty default risk. Banks must hold CVA capital under Basel III. DVA (debit valuation adjustment) is the mirror — own credit risk to counterparty.</p>
+              <p className="text-xs text-muted-foreground mt-1">CVA is the market value of counterparty default risk. Banks must hold CVA capital under Basel III. DVA (debit valuation adjustment) is the mirror — own credit risk to counterparty.</p>
             </CardContent>
           </Card>
         </TabsContent>
@@ -1138,9 +1138,9 @@ export default function RiskModelsPage() {
         ───────────────────────────────────────────────────────────────────── */}
         <TabsContent value="stress" className="space-y-4 data-[state=inactive]:hidden">
           {/* Scenario table */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-orange-400" />
                 Historical & Regulatory Stress Scenarios
               </CardTitle>
@@ -1149,17 +1149,17 @@ export default function RiskModelsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-zinc-800">
+                    <tr className="border-b border-border">
                       {["Scenario", "Type", "Equity Δ", "Credit Spread Δ", "Rates Δ (bps)", "FX Δ", "Liquidity"].map((h) => (
-                        <th key={h} className="text-left py-2 px-2 text-zinc-400 font-medium">{h}</th>
+                        <th key={h} className="text-left py-2 px-2 text-muted-foreground font-medium">{h}</th>
                       ))}
                     </tr>
                   </thead>
                   <tbody>
                     {STRESS_SCENARIOS.map((sc, i) => (
-                      <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30">
+                      <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
                         <td className="py-2 px-2 font-medium" style={{ color: sc.color }}>{sc.name}</td>
-                        <td className="py-2 px-2 text-zinc-500">{sc.type}</td>
+                        <td className="py-2 px-2 text-muted-foreground">{sc.type}</td>
                         <td className={cn("py-2 px-2 font-mono", sc.equity < 0 ? "text-red-400" : "text-emerald-400")}>
                           {sc.equity > 0 ? `+${sc.equity}` : sc.equity}%
                         </td>
@@ -1172,7 +1172,7 @@ export default function RiskModelsPage() {
                         <td className={cn("py-2 px-2 font-mono", sc.fx < 0 ? "text-red-400" : "text-emerald-400")}>
                           {sc.fx > 0 ? `+${sc.fx}` : sc.fx}%
                         </td>
-                        <td className="py-2 px-2 text-zinc-400">{sc.liquidity}</td>
+                        <td className="py-2 px-2 text-muted-foreground">{sc.liquidity}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1182,25 +1182,25 @@ export default function RiskModelsPage() {
           </Card>
 
           {/* Stress loss waterfall */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Gauge className="w-4 h-4 text-indigo-400" />
                 Stress Loss Decomposition by Risk Type
               </CardTitle>
             </CardHeader>
             <CardContent>
               <StressWaterfallSVG />
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Capital impact decomposed into risk type contributions. Expressed in basis points of Risk-Weighted Assets (RWA). Market and credit risk typically dominate; liquidity adds tail stress multiplier.
               </p>
             </CardContent>
           </Card>
 
           {/* NGFS Climate Scenarios */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-emerald-400" />
                 NGFS Climate Scenarios — Temperature Pathways
               </CardTitle>
@@ -1214,9 +1214,9 @@ export default function RiskModelsPage() {
                   { name: "Divergent Net Zero", desc: "Different sectors/regions decarbonise at different speeds.", color: "text-indigo-400" },
                   { name: "Hot House World", desc: "Current policies only. High chronic physical risk. >3°C warming.", color: "text-red-400" },
                 ].map((sc, i) => (
-                  <div key={i} className="bg-zinc-800/30 rounded p-2">
+                  <div key={i} className="bg-muted/30 rounded p-2">
                     <div className={cn("text-xs font-semibold", sc.color)}>{sc.name}</div>
-                    <div className="text-xs text-zinc-500 mt-1">{sc.desc}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{sc.desc}</div>
                   </div>
                 ))}
               </div>
@@ -1230,12 +1230,12 @@ export default function RiskModelsPage() {
               icon={<TrendingDown className="w-4 h-4 text-red-400" />}
               defaultOpen
             >
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-muted-foreground">
                 Start from the outcome (failure/critical loss) and work backwards to identify scenarios that could cause it. Mandated by regulators (PRA, ECB). Forces management to confront tail risks not captured by forward stress tests.
               </p>
               <div className="mt-2 space-y-1">
                 {["Identify critical loss threshold (e.g., CET1 &lt; 4.5%)", "Search scenario space: what shocks breach the threshold?", "Assess plausibility of breaking scenarios", "Design mitigants before they occur"].map((step, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs text-zinc-400">
+                  <div key={i} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <span className="text-indigo-400 font-bold shrink-0">{i + 1}.</span>
                     <span dangerouslySetInnerHTML={{ __html: step }} />
                   </div>
@@ -1247,10 +1247,10 @@ export default function RiskModelsPage() {
               icon={<ShieldAlert className="w-4 h-4 text-primary" />}
               defaultOpen
             >
-              <div className="space-y-2 text-xs text-zinc-400">
-                <div><span className="text-zinc-200 font-medium">DFAST:</span> Dodd-Frank Act Stress Test. Annual. Three scenarios: Baseline, Adverse, Severely Adverse. Published by Fed. BHCs &gt;$100B required.</div>
-                <div><span className="text-zinc-200 font-medium">CCAR:</span> Comprehensive Capital Analysis and Review. Adds qualitative assessment: capital planning processes, governance, assumptions. Can fail quantitative but pass qualitatively (and vice versa).</div>
-                <div><span className="text-zinc-200 font-medium">Severely Adverse:</span> ~10% unemployment, 50% equity decline, 300bps rate drop, global recession. Horizon: 9 quarters.</div>
+              <div className="space-y-2 text-xs text-muted-foreground">
+                <div><span className="text-foreground font-medium">DFAST:</span> Dodd-Frank Act Stress Test. Annual. Three scenarios: Baseline, Adverse, Severely Adverse. Published by Fed. BHCs &gt;$100B required.</div>
+                <div><span className="text-foreground font-medium">CCAR:</span> Comprehensive Capital Analysis and Review. Adds qualitative assessment: capital planning processes, governance, assumptions. Can fail quantitative but pass qualitatively (and vice versa).</div>
+                <div><span className="text-foreground font-medium">Severely Adverse:</span> ~10% unemployment, 50% equity decline, 300bps rate drop, global recession. Horizon: 9 quarters.</div>
               </div>
             </ConceptCard>
           </div>
@@ -1261,13 +1261,13 @@ export default function RiskModelsPage() {
             icon={<BarChart2 className="w-4 h-4 text-primary" />}
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="bg-zinc-800/30 rounded-lg p-3">
+              <div className="bg-muted/30 rounded-lg p-3">
                 <div className="text-xs font-semibold text-primary mb-1">Sensitivity Analysis</div>
-                <div className="text-xs text-zinc-400">Varies one factor at a time (DV01, CS01, equity delta). Measures marginal impact. Fast, tractable. Ignores cross-factor correlations. Used for hedging, limit-setting, P&L attribution.</div>
+                <div className="text-xs text-muted-foreground">Varies one factor at a time (DV01, CS01, equity delta). Measures marginal impact. Fast, tractable. Ignores cross-factor correlations. Used for hedging, limit-setting, P&L attribution.</div>
               </div>
-              <div className="bg-zinc-800/30 rounded-lg p-3">
+              <div className="bg-muted/30 rounded-lg p-3">
                 <div className="text-xs font-semibold text-primary mb-1">Scenario Analysis</div>
-                <div className="text-xs text-zinc-400">Moves multiple factors simultaneously using economic logic. Captures correlation and second-order effects. Historical: uses observed crisis moves. Hypothetical: custom narrative (e.g., geopolitical shock). Regulatorily required.</div>
+                <div className="text-xs text-muted-foreground">Moves multiple factors simultaneously using economic logic. Captures correlation and second-order effects. Historical: uses observed crisis moves. Hypothetical: custom narrative (e.g., geopolitical shock). Regulatorily required.</div>
               </div>
             </div>
           </ConceptCard>
@@ -1278,16 +1278,16 @@ export default function RiskModelsPage() {
         ───────────────────────────────────────────────────────────────────── */}
         <TabsContent value="modelrisk" className="space-y-4 data-[state=inactive]:hidden">
           {/* SR 11-7 */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <FileWarning className="w-4 h-4 text-amber-400" />
                 SR 11-7 / OCC 2011-12: Model Risk Management Guidance
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <p className="text-xs text-zinc-400">
-                Federal Reserve and OCC supervisory guidance (2011) defines model risk as the potential for adverse consequences from decisions based on incorrect or misused model outputs. Two sources: <span className="text-zinc-200">model error</span> (incorrect design, wrong assumptions, implementation bugs) and <span className="text-zinc-200">model misuse</span> (applied outside intended scope, limitations not understood).
+              <p className="text-xs text-muted-foreground">
+                Federal Reserve and OCC supervisory guidance (2011) defines model risk as the potential for adverse consequences from decisions based on incorrect or misused model outputs. Two sources: <span className="text-foreground">model error</span> (incorrect design, wrong assumptions, implementation bugs) and <span className="text-foreground">model misuse</span> (applied outside intended scope, limitations not understood).
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
@@ -1310,8 +1310,8 @@ export default function RiskModelsPage() {
                   <div key={i} className={cn("rounded-lg border p-3 space-y-2", p.color.split(" ")[0])}>
                     <div className={cn("text-xs font-semibold", p.color.split(" ")[1])}>{p.pillar}</div>
                     {p.items.map((item, j) => (
-                      <div key={j} className="flex items-start gap-1.5 text-xs text-zinc-400">
-                        <span className="text-zinc-600">•</span>
+                      <div key={j} className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                        <span className="text-muted-foreground">•</span>
                         {item}
                       </div>
                     ))}
@@ -1322,9 +1322,9 @@ export default function RiskModelsPage() {
           </Card>
 
           {/* Model Lifecycle */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <GitBranch className="w-4 h-4 text-indigo-400" />
                 Model Validation Lifecycle
               </CardTitle>
@@ -1339,9 +1339,9 @@ export default function RiskModelsPage() {
                   { stage: "Monitoring", items: "PSI, CSI, Gini, calibration drift" },
                   { stage: "Retirement", items: "Decommission, successor transition" },
                 ].map((st, i) => (
-                  <div key={i} className="bg-zinc-800/30 rounded p-2">
-                    <div className="text-xs font-semibold text-zinc-300">{st.stage}</div>
-                    <div className="text-xs text-zinc-500 mt-0.5">{st.items}</div>
+                  <div key={i} className="bg-muted/30 rounded p-2">
+                    <div className="text-xs font-semibold text-muted-foreground">{st.stage}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{st.items}</div>
                   </div>
                 ))}
               </div>
@@ -1349,9 +1349,9 @@ export default function RiskModelsPage() {
           </Card>
 
           {/* Model Inventory */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Database className="w-4 h-4 text-primary" />
                 Model Inventory — Risk Tiering &amp; Monitoring Metrics
               </CardTitle>
@@ -1364,10 +1364,10 @@ export default function RiskModelsPage() {
                   { metric: "CSI", name: "Characteristic Stability Index", thresholds: "Per-variable analog of PSI; flags input distribution drift", color: "text-amber-400" },
                   { metric: "Gini", name: "Gini Coefficient", thresholds: ">60% good | 40–60% acceptable | <40% poor discrimination", color: "text-emerald-400" },
                 ].map((m, i) => (
-                  <div key={i} className="bg-zinc-800/30 rounded-lg p-2">
+                  <div key={i} className="bg-muted/30 rounded-lg p-2">
                     <div className={cn("text-sm font-bold font-mono", m.color)}>{m.metric}</div>
-                    <div className="text-xs text-zinc-400">{m.name}</div>
-                    <div className="text-xs text-zinc-500 mt-1">{m.thresholds}</div>
+                    <div className="text-xs text-muted-foreground">{m.name}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{m.thresholds}</div>
                   </div>
                 ))}
               </div>
@@ -1382,12 +1382,12 @@ export default function RiskModelsPage() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="space-y-2">
-                <div className="text-zinc-200 font-semibold">Backtesting</div>
-                <p className="text-zinc-400">Compares model predictions against actual observed outcomes over historical period. Tests predictive accuracy. Example: VaR backtesting (exceptions count), PD backtesting (realised default rates vs predicted PDs). Statistical tests: Kupiec (proportion of failures), Christoffersen (independence of failures).</p>
+                <div className="text-foreground font-semibold">Backtesting</div>
+                <p className="text-muted-foreground">Compares model predictions against actual observed outcomes over historical period. Tests predictive accuracy. Example: VaR backtesting (exceptions count), PD backtesting (realised default rates vs predicted PDs). Statistical tests: Kupiec (proportion of failures), Christoffersen (independence of failures).</p>
               </div>
               <div className="space-y-2">
-                <div className="text-zinc-200 font-semibold">Benchmarking</div>
-                <p className="text-zinc-400">Compares primary model outputs against independent reference models (challenger models). Doesn&apos;t require outcomes — useful for validation before model goes live. Example: internal credit scorecard vs vendor bureau score, IRB PD model vs external rating agency PDs. Identifies systematic bias.</p>
+                <div className="text-foreground font-semibold">Benchmarking</div>
+                <p className="text-muted-foreground">Compares primary model outputs against independent reference models (challenger models). Doesn&apos;t require outcomes — useful for validation before model goes live. Example: internal credit scorecard vs vendor bureau score, IRB PD model vs external rating agency PDs. Identifies systematic bias.</p>
               </div>
             </div>
           </ConceptCard>
@@ -1399,7 +1399,7 @@ export default function RiskModelsPage() {
               icon={<ShieldAlert className="w-4 h-4 text-red-400" />}
               defaultOpen
             >
-              <div className="space-y-2 text-xs text-zinc-400">
+              <div className="space-y-2 text-xs text-muted-foreground">
                 <p>ECB launched TRIM 2016–2021 to reduce unwarranted RWA variability across European banks using IRB models. Key findings:</p>
                 {["PD calibration often too optimistic vs realised defaults", "LGD downturn estimates inconsistent across peers", "EAD credit conversion factors lacked conservatism", "Data quality and IT infrastructure weaknesses", "Outcome: many banks required to raise RWA (+~12% on average)"].map((item, i) => (
                   <div key={i} className="flex gap-2">
@@ -1414,8 +1414,8 @@ export default function RiskModelsPage() {
               icon={<TrendingDown className="w-4 h-4 text-amber-400" />}
               defaultOpen
             >
-              <div className="space-y-2 text-xs text-zinc-400">
-                <p>ASC 326 (FASB). Effective 2020 for large banks, replaced incurred loss model. Key change: <span className="text-zinc-200">lifetime expected loss on day 1</span>.</p>
+              <div className="space-y-2 text-xs text-muted-foreground">
+                <p>ASC 326 (FASB). Effective 2020 for large banks, replaced incurred loss model. Key change: <span className="text-foreground">lifetime expected loss on day 1</span>.</p>
                 {[
                   "Forward-looking: incorporates economic forecasts (macroeconomic scenarios + probability weights)",
                   "Loss recognised when loan originated (not when loss likely)",

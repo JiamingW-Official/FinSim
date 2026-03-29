@@ -170,16 +170,16 @@ function SPIVAChart() {
 
   return (
     <div className="space-y-3">
-      <p className="text-xs text-zinc-400">
+      <p className="text-xs text-muted-foreground">
         % of active funds underperforming their benchmark (SPIVA Scorecard, S&P Global)
       </p>
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-zinc-800">
-              <th className="text-left py-2 pr-4 text-zinc-400 font-medium">Category</th>
+            <tr className="border-b border-border">
+              <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Category</th>
               {yearLabels.map((y) => (
-                <th key={y} className="text-right py-2 px-3 text-zinc-400 font-medium">{y}</th>
+                <th key={y} className="text-right py-2 px-3 text-muted-foreground font-medium">{y}</th>
               ))}
             </tr>
           </thead>
@@ -188,13 +188,13 @@ function SPIVAChart() {
               <tr
                 key={row.category}
                 className={cn(
-                  "border-b border-zinc-800/50 cursor-default transition-colors",
-                  hoveredRow === i ? "bg-zinc-800/40" : "hover:bg-zinc-800/20"
+                  "border-b border-border/50 cursor-default transition-colors",
+                  hoveredRow === i ? "bg-muted/40" : "hover:bg-muted/20"
                 )}
                 onMouseEnter={() => setHoveredRow(i)}
                 onMouseLeave={() => setHoveredRow(null)}
               >
-                <td className="py-2 pr-4 text-zinc-300 font-medium">{row.category}</td>
+                <td className="py-2 pr-4 text-muted-foreground font-medium">{row.category}</td>
                 {years.map((yr) => {
                   const val = row[yr] as number;
                   return (
@@ -226,7 +226,7 @@ function SPIVAChart() {
 
       {/* Bar chart visualization */}
       <div className="mt-4">
-        <p className="text-xs text-zinc-500 mb-2">US Large Cap — % underperforming over time</p>
+        <p className="text-xs text-muted-foreground mb-2">US Large Cap — % underperforming over time</p>
         <svg viewBox={`0 0 ${W} 180`} className="w-full">
           {/* Grid lines */}
           {[0, 25, 50, 75, 100].map((pct) => (
@@ -295,19 +295,19 @@ function EvidenceTab() {
   return (
     <div className="space-y-6">
       {/* SPIVA Scorecard */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <BarChart2 className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-zinc-100">SPIVA Scorecard — The Long Game</h3>
+          <h3 className="font-semibold text-foreground">SPIVA Scorecard — The Long Game</h3>
         </div>
         <SPIVAChart />
       </div>
 
       {/* EMH */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Info className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-zinc-100">Efficient Market Hypothesis</h3>
+          <h3 className="font-semibold text-foreground">Efficient Market Hypothesis</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
@@ -332,33 +332,33 @@ function EvidenceTab() {
           ].map((item) => (
             <div key={item.form} className={cn("rounded-lg border p-3", item.color)}>
               <div className="flex items-center justify-between mb-2">
-                <span className="font-medium text-zinc-200 text-sm">{item.form}</span>
-                <span className="text-xs px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400">{item.badge}</span>
+                <span className="font-medium text-foreground text-sm">{item.form}</span>
+                <span className="text-xs px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{item.badge}</span>
               </div>
-              <p className="text-xs text-zinc-400">{item.desc}</p>
+              <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           Fama won the 2013 Nobel Prize for EMH. The practical conclusion: markets are hard to beat consistently, especially after costs. Gross returns can exist; net-of-fee returns rarely persist.
         </p>
       </div>
 
       {/* Why Active Managers Struggle */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <XCircle className="w-4 h-4 text-red-400" />
-          <h3 className="font-semibold text-zinc-100">Why Active Managers Struggle</h3>
+          <h3 className="font-semibold text-foreground">Why Active Managers Struggle</h3>
         </div>
         <div className="space-y-3">
           {reasons.map((item) => (
             <div key={item.label} className="flex gap-3 items-start">
-              <div className="w-8 h-8 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0 mt-0.5">
-                <item.icon className="w-4 h-4 text-zinc-400" />
+              <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center shrink-0 mt-0.5">
+                <item.icon className="w-4 h-4 text-muted-foreground" />
               </div>
               <div>
-                <p className="text-sm font-medium text-zinc-200">{item.label}</p>
-                <p className="text-xs text-zinc-400 mt-0.5">{item.desc}</p>
+                <p className="text-sm font-medium text-foreground">{item.label}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -366,18 +366,18 @@ function EvidenceTab() {
       </div>
 
       {/* Bright Spots */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <CheckCircle className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-zinc-100">Bright Spots for Active Management</h3>
+          <h3 className="font-semibold text-foreground">Bright Spots for Active Management</h3>
         </div>
         <div className="space-y-2">
           {brightSpots.map((item) => (
-            <div key={item.category} className="flex gap-3 items-start py-2 border-b border-zinc-800/50 last:border-0">
+            <div key={item.category} className="flex gap-3 items-start py-2 border-b border-border/50 last:border-0">
               <ChevronRight className="w-3 h-3 text-green-400 mt-1 shrink-0" />
               <div>
-                <span className="text-sm font-medium text-zinc-200">{item.category}:</span>
-                <span className="text-xs text-zinc-400 ml-1">{item.evidence}</span>
+                <span className="text-sm font-medium text-foreground">{item.category}:</span>
+                <span className="text-xs text-muted-foreground ml-1">{item.evidence}</span>
               </div>
             </div>
           ))}
@@ -472,23 +472,23 @@ function IndexMechanicsTab() {
   return (
     <div className="space-y-6">
       {/* Market Cap Weighting */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Scale className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-zinc-100">Market Cap Weighting Mechanics</h3>
+          <h3 className="font-semibold text-foreground">Market Cap Weighting Mechanics</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <p className="text-sm text-zinc-300 font-medium">Float-Adjusted Market Cap</p>
-            <p className="text-xs text-zinc-400">
+            <p className="text-sm text-muted-foreground font-medium">Float-Adjusted Market Cap</p>
+            <p className="text-xs text-muted-foreground">
               Weight = (Free Float Shares × Price) / Total Index Market Cap
             </p>
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               Free float excludes insider holdings, government stakes (&gt;10%), and cross-holdings.
               NVDA&apos;s float-adjusted weight differs from total market cap weight by ~2–4%.
             </p>
-            <div className="mt-3 p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/50">
-              <p className="text-xs text-zinc-500 font-medium mb-1">S&P 500 Top 5 Concentration (2025)</p>
+            <div className="mt-3 p-3 rounded-lg bg-muted/50 border border-border/50">
+              <p className="text-xs text-muted-foreground font-medium mb-1">S&P 500 Top 5 Concentration (2025)</p>
               {[
                 { name: "NVDA", w: 6.8 },
                 { name: "MSFT", w: 6.5 },
@@ -497,21 +497,21 @@ function IndexMechanicsTab() {
                 { name: "META", w: 2.9 },
               ].map((s) => (
                 <div key={s.name} className="flex items-center gap-2 mt-1">
-                  <span className="text-xs text-zinc-400 w-10">{s.name}</span>
-                  <div className="flex-1 bg-zinc-700 rounded-full h-1.5">
+                  <span className="text-xs text-muted-foreground w-10">{s.name}</span>
+                  <div className="flex-1 bg-muted rounded-full h-1.5">
                     <div
                       className="h-1.5 rounded-full bg-primary"
                       style={{ width: `${(s.w / 8) * 100}%` }}
                     />
                   </div>
-                  <span className="text-xs text-zinc-300 w-8 text-right">{s.w}%</span>
+                  <span className="text-xs text-muted-foreground w-8 text-right">{s.w}%</span>
                 </div>
               ))}
-              <p className="text-xs text-zinc-500 mt-2">Top 10 = ~35% of index — concentration risk often overlooked</p>
+              <p className="text-xs text-muted-foreground mt-2">Top 10 = ~35% of index — concentration risk often overlooked</p>
             </div>
           </div>
           <div className="space-y-3">
-            <p className="text-sm text-zinc-300 font-medium">Index Reconstitution Events</p>
+            <p className="text-sm text-muted-foreground font-medium">Index Reconstitution Events</p>
             <div className="space-y-2">
               {[
                 { event: "S&P 500 Addition", impact: "Average +7% price jump on announcement day; adds at elevated price" },
@@ -519,9 +519,9 @@ function IndexMechanicsTab() {
                 { event: "Quarterly Rebalance", impact: "Front-runners buy additions before index close; index pays premium" },
                 { event: "Goodhart's Law", impact: "When a measure becomes a target, it ceases to be a good measure — index inclusion changes security behavior" },
               ].map((item) => (
-                <div key={item.event} className="p-2.5 rounded-lg bg-zinc-800/40 border border-zinc-700/40">
-                  <p className="text-xs font-medium text-zinc-200">{item.event}</p>
-                  <p className="text-xs text-zinc-400 mt-0.5">{item.impact}</p>
+                <div key={item.event} className="p-2.5 rounded-lg bg-muted/40 border border-border/40">
+                  <p className="text-xs font-medium text-foreground">{item.event}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{item.impact}</p>
                 </div>
               ))}
             </div>
@@ -530,34 +530,34 @@ function IndexMechanicsTab() {
       </div>
 
       {/* ETF Creation/Redemption */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Zap className="w-4 h-4 text-yellow-400" />
-          <h3 className="font-semibold text-zinc-100">ETF Creation / Redemption Arbitrage</h3>
+          <h3 className="font-semibold text-foreground">ETF Creation / Redemption Arbitrage</h3>
         </div>
         <ETFCreationRedemptionSVG />
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="p-3 rounded-lg bg-green-900/10 border border-green-800/30">
             <p className="text-xs font-medium text-green-400 mb-1">Tax Efficiency Advantage</p>
-            <p className="text-xs text-zinc-400">In-kind creations/redemptions avoid capital gains distributions. Mutual funds must sell securities (triggering gains) when investors redeem for cash.</p>
+            <p className="text-xs text-muted-foreground">In-kind creations/redemptions avoid capital gains distributions. Mutual funds must sell securities (triggering gains) when investors redeem for cash.</p>
           </div>
           <div className="p-3 rounded-lg bg-muted/30 border border-border">
             <p className="text-xs font-medium text-primary mb-1">Securities Lending Revenue</p>
-            <p className="text-xs text-zinc-400">Large ETF custodians earn 0.01–0.25% lending shares to short-sellers. VOO earns ~0.02% in securities lending, effectively reducing net cost below headline fee.</p>
+            <p className="text-xs text-muted-foreground">Large ETF custodians earn 0.01–0.25% lending shares to short-sellers. VOO earns ~0.02% in securities lending, effectively reducing net cost below headline fee.</p>
           </div>
         </div>
       </div>
 
       {/* Tracking Error Sources */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <BarChart2 className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-zinc-100">Tracking Error Sources (basis points per year)</h3>
+          <h3 className="font-semibold text-foreground">Tracking Error Sources (basis points per year)</h3>
         </div>
         <div className="space-y-2">
           {trackingErrorSources.map((item) => (
             <div key={item.source} className="flex items-center gap-3">
-              <div className="w-40 text-xs text-zinc-300 shrink-0">{item.source}</div>
+              <div className="w-40 text-xs text-muted-foreground shrink-0">{item.source}</div>
               <div className="flex-1 flex items-center gap-2">
                 <div
                   className="h-5 rounded flex items-center px-1.5 text-xs font-mono font-semibold"
@@ -570,36 +570,36 @@ function IndexMechanicsTab() {
                   {item.bps > 0 ? "+" : ""}{item.bps} bps
                 </div>
               </div>
-              <p className="text-xs text-zinc-500 hidden md:block flex-1">{item.desc}</p>
+              <p className="text-xs text-muted-foreground hidden md:block flex-1">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Index Provider Concentration */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Layers className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-zinc-100">Index Provider Concentration Risk</h3>
+          <h3 className="font-semibold text-foreground">Index Provider Concentration Risk</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {indexProviders.map((p) => (
-            <div key={p.name} className="p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/50">
+            <div key={p.name} className="p-3 rounded-lg bg-muted/50 border border-border/50">
               <div className="flex items-center justify-between mb-2">
-                <span className="font-semibold text-zinc-200 text-sm">{p.name}</span>
-                <span className="text-xs text-zinc-400">{p.aum} AUM</span>
+                <span className="font-semibold text-foreground text-sm">{p.name}</span>
+                <span className="text-xs text-muted-foreground">{p.aum} AUM</span>
               </div>
-              <div className="w-full bg-zinc-700 rounded-full h-1.5 mb-2">
+              <div className="w-full bg-muted rounded-full h-1.5 mb-2">
                 <div
                   className="h-1.5 rounded-full bg-amber-500"
                   style={{ width: `${p.share}%` }}
                 />
               </div>
-              <p className="text-xs text-zinc-500">{p.products}</p>
+              <p className="text-xs text-muted-foreground">{p.products}</p>
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           3 private firms control methodology for $35T+ in passive AUM. Index committee decisions (inclusions, exclusions, rule changes) can move markets — a power with minimal regulatory oversight.
         </p>
       </div>
@@ -733,12 +733,12 @@ function FactorTab() {
   return (
     <div className="space-y-6">
       {/* Factor Overview */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-zinc-100">Factor Investing — The Middle Ground</h3>
+          <h3 className="font-semibold text-foreground">Factor Investing — The Middle Ground</h3>
         </div>
-        <p className="text-sm text-zinc-400 mb-4">
+        <p className="text-sm text-muted-foreground mb-4">
           Factor investing (smart beta) sits between pure passive and active management. It systematically tilts toward characteristics — value, quality, momentum — that have historically earned excess returns. Click a factor for details.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
@@ -749,14 +749,14 @@ function FactorTab() {
               className={cn(
                 "p-3 rounded-xl border text-left transition-all",
                 selectedFactor?.name === f.name
-                  ? "border-current bg-zinc-800"
-                  : "border-zinc-700 bg-zinc-800/50 hover:border-zinc-600"
+                  ? "border-current bg-muted"
+                  : "border-border bg-muted/50 hover:border-border"
               )}
               style={{ borderColor: selectedFactor?.name === f.name ? f.color : undefined }}
             >
               <p className="text-sm font-semibold" style={{ color: f.color }}>{f.name}</p>
-              <p className="text-xs text-zinc-500 mt-0.5">+{f.historicPremium}% hist.</p>
-              <p className="text-xs text-zinc-600">{f.cost}% fee</p>
+              <p className="text-xs text-muted-foreground mt-0.5">+{f.historicPremium}% hist.</p>
+              <p className="text-xs text-muted-foreground">{f.cost}% fee</p>
             </button>
           ))}
         </div>
@@ -773,8 +773,8 @@ function FactorTab() {
                 className="mt-4 p-4 rounded-xl border"
                 style={{ borderColor: selectedFactor.color + "44", backgroundColor: selectedFactor.color + "11" }}
               >
-                <p className="text-sm font-semibold text-zinc-200 mb-1">{selectedFactor.name} Factor</p>
-                <p className="text-sm text-zinc-400 mb-3">{selectedFactor.description}</p>
+                <p className="text-sm font-semibold text-foreground mb-1">{selectedFactor.name} Factor</p>
+                <p className="text-sm text-muted-foreground mb-3">{selectedFactor.description}</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {[
                     { label: "Historic Premium", value: `+${selectedFactor.historicPremium}%/yr`, color: "#10b981" },
@@ -784,7 +784,7 @@ function FactorTab() {
                   ].map((m) => (
                     <div key={m.label} className="text-center">
                       <p className="text-lg font-bold" style={{ color: m.color }}>{m.value}</p>
-                      <p className="text-xs text-zinc-500">{m.label}</p>
+                      <p className="text-xs text-muted-foreground">{m.label}</p>
                     </div>
                   ))}
                 </div>
@@ -795,39 +795,39 @@ function FactorTab() {
       </div>
 
       {/* Crowding vs Persistence */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-zinc-100">Factor Crowding vs Persistence</h3>
+          <h3 className="font-semibold text-foreground">Factor Crowding vs Persistence</h3>
         </div>
         <FactorCrowdingSVG factors={FACTORS} />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           Quality and Low-Vol show high persistence with moderate crowding — more robust factors. Momentum has high premium but also highest crowding risk (sudden reversals in risk-off events).
         </p>
       </div>
 
       {/* Factor Decay */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <TrendingDown className="w-4 h-4 text-red-400" />
-          <h3 className="font-semibold text-zinc-100">Factor Decay After Publication</h3>
+          <h3 className="font-semibold text-foreground">Factor Decay After Publication</h3>
         </div>
         <FactorDecaySVG />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           McLean &amp; Pontiff (2016) studied 97 factors — live returns averaged 58% below in-sample returns. Publication attracts capital, arbitrage erodes the premium. The best factors retain 60–80% of their premium long-term.
         </p>
       </div>
 
       {/* Cost Comparison */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <DollarSign className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-zinc-100">Cost Spectrum: Passive → Active</h3>
+          <h3 className="font-semibold text-foreground">Cost Spectrum: Passive → Active</h3>
         </div>
         <div className="space-y-2">
           {costComparison.map((c) => (
             <div key={c.type} className="flex items-center gap-3">
-              <div className="w-36 text-xs text-zinc-300 shrink-0">{c.type}</div>
+              <div className="w-36 text-xs text-muted-foreground shrink-0">{c.type}</div>
               <div
                 className="h-7 rounded-lg flex items-center px-2"
                 style={{
@@ -838,21 +838,21 @@ function FactorTab() {
               >
                 <span className="text-xs font-mono font-semibold" style={{ color: c.color }}>{c.fee}%</span>
               </div>
-              <span className="text-xs text-zinc-500 hidden md:block">{c.examples}</span>
+              <span className="text-xs text-muted-foreground hidden md:block">{c.examples}</span>
             </div>
           ))}
         </div>
       </div>
 
       {/* Equal Weight vs Cap Weight */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Scale className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-zinc-100">Equal Weight vs Cap Weight</h3>
+          <h3 className="font-semibold text-foreground">Equal Weight vs Cap Weight</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-3 rounded-lg bg-zinc-800/50">
-            <p className="text-sm font-medium text-zinc-200 mb-2">Equal Weight (RSP)</p>
+          <div className="p-3 rounded-lg bg-muted/50">
+            <p className="text-sm font-medium text-foreground mb-2">Equal Weight (RSP)</p>
             <ul className="space-y-1">
               {[
                 { pro: true, text: "Implicit value/size tilt — buys losers, sells winners" },
@@ -865,13 +865,13 @@ function FactorTab() {
                   {item.pro
                     ? <CheckCircle className="w-3 h-3 text-green-400 shrink-0" />
                     : <XCircle className="w-3 h-3 text-red-400 shrink-0" />}
-                  <span className="text-zinc-400">{item.text}</span>
+                  <span className="text-muted-foreground">{item.text}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="p-3 rounded-lg bg-zinc-800/50">
-            <p className="text-sm font-medium text-zinc-200 mb-2">Cap Weight (SPY)</p>
+          <div className="p-3 rounded-lg bg-muted/50">
+            <p className="text-sm font-medium text-foreground mb-2">Cap Weight (SPY)</p>
             <ul className="space-y-1">
               {[
                 { pro: true, text: "Lowest cost (0.03–0.09%)" },
@@ -884,7 +884,7 @@ function FactorTab() {
                   {item.pro
                     ? <CheckCircle className="w-3 h-3 text-green-400 shrink-0" />
                     : <XCircle className="w-3 h-3 text-red-400 shrink-0" />}
-                  <span className="text-zinc-400">{item.text}</span>
+                  <span className="text-muted-foreground">{item.text}</span>
                 </li>
               ))}
             </ul>
@@ -1081,10 +1081,10 @@ function FeeImpactTab() {
   return (
     <div className="space-y-6">
       {/* Fee Drag Chart */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <TrendingDown className="w-4 h-4 text-red-400" />
-          <h3 className="font-semibold text-zinc-100">The Compound Fee Drag Over 40 Years</h3>
+          <h3 className="font-semibold text-foreground">The Compound Fee Drag Over 40 Years</h3>
         </div>
         <CompoundFeeDragSVG />
 
@@ -1095,13 +1095,13 @@ function FeeImpactTab() {
               className="p-3 rounded-xl border text-center"
               style={{ borderColor: ft.color + "44", backgroundColor: ft.color + "11" }}
             >
-              <p className="text-xs text-zinc-400 mb-1">{ft.example}</p>
+              <p className="text-xs text-muted-foreground mb-1">{ft.example}</p>
               <p className="text-lg font-bold" style={{ color: ft.color }}>
                 {ft.finalValue >= 1_000_000
                   ? `$${(ft.finalValue / 1_000_000).toFixed(1)}M`
                   : `$${Math.round(ft.finalValue / 1000)}K`}
               </p>
-              <p className="text-xs text-zinc-500 mt-0.5">{ft.label}/yr fee</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{ft.label}/yr fee</p>
               {ft.lost > 0 && (
                 <p className="text-xs text-red-400 mt-1">
                   -{(ft.lost >= 1_000_000 ? `$${(ft.lost / 1_000_000).toFixed(1)}M` : `$${Math.round(ft.lost / 1000)}K`)} vs 0.05%
@@ -1111,16 +1111,16 @@ function FeeImpactTab() {
           ))}
         </div>
 
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           At 8% gross return: the 2% fee fund yields $458K, the 0.05% fund yields $2.17M. The fee difference alone costs $1.7M over 40 years on a $100K investment — a 3.75× wealth gap.
         </p>
       </div>
 
       {/* Tax Efficiency */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <DollarSign className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-zinc-100">Tax Efficiency Comparison</h3>
+          <h3 className="font-semibold text-foreground">Tax Efficiency Comparison</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {[
@@ -1155,44 +1155,44 @@ function FeeImpactTab() {
               notes: "Hold individual stocks. Harvest losses daily to offset gains elsewhere. Available at $250K+ minimums via Parametric, Aperio.",
             },
           ].map((item) => (
-            <div key={item.type} className={cn("p-4 rounded-xl border bg-zinc-900/50", item.color)}>
+            <div key={item.type} className={cn("p-4 rounded-xl border bg-card/50", item.color)}>
               <div className="flex items-center justify-between mb-3">
-                <p className="font-semibold text-zinc-200 text-sm">{item.type}</p>
+                <p className="font-semibold text-foreground text-sm">{item.type}</p>
                 <span className={cn("text-xs font-medium", item.badgeColor)}>{item.badge}</span>
               </div>
               <div className="space-y-1.5 mb-3">
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Turnover</span>
-                  <span className="text-zinc-300">{item.turnover}</span>
+                  <span className="text-muted-foreground">Turnover</span>
+                  <span className="text-muted-foreground">{item.turnover}</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Cap Gains Dist.</span>
-                  <span className="text-zinc-300">{item.capitalGainsDist}</span>
+                  <span className="text-muted-foreground">Cap Gains Dist.</span>
+                  <span className="text-muted-foreground">{item.capitalGainsDist}</span>
                 </div>
                 <div className="flex justify-between text-xs">
-                  <span className="text-zinc-500">Annual Tax Drag</span>
-                  <span className="text-zinc-300">{item.taxDrag}</span>
+                  <span className="text-muted-foreground">Annual Tax Drag</span>
+                  <span className="text-muted-foreground">{item.taxDrag}</span>
                 </div>
               </div>
-              <p className="text-xs text-zinc-500">{item.notes}</p>
+              <p className="text-xs text-muted-foreground">{item.notes}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* When to Use Active */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Target className="w-4 h-4 text-amber-400" />
-          <h3 className="font-semibold text-zinc-100">When Active Management Makes Sense</h3>
+          <h3 className="font-semibold text-foreground">When Active Management Makes Sense</h3>
         </div>
         <div className="space-y-2">
           {whenActive.map((item) => (
-            <div key={item.situation} className="flex gap-3 items-start p-3 rounded-lg bg-zinc-800/40">
+            <div key={item.situation} className="flex gap-3 items-start p-3 rounded-lg bg-muted/40">
               <span className="text-base shrink-0">{item.icon}</span>
               <div>
-                <p className="text-sm font-medium text-zinc-200">{item.situation}</p>
-                <p className="text-xs text-zinc-400 mt-0.5">{item.reason}</p>
+                <p className="text-sm font-medium text-foreground">{item.situation}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{item.reason}</p>
               </div>
             </div>
           ))}
@@ -1200,22 +1200,22 @@ function FeeImpactTab() {
       </div>
 
       {/* Core-Satellite Construction */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Layers className="w-4 h-4 text-primary" />
-          <h3 className="font-semibold text-zinc-100">Core-Satellite Portfolio Construction</h3>
+          <h3 className="font-semibold text-foreground">Core-Satellite Portfolio Construction</h3>
         </div>
         <CoreSatelliteSVG />
-        <p className="text-xs text-zinc-500 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           The core-satellite approach captures most of the index&apos;s risk premium at minimal cost, while reserving 15–25% for higher-conviction active positions. It limits career risk for advisors and satisfies investor desire to &quot;do something&quot; without compromising long-term outcomes.
         </p>
       </div>
 
       {/* Behavioral Benefits */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+      <div className="rounded-xl border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <CheckCircle className="w-4 h-4 text-green-400" />
-          <h3 className="font-semibold text-zinc-100">Behavioral Benefits of Passive Investing</h3>
+          <h3 className="font-semibold text-foreground">Behavioral Benefits of Passive Investing</h3>
         </div>
         <ul className="space-y-2">
           {behavioral.map((item, i) => (
@@ -1223,15 +1223,15 @@ function FeeImpactTab() {
               <div className="w-5 h-5 rounded-full bg-green-900/30 border border-green-800/50 flex items-center justify-center shrink-0 mt-0.5">
                 <span className="text-green-400 text-xs font-bold">{i + 1}</span>
               </div>
-              <span className="text-zinc-400">{item}</span>
+              <span className="text-muted-foreground">{item}</span>
             </li>
           ))}
         </ul>
 
         <div className="mt-4 p-4 rounded-xl bg-primary/10 border border-primary/20">
           <p className="text-sm font-semibold text-primary mb-1">The Verdict</p>
-          <p className="text-sm text-zinc-300">
-            For most investors, a low-cost passive core (70–85%) combined with selective factor tilts (10–20%) and minimal active satellite positions (5–10%) delivers the best risk-adjusted, after-tax, long-term outcome. The key insight: <strong className="text-zinc-100">the cost of &quot;doing nothing&quot; is often lower than the cost of &quot;doing something.&quot;</strong>
+          <p className="text-sm text-muted-foreground">
+            For most investors, a low-cost passive core (70–85%) combined with selective factor tilts (10–20%) and minimal active satellite positions (5–10%) delivers the best risk-adjusted, after-tax, long-term outcome. The key insight: <strong className="text-foreground">the cost of &quot;doing nothing&quot; is often lower than the cost of &quot;doing something.&quot;</strong>
           </p>
         </div>
       </div>
@@ -1243,7 +1243,7 @@ function FeeImpactTab() {
 
 export default function ActivePassivePage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1257,8 +1257,8 @@ export default function ActivePassivePage() {
               <Scale className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-zinc-100">Active vs Passive Investing</h1>
-              <p className="text-sm text-zinc-400">The evidence, mechanics, factors, and true cost of your investment approach</p>
+              <h1 className="text-2xl font-bold text-foreground">Active vs Passive Investing</h1>
+              <p className="text-sm text-muted-foreground">The evidence, mechanics, factors, and true cost of your investment approach</p>
             </div>
           </div>
 
@@ -1270,10 +1270,10 @@ export default function ActivePassivePage() {
               { label: "Factor premiums post-publish", value: "−58%", color: "text-amber-400", sub: "vs in-sample (McLean)" },
               { label: "Fee gap over 40 years", value: "$1.7M", color: "text-primary", sub: "$100K at 0.05% vs 2%" },
             ].map((stat) => (
-              <div key={stat.label} className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+              <div key={stat.label} className="p-3 rounded-xl bg-card border border-border">
                 <p className={cn("text-xl font-bold", stat.color)}>{stat.value}</p>
-                <p className="text-xs text-zinc-300 mt-0.5 leading-tight">{stat.label}</p>
-                <p className="text-xs text-zinc-600 mt-0.5">{stat.sub}</p>
+                <p className="text-xs text-muted-foreground mt-0.5 leading-tight">{stat.label}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>
               </div>
             ))}
           </div>
@@ -1281,7 +1281,7 @@ export default function ActivePassivePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="evidence">
-          <TabsList className="bg-zinc-900 border border-zinc-800 mb-6 w-full grid grid-cols-4 h-auto">
+          <TabsList className="bg-card border border-border mb-6 w-full grid grid-cols-4 h-auto">
             {[
               { value: "evidence", label: "The Evidence", icon: BarChart2 },
               { value: "mechanics", label: "Index Mechanics", icon: Layers },
@@ -1291,7 +1291,7 @@ export default function ActivePassivePage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 py-2.5 text-xs data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100 data-[state=inactive]:text-zinc-500"
+                className="flex items-center gap-1.5 py-2.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground"
               >
                 <tab.icon className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">{tab.label}</span>

@@ -415,10 +415,10 @@ function SectionCard({ title, icon, children, className }: {
   className?: string;
 }) {
   return (
-    <div className={cn("bg-neutral-900 border border-neutral-800 rounded-xl p-5", className)}>
+    <div className={cn("bg-card border border-border rounded-xl p-5", className)}>
       <div className="flex items-center gap-2 mb-4">
         <span className="text-primary">{icon}</span>
-        <h3 className="font-semibold text-neutral-100 text-sm">{title}</h3>
+        <h3 className="font-semibold text-foreground text-sm">{title}</h3>
       </div>
       {children}
     </div>
@@ -435,7 +435,7 @@ function InfoChip({ label, value, color = "blue" }: { label: string; value: stri
   };
   return (
     <div className={cn("border rounded-lg px-3 py-2 text-center", colors[color] ?? colors.blue)}>
-      <div className="text-xs text-neutral-400 mb-0.5">{label}</div>
+      <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
       <div className="text-sm font-semibold">{value}</div>
     </div>
   );
@@ -476,11 +476,11 @@ function AgencyMarketTab() {
                 "rounded-xl border p-4 text-left transition-all",
                 selectedAgency.name === ag.name
                   ? "border-primary/60 bg-primary/8"
-                  : "border-neutral-700 bg-neutral-800/50 hover:border-neutral-600"
+                  : "border-border bg-muted/50 hover:border-neutral-600"
               )}
             >
               <div className="flex items-start justify-between mb-2">
-                <span className="font-semibold text-neutral-100 text-sm">{ag.name}</span>
+                <span className="font-semibold text-foreground text-sm">{ag.name}</span>
                 <span
                   className={cn(
                     "text-xs px-2 py-0.5 rounded border font-medium",
@@ -492,8 +492,8 @@ function AgencyMarketTab() {
                   {ag.guarantee}
                 </span>
               </div>
-              <div className="text-xs text-neutral-400 mb-1">{ag.type}</div>
-              <div className="text-xs text-neutral-500 mb-3">Est. {ag.founded}</div>
+              <div className="text-xs text-muted-foreground mb-1">{ag.type}</div>
+              <div className="text-xs text-muted-foreground mb-3">Est. {ag.founded}</div>
               {/* Market share bar */}
               <div className="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
                 <div
@@ -501,7 +501,7 @@ function AgencyMarketTab() {
                   style={{ width: `${(ag.marketShare / 45) * 100}%`, backgroundColor: ag.color }}
                 />
               </div>
-              <div className="text-xs text-neutral-400 mt-1">{ag.marketShare}% market share</div>
+              <div className="text-xs text-muted-foreground mt-1">{ag.marketShare}% market share</div>
             </button>
           ))}
         </div>
@@ -514,22 +514,22 @@ function AgencyMarketTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="bg-neutral-800/60 rounded-xl p-4 border border-neutral-700"
+            className="bg-muted/60 rounded-xl p-4 border border-border"
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-3 h-3 rounded-full" style={{ backgroundColor: selectedAgency.color }} />
-              <span className="font-medium text-neutral-100 text-sm">{selectedAgency.fullName}</span>
+              <span className="font-medium text-foreground text-sm">{selectedAgency.fullName}</span>
             </div>
             <div className="grid grid-cols-2 gap-4 mb-3">
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Guarantee Type</div>
-                <div className="text-sm text-neutral-200">{selectedAgency.guarantee}</div>
+                <div className="text-xs text-muted-foreground mb-1">Guarantee Type</div>
+                <div className="text-sm text-foreground">{selectedAgency.guarantee}</div>
               </div>
               <div>
-                <div className="text-xs text-neutral-500 mb-1">Loan Types</div>
+                <div className="text-xs text-muted-foreground mb-1">Loan Types</div>
                 <div className="flex flex-wrap gap-1">
                   {selectedAgency.loanTypes.map((lt) => (
-                    <span key={lt} className="text-xs bg-neutral-700 text-neutral-300 px-2 py-0.5 rounded">
+                    <span key={lt} className="text-xs bg-neutral-700 text-muted-foreground px-2 py-0.5 rounded">
                       {lt}
                     </span>
                   ))}
@@ -537,15 +537,15 @@ function AgencyMarketTab() {
               </div>
             </div>
             <div>
-              <div className="text-xs text-neutral-500 mb-1">Government Backstop</div>
-              <div className="text-xs text-neutral-300 leading-relaxed">{selectedAgency.backstop}</div>
+              <div className="text-xs text-muted-foreground mb-1">Government Backstop</div>
+              <div className="text-xs text-muted-foreground leading-relaxed">{selectedAgency.backstop}</div>
             </div>
           </motion.div>
         </AnimatePresence>
 
         {/* Market share pie representation as stacked bar */}
         <div className="mt-4">
-          <div className="text-xs text-neutral-500 mb-2">Agency MBS Outstanding — Market Share</div>
+          <div className="text-xs text-muted-foreground mb-2">Agency MBS Outstanding — Market Share</div>
           <div className="flex h-6 rounded-lg overflow-hidden">
             {AGENCIES.map((ag) => (
               <div
@@ -564,12 +564,12 @@ function AgencyMarketTab() {
           </div>
           <div className="flex gap-4 mt-2">
             {AGENCIES.map((ag) => (
-              <div key={ag.name} className="flex items-center gap-1.5 text-xs text-neutral-400">
+              <div key={ag.name} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                 <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ag.color }} />
                 {ag.name} {ag.marketShare}%
               </div>
             ))}
-            <div className="flex items-center gap-1.5 text-xs text-neutral-400">
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <span className="w-2 h-2 rounded-full bg-neutral-600" />
               Other ~{100 - totalMarket}%
             </div>
@@ -581,13 +581,13 @@ function AgencyMarketTab() {
       <SectionCard title="TBA Market Mechanics" icon={<Activity size={16} />}>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-3">
-            <p className="text-sm text-neutral-300 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               The <strong className="text-primary">To-Be-Announced (TBA)</strong> market is the most liquid
               segment of the mortgage-backed securities universe, with ~$300B in daily trading volume. In TBA
               trading, the buyer agrees to purchase an MBS at a future settlement date without knowing the
               exact pools — only coupon, agency, maturity, and face value are specified.
             </p>
-            <p className="text-sm text-neutral-300 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               Pool details are announced 48 hours before settlement (&quot;48-hour notice&quot;). Sellers deliver
               the &quot;cheapest to deliver&quot; eligible pools, creating a deliverable bond profile that investors
               must model.
@@ -613,7 +613,7 @@ function AgencyMarketTab() {
             <AlertTriangle size={14} className="text-amber-400 mt-0.5 shrink-0" />
             <div>
               <div className="text-sm font-medium text-amber-300 mb-1">Federal Reserve MBS Holdings Impact</div>
-              <div className="text-xs text-neutral-300 leading-relaxed">
+              <div className="text-xs text-muted-foreground leading-relaxed">
                 At its 2022 peak, the Fed held ~$2.7 trillion in Agency MBS (~25% of total outstanding) accumulated
                 through QE programs. QT (Quantitative Tightening) passively reduces holdings as prepayments return
                 principal. The Fed&apos;s dominant ownership suppresses spreads and distorts the normal credit cycle,
@@ -629,12 +629,12 @@ function AgencyMarketTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-700">
-                <th className="text-left py-2 text-neutral-400 font-medium">Characteristic</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-2 text-muted-foreground font-medium">Characteristic</th>
                 <th className="text-center py-2 text-primary font-medium">Fannie Mae</th>
                 <th className="text-center py-2 text-primary font-medium">Freddie Mac</th>
                 <th className="text-center py-2 text-emerald-400 font-medium">Ginnie Mae</th>
-                <th className="text-left py-2 text-neutral-400 font-medium w-48">Description</th>
+                <th className="text-left py-2 text-muted-foreground font-medium w-48">Description</th>
               </tr>
             </thead>
             <tbody>
@@ -642,17 +642,17 @@ function AgencyMarketTab() {
                 <tr
                   key={row.label}
                   className={cn(
-                    "border-b border-neutral-800 cursor-pointer hover:bg-neutral-800/40 transition-colors",
-                    i % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800/20"
+                    "border-b border-border cursor-pointer hover:bg-muted/40 transition-colors",
+                    i % 2 === 0 ? "bg-card" : "bg-muted/20"
                   )}
                   onClick={() => setExpandedPool(expandedPool === row.label ? null : row.label)}
                 >
-                  <td className="py-2.5 font-medium text-neutral-200">{row.label}</td>
+                  <td className="py-2.5 font-medium text-foreground">{row.label}</td>
                   <td className="py-2.5 text-center text-primary">{row.fannie}</td>
                   <td className="py-2.5 text-center text-primary">{row.freddie}</td>
                   <td className="py-2.5 text-center text-emerald-300">{row.ginnie}</td>
-                  <td className="py-2.5 text-neutral-400 truncate max-w-0 w-48 pr-2">
-                    <span className="text-neutral-500">{expandedPool === row.label ? "▲" : "▼"} details</span>
+                  <td className="py-2.5 text-muted-foreground truncate max-w-0 w-48 pr-2">
+                    <span className="text-muted-foreground">{expandedPool === row.label ? "▲" : "▼"} details</span>
                   </td>
                 </tr>
               ))}
@@ -668,7 +668,7 @@ function AgencyMarketTab() {
               exit={{ opacity: 0, height: 0 }}
               className="overflow-hidden"
             >
-              <div className="mt-2 bg-neutral-800/60 rounded-lg p-3 border border-neutral-700 text-xs text-neutral-300 leading-relaxed">
+              <div className="mt-2 bg-muted/60 rounded-lg p-3 border border-border text-xs text-muted-foreground leading-relaxed">
                 {POOL_CHARS.find((p) => p.label === expandedPool)?.desc}
               </div>
             </motion.div>
@@ -678,7 +678,7 @@ function AgencyMarketTab() {
 
       {/* Dollar roll economics */}
       <SectionCard title="Dollar Roll Economics" icon={<RefreshCw size={16} />}>
-        <p className="text-sm text-neutral-300 mb-4 leading-relaxed">
+        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
           A <strong className="text-primary">dollar roll</strong> is a repurchase agreement where an investor
           sells TBA MBS for spot settlement and simultaneously buys back the same coupon for the following month.
           The forward purchase price is lower (the &quot;drop&quot;), effectively financing the position. When
@@ -687,14 +687,14 @@ function AgencyMarketTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-700">
-                <th className="text-center py-2 text-neutral-400">Coupon</th>
-                <th className="text-center py-2 text-neutral-400">Spot</th>
-                <th className="text-center py-2 text-neutral-400">Forward</th>
-                <th className="text-center py-2 text-neutral-400">Drop (32nds)</th>
-                <th className="text-center py-2 text-neutral-400">Implied Repo</th>
-                <th className="text-center py-2 text-neutral-400">Breakeven</th>
-                <th className="text-center py-2 text-neutral-400">Roll Special?</th>
+              <tr className="border-b border-border">
+                <th className="text-center py-2 text-muted-foreground">Coupon</th>
+                <th className="text-center py-2 text-muted-foreground">Spot</th>
+                <th className="text-center py-2 text-muted-foreground">Forward</th>
+                <th className="text-center py-2 text-muted-foreground">Drop (32nds)</th>
+                <th className="text-center py-2 text-muted-foreground">Implied Repo</th>
+                <th className="text-center py-2 text-muted-foreground">Breakeven</th>
+                <th className="text-center py-2 text-muted-foreground">Roll Special?</th>
               </tr>
             </thead>
             <tbody>
@@ -704,23 +704,23 @@ function AgencyMarketTab() {
                   <tr
                     key={row.coupon}
                     className={cn(
-                      "border-b border-neutral-800",
-                      i % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800/20"
+                      "border-b border-border",
+                      i % 2 === 0 ? "bg-card" : "bg-muted/20"
                     )}
                   >
-                    <td className="py-2.5 text-center font-medium text-neutral-200">{row.coupon.toFixed(1)}%</td>
-                    <td className="py-2.5 text-center text-neutral-300">{row.spotPrice.toFixed(3)}</td>
-                    <td className="py-2.5 text-center text-neutral-300">{row.forwardPrice.toFixed(3)}</td>
+                    <td className="py-2.5 text-center font-medium text-foreground">{row.coupon.toFixed(1)}%</td>
+                    <td className="py-2.5 text-center text-muted-foreground">{row.spotPrice.toFixed(3)}</td>
+                    <td className="py-2.5 text-center text-muted-foreground">{row.forwardPrice.toFixed(3)}</td>
                     <td className="py-2.5 text-center text-primary">{Math.round(row.drop * 32)}</td>
-                    <td className="py-2.5 text-center text-neutral-200">{row.impliedRepo.toFixed(2)}%</td>
-                    <td className="py-2.5 text-center text-neutral-400">{row.breakeven.toFixed(2)}%</td>
+                    <td className="py-2.5 text-center text-foreground">{row.impliedRepo.toFixed(2)}%</td>
+                    <td className="py-2.5 text-center text-muted-foreground">{row.breakeven.toFixed(2)}%</td>
                     <td className="py-2.5 text-center">
                       <span
                         className={cn(
                           "text-xs px-2 py-0.5 rounded border",
                           special
                             ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/25"
-                            : "bg-neutral-700 text-neutral-400 border-neutral-600"
+                            : "bg-neutral-700 text-muted-foreground border-neutral-600"
                         )}
                       >
                         {special ? "Yes" : "No"}
@@ -820,7 +820,7 @@ function PrepaymentAnalysisTab() {
           })()}
           <text x={PAD} y={14} fontSize="10" fill="#9ca3af">CPR (%)</text>
         </svg>
-        <div className="mt-2 text-xs text-neutral-500">
+        <div className="mt-2 text-xs text-muted-foreground">
           CPR = Conditional Prepayment Rate (annualized). Higher values mean faster principal return to investors.
         </div>
       </SectionCard>
@@ -871,7 +871,7 @@ function PrepaymentAnalysisTab() {
               </text>
             </svg>
           </div>
-          <div className="col-span-2 space-y-3 text-xs text-neutral-300">
+          <div className="col-span-2 space-y-3 text-xs text-muted-foreground">
             <p className="leading-relaxed">
               The <strong className="text-emerald-300">S-curve</strong> maps refinancing incentive to CPR.
               When WAC significantly exceeds market rates (right side), borrowers refinance aggressively.
@@ -881,10 +881,10 @@ function PrepaymentAnalysisTab() {
               loses its most refinancing-sensitive borrowers. Remaining borrowers have lower mobility,
               flattening the top of the S-curve.
             </p>
-            <div className="bg-neutral-800 rounded-lg p-3 border border-neutral-700">
-              <div className="font-medium text-neutral-200 mb-1">Key Refi Drivers</div>
+            <div className="bg-muted rounded-lg p-3 border border-border">
+              <div className="font-medium text-foreground mb-1">Key Refi Drivers</div>
               {["Rate incentive (WAC vs market)", "Home equity / LTV", "Borrower credit profile", "Seasonality (summer peak)", "Media/broker activity", "Burnout from prior refinancings"].map((d) => (
-                <div key={d} className="flex items-center gap-1.5 text-neutral-400 mt-1">
+                <div key={d} className="flex items-center gap-1.5 text-muted-foreground mt-1">
                   <ArrowRight size={10} className="text-emerald-400 shrink-0" />
                   {d}
                 </div>
@@ -936,7 +936,7 @@ function PrepaymentAnalysisTab() {
             );
           })}
         </svg>
-        <div className="flex gap-6 mt-1 text-xs text-neutral-500">
+        <div className="flex gap-6 mt-1 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-primary opacity-70" /> Above baseline (summer surge)</span>
           <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded bg-red-500 opacity-70" /> Below baseline (winter slowdown)</span>
         </div>
@@ -944,7 +944,7 @@ function PrepaymentAnalysisTab() {
 
       {/* PSA speed table */}
       <SectionCard title="PSA Speed Table (Public Securities Association Model)" icon={<Target size={16} />}>
-        <p className="text-sm text-neutral-300 mb-4 leading-relaxed">
+        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
           The PSA benchmark assumes CPR ramps up 0.2% per month for the first 30 months (reaching 6% CPR at 100 PSA),
           then remains constant. 100 PSA is the convention baseline; actual pools trade at multiples above or below.
         </p>
@@ -1013,9 +1013,9 @@ function PrepaymentAnalysisTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-700">
+              <tr className="border-b border-border">
                 {["PSA Speed", "Month 1 CPR", "Month 30+ CPR", "Avg Life", "Dollar Price", "Yield"].map((h) => (
-                  <th key={h} className="py-2 text-center text-neutral-400 font-medium">{h}</th>
+                  <th key={h} className="py-2 text-center text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1026,18 +1026,18 @@ function PrepaymentAnalysisTab() {
                   <tr
                     key={row.psa}
                     className={cn(
-                      "border-b border-neutral-800",
-                      isBase ? "bg-primary/5 border-border" : i % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800/20"
+                      "border-b border-border",
+                      isBase ? "bg-primary/5 border-border" : i % 2 === 0 ? "bg-card" : "bg-muted/20"
                     )}
                   >
-                    <td className="py-2.5 text-center font-semibold text-neutral-100">
+                    <td className="py-2.5 text-center font-semibold text-foreground">
                       {row.psa} PSA {isBase && <span className="text-primary ml-1">(base)</span>}
                     </td>
-                    <td className="py-2.5 text-center text-neutral-300">{row.month1CPR.toFixed(1)}%</td>
-                    <td className="py-2.5 text-center text-neutral-300">{row.month30CPR.toFixed(1)}%</td>
-                    <td className="py-2.5 text-center text-neutral-200">{row.avgLifeYrs.toFixed(1)} yrs</td>
-                    <td className="py-2.5 text-center text-neutral-200">{row.dollarPrice.toFixed(2)}</td>
-                    <td className="py-2.5 text-center text-neutral-200">{row.yield.toFixed(2)}%</td>
+                    <td className="py-2.5 text-center text-muted-foreground">{row.month1CPR.toFixed(1)}%</td>
+                    <td className="py-2.5 text-center text-muted-foreground">{row.month30CPR.toFixed(1)}%</td>
+                    <td className="py-2.5 text-center text-foreground">{row.avgLifeYrs.toFixed(1)} yrs</td>
+                    <td className="py-2.5 text-center text-foreground">{row.dollarPrice.toFixed(2)}</td>
+                    <td className="py-2.5 text-center text-foreground">{row.yield.toFixed(2)}%</td>
                   </tr>
                 );
               })}
@@ -1086,22 +1086,22 @@ function CMOStructuresTab() {
                 key={tranche.name}
                 className={cn(
                   "border rounded-xl overflow-hidden transition-all",
-                  isOpen ? "border-neutral-600" : "border-neutral-800"
+                  isOpen ? "border-neutral-600" : "border-border"
                 )}
               >
                 <button
-                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-neutral-800/40 transition-colors"
+                  className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted/40 transition-colors"
                   onClick={() => setExpanded(isOpen ? null : tranche.name)}
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: tranche.color }} />
-                    <span className="font-semibold text-neutral-100 text-sm">{tranche.name}</span>
-                    <span className="text-xs text-neutral-500 bg-neutral-800 px-2 py-0.5 rounded">{tranche.type}</span>
+                    <span className="font-semibold text-foreground text-sm">{tranche.name}</span>
+                    <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">{tranche.type}</span>
                     <RiskBadge level={tranche.risk} />
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs text-neutral-400">Avg Life: {tranche.avgLife}</span>
-                    {isOpen ? <ChevronUp size={14} className="text-neutral-400" /> : <ChevronDown size={14} className="text-neutral-400" />}
+                    <span className="text-xs text-muted-foreground">Avg Life: {tranche.avgLife}</span>
+                    {isOpen ? <ChevronUp size={14} className="text-muted-foreground" /> : <ChevronDown size={14} className="text-muted-foreground" />}
                   </div>
                 </button>
                 <AnimatePresence>
@@ -1113,8 +1113,8 @@ function CMOStructuresTab() {
                       transition={{ duration: 0.2 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-4 pb-4 pt-1 border-t border-neutral-800">
-                        <p className="text-sm text-neutral-300 leading-relaxed mb-3">{tranche.description}</p>
+                      <div className="px-4 pb-4 pt-1 border-t border-border">
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-3">{tranche.description}</p>
                         <div className="flex gap-3 flex-wrap">
                           <InfoChip label="Coupon" value={tranche.coupon} color="blue" />
                           <InfoChip label="Protection" value={tranche.protection} color="green" />
@@ -1198,13 +1198,13 @@ function CMOStructuresTab() {
                 </svg>
               );
             })()}
-            <div className="flex gap-4 mt-1 text-xs text-neutral-500">
+            <div className="flex gap-4 mt-1 text-xs text-muted-foreground">
               <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-emerald-500 inline-block" /> Within band (100–300 PSA)</span>
               <span className="flex items-center gap-1.5"><span className="w-4 border-t border-red-500 border-dashed inline-block" /> Outside band</span>
               <span className="flex items-center gap-1.5"><span className="w-4 h-0.5 bg-amber-400 inline-block" /> PAC schedule</span>
             </div>
           </div>
-          <div className="col-span-2 space-y-3 text-xs text-neutral-300">
+          <div className="col-span-2 space-y-3 text-xs text-muted-foreground">
             <p className="leading-relaxed">
               PAC bonds receive principal cash flows in a <strong className="text-emerald-300">planned schedule</strong> as
               long as prepayment speeds remain within the protection band.
@@ -1213,9 +1213,9 @@ function CMOStructuresTab() {
               Outside the band, support tranches can no longer buffer all variability and the PAC begins to
               &quot;bust&quot; — receiving principal ahead of or behind schedule.
             </p>
-            <div className="bg-neutral-800 rounded-lg p-3 border border-neutral-700">
-              <div className="font-medium text-neutral-200 mb-2">Band Erosion</div>
-              <p className="text-neutral-400 leading-relaxed">
+            <div className="bg-muted rounded-lg p-3 border border-border">
+              <div className="font-medium text-foreground mb-2">Band Erosion</div>
+              <p className="text-muted-foreground leading-relaxed">
                 Support tranches erode with each prepayment event outside the band. A previously 100–300 PSA
                 band may narrow to 150–250 PSA over time, reducing PAC protection.
               </p>
@@ -1267,10 +1267,10 @@ function CMOStructuresTab() {
               );
             })()}
           </div>
-          <div className="col-span-2 space-y-3 text-xs text-neutral-300">
+          <div className="col-span-2 space-y-3 text-xs text-muted-foreground">
             <div className="bg-red-500/8 border border-red-500/20 rounded-lg p-3">
               <div className="font-semibold text-red-300 mb-1">IO Strip</div>
-              <p className="text-neutral-400 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Value <strong className="text-red-300">falls</strong> as CPR rises — faster prepayments
                 reduce the outstanding balance and therefore the interest paid. Effective duration is
                 <em> negative</em>: IO prices rise when rates rise (slower prepayments).
@@ -1278,7 +1278,7 @@ function CMOStructuresTab() {
             </div>
             <div className="bg-emerald-500/8 border border-emerald-500/20 rounded-lg p-3">
               <div className="font-semibold text-emerald-300 mb-1">PO Strip</div>
-              <p className="text-neutral-400 leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed">
                 Value <strong className="text-emerald-300">rises</strong> as CPR rises — faster principal
                 return on a discounted purchase produces greater IRR. Extreme positive convexity; worst
                 outcome is extension at a slow prepayment speed.
@@ -1349,7 +1349,7 @@ function CMOStructuresTab() {
               );
             })()}
           </div>
-          <div className="col-span-2 space-y-3 text-xs text-neutral-300">
+          <div className="col-span-2 space-y-3 text-xs text-muted-foreground">
             <p className="leading-relaxed">
               The Z-bond receives <strong className="text-amber-300">no cash payments</strong> while prior
               tranches are outstanding. Interest accretes to principal balance (compound interest effect).
@@ -1360,7 +1360,7 @@ function CMOStructuresTab() {
             </p>
             <div className="bg-amber-500/8 border border-amber-500/20 rounded-lg p-3">
               <div className="font-semibold text-amber-300 mb-1">Key Risks</div>
-              <ul className="text-neutral-400 space-y-1 mt-1">
+              <ul className="text-muted-foreground space-y-1 mt-1">
                 <li className="flex items-start gap-1.5"><ArrowRight size={10} className="mt-0.5 shrink-0 text-amber-400" />Extreme duration extension if prior tranches don&apos;t retire early</li>
                 <li className="flex items-start gap-1.5"><ArrowRight size={10} className="mt-0.5 shrink-0 text-amber-400" />High volatility to prepayment model assumptions</li>
                 <li className="flex items-start gap-1.5"><ArrowRight size={10} className="mt-0.5 shrink-0 text-amber-400" />Negative carry during accrual phase</li>
@@ -1460,7 +1460,7 @@ function ConvexityRiskTab() {
               <text x={(W) / 2} y={H - 4} textAnchor="middle" fontSize="9" fill="#9ca3af">Yield</text>
             </svg>
           </div>
-          <div className="col-span-2 space-y-3 text-xs text-neutral-300">
+          <div className="col-span-2 space-y-3 text-xs text-muted-foreground">
             <p className="leading-relaxed">
               <strong className="text-red-300">Negative convexity</strong> means the MBS price appreciation
               is capped when rates fall: borrowers refinance, returning principal at par just when the bond
@@ -1470,12 +1470,12 @@ function ConvexityRiskTab() {
               Conversely, when rates rise, extension risk causes the MBS to lengthen in duration, <em>amplifying
               price losses</em> beyond a normal bullet bond.
             </p>
-            <div className="bg-neutral-800 rounded-lg p-3 border border-neutral-700">
-              <div className="font-medium text-neutral-200 mb-2">Negative Convexity Formula</div>
-              <div className="font-mono text-xs bg-neutral-900 rounded px-3 py-2 text-emerald-300">
+            <div className="bg-muted rounded-lg p-3 border border-border">
+              <div className="font-medium text-foreground mb-2">Negative Convexity Formula</div>
+              <div className="font-mono text-xs bg-card rounded px-3 py-2 text-emerald-300">
                 ΔP ≈ −D × Δy + ½ × C × (Δy)²
               </div>
-              <p className="text-neutral-400 mt-2 leading-relaxed">
+              <p className="text-muted-foreground mt-2 leading-relaxed">
                 For MBS, convexity (C) is <em>negative</em> — the ½C(Δy)² term works against the investor
                 in both rising and falling rate environments.
               </p>
@@ -1537,7 +1537,7 @@ function ConvexityRiskTab() {
               <text x={PAD} y={14} fontSize="10" fill="#9ca3af">Duration (yrs)</text>
             </svg>
           </div>
-          <div className="col-span-2 space-y-3 text-xs text-neutral-300">
+          <div className="col-span-2 space-y-3 text-xs text-muted-foreground">
             <p className="leading-relaxed">
               <strong className="text-amber-300">Duration extension</strong> is the key asymmetric risk in MBS.
               A 300bps rate shock can extend MBS duration from ~5 years to over 12 years — doubling price
@@ -1549,8 +1549,8 @@ function ConvexityRiskTab() {
                 { shock: "+200bps", dur: "~9.6 yrs", color: "text-orange-300" },
                 { shock: "+300bps", dur: "~12.8 yrs", color: "text-red-300" },
               ].map((row) => (
-                <div key={row.shock} className="flex justify-between bg-neutral-800 rounded-lg px-3 py-2 border border-neutral-700">
-                  <span className="text-neutral-400">{row.shock} rate shock</span>
+                <div key={row.shock} className="flex justify-between bg-muted rounded-lg px-3 py-2 border border-border">
+                  <span className="text-muted-foreground">{row.shock} rate shock</span>
                   <span className={cn("font-semibold", row.color)}>{row.dur}</span>
                 </div>
               ))}
@@ -1562,18 +1562,18 @@ function ConvexityRiskTab() {
       {/* OAS vs Z-Spread */}
       <SectionCard title="OAS vs Z-Spread: Prepayment-Adjusted Spread" icon={<Info size={16} />}>
         <div className="grid grid-cols-2 gap-6">
-          <div className="space-y-3 text-sm text-neutral-300">
-            <div className="bg-neutral-800 rounded-xl p-4 border border-neutral-700">
+          <div className="space-y-3 text-sm text-muted-foreground">
+            <div className="bg-muted rounded-xl p-4 border border-border">
               <div className="font-semibold text-primary mb-2">Z-Spread</div>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 The constant spread over the <strong className="text-primary">spot rate curve</strong> that
                 equates the present value of cash flows to the market price. Does not adjust for the embedded
                 prepayment option — overstates value for callable/prepayable instruments.
               </p>
             </div>
-            <div className="bg-neutral-800 rounded-xl p-4 border border-neutral-700">
+            <div className="bg-muted rounded-xl p-4 border border-border">
               <div className="font-semibold text-emerald-300 mb-2">OAS (Option-Adjusted Spread)</div>
-              <p className="text-xs text-neutral-400 leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 The spread after removing the value of the embedded prepayment option via Monte Carlo
                 interest rate simulation. <strong className="text-emerald-200">OAS = Z-Spread − Option Cost</strong>.
                 OAS is the &quot;true&quot; credit/liquidity spread for comparison across mortgage instruments.
@@ -1586,30 +1586,30 @@ function ConvexityRiskTab() {
               {PREPAY_SCENARIOS.map((sc) => {
                 const optionCost = sc.zSpread - sc.oas;
                 return (
-                  <div key={sc.name} className="bg-neutral-800/60 rounded-lg p-3 border border-neutral-700">
+                  <div key={sc.name} className="bg-muted/60 rounded-lg p-3 border border-border">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-medium text-neutral-200">{sc.name}</span>
-                      <span className="text-xs text-neutral-500">Option Cost: {optionCost}bps</span>
+                      <span className="text-xs font-medium text-foreground">{sc.name}</span>
+                      <span className="text-xs text-muted-foreground">Option Cost: {optionCost}bps</span>
                     </div>
                     <div className="flex gap-1 items-center mb-1">
-                      <div className="text-xs text-neutral-400 w-20 shrink-0">Z-Spread</div>
+                      <div className="text-xs text-muted-foreground w-20 shrink-0">Z-Spread</div>
                       <div className="flex-1 bg-neutral-700 rounded-full h-3 overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{ width: `${Math.min(100, (sc.zSpread / 160) * 100)}%`, backgroundColor: sc.color }}
                         />
                       </div>
-                      <div className="text-xs text-neutral-300 w-12 text-right">{sc.zSpread}bps</div>
+                      <div className="text-xs text-muted-foreground w-12 text-right">{sc.zSpread}bps</div>
                     </div>
                     <div className="flex gap-1 items-center">
-                      <div className="text-xs text-neutral-400 w-20 shrink-0">OAS</div>
+                      <div className="text-xs text-muted-foreground w-20 shrink-0">OAS</div>
                       <div className="flex-1 bg-neutral-700 rounded-full h-3 overflow-hidden">
                         <div
                           className="h-full rounded-full bg-emerald-500"
                           style={{ width: `${Math.min(100, (sc.oas / 160) * 100)}%` }}
                         />
                       </div>
-                      <div className="text-xs text-neutral-300 w-12 text-right">{sc.oas}bps</div>
+                      <div className="text-xs text-muted-foreground w-12 text-right">{sc.oas}bps</div>
                     </div>
                   </div>
                 );
@@ -1624,9 +1624,9 @@ function ConvexityRiskTab() {
         <div className="overflow-x-auto mb-4">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-neutral-700">
+              <tr className="border-b border-border">
                 {["Scenario", "PSA Speed", "CPR", "Dollar Price", "Eff. Duration", "OAS", "Z-Spread"].map((h) => (
-                  <th key={h} className="py-2 text-center text-neutral-400 font-medium">{h}</th>
+                  <th key={h} className="py-2 text-center text-muted-foreground font-medium">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -1635,20 +1635,20 @@ function ConvexityRiskTab() {
                 <tr
                   key={sc.name}
                   className={cn(
-                    "border-b border-neutral-800",
-                    i % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800/20"
+                    "border-b border-border",
+                    i % 2 === 0 ? "bg-card" : "bg-muted/20"
                   )}
                 >
                   <td className="py-2.5 text-center">
                     <span className="inline-flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full" style={{ backgroundColor: sc.color }} />
-                      <span className="font-medium text-neutral-100">{sc.name}</span>
+                      <span className="font-medium text-foreground">{sc.name}</span>
                     </span>
                   </td>
-                  <td className="py-2.5 text-center text-neutral-300">{sc.psa}</td>
-                  <td className="py-2.5 text-center text-neutral-300">{sc.cpr}%</td>
-                  <td className="py-2.5 text-center text-neutral-200">{sc.price.toFixed(2)}</td>
-                  <td className="py-2.5 text-center text-neutral-200">{sc.duration.toFixed(1)} yrs</td>
+                  <td className="py-2.5 text-center text-muted-foreground">{sc.psa}</td>
+                  <td className="py-2.5 text-center text-muted-foreground">{sc.cpr}%</td>
+                  <td className="py-2.5 text-center text-foreground">{sc.price.toFixed(2)}</td>
+                  <td className="py-2.5 text-center text-foreground">{sc.duration.toFixed(1)} yrs</td>
                   <td className="py-2.5 text-center text-emerald-300">{sc.oas}bps</td>
                   <td className="py-2.5 text-center text-primary">{sc.zSpread}bps</td>
                 </tr>
@@ -1659,7 +1659,7 @@ function ConvexityRiskTab() {
         <div className="bg-red-500/8 border border-red-500/20 rounded-lg p-4">
           <div className="flex items-start gap-2">
             <AlertTriangle size={14} className="text-red-400 mt-0.5 shrink-0" />
-            <div className="text-xs text-neutral-300 leading-relaxed">
+            <div className="text-xs text-muted-foreground leading-relaxed">
               <strong className="text-red-300">Shock scenario (+300bps):</strong> Duration extends from 5.4 to 12.8 years,
               price falls from 98.25 to 92.13 — a loss of ~6.2 points. Equivalent-duration Treasury position would lose
               only ~3.8 points. The extra ~2.4pt loss is the &quot;negative convexity tax&quot;.
@@ -1672,27 +1672,27 @@ function ConvexityRiskTab() {
       <SectionCard title="Hedging Agency MBS: Instruments & Ratios" icon={<Shield size={16} />}>
         <div className="space-y-3">
           {HEDGE_ROWS.map((row) => (
-            <div key={row.instrument} className="bg-neutral-800/60 rounded-xl p-4 border border-neutral-700">
+            <div key={row.instrument} className="bg-muted/60 rounded-xl p-4 border border-border">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
-                  <div className="font-semibold text-neutral-100 text-sm mb-1">{row.instrument}</div>
+                  <div className="font-semibold text-foreground text-sm mb-1">{row.instrument}</div>
                   <div className="grid grid-cols-2 gap-3 text-xs">
                     <div>
                       <div className="text-emerald-400 font-medium mb-0.5">Pros</div>
-                      <div className="text-neutral-400">{row.pros}</div>
+                      <div className="text-muted-foreground">{row.pros}</div>
                     </div>
                     <div>
                       <div className="text-red-400 font-medium mb-0.5">Cons</div>
-                      <div className="text-neutral-400">{row.cons}</div>
+                      <div className="text-muted-foreground">{row.cons}</div>
                     </div>
                   </div>
                 </div>
                 <div className="shrink-0 text-right">
-                  <div className="text-xs text-neutral-500 mb-1">Typical Ratio</div>
-                  <div className="text-xs font-mono bg-neutral-700 text-neutral-200 px-2.5 py-1 rounded-lg whitespace-nowrap">
+                  <div className="text-xs text-muted-foreground mb-1">Typical Ratio</div>
+                  <div className="text-xs font-mono bg-neutral-700 text-foreground px-2.5 py-1 rounded-lg whitespace-nowrap">
                     {row.typicalRatio}
                   </div>
-                  <div className="text-xs text-neutral-500 mt-1 max-w-32">{row.bestFor}</div>
+                  <div className="text-xs text-muted-foreground mt-1 max-w-32">{row.bestFor}</div>
                 </div>
               </div>
             </div>
@@ -1703,7 +1703,7 @@ function ConvexityRiskTab() {
         <div className="mt-4 bg-primary/8 border border-border rounded-lg p-4">
           <div className="flex items-start gap-2">
             <Info size={14} className="text-primary mt-0.5 shrink-0" />
-            <div className="text-xs text-neutral-300 leading-relaxed">
+            <div className="text-xs text-muted-foreground leading-relaxed">
               <strong className="text-primary">Swaption straddle overlay:</strong> Sophisticated MBS managers
               often hold receiver swaptions (to hedge extension) AND payer swaptions (to hedge prepayment/contraction)
               simultaneously — creating a &quot;vega long&quot; position that profits from realized rate volatility exceeding
@@ -1720,7 +1720,7 @@ function ConvexityRiskTab() {
 
 export default function AgencyMBSPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 p-6">
+    <div className="min-h-screen bg-neutral-950 text-foreground p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
@@ -1728,8 +1728,8 @@ export default function AgencyMBSPage() {
             <Building2 size={18} className="text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-neutral-100">Agency MBS</h1>
-            <p className="text-sm text-neutral-400">
+            <h1 className="text-xl font-bold text-foreground">Agency MBS</h1>
+            <p className="text-sm text-muted-foreground">
               Fannie / Freddie / Ginnie pass-throughs, CMOs, IO/PO strips, prepayment modeling &amp; convexity risk
             </p>
           </div>
@@ -1743,7 +1743,7 @@ export default function AgencyMBSPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="agency" className="w-full">
-        <TabsList className="bg-neutral-900 border border-neutral-800 mb-6 flex gap-1 p-1 rounded-xl h-auto flex-wrap">
+        <TabsList className="bg-card border border-border mb-6 flex gap-1 p-1 rounded-xl h-auto flex-wrap">
           {[
             { value: "agency", label: "Agency Market", icon: <Building2 size={13} /> },
             { value: "prepayment", label: "Prepayment Analysis", icon: <TrendingDown size={13} /> },
@@ -1753,7 +1753,7 @@ export default function AgencyMBSPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white text-neutral-400 hover:text-neutral-200 transition-colors"
+              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground hover:text-foreground transition-colors"
             >
               {tab.icon}
               {tab.label}

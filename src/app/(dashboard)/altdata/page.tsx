@@ -551,9 +551,9 @@ function AltDataCategoriesTab() {
 
   return (
     <div className="space-y-6">
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">
+          <CardTitle className="text-sm text-muted-foreground">
             Alt Data Taxonomy — Four Source Pillars
           </CardTitle>
         </CardHeader>
@@ -562,15 +562,15 @@ function AltDataCategoriesTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">
+          <CardTitle className="text-sm text-muted-foreground">
             Alt Data Market Size — $7B (2023) to $17B (2027E)
           </CardTitle>
         </CardHeader>
         <CardContent>
           <MarketSizeChart />
-          <p className="text-xs text-zinc-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Source: FactSet, Opimas Research estimates. CAGR ~24%.
           </p>
         </CardContent>
@@ -585,14 +585,14 @@ function AltDataCategoriesTab() {
             transition={{ delay: i * 0.05 }}
           >
             <Card
-              className="bg-zinc-900/60 border-zinc-800 cursor-pointer hover:border-zinc-600 transition-colors"
+              className="bg-card/60 border-border cursor-pointer hover:border-border transition-colors"
               onClick={() => setExpanded(expanded === i ? null : i)}
             >
               <CardContent className="pt-3 pb-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span style={{ color: cat.color }}>{cat.icon}</span>
-                    <span className="text-sm font-semibold text-zinc-200">{cat.name}</span>
+                    <span className="text-sm font-semibold text-foreground">{cat.name}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge
@@ -603,9 +603,9 @@ function AltDataCategoriesTab() {
                       {cat.exclusivity} excl.
                     </Badge>
                     {expanded === i ? (
-                      <ChevronUp className="w-4 h-4 text-zinc-500" />
+                      <ChevronUp className="w-4 h-4 text-muted-foreground" />
                     ) : (
-                      <ChevronDown className="w-4 h-4 text-zinc-500" />
+                      <ChevronDown className="w-4 h-4 text-muted-foreground" />
                     )}
                   </div>
                 </div>
@@ -619,14 +619,14 @@ function AltDataCategoriesTab() {
                       className="overflow-hidden"
                     >
                       <div className="mt-3 space-y-2">
-                        <div className="flex gap-4 text-xs text-zinc-400">
+                        <div className="flex gap-4 text-xs text-muted-foreground">
                           <span>
                             Lead time:{" "}
-                            <span className="text-zinc-200">{cat.leadTime}</span>
+                            <span className="text-foreground">{cat.leadTime}</span>
                           </span>
                           <span>
                             Cost:{" "}
-                            <span className="text-zinc-200">{cat.costRange}</span>
+                            <span className="text-foreground">{cat.costRange}</span>
                           </span>
                         </div>
                         <div className="flex flex-wrap gap-1 mt-1">
@@ -634,7 +634,7 @@ function AltDataCategoriesTab() {
                             <Badge
                               key={`ex-${i}-${j}`}
                               variant="secondary"
-                              className="text-xs bg-zinc-800 text-zinc-400"
+                              className="text-xs bg-muted text-muted-foreground"
                             >
                               {ex}
                             </Badge>
@@ -650,9 +650,9 @@ function AltDataCategoriesTab() {
         ))}
       </div>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Shield className="w-4 h-4 text-amber-400" />
             Compliance, GDPR/CCPA & Data Provenance
           </CardTitle>
@@ -666,7 +666,7 @@ function AltDataCategoriesTab() {
               >
                 {pt.label}
               </Badge>
-              <p className="text-xs text-zinc-400">{pt.text}</p>
+              <p className="text-xs text-muted-foreground">{pt.text}</p>
             </div>
           ))}
         </CardContent>
@@ -722,7 +722,7 @@ function SatelliteTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {statChips.map((stat, i) => (
-          <Card key={`ss-${i}`} className="bg-zinc-900/60 border-zinc-800">
+          <Card key={`ss-${i}`} className="bg-card/60 border-border">
             <CardContent className="pt-3 pb-3 text-center">
               <span style={{ color: stat.color }} className="inline-flex justify-center mb-1">
                 {stat.icon}
@@ -730,15 +730,15 @@ function SatelliteTab() {
               <div className="text-lg font-bold" style={{ color: stat.color }}>
                 {stat.value}
               </div>
-              <div className="text-xs text-zinc-500">{stat.label}</div>
+              <div className="text-xs text-muted-foreground">{stat.label}</div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">
+          <CardTitle className="text-sm text-muted-foreground">
             Satellite Investment Signals — Strength & Latency
           </CardTitle>
         </CardHeader>
@@ -746,12 +746,12 @@ function SatelliteTab() {
           {SATELLITE_SIGNALS.map((sig, i) => (
             <div key={`satsig-${i}`} className="flex items-center gap-3">
               <div className="w-44 shrink-0">
-                <div className="text-xs text-zinc-300 font-medium">{sig.name}</div>
-                <div className="text-xs text-zinc-500">{sig.asset}</div>
+                <div className="text-xs text-muted-foreground font-medium">{sig.name}</div>
+                <div className="text-xs text-muted-foreground">{sig.asset}</div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                     <motion.div
                       className="h-full rounded-full"
                       style={{
@@ -767,12 +767,12 @@ function SatelliteTab() {
                       transition={{ delay: i * 0.06, duration: 0.5 }}
                     />
                   </div>
-                  <span className="text-xs text-zinc-400 w-7 shrink-0">{sig.strength}</span>
+                  <span className="text-xs text-muted-foreground w-7 shrink-0">{sig.strength}</span>
                 </div>
               </div>
               <Badge
                 variant="outline"
-                className="text-xs border-zinc-700 text-zinc-400 shrink-0 w-20 justify-center"
+                className="text-xs border-border text-muted-foreground shrink-0 w-20 justify-center"
               >
                 {sig.latency}
               </Badge>
@@ -781,36 +781,36 @@ function SatelliteTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">SAR vs Optical Imagery</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">SAR vs Optical Imagery</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left py-2 text-zinc-500 font-medium">Capability</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 text-muted-foreground font-medium">Capability</th>
                   <th className="text-center py-2 text-indigo-400 font-medium">SAR (Radar)</th>
                   <th className="text-center py-2 text-amber-400 font-medium">Optical</th>
                 </tr>
               </thead>
               <tbody>
                 {sarVsOptical.map((row, i) => (
-                  <tr key={`sar-${i}`} className="border-b border-zinc-800/50">
-                    <td className="py-1.5 text-zinc-400">{row.aspect}</td>
+                  <tr key={`sar-${i}`} className="border-b border-border/50">
+                    <td className="py-1.5 text-muted-foreground">{row.aspect}</td>
                     <td className="py-1.5 text-center">
                       {row.sar ? (
                         <CheckCircle className="w-4 h-4 text-emerald-400 inline" />
                       ) : (
-                        <span className="text-zinc-600">—</span>
+                        <span className="text-muted-foreground">—</span>
                       )}
                     </td>
                     <td className="py-1.5 text-center">
                       {row.optical ? (
                         <CheckCircle className="w-4 h-4 text-emerald-400 inline" />
                       ) : (
-                        <span className="text-zinc-600">—</span>
+                        <span className="text-muted-foreground">—</span>
                       )}
                     </td>
                   </tr>
@@ -821,9 +821,9 @@ function SatelliteTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-emerald-400" />
             ESG Monitoring via Satellite
           </CardTitle>
@@ -831,13 +831,13 @@ function SatelliteTab() {
         <CardContent>
           <div className="grid grid-cols-2 gap-3">
             {esgUseCases.map((uc, i) => (
-              <div key={`esg-${i}`} className="bg-zinc-800/50 rounded-lg p-3">
-                <div className="text-xs font-semibold text-zinc-200 mb-1">{uc.title}</div>
-                <div className="text-xs text-zinc-500">{uc.desc}</div>
+              <div key={`esg-${i}`} className="bg-muted/50 rounded-lg p-3">
+                <div className="text-xs font-semibold text-foreground mb-1">{uc.title}</div>
+                <div className="text-xs text-muted-foreground">{uc.desc}</div>
               </div>
             ))}
           </div>
-          <p className="text-xs text-zinc-600 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Providers: Planet Labs (daily 3m imagery), Orbital Insight (AI analysis), Maxar
             (high-resolution), Satellogic (hyperspectral).
           </p>
@@ -889,26 +889,26 @@ function ConsumerWebTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-3 gap-3">
         {statChips.map((stat, i) => (
-          <Card key={`cs-${i}`} className="bg-zinc-900/60 border-zinc-800">
+          <Card key={`cs-${i}`} className="bg-card/60 border-border">
             <CardContent className="pt-3 pb-3 text-center">
               <div className="text-lg font-bold" style={{ color: stat.color }}>
                 {stat.value}
               </div>
-              <div className="text-xs text-zinc-500 mt-1">{stat.label}</div>
+              <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Consumer & Web Signal Taxonomy</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Consumer & Web Signal Taxonomy</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {CONSUMER_SIGNALS.map((sig, i) => (
-            <div key={`csig-${i}`} className="border border-zinc-800 rounded-lg p-3">
+            <div key={`csig-${i}`} className="border border-border rounded-lg p-3">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-semibold text-zinc-200">{sig.source}</span>
+                <span className="text-xs font-semibold text-foreground">{sig.source}</span>
                 <Badge
                   variant="outline"
                   className={cn("text-xs", reliabilityColor(sig.reliability))}
@@ -916,23 +916,23 @@ function ConsumerWebTab() {
                   {sig.reliability}
                 </Badge>
               </div>
-              <div className="text-xs text-zinc-400 mb-1">
-                <span className="text-zinc-500">Metric: </span>
+              <div className="text-xs text-muted-foreground mb-1">
+                <span className="text-muted-foreground">Metric: </span>
                 {sig.metric}
               </div>
-              <div className="text-xs text-zinc-400 mb-1">
-                <span className="text-zinc-500">Edge: </span>
+              <div className="text-xs text-muted-foreground mb-1">
+                <span className="text-muted-foreground">Edge: </span>
                 {sig.investmentImplication}
               </div>
-              <div className="text-xs text-zinc-600">Coverage: {sig.coverage}</div>
+              <div className="text-xs text-muted-foreground">Coverage: {sig.coverage}</div>
             </div>
           ))}
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <FileText className="w-4 h-4 text-indigo-400" />
             NLP on SEC Filings & Earnings Calls
           </CardTitle>
@@ -946,7 +946,7 @@ function ConsumerWebTab() {
               >
                 {concept.term}
               </Badge>
-              <p className="text-xs text-zinc-400">{concept.desc}</p>
+              <p className="text-xs text-muted-foreground">{concept.desc}</p>
             </div>
           ))}
         </CardContent>
@@ -996,39 +996,39 @@ function BuildingEdgeTab() {
 
   return (
     <div className="space-y-6">
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Signal Extraction Pipeline</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Signal Extraction Pipeline</CardTitle>
         </CardHeader>
         <CardContent>
           <SignalPipelineSVG />
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">
+          <CardTitle className="text-sm text-muted-foreground">
             Alpha Decay Curve — 12-Month Half-Life
           </CardTitle>
         </CardHeader>
         <CardContent>
           <AlphaDecayChart />
-          <p className="text-xs text-zinc-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Alpha from alt data signals decays exponentially as crowding and market adaptation erodes
             edge. Typical half-life: 6–18 months.
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300">Pipeline Stages — Click to Expand</CardTitle>
+          <CardTitle className="text-sm text-muted-foreground">Pipeline Stages — Click to Expand</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
           {PIPELINE_STAGES.map((stage, i) => (
             <div
               key={`ps-${i}`}
-              className="border border-zinc-800 rounded-lg overflow-hidden cursor-pointer hover:border-zinc-700 transition-colors"
+              className="border border-border rounded-lg overflow-hidden cursor-pointer hover:border-border transition-colors"
               onClick={() => setOpenStage(openStage === i ? null : i)}
             >
               <div className="flex items-center justify-between px-3 py-2">
@@ -1036,12 +1036,12 @@ function BuildingEdgeTab() {
                   <span className="w-5 h-5 rounded-full bg-indigo-500/20 text-indigo-400 text-xs flex items-center justify-center font-bold">
                     {i + 1}
                   </span>
-                  <span className="text-sm text-zinc-200">{stage.stage}</span>
+                  <span className="text-sm text-foreground">{stage.stage}</span>
                 </div>
                 {openStage === i ? (
-                  <ChevronUp className="w-4 h-4 text-zinc-500" />
+                  <ChevronUp className="w-4 h-4 text-muted-foreground" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-zinc-500" />
+                  <ChevronDown className="w-4 h-4 text-muted-foreground" />
                 )}
               </div>
               <AnimatePresence>
@@ -1053,14 +1053,14 @@ function BuildingEdgeTab() {
                     transition={{ duration: 0.2 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-3 pb-3 space-y-2 border-t border-zinc-800">
-                      <p className="text-xs text-zinc-400 mt-2">{stage.description}</p>
+                    <div className="px-3 pb-3 space-y-2 border-t border-border">
+                      <p className="text-xs text-muted-foreground mt-2">{stage.description}</p>
                       <div className="flex flex-wrap gap-1">
                         {stage.tools.map((tool, j) => (
                           <Badge
                             key={`tool-${i}-${j}`}
                             variant="secondary"
-                            className="text-xs bg-zinc-800 text-zinc-300"
+                            className="text-xs bg-muted text-muted-foreground"
                           >
                             {tool}
                           </Badge>
@@ -1079,9 +1079,9 @@ function BuildingEdgeTab() {
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-emerald-400" />
             Buy vs Build — Vendor Decision Framework
           </CardTitle>
@@ -1090,33 +1090,33 @@ function BuildingEdgeTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left py-2 text-zinc-500 font-medium">Factor</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 text-muted-foreground font-medium">Factor</th>
                   <th className="text-center py-2 text-emerald-400 font-medium">Buy Vendor</th>
                   <th className="text-center py-2 text-indigo-400 font-medium">Build In-House</th>
                 </tr>
               </thead>
               <tbody>
                 {buyVsBuild.map((row, i) => (
-                  <tr key={`bvb-${i}`} className="border-b border-zinc-800/50">
-                    <td className="py-1.5 text-zinc-400">{row.factor}</td>
-                    <td className="py-1.5 text-center text-zinc-300">{row.buy}</td>
-                    <td className="py-1.5 text-center text-zinc-300">{row.build}</td>
+                  <tr key={`bvb-${i}`} className="border-b border-border/50">
+                    <td className="py-1.5 text-muted-foreground">{row.factor}</td>
+                    <td className="py-1.5 text-center text-muted-foreground">{row.buy}</td>
+                    <td className="py-1.5 text-center text-muted-foreground">{row.build}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-zinc-600 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Data ops stack: Snowflake (storage/query), dbt (transformation), Airflow
             (orchestration), Databricks (ML workloads).
           </p>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800">
+      <Card className="bg-card/60 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Cpu className="w-4 h-4 text-primary" />
             IC, Crowding, and Ensemble Signals
           </CardTitle>
@@ -1124,17 +1124,17 @@ function BuildingEdgeTab() {
         <CardContent className="space-y-3">
           <div className="grid grid-cols-2 gap-3">
             {icMetrics.map((m, i) => (
-              <div key={`icm-${i}`} className="bg-zinc-800/50 rounded-lg p-3">
-                <div className="text-xs text-zinc-500 mb-1">{m.metric}</div>
+              <div key={`icm-${i}`} className="bg-muted/50 rounded-lg p-3">
+                <div className="text-xs text-muted-foreground mb-1">{m.metric}</div>
                 <div className="text-sm font-bold text-primary">{m.value}</div>
-                <div className="text-xs text-zinc-600 mt-1">{m.label}</div>
+                <div className="text-xs text-muted-foreground mt-1">{m.label}</div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      <Card className="bg-zinc-900/60 border-zinc-800 border-amber-900/30">
+      <Card className="bg-card/60 border-border border-amber-900/30">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-amber-400 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4" />
@@ -1145,7 +1145,7 @@ function BuildingEdgeTab() {
           {riskWarnings.map((w, i) => (
             <div key={`rw-${i}`} className="flex items-start gap-3">
               {w.icon}
-              <p className="text-xs text-zinc-400">{w.text}</p>
+              <p className="text-xs text-muted-foreground">{w.text}</p>
             </div>
           ))}
         </CardContent>
@@ -1164,7 +1164,7 @@ export default function AltDataPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <motion.div
@@ -1177,8 +1177,8 @@ export default function AltDataPage() {
               <Database className="w-6 h-6 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-zinc-100">Alternative Data in Investing</h1>
-              <p className="text-sm text-zinc-400 mt-0.5">
+              <h1 className="text-xl font-bold text-foreground">Alternative Data in Investing</h1>
+              <p className="text-sm text-muted-foreground mt-0.5">
                 Satellite imagery, credit card transactions, NLP on filings, geolocation, and the
                 full alt data ecosystem.
               </p>
@@ -1198,28 +1198,28 @@ export default function AltDataPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="categories">
-          <TabsList className="grid grid-cols-4 bg-zinc-900 border border-zinc-800 w-full">
+          <TabsList className="grid grid-cols-4 bg-card border border-border w-full">
             <TabsTrigger
               value="categories"
-              className="text-xs data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               Alt Data Categories
             </TabsTrigger>
             <TabsTrigger
               value="satellite"
-              className="text-xs data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               Satellite & Physical
             </TabsTrigger>
             <TabsTrigger
               value="consumer"
-              className="text-xs data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               Consumer & Web
             </TabsTrigger>
             <TabsTrigger
               value="edge"
-              className="text-xs data-[state=active]:bg-zinc-800 data-[state=active]:text-zinc-100"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               Building Edge
             </TabsTrigger>

@@ -462,7 +462,7 @@ function CompositeScore({ selected }: { selected: AlphaSignal[] }) {
   }, [selected]);
   if (!composite) {
     return (
-      <div className="flex items-center justify-center h-32 text-zinc-500 text-sm">
+      <div className="flex items-center justify-center h-32 text-muted-foreground text-sm">
         Add signals from the library below
       </div>
     );
@@ -470,14 +470,14 @@ function CompositeScore({ selected }: { selected: AlphaSignal[] }) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {[
-        { label: "Avg Raw IC", val: composite.avgIC.toFixed(4), color: "text-zinc-300" },
+        { label: "Avg Raw IC", val: composite.avgIC.toFixed(4), color: "text-muted-foreground" },
         { label: "Composite IC", val: composite.expectedIC.toFixed(4), color: "text-primary" },
         { label: "Composite IR", val: composite.expectedIR.toFixed(3), color: "text-primary" },
         { label: "Div Benefit", val: "+" + (composite.divBenefit * 100).toFixed(1) + "%", color: "text-emerald-400" },
       ].map(({ label, val, color }) => (
-        <div key={label} className="rounded-lg bg-zinc-800/60 p-3 text-center">
+        <div key={label} className="rounded-lg bg-muted/60 p-3 text-center">
           <p className={cn("text-xl font-semibold tabular-nums", color)}>{val}</p>
-          <p className="text-xs text-zinc-500 mt-0.5">{label}</p>
+          <p className="text-xs text-muted-foreground mt-0.5">{label}</p>
         </div>
       ))}
     </div>
@@ -515,7 +515,7 @@ export default function QuantResearchPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6 space-y-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
     >
       {/* Header */}
       <div className="flex flex-col gap-1">
@@ -523,14 +523,14 @@ export default function QuantResearchPage() {
           <FlaskConical className="h-6 w-6 text-primary" />
           <h1 className="text-2xl font-bold">Quantitative Research & Signal Generation</h1>
         </div>
-        <p className="text-sm text-zinc-400 max-w-2xl">
+        <p className="text-sm text-muted-foreground max-w-2xl">
           Explore the mechanics of systematic alpha generation — from raw factor signals and IC analysis to alternative data and machine learning.
         </p>
       </div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-zinc-900 border border-zinc-800 flex-wrap h-auto gap-1 p-1">
+        <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="signals" className="text-xs">Alpha Library</TabsTrigger>
           <TabsTrigger value="combo" className="text-xs">Signal Combo</TabsTrigger>
           <TabsTrigger value="ic" className="text-xs">IC / ICIR</TabsTrigger>
@@ -541,13 +541,13 @@ export default function QuantResearchPage() {
 
         {/* ── Tab 1: Alpha Signal Library ── */}
         <TabsContent value="signals" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <BarChart2 className="h-4 w-4 text-primary" />
                 Alpha Signal Library
               </CardTitle>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 IC = Information Coefficient (rank correlation of signal with forward returns). IR = IC / std(IC).
                 Select signals to add to the combo framework.
               </p>
@@ -555,7 +555,7 @@ export default function QuantResearchPage() {
             <CardContent className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-zinc-800 text-zinc-500">
+                  <tr className="border-b border-border text-muted-foreground">
                     <th className="text-left py-2 pr-3 font-medium">Signal</th>
                     <th className="text-left py-2 pr-3 font-medium">Category</th>
                     <th className="text-right py-2 pr-3 font-medium">IC</th>
@@ -567,8 +567,8 @@ export default function QuantResearchPage() {
                 </thead>
                 <tbody className="divide-y divide-zinc-800/50">
                   {ALPHA_SIGNALS.map((sig) => (
-                    <tr key={sig.id} className="group hover:bg-zinc-800/30 transition-colors">
-                      <td className="py-2 pr-3 font-medium text-zinc-200">{sig.name}</td>
+                    <tr key={sig.id} className="group hover:bg-muted/30 transition-colors">
+                      <td className="py-2 pr-3 font-medium text-foreground">{sig.name}</td>
                       <td className="py-2 pr-3">
                         <span className={cn("px-2 py-0.5 rounded text-xs border font-medium capitalize", CATEGORY_COLORS[sig.category])}>
                           {sig.category}
@@ -576,8 +576,8 @@ export default function QuantResearchPage() {
                       </td>
                       <td className="py-2 pr-3 text-right font-mono text-emerald-400">{sig.ic.toFixed(3)}</td>
                       <td className="py-2 pr-3 text-right font-mono text-primary">{sig.ir.toFixed(2)}</td>
-                      <td className="py-2 pr-3 text-zinc-400">{DECAY_LABELS[sig.decay]}</td>
-                      <td className="py-2 pr-3 text-zinc-400">{sig.universe}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{DECAY_LABELS[sig.decay]}</td>
+                      <td className="py-2 pr-3 text-muted-foreground">{sig.universe}</td>
                       <td className="py-2 text-center">
                         <button
                           onClick={() => toggleSignal(sig)}
@@ -585,7 +585,7 @@ export default function QuantResearchPage() {
                             "rounded-full w-6 h-6 flex items-center justify-center mx-auto transition-colors",
                             isSelected(sig)
                               ? "bg-primary/20 text-primary hover:bg-red-500/20 hover:text-red-400"
-                              : "bg-zinc-800 text-zinc-500 hover:bg-zinc-700 hover:text-zinc-200"
+                              : "bg-muted text-muted-foreground hover:bg-muted hover:text-foreground"
                           )}
                         >
                           {isSelected(sig) ? <X className="h-3 w-3" /> : <Plus className="h-3 w-3" />}
@@ -601,15 +601,15 @@ export default function QuantResearchPage() {
           {/* Signal cards with descriptions */}
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {ALPHA_SIGNALS.map((sig) => (
-              <Card key={sig.id} className="bg-zinc-900/40 border-zinc-800">
+              <Card key={sig.id} className="bg-card/40 border-border">
                 <CardContent className="p-3 space-y-2">
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-xs font-medium text-zinc-200 leading-tight">{sig.name}</span>
+                    <span className="text-xs font-medium text-foreground leading-tight">{sig.name}</span>
                     <span className={cn("px-1.5 py-0.5 rounded text-[11px] border font-medium capitalize shrink-0", CATEGORY_COLORS[sig.category])}>
                       {sig.category}
                     </span>
                   </div>
-                  <p className="text-[11px] text-zinc-500 leading-relaxed">{sig.description}</p>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">{sig.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -618,13 +618,13 @@ export default function QuantResearchPage() {
 
         {/* ── Tab 2: Signal Combination Framework ── */}
         <TabsContent value="combo" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-primary" />
                 Signal Combination Framework
               </CardTitle>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Combine up to 6 signals. Diversification benefit grows as you add signals from different categories.
                 IC formula: IC_composite = mean(IC_i) × (1 + div_benefit).
               </p>
@@ -633,15 +633,15 @@ export default function QuantResearchPage() {
               <CompositeScore selected={selectedSignals} />
 
               <div>
-                <p className="text-xs text-zinc-500 mb-2">Selected signals ({selectedSignals.length}/6):</p>
+                <p className="text-xs text-muted-foreground mb-2">Selected signals ({selectedSignals.length}/6):</p>
                 <div className="flex flex-wrap gap-2 min-h-[2rem]">
                   {selectedSignals.length === 0 && (
-                    <span className="text-xs text-zinc-600 italic">None selected — go to Alpha Library to add signals</span>
+                    <span className="text-xs text-muted-foreground italic">None selected — go to Alpha Library to add signals</span>
                   )}
                   {selectedSignals.map((sig) => (
                     <div
                       key={sig.id}
-                      className="flex items-center gap-1 bg-zinc-800 rounded-full px-2.5 py-1 text-xs text-zinc-200"
+                      className="flex items-center gap-1 bg-muted rounded-full px-2.5 py-1 text-xs text-foreground"
                     >
                       <span className={cn("w-2 h-2 rounded-full shrink-0", {
                         "bg-primary": sig.category === "value" || sig.category === "momentum",
@@ -650,7 +650,7 @@ export default function QuantResearchPage() {
                         "bg-rose-400": sig.category === "technical",
                       })} />
                       {sig.name}
-                      <button onClick={() => toggleSignal(sig)} className="ml-1 text-zinc-500 hover:text-red-400">
+                      <button onClick={() => toggleSignal(sig)} className="ml-1 text-muted-foreground hover:text-red-400">
                         <X className="h-3 w-3" />
                       </button>
                     </div>
@@ -659,7 +659,7 @@ export default function QuantResearchPage() {
               </div>
 
               <div>
-                <p className="text-xs text-zinc-500 mb-2">Quick-add from library:</p>
+                <p className="text-xs text-muted-foreground mb-2">Quick-add from library:</p>
                 <div className="flex flex-wrap gap-2">
                   {ALPHA_SIGNALS.map((sig) => (
                     <button
@@ -669,7 +669,7 @@ export default function QuantResearchPage() {
                         "px-2.5 py-1 rounded-full text-xs border transition-colors",
                         isSelected(sig)
                           ? "bg-primary/20 border-primary/50 text-primary"
-                          : "bg-zinc-800/50 border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200"
+                          : "bg-muted/50 border-border text-muted-foreground hover:border-zinc-500 hover:text-foreground"
                       )}
                     >
                       {isSelected(sig) && <CheckCircle className="h-3 w-3 inline mr-1" />}
@@ -679,10 +679,10 @@ export default function QuantResearchPage() {
                 </div>
               </div>
 
-              <div className="rounded-lg bg-zinc-800/40 border border-zinc-700/50 p-4">
-                <p className="text-xs font-medium text-zinc-300 mb-2">Grinold-Kahn Fundamental Law</p>
-                <p className="text-xs text-zinc-500 leading-relaxed">
-                  <strong className="text-zinc-400">IR = IC × √N</strong> — where N is breadth (independent bets per year). Combining uncorrelated
+              <div className="rounded-lg bg-muted/40 border border-border/50 p-4">
+                <p className="text-xs font-medium text-muted-foreground mb-2">Grinold-Kahn Fundamental Law</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  <strong className="text-muted-foreground">IR = IC × √N</strong> — where N is breadth (independent bets per year). Combining uncorrelated
                   signals increases breadth and improves the information ratio linearly with √N. The diversification benefit
                   shown above approximates the correlation discount when signals share category exposure.
                 </p>
@@ -694,20 +694,20 @@ export default function QuantResearchPage() {
         {/* ── Tab 3: IC / ICIR Analysis ── */}
         <TabsContent value="ic" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <div className="grid gap-4 lg:grid-cols-2">
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">Rolling 12-Month IC — Top 3 Signals</CardTitle>
-                <p className="text-xs text-zinc-500">Monthly rank-IC of signal scores vs. next-month returns.</p>
+                <p className="text-xs text-muted-foreground">Monthly rank-IC of signal scores vs. next-month returns.</p>
               </CardHeader>
               <CardContent>
                 <RollingICChart signals={ALPHA_SIGNALS} />
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900/60 border-zinc-800">
+            <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">IC Significance Test</CardTitle>
-                <p className="text-xs text-zinc-500">t-stat = IC_mean / (IC_std / √N). t &gt; 2 → statistically significant at 95%.</p>
+                <p className="text-xs text-muted-foreground">t-stat = IC_mean / (IC_std / √N). t &gt; 2 → statistically significant at 95%.</p>
               </CardHeader>
               <CardContent className="space-y-2">
                 {ALPHA_SIGNALS.map((sig) => {
@@ -715,8 +715,8 @@ export default function QuantResearchPage() {
                   const sig_flag = tstat >= 2;
                   return (
                     <div key={sig.id} className="flex items-center gap-2">
-                      <span className="text-xs text-zinc-400 w-32 shrink-0">{sig.name}</span>
-                      <div className="flex-1 bg-zinc-800 rounded-full h-2 overflow-hidden">
+                      <span className="text-xs text-muted-foreground w-32 shrink-0">{sig.name}</span>
+                      <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
                         <div
                           className={cn("h-full rounded-full transition-all", sig_flag ? "bg-emerald-500" : "bg-amber-500")}
                           style={{ width: `${Math.min(100, (tstat / 5) * 100)}%` }}
@@ -737,10 +737,10 @@ export default function QuantResearchPage() {
             </Card>
           </div>
 
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">ICIR Heatmap by Decile (Top 4 Signals)</CardTitle>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Per-decile Information Ratio. D1 = lowest signal score, D10 = highest. Strong signals show monotonic spread.
               </p>
             </CardHeader>
@@ -752,13 +752,13 @@ export default function QuantResearchPage() {
 
         {/* ── Tab 4: Factor Momentum ── */}
         <TabsContent value="factor" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <TrendingUp className="h-4 w-4 text-emerald-400" />
                 12-Month Factor Cumulative Returns
               </CardTitle>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Factor momentum: buy (go long) factors with strong trailing performance, short recent laggards. Asness et al. (2013) documented this across equities, bonds, FX.
               </p>
             </CardHeader>
@@ -769,27 +769,27 @@ export default function QuantResearchPage() {
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {lastReturns.map((f, i) => (
-              <Card key={f.label} className={cn("border", i === 0 ? "bg-emerald-950/30 border-emerald-800/50" : i === lastReturns.length - 1 ? "bg-red-950/30 border-red-800/50" : "bg-zinc-900/40 border-zinc-800")}>
+              <Card key={f.label} className={cn("border", i === 0 ? "bg-emerald-950/30 border-emerald-800/50" : i === lastReturns.length - 1 ? "bg-red-950/30 border-red-800/50" : "bg-card/40 border-border")}>
                 <CardContent className="p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <span className="w-2 h-2 rounded-full" style={{ backgroundColor: f.color }} />
-                    <span className="text-xs font-medium text-zinc-200">{f.label}</span>
+                    <span className="text-xs font-medium text-foreground">{f.label}</span>
                     {i === 0 && <Badge className="text-[11px] px-1 py-0 bg-emerald-500/20 text-emerald-300 border-emerald-500/30">Momentum Buy</Badge>}
                     {i === lastReturns.length - 1 && <Badge className="text-[11px] px-1 py-0 bg-red-500/20 text-red-300 border-red-500/30">Momentum Sell</Badge>}
                   </div>
                   <p className={cn("text-xl font-semibold tabular-nums", f.ret >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {f.ret >= 0 ? "+" : ""}{f.ret.toFixed(1)}%
                   </p>
-                  <p className="text-xs text-zinc-500 mt-0.5">12M cumulative return</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">12M cumulative return</p>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <Card className="bg-zinc-900/40 border-zinc-800">
+          <Card className="bg-card/40 border-border">
             <CardContent className="p-4 space-y-2">
-              <p className="text-xs font-medium text-zinc-300">Factor Momentum Signal Construction</p>
-              <ol className="text-xs text-zinc-500 space-y-1 list-decimal list-inside">
+              <p className="text-xs font-medium text-muted-foreground">Factor Momentum Signal Construction</p>
+              <ol className="text-xs text-muted-foreground space-y-1 list-decimal list-inside">
                 <li>Compute each factor's 12-month minus 1-month trailing return (skip last month to avoid reversal)</li>
                 <li>Rank factors from best to worst performing</li>
                 <li>Long top tercile factors, short bottom tercile factors</li>
@@ -802,36 +802,36 @@ export default function QuantResearchPage() {
 
         {/* ── Tab 5: Alternative Data Signals ── */}
         <TabsContent value="altdata" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <Database className="h-4 w-4 text-amber-400" />
                 Alternative Data Sources
               </CardTitle>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 Non-traditional datasets that generate alpha by providing informational edge before public disclosure.
               </p>
             </CardHeader>
             <CardContent className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {ALT_DATA_SOURCES.map((src) => (
-                <div key={src.name} className="rounded-lg bg-zinc-800/50 border border-zinc-700/50 p-3 space-y-2">
+                <div key={src.name} className="rounded-lg bg-muted/50 border border-border/50 p-3 space-y-2">
                   <div className="flex items-start justify-between gap-2">
-                    <span className="text-sm font-medium text-zinc-200">{src.name}</span>
+                    <span className="text-sm font-medium text-foreground">{src.name}</span>
                     <span className={cn("text-xs font-medium shrink-0", COST_COLORS[src.cost])}>{src.cost} cost</span>
                   </div>
-                  <p className="text-[11px] text-zinc-500 leading-relaxed">{src.description}</p>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">{src.description}</p>
                   <div className="space-y-1.5">
-                    <div className="flex items-center justify-between text-xs text-zinc-500">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>Predictive accuracy</span>
-                      <span className="font-mono text-zinc-300">{(src.accuracy * 100).toFixed(0)}%</span>
+                      <span className="font-mono text-muted-foreground">{(src.accuracy * 100).toFixed(0)}%</span>
                     </div>
-                    <div className="bg-zinc-700 rounded-full h-1.5 overflow-hidden">
+                    <div className="bg-muted rounded-full h-1.5 overflow-hidden">
                       <div
                         className="h-full rounded-full bg-amber-400"
                         style={{ width: `${src.accuracy * 100}%` }}
                       />
                     </div>
-                    <div className="flex items-center justify-between text-xs text-zinc-500">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
                       <span>Lead time: {src.leadTime}</span>
                       <span>{src.coverage}</span>
                     </div>
@@ -841,10 +841,10 @@ export default function QuantResearchPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900/40 border-zinc-800">
+          <Card className="bg-card/40 border-border">
             <CardContent className="p-4">
-              <p className="text-xs font-medium text-zinc-300 mb-2">Due Diligence Checklist for Alt Data</p>
-              <div className="grid gap-1.5 sm:grid-cols-2 text-[11px] text-zinc-500">
+              <p className="text-xs font-medium text-muted-foreground mb-2">Due Diligence Checklist for Alt Data</p>
+              <div className="grid gap-1.5 sm:grid-cols-2 text-[11px] text-muted-foreground">
                 {[
                   "Verify no look-ahead bias in data delivery timestamps",
                   "Check survivorship bias in historical backtest panels",
@@ -865,13 +865,13 @@ export default function QuantResearchPage() {
 
         {/* ── Tab 6: Machine Learning in Quant ── */}
         <TabsContent value="ml" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
                 <Brain className="h-4 w-4 text-rose-400" />
                 ML Model Comparison for Return Prediction
               </CardTitle>
-              <p className="text-xs text-zinc-500">
+              <p className="text-xs text-muted-foreground">
                 In-sample vs. out-of-sample R². Higher in-sample R² does not predict better out-of-sample performance.
               </p>
             </CardHeader>
@@ -883,46 +883,46 @@ export default function QuantResearchPage() {
                   m.overfit === "High" ? "text-amber-400" :
                   m.overfit === "Very High" ? "text-orange-400" : "text-red-400";
                 return (
-                  <div key={m.name} className="rounded-lg bg-zinc-800/50 border border-zinc-700/50 p-3 space-y-2">
+                  <div key={m.name} className="rounded-lg bg-muted/50 border border-border/50 p-3 space-y-2">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-medium text-zinc-200">{m.name}</span>
+                      <span className="text-sm font-medium text-foreground">{m.name}</span>
                       <span className={cn("text-xs font-medium", overfitColor)}>Overfit: {m.overfit}</span>
                     </div>
                     <div className="grid grid-cols-3 gap-2 text-xs">
                       <div>
-                        <p className="text-zinc-500 text-xs">In-Sample R²</p>
+                        <p className="text-muted-foreground text-xs">In-Sample R²</p>
                         <p className="text-primary font-mono font-semibold">{m.r2InSample.toFixed(2)}</p>
                       </div>
                       <div>
-                        <p className="text-zinc-500 text-xs">OOS R²</p>
+                        <p className="text-muted-foreground text-xs">OOS R²</p>
                         <p className="text-emerald-400 font-mono font-semibold">{m.r2OutOfSample.toFixed(2)}</p>
                       </div>
                       <div>
-                        <p className="text-zinc-500 text-xs">Degradation</p>
+                        <p className="text-muted-foreground text-xs">Degradation</p>
                         <p className="text-red-400 font-mono font-semibold">-{degradation}%</p>
                       </div>
                     </div>
                     {/* R² bar comparison */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-zinc-500 w-20">In-sample</span>
-                        <div className="flex-1 bg-zinc-700 rounded-full h-1.5 overflow-hidden">
+                        <span className="text-xs text-muted-foreground w-20">In-sample</span>
+                        <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
                           <div className="h-full rounded-full bg-primary" style={{ width: `${m.r2InSample * 100}%` }} />
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-zinc-500 w-20">Out-of-sample</span>
-                        <div className="flex-1 bg-zinc-700 rounded-full h-1.5 overflow-hidden">
+                        <span className="text-xs text-muted-foreground w-20">Out-of-sample</span>
+                        <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
                           <div className="h-full rounded-full bg-emerald-500" style={{ width: `${m.r2OutOfSample * 100}%` }} />
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-1">
                       {m.features.map((f) => (
-                        <span key={f} className="text-xs bg-zinc-700/50 border border-zinc-600/50 text-zinc-400 rounded px-1.5 py-0.5">{f}</span>
+                        <span key={f} className="text-xs bg-muted/50 border border-border/50 text-muted-foreground rounded px-1.5 py-0.5">{f}</span>
                       ))}
                     </div>
-                    <p className="text-[11px] text-zinc-500 flex items-start gap-1">
+                    <p className="text-[11px] text-muted-foreground flex items-start gap-1">
                       <AlertTriangle className="h-3 w-3 text-amber-400 mt-0.5 shrink-0" />
                       {m.risk}
                     </p>
@@ -933,10 +933,10 @@ export default function QuantResearchPage() {
           </Card>
 
           {/* Feature Importance SVG */}
-          <Card className="bg-zinc-900/60 border-zinc-800">
+          <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm">Feature Importance — Gradient Boosting (Illustrative)</CardTitle>
-              <p className="text-xs text-zinc-500">Relative importance of input features. High importance ≠ economic significance. Beware of spurious correlations.</p>
+              <p className="text-xs text-muted-foreground">Relative importance of input features. High importance ≠ economic significance. Beware of spurious correlations.</p>
             </CardHeader>
             <CardContent>
               {(() => {
@@ -954,14 +954,14 @@ export default function QuantResearchPage() {
                   <div className="space-y-1.5">
                     {features.map((f) => (
                       <div key={f.name} className="flex items-center gap-2">
-                        <span className="text-xs text-zinc-400 w-28 shrink-0">{f.name}</span>
-                        <div className="flex-1 bg-zinc-800 rounded-full h-3 overflow-hidden">
+                        <span className="text-xs text-muted-foreground w-28 shrink-0">{f.name}</span>
+                        <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
                           <div
                             className="h-full rounded-full bg-rose-500/70"
                             style={{ width: `${f.imp * 100}%` }}
                           />
                         </div>
-                        <span className="text-xs font-mono text-zinc-400 w-10 text-right">{(f.imp * 100).toFixed(0)}%</span>
+                        <span className="text-xs font-mono text-muted-foreground w-10 text-right">{(f.imp * 100).toFixed(0)}%</span>
                       </div>
                     ))}
                   </div>
@@ -970,18 +970,18 @@ export default function QuantResearchPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900/40 border-zinc-800">
+          <Card className="bg-card/40 border-border">
             <CardContent className="p-4 space-y-3">
-              <p className="text-xs font-medium text-zinc-300">Preventing ML Overfitting in Quant Strategies</p>
-              <div className="grid gap-2 sm:grid-cols-2 text-[11px] text-zinc-500">
+              <p className="text-xs font-medium text-muted-foreground">Preventing ML Overfitting in Quant Strategies</p>
+              <div className="grid gap-2 sm:grid-cols-2 text-[11px] text-muted-foreground">
                 {[
                   { title: "Walk-forward testing", desc: "Train on expanding window, test on unseen future period. Never allow future data to leak into training." },
                   { title: "Cross-sectional CV", desc: "Use time-series splits only — K-fold shuffling leaks future data and produces false alpha." },
                   { title: "Regularization", desc: "L1/L2 penalty or dropout in neural nets reduces free parameters and shrinks spurious coefficients." },
                   { title: "Feature reduction", desc: "Limit to economically motivated features. More features → more multiple comparison problems." },
                 ].map(({ title, desc }) => (
-                  <div key={title} className="rounded bg-zinc-800/50 p-2 space-y-0.5">
-                    <p className="text-zinc-300 font-medium">{title}</p>
+                  <div key={title} className="rounded bg-muted/50 p-2 space-y-0.5">
+                    <p className="text-muted-foreground font-medium">{title}</p>
                     <p>{desc}</p>
                   </div>
                 ))}

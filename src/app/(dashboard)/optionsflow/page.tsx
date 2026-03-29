@@ -398,7 +398,7 @@ function SentimentBadge({ sentiment }: { sentiment: "bullish" | "bearish" | "neu
       </Badge>
     );
   return (
-    <Badge className="bg-zinc-500/15 text-zinc-400 border-zinc-500/30 text-xs">
+    <Badge className="bg-zinc-500/15 text-muted-foreground border-zinc-500/30 text-xs">
       Neutral
     </Badge>
   );
@@ -418,7 +418,7 @@ function AggressionBadge({ level }: { level: "high" | "medium" | "low" }) {
       </Badge>
     );
   return (
-    <Badge className="bg-zinc-500/15 text-zinc-400 border-zinc-500/30 text-xs">
+    <Badge className="bg-zinc-500/15 text-muted-foreground border-zinc-500/30 text-xs">
       Low
     </Badge>
   );
@@ -721,7 +721,7 @@ export default function OptionsFlowPage() {
                                     ? "bg-emerald-500/15 text-emerald-400"
                                     : print.notation === "below bid"
                                     ? "bg-red-500/15 text-red-400"
-                                    : "bg-zinc-500/15 text-zinc-400"
+                                    : "bg-zinc-500/15 text-muted-foreground"
                                 }`}
                               >
                                 {print.notation}
@@ -799,7 +799,7 @@ export default function OptionsFlowPage() {
                       {
                         label: "Low Aggression",
                         desc: "Spread across exchanges slowly. Weaker conviction.",
-                        color: "text-zinc-400",
+                        color: "text-muted-foreground",
                         border: "border-zinc-500/30",
                       },
                     ].map((item) => (

@@ -171,21 +171,21 @@ function DeltaHedgingTab() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
           <div className="bg-primary/10 border border-border rounded-lg p-3">
             <div className="text-primary font-medium mb-1">Delta = Hedge Ratio</div>
-            <div className="text-slate-300 text-xs leading-relaxed">
+            <div className="text-muted-foreground text-xs leading-relaxed">
               Delta measures how much an option's price changes per $1 move in the underlying.
               A delta of 0.6 means hold 60 shares short per 1 call to be delta-neutral.
             </div>
           </div>
           <div className="bg-primary/10 border border-border rounded-lg p-3">
             <div className="text-primary font-medium mb-1">Hedge P&amp;L Formula</div>
-            <div className="text-slate-300 text-xs font-mono leading-relaxed">
+            <div className="text-muted-foreground text-xs font-mono leading-relaxed">
               ΔP&amp;L ≈ ½ × Γ × (ΔS)² − Θ × Δt<br />
-              <span className="text-slate-400">Gamma income minus theta bleed</span>
+              <span className="text-muted-foreground">Gamma income minus theta bleed</span>
             </div>
           </div>
           <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
             <div className="text-amber-300 font-medium mb-1">Continuous vs Discrete</div>
-            <div className="text-slate-300 text-xs leading-relaxed">
+            <div className="text-muted-foreground text-xs leading-relaxed">
               Continuous hedging is theoretically perfect but incurs infinite transaction costs.
               Discrete hedging introduces tracking error proportional to Γ × ΔS².
             </div>
@@ -197,7 +197,7 @@ function DeltaHedgingTab() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white font-medium">Stock Path with Hedge Rebalances</h3>
-          <div className="flex items-center gap-3 text-xs text-slate-400">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground">
             <span>Hedge every</span>
             <input
               type="range"
@@ -258,10 +258,10 @@ function DeltaHedgingTab() {
           <text x={PAD - 4} y={PAD + 4} fontSize={10} fill="#94a3b8" textAnchor="end">${pMax.toFixed(0)}</text>
           <text x={PAD - 4} y={H - PAD} fontSize={10} fill="#94a3b8" textAnchor="end">${pMin.toFixed(0)}</text>
         </svg>
-        <div className="flex items-center gap-4 mt-2 text-xs text-slate-400">
+        <div className="flex items-center gap-4 mt-2 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-primary inline-block" /> Price path</span>
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block" /> Hedge rebalance (delta shown)</span>
-          <span className="text-slate-500">Rebalances: {hedgePoints.length} | Transaction cost ≈ ${(hedgePoints.length * 0.05 * SPOT * 0.01).toFixed(2)}</span>
+          <span className="text-muted-foreground">Rebalances: {hedgePoints.length} | Transaction cost ≈ ${(hedgePoints.length * 0.05 * SPOT * 0.01).toFixed(2)}</span>
         </div>
       </div>
 
@@ -290,7 +290,7 @@ function DeltaHedgingTab() {
           <text x={400} y={15} fontSize={10} fill="#64748b">←Optimal zone→</text>
           <line x1={310} x2={420} y1={20} y2={140} stroke="#22c55e40" strokeWidth={20} />
         </svg>
-        <p className="text-xs text-slate-400 mt-2">Hedge too frequently → high transaction costs. Hedge too rarely → large gamma P&amp;L tracking error. Optimal frequency depends on gamma × (ΔS)² vs bid-ask spread.</p>
+        <p className="text-xs text-muted-foreground mt-2">Hedge too frequently → high transaction costs. Hedge too rarely → large gamma P&amp;L tracking error. Optimal frequency depends on gamma × (ΔS)² vs bid-ask spread.</p>
       </div>
 
       {/* Gamma vs Theta daily grid */}
@@ -299,7 +299,7 @@ function DeltaHedgingTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-slate-400 border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-white/10">
                 <th className="text-left py-2 pr-4">DTE / ΔS%</th>
                 {["1%", "2%", "3%", "4%", "5%"].map((h) => (
                   <th key={h} className="text-center py-2 px-3">{h}</th>
@@ -309,7 +309,7 @@ function DeltaHedgingTab() {
             <tbody>
               {[30, 21, 14, 7, 1].map((dte, row) => (
                 <tr key={dte} className="border-b border-white/5">
-                  <td className="py-2 pr-4 text-slate-300 font-medium">{dte} DTE</td>
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{dte} DTE</td>
                   {gridData[row].map((cell, col) => (
                     <td key={col} className="py-2 px-3 text-center">
                       <span className={`font-mono ${cell.net > 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -322,7 +322,7 @@ function DeltaHedgingTab() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-slate-500 mt-2">Net of gamma income and theta decay. Short DTE positions have highest gamma sensitivity.</p>
+        <p className="text-xs text-muted-foreground mt-2">Net of gamma income and theta decay. Short DTE positions have highest gamma sensitivity.</p>
       </div>
     </div>
   );
@@ -385,20 +385,20 @@ function GammaPnLTab() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <div className="text-slate-300 text-sm font-medium mb-2">P&amp;L Formula</div>
-            <div className="bg-slate-800 rounded-lg p-3 font-mono text-sm space-y-1">
+            <div className="text-muted-foreground text-sm font-medium mb-2">P&amp;L Formula</div>
+            <div className="bg-muted rounded-lg p-3 font-mono text-sm space-y-1">
               <div className="text-emerald-400">Gamma P&amp;L = ½ × Γ × (ΔS)²</div>
               <div className="text-red-400">Theta Decay = Θ × Δt</div>
               <div className="text-primary border-t border-white/10 pt-1 mt-1">Net = Gamma − |Theta|</div>
             </div>
-            <div className="mt-3 text-xs text-slate-400 space-y-1">
+            <div className="mt-3 text-xs text-muted-foreground space-y-1">
               <div>• Breakeven realized vol: σ_R = σ_IV when Γ-income = Θ-decay</div>
               <div>• Exact breakeven: σ_R² = σ_IV² ↔ need RV = IV</div>
               <div>• If RV &gt; IV: long gamma profits; if RV &lt; IV: short gamma profits</div>
             </div>
           </div>
           <div>
-            <div className="text-slate-300 text-sm font-medium mb-2">Long Gamma Profit Zone</div>
+            <div className="text-muted-foreground text-sm font-medium mb-2">Long Gamma Profit Zone</div>
             <svg viewBox="0 0 260 130" className="w-full">
               <line x1={30} x2={250} y1={65} y2={65} stroke="#ffffff20" />
               <line x1={30} x2={30} y1={15} y2={115} stroke="#ffffff20" />
@@ -470,7 +470,7 @@ function GammaPnLTab() {
         <div className="mt-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-slate-400 border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-white/10">
                 <th className="text-left py-1.5 pr-3">Bar</th>
                 <th className="text-right py-1.5 pr-3">Price</th>
                 <th className="text-right py-1.5 pr-3">Delta</th>
@@ -481,7 +481,7 @@ function GammaPnLTab() {
             <tbody>
               {simulation.hedgeEvents.slice(0, 15).map((ev) => (
                 <tr key={ev.idx} className="border-b border-white/5 hover:bg-white/5">
-                  <td className="py-1.5 pr-3 text-slate-300">{ev.idx}</td>
+                  <td className="py-1.5 pr-3 text-muted-foreground">{ev.idx}</td>
                   <td className="py-1.5 pr-3 text-right font-mono text-white">${ev.price.toFixed(2)}</td>
                   <td className="py-1.5 pr-3 text-right font-mono text-primary">{ev.delta.toFixed(3)}</td>
                   <td className={`py-1.5 pr-3 text-right font-mono ${ev.pnl >= 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -523,7 +523,7 @@ function GammaPnLTab() {
           <text x={44} y={150} fontSize={9} fill="#ef4444">Loss</text>
           <text x={285} y={155} fontSize={9} fill="#64748b" textAnchor="middle">Hedge rebalance size (absolute $)</text>
         </svg>
-        <p className="text-xs text-slate-400 mt-2">Larger stock moves generate more gamma income. The quadratic relationship (½Γ(ΔS)²) means big moves are disproportionately profitable for long gamma.</p>
+        <p className="text-xs text-muted-foreground mt-2">Larger stock moves generate more gamma income. The quadratic relationship (½Γ(ΔS)²) means big moves are disproportionately profitable for long gamma.</p>
       </div>
     </div>
   );
@@ -578,8 +578,8 @@ function VolArbitrageTab() {
                   : "border-white/10 bg-white/5 hover:bg-white/10"
               }`}
             >
-              <div className={`text-sm font-medium ${selectedStrategy === i ? `text-${st.color}-300` : "text-slate-300"}`}>{st.name}</div>
-              <div className="text-xs text-slate-500 mt-1">{st.desc}</div>
+              <div className={`text-sm font-medium ${selectedStrategy === i ? `text-${st.color}-300` : "text-muted-foreground"}`}>{st.name}</div>
+              <div className="text-xs text-muted-foreground mt-1">{st.desc}</div>
             </button>
           ))}
         </div>
@@ -590,7 +590,7 @@ function VolArbitrageTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="bg-slate-800/60 rounded-lg p-4 text-sm text-slate-300 leading-relaxed"
+            className="bg-muted/60 rounded-lg p-4 text-sm text-muted-foreground leading-relaxed"
           >
             {selectedStrategy === 0 && (
               <div>
@@ -620,7 +620,7 @@ function VolArbitrageTab() {
       <div className="rounded-xl border border-white/10 bg-white/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-white font-medium">2-Year Implied Vol vs Realized Vol</h3>
-          <div className="text-xs text-slate-400 bg-amber-500/10 border border-amber-500/20 rounded px-2 py-1">
+          <div className="text-xs text-muted-foreground bg-amber-500/10 border border-amber-500/20 rounded px-2 py-1">
             Avg Vol Premium: +{(avgPremium * 100).toFixed(1)}%
           </div>
         </div>
@@ -660,7 +660,7 @@ function VolArbitrageTab() {
         <div className="flex items-center gap-6 mt-2 text-xs">
           <span className="flex items-center gap-1.5 text-amber-400"><span className="w-4 h-0.5 bg-amber-400 inline-block" /> Implied Vol</span>
           <span className="flex items-center gap-1.5 text-emerald-400"><span className="w-4 h-0.5 bg-emerald-400 inline-block border-dashed" style={{ borderStyle: "dashed" }} /> Realized Vol</span>
-          <span className="text-slate-500">IV &gt; RV in {IV_HIST.filter((d) => d.iv > d.rv).length}/24 months — structural vol risk premium</span>
+          <span className="text-muted-foreground">IV &gt; RV in {IV_HIST.filter((d) => d.iv > d.rv).length}/24 months — structural vol risk premium</span>
         </div>
       </div>
 
@@ -670,7 +670,7 @@ function VolArbitrageTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-slate-400 border-b border-white/10">
+              <tr className="text-muted-foreground border-b border-white/10">
                 <th className="text-left py-2 pr-4">Strike</th>
                 {surfaceExpiries.map((e) => (
                   <th key={e} className="text-center py-2 px-3">{e}</th>
@@ -680,7 +680,7 @@ function VolArbitrageTab() {
             <tbody>
               {surfaceStrikes.map((k, ki) => (
                 <tr key={k} className="border-b border-white/5">
-                  <td className={`py-2 pr-4 font-medium ${k === 100 ? "text-amber-300" : "text-slate-300"}`}>
+                  <td className={`py-2 pr-4 font-medium ${k === 100 ? "text-amber-300" : "text-muted-foreground"}`}>
                     {k === 100 ? "★ " : ""}{k}
                   </td>
                   {surfaceIV[ki].map((iv, ei) => {
@@ -697,7 +697,7 @@ function VolArbitrageTab() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 grid grid-cols-3 gap-3 text-xs text-slate-400">
+        <div className="mt-3 grid grid-cols-3 gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-red-500/40 inline-block" /> High IV (&gt;28%) — potential short vol</div>
           <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-amber-500/40 inline-block" /> Elevated (25–28%)</div>
           <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-primary/30 inline-block" /> Normal (&lt;25%)</div>
@@ -710,13 +710,13 @@ function VolArbitrageTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
             <div className="text-indigo-300 font-medium mb-1">Vanna (∂Delta/∂Vol)</div>
-            <div className="text-slate-300 text-xs leading-relaxed">
+            <div className="text-muted-foreground text-xs leading-relaxed">
               As vol drops, OTM option deltas collapse — forcing delta hedgers to buy back short stock hedges. Creates systematic buying pressure on underlyings when IV falls. Most pronounced on OTM options 5–15 DTE.
             </div>
           </div>
           <div className="bg-pink-500/10 border border-pink-500/20 rounded-lg p-3">
             <div className="text-pink-300 font-medium mb-1">Charm (∂Delta/∂Time)</div>
-            <div className="text-slate-300 text-xs leading-relaxed">
+            <div className="text-muted-foreground text-xs leading-relaxed">
               Delta decays toward 0 or 1 as expiry approaches. OTM options lose delta faster (charm pulls toward 0), ITM options accelerate toward 1. Forces daily re-hedging even with no price move — systematic flow.
             </div>
           </div>
@@ -764,7 +764,7 @@ function MMRiskTab() {
             <div key={card.label} className={`bg-${card.color}-500/10 border border-${card.color}-500/20 rounded-lg p-3`}>
               <div className={`text-xs text-${card.color}-300 font-medium`}>{card.label}</div>
               <div className={`text-lg font-bold text-${card.color}-400 font-mono mt-1`}>{card.value}</div>
-              <div className="text-xs text-slate-400 mt-1 leading-tight">{card.desc}</div>
+              <div className="text-xs text-muted-foreground mt-1 leading-tight">{card.desc}</div>
             </div>
           ))}
         </div>
@@ -779,7 +779,7 @@ function MMRiskTab() {
             const barColor = pct > 0.8 ? "bg-red-500" : pct > 0.6 ? "bg-amber-500" : "bg-emerald-500";
             return (
               <div key={rl.label} className="flex items-center gap-4">
-                <div className="w-32 text-sm text-slate-300">{rl.label}</div>
+                <div className="w-32 text-sm text-muted-foreground">{rl.label}</div>
                 <div className="flex-1 h-3 bg-white/10 rounded-full overflow-hidden">
                   <motion.div
                     className={`h-full ${barColor} rounded-full`}
@@ -792,13 +792,13 @@ function MMRiskTab() {
                   <span className={pct > 0.8 ? "text-red-400" : pct > 0.6 ? "text-amber-400" : "text-emerald-400"}>
                     {(pct * 100).toFixed(0)}%
                   </span>
-                  <span className="text-slate-500"> of limit</span>
+                  <span className="text-muted-foreground"> of limit</span>
                 </div>
               </div>
             );
           })}
         </div>
-        <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-slate-500">
+        <div className="mt-3 grid grid-cols-3 gap-2 text-xs text-muted-foreground">
           <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> &lt;60% — Comfortable</div>
           <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-500 inline-block" /> 60–80% — Watch</div>
           <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-500 inline-block" /> &gt;80% — Reduce</div>
@@ -893,7 +893,7 @@ function MMRiskTab() {
           <text x={260} y={112} fontSize={9} fill="#64748b">$100</text>
           <text x={510} y={112} fontSize={9} fill="#64748b">$115</text>
         </svg>
-        <p className="text-xs text-slate-400 mt-2">
+        <p className="text-xs text-muted-foreground mt-2">
           When stock pins near strike at expiry, gamma explodes to infinity — forcing market makers to rapidly buy/sell to stay delta-neutral, creating high transaction costs and potential P&amp;L swings.
         </p>
       </div>
@@ -906,25 +906,25 @@ function MMRiskTab() {
             <div key={sc.name} className="grid grid-cols-6 gap-2 text-xs py-2 border-b border-white/5 items-center">
               <div className={`text-${sc.color}-300 font-medium col-span-1`}>{sc.name}</div>
               <div className="text-right font-mono">
-                <span className="text-slate-400 text-xs">Δ </span>
+                <span className="text-muted-foreground text-xs">Δ </span>
                 <span className={sc.delta >= 0 ? "text-emerald-400" : "text-red-400"}>
                   {sc.delta >= 0 ? "+" : ""}{sc.delta.toLocaleString()}
                 </span>
               </div>
               <div className="text-right font-mono">
-                <span className="text-slate-400 text-xs">Γ </span>
+                <span className="text-muted-foreground text-xs">Γ </span>
                 <span className={sc.gamma >= 0 ? "text-emerald-400" : "text-red-400"}>
                   {sc.gamma >= 0 ? "+" : ""}{sc.gamma.toLocaleString()}
                 </span>
               </div>
               <div className="text-right font-mono">
-                <span className="text-slate-400 text-xs">V </span>
+                <span className="text-muted-foreground text-xs">V </span>
                 <span className={sc.vega >= 0 ? "text-emerald-400" : "text-red-400"}>
                   {sc.vega >= 0 ? "+" : ""}{sc.vega.toLocaleString()}
                 </span>
               </div>
               <div className="text-right font-mono">
-                <span className="text-slate-400 text-xs">Θ </span>
+                <span className="text-muted-foreground text-xs">Θ </span>
                 <span className={sc.theta >= 0 ? "text-emerald-400" : "text-red-400"}>
                   {sc.theta >= 0 ? "+" : ""}{sc.theta.toLocaleString()}
                 </span>
@@ -935,12 +935,12 @@ function MMRiskTab() {
             </div>
           ))}
         </div>
-        <div className="flex gap-4 mt-2 text-xs text-slate-500">
+        <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
           <span>Δ = Delta P&amp;L</span>
           <span>Γ = Gamma P&amp;L</span>
           <span>V = Vega P&amp;L</span>
           <span>Θ = Theta P&amp;L</span>
-          <span className="text-slate-400 font-medium">Last col = Net</span>
+          <span className="text-muted-foreground font-medium">Last col = Net</span>
         </div>
       </div>
 
@@ -951,7 +951,7 @@ function MMRiskTab() {
             <AlertTriangle className="w-4 h-4 text-red-400" />
             <span className="text-white text-sm font-medium">Gap Risk</span>
           </div>
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-muted-foreground leading-relaxed">
             Overnight price gaps bypass continuous hedging — the delta hedge becomes stale. Short gamma books suffer most. Managed via position limits on earnings/events and overnight gamma exposure caps.
           </p>
         </div>
@@ -960,7 +960,7 @@ function MMRiskTab() {
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             <span className="text-white text-sm font-medium">Best Practices</span>
           </div>
-          <ul className="text-xs text-slate-400 space-y-1">
+          <ul className="text-xs text-muted-foreground space-y-1">
             <li>• Delta band: re-hedge when |delta| &gt; threshold</li>
             <li>• Gamma limit: max $ gamma per expiry cluster</li>
             <li>• Vega diversification across term structure</li>
@@ -975,7 +975,7 @@ function MMRiskTab() {
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function GammaScalpingPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -990,12 +990,12 @@ export default function GammaScalpingPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Gamma Scalping &amp; Dynamic Hedging</h1>
-              <p className="text-slate-400 text-sm">How market makers profit from realized vs implied volatility through continuous delta hedging</p>
+              <p className="text-muted-foreground text-sm">How market makers profit from realized vs implied volatility through continuous delta hedging</p>
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mt-3">
             {["Long Gamma", "Delta-Neutral", "Vol Arbitrage", "Market Making", "Realized vs Implied"].map((tag) => (
-              <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-400">{tag}</span>
+              <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-muted-foreground">{tag}</span>
             ))}
           </div>
         </motion.div>
@@ -1012,7 +1012,7 @@ export default function GammaScalpingPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-2 text-xs py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-lg text-slate-400"
+                className="flex items-center gap-2 text-xs py-2 data-[state=active]:bg-white/10 data-[state=active]:text-white rounded-lg text-muted-foreground"
               >
                 <Icon className="w-3.5 h-3.5" />
                 {label}

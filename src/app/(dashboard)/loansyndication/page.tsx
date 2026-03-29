@@ -442,13 +442,13 @@ function discountToPar(price: number): string {
 function roleColor(role: SyndicationRole): string {
   if (role === "Bookrunning") return "bg-primary/20 text-primary border-border";
   if (role === "Co-Lead") return "bg-primary/20 text-primary border-border";
-  return "bg-zinc-700/40 text-zinc-400 border-zinc-600/30";
+  return "bg-muted/40 text-muted-foreground border-border/30";
 }
 
 function statusColor(status: DealStatus): string {
   if (status === "Active") return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
   if (status === "Pricing") return "bg-amber-500/20 text-amber-400 border-amber-500/30";
-  if (status === "Closed") return "bg-zinc-600/40 text-zinc-400 border-zinc-600/30";
+  if (status === "Closed") return "bg-zinc-600/40 text-muted-foreground border-border/30";
   return "bg-red-500/20 text-red-400 border-red-500/30";
 }
 
@@ -471,7 +471,7 @@ function StatCard({
   label,
   value,
   sub,
-  color = "text-zinc-100",
+  color = "text-foreground",
 }: {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
@@ -480,16 +480,16 @@ function StatCard({
   color?: string;
 }) {
   return (
-    <Card className="bg-zinc-900 border-zinc-800">
+    <Card className="bg-card border-border">
       <CardContent className="pt-4 pb-4">
         <div className="flex items-start gap-3">
-          <div className="p-2 rounded-lg bg-zinc-800">
-            <Icon className="w-4 h-4 text-zinc-400" />
+          <div className="p-2 rounded-lg bg-muted">
+            <Icon className="w-4 h-4 text-muted-foreground" />
           </div>
           <div>
-            <p className="text-xs text-zinc-500">{label}</p>
+            <p className="text-xs text-muted-foreground">{label}</p>
             <p className={`text-lg font-semibold ${color}`}>{value}</p>
-            {sub && <p className="text-xs text-zinc-500 mt-0.5">{sub}</p>}
+            {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
           </div>
         </div>
       </CardContent>
@@ -515,9 +515,9 @@ function PipelineTab() {
         <StatCard icon={Percent} label="Avg Spread" value="L+320 bps" sub="blended pipeline" color="text-emerald-400" />
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Briefcase className="w-4 h-4 text-primary" />
             Active Syndication Pipeline
           </CardTitle>
@@ -527,24 +527,24 @@ function PipelineTab() {
             {SYNDICATION_DEALS.map((deal) => {
               const expanded = expandedId === deal.id;
               return (
-                <div key={deal.id} className="border border-zinc-800 rounded-lg overflow-hidden">
+                <div key={deal.id} className="border border-border rounded-lg overflow-hidden">
                   <button
                     className="w-full text-left"
                     onClick={() => setExpandedId(expanded ? null : deal.id)}
                   >
-                    <div className="flex items-center justify-between px-4 py-3 hover:bg-zinc-800/50 transition-colors">
+                    <div className="flex items-center justify-between px-4 py-3 hover:bg-muted/50 transition-colors">
                       <div className="flex items-center gap-3 min-w-0">
                         <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-zinc-100 truncate">{deal.borrower}</p>
-                          <p className="text-xs text-zinc-500">{deal.purpose} · {deal.sector}</p>
+                          <p className="text-sm font-medium text-foreground truncate">{deal.borrower}</p>
+                          <p className="text-xs text-muted-foreground">{deal.purpose} · {deal.sector}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 shrink-0 ml-4">
-                        <span className="text-sm font-semibold text-zinc-200">{fmtM(deal.sizeM)}</span>
+                        <span className="text-sm font-semibold text-foreground">{fmtM(deal.sizeM)}</span>
                         <Badge className={`text-xs px-2 py-0.5 border ${roleColor(deal.role)}`}>{deal.role}</Badge>
                         <Badge className={`text-xs px-2 py-0.5 border ${statusColor(deal.status)}`}>{deal.status}</Badge>
-                        {expanded ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+                        {expanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                       </div>
                     </div>
                   </button>
@@ -554,42 +554,42 @@ function PipelineTab() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="border-t border-zinc-800 bg-zinc-900/50"
+                      className="border-t border-border bg-card/50"
                     >
                       <div className="px-4 py-4 grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div>
-                          <p className="text-xs text-zinc-500">Tranche</p>
-                          <p className="text-sm font-medium text-zinc-200">{deal.dealType}</p>
+                          <p className="text-xs text-muted-foreground">Tranche</p>
+                          <p className="text-sm font-medium text-foreground">{deal.dealType}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-zinc-500">Pricing</p>
-                          <p className="text-sm font-medium text-zinc-200">SOFR+{deal.pricingBps} bps</p>
+                          <p className="text-xs text-muted-foreground">Pricing</p>
+                          <p className="text-sm font-medium text-foreground">SOFR+{deal.pricingBps} bps</p>
                         </div>
                         <div>
-                          <p className="text-xs text-zinc-500">OID</p>
-                          <p className="text-sm font-medium text-zinc-200">{deal.oid.toFixed(2)}</p>
+                          <p className="text-xs text-muted-foreground">OID</p>
+                          <p className="text-sm font-medium text-foreground">{deal.oid.toFixed(2)}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-zinc-500">Leverage</p>
+                          <p className="text-xs text-muted-foreground">Leverage</p>
                           <p className={`text-sm font-medium ${deal.leverage > 5.0 ? "text-red-400" : deal.leverage > 4.0 ? "text-amber-400" : "text-emerald-400"}`}>
                             {deal.leverage.toFixed(1)}x
                           </p>
                         </div>
                         <div>
-                          <p className="text-xs text-zinc-500">Rating</p>
+                          <p className="text-xs text-muted-foreground">Rating</p>
                           <p className={`text-sm font-medium ${ratingColor(deal.rating)}`}>{deal.rating}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-zinc-500">Maturity</p>
-                          <p className="text-sm font-medium text-zinc-200">{deal.maturity}</p>
+                          <p className="text-xs text-muted-foreground">Maturity</p>
+                          <p className="text-sm font-medium text-foreground">{deal.maturity}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-zinc-500">Sponsor</p>
-                          <p className="text-sm font-medium text-zinc-200">{deal.sponsor}</p>
+                          <p className="text-xs text-muted-foreground">Sponsor</p>
+                          <p className="text-sm font-medium text-foreground">{deal.sponsor}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-zinc-500">Sector</p>
-                          <p className="text-sm font-medium text-zinc-200">{deal.sector}</p>
+                          <p className="text-xs text-muted-foreground">Sector</p>
+                          <p className="text-sm font-medium text-foreground">{deal.sector}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -602,9 +602,9 @@ function PipelineTab() {
       </Card>
 
       {/* Pipeline SVG Bar */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Deal Size by Role
           </CardTitle>
@@ -655,7 +655,7 @@ function BookBuildingTab() {
   return (
     <div className="space-y-6">
       {/* Deal Selector */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardContent className="pt-4">
           <div className="flex flex-wrap gap-2">
             {SYNDICATION_DEALS.map((d) => (
@@ -665,7 +665,7 @@ function BookBuildingTab() {
                 size="sm"
                 className={selectedDealId === d.id
                   ? "bg-primary hover:bg-primary/80 text-white border-0"
-                  : "bg-zinc-800 border-zinc-700 text-zinc-300 hover:bg-zinc-700"}
+                  : "bg-muted border-border text-muted-foreground hover:bg-muted"}
                 onClick={() => setSelectedDealId(d.id)}
               >
                 {d.borrower.split(" ").slice(0, 2).join(" ")} · {d.dealType}
@@ -690,9 +690,9 @@ function BookBuildingTab() {
       </div>
 
       {/* Book visual */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BookOpen className="w-4 h-4 text-primary" />
             Demand Book — {selectedDeal.borrower}
           </CardTitle>
@@ -700,11 +700,11 @@ function BookBuildingTab() {
         <CardContent>
           {/* Oversubscription visual */}
           <div className="mb-6">
-            <div className="flex items-center justify-between text-xs text-zinc-500 mb-1">
+            <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
               <span>Deal Size ({fmtM(selectedDeal.sizeM)})</span>
               <span>Total Demand ({fmtM(totalCommit)})</span>
             </div>
-            <div className="h-5 bg-zinc-800 rounded-full overflow-hidden relative">
+            <div className="h-5 bg-muted rounded-full overflow-hidden relative">
               <div
                 className="h-full bg-primary rounded-full"
                 style={{ width: `${Math.min((selectedDeal.sizeM / totalCommit) * 100, 100)}%` }}
@@ -719,21 +719,21 @@ function BookBuildingTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left text-xs text-zinc-500 py-2 pr-4">Investor</th>
-                  <th className="text-left text-xs text-zinc-500 py-2 pr-4">Type</th>
-                  <th className="text-right text-xs text-zinc-500 py-2 pr-4">Committed</th>
-                  <th className="text-right text-xs text-zinc-500 py-2 pr-4">Allocated</th>
-                  <th className="text-right text-xs text-zinc-500 py-2">Status</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-xs text-muted-foreground py-2 pr-4">Investor</th>
+                  <th className="text-left text-xs text-muted-foreground py-2 pr-4">Type</th>
+                  <th className="text-right text-xs text-muted-foreground py-2 pr-4">Committed</th>
+                  <th className="text-right text-xs text-muted-foreground py-2 pr-4">Allocated</th>
+                  <th className="text-right text-xs text-muted-foreground py-2">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {investors.map((inv, i) => (
-                  <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
-                    <td className="py-2 pr-4 font-medium text-zinc-200">{inv.name}</td>
-                    <td className="py-2 pr-4 text-zinc-400 text-xs">{inv.type}</td>
-                    <td className="py-2 pr-4 text-right text-zinc-300">{fmtM(inv.commitM)}</td>
-                    <td className="py-2 pr-4 text-right text-zinc-200">{fmtM(inv.allocM)}</td>
+                  <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                    <td className="py-2 pr-4 font-medium text-foreground">{inv.name}</td>
+                    <td className="py-2 pr-4 text-muted-foreground text-xs">{inv.type}</td>
+                    <td className="py-2 pr-4 text-right text-muted-foreground">{fmtM(inv.commitM)}</td>
+                    <td className="py-2 pr-4 text-right text-foreground">{fmtM(inv.allocM)}</td>
                     <td className="py-2 text-right">
                       {inv.scaled ? (
                         <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-xs border">Scaled</Badge>
@@ -745,10 +745,10 @@ function BookBuildingTab() {
                 ))}
               </tbody>
               <tfoot>
-                <tr className="border-t border-zinc-700">
-                  <td className="py-2 pr-4 font-semibold text-zinc-200" colSpan={2}>Total</td>
-                  <td className="py-2 pr-4 text-right font-semibold text-zinc-200">{fmtM(totalCommit)}</td>
-                  <td className="py-2 pr-4 text-right font-semibold text-zinc-200">{fmtM(totalAlloc)}</td>
+                <tr className="border-t border-border">
+                  <td className="py-2 pr-4 font-semibold text-foreground" colSpan={2}>Total</td>
+                  <td className="py-2 pr-4 text-right font-semibold text-foreground">{fmtM(totalCommit)}</td>
+                  <td className="py-2 pr-4 text-right font-semibold text-foreground">{fmtM(totalAlloc)}</td>
                   <td />
                 </tr>
               </tfoot>
@@ -774,9 +774,9 @@ function PricingGridTab() {
   return (
     <div className="space-y-6">
       {/* Interactive selector */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-amber-400" />
             Pricing Grid Simulator — TechPlatform Inc TLB
           </CardTitle>
@@ -784,8 +784,8 @@ function PricingGridTab() {
         <CardContent className="space-y-4">
           <div className="flex items-center gap-4">
             <div className="flex-1">
-              <p className="text-xs text-zinc-500 mb-2">
-                Leverage (x EBITDA): <span className="text-zinc-200 font-semibold">{leverageInput.toFixed(1)}x</span>
+              <p className="text-xs text-muted-foreground mb-2">
+                Leverage (x EBITDA): <span className="text-foreground font-semibold">{leverageInput.toFixed(1)}x</span>
               </p>
               <input
                 type="range"
@@ -796,25 +796,25 @@ function PricingGridTab() {
                 onChange={(e) => setLeverageInput(parseFloat(e.target.value))}
                 className="w-full accent-blue-500"
               />
-              <div className="flex justify-between text-xs text-zinc-600 mt-1">
+              <div className="flex justify-between text-xs text-muted-foreground mt-1">
                 <span>1.0x</span>
                 <span>7.0x</span>
               </div>
             </div>
-            <div className="text-center p-4 bg-zinc-800 rounded-lg min-w-[130px]">
-              <p className="text-xs text-zinc-500">Applicable Spread</p>
+            <div className="text-center p-4 bg-muted rounded-lg min-w-[130px]">
+              <p className="text-xs text-muted-foreground">Applicable Spread</p>
               <p className="text-2xl font-bold text-primary">+{activeTier.spreadBps}</p>
-              <p className="text-xs text-zinc-400">bps over SOFR</p>
-              <p className="text-xs text-zinc-500 mt-1">Floor: {activeTier.floor}%</p>
+              <p className="text-xs text-muted-foreground">bps over SOFR</p>
+              <p className="text-xs text-muted-foreground mt-1">Floor: {activeTier.floor}%</p>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Grid Table */}
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Full Pricing Grid
           </CardTitle>
@@ -828,27 +828,27 @@ function PricingGridTab() {
                 <div
                   key={i}
                   className={`flex items-center gap-3 p-3 rounded-lg transition-all ${
-                    isActive ? "bg-primary/10 border border-border" : "bg-zinc-800/50"
+                    isActive ? "bg-primary/10 border border-border" : "bg-muted/50"
                   }`}
                 >
                   <div className="w-24 shrink-0">
-                    <p className={`text-sm font-medium ${isActive ? "text-primary" : "text-zinc-300"}`}>
+                    <p className={`text-sm font-medium ${isActive ? "text-primary" : "text-muted-foreground"}`}>
                       {tier.leverageLabel}
                     </p>
                   </div>
-                  <div className="flex-1 h-5 bg-zinc-800 rounded overflow-hidden">
+                  <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
                     <div
                       className={`h-full rounded transition-all ${isActive ? "bg-primary" : "bg-zinc-600"}`}
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
                   <div className="w-24 text-right shrink-0">
-                    <span className={`text-sm font-semibold ${isActive ? "text-primary" : "text-zinc-200"}`}>
+                    <span className={`text-sm font-semibold ${isActive ? "text-primary" : "text-foreground"}`}>
                       SOFR+{tier.spreadBps}
                     </span>
                   </div>
                   <div className="w-20 text-right shrink-0">
-                    <span className="text-xs text-zinc-500">Floor {tier.floor}%</span>
+                    <span className="text-xs text-muted-foreground">Floor {tier.floor}%</span>
                   </div>
                   {isActive && (
                     <Badge className="bg-primary/20 text-primary border-border border text-xs shrink-0">Active</Badge>
@@ -860,7 +860,7 @@ function PricingGridTab() {
 
           {/* SVG Visualization */}
           <div className="mt-6">
-            <p className="text-xs text-zinc-500 mb-3">Spread Staircase (bps)</p>
+            <p className="text-xs text-muted-foreground mb-3">Spread Staircase (bps)</p>
             <svg width="100%" height="160" viewBox="0 0 600 160">
               {PRICING_GRID.map((tier, i) => {
                 const x = i * (600 / PRICING_GRID.length);
@@ -934,10 +934,10 @@ function SecondaryMarketTab() {
         <StatCard icon={TrendingUp} label="Avg YTM" value={`${avgYtm.toFixed(1)}%`} sub="yield to maturity" color="text-emerald-400" />
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <Activity className="w-4 h-4 text-primary" />
               Secondary Loan Prices
             </CardTitle>
@@ -947,7 +947,7 @@ function SecondaryMarketTab() {
                   key={s}
                   variant="outline"
                   size="sm"
-                  className={`text-xs h-7 ${sortBy === s ? "bg-zinc-700 border-zinc-600 text-zinc-200" : "bg-zinc-800 border-zinc-700 text-zinc-400"}`}
+                  className={`text-xs h-7 ${sortBy === s ? "bg-muted border-border text-foreground" : "bg-muted border-border text-muted-foreground"}`}
                   onClick={() => setSortBy(s)}
                 >
                   {s === "bid" ? "Price" : s === "ytm" ? "YTM" : "Spread"}
@@ -966,14 +966,14 @@ function SecondaryMarketTab() {
                   className={`p-4 rounded-lg border ${
                     loan.distressed
                       ? "border-red-500/30 bg-red-500/5"
-                      : "border-zinc-800 bg-zinc-800/30"
+                      : "border-border bg-muted/30"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <p className="text-sm font-medium text-zinc-100">{loan.borrower}</p>
-                        <Badge className="text-xs px-1.5 py-0 bg-zinc-700/50 text-zinc-400 border-zinc-700 border">{loan.tranche}</Badge>
+                        <p className="text-sm font-medium text-foreground">{loan.borrower}</p>
+                        <Badge className="text-xs px-1.5 py-0 bg-muted/50 text-muted-foreground border-border border">{loan.tranche}</Badge>
                         {loan.distressed && (
                           <Badge className="text-xs px-1.5 py-0 bg-red-500/20 text-red-400 border-red-500/30 border flex items-center gap-1">
                             <AlertTriangle className="w-2.5 h-2.5" />
@@ -981,26 +981,26 @@ function SecondaryMarketTab() {
                           </Badge>
                         )}
                       </div>
-                      <p className="text-xs text-zinc-500 mt-0.5">{loan.sector} · Matures {loan.maturity}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{loan.sector} · Matures {loan.maturity}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className={`text-lg font-bold ${loan.distressed ? "text-red-400" : "text-zinc-100"}`}>
+                      <p className={`text-lg font-bold ${loan.distressed ? "text-red-400" : "text-foreground"}`}>
                         {loan.bid.toFixed(2)} / {loan.offer.toFixed(2)}
                       </p>
-                      <p className="text-xs text-zinc-500">{discountToPar(midPrice)} to par</p>
+                      <p className="text-xs text-muted-foreground">{discountToPar(midPrice)} to par</p>
                     </div>
                   </div>
                   <div className="mt-3 grid grid-cols-3 gap-3">
                     <div>
-                      <p className="text-xs text-zinc-500">Rating</p>
+                      <p className="text-xs text-muted-foreground">Rating</p>
                       <p className={`text-sm font-medium ${ratingColor(loan.rating)}`}>{loan.rating}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-500">Par Spread</p>
-                      <p className="text-sm font-medium text-zinc-200">+{loan.parSpread} bps</p>
+                      <p className="text-xs text-muted-foreground">Par Spread</p>
+                      <p className="text-sm font-medium text-foreground">+{loan.parSpread} bps</p>
                     </div>
                     <div>
-                      <p className="text-xs text-zinc-500">YTM</p>
+                      <p className="text-xs text-muted-foreground">YTM</p>
                       <p className={`text-sm font-medium ${loan.ytm > 12 ? "text-red-400" : loan.ytm > 9 ? "text-amber-400" : "text-emerald-400"}`}>
                         {loan.ytm.toFixed(1)}%
                       </p>
@@ -1008,13 +1008,13 @@ function SecondaryMarketTab() {
                   </div>
                   {/* Bid/ask bar */}
                   <div className="mt-3">
-                    <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full ${loan.distressed ? "bg-red-500" : "bg-primary"}`}
                         style={{ width: `${(loan.bid / 100) * 100}%` }}
                       />
                     </div>
-                    <div className="flex justify-between text-xs text-zinc-600 mt-0.5">
+                    <div className="flex justify-between text-xs text-muted-foreground mt-0.5">
                       <span>0</span>
                       <span>Par (100)</span>
                     </div>
@@ -1050,14 +1050,14 @@ function CovenantTab() {
       </div>
 
       {/* Education card */}
-      <Card className="bg-zinc-900 border-zinc-800 border-l-4 border-l-blue-500">
+      <Card className="bg-card border-border border-l-4 border-l-blue-500">
         <CardContent className="pt-4 pb-4">
           <div className="flex gap-3">
             <BookOpen className="w-4 h-4 text-primary shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-medium text-zinc-200">What is Cov-Lite?</p>
-              <p className="text-xs text-zinc-400 mt-1">
-                Covenant-lite loans lack <strong className="text-zinc-300">financial maintenance covenants</strong> — borrowers only
+              <p className="text-sm font-medium text-foreground">What is Cov-Lite?</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Covenant-lite loans lack <strong className="text-muted-foreground">financial maintenance covenants</strong> — borrowers only
                 trigger tests if they take specific actions (incurrence-based). Full covenant packages
                 require quarterly compliance tests. Cov-lite loans offer borrowers more flexibility but
                 reduce lender early-warning protections.
@@ -1068,9 +1068,9 @@ function CovenantTab() {
       </Card>
 
       {categories.map((category) => (
-        <Card key={category} className="bg-zinc-900 border-zinc-800">
+        <Card key={category} className="bg-card border-border">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               <FileText className="w-4 h-4 text-primary" />
               {category} Covenants
             </CardTitle>
@@ -1081,9 +1081,9 @@ function CovenantTab() {
                 const key = `${category}-${i}`;
                 const isExpanded = expandedRow === (COVENANT_COMPARISONS.indexOf(cov));
                 return (
-                  <div key={key} className="border border-zinc-800 rounded-lg overflow-hidden">
+                  <div key={key} className="border border-border rounded-lg overflow-hidden">
                     <button
-                      className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-zinc-800/50 transition-colors"
+                      className="w-full text-left px-4 py-3 flex items-center justify-between hover:bg-muted/50 transition-colors"
                       onClick={() => setExpandedRow(isExpanded ? null : COVENANT_COMPARISONS.indexOf(cov))}
                     >
                       <div className="flex items-center gap-3">
@@ -1092,23 +1092,23 @@ function CovenantTab() {
                             : cov.riskLevel === "Medium" ? "bg-amber-500/20 text-amber-400"
                             : "bg-emerald-500/20 text-emerald-400"
                         }`}>{cov.riskLevel}</span>
-                        <span className="text-sm font-medium text-zinc-200">{cov.covenant}</span>
+                        <span className="text-sm font-medium text-foreground">{cov.covenant}</span>
                       </div>
-                      {isExpanded ? <ChevronUp className="w-4 h-4 text-zinc-500" /> : <ChevronDown className="w-4 h-4 text-zinc-500" />}
+                      {isExpanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                     </button>
                     {isExpanded && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="border-t border-zinc-800 grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-800"
+                        className="border-t border-border grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-800"
                       >
                         <div className="p-4 bg-red-500/5">
                           <p className="text-xs font-semibold text-red-400 mb-1">Cov-Lite</p>
-                          <p className="text-sm text-zinc-300">{cov.covLite}</p>
+                          <p className="text-sm text-muted-foreground">{cov.covLite}</p>
                         </div>
                         <div className="p-4 bg-emerald-500/5">
                           <p className="text-xs font-semibold text-emerald-400 mb-1">Full Covenant</p>
-                          <p className="text-sm text-zinc-300">{cov.fullCov}</p>
+                          <p className="text-sm text-muted-foreground">{cov.fullCov}</p>
                         </div>
                       </motion.div>
                     )}
@@ -1141,9 +1141,9 @@ function LeagueTableTab() {
         <StatCard icon={Globe} label="Market Total" value={`$${(totalVol / 0.875).toFixed(0)}B`} sub="est. total mkt" color="text-amber-400" />
       </div>
 
-      <Card className="bg-zinc-900 border-zinc-800">
+      <Card className="bg-card border-border">
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
             <Award className="w-4 h-4 text-amber-400" />
             Lead Arranger League Table — LTM
           </CardTitle>
@@ -1152,47 +1152,47 @@ function LeagueTableTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-zinc-800">
-                  <th className="text-left text-xs text-zinc-500 py-2 pr-3 w-8">#</th>
-                  <th className="text-left text-xs text-zinc-500 py-2 pr-4">Bank</th>
-                  <th className="text-right text-xs text-zinc-500 py-2 pr-4">Deals</th>
-                  <th className="text-left text-xs text-zinc-500 py-2 pr-4 hidden md:table-cell">Volume Share</th>
-                  <th className="text-right text-xs text-zinc-500 py-2 pr-4">Volume ($B)</th>
-                  <th className="text-right text-xs text-zinc-500 py-2 pr-4">Mkt Share</th>
-                  <th className="text-right text-xs text-zinc-500 py-2">YoY</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-xs text-muted-foreground py-2 pr-3 w-8">#</th>
+                  <th className="text-left text-xs text-muted-foreground py-2 pr-4">Bank</th>
+                  <th className="text-right text-xs text-muted-foreground py-2 pr-4">Deals</th>
+                  <th className="text-left text-xs text-muted-foreground py-2 pr-4 hidden md:table-cell">Volume Share</th>
+                  <th className="text-right text-xs text-muted-foreground py-2 pr-4">Volume ($B)</th>
+                  <th className="text-right text-xs text-muted-foreground py-2 pr-4">Mkt Share</th>
+                  <th className="text-right text-xs text-muted-foreground py-2">YoY</th>
                 </tr>
               </thead>
               <tbody>
                 {displayed.map((entry) => (
-                  <tr key={entry.rank} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                  <tr key={entry.rank} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="py-3 pr-3">
                       <span className={`text-sm font-bold ${
                         entry.rank === 1 ? "text-amber-400"
-                          : entry.rank === 2 ? "text-zinc-300"
+                          : entry.rank === 2 ? "text-muted-foreground"
                           : entry.rank === 3 ? "text-orange-400"
-                          : "text-zinc-500"
+                          : "text-muted-foreground"
                       }`}>{entry.rank}</span>
                     </td>
                     <td className="py-3 pr-4">
                       <div className="flex items-center gap-2">
-                        <Building2 className="w-3 h-3 text-zinc-600" />
-                        <span className="font-medium text-zinc-200">{entry.bank}</span>
+                        <Building2 className="w-3 h-3 text-muted-foreground" />
+                        <span className="font-medium text-foreground">{entry.bank}</span>
                       </div>
                     </td>
-                    <td className="py-3 pr-4 text-right text-zinc-300">{entry.deals}</td>
+                    <td className="py-3 pr-4 text-right text-muted-foreground">{entry.deals}</td>
                     <td className="py-3 pr-4 hidden md:table-cell">
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 h-3 bg-zinc-800 rounded overflow-hidden max-w-[120px]">
+                        <div className="flex-1 h-3 bg-muted rounded overflow-hidden max-w-[120px]">
                           <div
                             className={`h-full rounded ${entry.rank <= 2 ? "bg-primary" : "bg-zinc-600"}`}
                             style={{ width: `${(entry.volumeB / maxVol) * 100}%` }}
                           />
                         </div>
-                        <span className="text-xs text-zinc-500 w-12">{entry.sharePercent}%</span>
+                        <span className="text-xs text-muted-foreground w-12">{entry.sharePercent}%</span>
                       </div>
                     </td>
-                    <td className="py-3 pr-4 text-right font-semibold text-zinc-200">{entry.volumeB.toFixed(1)}</td>
-                    <td className="py-3 pr-4 text-right text-zinc-300">{entry.sharePercent}%</td>
+                    <td className="py-3 pr-4 text-right font-semibold text-foreground">{entry.volumeB.toFixed(1)}</td>
+                    <td className="py-3 pr-4 text-right text-muted-foreground">{entry.sharePercent}%</td>
                     <td className="py-3 text-right">
                       <span className={`text-xs font-medium flex items-center justify-end gap-0.5 ${
                         entry.yoyChange >= 0 ? "text-emerald-400" : "text-red-400"
@@ -1211,7 +1211,7 @@ function LeagueTableTab() {
             <Button
               variant="ghost"
               size="sm"
-              className="mt-3 text-zinc-500 hover:text-zinc-300 text-xs"
+              className="mt-3 text-muted-foreground hover:text-muted-foreground text-xs"
               onClick={() => setShowAll(true)}
             >
               Show all {LEAGUE_TABLE.length} entries <ChevronDown className="w-3 h-3 ml-1" />
@@ -1252,8 +1252,8 @@ function LeagueTableTab() {
                 return (
                   <div key={i} className="flex items-center gap-1.5">
                     <div className={`w-2 h-2 rounded-full ${colors[i]}`} />
-                    <span className="text-xs text-zinc-400">{entry.bank.split(" ")[0]}</span>
-                    <span className="text-xs text-zinc-500">{entry.sharePercent}%</span>
+                    <span className="text-xs text-muted-foreground">{entry.bank.split(" ")[0]}</span>
+                    <span className="text-xs text-muted-foreground">{entry.sharePercent}%</span>
                   </div>
                 );
               })}
@@ -1273,7 +1273,7 @@ export default function LoanSyndicationPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6"
+      className="min-h-screen bg-background text-foreground p-4 md:p-6"
     >
       {/* Header */}
       <div className="mb-6">
@@ -1281,9 +1281,9 @@ export default function LoanSyndicationPage() {
           <div className="p-2 rounded-lg bg-primary/10">
             <Briefcase className="w-5 h-5 text-primary" />
           </div>
-          <h1 className="text-2xl font-bold text-zinc-100">Loan Syndication & Leveraged Finance</h1>
+          <h1 className="text-2xl font-bold text-foreground">Loan Syndication & Leveraged Finance</h1>
         </div>
-        <p className="text-sm text-zinc-400 ml-12">
+        <p className="text-sm text-muted-foreground ml-12">
           Primary syndication pipeline, book building, pricing grids, secondary trading and covenant analysis.
         </p>
       </div>
@@ -1298,28 +1298,28 @@ export default function LoanSyndicationPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="pipeline">
-        <TabsList className="bg-zinc-900 border border-zinc-800 h-auto flex-wrap gap-1 p-1 mb-6">
-          <TabsTrigger value="pipeline" className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5">
+        <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1 mb-6">
+          <TabsTrigger value="pipeline" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5">
             <Briefcase className="w-3.5 h-3.5 mr-1.5" />
             Pipeline
           </TabsTrigger>
-          <TabsTrigger value="bookbuilding" className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5">
+          <TabsTrigger value="bookbuilding" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5">
             <Users className="w-3.5 h-3.5 mr-1.5" />
             Book Building
           </TabsTrigger>
-          <TabsTrigger value="pricing" className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5">
+          <TabsTrigger value="pricing" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5">
             <Target className="w-3.5 h-3.5 mr-1.5" />
             Pricing Grid
           </TabsTrigger>
-          <TabsTrigger value="secondary" className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5">
+          <TabsTrigger value="secondary" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5">
             <Activity className="w-3.5 h-3.5 mr-1.5" />
             Secondary
           </TabsTrigger>
-          <TabsTrigger value="covenants" className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5">
+          <TabsTrigger value="covenants" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5">
             <Shield className="w-3.5 h-3.5 mr-1.5" />
             Covenants
           </TabsTrigger>
-          <TabsTrigger value="league" className="data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 text-zinc-400 text-xs px-3 py-1.5">
+          <TabsTrigger value="league" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-1.5">
             <Award className="w-3.5 h-3.5 mr-1.5" />
             League Table
           </TabsTrigger>

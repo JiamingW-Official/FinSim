@@ -664,7 +664,7 @@ function CorrBar({ value }: { value: number }) {
   const pct = ((value + 1) / 2) * 100;
   const color = value > 0.3 ? "#10b981" : value < -0.3 ? "#ef4444" : "#f59e0b";
   return (
-    <div className="relative h-3 bg-slate-800 rounded-full w-28">
+    <div className="relative h-3 bg-muted rounded-full w-28">
       <div
         className="absolute top-0 left-1/2 h-3 rounded-full"
         style={{
@@ -686,12 +686,12 @@ function ResearchDashboard() {
   const convictionColor = (c: ResearchTheme["conviction"]) =>
     c === "High" ? "text-emerald-400 border-emerald-800 bg-emerald-950/40" :
     c === "Medium" ? "text-yellow-400 border-yellow-800 bg-yellow-950/40" :
-    "text-slate-400 border-slate-700 bg-slate-800/40";
+    "text-muted-foreground border-border bg-muted/40";
 
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-3 mb-4">
-        <p className="text-slate-400 text-sm">
+        <p className="text-muted-foreground text-sm">
           8 high-conviction thematic investment ideas with thesis, data, and risk analysis.
         </p>
         <Badge variant="outline" className="ml-auto text-indigo-400 border-indigo-800">Updated Mar 2026</Badge>
@@ -703,7 +703,7 @@ function ResearchDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: idx * 0.05 }}
         >
-          <Card className="bg-slate-900/70 border-slate-800 overflow-hidden">
+          <Card className="bg-card/70 border-border overflow-hidden">
             <button
               className="w-full text-left"
               onClick={() => toggle(theme.id)}
@@ -715,23 +715,23 @@ function ResearchDashboard() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <CardTitle className="text-sm text-slate-100">{theme.title}</CardTitle>
+                      <CardTitle className="text-sm text-foreground">{theme.title}</CardTitle>
                       <Badge variant="outline" className={cn("text-xs px-2 py-0", convictionColor(theme.conviction))}>
                         {theme.conviction} Conviction
                       </Badge>
                     </div>
                     <div className="mt-1.5 flex items-center gap-2">
-                      <Progress value={theme.convictionPct} className="h-1.5 w-32 bg-slate-800" />
-                      <span className="text-xs text-slate-500">{theme.convictionPct}%</span>
+                      <Progress value={theme.convictionPct} className="h-1.5 w-32 bg-muted" />
+                      <span className="text-xs text-muted-foreground">{theme.convictionPct}%</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <div className="flex gap-1 flex-wrap max-w-[200px] justify-end">
                       {theme.tickers.slice(0, 3).map(t => (
-                        <Badge key={t} variant="outline" className="text-xs text-slate-400 border-slate-700 px-1.5 py-0">{t}</Badge>
+                        <Badge key={t} variant="outline" className="text-xs text-muted-foreground border-border px-1.5 py-0">{t}</Badge>
                       ))}
                     </div>
-                    {expandedId === theme.id ? <ChevronUp className="w-4 h-4 text-slate-500" /> : <ChevronDown className="w-4 h-4 text-slate-500" />}
+                    {expandedId === theme.id ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                   </div>
                 </div>
               </CardHeader>
@@ -746,11 +746,11 @@ function ResearchDashboard() {
                   transition={{ duration: 0.2 }}
                 >
                   <CardContent className="pt-0 pb-4 px-4">
-                    <div className="border-t border-slate-800 pt-3 space-y-4">
+                    <div className="border-t border-border pt-3 space-y-4">
                       {/* Thesis */}
                       <div>
-                        <p className="text-xs font-semibold text-slate-400 mb-1.5">Thesis</p>
-                        <p className="text-sm text-slate-300 leading-relaxed">{theme.thesis}</p>
+                        <p className="text-xs font-semibold text-muted-foreground mb-1.5">Thesis</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{theme.thesis}</p>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {/* Data Points */}
@@ -760,7 +760,7 @@ function ResearchDashboard() {
                           </p>
                           <ul className="space-y-1">
                             {theme.dataPoints.map((dp, i) => (
-                              <li key={i} className="text-xs text-slate-400 flex gap-2">
+                              <li key={i} className="text-xs text-muted-foreground flex gap-2">
                                 <span className="text-emerald-600 shrink-0 mt-0.5">•</span>
                                 <span>{dp}</span>
                               </li>
@@ -774,7 +774,7 @@ function ResearchDashboard() {
                           </p>
                           <ul className="space-y-1">
                             {theme.risks.map((r, i) => (
-                              <li key={i} className="text-xs text-slate-400 flex gap-2">
+                              <li key={i} className="text-xs text-muted-foreground flex gap-2">
                                 <span className="text-rose-600 shrink-0 mt-0.5">•</span>
                                 <span>{r}</span>
                               </li>
@@ -804,9 +804,9 @@ function ValuationMonitor() {
   return (
     <div className="space-y-6">
       {/* Market Valuation Dashboard */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart2 className="w-4 h-4 text-indigo-400" />
             S&P 500 Valuation Metrics vs 30-Year History
           </CardTitle>
@@ -819,13 +819,13 @@ function ValuationMonitor() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.06 }}
-                className="bg-slate-800/50 rounded-lg p-3 flex flex-col items-center gap-1"
+                className="bg-muted/50 rounded-lg p-3 flex flex-col items-center gap-1"
               >
                 <GaugeArc percentile={m.percentile} size={80} />
-                <p className="text-xs font-semibold text-slate-300 text-center leading-tight mt-1">{m.label}</p>
+                <p className="text-xs font-semibold text-muted-foreground text-center leading-tight mt-1">{m.label}</p>
                 <p className="text-lg font-bold text-white">{m.current}{m.unit}</p>
                 <div className="flex items-center gap-1 text-xs">
-                  <span className="text-slate-500">Avg: {m.historicalAvg}{m.unit}</span>
+                  <span className="text-muted-foreground">Avg: {m.historicalAvg}{m.unit}</span>
                   <span className={cn("font-semibold", m.percentile >= 80 ? "text-red-400" : m.percentile >= 60 ? "text-yellow-400" : "text-emerald-400")}>
                     {m.percentile}th pct
                   </span>
@@ -833,16 +833,16 @@ function ValuationMonitor() {
               </motion.div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Gauge zones: Green = cheap (&lt;33rd pct) • Yellow = fair (33–66th pct) • Red = expensive (&gt;66th pct). Current S&P valuations are broadly elevated vs history.
           </p>
         </CardContent>
       </Card>
 
       {/* International Comparison */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Globe className="w-4 h-4 text-primary" />
             International P/E Comparison
           </CardTitle>
@@ -851,8 +851,8 @@ function ValuationMonitor() {
           <div className="space-y-3">
             {INTL_PE.map(item => (
               <div key={item.region} className="flex items-center gap-3">
-                <p className="text-sm text-slate-400 w-44 shrink-0">{item.region}</p>
-                <div className="flex-1 bg-slate-800 rounded-full h-5 overflow-hidden">
+                <p className="text-sm text-muted-foreground w-44 shrink-0">{item.region}</p>
+                <div className="flex-1 bg-muted rounded-full h-5 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${(item.pe / 30) * 100}%` }}
@@ -866,16 +866,16 @@ function ValuationMonitor() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             US equities trade at a significant premium to international peers. European and EM markets offer relative value, but lack the growth drivers of US mega-caps.
           </p>
         </CardContent>
       </Card>
 
       {/* Sector Valuation Heatmap */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Sector Valuation Heatmap (Relative to Own History)
           </CardTitle>
@@ -884,10 +884,10 @@ function ValuationMonitor() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="text-left text-slate-500 font-medium py-2 pr-3 w-40">Sector</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-muted-foreground font-medium py-2 pr-3 w-40">Sector</th>
                   {["P/E", "P/B", "P/S", "EV/EB", "Rel. Score"].map(h => (
-                    <th key={h} className="text-center text-slate-500 font-medium py-2 px-2">{h}</th>
+                    <th key={h} className="text-center text-muted-foreground font-medium py-2 px-2">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -901,15 +901,15 @@ function ValuationMonitor() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: idx * 0.04 }}
-                      className="border-b border-slate-800/50"
+                      className="border-b border-border/50"
                     >
-                      <td className="py-2 pr-3 text-slate-300 font-medium">{s.sector}</td>
+                      <td className="py-2 pr-3 text-muted-foreground font-medium">{s.sector}</td>
                       <td className="text-center py-2 px-2">
                         <span className={cn("px-1.5 py-0.5 rounded text-xs", peColor)}>{s.pe}x</span>
                       </td>
-                      <td className="text-center py-2 px-2 text-slate-400">{s.pb}x</td>
-                      <td className="text-center py-2 px-2 text-slate-400">{s.ps}x</td>
-                      <td className="text-center py-2 px-2 text-slate-400">{s.evEb}x</td>
+                      <td className="text-center py-2 px-2 text-muted-foreground">{s.pb}x</td>
+                      <td className="text-center py-2 px-2 text-muted-foreground">{s.ps}x</td>
+                      <td className="text-center py-2 px-2 text-muted-foreground">{s.evEb}x</td>
                       <td className="text-center py-2 px-2">
                         <span className={cn("font-bold text-xs", relColor)}>
                           {s.rel > 0 ? "+" : ""}{s.rel.toFixed(2)}
@@ -921,16 +921,16 @@ function ValuationMonitor() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Relative score: positive = expensive vs own history, negative = cheap. Tech and Real Estate are richest; Energy and Financials offer relative value.
           </p>
         </CardContent>
       </Card>
 
       {/* Buffett Indicator */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-yellow-400" />
             Buffett Indicator: Market Cap / GDP (30-Year History)
           </CardTitle>
@@ -945,16 +945,16 @@ function ValuationMonitor() {
             <div className="flex items-center gap-1.5"><span className="w-3 h-1 bg-red-500/60 inline-block rounded" />Significantly Overvalued (&gt;150%)</div>
             <div className="flex items-center gap-1.5"><span className="w-2 h-2 bg-red-400 rounded-full inline-block" />Current: 172%</div>
           </div>
-          <p className="text-xs text-slate-500 mt-2">
+          <p className="text-xs text-muted-foreground mt-2">
             At 172%, the Buffett Indicator suggests significant overvaluation relative to history. Historically, readings above 150% have preceded periods of below-average long-term returns.
           </p>
         </CardContent>
       </Card>
 
       {/* Credit Market Valuation */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-emerald-400" />
             Credit Market Spreads vs Historical Averages
           </CardTitle>
@@ -969,8 +969,8 @@ function ValuationMonitor() {
               const avgPct = ((c.avg - c.min) / (c.max - c.min)) * 100;
               return (
                 <div key={c.label}>
-                  <p className="text-xs text-slate-400 mb-2 font-medium">{c.label}</p>
-                  <div className="relative h-4 bg-slate-800 rounded-full">
+                  <p className="text-xs text-muted-foreground mb-2 font-medium">{c.label}</p>
+                  <div className="relative h-4 bg-muted rounded-full">
                     <div
                       className="absolute top-0 h-4 bg-slate-600 rounded-full"
                       style={{ width: `${avgPct}%`, opacity: 0.4 }}
@@ -986,16 +986,16 @@ function ValuationMonitor() {
                       <span className="text-xs font-bold text-white">{c.current}{c.unit}</span>
                     </div>
                   </div>
-                  <div className="flex justify-between text-xs text-slate-500 mt-1">
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span>{c.min}{c.unit} (tight)</span>
-                    <span className="text-slate-400">Avg: {c.avg}{c.unit}</span>
+                    <span className="text-muted-foreground">Avg: {c.avg}{c.unit}</span>
                     <span>{c.max}{c.unit} (crisis)</span>
                   </div>
                 </div>
               );
             })}
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Credit spreads remain historically tight, suggesting credit markets are pricing in a benign economic outlook. Tight spreads leave limited room for further compression.
           </p>
         </CardContent>
@@ -1009,7 +1009,7 @@ function EconCalendar() {
   const impColor = (imp: EconEvent["importance"]) =>
     imp === "high" ? "text-red-400 border-red-900 bg-red-950/40" :
     imp === "medium" ? "text-yellow-400 border-yellow-900 bg-yellow-950/30" :
-    "text-slate-400 border-slate-700";
+    "text-muted-foreground border-border";
 
   const stanceColor = (s: BankForecast["stance"]) =>
     s === "bullish" ? "text-emerald-400 border-emerald-800 bg-emerald-950/40" :
@@ -1023,9 +1023,9 @@ function EconCalendar() {
   return (
     <div className="space-y-6">
       {/* Economic Calendar */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Calendar className="w-4 h-4 text-indigo-400" />
             30-Day Economic Calendar
           </CardTitle>
@@ -1034,12 +1034,12 @@ function EconCalendar() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="text-left text-slate-500 font-medium py-2 w-16">Date</th>
-                  <th className="text-left text-slate-500 font-medium py-2 flex-1">Event</th>
-                  <th className="text-center text-slate-500 font-medium py-2 w-20">Prior</th>
-                  <th className="text-center text-slate-500 font-medium py-2 w-24">Consensus</th>
-                  <th className="text-center text-slate-500 font-medium py-2 w-16">Impact</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-muted-foreground font-medium py-2 w-16">Date</th>
+                  <th className="text-left text-muted-foreground font-medium py-2 flex-1">Event</th>
+                  <th className="text-center text-muted-foreground font-medium py-2 w-20">Prior</th>
+                  <th className="text-center text-muted-foreground font-medium py-2 w-24">Consensus</th>
+                  <th className="text-center text-muted-foreground font-medium py-2 w-16">Impact</th>
                 </tr>
               </thead>
               <tbody>
@@ -1049,12 +1049,12 @@ function EconCalendar() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: idx * 0.025 }}
-                    className="border-b border-slate-800/40 hover:bg-slate-800/30 transition-colors"
+                    className="border-b border-border/40 hover:bg-muted/30 transition-colors"
                   >
-                    <td className="py-2 pr-2 text-slate-500 font-mono whitespace-nowrap">{ev.date}</td>
-                    <td className="py-2 pr-2 text-slate-300">{ev.name}</td>
-                    <td className="py-2 text-center text-slate-500">{ev.prior}</td>
-                    <td className="py-2 text-center text-slate-200 font-medium">{ev.consensus}</td>
+                    <td className="py-2 pr-2 text-muted-foreground font-mono whitespace-nowrap">{ev.date}</td>
+                    <td className="py-2 pr-2 text-muted-foreground">{ev.name}</td>
+                    <td className="py-2 text-center text-muted-foreground">{ev.prior}</td>
+                    <td className="py-2 text-center text-foreground font-medium">{ev.consensus}</td>
                     <td className="py-2 text-center">
                       <Badge variant="outline" className={cn("text-xs px-1.5 py-0", impColor(ev.importance))}>
                         {ev.importance}
@@ -1069,9 +1069,9 @@ function EconCalendar() {
       </Card>
 
       {/* Fed Projections (SEP) */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Target className="w-4 h-4 text-primary" />
             Fed SEP Projections (Dot Plot Summary)
           </CardTitle>
@@ -1080,10 +1080,10 @@ function EconCalendar() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="text-left text-slate-500 font-medium py-2">Variable</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-muted-foreground font-medium py-2">Variable</th>
                   {["2025", "2026", "2027", "Longer Run"].map(y => (
-                    <th key={y} className="text-center text-slate-500 font-medium py-2">{y}</th>
+                    <th key={y} className="text-center text-muted-foreground font-medium py-2">{y}</th>
                   ))}
                 </tr>
               </thead>
@@ -1094,8 +1094,8 @@ function EconCalendar() {
                   { label: "Unemployment",   vals: ["4.0%", "4.1%", "4.0%", "4.1%"],  color: "text-primary" },
                   { label: "Fed Funds Rate", vals: ["4.375%","3.625%","2.875%","2.5%"],color: "text-rose-400" },
                 ].map(row => (
-                  <tr key={row.label} className="border-b border-slate-800/40">
-                    <td className="py-2 pr-3 text-slate-400 font-medium">{row.label}</td>
+                  <tr key={row.label} className="border-b border-border/40">
+                    <td className="py-2 pr-3 text-muted-foreground font-medium">{row.label}</td>
                     {row.vals.map((v, i) => (
                       <td key={i} className={cn("text-center py-2 font-mono font-semibold", row.color)}>{v}</td>
                     ))}
@@ -1104,16 +1104,16 @@ function EconCalendar() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Fed projections imply 3 cuts in 2025 (25bps each), with a longer-run neutral rate of 2.5%. Markets are pricing a more aggressive path that the Fed has pushed back on.
           </p>
         </CardContent>
       </Card>
 
       {/* Wall Street Consensus */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
             Wall Street 2025 Year-End S&P 500 Targets
           </CardTitle>
@@ -1130,8 +1130,8 @@ function EconCalendar() {
                   transition={{ delay: idx * 0.08 }}
                   className="flex items-center gap-3"
                 >
-                  <p className="text-sm text-slate-400 w-36 shrink-0 font-medium">{b.bank}</p>
-                  <div className="flex-1 relative h-7 bg-slate-800 rounded-lg overflow-hidden">
+                  <p className="text-sm text-muted-foreground w-36 shrink-0 font-medium">{b.bank}</p>
+                  <div className="flex-1 relative h-7 bg-muted rounded-lg overflow-hidden">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${30 + pct * 0.7}%` }}
@@ -1151,28 +1151,28 @@ function EconCalendar() {
             })}
           </div>
           {/* Thesis detail */}
-          <div className="space-y-2 border-t border-slate-800 pt-3">
+          <div className="space-y-2 border-t border-border pt-3">
             {BANK_FORECASTS.map(b => (
               <div key={b.bank} className="flex gap-2 text-xs">
-                <span className="text-slate-500 font-semibold w-24 shrink-0">{b.bank}:</span>
-                <span className="text-slate-400">{b.thesis}</span>
+                <span className="text-muted-foreground font-semibold w-24 shrink-0">{b.bank}:</span>
+                <span className="text-muted-foreground">{b.thesis}</span>
               </div>
             ))}
           </div>
-          <div className="flex items-center justify-between mt-3 p-2 bg-slate-800/50 rounded-lg text-xs">
-            <span className="text-slate-400">Consensus (avg):</span>
+          <div className="flex items-center justify-between mt-3 p-2 bg-muted/50 rounded-lg text-xs">
+            <span className="text-muted-foreground">Consensus (avg):</span>
             <span className="text-white font-bold text-base">
               {Math.round(BANK_FORECASTS.reduce((s, b) => s + b.target, 0) / BANK_FORECASTS.length).toLocaleString()}
             </span>
-            <span className="text-slate-500">Range: {minTarget.toLocaleString()} – {maxTarget.toLocaleString()}</span>
+            <span className="text-muted-foreground">Range: {minTarget.toLocaleString()} – {maxTarget.toLocaleString()}</span>
           </div>
         </CardContent>
       </Card>
 
       {/* Surprise Monitor */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-yellow-400" />
             Consensus Surprise Monitor (Recent Releases)
           </CardTitle>
@@ -1185,7 +1185,7 @@ function EconCalendar() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: idx * 0.06 }}
-                className="flex items-center gap-3 p-2 rounded-lg bg-slate-800/40 hover:bg-slate-800/60 transition-colors cursor-pointer"
+                className="flex items-center gap-3 p-2 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer"
                 onClick={() => setSelectedSurprise(prev => prev === s.event ? null : s.event)}
               >
                 <div className={cn(
@@ -1195,8 +1195,8 @@ function EconCalendar() {
                   {s.surprise > 0 ? "+" : ""}{s.surprise.toFixed(1)}σ
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-slate-300 font-medium">{s.event}</p>
-                  <p className="text-xs text-slate-500">Consensus: {s.consensus} | Actual: <span className={s.surprise > 0 ? "text-emerald-400" : "text-red-400"}>{s.actual}</span></p>
+                  <p className="text-sm text-muted-foreground font-medium">{s.event}</p>
+                  <p className="text-xs text-muted-foreground">Consensus: {s.consensus} | Actual: <span className={s.surprise > 0 ? "text-emerald-400" : "text-red-400"}>{s.actual}</span></p>
                 </div>
                 <div className={cn("text-xs font-semibold px-2 py-1 rounded", s.surprise > 0 ? "text-emerald-400" : "text-red-400")}>
                   {s.surprise > 0 ? "BEAT" : "MISS"}
@@ -1204,7 +1204,7 @@ function EconCalendar() {
               </motion.div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 mt-3">
+          <p className="text-xs text-muted-foreground mt-3">
             Surprise score in standard deviations vs analyst consensus. Labor market data has been consistently surprising to the upside; retail sales missed expectations sharply.
           </p>
         </CardContent>
@@ -1220,7 +1220,7 @@ function ThematicResearch() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
-        <p className="text-slate-400 text-sm">
+        <p className="text-muted-foreground text-sm">
           In-depth research notes on structural investment themes. Each covers abstract, key findings, risks, and investment implications.
         </p>
         <Badge variant="outline" className="ml-auto text-primary border-border shrink-0">5 Deep Dives</Badge>
@@ -1232,18 +1232,18 @@ function ThematicResearch() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: idx * 0.08 }}
         >
-          <Card className="bg-slate-900/70 border-slate-800 overflow-hidden">
+          <Card className="bg-card/70 border-border overflow-hidden">
             <button className="w-full text-left" onClick={() => toggle(note.id)}>
               <CardHeader className="py-4 px-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 rounded-xl bg-muted border border-border flex items-center justify-center shrink-0">
                     {note.icon}
                   </div>
                   <div className="flex-1">
-                    <CardTitle className="text-sm text-slate-100">"{note.title}"</CardTitle>
-                    <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{note.abstract}</p>
+                    <CardTitle className="text-sm text-foreground">"{note.title}"</CardTitle>
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{note.abstract}</p>
                   </div>
-                  {expandedId === note.id ? <ChevronUp className="w-4 h-4 text-slate-500 shrink-0" /> : <ChevronDown className="w-4 h-4 text-slate-500 shrink-0" />}
+                  {expandedId === note.id ? <ChevronUp className="w-4 h-4 text-muted-foreground shrink-0" /> : <ChevronDown className="w-4 h-4 text-muted-foreground shrink-0" />}
                 </div>
               </CardHeader>
             </button>
@@ -1257,11 +1257,11 @@ function ThematicResearch() {
                   transition={{ duration: 0.22 }}
                 >
                   <CardContent className="pt-0 pb-5 px-5">
-                    <div className="border-t border-slate-800 pt-4 space-y-5">
+                    <div className="border-t border-border pt-4 space-y-5">
                       {/* Abstract */}
                       <div>
-                        <p className="text-xs font-semibold text-slate-500 mb-2">Abstract</p>
-                        <p className="text-sm text-slate-300 leading-relaxed">{note.abstract}</p>
+                        <p className="text-xs font-semibold text-muted-foreground mb-2">Abstract</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{note.abstract}</p>
                       </div>
                       {/* Key Findings */}
                       <div>
@@ -1270,7 +1270,7 @@ function ThematicResearch() {
                         </p>
                         <ul className="space-y-2">
                           {note.findings.map((f, i) => (
-                            <li key={i} className="flex gap-2 text-sm text-slate-400">
+                            <li key={i} className="flex gap-2 text-sm text-muted-foreground">
                               <span className="text-indigo-500 font-bold shrink-0">{i + 1}.</span>
                               <span>{f}</span>
                             </li>
@@ -1284,7 +1284,7 @@ function ThematicResearch() {
                         </p>
                         <ul className="space-y-1.5">
                           {note.risks.map((r, i) => (
-                            <li key={i} className="flex gap-2 text-sm text-slate-400">
+                            <li key={i} className="flex gap-2 text-sm text-muted-foreground">
                               <span className="text-rose-500 shrink-0 mt-0.5">•</span>
                               <span>{r}</span>
                             </li>
@@ -1298,7 +1298,7 @@ function ThematicResearch() {
                         </p>
                         <ul className="space-y-1.5">
                           {note.implications.map((imp, i) => (
-                            <li key={i} className="flex gap-2 text-sm text-slate-400">
+                            <li key={i} className="flex gap-2 text-sm text-muted-foreground">
                               <span className="text-emerald-500 shrink-0 mt-0.5">→</span>
                               <span>{imp}</span>
                             </li>
@@ -1323,33 +1323,33 @@ function DataLibrary() {
   const trendIcon = (trend: "up" | "down" | "flat") =>
     trend === "up" ? <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> :
     trend === "down" ? <TrendingDown className="w-3.5 h-3.5 text-red-400" /> :
-    <Activity className="w-3.5 h-3.5 text-slate-500" />;
+    <Activity className="w-3.5 h-3.5 text-muted-foreground" />;
 
   const trendColor = (trend: "up" | "down" | "flat") =>
-    trend === "up" ? "text-emerald-400" : trend === "down" ? "text-red-400" : "text-slate-400";
+    trend === "up" ? "text-emerald-400" : trend === "down" ? "text-red-400" : "text-muted-foreground";
 
   return (
     <div className="space-y-6">
       {/* Economic Indicators */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Database className="w-4 h-4 text-indigo-400" />
             Key Economic Indicators
-            <Badge variant="outline" className="ml-auto text-xs text-slate-400 border-slate-700">Click any row for data story</Badge>
+            <Badge variant="outline" className="ml-auto text-xs text-muted-foreground border-border">Click any row for data story</Badge>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="text-left text-slate-500 font-medium py-2 w-52">Indicator</th>
-                  <th className="text-center text-slate-500 font-medium py-2">Current</th>
-                  <th className="text-center text-slate-500 font-medium py-2">1M Chg</th>
-                  <th className="text-center text-slate-500 font-medium py-2">12M Chg</th>
-                  <th className="text-center text-slate-500 font-medium py-2 w-24">Trend</th>
-                  <th className="text-center text-slate-500 font-medium py-2 w-20">Chart</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-muted-foreground font-medium py-2 w-52">Indicator</th>
+                  <th className="text-center text-muted-foreground font-medium py-2">Current</th>
+                  <th className="text-center text-muted-foreground font-medium py-2">1M Chg</th>
+                  <th className="text-center text-muted-foreground font-medium py-2">12M Chg</th>
+                  <th className="text-center text-muted-foreground font-medium py-2 w-24">Trend</th>
+                  <th className="text-center text-muted-foreground font-medium py-2 w-20">Chart</th>
                 </tr>
               </thead>
               <tbody>
@@ -1361,17 +1361,17 @@ function DataLibrary() {
                       animate={{ opacity: 1 }}
                       transition={{ delay: idx * 0.03 }}
                       className={cn(
-                        "border-b border-slate-800/40 cursor-pointer transition-colors",
-                        storyId === ind.name ? "bg-indigo-950/20" : "hover:bg-slate-800/30"
+                        "border-b border-border/40 cursor-pointer transition-colors",
+                        storyId === ind.name ? "bg-indigo-950/20" : "hover:bg-muted/30"
                       )}
                       onClick={() => setStoryId(prev => prev === ind.name ? null : ind.name)}
                     >
-                      <td className="py-2 pr-2 text-slate-300 font-medium">{ind.name}</td>
+                      <td className="py-2 pr-2 text-muted-foreground font-medium">{ind.name}</td>
                       <td className="py-2 text-center text-white font-semibold font-mono">{ind.current}</td>
-                      <td className={cn("py-2 text-center font-mono font-semibold", ind.mom.startsWith("+") ? "text-emerald-400" : ind.mom.startsWith("-") ? "text-red-400" : "text-slate-400")}>
+                      <td className={cn("py-2 text-center font-mono font-semibold", ind.mom.startsWith("+") ? "text-emerald-400" : ind.mom.startsWith("-") ? "text-red-400" : "text-muted-foreground")}>
                         {ind.mom}
                       </td>
-                      <td className={cn("py-2 text-center font-mono font-semibold", ind.yoy.startsWith("+") ? "text-emerald-400" : ind.yoy.startsWith("-") ? "text-red-400" : "text-slate-400")}>
+                      <td className={cn("py-2 text-center font-mono font-semibold", ind.yoy.startsWith("+") ? "text-emerald-400" : ind.yoy.startsWith("-") ? "text-red-400" : "text-muted-foreground")}>
                         {ind.yoy}
                       </td>
                       <td className="py-2 text-center">
@@ -1390,7 +1390,7 @@ function DataLibrary() {
                       </td>
                     </motion.tr>
                     {storyId === ind.name && (
-                      <tr key={`${ind.name}-story`} className="bg-indigo-950/20 border-b border-slate-800/40">
+                      <tr key={`${ind.name}-story`} className="bg-indigo-950/20 border-b border-border/40">
                         <td colSpan={6} className="px-3 py-2">
                           <div className="flex gap-2 items-start">
                             <Info className="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" />
@@ -1408,9 +1408,9 @@ function DataLibrary() {
       </Card>
 
       {/* Market Indicators */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-primary" />
             Market Indicators &amp; Sentiment
           </CardTitle>
@@ -1423,15 +1423,15 @@ function DataLibrary() {
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.05 }}
-                className="flex items-center gap-3 p-2.5 rounded-lg bg-slate-800/40 hover:bg-slate-800/60 transition-colors cursor-pointer group"
+                className="flex items-center gap-3 p-2.5 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors cursor-pointer group"
                 onClick={() => setStoryId(prev => prev === m.name ? null : m.name)}
               >
                 <div className="w-2 h-10 rounded-full shrink-0" style={{ backgroundColor: m.color + "aa" }} />
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-slate-400 font-medium truncate">{m.name}</p>
+                  <p className="text-xs text-muted-foreground font-medium truncate">{m.name}</p>
                   <div className="flex items-center gap-2 mt-0.5">
                     <span className="text-sm font-bold text-white">{m.level}</span>
-                    <span className={cn("text-xs", m.trend === "up" ? "text-emerald-400" : m.trend === "down" ? "text-red-400" : "text-slate-400")}>
+                    <span className={cn("text-xs", m.trend === "up" ? "text-emerald-400" : m.trend === "down" ? "text-red-400" : "text-muted-foreground")}>
                       {m.change}
                     </span>
                   </div>
@@ -1445,7 +1445,7 @@ function DataLibrary() {
                     </motion.p>
                   )}
                 </div>
-                <Info className="w-3.5 h-3.5 text-slate-600 group-hover:text-slate-400 transition-colors shrink-0" />
+                <Info className="w-3.5 h-3.5 text-muted-foreground group-hover:text-muted-foreground transition-colors shrink-0" />
               </motion.div>
             ))}
           </div>
@@ -1453,9 +1453,9 @@ function DataLibrary() {
       </Card>
 
       {/* Correlation Tracker */}
-      <Card className="bg-slate-900/70 border-slate-800">
+      <Card className="bg-card/70 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
+          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Layers className="w-4 h-4 text-yellow-400" />
             S&P 500 Correlation Tracker
           </CardTitle>
@@ -1464,11 +1464,11 @@ function DataLibrary() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-slate-800">
-                  <th className="text-left text-slate-500 font-medium py-2 w-36">Asset vs S&P</th>
-                  <th className="text-center text-slate-500 font-medium py-2">30D Corr</th>
-                  <th className="text-center text-slate-500 font-medium py-2">1Y Corr</th>
-                  <th className="text-left text-slate-500 font-medium py-2 pl-4">Correlation Bar</th>
+                <tr className="border-b border-border">
+                  <th className="text-left text-muted-foreground font-medium py-2 w-36">Asset vs S&P</th>
+                  <th className="text-center text-muted-foreground font-medium py-2">30D Corr</th>
+                  <th className="text-center text-muted-foreground font-medium py-2">1Y Corr</th>
+                  <th className="text-left text-muted-foreground font-medium py-2 pl-4">Correlation Bar</th>
                 </tr>
               </thead>
               <tbody>
@@ -1478,12 +1478,12 @@ function DataLibrary() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: idx * 0.07 }}
-                    className="border-b border-slate-800/40"
+                    className="border-b border-border/40"
                   >
                     <td className="py-3 pr-3">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: c.color }} />
-                        <span className="text-slate-300 font-medium">{c.asset}</span>
+                        <span className="text-muted-foreground font-medium">{c.asset}</span>
                       </div>
                     </td>
                     <td className="text-center py-3">
@@ -1492,7 +1492,7 @@ function DataLibrary() {
                       </span>
                     </td>
                     <td className="text-center py-3">
-                      <span className={cn("font-mono font-semibold text-slate-400")}>
+                      <span className={cn("font-mono font-semibold text-muted-foreground")}>
                         {c.corr1y > 0 ? "+" : ""}{c.corr1y.toFixed(2)}
                       </span>
                     </td>
@@ -1504,17 +1504,17 @@ function DataLibrary() {
               </tbody>
             </table>
           </div>
-          <div className="mt-3 p-3 bg-slate-800/40 rounded-lg text-xs text-slate-400 leading-relaxed">
-            <strong className="text-slate-300">Correlation insight:</strong> The strongly negative S&P/VIX correlation (-0.78) confirms that volatility spikes reliably accompany equity drawdowns.
+          <div className="mt-3 p-3 bg-muted/40 rounded-lg text-xs text-muted-foreground leading-relaxed">
+            <strong className="text-muted-foreground">Correlation insight:</strong> The strongly negative S&P/VIX correlation (-0.78) confirms that volatility spikes reliably accompany equity drawdowns.
             The near-zero Gold correlation suggests gold is currently acting as an independent asset rather than a pure safe haven from equity risk.
           </div>
         </CardContent>
       </Card>
 
       {/* Export note */}
-      <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg border border-slate-700">
-        <Database className="w-4 h-4 text-slate-400 shrink-0" />
-        <p className="text-xs text-slate-400">
+      <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border border-border">
+        <Database className="w-4 h-4 text-muted-foreground shrink-0" />
+        <p className="text-xs text-muted-foreground">
           All data series are synthetic/educational. Click any indicator row for an auto-generated data interpretation. In a live deployment, these would connect to FRED, Bloomberg, or FactSet APIs.
         </p>
       </div>
@@ -1526,7 +1526,7 @@ function DataLibrary() {
 
 export default function ResearchPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -1539,19 +1539,19 @@ export default function ResearchPage() {
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Economic Research &amp; Data</h1>
-            <p className="text-sm text-slate-400 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               Institutional-grade research, market valuation, economic calendars, thematic deep-dives, and data library.
             </p>
           </div>
           <div className="ml-auto flex items-center gap-2 shrink-0">
             <Badge variant="outline" className="text-xs text-emerald-400 border-emerald-800">Live Data</Badge>
-            <Badge variant="outline" className="text-xs text-slate-400 border-slate-700">Mar 27, 2026</Badge>
+            <Badge variant="outline" className="text-xs text-muted-foreground border-border">Mar 27, 2026</Badge>
           </div>
         </motion.div>
 
         {/* Tabs */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="bg-slate-900 border border-slate-800 h-auto flex-wrap gap-1 p-1 mb-2">
+          <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1 mb-2">
             <TabsTrigger value="dashboard"  className="text-xs data-[state=active]:bg-indigo-950 data-[state=active]:text-indigo-300">
               Research Dashboard
             </TabsTrigger>

@@ -129,7 +129,7 @@ export default function LandingPage() {
             {/* App content */}
             <div className="flex">
               {/* Chart area */}
-              <div className="flex-1 p-4">
+              <div className="flex-1 p-3 sm:p-4">
                 {/* Ticker bar */}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-xs font-bold">AAPL</span>
@@ -171,8 +171,8 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Order entry panel */}
-              <div className="w-40 border-l border-border p-3 flex flex-col gap-2">
+              {/* Order entry panel — hidden on very small screens */}
+              <div className="hidden sm:flex w-40 border-l border-border p-3 flex-col gap-2">
                 <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Order Entry</div>
                 <div className="flex gap-1">
                   <div className="flex-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold text-center py-1">Buy</div>
@@ -268,12 +268,12 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="border-t border-border/40 py-6">
-        <div className="max-w-5xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="text-xs font-black text-primary">FS</span>
             <span className="text-xs text-muted-foreground">FinSim</span>
           </div>
-          <p className="text-[11px] text-muted-foreground text-right">
+          <p className="text-[11px] text-muted-foreground text-center sm:text-right">
             <span>For educational purposes only. Not financial advice.</span>
             <br />
             <span>All market data is simulated.</span>

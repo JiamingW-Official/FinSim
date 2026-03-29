@@ -422,7 +422,7 @@ function ComplianceBadge({ status }: { status: DeforestationCompany["eudrComplia
     Compliant: "bg-green-900/40 text-green-300 border-green-700",
     Partial: "bg-yellow-900/40 text-yellow-300 border-yellow-700",
     "Non-compliant": "bg-red-900/40 text-red-300 border-red-700",
-    Unknown: "bg-zinc-800 text-zinc-400 border-zinc-600",
+    Unknown: "bg-muted text-muted-foreground border-border",
   };
   return (
     <span className={`text-xs px-2 py-0.5 rounded border font-medium ${map[status]}`}>
@@ -446,7 +446,7 @@ function SeverityBadge({ level }: { level: "Low" | "Medium" | "High" }) {
 
 function BenefitBadge({ level }: { level: "Low" | "Medium" | "High" | "Very High" }) {
   const map: Record<string, string> = {
-    Low: "bg-zinc-800 text-zinc-400",
+    Low: "bg-muted text-muted-foreground",
     Medium: "bg-muted/60 text-primary",
     High: "bg-green-900/40 text-green-300",
     "Very High": "bg-emerald-900/40 text-emerald-300",
@@ -531,10 +531,10 @@ function EcosystemTab() {
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row md:items-center gap-6">
               <div className="flex-1">
-                <p className="text-sm text-zinc-400 mb-1">Total Natural Capital Value</p>
+                <p className="text-sm text-muted-foreground mb-1">Total Natural Capital Value</p>
                 <div className="text-5xl font-bold text-emerald-400">$125T</div>
-                <p className="text-zinc-400 text-sm mt-1">estimated annual ecosystem services value</p>
-                <p className="text-xs text-zinc-500 mt-2">
+                <p className="text-muted-foreground text-sm mt-1">estimated annual ecosystem services value</p>
+                <p className="text-xs text-muted-foreground mt-2">
                   The Dasgupta Review (2021) estimates biodiversity loss costs 3–10% of global GDP annually.
                   Over 50% of global GDP — $44 trillion — is moderately or highly dependent on nature.
                 </p>
@@ -544,15 +544,15 @@ function EcosystemTab() {
                   <button
                     key={cat.id}
                     onClick={() => setSelected(selected === cat.id ? null : cat.id)}
-                    className={`text-left p-3 rounded-lg border transition-all ${selected === cat.id ? "border-opacity-100 bg-zinc-800" : "border-zinc-700/50 bg-zinc-900/60 hover:bg-zinc-800/60"}`}
+                    className={`text-left p-3 rounded-lg border transition-all ${selected === cat.id ? "border-opacity-100 bg-muted" : "border-border/50 bg-card/60 hover:bg-muted/60"}`}
                     style={{ borderColor: selected === cat.id ? cat.color : undefined }}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span style={{ color: cat.color }}>{cat.icon}</span>
-                      <span className="text-xs font-medium text-zinc-300 truncate">{cat.name.split(" ")[0]}</span>
+                      <span className="text-xs font-medium text-muted-foreground truncate">{cat.name.split(" ")[0]}</span>
                     </div>
                     <div className="text-xl font-bold" style={{ color: cat.color }}>${cat.value}T</div>
-                    <div className="text-xs text-zinc-500">{((cat.value / totalValue) * 100).toFixed(0)}% of total</div>
+                    <div className="text-xs text-muted-foreground">{((cat.value / totalValue) * 100).toFixed(0)}% of total</div>
                   </button>
                 ))}
               </div>
@@ -563,13 +563,13 @@ function EcosystemTab() {
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  className="mt-4 p-4 rounded-lg bg-zinc-800/60 border"
+                  className="mt-4 p-4 rounded-lg bg-muted/60 border"
                   style={{ borderColor: cat.color + "55" }}
                 >
-                  <p className="text-sm text-zinc-300 mb-2">{cat.description}</p>
+                  <p className="text-sm text-muted-foreground mb-2">{cat.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {cat.examples.map(ex => (
-                      <span key={ex} className="text-xs px-2 py-1 rounded bg-zinc-700 text-zinc-300">{ex}</span>
+                      <span key={ex} className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">{ex}</span>
                     ))}
                   </div>
                 </motion.div>
@@ -582,13 +582,13 @@ function EcosystemTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sector Dependency */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
-          <Card className="bg-zinc-900 border-zinc-700/50">
+          <Card className="bg-card border-border/50">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-primary" />
                 Nature Dependency by Sector
               </CardTitle>
-              <p className="text-xs text-zinc-500">Score 0–100: extent of direct reliance on ecosystem services</p>
+              <p className="text-xs text-muted-foreground">Score 0–100: extent of direct reliance on ecosystem services</p>
             </CardHeader>
             <CardContent>
               <svg viewBox={`0 0 ${dWidth} ${dHeight}`} className="w-full">
@@ -620,13 +620,13 @@ function EcosystemTab() {
 
         {/* Biodiversity Intactness Index */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
-          <Card className="bg-zinc-900 border-zinc-700/50">
+          <Card className="bg-card border-border/50">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-red-400" />
                 Biodiversity Intactness Index (BII)
               </CardTitle>
-              <p className="text-xs text-zinc-500">Global average — 100 = pristine pre-industrial baseline</p>
+              <p className="text-xs text-muted-foreground">Global average — 100 = pristine pre-industrial baseline</p>
             </CardHeader>
             <CardContent>
               <svg viewBox={`0 0 ${bWidth} ${bHeight}`} className="w-full">
@@ -677,7 +677,7 @@ function EcosystemTab() {
                   63.1
                 </text>
               </svg>
-              <p className="text-xs text-zinc-500 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Current BII of 63.1 is 27 points below the safe operating space of 90. Species populations have declined by 69% since 1970 (WWF Living Planet Report).
               </p>
             </CardContent>
@@ -687,13 +687,13 @@ function EcosystemTab() {
 
       {/* Planetary Boundaries */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Globe className="w-4 h-4 text-orange-400" />
               Planetary Boundaries Framework (Rockstrom et al.)
             </CardTitle>
-            <p className="text-xs text-zinc-500">9 Earth system processes — 6 of 9 boundaries now exceeded (as of 2023)</p>
+            <p className="text-xs text-muted-foreground">9 Earth system processes — 6 of 9 boundaries now exceeded (as of 2023)</p>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col lg:flex-row gap-6 items-center">
@@ -734,7 +734,7 @@ function EcosystemTab() {
                       className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                       style={{ backgroundColor: pb.color }}
                     />
-                    <span className="text-xs text-zinc-300 w-44">{pb.name}</span>
+                    <span className="text-xs text-muted-foreground w-44">{pb.name}</span>
                     <span
                       className="text-xs px-2 py-0.5 rounded font-medium flex-shrink-0"
                       style={{
@@ -751,7 +751,7 @@ function EcosystemTab() {
                     )}
                   </div>
                 ))}
-                <p className="text-xs text-zinc-500 pt-2 border-t border-zinc-800 mt-3">
+                <p className="text-xs text-muted-foreground pt-2 border-t border-border mt-3">
                   Biosphere integrity is most severely exceeded — current extinction rates are 100–1,000x higher than the background rate.
                   The economic cost of crossing these tipping points could reach $23T/year by 2100.
                 </p>
@@ -763,9 +763,9 @@ function EcosystemTab() {
 
       {/* Collapse Cost */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-red-400" />
               Economic Cost of Ecosystem Collapse
             </CardTitle>
@@ -778,10 +778,10 @@ function EcosystemTab() {
                 { label: "Pollination services value at risk", value: "$577B/yr", sub: "if pollinators collapse", color: "text-yellow-400" },
                 { label: "Ocean services at risk", value: "$2.5T/yr", sub: "fisheries + coastal protection", color: "text-primary" },
               ].map(item => (
-                <div key={item.label} className="p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/40">
+                <div key={item.label} className="p-3 rounded-lg bg-muted/50 border border-border/40">
                   <div className={`text-2xl font-bold mb-1 ${item.color}`}>{item.value}</div>
-                  <div className="text-xs text-zinc-300 leading-snug mb-1">{item.label}</div>
-                  <div className="text-xs text-zinc-500">{item.sub}</div>
+                  <div className="text-xs text-muted-foreground leading-snug mb-1">{item.label}</div>
+                  <div className="text-xs text-muted-foreground">{item.sub}</div>
                 </div>
               ))}
             </div>
@@ -843,13 +843,13 @@ function TNFDTab() {
     <div className="space-y-6">
       {/* TNFD Overview */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <FileText className="w-4 h-4 text-primary" />
               TNFD Framework — Four Pillars
             </CardTitle>
-            <p className="text-xs text-zinc-500">Taskforce on Nature-related Financial Disclosures — 14 disclosure recommendations published September 2023</p>
+            <p className="text-xs text-muted-foreground">Taskforce on Nature-related Financial Disclosures — 14 disclosure recommendations published September 2023</p>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -859,7 +859,7 @@ function TNFDTab() {
                   initial={{ opacity: 0, x: i % 2 === 0 ? -16 : 16 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-4 rounded-lg bg-zinc-800/50 border"
+                  className="p-4 rounded-lg bg-muted/50 border"
                   style={{ borderColor: pillar.color + "44" }}
                 >
                   <div className="flex items-center gap-2 mb-2">
@@ -869,12 +869,12 @@ function TNFDTab() {
                     >
                       {i + 1}
                     </div>
-                    <span className="font-semibold text-zinc-100 text-sm">{pillar.name}</span>
+                    <span className="font-semibold text-foreground text-sm">{pillar.name}</span>
                   </div>
-                  <p className="text-xs text-zinc-400 mb-3 leading-relaxed">{pillar.description}</p>
+                  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{pillar.description}</p>
                   <ul className="space-y-1">
                     {pillar.keyElements.map(el => (
-                      <li key={el} className="flex items-start gap-1.5 text-xs text-zinc-300">
+                      <li key={el} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                         <CheckCircle className="w-3 h-3 flex-shrink-0 mt-0.5" style={{ color: pillar.color }} />
                         {el}
                       </li>
@@ -889,9 +889,9 @@ function TNFDTab() {
 
       {/* LEAP Approach */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Target className="w-4 h-4 text-green-400" />
               LEAP Approach — Nature Assessment Process
             </CardTitle>
@@ -902,7 +902,7 @@ function TNFDTab() {
                 <button
                   key={step.letter}
                   onClick={() => setActiveLeap(i)}
-                  className={`flex-1 py-2 rounded-lg border text-sm font-bold transition-all ${activeLeap === i ? "text-white" : "text-zinc-500 border-zinc-700 bg-zinc-800/50 hover:bg-zinc-700/50"}`}
+                  className={`flex-1 py-2 rounded-lg border text-sm font-bold transition-all ${activeLeap === i ? "text-white" : "text-muted-foreground border-border bg-muted/50 hover:bg-muted/50"}`}
                   style={activeLeap === i ? { backgroundColor: step.color + "33", borderColor: step.color, color: step.color } : {}}
                 >
                   {step.letter}
@@ -910,7 +910,7 @@ function TNFDTab() {
               ))}
             </div>
             <div
-              className="p-4 rounded-lg border bg-zinc-800/40"
+              className="p-4 rounded-lg border bg-muted/40"
               style={{ borderColor: leapSteps[activeLeap].color + "44" }}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -921,14 +921,14 @@ function TNFDTab() {
                   {leapSteps[activeLeap].letter}
                 </div>
                 <div>
-                  <div className="font-semibold text-zinc-100">{leapSteps[activeLeap].name}</div>
-                  <div className="text-xs text-zinc-500">Step {activeLeap + 1} of 4</div>
+                  <div className="font-semibold text-foreground">{leapSteps[activeLeap].name}</div>
+                  <div className="text-xs text-muted-foreground">Step {activeLeap + 1} of 4</div>
                 </div>
               </div>
-              <p className="text-sm text-zinc-300 mb-3 leading-relaxed">{leapSteps[activeLeap].description}</p>
+              <p className="text-sm text-muted-foreground mb-3 leading-relaxed">{leapSteps[activeLeap].description}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {leapSteps[activeLeap].actions.map(action => (
-                  <div key={action} className="flex items-start gap-2 text-xs text-zinc-400">
+                  <div key={action} className="flex items-start gap-2 text-xs text-muted-foreground">
                     <div
                       className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0"
                       style={{ backgroundColor: leapSteps[activeLeap].color }}
@@ -944,9 +944,9 @@ function TNFDTab() {
 
       {/* TNFD vs TCFD */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Info className="w-4 h-4 text-primary" />
               TNFD vs TCFD Comparison
             </CardTitle>
@@ -954,18 +954,18 @@ function TNFDTab() {
           <CardContent className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-700">
-                  <th className="text-left py-2 pr-4 text-zinc-400 font-medium">Dimension</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 pr-4 text-muted-foreground font-medium">Dimension</th>
                   <th className="text-left py-2 px-3 text-primary font-medium">TCFD (Climate)</th>
                   <th className="text-left py-2 pl-3 text-green-400 font-medium">TNFD (Nature)</th>
                 </tr>
               </thead>
               <tbody>
                 {comparisons.map((row, i) => (
-                  <tr key={row.dimension} className={`border-b border-zinc-800 ${i % 2 === 0 ? "bg-zinc-800/20" : ""}`}>
-                    <td className="py-2 pr-4 text-zinc-400 font-medium">{row.dimension}</td>
-                    <td className="py-2 px-3 text-zinc-300">{row.tcfd}</td>
-                    <td className="py-2 pl-3 text-zinc-300">{row.tnfd}</td>
+                  <tr key={row.dimension} className={`border-b border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}>
+                    <td className="py-2 pr-4 text-muted-foreground font-medium">{row.dimension}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{row.tcfd}</td>
+                    <td className="py-2 pl-3 text-muted-foreground">{row.tnfd}</td>
                   </tr>
                 ))}
               </tbody>
@@ -977,9 +977,9 @@ function TNFDTab() {
       {/* Nature Risk Taxonomy + Sector Materiality */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
-          <Card className="bg-zinc-900 border-zinc-700/50">
+          <Card className="bg-card border-border/50">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-orange-400" />
                 Nature-Related Risk Taxonomy
               </CardTitle>
@@ -988,9 +988,9 @@ function TNFDTab() {
               {NATURE_RISKS.map(risk => {
                 const catColor = risk.category === "Physical" ? "#ef4444" : risk.category === "Transition" ? "#f97316" : "#8b5cf6";
                 return (
-                  <div key={risk.type} className="p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/30">
+                  <div key={risk.type} className="p-3 rounded-lg bg-muted/50 border border-border/30">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium text-zinc-200">{risk.type}</span>
+                      <span className="text-sm font-medium text-foreground">{risk.type}</span>
                       <div className="flex gap-2">
                         <span
                           className="text-xs px-2 py-0.5 rounded font-medium"
@@ -1001,10 +1001,10 @@ function TNFDTab() {
                         <SeverityBadge level={risk.severity} />
                       </div>
                     </div>
-                    <p className="text-xs text-zinc-400 mb-2">{risk.description}</p>
+                    <p className="text-xs text-muted-foreground mb-2">{risk.description}</p>
                     <div className="flex flex-wrap gap-1">
                       {risk.affectedSectors.map(sec => (
-                        <span key={sec} className="text-xs px-1.5 py-0.5 rounded bg-zinc-700 text-zinc-400">{sec}</span>
+                        <span key={sec} className="text-xs px-1.5 py-0.5 rounded bg-muted text-muted-foreground">{sec}</span>
                       ))}
                     </div>
                   </div>
@@ -1015,25 +1015,25 @@ function TNFDTab() {
         </motion.div>
 
         <motion.div variants={fadeUp} initial="hidden" animate="visible">
-          <Card className="bg-zinc-900 border-zinc-700/50">
+          <Card className="bg-card border-border/50">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-muted-foreground" />
                 Sector-Specific Materiality Matrix
               </CardTitle>
-              <p className="text-xs text-zinc-500">Risk scores 0–100. TNFD disclosure priority per TNFD sector guidance.</p>
+              <p className="text-xs text-muted-foreground">Risk scores 0–100. TNFD disclosure priority per TNFD sector guidance.</p>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {SECTOR_MATERIALITY.map(sm => (
-                  <div key={sm.sector} className="p-3 rounded-lg bg-zinc-800/40">
+                  <div key={sm.sector} className="p-3 rounded-lg bg-muted/40">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm text-zinc-200 font-medium">{sm.sector}</span>
+                      <span className="text-sm text-foreground font-medium">{sm.sector}</span>
                       <span className={`text-xs px-2 py-0.5 rounded font-medium ${
                         sm.tnfdPriority === "Mandatory" ? "bg-red-900/40 text-red-300" :
                         sm.tnfdPriority === "High" ? "bg-orange-900/40 text-orange-300" :
                         sm.tnfdPriority === "Medium" ? "bg-yellow-900/40 text-yellow-300" :
-                        "bg-zinc-700 text-zinc-400"
+                        "bg-muted text-muted-foreground"
                       }`}>
                         {sm.tnfdPriority}
                       </span>
@@ -1045,8 +1045,8 @@ function TNFDTab() {
                         { label: "Systemic Risk", value: sm.systemicRisk, color: "#8b5cf6" },
                       ].map(r => (
                         <div key={r.label} className="flex items-center gap-2">
-                          <span className="text-xs text-zinc-500 w-28">{r.label}</span>
-                          <div className="flex-1 h-2 bg-zinc-700 rounded-full">
+                          <span className="text-xs text-muted-foreground w-28">{r.label}</span>
+                          <div className="flex-1 h-2 bg-muted rounded-full">
                             <div
                               className="h-2 rounded-full"
                               style={{ width: `${r.value}%`, backgroundColor: r.color, opacity: 0.75 }}
@@ -1066,9 +1066,9 @@ function TNFDTab() {
 
       {/* Implementation Timeline */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <TrendingUp className="w-4 h-4 text-green-400" />
               TNFD Adoption Timeline & Early Adopters
             </CardTitle>
@@ -1076,9 +1076,9 @@ function TNFDTab() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <p className="text-xs text-zinc-400 mb-3 font-medium uppercase tracking-wide">Adoption Milestones</p>
+                <p className="text-xs text-muted-foreground mb-3 font-medium uppercase tracking-wide">Adoption Milestones</p>
                 <div className="relative">
-                  <div className="absolute left-3 top-0 bottom-0 w-px bg-zinc-700" />
+                  <div className="absolute left-3 top-0 bottom-0 w-px bg-muted" />
                   {[
                     { year: "Sep 2023", event: "TNFD final framework published — 14 disclosure recommendations", color: "#22c55e" },
                     { year: "Jan 2024", event: "320+ early adopters commit to TNFD-aligned reporting by FY2024", color: "#3b82f6" },
@@ -1093,14 +1093,14 @@ function TNFDTab() {
                       />
                       <div>
                         <span className="text-xs font-bold" style={{ color: item.color }}>{item.year}</span>
-                        <p className="text-xs text-zinc-400 mt-0.5">{item.event}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5">{item.event}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
               <div>
-                <p className="text-xs text-zinc-400 mb-3 font-medium uppercase tracking-wide">Notable Early Adopters (320+)</p>
+                <p className="text-xs text-muted-foreground mb-3 font-medium uppercase tracking-wide">Notable Early Adopters (320+)</p>
                 <div className="grid grid-cols-2 gap-2">
                   {[
                     { name: "HSBC", region: "UK", sector: "Banking" },
@@ -1112,9 +1112,9 @@ function TNFDTab() {
                     { name: "GSK", region: "UK", sector: "Pharma" },
                     { name: "LafargeHolcim", region: "Switzerland", sector: "Materials" },
                   ].map(company => (
-                    <div key={company.name} className="p-2 rounded bg-zinc-800/50 border border-zinc-700/30">
-                      <div className="text-xs font-semibold text-zinc-200">{company.name}</div>
-                      <div className="text-xs text-zinc-500">{company.sector} · {company.region}</div>
+                    <div key={company.name} className="p-2 rounded bg-muted/50 border border-border/30">
+                      <div className="text-xs font-semibold text-foreground">{company.name}</div>
+                      <div className="text-xs text-muted-foreground">{company.sector} · {company.region}</div>
                     </div>
                   ))}
                 </div>
@@ -1154,13 +1154,13 @@ function BiodiversityCreditsTab() {
     <div className="space-y-6">
       {/* Credit types */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Leaf className="w-4 h-4 text-green-400" />
               Voluntary Biodiversity Credit Market
             </CardTitle>
-            <p className="text-xs text-zinc-500">Emerging market for tradeable units representing measurable biodiversity conservation outcomes</p>
+            <p className="text-xs text-muted-foreground">Emerging market for tradeable units representing measurable biodiversity conservation outcomes</p>
           </CardHeader>
           <CardContent>
             <div className="flex gap-2 mb-4 flex-wrap">
@@ -1168,7 +1168,7 @@ function BiodiversityCreditsTab() {
                 <button
                   key={credit.type}
                   onClick={() => setSelectedCredit(i)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${selectedCredit === i ? "text-white" : "border-zinc-700 text-zinc-400 bg-zinc-800/50 hover:bg-zinc-700/50"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${selectedCredit === i ? "text-white" : "border-border text-muted-foreground bg-muted/50 hover:bg-muted/50"}`}
                   style={selectedCredit === i ? { backgroundColor: credit.color + "33", borderColor: credit.color, color: credit.color } : {}}
                 >
                   {credit.type}
@@ -1176,36 +1176,36 @@ function BiodiversityCreditsTab() {
               ))}
             </div>
             <div
-              className="p-4 rounded-lg border bg-zinc-800/40"
+              className="p-4 rounded-lg border bg-muted/40"
               style={{ borderColor: BIODIVERSITY_CREDITS[selectedCredit].color + "44" }}
             >
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="md:col-span-2">
-                  <p className="text-sm text-zinc-300 mb-3">{BIODIVERSITY_CREDITS[selectedCredit].description}</p>
+                  <p className="text-sm text-muted-foreground mb-3">{BIODIVERSITY_CREDITS[selectedCredit].description}</p>
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="p-2 rounded bg-zinc-800 border border-zinc-700/50">
-                      <div className="text-xs text-zinc-500 mb-1">Standard</div>
-                      <div className="text-xs font-medium text-zinc-200">{BIODIVERSITY_CREDITS[selectedCredit].standard}</div>
+                    <div className="p-2 rounded bg-muted border border-border/50">
+                      <div className="text-xs text-muted-foreground mb-1">Standard</div>
+                      <div className="text-xs font-medium text-foreground">{BIODIVERSITY_CREDITS[selectedCredit].standard}</div>
                     </div>
-                    <div className="p-2 rounded bg-zinc-800 border border-zinc-700/50">
-                      <div className="text-xs text-zinc-500 mb-1">Unit</div>
-                      <div className="text-xs font-medium text-zinc-200">{BIODIVERSITY_CREDITS[selectedCredit].unit}</div>
+                    <div className="p-2 rounded bg-muted border border-border/50">
+                      <div className="text-xs text-muted-foreground mb-1">Unit</div>
+                      <div className="text-xs font-medium text-foreground">{BIODIVERSITY_CREDITS[selectedCredit].unit}</div>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center items-center p-4 rounded-lg bg-zinc-900 border border-zinc-700/50">
-                  <div className="text-xs text-zinc-500 mb-1">Price Range</div>
+                <div className="flex flex-col justify-center items-center p-4 rounded-lg bg-card border border-border/50">
+                  <div className="text-xs text-muted-foreground mb-1">Price Range</div>
                   <div className="text-3xl font-bold" style={{ color: BIODIVERSITY_CREDITS[selectedCredit].color }}>
                     ${BIODIVERSITY_CREDITS[selectedCredit].priceMin}–{BIODIVERSITY_CREDITS[selectedCredit].priceMax}
                   </div>
-                  <div className="text-xs text-zinc-400">per credit</div>
+                  <div className="text-xs text-muted-foreground">per credit</div>
                 </div>
               </div>
             </div>
 
             {/* Price range chart */}
             <div className="mt-4">
-              <p className="text-xs text-zinc-500 mb-2">Credit price ranges by type ($/credit)</p>
+              <p className="text-xs text-muted-foreground mb-2">Credit price ranges by type ($/credit)</p>
               <svg viewBox={`0 0 ${priceWidth} ${priceHeight}`} className="w-full">
                 {/* X axis ticks */}
                 {[0, 10, 20, 30, 40, 50].map(v => (
@@ -1247,13 +1247,13 @@ function BiodiversityCreditsTab() {
 
       {/* Nature-based Solutions */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <TreePine className="w-4 h-4 text-green-400" />
               Nature-Based Solutions (NbS) Taxonomy
             </CardTitle>
-            <p className="text-xs text-zinc-500">NbS could provide 30% of the mitigation needed to limit warming to 1.5°C while delivering biodiversity co-benefits</p>
+            <p className="text-xs text-muted-foreground">NbS could provide 30% of the mitigation needed to limit warming to 1.5°C while delivering biodiversity co-benefits</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -1263,11 +1263,11 @@ function BiodiversityCreditsTab() {
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.08 }}
-                  className="p-4 rounded-lg bg-zinc-800/40 border border-zinc-700/30"
+                  className="p-4 rounded-lg bg-muted/40 border border-border/30"
                 >
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
-                      <span className="font-medium text-zinc-200 text-sm">{nbs.name}</span>
+                      <span className="font-medium text-foreground text-sm">{nbs.name}</span>
                       <span
                         className="ml-2 text-xs px-1.5 py-0.5 rounded"
                         style={{ backgroundColor: nbs.color + "22", color: nbs.color }}
@@ -1278,22 +1278,22 @@ function BiodiversityCreditsTab() {
                     <BenefitBadge level={nbs.biodiversityBenefit} />
                   </div>
                   <div className="grid grid-cols-3 gap-3 mb-2">
-                    <div className="text-center p-2 rounded bg-zinc-900 border border-zinc-700/50">
+                    <div className="text-center p-2 rounded bg-card border border-border/50">
                       <div className="text-sm font-bold" style={{ color: nbs.color }}>{nbs.carbonPotential}</div>
-                      <div className="text-xs text-zinc-500">Gt CO₂/yr potential</div>
+                      <div className="text-xs text-muted-foreground">Gt CO₂/yr potential</div>
                     </div>
-                    <div className="text-center p-2 rounded bg-zinc-900 border border-zinc-700/50">
+                    <div className="text-center p-2 rounded bg-card border border-border/50">
                       <div className="text-sm font-bold text-primary">${nbs.costPerHa.toLocaleString()}</div>
-                      <div className="text-xs text-zinc-500">cost/hectare</div>
+                      <div className="text-xs text-muted-foreground">cost/hectare</div>
                     </div>
-                    <div className="text-center p-2 rounded bg-zinc-900 border border-zinc-700/50">
+                    <div className="text-center p-2 rounded bg-card border border-border/50">
                       <div className="text-sm font-bold text-primary">{nbs.biodiversityBenefit}</div>
-                      <div className="text-xs text-zinc-500">biodiversity benefit</div>
+                      <div className="text-xs text-muted-foreground">biodiversity benefit</div>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {nbs.challenges.map(c => (
-                      <span key={c} className="text-xs px-1.5 py-0.5 rounded bg-zinc-700/60 text-zinc-400">{c}</span>
+                      <span key={c} className="text-xs px-1.5 py-0.5 rounded bg-muted/60 text-muted-foreground">{c}</span>
                     ))}
                   </div>
                 </motion.div>
@@ -1305,9 +1305,9 @@ function BiodiversityCreditsTab() {
 
       {/* Standards & Integrity */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Shield className="w-4 h-4 text-primary" />
               High-Integrity Credit Standards & Additionality Requirements
             </CardTitle>
@@ -1337,13 +1337,13 @@ function BiodiversityCreditsTab() {
                   color: "#a855f7",
                 },
               ].map(std => (
-                <div key={std.name} className="p-4 rounded-lg border bg-zinc-800/40" style={{ borderColor: std.color + "44" }}>
+                <div key={std.name} className="p-4 rounded-lg border bg-muted/40" style={{ borderColor: std.color + "44" }}>
                   <div className="font-semibold text-sm mb-1" style={{ color: std.color }}>{std.name}</div>
-                  <div className="text-xs text-zinc-500 mb-2">{std.type}</div>
-                  <p className="text-xs text-zinc-400 mb-3">{std.description}</p>
+                  <div className="text-xs text-muted-foreground mb-2">{std.type}</div>
+                  <p className="text-xs text-muted-foreground mb-3">{std.description}</p>
                   <ul className="space-y-1">
                     {std.strengths.map(s => (
-                      <li key={s} className="flex items-center gap-1.5 text-xs text-zinc-300">
+                      <li key={s} className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <CheckCircle className="w-3 h-3 flex-shrink-0" style={{ color: std.color }} />
                         {s}
                       </li>
@@ -1352,8 +1352,8 @@ function BiodiversityCreditsTab() {
                 </div>
               ))}
             </div>
-            <div className="p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/30">
-              <p className="text-xs text-zinc-400 font-medium mb-2 uppercase tracking-wide">Key Integrity Requirements</p>
+            <div className="p-4 rounded-lg bg-muted/30 border border-border/30">
+              <p className="text-xs text-muted-foreground font-medium mb-2 uppercase tracking-wide">Key Integrity Requirements</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {[
                   { req: "Additionality", desc: "Conservation would not have occurred without credit finance" },
@@ -1361,9 +1361,9 @@ function BiodiversityCreditsTab() {
                   { req: "Measurability", desc: "Scientifically quantifiable metrics; remote sensing verification" },
                   { req: "No Net Harm", desc: "Must not displace harm elsewhere (leakage prevention required)" },
                 ].map(item => (
-                  <div key={item.req} className="p-2 rounded bg-zinc-900 border border-zinc-700/50">
-                    <div className="text-xs font-semibold text-zinc-200 mb-1">{item.req}</div>
-                    <div className="text-xs text-zinc-500">{item.desc}</div>
+                  <div key={item.req} className="p-2 rounded bg-card border border-border/50">
+                    <div className="text-xs font-semibold text-foreground mb-1">{item.req}</div>
+                    <div className="text-xs text-muted-foreground">{item.desc}</div>
                   </div>
                 ))}
               </div>
@@ -1419,26 +1419,26 @@ function DeforestationTab() {
     <div className="space-y-6">
       {/* EUDR + framework explainer */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Globe className="w-4 h-4 text-red-400" />
               EU Deforestation Regulation (EUDR) & Finance for Biodiversity Pledge
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg bg-zinc-800/40 border border-red-900/30">
+              <div className="p-4 rounded-lg bg-muted/40 border border-red-900/30">
                 <div className="flex items-center gap-2 mb-2">
                   <AlertTriangle className="w-4 h-4 text-red-400" />
                   <span className="text-sm font-semibold text-red-300">EU Deforestation Regulation</span>
                   <Badge className="bg-red-900/40 text-red-300 text-xs border-red-700">In Force 2025</Badge>
                 </div>
-                <p className="text-xs text-zinc-400 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   Requires companies placing 7 key commodities (soy, palm oil, beef, timber, cocoa, coffee, rubber)
                   on the EU market to prove they are not sourced from deforested land (post-December 2020 cutoff).
                 </p>
-                <ul className="space-y-1 text-xs text-zinc-300">
+                <ul className="space-y-1 text-xs text-muted-foreground">
                   {[
                     "Mandatory due diligence statements",
                     "Geolocation data for all sourcing locations",
@@ -1453,13 +1453,13 @@ function DeforestationTab() {
                   ))}
                 </ul>
               </div>
-              <div className="p-4 rounded-lg bg-zinc-800/40 border border-green-900/30">
+              <div className="p-4 rounded-lg bg-muted/40 border border-green-900/30">
                 <div className="flex items-center gap-2 mb-2">
                   <Users className="w-4 h-4 text-green-400" />
                   <span className="text-sm font-semibold text-green-300">Finance for Biodiversity Pledge</span>
                   <Badge className="bg-green-900/40 text-green-300 text-xs border-green-700">150+ Signatories</Badge>
                 </div>
-                <p className="text-xs text-zinc-400 mb-3">
+                <p className="text-xs text-muted-foreground mb-3">
                   Coalition of financial institutions committing to protect and restore biodiversity through their
                   activities and investments. $24 trillion AUM represented.
                 </p>
@@ -1470,13 +1470,13 @@ function DeforestationTab() {
                     { label: "Countries", value: "30+" },
                     { label: "By-2030 target", value: "No net loss" },
                   ].map(item => (
-                    <div key={item.label} className="text-center p-2 rounded bg-zinc-900 border border-zinc-700/50">
+                    <div key={item.label} className="text-center p-2 rounded bg-card border border-border/50">
                       <div className="text-sm font-bold text-green-400">{item.value}</div>
-                      <div className="text-xs text-zinc-500">{item.label}</div>
+                      <div className="text-xs text-muted-foreground">{item.label}</div>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-zinc-500">Members commit to assess, set targets, engage companies, and report publicly on biodiversity by 2025.</p>
+                <p className="text-xs text-muted-foreground">Members commit to assess, set targets, engage companies, and report publicly on biodiversity by 2025.</p>
               </div>
             </div>
           </CardContent>
@@ -1485,41 +1485,41 @@ function DeforestationTab() {
 
       {/* Commodity deforestation drivers */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Fish className="w-4 h-4 text-orange-400" />
               Commodity-Driven Deforestation & Financial Exposure
             </CardTitle>
-            <p className="text-xs text-zinc-500">All 6 commodities covered under EUDR. Mha = million hectares of annual tropical forest loss attributable.</p>
+            <p className="text-xs text-muted-foreground">All 6 commodities covered under EUDR. Mha = million hectares of annual tropical forest loss attributable.</p>
           </CardHeader>
           <CardContent className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-700">
-                  <th className="text-left py-2 pr-3 text-zinc-400">Commodity</th>
-                  <th className="text-left py-2 px-3 text-zinc-400">Annual Deforestation</th>
-                  <th className="text-left py-2 px-3 text-zinc-400">Main Regions</th>
-                  <th className="text-left py-2 px-3 text-zinc-400">Financial Exposure</th>
-                  <th className="text-left py-2 pl-3 text-zinc-400">EUDR</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 pr-3 text-muted-foreground">Commodity</th>
+                  <th className="text-left py-2 px-3 text-muted-foreground">Annual Deforestation</th>
+                  <th className="text-left py-2 px-3 text-muted-foreground">Main Regions</th>
+                  <th className="text-left py-2 px-3 text-muted-foreground">Financial Exposure</th>
+                  <th className="text-left py-2 pl-3 text-muted-foreground">EUDR</th>
                 </tr>
               </thead>
               <tbody>
                 {FOREST_COMMODITIES.map((fc, i) => (
-                  <tr key={fc.commodity} className={`border-b border-zinc-800 ${i % 2 === 0 ? "bg-zinc-800/20" : ""}`}>
-                    <td className="py-2 pr-3 font-medium text-zinc-200">{fc.commodity}</td>
+                  <tr key={fc.commodity} className={`border-b border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}>
+                    <td className="py-2 pr-3 font-medium text-foreground">{fc.commodity}</td>
                     <td className="py-2 px-3">
                       <div className="flex items-center gap-2">
-                        <div className="w-24 h-2 bg-zinc-700 rounded-full">
+                        <div className="w-24 h-2 bg-muted rounded-full">
                           <div
                             className="h-2 rounded-full bg-orange-500"
                             style={{ width: `${(fc.annualDeforestation / maxDef) * 100}%`, opacity: 0.8 }}
                           />
                         </div>
-                        <span className="text-zinc-300">{fc.annualDeforestation} Mha/yr</span>
+                        <span className="text-muted-foreground">{fc.annualDeforestation} Mha/yr</span>
                       </div>
                     </td>
-                    <td className="py-2 px-3 text-zinc-400">{fc.mainRegions.join(", ")}</td>
+                    <td className="py-2 px-3 text-muted-foreground">{fc.mainRegions.join(", ")}</td>
                     <td className="py-2 px-3">
                       <span className="font-semibold text-yellow-400">${fc.financialExposure}B</span>
                     </td>
@@ -1527,7 +1527,7 @@ function DeforestationTab() {
                       {fc.eudrCovered ? (
                         <CheckCircle className="w-4 h-4 text-green-400" />
                       ) : (
-                        <XCircle className="w-4 h-4 text-zinc-600" />
+                        <XCircle className="w-4 h-4 text-muted-foreground" />
                       )}
                     </td>
                   </tr>
@@ -1540,13 +1540,13 @@ function DeforestationTab() {
 
       {/* Company exposure bubble chart */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <TrendingDown className="w-4 h-4 text-red-400" />
               Deforestation Exposure vs. Stranded Asset Risk
             </CardTitle>
-            <p className="text-xs text-zinc-500">Bubble size = financial exposure ($B). Y-axis = stranded asset risk (% of asset base).</p>
+            <p className="text-xs text-muted-foreground">Bubble size = financial exposure ($B). Y-axis = stranded asset risk (% of asset base).</p>
           </CardHeader>
           <CardContent>
             <svg viewBox={`0 0 ${bWidth} ${bHeight}`} className="w-full mb-3">
@@ -1617,23 +1617,23 @@ function DeforestationTab() {
 
       {/* Company table */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-yellow-400" />
                 Financial Exposure by Company
               </CardTitle>
               <div className="flex gap-2">
                 <button
                   onClick={() => setSortBy("exposure")}
-                  className={`px-2 py-1 text-xs rounded border transition-all ${sortBy === "exposure" ? "bg-yellow-900/30 border-yellow-600 text-yellow-300" : "border-zinc-700 text-zinc-400"}`}
+                  className={`px-2 py-1 text-xs rounded border transition-all ${sortBy === "exposure" ? "bg-yellow-900/30 border-yellow-600 text-yellow-300" : "border-border text-muted-foreground"}`}
                 >
                   By Exposure
                 </button>
                 <button
                   onClick={() => setSortBy("stranded")}
-                  className={`px-2 py-1 text-xs rounded border transition-all ${sortBy === "stranded" ? "bg-orange-900/30 border-orange-600 text-orange-300" : "border-zinc-700 text-zinc-400"}`}
+                  className={`px-2 py-1 text-xs rounded border transition-all ${sortBy === "stranded" ? "bg-orange-900/30 border-orange-600 text-orange-300" : "border-border text-muted-foreground"}`}
                 >
                   By Stranded Risk
                 </button>
@@ -1643,20 +1643,20 @@ function DeforestationTab() {
           <CardContent className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-zinc-700">
-                  <th className="text-left py-2 pr-3 text-zinc-400">Company</th>
-                  <th className="text-left py-2 px-2 text-zinc-400">Sector</th>
-                  <th className="text-left py-2 px-2 text-zinc-400">Exposure</th>
-                  <th className="text-left py-2 px-2 text-zinc-400">Deforestation Risk</th>
-                  <th className="text-left py-2 px-2 text-zinc-400">EUDR Compliance</th>
-                  <th className="text-left py-2 pl-2 text-zinc-400">Stranded Asset Risk</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 pr-3 text-muted-foreground">Company</th>
+                  <th className="text-left py-2 px-2 text-muted-foreground">Sector</th>
+                  <th className="text-left py-2 px-2 text-muted-foreground">Exposure</th>
+                  <th className="text-left py-2 px-2 text-muted-foreground">Deforestation Risk</th>
+                  <th className="text-left py-2 px-2 text-muted-foreground">EUDR Compliance</th>
+                  <th className="text-left py-2 pl-2 text-muted-foreground">Stranded Asset Risk</th>
                 </tr>
               </thead>
               <tbody>
                 {sorted.map((company, i) => (
-                  <tr key={company.name} className={`border-b border-zinc-800 ${i % 2 === 0 ? "bg-zinc-800/20" : ""}`}>
-                    <td className="py-2 pr-3 font-medium text-zinc-200">{company.name}</td>
-                    <td className="py-2 px-2 text-zinc-400">{company.sector}</td>
+                  <tr key={company.name} className={`border-b border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}>
+                    <td className="py-2 pr-3 font-medium text-foreground">{company.name}</td>
+                    <td className="py-2 px-2 text-muted-foreground">{company.sector}</td>
                     <td className="py-2 px-2 font-semibold text-yellow-400">${company.exposure}B</td>
                     <td className="py-2 px-2">
                       <RiskBadge level={company.deforestationRisk} />
@@ -1666,7 +1666,7 @@ function DeforestationTab() {
                     </td>
                     <td className="py-2 pl-2">
                       <div className="flex items-center gap-2">
-                        <div className="w-16 h-1.5 bg-zinc-700 rounded-full">
+                        <div className="w-16 h-1.5 bg-muted rounded-full">
                           <div
                             className="h-1.5 rounded-full"
                             style={{
@@ -1691,9 +1691,9 @@ function DeforestationTab() {
 
       {/* SBTN Framework */}
       <motion.div variants={fadeUp} initial="hidden" animate="visible">
-        <Card className="bg-zinc-900 border-zinc-700/50">
+        <Card className="bg-card border-border/50">
           <CardHeader className="pb-3">
-            <CardTitle className="text-base text-zinc-100 flex items-center gap-2">
+            <CardTitle className="text-base text-foreground flex items-center gap-2">
               <Target className="w-4 h-4 text-green-400" />
               Science Based Targets for Nature (SBTN)
             </CardTitle>
@@ -1701,7 +1701,7 @@ function DeforestationTab() {
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-zinc-400 mb-3 leading-relaxed">
+                <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
                   SBTN provides a method for companies to set science-based targets for nature, aligned with
                   the Global Biodiversity Framework (GBF) 30x30 target and the ambition of a nature-positive
                   world by 2030. Complements SBTi climate targets.
@@ -1721,15 +1721,15 @@ function DeforestationTab() {
                       </div>
                       <div>
                         <span className="text-xs font-semibold text-green-300">{item.step}: </span>
-                        <span className="text-xs text-zinc-400">{item.desc}</span>
+                        <span className="text-xs text-muted-foreground">{item.desc}</span>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="space-y-3">
-                <div className="p-3 rounded-lg bg-zinc-800/50 border border-zinc-700/30">
-                  <p className="text-xs font-medium text-zinc-300 mb-2">Global Biodiversity Framework Alignment</p>
+                <div className="p-3 rounded-lg bg-muted/50 border border-border/30">
+                  <p className="text-xs font-medium text-muted-foreground mb-2">Global Biodiversity Framework Alignment</p>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { target: "30x30", desc: "30% land & ocean protected by 2030" },
@@ -1737,19 +1737,19 @@ function DeforestationTab() {
                       { target: "No Net Loss", desc: "Halt human-induced extinction by 2030" },
                       { target: "$200B/yr", desc: "Biodiversity finance gap to close by 2030" },
                     ].map(item => (
-                      <div key={item.target} className="p-2 rounded bg-zinc-900 border border-zinc-700/50">
+                      <div key={item.target} className="p-2 rounded bg-card border border-border/50">
                         <div className="text-xs font-bold text-green-400">{item.target}</div>
-                        <div className="text-xs text-zinc-500">{item.desc}</div>
+                        <div className="text-xs text-muted-foreground">{item.desc}</div>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="p-3 rounded-lg bg-zinc-800/50 border border-yellow-900/30">
+                <div className="p-3 rounded-lg bg-muted/50 border border-yellow-900/30">
                   <p className="text-xs font-medium text-yellow-300 mb-2 flex items-center gap-1">
                     <AlertTriangle className="w-3 h-3" />
                     Investor Engagement Watchlist
                   </p>
-                  <p className="text-xs text-zinc-400 mb-2">
+                  <p className="text-xs text-muted-foreground mb-2">
                     Finance for Biodiversity Pledge members are actively engaging companies in high-risk sectors.
                     Companies with Critical deforestation risk and no EUDR pathway face:
                   </p>
@@ -1760,7 +1760,7 @@ function DeforestationTab() {
                       "Higher cost of capital from green bond ineligibility",
                       "Supply chain disruptions from EU market access loss",
                     ].map(item => (
-                      <li key={item} className="flex items-start gap-1.5 text-xs text-zinc-400">
+                      <li key={item} className="flex items-start gap-1.5 text-xs text-muted-foreground">
                         <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 mt-1.5 flex-shrink-0" />
                         {item}
                       </li>
@@ -1784,7 +1784,7 @@ export default function NaturalCapitalPage() {
   void _seed;
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div
@@ -1799,23 +1799,23 @@ export default function NaturalCapitalPage() {
                   <Leaf className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-zinc-100">Natural Capital & Biodiversity Finance</h1>
-                  <p className="text-sm text-zinc-400">Ecosystem services valuation, TNFD, biodiversity credits, and deforestation-linked finance risk</p>
+                  <h1 className="text-2xl font-bold text-foreground">Natural Capital & Biodiversity Finance</h1>
+                  <p className="text-sm text-muted-foreground">Ecosystem services valuation, TNFD, biodiversity credits, and deforestation-linked finance risk</p>
                 </div>
               </div>
             </div>
             <div className="flex gap-3 flex-shrink-0">
-              <div className="text-center p-2 rounded-lg bg-zinc-900 border border-zinc-700/50">
+              <div className="text-center p-2 rounded-lg bg-card border border-border/50">
                 <div className="text-lg font-bold text-emerald-400">$125T</div>
-                <div className="text-xs text-zinc-500">Nature value/yr</div>
+                <div className="text-xs text-muted-foreground">Nature value/yr</div>
               </div>
-              <div className="text-center p-2 rounded-lg bg-zinc-900 border border-zinc-700/50">
+              <div className="text-center p-2 rounded-lg bg-card border border-border/50">
                 <div className="text-lg font-bold text-red-400">6/9</div>
-                <div className="text-xs text-zinc-500">Boundaries exceeded</div>
+                <div className="text-xs text-muted-foreground">Boundaries exceeded</div>
               </div>
-              <div className="text-center p-2 rounded-lg bg-zinc-900 border border-zinc-700/50">
+              <div className="text-center p-2 rounded-lg bg-card border border-border/50">
                 <div className="text-lg font-bold text-primary">150+</div>
-                <div className="text-xs text-zinc-500">FfBP signatories</div>
+                <div className="text-xs text-muted-foreground">FfBP signatories</div>
               </div>
             </div>
           </div>
@@ -1823,7 +1823,7 @@ export default function NaturalCapitalPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="ecosystem">
-          <TabsList className="bg-zinc-900 border border-zinc-700/50 flex-wrap h-auto gap-1 p-1">
+          <TabsList className="bg-card border border-border/50 flex-wrap h-auto gap-1 p-1">
             <TabsTrigger value="ecosystem" className="data-[state=active]:bg-emerald-900/50 data-[state=active]:text-emerald-300 text-xs">
               Ecosystem Services
             </TabsTrigger>

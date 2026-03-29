@@ -390,18 +390,18 @@ function ComparisonMatrix() {
       <table className="w-full text-xs border-collapse">
         <thead>
           <tr>
-            <th className="text-left py-2 px-3 text-zinc-500 font-medium border-b border-zinc-800 min-w-[120px]">Category</th>
+            <th className="text-left py-2 px-3 text-muted-foreground font-medium border-b border-border min-w-[120px]">Category</th>
             {COMP_COLS.map((c) => (
-              <th key={c} className="text-center py-2 px-2 text-zinc-400 font-medium border-b border-zinc-800 min-w-[90px]">{c}</th>
+              <th key={c} className="text-center py-2 px-2 text-muted-foreground font-medium border-b border-border min-w-[90px]">{c}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {COMP_ROWS.map((row, ri) => (
-            <tr key={`cr-${ri}`} className={ri % 2 === 0 ? "bg-zinc-900/40" : ""}>
-              <td className="py-2 px-3 text-zinc-400 font-medium border-b border-zinc-800/50">{row.label}</td>
+            <tr key={`cr-${ri}`} className={ri % 2 === 0 ? "bg-card/40" : ""}>
+              <td className="py-2 px-3 text-muted-foreground font-medium border-b border-border/50">{row.label}</td>
               {row.data.map((cell, ci) => (
-                <td key={`cc-${ri}-${ci}`} className="py-2 px-2 text-center text-zinc-300 border-b border-zinc-800/50">{cell}</td>
+                <td key={`cc-${ri}-${ci}`} className="py-2 px-2 text-center text-muted-foreground border-b border-border/50">{cell}</td>
               ))}
             </tr>
           ))}
@@ -490,8 +490,8 @@ export default function RealAssets2Page() {
             <Layers className="w-6 h-6 text-emerald-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-zinc-100">Real Assets Deep Dive</h1>
-            <p className="text-sm text-zinc-400">Timberland, farmland, art, royalties, and infrastructure — beyond bricks and mortar</p>
+            <h1 className="text-2xl font-bold text-foreground">Real Assets Deep Dive</h1>
+            <p className="text-sm text-muted-foreground">Timberland, farmland, art, royalties, and infrastructure — beyond bricks and mortar</p>
           </div>
         </div>
         <div className="flex gap-2 mt-3 flex-wrap">
@@ -502,7 +502,7 @@ export default function RealAssets2Page() {
             { label: "Music Royalty Market", value: "$30B+", color: "bg-primary/10 text-primary" },
           ].map((chip) => (
             <div key={chip.label} className={cn("px-3 py-1.5 rounded-full text-xs font-medium", chip.color)}>
-              <span className="text-zinc-500 mr-1">{chip.label}:</span>{chip.value}
+              <span className="text-muted-foreground mr-1">{chip.label}:</span>{chip.value}
             </div>
           ))}
         </div>
@@ -510,17 +510,17 @@ export default function RealAssets2Page() {
 
       {/* Tabs */}
       <Tabs defaultValue="timber">
-        <TabsList className="bg-zinc-900 border border-zinc-800 h-auto flex-wrap">
-          <TabsTrigger value="timber" className="data-[state=active]:bg-zinc-800 text-xs gap-1.5">
+        <TabsList className="bg-card border border-border h-auto flex-wrap">
+          <TabsTrigger value="timber" className="data-[state=active]:bg-muted text-xs gap-1.5">
             <TreePine className="w-3.5 h-3.5" />Timberland &amp; Farmland
           </TabsTrigger>
-          <TabsTrigger value="art" className="data-[state=active]:bg-zinc-800 text-xs gap-1.5">
+          <TabsTrigger value="art" className="data-[state=active]:bg-muted text-xs gap-1.5">
             <Gem className="w-3.5 h-3.5" />Art &amp; Collectibles
           </TabsTrigger>
-          <TabsTrigger value="royalties" className="data-[state=active]:bg-zinc-800 text-xs gap-1.5">
+          <TabsTrigger value="royalties" className="data-[state=active]:bg-muted text-xs gap-1.5">
             <Music className="w-3.5 h-3.5" />Royalties &amp; IP
           </TabsTrigger>
-          <TabsTrigger value="comparison" className="data-[state=active]:bg-zinc-800 text-xs gap-1.5">
+          <TabsTrigger value="comparison" className="data-[state=active]:bg-muted text-xs gap-1.5">
             <BarChart2 className="w-3.5 h-3.5" />Infra vs Real Estate
           </TabsTrigger>
         </TabsList>
@@ -529,23 +529,23 @@ export default function RealAssets2Page() {
         <TabsContent value="timber" className="mt-4 space-y-4 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* NCREIF Timberland Returns */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                   NCREIF Timberland Index Annual Returns
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <TimberReturnChart />
-                <p className="text-xs text-zinc-500 mt-2">Biological growth (purple bars) provides a stable ~4–5% annual floor regardless of timber prices. Total returns averaged ~7.3% over the period.</p>
+                <p className="text-xs text-muted-foreground mt-2">Biological growth (purple bars) provides a stable ~4–5% annual floor regardless of timber prices. Total returns averaged ~7.3% over the period.</p>
               </CardContent>
             </Card>
 
             {/* Return Components */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-emerald-400" />
                   Timberland Return Components
                 </CardTitle>
@@ -558,18 +558,18 @@ export default function RealAssets2Page() {
                 ].map((item) => (
                   <div key={item.label}>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="text-zinc-300 font-medium">{item.label}</span>
+                      <span className="text-muted-foreground font-medium">{item.label}</span>
                       <span style={{ color: item.color }}>{item.pct}% of return</span>
                     </div>
-                    <div className="h-2 rounded-full bg-zinc-800">
+                    <div className="h-2 rounded-full bg-muted">
                       <div className="h-2 rounded-full" style={{ width: `${item.pct}%`, backgroundColor: item.color, opacity: 0.8 }} />
                     </div>
-                    <p className="text-xs text-zinc-500 mt-1">{item.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
                   </div>
                 ))}
                 <div className="mt-3 p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
                   <p className="text-xs text-emerald-300 font-medium">Harvest Flexibility Advantage</p>
-                  <p className="text-xs text-zinc-400 mt-1">Unlike crops, timber can stand unharvested for 2–5 extra years if prices are depressed. This inventory optionality is a unique biological asset feature — the forest acts as a natural price-averaging mechanism.</p>
+                  <p className="text-xs text-muted-foreground mt-1">Unlike crops, timber can stand unharvested for 2–5 extra years if prices are depressed. This inventory optionality is a unique biological asset feature — the forest acts as a natural price-averaging mechanism.</p>
                 </div>
               </CardContent>
             </Card>
@@ -577,14 +577,14 @@ export default function RealAssets2Page() {
 
           {/* Carbon & Water */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Globe className="w-4 h-4 text-emerald-400" />
                   Carbon Credit Optionality
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-xs text-zinc-400">
+              <CardContent className="space-y-2 text-xs text-muted-foreground">
                 <p>Forests sequester CO₂ and can generate carbon offsets (REDD+, IFM protocols) sold on voluntary or compliance carbon markets. At $15–$30/tonne and 2–5 tonnes CO₂/acre/year, a 100,000-acre forest generates $3M–$15M in annual carbon revenue — a meaningful option layer on top of timber income.</p>
                 <div className="grid grid-cols-2 gap-2 mt-3">
                   {[
@@ -593,23 +593,23 @@ export default function RealAssets2Page() {
                     { k: "CA Cap-and-Trade", v: "$30–$40/t" },
                     { k: "Forest Credit Term", v: "30–100 years" },
                   ].map((s) => (
-                    <div key={s.k} className="p-2 rounded bg-zinc-800/60">
-                      <p className="text-zinc-500">{s.k}</p>
-                      <p className="text-zinc-200 font-medium mt-0.5">{s.v}</p>
+                    <div key={s.k} className="p-2 rounded bg-muted/60">
+                      <p className="text-muted-foreground">{s.k}</p>
+                      <p className="text-foreground font-medium mt-0.5">{s.v}</p>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Droplets className="w-4 h-4 text-amber-400" />
                   Water Rights &amp; Vertical Integration
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-2 text-xs text-zinc-400">
+              <CardContent className="space-y-2 text-xs text-muted-foreground">
                 <p>In western US states, water rights appurtenant to farmland can be worth more than the land itself ($5,000–$50,000/acre-foot in California). Vertical integration in agriculture — owning processing, storage, and distribution alongside land — can double income yield versus bare leasehold returns.</p>
                 <div className="grid grid-cols-1 gap-2 mt-3">
                   {[
@@ -617,8 +617,8 @@ export default function RealAssets2Page() {
                     { k: "+ processing/storage", v: "+2–3% additional yield" },
                     { k: "CA water rights range", v: "$5k–$50k/acre-foot" },
                   ].map((s) => (
-                    <div key={s.k} className="flex justify-between p-2 rounded bg-zinc-800/60">
-                      <span className="text-zinc-400">{s.k}</span>
+                    <div key={s.k} className="flex justify-between p-2 rounded bg-muted/60">
+                      <span className="text-muted-foreground">{s.k}</span>
                       <span className="text-amber-300 font-medium">{s.v}</span>
                     </div>
                   ))}
@@ -628,24 +628,24 @@ export default function RealAssets2Page() {
           </div>
 
           {/* US Farmland Price Chart */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Wheat className="w-4 h-4 text-amber-400" />
                 US Average Farmland Price per Acre (2010–2024)
               </CardTitle>
             </CardHeader>
             <CardContent>
               <FarmlandPriceChart />
-              <p className="text-xs text-zinc-500 mt-2">USDA data: US average cropland value rose from ~$2,150/acre in 2010 to $4,050/acre in 2024 — an 88% cumulative gain. Prime Iowa corn belt land trades above $15,000/acre. Managed by Nuveen Natural Capital, TIAA, and Farmland Partners (FPI).</p>
+              <p className="text-xs text-muted-foreground mt-2">USDA data: US average cropland value rose from ~$2,150/acre in 2010 to $4,050/acre in 2024 — an 88% cumulative gain. Prime Iowa corn belt land trades above $15,000/acre. Managed by Nuveen Natural Capital, TIAA, and Farmland Partners (FPI).</p>
             </CardContent>
           </Card>
 
           {/* Timber vs Farmland Table */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
-                <Layers className="w-4 h-4 text-zinc-400" />
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
+                <Layers className="w-4 h-4 text-muted-foreground" />
                 Timberland vs Farmland — Investor Comparison
               </CardTitle>
             </CardHeader>
@@ -654,17 +654,17 @@ export default function RealAssets2Page() {
                 <table className="w-full text-xs border-collapse">
                   <thead>
                     <tr>
-                      <th className="text-left py-2 px-3 text-zinc-500 border-b border-zinc-800 min-w-[160px]">Factor</th>
-                      <th className="text-left py-2 px-3 text-emerald-400 border-b border-zinc-800 min-w-[180px]">Timberland</th>
-                      <th className="text-left py-2 px-3 text-amber-400 border-b border-zinc-800 min-w-[180px]">Farmland</th>
+                      <th className="text-left py-2 px-3 text-muted-foreground border-b border-border min-w-[160px]">Factor</th>
+                      <th className="text-left py-2 px-3 text-emerald-400 border-b border-border min-w-[180px]">Timberland</th>
+                      <th className="text-left py-2 px-3 text-amber-400 border-b border-border min-w-[180px]">Farmland</th>
                     </tr>
                   </thead>
                   <tbody>
                     {TF_COMPARE.map((row, i) => (
-                      <tr key={`tf-${i}`} className={i % 2 === 0 ? "bg-zinc-900/40" : ""}>
-                        <td className="py-2 px-3 text-zinc-400 font-medium border-b border-zinc-800/50">{row.factor}</td>
-                        <td className="py-2 px-3 text-zinc-300 border-b border-zinc-800/50">{row.timber}</td>
-                        <td className="py-2 px-3 text-zinc-300 border-b border-zinc-800/50">{row.farmland}</td>
+                      <tr key={`tf-${i}`} className={i % 2 === 0 ? "bg-card/40" : ""}>
+                        <td className="py-2 px-3 text-muted-foreground font-medium border-b border-border/50">{row.factor}</td>
+                        <td className="py-2 px-3 text-muted-foreground border-b border-border/50">{row.timber}</td>
+                        <td className="py-2 px-3 text-muted-foreground border-b border-border/50">{row.farmland}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -678,23 +678,23 @@ export default function RealAssets2Page() {
         <TabsContent value="art" className="mt-4 space-y-4 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Mei Moses vs Stocks */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-pink-400" />
                   Mei Moses Art Index vs S&amp;P 500 (Annual Returns)
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ArtIndexChart />
-                <p className="text-xs text-zinc-500 mt-2">Art provides diversification (low correlation to equities) but with high transaction costs. The Mei Moses index shows 5–7% real returns on repeat-sale auction data, masking survivorship bias from unsold or privately-traded pieces.</p>
+                <p className="text-xs text-muted-foreground mt-2">Art provides diversification (low correlation to equities) but with high transaction costs. The Mei Moses index shows 5–7% real returns on repeat-sale auction data, masking survivorship bias from unsold or privately-traded pieces.</p>
               </CardContent>
             </Card>
 
             {/* Transaction Costs */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
                   Art Round-Trip Transaction Costs (25%+)
                 </CardTitle>
@@ -703,21 +703,21 @@ export default function RealAssets2Page() {
                 {ART_COSTS.map((cost) => (
                   <div key={cost.label}>
                     <div className="flex justify-between text-xs mb-1">
-                      <span className="text-zinc-300">{cost.label}</span>
+                      <span className="text-muted-foreground">{cost.label}</span>
                       <span style={{ color: cost.color }} className="font-medium">{cost.pct}%</span>
                     </div>
-                    <div className="h-1.5 rounded-full bg-zinc-800">
+                    <div className="h-1.5 rounded-full bg-muted">
                       <div className="h-1.5 rounded-full" style={{ width: `${(cost.pct / 15) * 100}%`, backgroundColor: cost.color, opacity: 0.8 }} />
                     </div>
                   </div>
                 ))}
                 <div className="mt-2 p-3 rounded-lg bg-amber-500/5 border border-amber-500/20">
                   <p className="text-xs text-amber-300 font-medium">Total Round-Trip Cost: ~25–30%</p>
-                  <p className="text-xs text-zinc-400 mt-1">A piece must appreciate 25–30% just to break even on transaction costs. This means art needs to be held for 5–10 years minimum to earn an acceptable net return, reinforcing its extreme illiquidity.</p>
+                  <p className="text-xs text-muted-foreground mt-1">A piece must appreciate 25–30% just to break even on transaction costs. This means art needs to be held for 5–10 years minimum to earn an acceptable net return, reinforcing its extreme illiquidity.</p>
                 </div>
-                <div className="mt-2 p-3 rounded-lg bg-zinc-800/50">
-                  <p className="text-xs text-zinc-300 font-medium">US Tax Treatment</p>
-                  <p className="text-xs text-zinc-400 mt-1">Collectibles (art, wine, stamps, coins) face a 28% federal long-term capital gains rate — vs 20% for securities. Additional 3.8% NIIT applies, making effective rate up to 31.8% for high earners.</p>
+                <div className="mt-2 p-3 rounded-lg bg-muted/50">
+                  <p className="text-xs text-muted-foreground font-medium">US Tax Treatment</p>
+                  <p className="text-xs text-muted-foreground mt-1">Collectibles (art, wine, stamps, coins) face a 28% federal long-term capital gains rate — vs 20% for securities. Additional 3.8% NIIT applies, making effective rate up to 31.8% for high earners.</p>
                 </div>
               </CardContent>
             </Card>
@@ -781,34 +781,34 @@ export default function RealAssets2Page() {
                 badgeColor: "text-orange-400 bg-orange-500/10",
               },
             ].map((cat) => (
-              <Card key={cat.title} className="bg-zinc-900 border-zinc-800">
+              <Card key={cat.title} className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     {cat.icon}{cat.title}
                     <Badge className={cn("ml-auto text-xs", cat.badgeColor)}>{cat.badge}</Badge>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-zinc-500">{cat.index}</span>
+                    <span className="text-muted-foreground">{cat.index}</span>
                     <span className={posColor(parseFloat(cat.return))}>{cat.return}</span>
                   </div>
-                  <p className="text-xs text-zinc-400" dangerouslySetInnerHTML={{ __html: cat.note }} />
+                  <p className="text-xs text-muted-foreground" dangerouslySetInnerHTML={{ __html: cat.note }} />
                 </CardContent>
               </Card>
             ))}
           </div>
 
           {/* Authentication Risk */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
                 Authentication, Provenance &amp; Key Risks
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-zinc-400">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-muted-foreground">
                 <div className="p-3 rounded-lg bg-red-500/5 border border-red-500/20">
                   <p className="text-red-300 font-medium mb-1">Authentication Risk</p>
                   <p>Forgeries represent ~10% of artworks on market per some estimates. Scientific analysis (dendrochronology, pigment testing, UV fluorescence) and catalogue raisonné verification are essential. Forger Wolfgang Beltracchi fooled major auction houses for decades.</p>
@@ -830,28 +830,28 @@ export default function RealAssets2Page() {
         <TabsContent value="royalties" className="mt-4 space-y-4 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Music Royalty Donut */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Music className="w-4 h-4 text-primary" />
                   Music Publishing Revenue Streams
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <RoyaltyDonut />
-                <p className="text-xs text-zinc-500 mt-2">Streaming (Spotify, Apple Music, YouTube) now dominates at ~38% of publishing revenues. Sync licensing (TV/film placements) commands premium rates — a single Netflix placement can generate $10k–$100k. Performance rights (radio, live) remain significant.</p>
+                <p className="text-xs text-muted-foreground mt-2">Streaming (Spotify, Apple Music, YouTube) now dominates at ~38% of publishing revenues. Sync licensing (TV/film placements) commands premium rates — a single Netflix placement can generate $10k–$100k. Performance rights (radio, live) remain significant.</p>
               </CardContent>
             </Card>
 
             {/* Streaming Economics */}
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Activity className="w-4 h-4 text-green-400" />
                   Streaming Economics &amp; Royalty Valuation
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs text-zinc-400">
+              <CardContent className="space-y-3 text-xs text-muted-foreground">
                 <div className="grid grid-cols-2 gap-2">
                   {[
                     { k: "Spotify rate/stream", v: "$0.003–$0.005" },
@@ -861,9 +861,9 @@ export default function RealAssets2Page() {
                     { k: "DCF discount rate", v: "8–12% typical" },
                     { k: "Catalog multiple", v: "15–25× NPS" },
                   ].map((s) => (
-                    <div key={s.k} className="p-2 rounded bg-zinc-800/60">
-                      <p className="text-zinc-500">{s.k}</p>
-                      <p className="text-zinc-200 font-medium mt-0.5">{s.v}</p>
+                    <div key={s.k} className="p-2 rounded bg-muted/60">
+                      <p className="text-muted-foreground">{s.k}</p>
+                      <p className="text-foreground font-medium mt-0.5">{s.v}</p>
                     </div>
                   ))}
                 </div>
@@ -927,19 +927,19 @@ export default function RealAssets2Page() {
                 color: "pink",
               },
             ].map((cat) => (
-              <Card key={cat.title} className="bg-zinc-900 border-zinc-800">
+              <Card key={cat.title} className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                  <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                     {cat.icon}{cat.title}
                   </CardTitle>
-                  <p className="text-xs text-zinc-500">{cat.model}</p>
+                  <p className="text-xs text-muted-foreground">{cat.model}</p>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <p className="text-xs text-zinc-400">{cat.content}</p>
+                  <p className="text-xs text-muted-foreground">{cat.content}</p>
                   <div className="grid grid-cols-3 gap-2">
                     {cat.stats.map((s) => (
-                      <div key={s.k} className="p-2 rounded bg-zinc-800/60">
-                        <p className="text-zinc-500 text-xs">{s.k}</p>
+                      <div key={s.k} className="p-2 rounded bg-muted/60">
+                        <p className="text-muted-foreground text-xs">{s.k}</p>
                         <p className={`text-${cat.color}-300 font-medium text-xs mt-0.5`}>{s.v}</p>
                       </div>
                     ))}
@@ -950,9 +950,9 @@ export default function RealAssets2Page() {
           </div>
 
           {/* Royalty vs Working Interest */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Info className="w-4 h-4 text-primary" />
                 Royalty vs Working Interest — Key Distinction
               </CardTitle>
@@ -961,7 +961,7 @@ export default function RealAssets2Page() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div className="p-3 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
                   <p className="text-emerald-300 font-medium mb-2">Royalty Interest</p>
-                  <ul className="space-y-1 text-zinc-400">
+                  <ul className="space-y-1 text-muted-foreground">
                     <li>• Receives % of gross production revenue</li>
                     <li>• NO obligation to fund capital expenditures</li>
                     <li>• NO liability for operating costs</li>
@@ -972,7 +972,7 @@ export default function RealAssets2Page() {
                 </div>
                 <div className="p-3 rounded-lg bg-amber-500/5 border border-amber-500/20">
                   <p className="text-amber-300 font-medium mb-2">Working Interest</p>
-                  <ul className="space-y-1 text-zinc-400">
+                  <ul className="space-y-1 text-muted-foreground">
                     <li>• Owns a % of production AFTER costs</li>
                     <li>• Must fund proportionate share of capex &amp; opex</li>
                     <li>• Bears full operational and environmental liability</li>
@@ -982,8 +982,8 @@ export default function RealAssets2Page() {
                   </ul>
                 </div>
               </div>
-              <div className="mt-3 p-3 rounded-lg bg-zinc-800/50 text-xs text-zinc-400">
-                <span className="text-zinc-300 font-medium">Royalty perpetuity valuation: </span>
+              <div className="mt-3 p-3 rounded-lg bg-muted/50 text-xs text-muted-foreground">
+                <span className="text-muted-foreground font-medium">Royalty perpetuity valuation: </span>
                 For a perpetual royalty stream, value = Annual royalty income ÷ discount rate. At $1M/year and 8% discount rate, value = $12.5M. Streaming royalties are not perpetual — they decay as songs age — so a multi-stage DCF model with a long-term growth rate near 0% is standard.
               </div>
             </CardContent>
@@ -993,9 +993,9 @@ export default function RealAssets2Page() {
         {/* ── Tab 4: Infrastructure vs Real Estate ───────────────────────── */}
         <TabsContent value="comparison" className="mt-4 space-y-4 data-[state=inactive]:hidden">
           {/* Comparison Matrix */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-primary" />
                 Real Assets Comparison Matrix (7 Dimensions × 6 Asset Types)
               </CardTitle>
@@ -1006,52 +1006,52 @@ export default function RealAssets2Page() {
           </Card>
 
           {/* Liquidity Spectrum */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <Activity className="w-4 h-4 text-primary" />
                 Real Asset Liquidity Spectrum
               </CardTitle>
             </CardHeader>
             <CardContent>
               <LiquiditySpectrum />
-              <p className="text-xs text-zinc-500 mt-2">Listed REITs offer daily liquidity at the cost of equity-market correlation (beta ~0.6 to broad market). Unlisted direct real estate and core infrastructure require 3–10+ year commitments but offer lower volatility and higher income yields due to illiquidity premium (estimated 1–3% vs listed equivalents).</p>
+              <p className="text-xs text-muted-foreground mt-2">Listed REITs offer daily liquidity at the cost of equity-market correlation (beta ~0.6 to broad market). Unlisted direct real estate and core infrastructure require 3–10+ year commitments but offer lower volatility and higher income yields due to illiquidity premium (estimated 1–3% vs listed equivalents).</p>
             </CardContent>
           </Card>
 
           {/* Return Attribution + Correlation */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-emerald-400" />
                   Return Attribution: Income vs Capital Appreciation
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <ReturnAttrChart />
-                <p className="text-xs text-zinc-500 mt-2">Infrastructure has the highest income yield (5–7%) with modest capital appreciation — hence bond-like duration. Art is pure capital appreciation with zero yield. Farmland balances steady lease income with land value growth.</p>
+                <p className="text-xs text-muted-foreground mt-2">Infrastructure has the highest income yield (5–7%) with modest capital appreciation — hence bond-like duration. Art is pure capital appreciation with zero yield. Farmland balances steady lease income with land value growth.</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-primary" />
                   Correlation Matrix with Traditional Assets
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <CorrMatrix />
-                <p className="text-xs text-zinc-500 mt-2">Art shows near-zero correlation with all financial assets — the strongest diversifier. Timber and farmland correlate moderately with each other but minimally with stocks and bonds. Infrastructure has moderate equity exposure through economic sensitivity.</p>
+                <p className="text-xs text-muted-foreground mt-2">Art shows near-zero correlation with all financial assets — the strongest diversifier. Timber and farmland correlate moderately with each other but minimally with stocks and bonds. Infrastructure has moderate equity exposure through economic sensitivity.</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Inflation Linkage */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-amber-400" />
                 Inflation Linkage Mechanisms by Asset Type
               </CardTitle>
@@ -1107,8 +1107,8 @@ export default function RealAssets2Page() {
                       <p className={`text-${item.color}-300 font-medium`}>{item.asset}</p>
                       <span className={cn("text-xs font-medium", parseFloat(item.perf2022) >= 0 ? "text-emerald-400" : "text-red-400")}>{item.perf2022} (2022)</span>
                     </div>
-                    <p className="text-zinc-500 mb-1 italic">{item.mechanism}</p>
-                    <p className="text-zinc-400">{item.detail}</p>
+                    <p className="text-muted-foreground mb-1 italic">{item.mechanism}</p>
+                    <p className="text-muted-foreground">{item.detail}</p>
                   </div>
                 ))}
               </div>
@@ -1117,14 +1117,14 @@ export default function RealAssets2Page() {
 
           {/* Yale Endowment + Listed vs Unlisted */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-emerald-400" />
                   Institutional Real Assets Allocation
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs text-zinc-400">
+              <CardContent className="space-y-3 text-xs text-muted-foreground">
                 <p>The Yale Endowment model (pioneered by David Swensen) allocates 30%+ to real assets and private markets, delivering 11.3% annualised returns over 20 years vs 7.6% for a 60/40 portfolio. Other large endowments have followed suit.</p>
                 <div className="space-y-2">
                   {[
@@ -1133,32 +1133,32 @@ export default function RealAssets2Page() {
                     { inst: "CPPIB (Canada)", alloc: "22%", detail: "Infrastructure 8%, real estate 9%, energy resources 5%" },
                     { inst: "APG (Netherlands)", alloc: "18%", detail: "Infrastructure 5.8%, real estate 12.2%" },
                   ].map((r) => (
-                    <div key={r.inst} className="flex gap-3 p-2 rounded bg-zinc-800/60">
+                    <div key={r.inst} className="flex gap-3 p-2 rounded bg-muted/60">
                       <div className="w-32 shrink-0">
-                        <p className="text-zinc-300 font-medium">{r.inst}</p>
+                        <p className="text-muted-foreground font-medium">{r.inst}</p>
                         <p className="text-emerald-400 font-bold">{r.alloc} real assets</p>
                       </div>
-                      <p className="text-zinc-500">{r.detail}</p>
+                      <p className="text-muted-foreground">{r.detail}</p>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-zinc-900 border-zinc-800">
+            <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-amber-400" />
                   Listed vs Unlisted Premium &amp; Leverage
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs text-zinc-400">
-                <div className="p-3 rounded-lg bg-zinc-800/50">
-                  <p className="text-zinc-300 font-medium mb-1">Illiquidity Premium</p>
+              <CardContent className="space-y-3 text-xs text-muted-foreground">
+                <div className="p-3 rounded-lg bg-muted/50">
+                  <p className="text-muted-foreground font-medium mb-1">Illiquidity Premium</p>
                   <p>Unlisted real assets command a 1–3% annual premium vs listed equivalents for accepting illiquidity. For infrastructure: core unlisted infrastructure returns ~7–8% vs listed infrastructure equity ~5–6%. For real estate: private ODCE funds target 6–8% vs REIT total returns of 4–6% in normal markets.</p>
                 </div>
-                <div className="p-3 rounded-lg bg-zinc-800/50">
-                  <p className="text-zinc-300 font-medium mb-1">Leverage by Asset Class</p>
+                <div className="p-3 rounded-lg bg-muted/50">
+                  <p className="text-muted-foreground font-medium mb-1">Leverage by Asset Class</p>
                   <div className="space-y-1.5 mt-2">
                     {[
                       { a: "Core Real Estate", lev: "40–50% LTV" },
@@ -1168,21 +1168,21 @@ export default function RealAssets2Page() {
                       { a: "Art / Collectibles", lev: "0% (no leverage)" },
                     ].map((l) => (
                       <div key={l.a} className="flex justify-between">
-                        <span className="text-zinc-400">{l.a}</span>
+                        <span className="text-muted-foreground">{l.a}</span>
                         <span className="text-amber-300 font-medium">{l.lev}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-                <p className="text-zinc-500">Higher leverage amplifies both returns and risk. Infrastructure's regulated cash flows support higher debt loads; art/collectibles have no income to service debt, hence zero leverage is standard.</p>
+                <p className="text-muted-foreground">Higher leverage amplifies both returns and risk. Infrastructure's regulated cash flows support higher debt loads; art/collectibles have no income to service debt, hence zero leverage is standard.</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Key Takeaways */}
-          <Card className="bg-zinc-900 border-zinc-800">
+          <Card className="bg-card border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-zinc-300 flex items-center gap-2">
+              <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
                 Key Takeaways for Real Asset Investors
               </CardTitle>
@@ -1199,7 +1199,7 @@ export default function RealAssets2Page() {
                 ].map((item) => (
                   <div key={item.point} className={`p-3 rounded-lg bg-${item.color}-500/5 border border-${item.color}-500/20`}>
                     <p className={`text-${item.color}-300 font-medium mb-1`}>{item.point}</p>
-                    <p className="text-zinc-400">{item.detail}</p>
+                    <p className="text-muted-foreground">{item.detail}</p>
                   </div>
                 ))}
               </div>

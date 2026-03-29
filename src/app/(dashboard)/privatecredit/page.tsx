@@ -58,9 +58,9 @@ function StatCard({
       : "text-white";
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-      <p className="text-xs text-zinc-400 mb-1">{label}</p>
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
-      {sub && <p className="text-xs text-zinc-500 mt-1">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
 }
@@ -71,7 +71,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
       <h3 className="text-base font-semibold text-white">{title}</h3>
-      {sub && <p className="text-xs text-zinc-400 mt-0.5">{sub}</p>}
+      {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
 }
@@ -80,7 +80,7 @@ function SectionHeading({ title, sub }: { title: string; sub?: string }) {
 
 function InfoPill({ text, color = "zinc" }: { text: string; color?: string }) {
   const cls: Record<string, string> = {
-    zinc: "bg-zinc-800 text-zinc-300",
+    zinc: "bg-muted text-muted-foreground",
     emerald: "bg-emerald-900/50 text-emerald-300",
     amber: "bg-amber-900/50 text-amber-300",
     rose: "bg-rose-900/50 text-rose-300",
@@ -228,8 +228,8 @@ function DirectLendingTab() {
             return (
               <div key={bar.label}>
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs text-zinc-300">{bar.label}</span>
-                  <span className="text-xs text-zinc-400">{bar.low}× – {bar.high}×</span>
+                  <span className="text-xs text-muted-foreground">{bar.label}</span>
+                  <span className="text-xs text-muted-foreground">{bar.low}× – {bar.high}×</span>
                 </div>
                 <div className="relative h-5 rounded bg-white/5">
                   <div
@@ -237,7 +237,7 @@ function DirectLendingTab() {
                     style={{ left: `${leftPct}%`, width: `${widthPct}%`, opacity: 0.8 }}
                   />
                   <div className="absolute top-0 h-full border-l border-white/30" style={{ left: "50%" }} />
-                  <span className="absolute top-0.5 text-[11px] text-zinc-500" style={{ left: "50.5%" }}>5×</span>
+                  <span className="absolute top-0.5 text-[11px] text-muted-foreground" style={{ left: "50.5%" }}>5×</span>
                 </div>
               </div>
             );
@@ -252,7 +252,7 @@ function DirectLendingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium w-32">Feature</th>
+                <th className="py-2 text-left text-muted-foreground font-medium w-32">Feature</th>
                 <th className="py-2 text-left text-primary font-medium">BDC (Publicly Traded)</th>
                 <th className="py-2 text-left text-primary font-medium">Private Credit Fund</th>
               </tr>
@@ -260,9 +260,9 @@ function DirectLendingTab() {
             <tbody>
               {bdcVsPrivate.map((row, i) => (
                 <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                  <td className="py-2 pr-4 text-zinc-400 font-medium">{row.attr}</td>
-                  <td className="py-2 pr-4 text-zinc-300">{row.bdc}</td>
-                  <td className="py-2 text-zinc-300">{row.pvt}</td>
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{row.attr}</td>
+                  <td className="py-2 pr-4 text-muted-foreground">{row.bdc}</td>
+                  <td className="py-2 text-muted-foreground">{row.pvt}</td>
                 </tr>
               ))}
             </tbody>
@@ -277,17 +277,17 @@ function DirectLendingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/10">
-                <th className="py-2 text-left text-zinc-500 font-medium w-32">Attribute</th>
+                <th className="py-2 text-left text-muted-foreground font-medium w-32">Attribute</th>
                 <th className="py-2 text-left text-amber-400 font-medium">Unitranche</th>
-                <th className="py-2 text-left text-zinc-300 font-medium">1L / 2L Split</th>
+                <th className="py-2 text-left text-muted-foreground font-medium">1L / 2L Split</th>
               </tr>
             </thead>
             <tbody>
               {unitranche.map((row, i) => (
                 <tr key={row.attr} className={cn("border-b border-white/5", i % 2 === 0 ? "bg-white/[0.02]" : "")}>
-                  <td className="py-2 pr-4 text-zinc-400 font-medium">{row.attr}</td>
+                  <td className="py-2 pr-4 text-muted-foreground font-medium">{row.attr}</td>
                   <td className="py-2 pr-4 text-amber-300">{row.uni}</td>
-                  <td className="py-2 text-zinc-300">{row.fl}</td>
+                  <td className="py-2 text-muted-foreground">{row.fl}</td>
                 </tr>
               ))}
             </tbody>
@@ -302,7 +302,7 @@ function DirectLendingTab() {
           {lenderTerms.map((item) => (
             <div key={item.term} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
               <InfoPill text={item.term} color={item.color} />
-              <p className="text-xs text-zinc-400 mt-2">{item.desc}</p>
+              <p className="text-xs text-muted-foreground mt-2">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -314,16 +314,16 @@ function DirectLendingTab() {
         <div className="space-y-3">
           {lenders.map((l, i) => (
             <div key={l.name} className="flex items-center gap-3">
-              <span className="text-xs text-zinc-500 w-4">{i + 1}</span>
+              <span className="text-xs text-muted-foreground w-4">{i + 1}</span>
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-medium text-zinc-200">{l.name}</span>
-                  <span className="text-xs text-zinc-400">{fmtB(l.aum)}</span>
+                  <span className="text-sm font-medium text-foreground">{l.name}</span>
+                  <span className="text-xs text-muted-foreground">{fmtB(l.aum)}</span>
                 </div>
                 <div className="relative h-2 rounded bg-white/5">
                   <div className="h-full rounded bg-primary" style={{ width: `${(l.aum / 450) * 100}%`, opacity: 0.7 }} />
                 </div>
-                <p className="text-xs text-zinc-500 mt-0.5">{l.focus}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{l.focus}</p>
               </div>
             </div>
           ))}
@@ -421,15 +421,15 @@ function MezzanineTab() {
                 exit={{ opacity: 0, x: 24 }}
                 className="flex-1 rounded-xl border border-white/10 bg-white/5 p-4 self-start"
               >
-                <p className="text-xs text-zinc-400 mb-1">Selected Layer</p>
+                <p className="text-xs text-muted-foreground mb-1">Selected Layer</p>
                 <p className="text-base font-bold" style={{ color: capitalLayers[selected].color }}>
                   {capitalLayers[selected].label}
                 </p>
-                <p className="text-sm text-zinc-300 mt-2">
-                  <span className="text-zinc-500">Pricing: </span>{capitalLayers[selected].spread}
+                <p className="text-sm text-muted-foreground mt-2">
+                  <span className="text-muted-foreground">Pricing: </span>{capitalLayers[selected].spread}
                 </p>
-                <p className="text-sm text-zinc-300 mt-1">
-                  <span className="text-zinc-500">Risk: </span>{capitalLayers[selected].risk}
+                <p className="text-sm text-muted-foreground mt-1">
+                  <span className="text-muted-foreground">Risk: </span>{capitalLayers[selected].risk}
                 </p>
               </motion.div>
             )}
@@ -443,19 +443,19 @@ function MezzanineTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <InfoPill text="Cash Pay" color="emerald" />
-            <p className="text-xs text-zinc-300 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               Interest is paid in cash each quarter or semi-annually. Lower nominal rate (e.g., SOFR + 700 bps cash). Borrower must have sufficient free cash flow.
             </p>
-            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-zinc-300">
+            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-muted-foreground">
               $100M × 11.5% = $11.5M/yr cash outflow
             </div>
           </div>
           <div>
             <InfoPill text="PIK (Payment in Kind)" color="amber" />
-            <p className="text-xs text-zinc-300 mt-2">
+            <p className="text-xs text-muted-foreground mt-2">
               Interest accrues to principal rather than being paid in cash. Higher effective rate compensates lender for reinvestment risk. Common in high-growth, acquisition-heavy strategies.
             </p>
-            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-zinc-300">
+            <div className="mt-3 rounded bg-white/5 p-3 text-xs font-mono text-muted-foreground">
               $100M × 4% PIK → $104M after Y1<br />
               $104M × 4% PIK → $108.16M after Y2
             </div>
@@ -474,7 +474,7 @@ function MezzanineTab() {
             return (
               <div key={t.strategy}>
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs text-zinc-300">{t.strategy}</span>
+                  <span className="text-xs text-muted-foreground">{t.strategy}</span>
                   <span className="text-xs font-semibold" style={{ color: t.color }}>{t.low}–{t.high}%</span>
                 </div>
                 <div className="relative h-4 rounded bg-white/5">
@@ -493,13 +493,13 @@ function MezzanineTab() {
           {specialSit.map((s) => (
             <div key={s.category} className="rounded-lg border border-white/5 bg-white/[0.03] p-3">
               <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-semibold text-zinc-200">{s.category}</p>
+                <p className="text-xs font-semibold text-foreground">{s.category}</p>
                 <div className="flex gap-1.5 shrink-0">
                   <InfoPill text={s.returnTarget} color="emerald" />
                   <InfoPill text={s.timeline} color="zinc" />
                 </div>
               </div>
-              <p className="text-xs text-zinc-500 mt-1.5">{s.example}</p>
+              <p className="text-xs text-muted-foreground mt-1.5">{s.example}</p>
             </div>
           ))}
         </div>
@@ -585,7 +585,7 @@ function DistressedTab() {
             <div key={d.term} className="rounded-lg border border-white/5 bg-white/[0.03] p-3 text-center">
               <InfoPill text={d.term} color={d.color} />
               <p className="text-sm font-bold text-white mt-2">{d.price}</p>
-              <p className="text-xs text-zinc-400">{d.spread}</p>
+              <p className="text-xs text-muted-foreground">{d.spread}</p>
             </div>
           ))}
         </div>
@@ -606,14 +606,14 @@ function DistressedTab() {
             <text x={276} y={110} fontSize={8} fill="#f59e0b">EV=$380M</text>
             <text x={271} y={8} fontSize={7} fill="#f59e0b" textAnchor="end">Fulcrum→</text>
           </svg>
-          <div className="text-xs text-zinc-300 space-y-2 flex-1">
+          <div className="text-xs text-muted-foreground space-y-2 flex-1">
             <p>
               The <span className="text-amber-300 font-semibold">fulcrum security</span> sits at the enterprise value line — it receives partial recovery and converts to equity in the reorganized company.
             </p>
             <p>
               In this example: Secured debt ($300M) is fully covered by $380M EV. The Mezz tranche ($150M) is the fulcrum — it gets ~$80M recovery (~53¢/$) and converts the remainder to equity.
             </p>
-            <p className="text-zinc-500">Common equity is wiped out (zero residual value).</p>
+            <p className="text-muted-foreground">Common equity is wiped out (zero residual value).</p>
           </div>
         </div>
       </div>
@@ -630,7 +630,7 @@ function DistressedTab() {
             <div key={item.label} className="rounded-lg border border-white/5 bg-white/[0.03] p-4">
               <InfoPill text={item.label} color={item.color} />
               <p className="text-sm font-bold text-white mt-2">{item.value}</p>
-              <p className="text-xs text-zinc-500 mt-1">{item.desc}</p>
+              <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -645,10 +645,10 @@ function DistressedTab() {
               <ArrowRight className="w-4 h-4 text-primary mt-0.5 shrink-0" />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <p className="text-xs font-semibold text-zinc-200">{s.type}</p>
+                  <p className="text-xs font-semibold text-foreground">{s.type}</p>
                   <InfoPill text={s.irr} color="emerald" />
                 </div>
-                <p className="text-xs text-zinc-500 mt-0.5">{s.desc}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{s.desc}</p>
               </div>
             </div>
           ))}
@@ -761,7 +761,7 @@ function MarketDynamicsTab() {
           {yieldComparison.map((y) => (
             <div key={y.label}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-zinc-300">{y.label}</span>
+                <span className="text-xs text-muted-foreground">{y.label}</span>
                 <span className="text-xs font-semibold" style={{ color: y.color }}>{y.yield.toFixed(1)}%</span>
               </div>
               <div className="relative h-4 rounded bg-white/5">
@@ -770,7 +770,7 @@ function MarketDynamicsTab() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-4">
+        <p className="text-xs text-muted-foreground mt-4">
           Private direct lending commands a 200–300 bps illiquidity premium over comparable public market instruments, compensating for lock-up, concentrated exposure, and valuation opacity.
         </p>
       </div>
@@ -782,7 +782,7 @@ function MarketDynamicsTab() {
           {defaultRates.map((d) => (
             <div key={d.label}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-zinc-300">{d.label}</span>
+                <span className="text-xs text-muted-foreground">{d.label}</span>
                 <span className="text-xs font-semibold" style={{ color: d.color }}>{d.rate.toFixed(1)}%</span>
               </div>
               <div className="relative h-4 rounded bg-white/5">
@@ -791,7 +791,7 @@ function MarketDynamicsTab() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-zinc-500 mt-3">
+        <p className="text-xs text-muted-foreground mt-3">
           Lower default rates reflect private credit&apos;s focus on sponsored, covenant-protected middle market companies with active lender monitoring.
         </p>
       </div>
@@ -803,11 +803,11 @@ function MarketDynamicsTab() {
           {allocations.map((a) => (
             <div key={a.type}>
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-zinc-300">{a.type}</span>
+                <span className="text-xs text-muted-foreground">{a.type}</span>
                 <div className="flex items-center gap-2 text-xs">
-                  <span className="text-zinc-400">Current: <span className="text-white">{a.current}%</span></span>
-                  <span className="text-zinc-600">→</span>
-                  <span className="text-zinc-400">Target: <span className="text-emerald-400">{a.target}%</span></span>
+                  <span className="text-muted-foreground">Current: <span className="text-white">{a.current}%</span></span>
+                  <span className="text-muted-foreground">→</span>
+                  <span className="text-muted-foreground">Target: <span className="text-emerald-400">{a.target}%</span></span>
                 </div>
               </div>
               <div className="relative h-5 rounded bg-white/5">
@@ -817,7 +817,7 @@ function MarketDynamicsTab() {
             </div>
           ))}
         </div>
-        <div className="flex items-center gap-4 mt-3 text-xs text-zinc-500">
+        <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
             <span className="inline-block w-3 h-2 rounded bg-zinc-600 opacity-60" /> Current
           </span>
@@ -837,10 +837,10 @@ function MarketDynamicsTab() {
                 <AlertTriangle className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", risk.color === "rose" ? "text-rose-400" : risk.color === "amber" ? "text-amber-400" : "text-primary")} />
                 <div>
                   <div className="flex items-center gap-2">
-                    <p className="text-xs font-semibold text-zinc-200">{risk.risk}</p>
+                    <p className="text-xs font-semibold text-foreground">{risk.risk}</p>
                     <InfoPill text={risk.severity} color={risk.color} />
                   </div>
-                  <p className="text-xs text-zinc-500 mt-1">{risk.detail}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{risk.detail}</p>
                 </div>
               </div>
             </div>
@@ -852,7 +852,7 @@ function MarketDynamicsTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-xl border border-white/10 bg-white/5 p-5">
           <SectionHeading title="Regulatory Tailwinds" sub="Why banks retreat, private credit expands" />
-          <div className="space-y-2 text-xs text-zinc-300">
+          <div className="space-y-2 text-xs text-muted-foreground">
             {[
               "Basel III/IV raises RWA for leveraged loans, making bank lending uneconomic",
               "SEC Form PF reporting improves transparency for large advisers (>$150M AUM)",
@@ -868,7 +868,7 @@ function MarketDynamicsTab() {
         </div>
         <div className="rounded-xl border border-white/10 bg-white/5 p-5">
           <SectionHeading title="Vintage Year Diversification" sub="Why spreading deployment across cycles matters" />
-          <div className="space-y-2 text-xs text-zinc-300">
+          <div className="space-y-2 text-xs text-muted-foreground">
             {[
               "2009–2012 vintages: exceptional returns as distressed exits occurred into recovery",
               "2014–2017 vintages: steady mid-teen IRRs in benign credit environment",
@@ -903,16 +903,16 @@ export default function PrivateCreditPage() {
   const [activeTab, setActiveTab] = useState<TabId>("direct");
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       {/* Header */}
-      <div className="border-b border-white/10 bg-zinc-900/60 backdrop-blur px-6 py-5">
+      <div className="border-b border-white/10 bg-card/60 backdrop-blur px-6 py-5">
         <div className="max-w-6xl mx-auto flex items-start gap-4">
           <div className="rounded-xl bg-primary/20 p-2.5 border border-border">
             <Briefcase className="w-5 h-5 text-primary" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-white">Private Credit Markets</h1>
-            <p className="text-sm text-zinc-400 mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5">
               Direct lending, mezzanine finance, distressed debt, special situations, and the $1.7T rise of private credit as an asset class
             </p>
             <div className="flex flex-wrap gap-2 mt-3">
@@ -928,7 +928,7 @@ export default function PrivateCreditPage() {
       {/* Content */}
       <div className="max-w-6xl mx-auto px-6 py-6">
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabId)}>
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-zinc-900/60 border border-white/10 h-auto gap-1 p-1">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-card/60 border border-white/10 h-auto gap-1 p-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
