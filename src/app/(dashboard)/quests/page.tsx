@@ -277,8 +277,8 @@ export default function QuestsPage() {
       <div className="border-b border-border px-4 py-3">
         <div className="flex items-center gap-3">
           <div>
-            <h1 className="text-sm font-medium">Objectives</h1>
-            <p className="text-[11px] text-muted-foreground">
+            <h1 className="text-sm font-serif font-medium tracking-tight">Objectives</h1>
+            <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
               Daily and weekly objectives
             </p>
           </div>

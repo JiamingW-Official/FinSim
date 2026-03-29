@@ -616,8 +616,8 @@ export default function ProfilePage() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-lg font-semibold tracking-tight">Investor Profile</h1>
-              <p className="text-xs text-muted-foreground">Personalized analysis & learning path</p>
+              <h1 className="text-lg font-serif font-semibold tracking-tight">Investor Profile</h1>
+              <p className="text-xs text-muted-foreground/70 leading-relaxed">Personalized analysis & learning path</p>
             </div>
             <div className="flex items-center gap-2">
               <Badge variant="secondary" className="gap-1 text-sm font-semibold px-3 py-1">

@@ -998,8 +998,8 @@ export default function SettingsPage() {
         {/* Header */}
         <div>
           <p className="text-xs text-muted-foreground mb-1">Preferences</p>
-          <h1 className="text-lg font-semibold">Settings</h1>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <h1 className="text-lg font-serif font-semibold tracking-tight">Settings</h1>
+          <p className="text-xs text-muted-foreground/70 leading-relaxed mt-0.5">
             Customize your trading experience
           </p>
         </div>

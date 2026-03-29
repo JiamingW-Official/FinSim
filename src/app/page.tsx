@@ -52,7 +52,7 @@ export default function LandingPage() {
       <nav className="border-b border-border/20 sticky top-0 z-50 bg-background/90 backdrop-blur-md">
         <div className="max-w-5xl mx-auto px-6 flex items-center justify-between h-12">
           <div className="flex items-center gap-1.5">
-            <span className="text-sm font-semibold tracking-tight text-foreground/80">FinSim</span>
+            <span className="text-sm font-serif font-semibold tracking-tight text-foreground/80">FinSim</span>
           </div>
           <Link
             href="/home"
@@ -65,7 +65,9 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-20 sm:pt-28 pb-20 text-center">
+      <section className="relative max-w-5xl mx-auto px-6 pt-20 sm:pt-28 pb-20 text-center">
+        {/* Subtle radial gradient overlay */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-foreground/[0.03] to-transparent" />
         <motion.p
           className="text-xs text-muted-foreground/50 mb-5"
           initial={{ opacity: 0 }}
@@ -76,7 +78,7 @@ export default function LandingPage() {
         </motion.p>
 
         <motion.h1
-          className="text-3xl sm:text-[2.75rem] font-medium leading-[1.1] tracking-[-0.03em]"
+          className="text-3xl sm:text-[2.75rem] font-serif font-medium leading-[1.1] tracking-tight"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05 }}
@@ -134,7 +136,7 @@ export default function LandingPage() {
           <div className="flex items-center justify-center gap-8 sm:gap-12 text-center">
             {STATS.map((s) => (
               <div key={s.label} className="flex items-baseline gap-1.5">
-                <span className="text-sm font-medium tabular-nums">
+                <span className="text-sm font-serif font-medium tabular-nums tracking-tight">
                   {s.value}
                 </span>
                 <span className="text-xs text-muted-foreground">
@@ -156,10 +158,10 @@ export default function LandingPage() {
           variants={fadeUp}
           custom={0}
         >
-          <h2 className="text-lg sm:text-xl font-medium tracking-tight">
+          <h2 className="text-lg sm:text-xl font-serif font-medium tracking-tight">
             Everything you need to learn markets
           </h2>
-          <p className="mt-2 text-xs text-muted-foreground max-w-sm mx-auto">
+          <p className="mt-2 text-xs text-muted-foreground/70 leading-relaxed max-w-sm mx-auto">
             Structured learning meets hands-on practice.
           </p>
         </motion.div>
@@ -168,7 +170,7 @@ export default function LandingPage() {
           {FEATURES.map((f, i) => (
             <motion.div
               key={f.title}
-              className="bg-card px-5 py-5"
+              className="bg-card px-5 py-5 hover:bg-foreground/[0.02] transition-colors"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
@@ -190,7 +192,7 @@ export default function LandingPage() {
       <section className="border-y border-border/15">
         <div className="max-w-5xl mx-auto px-6 py-14">
           <motion.h2
-            className="text-lg sm:text-xl font-medium text-center mb-10 tracking-tight"
+            className="text-lg sm:text-xl font-serif font-medium text-center mb-10 tracking-tight"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}

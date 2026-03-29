@@ -9,7 +9,7 @@ import { useLearnStore } from "@/stores/learn-store";
 import { INITIAL_CAPITAL } from "@/types/trading";
 import { formatCurrency, cn } from "@/lib/utils";
 import { UNITS } from "@/data/lessons";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, TrendingUp, BookOpen, BarChart3, Target } from "lucide-react";
 import { mulberry32, simulateTickerPrice, BASE_PRICES } from "@/services/market-data/simulate-price";
 
 const OVERVIEW_TICKERS = ["SPY", "QQQ", "AAPL", "BTC", "Gold", "VIX"];
@@ -80,6 +80,49 @@ const ECONOMIC_EVENTS = [
   { name: "Non-Farm Payrolls", impact: "HIGH", daysFromNow: 7, time: "8:30 AM ET" },
 ];
 
+/* ── Mini ticker card ── */
+function TickerCard({ ticker, price, changePct }: { ticker: string; price: number; changePct: number }) {
+  const isUp = changePct >= 0;
+  const daySeed = Math.floor(Date.now() / 86400000);
+  const sparkData = useMemo(() => {
+    const rand = mulberry32((daySeed ^ 0xabcdef) + ticker.charCodeAt(0) * 137);
+    const pts: number[] = [price * (1 - changePct / 100)];
+    for (let i = 1; i < 16; i++) {
+      const prev = pts[i - 1];
+      const delta = (rand() - 0.48) * prev * 0.003;
+      pts.push(prev + delta);
+    }
+    pts[pts.length - 1] = price;
+    return pts;
+  }, [ticker, price, changePct, daySeed]);
+
+  const min = Math.min(...sparkData);
+  const max = Math.max(...sparkData);
+  const range = max - min || 1;
+  const W = 64;
+  const H = 24;
+  const linePts = sparkData
+    .map((v, i) => `${(i / (sparkData.length - 1)) * W},${H - ((v - min) / range) * (H - 2)}`)
+    .join(" ");
+
+  return (
+    <div className="rounded-lg border border-border/15 bg-card p-3 flex flex-col justify-between min-w-0">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-medium">{ticker}</span>
+        <span className={cn("text-[10px] font-mono tabular-nums rounded px-1 py-0.5", isUp ? "text-emerald-500 bg-emerald-500/5" : "text-red-400 bg-red-500/5")}>
+          {isUp ? "+" : ""}{changePct.toFixed(2)}%
+        </span>
+      </div>
+      <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="mb-1.5">
+        <polyline points={linePts} fill="none" stroke={isUp ? "#10b981" : "#ef4444"} strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round" />
+      </svg>
+      <span className="text-[11px] font-mono tabular-nums text-muted-foreground">
+        {ticker === "BTC" ? `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}` : ticker === "VIX" ? price.toFixed(2) : `$${price.toFixed(2)}`}
+      </span>
+    </div>
+  );
+}
+
 /* ── Main ── */
 export default function HomePage() {
   const stats = useGameStore((s) => s.stats);
@@ -141,8 +184,8 @@ export default function HomePage() {
   useEffect(() => { setMounted(true); }, []);
 
   return (
-    <div className="flex h-full flex-col overflow-y-auto">
-      <div className="mx-auto w-full max-w-5xl px-6 py-6">
+    <div className="flex h-full flex-col overflow-y-auto min-h-[calc(100vh-4rem)]">
+      <div className="mx-auto w-full max-w-5xl px-6 py-6 flex-1 flex flex-col">
 
         {/* Page label */}
         <p className="text-xs text-muted-foreground mb-6">
@@ -195,7 +238,7 @@ export default function HomePage() {
             <div className="flex items-start justify-between mb-4">
               <div>
                 <p className="text-[11px] text-muted-foreground mb-1">Portfolio Value</p>
-                <p className="text-2xl font-mono tabular-nums tracking-tight">{formatCurrency(portfolioValue)}</p>
+                <p className="text-2xl font-serif font-medium tabular-nums tracking-tight">{formatCurrency(portfolioValue)}</p>
                 <p className={cn("text-sm font-mono tabular-nums mt-0.5", totalPnLPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {totalPnLPct >= 0 ? "+" : ""}{totalPnLPct.toFixed(2)}% ({totalPnL >= 0 ? "+" : ""}{formatCurrency(totalPnL)})
                 </p>
@@ -231,6 +274,23 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        {/* ── Market Overview: 6 ticker cards ── */}
+        {mounted && (
+          <div className="mb-4">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-[11px] text-muted-foreground">Today&apos;s Markets</p>
+              <Link href="/trade" className="text-[11px] text-muted-foreground hover:text-foreground transition-colors">
+                View all
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
+              {overviewPrices.map(({ ticker, price, changePct }) => (
+                <TickerCard key={ticker} ticker={ticker} price={price} changePct={changePct} />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* ── Secondary row: Recent Trades + Learning (2/3 + 1/3) ── */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
@@ -285,23 +345,29 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* ── Quick navigation ── */}
-        <div className="flex items-center gap-4">
+        {/* ── Quick Actions ── */}
+        <div className="flex items-center gap-2 mb-4">
           {[
-            { label: "Trade", href: "/trade" },
-            { label: "Learn", href: "/learn" },
-            { label: "Options", href: "/options" },
-            { label: "Portfolio", href: "/portfolio" },
-            { label: "Predictions", href: "/predictions" },
-            { label: "Backtest", href: "/backtest" },
-          ].map(({ label, href }) => (
-            <Link key={href} href={href} className="text-[11px] text-muted-foreground hover:text-foreground transition-colors">
+            { label: "Trade", href: "/trade", icon: TrendingUp },
+            { label: "Learn", href: "/learn", icon: BookOpen },
+            { label: "Options", href: "/options", icon: BarChart3 },
+            { label: "Predictions", href: "/predictions", icon: Target },
+          ].map(({ label, href, icon: Icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center gap-1.5 rounded-full border border-border/20 px-3.5 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:border-border/40 transition-colors"
+            >
+              <Icon className="h-3 w-3" />
               {label}
             </Link>
           ))}
         </div>
 
-        <p className="mt-4 text-[11px] text-muted-foreground/30">All market data is simulated for educational purposes.</p>
+        {/* Spacer to push footer down */}
+        <div className="flex-1" />
+
+        <p className="mt-4 pb-4 text-[11px] text-muted-foreground/30">All market data is simulated for educational purposes.</p>
 
       </div>
     </div>

@@ -260,8 +260,8 @@ export default function BacktestPage() {
       <div className="flex items-center gap-3 border-b border-border px-4 py-2">
         <FlaskConical className="h-3.5 w-3.5 text-muted-foreground" />
         <div>
-          <h1 className="text-xs font-medium text-foreground">Strategy Backtester</h1>
-          <p className="text-[10px] text-muted-foreground">Build, test, and optimize on simulated market data</p>
+          <h1 className="text-xs font-serif font-medium tracking-tight text-foreground">Strategy Backtester</h1>
+          <p className="text-[10px] text-muted-foreground/70 leading-relaxed">Build, test, and optimize on simulated market data</p>
         </div>
         {store.totalBacktestsRun > 0 && (
           <div className="ml-auto flex items-center gap-4 text-[11px] text-muted-foreground">

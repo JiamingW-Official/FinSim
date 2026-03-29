@@ -48,8 +48,8 @@ function ToggleButton({
       className={cn(
         "rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
         active
-          ? "border border-orange-500/30 bg-orange-500/15 text-orange-400"
-          : "text-muted-foreground hover:text-foreground",
+          ? "bg-foreground/[0.06] text-foreground"
+          : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]",
       )}
     >
       {children}
@@ -105,8 +105,8 @@ export function ChainFiltersBar({
             className={cn(
               "rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors",
               selectedExpiry === exp.expiry
-                ? "border border-orange-500/40 bg-orange-500/12 text-orange-400"
-                : "text-muted-foreground hover:text-foreground",
+                ? "bg-foreground/[0.06] text-foreground"
+                : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]",
             )}
           >
             {formatDTE(exp.daysToExpiry)}

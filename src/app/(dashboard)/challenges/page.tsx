@@ -534,8 +534,8 @@ export default function ChallengesPage() {
       <div className="border-b border-border/20 px-4 pt-4 pb-0">
         <div className="flex items-center gap-3 pb-2">
           <div className="min-w-0">
-            <h1 className="text-sm font-medium">Challenges</h1>
-            <p className="text-xs text-muted-foreground">
+            <h1 className="text-sm font-serif font-medium tracking-tight">Challenges</h1>
+            <p className="text-xs text-muted-foreground/70 leading-relaxed">
               {totalDailyCompleted} daily &middot; {scenariosCompleted}/8 scenarios{sRankCount > 0 ? ` · S x${sRankCount}` : ""}
               {tab === "daily" ? ` · resets in ${dailyCountdown}` : ""}
             </p>

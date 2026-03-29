@@ -142,8 +142,8 @@ export default function ArenaPage() {
       <div className="border-b border-border px-4 py-3">
         <div className="flex items-center gap-3">
           <div>
-            <h1 className="text-sm font-medium">Practice Arena</h1>
-            <p className="text-[11px] text-muted-foreground">
+            <h1 className="text-sm font-serif font-medium tracking-tight">Practice Arena</h1>
+            <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
               Simulated competitive challenges to sharpen trading skills
             </p>
           </div>

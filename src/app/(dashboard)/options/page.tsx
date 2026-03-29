@@ -193,19 +193,19 @@ export default function OptionsPage() {
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setAnalysisSubTab("charts")}
-                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "charts" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "charts" ? "bg-foreground/5 text-foreground font-medium" : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]"}`}
                     >
                       Charts
                     </button>
                     <button
                       onClick={() => setAnalysisSubTab("vol-surface")}
-                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "vol-surface" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "vol-surface" ? "bg-foreground/5 text-foreground font-medium" : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]"}`}
                     >
                       Vol Surface
                     </button>
                     <button
                       onClick={() => setAnalysisSubTab("margin-calc")}
-                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "margin-calc" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${analysisSubTab === "margin-calc" ? "bg-foreground/5 text-foreground font-medium" : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]"}`}
                     >
                       Margin Calc
                     </button>
@@ -239,13 +239,13 @@ export default function OptionsPage() {
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setGreeksSubTab("greeks-lab")}
-                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${greeksSubTab === "greeks-lab" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${greeksSubTab === "greeks-lab" ? "bg-foreground/5 text-foreground font-medium" : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]"}`}
                     >
                       Greeks Lab
                     </button>
                     <button
                       onClick={() => setGreeksSubTab("greeks-monitor")}
-                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${greeksSubTab === "greeks-monitor" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${greeksSubTab === "greeks-monitor" ? "bg-foreground/5 text-foreground font-medium" : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]"}`}
                     >
                       Greeks Monitor
                     </button>
@@ -276,13 +276,13 @@ export default function OptionsPage() {
                   <div className="flex shrink-0 items-center gap-1 border-b border-border px-3 py-1">
                     <button
                       onClick={() => setFlowSubTab("unusual")}
-                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${flowSubTab === "unusual" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${flowSubTab === "unusual" ? "bg-foreground/5 text-foreground font-medium" : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]"}`}
                     >
                       Unusual Activity
                     </button>
                     <button
                       onClick={() => setFlowSubTab("flow-analysis")}
-                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${flowSubTab === "flow-analysis" ? "bg-muted text-foreground font-medium" : "text-muted-foreground hover:text-foreground"}`}
+                      className={`rounded-sm px-3 py-1 text-[11px] transition-colors ${flowSubTab === "flow-analysis" ? "bg-foreground/5 text-foreground font-medium" : "text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]"}`}
                     >
                       Flow Analysis
                     </button>

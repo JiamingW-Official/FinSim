@@ -158,10 +158,10 @@ export default function PortfolioPage() {
       <div className="px-4 pt-4 pb-3">
         <div className="flex items-start justify-between mb-1">
           <div>
-            <p className="text-[11px] font-medium text-muted-foreground mb-1">
+            <p className="text-[11px] font-medium text-muted-foreground/70 mb-1">
               Total Portfolio Value
             </p>
-            <p className="text-2xl font-semibold font-mono tabular-nums tracking-tight">
+            <p className="text-2xl font-serif font-medium tabular-nums tracking-tight">
               {formatCurrency(portfolioValue)}
             </p>
           </div>

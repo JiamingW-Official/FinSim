@@ -81,8 +81,8 @@ export function ChartToolbar() {
               className={cn(
                 "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
                 currentTimeframe === opt.value
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30",
+                  ? "bg-foreground/[0.06] text-foreground"
+                  : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
               )}
             >
               {opt.label}
@@ -103,8 +103,8 @@ export function ChartToolbar() {
               className={cn(
                 "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
                 currentTimeframe === opt.value
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30",
+                  ? "bg-foreground/[0.06] text-foreground"
+                  : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
               )}
             >
               {opt.label}
@@ -126,8 +126,8 @@ export function ChartToolbar() {
                   className={cn(
                     "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
                     chartType === opt.value
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30",
+                      ? "bg-foreground/[0.06] text-foreground"
+                      : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
                   )}
                 >
                   {opt.label}
@@ -153,8 +153,8 @@ export function ChartToolbar() {
                 className={cn(
                   "rounded p-0.5 transition-colors",
                   showVolume
-                    ? "text-primary/80"
-                    : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-muted/30",
+                    ? "text-foreground"
+                    : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-foreground/[0.03]",
                 )}
                 aria-label="Toggle volume"
               >
@@ -174,8 +174,8 @@ export function ChartToolbar() {
                 className={cn(
                   "rounded p-0.5 transition-colors",
                   showGrid
-                    ? "text-primary/80"
-                    : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-muted/30",
+                    ? "text-foreground"
+                    : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-foreground/[0.03]",
                 )}
                 aria-label="Toggle grid"
               >
@@ -195,8 +195,8 @@ export function ChartToolbar() {
                 className={cn(
                   "rounded px-1 py-0.5 text-[11px] font-medium transition-colors",
                   useLog
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30",
+                    ? "bg-foreground/[0.06] text-foreground"
+                    : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
                 )}
                 aria-label="Toggle log scale"
               >
@@ -222,8 +222,8 @@ export function ChartToolbar() {
                 className={cn(
                   "flex items-center gap-0.5 rounded px-1 py-0.5 text-[11px] font-medium transition-colors",
                   showEarnings
-                    ? "bg-amber-500/10 text-amber-400/80"
-                    : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30",
+                    ? "bg-foreground/[0.06] text-foreground"
+                    : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
                 )}
                 aria-label="Toggle earnings markers"
               >
@@ -244,8 +244,8 @@ export function ChartToolbar() {
                 className={cn(
                   "flex items-center gap-0.5 rounded px-1 py-0.5 text-[11px] font-medium transition-colors",
                   showDividends
-                    ? "bg-primary/10 text-primary/80"
-                    : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30",
+                    ? "bg-foreground/[0.06] text-foreground"
+                    : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]",
                 )}
                 aria-label="Toggle dividend markers"
               >
@@ -271,8 +271,8 @@ export function ChartToolbar() {
                   className={cn(
                     "rounded px-1.5 py-0.5 text-[11px] font-medium transition-colors",
                     activeIndicators.includes(opt.value)
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-muted/30",
+                      ? "bg-foreground/[0.06] text-foreground"
+                      : "text-muted-foreground/30 hover:text-muted-foreground hover:bg-foreground/[0.03]",
                   )}
                 >
                   {opt.label}

@@ -144,6 +144,16 @@ function Sparkline({ data, width = 60, height = 24 }: { data: number[]; width?: 
 
 // ── Compact Market Row (tiny list item) ──────────────────────────────────────
 
+// Category dot colors (subtle, not the full pill background)
+const CATEGORY_DOT_COLORS: Record<string, string> = {
+  fed: "bg-blue-400",
+  macro: "bg-amber-400",
+  equities: "bg-emerald-400",
+  crypto: "bg-purple-400",
+  earnings: "bg-orange-400",
+  geopolitics: "bg-red-400",
+};
+
 function MarketRow({
   market,
   volume,
@@ -154,48 +164,62 @@ function MarketRow({
   onSelect: (m: PredictionMarket) => void;
 }) {
   const bet = usePredictionMarketStore((s) => s.getMarketBet(market.id));
+  const prob = market.initialProbability;
 
   return (
     <button
       onClick={() => onSelect(market)}
-      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left cursor-pointer hover:bg-muted/20 transition-colors duration-150"
+      className="group flex w-full flex-col gap-1.5 rounded-lg px-3 py-3 text-left cursor-pointer hover:bg-muted/30 transition-colors duration-150"
     >
-      {/* Category pill */}
-      <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium leading-none", CATEGORY_COLORS[market.category])}>
-        {CATEGORY_LABELS[market.category]}
-      </span>
+      <div className="flex items-center gap-3 w-full">
+        {/* Category dot */}
+        <span className={cn("shrink-0 h-1.5 w-1.5 rounded-full", CATEGORY_DOT_COLORS[market.category] ?? "bg-muted-foreground")} />
 
-      {/* Question */}
-      <span className="min-w-0 flex-1 truncate text-xs text-foreground">
-        {market.question}
-      </span>
-
-      {/* Bet indicator */}
-      {bet && (
-        <span className={cn("shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500/80" : "bg-red-500/5 text-red-500/80")}>
-          {bet.position}
+        {/* Question */}
+        <span className="min-w-0 flex-1 truncate text-xs text-foreground">
+          {market.question}
         </span>
-      )}
 
-      {/* YES odds */}
-      <span className="shrink-0 w-10 text-right font-mono tabular-nums text-xs font-medium text-emerald-500/80">
-        {market.initialProbability}%
-      </span>
+        {/* Bet indicator */}
+        {bet && (
+          <span className={cn("shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none", bet.position === "yes" ? "bg-emerald-500/5 text-emerald-500/80" : "bg-red-500/5 text-red-500/80")}>
+            {bet.position}
+          </span>
+        )}
 
-      {/* Volume */}
-      <span className="hidden shrink-0 w-14 text-right font-mono tabular-nums text-[11px] text-muted-foreground sm:inline">
-        ${(volume / 1000).toFixed(0)}K
-      </span>
+        {/* YES odds */}
+        <span className="shrink-0 w-10 text-right font-mono tabular-nums text-xs font-medium text-emerald-500/80">
+          {prob}%
+        </span>
 
-      {/* Expiry */}
-      <span className={cn(
-        "shrink-0 w-8 text-right font-mono tabular-nums text-[11px]",
-        market.expiresInDays <= 3 ? "font-medium text-amber-500" : "text-muted-foreground",
-      )}>
-        {market.expiresInDays}d
-      </span>
+        {/* Volume */}
+        <span className="hidden shrink-0 w-14 text-right font-mono tabular-nums text-[11px] text-muted-foreground sm:inline">
+          ${(volume / 1000).toFixed(0)}K
+        </span>
 
-      <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/0 transition-colors group-hover:text-muted-foreground/60 group-hover:translate-x-0.5" />
+        {/* Expiry */}
+        <span className={cn(
+          "shrink-0 w-8 text-right font-mono tabular-nums text-[11px]",
+          market.expiresInDays <= 3 ? "font-medium text-amber-500" : "text-muted-foreground",
+        )}>
+          {market.expiresInDays}d
+        </span>
+
+        <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/0 transition-all group-hover:text-muted-foreground/60 group-hover:translate-x-0.5" />
+      </div>
+
+      {/* Probability meter bar */}
+      <div className="flex items-center gap-2 pl-[18px]">
+        <div className="flex-1 h-1 rounded-full bg-muted/30 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-emerald-500/30 transition-all duration-300"
+            style={{ width: `${prob}%` }}
+          />
+        </div>
+        <span className="text-[10px] text-muted-foreground/40 tabular-nums shrink-0 w-8">
+          {CATEGORY_LABELS[market.category]}
+        </span>
+      </div>
     </button>
   );
 }
@@ -365,7 +389,7 @@ function MarketDetailDrawer({
                 "rounded py-1.5 text-xs font-medium transition-colors",
                 orderSide === "yes"
                   ? "bg-emerald-500/15 text-emerald-500/80 ring-1 ring-emerald-500/20"
-                  : "bg-muted/30 text-muted-foreground hover:bg-muted/50",
+                  : "bg-foreground/[0.03] text-muted-foreground hover:bg-foreground/[0.06]",
               )}
             >
               YES {market.initialProbability}%
@@ -376,7 +400,7 @@ function MarketDetailDrawer({
                 "rounded py-1.5 text-xs font-medium transition-colors",
                 orderSide === "no"
                   ? "bg-red-500/15 text-red-500/80 ring-1 ring-red-500/20"
-                  : "bg-muted/30 text-muted-foreground hover:bg-muted/50",
+                  : "bg-foreground/[0.03] text-muted-foreground hover:bg-foreground/[0.06]",
               )}
             >
               NO {100 - market.initialProbability}%
@@ -796,8 +820,8 @@ export function PredictionsPageClient() {
       <div className="border-b border-border/20 px-4 pt-4 pb-0">
         <div className="flex items-center gap-3 pb-3">
           <div className="min-w-0">
-            <h1 className="text-sm font-medium">Prediction Markets</h1>
-            <p className="text-xs text-muted-foreground">
+            <h1 className="text-sm font-serif font-medium tracking-tight">Prediction Markets</h1>
+            <p className="text-xs text-muted-foreground/70 leading-relaxed">
               {PREDICTION_MARKETS.length} markets — {insightPoints.toLocaleString()} pts available
             </p>
           </div>
@@ -836,29 +860,55 @@ export function PredictionsPageClient() {
             >
               {tab.label}
               {tab.value === "bets" && activeBetCount > 0 && (
-                <span className="rounded-full bg-muted px-1 text-[11px] font-medium text-foreground">{activeBetCount}</span>
+                <span className="rounded-full bg-foreground/10 px-1 text-[11px] font-medium text-foreground">{activeBetCount}</span>
               )}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Stats row (Markets tab only) */}
+      {/* Hero stats card (Markets tab only) */}
       {pageTab === "markets" && (
-        <div className="border-b border-border/20 px-4 py-2">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-            <span className="text-muted-foreground">Bets <span className="font-mono tabular-nums font-medium text-foreground">{bets.length}</span></span>
-            <span className="text-border/30">&middot;</span>
-            <span className="text-muted-foreground">Accuracy <span className="font-mono tabular-nums font-medium text-foreground">{totalResolved > 0 ? `${accuracy}%` : "--"}</span></span>
-            <span className="text-border/30">&middot;</span>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="cursor-help text-muted-foreground">Brier <span className="font-mono tabular-nums font-medium text-foreground">{totalResolved > 0 ? brierScore.toFixed(3) : "--"}</span></span>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" className="max-w-64 text-xs">
-                Brier Score measures calibration (0 = perfect, 1 = worst). Below 0.25 is well-calibrated.
-              </TooltipContent>
-            </Tooltip>
+        <div className="border-b border-border/20 px-4 py-3">
+          <div className="flex items-center gap-4">
+            {/* Accuracy ring */}
+            <div className="relative shrink-0">
+              <svg width="52" height="52" className="-rotate-90">
+                <circle cx="26" cy="26" r="22" fill="none" stroke="currentColor" strokeWidth="3" className="text-muted/20" />
+                <circle
+                  cx="26" cy="26" r="22" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"
+                  strokeDasharray={2 * Math.PI * 22}
+                  strokeDashoffset={2 * Math.PI * 22 * (1 - (totalResolved > 0 ? accuracy / 100 : 0))}
+                  className="text-emerald-500/70 transition-all duration-500"
+                />
+              </svg>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-[11px] font-mono tabular-nums font-medium">
+                  {totalResolved > 0 ? `${accuracy}%` : "--"}
+                </span>
+              </div>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-medium mb-0.5">Your Accuracy</p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[11px]">
+                <span className="text-muted-foreground">{bets.length} bets placed</span>
+                <span className="text-border/30">&middot;</span>
+                <span className="text-muted-foreground">{totalResolved} resolved</span>
+                <span className="text-border/30">&middot;</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="cursor-help text-muted-foreground">Brier <span className="font-mono tabular-nums font-medium text-foreground">{totalResolved > 0 ? brierScore.toFixed(3) : "--"}</span></span>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-64 text-xs">
+                    Brier Score measures calibration (0 = perfect, 1 = worst). Below 0.25 is well-calibrated.
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+            </div>
+            <div className="shrink-0 text-right">
+              <p className="text-[10px] text-muted-foreground mb-0.5">Points</p>
+              <p className="text-sm font-mono tabular-nums font-medium">{insightPoints.toLocaleString()}</p>
+            </div>
           </div>
         </div>
       )}
@@ -884,7 +934,7 @@ export function PredictionsPageClient() {
                       placeholder="Search markets..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full rounded-md border border-border bg-muted/30 py-1.5 pl-8 pr-8 text-[11px] text-foreground placeholder-muted-foreground/60 outline-none focus:border-primary/50"
+                      className="w-full rounded-md border border-border/20 bg-transparent py-1.5 pl-8 pr-8 text-[11px] text-foreground placeholder-muted-foreground/40 outline-none focus:border-foreground/20 focus:ring-1 focus:ring-foreground/10"
                     />
                     {searchQuery && (
                       <button onClick={() => setSearchQuery("")} className="absolute right-2.5 top-1/2 -translate-y-1/2">
@@ -903,8 +953,8 @@ export function PredictionsPageClient() {
                           className={cn(
                             "shrink-0 rounded-md border px-2 py-1 text-xs font-medium transition-colors",
                             activeFilter === tab.value
-                              ? "border-foreground/30 bg-muted text-foreground"
-                              : "border-border/20 text-muted-foreground hover:text-foreground",
+                              ? "border-foreground/20 bg-foreground/5 text-foreground"
+                              : "border-border/20 text-muted-foreground hover:text-foreground hover:bg-foreground/[0.03]",
                           )}
                         >
                           {tab.label}
@@ -916,7 +966,7 @@ export function PredictionsPageClient() {
                       <select
                         value={sortMode}
                         onChange={(e) => setSortMode(e.target.value as SortMode)}
-                        className="appearance-none rounded bg-muted px-2 py-1 text-xs font-medium text-foreground outline-none"
+                        className="appearance-none rounded border border-border/20 bg-transparent px-2 py-1 text-xs font-medium text-foreground outline-none"
                       >
                         {SORT_OPTIONS.map((opt) => (
                           <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -936,7 +986,7 @@ export function PredictionsPageClient() {
                   </div>
 
                   {filteredMarkets.length > 0 ? (
-                    <div className="divide-y divide-border/30">
+                    <div className="space-y-0.5">
                       {filteredMarkets.map((market) => (
                         <MarketRow
                           key={market.id}
