@@ -1835,7 +1835,7 @@ function PortfolioOptimizer() {
             <motion.div
               key={a.name}
               layout
-              className="flex items-center justify-center text-xs font-semibold text-white/80 overflow-hidden"
+              className="flex items-center justify-center text-xs font-semibold text-foreground/80 overflow-hidden"
               style={{
                 width: `${a.pct}%`,
                 backgroundColor: a.color,

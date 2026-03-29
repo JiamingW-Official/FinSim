@@ -67,7 +67,7 @@ function StatCard({
       ? "text-rose-400"
       : highlight === "warn"
       ? "text-amber-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
@@ -1316,7 +1316,7 @@ export default function DigitalCustodyPage() {
             <Lock size={20} className="text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Digital Asset Custody</h1>
+            <h1 className="text-2xl font-bold text-foreground">Digital Asset Custody</h1>
             <p className="text-sm text-muted-foreground">Institutional crypto custody solutions, MPC technology, regulatory requirements, and insurance</p>
           </div>
         </div>
@@ -1338,16 +1338,16 @@ export default function DigitalCustodyPage() {
       {/* Tabs */}
       <Tabs defaultValue="architecture">
         <TabsList className="bg-foreground/5 border border-border mb-6 flex-wrap h-auto gap-1">
-          <TabsTrigger value="architecture" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="architecture" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs">
             <Lock size={12} className="mr-1.5" /> Custody Architecture
           </TabsTrigger>
-          <TabsTrigger value="institutional" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="institutional" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs">
             <Building2 size={12} className="mr-1.5" /> Institutional Solutions
           </TabsTrigger>
-          <TabsTrigger value="regulatory" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="regulatory" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs">
             <FileText size={12} className="mr-1.5" /> Regulatory Framework
           </TabsTrigger>
-          <TabsTrigger value="security" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="security" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs">
             <ShieldAlert size={12} className="mr-1.5" /> Security & Insurance
           </TabsTrigger>
         </TabsList>

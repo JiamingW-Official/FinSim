@@ -757,7 +757,7 @@ export default function PairsPage() {
                 className={cn(
                   "flex-1 rounded-lg py-2.5 text-sm font-semibold transition-colors",
                   canExit
-                    ? "bg-green-600 text-white hover:bg-green-500"
+                    ? "bg-green-600 text-foreground hover:bg-green-500"
                     : "bg-muted text-muted-foreground cursor-not-allowed",
                 )}
               >

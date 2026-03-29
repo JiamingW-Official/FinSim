@@ -761,7 +761,7 @@ function ThreeFundBuilder() {
           <div>
             <div className="flex justify-between mb-1">
               <span className="text-sm font-medium text-indigo-400">US Equity (VTI)</span>
-              <span className="text-sm font-bold text-white">{usAlloc}%</span>
+              <span className="text-sm font-bold text-foreground">{usAlloc}%</span>
             </div>
             <Slider
               min={0}
@@ -778,7 +778,7 @@ function ThreeFundBuilder() {
           <div>
             <div className="flex justify-between mb-1">
               <span className="text-sm font-medium text-muted-foreground">Intl Equity (VXUS)</span>
-              <span className="text-sm font-bold text-white">{intlAlloc}%</span>
+              <span className="text-sm font-bold text-foreground">{intlAlloc}%</span>
             </div>
             <Slider
               min={0}
@@ -792,7 +792,7 @@ function ThreeFundBuilder() {
           <div>
             <div className="flex justify-between mb-1">
               <span className="text-sm font-medium text-amber-400">Bonds (BND)</span>
-              <span className="text-sm font-bold text-white">{bondsAlloc}%</span>
+              <span className="text-sm font-bold text-foreground">{bondsAlloc}%</span>
             </div>
             <div className="h-4 rounded bg-muted overflow-hidden">
               <div
@@ -873,7 +873,7 @@ function ThreeFundBuilder() {
             </div>
             <div className="text-xs text-muted-foreground font-medium">{f.name}</div>
             <div className="text-xs text-muted-foreground mt-1">{f.desc}</div>
-            <div className="mt-2 text-base font-bold text-white">{f.pct}%</div>
+            <div className="mt-2 text-base font-bold text-foreground">{f.pct}%</div>
           </div>
         ))}
       </div>
@@ -988,7 +988,7 @@ function ActivePassiveSection() {
       {/* SPIVA Chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base text-white">SPIVA Scorecard — % of Active Funds Underperforming Index</CardTitle>
+          <CardTitle className="text-base text-foreground">SPIVA Scorecard — % of Active Funds Underperforming Index</CardTitle>
           <p className="text-xs text-muted-foreground">Source: S&P Dow Jones SPIVA Report 2024. Data as of Dec 2023.</p>
         </CardHeader>
         <CardContent>
@@ -1055,7 +1055,7 @@ function ActivePassiveSection() {
       {/* Evidence bullets */}
       <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">Why Passive Usually Wins</CardTitle>
+          <CardTitle className="text-sm text-foreground">Why Passive Usually Wins</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           {[
@@ -1095,7 +1095,7 @@ function ActivePassiveSection() {
       {/* Alpha decay chart */}
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base text-white">Cumulative Performance: Passive vs Active (simulated)</CardTitle>
+          <CardTitle className="text-base text-foreground">Cumulative Performance: Passive vs Active (simulated)</CardTitle>
         </CardHeader>
         <CardContent>
           <ActivePassiveChart horizon={horizon} />
@@ -1236,7 +1236,7 @@ function FactorSection() {
       {/* Factor premium evidence */}
       <Card className="bg-muted/50 border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">Factor Premium Evidence (simulated 25-year, $100 start)</CardTitle>
+          <CardTitle className="text-sm text-foreground">Factor Premium Evidence (simulated 25-year, $100 start)</CardTitle>
         </CardHeader>
         <CardContent>
           <FactorReturnChart />
@@ -1323,7 +1323,7 @@ export default function IndexInvestingPage() {
           <div className="p-2 bg-indigo-500/15 rounded-lg">
             <Globe className="w-5 h-5 text-indigo-400" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Index Investing</h1>
+          <h1 className="text-2xl font-bold text-foreground">Index Investing</h1>
           <Badge variant="outline" className="text-indigo-300 border-indigo-500/40">
             Passive Strategy Suite
           </Badge>
@@ -1370,7 +1370,7 @@ export default function IndexInvestingPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground"
             >
               {t.icon}
               {t.label}
@@ -1649,7 +1649,7 @@ export default function IndexInvestingPage() {
               <div className="bg-muted/50 rounded-lg p-4 border border-border">
                 <div className="flex items-center gap-2 mb-2">
                   <Info className="w-4 h-4 text-muted-foreground" />
-                  <span className="font-semibold text-sm text-white">Rebalancing Guidelines</span>
+                  <span className="font-semibold text-sm text-foreground">Rebalancing Guidelines</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-muted-foreground">
                   <div>

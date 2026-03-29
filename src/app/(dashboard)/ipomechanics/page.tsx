@@ -448,7 +448,7 @@ function IPOTimelineTab() {
 
       {/* Interactive Timeline Steps */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white/80 mb-4">IPO Process — Click Each Step for Detail</h3>
+        <h3 className="text-sm font-semibold text-foreground/80 mb-4">IPO Process — Click Each Step for Detail</h3>
         <div className="flex flex-wrap gap-2 mb-5">
           {TIMELINE_STEPS.map((step) => (
             <button
@@ -457,8 +457,8 @@ function IPOTimelineTab() {
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
                 selectedStep?.id === step.id
-                  ? "border-foreground/30 text-white"
-                  : "border-border text-white/50 hover:text-white/80 hover:border-border"
+                  ? "border-foreground/30 text-foreground"
+                  : "border-border text-foreground/50 hover:text-foreground/80 hover:border-border"
               )}
               style={
                 selectedStep?.id === step.id
@@ -494,26 +494,26 @@ function IPOTimelineTab() {
                       style={{ backgroundColor: selectedStep.color + "30", color: selectedStep.color }}>
                       {selectedStep.id}
                     </span>
-                    <h4 className="text-base font-semibold text-white">{selectedStep.name}</h4>
+                    <h4 className="text-base font-semibold text-foreground">{selectedStep.name}</h4>
                   </div>
                   <div className="flex items-center gap-2 mt-1">
-                    <Clock className="w-3.5 h-3.5 text-white/40" />
-                    <span className="text-xs text-white/50">{selectedStep.duration}</span>
+                    <Clock className="w-3.5 h-3.5 text-foreground/40" />
+                    <span className="text-xs text-foreground/50">{selectedStep.duration}</span>
                   </div>
                 </div>
-                <button onClick={() => setSelectedStep(null)} className="text-white/30 hover:text-white/70">
+                <button onClick={() => setSelectedStep(null)} className="text-foreground/30 hover:text-foreground/70">
                   <X className="w-4 h-4" />
                 </button>
               </div>
 
-              <p className="text-sm text-white/70 leading-relaxed">{selectedStep.description}</p>
+              <p className="text-sm text-foreground/70 leading-relaxed">{selectedStep.description}</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <div className="text-xs font-semibold text-white/50 mb-2">Key Activities</div>
+                  <div className="text-xs font-semibold text-foreground/50 mb-2">Key Activities</div>
                   <ul className="space-y-1">
                     {selectedStep.keyActivities.map((a, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-white/70">
+                      <li key={i} className="flex items-start gap-2 text-xs text-foreground/70">
                         <ChevronRight className="w-3 h-3 mt-0.5 flex-shrink-0" style={{ color: selectedStep.color }} />
                         {a}
                       </li>
@@ -522,18 +522,18 @@ function IPOTimelineTab() {
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <div className="text-xs font-semibold text-white/50 mb-2">Key Players</div>
+                    <div className="text-xs font-semibold text-foreground/50 mb-2">Key Players</div>
                     <div className="flex flex-wrap gap-1">
                       {selectedStep.keyPlayers.map((p, i) => (
-                        <span key={i} className="px-2 py-0.5 rounded-full text-xs border border-border text-white/60">
+                        <span key={i} className="px-2 py-0.5 rounded-full text-xs border border-border text-foreground/60">
                           {p}
                         </span>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white/50 mb-2">SEC Requirements</div>
-                    <p className="text-xs text-white/60 leading-relaxed">{selectedStep.secRequirements}</p>
+                    <div className="text-xs font-semibold text-foreground/50 mb-2">SEC Requirements</div>
+                    <p className="text-xs text-foreground/60 leading-relaxed">{selectedStep.secRequirements}</p>
                   </div>
                   <div className="flex items-start gap-2 bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
                     <AlertTriangle className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
@@ -548,7 +548,7 @@ function IPOTimelineTab() {
 
       {/* SVG Gantt Chart */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white/80 mb-4">Typical IPO Timeline — Gantt Chart (weeks)</h3>
+        <h3 className="text-sm font-semibold text-foreground/80 mb-4">Typical IPO Timeline — Gantt Chart (weeks)</h3>
         <div className="overflow-x-auto">
           <svg width={ganttWidth} height={TIMELINE_STEPS.length * rowHeight + 40} className="min-w-0">
             {/* Week labels */}
@@ -596,13 +596,13 @@ function IPOTimelineTab() {
       <div className="bg-card border border-border rounded-xl p-5">
         <button
           onClick={() => setShowS1(!showS1)}
-          className="flex items-center justify-between w-full text-sm font-semibold text-white/80"
+          className="flex items-center justify-between w-full text-sm font-semibold text-foreground/80"
         >
           <span className="flex items-center gap-2">
             <FileText className="w-4 h-4 text-primary" />
             S-1 Registration Statement — Key Sections Explainer
           </span>
-          <ChevronDown className={cn("w-4 h-4 text-white/40 transition-transform", showS1 && "rotate-180")} />
+          <ChevronDown className={cn("w-4 h-4 text-foreground/40 transition-transform", showS1 && "rotate-180")} />
         </button>
         <AnimatePresence>
           {showS1 && (
@@ -618,9 +618,9 @@ function IPOTimelineTab() {
                   <div key={sec.item} className="bg-foreground/[0.03] border border-border/50 rounded-lg p-3">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-xs font-mono text-primary">{sec.item}</span>
-                      <span className="text-xs font-semibold text-white/90">{sec.title}</span>
+                      <span className="text-xs font-semibold text-foreground/90">{sec.title}</span>
                     </div>
-                    <p className="text-xs text-white/55 leading-relaxed">{sec.description}</p>
+                    <p className="text-xs text-foreground/55 leading-relaxed">{sec.description}</p>
                   </div>
                 ))}
               </div>
@@ -631,7 +631,7 @@ function IPOTimelineTab() {
 
       {/* SEC Review Process */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white/80 mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
           <Shield className="w-4 h-4 text-green-400" />
           SEC Review Process
         </h3>
@@ -645,9 +645,9 @@ function IPOTimelineTab() {
               <div className="flex items-center gap-2 mb-2">
                 <span className="w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-xs flex items-center justify-center font-bold">{i + 1}</span>
                 <span className="text-xs font-semibold text-green-400">{item.step}</span>
-                <span className="text-xs text-white/40 ml-auto">{item.days}</span>
+                <span className="text-xs text-foreground/40 ml-auto">{item.days}</span>
               </div>
-              <p className="text-xs text-white/60 leading-relaxed">{item.desc}</p>
+              <p className="text-xs text-foreground/60 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -714,7 +714,7 @@ function BookBuildingTab() {
               "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all",
               activeSection === id
                 ? "bg-primary/20 border-primary/50 text-primary"
-                : "bg-foreground/[0.03] border-border text-white/50 hover:text-white/80"
+                : "bg-foreground/[0.03] border-border text-foreground/50 hover:text-foreground/80"
             )}
           >
             <Icon className="w-3.5 h-3.5" />
@@ -734,7 +734,7 @@ function BookBuildingTab() {
           {activeSection === "bookbuild" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-white/80 mb-4">Book Building — Demand Curve Construction</h3>
+                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Book Building — Demand Curve Construction</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* SVG demand curve */}
                   <div>
@@ -787,7 +787,7 @@ function BookBuildingTab() {
                         Oversubscription
                       </text>
                     </svg>
-                    <p className="text-xs text-white/40 text-center mt-1">
+                    <p className="text-xs text-foreground/40 text-center mt-1">
                       Demand falls as price rises. At $34, book is ~10x oversubscribed.
                     </p>
                   </div>
@@ -805,8 +805,8 @@ function BookBuildingTab() {
                           {i + 1}
                         </div>
                         <div>
-                          <div className="text-xs font-semibold text-white/80">{p.phase}</div>
-                          <p className="text-xs text-white/55 leading-relaxed">{p.desc}</p>
+                          <div className="text-xs font-semibold text-foreground/80">{p.phase}</div>
+                          <p className="text-xs text-foreground/55 leading-relaxed">{p.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -816,7 +816,7 @@ function BookBuildingTab() {
 
               {/* Retail vs Institutional */}
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-white/80 mb-4">Retail vs Institutional Allocation</h3>
+                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Retail vs Institutional Allocation</h3>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                   <StatChip label="Institutional" value="80–95%" color="blue" />
                   <StatChip label="Retail (typical)" value="5–15%" color="purple" />
@@ -826,7 +826,7 @@ function BookBuildingTab() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-primary/5 border border-border rounded-lg p-4">
                     <div className="text-xs font-semibold text-primary mb-2">Institutional Advantages</div>
-                    <ul className="space-y-1 text-xs text-white/60">
+                    <ul className="space-y-1 text-xs text-foreground/60">
                       <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Priority allocation in hot deals</li>
                       <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Can indicate at IPO price (firm commitment)</li>
                       <li className="flex items-start gap-1.5"><CheckCircle2 className="w-3 h-3 text-primary mt-0.5" />Access to management roadshow 1-on-1s</li>
@@ -835,7 +835,7 @@ function BookBuildingTab() {
                   </div>
                   <div className="bg-primary/5 border border-border rounded-lg p-4">
                     <div className="text-xs font-semibold text-primary mb-2">Retail Options</div>
-                    <ul className="space-y-1 text-xs text-white/60">
+                    <ul className="space-y-1 text-xs text-foreground/60">
                       <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Directed Share Programs (employees, customers)</li>
                       <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Broker IPO allocations (Schwab, Fidelity, TD)</li>
                       <li className="flex items-start gap-1.5"><ArrowRight className="w-3 h-3 text-primary mt-0.5" />Retail platforms: IBKR, Robinhood (select deals)</li>
@@ -847,8 +847,8 @@ function BookBuildingTab() {
 
               {/* Underpricing phenomenon */}
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-white/80 mb-2">The Underpricing Phenomenon</h3>
-                <p className="text-xs text-white/60 mb-4 leading-relaxed">
+                <h3 className="text-sm font-semibold text-foreground/80 mb-2">The Underpricing Phenomenon</h3>
+                <p className="text-xs text-foreground/60 mb-4 leading-relaxed">
                   Academic research documents persistent IPO underpricing globally — average first-day returns of ~15–20% in the US. This represents money
                   "left on the table" by issuers but benefits underwriters (investor relationships) and early institutional buyers.
                 </p>
@@ -857,8 +857,8 @@ function BookBuildingTab() {
                   <StatChip label="Avg 3-Year Return vs Market" value="-18%" color="red" />
                   <StatChip label="Money Left on Table (avg)" value="$50–200M" color="amber" />
                 </div>
-                <div className="mt-3 text-xs text-white/50 leading-relaxed">
-                  <strong className="text-white/70">Why underpricing persists:</strong> Underwriters maintain investor relationships, ensure aftermarket stability, reduce lawsuit risk from price drops, and signal deal quality. The 7% gross spread is direct compensation; underpricing is indirect.
+                <div className="mt-3 text-xs text-foreground/50 leading-relaxed">
+                  <strong className="text-foreground/70">Why underpricing persists:</strong> Underwriters maintain investor relationships, ensure aftermarket stability, reduce lawsuit risk from price drops, and signal deal quality. The 7% gross spread is direct compensation; underpricing is indirect.
                 </div>
               </div>
             </div>
@@ -867,8 +867,8 @@ function BookBuildingTab() {
           {activeSection === "greenshoe" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-white/80 mb-4">Greenshoe / Over-Allotment Option Mechanics</h3>
-                <p className="text-xs text-white/60 mb-5 leading-relaxed">
+                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Greenshoe / Over-Allotment Option Mechanics</h3>
+                <p className="text-xs text-foreground/60 mb-5 leading-relaxed">
                   Named after Green Shoe Manufacturing (first issuer in 1963), the greenshoe allows underwriters to sell up to 15% more shares than planned
                   and use the proceeds to stabilize the stock price post-IPO. It's the primary price stabilization tool.
                 </p>
@@ -937,7 +937,7 @@ function BookBuildingTab() {
           {activeSection === "pricing" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-white/80 mb-4">IPO Pricing Determinants</h3>
+                <h3 className="text-sm font-semibold text-foreground/80 mb-4">IPO Pricing Determinants</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {[
                     {
@@ -978,13 +978,13 @@ function BookBuildingTab() {
                       <div className="text-sm font-semibold mb-3" style={{ color: m.color }}>{m.method}</div>
                       <ol className="space-y-1.5 mb-3">
                         {m.steps.map((step, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-white/65">
+                          <li key={i} className="flex items-start gap-2 text-xs text-foreground/65">
                             <span className="text-xs font-bold flex-shrink-0 mt-0.5" style={{ color: m.color + "bb" }}>{i + 1}.</span>
                             {step}
                           </li>
                         ))}
                       </ol>
-                      <div className="text-xs text-white/45 italic">{m.note}</div>
+                      <div className="text-xs text-foreground/45 italic">{m.note}</div>
                     </div>
                   ))}
                 </div>
@@ -995,8 +995,8 @@ function BookBuildingTab() {
           {activeSection === "underwriter" && (
             <div className="space-y-4">
               <div className="bg-card border border-border rounded-xl p-5">
-                <h3 className="text-sm font-semibold text-white/80 mb-4">Underwriter Economics — The 7% Gross Spread</h3>
-                <p className="text-xs text-white/60 mb-4 leading-relaxed">
+                <h3 className="text-sm font-semibold text-foreground/80 mb-4">Underwriter Economics — The 7% Gross Spread</h3>
+                <p className="text-xs text-foreground/60 mb-4 leading-relaxed">
                   For mid-size IPOs ($50M–$500M), the standard gross spread is 7% of total proceeds, split among the underwriting syndicate.
                   For large mega-IPOs, spreads compress to 3–5%.
                 </p>
@@ -1037,7 +1037,7 @@ function BookBuildingTab() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-xs font-semibold text-white/60 mb-2">Spread Economics Example ($500M IPO)</div>
+                    <div className="text-xs font-semibold text-foreground/60 mb-2">Spread Economics Example ($500M IPO)</div>
                     <div className="space-y-2">
                       {[
                         { item: "Total Proceeds", value: "$500M", highlight: false },
@@ -1048,14 +1048,14 @@ function BookBuildingTab() {
                         { item: "Net Proceeds to Issuer", value: "$465M", highlight: false },
                       ].map((row) => (
                         <div key={row.item} className={cn("flex justify-between text-xs py-1 border-b border-border/50", row.highlight && "bg-foreground/[0.03] px-2 rounded")}>
-                          <span className="text-white/60">{row.item}</span>
-                          <span className="text-white/85 font-medium">{row.value}</span>
+                          <span className="text-foreground/60">{row.item}</span>
+                          <span className="text-foreground/85 font-medium">{row.value}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white/60 mb-2">Syndicate Structure</div>
+                    <div className="text-xs font-semibold text-foreground/60 mb-2">Syndicate Structure</div>
                     <div className="space-y-2">
                       {[
                         { role: "Book-Running Lead Manager", share: "40–60%", desc: "Builds the book, sets price, manages allocation" },
@@ -1065,10 +1065,10 @@ function BookBuildingTab() {
                       ].map((r) => (
                         <div key={r.role} className="bg-foreground/[0.03] border border-border/50 rounded-lg p-3">
                           <div className="flex justify-between items-center mb-1">
-                            <span className="text-xs font-medium text-white/80">{r.role}</span>
+                            <span className="text-xs font-medium text-foreground/80">{r.role}</span>
                             <span className="text-xs text-primary">{r.share}</span>
                           </div>
-                          <p className="text-xs text-white/50">{r.desc}</p>
+                          <p className="text-xs text-foreground/50">{r.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -1122,30 +1122,30 @@ function MarketAnalysisTab() {
       {/* Notable IPOs Table */}
       <div className="bg-card border border-border rounded-xl overflow-hidden">
         <div className="p-4 border-b border-border/50">
-          <h3 className="text-sm font-semibold text-white/80">10 Notable IPOs — Performance Data</h3>
-          <p className="text-xs text-white/45 mt-0.5">Click column headers to sort. 1-year returns are vs offer price.</p>
+          <h3 className="text-sm font-semibold text-foreground/80">10 Notable IPOs — Performance Data</h3>
+          <p className="text-xs text-foreground/45 mt-0.5">Click column headers to sort. 1-year returns are vs offer price.</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/50 bg-foreground/[0.03]">
-                <th className="px-4 py-2.5 text-left text-white/50">Company</th>
-                <th className="px-3 py-2.5 text-left text-white/50">Sector</th>
-                <th className="px-3 py-2.5 text-right text-white/50">Year</th>
-                <th className="px-3 py-2.5 text-right cursor-pointer text-white/50 hover:text-white/80 select-none"
+                <th className="px-4 py-2.5 text-left text-foreground/50">Company</th>
+                <th className="px-3 py-2.5 text-left text-foreground/50">Sector</th>
+                <th className="px-3 py-2.5 text-right text-foreground/50">Year</th>
+                <th className="px-3 py-2.5 text-right cursor-pointer text-foreground/50 hover:text-foreground/80 select-none"
                   onClick={() => toggleSort("offerPrice")}>
                   Offer {sortCol === "offerPrice" && (sortDir === -1 ? "↓" : "↑")}
                 </th>
-                <th className="px-3 py-2.5 text-right text-white/50">1st Day</th>
-                <th className="px-3 py-2.5 text-right cursor-pointer text-white/50 hover:text-white/80 select-none"
+                <th className="px-3 py-2.5 text-right text-foreground/50">1st Day</th>
+                <th className="px-3 py-2.5 text-right cursor-pointer text-foreground/50 hover:text-foreground/80 select-none"
                   onClick={() => toggleSort("firstDay")}>
                   1D Chg {sortCol === "firstDay" && (sortDir === -1 ? "↓" : "↑")}
                 </th>
-                <th className="px-3 py-2.5 text-right cursor-pointer text-white/50 hover:text-white/80 select-none"
+                <th className="px-3 py-2.5 text-right cursor-pointer text-foreground/50 hover:text-foreground/80 select-none"
                   onClick={() => toggleSort("oneYear")}>
                   1Yr {sortCol === "oneYear" && (sortDir === -1 ? "↓" : "↑")}
                 </th>
-                <th className="px-4 py-2.5 text-left text-white/50">Notes</th>
+                <th className="px-4 py-2.5 text-left text-foreground/50">Notes</th>
               </tr>
             </thead>
             <tbody>
@@ -1160,15 +1160,15 @@ function MarketAnalysisTab() {
                 return (
                   <tr key={ipo.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                     <td className="px-4 py-2.5">
-                      <div className="font-semibold text-white/90">{ipo.company}</div>
-                      <div className="text-white/40">{ipo.ticker}</div>
+                      <div className="font-semibold text-foreground/90">{ipo.company}</div>
+                      <div className="text-foreground/40">{ipo.ticker}</div>
                     </td>
-                    <td className="px-3 py-2.5 text-white/60">{ipo.sector}</td>
-                    <td className="px-3 py-2.5 text-right text-white/60">{ipo.year}</td>
-                    <td className="px-3 py-2.5 text-right text-white/85">
+                    <td className="px-3 py-2.5 text-foreground/60">{ipo.sector}</td>
+                    <td className="px-3 py-2.5 text-right text-foreground/60">{ipo.year}</td>
+                    <td className="px-3 py-2.5 text-right text-foreground/85">
                       {ipo.offerPrice > 0 ? `$${ipo.offerPrice}` : "—"}
                     </td>
-                    <td className="px-3 py-2.5 text-right text-white/85">
+                    <td className="px-3 py-2.5 text-right text-foreground/85">
                       {ipo.firstDayClose > 0 ? `$${ipo.firstDayClose}` : "—"}
                     </td>
                     <td className={cn("px-3 py-2.5 text-right font-medium", firstDayChg === null ? "text-muted-foreground" : firstDayChg >= 0 ? "text-green-400" : "text-red-400")}>
@@ -1177,7 +1177,7 @@ function MarketAnalysisTab() {
                     <td className={cn("px-3 py-2.5 text-right font-medium", ipo.oneYearReturn === null ? "text-muted-foreground" : ipo.oneYearReturn >= 0 ? "text-green-400" : "text-red-400")}>
                       {ipo.oneYearReturn === null ? "—" : fmtPct(ipo.oneYearReturn)}
                     </td>
-                    <td className="px-4 py-2.5 text-white/45 max-w-[220px]">
+                    <td className="px-4 py-2.5 text-foreground/45 max-w-[220px]">
                       <span className={cn("font-medium mr-1", statusColors[ipo.status])}>
                         [{ipo.status}]
                       </span>
@@ -1195,8 +1195,8 @@ function MarketAnalysisTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* Vintage Year Bar Chart */}
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-white/80 mb-1">IPO Vintage Year Avg Returns</h3>
-          <p className="text-xs text-white/40 mb-4">Average first-year return by cohort year</p>
+          <h3 className="text-sm font-semibold text-foreground/80 mb-1">IPO Vintage Year Avg Returns</h3>
+          <p className="text-xs text-foreground/40 mb-4">Average first-year return by cohort year</p>
           <svg width={VINTAGE_YEARS.length * (barW + barGap) + 20} height={chartH + 50} className="max-w-full">
             {/* Zero line */}
             <line x1={10} y1={zeroY} x2={VINTAGE_YEARS.length * (barW + barGap) + 10} y2={zeroY}
@@ -1232,8 +1232,8 @@ function MarketAnalysisTab() {
 
         {/* Lock-up Expiry SVG */}
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-white/80 mb-1">Lock-Up Expiry Selling Pressure</h3>
-          <p className="text-xs text-white/40 mb-4">Relative sell volume around 180-day lock-up expiry (day 0)</p>
+          <h3 className="text-sm font-semibold text-foreground/80 mb-1">Lock-Up Expiry Selling Pressure</h3>
+          <p className="text-xs text-foreground/40 mb-4">Relative sell volume around 180-day lock-up expiry (day 0)</p>
           <svg width={280} height={160} className="max-w-full">
             {/* Grid */}
             {[0, 0.5, 1].map((f) => (
@@ -1264,7 +1264,7 @@ function MarketAnalysisTab() {
             <text x={24} y={24} textAnchor="end" fill="#ffffff30" fontSize={8}>10x</text>
             <text x={24} y={130} textAnchor="end" fill="#ffffff30" fontSize={8}>0</text>
           </svg>
-          <div className="mt-2 text-xs text-white/45 leading-relaxed">
+          <div className="mt-2 text-xs text-foreground/45 leading-relaxed">
             Studies show -3 to -5% abnormal returns in the week around lock-up expiry. Investors often pre-sell (or buy puts) before Day 0 in anticipation of insider supply.
           </div>
         </div>
@@ -1273,7 +1273,7 @@ function MarketAnalysisTab() {
       {/* Sector Concentration + Quiet Period */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-white/80 mb-3">Sector Concentration Trends</h3>
+          <h3 className="text-sm font-semibold text-foreground/80 mb-3">Sector Concentration Trends</h3>
           <div className="space-y-2">
             {[
               { sector: "Technology", pct2021: 38, pct2023: 28, trend: "down" },
@@ -1284,21 +1284,21 @@ function MarketAnalysisTab() {
               { sector: "Other", pct2021: 5, pct2023: 4, trend: "down" },
             ].map((row) => (
               <div key={row.sector} className="flex items-center gap-3">
-                <div className="w-28 text-xs text-white/60 flex-shrink-0">{row.sector}</div>
+                <div className="w-28 text-xs text-foreground/60 flex-shrink-0">{row.sector}</div>
                 <div className="flex-1 flex items-center gap-2">
-                  <div className="w-12 text-xs text-white/40 text-right">2021:</div>
+                  <div className="w-12 text-xs text-foreground/40 text-right">2021:</div>
                   <div className="flex-1 bg-foreground/5 rounded-full h-2">
                     <div className="h-2 rounded-full bg-primary/50" style={{ width: `${row.pct2021}%` }} />
                   </div>
-                  <div className="w-8 text-xs text-white/60">{row.pct2021}%</div>
+                  <div className="w-8 text-xs text-foreground/60">{row.pct2021}%</div>
                 </div>
                 <div className="flex-1 flex items-center gap-2">
-                  <div className="w-12 text-xs text-white/40 text-right">2023:</div>
+                  <div className="w-12 text-xs text-foreground/40 text-right">2023:</div>
                   <div className="flex-1 bg-foreground/5 rounded-full h-2">
                     <div className={cn("h-2 rounded-full", row.trend === "up" ? "bg-green-500/50" : row.trend === "down" ? "bg-amber-500/40" : "bg-foreground/20")}
                       style={{ width: `${row.pct2023}%` }} />
                   </div>
-                  <div className="w-8 text-xs text-white/60">{row.pct2023}%</div>
+                  <div className="w-8 text-xs text-foreground/60">{row.pct2023}%</div>
                 </div>
               </div>
             ))}
@@ -1306,7 +1306,7 @@ function MarketAnalysisTab() {
         </div>
 
         <div className="bg-card border border-border rounded-xl p-5">
-          <h3 className="text-sm font-semibold text-white/80 mb-3 flex items-center gap-2">
+          <h3 className="text-sm font-semibold text-foreground/80 mb-3 flex items-center gap-2">
             <Shield className="w-4 h-4 text-amber-400" />
             Quiet Period Rules
           </h3>
@@ -1319,7 +1319,7 @@ function MarketAnalysisTab() {
             ].map((r) => (
               <div key={r.rule} className={cn("rounded-lg p-3 border text-xs", r.type === "post" ? "bg-primary/5 border-border" : "bg-amber-500/5 border-amber-500/15")}>
                 <div className={cn("font-semibold mb-1", r.type === "post" ? "text-primary" : "text-amber-400")}>{r.rule}</div>
-                <p className="text-white/60 leading-relaxed">{r.desc}</p>
+                <p className="text-foreground/60 leading-relaxed">{r.desc}</p>
               </div>
             ))}
           </div>
@@ -1346,14 +1346,14 @@ function AlternativesTab() {
       {/* 3-Way Comparison Table */}
       <div className="bg-card border border-border rounded-xl overflow-hidden">
         <div className="p-4 border-b border-border/50">
-          <h3 className="text-sm font-semibold text-white/80">Traditional IPO vs Direct Listing vs SPAC — 15 Dimensions</h3>
-          <p className="text-xs text-white/45 mt-0.5">Click a row to highlight the best option</p>
+          <h3 className="text-sm font-semibold text-foreground/80">Traditional IPO vs Direct Listing vs SPAC — 15 Dimensions</h3>
+          <p className="text-xs text-foreground/45 mt-0.5">Click a row to highlight the best option</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border/50 bg-foreground/[0.03]">
-                <th className="px-4 py-2.5 text-left text-white/50 w-36">Dimension</th>
+                <th className="px-4 py-2.5 text-left text-foreground/50 w-36">Dimension</th>
                 <th className="px-3 py-2.5 text-left text-primary">Traditional IPO</th>
                 <th className="px-3 py-2.5 text-left text-green-400/80">Direct Listing</th>
                 <th className="px-3 py-2.5 text-left text-primary">SPAC</th>
@@ -1374,16 +1374,16 @@ function AlternativesTab() {
                     onClick={() => setSelectedDim(isSelected ? null : i)}
                     className={cn("border-b border-border/50 cursor-pointer transition-colors", isSelected ? "bg-foreground/5" : "hover:bg-muted/30")}
                   >
-                    <td className="px-4 py-2.5 font-medium text-white/80">{dim.dimension}</td>
-                    <td className={cn("px-3 py-2.5 text-white/65", dim.advantage === "traditional" && advColors.traditional)}>
+                    <td className="px-4 py-2.5 font-medium text-foreground/80">{dim.dimension}</td>
+                    <td className={cn("px-3 py-2.5 text-foreground/65", dim.advantage === "traditional" && advColors.traditional)}>
                       {dim.advantage === "traditional" && <CheckCircle2 className="w-3 h-3 text-primary inline mr-1" />}
                       {dim.traditional}
                     </td>
-                    <td className={cn("px-3 py-2.5 text-white/65", dim.advantage === "direct" && advColors.direct)}>
+                    <td className={cn("px-3 py-2.5 text-foreground/65", dim.advantage === "direct" && advColors.direct)}>
                       {dim.advantage === "direct" && <CheckCircle2 className="w-3 h-3 text-green-400 inline mr-1" />}
                       {dim.directListing}
                     </td>
-                    <td className={cn("px-3 py-2.5 text-white/65", dim.advantage === "spac" && advColors.spac)}>
+                    <td className={cn("px-3 py-2.5 text-foreground/65", dim.advantage === "spac" && advColors.spac)}>
                       {dim.advantage === "spac" && <CheckCircle2 className="w-3 h-3 text-primary inline mr-1" />}
                       {dim.spac}
                     </td>
@@ -1397,7 +1397,7 @@ function AlternativesTab() {
 
       {/* Direct Listing Mechanics */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white/80 mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
           <Zap className="w-4 h-4 text-green-400" />
           Direct Listing — How It Works
         </h3>
@@ -1409,7 +1409,7 @@ function AlternativesTab() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <div className="text-xs font-semibold text-white/50 mb-3">Direct Listing Steps</div>
+            <div className="text-xs font-semibold text-foreground/50 mb-3">Direct Listing Steps</div>
             <div className="space-y-3">
               {[
                 { step: "File S-1 Registration", desc: "Standard SEC registration. Existing shareholders register shares for resale. No new share issuance — no dilution." },
@@ -1421,15 +1421,15 @@ function AlternativesTab() {
                 <div key={i} className="flex gap-3">
                   <span className="w-5 h-5 rounded-full bg-green-500/20 text-green-400 text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">{i + 1}</span>
                   <div>
-                    <div className="text-xs font-semibold text-white/80">{s.step}</div>
-                    <p className="text-xs text-white/55 leading-relaxed">{s.desc}</p>
+                    <div className="text-xs font-semibold text-foreground/80">{s.step}</div>
+                    <p className="text-xs text-foreground/55 leading-relaxed">{s.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <div className="text-xs font-semibold text-white/50 mb-3">Notable Direct Listings</div>
+            <div className="text-xs font-semibold text-foreground/50 mb-3">Notable Direct Listings</div>
             <div className="space-y-2">
               {[
                 { company: "Spotify", ticker: "SPOT", year: 2018, ref: 132, open: 165.9, note: "First major direct listing. Reference $132, opened $165.90 — fully market-driven." },
@@ -1439,14 +1439,14 @@ function AlternativesTab() {
               ].map((dl) => (
                 <div key={dl.ticker} className="bg-green-500/5 border border-green-500/15 rounded-lg p-3">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-xs font-semibold text-white/85">{dl.company} ({dl.ticker})</span>
-                    <span className="text-xs text-white/40">{dl.year}</span>
+                    <span className="text-xs font-semibold text-foreground/85">{dl.company} ({dl.ticker})</span>
+                    <span className="text-xs text-foreground/40">{dl.year}</span>
                   </div>
                   <div className="flex gap-3 text-xs mb-1">
-                    <span className="text-white/50">Ref: <span className="text-white/80">${dl.ref}</span></span>
-                    <span className="text-white/50">Open: <span className="text-green-400">${dl.open}</span></span>
+                    <span className="text-foreground/50">Ref: <span className="text-foreground/80">${dl.ref}</span></span>
+                    <span className="text-foreground/50">Open: <span className="text-green-400">${dl.open}</span></span>
                   </div>
-                  <p className="text-xs text-white/50">{dl.note}</p>
+                  <p className="text-xs text-foreground/50">{dl.note}</p>
                 </div>
               ))}
             </div>
@@ -1456,14 +1456,14 @@ function AlternativesTab() {
 
       {/* SPAC Structure SVG */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white/80 mb-4 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
           <Layers className="w-4 h-4 text-primary" />
           SPAC Structure & De-SPAC Transaction
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* SPAC SVG */}
           <div>
-            <div className="text-xs font-semibold text-white/50 mb-3">SPAC Lifecycle</div>
+            <div className="text-xs font-semibold text-foreground/50 mb-3">SPAC Lifecycle</div>
             <svg width={340} height={320} className="max-w-full">
               {/* Stage 1: SPAC IPO */}
               <text x={170} y={18} textAnchor="middle" fill="#a855f7" fontSize={10} fontWeight="bold">Stage 1: SPAC IPO</text>
@@ -1520,7 +1520,7 @@ function AlternativesTab() {
           {/* De-SPAC steps + warrant mechanics */}
           <div className="space-y-4">
             <div>
-              <div className="text-xs font-semibold text-white/50 mb-3">De-SPAC Transaction Steps</div>
+              <div className="text-xs font-semibold text-foreground/50 mb-3">De-SPAC Transaction Steps</div>
               <div className="space-y-2">
                 {[
                   { step: "Target LOI", desc: "SPAC signs non-binding Letter of Intent with target company. Exclusive negotiation period begins." },
@@ -1532,8 +1532,8 @@ function AlternativesTab() {
                   <div key={i} className="flex gap-3">
                     <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">{i + 1}</span>
                     <div>
-                      <div className="text-xs font-semibold text-white/80">{s.step}</div>
-                      <p className="text-xs text-white/55 leading-relaxed">{s.desc}</p>
+                      <div className="text-xs font-semibold text-foreground/80">{s.step}</div>
+                      <p className="text-xs text-foreground/55 leading-relaxed">{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -1541,12 +1541,12 @@ function AlternativesTab() {
             </div>
             <div className="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4">
               <div className="text-xs font-semibold text-amber-400 mb-2">Warrant Mechanics</div>
-              <div className="space-y-1.5 text-xs text-white/60">
-                <div className="flex gap-2"><span className="text-white/40">Strike:</span>$11.50 per share (vs $10 IPO unit price)</div>
-                <div className="flex gap-2"><span className="text-white/40">Exercisable:</span>30 days after de-SPAC closes</div>
-                <div className="flex gap-2"><span className="text-white/40">Expiry:</span>5 years from SPAC IPO date</div>
-                <div className="flex gap-2"><span className="text-white/40">Callable:</span>If stock trades above $18 for 20 of 30 days</div>
-                <div className="flex gap-2"><span className="text-white/40">Dilution:</span>Warrants can add 15–20% dilution to existing shareholders</div>
+              <div className="space-y-1.5 text-xs text-foreground/60">
+                <div className="flex gap-2"><span className="text-foreground/40">Strike:</span>$11.50 per share (vs $10 IPO unit price)</div>
+                <div className="flex gap-2"><span className="text-foreground/40">Exercisable:</span>30 days after de-SPAC closes</div>
+                <div className="flex gap-2"><span className="text-foreground/40">Expiry:</span>5 years from SPAC IPO date</div>
+                <div className="flex gap-2"><span className="text-foreground/40">Callable:</span>If stock trades above $18 for 20 of 30 days</div>
+                <div className="flex gap-2"><span className="text-foreground/40">Dilution:</span>Warrants can add 15–20% dilution to existing shareholders</div>
               </div>
             </div>
           </div>
@@ -1555,8 +1555,8 @@ function AlternativesTab() {
 
       {/* SPAC Performance vs IPO SVG */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white/80 mb-1">SPAC vs Traditional IPO — 2-Year Average Returns by Cohort</h3>
-        <p className="text-xs text-white/40 mb-4">Returns measured from listing date; vs S&P 500 baseline</p>
+        <h3 className="text-sm font-semibold text-foreground/80 mb-1">SPAC vs Traditional IPO — 2-Year Average Returns by Cohort</h3>
+        <p className="text-xs text-foreground/40 mb-4">Returns measured from listing date; vs S&P 500 baseline</p>
         <div className="overflow-x-auto">
           <svg width={SPAC_PERFORMANCE.length * (perfBarW * 3 + perfGap * 2 + 14) + 50} height={perfBarH + 80} className="min-w-0">
             {/* Zero line */}
@@ -1614,8 +1614,8 @@ function AlternativesTab() {
         <div className="mt-3 bg-red-500/5 border border-red-500/15 rounded-lg p-3">
           <div className="flex items-start gap-2">
             <AlertTriangle className="w-3.5 h-3.5 text-red-400 flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-white/60 leading-relaxed">
-              <strong className="text-white/80">SPAC Performance Warning:</strong> The 2020–2022 SPAC boom cohort produced deeply negative returns for common shareholders (-50% to -70% vs S&P). The sponsor "promote" (20% free shares) creates structural misalignment — sponsors profit even from mediocre deals. Retail investors bore the losses while sponsors extracted fees.
+            <p className="text-xs text-foreground/60 leading-relaxed">
+              <strong className="text-foreground/80">SPAC Performance Warning:</strong> The 2020–2022 SPAC boom cohort produced deeply negative returns for common shareholders (-50% to -70% vs S&P). The sponsor "promote" (20% free shares) creates structural misalignment — sponsors profit even from mediocre deals. Retail investors bore the losses while sponsors extracted fees.
             </p>
           </div>
         </div>
@@ -1636,8 +1636,8 @@ export default function IPOMechanicsPage() {
             <Building2 className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">IPO Mechanics Deep Dive</h1>
-            <p className="text-xs text-white/45">Full process from filing to aftermarket · Book building · Alternatives</p>
+            <h1 className="text-xl font-bold text-foreground">IPO Mechanics Deep Dive</h1>
+            <p className="text-xs text-foreground/45">Full process from filing to aftermarket · Book building · Alternatives</p>
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -1651,19 +1651,19 @@ export default function IPOMechanicsPage() {
       {/* Tabs */}
       <Tabs defaultValue="timeline">
         <TabsList className="bg-foreground/5 border border-border mb-5 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="timeline" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="timeline" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-foreground/50 text-xs px-3 py-1.5">
             <Calendar className="w-3.5 h-3.5 mr-1.5" />
             IPO Timeline
           </TabsTrigger>
-          <TabsTrigger value="bookbuilding" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="bookbuilding" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-foreground/50 text-xs px-3 py-1.5">
             <BookOpen className="w-3.5 h-3.5 mr-1.5" />
             Book Building & Pricing
           </TabsTrigger>
-          <TabsTrigger value="analysis" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="analysis" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-foreground/50 text-xs px-3 py-1.5">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
             Market Analysis
           </TabsTrigger>
-          <TabsTrigger value="alternatives" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-white/50 text-xs px-3 py-1.5">
+          <TabsTrigger value="alternatives" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-foreground/50 text-xs px-3 py-1.5">
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             Alternatives
           </TabsTrigger>

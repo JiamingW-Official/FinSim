@@ -1481,7 +1481,7 @@ export default function PortfolioOptimizerPage() {
                   ].map((s) => (
                     <div key={s.step} className="space-y-2">
                       <div className="flex items-center gap-2">
-                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ backgroundColor: s.color }}>
+                        <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-foreground" style={{ backgroundColor: s.color }}>
                           {s.step}
                         </div>
                         <span className="font-medium text-sm" style={{ color: s.color }}>{s.title}</span>

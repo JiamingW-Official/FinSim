@@ -827,7 +827,7 @@ function FundComparison() {
                 className={cn(
                   "flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs font-medium transition-colors",
                   isSel
-                    ? "border-transparent text-white"
+                    ? "border-transparent text-foreground"
                     : "border-border/50 text-muted-foreground hover:border-primary/50 hover:text-foreground",
                 )}
                 style={isSel ? { backgroundColor: COMPARE_COLORS[selIdx] } : {}}

@@ -545,7 +545,7 @@ function ValuationTab() {
             className={cn(
               "px-3 py-1 text-xs font-medium rounded-md border transition-colors",
               filterType === f
-                ? "bg-primary border-primary text-white"
+                ? "bg-primary border-primary text-foreground"
                 : "border-border text-muted-foreground hover:border-muted-foreground"
             )}
           >

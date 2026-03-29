@@ -1392,7 +1392,7 @@ function StorageCarryAnalysis() {
                       className="absolute inset-y-0 left-0 rounded transition-all"
                       style={{ width: `${currPct}%`, background: above ? "#f87171" : "#4ade80" }}
                     />
-                    <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-white">
+                    <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-foreground">
                       {inv.current.toFixed(1)}{inv.unit}
                     </span>
                   </div>
@@ -1405,7 +1405,7 @@ function StorageCarryAnalysis() {
                       className="absolute inset-y-0 left-0 bg-primary/50 rounded"
                       style={{ width: `${avgPct}%` }}
                     />
-                    <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-white">
+                    <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-foreground">
                       {inv.avg5yr.toFixed(1)}{inv.unit}
                     </span>
                   </div>

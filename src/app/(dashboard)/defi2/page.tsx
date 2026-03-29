@@ -83,7 +83,7 @@ function StatCard({
       ? "text-rose-400"
       : highlight === "warn"
       ? "text-amber-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
@@ -1206,7 +1206,7 @@ function YieldCompositionBar() {
           return (
             <div
               key={seg.label}
-              className="h-full flex items-center justify-center text-xs font-bold text-white"
+              className="h-full flex items-center justify-center text-xs font-bold text-foreground"
               style={{ width: `${seg.pct}%`, background: seg.color, opacity: 0.85 }}
             >
               {seg.pct}%
@@ -1536,7 +1536,7 @@ export default function DeFi2Page() {
             <GitBranch size={22} className="text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">DeFi 2.0 & Advanced Protocols</h1>
+            <h1 className="text-2xl font-bold text-foreground">DeFi 2.0 & Advanced Protocols</h1>
             <p className="text-sm text-muted-foreground">Liquidity optimization, real-world assets on-chain, intent-based trading, restaking, and institutional DeFi</p>
           </div>
         </div>

@@ -35,7 +35,7 @@ function resetSeed() {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-white/60 mb-3">
+    <h3 className="text-sm font-semibold text-foreground/60 mb-3">
       {children}
     </h3>
   );
@@ -70,16 +70,16 @@ function StatCard({
   };
   return (
     <div className="bg-foreground/5 rounded-lg p-3 flex flex-col gap-1">
-      <span className="text-[11px] text-white/40 uppercase tracking-wide">{label}</span>
+      <span className="text-[11px] text-foreground/40 uppercase tracking-wide">{label}</span>
       <span
         className={cn(
           "text-lg font-semibold tabular-nums",
-          color ? colorMap[color] : "text-white"
+          color ? colorMap[color] : "text-foreground"
         )}
       >
         {value}
       </span>
-      {sub && <span className="text-[11px] text-white/40">{sub}</span>}
+      {sub && <span className="text-[11px] text-foreground/40">{sub}</span>}
     </div>
   );
 }
@@ -97,7 +97,7 @@ function CompareRow({
 }) {
   return (
     <div className="grid grid-cols-3 gap-2 py-2 border-b border-border/50 text-sm">
-      <span className="text-white/50">{label}</span>
+      <span className="text-foreground/50">{label}</span>
       <span
         className={cn(
           "font-medium",
@@ -105,7 +105,7 @@ function CompareRow({
             ? "text-emerald-400"
             : aGood === false
             ? "text-red-400"
-            : "text-white"
+            : "text-foreground"
         )}
       >
         {a}
@@ -117,7 +117,7 @@ function CompareRow({
             ? "text-emerald-400"
             : aGood === true
             ? "text-red-400"
-            : "text-white/70"
+            : "text-foreground/70"
         )}
       >
         {b}
@@ -526,7 +526,7 @@ function LettersOfCreditTab() {
         <SectionTitle>LC Structure &amp; Parties</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
           <LCStructureSVG />
-          <p className="text-xs text-white/40 mt-2 text-center">
+          <p className="text-xs text-foreground/40 mt-2 text-center">
             Five-party LC structure — banks intermediate between importer and
             exporter
           </p>
@@ -577,7 +577,7 @@ function LettersOfCreditTab() {
       <div>
         <SectionTitle>Standby LC vs Commercial LC</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
-          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-white/40 uppercase tracking-wide">
+          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Attribute</span>
             <span>Commercial LC</span>
             <span>Standby LC</span>
@@ -620,13 +620,13 @@ function LettersOfCreditTab() {
       <div>
         <SectionTitle>Document Discrepancy Breakdown</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
-          <p className="text-xs text-white/50 mb-3">
+          <p className="text-xs text-foreground/50 mb-3">
             ICC studies show over 70% of first LC presentations are rejected due
             to discrepancies
           </p>
           {discrepancyStats.map((d) => (
             <div key={d.type} className="flex items-center gap-3">
-              <span className="text-xs text-white/60 w-48 shrink-0">
+              <span className="text-xs text-foreground/60 w-48 shrink-0">
                 {d.type}
               </span>
               <div className="flex-1 bg-foreground/5 rounded-full h-2">
@@ -653,13 +653,13 @@ function LettersOfCreditTab() {
               )
             }
           >
-            <span className="font-semibold text-white text-sm">
+            <span className="font-semibold text-foreground text-sm">
               {sec.title}
             </span>
             {expandedSection === sec.id ? (
-              <ChevronUp className="w-4 h-4 text-white/40" />
+              <ChevronUp className="w-4 h-4 text-foreground/40" />
             ) : (
-              <ChevronDown className="w-4 h-4 text-white/40" />
+              <ChevronDown className="w-4 h-4 text-foreground/40" />
             )}
           </button>
           <AnimatePresence initial={false}>
@@ -680,7 +680,7 @@ function LettersOfCreditTab() {
                       <div className="text-xs font-semibold text-primary">
                         {item.term}
                       </div>
-                      <div className="text-xs text-white/55 mt-0.5">
+                      <div className="text-xs text-foreground/55 mt-0.5">
                         {item.desc}
                       </div>
                     </div>
@@ -1083,7 +1083,7 @@ function SupplyChainFinanceTab() {
         </SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
           <ReverseFactoringSVG />
-          <p className="text-xs text-white/40 mt-2 text-center">
+          <p className="text-xs text-foreground/40 mt-2 text-center">
             Buyer-led SCF: Buyer approves invoices → Bank extends early payment
             to suppliers at buyer&apos;s credit rating
           </p>
@@ -1173,7 +1173,7 @@ function SupplyChainFinanceTab() {
       <div>
         <SectionTitle>Dynamic Discounting vs SCF Comparison</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
-          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-white/40 uppercase tracking-wide">
+          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>Dynamic Discounting</span>
             <span>Reverse Factoring (SCF)</span>
@@ -1222,11 +1222,11 @@ function SupplyChainFinanceTab() {
             <div key={e.metric} className="flex gap-3 items-start">
               <div className="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
               <div>
-                <div className="text-sm font-medium text-white">
+                <div className="text-sm font-medium text-foreground">
                   {e.metric}
                 </div>
                 <div className="text-xs text-emerald-400">{e.discount}</div>
-                <div className="text-xs text-white/50 mt-0.5">{e.desc}</div>
+                <div className="text-xs text-foreground/50 mt-0.5">{e.desc}</div>
               </div>
             </div>
           ))}
@@ -1246,7 +1246,7 @@ function SupplyChainFinanceTab() {
                   "font-semibold text-sm",
                   p.name.includes("collapsed")
                     ? "text-red-400"
-                    : "text-white"
+                    : "text-foreground"
                 )}
               >
                 {p.name}
@@ -1254,7 +1254,7 @@ function SupplyChainFinanceTab() {
               <Badge variant="outline" className="text-xs w-fit">
                 {p.type}
               </Badge>
-              <span className="text-xs text-white/50 flex-1">{p.focus}</span>
+              <span className="text-xs text-foreground/50 flex-1">{p.focus}</span>
               <span className="text-xs text-sky-400">{p.clients}</span>
             </div>
           ))}
@@ -1264,7 +1264,7 @@ function SupplyChainFinanceTab() {
       <div>
         <SectionTitle>Receivables Purchase Comparison</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
-          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-white/40 uppercase tracking-wide">
+          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>Factoring</span>
             <span>Invoice Discounting</span>
@@ -1585,7 +1585,7 @@ function DocumentaryCollectionsTab() {
       <div>
         <SectionTitle>D/P vs D/A Collections</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
-          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-white/40 uppercase tracking-wide">
+          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>D/P (Documents Against Payment)</span>
             <span>D/A (Documents Against Acceptance)</span>
@@ -1629,7 +1629,7 @@ function DocumentaryCollectionsTab() {
       <div>
         <SectionTitle>INCOTERMS 2020 — 11 Terms</SectionTitle>
         <div className="bg-foreground/5 rounded-xl overflow-hidden">
-          <div className="grid grid-cols-6 gap-1 px-3 py-2 text-xs text-white/40 uppercase tracking-wide border-b border-border/50">
+          <div className="grid grid-cols-6 gap-1 px-3 py-2 text-xs text-foreground/40 uppercase tracking-wide border-b border-border/50">
             <span>Code</span>
             <span>Name</span>
             <span>Seller</span>
@@ -1663,7 +1663,7 @@ function DocumentaryCollectionsTab() {
                 >
                   {t.code}
                 </span>
-                <span className="text-white/70">{t.name}</span>
+                <span className="text-foreground/70">{t.name}</span>
                 <span
                   className={cn(
                     t.seller === "Max"
@@ -1686,10 +1686,10 @@ function DocumentaryCollectionsTab() {
                 >
                   {t.buyer}
                 </span>
-                <span className="text-white/50">{t.transfer}</span>
+                <span className="text-foreground/50">{t.transfer}</span>
                 <span
                   className={cn(
-                    t.mode === "Sea" ? "text-primary" : "text-white/50"
+                    t.mode === "Sea" ? "text-primary" : "text-foreground/50"
                   )}
                 >
                   {t.mode}
@@ -1697,7 +1697,7 @@ function DocumentaryCollectionsTab() {
               </button>
             );
           })}
-          <p className="text-xs text-white/30 px-3 py-2">
+          <p className="text-xs text-foreground/30 px-3 py-2">
             Highlighted: DDP/FOB/CIF — most commonly used. Blue = sea-only
             terms.
           </p>
@@ -1773,7 +1773,7 @@ function DocumentaryCollectionsTab() {
                 Political Risk
               </span>
             </div>
-            <ul className="space-y-1.5 text-xs text-white/60">
+            <ul className="space-y-1.5 text-xs text-foreground/60">
               <li>• Sovereign default / moratorium</li>
               <li>• War, civil disturbance, expropriation</li>
               <li>• Currency inconvertibility / transfer restrictions</li>
@@ -1788,7 +1788,7 @@ function DocumentaryCollectionsTab() {
                 Commercial Risk
               </span>
             </div>
-            <ul className="space-y-1.5 text-xs text-white/60">
+            <ul className="space-y-1.5 text-xs text-foreground/60">
               <li>• Buyer insolvency / bankruptcy</li>
               <li>• Protracted default (slow payment)</li>
               <li>• Contract disputes / refusal to accept goods</li>
@@ -1805,10 +1805,10 @@ function DocumentaryCollectionsTab() {
           {ecas.map((e) => (
             <div key={e.name} className="px-4 py-3">
               <div className="flex items-center justify-between mb-1 flex-wrap gap-1">
-                <span className="font-semibold text-sm text-white">
+                <span className="font-semibold text-sm text-foreground">
                   {e.name}
                 </span>
-                <span className="text-xs text-white/40">{e.focus}</span>
+                <span className="text-xs text-foreground/40">{e.focus}</span>
               </div>
               <div className="text-xs text-sky-400">{e.instrument}</div>
             </div>
@@ -1819,7 +1819,7 @@ function DocumentaryCollectionsTab() {
       <div>
         <SectionTitle>Single Buyer vs Whole Turnover Policies</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
-          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-white/40 uppercase tracking-wide">
+          <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>Single Buyer Policy</span>
             <span>Whole Turnover Policy</span>
@@ -1967,8 +1967,8 @@ function BlockchainCard({
     <div className="bg-foreground/5 rounded-xl p-4">
       <div className="flex items-start justify-between mb-2">
         <div>
-          <div className="font-semibold text-sm text-white">{name}</div>
-          <div className="text-xs text-white/40 mt-0.5">{tech}</div>
+          <div className="font-semibold text-sm text-foreground">{name}</div>
+          <div className="text-xs text-foreground/40 mt-0.5">{tech}</div>
         </div>
         <span
           className={cn(
@@ -1979,7 +1979,7 @@ function BlockchainCard({
           {status}
         </span>
       </div>
-      <p className="text-xs text-white/55">{desc}</p>
+      <p className="text-xs text-foreground/55">{desc}</p>
     </div>
   );
 }
@@ -2131,10 +2131,10 @@ function FintechDigitalTab() {
             <div key={p.issue} className="bg-foreground/5 rounded-xl p-3 flex gap-3">
               <span className="text-xl leading-none mt-0.5">{p.icon}</span>
               <div>
-                <div className="text-sm font-medium text-white">
+                <div className="text-sm font-medium text-foreground">
                   {p.issue}
                 </div>
-                <div className="text-xs text-white/50 mt-0.5">{p.impact}</div>
+                <div className="text-xs text-foreground/50 mt-0.5">{p.impact}</div>
               </div>
             </div>
           ))}
@@ -2178,7 +2178,7 @@ function FintechDigitalTab() {
       <div>
         <SectionTitle>Electronic Bills of Lading (e-BoL) Providers</SectionTitle>
         <div className="bg-foreground/5 rounded-xl overflow-hidden">
-          <div className="grid grid-cols-5 gap-2 px-4 py-2 text-xs text-white/40 uppercase tracking-wide border-b border-border/50">
+          <div className="grid grid-cols-5 gap-2 px-4 py-2 text-xs text-foreground/40 uppercase tracking-wide border-b border-border/50">
             <span>Platform</span>
             <span>Founded</span>
             <span>Status</span>
@@ -2196,12 +2196,12 @@ function FintechDigitalTab() {
               <span
                 className={cn(
                   "font-semibold",
-                  e.adoption === "Defunct" ? "text-red-400" : "text-white"
+                  e.adoption === "Defunct" ? "text-red-400" : "text-foreground"
                 )}
               >
                 {e.name}
               </span>
-              <span className="text-white/50">{e.founded}</span>
+              <span className="text-foreground/50">{e.founded}</span>
               <span
                 className={cn(
                   e.adoption === "Established"
@@ -2213,8 +2213,8 @@ function FintechDigitalTab() {
               >
                 {e.adoption}
               </span>
-              <span className="text-white/50">{e.legal}</span>
-              <span className="text-white/40">{e.notes}</span>
+              <span className="text-foreground/50">{e.legal}</span>
+              <span className="text-foreground/40">{e.notes}</span>
             </div>
           ))}
         </div>
@@ -2225,7 +2225,7 @@ function FintechDigitalTab() {
           AI-Powered KYC/AML for Correspondent Banking
         </SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
-          <p className="text-xs text-white/55">
+          <p className="text-xs text-foreground/55">
             Correspondent banking de-risking has reduced access to trade finance
             in developing markets. AI platforms address compliance cost barriers:
           </p>
@@ -2259,10 +2259,10 @@ function FintechDigitalTab() {
             <div key={item.tool} className="flex gap-3">
               <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
               <div>
-                <div className="text-xs font-semibold text-white">
+                <div className="text-xs font-semibold text-foreground">
                   {item.tool}
                 </div>
-                <div className="text-xs text-white/50">{item.benefit}</div>
+                <div className="text-xs text-foreground/50">{item.benefit}</div>
               </div>
             </div>
           ))}
@@ -2303,10 +2303,10 @@ function FintechDigitalTab() {
                   )}
                 />
                 <div>
-                  <div className="text-sm font-medium text-white">
+                  <div className="text-sm font-medium text-foreground">
                     {t.trend}
                   </div>
-                  <div className="text-xs text-white/50 mt-0.5">
+                  <div className="text-xs text-foreground/50 mt-0.5">
                     {t.impact}
                   </div>
                 </div>
@@ -2319,7 +2319,7 @@ function FintechDigitalTab() {
       <div>
         <SectionTitle>Embedded Trade Finance in ERP Systems</SectionTitle>
         <div className="bg-foreground/5 rounded-xl p-4">
-          <p className="text-xs text-white/55 mb-3">
+          <p className="text-xs text-foreground/55 mb-3">
             Modern trade finance is moving inside ERP platforms (SAP, Oracle,
             Microsoft Dynamics) and B2B commerce networks:
           </p>
@@ -2350,7 +2350,7 @@ function FintechDigitalTab() {
                 <div className="text-xs font-semibold text-primary mb-1">
                   {item.platform}
                 </div>
-                <div className="text-xs text-white/50">{item.capability}</div>
+                <div className="text-xs text-foreground/50">{item.capability}</div>
               </div>
             ))}
           </div>
@@ -2397,7 +2397,7 @@ function FintechDigitalTab() {
                 )}
               >
                 <div className="text-xs font-semibold">{item.name}</div>
-                <div className="text-xs text-white/50 mt-0.5">{item.desc}</div>
+                <div className="text-xs text-foreground/50 mt-0.5">{item.desc}</div>
               </div>
             );
           })}
@@ -2441,8 +2441,8 @@ export default function TradeFinancePage() {
               <Globe className="w-5 h-5 text-sky-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Trade Finance</h1>
-              <p className="text-sm text-white/40">
+              <h1 className="text-2xl font-bold text-foreground">Trade Finance</h1>
+              <p className="text-sm text-foreground/40">
                 Letters of credit, supply chain finance, documentary collections
                 &amp; digital trade
               </p>
@@ -2459,7 +2459,7 @@ export default function TradeFinancePage() {
                 key={kpi.label}
                 className="bg-foreground/5 rounded-lg px-3 py-1.5 flex items-center gap-2"
               >
-                <span className="text-xs text-white/40">{kpi.label}</span>
+                <span className="text-xs text-foreground/40">{kpi.label}</span>
                 <span className="text-xs font-semibold text-sky-400">
                   {kpi.value}
                 </span>

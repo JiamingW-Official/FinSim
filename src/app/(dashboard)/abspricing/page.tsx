@@ -158,7 +158,7 @@ const ASSET_CLASS_LOSSES: AssetClassLoss[] = [
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-lg border border-border bg-foreground/5 p-4">
-      <p className="mb-2 text-xs font-semibold text-white/40">{title}</p>
+      <p className="mb-2 text-xs font-semibold text-foreground/40">{title}</p>
       {children}
     </div>
   );
@@ -188,7 +188,7 @@ function ABSStructureTab() {
     <div className="space-y-6">
       {/* Securitization SVG */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-white">Securitization Structure</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Securitization Structure</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-2xl" style={{ minWidth: 480 }}>
             {/* Originator → SPV arrow */}
@@ -225,11 +225,11 @@ function ABSStructureTab() {
 
       {/* Tranches Table */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-white">Tranche Summary</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Tranche Summary</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border text-white/40">
+              <tr className="border-b border-border text-foreground/40">
                 <th className="py-2 text-left font-medium">Class</th>
                 <th className="py-2 text-center font-medium">Rating</th>
                 <th className="py-2 text-center font-medium">Size %</th>
@@ -242,7 +242,7 @@ function ABSStructureTab() {
             <tbody>
               {TRANCHES.map((t) => (
                 <tr key={t.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-2 text-white/90">
+                  <td className="py-2 text-foreground/90">
                     <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: t.color }} />
                     {t.name}
                   </td>
@@ -259,11 +259,11 @@ function ABSStructureTab() {
                       )}
                     >{t.rating}</Badge>
                   </td>
-                  <td className="py-2 text-center text-white/80">{t.size}%</td>
-                  <td className="py-2 text-center text-white/80">{t.coupon.toFixed(2)}%</td>
-                  <td className="py-2 text-center text-white/80">+{t.spread}</td>
-                  <td className="py-2 text-center text-white/80">{t.ce}%</td>
-                  <td className="py-2 text-center text-white/80">{t.wal}</td>
+                  <td className="py-2 text-center text-foreground/80">{t.size}%</td>
+                  <td className="py-2 text-center text-foreground/80">{t.coupon.toFixed(2)}%</td>
+                  <td className="py-2 text-center text-foreground/80">+{t.spread}</td>
+                  <td className="py-2 text-center text-foreground/80">{t.ce}%</td>
+                  <td className="py-2 text-center text-foreground/80">{t.wal}</td>
                 </tr>
               ))}
             </tbody>
@@ -274,11 +274,11 @@ function ABSStructureTab() {
       {/* Waterfall Toggle */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <button
-          className="flex w-full items-center justify-between text-sm font-semibold text-white"
+          className="flex w-full items-center justify-between text-sm font-semibold text-foreground"
           onClick={() => setShowWaterfall(!showWaterfall)}
         >
           <span>Payment Waterfall (Priority of Payments)</span>
-          {showWaterfall ? <ChevronUp className="h-4 w-4 text-white/40" /> : <ChevronDown className="h-4 w-4 text-white/40" />}
+          {showWaterfall ? <ChevronUp className="h-4 w-4 text-foreground/40" /> : <ChevronDown className="h-4 w-4 text-foreground/40" />}
         </button>
         <AnimatePresence>
           {showWaterfall && (
@@ -318,21 +318,21 @@ function ABSStructureTab() {
       {/* OC and Reserve Fund */}
       <div className="grid gap-4 sm:grid-cols-2">
         <InfoCard title="Over-Collateralization (OC)">
-          <p className="text-xs text-white/70 mb-2">Pool principal exceeds note balance, providing a buffer against losses.</p>
+          <p className="text-xs text-foreground/70 mb-2">Pool principal exceeds note balance, providing a buffer against losses.</p>
           <div className="space-y-1 text-xs">
-            <div className="flex justify-between"><span className="text-white/50">Collateral Pool Value</span><span className="text-white">$105.3M</span></div>
-            <div className="flex justify-between"><span className="text-white/50">Total Note Balance</span><span className="text-white">$100.0M</span></div>
-            <div className="flex justify-between"><span className="text-white/50">OC Amount</span><span className="text-green-400 font-semibold">$5.3M (5.3%)</span></div>
-            <div className="flex justify-between"><span className="text-white/50">Trigger Level</span><span className="text-amber-400">4.0%</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Collateral Pool Value</span><span className="text-foreground">$105.3M</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Total Note Balance</span><span className="text-foreground">$100.0M</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">OC Amount</span><span className="text-green-400 font-semibold">$5.3M (5.3%)</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Trigger Level</span><span className="text-amber-400">4.0%</span></div>
           </div>
         </InfoCard>
         <InfoCard title="Reserve Fund">
-          <p className="text-xs text-white/70 mb-2">Cash reserve funded at closing, replenished from excess spread.</p>
+          <p className="text-xs text-foreground/70 mb-2">Cash reserve funded at closing, replenished from excess spread.</p>
           <div className="space-y-1 text-xs">
-            <div className="flex justify-between"><span className="text-white/50">Initial Balance</span><span className="text-white">$1.5M</span></div>
-            <div className="flex justify-between"><span className="text-white/50">Required Floor</span><span className="text-white">$1.0M (1.0%)</span></div>
-            <div className="flex justify-between"><span className="text-white/50">Current Balance</span><span className="text-green-400 font-semibold">$1.48M</span></div>
-            <div className="flex justify-between"><span className="text-white/50">Excess Spread</span><span className="text-primary">2.85% p.a.</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Initial Balance</span><span className="text-foreground">$1.5M</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Required Floor</span><span className="text-foreground">$1.0M (1.0%)</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Current Balance</span><span className="text-green-400 font-semibold">$1.48M</span></div>
+            <div className="flex justify-between"><span className="text-foreground/50">Excess Spread</span><span className="text-primary">2.85% p.a.</span></div>
           </div>
         </InfoCard>
       </div>
@@ -404,7 +404,7 @@ function PrepaymentModelsTab() {
       {/* PSA Speed Slider */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-semibold text-white">PSA Prepayment Speed</p>
+          <p className="text-sm font-semibold text-foreground">PSA Prepayment Speed</p>
           <Badge variant="outline" className="border-primary text-primary text-sm">
             {psaSpeed} PSA
           </Badge>
@@ -418,22 +418,22 @@ function PrepaymentModelsTab() {
           onChange={(e) => setPsaSpeed(Number(e.target.value))}
           className="w-full accent-blue-500"
         />
-        <div className="flex justify-between text-xs text-white/40 mt-1">
+        <div className="flex justify-between text-xs text-foreground/40 mt-1">
           <span>50 PSA (Slow)</span>
           <span>150 PSA (Base)</span>
           <span>700 PSA (Shock)</span>
         </div>
         <div className="mt-3 grid grid-cols-3 gap-3 text-xs">
           <div className="rounded bg-foreground/5 p-2 text-center">
-            <p className="text-white/50">CPR at Month 1</p>
-            <p className="text-white font-semibold">{psaCpr(1, psaSpeed).toFixed(2)}%</p>
+            <p className="text-foreground/50">CPR at Month 1</p>
+            <p className="text-foreground font-semibold">{psaCpr(1, psaSpeed).toFixed(2)}%</p>
           </div>
           <div className="rounded bg-foreground/5 p-2 text-center">
-            <p className="text-white/50">CPR at Month 30</p>
-            <p className="text-white font-semibold">{psaCpr(30, psaSpeed).toFixed(2)}%</p>
+            <p className="text-foreground/50">CPR at Month 30</p>
+            <p className="text-foreground font-semibold">{psaCpr(30, psaSpeed).toFixed(2)}%</p>
           </div>
           <div className="rounded bg-foreground/5 p-2 text-center">
-            <p className="text-white/50">Computed WAL</p>
+            <p className="text-foreground/50">Computed WAL</p>
             <p className="text-primary font-semibold">{wal.toFixed(2)} yrs</p>
           </div>
         </div>
@@ -441,7 +441,7 @@ function PrepaymentModelsTab() {
 
       {/* Prepayment Curve SVG */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-2 text-sm font-semibold text-white">CPR Curve (Months 1–360, {psaSpeed} PSA)</p>
+        <p className="mb-2 text-sm font-semibold text-foreground">CPR Curve (Months 1–360, {psaSpeed} PSA)</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${CURVE_W} ${CURVE_H + 20}`} className="w-full max-w-2xl" style={{ minWidth: 400 }}>
             {/* Grid */}
@@ -475,7 +475,7 @@ function PrepaymentModelsTab() {
 
       {/* Scheduled vs Unscheduled Principal Bar Chart */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-2 text-sm font-semibold text-white">Scheduled vs Unscheduled Principal (Months 1–120)</p>
+        <p className="mb-2 text-sm font-semibold text-foreground">Scheduled vs Unscheduled Principal (Months 1–120)</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded" style={{ background: "#3b82f6" }} /> Scheduled</span>
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded" style={{ background: "#f59e0b" }} /> Prepayment</span>
@@ -509,11 +509,11 @@ function PrepaymentModelsTab() {
 
       {/* Prepayment Sensitivity Table */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-white">Prepayment Sensitivity — Class A Senior</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Prepayment Sensitivity — Class A Senior</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border text-white/40">
+              <tr className="border-b border-border text-foreground/40">
                 <th className="py-2 text-left font-medium">Scenario</th>
                 <th className="py-2 text-center font-medium">PSA Speed</th>
                 <th className="py-2 text-center font-medium">WAL (yr)</th>
@@ -525,10 +525,10 @@ function PrepaymentModelsTab() {
             <tbody>
               {PREPAY_SCENARIOS.map((s, i) => (
                 <tr key={i} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors", s.psa === psaSpeed ? "bg-primary/10" : "")}>
-                  <td className="py-2 text-white/90">{s.label}</td>
-                  <td className="py-2 text-center text-white/80">{s.psa}</td>
-                  <td className="py-2 text-center text-white/80">{s.wal}</td>
-                  <td className="py-2 text-center text-white/80">{s.price.toFixed(2)}</td>
+                  <td className="py-2 text-foreground/90">{s.label}</td>
+                  <td className="py-2 text-center text-foreground/80">{s.psa}</td>
+                  <td className="py-2 text-center text-foreground/80">{s.wal}</td>
+                  <td className="py-2 text-center text-foreground/80">{s.price.toFixed(2)}</td>
                   <td className="py-2 text-center">
                     <span className={cn(s.yieldPct > 5.5 ? "text-red-400" : s.yieldPct > 5.0 ? "text-amber-400" : "text-green-400")}>
                       {s.yieldPct.toFixed(2)}%
@@ -540,7 +540,7 @@ function PrepaymentModelsTab() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-white/40">Highlighted row corresponds to current PSA slider (nearest scenario).</p>
+        <p className="mt-2 text-xs text-foreground/40">Highlighted row corresponds to current PSA slider (nearest scenario).</p>
       </div>
     </div>
   );
@@ -612,56 +612,56 @@ function PricingYieldTab() {
       <div className="grid gap-4 sm:grid-cols-3">
         <InfoCard title="Z-Spread">
           <p className="text-2xl font-bold text-primary">+{zSpread.toFixed(0)} bps</p>
-          <p className="text-xs text-white/50 mt-1">Constant spread over interpolated Treasury curve that equates PV to market price.</p>
+          <p className="text-xs text-foreground/50 mt-1">Constant spread over interpolated Treasury curve that equates PV to market price.</p>
         </InfoCard>
         <InfoCard title="Option-Adjusted Spread">
           <p className="text-2xl font-bold text-primary">+{oasAdj.toFixed(0)} bps</p>
-          <p className="text-xs text-white/50 mt-1">Z-spread minus embedded option cost (~18 bps for prepayment optionality).</p>
+          <p className="text-xs text-foreground/50 mt-1">Z-spread minus embedded option cost (~18 bps for prepayment optionality).</p>
         </InfoCard>
         <InfoCard title="Discount Margin (DM)">
           <p className="text-2xl font-bold text-emerald-400">{dm.toFixed(0)} bps</p>
-          <p className="text-xs text-white/50 mt-1">Spread over SOFR that equates floating-rate ABS cashflows to price {price.toFixed(1)}.</p>
+          <p className="text-xs text-foreground/50 mt-1">Spread over SOFR that equates floating-rate ABS cashflows to price {price.toFixed(1)}.</p>
         </InfoCard>
       </div>
 
       {/* Floating-rate DM calculator */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-white">Discount Margin Calculator (Floating-Rate ABS)</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Discount Margin Calculator (Floating-Rate ABS)</p>
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
-            <label className="text-xs text-white/50 block mb-1">Price</label>
+            <label className="text-xs text-foreground/50 block mb-1">Price</label>
             <input
               type="range" min={94} max={106} step={0.5} value={price}
               onChange={(e) => setPrice(Number(e.target.value))}
               className="w-full accent-blue-500"
             />
-            <p className="text-xs text-white text-center mt-1">{price.toFixed(1)}</p>
+            <p className="text-xs text-foreground text-center mt-1">{price.toFixed(1)}</p>
           </div>
           <div>
-            <label className="text-xs text-white/50 block mb-1">Stated Margin (bps)</label>
+            <label className="text-xs text-foreground/50 block mb-1">Stated Margin (bps)</label>
             <input
               type="range" min={50} max={400} step={5} value={margin}
               onChange={(e) => setMargin(Number(e.target.value))}
               className="w-full accent-violet-500"
             />
-            <p className="text-xs text-white text-center mt-1">{margin} bps</p>
+            <p className="text-xs text-foreground text-center mt-1">{margin} bps</p>
           </div>
           <div>
-            <label className="text-xs text-white/50 block mb-1">SOFR Index (%)</label>
+            <label className="text-xs text-foreground/50 block mb-1">SOFR Index (%)</label>
             <input
               type="range" min={2} max={7} step={0.1} value={indexRate}
               onChange={(e) => setIndexRate(Number(e.target.value))}
               className="w-full accent-emerald-500"
             />
-            <p className="text-xs text-white text-center mt-1">{indexRate.toFixed(1)}%</p>
+            <p className="text-xs text-foreground text-center mt-1">{indexRate.toFixed(1)}%</p>
           </div>
         </div>
         <div className="mt-4 rounded-lg bg-foreground/5 p-3 text-center">
-          <p className="text-xs text-white/50">Computed Discount Margin</p>
+          <p className="text-xs text-foreground/50">Computed Discount Margin</p>
           <p className={cn("text-2xl font-bold mt-1", dm > margin ? "text-green-400" : dm < margin - 20 ? "text-red-400" : "text-primary")}>
             {dm.toFixed(0)} bps
           </p>
-          <p className="text-xs text-white/40 mt-1">
+          <p className="text-xs text-foreground/40 mt-1">
             {dm > margin ? "Trading at discount — higher all-in yield than stated margin" : "Trading at premium — lower all-in yield than stated margin"}
           </p>
         </div>
@@ -669,7 +669,7 @@ function PricingYieldTab() {
 
       {/* Yield Curve with ABS Spread */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-2 text-sm font-semibold text-white">ABS Spread Over Treasuries</p>
+        <p className="mb-2 text-sm font-semibold text-foreground">ABS Spread Over Treasuries</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-4 h-0.5" style={{ background: "#64748b" }} /> Treasury</span>
           <span className="flex items-center gap-1"><span className="inline-block w-4 h-0.5" style={{ background: "#3b82f6" }} /> ABS Yield</span>
@@ -704,7 +704,7 @@ function PricingYieldTab() {
       {/* Price/Yield Sensitivity + Duration */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-xl border border-border bg-foreground/5 p-4">
-          <p className="mb-2 text-sm font-semibold text-white">Price / Spread Sensitivity</p>
+          <p className="mb-2 text-sm font-semibold text-foreground">Price / Spread Sensitivity</p>
           <svg viewBox={`0 0 ${PY_W} ${PY_H + 10}`} className="w-full max-w-sm">
             <line x1={45} y1={20} x2={45} y2={PY_H - 25} stroke="#94a3b8" strokeWidth="1" />
             <line x1={45} y1={PY_H - 25} x2={PY_W - 15} y2={PY_H - 25} stroke="#94a3b8" strokeWidth="1" />
@@ -723,17 +723,17 @@ function PricingYieldTab() {
         <div className="space-y-3">
           <InfoCard title="Effective Duration vs Nominal">
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between"><span className="text-white/50">Nominal Duration (no prepay)</span><span className="text-white">4.52 yrs</span></div>
-              <div className="flex justify-between"><span className="text-white/50">Effective Duration (150 PSA)</span><span className="text-primary font-semibold">3.18 yrs</span></div>
-              <div className="flex justify-between"><span className="text-white/50">Extension Risk (50 PSA)</span><span className="text-amber-400">+1.8 yrs</span></div>
-              <div className="flex justify-between"><span className="text-white/50">Contraction Risk (700 PSA)</span><span className="text-red-400">-1.9 yrs</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Nominal Duration (no prepay)</span><span className="text-foreground">4.52 yrs</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Effective Duration (150 PSA)</span><span className="text-primary font-semibold">3.18 yrs</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Extension Risk (50 PSA)</span><span className="text-amber-400">+1.8 yrs</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Contraction Risk (700 PSA)</span><span className="text-red-400">-1.9 yrs</span></div>
             </div>
           </InfoCard>
           <InfoCard title="Convexity">
             <div className="space-y-2 text-xs">
-              <div className="flex justify-between"><span className="text-white/50">Nominal Convexity</span><span className="text-white">+0.22</span></div>
-              <div className="flex justify-between"><span className="text-white/50">Effective Convexity</span><span className="text-red-400">-0.38</span></div>
-              <p className="text-white/40 mt-1">Negative convexity: prepayments accelerate as rates fall (call risk), hurting price appreciation.</p>
+              <div className="flex justify-between"><span className="text-foreground/50">Nominal Convexity</span><span className="text-foreground">+0.22</span></div>
+              <div className="flex justify-between"><span className="text-foreground/50">Effective Convexity</span><span className="text-red-400">-0.38</span></div>
+              <p className="text-foreground/40 mt-1">Negative convexity: prepayments accelerate as rates fall (call risk), hurting price appreciation.</p>
             </div>
           </InfoCard>
         </div>
@@ -781,9 +781,9 @@ function CreditEnhancementTab() {
           >
             <div className="flex items-center gap-2 mb-1">
               <item.icon className={cn("h-4 w-4", item.color)} />
-              <p className="text-xs font-semibold text-white">{item.title}</p>
+              <p className="text-xs font-semibold text-foreground">{item.title}</p>
             </div>
-            <p className="text-xs text-white/50">{item.desc}</p>
+            <p className="text-xs text-foreground/50">{item.desc}</p>
           </motion.div>
         ))}
       </div>
@@ -791,9 +791,9 @@ function CreditEnhancementTab() {
       {/* Stress Test SVG */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-semibold text-white">Stress Test: Default Rate vs Attachment Points</p>
+          <p className="text-sm font-semibold text-foreground">Stress Test: Default Rate vs Attachment Points</p>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-white/50">Default Rate:</span>
+            <span className="text-xs text-foreground/50">Default Rate:</span>
             <Badge variant="outline" className="border-red-500 text-red-400 text-xs">{defaultRate.toFixed(1)}%</Badge>
           </div>
         </div>
@@ -852,7 +852,7 @@ function CreditEnhancementTab() {
 
       {/* Rating Agency Inputs */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-white">Rating Agency Key Assumptions (Auto ABS Example)</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Rating Agency Key Assumptions (Auto ABS Example)</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
             { label: "Base Case Cumulative Loss", value: "1.80%", note: "Historical pool average" },
@@ -865,10 +865,10 @@ function CreditEnhancementTab() {
             { label: "Servicing Continuity", value: "Assumed", note: "Backup servicer required" },
           ].map((row, i) => (
             <div key={i} className="flex items-center justify-between rounded bg-foreground/5 p-2 text-xs">
-              <span className="text-white/70">{row.label}</span>
+              <span className="text-foreground/70">{row.label}</span>
               <div className="text-right">
-                <span className="text-white font-semibold">{row.value}</span>
-                <p className="text-white/30">{row.note}</p>
+                <span className="text-foreground font-semibold">{row.value}</span>
+                <p className="text-foreground/30">{row.note}</p>
               </div>
             </div>
           ))}
@@ -877,11 +877,11 @@ function CreditEnhancementTab() {
 
       {/* Historical Loss Rates by Asset Class */}
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
-        <p className="mb-3 text-sm font-semibold text-white">Historical Loss Rates by Asset Class</p>
+        <p className="mb-3 text-sm font-semibold text-foreground">Historical Loss Rates by Asset Class</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border text-white/40">
+              <tr className="border-b border-border text-foreground/40">
                 <th className="py-2 text-left font-medium">Asset Class</th>
                 <th className="py-2 text-center font-medium">Avg Annual Loss</th>
                 <th className="py-2 text-center font-medium">Stress Loss (GFC)</th>
@@ -892,13 +892,13 @@ function CreditEnhancementTab() {
             <tbody>
               {ASSET_CLASS_LOSSES.map((row, i) => (
                 <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-2 text-white/90">{row.assetClass}</td>
+                  <td className="py-2 text-foreground/90">{row.assetClass}</td>
                   <td className="py-2 text-center">
                     <div className="flex items-center justify-center gap-1">
                       <div className="w-16 h-1.5 rounded-full bg-foreground/10 overflow-hidden">
                         <div className="h-full rounded-full bg-primary" style={{ width: `${(row.avgLoss / 5) * 100}%` }} />
                       </div>
-                      <span className="text-white/80">{row.avgLoss.toFixed(1)}%</span>
+                      <span className="text-foreground/80">{row.avgLoss.toFixed(1)}%</span>
                     </div>
                   </td>
                   <td className="py-2 text-center text-red-400">{row.stressLoss.toFixed(1)}%</td>
@@ -913,7 +913,7 @@ function CreditEnhancementTab() {
             </tbody>
           </table>
         </div>
-        <p className="mt-2 text-xs text-white/40">Buffer = Attachment Point − Stress Loss. Negative buffer indicates potential senior impairment under GFC-level stress.</p>
+        <p className="mt-2 text-xs text-foreground/40">Buffer = Attachment Point − Stress Loss. Negative buffer indicates potential senior impairment under GFC-level stress.</p>
       </div>
     </div>
   );
@@ -938,8 +938,8 @@ export default function ABSPricingPage() {
               <Layers className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Asset-Backed Securities Pricing</h1>
-              <p className="text-sm text-white/50">
+              <h1 className="text-2xl font-bold text-foreground">Asset-Backed Securities Pricing</h1>
+              <p className="text-sm text-foreground/50">
                 ABS structure, prepayment models, tranching, WAL/duration, and credit enhancement
               </p>
             </div>
@@ -954,9 +954,9 @@ export default function ABSPricingPage() {
               { label: "CE Level (AAA)", value: "30%", icon: ShieldCheck },
             ].map((stat, i) => (
               <div key={i} className="flex items-center gap-1.5 rounded-full border border-border bg-foreground/5 px-3 py-1 text-xs">
-                <stat.icon className="h-3 w-3 text-white/40" />
-                <span className="text-white/50">{stat.label}:</span>
-                <span className="text-white font-medium">{stat.value}</span>
+                <stat.icon className="h-3 w-3 text-foreground/40" />
+                <span className="text-foreground/50">{stat.label}:</span>
+                <span className="text-foreground font-medium">{stat.value}</span>
               </div>
             ))}
           </div>
@@ -1010,8 +1010,8 @@ export default function ABSPricingPage() {
         {/* Footer info */}
         <div className="mt-8 rounded-xl border border-border/50 bg-foreground/[0.03] p-4">
           <div className="flex items-start gap-2">
-            <Info className="h-4 w-4 text-white/30 mt-0.5 shrink-0" />
-            <p className="text-xs text-white/30">
+            <Info className="h-4 w-4 text-foreground/30 mt-0.5 shrink-0" />
+            <p className="text-xs text-foreground/30">
               Illustrative auto ABS transaction. Prepayment models use PSA standard ramp (0.2% × month for first 30 months, 6% thereafter).
               Z-spreads and OAS are calculated using simplified flat-curve pricing. Credit enhancement percentages represent cumulative subordination plus
               reserve fund. Rating agency stress multiples are indicative and vary by methodology and asset class. Not financial advice.

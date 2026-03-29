@@ -857,10 +857,10 @@ function ScenarioBuilderTab() {
                     className={`text-xs px-2.5 py-1 rounded-full transition-colors ${
                       activeScenario === sc
                         ? sc === "bull"
-                          ? "bg-emerald-600 text-white"
+                          ? "bg-emerald-600 text-foreground"
                           : sc === "base"
                           ? "bg-primary text-primary-foreground"
-                          : "bg-red-600 text-white"
+                          : "bg-red-600 text-foreground"
                         : "bg-muted text-muted-foreground hover:bg-muted/80"
                     }`}
                   >

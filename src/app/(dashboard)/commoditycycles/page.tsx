@@ -902,7 +902,7 @@ function CycleCard({
             className="w-3 h-3 rounded-full"
             style={{ backgroundColor: cycle.color }}
           />
-          <span className="font-semibold text-sm text-white">{cycle.label}</span>
+          <span className="font-semibold text-sm text-foreground">{cycle.label}</span>
           {cycle.status === "current" && (
             <Badge className="text-xs bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
               Active
@@ -959,13 +959,13 @@ function CycleCard({
             </div>
             <div className="mt-3 flex gap-4 text-xs text-muted-foreground border-t border-border/50 pt-3">
               <span>
-                Start: <span className="text-white">{cycle.startYear}</span>
+                Start: <span className="text-foreground">{cycle.startYear}</span>
               </span>
               <span>
-                Peak: <span className="text-white">{cycle.peakYear}</span>
+                Peak: <span className="text-foreground">{cycle.peakYear}</span>
               </span>
               <span>
-                End: <span className="text-white">{cycle.status === "current" ? "TBD" : cycle.endYear}</span>
+                End: <span className="text-foreground">{cycle.status === "current" ? "TBD" : cycle.endYear}</span>
               </span>
             </div>
           </motion.div>
@@ -1000,7 +1000,7 @@ export default function CommodityCyclesPage() {
             <Activity className="text-amber-400" size={22} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Commodity Super-Cycles</h1>
+            <h1 className="text-2xl font-bold text-foreground">Commodity Super-Cycles</h1>
             <p className="text-sm text-muted-foreground">
               Raw materials analysis, market dynamics, and investment vehicles
             </p>
@@ -1190,7 +1190,7 @@ export default function CommodityCyclesPage() {
                           key={row.name}
                           className="border-b border-border/50 hover:bg-muted/30"
                         >
-                          <td className="py-2 pr-4 font-medium text-white">
+                          <td className="py-2 pr-4 font-medium text-foreground">
                             {row.name}
                           </td>
                           <td className="py-2 pr-4">
@@ -1198,7 +1198,7 @@ export default function CommodityCyclesPage() {
                               {row.type}
                             </Badge>
                           </td>
-                          <td className="py-2 pr-4 text-right font-mono text-white">
+                          <td className="py-2 pr-4 text-right font-mono text-foreground">
                             ${row.price.toFixed(2)}
                             <span className="text-muted-foreground ml-1 text-xs">
                               {row.unit}
@@ -1255,7 +1255,7 @@ export default function CommodityCyclesPage() {
                   <CardContent className="pt-4">
                     <div className="flex items-center gap-2 mb-2">
                       {icon}
-                      <span className="text-sm font-semibold text-white">
+                      <span className="text-sm font-semibold text-foreground">
                         {title}
                       </span>
                     </div>
@@ -1299,7 +1299,7 @@ export default function CommodityCyclesPage() {
                   ].map(({ metal, kg, color, note }) => (
                     <div key={metal}>
                       <div className="flex justify-between text-xs mb-1">
-                        <span className="font-medium text-white">{metal}</span>
+                        <span className="font-medium text-foreground">{metal}</span>
                         <span style={{ color }} className="font-semibold">
                           {kg} kg
                         </span>
@@ -1347,14 +1347,14 @@ export default function CommodityCyclesPage() {
                           className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
-                            <span className="font-medium text-white">
+                            <span className="font-medium text-foreground">
                               {row.name}
                             </span>
                             <span className="text-muted-foreground ml-1">
                               ({row.symbol})
                             </span>
                           </td>
-                          <td className="py-2 pr-4 text-right font-mono text-white">
+                          <td className="py-2 pr-4 text-right font-mono text-foreground">
                             {row.price >= 1000
                               ? `$${row.price.toLocaleString()}`
                               : `$${row.price.toFixed(2)}`}
@@ -1430,7 +1430,7 @@ export default function CommodityCyclesPage() {
                   <CardContent className="pt-4">
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-lg">{icon}</span>
-                      <span className="font-semibold text-white text-sm">
+                      <span className="font-semibold text-foreground text-sm">
                         {name}
                       </span>
                       <Badge className="text-xs bg-foreground/5 text-muted-foreground border-border">
@@ -1542,14 +1542,14 @@ export default function CommodityCyclesPage() {
                           className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
-                            <span className="font-medium text-white">
+                            <span className="font-medium text-foreground">
                               {row.name}
                             </span>
                             <span className="text-muted-foreground ml-1">
                               ({row.symbol})
                             </span>
                           </td>
-                          <td className="py-2 pr-4 text-right font-mono text-white">
+                          <td className="py-2 pr-4 text-right font-mono text-foreground">
                             {row.price >= 1000
                               ? `$${row.price.toLocaleString()}`
                               : `$${row.price.toFixed(2)}`}
@@ -1731,7 +1731,7 @@ export default function CommodityCyclesPage() {
                           className="border-b border-border/50 hover:bg-muted/30"
                         >
                           <td className="py-2 pr-4">
-                            <span className="font-medium text-white">
+                            <span className="font-medium text-foreground">
                               {v.name}
                             </span>
                             <span className="text-primary ml-1.5 font-mono text-xs">
@@ -1806,7 +1806,7 @@ export default function CommodityCyclesPage() {
                       >
                         {v.type}
                       </Badge>
-                      <span className="font-semibold text-white text-sm">
+                      <span className="font-semibold text-foreground text-sm">
                         {v.name}
                       </span>
                       <span className="font-mono text-primary text-xs">
@@ -1843,7 +1843,7 @@ export default function CommodityCyclesPage() {
                             <p className="text-xs text-muted-foreground mb-1.5 uppercase tracking-wide">
                               Exposure
                             </p>
-                            <p className="text-sm text-white">{v.exposure}</p>
+                            <p className="text-sm text-foreground">{v.exposure}</p>
                             <p className="text-xs text-muted-foreground mt-1">
                               AUM: {v.aum}
                             </p>

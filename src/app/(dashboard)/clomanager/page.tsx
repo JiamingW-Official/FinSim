@@ -233,7 +233,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
@@ -246,7 +246,7 @@ function StatCard({
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
@@ -329,7 +329,7 @@ function StructureTab() {
       <div className="rounded-xl border border-border bg-foreground/5 p-4">
         <SectionHeading title="Capital Structure Waterfall" sub="Senior to junior priority of payments" />
         <div className="overflow-x-auto">
-          <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="text-white">
+          <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="text-foreground">
             {TRANCHES.map((t, i) => {
               const yPct = cumPcts[i] / 100;
               const hPct = t.pctCapital / 100;
@@ -523,7 +523,7 @@ function CoverageTab() {
             { term: "Cure Period", desc: "Manager has limited time to restore compliance by selling assets or buying premium loans." },
           ].map((item) => (
             <div key={item.term} className="rounded-lg bg-foreground/5 p-3">
-              <p className="text-xs font-semibold text-white mb-1">{item.term}</p>
+              <p className="text-xs font-semibold text-foreground mb-1">{item.term}</p>
               <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
@@ -697,7 +697,7 @@ function ReinvestmentTab() {
         <div>
           <div className="flex justify-between mb-2">
             <span className="text-xs text-muted-foreground">Reinvestment Spread</span>
-            <span className="text-xs font-mono text-white">{reinvestSpread} bps</span>
+            <span className="text-xs font-mono text-foreground">{reinvestSpread} bps</span>
           </div>
           <Slider
             value={[reinvestSpread]}
@@ -716,7 +716,7 @@ function ReinvestmentTab() {
         <div>
           <div className="flex justify-between mb-2">
             <span className="text-xs text-muted-foreground">Reinvestment Period Length</span>
-            <span className="text-xs font-mono text-white">{reinvestPeriod} years</span>
+            <span className="text-xs font-mono text-foreground">{reinvestPeriod} years</span>
           </div>
           <Slider
             value={[reinvestPeriod]}
@@ -735,7 +735,7 @@ function ReinvestmentTab() {
         <div>
           <div className="flex justify-between mb-2">
             <span className="text-xs text-muted-foreground">Annual Prepayment Rate (post-reinvestment)</span>
-            <span className="text-xs font-mono text-white">{prepayRate}%</span>
+            <span className="text-xs font-mono text-foreground">{prepayRate}%</span>
           </div>
           <Slider
             value={[prepayRate]}
@@ -820,7 +820,7 @@ function DefaultScenariosTab() {
                 : "border-border bg-foreground/5 hover:bg-muted/50"
             )}
           >
-            <p className="text-sm font-semibold text-white mb-1">{sc.label}</p>
+            <p className="text-sm font-semibold text-foreground mb-1">{sc.label}</p>
             <p className="text-xs text-muted-foreground">Default: {sc.defaultRate}% · Recovery: {sc.recovery}%</p>
             <p className={cn(
               "text-sm font-bold mt-2",
@@ -1044,7 +1044,7 @@ function EquityReturnsTab() {
           ].map((fee) => (
             <div key={fee.name} className="rounded-lg bg-foreground/5 p-3">
               <p className={cn("text-xs font-semibold mb-1", fee.color)}>{fee.name}</p>
-              <p className="text-sm font-bold text-white mb-1">{fee.rate}</p>
+              <p className="text-sm font-bold text-foreground mb-1">{fee.rate}</p>
               <p className="text-xs text-muted-foreground">{fee.desc}</p>
             </div>
           ))}
@@ -1079,7 +1079,7 @@ export default function CLOManagerPage() {
       <div className="border-b border-border bg-card/60 px-6 py-5">
         <div className="flex items-center gap-3 mb-1">
           <DollarSign className="h-6 w-6 text-primary" />
-          <h1 className="text-xl font-bold text-white">CLO Manager</h1>
+          <h1 className="text-xl font-bold text-foreground">CLO Manager</h1>
           <Badge variant="outline" className="border-primary/40 text-primary text-xs">
             $500M CLO
           </Badge>
@@ -1097,7 +1097,7 @@ export default function CLOManagerPage() {
               <TabsTrigger
                 key={id}
                 value={id}
-                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-foreground"
               >
                 <Icon className="h-3.5 w-3.5" />
                 {label}

@@ -739,7 +739,7 @@ export default function QuantPortfolioPage() {
                           onClick={() => setSelectedConstraint(c)}
                           className={`flex-1 py-1.5 rounded text-xs font-medium border transition-colors ${
                             selectedConstraint === c
-                              ? "bg-indigo-600 border-indigo-500 text-white"
+                              ? "bg-indigo-600 border-indigo-500 text-foreground"
                               : "bg-muted border-border text-muted-foreground hover:text-foreground"
                           }`}
                         >

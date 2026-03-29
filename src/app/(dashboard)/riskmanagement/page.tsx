@@ -178,7 +178,7 @@ function HBar({ label, value, maxVal, color = "#6366f1" }: { label: string; valu
 
 // ── Stat Card ──────────────────────────────────────────────────────────────────
 
-function StatCard({ label, value, sub, color = "text-white" }: { label: string; value: string; sub?: string; color?: string }) {
+function StatCard({ label, value, sub, color = "text-foreground" }: { label: string; value: string; sub?: string; color?: string }) {
   return (
     <div className="bg-muted/60 rounded-xl p-4 border border-border/40">
       <div className="text-xs text-muted-foreground mb-1">{label}</div>

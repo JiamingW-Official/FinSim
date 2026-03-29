@@ -345,7 +345,7 @@ function DeepValueScreen() {
             className={cn(
               "px-3 py-1.5 rounded text-xs font-medium transition-colors",
               filter === f
-                ? "bg-primary text-white"
+                ? "bg-primary text-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted hover:text-foreground"
             )}
           >
@@ -983,13 +983,13 @@ function BacktestedPerformance() {
       <div className="flex gap-2">
         <button
           onClick={() => setShowDrawdown(false)}
-          className={cn("px-3 py-1 text-xs rounded", !showDrawdown ? "bg-primary text-white" : "bg-muted text-muted-foreground")}
+          className={cn("px-3 py-1 text-xs rounded", !showDrawdown ? "bg-primary text-foreground" : "bg-muted text-muted-foreground")}
         >
           NAV Growth
         </button>
         <button
           onClick={() => setShowDrawdown(true)}
-          className={cn("px-3 py-1 text-xs rounded", showDrawdown ? "bg-red-700 text-white" : "bg-muted text-muted-foreground")}
+          className={cn("px-3 py-1 text-xs rounded", showDrawdown ? "bg-red-700 text-foreground" : "bg-muted text-muted-foreground")}
         >
           Drawdown Profile
         </button>

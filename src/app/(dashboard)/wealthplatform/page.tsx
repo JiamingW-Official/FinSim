@@ -1136,19 +1136,19 @@ export default function WealthPlatformPage() {
       {/* Tabs */}
       <Tabs defaultValue="profile" className="space-y-4">
         <TabsList className="bg-card border border-border p-1 rounded-lg gap-1">
-          <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
+          <TabsTrigger value="profile" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
             <User className="w-3.5 h-3.5" />
             Client Profile
           </TabsTrigger>
-          <TabsTrigger value="allocation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
+          <TabsTrigger value="allocation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
             <PieChart className="w-3.5 h-3.5" />
             Asset Allocation
           </TabsTrigger>
-          <TabsTrigger value="tax" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
+          <TabsTrigger value="tax" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
             <Shield className="w-3.5 h-3.5" />
             Tax Planning
           </TabsTrigger>
-          <TabsTrigger value="reporting" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5 px-3">
+          <TabsTrigger value="reporting" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5 px-3">
             <FileText className="w-3.5 h-3.5" />
             Reporting
           </TabsTrigger>
@@ -1174,7 +1174,7 @@ export default function WealthPlatformPage() {
                 <div className="flex items-center gap-2 mb-2">
                   <div className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold",
-                    selectedClient === c.id ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground"
+                    selectedClient === c.id ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground"
                   )}>
                     {c.name.charAt(0)}
                   </div>
@@ -1484,7 +1484,7 @@ export default function WealthPlatformPage() {
                         <div className={cn("w-4 h-4 rounded border flex items-center justify-center flex-shrink-0",
                           selected ? "bg-indigo-600 border-indigo-500" : "border-border"
                         )}>
-                          {selected && <CheckCircle className="w-3 h-3 text-white" />}
+                          {selected && <CheckCircle className="w-3 h-3 text-foreground" />}
                         </div>
                         <span className="text-sm font-semibold text-foreground w-12">{pos.ticker}</span>
                         <Badge variant="outline" className="text-xs border-border text-muted-foreground px-1.5">
@@ -1795,7 +1795,7 @@ export default function WealthPlatformPage() {
                   </div>
                   <Button
                     size="sm"
-                    className="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 text-white gap-1.5 text-xs"
+                    className="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 text-foreground gap-1.5 text-xs"
                   >
                     <Download className="w-3.5 h-3.5" />
                     Download PDF Report

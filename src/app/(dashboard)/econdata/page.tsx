@@ -763,7 +763,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
               <TrafficDot status={ind.traffic} />
             </div>
             <div className="flex items-end gap-2 mb-1">
-              <span className="text-xl font-semibold text-white">{ind.value}</span>
+              <span className="text-xl font-semibold text-foreground">{ind.value}</span>
               <span className="text-xs text-muted-foreground mb-0.5">{ind.unit}</span>
               <div className="ml-auto"><TrendIcon trend={ind.trend} /></div>
             </div>
@@ -799,7 +799,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Fed Funds (Target)</span>
-              <span className="text-lg font-bold text-white">{currentRate}%</span>
+              <span className="text-lg font-bold text-foreground">{currentRate}%</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Neutral Rate (r*)</span>
@@ -829,7 +829,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
                 <div className="flex-1 bg-foreground/5 rounded-full h-2">
                   <div className="h-2 rounded-full" style={{ width: `${(v.count / 12) * 100}%`, backgroundColor: v.color }} />
                 </div>
-                <span className="text-xs font-mono text-white w-4">{v.count}</span>
+                <span className="text-xs font-mono text-foreground w-4">{v.count}</span>
               </div>
             ))}
             <div className="text-xs text-muted-foreground mt-2">12 total FOMC voters (7 governors + 5 presidents)</div>
@@ -851,7 +851,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             {fedSpeak.map((sp, i) => (
               <div key={i} className="flex items-center gap-2">
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs font-medium text-white truncate">{sp.name}</div>
+                  <div className="text-xs font-medium text-foreground truncate">{sp.name}</div>
                   <div className="text-xs text-muted-foreground">{sp.date}</div>
                 </div>
                 <div className="text-xs px-2 py-0.5 rounded-full" style={{
@@ -891,7 +891,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             <tbody>
               {fedMeetings.map((m, i) => (
                 <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-1.5 pr-4 text-white font-medium">{m.date}</td>
+                  <td className="py-1.5 pr-4 text-foreground font-medium">{m.date}</td>
                   <td className="text-right pr-3 text-red-400">{m.hikePct}%</td>
                   <td className="text-right pr-3 text-muted-foreground">{m.holdPct}%</td>
                   <td className="text-right pr-3 text-emerald-400">{m.cutPct}%</td>
@@ -1022,7 +1022,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
                   transition={{ delay: i * 0.03 }}
                   className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
-                  <td className="py-1.5 text-white">
+                  <td className="py-1.5 text-foreground">
                     {c.flag} {c.name}
                   </td>
                   <td className={cn("text-right pr-4 font-mono", cellColor(c.gdpGrowth, "gdpGrowth"))}>{c.gdpGrowth > 0 ? "+" : ""}{c.gdpGrowth.toFixed(1)}%</td>
@@ -1095,7 +1095,7 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
                   {ri.triggered ? <AlertTriangle className="w-3 h-3 text-red-400" /> : <Activity className="w-3 h-3 text-emerald-400" />}
                   <span className={cn("font-medium", ri.triggered ? "text-red-300" : "text-emerald-300")}>{ri.name}</span>
                 </div>
-                <div className="font-mono text-white">{ri.value}{ri.unit}</div>
+                <div className="font-mono text-foreground">{ri.value}{ri.unit}</div>
                 <div className="text-muted-foreground">Threshold: {ri.threshold}{ri.unit}</div>
               </div>
             ))}
@@ -1125,13 +1125,13 @@ function RecessionTab({ data }: { data: ReturnType<typeof generateData> }) {
             className={cn("p-3 rounded-lg border text-xs", ri.triggered ? "border-red-500/20 bg-red-500/5" : "border-border bg-foreground/[0.02]")}
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="font-semibold text-white">{ri.name}</span>
+              <span className="font-semibold text-foreground">{ri.name}</span>
               <span className={cn("px-2 py-0.5 rounded-full text-xs", ri.triggered ? "bg-red-500/20 text-red-300" : "bg-emerald-500/20 text-emerald-300")}>
                 {ri.triggered ? "TRIGGERED" : "CLEAR"}
               </span>
             </div>
             <div className="flex items-center gap-3 mb-1">
-              <span className="text-lg font-bold text-white">{ri.value}{ri.unit}</span>
+              <span className="text-lg font-bold text-foreground">{ri.value}{ri.unit}</span>
               <span className="text-muted-foreground">vs {ri.threshold}{ri.unit} threshold</span>
             </div>
             <div className="text-muted-foreground">{ri.desc}</div>
@@ -1190,7 +1190,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
                   transition={{ delay: i * 0.04 }}
                   className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
-                  <td className="py-1.5 text-white flex items-center gap-1.5">
+                  <td className="py-1.5 text-foreground flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                     {s.name}
                   </td>
@@ -1377,7 +1377,7 @@ export default function EconDataPage() {
             <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
               <Activity className="w-4 h-4 text-indigo-400" />
             </div>
-            <h1 className="text-2xl font-bold text-white">Economic Data</h1>
+            <h1 className="text-2xl font-bold text-foreground">Economic Data</h1>
             <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Live</span>
           </div>
           <p className="text-sm text-muted-foreground ml-11">Macro indicators, Fed policy, global comparisons, and recession signals</p>
@@ -1392,7 +1392,7 @@ export default function EconDataPage() {
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-foreground/10 data-[state=active]:text-white transition-all"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground transition-all"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {tab.label}

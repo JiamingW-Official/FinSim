@@ -130,7 +130,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
         <button
           type="button"
           onClick={onClose}
-          className="mt-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary/90 active:scale-95"
+          className="mt-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-foreground transition-all hover:bg-primary/90 active:scale-95"
         >
           Done
         </button>

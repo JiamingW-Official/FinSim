@@ -498,7 +498,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
               <span className="text-[11px] font-bold text-muted-foreground text-center">{i + 1}</span>
 
               <div className="flex items-center gap-2 min-w-0">
-                <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-white", colorClass)}>
+                <div className={cn("flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-foreground", colorClass)}>
                   {getInitials(friend.name)}
                 </div>
                 <div className="min-w-0">
@@ -884,7 +884,7 @@ function PodiumSlot({
 
       {/* Avatar */}
       <div className={cn(
-        "flex items-center justify-center rounded-xl font-bold text-white",
+        "flex items-center justify-center rounded-xl font-bold text-foreground",
         sizes[place],
         entry.isUser ? "bg-primary" : color,
       )}>

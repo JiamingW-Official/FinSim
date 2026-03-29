@@ -454,7 +454,7 @@ function CardEconomicsTab() {
                 onClick={() => setActiveCard(tier)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                   activeCard.cardType === tier.cardType
-                    ? "bg-indigo-600 border-indigo-500 text-white"
+                    ? "bg-indigo-600 border-indigo-500 text-foreground"
                     : "bg-muted border-border text-muted-foreground hover:border-border"
                 }`}
               >
@@ -819,7 +819,7 @@ function CBDCTab() {
             onClick={() => setFilter(f)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
               filter === f
-                ? "bg-indigo-600 border-indigo-500 text-white"
+                ? "bg-indigo-600 border-indigo-500 text-foreground"
                 : "bg-muted border-border text-muted-foreground hover:border-border"
             }`}
           >
@@ -1184,19 +1184,19 @@ export default function PaymentsPage() {
         {/* Tabs */}
         <Tabs defaultValue="rails">
           <TabsList className="bg-card border border-border mb-6 flex flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="rails" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="rails" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Payment Rails
             </TabsTrigger>
-            <TabsTrigger value="card" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="card" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Card Economics
             </TabsTrigger>
-            <TabsTrigger value="wallets" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="wallets" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Digital Wallets
             </TabsTrigger>
-            <TabsTrigger value="cbdc" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="cbdc" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               CBDC & Stablecoins
             </TabsTrigger>
-            <TabsTrigger value="stocks" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="stocks" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Payment Stocks
             </TabsTrigger>
           </TabsList>

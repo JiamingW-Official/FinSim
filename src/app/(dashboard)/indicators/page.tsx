@@ -735,7 +735,7 @@ function GdpTab() {
                 onClick={() => setShowNominal(lbl === "Nominal")}
                 className={cn("px-3 py-1 rounded-full text-xs font-medium transition-colors",
                   (lbl === "Nominal") === showNominal
-                    ? "bg-indigo-600 text-white"
+                    ? "bg-indigo-600 text-foreground"
                     : "bg-muted text-muted-foreground hover:text-foreground"
                 )}>
                 {lbl}
@@ -872,7 +872,7 @@ function InflationTab() {
               className="flex items-center justify-center"
             >
               {c.pct >= 10 && (
-                <span className="text-white text-xs font-bold">{c.pct}%</span>
+                <span className="text-foreground text-xs font-bold">{c.pct}%</span>
               )}
             </div>
           ))}
@@ -1215,7 +1215,7 @@ function GlobalTab() {
             <button key={v}
               onClick={() => setPmiView(v)}
               className={cn("px-3 py-1 rounded-full text-xs font-medium capitalize transition-colors",
-                pmiView === v ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:text-foreground")}>
+                pmiView === v ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:text-foreground")}>
               {v}
             </button>
           ))}
@@ -1442,7 +1442,7 @@ export default function EconomicIndicatorsPage() {
               <TabsTrigger
                 key={id}
                 value={id}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm data-[state=active]:bg-indigo-600 data-[state=active]:text-white data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground transition-colors"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground transition-colors"
               >
                 <Icon className="w-4 h-4" />
                 <span className="hidden sm:inline">{label}</span>

@@ -76,7 +76,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
@@ -269,7 +269,7 @@ function PropertyAnalyzer() {
                 step={step}
                 min={min}
                 onChange={(e) => set(key, parseFloat(e.target.value) || 0)}
-                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -282,7 +282,7 @@ function PropertyAnalyzer() {
               min={0}
               max={30}
               onChange={(e) => set("vacancy", parseFloat(e.target.value) || 0)}
-              className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
           <div className="flex items-center justify-between gap-4">
@@ -294,7 +294,7 @@ function PropertyAnalyzer() {
               min={5}
               max={100}
               onChange={(e) => set("downPct", parseFloat(e.target.value) || 20)}
-              className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
           </div>
         </div>
@@ -329,11 +329,11 @@ function PropertyAnalyzer() {
           <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-1">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Loan Amount (80% LTV)</span>
-              <span className="text-white">{fmtM(calc.loanAmount)}</span>
+              <span className="text-foreground">{fmtM(calc.loanAmount)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Monthly Mortgage (7%, 30yr)</span>
-              <span className="text-white">{fmtUSD(calc.pmt)}</span>
+              <span className="text-foreground">{fmtUSD(calc.pmt)}</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Break-Even Rent</span>
@@ -341,7 +341,7 @@ function PropertyAnalyzer() {
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Down Payment</span>
-              <span className="text-white">{fmtM(calc.downPayment)}</span>
+              <span className="text-foreground">{fmtM(calc.downPayment)}</span>
             </div>
           </div>
         </div>
@@ -558,7 +558,7 @@ function MarketComparisons() {
             onClick={() => setSort(key)}
             className={cn(
               "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
-              sort === key ? "bg-primary text-white" : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
+              sort === key ? "bg-primary text-foreground" : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
             )}
           >
             {label}
@@ -594,7 +594,7 @@ function MarketComparisons() {
                     transition={{ delay: i * 0.02 }}
                     className="border-t border-border/50 hover:bg-muted/30 transition-colors"
                   >
-                    <td className="px-3 py-2 font-medium text-white">
+                    <td className="px-3 py-2 font-medium text-foreground">
                       {m.city}, {m.state}
                     </td>
                     <td className="px-3 py-2 text-right text-muted-foreground">{fmtM(m.medianPrice)}</td>
@@ -650,7 +650,7 @@ function MarketComparisons() {
                 onChange={(e) =>
                   setRentVsBuy((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))
                 }
-                className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -783,7 +783,7 @@ function REITAnalysis() {
                   onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
                   className={cn("border-t border-border/50 cursor-pointer transition-colors", selected === r.ticker ? "bg-primary/20" : "hover:bg-muted/30")}
                 >
-                  <td className="px-3 py-2 font-mono font-bold text-white">{r.ticker}</td>
+                  <td className="px-3 py-2 font-mono font-bold text-foreground">{r.ticker}</td>
                   <td className="px-3 py-2">
                     <span className="rounded px-1.5 py-0.5 text-xs" style={{ backgroundColor: (SECTOR_COLORS[r.sector] ?? "#6b7280") + "30", color: SECTOR_COLORS[r.sector] ?? "#9ca3af" }}>
                       {r.sector}
@@ -819,7 +819,7 @@ function REITAnalysis() {
           >
             <div className="flex justify-between items-start mb-3">
               <div>
-                <span className="font-mono font-bold text-xl text-white">{sel.ticker}</span>
+                <span className="font-mono font-bold text-xl text-foreground">{sel.ticker}</span>
                 <span className="ml-2 text-muted-foreground">{sel.name}</span>
               </div>
               <span className="rounded px-2 py-0.5 text-xs font-medium" style={{ backgroundColor: (SECTOR_COLORS[sel.sector] ?? "#6b7280") + "30", color: SECTOR_COLORS[sel.sector] ?? "#9ca3af" }}>
@@ -871,10 +871,10 @@ function REITAnalysis() {
             REITs own depreciating assets on paper — GAAP requires large depreciation charges that reduce net income, but real estate often <em>appreciates</em> in value.
           </p>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong className="text-white">FFO = Net Income + Depreciation − Gains on Property Sales</strong>. This gives a more accurate picture of cash generated from operations.
+            <strong className="text-foreground">FFO = Net Income + Depreciation − Gains on Property Sales</strong>. This gives a more accurate picture of cash generated from operations.
           </p>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong className="text-white">AFFO</strong> (Adjusted FFO) further subtracts recurring capex — the gold standard for dividend sustainability analysis.
+            <strong className="text-foreground">AFFO</strong> (Adjusted FFO) further subtracts recurring capex — the gold standard for dividend sustainability analysis.
           </p>
         </div>
         <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
@@ -959,7 +959,7 @@ function CommercialRE() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-xl">{s.icon}</span>
-                <span className="font-semibold text-white text-sm">{s.type}</span>
+                <span className="font-semibold text-foreground text-sm">{s.type}</span>
               </div>
               {s.trend === "up" ? <TrendingUp className="w-4 h-4 text-emerald-400" /> : s.trend === "down" ? <TrendingDown className="w-4 h-4 text-rose-400" /> : <ArrowRight className="w-4 h-4 text-amber-400" />}
             </div>
@@ -1001,7 +1001,7 @@ function CommercialRE() {
                 value={dscrInputs[key]}
                 step={10000}
                 onChange={(e) => setDscrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1031,7 +1031,7 @@ function CommercialRE() {
                 value={mortInputs[key]}
                 step={step}
                 onChange={(e) => setMortInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1165,7 +1165,7 @@ function DevelopmentTab() {
                 value={devInputs[key]}
                 step={10000}
                 onChange={(e) => setDevInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1174,7 +1174,7 @@ function DevelopmentTab() {
           <div>
             <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span>Total Development Cost</span>
-              <span className="text-white font-semibold">{fmtM(totalCost)}</span>
+              <span className="text-foreground font-semibold">{fmtM(totalCost)}</span>
             </div>
             <svg viewBox={`0 0 ${BAR_W} ${BAR_H + 20}`} className="w-full">
               {costBreakdown.map((c) => {
@@ -1221,7 +1221,7 @@ function DevelopmentTab() {
                 value={brrrrInputs[key]}
                 step={step}
                 onChange={(e) => setBrrrrInputs((p) => ({ ...p, [key]: parseFloat(e.target.value) || 0 }))}
-                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-white text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-32 rounded-lg border border-border bg-card px-3 py-1.5 text-sm text-foreground text-right focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
@@ -1238,7 +1238,7 @@ function DevelopmentTab() {
           </div>
           <div className="flex justify-between text-sm">
             <span className="text-muted-foreground">Monthly Mortgage Payment</span>
-            <span className="text-white">{fmtUSD(brrrrCalc.monthlyPmt)}</span>
+            <span className="text-foreground">{fmtUSD(brrrrCalc.monthlyPmt)}</span>
           </div>
         </div>
       </div>
@@ -1528,9 +1528,9 @@ function PortfolioStrategy() {
             </div>
           ))}
           <div className="pt-2 border-t border-border space-y-1 text-xs text-muted-foreground">
-            <p><strong className="text-white">Portfolio allocation target:</strong> Real estate 10-20% of total portfolio for most investors.</p>
+            <p><strong className="text-foreground">Portfolio allocation target:</strong> Real estate 10-20% of total portfolio for most investors.</p>
             <p>Real estate correlation with equities is low (~0.15) over long periods, providing genuine diversification benefit.</p>
-            <p><strong className="text-white">Concentration risk:</strong> Single-family investors often have 80%+ of net worth in one property — opposite of diversification.</p>
+            <p><strong className="text-foreground">Concentration risk:</strong> Single-family investors often have 80%+ of net worth in one property — opposite of diversification.</p>
           </div>
         </div>
       </div>
@@ -1562,7 +1562,7 @@ export default function RealEstatePage() {
               <div className="rounded-xl bg-primary/20 p-2.5">
                 <Home className="w-6 h-6 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold text-white">Real Estate Investment Analysis</h1>
+              <h1 className="text-2xl font-bold text-foreground">Real Estate Investment Analysis</h1>
             </div>
             <p className="text-sm text-muted-foreground ml-14">
               Property analyzer, market comparisons, REITs, commercial RE, development, and portfolio strategy.
@@ -1588,7 +1588,7 @@ export default function RealEstatePage() {
               <TabsTrigger
                 key={id}
                 value={id}
-                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground hover:text-white transition-colors"
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground hover:text-foreground transition-colors"
               >
                 {icon}
                 <span className="hidden sm:inline">{label}</span>

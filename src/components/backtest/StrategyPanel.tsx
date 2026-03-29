@@ -588,7 +588,7 @@ export default function StrategyPanel({
       <button
         onClick={handleRun}
         disabled={isRunning || entryRules.length === 0}
-        className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-orange-500 disabled:opacity-40"
+        className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:bg-orange-500 disabled:opacity-40"
       >
         <FlaskConical className="h-4 w-4" />
         {isRunning ? "Running..." : monteCarloRuns > 0 ? `Run Backtest + ${monteCarloRuns} MC` : "Run Backtest"}

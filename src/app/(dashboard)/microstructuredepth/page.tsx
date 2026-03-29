@@ -599,16 +599,16 @@ export default function MicrostructureDepthPage() {
       {/* Tabs */}
       <Tabs defaultValue="spread" className="w-full">
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1 mb-4">
-          <TabsTrigger value="spread" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="spread" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <BarChart3 className="w-3.5 h-3.5 mr-1.5" />Spread Analysis
           </TabsTrigger>
-          <TabsTrigger value="orderflow" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="orderflow" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <Activity className="w-3.5 h-3.5 mr-1.5" />Order Flow
           </TabsTrigger>
-          <TabsTrigger value="impact" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="impact" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <TrendingDown className="w-3.5 h-3.5 mr-1.5" />Price Impact
           </TabsTrigger>
-          <TabsTrigger value="execution" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="execution" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <Target className="w-3.5 h-3.5 mr-1.5" />Execution Models
           </TabsTrigger>
         </TabsList>

@@ -342,7 +342,7 @@ function GlobalDemographicsTab() {
                 className={cn(
                   "px-3 py-1.5 rounded text-xs font-medium border transition-colors",
                   selectedCountry === c.name
-                    ? "bg-primary border-primary text-white"
+                    ? "bg-primary border-primary text-foreground"
                     : "bg-muted border-border text-muted-foreground hover:text-foreground",
                 )}
               >
@@ -375,7 +375,7 @@ function GlobalDemographicsTab() {
                 </div>
                 <div className="bg-muted rounded-lg p-3">
                   <div className="text-xs text-muted-foreground mb-2">Support Ratio (workers per dependent)</div>
-                  <div className="text-2xl font-bold text-white">
+                  <div className="text-2xl font-bold text-foreground">
                     {(country.workingAge / (country.youngDep + country.oldDep)).toFixed(2)}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">
@@ -1068,7 +1068,7 @@ function JapanCaseStudyTab() {
               { label: "Population Decline", value: "−600k/yr", sub: "Net loss since 2010 peak" },
             ].map((stat) => (
               <div key={stat.label} className="bg-muted rounded-lg p-3 text-center">
-                <div className="text-xl font-bold text-white">{stat.value}</div>
+                <div className="text-xl font-bold text-foreground">{stat.value}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
               </div>

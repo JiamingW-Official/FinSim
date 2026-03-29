@@ -264,7 +264,7 @@ function AccountBar({
           style={{ width: `${equityPct}%` }}
         >
           {equityPct > 10 && (
-            <span className="text-[11px] font-bold text-white/90 px-1 truncate">
+            <span className="text-[11px] font-bold text-foreground/90 px-1 truncate">
               Equity
             </span>
           )}
@@ -600,7 +600,7 @@ export function MarginDashboard() {
             <motion.span
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-white"
+              className="rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-foreground"
             >
               MARGIN CALL
             </motion.span>

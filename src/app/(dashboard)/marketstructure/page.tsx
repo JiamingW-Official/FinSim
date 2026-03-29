@@ -619,7 +619,7 @@ function OrderTypesTab() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-primary border-primary text-white" : "border-border text-muted-foreground hover:border-muted-foreground")}
+                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-primary border-primary text-foreground" : "border-border text-muted-foreground hover:border-muted-foreground")}
               >
                 {f}
               </button>
@@ -844,7 +844,7 @@ function PriceDiscoveryTab() {
               className="rounded-lg bg-card/50 border border-border/50 p-4"
             >
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white" style={{ background: s.color }}>
+                <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-foreground" style={{ background: s.color }}>
                   {s.step}
                 </div>
                 <span className="text-xs font-semibold text-foreground">{s.title}</span>
@@ -1373,7 +1373,7 @@ export default function MarketStructurePage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground"
             >
               <tab.icon size={12} />
               {tab.label}

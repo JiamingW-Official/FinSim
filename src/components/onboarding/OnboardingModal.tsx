@@ -91,7 +91,7 @@ export function OnboardingModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Welcome onboarding">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}

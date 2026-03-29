@@ -1045,7 +1045,7 @@ export default function AlgoPage() {
                 <Button
                   onClick={handleRunBacktest}
                   disabled={isRunning || strategy.entryConditions.length === 0}
-                  className="flex items-center gap-2 bg-primary hover:bg-primary text-white shrink-0"
+                  className="flex items-center gap-2 bg-primary hover:bg-primary text-foreground shrink-0"
                 >
                   <Play className="h-3.5 w-3.5" />
                   {isRunning ? "Running..." : "Run Backtest"}
@@ -1424,7 +1424,7 @@ export default function AlgoPage() {
                   <Button
                     onClick={handleRunOptimization}
                     disabled={isOptimizing}
-                    className="shrink-0 bg-primary hover:bg-primary text-white text-xs"
+                    className="shrink-0 bg-primary hover:bg-primary text-foreground text-xs"
                   >
                     {isOptimizing ? "Optimizing..." : "Run 6 Backtests"}
                   </Button>

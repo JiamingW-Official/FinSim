@@ -140,7 +140,7 @@ export function TradeConfirmDialog({
               size="sm"
               onClick={() => { soundEngine.playClick(); onConfirm(); }}
               className={cn(
-                "flex-1 text-xs font-semibold text-white",
+                "flex-1 text-xs font-semibold text-foreground",
                 isBuy
                   ? "bg-profit hover:bg-profit/80"
                   : "bg-loss hover:bg-loss/80",

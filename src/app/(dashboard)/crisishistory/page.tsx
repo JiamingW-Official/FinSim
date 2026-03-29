@@ -685,19 +685,19 @@ export default function CrisisHistoryPage() {
       {/* Tabs */}
       <Tabs defaultValue="timeline" className="w-full">
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="timeline" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
+          <TabsTrigger value="timeline" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
             Crisis Timeline
           </TabsTrigger>
-          <TabsTrigger value="gfc" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
+          <TabsTrigger value="gfc" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
             2008 GFC Deep Dive
           </TabsTrigger>
-          <TabsTrigger value="patterns" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
+          <TabsTrigger value="patterns" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
             Common Patterns
           </TabsTrigger>
-          <TabsTrigger value="assets" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
+          <TabsTrigger value="assets" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
             Asset Behavior
           </TabsTrigger>
-          <TabsTrigger value="policy" className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs">
+          <TabsTrigger value="policy" className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs">
             Policy Response
           </TabsTrigger>
         </TabsList>

@@ -76,7 +76,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
@@ -135,7 +135,7 @@ function SliderInput({
     <div className="flex flex-col gap-1">
       <div className="flex justify-between text-xs">
         <span className="text-muted-foreground">{label}</span>
-        <span className="text-white font-medium">{format(value)}</span>
+        <span className="text-foreground font-medium">{format(value)}</span>
       </div>
       <input
         type="range"
@@ -230,7 +230,7 @@ function IndustryOverview() {
           {PE_FIRMS.map((f) => (
             <div key={f.name} className="rounded-lg border border-border bg-foreground/5 p-3">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-sm font-semibold text-white">{f.name}</span>
+                <span className="text-sm font-semibold text-foreground">{f.name}</span>
                 <Badge className="bg-primary/20 text-primary border-border text-xs">
                   ${f.aum}B
                 </Badge>
@@ -373,7 +373,7 @@ function IndustryOverview() {
           {STRATEGY_COMPARISON.map((s) => (
             <div key={s.name} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold text-white">{s.name}</span>
+                <span className="text-sm font-semibold text-foreground">{s.name}</span>
                 <div className="flex gap-2">
                   <Badge className="bg-muted text-foreground text-xs">{s.stage}</Badge>
                   <Badge className="bg-primary/20 text-primary border-border text-xs">{s.minInvest}</Badge>
@@ -560,10 +560,10 @@ function LBOModeling() {
                   : "border-border bg-foreground/5 hover:bg-muted/50"
               )}
             >
-              <p className="text-xs font-semibold text-white truncate">{t.name}</p>
+              <p className="text-xs font-semibold text-foreground truncate">{t.name}</p>
               <p className="text-xs text-muted-foreground mt-0.5">{t.sector}</p>
               <div className="flex gap-2 mt-2 text-xs">
-                <span className="text-muted-foreground">Rev: <strong className="text-white">${t.revenue}M</strong></span>
+                <span className="text-muted-foreground">Rev: <strong className="text-foreground">${t.revenue}M</strong></span>
               </div>
               <div className="text-xs text-muted-foreground mt-0.5">
                 EBITDA: <strong className="text-primary">${t.ebitda}M</strong>
@@ -935,17 +935,17 @@ function ValueCreation() {
           {BOLT_ONS.map((bo) => (
             <div key={bo.name} className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col md:flex-row md:items-center gap-3">
               <div className="flex-1">
-                <p className="text-sm font-semibold text-white">{bo.name}</p>
+                <p className="text-sm font-semibold text-foreground">{bo.name}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Acquired Year {bo.year}</p>
               </div>
               <div className="flex flex-wrap gap-4 text-xs">
                 <div>
                   <span className="text-muted-foreground">Price: </span>
-                  <span className="text-white font-medium">${bo.price}M</span>
+                  <span className="text-foreground font-medium">${bo.price}M</span>
                 </div>
                 <div>
                   <span className="text-muted-foreground">Revenue: </span>
-                  <span className="text-white font-medium">${bo.revenue}M</span>
+                  <span className="text-foreground font-medium">${bo.revenue}M</span>
                 </div>
                 <div>
                   <span className="text-muted-foreground">Synergy EBITDA: </span>
@@ -997,7 +997,7 @@ function ValueCreation() {
               )}
             >
               <div className="flex items-center justify-between mb-2">
-                <p className={cn("text-sm font-semibold", opt.highlight ? "text-emerald-300" : "text-white")}>
+                <p className={cn("text-sm font-semibold", opt.highlight ? "text-emerald-300" : "text-foreground")}>
                   {opt.route}
                 </p>
                 {opt.highlight && (
@@ -1005,8 +1005,8 @@ function ValueCreation() {
                 )}
               </div>
               <div className="flex gap-4 text-xs mb-3">
-                <span className="text-muted-foreground">Avg MOIC: <strong className="text-white">{opt.avgMOIC}x</strong></span>
-                <span className="text-muted-foreground">Timeline: <strong className="text-white">{opt.timeToClose}</strong></span>
+                <span className="text-muted-foreground">Avg MOIC: <strong className="text-foreground">{opt.avgMOIC}x</strong></span>
+                <span className="text-muted-foreground">Timeline: <strong className="text-foreground">{opt.timeToClose}</strong></span>
               </div>
               <div className="space-y-1 text-xs">
                 {opt.pros.map((p) => (
@@ -1110,7 +1110,7 @@ function FundEconomics() {
         <SectionTitle><DollarSign className="w-4 h-4" /> Management Fee Structure</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
-            <p className="text-sm font-semibold text-white mb-2">Commitment Period (Years 1–5)</p>
+            <p className="text-sm font-semibold text-foreground mb-2">Commitment Period (Years 1–5)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               2.0% × <strong className="text-primary">${committedCapital}M committed capital</strong> ={" "}
               <strong className="text-amber-300">${(committedCapital * 0.02).toFixed(0)}M/yr</strong> management fee.
@@ -1118,7 +1118,7 @@ function FundEconomics() {
             </p>
           </div>
           <div className="rounded-xl border border-border bg-foreground/5 p-4">
-            <p className="text-sm font-semibold text-white mb-2">Harvest Period (Years 6–10)</p>
+            <p className="text-sm font-semibold text-foreground mb-2">Harvest Period (Years 6–10)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Fee step-down to 1.5% × <strong className="text-primary">invested capital</strong>.
               As realizations return capital, fee base shrinks. GPs typically reduce to 1.5% after commitment period ends.
@@ -1177,7 +1177,7 @@ function FundEconomics() {
                   "border-b border-border/50 hover:bg-muted/30 transition-colors",
                   irr === targetIRR ? "bg-primary/10" : ""
                 )}>
-                  <td className="py-2 pr-4 font-semibold text-white">{irr}%</td>
+                  <td className="py-2 pr-4 font-semibold text-foreground">{irr}%</td>
                   <td className="text-right py-2 pr-4 text-muted-foreground">${sc.grossValue.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-amber-400">${sc.gpCarry.toFixed(0)}M</td>
                   <td className="text-right py-2 pr-4 text-emerald-400">${sc.lpProfit.toFixed(0)}M</td>
@@ -1284,7 +1284,7 @@ function DealSourcing() {
                     className="h-full rounded-lg flex items-center justify-end pr-2"
                     style={{ backgroundColor: stage.color }}
                   >
-                    <span className="text-xs font-semibold text-white">{stage.count}</span>
+                    <span className="text-xs font-semibold text-foreground">{stage.count}</span>
                   </motion.div>
                 </div>
                 <div className="w-12 text-xs text-muted-foreground text-right flex-shrink-0">{stage.pct}%</div>
@@ -1301,7 +1301,7 @@ function DealSourcing() {
           {SOURCING_CHANNELS.map((ch) => (
             <div key={ch.channel} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm font-semibold text-white">{ch.channel}</p>
+                <p className="text-sm font-semibold text-foreground">{ch.channel}</p>
                 <Badge className="text-xs" style={{ backgroundColor: ch.color + "33", color: ch.color, borderColor: ch.color + "55" }}>
                   {ch.dealShare}% of deals
                 </Badge>
@@ -1309,7 +1309,7 @@ function DealSourcing() {
               <div className="grid grid-cols-2 gap-3 text-xs">
                 <div>
                   <span className="text-muted-foreground">Avg Competitors: </span>
-                  <span className="text-white font-medium">{ch.avgCompetitors}</span>
+                  <span className="text-foreground font-medium">{ch.avgCompetitors}</span>
                 </div>
                 <div>
                   <span className="text-muted-foreground">Win Rate: </span>
@@ -1346,12 +1346,12 @@ function DealSourcing() {
                 transition={{ delay: i * 0.06 }}
                 className="relative flex gap-4 pl-14"
               >
-                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-bold text-white z-10">
+                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-bold text-foreground z-10">
                   {i + 1}
                 </div>
                 <div className="rounded-xl border border-border bg-foreground/5 p-3 flex-1">
                   <div className="flex items-center justify-between mb-1">
-                    <p className="text-sm font-semibold text-white">{step.step}</p>
+                    <p className="text-sm font-semibold text-foreground">{step.step}</p>
                     <Badge className="bg-muted text-muted-foreground text-xs border-border">{step.days}</Badge>
                   </div>
                   <p className="text-xs text-muted-foreground">{step.description}</p>
@@ -1516,7 +1516,7 @@ export default function PrivateEquityPage() {
               <Briefcase className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Private Equity &amp; LBO Analysis</h1>
+              <h1 className="text-2xl font-bold text-foreground">Private Equity &amp; LBO Analysis</h1>
               <p className="text-sm text-muted-foreground">Industry overview, LBO modeling, value creation, fund economics, deal sourcing</p>
             </div>
           </div>
@@ -1530,19 +1530,19 @@ export default function PrivateEquityPage() {
         {/* Tabs */}
         <Tabs defaultValue="overview" className="w-full">
           <TabsList className="bg-foreground/5 border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
               Industry Overview
             </TabsTrigger>
-            <TabsTrigger value="lbo" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
+            <TabsTrigger value="lbo" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
               LBO Modeling
             </TabsTrigger>
-            <TabsTrigger value="value" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
+            <TabsTrigger value="value" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
               Value Creation
             </TabsTrigger>
-            <TabsTrigger value="fundeconomics" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
+            <TabsTrigger value="fundeconomics" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
               Fund Economics
             </TabsTrigger>
-            <TabsTrigger value="sourcing" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
+            <TabsTrigger value="sourcing" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
               Deal Sourcing &amp; Diligence
             </TabsTrigger>
           </TabsList>

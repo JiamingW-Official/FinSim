@@ -1737,25 +1737,25 @@ export default function CryptoInstitutionalPage() {
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
           <TabsTrigger
             value="etfs"
-            className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
+            className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground"
           >
             Bitcoin &amp; Ether ETFs
           </TabsTrigger>
           <TabsTrigger
             value="stablecoins"
-            className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
+            className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground"
           >
             Stablecoin Ecosystem
           </TabsTrigger>
           <TabsTrigger
             value="prime"
-            className="text-xs data-[state=active]:bg-amber-600 data-[state=active]:text-white"
+            className="text-xs data-[state=active]:bg-amber-600 data-[state=active]:text-foreground"
           >
             Crypto Prime Brokerage
           </TabsTrigger>
           <TabsTrigger
             value="onchain"
-            className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
+            className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground"
           >
             On-Chain Analytics
           </TabsTrigger>

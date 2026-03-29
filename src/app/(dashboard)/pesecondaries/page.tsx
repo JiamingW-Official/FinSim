@@ -53,7 +53,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
@@ -67,7 +67,7 @@ function StatCard({
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
@@ -275,7 +275,7 @@ function LPLedTab() {
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-muted-foreground">{r.icon}</span>
-                <span className="text-sm font-semibold text-white">{r.title}</span>
+                <span className="text-sm font-semibold text-foreground">{r.title}</span>
                 <InfoPill
                   text={
                     r.color === "rose"
@@ -337,15 +337,15 @@ function LPLedTab() {
                   className={cn(
                     "w-6 h-6 rounded-full text-xs font-bold flex items-center justify-center",
                     step.color === "blue"
-                      ? "bg-primary text-white"
+                      ? "bg-primary text-foreground"
                       : step.color === "violet"
-                      ? "bg-primary text-white"
-                      : "bg-emerald-600 text-white"
+                      ? "bg-primary text-foreground"
+                      : "bg-emerald-600 text-foreground"
                   )}
                 >
                   {step.step}
                 </span>
-                <span className="text-sm font-semibold text-white">{step.title}</span>
+                <span className="text-sm font-semibold text-foreground">{step.title}</span>
               </div>
               <p className="text-xs text-muted-foreground">{step.desc}</p>
             </div>
@@ -423,7 +423,7 @@ function LPLedTab() {
           ].map((t) => (
             <div key={t.title} className="rounded-lg border border-border p-4">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-semibold text-white">{t.title}</span>
+                <span className="text-sm font-semibold text-foreground">{t.title}</span>
                 <InfoPill text={t.pill} color={t.pillColor} />
               </div>
               <p className="text-xs text-muted-foreground mb-3">{t.desc}</p>
@@ -456,7 +456,7 @@ function LPLedTab() {
               className="flex items-center justify-between rounded-lg bg-black/20 border border-border/50 px-3 py-2"
             >
               <div>
-                <p className="text-sm font-medium text-white">{b.name}</p>
+                <p className="text-sm font-medium text-foreground">{b.name}</p>
                 <p className="text-xs text-muted-foreground">{b.type}</p>
               </div>
               <span className="text-xs font-semibold text-emerald-400">{b.aum} AUM</span>
@@ -516,7 +516,7 @@ function LPLedTab() {
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-sm font-semibold text-white">{p.title}</span>
+                  <span className="text-sm font-semibold text-foreground">{p.title}</span>
                   <span className="text-xs text-muted-foreground">{p.duration}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">{p.detail}</p>
@@ -705,8 +705,8 @@ function GPLedTab() {
             className={cn(
               "rounded-lg px-4 py-1.5 text-sm font-medium transition-colors",
               selectedCV === "single"
-                ? "bg-emerald-600 text-white"
-                : "bg-muted text-muted-foreground hover:text-white"
+                ? "bg-emerald-600 text-foreground"
+                : "bg-muted text-muted-foreground hover:text-foreground"
             )}
           >
             Single Asset
@@ -716,8 +716,8 @@ function GPLedTab() {
             className={cn(
               "rounded-lg px-4 py-1.5 text-sm font-medium transition-colors",
               selectedCV === "multi"
-                ? "bg-primary text-white"
-                : "bg-muted text-muted-foreground hover:text-white"
+                ? "bg-primary text-foreground"
+                : "bg-muted text-muted-foreground hover:text-foreground"
             )}
           >
             Multi Asset
@@ -858,7 +858,7 @@ function GPLedTab() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {advisors.map((a) => (
             <div key={a.name} className="rounded-lg bg-black/20 border border-border/50 px-3 py-2">
-              <p className="text-sm font-semibold text-white">{a.name}</p>
+              <p className="text-sm font-semibold text-foreground">{a.name}</p>
               <p className="text-xs text-muted-foreground">{a.role}</p>
             </div>
           ))}
@@ -1010,7 +1010,7 @@ function NAVFinancingTab() {
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-muted-foreground">{u.icon}</span>
-                <span className="text-sm font-semibold text-white">{u.title}</span>
+                <span className="text-sm font-semibold text-foreground">{u.title}</span>
                 <InfoPill text="Use case" color={u.color} />
               </div>
               <p className="text-xs text-muted-foreground">{u.desc}</p>
@@ -1137,7 +1137,7 @@ function NAVFinancingTab() {
               className="flex items-center justify-between rounded-lg bg-black/20 border border-border/50 px-3 py-2"
             >
               <div>
-                <p className="text-sm font-medium text-white">{p.name}</p>
+                <p className="text-sm font-medium text-foreground">{p.name}</p>
                 <p className="text-xs text-muted-foreground">{p.approach}</p>
               </div>
               <InfoPill text={p.size} color={p.size === "Large" ? "blue" : "violet"} />
@@ -1619,7 +1619,7 @@ function MarketDynamicsTab() {
             <div key={section.title} className="rounded-lg border border-border p-4">
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-muted-foreground">{section.icon}</span>
-                <span className="text-sm font-semibold text-white">{section.title}</span>
+                <span className="text-sm font-semibold text-foreground">{section.title}</span>
               </div>
               <ul className="space-y-1.5">
                 {section.points.map((p) => (
@@ -1656,7 +1656,7 @@ export default function PESecondariesPage() {
             <Repeat className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Private Equity Secondaries</h1>
+            <h1 className="text-xl font-bold text-foreground">Private Equity Secondaries</h1>
             <p className="text-sm text-muted-foreground">
               LP-led transactions, GP-led continuation vehicles, NAV financing &amp; market dynamics
             </p>
@@ -1681,7 +1681,7 @@ export default function PESecondariesPage() {
           <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
           <div className="text-xs text-muted-foreground space-y-1">
             <p>
-              The <strong className="text-white">private equity secondary market</strong> allows investors to buy and sell existing PE fund interests before the fund lifecycle ends. Originally a niche liquidity solution, the market has grown to $130B+ annually and now includes LP-led sales, GP-led continuation vehicles, NAV financing, and preferred equity structures.
+              The <strong className="text-foreground">private equity secondary market</strong> allows investors to buy and sell existing PE fund interests before the fund lifecycle ends. Originally a niche liquidity solution, the market has grown to $130B+ annually and now includes LP-led sales, GP-led continuation vehicles, NAV financing, and preferred equity structures.
             </p>
             <p className="text-muted-foreground">
               Secondary buyers earn returns through: (1) purchasing at a discount to NAV, (2) skipping the J-curve, and (3) diversification across multiple vintage years, GPs, and geographies — historically generating ~200bps net IRR outperformance vs primary funds.
@@ -1702,7 +1702,7 @@ export default function PESecondariesPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-white"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm data-[state=active]:bg-primary data-[state=active]:text-foreground"
             >
               {t.icon}
               {t.label}

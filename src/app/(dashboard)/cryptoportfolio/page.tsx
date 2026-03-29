@@ -360,7 +360,7 @@ function StatCard({
         {Icon && <Icon className="w-3.5 h-3.5" />}
         {label}
       </div>
-      <div className={cn("text-xl font-bold", positive === undefined ? "text-white" : positive ? "text-emerald-400" : "text-red-400")}>
+      <div className={cn("text-xl font-bold", positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-red-400")}>
         {value}
       </div>
       {sub && <div className="text-xs text-muted-foreground">{sub}</div>}
@@ -431,7 +431,7 @@ function ILCalculator() {
   return (
     <div className="space-y-4">
       <div>
-        <label className="text-xs text-muted-foreground mb-1 block">Token A price change: <span className="text-white font-medium">{priceChange > 0 ? "+" : ""}{priceChange}%</span></label>
+        <label className="text-xs text-muted-foreground mb-1 block">Token A price change: <span className="text-foreground font-medium">{priceChange > 0 ? "+" : ""}{priceChange}%</span></label>
         <input
           type="range"
           min={-80}
@@ -602,7 +602,7 @@ export default function CryptoPortfolioPage() {
         <div className="flex items-center gap-3">
           <div className="text-right">
             <div className="text-xs text-muted-foreground">Total Value</div>
-            <div className="text-xl font-bold text-white">{fmt(portfolioData.totalValue)}</div>
+            <div className="text-xl font-bold text-foreground">{fmt(portfolioData.totalValue)}</div>
           </div>
           <div className={cn("text-right", portfolioData.totalPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             <div className="text-xs text-muted-foreground">Total P&L</div>
@@ -619,7 +619,7 @@ export default function CryptoPortfolioPage() {
               key={t.id}
               value={t.id}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
-                data-[state=active]:bg-primary data-[state=active]:text-white
+                data-[state=active]:bg-primary data-[state=active]:text-foreground
                 data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground
                 data-[state=inactive]:bg-foreground/5 transition-colors"
             >
@@ -679,7 +679,7 @@ export default function CryptoPortfolioPage() {
                       </td>
                       <td className="text-right py-2 pr-3 text-muted-foreground tabular-nums">{a.holdings.toLocaleString()}</td>
                       <td className="text-right py-2 pr-3 text-muted-foreground tabular-nums">${a.avgCost.toLocaleString()}</td>
-                      <td className="text-right py-2 pr-3 text-white tabular-nums">${a.currentPrice.toLocaleString()}</td>
+                      <td className="text-right py-2 pr-3 text-foreground tabular-nums">${a.currentPrice.toLocaleString()}</td>
                       <td className="text-right py-2 pr-3 tabular-nums">{fmt(a.currentValue)}</td>
                       <td className={cn("text-right py-2 pr-3 tabular-nums", a.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>{fmt(a.pnl)}</td>
                       <td className={cn("text-right py-2 pr-3 tabular-nums font-medium", a.pnlPct >= 0 ? "text-emerald-400" : "text-red-400")}>{fmtPct(a.pnlPct)}</td>
@@ -701,7 +701,7 @@ export default function CryptoPortfolioPage() {
                     key={m}
                     onClick={() => setCostMethod(m)}
                     className={cn("px-3 py-1 rounded-lg text-xs font-medium transition-colors",
-                      costMethod === m ? "bg-primary text-white" : "bg-foreground/[0.08] text-muted-foreground hover:text-white")}
+                      costMethod === m ? "bg-primary text-foreground" : "bg-foreground/[0.08] text-muted-foreground hover:text-foreground")}
                   >
                     {m}
                   </button>
@@ -746,8 +746,8 @@ export default function CryptoPortfolioPage() {
                   </div>
                   <p className="text-xs text-muted-foreground">Measures correlation-weighted concentration. A high score means your assets tend to move together — limited diversification benefit.</p>
                   <div className="flex gap-3 text-xs">
-                    <span className="text-muted-foreground">Avg Corr: <span className="text-white">0.68</span></span>
-                    <span className="text-muted-foreground">HHI: <span className="text-white">{portfolioData.weights.reduce((s, w) => s + w * w, 0).toFixed(3)}</span></span>
+                    <span className="text-muted-foreground">Avg Corr: <span className="text-foreground">0.68</span></span>
+                    <span className="text-muted-foreground">HHI: <span className="text-foreground">{portfolioData.weights.reduce((s, w) => s + w * w, 0).toFixed(3)}</span></span>
                   </div>
                 </div>
               </div>
@@ -812,8 +812,8 @@ export default function CryptoPortfolioPage() {
             <p className="text-xs text-muted-foreground">Higher ratio = BTC outperforming ETH. Watch for reversal signals when ETH leads innovation cycles.</p>
             <LineChartSVG data={marketData.btcEthRatio} color="#3b82f6" fill height={100} />
             <div className="flex gap-6 text-xs text-muted-foreground">
-              <span>Current: <span className="text-white">{marketData.btcEthRatio[marketData.btcEthRatio.length - 1].toFixed(1)}x</span></span>
-              <span>12m Avg: <span className="text-white">{(marketData.btcEthRatio.slice(-12).reduce((s, v) => s + v, 0) / 12).toFixed(1)}x</span></span>
+              <span>Current: <span className="text-foreground">{marketData.btcEthRatio[marketData.btcEthRatio.length - 1].toFixed(1)}x</span></span>
+              <span>12m Avg: <span className="text-foreground">{(marketData.btcEthRatio.slice(-12).reduce((s, v) => s + v, 0) / 12).toFixed(1)}x</span></span>
               <span>Interpretation: <span className="text-orange-400">BTC Season</span></span>
             </div>
           </div>
@@ -961,7 +961,7 @@ export default function CryptoPortfolioPage() {
                   <div key={row.label} className="space-y-0.5">
                     <div className="flex justify-between text-xs">
                       <div className="flex items-center gap-1.5">
-                        <span className={cn("text-xs px-1 py-0.5 rounded text-white", row.type === "TradFi" ? "bg-primary/50" : "bg-primary/50")}>{row.type}</span>
+                        <span className={cn("text-xs px-1 py-0.5 rounded text-foreground", row.type === "TradFi" ? "bg-primary/50" : "bg-primary/50")}>{row.type}</span>
                         <span className="text-muted-foreground">{row.label}</span>
                       </div>
                       <span className="text-yellow-400 font-medium">{row.apy}%</span>
@@ -987,7 +987,7 @@ export default function CryptoPortfolioPage() {
             <h3 className="font-semibold text-sm flex items-center gap-2"><Activity className="w-4 h-4 text-emerald-400" />Total DeFi TVL — 12 Months ($B)</h3>
             <LineChartSVG data={defiTVLSeries} color="#10b981" fill height={100} />
             <div className="flex gap-6 text-xs text-muted-foreground">
-              <span>Current TVL: <span className="text-white">${defiTVLSeries[defiTVLSeries.length - 1].toFixed(0)}B</span></span>
+              <span>Current TVL: <span className="text-foreground">${defiTVLSeries[defiTVLSeries.length - 1].toFixed(0)}B</span></span>
               <span>12m Growth: <span className="text-emerald-400">{(((defiTVLSeries[defiTVLSeries.length - 1] / defiTVLSeries[0]) - 1) * 100).toFixed(0)}%</span></span>
             </div>
           </div>
@@ -1096,7 +1096,7 @@ export default function CryptoPortfolioPage() {
                   ].map(r => (
                     <div key={r.label} className="rounded bg-foreground/5 p-2">
                       <div className="text-muted-foreground">{r.label}</div>
-                      <div className="font-medium text-white">{r.value}</div>
+                      <div className="font-medium text-foreground">{r.value}</div>
                     </div>
                   ))}
                 </div>

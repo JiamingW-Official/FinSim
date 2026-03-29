@@ -853,14 +853,14 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
             <button
               type="button"
               onClick={() => setSide("buy")}
-              className={cn("flex-1 py-2 text-sm font-semibold transition-colors", side === "buy" ? "bg-green-600 text-white" : "text-muted-foreground hover:bg-accent/50")}
+              className={cn("flex-1 py-2 text-sm font-semibold transition-colors", side === "buy" ? "bg-green-600 text-foreground" : "text-muted-foreground hover:bg-accent/50")}
             >
               Buy
             </button>
             <button
               type="button"
               onClick={() => setSide("sell")}
-              className={cn("flex-1 py-2 text-sm font-semibold transition-colors", side === "sell" ? "bg-red-600 text-white" : "text-muted-foreground hover:bg-accent/50")}
+              className={cn("flex-1 py-2 text-sm font-semibold transition-colors", side === "sell" ? "bg-red-600 text-foreground" : "text-muted-foreground hover:bg-accent/50")}
             >
               Sell
             </button>
@@ -897,7 +897,7 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
             disabled={!qty || parseFloat(qty) <= 0}
             className={cn(
               "w-full rounded-md py-2.5 text-sm font-semibold transition-colors disabled:opacity-50",
-              side === "buy" ? "bg-green-600 hover:bg-green-700 text-white" : "bg-red-600 hover:bg-red-700 text-white",
+              side === "buy" ? "bg-green-600 hover:bg-green-700 text-foreground" : "bg-red-600 hover:bg-red-700 text-foreground",
             )}
           >
             {side === "buy" ? "Buy" : "Sell"} {ticker}
@@ -1100,7 +1100,7 @@ function YieldFarmingSimulator() {
           className={cn(
             "flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-semibold transition-all",
             harvested
-              ? "bg-green-600 text-white"
+              ? "bg-green-600 text-foreground"
               : "bg-primary text-primary-foreground hover:bg-primary/90",
           )}
         >

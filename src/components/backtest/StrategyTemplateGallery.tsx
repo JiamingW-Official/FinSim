@@ -210,7 +210,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   {/* Use Strategy Button */}
                   <button
                     onClick={() => handleUseStrategy(selected)}
-                    className="w-full rounded-xl bg-primary py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-primary"
+                    className="w-full rounded-xl bg-primary py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:bg-primary"
                   >
                     Use This Strategy
                   </button>

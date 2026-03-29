@@ -664,7 +664,7 @@ function FundedRatioCalculator() {
             type="number"
             value={assets}
             onChange={(e) => setAssets(Number(e.target.value))}
-            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-foreground focus:outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -673,7 +673,7 @@ function FundedRatioCalculator() {
             type="number"
             value={pbo}
             onChange={(e) => setPbo(Number(e.target.value))}
-            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-foreground focus:outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -683,7 +683,7 @@ function FundedRatioCalculator() {
             step={0.1}
             value={discountRate}
             onChange={(e) => setDiscountRate(Number(e.target.value))}
-            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-foreground focus:outline-none focus:border-primary"
           />
         </div>
         <div>
@@ -693,7 +693,7 @@ function FundedRatioCalculator() {
             step={0.1}
             value={payrollGrowth}
             onChange={(e) => setPayrollGrowth(Number(e.target.value))}
-            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-primary"
+            className="w-full bg-muted border border-border rounded px-3 py-2 text-sm text-foreground focus:outline-none focus:border-primary"
           />
         </div>
       </div>
@@ -748,7 +748,7 @@ export default function PensionManagementPage() {
             <Building2 className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Pension Fund Management</h1>
+            <h1 className="text-xl font-bold text-foreground">Pension Fund Management</h1>
             <p className="text-sm text-muted-foreground">Institutional LDI · Asset-Liability Matching · Long-Horizon Investing</p>
           </div>
         </div>
@@ -771,19 +771,19 @@ export default function PensionManagementPage() {
       {/* Tabs */}
       <Tabs defaultValue="overview">
         <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <Building2 className="w-3 h-3 mr-1" />Fund Overview
           </TabsTrigger>
-          <TabsTrigger value="ldi" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="ldi" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <Scale className="w-3 h-3 mr-1" />LDI
           </TabsTrigger>
-          <TabsTrigger value="allocation" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="allocation" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <BarChart3 className="w-3 h-3 mr-1" />Asset Allocation
           </TabsTrigger>
-          <TabsTrigger value="risk" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="risk" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <Shield className="w-3 h-3 mr-1" />Risk Factors
           </TabsTrigger>
-          <TabsTrigger value="esg" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="esg" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <Leaf className="w-3 h-3 mr-1" />ESG & Stewardship
           </TabsTrigger>
         </TabsList>
@@ -850,7 +850,7 @@ export default function PensionManagementPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-white flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <Target className="w-4 h-4 text-primary" />Funded Ratio Calculator
                   </CardTitle>
                 </CardHeader>
@@ -861,7 +861,7 @@ export default function PensionManagementPage() {
 
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-white flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <Activity className="w-4 h-4 text-emerald-400" />Funded Status Gauge
                   </CardTitle>
                 </CardHeader>
@@ -901,7 +901,7 @@ export default function PensionManagementPage() {
             {/* Top 10 US Pension Funds Table */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-primary" />Top 10 US Public Pension Funds
                 </CardTitle>
               </CardHeader>
@@ -1021,7 +1021,7 @@ export default function PensionManagementPage() {
               {/* KRD bucketing table */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-white flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-primary" />Key Rate Duration Bucketing
                   </CardTitle>
                 </CardHeader>
@@ -1074,7 +1074,7 @@ export default function PensionManagementPage() {
             {/* Physical vs Synthetic comparison */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white">Physical vs Synthetic LDI Implementation</CardTitle>
+                <CardTitle className="text-sm text-foreground">Physical vs Synthetic LDI Implementation</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
@@ -1172,7 +1172,7 @@ export default function PensionManagementPage() {
               {/* Selected scenario detail */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-white flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-primary" />
                     {selectedScenario.name}
                   </CardTitle>
@@ -1218,7 +1218,7 @@ export default function PensionManagementPage() {
               {/* All scenarios comparison */}
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-white">Scenario Comparison</CardTitle>
+                  <CardTitle className="text-sm text-foreground">Scenario Comparison</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   {ALLOCATION_SCENARIOS.map((sc) => (
@@ -1263,7 +1263,7 @@ export default function PensionManagementPage() {
             {/* Glide Path and Dynamic Triggers */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />Dynamic Allocation Glide Path & Triggers
                 </CardTitle>
               </CardHeader>
@@ -1373,7 +1373,7 @@ export default function PensionManagementPage() {
             {/* Stress Test Scenarios */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />Stress Test Scenarios
                 </CardTitle>
               </CardHeader>
@@ -1442,7 +1442,7 @@ export default function PensionManagementPage() {
             {/* Risk attribution summary */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white">Risk Attribution Framework</CardTitle>
+                <CardTitle className="text-sm text-foreground">Risk Attribution Framework</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
@@ -1550,7 +1550,7 @@ export default function PensionManagementPage() {
             {/* ESG Initiatives Table */}
             <Card className="bg-card border-border mb-4">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-emerald-400" />Notable ESG & Stewardship Actions
                 </CardTitle>
               </CardHeader>
@@ -1595,7 +1595,7 @@ export default function PensionManagementPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-white flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <Users className="w-4 h-4 text-primary" />Proxy Voting Principles
                   </CardTitle>
                 </CardHeader>
@@ -1632,7 +1632,7 @@ export default function PensionManagementPage() {
 
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-white flex items-center gap-2">
+                  <CardTitle className="text-sm text-foreground flex items-center gap-2">
                     <Target className="w-4 h-4 text-emerald-400" />CalPERS / CalSTRS Approach
                   </CardTitle>
                 </CardHeader>
@@ -1683,7 +1683,7 @@ export default function PensionManagementPage() {
             {/* Long-horizon investing metrics */}
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Clock className="w-4 h-4 text-amber-400" />Long-Horizon Investing Advantages
                 </CardTitle>
               </CardHeader>

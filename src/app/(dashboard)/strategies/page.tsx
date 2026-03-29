@@ -542,7 +542,7 @@ function StrategyCard({
         </button>
         <button
           onClick={() => onClone(strategy)}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:bg-primary"
         >
           <Copy className="h-3 w-3" />
           Clone &amp; Customize
@@ -588,7 +588,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         }`}
         aria-label="Select for comparison"
       >
-        {selected && <span className="flex h-full w-full items-center justify-center text-[11px] text-white font-bold">✓</span>}
+        {selected && <span className="flex h-full w-full items-center justify-center text-[11px] text-foreground font-bold">✓</span>}
       </button>
 
       <div className="flex-1 min-w-0">
@@ -926,7 +926,7 @@ export default function StrategiesPage() {
                     {selectedIds.length === 2 && (
                       <button
                         onClick={() => setShowCompare(true)}
-                        className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1 text-xs font-medium text-white hover:bg-primary transition-colors"
+                        className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1 text-xs font-medium text-foreground hover:bg-primary transition-colors"
                       >
                         <GitCompare className="h-3 w-3" />
                         Compare
@@ -960,7 +960,7 @@ export default function StrategiesPage() {
                     </p>
                     <button
                       onClick={() => setActiveTab("library")}
-                      className="mt-4 rounded-lg bg-primary px-4 py-2 text-xs font-medium text-white hover:bg-primary transition-colors"
+                      className="mt-4 rounded-lg bg-primary px-4 py-2 text-xs font-medium text-foreground hover:bg-primary transition-colors"
                     >
                       Browse Library
                     </button>
@@ -1119,7 +1119,7 @@ function StrategyBuilderWrapper({
           </span>
           <button
             onClick={handleCommitSave}
-            className="flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-500 transition-colors"
+            className="flex items-center gap-1.5 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-emerald-500 transition-colors"
           >
             <Save className="h-3.5 w-3.5" />
             Save to Library

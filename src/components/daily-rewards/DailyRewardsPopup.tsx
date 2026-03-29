@@ -93,6 +93,9 @@ export function DailyRewardsPopup() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Daily check-in rewards"
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 backdrop-blur-sm"
           onClick={handleClose}
         >

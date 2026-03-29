@@ -1018,7 +1018,7 @@ function BiasAssessment() {
             size="sm"
             disabled={totalAnswered < QUIZ_QUESTIONS.length}
             onClick={() => setSubmitted(true)}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white"
+            className="bg-indigo-600 hover:bg-indigo-700 text-foreground"
           >
             See Results
           </Button>
@@ -1298,7 +1298,7 @@ function EmotionalIntelligence() {
                   className={cn(
                     "px-2 py-1 rounded text-xs transition-all border",
                     i === cycleIndex
-                      ? "border-transparent text-white"
+                      ? "border-transparent text-foreground"
                       : "border-border text-muted-foreground hover:border-border"
                   )}
                   style={i === cycleIndex ? { backgroundColor: phase.color + "40", borderColor: phase.color } : {}}
@@ -2023,7 +2023,7 @@ export default function MindsetPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground"
+                className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground"
               >
                 <Icon className="h-3 w-3 mr-1.5" />
                 {label}

@@ -427,7 +427,7 @@ const VESTING_SCHEDULES = [
 // ── Shared UI helpers ──────────────────────────────────────────────────────────
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+    <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
       {children}
     </h2>
   );
@@ -539,7 +539,7 @@ function FundingStagesTab() {
             className={cn(
               "rounded-lg border p-2 text-center transition-all text-xs font-medium",
               selected.name === stage.name
-                ? "border-transparent text-white"
+                ? "border-transparent text-foreground"
                 : "border-border bg-card text-muted-foreground hover:border-muted-foreground"
             )}
             style={
@@ -570,11 +570,11 @@ function FundingStagesTab() {
         >
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h3 className="text-xl font-bold text-white">{selected.name}</h3>
+              <h3 className="text-xl font-bold text-foreground">{selected.name}</h3>
               <p className="text-sm text-muted-foreground mt-1 max-w-xl">{selected.description}</p>
             </div>
             <Badge
-              className="text-white text-xs px-3 py-1 mt-1"
+              className="text-foreground text-xs px-3 py-1 mt-1"
               style={{ backgroundColor: selected.color + "99" }}
             >
               {fmtPct(selected.dilution)} typical dilution
@@ -593,7 +593,7 @@ function FundingStagesTab() {
                 className="rounded-lg bg-muted border border-border p-3"
               >
                 <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
-                <p className="text-sm font-semibold text-white">{item.value}</p>
+                <p className="text-sm font-semibold text-foreground">{item.value}</p>
               </div>
             ))}
           </div>
@@ -793,14 +793,14 @@ function CapTableTab() {
       {/* Cap table */}
       <div className="rounded-xl bg-card border border-border overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-border">
-          <p className="text-sm font-semibold text-white">Cap Table</p>
+          <p className="text-sm font-semibold text-foreground">Cap Table</p>
           <div className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground">
               {totalShares.toLocaleString()} total shares
             </span>
             <button
               onClick={resetCap}
-              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-white px-2 py-1 rounded border border-border hover:border-muted-foreground transition-colors"
+              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground px-2 py-1 rounded border border-border hover:border-muted-foreground transition-colors"
             >
               <RefreshCw className="w-3 h-3" /> Reset
             </button>
@@ -836,7 +836,7 @@ function CapTableTab() {
                           className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                           style={{ backgroundColor: sh.color }}
                         />
-                        <span className="text-white font-medium">{sh.name}</span>
+                        <span className="text-foreground font-medium">{sh.name}</span>
                       </div>
                     </td>
                     <td className="px-4 py-2.5">
@@ -890,7 +890,7 @@ function CapTableTab() {
         {nextRound ? (
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold text-white mb-1">
+              <p className="text-sm font-semibold text-foreground mb-1">
                 Next: {nextRound.name} Round
               </p>
               <p className="text-xs text-muted-foreground">
@@ -900,7 +900,7 @@ function CapTableTab() {
             </div>
             <button
               onClick={applyRound}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-colors"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-foreground text-sm font-medium transition-colors"
             >
               Apply Round <ArrowRight className="w-4 h-4" />
             </button>
@@ -960,7 +960,7 @@ function TermSheetTab() {
 
       {/* Worked example box */}
       <div className="rounded-xl bg-card border border-border p-4">
-        <p className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+        <p className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Worked Example: Series A Term Sheet
         </p>
@@ -977,7 +977,7 @@ function TermSheetTab() {
           ].map((item) => (
             <div key={item.label} className="bg-muted rounded-lg p-2.5 border border-border">
               <p className="text-muted-foreground mb-1">{item.label}</p>
-              <p className="font-semibold text-white">{item.value}</p>
+              <p className="font-semibold text-foreground">{item.value}</p>
             </div>
           ))}
         </div>
@@ -1013,7 +1013,7 @@ function TermSheetTab() {
               >
                 <div className="flex items-center gap-3">
                   <div className="text-indigo-400">{item.icon}</div>
-                  <span className="text-sm font-semibold text-white">{item.term}</span>
+                  <span className="text-sm font-semibold text-foreground">{item.term}</span>
                   <span
                     className={cn(
                       "text-xs px-2 py-0.5 rounded-full border font-medium",
@@ -1096,7 +1096,7 @@ function ValuationTab() {
             className={cn(
               "rounded-xl border p-3 text-left transition-all",
               selected.name === m.name
-                ? "text-white"
+                ? "text-foreground"
                 : "border-border bg-card text-muted-foreground hover:border-muted-foreground"
             )}
             style={
@@ -1123,7 +1123,7 @@ function ValuationTab() {
           className="rounded-xl border bg-card p-5"
           style={{ borderColor: selected.color + "55" }}
         >
-          <h3 className="text-base font-bold text-white mb-1">{selected.name}</h3>
+          <h3 className="text-base font-bold text-foreground mb-1">{selected.name}</h3>
           <p className="text-sm text-muted-foreground mb-4">{selected.description}</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -1133,7 +1133,7 @@ function ValuationTab() {
                 {selected.steps.map((step, i) => (
                   <li key={i} className="flex gap-2 text-xs text-muted-foreground">
                     <span
-                      className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                      className="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-foreground text-xs font-bold"
                       style={{ backgroundColor: selected.color }}
                     >
                       {i + 1}
@@ -1207,7 +1207,7 @@ function ValuationTab() {
                 ].map((item) => (
                   <div key={item.label} className="bg-card rounded-lg p-2.5 text-center">
                     <p className="text-xs text-muted-foreground mb-1">{item.label}</p>
-                    <p className="text-sm font-bold text-white">{item.value}</p>
+                    <p className="text-sm font-bold text-foreground">{item.value}</p>
                   </div>
                 ))}
               </div>
@@ -1261,7 +1261,7 @@ function ValuationTab() {
 
       {/* Sensitivity table */}
       <div className="rounded-xl border border-border bg-card p-4">
-        <p className="text-sm font-semibold text-white mb-3">
+        <p className="text-sm font-semibold text-foreground mb-3">
           VC Method Sensitivity Table — Pre-Money ($M)
         </p>
         <p className="text-xs text-muted-foreground mb-3">
@@ -1370,7 +1370,7 @@ function EmployeeOptionsTab() {
           >
             <div className="flex items-center justify-between mb-3">
               <div>
-                <p className="text-sm font-bold text-white">{opt.name}</p>
+                <p className="text-sm font-bold text-foreground">{opt.name}</p>
                 <p className="text-xs text-muted-foreground">{opt.fullName}</p>
               </div>
               <Badge
@@ -1405,7 +1405,7 @@ function EmployeeOptionsTab() {
 
       {/* Options calculator */}
       <div className="rounded-xl bg-card border border-border p-5 space-y-4">
-        <p className="text-sm font-semibold text-white flex items-center gap-2">
+        <p className="text-sm font-semibold text-foreground flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Option Value Calculator
         </p>
@@ -1471,7 +1471,7 @@ function EmployeeOptionsTab() {
               <p
                 className={cn(
                   "text-sm font-bold",
-                  item.highlight ? "text-emerald-400" : "text-white"
+                  item.highlight ? "text-emerald-400" : "text-foreground"
                 )}
               >
                 {item.value}
@@ -1485,7 +1485,7 @@ function EmployeeOptionsTab() {
       {/* Vesting schedule visualizer */}
       <div className="rounded-xl bg-card border border-border p-4 space-y-4">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-semibold text-white">Vesting Schedule Visualizer</p>
+          <p className="text-sm font-semibold text-foreground">Vesting Schedule Visualizer</p>
           <div className="flex gap-2">
             {VESTING_SCHEDULES.map((sch, i) => (
               <button
@@ -1618,7 +1618,7 @@ export default function StartupFundingPage() {
               <Briefcase className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Startup Funding</h1>
+              <h1 className="text-2xl font-bold text-foreground">Startup Funding</h1>
               <p className="text-sm text-muted-foreground">
                 Funding rounds, cap tables, term sheets, valuation methods, employee equity
               </p>
@@ -1659,7 +1659,7 @@ export default function StartupFundingPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
               >
                 {tab.icon}
                 {tab.label}

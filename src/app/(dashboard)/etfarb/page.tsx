@@ -122,7 +122,7 @@ function MetricCard({
       <CardContent className="pt-4 pb-3 px-4">
         <div className="flex items-start gap-3">
           <div className={`p-2 rounded-lg ${color}`}>
-            <Icon className="h-4 w-4 text-white" />
+            <Icon className="h-4 w-4 text-foreground" />
           </div>
           <div className="min-w-0">
             <p className="text-xs text-muted-foreground truncate">{label}</p>

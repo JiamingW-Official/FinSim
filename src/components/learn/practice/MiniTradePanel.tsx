@@ -204,7 +204,7 @@ export function MiniTradePanel({
             <motion.button type="button" onClick={handleBuy}
               disabled={isShort || cash < currentPrice * qty || allComplete || atEnd}
               whileTap={{ scale: 0.95 }}
-              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
+              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowUpRight className="h-3 w-3" />
               Long {qty}
               {enableKeyboard && <kbd className="ml-1 rounded bg-foreground/20 px-1 py-0.5 text-[11px] font-mono leading-none">W</kbd>}
@@ -212,7 +212,7 @@ export function MiniTradePanel({
             <motion.button type="button" onClick={handleShort}
               disabled={isLong || cash < currentPrice * qty || allComplete || atEnd}
               whileTap={{ scale: 0.95 }}
-              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
+              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowDownRight className="h-3 w-3" />
               Short {qty}
               {enableKeyboard && <kbd className="ml-1 rounded bg-foreground/20 px-1 py-0.5 text-[11px] font-mono leading-none">S</kbd>}
@@ -253,7 +253,7 @@ export function MiniTradePanel({
               <motion.button type="button" onClick={handleBuy}
                 disabled={cash < currentPrice * qty || allComplete || atEnd}
                 whileTap={{ scale: 0.95 }}
-                className="flex-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-40 shadow-sm">
+                className="flex-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-40 shadow-sm">
                 Buy {qty}
               </motion.button>
             </>
@@ -261,7 +261,7 @@ export function MiniTradePanel({
           {showLegacySell && position && (
             <motion.button type="button" onClick={handleSell}
               disabled={allComplete || atEnd} whileTap={{ scale: 0.95 }}
-              className="flex-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-white uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-40 shadow-sm">
+              className="flex-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-40 shadow-sm">
               Sell {position.quantity}
             </motion.button>
           )}
@@ -301,7 +301,7 @@ export function MiniTradePanel({
             <motion.button type="button" onClick={isPlaying ? onPause : onPlay} disabled={atEnd}
               whileTap={{ scale: 0.85 }}
               className={cn("relative flex h-10 w-10 items-center justify-center rounded-full font-bold transition-all disabled:opacity-30 shrink-0",
-                isPlaying ? "bg-amber-500 text-white"
+                isPlaying ? "bg-amber-500 text-foreground"
                   : "bg-primary text-primary-foreground")}>
               {isPlaying && !atEnd && (
                 <motion.span className="absolute inset-0 rounded-full border-2 border-amber-400"

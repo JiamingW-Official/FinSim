@@ -409,7 +409,8 @@ export function Sidebar() {
       )}
 
       {/* Nav sections */}
-      <div
+      <nav
+        aria-label="Main navigation"
         className={cn(
           "flex flex-1 flex-col overflow-y-auto overflow-x-hidden",
           collapsed ? "items-center w-full" : "px-2",
@@ -526,7 +527,7 @@ export function Sidebar() {
           )}
           {renderItems(SOCIAL_ITEMS)}
         </div>
-      </div>
+      </nav>
 
       {/* Settings link */}
       <div

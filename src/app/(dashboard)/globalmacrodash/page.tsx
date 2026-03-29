@@ -581,7 +581,7 @@ function MacroRegimeTab() {
                   <ArrowDownRight className="w-3 h-3 text-red-400" />
                 )}
               </div>
-              <p className="text-lg font-bold text-white">{m.value}</p>
+              <p className="text-lg font-bold text-foreground">{m.value}</p>
               <p className="text-xs text-muted-foreground">{m.label}</p>
               <p className="text-xs text-muted-foreground">{m.sub}</p>
             </CardContent>
@@ -626,7 +626,7 @@ function CentralBanksTab() {
                     </div>
                   </td>
                   <td className="py-3 pr-3 text-right">
-                    <span className="font-mono font-bold text-white">{cb.currentRate.toFixed(2)}%</span>
+                    <span className="font-mono font-bold text-foreground">{cb.currentRate.toFixed(2)}%</span>
                   </td>
                   <td className="py-3 pr-3 text-right">
                     {cb.lastChangeDir === "up" ? (
@@ -1049,7 +1049,7 @@ export default function GlobalMacroDashPage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Globe className="w-6 h-6 text-primary" />
-            <h1 className="text-xl font-bold text-white">Global Macro Dashboard</h1>
+            <h1 className="text-xl font-bold text-foreground">Global Macro Dashboard</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Cross-asset correlations · Central bank policy · Macro regimes · Positioning intelligence
@@ -1071,7 +1071,7 @@ export default function GlobalMacroDashPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
             >
               {t.icon}
               {t.label}

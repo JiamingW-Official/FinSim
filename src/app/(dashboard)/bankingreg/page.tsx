@@ -358,16 +358,16 @@ export default function BankingRegPage() {
 
       <Tabs defaultValue="capital" className="space-y-4">
         <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
-          <TabsTrigger value="capital" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+          <TabsTrigger value="capital" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
             <Layers className="w-3.5 h-3.5 mr-1" />Basel III/IV Capital
           </TabsTrigger>
-          <TabsTrigger value="stress" className="text-xs data-[state=active]:bg-sky-600 data-[state=active]:text-white">
+          <TabsTrigger value="stress" className="text-xs data-[state=active]:bg-sky-600 data-[state=active]:text-foreground">
             <Activity className="w-3.5 h-3.5 mr-1" />Stress Testing
           </TabsTrigger>
-          <TabsTrigger value="resolution" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
+          <TabsTrigger value="resolution" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
             <FileText className="w-3.5 h-3.5 mr-1" />Resolution Planning
           </TabsTrigger>
-          <TabsTrigger value="deposit" className="text-xs data-[state=active]:bg-amber-600 data-[state=active]:text-white">
+          <TabsTrigger value="deposit" className="text-xs data-[state=active]:bg-amber-600 data-[state=active]:text-foreground">
             <Lock className="w-3.5 h-3.5 mr-1" />Deposit Insurance
           </TabsTrigger>
         </TabsList>
@@ -465,7 +465,7 @@ export default function BankingRegPage() {
                         className={cn(
                           "px-3 py-1 text-xs rounded-md border transition-colors",
                           gsibBucket === b
-                            ? "bg-primary border-primary text-white"
+                            ? "bg-primary border-primary text-foreground"
                             : "bg-muted border-border text-muted-foreground hover:bg-muted"
                         )}
                       >

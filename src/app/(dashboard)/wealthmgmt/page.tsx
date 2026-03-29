@@ -56,7 +56,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
@@ -387,7 +387,7 @@ function ClientSegmentationTab() {
               )}
             >
               <div className="flex items-center justify-between mb-1">
-                <span className="font-semibold text-white">{b.bias}</span>
+                <span className="font-semibold text-foreground">{b.bias}</span>
                 <Badge
                   className={cn(
                     "text-xs px-1.5 py-0",
@@ -643,13 +643,13 @@ function FinancialPlanningTab() {
             {CFP_STEPS.map((step) => (
               <div key={step.step} className="flex gap-2 text-xs">
                 <span
-                  className="w-5 h-5 rounded-full flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
+                  className="w-5 h-5 rounded-full flex items-center justify-center text-foreground font-bold text-xs flex-shrink-0"
                   style={{ backgroundColor: step.color }}
                 >
                   {step.step}
                 </span>
                 <div>
-                  <span className="font-semibold text-white">{step.title}: </span>
+                  <span className="font-semibold text-foreground">{step.title}: </span>
                   <span className="text-muted-foreground">{step.desc}</span>
                 </div>
               </div>
@@ -952,8 +952,8 @@ function AssetAllocationTab() {
                 className={cn(
                   "flex-1 text-xs rounded-lg border py-1.5 font-medium transition-colors",
                   selectedProfile === i
-                    ? "border-foreground/30 bg-foreground/10 text-white"
-                    : "border-border bg-transparent text-muted-foreground hover:text-white"
+                    ? "border-foreground/30 bg-foreground/10 text-foreground"
+                    : "border-border bg-transparent text-muted-foreground hover:text-foreground"
                 )}
                 style={selectedProfile === i ? { borderColor: p.color + "80", color: p.color } : {}}
               >
@@ -970,7 +970,7 @@ function AssetAllocationTab() {
                   <div key={k} className="text-xs">
                     <div className="flex justify-between mb-0.5">
                       <span className="text-muted-foreground">{k.replace("_", " ")}</span>
-                      <span className="text-white font-medium">{val}%</span>
+                      <span className="text-foreground font-medium">{val}%</span>
                     </div>
                     <div className="h-1 rounded-full bg-foreground/10">
                       <div
@@ -1020,7 +1020,7 @@ function AssetAllocationTab() {
               {FACTOR_TILTS.map((f) => (
                 <div key={f.factor} className="text-xs">
                   <div className="flex items-center justify-between mb-0.5">
-                    <span className="font-medium text-white">{f.factor}</span>
+                    <span className="font-medium text-foreground">{f.factor}</span>
                     <span className="text-emerald-400">+{f.premium}% avg annual premium</span>
                   </div>
                   <p className="text-muted-foreground">{f.risk}</p>
@@ -1048,7 +1048,7 @@ function AssetAllocationTab() {
                   : "border-emerald-500/30 bg-emerald-500/10"
               )}
             >
-              <div className="font-semibold text-white mb-1">{m.method} Rebalancing</div>
+              <div className="font-semibold text-foreground mb-1">{m.method} Rebalancing</div>
               <div className="text-muted-foreground mb-1">Trigger: {m.frequency}</div>
               <div className="text-emerald-300 mb-0.5">Pros: {m.pros}</div>
               <div className="text-rose-300">Cons: {m.cons}</div>
@@ -1287,7 +1287,7 @@ function FeeModelsTab() {
                   )}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-white">{m.model}</span>
+                    <span className="font-semibold text-foreground">{m.model}</span>
                     <div className="flex items-center gap-1.5">
                       <span className="text-muted-foreground">{m.typical}</span>
                       <Badge
@@ -1327,11 +1327,11 @@ function FeeModelsTab() {
               <div className="grid grid-cols-2 gap-x-2 mb-2 text-muted-foreground">
                 <div>
                   <span className="text-muted-foreground">Fee: </span>
-                  <span className="text-white font-medium">{ra.fee}</span>
+                  <span className="text-foreground font-medium">{ra.fee}</span>
                 </div>
                 <div>
                   <span className="text-muted-foreground">Min: </span>
-                  <span className="text-white font-medium">{ra.min}</span>
+                  <span className="text-foreground font-medium">{ra.min}</span>
                 </div>
               </div>
               <ul className="space-y-0.5">
@@ -1363,11 +1363,11 @@ function FeeModelsTab() {
               <div className="flex gap-4 mb-2">
                 <div>
                   <span className="text-muted-foreground">Min: </span>
-                  <span className="text-white">{fo.threshold}</span>
+                  <span className="text-foreground">{fo.threshold}</span>
                 </div>
                 <div>
                   <span className="text-muted-foreground">Cost: </span>
-                  <span className="text-white">{fo.cost}</span>
+                  <span className="text-foreground">{fo.cost}</span>
                 </div>
               </div>
               <p className="text-muted-foreground leading-relaxed">{fo.desc}</p>
@@ -1435,7 +1435,7 @@ export default function WealthMgmtPage() {
               <Briefcase size={22} className="text-amber-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Wealth Management</h1>
+              <h1 className="text-2xl font-bold text-foreground">Wealth Management</h1>
               <p className="text-sm text-muted-foreground">
                 HNW client segmentation, financial planning, asset allocation, fee models, and family offices
               </p>

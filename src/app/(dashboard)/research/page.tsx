@@ -823,7 +823,7 @@ function ValuationMonitor() {
               >
                 <GaugeArc percentile={m.percentile} size={80} />
                 <p className="text-xs font-semibold text-muted-foreground text-center leading-tight mt-1">{m.label}</p>
-                <p className="text-lg font-bold text-white">{m.current}{m.unit}</p>
+                <p className="text-lg font-bold text-foreground">{m.current}{m.unit}</p>
                 <div className="flex items-center gap-1 text-xs">
                   <span className="text-muted-foreground">Avg: {m.historicalAvg}{m.unit}</span>
                   <span className={cn("font-semibold", m.percentile >= 80 ? "text-red-400" : m.percentile >= 60 ? "text-yellow-400" : "text-emerald-400")}>
@@ -860,7 +860,7 @@ function ValuationMonitor() {
                     className="h-5 rounded-full flex items-center justify-end pr-2"
                     style={{ backgroundColor: item.color + "99" }}
                   >
-                    <span className="text-xs font-bold text-white">{item.pe}x</span>
+                    <span className="text-xs font-bold text-foreground">{item.pe}x</span>
                   </motion.div>
                 </div>
               </div>
@@ -983,7 +983,7 @@ function ValuationMonitor() {
                       style={{ backgroundColor: c.color + "cc" }}
                     />
                     <div className="absolute top-0 h-4 flex items-center pl-2">
-                      <span className="text-xs font-bold text-white">{c.current}{c.unit}</span>
+                      <span className="text-xs font-bold text-foreground">{c.current}{c.unit}</span>
                     </div>
                   </div>
                   <div className="flex justify-between text-xs text-muted-foreground mt-1">
@@ -1142,7 +1142,7 @@ function EconCalendar() {
                       }}
                     />
                     <div className="absolute inset-0 flex items-center px-3 gap-2">
-                      <span className="font-bold text-sm text-white">{b.target.toLocaleString()}</span>
+                      <span className="font-bold text-sm text-foreground">{b.target.toLocaleString()}</span>
                       <Badge variant="outline" className={cn("text-xs px-1.5 py-0", stanceColor(b.stance))}>{b.stance}</Badge>
                     </div>
                   </div>
@@ -1161,7 +1161,7 @@ function EconCalendar() {
           </div>
           <div className="flex items-center justify-between mt-3 p-2 bg-muted/50 rounded-lg text-xs">
             <span className="text-muted-foreground">Consensus (avg):</span>
-            <span className="text-white font-bold text-base">
+            <span className="text-foreground font-bold text-base">
               {Math.round(BANK_FORECASTS.reduce((s, b) => s + b.target, 0) / BANK_FORECASTS.length).toLocaleString()}
             </span>
             <span className="text-muted-foreground">Range: {minTarget.toLocaleString()} – {maxTarget.toLocaleString()}</span>
@@ -1367,7 +1367,7 @@ function DataLibrary() {
                       onClick={() => setStoryId(prev => prev === ind.name ? null : ind.name)}
                     >
                       <td className="py-2 pr-2 text-muted-foreground font-medium">{ind.name}</td>
-                      <td className="py-2 text-center text-white font-semibold font-mono">{ind.current}</td>
+                      <td className="py-2 text-center text-foreground font-semibold font-mono">{ind.current}</td>
                       <td className={cn("py-2 text-center font-mono font-semibold", ind.mom.startsWith("+") ? "text-emerald-400" : ind.mom.startsWith("-") ? "text-red-400" : "text-muted-foreground")}>
                         {ind.mom}
                       </td>
@@ -1430,7 +1430,7 @@ function DataLibrary() {
                 <div className="flex-1 min-w-0">
                   <p className="text-xs text-muted-foreground font-medium truncate">{m.name}</p>
                   <div className="flex items-center gap-2 mt-0.5">
-                    <span className="text-sm font-bold text-white">{m.level}</span>
+                    <span className="text-sm font-bold text-foreground">{m.level}</span>
                     <span className={cn("text-xs", m.trend === "up" ? "text-emerald-400" : m.trend === "down" ? "text-red-400" : "text-muted-foreground")}>
                       {m.change}
                     </span>
@@ -1538,7 +1538,7 @@ export default function ResearchPage() {
             <BookOpen className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Economic Research &amp; Data</h1>
+            <h1 className="text-xl font-bold text-foreground">Economic Research &amp; Data</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               Institutional-grade research, market valuation, economic calendars, thematic deep-dives, and data library.
             </p>

@@ -491,7 +491,7 @@ function RegimeDashboard() {
                       <div className="flex items-center justify-between mb-1">
                         <span className={cn("text-sm font-semibold", r.color)}>{r.name}</span>
                         {active && (
-                          <Badge className="text-xs px-1.5 py-0 bg-foreground/10 text-white border-border">
+                          <Badge className="text-xs px-1.5 py-0 bg-foreground/10 text-foreground border-border">
                             Current
                           </Badge>
                         )}
@@ -633,7 +633,7 @@ function LeadingIndicators() {
                     <div className="min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-1">
                         <span className="text-sm font-medium text-foreground">{ind.name}</span>
-                        <span className="text-base font-mono font-semibold text-white">
+                        <span className="text-base font-mono font-semibold text-foreground">
                           {ind.value}
                         </span>
                         <span
@@ -840,7 +840,7 @@ function RateCyclePlaybook() {
                       {phase}
                     </span>
                     {phase === CURRENT_PHASE && (
-                      <Badge className="text-xs px-1.5 bg-foreground/10 text-white border-border">
+                      <Badge className="text-xs px-1.5 bg-foreground/10 text-foreground border-border">
                         Now
                       </Badge>
                     )}
@@ -1272,7 +1272,7 @@ export default function MacroTradingPage() {
         {/* Header */}
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl font-semibold text-white flex items-center gap-2">
+            <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
               <Globe className="w-5 h-5 text-sky-400" />
               Macro Trading
             </h1>
@@ -1302,7 +1302,7 @@ export default function MacroTradingPage() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-lg data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+                className="flex items-center gap-1.5 text-xs whitespace-nowrap px-3 py-2 rounded-lg data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
               >
                 <Icon className="w-3.5 h-3.5 shrink-0" />
                 <span>{label}</span>

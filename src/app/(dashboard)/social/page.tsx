@@ -352,7 +352,7 @@ const REGIME_VOTES = { bull: 318, bear: 142, sideways: 227 };
 function Avatar({ initials, color, size = "md" }: { initials: string; color: string; size?: "sm" | "md" | "lg" }) {
   const sizeClass = size === "sm" ? "h-7 w-7 text-xs" : size === "lg" ? "h-12 w-12 text-base" : "h-9 w-9 text-xs";
   return (
-    <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-white", color, sizeClass)}>
+    <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-foreground", color, sizeClass)}>
       {initials}
     </div>
   );

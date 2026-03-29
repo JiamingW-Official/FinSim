@@ -375,7 +375,7 @@ const DISCUSSION_DATA = generateDiscussionThreads();
 function Avatar({ initials, color, size = "md" }: { initials: string; color: string; size?: "sm" | "md" | "lg" }) {
   const sizeClass = size === "sm" ? "h-7 w-7 text-xs" : size === "lg" ? "h-11 w-11 text-sm" : "h-9 w-9 text-xs";
   return (
-    <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-white", color, sizeClass)}>
+    <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-foreground", color, sizeClass)}>
       {initials}
     </div>
   );

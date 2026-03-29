@@ -80,7 +80,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
@@ -355,7 +355,7 @@ function SaasTab() {
       {/* Page header */}
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-lg font-bold text-white">SaaS Metrics Dashboard</h2>
+          <h2 className="text-lg font-bold text-foreground">SaaS Metrics Dashboard</h2>
           <p className="text-sm text-muted-foreground mt-0.5">
             Key operating metrics for cloud software companies
           </p>
@@ -443,7 +443,7 @@ function SaasTab() {
                   )}
                 >
                   <td className="px-3 py-2.5">
-                    <span className="font-mono font-bold text-white">{c.ticker}</span>
+                    <span className="font-mono font-bold text-foreground">{c.ticker}</span>
                     <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
@@ -486,7 +486,7 @@ function SaasTab() {
             className="rounded-xl border border-primary/30 bg-primary/5 p-4"
           >
             <div className="flex items-center justify-between mb-4">
-              <h4 className="font-bold text-white text-sm">
+              <h4 className="font-bold text-foreground text-sm">
                 {selectedCompany.ticker} — {selectedCompany.name} Detail
               </h4>
               <Badge
@@ -526,7 +526,7 @@ function SaasTab() {
             {sorted.map((c, i) => (
               <div key={c.ticker} className="flex items-center gap-3 rounded-lg bg-foreground/5 px-3 py-2">
                 <span className="text-muted-foreground text-xs w-4">{i + 1}</span>
-                <span className="font-mono text-xs font-bold text-white w-12">{c.ticker}</span>
+                <span className="font-mono text-xs font-bold text-foreground w-12">{c.ticker}</span>
                 <div className="flex-1 h-1.5 bg-foreground/10 rounded-full overflow-hidden">
                   <div
                     className={cn("h-full rounded-full", c.nrr >= 120 ? "bg-emerald-500" : c.nrr >= 110 ? "bg-primary" : "bg-muted-foreground")}
@@ -647,7 +647,7 @@ function AiInfraTab() {
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-lg font-bold text-white">AI & Infrastructure</h2>
+          <h2 className="text-lg font-bold text-foreground">AI & Infrastructure</h2>
           <p className="text-sm text-muted-foreground mt-0.5">
             AI hyperscalers, chip markets, cloud dynamics, and monetization
           </p>
@@ -690,7 +690,7 @@ function AiInfraTab() {
                   )}
                 >
                   <td className="px-3 py-2.5">
-                    <span className="font-mono font-bold text-white">{h.ticker}</span>
+                    <span className="font-mono font-bold text-foreground">{h.ticker}</span>
                     <span className="text-muted-foreground ml-1.5">{h.name}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right text-foreground">{fmtB(h.aiRevenue)}</td>
@@ -864,7 +864,7 @@ function AiInfraTab() {
               : "border-amber-500/30 bg-amber-500/5"
             )}>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-bold text-white">{item.name}</span>
+                <span className="text-sm font-bold text-foreground">{item.name}</span>
                 <Badge
                   variant="outline"
                   className={cn(
@@ -913,7 +913,7 @@ function SemiCycleTab() {
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-lg font-bold text-white">Semiconductor Cycle</h2>
+          <h2 className="text-lg font-bold text-foreground">Semiconductor Cycle</h2>
           <p className="text-sm text-muted-foreground mt-0.5">
             Inventory cycles, AI-driven demand, geopolitical risk, and market structure
           </p>
@@ -953,7 +953,7 @@ function SemiCycleTab() {
                     i === 4 ? "bg-emerald-500" : i === 2 ? "bg-rose-500" : i === 3 ? "bg-primary" : "bg-muted-foreground"
                   )}
                 />
-                <span className="text-xs font-bold text-white">{phase.phase}</span>
+                <span className="text-xs font-bold text-foreground">{phase.phase}</span>
               </div>
               <span className="text-xs text-muted-foreground font-mono">{phase.year}</span>
               <p className="text-xs text-muted-foreground leading-relaxed">{phase.description}</p>
@@ -991,7 +991,7 @@ function SemiCycleTab() {
                   )}
                 >
                   <td className="px-3 py-2.5">
-                    <span className="font-mono font-bold text-white">{c.ticker}</span>
+                    <span className="font-mono font-bold text-foreground">{c.ticker}</span>
                     <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5">
@@ -1098,7 +1098,7 @@ function MegaCapTab() {
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-lg font-bold text-white">Mega-Cap Tech Comparison</h2>
+          <h2 className="text-lg font-bold text-foreground">Mega-Cap Tech Comparison</h2>
           <p className="text-sm text-muted-foreground mt-0.5">
             FAANGM deep dive: revenue mix, valuation, capital return, risks
           </p>
@@ -1127,7 +1127,7 @@ function MegaCapTab() {
             className={cn(
               "px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors",
               selected === c.ticker
-                ? "bg-primary text-white"
+                ? "bg-primary text-foreground"
                 : "bg-foreground/5 text-muted-foreground hover:bg-muted/50 hover:text-foreground"
             )}
           >
@@ -1149,7 +1149,7 @@ function MegaCapTab() {
           {/* Left: metrics */}
           <div className="space-y-4">
             <div className="rounded-xl border border-border bg-foreground/5 p-4">
-              <h4 className="font-bold text-white text-sm mb-3">{company.name} ({company.ticker})</h4>
+              <h4 className="font-bold text-foreground text-sm mb-3">{company.name} ({company.ticker})</h4>
               <div className="grid grid-cols-2 gap-2">
                 {[
                   { label: "Market Cap", value: fmtB(company.marketCapT * 1000) },
@@ -1248,7 +1248,7 @@ function MegaCapTab() {
                     selected === c.ticker ? "bg-primary/10" : "hover:bg-muted/30"
                   )}
                 >
-                  <td className="px-3 py-2.5 font-mono font-bold text-white">{c.ticker}</td>
+                  <td className="px-3 py-2.5 font-mono font-bold text-foreground">{c.ticker}</td>
                   <td className="px-3 py-2.5 text-right text-foreground">{fmtB(c.marketCapT * 1000)}</td>
                   <td className="px-3 py-2.5 text-right">
                     <span className={posNegClass(c.revGrowth)}>{fmtPct(c.revGrowth, 0)}</span>
@@ -1297,7 +1297,7 @@ function MegaCapTab() {
               )}
             >
               <div className="flex items-center justify-between mb-1.5">
-                <span className="font-mono font-bold text-white text-sm">{item.company}</span>
+                <span className="font-mono font-bold text-foreground text-sm">{item.company}</span>
                 <Badge
                   variant="outline"
                   className={cn(
@@ -1353,7 +1353,7 @@ function FintechTab() {
     <div className="space-y-6">
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-lg font-bold text-white">Fintech &amp; Internet</h2>
+          <h2 className="text-lg font-bold text-foreground">Fintech &amp; Internet</h2>
           <p className="text-sm text-muted-foreground mt-0.5">
             Payments, e-commerce, social media, gig economy, gaming, and infrastructure
           </p>
@@ -1377,7 +1377,7 @@ function FintechTab() {
             className={cn(
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border",
               activeCategory === cat
-                ? "bg-primary text-white border-primary"
+                ? "bg-primary text-foreground border-primary"
                 : "bg-foreground/5 text-muted-foreground border-border hover:bg-muted/50 hover:text-foreground"
             )}
           >
@@ -1410,7 +1410,7 @@ function FintechTab() {
                   className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-3 py-2.5">
-                    <span className="font-mono font-bold text-white">{c.ticker}</span>
+                    <span className="font-mono font-bold text-foreground">{c.ticker}</span>
                     <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5">
@@ -1535,7 +1535,7 @@ export default function TechSectorPage() {
               <Cpu className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">Technology Sector</h1>
+              <h1 className="text-xl font-bold text-foreground">Technology Sector</h1>
               <p className="text-sm text-muted-foreground">SaaS · AI/Infra · Semiconductors · Mega-Cap · Fintech</p>
             </div>
           </div>
@@ -1565,7 +1565,7 @@ export default function TechSectorPage() {
               <div className="mt-0.5">{item.icon}</div>
               <div>
                 <div className="text-xs text-muted-foreground">{item.label}</div>
-                <div className="text-sm font-bold text-white">{item.value}</div>
+                <div className="text-sm font-bold text-foreground">{item.value}</div>
                 <div className="text-xs text-muted-foreground">{item.sub}</div>
               </div>
             </div>
@@ -1580,19 +1580,19 @@ export default function TechSectorPage() {
         >
           <Tabs defaultValue="saas" className="space-y-4">
             <TabsList className="bg-foreground/5 border border-border h-auto flex-wrap gap-1 p-1">
-              <TabsTrigger value="saas" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+              <TabsTrigger value="saas" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
                 SaaS Metrics
               </TabsTrigger>
-              <TabsTrigger value="ai" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+              <TabsTrigger value="ai" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
                 AI &amp; Infrastructure
               </TabsTrigger>
-              <TabsTrigger value="semi" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+              <TabsTrigger value="semi" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
                 Semiconductor Cycle
               </TabsTrigger>
-              <TabsTrigger value="megacap" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+              <TabsTrigger value="megacap" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
                 Mega-Cap Tech
               </TabsTrigger>
-              <TabsTrigger value="fintech" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+              <TabsTrigger value="fintech" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
                 Fintech &amp; Internet
               </TabsTrigger>
             </TabsList>

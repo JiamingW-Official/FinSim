@@ -1202,7 +1202,7 @@ export default function AlgoExecutionPage() {
                     { step: "4", label: "Post & Internalize", desc: "Post remainder or internalize if broker has inventory", color: "bg-yellow-500" },
                   ].map((item) => (
                     <div key={item.step} className="flex gap-3 p-3 rounded-lg border border-border bg-muted/20">
-                      <div className={`w-6 h-6 rounded-full ${item.color} flex items-center justify-center text-white font-bold flex-shrink-0`}>
+                      <div className={`w-6 h-6 rounded-full ${item.color} flex items-center justify-center text-foreground font-bold flex-shrink-0`}>
                         {item.step}
                       </div>
                       <div>

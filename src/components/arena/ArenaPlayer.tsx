@@ -477,7 +477,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
                   Continue
                 </button>
                 <button type="button" onClick={onCancel}
-                  className="rounded-lg bg-red-500 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-red-400">
+                  className="rounded-lg bg-red-500 px-4 py-2 text-xs font-bold text-foreground transition-colors hover:bg-red-400">
                   Quit
                 </button>
               </div>

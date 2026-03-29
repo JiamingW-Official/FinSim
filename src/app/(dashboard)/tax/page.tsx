@@ -426,7 +426,7 @@ function TaxLossHarvestingTab() {
                         : "border-green-500/30"
                     }`}
                   >
-                    {(p.selected || !isLoss) && <CheckCircle2 className="h-3 w-3 text-white" />}
+                    {(p.selected || !isLoss) && <CheckCircle2 className="h-3 w-3 text-foreground" />}
                   </div>
                   <span className="font-mono text-sm font-bold w-12 shrink-0">{p.ticker}</span>
                   <span className="text-xs text-muted-foreground w-20 shrink-0">{p.shares} shares</span>

@@ -1302,7 +1302,7 @@ function Tab60s() {
               },
             ].map((row) => (
               <div key={row.step} className="flex gap-3 p-3 rounded-lg bg-muted/30 border border-border">
-                <div className={cn("w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-white text-xs font-bold", row.color)}>
+                <div className={cn("w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-foreground text-xs font-bold", row.color)}>
                   {row.step}
                 </div>
                 <div>

@@ -1108,19 +1108,19 @@ export default function CarbonMarketsPage() {
 
       <Tabs defaultValue="compliance">
         <TabsList className="bg-card border border-border mb-6 flex flex-wrap gap-1 h-auto p-1">
-          <TabsTrigger value="compliance" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs px-3 py-1.5">
+          <TabsTrigger value="compliance" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs px-3 py-1.5">
             <Activity className="w-3 h-3 mr-1" />
             Compliance Markets
           </TabsTrigger>
-          <TabsTrigger value="voluntary" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs px-3 py-1.5">
+          <TabsTrigger value="voluntary" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs px-3 py-1.5">
             <Leaf className="w-3 h-3 mr-1" />
             Voluntary Markets
           </TabsTrigger>
-          <TabsTrigger value="quality" className="data-[state=active]:bg-amber-600 data-[state=active]:text-white text-xs px-3 py-1.5">
+          <TabsTrigger value="quality" className="data-[state=active]:bg-amber-600 data-[state=active]:text-foreground text-xs px-3 py-1.5">
             <ShieldCheck className="w-3 h-3 mr-1" />
             Credit Quality
           </TabsTrigger>
-          <TabsTrigger value="investment" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs px-3 py-1.5">
+          <TabsTrigger value="investment" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs px-3 py-1.5">
             <TrendingUp className="w-3 h-3 mr-1" />
             Investment Strategies
           </TabsTrigger>

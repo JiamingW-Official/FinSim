@@ -1014,7 +1014,7 @@ export default function TransitionFinancePage() {
           <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
-          <h1 className="text-2xl font-semibold text-white">
+          <h1 className="text-2xl font-semibold text-foreground">
             Transition Finance &amp; Climate Risk
           </h1>
         </div>
@@ -1026,16 +1026,16 @@ export default function TransitionFinancePage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
         <TabsList className="bg-card border border-border h-auto p-1 flex-wrap gap-1">
-          <TabsTrigger value="landscape" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
+          <TabsTrigger value="landscape" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
             <Globe className="w-3.5 h-3.5 mr-1" />Climate Finance
           </TabsTrigger>
-          <TabsTrigger value="carbon" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
+          <TabsTrigger value="carbon" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
             <BarChart2 className="w-3.5 h-3.5 mr-1" />Carbon Markets
           </TabsTrigger>
-          <TabsTrigger value="stranded" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
+          <TabsTrigger value="stranded" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
             <AlertTriangle className="w-3.5 h-3.5 mr-1" />Stranded Assets
           </TabsTrigger>
-          <TabsTrigger value="bonds" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
+          <TabsTrigger value="bonds" className="text-xs data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground">
             <DollarSign className="w-3.5 h-3.5 mr-1" />Bonds &amp; Taxonomy
           </TabsTrigger>
         </TabsList>
@@ -1096,7 +1096,7 @@ export default function TransitionFinancePage() {
                   <div key={b.name} className="flex items-start gap-2 p-2 bg-muted/50 rounded-lg text-xs">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                     <div>
-                      <div className="font-medium text-white">{b.name}</div>
+                      <div className="font-medium text-foreground">{b.name}</div>
                       <div className="text-muted-foreground">
                         <span className="text-primary">{b.provider}</span> · Risk: {b.risk} · Return: {b.return}
                       </div>
@@ -1169,7 +1169,7 @@ export default function TransitionFinancePage() {
                     onClick={() => setSelectedDisclosure(i)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                       selectedDisclosure === i
-                        ? "bg-emerald-600 border-emerald-500 text-white"
+                        ? "bg-emerald-600 border-emerald-500 text-foreground"
                         : "bg-muted border-border text-muted-foreground hover:border-border"
                     }`}
                   >
@@ -1182,7 +1182,7 @@ export default function TransitionFinancePage() {
                 return (
                   <div className="bg-muted/50 rounded-lg p-4 space-y-3">
                     <div>
-                      <div className="text-white font-medium text-sm">{f.name}</div>
+                      <div className="text-foreground font-medium text-sm">{f.name}</div>
                       <div className="text-muted-foreground text-xs">{f.full}</div>
                     </div>
                     <div>
@@ -1197,7 +1197,7 @@ export default function TransitionFinancePage() {
                     </div>
                     <div className="flex items-center gap-2 text-xs">
                       <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span className="text-muted-foreground">Mandatory in: <span className="text-white">{f.mandatory}</span></span>
+                      <span className="text-muted-foreground">Mandatory in: <span className="text-foreground">{f.mandatory}</span></span>
                     </div>
                   </div>
                 );
@@ -1281,7 +1281,7 @@ export default function TransitionFinancePage() {
                     onClick={() => setSelectedMarket(i)}
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                       selectedMarket === i
-                        ? "bg-emerald-600 border-emerald-500 text-white"
+                        ? "bg-emerald-600 border-emerald-500 text-foreground"
                         : "bg-muted border-border text-muted-foreground hover:border-border"
                     }`}
                   >
@@ -1301,7 +1301,7 @@ export default function TransitionFinancePage() {
                     ].map((row) => (
                       <div key={row.label} className="bg-muted/50 rounded-lg p-3">
                         <div className="text-xs text-muted-foreground mb-0.5">{row.label}</div>
-                        <div className="text-sm text-white font-medium">{row.value}</div>
+                        <div className="text-sm text-foreground font-medium">{row.value}</div>
                       </div>
                     ))}
                     <div className="col-span-2 bg-muted/50 rounded-lg p-3">
@@ -1340,7 +1340,7 @@ export default function TransitionFinancePage() {
                               className={`absolute left-0 top-0 bottom-0 ${sc.color} opacity-70`}
                               style={{ width: `${(sc.val / 260) * 100}%` }}
                             />
-                            <span className="absolute inset-0 flex items-center justify-center text-xs font-mono text-white">
+                            <span className="absolute inset-0 flex items-center justify-center text-xs font-mono text-foreground">
                               ${sc.val}
                             </span>
                           </div>
@@ -1400,7 +1400,7 @@ export default function TransitionFinancePage() {
             </CardHeader>
             <CardContent className="text-xs text-muted-foreground">
               <p>
-                Assets that suffer <span className="text-amber-400 font-medium">unanticipated or premature write-downs, devaluations or conversion to liabilities</span> driven by environment-related risks: policy change, technology disruption, shifting market preferences, physical climate damage, or litigation risk. The concept was formalised by Carbon Tracker (2011) with the <span className="text-white">"unburnable carbon"</span> thesis — fossil fuel reserves on company books exceed the carbon budget consistent with 2°C, implying large eventual impairments.
+                Assets that suffer <span className="text-amber-400 font-medium">unanticipated or premature write-downs, devaluations or conversion to liabilities</span> driven by environment-related risks: policy change, technology disruption, shifting market preferences, physical climate damage, or litigation risk. The concept was formalised by Carbon Tracker (2011) with the <span className="text-foreground">"unburnable carbon"</span> thesis — fossil fuel reserves on company books exceed the carbon budget consistent with 2°C, implying large eventual impairments.
               </p>
             </CardContent>
           </Card>
@@ -1558,7 +1558,7 @@ export default function TransitionFinancePage() {
                           : "text-emerald-400";
                       return (
                         <tr key={b.type} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                          <td className="py-2 pr-3 font-medium text-white whitespace-nowrap">{b.type}</td>
+                          <td className="py-2 pr-3 font-medium text-foreground whitespace-nowrap">{b.type}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{b.proceeds}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{b.standard}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{b.issuer}</td>
@@ -1602,7 +1602,7 @@ export default function TransitionFinancePage() {
                       {obj.id}
                     </div>
                     <div>
-                      <div className="text-xs font-medium text-white">{obj.name}</div>
+                      <div className="text-xs font-medium text-foreground">{obj.name}</div>
                       <div className="text-xs text-muted-foreground mt-0.5">{obj.examples[0]}</div>
                     </div>
                   </div>
@@ -1649,7 +1649,7 @@ export default function TransitionFinancePage() {
                     <div className="flex items-center gap-3">
                       <Wind className="w-4 h-4 text-orange-400 shrink-0" />
                       <div>
-                        <span className="text-sm font-medium text-white">{s.sector}</span>
+                        <span className="text-sm font-medium text-foreground">{s.sector}</span>
                         <span className="ml-2 text-xs text-muted-foreground">{s.share}</span>
                       </div>
                     </div>

@@ -619,7 +619,7 @@ function DBvsDCTab() {
                       <div
                         className={`h-10 rounded flex items-center justify-center text-xs font-bold ${
                           CLIFF_VESTING.vestedPct[i] === 100
-                            ? "bg-emerald-500/80 text-white"
+                            ? "bg-emerald-500/80 text-foreground"
                             : "bg-muted text-muted-foreground"
                         }`}
                       >
@@ -641,7 +641,7 @@ function DBvsDCTab() {
                           className="rounded-t bg-primary/70 flex items-end justify-center"
                           style={{ height: `${Math.max(GRADED_VESTING.vestedPct[i], 8)}%` }}
                         >
-                          <span className="text-xs font-bold text-white pb-1">
+                          <span className="text-xs font-bold text-foreground pb-1">
                             {GRADED_VESTING.vestedPct[i]}%
                           </span>
                         </div>
@@ -933,13 +933,13 @@ function LDITab() {
                     </div>
                     <div className="flex rounded overflow-hidden h-5">
                       <div
-                        className="bg-primary flex items-center justify-center text-xs text-white font-bold"
+                        className="bg-primary flex items-center justify-center text-xs text-foreground font-bold"
                         style={{ width: `${stage.rs}%` }}
                       >
                         {stage.rs > 15 ? `${stage.rs}%` : ""}
                       </div>
                       <div
-                        className="bg-emerald-500 flex items-center justify-center text-xs text-white font-bold"
+                        className="bg-emerald-500 flex items-center justify-center text-xs text-foreground font-bold"
                         style={{ width: `${stage.hedge}%` }}
                       >
                         {stage.hedge > 15 ? `${stage.hedge}%` : ""}

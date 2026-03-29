@@ -617,16 +617,16 @@ export default function CreditDerivativesPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-card border border-border">
-          <TabsTrigger value="cds-fundamentals" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+          <TabsTrigger value="cds-fundamentals" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
             <Shield className="w-3.5 h-3.5 mr-1.5" />CDS Fundamentals
           </TabsTrigger>
-          <TabsTrigger value="credit-indices" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+          <TabsTrigger value="credit-indices" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
             <BarChart2 className="w-3.5 h-3.5 mr-1.5" />Credit Indices
           </TabsTrigger>
-          <TabsTrigger value="cln-trs" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+          <TabsTrigger value="cln-trs" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
             <Layers className="w-3.5 h-3.5 mr-1.5" />CLN &amp; TRS
           </TabsTrigger>
-          <TabsTrigger value="market-regulation" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+          <TabsTrigger value="market-regulation" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
             <Globe className="w-3.5 h-3.5 mr-1.5" />Market &amp; Regulation
           </TabsTrigger>
         </TabsList>

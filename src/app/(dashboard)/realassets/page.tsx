@@ -467,7 +467,7 @@ function corrColor(v: number): string {
 }
 
 function corrTextColor(v: number): string {
-  if (Math.abs(v) > 0.4) return "text-white";
+  if (Math.abs(v) > 0.4) return "text-foreground";
   return "text-foreground/80";
 }
 

@@ -461,7 +461,7 @@ function HeatmapCalendar({ tradeHistory }: { tradeHistory: { timestamp: number }
           <div
             key={cell.key}
             title={`${cell.key}: ${cell.count} trades`}
-            className="w-5 h-5 rounded-sm flex items-center justify-center text-[11px] text-white/40"
+            className="w-5 h-5 rounded-sm flex items-center justify-center text-[11px] text-foreground/40"
             style={{
               backgroundColor: `rgba(16, 185, 129, ${opacity})`,
               border: cell.count > 0 ? "1px solid rgba(16,185,129,0.3)" : "1px solid rgba(255,255,255,0.06)",

@@ -653,7 +653,7 @@ function FactorDashboard() {
           >
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-base font-semibold text-white">{sel.name} Factor</h3>
+                <h3 className="text-base font-semibold text-foreground">{sel.name} Factor</h3>
                 <p className="text-sm text-muted-foreground mt-0.5">{sel.description}</p>
               </div>
               <div className="text-right text-xs text-muted-foreground">
@@ -1257,7 +1257,7 @@ function Implementation() {
             <div className="flex items-start justify-between mb-3">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="font-mono font-bold text-lg text-white">{sel.ticker}</span>
+                  <span className="font-mono font-bold text-lg text-foreground">{sel.ticker}</span>
                   <span
                     className="px-2 py-0.5 rounded text-xs font-semibold"
                     style={{
@@ -1409,7 +1409,7 @@ export default function FactorTimingPage() {
       >
         <div className="flex items-center gap-3 mb-1">
           <Layers className="w-6 h-6 text-primary" />
-          <h1 className="text-2xl font-bold tracking-tight text-white">Factor Timing</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Factor Timing</h1>
           <Badge className="bg-primary/20 text-primary border-border text-xs ml-2">Quant</Badge>
         </div>
         <p className="text-sm text-muted-foreground">
@@ -1424,7 +1424,7 @@ export default function FactorTimingPage() {
             <TabsTrigger
               key={t.id}
               value={t.id}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground px-3 py-1.5 rounded"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5 rounded"
             >
               {t.icon}
               {t.label}

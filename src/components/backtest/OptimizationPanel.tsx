@@ -226,7 +226,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
 
         <button
           onClick={handleRun}
-          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary"
+          className="flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-primary"
         >
           <Play className="h-3.5 w-3.5" />
           Run Grid Search ({p1Values.length} × {p2Values.length} = {p1Values.length * p2Values.length} combinations)

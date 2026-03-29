@@ -786,7 +786,7 @@ function RollingCorrelationsTab() {
                 variant={selectedPair === i ? "default" : "outline"}
                 onClick={() => setSelectedPair(i)}
                 className={selectedPair === i
-                  ? "bg-primary text-white border-primary text-xs"
+                  ? "bg-primary text-foreground border-primary text-xs"
                   : "border-border text-muted-foreground text-xs hover:bg-muted"
                 }
               >
@@ -947,7 +947,7 @@ function CrisisCorrelationsTab() {
             onClick={() => setSelectedCrisis(e.id)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all border ${
               selectedCrisis === e.id
-                ? "text-white border-transparent"
+                ? "text-foreground border-transparent"
                 : "border-border text-muted-foreground bg-muted/50 hover:border-muted-foreground"
             }`}
             style={selectedCrisis === e.id ? { background: e.color, borderColor: e.color } : {}}
@@ -1336,7 +1336,7 @@ function OptimalPairsTab() {
             variant={sortBy === s.key ? "default" : "outline"}
             onClick={() => setSortBy(s.key)}
             className={sortBy === s.key
-              ? "bg-primary text-white border-primary text-xs"
+              ? "bg-primary text-foreground border-primary text-xs"
               : "border-border text-muted-foreground text-xs hover:bg-muted"
             }
           >
@@ -1539,7 +1539,7 @@ export default function CorrelationsPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground px-3 py-1.5"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5"
             >
               {t.icon}
               {t.label}

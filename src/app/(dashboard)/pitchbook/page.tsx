@@ -453,7 +453,7 @@ function PitchStructureTab() {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Transaction</p>
-                <p className="text-sm font-semibold text-white">NXTS Acquires STRD</p>
+                <p className="text-sm font-semibold text-foreground">NXTS Acquires STRD</p>
               </div>
             </div>
             <div className="flex flex-wrap gap-3 ml-auto">
@@ -465,7 +465,7 @@ function PitchStructureTab() {
               ].map((item) => (
                 <div key={item.label} className="text-center px-3 py-1 rounded-lg bg-muted border border-border">
                   <p className="text-xs text-muted-foreground">{item.label}</p>
-                  <p className="text-sm font-bold text-white">{item.value}</p>
+                  <p className="text-sm font-bold text-foreground">{item.value}</p>
                 </div>
               ))}
             </div>
@@ -497,7 +497,7 @@ function PitchStructureTab() {
                   <ChevronRight className="w-3 h-3 text-muted-foreground ml-auto" />
                 )}
               </div>
-              <p className={`text-xs font-semibold ${isActive ? "text-white" : "text-muted-foreground"}`}>
+              <p className={`text-xs font-semibold ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
                 {section.title}
               </p>
               <div className="mt-2">
@@ -520,7 +520,7 @@ function PitchStructureTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-base text-white flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <active.icon className={`w-5 h-5 ${active.color}`} />
                 {active.title}
               </CardTitle>
@@ -595,7 +595,7 @@ function PitchStructureTab() {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border ${
                       step.done
-                        ? "bg-primary border-primary text-white"
+                        ? "bg-primary border-primary text-foreground"
                         : "bg-muted border-border text-muted-foreground"
                     }`}
                   >
@@ -627,7 +627,7 @@ function ValuationSummaryTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base text-white">Football Field — Implied Share Price</CardTitle>
+            <CardTitle className="text-base text-foreground">Football Field — Implied Share Price</CardTitle>
             <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs">
               Offer: $72.50
             </Badge>
@@ -660,7 +660,7 @@ function ValuationSummaryTab() {
                 className="w-3 h-3 rounded-sm"
                 style={{ backgroundColor: m.color, opacity: 0.8 }}
               />
-              <span className="text-xs font-semibold text-white">{m.name}</span>
+              <span className="text-xs font-semibold text-foreground">{m.name}</span>
             </div>
             <div className="flex items-end gap-2">
               <span className="text-xl font-bold" style={{ color: m.color }}>
@@ -689,7 +689,7 @@ function ValuationSummaryTab() {
                 style={{ backgroundColor: VALUATION_METHODS[selectedMethod].color }}
               />
               <div>
-                <p className="text-sm font-semibold text-white mb-1">
+                <p className="text-sm font-semibold text-foreground mb-1">
                   {VALUATION_METHODS[selectedMethod].name} — Methodology Notes
                 </p>
                 <p className="text-sm text-muted-foreground">
@@ -958,7 +958,7 @@ function ComparableCompaniesTab() {
             ].map((row) => (
               <div key={row.label} className="p-3 rounded-lg bg-muted border border-border">
                 <p className="text-xs text-muted-foreground mb-2">{row.label}</p>
-                <p className="text-lg font-bold text-white">{row.share}</p>
+                <p className="text-lg font-bold text-foreground">{row.share}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-xs text-muted-foreground">{row.implied} EV</span>
                   <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-xs">
@@ -1061,7 +1061,7 @@ function MAndAAccretionTab() {
                 <Badge className="text-xs bg-muted border-border text-muted-foreground">{row.basis}</Badge>
               </div>
               <div className="flex items-end gap-2 mb-1">
-                <span className="text-2xl font-bold text-white">${row.eps.toFixed(2)}</span>
+                <span className="text-2xl font-bold text-foreground">${row.eps.toFixed(2)}</span>
                 <span className="text-xs text-muted-foreground mb-1">Pro Forma EPS</span>
               </div>
               <div className={`flex items-center gap-1 text-sm font-bold ${accretionColor(row.acc)}`}>
@@ -1139,15 +1139,15 @@ function MAndAAccretionTab() {
                   );
                 })}
                 <tr className="border-t-2 border-border bg-muted/30">
-                  <td className="p-2 text-white font-bold">Total Synergies</td>
+                  <td className="p-2 text-foreground font-bold">Total Synergies</td>
                   <td />
-                  <td className="p-2 text-right font-mono text-white font-bold">
+                  <td className="p-2 text-right font-mono text-foreground font-bold">
                     ${SYNERGIES.reduce((s, r) => s + r.year1, 0)}M
                   </td>
-                  <td className="p-2 text-right font-mono text-white font-bold">
+                  <td className="p-2 text-right font-mono text-foreground font-bold">
                     ${SYNERGIES.reduce((s, r) => s + r.year2, 0)}M
                   </td>
-                  <td className="p-2 text-right font-mono text-white font-bold">
+                  <td className="p-2 text-right font-mono text-foreground font-bold">
                     ${SYNERGIES.reduce((s, r) => s + r.year3, 0)}M
                   </td>
                   <td className="p-2 text-right font-mono text-emerald-400 font-bold">
@@ -1198,7 +1198,7 @@ function MAndAAccretionTab() {
                     <td className="p-2 text-right font-mono text-emerald-400">
                       {row.syn !== null ? `+$${row.syn.toLocaleString()}M` : "—"}
                     </td>
-                    <td className="p-2 text-right font-mono text-white font-bold">
+                    <td className="p-2 text-right font-mono text-foreground font-bold">
                       {row.label === "EPS (diluted)" ? `$${row.pf.toFixed(2)}` : `$${row.pf.toLocaleString()}M`}
                     </td>
                   </tr>
@@ -1347,7 +1347,7 @@ function FinancingStructureTab() {
                 <div className="pt-2 border-t border-border">
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Total Transaction</span>
-                    <span className="font-bold text-white">$8,200M</span>
+                    <span className="font-bold text-foreground">$8,200M</span>
                   </div>
                   <div className="flex justify-between text-xs mt-1">
                     <span className="text-muted-foreground">Fees &amp; Expenses</span>
@@ -1376,7 +1376,7 @@ function FinancingStructureTab() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-white">{agency.agency}</span>
+                    <span className="text-sm font-semibold text-foreground">{agency.agency}</span>
                     <Badge className={`text-xs ${
                       agency.outlook === "Stable"
                         ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
@@ -1400,7 +1400,7 @@ function FinancingStructureTab() {
             <CardTitle className="text-sm text-muted-foreground">Proposed Debt Financing Structure</CardTitle>
             <span className="text-xs text-muted-foreground">
               Blended Rate:{" "}
-              <span className="text-white font-bold">
+              <span className="text-foreground font-bold">
                 {(
                   DEBT_TRANCHES.reduce((s, t) => s + t.amount * t.rate, 0) / totalDebt
                 ).toFixed(2)}
@@ -1453,8 +1453,8 @@ function FinancingStructureTab() {
                   );
                 })}
                 <tr className="border-t-2 border-border bg-muted/30">
-                  <td className="p-2 text-white font-bold">Total Debt</td>
-                  <td className="p-2 text-right font-mono text-white font-bold">${totalDebt.toLocaleString()}M</td>
+                  <td className="p-2 text-foreground font-bold">Total Debt</td>
+                  <td className="p-2 text-right font-mono text-foreground font-bold">${totalDebt.toLocaleString()}M</td>
                   <td className="p-2 text-right font-mono text-primary font-bold">
                     {(DEBT_TRANCHES.reduce((s, t) => s + t.amount * t.rate, 0) / totalDebt).toFixed(2)}%
                   </td>
@@ -1526,7 +1526,7 @@ export default function PitchbookPage() {
                 <FileText className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">Pitch Book Builder</h1>
+                <h1 className="text-xl font-bold text-foreground">Pitch Book Builder</h1>
                 <p className="text-xs text-muted-foreground">Investment Banking — M&amp;A Advisory</p>
               </div>
             </div>

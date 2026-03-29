@@ -352,7 +352,7 @@ function BondUniverseTab({
               className={cn(
                 "px-3 py-1 rounded text-xs font-medium transition-colors",
                 ratingFilter === f
-                  ? "bg-primary text-white"
+                  ? "bg-primary text-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -368,7 +368,7 @@ function BondUniverseTab({
               className={cn(
                 "px-3 py-1 rounded text-xs font-medium transition-colors",
                 sectorFilter === s
-                  ? "bg-indigo-600 text-white"
+                  ? "bg-indigo-600 text-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -384,7 +384,7 @@ function BondUniverseTab({
               className={cn(
                 "px-3 py-1 rounded text-xs font-medium transition-colors",
                 callableFilter === f
-                  ? "bg-primary text-white"
+                  ? "bg-primary text-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
@@ -405,7 +405,7 @@ function BondUniverseTab({
               <th className="px-3 py-2 text-right">Maturity</th>
               <th className="px-3 py-2 text-right">Price</th>
               <th
-                className="px-3 py-2 text-right cursor-pointer hover:text-white"
+                className="px-3 py-2 text-right cursor-pointer hover:text-foreground"
                 onClick={() => toggleSort("ytm")}
               >
                 <span className="flex items-center justify-end gap-1">
@@ -413,7 +413,7 @@ function BondUniverseTab({
                 </span>
               </th>
               <th
-                className="px-3 py-2 text-right cursor-pointer hover:text-white"
+                className="px-3 py-2 text-right cursor-pointer hover:text-foreground"
                 onClick={() => toggleSort("duration")}
               >
                 <span className="flex items-center justify-end gap-1">
@@ -422,7 +422,7 @@ function BondUniverseTab({
               </th>
               <th className="px-3 py-2 text-right">Convex.</th>
               <th
-                className="px-3 py-2 text-right cursor-pointer hover:text-white"
+                className="px-3 py-2 text-right cursor-pointer hover:text-foreground"
                 onClick={() => toggleSort("rating")}
               >
                 <span className="flex items-center justify-end gap-1">
@@ -430,7 +430,7 @@ function BondUniverseTab({
                 </span>
               </th>
               <th
-                className="px-3 py-2 text-right cursor-pointer hover:text-white"
+                className="px-3 py-2 text-right cursor-pointer hover:text-foreground"
                 onClick={() => toggleSort("spreadBps")}
               >
                 <span className="flex items-center justify-end gap-1">
@@ -455,7 +455,7 @@ function BondUniverseTab({
                 onClick={() => setSelectedBond(bond.id === selectedBond?.id ? null : bond)}
               >
                 <td className="px-3 py-2">
-                  <div className="font-medium text-white">{bond.name}</div>
+                  <div className="font-medium text-foreground">{bond.name}</div>
                   <div className="text-muted-foreground">{bond.issuer}</div>
                 </td>
                 <td className="px-3 py-2 text-muted-foreground">{bond.sector}</td>
@@ -506,23 +506,23 @@ function BondUniverseTab({
             <div className="bg-muted/60 rounded-lg border border-border p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Macaulay Duration</div>
-                <div className="text-white font-semibold">{selectedBond.duration.toFixed(3)} yrs</div>
+                <div className="text-foreground font-semibold">{selectedBond.duration.toFixed(3)} yrs</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Modified Duration</div>
-                <div className="text-white font-semibold">{selectedBond.modDur.toFixed(3)} yrs</div>
+                <div className="text-foreground font-semibold">{selectedBond.modDur.toFixed(3)} yrs</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Convexity</div>
-                <div className="text-white font-semibold">{selectedBond.convexity.toFixed(4)}</div>
+                <div className="text-foreground font-semibold">{selectedBond.convexity.toFixed(4)}</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">DV01 (per $1M face)</div>
-                <div className="text-white font-semibold">{fmtUSD(selectedBond.modDur * selectedBond.price * 1000 * 0.0001, 2)}</div>
+                <div className="text-foreground font-semibold">{fmtUSD(selectedBond.modDur * selectedBond.price * 1000 * 0.0001, 2)}</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">Price (par = 1000)</div>
-                <div className="text-white font-semibold">${selectedBond.price.toFixed(4)}</div>
+                <div className="text-foreground font-semibold">${selectedBond.price.toFixed(4)}</div>
               </div>
               <div>
                 <div className="text-muted-foreground text-xs mb-1">+100bps price chg</div>
@@ -621,7 +621,7 @@ function YieldCurveTab() {
       {/* Chart + overlays */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-white">Treasury Yield Curve</h3>
+          <h3 className="text-sm font-semibold text-foreground">Treasury Yield Curve</h3>
           <div className="flex gap-2">
             {(["6M ago", "1Y ago", "2Y ago"] as const).map((label) => {
               const c = curves.find((x) => x.label === label)!;
@@ -709,7 +709,7 @@ function YieldCurveTab() {
             exit={{ opacity: 0, y: 12 }}
           >
             <div className="bg-muted/60 rounded-lg border border-border p-4">
-              <h3 className="text-sm font-semibold text-white mb-3">
+              <h3 className="text-sm font-semibold text-foreground mb-3">
                 {selectedBond2.tenor.label} Treasury — YTM {fmtPct(selectedBond2.ytm)} — Price Sensitivity
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -804,7 +804,7 @@ function PortfolioBuilderTab({
       {/* Stats row */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         {[
-          { label: "Total Allocated", value: fmtM(totalNotional), color: "text-white" },
+          { label: "Total Allocated", value: fmtM(totalNotional), color: "text-foreground" },
           { label: "Cash Remaining", value: fmtM(Math.max(0, 1_000_000 - totalNotional)), color: totalNotional > 1_000_000 ? "text-red-400" : "text-emerald-400" },
           { label: "Wtd. Avg. Duration", value: stats ? `${stats.waDuration.toFixed(2)}y` : "—", color: "text-primary" },
           { label: "Wtd. Avg. YTM", value: stats ? fmtPct(stats.waYtm) : "—", color: "text-indigo-400" },
@@ -820,7 +820,7 @@ function PortfolioBuilderTab({
       {/* Target duration */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-white">Duration Target</h3>
+          <h3 className="text-sm font-semibold text-foreground">Duration Target</h3>
           <span className="text-xs text-muted-foreground">
             Gap: {stats ? `${(stats.waDuration - targetDuration).toFixed(2)}y` : "—"}
           </span>
@@ -859,7 +859,7 @@ function PortfolioBuilderTab({
       {/* Strategy comparison */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center gap-3 mb-3">
-          <h3 className="text-sm font-semibold text-white">Strategy Templates</h3>
+          <h3 className="text-sm font-semibold text-foreground">Strategy Templates</h3>
           <div className="flex gap-1">
             {(["barbell", "bullet", "ladder"] as const).map((m) => (
               <button
@@ -867,7 +867,7 @@ function PortfolioBuilderTab({
                 onClick={() => setAllocationMode(m)}
                 className={cn(
                   "px-3 py-1 rounded text-xs font-medium transition-colors capitalize",
-                  allocationMode === m ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+                  allocationMode === m ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
                 {m}
@@ -906,10 +906,10 @@ function PortfolioBuilderTab({
       {/* Portfolio holdings */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-white">Current Holdings</h3>
+          <h3 className="text-sm font-semibold text-foreground">Current Holdings</h3>
           <button
             onClick={onAddBond}
-            className="flex items-center gap-1 text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded transition-colors"
+            className="flex items-center gap-1 text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-foreground rounded transition-colors"
           >
             <PlusCircle className="w-3 h-3" /> Add from Universe
           </button>
@@ -931,11 +931,11 @@ function PortfolioBuilderTab({
                 className="flex items-center gap-3 bg-muted/40 rounded px-3 py-2"
               >
                 <div className="flex-1">
-                  <div className="text-xs font-medium text-white">{p.bond.name}</div>
+                  <div className="text-xs font-medium text-foreground">{p.bond.name}</div>
                   <div className="text-xs text-muted-foreground">{p.bond.rating} · {fmtPct(p.bond.ytm)} YTM · {p.bond.modDur.toFixed(1)}y dur</div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xs font-semibold text-white">{fmtM(p.notional)}</div>
+                  <div className="text-xs font-semibold text-foreground">{fmtM(p.notional)}</div>
                   <div className="text-xs text-muted-foreground">{((p.notional / Math.max(totalNotional, 1)) * 100).toFixed(1)}%</div>
                 </div>
                 <button
@@ -1038,7 +1038,7 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
 
       {/* Duration contribution bar chart */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">Duration Contribution by Bond</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Duration Contribution by Bond</h3>
         <div className="space-y-2">
           {portfolio.map((p) => {
             const contrib = p.bond.modDur * (p.notional / totalNotional);
@@ -1063,7 +1063,7 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
 
       {/* Parallel shift scenarios */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">Parallel Rate Shift Scenarios</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Parallel Rate Shift Scenarios</h3>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
           {scenarios.map((sc) => (
             <button
@@ -1092,11 +1092,11 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
 
       {/* Non-parallel shifts */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">Non-Parallel Shift Analysis</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Non-Parallel Shift Analysis</h3>
         <div className="grid grid-cols-3 gap-3">
           {nonParallelScenarios.map((sc) => (
             <div key={sc.name} className="bg-muted/40 rounded-lg p-3">
-              <div className="text-sm font-semibold text-white mb-1">{sc.name}</div>
+              <div className="text-sm font-semibold text-foreground mb-1">{sc.name}</div>
               <div className="text-xs text-muted-foreground mb-2">{sc.desc}</div>
               <div className={cn("text-base font-bold", sc.change >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {sc.change >= 0 ? "+" : ""}{fmtM(sc.change)}
@@ -1190,7 +1190,7 @@ function CreditAnalysisTab() {
           return (
             <div key={item.label} className="bg-muted/60 rounded-lg border border-border p-4">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-semibold text-white">{item.label}</h3>
+                <h3 className="text-sm font-semibold text-foreground">{item.label}</h3>
                 <span className="text-xl font-bold" style={{ color: item.color }}>{item.spread}bps</span>
               </div>
               <div className="flex gap-4 text-xs mb-2">
@@ -1215,7 +1215,7 @@ function CreditAnalysisTab() {
       {/* Credit scorecard */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-semibold text-white">Credit Scorecard</h3>
+          <h3 className="text-sm font-semibold text-foreground">Credit Scorecard</h3>
           <select
             className="bg-muted border border-border text-muted-foreground text-xs rounded px-2 py-1"
             value={selectedBond3?.id ?? ""}
@@ -1244,7 +1244,7 @@ function CreditAnalysisTab() {
 
       {/* Relative value */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">IG Corporate Relative Value</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">IG Corporate Relative Value</h3>
         <div className="space-y-2">
           {relativeValue.map((rv) => (
             <div key={rv.bond.id} className="flex items-center gap-3">
@@ -1274,7 +1274,7 @@ function CreditAnalysisTab() {
       <div className="bg-muted/60 rounded-lg border border-border p-4">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
-          <h3 className="text-sm font-semibold text-white">Fallen Angel Watch</h3>
+          <h3 className="text-sm font-semibold text-foreground">Fallen Angel Watch</h3>
           <span className="text-xs text-muted-foreground">— IG bonds at risk of HY downgrade</span>
         </div>
         <div className="space-y-2">
@@ -1282,7 +1282,7 @@ function CreditAnalysisTab() {
             <div key={b.id} className="flex items-center gap-3 bg-amber-500/5 border border-amber-500/20 rounded px-3 py-2">
               <AlertTriangle className="w-3 h-3 text-amber-400 flex-shrink-0" />
               <div className="flex-1">
-                <span className="text-xs font-medium text-white">{b.name}</span>
+                <span className="text-xs font-medium text-foreground">{b.name}</span>
                 <span className="text-xs text-muted-foreground ml-2">{b.issuer}</span>
               </div>
               <span className={cn("text-xs font-semibold px-1.5 py-0.5 rounded border", ratingBg(b.rating))}>{b.rating}</span>
@@ -1374,7 +1374,7 @@ function TaxExemptTab() {
     <div className="space-y-5">
       {/* Tax rate inputs */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-white mb-4">Tax Parameters</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-4">Tax Parameters</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <div className="flex justify-between mb-2">
@@ -1388,7 +1388,7 @@ function TaxExemptTab() {
                   onClick={() => setMarginalRate(r)}
                   className={cn(
                     "flex-1 py-1 rounded text-xs font-medium transition-colors",
-                    marginalRate === r ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+                    marginalRate === r ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                   )}
                 >
                   {r}%
@@ -1428,7 +1428,7 @@ function TaxExemptTab() {
 
       {/* After-tax comparison table */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">After-Tax Return Comparison</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">After-Tax Return Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead className="text-muted-foreground border-b border-border">
@@ -1454,7 +1454,7 @@ function TaxExemptTab() {
                 const vs = afterTax - tsyAfterTax;
                 return (
                   <tr key={b.label} className="border-b border-border/50 hover:bg-muted/20">
-                    <td className="py-2 text-white">{b.label}</td>
+                    <td className="py-2 text-foreground">{b.label}</td>
                     <td className="py-2 text-right text-muted-foreground">{b.coupon.toFixed(2)}%</td>
                     <td className="py-2 text-right">
                       <span className={cn(
@@ -1482,7 +1482,7 @@ function TaxExemptTab() {
 
       {/* Muni bond detail list */}
       <div className="bg-muted/60 rounded-lg border border-border p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">Municipal Bond Universe</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Municipal Bond Universe</h3>
         <div className="space-y-2">
           {MUNI_BONDS.map((b) => {
             const isTriple = b.tripleExempt && inState;
@@ -1500,7 +1500,7 @@ function TaxExemptTab() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-semibold text-white">{b.name}</span>
+                    <span className="text-xs font-semibold text-foreground">{b.name}</span>
                     <span className="text-xs text-muted-foreground">{b.state} · {b.type}</span>
                     {b.amt && <span className="text-xs px-1 bg-red-500/20 text-red-400 rounded">AMT</span>}
                     {isTriple && <span className="text-xs px-1 bg-orange-500/20 text-orange-400 rounded">3x Exempt</span>}
@@ -1603,7 +1603,7 @@ export default function FixedIncomePage() {
       >
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
               <Landmark className="w-6 h-6 text-primary" />
               Fixed Income
             </h1>
@@ -1621,7 +1621,7 @@ export default function FixedIncomePage() {
                 <DollarSign className="w-4 h-4 text-emerald-400" />
                 <div>
                   <div className="text-xs text-muted-foreground">Portfolio</div>
-                  <div className="text-sm font-semibold text-white">{fmtM(totalNotional)}</div>
+                  <div className="text-sm font-semibold text-foreground">{fmtM(totalNotional)}</div>
                 </div>
                 <div className="ml-1">
                   <div className="text-xs text-muted-foreground">Bonds</div>
@@ -1647,12 +1647,12 @@ export default function FixedIncomePage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground hover:text-foreground transition-colors"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}
               {value === "portfolio" && portfolioCount > 0 && (
-                <span className="ml-1 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
+                <span className="ml-1 bg-primary text-foreground text-xs rounded-full w-4 h-4 flex items-center justify-center font-bold">
                   {portfolioCount}
                 </span>
               )}

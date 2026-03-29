@@ -1108,7 +1108,7 @@ function PolicyTransmission() {
               <div className="flex items-center gap-1 overflow-x-auto pb-1">
                 {ch.steps.map((step, si) => (
                   <div key={si} className="flex shrink-0 items-center gap-1">
-                    <span className={cn("rounded px-2 py-1 text-xs font-medium text-white/90", step.color)}>
+                    <span className={cn("rounded px-2 py-1 text-xs font-medium text-foreground/90", step.color)}>
                       {step.label}
                     </span>
                     {si < ch.steps.length - 1 && (

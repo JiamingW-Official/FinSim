@@ -456,7 +456,7 @@ export default function InsuranceDerivativesPage() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
             <Shield className="h-6 w-6 text-amber-400" />
             Insurance-Linked Securities & CAT Bonds
           </h1>
@@ -491,21 +491,21 @@ export default function InsuranceDerivativesPage() {
             <Card className="bg-card border-border">
               <CardContent className="pt-4 pb-3">
                 <p className="text-xs text-muted-foreground">Total ILS Market</p>
-                <p className="text-2xl font-semibold text-white mt-1">$105.4B</p>
+                <p className="text-2xl font-semibold text-foreground mt-1">$105.4B</p>
                 <p className="text-xs text-emerald-400 mt-1">+12% YoY</p>
               </CardContent>
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="pt-4 pb-3">
                 <p className="text-xs text-muted-foreground">Avg CAT Bond Spread</p>
-                <p className="text-2xl font-semibold text-white mt-1">SOFR + 6.8%</p>
+                <p className="text-2xl font-semibold text-foreground mt-1">SOFR + 6.8%</p>
                 <p className="text-xs text-amber-400 mt-1">Near 10yr highs</p>
               </CardContent>
             </Card>
             <Card className="bg-card border-border">
               <CardContent className="pt-4 pb-3">
                 <p className="text-xs text-muted-foreground">Active Issuances (2024)</p>
-                <p className="text-2xl font-semibold text-white mt-1">48 Tranches</p>
+                <p className="text-2xl font-semibold text-foreground mt-1">48 Tranches</p>
                 <p className="text-xs text-primary mt-1">$16.2B new issuance</p>
               </CardContent>
             </Card>
@@ -542,7 +542,7 @@ export default function InsuranceDerivativesPage() {
                             )}
                           >
                             <td className="px-4 py-2.5">
-                              <p className="text-white font-medium">{b.name}</p>
+                              <p className="text-foreground font-medium">{b.name}</p>
                               <p className="text-muted-foreground">{b.issuer}</p>
                             </td>
                             <td className="px-4 py-2.5">
@@ -560,7 +560,7 @@ export default function InsuranceDerivativesPage() {
                               {(b.sofr + b.spread).toFixed(2)}%
                             </td>
                             <td className="px-4 py-2.5 text-right text-amber-400">{b.expectedLoss.toFixed(1)}%</td>
-                            <td className="px-4 py-2.5 text-right text-white">${b.outstanding}</td>
+                            <td className="px-4 py-2.5 text-right text-foreground">${b.outstanding}</td>
                             <td className="px-4 py-2.5 text-center">
                               <Badge variant="outline" className="text-xs text-muted-foreground border-border">
                                 {b.rating}
@@ -680,7 +680,7 @@ export default function InsuranceDerivativesPage() {
                   <tbody>
                     {EXCEEDANCE_POINTS.map((p) => (
                       <tr key={p.returnPeriod} className="border-b border-border/50">
-                        <td className="py-2 text-white font-medium">{p.returnPeriod}-year</td>
+                        <td className="py-2 text-foreground font-medium">{p.returnPeriod}-year</td>
                         <td className="py-2 text-muted-foreground">{p.annualProb.toFixed(2)}%</td>
                         <td className="py-2 text-right text-amber-400">${p.loss}B</td>
                         <td className="py-2 text-right">
@@ -752,7 +752,7 @@ export default function InsuranceDerivativesPage() {
                   { stage: "Financial Module", desc: "Applies policy terms, reinsurance structure, occurrence and aggregate limits", color: "border-emerald-500/30 bg-emerald-500/5" },
                 ].map((s) => (
                   <div key={s.stage} className={cn("rounded-lg border p-3", s.color)}>
-                    <p className="text-white font-medium mb-1">{s.stage}</p>
+                    <p className="text-foreground font-medium mb-1">{s.stage}</p>
                     <p className="text-muted-foreground">{s.desc}</p>
                   </div>
                 ))}
@@ -831,7 +831,7 @@ export default function InsuranceDerivativesPage() {
                     ) : null}
                     <div className={cn("rounded-lg border p-2.5 text-center min-w-[90px]", node.color)}>
                       {node.label.split("\n").map((l, li) => (
-                        <p key={li} className={cn("font-medium", li === 0 ? "text-white" : "text-white")}>{l}</p>
+                        <p key={li} className={cn("font-medium", li === 0 ? "text-foreground" : "text-foreground")}>{l}</p>
                       ))}
                       <p className="text-muted-foreground text-xs mt-0.5">{node.sub}</p>
                     </div>
@@ -851,7 +851,7 @@ export default function InsuranceDerivativesPage() {
             {TRIGGER_TYPES.map((t) => (
               <Card key={t.type} className="bg-card border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium text-white flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
                     <Badge variant="outline" className={cn("text-xs", TRIGGER_COLORS[t.type])}>
                       {t.type}
                     </Badge>
@@ -1094,7 +1094,7 @@ export default function InsuranceDerivativesPage() {
                     {item.icon}
                     <div>
                       <p className={cn("font-semibold text-sm", item.color)}>{item.label}</p>
-                      <p className="text-white text-xs font-medium mt-0.5">{item.value}</p>
+                      <p className="text-foreground text-xs font-medium mt-0.5">{item.value}</p>
                       <p className="text-muted-foreground text-xs mt-1">{item.desc}</p>
                     </div>
                   </div>

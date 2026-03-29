@@ -877,7 +877,7 @@ export default function RiskIntelPage() {
             <TabsTrigger
               key={id}
               value={id}
-              className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm gap-1.5"
+              className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm gap-1.5"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}
@@ -2077,7 +2077,7 @@ export default function RiskIntelPage() {
                             onClick={() => setNewTicker(t)}
                             className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
                               newTicker === t
-                                ? "bg-primary text-white"
+                                ? "bg-primary text-foreground"
                                 : "bg-muted text-muted-foreground hover:bg-muted"
                             }`}
                           >

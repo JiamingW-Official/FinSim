@@ -241,7 +241,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
@@ -254,7 +254,7 @@ function StatCard({
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
@@ -368,9 +368,9 @@ function BHBTab() {
         <Info className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
         <p className="text-xs text-muted-foreground">
           <span className="text-indigo-300 font-semibold">Brinson-Hood-Beebower</span> (1986) decomposes active return into three sources.
-          <strong className="text-white"> Allocation effect</strong> rewards over/underweighting sectors with above/below benchmark returns.
-          <strong className="text-white"> Selection effect</strong> rewards picking stocks that beat the sector benchmark.
-          <strong className="text-white"> Interaction effect</strong> captures the combined weight-and-selection decision.
+          <strong className="text-foreground"> Allocation effect</strong> rewards over/underweighting sectors with above/below benchmark returns.
+          <strong className="text-foreground"> Selection effect</strong> rewards picking stocks that beat the sector benchmark.
+          <strong className="text-foreground"> Interaction effect</strong> captures the combined weight-and-selection decision.
         </p>
       </div>
     </div>
@@ -516,7 +516,7 @@ function FactorTab() {
               </tr>
             ))}
             <tr className="border-t border-border">
-              <td className="px-3 py-2 text-white font-bold" colSpan={3}>Total Portfolio Return</td>
+              <td className="px-3 py-2 text-foreground font-bold" colSpan={3}>Total Portfolio Return</td>
               <td className={cn("px-3 py-2 font-mono font-bold", pctColor(totalReturn))}>{pct(totalReturn)}</td>
               <td className="px-3 py-2 font-mono text-muted-foreground">100%</td>
             </tr>
@@ -585,7 +585,7 @@ function ActiveShareTab() {
             onValueChange={(v) => setConviction(v[0])}
             className="flex-1"
           />
-          <span className="text-sm font-bold text-white w-8">{conviction}</span>
+          <span className="text-sm font-bold text-foreground w-8">{conviction}</span>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
@@ -749,7 +749,7 @@ function RiskContribTab() {
             {POSITIONS.map((pos, i) => (
               <tr key={pos.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
                 <td className="px-3 py-2 text-muted-foreground">{i + 1}</td>
-                <td className="px-3 py-2 text-white font-bold">{pos.ticker}</td>
+                <td className="px-3 py-2 text-foreground font-bold">{pos.ticker}</td>
                 <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.weight * 100).toFixed(1)}%</td>
                 <td className="px-3 py-2 font-mono text-muted-foreground">{(pos.vol * 100).toFixed(1)}%</td>
                 <td className={cn("px-3 py-2 font-mono", pos.mctr > 0.03 ? "text-rose-400" : "text-muted-foreground")}>
@@ -843,7 +843,7 @@ function ScenarioTab() {
             <div key={sc.name} className="rounded-xl border border-border bg-foreground/5 p-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-sm font-semibold text-white">{sc.name}</p>
+                  <p className="text-sm font-semibold text-foreground">{sc.name}</p>
                   <p className="text-xs text-muted-foreground mt-0.5">{sc.description}</p>
                 </div>
                 <div className="text-right shrink-0">
@@ -1050,7 +1050,7 @@ export default function RiskAttributionPage() {
           <BarChart3 className="w-6 h-6 text-indigo-400" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-white">Portfolio Risk Attribution</h1>
+          <h1 className="text-2xl font-bold text-foreground">Portfolio Risk Attribution</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Decompose sources of active return and risk — BHB attribution, factor exposures, active share, and scenario stress testing.
           </p>
@@ -1092,7 +1092,7 @@ export default function RiskAttributionPage() {
             <TabsTrigger
               key={id}
               value={id}
-              className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-white"
+              className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground"
             >
               <Icon className="w-3.5 h-3.5 shrink-0" />
               <span className="hidden sm:inline">{label}</span>

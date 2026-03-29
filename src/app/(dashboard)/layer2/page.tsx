@@ -1295,7 +1295,7 @@ export default function Layer2Page() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
               >
                 {tab.icon}
                 {tab.label}

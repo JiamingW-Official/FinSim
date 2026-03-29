@@ -663,7 +663,7 @@ function CrisisGenerationModels() {
           <CardContent className="p-4 space-y-2">
             <div className="flex items-center gap-2">
               <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-foreground shrink-0"
                 style={{ backgroundColor: m.color }}
               >
                 {m.icon}

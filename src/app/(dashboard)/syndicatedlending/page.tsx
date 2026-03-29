@@ -71,7 +71,7 @@ function StatCard({
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
@@ -317,7 +317,7 @@ function DealStructureTab() {
               <div key={a.role} className="rounded-lg border border-border bg-muted/30 p-4">
                 <div className="flex items-center gap-2 mb-3">
                   <Icon size={16} className={a.color} />
-                  <span className="text-sm font-semibold text-white">{a.role}</span>
+                  <span className="text-sm font-semibold text-foreground">{a.role}</span>
                 </div>
                 <ul className="space-y-1">
                   {a.duties.map((d) => (
@@ -367,7 +367,7 @@ function DealStructureTab() {
               <InfoPill text={e.fee} color={e.color} />
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap gap-2 items-center">
-                  <span className="text-xs font-mono text-white">{e.range}</span>
+                  <span className="text-xs font-mono text-foreground">{e.range}</span>
                   <span className="text-xs text-muted-foreground">|</span>
                   <span className="text-xs text-muted-foreground">{e.payer}</span>
                 </div>
@@ -607,7 +607,7 @@ function PricingMechanicsTab() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground mb-1">Face Value</div>
-            <div className="text-xl font-bold text-white">${faceVal}M</div>
+            <div className="text-xl font-bold text-foreground">${faceVal}M</div>
             <div className="text-xs text-muted-foreground">Par amount</div>
           </div>
           <div className="rounded-lg border border-border bg-muted/30 p-3">
@@ -1312,7 +1312,7 @@ export default function SyndicatedLendingPage() {
             <Building2 size={20} className="text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Syndicated Lending</h1>
+            <h1 className="text-xl font-bold text-foreground">Syndicated Lending</h1>
             <p className="text-xs text-muted-foreground">
               How large corporate loans are arranged, priced, and distributed among multiple banks
             </p>
@@ -1336,7 +1336,7 @@ export default function SyndicatedLendingPage() {
               <TabsTrigger
                 key={t.value}
                 value={t.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/10 data-[state=active]:text-white text-muted-foreground py-2 px-3"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground text-muted-foreground py-2 px-3"
               >
                 <Icon size={13} />
                 {t.label}

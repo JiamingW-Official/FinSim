@@ -514,7 +514,7 @@ function Tab1() {
                 </div>
                 <span className="w-2.5 h-2.5 rounded-full mt-1" style={{ backgroundColor: ep.color }} />
               </div>
-              <div className="text-2xl font-bold text-white mb-2">{ep.name.includes("EU") ? "€" : "$"}{ep.price.toFixed(2)}</div>
+              <div className="text-2xl font-bold text-foreground mb-2">{ep.name.includes("EU") ? "€" : "$"}{ep.price.toFixed(2)}</div>
               <div className="flex gap-3 text-xs">
                 <span className="text-muted-foreground">1M</span>
                 <span className={posNeg(ep.change1m)}>{fmtPct(ep.change1m)}</span>
@@ -626,7 +626,7 @@ function Tab1() {
                 {OIL_MAJORS.map((m) => (
                   <tr key={m.ticker} className="hover:bg-muted/30 transition-colors">
                     <td className="py-2.5">
-                      <div className="font-semibold text-white">{m.ticker}</div>
+                      <div className="font-semibold text-foreground">{m.ticker}</div>
                       <div className="text-muted-foreground">{m.name}</div>
                     </td>
                     <td className="py-2.5 text-right text-muted-foreground">{m.pe.toFixed(1)}x</td>
@@ -799,7 +799,7 @@ function Tab2() {
               const fcf = c.fcfYield[selectedOilPrice];
               return (
                 <div key={c.ticker} className="flex items-center gap-3">
-                  <div className="w-12 font-semibold text-white text-xs">{c.ticker}</div>
+                  <div className="w-12 font-semibold text-foreground text-xs">{c.ticker}</div>
                   <div className="flex-1 h-6 bg-muted/60 rounded-md overflow-hidden relative">
                     <motion.div
                       layout
@@ -835,7 +835,7 @@ function Tab2() {
             { name: "Put Options", desc: "Pay premium for downside protection. Full upside exposure. Expensive.", risk: "Medium", upside: "Full" },
           ].map((h) => (
             <Card key={h.name} className="flex flex-col gap-2">
-              <div className="text-sm font-semibold text-white">{h.name}</div>
+              <div className="text-sm font-semibold text-foreground">{h.name}</div>
               <div className="text-xs text-muted-foreground flex-1">{h.desc}</div>
               <div className="flex gap-2 text-xs mt-1">
                 <Badge variant="outline" className="border-primary/40 text-primary">Risk: {h.risk}</Badge>
@@ -873,7 +873,7 @@ function Tab3() {
               <div className="text-xs text-muted-foreground">cost decline 2010→2024</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">$24</div>
+              <div className="text-2xl font-bold text-foreground">$24</div>
               <div className="text-xs text-muted-foreground">LCOE per MWh in 2024</div>
             </div>
             <div>
@@ -913,7 +913,7 @@ function Tab3() {
             <Card key={w.type} className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 {w.icon}
-                <div className="font-semibold text-white">{w.type}</div>
+                <div className="font-semibold text-foreground">{w.type}</div>
               </div>
               <div className="grid grid-cols-3 gap-2 text-center">
                 <div>
@@ -921,11 +921,11 @@ function Tab3() {
                   <div className="text-xs text-muted-foreground">LCOE $/MWh</div>
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-white">${w.capex}</div>
+                  <div className="text-lg font-bold text-foreground">${w.capex}</div>
                   <div className="text-xs text-muted-foreground">CapEx $/kW</div>
                 </div>
                 <div>
-                  <div className="text-lg font-bold text-white">{w.cf}</div>
+                  <div className="text-lg font-bold text-foreground">{w.cf}</div>
                   <div className="text-xs text-muted-foreground">Capacity Factor</div>
                 </div>
               </div>
@@ -956,7 +956,7 @@ function Tab3() {
               <tbody className="divide-y divide-white/5">
                 {CLEAN_STOCKS.map((s) => (
                   <tr key={s.ticker} className="hover:bg-muted/30 transition-colors">
-                    <td className="py-2.5 font-semibold text-white">{s.ticker}</td>
+                    <td className="py-2.5 font-semibold text-foreground">{s.ticker}</td>
                     <td className="py-2.5 text-muted-foreground">{s.segment}</td>
                     <td className="py-2.5 text-right text-muted-foreground">${s.price.toFixed(1)}</td>
                     <td className="py-2.5 text-right text-muted-foreground">{s.pe > 0 ? `${s.pe.toFixed(1)}x` : "N/M"}</td>
@@ -1003,7 +1003,7 @@ function Tab3() {
             },
           ].map((item) => (
             <Card key={item.title} className="flex flex-col gap-2">
-              <div className="text-sm font-semibold text-white">{item.title}</div>
+              <div className="text-sm font-semibold text-foreground">{item.title}</div>
               <div className="text-xs text-muted-foreground flex-1">{item.desc}</div>
               <InfoBox variant={item.variant}><strong>Value:</strong> {item.value}</InfoBox>
             </Card>
@@ -1020,7 +1020,7 @@ function Tab3() {
           {BATTERY_CHEMISTRY.map((b) => (
             <Card key={b.name} className="grid grid-cols-2 md:grid-cols-5 gap-3 items-center">
               <div>
-                <div className="text-sm font-semibold text-white">{b.name}</div>
+                <div className="text-sm font-semibold text-foreground">{b.name}</div>
               </div>
               <div className="text-center">
                 <div className="text-xs text-muted-foreground mb-0.5">2024 Cost</div>
@@ -1029,7 +1029,7 @@ function Tab3() {
               </div>
               <div className="text-center">
                 <div className="text-xs text-muted-foreground mb-0.5">Energy Density</div>
-                <div className="text-xs font-semibold text-white">{b.energyDensity}</div>
+                <div className="text-xs font-semibold text-foreground">{b.energyDensity}</div>
               </div>
               <div className="text-center">
                 <div className="text-xs text-muted-foreground mb-0.5">Cycle Life</div>
@@ -1054,7 +1054,7 @@ function Tab3() {
             {HYDROGEN_TYPES.map((h) => (
               <div key={h.type} className="flex items-center gap-4">
                 <div className="w-32 shrink-0">
-                  <div className="text-xs font-semibold text-white">{h.type}</div>
+                  <div className="text-xs font-semibold text-foreground">{h.type}</div>
                   <div className="text-xs text-muted-foreground">{h.source}</div>
                 </div>
                 <div className="flex-1 h-6 bg-muted/60 rounded-md overflow-hidden relative">
@@ -1114,12 +1114,12 @@ function Tab4() {
                 {UTILITIES.map((u) => (
                   <tr key={u.ticker} className="hover:bg-muted/30 transition-colors">
                     <td className="py-2.5">
-                      <div className="font-semibold text-white">{u.ticker}</div>
+                      <div className="font-semibold text-foreground">{u.ticker}</div>
                       <div className="text-muted-foreground">{u.name}</div>
                     </td>
                     <td className="py-2.5 text-right text-primary">{u.allowedROE}%</td>
                     <td className="py-2.5 text-right text-emerald-400">+{u.rateBaseGrowth}%</td>
-                    <td className="py-2.5 text-right text-white">${u.dividend.toFixed(2)}</td>
+                    <td className="py-2.5 text-right text-foreground">${u.dividend.toFixed(2)}</td>
                     <td className="py-2.5 text-right text-muted-foreground">{u.payoutRatio}%</td>
                     <td className={cn("py-2.5 text-right", u.coverage > 1.4 ? "text-emerald-400" : "text-amber-400")}>
                       {u.coverage.toFixed(2)}x
@@ -1162,7 +1162,7 @@ function Tab4() {
               <div key={s.step} className="flex gap-3">
                 <div className={cn("text-2xl font-bold shrink-0", s.color)}>{s.step}</div>
                 <div>
-                  <div className="text-sm font-semibold text-white mb-1">{s.title}</div>
+                  <div className="text-sm font-semibold text-foreground mb-1">{s.title}</div>
                   <div className="text-xs text-muted-foreground">{s.desc}</div>
                 </div>
               </div>
@@ -1183,10 +1183,10 @@ function Tab4() {
           <div className="space-y-3">
             {UTILITIES.map((u) => (
               <div key={u.ticker} className="flex items-center gap-3">
-                <div className="w-12 font-semibold text-white text-xs">{u.ticker}</div>
+                <div className="w-12 font-semibold text-foreground text-xs">{u.ticker}</div>
                 <div className="flex-1">
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-muted-foreground">Annual CapEx: <span className="text-white">${u.capex}B</span></span>
+                    <span className="text-muted-foreground">Annual CapEx: <span className="text-foreground">${u.capex}B</span></span>
                     <span className="text-emerald-400">Rate Base +{u.rateBaseGrowth}%/yr</span>
                   </div>
                   <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -1345,7 +1345,7 @@ function Tab5() {
               <tbody className="divide-y divide-white/5">
                 {CRITICAL_MINERALS.map((m) => (
                   <tr key={m.mineral} className="hover:bg-muted/30 transition-colors">
-                    <td className="py-2.5 font-semibold text-white">{m.mineral}</td>
+                    <td className="py-2.5 font-semibold text-foreground">{m.mineral}</td>
                     <td className="py-2.5 text-muted-foreground">{m.use}</td>
                     <td className="py-2.5 text-right">
                       <div className="flex items-center justify-end gap-2">
@@ -1426,7 +1426,7 @@ function Tab5() {
           ].map((a) => (
             <Card key={a.asset} className={cn("flex flex-col gap-3 border", a.border)}>
               <div>
-                <div className="text-sm font-semibold text-white">{a.asset}</div>
+                <div className="text-sm font-semibold text-foreground">{a.asset}</div>
                 <Badge variant="outline" className={cn("text-xs mt-1", `border-current ${a.color}`)}>{a.severity} Risk</Badge>
               </div>
               <div className="flex gap-4 text-center">
@@ -1504,7 +1504,7 @@ function Tab5() {
                 <div key={w.sector} className="flex gap-2 text-xs">
                   <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-white font-medium">{w.sector}:</span>
+                    <span className="text-foreground font-medium">{w.sector}:</span>
                     <span className="text-muted-foreground"> {w.thesis}</span>
                   </div>
                 </div>
@@ -1527,7 +1527,7 @@ function Tab5() {
                 <div key={l.sector} className="flex gap-2 text-xs">
                   <AlertTriangle className="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-white font-medium">{l.sector}:</span>
+                    <span className="text-foreground font-medium">{l.sector}:</span>
                     <span className="text-muted-foreground"> {l.thesis}</span>
                   </div>
                 </div>
@@ -1561,7 +1561,7 @@ export default function EnergyPage() {
                 <Flame className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-white">Energy Sector</h1>
+                <h1 className="text-lg font-bold text-foreground">Energy Sector</h1>
                 <p className="text-xs text-muted-foreground">Oil &amp; Gas · Clean Energy · Utilities · Energy Transition</p>
               </div>
             </div>

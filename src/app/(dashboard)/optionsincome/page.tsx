@@ -671,7 +671,7 @@ function CalendarSpreadTab() {
                   onClick={() => setIsCall(t === "Call")}
                   className={`px-2.5 py-0.5 rounded text-xs font-medium transition-colors ${
                     (t === "Call") === isCall
-                      ? "bg-primary text-white"
+                      ? "bg-primary text-foreground"
                       : "bg-muted text-muted-foreground hover:text-foreground"
                   }`}
                 >

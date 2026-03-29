@@ -338,7 +338,7 @@ function Avatar({
   return (
     <div
       className={cn(
-        "shrink-0 flex items-center justify-center rounded-full font-bold text-white",
+        "shrink-0 flex items-center justify-center rounded-full font-bold text-foreground",
         colorClass,
         sizeClass,
       )}

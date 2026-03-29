@@ -212,7 +212,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-card p-4">
       {Icon && (
@@ -1438,7 +1438,7 @@ function ComparisonTab() {
                   </div>
                   <div className="flex justify-between text-xs border-t border-border pt-1.5">
                     <span className="text-muted-foreground">Net Yield</span>
-                    <span className="text-white font-semibold font-mono">
+                    <span className="text-foreground font-semibold font-mono">
                       ~{netYield}%
                     </span>
                   </div>

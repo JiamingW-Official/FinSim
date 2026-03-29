@@ -70,7 +70,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
@@ -129,7 +129,7 @@ function SliderInput({
     <div className="flex flex-col gap-1">
       <div className="flex justify-between text-xs">
         <span className="text-muted-foreground">{label}</span>
-        <span className="text-white font-medium">{format(value)}</span>
+        <span className="text-foreground font-medium">{format(value)}</span>
       </div>
       <input
         type="range"
@@ -1513,7 +1513,7 @@ export default function ProjectFinancePage() {
             <Building2 size={22} className="text-muted-foreground" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Project Finance</h1>
+            <h1 className="text-2xl font-bold text-foreground">Project Finance</h1>
             <p className="text-sm text-muted-foreground">
               SPV structure · Non-recourse debt · Infrastructure cash flows · DSCR modeling · Concession agreements
             </p>

@@ -277,8 +277,8 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
           className={cn(
             "w-full rounded-xl py-3.5 text-sm font-bold transition-all",
             isCorrect
-              ? "bg-emerald-500 text-white hover:bg-emerald-400"
-              : "bg-red-500 text-white hover:bg-red-400",
+              ? "bg-emerald-500 text-foreground hover:bg-emerald-400"
+              : "bg-red-500 text-foreground hover:bg-red-400",
           )}
         >
           {isCorrect ? "Keep going! →" : "Got it, continue →"}

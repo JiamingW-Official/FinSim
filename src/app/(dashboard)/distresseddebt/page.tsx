@@ -426,15 +426,15 @@ function MetricCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-lg border border-border bg-foreground/5 p-3">
       <div className="flex items-center gap-1.5 mb-1">
-        {Icon && <Icon className="h-3.5 w-3.5 text-white/40" />}
-        <span className="text-xs text-white/50">{label}</span>
+        {Icon && <Icon className="h-3.5 w-3.5 text-foreground/40" />}
+        <span className="text-xs text-foreground/50">{label}</span>
       </div>
       <div className={cn("text-xl font-bold", valClass)}>{value}</div>
-      {sub && <div className="text-xs text-white/40 mt-0.5">{sub}</div>}
+      {sub && <div className="text-xs text-foreground/40 mt-0.5">{sub}</div>}
     </div>
   );
 }
@@ -466,14 +466,14 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
-                <th className="text-left py-2.5 px-3 text-white/50 font-medium text-xs">Company</th>
-                <th className="text-left py-2.5 px-3 text-white/50 font-medium text-xs">Sector</th>
-                <th className="text-center py-2.5 px-3 text-white/50 font-medium text-xs">Rating</th>
-                <th className="text-right py-2.5 px-3 text-white/50 font-medium text-xs">Price (¢)</th>
-                <th className="text-right py-2.5 px-3 text-white/50 font-medium text-xs">YTM%</th>
-                <th className="text-right py-2.5 px-3 text-white/50 font-medium text-xs">Def. Prob%</th>
-                <th className="text-right py-2.5 px-3 text-white/50 font-medium text-xs">Recovery (¢)</th>
-                <th className="text-left py-2.5 px-3 text-white/50 font-medium text-xs">Thesis</th>
+                <th className="text-left py-2.5 px-3 text-foreground/50 font-medium text-xs">Company</th>
+                <th className="text-left py-2.5 px-3 text-foreground/50 font-medium text-xs">Sector</th>
+                <th className="text-center py-2.5 px-3 text-foreground/50 font-medium text-xs">Rating</th>
+                <th className="text-right py-2.5 px-3 text-foreground/50 font-medium text-xs">Price (¢)</th>
+                <th className="text-right py-2.5 px-3 text-foreground/50 font-medium text-xs">YTM%</th>
+                <th className="text-right py-2.5 px-3 text-foreground/50 font-medium text-xs">Def. Prob%</th>
+                <th className="text-right py-2.5 px-3 text-foreground/50 font-medium text-xs">Recovery (¢)</th>
+                <th className="text-left py-2.5 px-3 text-foreground/50 font-medium text-xs">Thesis</th>
               </tr>
             </thead>
             <tbody>
@@ -488,8 +488,8 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
                       : "hover:bg-muted/30"
                   )}
                 >
-                  <td className="py-2.5 px-3 font-medium text-white">{issuer.company}</td>
-                  <td className="py-2.5 px-3 text-white/60">{issuer.sector}</td>
+                  <td className="py-2.5 px-3 font-medium text-foreground">{issuer.company}</td>
+                  <td className="py-2.5 px-3 text-foreground/60">{issuer.sector}</td>
                   <td className="py-2.5 px-3 text-center">
                     <Badge className={cn("text-xs border", ratingColor(issuer.rating))}>
                       {issuer.rating}
@@ -498,7 +498,7 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
                   <td className="py-2.5 px-3 text-right font-mono text-rose-400">{issuer.priceCtsDollar}¢</td>
                   <td className="py-2.5 px-3 text-right font-mono text-emerald-400">{fmtPct(issuer.ytm)}</td>
                   <td className="py-2.5 px-3 text-right font-mono text-amber-400">{fmtPct(issuer.defaultProbability)}</td>
-                  <td className="py-2.5 px-3 text-right font-mono text-white/70">{issuer.recoveryEstimate}¢</td>
+                  <td className="py-2.5 px-3 text-right font-mono text-foreground/70">{issuer.recoveryEstimate}¢</td>
                   <td className="py-2.5 px-3">
                     <Badge className={cn("text-xs border whitespace-nowrap", badgeColor(issuer.badge))}>
                       {issuer.badge}
@@ -523,8 +523,8 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
           >
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div>
-                <h3 className="text-lg font-bold text-white">{selected.company}</h3>
-                <p className="text-sm text-white/50">{selected.sector} · Total Debt {fmtB(selected.totalDebt)}</p>
+                <h3 className="text-lg font-bold text-foreground">{selected.company}</h3>
+                <p className="text-sm text-foreground/50">{selected.sector} · Total Debt {fmtB(selected.totalDebt)}</p>
               </div>
               <Badge className={cn("text-sm border px-3 py-1", badgeColor(selected.badge))}>
                 {selected.badge}
@@ -537,8 +537,8 @@ function OpportunitiesTab({ issuers }: { issuers: DistressedIssuer[] }) {
               <MetricCard label="Expected Return" value={fmtPct(selected.ytm * (1 - selected.defaultProbability / 100) + selected.recoveryEstimate * selected.defaultProbability / 100 / selected.priceCtsDollar * 100 - 100)} highlight="pos" icon={Zap} sub="risk-adj. est." />
             </div>
             <div className="p-3 rounded border border-border bg-black/20">
-              <p className="text-xs text-white/50 mb-1 font-medium">Investment Thesis</p>
-              <p className="text-sm text-white/80">
+              <p className="text-xs text-foreground/50 mb-1 font-medium">Investment Thesis</p>
+              <p className="text-sm text-foreground/80">
                 {selected.badge === "Loan-to-Own" && "Acquire debt at distressed levels to take ownership control through the restructuring process. Thesis hinges on enterprise value exceeding face value of senior secured claims."}
                 {selected.badge === "Fulcrum Security" && "The fulcrum tranche is the pivot point in the capital structure — likely to receive new equity upon emergence. Risk/reward is asymmetric if purchased below implied reorganization value."}
                 {selected.badge === "Capital Structure Arb" && "Long senior secured vs. short unsecured (or equity) to capture mispricing across the capital structure. Pure credit relative value with bounded downside."}
@@ -603,7 +603,7 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
       {/* EV Slider */}
       <div className="rounded-lg border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm font-medium text-white">Enterprise Value Slider</span>
+          <span className="text-sm font-medium text-foreground">Enterprise Value Slider</span>
           <span className="text-sm font-mono text-emerald-400">${ev}M</span>
         </div>
         <Slider
@@ -614,7 +614,7 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
           step={25}
           className="mb-2"
         />
-        <div className="flex justify-between text-xs text-white/40">
+        <div className="flex justify-between text-xs text-foreground/40">
           <span>$100M (distressed)</span>
           <span>$1,400M (full recovery)</span>
         </div>
@@ -623,11 +623,11 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* SVG Waterfall */}
         <div className="rounded-lg border border-border bg-foreground/5 p-4">
-          <h3 className="text-sm font-medium text-white mb-4">Recovery Waterfall</h3>
+          <h3 className="text-sm font-medium text-foreground mb-4">Recovery Waterfall</h3>
           <div className="flex items-end gap-8 justify-center">
             {/* Capital Structure Bar */}
             <div>
-              <p className="text-xs text-white/40 text-center mb-2">Capital Stack</p>
+              <p className="text-xs text-foreground/40 text-center mb-2">Capital Stack</p>
               <svg width={barWidth + 80} height={totalHeight + 20}>
                 {stackedSegments.map((seg) => (
                   <g key={seg.name}>
@@ -675,12 +675,12 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
               {[...tranches].reverse().map((t) => (
                 <div key={t.name} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-sm flex-shrink-0" style={{ backgroundColor: t.color, opacity: 0.8 }} />
-                  <span className="text-xs text-white/60">{t.name}</span>
+                  <span className="text-xs text-foreground/60">{t.name}</span>
                 </div>
               ))}
               <div className="flex items-center gap-2 mt-1 pt-1 border-t border-border">
                 <div className="w-3 h-0.5 bg-foreground/70 flex-shrink-0" />
-                <span className="text-xs text-white/60">Enterprise Value</span>
+                <span className="text-xs text-foreground/60">Enterprise Value</span>
               </div>
             </div>
           </div>
@@ -688,17 +688,17 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
 
         {/* Recovery Rate by Tranche */}
         <div className="rounded-lg border border-border bg-foreground/5 p-4">
-          <h3 className="text-sm font-medium text-white mb-4">Recovery Rate by Tranche</h3>
+          <h3 className="text-sm font-medium text-foreground mb-4">Recovery Rate by Tranche</h3>
           <div className="space-y-3">
             {waterfallResults.map((t) => (
               <div key={t.name}>
                 <div className="flex items-center justify-between mb-1">
                   <div className="flex items-center gap-2">
                     <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: t.color }} />
-                    <span className="text-xs text-white/70">{t.name}</span>
+                    <span className="text-xs text-foreground/70">{t.name}</span>
                   </div>
                   <div className="flex items-center gap-3 text-xs font-mono">
-                    <span className="text-white/50">${t.recovered}M / ${t.amount}M</span>
+                    <span className="text-foreground/50">${t.recovered}M / ${t.amount}M</span>
                     <span
                       className="font-bold w-12 text-right"
                       style={{ color: t.color }}
@@ -716,8 +716,8 @@ function RecoveryModelTab({ tranches: initialTranches }: { tranches: WaterfallTr
             ))}
           </div>
           <div className="mt-4 p-2 rounded bg-foreground/5 border border-border">
-            <p className="text-xs text-white/50">
-              <span className="font-medium text-white/70">Fulcrum Security:</span>{" "}
+            <p className="text-xs text-foreground/50">
+              <span className="font-medium text-foreground/70">Fulcrum Security:</span>{" "}
               The tranche with partial recovery ({">"}0% but {"<"}100%) is the pivot point of the restructuring — likely to receive new equity.
             </p>
           </div>
@@ -754,8 +754,8 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* SVG Diagram */}
         <div className="rounded-lg border border-border bg-foreground/5 p-4">
-          <h3 className="text-sm font-medium text-white mb-1">Capital Structure Diagram</h3>
-          <p className="text-xs text-white/40 mb-3">Click a tranche for details</p>
+          <h3 className="text-sm font-medium text-foreground mb-1">Capital Structure Diagram</h3>
+          <p className="text-xs text-foreground/40 mb-3">Click a tranche for details</p>
           <svg width="100%" viewBox={`0 0 320 ${diagramH}`}>
             {layers.map((layer, i) => {
               const y = i * 52 + 8;
@@ -805,7 +805,7 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
                 className="rounded-lg border border-border bg-foreground/5 p-4 space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="text-base font-bold text-white">{selected.tranche}</h3>
+                  <h3 className="text-base font-bold text-foreground">{selected.tranche}</h3>
                   {selected.isFulcrum && (
                     <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-xs border">
                       Fulcrum Security
@@ -814,27 +814,27 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   <div className="flex justify-between border-b border-border/50 pb-1">
-                    <span className="text-white/50">Amount</span>
-                    <span className="text-white font-mono">${selected.amount}M</span>
+                    <span className="text-foreground/50">Amount</span>
+                    <span className="text-foreground font-mono">${selected.amount}M</span>
                   </div>
                   <div className="flex justify-between border-b border-border/50 pb-1">
-                    <span className="text-white/50">Coupon</span>
-                    <span className="text-white font-mono">{selected.coupon}</span>
+                    <span className="text-foreground/50">Coupon</span>
+                    <span className="text-foreground font-mono">{selected.coupon}</span>
                   </div>
                   <div className="flex justify-between border-b border-border/50 pb-1">
-                    <span className="text-white/50">Maturity</span>
-                    <span className="text-white font-mono">{selected.maturity}</span>
+                    <span className="text-foreground/50">Maturity</span>
+                    <span className="text-foreground font-mono">{selected.maturity}</span>
                   </div>
                   <div className="flex justify-between border-b border-border/50 pb-1">
-                    <span className="text-white/50">Market Price</span>
+                    <span className="text-foreground/50">Market Price</span>
                     <span className="font-mono" style={{ color: selected.color }}>{selected.oid}¢</span>
                   </div>
                   <div className="flex justify-between border-b border-border/50 pb-1">
-                    <span className="text-white/50">Current Yield</span>
-                    <span className="text-white font-mono">{selected.yield > 0 ? fmtPct(selected.yield) : "—"}</span>
+                    <span className="text-foreground/50">Current Yield</span>
+                    <span className="text-foreground font-mono">{selected.yield > 0 ? fmtPct(selected.yield) : "—"}</span>
                   </div>
                   <div className="flex justify-between border-b border-border/50 pb-1">
-                    <span className="text-white/50">Rel. Value</span>
+                    <span className="text-foreground/50">Rel. Value</span>
                     <span className={cn("font-medium", rvColor(selected.relativeValue))}>{selected.relativeValue}</span>
                   </div>
                 </div>
@@ -852,7 +852,7 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
                 exit={{ opacity: 0 }}
                 className="rounded-lg border border-border bg-foreground/5 p-4 flex items-center justify-center h-48"
               >
-                <p className="text-sm text-white/30 text-center">
+                <p className="text-sm text-foreground/30 text-center">
                   Click a tranche in the diagram<br />to view details & relative value
                 </p>
               </motion.div>
@@ -861,17 +861,17 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
 
           {/* Relative value table */}
           <div className="rounded-lg border border-border bg-foreground/5 p-3">
-            <h4 className="text-xs font-medium text-white/50 mb-2">Relative Value Summary</h4>
+            <h4 className="text-xs font-medium text-foreground/50 mb-2">Relative Value Summary</h4>
             <div className="space-y-1.5">
               {layers.map((layer) => (
                 <div key={layer.tranche} className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: layer.color }} />
-                    <span className="text-white/70">{layer.tranche}</span>
+                    <span className="text-foreground/70">{layer.tranche}</span>
                     {layer.isFulcrum && <span className="text-yellow-400 text-xs font-bold">[F]</span>}
                   </div>
                   <div className="flex items-center gap-4">
-                    <span className="text-white/40 font-mono">{layer.oid}¢</span>
+                    <span className="text-foreground/40 font-mono">{layer.oid}¢</span>
                     <span className={cn("font-medium w-10 text-right", rvColor(layer.relativeValue))}>
                       {layer.relativeValue}
                     </span>
@@ -883,8 +883,8 @@ function CapitalStructureTab({ layers }: { layers: CapitalStructureLayer[] }) {
 
           {/* Inter-creditor dynamics */}
           <div className="rounded-lg border border-border bg-foreground/5 p-3">
-            <h4 className="text-xs font-medium text-white/50 mb-2">Inter-Creditor Dynamics</h4>
-            <div className="space-y-1.5 text-xs text-white/60">
+            <h4 className="text-xs font-medium text-foreground/50 mb-2">Inter-Creditor Dynamics</h4>
+            <div className="space-y-1.5 text-xs text-foreground/60">
               <div className="flex items-start gap-2">
                 <ArrowRight className="h-3 w-3 text-emerald-400 flex-shrink-0 mt-0.5" />
                 <span>Senior secured lenders control DIP financing and sale process timing</span>
@@ -930,7 +930,7 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
 
       {/* Chapter 11 Timeline */}
       <div className="rounded-lg border border-border bg-foreground/5 p-4">
-        <h3 className="text-sm font-medium text-white mb-4">Chapter 11 Process Timeline</h3>
+        <h3 className="text-sm font-medium text-foreground mb-4">Chapter 11 Process Timeline</h3>
         {/* SVG flowchart */}
         <div className="overflow-x-auto">
           <svg width={Math.max(600, BANKRUPTCY_PHASES.length * 120)} height={130}>
@@ -1010,14 +1010,14 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
                   <phase.icon className="h-3.5 w-3.5" style={{ color: phase.color }} />
                 </div>
                 <div className="text-left">
-                  <span className="text-sm font-medium text-white">{phase.phase}</span>
-                  <span className="text-xs text-white/40 ml-2">{phase.duration}</span>
+                  <span className="text-sm font-medium text-foreground">{phase.phase}</span>
+                  <span className="text-xs text-foreground/40 ml-2">{phase.duration}</span>
                 </div>
               </div>
               {expanded === i ? (
-                <ChevronUp className="h-4 w-4 text-white/40" />
+                <ChevronUp className="h-4 w-4 text-foreground/40" />
               ) : (
-                <ChevronDown className="h-4 w-4 text-white/40" />
+                <ChevronDown className="h-4 w-4 text-foreground/40" />
               )}
             </button>
             <AnimatePresence>
@@ -1029,13 +1029,13 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
                   style={{ overflow: "hidden" }}
                 >
                   <div className="px-4 pb-3 border-t border-border/50">
-                    <p className="text-sm text-white/60 my-2">{phase.description}</p>
+                    <p className="text-sm text-foreground/60 my-2">{phase.description}</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <p className="text-xs text-white/40 mb-1.5">Key Events</p>
+                        <p className="text-xs text-foreground/40 mb-1.5">Key Events</p>
                         <ul className="space-y-1">
                           {phase.keyEvents.map((e) => (
-                            <li key={e} className="flex items-start gap-1.5 text-xs text-white/60">
+                            <li key={e} className="flex items-start gap-1.5 text-xs text-foreground/60">
                               <span style={{ color: phase.color }} className="mt-0.5 flex-shrink-0">▸</span>
                               {e}
                             </li>
@@ -1053,39 +1053,39 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
 
       {/* DIP Financing */}
       <div className="rounded-lg border border-border bg-foreground/5 p-4">
-        <h3 className="text-sm font-medium text-white mb-3">DIP Financing Terms</h3>
+        <h3 className="text-sm font-medium text-foreground mb-3">DIP Financing Terms</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-white/60">DIP Rate (all-in)</span>
+              <span className="text-sm text-foreground/60">DIP Rate (all-in)</span>
               <span className="text-sm font-mono text-amber-400">{fmtPct(dipRate[0])}</span>
             </div>
             <Slider value={dipRate} onValueChange={setDipRate} min={5} max={25} step={0.5} className="mb-4" />
             <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-white/60">DIP Facility Size</span>
+              <span className="text-sm text-foreground/60">DIP Facility Size</span>
               <span className="text-sm font-mono text-primary">${dipSize[0]}M</span>
             </div>
             <Slider value={dipSize} onValueChange={setDipSize} min={25} max={500} step={25} />
           </div>
           <div className="space-y-2 text-xs">
             <div className="flex justify-between border-b border-border/50 pb-1">
-              <span className="text-white/50">Lien Priority</span>
+              <span className="text-foreground/50">Lien Priority</span>
               <span className="text-emerald-400 font-medium">Super-Priority / Priming</span>
             </div>
             <div className="flex justify-between border-b border-border/50 pb-1">
-              <span className="text-white/50">Annual Cost</span>
-              <span className="text-white font-mono">${((dipRate[0] / 100) * dipSize[0]).toFixed(1)}M</span>
+              <span className="text-foreground/50">Annual Cost</span>
+              <span className="text-foreground font-mono">${((dipRate[0] / 100) * dipSize[0]).toFixed(1)}M</span>
             </div>
             <div className="flex justify-between border-b border-border/50 pb-1">
-              <span className="text-white/50">Typical Tenor</span>
-              <span className="text-white">12–18 months</span>
+              <span className="text-foreground/50">Typical Tenor</span>
+              <span className="text-foreground">12–18 months</span>
             </div>
             <div className="flex justify-between border-b border-border/50 pb-1">
-              <span className="text-white/50">Roll-over Option</span>
-              <span className="text-white">Yes (first-out)</span>
+              <span className="text-foreground/50">Roll-over Option</span>
+              <span className="text-foreground">Yes (first-out)</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-white/50">Budget Milestones</span>
+              <span className="text-foreground/50">Budget Milestones</span>
               <span className="text-amber-400">Covenant-linked</span>
             </div>
           </div>
@@ -1095,8 +1095,8 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
       {/* Plan scenarios */}
       <div className="rounded-lg border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-medium text-white">Plan of Reorganization Scenarios</h3>
-          <span className="text-xs text-white/40">Probability total: {totalProb}%</span>
+          <h3 className="text-sm font-medium text-foreground">Plan of Reorganization Scenarios</h3>
+          <span className="text-xs text-foreground/40">Probability total: {totalProb}%</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {scenarios.map((sc) => (
@@ -1106,38 +1106,38 @@ function BankruptcyTab({ scenarios }: { scenarios: PlanScenario[] }) {
               style={{ borderColor: `${sc.color}40`, backgroundColor: `${sc.color}08` }}
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-white">{sc.name}</span>
+                <span className="text-sm font-medium text-foreground">{sc.name}</span>
                 <Badge className="text-xs border" style={{ borderColor: `${sc.color}50`, color: sc.color, backgroundColor: `${sc.color}15` }}>
                   {sc.probability}% prob.
                 </Badge>
               </div>
-              <p className="text-xs text-white/50">{sc.description}</p>
+              <p className="text-xs text-foreground/50">{sc.description}</p>
               <div className="space-y-1.5">
                 <div>
                   <div className="flex justify-between text-xs mb-0.5">
-                    <span className="text-white/40">Senior Recovery</span>
+                    <span className="text-foreground/40">Senior Recovery</span>
                     <span className="text-emerald-400 font-mono">{sc.seniorRecovery}¢</span>
                   </div>
                   <Progress value={sc.seniorRecovery} className="h-1.5" />
                 </div>
                 <div>
                   <div className="flex justify-between text-xs mb-0.5">
-                    <span className="text-white/40">Unsecured Recovery</span>
+                    <span className="text-foreground/40">Unsecured Recovery</span>
                     <span className="text-amber-400 font-mono">{sc.unsecuredRecovery}¢</span>
                   </div>
                   <Progress value={sc.unsecuredRecovery} className="h-1.5" />
                 </div>
                 <div>
                   <div className="flex justify-between text-xs mb-0.5">
-                    <span className="text-white/40">Equity Recovery</span>
+                    <span className="text-foreground/40">Equity Recovery</span>
                     <span className="text-rose-400 font-mono">{sc.equityRecovery}¢</span>
                   </div>
                   <Progress value={sc.equityRecovery} className="h-1.5" />
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 text-xs text-white/50 pt-1 border-t border-border/50">
+              <div className="flex items-center gap-1.5 text-xs text-foreground/50 pt-1 border-t border-border/50">
                 <Clock className="h-3 w-3" />
-                Time to emerge: <span className="text-white">{sc.timeToEmerge} months</span>
+                Time to emerge: <span className="text-foreground">{sc.timeToEmerge} months</span>
               </div>
             </div>
           ))}
@@ -1161,9 +1161,9 @@ export default function DistressedDebtPage() {
       <div className="space-y-1">
         <div className="flex items-center gap-2">
           <Scale className="h-5 w-5 text-rose-400" />
-          <h1 className="text-2xl font-bold text-white">Distressed Debt Investing</h1>
+          <h1 className="text-2xl font-bold text-foreground">Distressed Debt Investing</h1>
         </div>
-        <p className="text-sm text-white/50">
+        <p className="text-sm text-foreground/50">
           Loan-to-own strategies · Recovery rate analysis · Capital structure arbitrage · Bankruptcy process
         </p>
       </div>

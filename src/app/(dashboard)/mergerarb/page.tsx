@@ -239,14 +239,14 @@ function DealDashboard({
               )}
             >
               <td className="py-3 px-3">
-                <div className="font-medium text-white">{deal.target}</div>
+                <div className="font-medium text-foreground">{deal.target}</div>
                 <div className="text-xs text-muted-foreground">{deal.targetTicker}</div>
               </td>
               <td className="py-3 px-3">
                 <div className="text-muted-foreground">{deal.acquirer}</div>
                 <div className="text-xs text-muted-foreground">{deal.dealType}</div>
               </td>
-              <td className="py-3 px-3 text-right font-mono text-white">${deal.dealPrice.toFixed(2)}</td>
+              <td className="py-3 px-3 text-right font-mono text-foreground">${deal.dealPrice.toFixed(2)}</td>
               <td className="py-3 px-3 text-right font-mono text-muted-foreground">${deal.currentPrice.toFixed(2)}</td>
               <td className="py-3 px-3 text-right">
                 <span className="text-emerald-400 font-mono">+{deal.spreadPct}%</span>
@@ -315,7 +315,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="text-2xl font-bold text-white tabular-nums">
+        <div className="text-2xl font-bold text-foreground tabular-nums">
           +{breakdown.total.toFixed(2)}%
           <span className="text-sm font-normal text-muted-foreground ml-2">total spread</span>
         </div>
@@ -324,7 +324,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
           <div key={bar.label} className="space-y-1.5">
             <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">{bar.label}</span>
-              <span className="text-white font-mono">{bar.value.toFixed(2)}%</span>
+              <span className="text-foreground font-mono">{bar.value.toFixed(2)}%</span>
             </div>
             <div className="h-2 rounded-full bg-foreground/10">
               <div
@@ -339,7 +339,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
         <div className="pt-2 border-t border-border grid grid-cols-2 gap-3 text-sm">
           <div>
             <div className="text-muted-foreground text-xs">Days to Close</div>
-            <div className="text-white font-mono">{deal.daysToClose}d</div>
+            <div className="text-foreground font-mono">{deal.daysToClose}d</div>
           </div>
           <div>
             <div className="text-muted-foreground text-xs">Ann. Return</div>
@@ -347,7 +347,7 @@ function SpreadDecomposition({ deal }: { deal: Deal }) {
           </div>
           <div>
             <div className="text-muted-foreground text-xs">Deal Size</div>
-            <div className="text-white font-mono">${deal.dealSize}B</div>
+            <div className="text-foreground font-mono">${deal.dealSize}B</div>
           </div>
           <div>
             <div className="text-muted-foreground text-xs">Structure</div>
@@ -590,7 +590,7 @@ function HistoricalPerformance({ history }: { history: PortfolioPoint[] }) {
           </div>
           <div>
             <div className="text-xs text-muted-foreground">Sharpe Ratio</div>
-            <div className="text-white font-mono font-bold">1.42</div>
+            <div className="text-foreground font-mono font-bold">1.42</div>
           </div>
         </div>
       </CardContent>
@@ -748,7 +748,7 @@ function ArbitrageCalculator() {
   const rrRatio = Math.abs(grossPnL) / Math.max(0.01, Math.abs(breakLoss));
 
   const inputClass =
-    "w-full bg-muted border border-border rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-primary/50 transition-colors";
+    "w-full bg-muted border border-border rounded-lg px-3 py-2 text-sm text-foreground font-mono focus:outline-none focus:border-primary/50 transition-colors";
   const labelClass = "text-xs text-muted-foreground mb-1 block";
 
   return (
@@ -850,7 +850,7 @@ function ArbitrageCalculator() {
           </div>
           <div className="bg-muted/60 rounded-xl p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Expected Value</div>
-            <div className={cn("text-xl font-bold font-mono", expectedValue >= 0 ? "text-white" : "text-red-400")}>
+            <div className={cn("text-xl font-bold font-mono", expectedValue >= 0 ? "text-foreground" : "text-red-400")}>
               {expectedValue >= 0 ? "+" : ""}${expectedValue.toFixed(0)}
             </div>
           </div>
@@ -959,7 +959,7 @@ export default function MergerArbPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
             <TrendingDown className="w-6 h-6 text-primary" />
             Merger Arbitrage
           </h1>
@@ -1059,7 +1059,7 @@ export default function MergerArbPage() {
                   <tbody>
                     {DEALS.map((d) => (
                       <tr key={d.id} className="border-b border-border/50">
-                        <td className="py-2 pr-4 text-white font-medium">{d.targetTicker}</td>
+                        <td className="py-2 pr-4 text-foreground font-medium">{d.targetTicker}</td>
                         <td className="py-2 pr-4 text-right text-emerald-400 font-mono">
                           +{d.spreadPct}%
                         </td>
@@ -1097,7 +1097,7 @@ export default function MergerArbPage() {
             </CardHeader>
             <CardContent className="space-y-4 text-sm text-muted-foreground leading-relaxed">
               <div>
-                <div className="text-white font-medium mb-1">What is Merger Arbitrage?</div>
+                <div className="text-foreground font-medium mb-1">What is Merger Arbitrage?</div>
                 <p>
                   Merger arbitrage (risk arbitrage) is an event-driven strategy that profits from the
                   spread between a target company&apos;s current trading price and the announced acquisition
@@ -1106,7 +1106,7 @@ export default function MergerArbPage() {
                 </p>
               </div>
               <div>
-                <div className="text-white font-medium mb-1">The Spread Formula</div>
+                <div className="text-foreground font-medium mb-1">The Spread Formula</div>
                 <p>
                   <span className="text-emerald-400 font-mono">
                     Spread = Deal Price - Current Price
@@ -1119,7 +1119,7 @@ export default function MergerArbPage() {
                 </p>
               </div>
               <div>
-                <div className="text-white font-medium mb-1">Implied Probability</div>
+                <div className="text-foreground font-medium mb-1">Implied Probability</div>
                 <p>
                   Assuming a deal closes at deal price or breaks to a pre-announcement level, implied
                   probability is back-solved:{" "}
@@ -1130,7 +1130,7 @@ export default function MergerArbPage() {
                 </p>
               </div>
               <div>
-                <div className="text-white font-medium mb-1">Portfolio Construction</div>
+                <div className="text-foreground font-medium mb-1">Portfolio Construction</div>
                 <p>
                   Arb desks diversify across 15–25 deals simultaneously to reduce single-deal break risk.
                   Position sizing is driven by conviction (spread width, regulatory clarity) and
@@ -1165,7 +1165,7 @@ export default function MergerArbPage() {
                 <span
                   className={cn(
                     "ml-1.5 text-xs",
-                    selectedDealId === deal.id ? "text-white/80" : "text-emerald-400"
+                    selectedDealId === deal.id ? "text-foreground/80" : "text-emerald-400"
                   )}
                 >
                   +{deal.spreadPct}%

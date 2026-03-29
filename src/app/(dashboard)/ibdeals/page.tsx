@@ -708,7 +708,7 @@ export default function IBDealsPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground"
             >
               {t.label}
             </TabsTrigger>
@@ -730,8 +730,8 @@ export default function IBDealsPage() {
                       className={cn(
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterType === t
-                          ? "bg-primary border-primary text-white"
-                          : "bg-muted border-border text-muted-foreground hover:text-white"
+                          ? "bg-primary border-primary text-foreground"
+                          : "bg-muted border-border text-muted-foreground hover:text-foreground"
                       )}
                     >
                       {t}
@@ -749,8 +749,8 @@ export default function IBDealsPage() {
                       className={cn(
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterStatus === t
-                          ? "bg-primary border-primary text-white"
-                          : "bg-muted border-border text-muted-foreground hover:text-white"
+                          ? "bg-primary border-primary text-foreground"
+                          : "bg-muted border-border text-muted-foreground hover:text-foreground"
                       )}
                     >
                       {t}
@@ -768,8 +768,8 @@ export default function IBDealsPage() {
                       className={cn(
                         "px-2 py-1 text-xs rounded border transition-colors",
                         filterSize === t
-                          ? "bg-primary border-primary text-white"
-                          : "bg-muted border-border text-muted-foreground hover:text-white"
+                          ? "bg-primary border-primary text-foreground"
+                          : "bg-muted border-border text-muted-foreground hover:text-foreground"
                       )}
                     >
                       {t}
@@ -815,7 +815,7 @@ export default function IBDealsPage() {
                       transition={{ delay: i * 0.03 }}
                       className="border-t border-border hover:bg-muted/30 transition-colors"
                     >
-                      <td className="px-4 py-2 font-medium text-white">{d.acquirer}</td>
+                      <td className="px-4 py-2 font-medium text-foreground">{d.acquirer}</td>
                       <td className="px-4 py-2 text-muted-foreground">{d.target}</td>
                       <td className="px-4 py-2 text-right font-semibold text-emerald-400">{fmtB(d.value)}</td>
                       <td className="px-4 py-2 text-center">
@@ -980,7 +980,7 @@ export default function IBDealsPage() {
                 <select
                   value={selectedTarget}
                   onChange={(e) => setSelectedTarget(e.target.value)}
-                  className="w-full bg-muted border border-border text-sm rounded px-2 py-1.5 text-white"
+                  className="w-full bg-muted border border-border text-sm rounded px-2 py-1.5 text-foreground"
                 >
                   {COMPS.map((c) => (
                     <option key={c.name} value={c.name}>{c.name}</option>
@@ -992,22 +992,22 @@ export default function IBDealsPage() {
                 <div className="bg-muted/50 rounded p-2 text-xs space-y-1">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Revenue</span>
-                    <span className="text-white">{fmtB(dealCalcs.comp.revenue)}</span>
+                    <span className="text-foreground">{fmtB(dealCalcs.comp.revenue)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">EBITDA</span>
-                    <span className="text-white">{fmtB(dealCalcs.comp.ebitda)}</span>
+                    <span className="text-foreground">{fmtB(dealCalcs.comp.ebitda)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">EV/EBITDA (market)</span>
-                    <span className="text-white">{dealCalcs.comp.evEbitda}×</span>
+                    <span className="text-foreground">{dealCalcs.comp.evEbitda}×</span>
                   </div>
                 </div>
               )}
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Offer Premium: <span className="text-white">{offerPremium}%</span>
+                  Offer Premium: <span className="text-foreground">{offerPremium}%</span>
                 </label>
                 <Slider
                   min={0} max={50} step={1}
@@ -1019,7 +1019,7 @@ export default function IBDealsPage() {
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Cash Mix: <span className="text-white">{cashMix}% Cash / {100 - cashMix}% Stock</span>
+                  Cash Mix: <span className="text-foreground">{cashMix}% Cash / {100 - cashMix}% Stock</span>
                 </label>
                 <Slider
                   min={0} max={100} step={5}
@@ -1031,7 +1031,7 @@ export default function IBDealsPage() {
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Acquirer Shares Outstanding: <span className="text-white">{acquirerShares}M</span>
+                  Acquirer Shares Outstanding: <span className="text-foreground">{acquirerShares}M</span>
                 </label>
                 <Slider
                   min={100} max={2000} step={50}
@@ -1043,7 +1043,7 @@ export default function IBDealsPage() {
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Acquirer EPS: <span className="text-white">${acquirerEPS.toFixed(2)}</span>
+                  Acquirer EPS: <span className="text-foreground">${acquirerEPS.toFixed(2)}</span>
                 </label>
                 <Slider
                   min={1} max={20} step={0.5}
@@ -1055,7 +1055,7 @@ export default function IBDealsPage() {
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Annual Synergies Input: <span className="text-white">${synergiesInput}M</span>
+                  Annual Synergies Input: <span className="text-foreground">${synergiesInput}M</span>
                 </label>
                 <Slider
                   min={0} max={1000} step={25}
@@ -1099,11 +1099,11 @@ export default function IBDealsPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">Standalone EPS</div>
-                      <div className="text-sm font-semibold text-white">${fmt(acquirerEPS, 2)}</div>
+                      <div className="text-sm font-semibold text-foreground">${fmt(acquirerEPS, 2)}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">Combined EPS</div>
-                      <div className="text-sm font-semibold text-white">${fmt(dealCalcs.combinedEPS, 2)}</div>
+                      <div className="text-sm font-semibold text-foreground">${fmt(dealCalcs.combinedEPS, 2)}</div>
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-muted-foreground mb-1">EPS Change</div>
@@ -1140,11 +1140,11 @@ export default function IBDealsPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                     <div className="bg-muted/50 rounded p-2">
                       <div className="text-xs text-muted-foreground">Cash Consideration</div>
-                      <div className="text-sm font-semibold text-white">{fmtB(dealCalcs.offeredEquity * cashMix / 100)}</div>
+                      <div className="text-sm font-semibold text-foreground">{fmtB(dealCalcs.offeredEquity * cashMix / 100)}</div>
                     </div>
                     <div className="bg-muted/50 rounded p-2">
                       <div className="text-xs text-muted-foreground">Stock Consideration</div>
-                      <div className="text-sm font-semibold text-white">{fmtB(dealCalcs.offeredEquity * (100 - cashMix) / 100)}</div>
+                      <div className="text-sm font-semibold text-foreground">{fmtB(dealCalcs.offeredEquity * (100 - cashMix) / 100)}</div>
                     </div>
                     <div className="bg-muted/50 rounded p-2">
                       <div className="text-xs text-muted-foreground">Debt Financing</div>
@@ -1201,7 +1201,7 @@ export default function IBDealsPage() {
                 <tbody>
                   {COMPS.map((c, i) => (
                     <tr key={c.name} className={cn("border-t border-border", c.name === selectedTarget ? "bg-muted/40" : "")}>
-                      <td className="px-3 py-2 font-medium text-white flex items-center gap-1">
+                      <td className="px-3 py-2 font-medium text-foreground flex items-center gap-1">
                         {c.name === selectedTarget && <span className="text-primary text-[11px]">TARGET</span>}
                         {c.name}
                       </td>
@@ -1454,7 +1454,7 @@ export default function IBDealsPage() {
                     <div className="grid grid-cols-3 gap-2">
                       <div className="text-center bg-muted/50 rounded p-2">
                         <div className="text-xs text-muted-foreground">Pre-HHI</div>
-                        <div className="text-lg font-bold text-white">{preHHI}</div>
+                        <div className="text-lg font-bold text-foreground">{preHHI}</div>
                       </div>
                       <div className="text-center bg-muted/50 rounded p-2">
                         <div className="text-xs text-muted-foreground">Post-HHI</div>
@@ -1576,7 +1576,7 @@ export default function IBDealsPage() {
                 <select
                   value={lboTarget}
                   onChange={(e) => setLboTarget(e.target.value)}
-                  className="w-full bg-muted border border-border text-sm rounded px-2 py-1.5 text-white"
+                  className="w-full bg-muted border border-border text-sm rounded px-2 py-1.5 text-foreground"
                 >
                   {LBO_TARGETS.map((t) => (
                     <option key={t.name} value={t.name}>{t.name}</option>
@@ -1588,54 +1588,54 @@ export default function IBDealsPage() {
                 <div className="bg-muted/50 rounded p-2 text-xs space-y-1">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Revenue</span>
-                    <span className="text-white">{fmtB(lboCalcs.target.revenue)}</span>
+                    <span className="text-foreground">{fmtB(lboCalcs.target.revenue)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">EBITDA</span>
-                    <span className="text-white">{fmtB(lboCalcs.target.ebitda)}</span>
+                    <span className="text-foreground">{fmtB(lboCalcs.target.ebitda)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">EBITDA Margin</span>
-                    <span className="text-white">{lboCalcs.target.ebitdaMargin}%</span>
+                    <span className="text-foreground">{lboCalcs.target.ebitdaMargin}%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Industry</span>
-                    <span className="text-white">{lboCalcs.target.industry}</span>
+                    <span className="text-foreground">{lboCalcs.target.industry}</span>
                   </div>
                 </div>
               )}
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Entry Multiple: <span className="text-white">{entryMultiple}× EBITDA</span>
+                  Entry Multiple: <span className="text-foreground">{entryMultiple}× EBITDA</span>
                 </label>
                 <Slider min={6} max={16} step={0.5} value={[entryMultiple]} onValueChange={([v]) => setEntryMultiple(v)} className="my-2" />
               </div>
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Leverage: <span className="text-white">{leverage}× EBITDA</span>
+                  Leverage: <span className="text-foreground">{leverage}× EBITDA</span>
                 </label>
                 <Slider min={3} max={8} step={0.25} value={[leverage]} onValueChange={([v]) => setLeverage(v)} className="my-2" />
               </div>
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Exit Multiple: <span className="text-white">{exitMultiple}× EBITDA</span>
+                  Exit Multiple: <span className="text-foreground">{exitMultiple}× EBITDA</span>
                 </label>
                 <Slider min={6} max={18} step={0.5} value={[exitMultiple]} onValueChange={([v]) => setExitMultiple(v)} className="my-2" />
               </div>
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Hold Period: <span className="text-white">{holdPeriod} years</span>
+                  Hold Period: <span className="text-foreground">{holdPeriod} years</span>
                 </label>
                 <Slider min={3} max={8} step={1} value={[holdPeriod]} onValueChange={([v]) => setHoldPeriod(v)} className="my-2" />
               </div>
 
               <div>
                 <label className="text-xs text-muted-foreground block mb-1">
-                  Interest Rate: <span className="text-white">{interestRate}%</span>
+                  Interest Rate: <span className="text-foreground">{interestRate}%</span>
                 </label>
                 <Slider min={4} max={14} step={0.25} value={[interestRate]} onValueChange={([v]) => setInterestRate(v)} className="my-2" />
               </div>
@@ -1762,7 +1762,7 @@ export default function IBDealsPage() {
                     })}
                     <div className="border-t border-border pt-2 flex justify-between text-xs text-muted-foreground">
                       <span>Total Exit Equity</span>
-                      <span className="text-white font-semibold">{fmtB(lboCalcs.baseExit.exitEquity)}</span>
+                      <span className="text-foreground font-semibold">{fmtB(lboCalcs.baseExit.exitEquity)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-muted-foreground">
                       <span>Base Case MOIC / IRR</span>
@@ -1792,8 +1792,8 @@ export default function IBDealsPage() {
                 className={cn(
                   "px-3 py-1.5 text-xs rounded border transition-colors",
                   leagueTab === t.key
-                    ? "bg-primary border-primary text-white"
-                    : "bg-muted border-border text-muted-foreground hover:text-white"
+                    ? "bg-primary border-primary text-foreground"
+                    : "bg-muted border-border text-muted-foreground hover:text-foreground"
                 )}
               >
                 {t.label}
@@ -1852,7 +1852,7 @@ export default function IBDealsPage() {
                                 {entry.rank}
                               </span>
                             </td>
-                            <td className="px-4 py-2 font-medium text-white">{entry.bank}</td>
+                            <td className="px-4 py-2 font-medium text-foreground">{entry.bank}</td>
                             <td className="px-4 py-2 text-right text-muted-foreground">{entry.deals}</td>
                             <td className="px-4 py-2 text-right text-emerald-400 font-semibold">{fmtB(entry.value)}</td>
                             <td className="px-4 py-2">

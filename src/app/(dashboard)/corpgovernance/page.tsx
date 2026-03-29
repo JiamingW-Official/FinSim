@@ -389,7 +389,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
@@ -476,7 +476,7 @@ function OwnershipDonut({ data }: { data: Shareholder[] }) {
           <div key={sl.t} className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full" style={{ background: sl.color }} />
             <span className="text-xs text-muted-foreground w-24">{sl.t}</span>
-            <span className="text-xs font-semibold text-white">{sl.pct}%</span>
+            <span className="text-xs font-semibold text-foreground">{sl.pct}%</span>
           </div>
         ))}
       </div>
@@ -550,7 +550,7 @@ function ProxyVoteSimulator() {
                   <Badge className={cn("text-xs px-1.5 py-0", res.type === "Management" ? "bg-primary/20 text-primary" : "bg-primary/20 text-primary")}>
                     {res.type}
                   </Badge>
-                  <span className="text-xs font-semibold text-white">{res.title}</span>
+                  <span className="text-xs font-semibold text-foreground">{res.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">{res.description}</p>
                 <div className="flex items-center gap-3 mt-1.5">
@@ -571,11 +571,11 @@ function ProxyVoteSimulator() {
                       "text-xs px-2 py-1 rounded-md border font-medium transition-all",
                       voted === v
                         ? v === "For"
-                          ? "bg-emerald-500 border-emerald-500 text-white"
+                          ? "bg-emerald-500 border-emerald-500 text-foreground"
                           : v === "Against"
-                          ? "bg-rose-500 border-rose-500 text-white"
-                          : "bg-muted-foreground border-muted-foreground text-white"
-                        : "border-border text-muted-foreground hover:border-border hover:text-white"
+                          ? "bg-rose-500 border-rose-500 text-foreground"
+                          : "bg-muted-foreground border-muted-foreground text-foreground"
+                        : "border-border text-muted-foreground hover:border-border hover:text-foreground"
                     )}
                   >
                     {v}
@@ -673,7 +673,7 @@ export default function CorpGovernancePage() {
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Building2 className="w-5 h-5 text-indigo-400" />
-            <h1 className="text-xl font-bold text-white">Corporate Governance & Shareholder Activism</h1>
+            <h1 className="text-xl font-bold text-foreground">Corporate Governance & Shareholder Activism</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Analyze board composition, proxy battles, and governance quality across public companies.
@@ -704,11 +704,11 @@ export default function CorpGovernancePage() {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-white mb-3">Governance Score by Company</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-3">Governance Score by Company</h3>
                   <BoardBarChart companies={BOARD_COMPANIES} />
                 </div>
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-white mb-3">Company Detail</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-3">Company Detail</h3>
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {BOARD_COMPANIES.map((c) => (
                       <button
@@ -717,7 +717,7 @@ export default function CorpGovernancePage() {
                         className={cn(
                           "text-xs px-2 py-1 rounded-md border transition-all",
                           selectedCompany.ticker === c.ticker
-                            ? "bg-indigo-500 border-indigo-500 text-white"
+                            ? "bg-indigo-500 border-indigo-500 text-foreground"
                             : "border-border text-muted-foreground hover:border-border"
                         )}
                       >
@@ -726,9 +726,9 @@ export default function CorpGovernancePage() {
                     ))}
                   </div>
                   <div className="space-y-2">
-                    <p className="text-sm font-medium text-white">{selectedCompany.name}</p>
+                    <p className="text-sm font-medium text-foreground">{selectedCompany.name}</p>
                     <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="flex justify-between"><span className="text-muted-foreground">Board Size</span><span className="text-white font-medium">{selectedCompany.boardSize} members</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">Board Size</span><span className="text-foreground font-medium">{selectedCompany.boardSize} members</span></div>
                       <div className="flex justify-between"><span className="text-muted-foreground">Independent</span><span className={cn("font-medium", scoreColor(selectedCompany.independentPct))}>{selectedCompany.independentPct}%</span></div>
                       <div className="flex justify-between"><span className="text-muted-foreground">Female Directors</span><span className={cn("font-medium", scoreColor(selectedCompany.femalePct))}>{selectedCompany.femalePct}%</span></div>
                       <div className="flex justify-between"><span className="text-muted-foreground">Avg. Tenure</span><span className={cn("font-medium", selectedCompany.avgTenure > 10 ? "text-rose-400" : "text-emerald-400")}>{selectedCompany.avgTenure} yrs</span></div>
@@ -749,7 +749,7 @@ export default function CorpGovernancePage() {
                 </div>
               </div>
               <div className="rounded-xl border border-border bg-foreground/5 p-4 overflow-x-auto">
-                <h3 className="text-sm font-semibold text-white mb-3">Full Comparison Table</h3>
+                <h3 className="text-sm font-semibold text-foreground mb-3">Full Comparison Table</h3>
                 <table className="w-full text-xs min-w-[580px]">
                   <thead>
                     <tr className="text-muted-foreground border-b border-border">
@@ -766,7 +766,7 @@ export default function CorpGovernancePage() {
                   <tbody>
                     {BOARD_COMPANIES.map((c) => (
                       <tr key={c.ticker} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="py-2 font-medium text-white">{c.name} <span className="text-muted-foreground">({c.ticker})</span></td>
+                        <td className="py-2 font-medium text-foreground">{c.name} <span className="text-muted-foreground">({c.ticker})</span></td>
                         <td className="text-center py-2 text-muted-foreground">{c.boardSize}</td>
                         <td className={cn("text-center py-2 font-medium", scoreColor(c.independentPct))}>{c.independentPct}%</td>
                         <td className={cn("text-center py-2 font-medium", scoreColor(c.femalePct))}>{c.femalePct}%</td>
@@ -796,13 +796,13 @@ export default function CorpGovernancePage() {
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-semibold text-white">{c.fund}</span>
+                        <span className="text-sm font-semibold text-foreground">{c.fund}</span>
                         <span className="text-xs text-muted-foreground">→</span>
                         <span className="text-sm font-medium text-indigo-300">{c.target}</span>
                         <Badge className="text-xs bg-muted/50 text-muted-foreground">{c.ticker}</Badge>
                       </div>
                       <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                        <span>Stake: <span className="text-white font-medium">{c.stakePct}%</span></span>
+                        <span>Stake: <span className="text-foreground font-medium">{c.stakePct}%</span></span>
                         <span>Stock reaction: <span className={cn("font-medium", c.stockReaction >= 0 ? "text-emerald-400" : "text-rose-400")}>{c.stockReaction >= 0 ? "+" : ""}{c.stockReaction}%</span></span>
                       </div>
                     </div>
@@ -841,7 +841,7 @@ export default function CorpGovernancePage() {
                   <div key={e.ticker} className="rounded-xl border border-border bg-foreground/5 p-4">
                     <div className="flex items-center justify-between mb-2">
                       <div>
-                        <p className="text-xs font-semibold text-white">{e.company}</p>
+                        <p className="text-xs font-semibold text-foreground">{e.company}</p>
                         <p className="text-xs text-muted-foreground">{e.ticker}</p>
                       </div>
                       <EsgRadarMini score={e} />
@@ -870,7 +870,7 @@ export default function CorpGovernancePage() {
                 ))}
               </div>
               <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                <h3 className="text-sm font-semibold text-white mb-3">Score Interpretation</h3>
+                <h3 className="text-sm font-semibold text-foreground mb-3">Score Interpretation</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500 mt-0.5 flex-shrink-0" /><div><p className="text-emerald-400 font-medium">80–100: Strong Governance</p><p className="text-muted-foreground mt-0.5">Majority independent board, pay tied to performance, robust shareholder rights, full disclosure</p></div></div>
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-amber-500 mt-0.5 flex-shrink-0" /><div><p className="text-amber-400 font-medium">65–79: Adequate Governance</p><p className="text-muted-foreground mt-0.5">Some concerns — tenure concentration, partial disclosure gaps, or minor pay misalignment</p></div></div>
@@ -895,7 +895,7 @@ export default function CorpGovernancePage() {
                     onClick={() => setExpandedDefense(expandedDefense === def.name ? null : def.name)}
                   >
                     <div>
-                      <p className="text-sm font-semibold text-white">{def.name}</p>
+                      <p className="text-sm font-semibold text-foreground">{def.name}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{def.mechanism}</p>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0 ml-3">
@@ -945,7 +945,7 @@ export default function CorpGovernancePage() {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-white mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
                   <OwnershipDonut data={SHAREHOLDERS} />
                   <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
                     <div className="rounded-lg border border-border bg-foreground/5 p-3">
@@ -975,7 +975,7 @@ export default function CorpGovernancePage() {
                   </div>
                 </div>
                 <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                  <h3 className="text-sm font-semibold text-white mb-3">Top Shareholders</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-3">Top Shareholders</h3>
                   <div className="space-y-2">
                     {SHAREHOLDERS.sort((a, b) => b.pct - a.pct).map((sh, i) => (
                       <div key={sh.name} className="flex items-center gap-3">
@@ -983,7 +983,7 @@ export default function CorpGovernancePage() {
                         <div className="flex-1">
                           <div className="flex justify-between text-xs mb-0.5">
                             <span className="text-foreground font-medium">{sh.name}</span>
-                            <span className="text-white font-semibold">{sh.pct}%</span>
+                            <span className="text-foreground font-semibold">{sh.pct}%</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <div className="flex-1 h-1 rounded-full bg-foreground/10 overflow-hidden">
@@ -1001,7 +1001,7 @@ export default function CorpGovernancePage() {
                 </div>
               </div>
               <div className="rounded-xl border border-border bg-foreground/5 p-4">
-                <h3 className="text-sm font-semibold text-white mb-3">Voting Power Dynamics</h3>
+                <h3 className="text-sm font-semibold text-foreground mb-3">Voting Power Dynamics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                   <div className="space-y-1.5">
                     <p className="text-muted-foreground font-medium flex items-center gap-1"><TrendingUp className="w-3 h-3 text-primary" />Index Funds (Passive)</p>

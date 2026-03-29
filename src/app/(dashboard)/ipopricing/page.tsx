@@ -72,7 +72,7 @@ function StatCard({
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
@@ -359,7 +359,7 @@ function ValuationMethodsTab() {
                   row.color === "rose" && "text-rose-400",
                   row.color === "amber" && "text-amber-400",
                   row.color === "blue" && "text-primary",
-                  row.color === "white" && "text-white text-sm"
+                  row.color === "white" && "text-foreground text-sm"
                 )}
               >
                 {row.value}
@@ -396,9 +396,9 @@ function ValuationMethodsTab() {
                 </tr>
               ))}
               <tr className="border-t border-border bg-foreground/5">
-                <td className="py-2 pr-4 text-white font-semibold">Total Fully Diluted</td>
-                <td className="py-2 text-right font-mono text-white font-semibold">{totalShares.toLocaleString()}</td>
-                <td className="py-2 text-right font-mono text-white font-semibold">100.0%</td>
+                <td className="py-2 pr-4 text-foreground font-semibold">Total Fully Diluted</td>
+                <td className="py-2 text-right font-mono text-foreground font-semibold">{totalShares.toLocaleString()}</td>
+                <td className="py-2 text-right font-mono text-foreground font-semibold">100.0%</td>
               </tr>
             </tbody>
           </table>
@@ -434,7 +434,7 @@ function ValuationMethodsTab() {
               <div key={f.title} className="rounded-lg border border-border bg-foreground/[0.03] p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <Icon className={cn("w-4 h-4", colorMap[f.color])} />
-                  <span className="text-xs font-semibold text-white">{f.title}</span>
+                  <span className="text-xs font-semibold text-foreground">{f.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground">{f.desc}</p>
               </div>
@@ -459,7 +459,7 @@ function ValuationMethodsTab() {
                 { step: "6", label: "Trading commences", time: "IPO day", note: "Stabilization period begins" },
               ].map((s) => (
                 <div key={s.step} className="flex gap-3 text-xs">
-                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                  <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-xs font-bold text-foreground flex-shrink-0">
                     {s.step}
                   </div>
                   <div>
@@ -715,7 +715,7 @@ function BookbuildingTab() {
         <div className="space-y-2">
           {greenshoeSteps.map((s, i) => (
             <div key={i} className="flex gap-3 items-start">
-              <div className="w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5">
+              <div className="w-5 h-5 rounded-full bg-emerald-700 flex items-center justify-center text-xs font-bold text-foreground flex-shrink-0 mt-0.5">
                 {i + 1}
               </div>
               <p className="text-xs text-muted-foreground">{s.step}</p>
@@ -808,7 +808,7 @@ function BookbuildingTab() {
             <tbody>
               {dualClassExamples.map((row, i) => (
                 <tr key={row.company} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
-                  <td className="py-2 pr-4 text-white font-medium">{row.company}</td>
+                  <td className="py-2 pr-4 text-foreground font-medium">{row.company}</td>
                   <td className="py-2 pr-4 text-muted-foreground">{row.classA}</td>
                   <td className="py-2 pr-4 text-amber-300">{row.classB}</td>
                   <td className="py-2 text-muted-foreground">{row.classC}</td>
@@ -991,7 +991,7 @@ function UnderpricingTab() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Icon className={cn("w-4 h-4", colorMap[t.color].split(" ")[0])} />
-                    <span className="text-xs font-semibold text-white">{t.name}</span>
+                    <span className="text-xs font-semibold text-foreground">{t.name}</span>
                   </div>
                   {isOpen ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
                 </div>
@@ -1451,7 +1451,7 @@ export default function IPOPricingPage() {
               <DollarSign className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">IPO Pricing & Aftermarket</h1>
+              <h1 className="text-2xl font-bold text-foreground">IPO Pricing & Aftermarket</h1>
               <p className="text-sm text-muted-foreground">
                 Valuation, bookbuilding, underpricing, lockup dynamics, and alternative listing mechanisms
               </p>

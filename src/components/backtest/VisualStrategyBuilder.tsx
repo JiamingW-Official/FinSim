@@ -172,7 +172,7 @@ function ConditionRow({
             onClick={() => onChange({ ...cond, usePreset: true, targetPreset: p })}
             className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
               cond.usePreset && cond.targetPreset === p
-                ? "bg-primary text-white"
+                ? "bg-primary text-foreground"
                 : "bg-muted/20 text-muted-foreground hover:bg-muted/50"
             }`}
           >
@@ -319,7 +319,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                         key={l}
                         onClick={() => setEntryLogic(l)}
                         className={`px-2 py-0.5 text-xs font-medium transition-colors ${
-                          entryLogic === l ? "bg-primary text-white" : "bg-card text-muted-foreground"
+                          entryLogic === l ? "bg-primary text-foreground" : "bg-card text-muted-foreground"
                         }`}
                       >
                         {l}
@@ -372,7 +372,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                         key={l}
                         onClick={() => setExitLogic(l)}
                         className={`px-2 py-0.5 text-xs font-medium transition-colors ${
-                          exitLogic === l ? "bg-teal-600 text-white" : "bg-card text-muted-foreground"
+                          exitLogic === l ? "bg-teal-600 text-foreground" : "bg-card text-muted-foreground"
                         }`}
                       >
                         {l}
@@ -472,7 +472,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
             </button>
             <button
               onClick={handleRun}
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary"
+              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:bg-primary"
             >
               <Play className="h-3.5 w-3.5" /> Run Custom Backtest
             </button>

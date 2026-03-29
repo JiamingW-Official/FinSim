@@ -217,8 +217,8 @@ function SliderRow({
   return (
     <div className="space-y-1">
       <div className="flex justify-between text-xs">
-        <span className="text-white/50">{label}</span>
-        <span className="text-white font-mono">{format(value)}</span>
+        <span className="text-foreground/50">{label}</span>
+        <span className="text-foreground font-mono">{format(value)}</span>
       </div>
       <Slider
         min={min}
@@ -243,13 +243,13 @@ function StatChip({
 }) {
   return (
     <div className="bg-foreground/5 rounded-lg px-3 py-2 flex flex-col gap-0.5">
-      <span className="text-xs text-white/40 uppercase tracking-wide">
+      <span className="text-xs text-foreground/40 uppercase tracking-wide">
         {label}
       </span>
       <span
         className={`text-sm font-mono font-semibold ${
           positive === undefined
-            ? "text-white"
+            ? "text-foreground"
             : positive
             ? "text-emerald-400"
             : "text-red-400"
@@ -293,7 +293,7 @@ function SwapPricerTab() {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-white/80 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
           <ArrowLeftRight className="w-4 h-4 text-primary" />
           IRS Parameters
         </h3>
@@ -336,14 +336,14 @@ function SwapPricerTab() {
         />
 
         <div>
-          <p className="text-xs text-white/40 mb-2">Position</p>
+          <p className="text-xs text-foreground/40 mb-2">Position</p>
           <div className="flex gap-2">
             <button
               onClick={() => setPayFixed(true)}
               className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                 payFixed
                   ? "bg-primary/30 text-primary border border-primary/50"
-                  : "bg-foreground/5 text-white/40 border border-transparent"
+                  : "bg-foreground/5 text-foreground/40 border border-transparent"
               }`}
             >
               Pay Fixed
@@ -353,7 +353,7 @@ function SwapPricerTab() {
               className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                 !payFixed
                   ? "bg-primary/30 text-primary border border-primary/50"
-                  : "bg-foreground/5 text-white/40 border border-transparent"
+                  : "bg-foreground/5 text-foreground/40 border border-transparent"
               }`}
             >
               Receive Fixed
@@ -393,7 +393,7 @@ function SwapPricerTab() {
 
       {/* Cash flow visualization */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-white/80">
+        <h3 className="text-sm font-semibold text-foreground/80">
           Quarterly Cash Flow Timeline
         </h3>
         <div className="overflow-x-auto">
@@ -504,7 +504,7 @@ function SwapPricerTab() {
 
         {/* Net flow table */}
         <div>
-          <p className="text-xs text-white/40 mb-2">Net Cash Flows (selected quarters)</p>
+          <p className="text-xs text-foreground/40 mb-2">Net Cash Flows (selected quarters)</p>
           <div className="grid grid-cols-5 gap-1.5">
             {result.times.slice(0, 20).map((t, i) => {
               const net = result.netFlows[i];
@@ -517,7 +517,7 @@ function SwapPricerTab() {
                       : "bg-red-500/10 border border-red-500/20"
                   }`}
                 >
-                  <div className="text-[11px] text-white/40">{`Q${i + 1}`}</div>
+                  <div className="text-[11px] text-foreground/40">{`Q${i + 1}`}</div>
                   <div
                     className={`text-xs font-mono font-semibold ${
                       net >= 0 ? "text-emerald-400" : "text-red-400"
@@ -570,7 +570,7 @@ function SwapCurveTab() {
     <div className="space-y-4">
       {/* Chart */}
       <Card>
-        <h3 className="text-sm font-semibold text-white/80 mb-3">
+        <h3 className="text-sm font-semibold text-foreground/80 mb-3">
           SOFR Swap Curve — Par / Zero / Forward
         </h3>
         <div className="overflow-x-auto">
@@ -629,22 +629,22 @@ function SwapCurveTab() {
 
       {/* Table */}
       <Card>
-        <h3 className="text-sm font-semibold text-white/80 mb-3">Bootstrapped Rates</h3>
+        <h3 className="text-sm font-semibold text-foreground/80 mb-3">Bootstrapped Rates</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-1.5 text-white/40 font-medium">Tenor</th>
+                <th className="text-left py-1.5 text-foreground/40 font-medium">Tenor</th>
                 <th className="text-right py-1.5 text-primary font-medium">Par Rate</th>
                 <th className="text-right py-1.5 text-emerald-400 font-medium">Zero Rate</th>
                 <th className="text-right py-1.5 text-pink-400 font-medium">Fwd Rate</th>
-                <th className="text-right py-1.5 text-white/40 font-medium">Disc Factor</th>
+                <th className="text-right py-1.5 text-foreground/40 font-medium">Disc Factor</th>
               </tr>
             </thead>
             <tbody>
               {TENOR_LABELS.map((label, i) => (
                 <tr key={`tr-${i}`} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="py-1.5 font-mono text-white/70">{label}</td>
+                  <td className="py-1.5 font-mono text-foreground/70">{label}</td>
                   <td className="py-1.5 font-mono text-right text-primary">
                     {parRates[i].toFixed(3)}%
                   </td>
@@ -654,7 +654,7 @@ function SwapCurveTab() {
                   <td className="py-1.5 font-mono text-right text-pink-300">
                     {(forwards[i] * 100).toFixed(3)}%
                   </td>
-                  <td className="py-1.5 font-mono text-right text-white/50">
+                  <td className="py-1.5 font-mono text-right text-foreground/50">
                     {discountFactor(zeros[i], TENOR_YEARS[i]).toFixed(4)}
                   </td>
                 </tr>
@@ -747,7 +747,7 @@ function SwaptionTab() {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-white/80 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-pink-400" />
           Swaption Parameters
         </h3>
@@ -799,14 +799,14 @@ function SwaptionTab() {
         />
 
         <div>
-          <p className="text-xs text-white/40 mb-2">Swaption Type</p>
+          <p className="text-xs text-foreground/40 mb-2">Swaption Type</p>
           <div className="flex gap-2">
             <button
               onClick={() => setIsPayer(true)}
               className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                 isPayer
                   ? "bg-pink-500/30 text-pink-300 border border-pink-500/50"
-                  : "bg-foreground/5 text-white/40 border border-transparent"
+                  : "bg-foreground/5 text-foreground/40 border border-transparent"
               }`}
             >
               Payer
@@ -816,7 +816,7 @@ function SwaptionTab() {
               className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                 !isPayer
                   ? "bg-primary/30 text-primary border border-primary/50"
-                  : "bg-foreground/5 text-white/40 border border-transparent"
+                  : "bg-foreground/5 text-foreground/40 border border-transparent"
               }`}
             >
               Receiver
@@ -842,7 +842,7 @@ function SwaptionTab() {
 
       {/* Payoff chart */}
       <Card className="space-y-3">
-        <h3 className="text-sm font-semibold text-white/80">
+        <h3 className="text-sm font-semibold text-foreground/80">
           Payoff at Expiry vs Rate Level
         </h3>
         <div className="overflow-x-auto">
@@ -940,7 +940,7 @@ function SwaptionTab() {
         </div>
         <div className="grid grid-cols-3 gap-2 text-[11px]">
           <div className="bg-foreground/5 rounded p-2">
-            <div className="text-white/40 mb-1">Moneyness</div>
+            <div className="text-foreground/40 mb-1">Moneyness</div>
             <div className={`font-mono font-semibold ${
               isPayer
                 ? sofrFwd > strike ? "text-emerald-400" : "text-red-400"
@@ -952,7 +952,7 @@ function SwaptionTab() {
             </div>
           </div>
           <div className="bg-foreground/5 rounded p-2">
-            <div className="text-white/40 mb-1">Intrinsic</div>
+            <div className="text-foreground/40 mb-1">Intrinsic</div>
             <div className="font-mono font-semibold text-amber-400">
               {fmtK(Math.max(0, isPayer
                 ? (sofrFwd / 100 - strike / 100) * annuity
@@ -960,7 +960,7 @@ function SwaptionTab() {
             </div>
           </div>
           <div className="bg-foreground/5 rounded p-2">
-            <div className="text-white/40 mb-1">Time Value</div>
+            <div className="text-foreground/40 mb-1">Time Value</div>
             <div className="font-mono font-semibold text-primary">
               {fmtK(Math.max(0, result.price - Math.max(0, isPayer
                 ? (sofrFwd / 100 - strike / 100) * annuity
@@ -1034,7 +1034,7 @@ function CrossCurrencyTab() {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-white/80 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
           <Globe className="w-4 h-4 text-muted-foreground" />
           Cross-Currency Swap
         </h3>
@@ -1104,7 +1104,7 @@ function CrossCurrencyTab() {
 
       {/* Diagram */}
       <Card className="space-y-3">
-        <h3 className="text-sm font-semibold text-white/80">
+        <h3 className="text-sm font-semibold text-foreground/80">
           Cash Flow Structure
         </h3>
 
@@ -1180,7 +1180,7 @@ function CrossCurrencyTab() {
 
         {/* Cash flow table */}
         <div>
-          <p className="text-xs text-white/40 mb-2">Semi-Annual Cash Flows (USD equivalent)</p>
+          <p className="text-xs text-foreground/40 mb-2">Semi-Annual Cash Flows (USD equivalent)</p>
           <div className="grid grid-cols-4 gap-1.5">
             {cashFlows.slice(0, 12).map(({ t, usdFlow, eurFlow }, i) => {
               const net = usdFlow + eurFlow;
@@ -1193,7 +1193,7 @@ function CrossCurrencyTab() {
                       : "bg-red-500/10 border border-red-500/20"
                   }`}
                 >
-                  <div className="text-[11px] text-white/40">{`Y${t.toFixed(1)}`}</div>
+                  <div className="text-[11px] text-foreground/40">{`Y${t.toFixed(1)}`}</div>
                   <div className="text-[11px] text-primary">{fmtK(usdFlow)}</div>
                   <div className="text-[11px] text-emerald-300">{fmtK(eurFlow)}</div>
                   <div className={`text-xs font-mono font-semibold ${net >= 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -1269,12 +1269,12 @@ function DurationHedgingTab() {
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-white/80 flex items-center gap-2">
+        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
           <Shield className="w-4 h-4 text-amber-400" />
           Hedge Parameters
         </h3>
 
-        <div className="text-xs text-white/40 uppercase tracking-wide">Swap Portfolio</div>
+        <div className="text-xs text-foreground/40 uppercase tracking-wide">Swap Portfolio</div>
         <SliderRow
           label="Swap Notional"
           value={swapNotional}
@@ -1312,7 +1312,7 @@ function DurationHedgingTab() {
           onChange={setSofrRate}
         />
 
-        <div className="text-xs text-white/40 uppercase tracking-wide pt-2 border-t border-border">Treasury Futures</div>
+        <div className="text-xs text-foreground/40 uppercase tracking-wide pt-2 border-t border-border">Treasury Futures</div>
         <SliderRow
           label="Contract Value ($)"
           value={futuresCtv}
@@ -1351,7 +1351,7 @@ function DurationHedgingTab() {
 
       {/* P&L analysis */}
       <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-white/80">
+        <h3 className="text-sm font-semibold text-foreground/80">
           P&amp;L Sensitivity — Parallel Rate Shift
         </h3>
 
@@ -1438,17 +1438,17 @@ function DurationHedgingTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-1 text-white/40">Shift (bps)</th>
+                <th className="text-left py-1 text-foreground/40">Shift (bps)</th>
                 <th className="text-right py-1 text-red-400">Swap P&L</th>
                 <th className="text-right py-1 text-primary">Futures P&L</th>
                 <th className="text-right py-1 text-emerald-400">Net P&L</th>
-                <th className="text-right py-1 text-white/40">Residual %</th>
+                <th className="text-right py-1 text-foreground/40">Residual %</th>
               </tr>
             </thead>
             <tbody>
               {scenarios.filter((_, i) => i % 2 === 0).map((s, i) => (
                 <tr key={`sr-${i}`} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="py-1 font-mono text-white/70">
+                  <td className="py-1 font-mono text-foreground/70">
                     {s.shift > 0 ? `+${s.shift}` : s.shift} bps
                   </td>
                   <td className={`py-1 font-mono text-right ${s.swapPnL >= 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -1460,7 +1460,7 @@ function DurationHedgingTab() {
                   <td className={`py-1 font-mono text-right ${s.netPnL >= 0 ? "text-emerald-400" : "text-red-400"}`}>
                     {fmtK(s.netPnL)}
                   </td>
-                  <td className="py-1 font-mono text-right text-white/50">
+                  <td className="py-1 font-mono text-right text-foreground/50">
                     {s.swapPnL !== 0 ? `${fmt(Math.abs(s.netPnL / s.swapPnL) * 100, 1)}%` : "–"}
                   </td>
                 </tr>
@@ -1501,12 +1501,12 @@ export default function RatesLabPage() {
               <div className="w-8 h-8 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
                 <BarChart3 className="w-4 h-4 text-primary" />
               </div>
-              <h1 className="text-xl font-bold text-white">Rates Lab</h1>
+              <h1 className="text-xl font-bold text-foreground">Rates Lab</h1>
               <Badge variant="outline" className="text-xs border-border text-primary">
                 Interest Rate Derivatives
               </Badge>
             </div>
-            <p className="text-sm text-white/40 ml-11">
+            <p className="text-sm text-foreground/40 ml-11">
               Interactive IRS pricing, swap curve bootstrapping, swaptions, cross-currency swaps &amp; duration hedging
             </p>
           </div>

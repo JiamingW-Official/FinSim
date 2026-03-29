@@ -349,7 +349,7 @@ function PipelineTracker() {
             className={cn(
               "px-3 py-1 rounded text-xs font-medium transition-colors",
               sortBy === opt
-                ? "bg-primary text-white"
+                ? "bg-primary text-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted"
             )}
           >
@@ -385,7 +385,7 @@ function PipelineTracker() {
               <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <span className="text-sm font-bold text-white font-mono bg-muted px-2 py-0.5 rounded">
+                    <span className="text-sm font-bold text-foreground font-mono bg-muted px-2 py-0.5 rounded">
                       {co.ticker}
                     </span>
                     <span className="text-sm text-muted-foreground">{co.name}</span>
@@ -438,7 +438,7 @@ function PipelineTracker() {
                                 style={{ backgroundColor: STAGE_COLORS[drug.stage] }}
                               />
                               <div>
-                                <span className="text-sm font-medium text-white">{drug.name}</span>
+                                <span className="text-sm font-medium text-foreground">{drug.name}</span>
                                 <span className="text-xs text-muted-foreground ml-2">— {drug.indication}</span>
                               </div>
                             </div>
@@ -452,7 +452,7 @@ function PipelineTracker() {
                                 </Badge>
                               )}
                               <span className="text-muted-foreground">
-                                PoA: <span className="text-white font-medium">{fmtPct(drug.poA)}</span>
+                                PoA: <span className="text-foreground font-medium">{fmtPct(drug.poA)}</span>
                               </span>
                               <span className="text-muted-foreground">
                                 Readout: <span className="text-primary">{drug.nextReadout}</span>
@@ -475,7 +475,7 @@ function PipelineTracker() {
                         <div className="mt-3 p-3 bg-card rounded flex items-center gap-6 text-xs">
                           <div>
                             <span className="text-muted-foreground">Cash: </span>
-                            <span className="text-white font-medium">{fmtM(co.cash)}</span>
+                            <span className="text-foreground font-medium">{fmtM(co.cash)}</span>
                           </div>
                           <div>
                             <span className="text-muted-foreground">Quarterly Burn: </span>
@@ -536,7 +536,7 @@ function PipelineTracker() {
                   >
                     <td className="p-3 text-muted-foreground font-mono">{ev.date}</td>
                     <td className="p-3">
-                      <span className="font-mono font-bold text-white bg-muted px-1.5 py-0.5 rounded">
+                      <span className="font-mono font-bold text-foreground bg-muted px-1.5 py-0.5 rounded">
                         {ev.ticker}
                       </span>
                     </td>
@@ -800,7 +800,7 @@ function DrugEconomics() {
                 onChange={(e) => param.setter(Number(e.target.value))}
                 className="w-full accent-blue-500"
               />
-              <div className="text-xs text-white font-medium mt-0.5">
+              <div className="text-xs text-foreground font-medium mt-0.5">
                 {param.label.includes("$") ? fmtM(param.value) : `${param.value}${param.label.includes("%") ? "%" : ""}`}
               </div>
             </div>
@@ -970,7 +970,7 @@ function ValuationFramework() {
             className={cn(
               "px-2.5 py-1 rounded text-xs font-mono font-medium transition-colors",
               selectedTicker === c.ticker
-                ? "bg-primary text-white"
+                ? "bg-primary text-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted"
             )}
           >
@@ -1009,7 +1009,7 @@ function ValuationFramework() {
                       className="w-2 h-2 rounded-full"
                       style={{ backgroundColor: STAGE_COLORS[drug.stage] }}
                     />
-                    <span className="text-white font-medium">{drug.name}</span>
+                    <span className="text-foreground font-medium">{drug.name}</span>
                     <span className="text-muted-foreground">({drug.indication})</span>
                     <span
                       className="px-1.5 py-0.5 rounded text-xs"
@@ -1080,7 +1080,7 @@ function ValuationFramework() {
                   <td className="p-2 text-muted-foreground">{row.name}</td>
                   <td className="p-2 text-primary font-mono">{row.metric}</td>
                   <td className="p-2 text-muted-foreground">{row.typical}</td>
-                  <td className="p-2 text-right text-white font-medium">{row.current}</td>
+                  <td className="p-2 text-right text-foreground font-medium">{row.current}</td>
                 </tr>
               ))}
             </tbody>
@@ -1102,7 +1102,7 @@ function ValuationFramework() {
             <div key={i} className="flex items-start gap-3 bg-muted/40 rounded p-3">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-xs font-bold text-white">{deal.acquirer}</span>
+                  <span className="text-xs font-bold text-foreground">{deal.acquirer}</span>
                   <span className="text-xs text-muted-foreground">acquires</span>
                   <span className="text-xs font-bold text-primary">{deal.target}</span>
                   <span className="text-xs text-muted-foreground">({deal.year})</span>
@@ -1110,7 +1110,7 @@ function ValuationFramework() {
                 <p className="text-xs text-muted-foreground">{deal.rationale}</p>
               </div>
               <div className="text-right shrink-0">
-                <div className="text-xs font-bold text-white">{deal.value}</div>
+                <div className="text-xs font-bold text-foreground">{deal.value}</div>
                 {deal.premium !== "N/A" && (
                   <div className="text-xs text-amber-400">+{deal.premium} premium</div>
                 )}
@@ -1214,7 +1214,7 @@ function SectorAnalysis() {
           {drugCategories.map((cat, i) => (
             <div key={i} className="bg-muted/40 rounded p-3 flex items-center justify-between">
               <div>
-                <div className="text-xs font-medium text-white">{cat.category}</div>
+                <div className="text-xs font-medium text-foreground">{cat.category}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">Market: ${cat.marketSize}B | Growth: +{cat.growth}%/yr</div>
               </div>
               <div className="text-right">
@@ -1418,7 +1418,7 @@ function BinaryEventTrading() {
                 onChange={(e) => p.setter(Number(e.target.value))}
                 className="w-full accent-blue-500"
               />
-              <div className="text-xs text-white font-medium mt-0.5">{p.value}{p.label.includes("%") || p.label.includes("Volatility") ? "%" : p.label.includes("Days") ? " days" : ""}</div>
+              <div className="text-xs text-foreground font-medium mt-0.5">{p.value}{p.label.includes("%") || p.label.includes("Volatility") ? "%" : p.label.includes("Days") ? " days" : ""}</div>
             </div>
           ))}
         </div>
@@ -1433,7 +1433,7 @@ function BinaryEventTrading() {
         <div className="grid grid-cols-3 gap-4 mt-4">
           <div className="bg-muted/60 rounded p-3">
             <div className="text-xs text-muted-foreground">Straddle Cost</div>
-            <div className="text-lg font-bold text-white">${straddleCost.toFixed(2)}</div>
+            <div className="text-lg font-bold text-foreground">${straddleCost.toFixed(2)}</div>
             <div className="text-xs text-muted-foreground">per share</div>
           </div>
           <div className="bg-muted/60 rounded p-3">
@@ -1458,7 +1458,7 @@ function BinaryEventTrading() {
           {historicalReactions.map((ev, i) => (
             <div key={i} className="flex items-center justify-between bg-muted/40 rounded p-3">
               <div className="flex-1">
-                <div className="text-xs font-medium text-white">{ev.event}</div>
+                <div className="text-xs font-medium text-foreground">{ev.event}</div>
                 <div className="text-xs text-muted-foreground">n={ev.n} events • Range: {ev.range}</div>
               </div>
               <div className="flex items-center gap-4">
@@ -1527,7 +1527,7 @@ function BinaryEventTrading() {
                   : null;
                 return (
                   <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
-                    <td className="p-2 font-mono font-bold text-white">{c.ticker}</td>
+                    <td className="p-2 font-mono font-bold text-foreground">{c.ticker}</td>
                     <td className="p-2 text-muted-foreground">{c.eventType}</td>
                     <td className="p-2 text-muted-foreground">{c.date}</td>
                     <td className="p-2 text-right text-primary">{c.positionPct.toFixed(1)}%</td>
@@ -1626,7 +1626,7 @@ function BinaryEventTrading() {
                 <div className="text-xs text-muted-foreground mt-0.5">{des.granted}</div>
               </div>
               <div className="text-right">
-                <div className="text-xs text-white font-medium">{des.impliedMove}</div>
+                <div className="text-xs text-foreground font-medium">{des.impliedMove}</div>
                 <div className="text-xs text-muted-foreground">{des.frequency} granted</div>
               </div>
             </div>
@@ -1752,7 +1752,7 @@ export default function BiotechPage() {
               <FlaskConical className="w-5 h-5 text-emerald-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">Biotech & Pharma Investing</h1>
+              <h1 className="text-xl font-bold text-foreground">Biotech & Pharma Investing</h1>
               <p className="text-xs text-muted-foreground">
                 Clinical pipeline tracker · Drug economics · Valuation · Binary events
               </p>
@@ -1790,7 +1790,7 @@ export default function BiotechPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
               >
                 {tab.icon}
                 {tab.label}

@@ -435,7 +435,7 @@ function CotBar({ entry }: { entry: CotEntry }) {
       </div>
       <div className="flex h-5 rounded overflow-hidden gap-0.5">
         <div
-          className="flex items-center justify-center text-[11px] font-bold text-white"
+          className="flex items-center justify-center text-[11px] font-bold text-foreground"
           style={{
             width: `${commPct}%`,
             background: entry.commercial > 0 ? "#10b981" : "#ef4444",
@@ -444,7 +444,7 @@ function CotBar({ entry }: { entry: CotEntry }) {
           {commPct > 12 ? `${commPct.toFixed(0)}%` : ""}
         </div>
         <div
-          className="flex items-center justify-center text-[11px] font-bold text-white"
+          className="flex items-center justify-center text-[11px] font-bold text-foreground"
           style={{
             width: `${ncPct}%`,
             background: entry.nonCommercial > 0 ? "#3b82f6" : "#f59e0b",
@@ -453,7 +453,7 @@ function CotBar({ entry }: { entry: CotEntry }) {
           {ncPct > 12 ? `${ncPct.toFixed(0)}%` : ""}
         </div>
         <div
-          className="flex items-center justify-center text-[11px] font-bold text-white"
+          className="flex items-center justify-center text-[11px] font-bold text-foreground"
           style={{
             width: `${ssPct}%`,
             background: "#8b5cf6",
@@ -912,7 +912,7 @@ export default function SentimentPage() {
           <Brain className="h-5 w-5 text-primary" />
         </div>
         <div>
-          <h1 className="text-lg font-bold text-white">
+          <h1 className="text-lg font-bold text-foreground">
             Market Psychology & Sentiment
           </h1>
           <p className="text-xs text-muted-foreground">
@@ -937,7 +937,7 @@ export default function SentimentPage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white flex items-center gap-1.5 px-3 py-1.5"
+              className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground flex items-center gap-1.5 px-3 py-1.5"
             >
               <Icon className="h-3 w-3" />
               {label}
@@ -1105,7 +1105,7 @@ export default function SentimentPage() {
                 {/* 3-segment bar */}
                 <div className="flex h-6 rounded overflow-hidden">
                   <div
-                    className="flex items-center justify-center text-xs font-bold text-white"
+                    className="flex items-center justify-center text-xs font-bold text-foreground"
                     style={{
                       width: `${aaiiData.bulls}%`,
                       background: "#22c55e",
@@ -1114,7 +1114,7 @@ export default function SentimentPage() {
                     {aaiiData.bulls}%
                   </div>
                   <div
-                    className="flex items-center justify-center text-xs font-bold text-white"
+                    className="flex items-center justify-center text-xs font-bold text-foreground"
                     style={{
                       width: `${aaiiData.neutral}%`,
                       background: "#eab308",
@@ -1123,7 +1123,7 @@ export default function SentimentPage() {
                     {aaiiData.neutral}%
                   </div>
                   <div
-                    className="flex items-center justify-center text-xs font-bold text-white"
+                    className="flex items-center justify-center text-xs font-bold text-foreground"
                     style={{
                       width: `${aaiiData.bears}%`,
                       background: "#ef4444",
@@ -1566,7 +1566,7 @@ export default function SentimentPage() {
                 <CardContent className="space-y-2">
                   <div className="flex h-6 rounded overflow-hidden">
                     <div
-                      className="flex items-center justify-center text-xs font-bold text-white"
+                      className="flex items-center justify-center text-xs font-bold text-foreground"
                       style={{
                         width: `${(insiderRatio.buying / (insiderRatio.buying + insiderRatio.selling)) * 100}%`,
                         background: "#22c55e",
@@ -1575,7 +1575,7 @@ export default function SentimentPage() {
                       Buy {insiderRatio.buying}%
                     </div>
                     <div
-                      className="flex items-center justify-center text-xs font-bold text-white"
+                      className="flex items-center justify-center text-xs font-bold text-foreground"
                       style={{
                         width: `${(insiderRatio.selling / (insiderRatio.buying + insiderRatio.selling)) * 100}%`,
                         background: "#ef4444",
@@ -1797,19 +1797,19 @@ export default function SentimentPage() {
                   </div>
                   <div className="flex h-3 rounded overflow-hidden gap-0.5">
                     <div
-                      className="bg-emerald-500 rounded-l flex items-center justify-center text-[11px] text-white font-bold"
+                      className="bg-emerald-500 rounded-l flex items-center justify-center text-[11px] text-foreground font-bold"
                       style={{ width: `${q.agree}%` }}
                     >
                       {q.agree > 15 ? `${q.agree}%` : ""}
                     </div>
                     <div
-                      className="bg-muted flex items-center justify-center text-[11px] text-white"
+                      className="bg-muted flex items-center justify-center text-[11px] text-foreground"
                       style={{ width: `${q.neutral}%` }}
                     >
                       {q.neutral > 10 ? `${q.neutral}%` : ""}
                     </div>
                     <div
-                      className="bg-red-500 rounded-r flex items-center justify-center text-[11px] text-white font-bold"
+                      className="bg-red-500 rounded-r flex items-center justify-center text-[11px] text-foreground font-bold"
                       style={{ width: `${q.disagree}%` }}
                     >
                       {q.disagree > 15 ? `${q.disagree}%` : ""}

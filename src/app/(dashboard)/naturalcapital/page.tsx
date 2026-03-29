@@ -902,7 +902,7 @@ function TNFDTab() {
                 <button
                   key={step.letter}
                   onClick={() => setActiveLeap(i)}
-                  className={`flex-1 py-2 rounded-lg border text-sm font-bold transition-all ${activeLeap === i ? "text-white" : "text-muted-foreground border-border bg-muted/50 hover:bg-muted/50"}`}
+                  className={`flex-1 py-2 rounded-lg border text-sm font-bold transition-all ${activeLeap === i ? "text-foreground" : "text-muted-foreground border-border bg-muted/50 hover:bg-muted/50"}`}
                   style={activeLeap === i ? { backgroundColor: step.color + "33", borderColor: step.color, color: step.color } : {}}
                 >
                   {step.letter}
@@ -1168,7 +1168,7 @@ function BiodiversityCreditsTab() {
                 <button
                   key={credit.type}
                   onClick={() => setSelectedCredit(i)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${selectedCredit === i ? "text-white" : "border-border text-muted-foreground bg-muted/50 hover:bg-muted/50"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${selectedCredit === i ? "text-foreground" : "border-border text-muted-foreground bg-muted/50 hover:bg-muted/50"}`}
                   style={selectedCredit === i ? { backgroundColor: credit.color + "33", borderColor: credit.color, color: credit.color } : {}}
                 >
                   {credit.type}

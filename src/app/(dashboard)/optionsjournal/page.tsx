@@ -169,7 +169,7 @@ function MetricCard({
   value,
   sub,
   icon: Icon,
-  color = "text-white",
+  color = "text-foreground",
 }: {
   label: string;
   value: string;
@@ -271,7 +271,7 @@ function TradeLogTab() {
             onClick={() => setFilterOutcome(o)}
             className={`px-3 py-1 text-xs rounded-full border transition-colors ${
               filterOutcome === o
-                ? "bg-primary text-white border-primary"
+                ? "bg-primary text-foreground border-primary"
                 : "border-border text-muted-foreground hover:border-muted-foreground"
             }`}
           >
@@ -285,7 +285,7 @@ function TradeLogTab() {
             onClick={() => setFilterStrategy(s as StrategyType | "all")}
             className={`px-3 py-1 text-xs rounded-full border transition-colors ${
               filterStrategy === s
-                ? "bg-primary text-white border-primary"
+                ? "bg-primary text-foreground border-primary"
                 : "border-border text-muted-foreground hover:border-muted-foreground"
             }`}
           >
@@ -300,25 +300,25 @@ function TradeLogTab() {
           <thead>
             <tr className="bg-card border-b border-border text-muted-foreground">
               <th
-                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-white transition-colors"
+                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-foreground transition-colors"
                 onClick={() => handleSort("symbol")}
               >
                 Symbol <SortIcon field="symbol" />
               </th>
               <th
-                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-white transition-colors"
+                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-foreground transition-colors"
                 onClick={() => handleSort("strategy")}
               >
                 Strategy <SortIcon field="strategy" />
               </th>
               <th
-                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-white transition-colors"
+                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-foreground transition-colors"
                 onClick={() => handleSort("openDate")}
               >
                 Open <SortIcon field="openDate" />
               </th>
               <th
-                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-white transition-colors"
+                className="px-3 py-2.5 text-left font-medium cursor-pointer hover:text-foreground transition-colors"
                 onClick={() => handleSort("closeDate")}
               >
                 Close <SortIcon field="closeDate" />
@@ -326,13 +326,13 @@ function TradeLogTab() {
               <th className="px-3 py-2.5 text-right font-medium">Days</th>
               <th className="px-3 py-2.5 text-right font-medium">Premium</th>
               <th
-                className="px-3 py-2.5 text-right font-medium cursor-pointer hover:text-white transition-colors"
+                className="px-3 py-2.5 text-right font-medium cursor-pointer hover:text-foreground transition-colors"
                 onClick={() => handleSort("pnl")}
               >
                 P&L <SortIcon field="pnl" />
               </th>
               <th
-                className="px-3 py-2.5 text-right font-medium cursor-pointer hover:text-white transition-colors"
+                className="px-3 py-2.5 text-right font-medium cursor-pointer hover:text-foreground transition-colors"
                 onClick={() => handleSort("returnPct")}
               >
                 Return% <SortIcon field="returnPct" />
@@ -352,7 +352,7 @@ function TradeLogTab() {
                   transition={{ duration: 0.15, delay: idx * 0.02 }}
                   className="border-b border-border/60 hover:bg-muted/30 transition-colors"
                 >
-                  <td className="px-3 py-2.5 font-medium text-white">{trade.symbol}</td>
+                  <td className="px-3 py-2.5 font-medium text-foreground">{trade.symbol}</td>
                   <td className="px-3 py-2.5">
                     <span
                       className="px-2 py-0.5 rounded text-xs font-medium"
@@ -542,7 +542,7 @@ function PerformanceTab() {
 
       {/* Equity Curve */}
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-sm font-medium text-white mb-3">Equity Curve</div>
+        <div className="text-sm font-medium text-foreground mb-3">Equity Curve</div>
         <svg
           viewBox={`0 0 ${W} ${H}`}
           className="w-full"
@@ -689,7 +689,7 @@ function StrategyBreakdownTab() {
     <div className="space-y-6">
       {/* SVG P&L by strategy */}
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-sm font-medium text-white mb-1">Total P&L by Strategy</div>
+        <div className="text-sm font-medium text-foreground mb-1">Total P&L by Strategy</div>
         <div className="text-xs text-muted-foreground mb-3">Bars above zero = net profitable</div>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 200 }}>
           {/* Zero line */}
@@ -767,7 +767,7 @@ function StrategyBreakdownTab() {
 
       {/* Avg days per strategy SVG bar */}
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-sm font-medium text-white mb-1">Avg Days In Trade</div>
+        <div className="text-sm font-medium text-foreground mb-1">Avg Days In Trade</div>
         <svg viewBox="0 0 560 120" className="w-full" style={{ maxHeight: 120 }}>
           {stratStats.map((stat, i) => {
             const bw = (stat.avgDays / maxDays) * 380;
@@ -913,7 +913,7 @@ function GreekAttributionTab() {
         ].map((g) => (
           <div key={g.label} className="flex items-center gap-2 text-sm">
             <span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: g.color }} />
-            <span className="font-medium text-white">{g.label}</span>
+            <span className="font-medium text-foreground">{g.label}</span>
             <span className="text-muted-foreground text-xs">{g.desc}</span>
           </div>
         ))}
@@ -921,7 +921,7 @@ function GreekAttributionTab() {
 
       {/* SVG grouped bar chart */}
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-sm font-medium text-white mb-3">Monthly Greek P&L Attribution</div>
+        <div className="text-sm font-medium text-foreground mb-3">Monthly Greek P&L Attribution</div>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 240 }}>
           {/* Grid */}
           {yTicks.map((v, i) => (
@@ -1103,7 +1103,7 @@ function ImprovementAreasTab() {
     <div className="space-y-6">
       {/* Trade Sizing */}
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-sm font-medium text-white mb-3">Trade Sizing Distribution (% of $25K capital)</div>
+        <div className="text-sm font-medium text-foreground mb-3">Trade Sizing Distribution (% of $25K capital)</div>
         <div className="space-y-2">
           {sizingBuckets.map((b) => {
             const barPct = (b.count / TRADES.length) * 100;
@@ -1136,7 +1136,7 @@ function ImprovementAreasTab() {
 
       {/* Early vs Held */}
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-sm font-medium text-white mb-3">Early Exits vs Held to Expiration</div>
+        <div className="text-sm font-medium text-foreground mb-3">Early Exits vs Held to Expiration</div>
         <div className="grid grid-cols-2 gap-4">
           {[
             {
@@ -1155,8 +1155,8 @@ function ImprovementAreasTab() {
             },
           ].map((g) => (
             <div key={g.label} className="bg-muted/50 rounded-lg p-3 space-y-2">
-              <div className="text-sm font-medium text-white">{g.label}</div>
-              <div className="text-2xl font-bold text-white">{g.count}</div>
+              <div className="text-sm font-medium text-foreground">{g.label}</div>
+              <div className="text-2xl font-bold text-foreground">{g.count}</div>
               <div className="text-xs text-muted-foreground">trades</div>
               <div className="flex gap-3 mt-1">
                 <div>
@@ -1183,7 +1183,7 @@ function ImprovementAreasTab() {
 
       {/* IV Rank at Entry Distribution */}
       <div className="bg-card border border-border rounded-lg p-4">
-        <div className="text-sm font-medium text-white mb-3">IV Rank at Entry Distribution</div>
+        <div className="text-sm font-medium text-foreground mb-3">IV Rank at Entry Distribution</div>
         <svg viewBox="0 0 560 100" className="w-full" style={{ maxHeight: 100 }}>
           {ivBuckets.map((b, i) => {
             const x = 60 + i * 82;
@@ -1217,7 +1217,7 @@ function ImprovementAreasTab() {
 
       {/* Lessons learned */}
       <div>
-        <div className="text-sm font-medium text-white mb-3">Lessons Learned</div>
+        <div className="text-sm font-medium text-foreground mb-3">Lessons Learned</div>
         <div className="space-y-3">
           {LESSONS.map((lesson, i) => (
             <motion.div
@@ -1229,7 +1229,7 @@ function ImprovementAreasTab() {
             >
               <lesson.icon className={`w-5 h-5 mt-0.5 flex-shrink-0 ${lesson.color}`} />
               <div>
-                <div className="text-sm font-medium text-white mb-1">{lesson.title}</div>
+                <div className="text-sm font-medium text-foreground mb-1">{lesson.title}</div>
                 <div className="text-xs text-muted-foreground leading-relaxed">{lesson.body}</div>
               </div>
             </motion.div>
@@ -1258,7 +1258,7 @@ export default function OptionsJournalPage() {
               <BookOpen className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-white">Options Journal</h1>
+              <h1 className="text-lg font-semibold text-foreground">Options Journal</h1>
               <p className="text-xs text-muted-foreground">Performance tracker & trade analysis</p>
             </div>
           </div>
@@ -1279,7 +1279,7 @@ export default function OptionsJournalPage() {
             </div>
             <div className="text-right">
               <div className="text-xs text-muted-foreground">Trades</div>
-              <div className="font-bold text-white">{TRADES.length}</div>
+              <div className="font-bold text-foreground">{TRADES.length}</div>
             </div>
           </div>
         </div>
@@ -1291,35 +1291,35 @@ export default function OptionsJournalPage() {
           <TabsList className="flex-shrink-0 mx-6 mt-4 bg-card border border-border w-fit h-auto flex-wrap gap-1 p-1 rounded-lg">
             <TabsTrigger
               value="tradelog"
-              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               <BookOpen className="w-3.5 h-3.5 mr-1.5" />
               Trade Log
             </TabsTrigger>
             <TabsTrigger
               value="performance"
-              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
               Performance
             </TabsTrigger>
             <TabsTrigger
               value="strategies"
-              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               <PieChart className="w-3.5 h-3.5 mr-1.5" />
               Strategy Breakdown
             </TabsTrigger>
             <TabsTrigger
               value="greeks"
-              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               <BarChart2 className="w-3.5 h-3.5 mr-1.5" />
               Greek P&L
             </TabsTrigger>
             <TabsTrigger
               value="improvements"
-              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
             >
               <Lightbulb className="w-3.5 h-3.5 mr-1.5" />
               Improvement Areas

@@ -1416,19 +1416,19 @@ export default function RegtechPage() {
       {/* Tabs */}
       <Tabs defaultValue="aml">
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="aml" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="aml" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <AlertTriangle className="w-3 h-3 mr-1" />
             AML / KYC
           </TabsTrigger>
-          <TabsTrigger value="reporting" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="reporting" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <FileText className="w-3 h-3 mr-1" />
             Regulatory Reporting
           </TabsTrigger>
-          <TabsTrigger value="sanctions" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="sanctions" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <Lock className="w-3 h-3 mr-1" />
             Sanctions Screening
           </TabsTrigger>
-          <TabsTrigger value="market" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white">
+          <TabsTrigger value="market" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground">
             <TrendingUp className="w-3 h-3 mr-1" />
             Market & Future
           </TabsTrigger>

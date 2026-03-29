@@ -285,7 +285,7 @@ function MechanicsTab() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h2 className="text-xl font-semibold text-white mb-1">SPAC Mechanics</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-1">SPAC Mechanics</h2>
         <p className="text-sm text-muted-foreground">
           How Special Purpose Acquisition Companies work from IPO to merger completion.
         </p>
@@ -367,7 +367,7 @@ function MechanicsTab() {
         <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Lock className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm font-medium text-white">Trust Account</span>
+            <span className="text-sm font-medium text-foreground">Trust Account</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">
             100% of IPO proceeds are held in a segregated trust invested in U.S. T-Bills. The sponsor cannot touch this
@@ -392,7 +392,7 @@ function MechanicsTab() {
         <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <DollarSign className="w-4 h-4 text-amber-400" />
-            <span className="text-sm font-medium text-white">Sponsor Promote (20%)</span>
+            <span className="text-sm font-medium text-foreground">Sponsor Promote (20%)</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">
             Sponsors receive 20% of post-IPO shares for nominal consideration (~$25K). This &quot;promote&quot; is the
@@ -412,7 +412,7 @@ function MechanicsTab() {
         <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-white">Warrants</span>
+            <span className="text-sm font-medium text-foreground">Warrants</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">
             Each SPAC unit includes fractional warrants — typically ½ or 1 warrant per unit — exercisable at $11.50 per
@@ -439,7 +439,7 @@ function MechanicsTab() {
       <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium text-white">Redemption Rights — The NAV Floor</span>
+          <span className="text-sm font-medium text-foreground">Redemption Rights — The NAV Floor</span>
         </div>
         <p className="text-xs text-muted-foreground mb-4">
           SPAC shareholders who vote against a deal (or choose not to vote) can redeem their shares at approximately
@@ -487,7 +487,7 @@ function DealAnalysisTab() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold text-white mb-1">Deal Analysis</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-1">Deal Analysis</h2>
         <p className="text-sm text-muted-foreground">
           SPAC vs. traditional IPO mechanics, dilution calculations, and de-SPAC deal metrics.
         </p>
@@ -548,7 +548,7 @@ function DealAnalysisTab() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-white font-mono">{deal.ticker}</span>
+                    <span className="text-xs font-bold text-foreground font-mono">{deal.ticker}</span>
                     <span className="text-xs text-muted-foreground hidden sm:block">{deal.name}</span>
                     <span
                       className={cn(
@@ -572,7 +572,7 @@ function DealAnalysisTab() {
                     </div>
                     <div className="text-right">
                       <div className="text-xs text-muted-foreground">Price</div>
-                      <div className="text-xs text-white font-medium">${deal.currentPrice.toFixed(2)}</div>
+                      <div className="text-xs text-foreground font-medium">${deal.currentPrice.toFixed(2)}</div>
                     </div>
                     <div className="text-right">
                       <div className="text-xs text-muted-foreground">vs NAV</div>
@@ -702,7 +702,7 @@ function WarrantValuationTab() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold text-white mb-1">Warrant Valuation</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-1">Warrant Valuation</h2>
         <p className="text-sm text-muted-foreground">
           SPAC warrants are embedded call options. Understand their pricing, behavior, and trading strategies.
         </p>
@@ -716,7 +716,7 @@ function WarrantValuationTab() {
           <div className="space-y-5">
             <div>
               <label className="text-xs text-muted-foreground block mb-1.5">
-                Stock Price: <span className="text-white font-medium">${stockPrice.toFixed(2)}</span>
+                Stock Price: <span className="text-foreground font-medium">${stockPrice.toFixed(2)}</span>
               </label>
               <input
                 type="range"
@@ -734,7 +734,7 @@ function WarrantValuationTab() {
             </div>
             <div>
               <label className="text-xs text-muted-foreground block mb-1.5">
-                Implied Volatility: <span className="text-white font-medium">{vol}%</span>
+                Implied Volatility: <span className="text-foreground font-medium">{vol}%</span>
               </label>
               <input
                 type="range"
@@ -852,7 +852,7 @@ function WarrantValuationTab() {
         <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm font-medium text-white">Warrant vs Common Trade</span>
+            <span className="text-sm font-medium text-foreground">Warrant vs Common Trade</span>
           </div>
           <p className="text-xs text-muted-foreground mb-3">
             Pre-announcement, warrants trade at implied volatility of the deal. Post-announcement, correlation to common
@@ -886,7 +886,7 @@ function WarrantValuationTab() {
         <div className="bg-card border border-border rounded-xl p-5">
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
-            <span className="text-sm font-medium text-white">Key Warrant Risks</span>
+            <span className="text-sm font-medium text-foreground">Key Warrant Risks</span>
           </div>
           <div className="space-y-2.5">
             {[
@@ -989,7 +989,7 @@ function HistoricalPerformanceTab() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold text-white mb-1">Historical Performance</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-1">Historical Performance</h2>
         <p className="text-sm text-muted-foreground">
           Pre-merger vs. post-merger returns, the SPAC bubble cycle, and sector analysis.
         </p>
@@ -1143,7 +1143,7 @@ function HistoricalPerformanceTab() {
       <div className="bg-card border border-border rounded-xl p-5">
         <div className="flex items-center gap-2 mb-3">
           <BarChart2 className="w-4 h-4 text-amber-400" />
-          <span className="text-sm font-medium text-white">The SPAC Bubble & Bust Cycle (2020–2022)</span>
+          <span className="text-sm font-medium text-foreground">The SPAC Bubble & Bust Cycle (2020–2022)</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
           {[
@@ -1266,7 +1266,7 @@ function InvestorStrategyTab() {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-xl font-semibold text-white mb-1">Investor Strategy</h2>
+        <h2 className="text-xl font-semibold text-foreground mb-1">Investor Strategy</h2>
         <p className="text-sm text-muted-foreground">
           Five proven SPAC investment approaches — from conservative arbitrage to aggressive warrant speculation.
         </p>
@@ -1293,7 +1293,7 @@ function InvestorStrategyTab() {
                   className="border-b border-border/50 hover:bg-muted/40 transition-colors cursor-pointer"
                   onClick={() => setActiveStrategy(activeStrategy === i ? null : i)}
                 >
-                  <td className="py-2.5 pr-3 text-white font-medium">{row.strategy}</td>
+                  <td className="py-2.5 pr-3 text-foreground font-medium">{row.strategy}</td>
                   <td className="py-2.5 pr-3 text-muted-foreground">{row.mechanism}</td>
                   <td
                     className={cn(
@@ -1342,7 +1342,7 @@ function InvestorStrategyTab() {
                     <Icon className={cn("w-4 h-4", strat.color)} />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-white">{strat.title}</div>
+                    <div className="text-sm font-medium text-foreground">{strat.title}</div>
                     <div className="text-xs text-muted-foreground">
                       Risk: <span className={strat.color}>{strat.risk}</span> &bull; Return: {strat.return}
                     </div>
@@ -1461,7 +1461,7 @@ export default function SpacInvestingPage() {
               <Building2 className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">SPAC Investing</h1>
+              <h1 className="text-2xl font-bold text-foreground">SPAC Investing</h1>
               <p className="text-sm text-muted-foreground">Special Purpose Acquisition Companies — mechanics, analysis & strategy</p>
             </div>
           </div>
@@ -1491,7 +1491,7 @@ export default function SpacInvestingPage() {
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+                  className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {tab.label}

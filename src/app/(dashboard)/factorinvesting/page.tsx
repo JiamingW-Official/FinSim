@@ -191,7 +191,7 @@ const CYCLE_DATA = genFactorCycleSeries();
 function SectionHeading({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
       {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
     </div>
   );
@@ -207,7 +207,7 @@ function StatCard({
 }) {
   const valClass =
     highlight === "pos" ? "text-emerald-400" :
-    highlight === "neg" ? "text-rose-400" : "text-white";
+    highlight === "neg" ? "text-rose-400" : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
@@ -248,7 +248,7 @@ function FactorPerfTab() {
             className={cn(
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
               period === p
-                ? "bg-indigo-600 text-white"
+                ? "bg-indigo-600 text-foreground"
                 : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
             )}
           >
@@ -269,7 +269,7 @@ function FactorPerfTab() {
                 <div className="flex justify-between items-center mb-1.5">
                   <div className="flex items-center gap-2">
                     <div className={cn("w-2.5 h-2.5 rounded-full", f.color)} />
-                    <span className="text-sm font-medium text-white">{f.name}</span>
+                    <span className="text-sm font-medium text-foreground">{f.name}</span>
                   </div>
                   <span className={cn("text-sm font-semibold tabular-nums", posColor(val))}>
                     {fmtPct(val)}
@@ -310,7 +310,7 @@ function FactorPerfTab() {
                 <td className="py-2.5">
                   <div className="flex items-center gap-2">
                     <div className={cn("w-2 h-2 rounded-full", f.color)} />
-                    <span className="text-white font-medium">{f.name}</span>
+                    <span className="text-foreground font-medium">{f.name}</span>
                   </div>
                 </td>
                 <td className="py-2.5 text-right text-emerald-400 font-semibold">{f.sharpe.toFixed(2)}</td>
@@ -384,7 +384,7 @@ function ExposureAnalyzerTab() {
                   )}
                   onClick={() => setSelected(selected?.ticker === stock.ticker ? null : stock)}
                 >
-                  <td className="py-2.5 pr-4 font-semibold text-white">{stock.ticker}</td>
+                  <td className="py-2.5 pr-4 font-semibold text-foreground">{stock.ticker}</td>
                   <td className="py-2.5 pr-3 text-muted-foreground text-xs">{stock.sector}</td>
                   {FACTOR_KEYS.map((k) => {
                     const z = stock[k];
@@ -434,7 +434,7 @@ function ExposureAnalyzerTab() {
             <Badge className="bg-indigo-600/30 text-indigo-300 border-indigo-500/30">
               {selected.ticker}
             </Badge>
-            <span className="text-white font-semibold">Factor Profile</span>
+            <span className="text-foreground font-semibold">Factor Profile</span>
             <span className="text-xs text-muted-foreground">{selected.sector}</span>
           </div>
           <div className="grid grid-cols-5 gap-3">
@@ -685,10 +685,10 @@ function TiltBuilderTab() {
               <div className="flex justify-between items-center mb-2">
                 <div className="flex items-center gap-2">
                   <div className={cn("w-2.5 h-2.5 rounded-full", f.color)} />
-                  <span className="text-sm font-medium text-white">{f.name}</span>
+                  <span className="text-sm font-medium text-foreground">{f.name}</span>
                   <span className="text-xs text-muted-foreground hidden sm:inline">{f.desc.split(" — ")[0]}</span>
                 </div>
-                <span className="text-sm font-bold text-white tabular-nums">{weights[f.name]}%</span>
+                <span className="text-sm font-bold text-foreground tabular-nums">{weights[f.name]}%</span>
               </div>
               <Slider
                 value={[weights[f.name]]}
@@ -798,7 +798,7 @@ function FamaFrenchTab() {
               className={cn(
                 "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors",
                 selectedTicker.ticker === t.ticker
-                  ? "bg-indigo-600 text-white"
+                  ? "bg-indigo-600 text-foreground"
                   : "bg-foreground/5 text-muted-foreground hover:bg-muted/50"
               )}
             >
@@ -814,7 +814,7 @@ function FamaFrenchTab() {
             { label: "Market Beta (β)", value: selectedTicker.beta, suffix: "", colorClass: "text-primary", desc: "Mkt sensitivity", showSign: false },
             { label: "SMB Loading (s)", value: selectedTicker.smb, suffix: "", colorClass: selectedTicker.smb > 0 ? "text-rose-400" : "text-muted-foreground", desc: "Small-cap tilt", showSign: true },
             { label: "HML Loading (h)", value: selectedTicker.hml, suffix: "", colorClass: selectedTicker.hml > 0 ? "text-amber-400" : "text-primary", desc: "Value tilt", showSign: true },
-            { label: "R² (fit)", value: selectedTicker.r2 * 100, suffix: "%", colorClass: "text-white", desc: "Model explanatory power", showSign: false },
+            { label: "R² (fit)", value: selectedTicker.r2 * 100, suffix: "%", colorClass: "text-foreground", desc: "Model explanatory power", showSign: false },
           ].map((coef) => (
             <div key={coef.label} className="rounded-xl border border-border bg-foreground/5 p-3 text-center">
               <p className="text-xs text-muted-foreground mb-1">{coef.label}</p>
@@ -940,13 +940,13 @@ function SmartBetaTab() {
             <tr className="text-xs text-muted-foreground border-b border-border">
               <th className="text-left pb-2 pr-3">ETF</th>
               <th className="text-left pb-2 pr-3">Strategy</th>
-              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("er")}>ER<SortIcon col="er" /></th>
-              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("aum")}>AUM<SortIcon col="aum" /></th>
-              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("valueExp")}>Value<SortIcon col="valueExp" /></th>
-              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("momExp")}>Mktm<SortIcon col="momExp" /></th>
-              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("qualExp")}>Qual<SortIcon col="qualExp" /></th>
-              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("lvExp")}>LV<SortIcon col="lvExp" /></th>
-              <th className="text-right pb-2 pl-2 cursor-pointer select-none hover:text-white" onClick={() => handleSort("ytdReturn")}>YTD<SortIcon col="ytdReturn" /></th>
+              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-foreground" onClick={() => handleSort("er")}>ER<SortIcon col="er" /></th>
+              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-foreground" onClick={() => handleSort("aum")}>AUM<SortIcon col="aum" /></th>
+              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-foreground" onClick={() => handleSort("valueExp")}>Value<SortIcon col="valueExp" /></th>
+              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-foreground" onClick={() => handleSort("momExp")}>Mktm<SortIcon col="momExp" /></th>
+              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-foreground" onClick={() => handleSort("qualExp")}>Qual<SortIcon col="qualExp" /></th>
+              <th className="text-right pb-2 px-2 cursor-pointer select-none hover:text-foreground" onClick={() => handleSort("lvExp")}>LV<SortIcon col="lvExp" /></th>
+              <th className="text-right pb-2 pl-2 cursor-pointer select-none hover:text-foreground" onClick={() => handleSort("ytdReturn")}>YTD<SortIcon col="ytdReturn" /></th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
@@ -954,7 +954,7 @@ function SmartBetaTab() {
               <tr key={etf.ticker} className="hover:bg-muted/30 transition-colors">
                 <td className="py-2.5 pr-3">
                   <div>
-                    <p className="font-semibold text-white">{etf.ticker}</p>
+                    <p className="font-semibold text-foreground">{etf.ticker}</p>
                     <p className="text-xs text-muted-foreground">{etf.name}</p>
                   </div>
                 </td>
@@ -1040,7 +1040,7 @@ export default function FactorInvestingPage() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
             <BarChart3 className="h-6 w-6 text-indigo-400" />
             Factor Investing &amp; Smart Beta
           </h1>
@@ -1068,7 +1068,7 @@ export default function FactorInvestingPage() {
               <DollarSign className="h-4 w-4 text-indigo-400" />
               <span className="text-xs text-muted-foreground">Smart Beta AUM</span>
             </div>
-            <p className="text-xl font-bold text-white">$1.4T</p>
+            <p className="text-xl font-bold text-foreground">$1.4T</p>
             <p className="text-xs text-muted-foreground mt-0.5">Global smart beta ETFs</p>
           </CardContent>
         </Card>
@@ -1088,7 +1088,7 @@ export default function FactorInvestingPage() {
               <Layers className="h-4 w-4 text-amber-400" />
               <span className="text-xs text-muted-foreground">Research Origin</span>
             </div>
-            <p className="text-xl font-bold text-white">1992</p>
+            <p className="text-xl font-bold text-foreground">1992</p>
             <p className="text-xs text-muted-foreground mt-0.5">Fama &amp; French 3-Factor</p>
           </CardContent>
         </Card>

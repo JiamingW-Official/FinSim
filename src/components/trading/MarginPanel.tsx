@@ -85,7 +85,7 @@ export function MarginPanel() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [1, 1.05, 1], opacity: 1 }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-loss px-1.5 py-0.5 text-xs font-bold text-white"
+              className="rounded bg-loss px-1.5 py-0.5 text-xs font-bold text-foreground"
             >
               MARGIN CALL!
             </motion.span>

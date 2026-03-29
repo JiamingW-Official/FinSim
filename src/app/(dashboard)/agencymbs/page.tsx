@@ -1753,7 +1753,7 @@ export default function AgencyMBSPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground hover:text-foreground transition-colors"
             >
               {tab.icon}
               {tab.label}

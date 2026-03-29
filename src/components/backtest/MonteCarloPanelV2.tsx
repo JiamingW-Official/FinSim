@@ -193,7 +193,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
 
           <button
             onClick={() => setUseCustom(true)}
-            className="flex items-center gap-2 rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary"
+            className="flex items-center gap-2 rounded-lg bg-primary px-4 py-1.5 text-xs font-semibold text-foreground transition-colors hover:bg-primary"
           >
             Run Custom Simulation
           </button>

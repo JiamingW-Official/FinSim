@@ -330,7 +330,7 @@ function MetricCard({
       <div
         className={`text-xl font-semibold tabular-nums ${
           positive === undefined
-            ? "text-white"
+            ? "text-foreground"
             : positive
             ? "text-emerald-400"
             : "text-red-400"
@@ -602,8 +602,8 @@ function SwaptionGrid({
                       }`}
                       style={{ backgroundColor: volColor(cell.vol) + (isSelected ? "" : "bb") }}
                     >
-                      <span className="text-white font-bold text-xs leading-none">{cell.vol.toFixed(1)}%</span>
-                      <span className="text-white/70 text-[11px] leading-none mt-0.5">{fmtK(cell.price)}</span>
+                      <span className="text-foreground font-bold text-xs leading-none">{cell.vol.toFixed(1)}%</span>
+                      <span className="text-foreground/70 text-[11px] leading-none mt-0.5">{fmtK(cell.price)}</span>
                     </button>
                   </td>
                 );
@@ -1288,26 +1288,26 @@ export default function RateDerivativesPage() {
             DV01
           </Badge>
           <div className="text-xs text-muted-foreground border border-border/50 rounded px-2 py-1">
-            Base 5Y: <span className="text-white font-semibold">{baseRate.toFixed(2)}%</span>
+            Base 5Y: <span className="text-foreground font-semibold">{baseRate.toFixed(2)}%</span>
           </div>
         </div>
       </div>
 
       <Tabs defaultValue="swaps" className="space-y-4">
         <TabsList className="bg-card border border-border p-1 flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="swaps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
+          <TabsTrigger value="swaps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
             <ArrowLeftRight className="w-3.5 h-3.5" />
             Swaps
           </TabsTrigger>
-          <TabsTrigger value="swaptions" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
+          <TabsTrigger value="swaptions" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
             <Layers className="w-3.5 h-3.5" />
             Swaptions
           </TabsTrigger>
-          <TabsTrigger value="caps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
+          <TabsTrigger value="caps" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
             <BarChart3 className="w-3.5 h-3.5" />
             Caps & Floors
           </TabsTrigger>
-          <TabsTrigger value="ratevol" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm gap-1.5">
+          <TabsTrigger value="ratevol" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm gap-1.5">
             <Thermometer className="w-3.5 h-3.5" />
             Rate Vol
           </TabsTrigger>
@@ -1329,7 +1329,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Notional</label>
-                    <span className="text-xs text-white font-semibold">{fmtK(notional)}</span>
+                    <span className="text-xs text-foreground font-semibold">{fmtK(notional)}</span>
                   </div>
                   <Slider
                     min={1_000_000}
@@ -1348,7 +1348,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Tenor</label>
-                    <span className="text-xs text-white font-semibold">{swapTenor}Y</span>
+                    <span className="text-xs text-foreground font-semibold">{swapTenor}Y</span>
                   </div>
                   <div className="flex gap-1.5 flex-wrap">
                     {[1, 2, 3, 5, 7, 10].map((t) => (
@@ -1357,7 +1357,7 @@ export default function RateDerivativesPage() {
                         onClick={() => setSwapTenor(t)}
                         className={`px-2.5 py-1 rounded text-xs font-medium transition-colors ${
                           swapTenor === t
-                            ? "bg-indigo-600 text-white"
+                            ? "bg-indigo-600 text-foreground"
                             : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
@@ -1371,7 +1371,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Fixed Rate</label>
-                    <span className="text-xs text-white font-semibold">{fixedRate.toFixed(2)}%</span>
+                    <span className="text-xs text-foreground font-semibold">{fixedRate.toFixed(2)}%</span>
                   </div>
                   <Slider
                     min={200}
@@ -1413,7 +1413,7 @@ export default function RateDerivativesPage() {
                     onClick={() => setPayFixed(true)}
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       payFixed
-                        ? "bg-red-600/80 text-white"
+                        ? "bg-red-600/80 text-foreground"
                         : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -1423,7 +1423,7 @@ export default function RateDerivativesPage() {
                     onClick={() => setPayFixed(false)}
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       !payFixed
-                        ? "bg-emerald-600/80 text-white"
+                        ? "bg-emerald-600/80 text-foreground"
                         : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -1435,7 +1435,7 @@ export default function RateDerivativesPage() {
                 <div className="bg-muted/50 rounded-lg p-3 text-xs text-muted-foreground space-y-1">
                   <div className="flex justify-between">
                     <span>Current Rate ({swapTenor}Y)</span>
-                    <span className="text-white">{currentRate.toFixed(3)}%</span>
+                    <span className="text-foreground">{currentRate.toFixed(3)}%</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Par Swap Rate</span>
@@ -1556,7 +1556,7 @@ export default function RateDerivativesPage() {
                     onClick={() => setSwaptionType("payer")}
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       swaptionType === "payer"
-                        ? "bg-red-600/80 text-white"
+                        ? "bg-red-600/80 text-foreground"
                         : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -1566,7 +1566,7 @@ export default function RateDerivativesPage() {
                     onClick={() => setSwaptionType("receiver")}
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       swaptionType === "receiver"
-                        ? "bg-emerald-600/80 text-white"
+                        ? "bg-emerald-600/80 text-foreground"
                         : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -1584,7 +1584,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Option Expiry</label>
-                    <span className="text-xs text-white font-semibold">{swaptionExpiry}Y</span>
+                    <span className="text-xs text-foreground font-semibold">{swaptionExpiry}Y</span>
                   </div>
                   <div className="flex gap-1.5">
                     {[1, 2, 3, 5].map((t) => (
@@ -1593,7 +1593,7 @@ export default function RateDerivativesPage() {
                         onClick={() => setSwaptionExpiry(t)}
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           swaptionExpiry === t
-                            ? "bg-primary text-white"
+                            ? "bg-primary text-foreground"
                             : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
@@ -1607,7 +1607,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Underlying Tenor</label>
-                    <span className="text-xs text-white font-semibold">{swaptionTenor}Y</span>
+                    <span className="text-xs text-foreground font-semibold">{swaptionTenor}Y</span>
                   </div>
                   <div className="flex gap-1.5">
                     {[2, 5, 10, 20].map((t) => (
@@ -1616,7 +1616,7 @@ export default function RateDerivativesPage() {
                         onClick={() => setSwaptionTenor(t)}
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           swaptionTenor === t
-                            ? "bg-primary text-white"
+                            ? "bg-primary text-foreground"
                             : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
@@ -1630,7 +1630,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Strike Rate</label>
-                    <span className="text-xs text-white font-semibold">{swaptionStrike.toFixed(2)}%</span>
+                    <span className="text-xs text-foreground font-semibold">{swaptionStrike.toFixed(2)}%</span>
                   </div>
                   <Slider
                     min={200}
@@ -1649,7 +1649,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Implied Vol</label>
-                    <span className="text-xs text-white font-semibold">{swaptionVol}%</span>
+                    <span className="text-xs text-foreground font-semibold">{swaptionVol}%</span>
                   </div>
                   <Slider
                     min={5}
@@ -1683,7 +1683,7 @@ export default function RateDerivativesPage() {
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Fwd Swap Rate</span>
-                    <span className="text-white font-semibold">{swaptionMetrics.F.toFixed(3)}%</span>
+                    <span className="text-foreground font-semibold">{swaptionMetrics.F.toFixed(3)}%</span>
                   </div>
                 </div>
               </CardContent>
@@ -1770,7 +1770,7 @@ export default function RateDerivativesPage() {
                     onClick={() => setShowCap(true)}
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       showCap
-                        ? "bg-emerald-600/80 text-white"
+                        ? "bg-emerald-600/80 text-foreground"
                         : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -1780,7 +1780,7 @@ export default function RateDerivativesPage() {
                     onClick={() => setShowCap(false)}
                     className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                       !showCap
-                        ? "bg-sky-600/80 text-white"
+                        ? "bg-sky-600/80 text-foreground"
                         : "bg-muted text-muted-foreground hover:text-foreground"
                     }`}
                   >
@@ -1798,7 +1798,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Cap Tenor</label>
-                    <span className="text-xs text-white font-semibold">{capTenor}Y</span>
+                    <span className="text-xs text-foreground font-semibold">{capTenor}Y</span>
                   </div>
                   <div className="flex gap-1.5">
                     {[2, 3, 5, 7, 10].map((t) => (
@@ -1807,7 +1807,7 @@ export default function RateDerivativesPage() {
                         onClick={() => setCapTenor(t)}
                         className={`flex-1 py-1.5 rounded text-xs font-medium transition-colors ${
                           capTenor === t
-                            ? "bg-emerald-600 text-white"
+                            ? "bg-emerald-600 text-foreground"
                             : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >
@@ -1821,7 +1821,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Cap Strike</label>
-                    <span className="text-xs text-white font-semibold">{capStrike.toFixed(2)}%</span>
+                    <span className="text-xs text-foreground font-semibold">{capStrike.toFixed(2)}%</span>
                   </div>
                   <Slider
                     min={250}
@@ -1837,7 +1837,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Floor Strike</label>
-                    <span className="text-xs text-white font-semibold">{floorStrike.toFixed(2)}%</span>
+                    <span className="text-xs text-foreground font-semibold">{floorStrike.toFixed(2)}%</span>
                   </div>
                   <Slider
                     min={100}
@@ -1853,7 +1853,7 @@ export default function RateDerivativesPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <label className="text-xs text-muted-foreground font-medium">Implied Vol</label>
-                    <span className="text-xs text-white font-semibold">{capVol}%</span>
+                    <span className="text-xs text-foreground font-semibold">{capVol}%</span>
                   </div>
                   <Slider
                     min={5}
@@ -1884,7 +1884,7 @@ export default function RateDerivativesPage() {
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Break-even Rate</span>
-                    <span className="text-white font-semibold">{capMetrics.breakEven.toFixed(3)}%</span>
+                    <span className="text-foreground font-semibold">{capMetrics.breakEven.toFixed(3)}%</span>
                   </div>
                 </div>
               </CardContent>
@@ -1937,7 +1937,7 @@ export default function RateDerivativesPage() {
                     {capletBars.slice(0, 5).map((b) => (
                       <div key={b.period} className="bg-muted/50 rounded p-1.5 text-center">
                         <div className="text-muted-foreground">Y{b.period}</div>
-                        <div className="text-white font-semibold">{b.forwardRate.toFixed(2)}%</div>
+                        <div className="text-foreground font-semibold">{b.forwardRate.toFixed(2)}%</div>
                         <div className={showCap ? "text-emerald-400" : "text-sky-400"}>
                           {fmtK(showCap ? b.capletPV : b.floorletPV)}
                         </div>
@@ -2009,7 +2009,7 @@ export default function RateDerivativesPage() {
                       onClick={() => setShowNormalVol(false)}
                       className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                         !showNormalVol
-                          ? "bg-orange-600/80 text-white"
+                          ? "bg-orange-600/80 text-foreground"
                           : "bg-muted text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -2019,7 +2019,7 @@ export default function RateDerivativesPage() {
                       onClick={() => setShowNormalVol(true)}
                       className={`flex-1 py-2 rounded-lg text-xs font-semibold transition-colors ${
                         showNormalVol
-                          ? "bg-orange-600/80 text-white"
+                          ? "bg-orange-600/80 text-foreground"
                           : "bg-muted text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -2043,7 +2043,7 @@ export default function RateDerivativesPage() {
                         onClick={() => setSelectedVolTenorIdx(ti)}
                         className={`px-2.5 py-1.5 rounded text-xs font-medium transition-colors ${
                           ti === selectedVolTenorIdx
-                            ? "bg-orange-600 text-white"
+                            ? "bg-orange-600 text-foreground"
                             : "bg-muted text-muted-foreground hover:text-foreground"
                         }`}
                       >

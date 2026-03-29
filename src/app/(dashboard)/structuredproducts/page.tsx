@@ -41,7 +41,7 @@ function resetSeed() {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-xs font-semibold text-white/50 mb-3">
+    <h3 className="text-xs font-semibold text-foreground/50 mb-3">
       {children}
     </h3>
   );
@@ -93,18 +93,18 @@ function MetricCard({
   };
   return (
     <div className="bg-foreground/5 rounded-lg p-3 flex flex-col gap-1">
-      <span className="text-[11px] text-white/40 uppercase tracking-wide">
+      <span className="text-[11px] text-foreground/40 uppercase tracking-wide">
         {label}
       </span>
       <span
         className={cn(
           "text-lg font-semibold tabular-nums",
-          color ? textColor[color] : "text-white",
+          color ? textColor[color] : "text-foreground",
         )}
       >
         {value}
       </span>
-      {sub && <span className="text-[11px] text-white/40">{sub}</span>}
+      {sub && <span className="text-[11px] text-foreground/40">{sub}</span>}
     </div>
   );
 }
@@ -123,13 +123,13 @@ function ExpandableCard({
     <div className="bg-foreground/5 border border-border rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-white hover:bg-muted/30 transition-colors"
+        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground hover:bg-muted/30 transition-colors"
       >
         {title}
         {open ? (
-          <ChevronUp className="w-4 h-4 text-white/40" />
+          <ChevronUp className="w-4 h-4 text-foreground/40" />
         ) : (
-          <ChevronDown className="w-4 h-4 text-white/40" />
+          <ChevronDown className="w-4 h-4 text-foreground/40" />
         )}
       </button>
       <AnimatePresence initial={false}>
@@ -141,7 +141,7 @@ function ExpandableCard({
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 text-sm text-white/70 space-y-2">
+            <div className="px-4 pb-4 text-sm text-foreground/70 space-y-2">
               {children}
             </div>
           </motion.div>
@@ -515,7 +515,7 @@ function AbsMbsTab() {
       <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Securitization Process</SectionTitle>
         <SecuritizationFlowSVG />
-        <p className="text-xs text-white/40 mt-2">
+        <p className="text-xs text-foreground/40 mt-2">
           Originators sell receivables to a bankruptcy-remote SPV, which issues
           rated notes to investors. The SPV&apos;s assets are legally isolated from
           the originator.
@@ -533,7 +533,7 @@ function AbsMbsTab() {
                   (h) => (
                     <th
                       key={h}
-                      className="text-left py-2 pr-3 text-white/40 font-medium"
+                      className="text-left py-2 pr-3 text-foreground/40 font-medium"
                     >
                       {h}
                     </th>
@@ -547,8 +547,8 @@ function AbsMbsTab() {
                   key={i}
                   className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                 >
-                  <td className="py-2 pr-3 font-medium text-white">{row.type}</td>
-                  <td className="py-2 pr-3 text-white/60">{row.collateral}</td>
+                  <td className="py-2 pr-3 font-medium text-foreground">{row.type}</td>
+                  <td className="py-2 pr-3 text-foreground/60">{row.collateral}</td>
                   <td className="py-2 pr-3 text-sky-400 tabular-nums">{row.avgLife}</td>
                   <td
                     className={cn(
@@ -562,7 +562,7 @@ function AbsMbsTab() {
                   >
                     {row.prepayRisk}
                   </td>
-                  <td className="py-2 text-white/60">{row.rating}</td>
+                  <td className="py-2 text-foreground/60">{row.rating}</td>
                 </tr>
               ))}
             </tbody>
@@ -575,7 +575,7 @@ function AbsMbsTab() {
         <div className="bg-foreground/5 border border-border rounded-xl p-4">
           <SectionTitle>Tranche Waterfall</SectionTitle>
           <TranchWaterfallSVG />
-          <p className="text-xs text-white/40 mt-2">
+          <p className="text-xs text-foreground/40 mt-2">
             Losses flow upward: equity tranche absorbs first, then mezzanine, then senior.
             OC = overcollateralization level; CE = credit enhancement.
           </p>
@@ -595,7 +595,7 @@ function AbsMbsTab() {
               <span className="text-emerald-400 font-medium min-w-[200px] shrink-0">
                 {e.name}
               </span>
-              <span className="text-white/60">{e.desc}</span>
+              <span className="text-foreground/60">{e.desc}</span>
             </div>
           ))}
         </div>
@@ -605,11 +605,11 @@ function AbsMbsTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ExpandableCard title="Prepayment Risk: CPR & PSA Conventions" defaultOpen>
           <p>
-            <strong className="text-white">CPR (Conditional Prepayment Rate)</strong> — annualized
+            <strong className="text-foreground">CPR (Conditional Prepayment Rate)</strong> — annualized
             fraction of pool balance prepaid. CPR 10% = 10% of remaining balance pays off per year.
           </p>
           <p>
-            <strong className="text-white">PSA (Public Securities Association)</strong> — ramp
+            <strong className="text-foreground">PSA (Public Securities Association)</strong> — ramp
             model: 100 PSA = 0.2% CPR/month rising to 6% CPR by month 30, then constant.
             200 PSA doubles the ramp.
           </p>
@@ -620,11 +620,11 @@ function AbsMbsTab() {
         </ExpandableCard>
         <ExpandableCard title="WAL vs Stated Maturity" defaultOpen>
           <p>
-            <strong className="text-white">Stated Maturity</strong> — contractual final payment
+            <strong className="text-foreground">Stated Maturity</strong> — contractual final payment
             date (e.g., 30-year mortgage pool). Rarely relevant because loans prepay.
           </p>
           <p>
-            <strong className="text-white">WAL (Weighted Average Life)</strong> — average time
+            <strong className="text-foreground">WAL (Weighted Average Life)</strong> — average time
             until each dollar of principal is returned, weighted by amount. A 30yr RMBS at
             100 PSA has a WAL of ≈7 years.
           </p>
@@ -856,8 +856,8 @@ function CmosTab() {
                 {t.name}
               </span>
               <div className="flex-1">
-                <p className="text-sm text-white/70">{t.desc}</p>
-                <p className="text-xs text-white/40 mt-0.5">Risk: {t.risk}</p>
+                <p className="text-sm text-foreground/70">{t.desc}</p>
+                <p className="text-xs text-foreground/40 mt-0.5">Risk: {t.risk}</p>
               </div>
             </div>
           ))}
@@ -868,7 +868,7 @@ function CmosTab() {
       <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>PAC Band Stability vs Support Tranche Variability</SectionTitle>
         <PACBandSVG />
-        <p className="text-xs text-white/40 mt-2">
+        <p className="text-xs text-foreground/40 mt-2">
           Within the PAC band (100–300 PSA), the PAC WAL remains near 7.5 years.
           Outside the band, the PAC shifts while the support tranche absorbs excess
           prepayment variability.
@@ -884,7 +884,7 @@ function CmosTab() {
               <TrendingUp className="w-4 h-4 text-red-400" />
               <span className="text-sm font-semibold text-red-400">IO Strip</span>
             </div>
-            <ul className="text-sm text-white/60 space-y-1 ml-6 list-disc">
+            <ul className="text-sm text-foreground/60 space-y-1 ml-6 list-disc">
               <li>Value = PV of all interest payments</li>
               <li>Faster prepays → fewer interest payments → IO price falls</li>
               <li>Exhibits <em className="text-amber-300">negative duration</em></li>
@@ -897,7 +897,7 @@ function CmosTab() {
               <TrendingDown className="w-4 h-4 text-sky-400" />
               <span className="text-sm font-semibold text-sky-400">PO Strip</span>
             </div>
-            <ul className="text-sm text-white/60 space-y-1 ml-6 list-disc">
+            <ul className="text-sm text-foreground/60 space-y-1 ml-6 list-disc">
               <li>Value = PV of principal; bought at deep discount</li>
               <li>Faster prepays → principal returned sooner → PO price rises</li>
               <li>Positive duration amplified by leverage effect</li>
@@ -915,7 +915,7 @@ function CmosTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-2 pr-3 text-white/40 font-medium">Feature</th>
+                <th className="text-left py-2 pr-3 text-foreground/40 font-medium">Feature</th>
                 <th className="text-left py-2 pr-3 text-sky-400 font-medium">Conduit</th>
                 <th className="text-left py-2 text-amber-400 font-medium">SASB</th>
               </tr>
@@ -923,9 +923,9 @@ function CmosTab() {
             <tbody>
               {cmbs.map((row, i) => (
                 <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="py-2 pr-3 text-white/60 font-medium">{row.feature}</td>
-                  <td className="py-2 pr-3 text-white/70">{row.conduit}</td>
-                  <td className="py-2 text-white/70">{row.sasb}</td>
+                  <td className="py-2 pr-3 text-foreground/60 font-medium">{row.feature}</td>
+                  <td className="py-2 pr-3 text-foreground/70">{row.conduit}</td>
+                  <td className="py-2 text-foreground/70">{row.sasb}</td>
                 </tr>
               ))}
             </tbody>
@@ -1184,12 +1184,12 @@ function EquityNotesTab() {
       <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Principal-Protected Note Mechanics</SectionTitle>
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 space-y-3 text-sm text-white/70">
+          <div className="flex-1 space-y-3 text-sm text-foreground/70">
             <p>
               A PPN invests the <span className="text-emerald-400 font-medium">zero-coupon bond component</span> (say 85 cents for a 3yr note at 6% rate) to guarantee 100% principal return, then uses the remaining 15 cents to buy <span className="text-sky-400 font-medium">call options</span> on the underlying index.
             </p>
             <p>
-              <strong className="text-white">Participation Rate Formula:</strong>
+              <strong className="text-foreground">Participation Rate Formula:</strong>
             </p>
             <div className="bg-black/30 rounded-lg p-3 font-mono text-xs text-emerald-300">
               Participation = Option Budget / Call Option Premium<br />
@@ -1211,15 +1211,15 @@ function EquityNotesTab() {
         <div className="grid grid-cols-3 gap-3 mt-3">
           <div className="text-center">
             <div className="w-3 h-1 bg-emerald-400 mx-auto mb-1" />
-            <p className="text-xs text-white/50">Barrier not breached — capital returned + coupon</p>
+            <p className="text-xs text-foreground/50">Barrier not breached — capital returned + coupon</p>
           </div>
           <div className="text-center">
             <div className="w-3 h-1 bg-amber-400 mx-auto mb-1" style={{ borderTop: "2px dashed" }} />
-            <p className="text-xs text-white/50">Barrier breached — 1:1 loss from 100%</p>
+            <p className="text-xs text-foreground/50">Barrier breached — 1:1 loss from 100%</p>
           </div>
           <div className="text-center">
             <div className="w-3 h-1 bg-primary mx-auto mb-1" style={{ borderTop: "2px dashed" }} />
-            <p className="text-xs text-white/50">Early autocall — returned at 115% before maturity</p>
+            <p className="text-xs text-foreground/50">Early autocall — returned at 115% before maturity</p>
           </div>
         </div>
       </div>
@@ -1242,7 +1242,7 @@ function EquityNotesTab() {
                 <span className={cn("font-semibold text-sm", colorMap[n.color])}>
                   {n.name}
                 </span>
-                <p className="text-xs text-white/60">{n.mechanics}</p>
+                <p className="text-xs text-foreground/60">{n.mechanics}</p>
                 <div className="flex gap-4 text-xs">
                   <span className="text-emerald-400/70">Return: {n.participation}</span>
                   <span className="text-red-400/70">Risk: {n.risk}</span>
@@ -1260,17 +1260,17 @@ function EquityNotesTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-2 pr-3 text-white/40 font-medium">Cost Item</th>
-                <th className="text-left py-2 pr-3 text-white/40 font-medium">Amount</th>
-                <th className="text-left py-2 text-white/40 font-medium">Notes</th>
+                <th className="text-left py-2 pr-3 text-foreground/40 font-medium">Cost Item</th>
+                <th className="text-left py-2 pr-3 text-foreground/40 font-medium">Amount</th>
+                <th className="text-left py-2 text-foreground/40 font-medium">Notes</th>
               </tr>
             </thead>
             <tbody>
               {costsTable.map((row, i) => (
                 <tr key={i} className={cn("border-b border-border/50", i === costsTable.length - 1 && "border-amber-500/30 bg-amber-500/5")}>
-                  <td className="py-2 pr-3 text-white/80">{row.item}</td>
+                  <td className="py-2 pr-3 text-foreground/80">{row.item}</td>
                   <td className="py-2 pr-3 text-amber-400 font-medium">{row.value}</td>
-                  <td className="py-2 text-white/50">{row.note}</td>
+                  <td className="py-2 text-foreground/50">{row.note}</td>
                 </tr>
               ))}
             </tbody>
@@ -1410,7 +1410,7 @@ function StructuredCreditTab() {
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border">
-                <th className="text-left py-2 pr-3 text-white/40 font-medium">Feature</th>
+                <th className="text-left py-2 pr-3 text-foreground/40 font-medium">Feature</th>
                 <th className="text-left py-2 pr-3 text-amber-400 font-medium">CDO</th>
                 <th className="text-left py-2 text-sky-400 font-medium">CLO</th>
               </tr>
@@ -1418,9 +1418,9 @@ function StructuredCreditTab() {
             <tbody>
               {cdoCloComparison.map((row, i) => (
                 <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="py-2 pr-3 text-white/60 font-medium">{row.feature}</td>
-                  <td className="py-2 pr-3 text-white/70">{row.cdo}</td>
-                  <td className="py-2 text-white/70">{row.clo}</td>
+                  <td className="py-2 pr-3 text-foreground/60 font-medium">{row.feature}</td>
+                  <td className="py-2 pr-3 text-foreground/70">{row.cdo}</td>
+                  <td className="py-2 text-foreground/70">{row.clo}</td>
                 </tr>
               ))}
             </tbody>
@@ -1432,7 +1432,7 @@ function StructuredCreditTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ExpandableCard title="Synthetic CDO & CDS Mechanics" defaultOpen>
           <p>
-            Unlike a <strong className="text-white">cash CDO</strong> which owns bonds outright, a
+            Unlike a <strong className="text-foreground">cash CDO</strong> which owns bonds outright, a
             <strong className="text-sky-300"> synthetic CDO</strong> sells credit protection via
             CDS on a reference portfolio.
           </p>
@@ -1443,7 +1443,7 @@ function StructuredCreditTab() {
             names — only the requested tranche is issued to investor.
           </p>
           <p>
-            <strong className="text-white">Bespoke Tranche Opportunity (BTO)</strong> post-2015:
+            <strong className="text-foreground">Bespoke Tranche Opportunity (BTO)</strong> post-2015:
             custom CDX tranches sized to specific attachment/detachment points for hedge funds.
           </p>
         </ExpandableCard>
@@ -1452,11 +1452,11 @@ function StructuredCreditTab() {
             TRS allows unfunded credit exposure: receiver gets index returns (price + carry),
             payer receives SOFR + spread.
           </p>
-          <p>Indices: <strong className="text-white">CDX.IG</strong> (125 IG corporates),
-            <strong className="text-white"> CDX.HY</strong> (100 HY names),
-            <strong className="text-white"> iTraxx Europe</strong> (125 European IG).
+          <p>Indices: <strong className="text-foreground">CDX.IG</strong> (125 IG corporates),
+            <strong className="text-foreground"> CDX.HY</strong> (100 HY names),
+            <strong className="text-foreground"> iTraxx Europe</strong> (125 European IG).
           </p>
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-foreground/40">
             Used by macro funds to get rapid credit beta without funding loans, and by dealers
             to hedge credit index positions.
           </p>
@@ -1467,7 +1467,7 @@ function StructuredCreditTab() {
       <div className="bg-foreground/5 border border-border rounded-xl p-4">
         <SectionTitle>Correlation Trading: Senior vs Equity Tranche Sensitivity</SectionTitle>
         <CorrelationTradingSVG />
-        <p className="text-xs text-white/40 mt-2">
+        <p className="text-xs text-foreground/40 mt-2">
           Higher correlation: defaults cluster together — senior tranches suffer more (spread widens),
           while equity tranches benefit from reduced expected idiosyncratic losses (spread tightens).
           Correlation traders go long equity / short senior (or vice versa) to trade this dynamic.
@@ -1480,7 +1480,7 @@ function StructuredCreditTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <p className="text-sm font-semibold text-sky-400">Credit-Linked Note (CLN)</p>
-            <ul className="text-sm text-white/60 space-y-1 ml-4 list-disc">
+            <ul className="text-sm text-foreground/60 space-y-1 ml-4 list-disc">
               <li>Funded instrument — investor posts full notional</li>
               <li>Embedded CDS: coupon = SOFR + credit premium</li>
               <li>On credit event, principal is reduced by loss amount</li>
@@ -1490,7 +1490,7 @@ function StructuredCreditTab() {
           </div>
           <div className="space-y-2">
             <p className="text-sm font-semibold text-primary">Funded CDS (ISDA)</p>
-            <ul className="text-sm text-white/60 space-y-1 ml-4 list-disc">
+            <ul className="text-sm text-foreground/60 space-y-1 ml-4 list-disc">
               <li>Unfunded — no upfront cash exchange</li>
               <li>Bilateral counterparty risk; requires CSA/collateral</li>
               <li>More flexible: single name or portfolio</li>
@@ -1514,8 +1514,8 @@ function StructuredCreditTab() {
                 {item.reform.split(" ")[0]}
               </Badge>
               <div>
-                <p className="text-xs font-medium text-white/80">{item.reform}</p>
-                <p className="text-xs text-white/50 mt-0.5">{item.detail}</p>
+                <p className="text-xs font-medium text-foreground/80">{item.reform}</p>
+                <p className="text-xs text-foreground/50 mt-0.5">{item.detail}</p>
               </div>
             </div>
           ))}
@@ -1559,12 +1559,12 @@ export default function StructuredProductsPage() {
             <div className="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-500/30 flex items-center justify-center">
               <Layers className="w-4 h-4 text-sky-400" />
             </div>
-            <h1 className="text-xl font-bold text-white">Structured Products</h1>
+            <h1 className="text-xl font-bold text-foreground">Structured Products</h1>
             <Badge variant="outline" className="border-sky-500/30 text-sky-400 text-xs">
               Advanced
             </Badge>
           </div>
-          <p className="text-sm text-white/50">
+          <p className="text-sm text-foreground/50">
             ABS, MBS, CMOs, principal-protected notes, autocallables, and structured credit instruments
           </p>
         </motion.div>
@@ -1576,7 +1576,7 @@ export default function StructuredProductsPage() {
               <TabsTrigger
                 key={t.id}
                 value={t.id}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-sky-500/20 data-[state=active]:text-sky-400 text-white/50 px-3 py-1.5"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-sky-500/20 data-[state=active]:text-sky-400 text-foreground/50 px-3 py-1.5"
               >
                 <t.icon className="w-3.5 h-3.5" />
                 {t.label}

@@ -545,7 +545,7 @@ function ScreenerTab() {
             <button
               key={f}
               onClick={() => setFilterFlag(f)}
-              className={cn("rounded px-2 py-1 text-xs capitalize", filterFlag === f ? "bg-indigo-600 text-white" : "text-muted-foreground hover:text-foreground")}
+              className={cn("rounded px-2 py-1 text-xs capitalize", filterFlag === f ? "bg-indigo-600 text-foreground" : "text-muted-foreground hover:text-foreground")}
             >
               {f}
             </button>
@@ -635,10 +635,10 @@ function AccrualTab() {
 
       {/* Formula cards */}
       <div className="flex gap-2">
-        <button onClick={() => setView("balance")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "balance" ? "bg-indigo-600 text-white" : "text-muted-foreground border border-border hover:text-foreground")}>
+        <button onClick={() => setView("balance")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "balance" ? "bg-indigo-600 text-foreground" : "text-muted-foreground border border-border hover:text-foreground")}>
           Balance Sheet Method
         </button>
-        <button onClick={() => setView("cf")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "cf" ? "bg-indigo-600 text-white" : "text-muted-foreground border border-border hover:text-foreground")}>
+        <button onClick={() => setView("cf")} className={cn("rounded px-3 py-1.5 text-xs font-medium", view === "cf" ? "bg-indigo-600 text-foreground" : "text-muted-foreground border border-border hover:text-foreground")}>
           Cash Flow Method
         </button>
       </div>
@@ -762,7 +762,7 @@ function PiotroskiTab() {
           <button
             key={c.ticker}
             onClick={() => setSelectedIdx(i)}
-            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-white" : "border border-border text-muted-foreground hover:text-foreground")}
+            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-foreground" : "border border-border text-muted-foreground hover:text-foreground")}
           >
             {c.ticker}
           </button>
@@ -871,7 +871,7 @@ function BeneishTab() {
           <button
             key={c.ticker}
             onClick={() => setSelectedIdx(i)}
-            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-white" : "border border-border text-muted-foreground hover:text-foreground")}
+            className={cn("rounded px-3 py-1.5 text-xs font-medium transition-colors", selectedIdx === i ? "bg-indigo-600 text-foreground" : "border border-border text-muted-foreground hover:text-foreground")}
           >
             {c.ticker} {c.risk === "high" && <AlertTriangle size={9} className="inline text-red-400" />}
           </button>

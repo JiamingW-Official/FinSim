@@ -218,7 +218,7 @@ function SectionCard({ title, children, icon: Icon }: { title: string; children:
       {title && (
         <div className="flex items-center gap-2 mb-4">
           {Icon && <Icon className="w-4 h-4 text-primary" />}
-          <h3 className="text-sm font-semibold text-white">{title}</h3>
+          <h3 className="text-sm font-semibold text-foreground">{title}</h3>
         </div>
       )}
       {children}
@@ -277,7 +277,7 @@ function TipsMechanicsTab() {
               type="number"
               value={par}
               onChange={(e) => setPar(Math.max(100, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -287,7 +287,7 @@ function TipsMechanicsTab() {
               step="0.1"
               value={couponRate}
               onChange={(e) => setCouponRate(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -296,7 +296,7 @@ function TipsMechanicsTab() {
               type="number"
               value={cpiStart}
               onChange={(e) => setCpiStart(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -305,7 +305,7 @@ function TipsMechanicsTab() {
               type="number"
               value={cpiCurrent}
               onChange={(e) => setCpiCurrent(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -473,7 +473,7 @@ function TipsMechanicsTab() {
             <tbody>
               {GLOBAL_LINKER_MARKETS.map((m) => (
                 <tr key={m.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-2 pr-3 text-white font-medium">
+                  <td className="py-2 pr-3 text-foreground font-medium">
                     {m.flag} {m.country}
                   </td>
                   <td className="py-2 pr-3 text-muted-foreground">{m.instrument}</td>
@@ -564,7 +564,7 @@ function RealYieldsTab() {
               step="0.05"
               value={nominalYield}
               onChange={(e) => setNominalYield(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -574,7 +574,7 @@ function RealYieldsTab() {
               step="0.05"
               value={tipsYield}
               onChange={(e) => setTipsYield(+e.target.value)}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -584,7 +584,7 @@ function RealYieldsTab() {
               step="0.05"
               value={inflationExp}
               onChange={(e) => setInflationExp(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -603,11 +603,11 @@ function RealYieldsTab() {
         <div className="p-3 rounded bg-foreground/[0.04] border border-border/50 space-y-1.5 text-xs">
           <div className="flex justify-between">
             <span className="text-muted-foreground">Fisher Equation:</span>
-            <span className="text-white font-mono">(1 + r_nominal) = (1 + r_real) × (1 + inflation)</span>
+            <span className="text-foreground font-mono">(1 + r_nominal) = (1 + r_real) × (1 + inflation)</span>
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Simplified Fisher:</span>
-            <span className="text-white font-mono">r_real ≈ r_nominal − inflation</span>
+            <span className="text-foreground font-mono">r_real ≈ r_nominal − inflation</span>
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Current breakeven:</span>
@@ -820,7 +820,7 @@ function DurationRiskTab() {
               type="number"
               value={maturity}
               onChange={(e) => setMaturity(Math.max(1, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -830,7 +830,7 @@ function DurationRiskTab() {
               step="0.1"
               value={coupon}
               onChange={(e) => setCoupon(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -840,7 +840,7 @@ function DurationRiskTab() {
               step="0.05"
               value={realYield}
               onChange={(e) => setRealYield(+e.target.value)}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -850,7 +850,7 @@ function DurationRiskTab() {
               step="0.05"
               value={nominalYield}
               onChange={(e) => setNominalYield(+e.target.value)}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
           <div>
@@ -860,7 +860,7 @@ function DurationRiskTab() {
               step="0.05"
               value={inflation}
               onChange={(e) => setInflation(Math.max(0, +e.target.value))}
-              className="w-full rounded bg-foreground/5 border border-border text-white text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
+              className="w-full rounded bg-foreground/5 border border-border text-foreground text-sm px-2 py-1.5 focus:outline-none focus:border-primary/50"
             />
           </div>
         </div>
@@ -900,7 +900,7 @@ function DurationRiskTab() {
             <tbody>
               {INFLATION_BETA_TABLE.map((row) => (
                 <tr key={row.asset} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-2 pr-3 text-white font-medium">{row.asset}</td>
+                  <td className="py-2 pr-3 text-foreground font-medium">{row.asset}</td>
                   <td className={cn("py-2 pr-3 text-right font-semibold font-mono", row.beta > 0.5 ? "text-emerald-400" : row.beta < 0 ? "text-red-400" : "text-amber-400")}>
                     {row.beta > 0 ? "+" : ""}{row.beta.toFixed(2)}
                   </td>
@@ -1250,7 +1250,7 @@ export default function InflationLinkedPage() {
               <Flame className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">Inflation-Linked Bonds</h1>
+              <h1 className="text-xl font-bold text-foreground">Inflation-Linked Bonds</h1>
               <p className="text-sm text-muted-foreground">TIPS mechanics, real yields, breakeven inflation &amp; hedging strategies</p>
             </div>
           </div>
@@ -1268,19 +1268,19 @@ export default function InflationLinkedPage() {
         {/* Tabs */}
         <Tabs defaultValue="mechanics">
           <TabsList className="mb-4 bg-foreground/5 border border-border p-1 rounded-lg flex-wrap h-auto gap-1">
-            <TabsTrigger value="mechanics" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
+            <TabsTrigger value="mechanics" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
               <Calculator className="w-3 h-3 mr-1.5" />
               TIPS Mechanics
             </TabsTrigger>
-            <TabsTrigger value="yields" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
+            <TabsTrigger value="yields" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
               <Activity className="w-3 h-3 mr-1.5" />
               Real Yields &amp; Breakeven
             </TabsTrigger>
-            <TabsTrigger value="duration" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
+            <TabsTrigger value="duration" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
               <BarChart3 className="w-3 h-3 mr-1.5" />
               Duration &amp; Risk
             </TabsTrigger>
-            <TabsTrigger value="hedging" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-white rounded">
+            <TabsTrigger value="hedging" className="text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground rounded">
               <ShieldCheck className="w-3 h-3 mr-1.5" />
               Inflation Hedging
             </TabsTrigger>

@@ -671,16 +671,16 @@ export default function NeobanksPage() {
         {/* Tabs */}
         <Tabs defaultValue="business-model" className="w-full">
           <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="business-model" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs sm:text-sm">
+            <TabsTrigger value="business-model" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs sm:text-sm">
               <DollarSign className="w-3.5 h-3.5 mr-1" /> Business Model
             </TabsTrigger>
-            <TabsTrigger value="unit-economics" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs sm:text-sm">
+            <TabsTrigger value="unit-economics" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs sm:text-sm">
               <TrendingUp className="w-3.5 h-3.5 mr-1" /> Unit Economics
             </TabsTrigger>
-            <TabsTrigger value="vs-traditional" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs sm:text-sm">
+            <TabsTrigger value="vs-traditional" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs sm:text-sm">
               <BarChart3 className="w-3.5 h-3.5 mr-1" /> vs Traditional Banks
             </TabsTrigger>
-            <TabsTrigger value="market-dynamics" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-xs sm:text-sm">
+            <TabsTrigger value="market-dynamics" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs sm:text-sm">
               <Globe className="w-3.5 h-3.5 mr-1" /> Market Dynamics
             </TabsTrigger>
           </TabsList>
@@ -1011,7 +1011,7 @@ export default function NeobanksPage() {
                               </span>
                               <div className="flex-1 bg-muted rounded-full h-5 overflow-hidden">
                                 <div
-                                  className="h-full rounded-full flex items-center justify-end pr-2 text-xs text-white font-medium"
+                                  className="h-full rounded-full flex items-center justify-end pr-2 text-xs text-foreground font-medium"
                                   style={{
                                     width: `${(b.nim / maxNIM) * 100}%`,
                                     background: b.color,
@@ -1212,7 +1212,7 @@ export default function NeobanksPage() {
                               <span className="text-xs text-muted-foreground w-16 flex-shrink-0">{p.name}</span>
                               <div className="flex-1 flex items-center gap-2">
                                 <div
-                                  className="h-7 rounded-lg flex items-center justify-center text-xs font-semibold text-white px-3"
+                                  className="h-7 rounded-lg flex items-center justify-center text-xs font-semibold text-foreground px-3"
                                   style={{
                                     background: isFuture ? "#334155" : p.color,
                                     minWidth: 80,

@@ -103,7 +103,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               {isPotentialSqueeze ? "Potential Short Squeeze" : "Short Interest Monitor"}
             </span>
             {isExtremeShort && priceRising && (
-              <span className="ml-auto rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-white">
+              <span className="ml-auto rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-foreground">
                 EXTREME
               </span>
             )}

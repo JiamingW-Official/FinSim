@@ -997,7 +997,7 @@ function AgricultureTab() {
                     className="absolute h-full bg-emerald-500 rounded-full opacity-90"
                     style={{ width: `${row.current}%` }}
                   />
-                  <span className="absolute inset-0 flex items-center justify-center text-xs text-white font-mono">
+                  <span className="absolute inset-0 flex items-center justify-center text-xs text-foreground font-mono">
                     {row.current}%
                   </span>
                 </div>

@@ -2,14 +2,26 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { BookOpen, Activity, Target, ArrowRight } from "lucide-react";
+import {
+  BookOpen,
+  Activity,
+  Target,
+  ArrowRight,
+  TrendingUp,
+  BarChart3,
+  Shield,
+} from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const },
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
+    },
   }),
 };
 
@@ -17,31 +29,41 @@ const FEATURES = [
   {
     icon: BookOpen,
     title: "Trading Academy",
-    desc: "650+ bite-sized lessons across stocks, options, crypto, and more. Learn concepts, practice on the simulator, then review your trades.",
+    desc: "650+ bite-sized lessons across stocks, options, crypto, and macro. Master concepts, then practice them live.",
     color: "text-primary",
     bg: "bg-primary/10",
+    border: "border-primary/10",
   },
   {
     icon: Activity,
     title: "Market Simulator",
-    desc: "Trade with real chart patterns and 20+ technical indicators. Build intuition through hands-on practice with simulated execution — no real money at stake.",
+    desc: "Real chart patterns, 20+ indicators, and simulated execution. Build intuition with zero downside.",
     color: "text-emerald-400",
     bg: "bg-emerald-500/10",
+    border: "border-emerald-500/10",
   },
   {
     icon: Target,
     title: "Prediction Markets",
-    desc: "Bet on macro outcomes — Fed decisions, earnings, sector trends. Sharpen your probability thinking and calibration skills.",
-    color: "text-rose-400",
-    bg: "bg-rose-500/10",
+    desc: "Bet on Fed decisions, earnings, and sector trends. Sharpen your probability thinking and calibration.",
+    color: "text-amber-400",
+    bg: "bg-amber-500/10",
+    border: "border-amber-500/10",
   },
+];
+
+const STATS = [
+  { label: "Lessons", value: "650+" },
+  { label: "Indicators", value: "20+" },
+  { label: "Asset Classes", value: "10" },
+  { label: "Cost", value: "Free" },
 ];
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
       {/* Navigation */}
-      <nav className="border-b border-border/40">
+      <nav className="border-b border-border/40 backdrop-blur-sm sticky top-0 z-50 bg-background/80">
         <div className="max-w-5xl mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-2">
             <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 ring-1 ring-primary/20">
@@ -51,7 +73,7 @@ export default function LandingPage() {
           </div>
           <Link
             href="/home"
-            className="flex items-center gap-1.5 rounded-md bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="flex items-center gap-1.5 rounded-md bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Launch App
             <ArrowRight className="h-3 w-3" />
@@ -60,225 +82,452 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-20 pb-10 text-center">
-        <motion.h1
-          className="text-4xl sm:text-5xl md:text-[3.5rem] font-semibold leading-[1.1] tracking-tight"
-          initial={{ opacity: 0, y: 16 }}
+      <section className="max-w-5xl mx-auto px-6 pt-24 pb-12 text-center">
+        <motion.div
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 mb-8"
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
-          Learn to Trade{" "}
+          <Shield className="h-3.5 w-3.5 text-primary" />
+          <span className="text-xs text-muted-foreground">
+            100% free &middot; No real money &middot; No sign-up required
+          </span>
+        </motion.div>
+
+        <motion.h1
+          className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.08] tracking-tight"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+        >
+          Learn to Trade
           <br className="hidden sm:block" />
           Without Risking{" "}
           <span className="text-primary">a Dollar</span>
         </motion.h1>
 
         <motion.p
-          className="mx-auto mt-5 max-w-lg text-sm text-muted-foreground leading-relaxed"
+          className="mx-auto mt-6 max-w-md text-base text-muted-foreground leading-relaxed"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
+          transition={{ delay: 0.15, duration: 0.5 }}
         >
-          Practice trading, build financial intuition, and develop market sense
-          — all in a risk-free simulation.
+          The trading simulator that teaches you markets from the ground up
+          — practice with real strategies, zero consequences.
         </motion.p>
 
         <motion.div
-          className="mt-8"
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
+          transition={{ delay: 0.25, duration: 0.5 }}
         >
           <Link
             href="/home"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-7 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Start Learning Free
             <ArrowRight className="h-4 w-4" />
           </Link>
+          <Link
+            href="/learn"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+          >
+            Browse Lessons
+          </Link>
         </motion.div>
-
-        {/* Stats row */}
-        <motion.p
-          className="mt-4 text-[11px] text-muted-foreground tracking-wide"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.35, duration: 0.4 }}
-        >
-          100% free&nbsp;&nbsp;•&nbsp;&nbsp;No real money&nbsp;&nbsp;•&nbsp;&nbsp;No sign-up required
-        </motion.p>
 
         {/* Product Preview */}
         <motion.div
-          className="mt-8 mx-auto max-w-3xl"
-          initial={{ opacity: 0, y: 20 }}
+          className="mt-16 mx-auto max-w-3xl"
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.45, duration: 0.5 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <div className="rounded-lg border border-border bg-card overflow-hidden shadow-sm">
+          <div className="rounded-xl border border-border bg-card overflow-hidden shadow-lg shadow-black/20">
             {/* Browser chrome */}
-            <div className="flex items-center gap-1.5 px-4 py-2.5 bg-muted/50 border-b border-border">
-              <div className="h-2.5 w-2.5 rounded-full bg-red-400/60" />
-              <div className="h-2.5 w-2.5 rounded-full bg-yellow-400/60" />
-              <div className="h-2.5 w-2.5 rounded-full bg-green-400/60" />
-              <div className="ml-3 flex-1 h-5 rounded bg-muted/80 flex items-center justify-center">
-                <span className="text-[10px] text-muted-foreground/60">finsim.app/trade</span>
+            <div className="flex items-center gap-1.5 px-4 py-2.5 bg-muted/40 border-b border-border">
+              <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
+              <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
+              <div className="h-2.5 w-2.5 rounded-full bg-muted-foreground/20" />
+              <div className="ml-3 flex-1 h-5 rounded-md bg-muted/60 flex items-center justify-center">
+                <span className="text-[10px] text-muted-foreground/50 font-mono">
+                  finsim.app/trade
+                </span>
               </div>
             </div>
 
             {/* App content */}
             <div className="flex">
               {/* Chart area */}
-              <div className="flex-1 p-3 sm:p-4">
+              <div className="flex-1 p-3 sm:p-5">
                 {/* Ticker bar */}
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-xs font-bold">AAPL</span>
-                  <span className="text-xs text-emerald-400 font-medium">$192.15</span>
-                  <span className="text-[10px] text-emerald-400/80">+0.23%</span>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold tracking-tight">AAPL</span>
+                    <span className="text-xs text-emerald-400 font-semibold tabular-nums">
+                      $192.15
+                    </span>
+                    <span className="text-[10px] text-emerald-400/70 font-medium">
+                      +0.23%
+                    </span>
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1 ml-auto">
+                    {["1D", "1W", "1M", "3M"].map((t) => (
+                      <span
+                        key={t}
+                        className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${
+                          t === "1D"
+                            ? "bg-primary/15 text-primary"
+                            : "text-muted-foreground/50"
+                        }`}
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                {/* SVG Chart */}
-                <svg viewBox="0 0 400 120" className="w-full h-auto" preserveAspectRatio="none">
+
+                {/* SVG Candlestick Chart */}
+                <svg
+                  viewBox="0 0 400 130"
+                  className="w-full h-auto"
+                  preserveAspectRatio="none"
+                >
                   <defs>
                     <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
-                      <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+                      <stop
+                        offset="0%"
+                        stopColor="hsl(var(--primary))"
+                        stopOpacity="0.15"
+                      />
+                      <stop
+                        offset="100%"
+                        stopColor="hsl(var(--primary))"
+                        stopOpacity="0"
+                      />
                     </linearGradient>
                   </defs>
                   {/* Grid lines */}
-                  <line x1="0" y1="30" x2="400" y2="30" stroke="hsl(var(--border))" strokeWidth="0.5" />
-                  <line x1="0" y1="60" x2="400" y2="60" stroke="hsl(var(--border))" strokeWidth="0.5" />
-                  <line x1="0" y1="90" x2="400" y2="90" stroke="hsl(var(--border))" strokeWidth="0.5" />
-                  {/* Area fill */}
+                  {[30, 55, 80, 105].map((y) => (
+                    <line
+                      key={y}
+                      x1="0"
+                      y1={y}
+                      x2="400"
+                      y2={y}
+                      stroke="hsl(var(--border))"
+                      strokeWidth="0.5"
+                      strokeDasharray="2,4"
+                    />
+                  ))}
+                  {/* Candlesticks */}
+                  {[
+                    { x: 20, o: 95, c: 88, h: 98, l: 85, bull: true },
+                    { x: 36, o: 88, c: 92, h: 94, l: 86, bull: false },
+                    { x: 52, o: 90, c: 82, h: 93, l: 80, bull: true },
+                    { x: 68, o: 82, c: 78, h: 85, l: 75, bull: true },
+                    { x: 84, o: 78, c: 82, h: 84, l: 76, bull: false },
+                    { x: 100, o: 82, c: 75, h: 84, l: 72, bull: true },
+                    { x: 116, o: 75, c: 70, h: 77, l: 68, bull: true },
+                    { x: 132, o: 70, c: 74, h: 76, l: 68, bull: false },
+                    { x: 148, o: 72, c: 65, h: 75, l: 62, bull: true },
+                    { x: 164, o: 65, c: 68, h: 70, l: 63, bull: false },
+                    { x: 180, o: 68, c: 60, h: 70, l: 58, bull: true },
+                    { x: 196, o: 60, c: 55, h: 63, l: 52, bull: true },
+                    { x: 212, o: 56, c: 62, h: 64, l: 54, bull: false },
+                    { x: 228, o: 60, c: 52, h: 63, l: 50, bull: true },
+                    { x: 244, o: 52, c: 48, h: 55, l: 46, bull: true },
+                    { x: 260, o: 48, c: 52, h: 54, l: 46, bull: false },
+                    { x: 276, o: 50, c: 44, h: 53, l: 42, bull: true },
+                    { x: 292, o: 44, c: 40, h: 47, l: 38, bull: true },
+                    { x: 308, o: 40, c: 45, h: 47, l: 38, bull: false },
+                    { x: 324, o: 43, c: 36, h: 46, l: 34, bull: true },
+                    { x: 340, o: 36, c: 32, h: 39, l: 30, bull: true },
+                    { x: 356, o: 33, c: 38, h: 40, l: 31, bull: false },
+                    { x: 372, o: 36, c: 28, h: 38, l: 26, bull: true },
+                    { x: 388, o: 28, c: 24, h: 30, l: 22, bull: true },
+                  ].map((c, i) => {
+                    const top = Math.min(c.o, c.c);
+                    const bot = Math.max(c.o, c.c);
+                    const color = c.bull
+                      ? "hsl(var(--primary))"
+                      : "hsl(0 84% 60%)";
+                    return (
+                      <g key={i}>
+                        {/* Wick */}
+                        <line
+                          x1={c.x}
+                          y1={c.h}
+                          x2={c.x}
+                          y2={c.l}
+                          stroke={color}
+                          strokeWidth="1"
+                        />
+                        {/* Body */}
+                        <rect
+                          x={c.x - 5}
+                          y={top}
+                          width="10"
+                          height={Math.max(bot - top, 1.5)}
+                          fill={c.bull ? color : color}
+                          rx="0.5"
+                        />
+                      </g>
+                    );
+                  })}
+                  {/* Area fill under trend */}
                   <path
-                    d="M0,85 C30,80 60,75 90,70 C120,65 140,60 170,50 C200,40 220,55 250,45 C280,35 310,30 340,25 C360,22 380,20 400,18 L400,120 L0,120 Z"
+                    d="M15,92 L47,86 L79,80 L111,79 L143,68 L175,64 L207,58 L239,51 L271,48 L303,42 L335,35 L367,32 L399,26 L400,130 L0,130 Z"
                     fill="url(#chartGrad)"
                   />
-                  {/* Line */}
-                  <path
-                    d="M0,85 C30,80 60,75 90,70 C120,65 140,60 170,50 C200,40 220,55 250,45 C280,35 310,30 340,25 C360,22 380,20 400,18"
-                    fill="none"
-                    stroke="hsl(var(--primary))"
-                    strokeWidth="2"
-                  />
                 </svg>
+
                 {/* Time labels */}
-                <div className="flex justify-between mt-1">
-                  <span className="text-[9px] text-muted-foreground/50">9:30</span>
-                  <span className="text-[9px] text-muted-foreground/50">11:00</span>
-                  <span className="text-[9px] text-muted-foreground/50">12:30</span>
-                  <span className="text-[9px] text-muted-foreground/50">14:00</span>
-                  <span className="text-[9px] text-muted-foreground/50">15:30</span>
+                <div className="flex justify-between mt-1.5 px-1">
+                  {["9:30", "11:00", "12:30", "14:00", "15:30"].map((t) => (
+                    <span
+                      key={t}
+                      className="text-[9px] text-muted-foreground/40 tabular-nums"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              {/* Order entry panel — hidden on very small screens */}
-              <div className="hidden sm:flex w-40 border-l border-border p-3 flex-col gap-2">
-                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">Order Entry</div>
+              {/* Order entry panel */}
+              <div className="hidden sm:flex w-44 border-l border-border p-4 flex-col gap-2.5">
+                <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">
+                  Order Entry
+                </div>
                 <div className="flex gap-1">
-                  <div className="flex-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold text-center py-1">Buy</div>
-                  <div className="flex-1 rounded bg-muted text-muted-foreground text-[10px] font-medium text-center py-1">Sell</div>
-                </div>
-                <div className="space-y-1.5">
-                  <div>
-                    <div className="text-[9px] text-muted-foreground mb-0.5">Shares</div>
-                    <div className="rounded border border-border bg-background px-2 py-1 text-[10px]">100</div>
+                  <div className="flex-1 rounded-md bg-primary/20 text-primary text-[10px] font-semibold text-center py-1.5">
+                    Buy
                   </div>
-                  <div>
-                    <div className="text-[9px] text-muted-foreground mb-0.5">Type</div>
-                    <div className="rounded border border-border bg-background px-2 py-1 text-[10px]">Market</div>
+                  <div className="flex-1 rounded-md bg-muted text-muted-foreground text-[10px] font-medium text-center py-1.5">
+                    Sell
                   </div>
                 </div>
-                <div className="mt-auto rounded bg-primary py-1.5 text-center text-[10px] font-semibold text-primary-foreground">
+                <div className="space-y-2">
+                  <div>
+                    <div className="text-[9px] text-muted-foreground mb-0.5">
+                      Shares
+                    </div>
+                    <div className="rounded-md border border-border bg-background px-2.5 py-1.5 text-[10px] tabular-nums">
+                      100
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[9px] text-muted-foreground mb-0.5">
+                      Type
+                    </div>
+                    <div className="rounded-md border border-border bg-background px-2.5 py-1.5 text-[10px]">
+                      Market
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-[9px] text-muted-foreground mb-0.5">
+                      Est. Cost
+                    </div>
+                    <div className="text-xs font-semibold tabular-nums">
+                      $19,215.00
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-auto rounded-md bg-primary py-2 text-center text-[10px] font-semibold text-primary-foreground">
                   Place Order
                 </div>
               </div>
             </div>
 
             {/* Bottom status bar */}
-            <div className="flex items-center justify-between px-4 py-1.5 bg-muted/30 border-t border-border text-[10px] text-muted-foreground">
-              <span>AAPL $192.15 <span className="text-emerald-400">+0.23%</span></span>
-              <span>Portfolio: $100,000.00</span>
+            <div className="flex items-center justify-between px-4 py-2 bg-muted/20 border-t border-border text-[10px] text-muted-foreground">
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1">
+                  <TrendingUp className="h-2.5 w-2.5 text-primary" />
+                  <span className="tabular-nums">AAPL $192.15</span>
+                </span>
+                <span className="hidden sm:inline text-emerald-400 tabular-nums">
+                  +0.23%
+                </span>
+              </div>
+              <span className="flex items-center gap-1">
+                <BarChart3 className="h-2.5 w-2.5 text-muted-foreground/50" />
+                <span className="tabular-nums">$100,000.00</span>
+              </span>
             </div>
           </div>
-
-          <p className="mt-4 text-sm text-muted-foreground">
-            No downloads. No sign-up. Start in your browser.
-          </p>
         </motion.div>
       </section>
 
+      {/* Stats strip */}
+      <section className="border-y border-border/40 bg-card/50">
+        <div className="max-w-5xl mx-auto px-6 py-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+            {STATS.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+                variants={fadeUp}
+                custom={i}
+              >
+                <div className="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  {s.value}
+                </div>
+                <div className="text-xs text-muted-foreground mt-1">
+                  {s.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Feature grid */}
-      <section className="max-w-5xl mx-auto px-6 py-10">
-        <motion.h2
-          className="text-xl sm:text-2xl font-semibold text-center mb-8"
+      <section className="max-w-5xl mx-auto px-6 py-20">
+        <motion.div
+          className="text-center mb-12"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={fadeUp}
           custom={0}
         >
-          Built for students, by students
-        </motion.h2>
+          <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
+            Everything you need to learn markets
+          </h2>
+          <p className="mt-3 text-sm text-muted-foreground max-w-md mx-auto">
+            From first principles to advanced strategies — structured learning
+            meets hands-on practice.
+          </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {FEATURES.map((f, i) => (
             <motion.div
               key={f.title}
-              className="rounded-lg border border-border bg-card p-6"
+              className={`rounded-xl border ${f.border} bg-card p-7 transition-colors hover:border-border`}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-40px" }}
               variants={fadeUp}
               custom={i + 1}
             >
-              <div className={`inline-flex h-9 w-9 items-center justify-center rounded-lg ${f.bg} mb-4`}>
+              <div
+                className={`inline-flex h-10 w-10 items-center justify-center rounded-lg ${f.bg} mb-5`}
+              >
                 <f.icon className={`h-4.5 w-4.5 ${f.color}`} />
               </div>
               <h3 className="text-sm font-semibold mb-2">{f.title}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {f.desc}
+              </p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="max-w-5xl mx-auto px-6 py-10">
+      {/* How it works */}
+      <section className="border-y border-border/40 bg-card/30">
+        <div className="max-w-5xl mx-auto px-6 py-20">
+          <motion.h2
+            className="text-2xl sm:text-3xl font-semibold text-center mb-14 tracking-tight"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={fadeUp}
+            custom={0}
+          >
+            Three steps to market fluency
+          </motion.h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Learn",
+                desc: "Work through structured lessons on stocks, options, crypto, and macro — at your own pace.",
+              },
+              {
+                step: "02",
+                title: "Practice",
+                desc: "Trade on a simulator with real chart patterns and indicators. Make mistakes that cost nothing.",
+              },
+              {
+                step: "03",
+                title: "Review",
+                desc: "Track your performance, review trades with the AI coach, and sharpen your edge over time.",
+              },
+            ].map((s, i) => (
+              <motion.div
+                key={s.step}
+                className="text-center sm:text-left"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+                variants={fadeUp}
+                custom={i + 1}
+              >
+                <div className="text-xs font-bold text-primary mb-3 tracking-widest">
+                  {s.step}
+                </div>
+                <h3 className="text-base font-semibold mb-2">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {s.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="max-w-5xl mx-auto px-6 py-20">
         <motion.div
-          className="rounded-lg border border-border bg-card p-10 text-center"
+          className="relative rounded-xl border border-primary/20 bg-primary/[0.03] p-12 sm:p-16 text-center overflow-hidden"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
         >
-          <h2 className="text-xl sm:text-2xl font-semibold mb-3">
-            Ready to start learning?
+          <h2 className="text-2xl sm:text-3xl font-semibold mb-4 tracking-tight">
+            Your portfolio is waiting
           </h2>
-          <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-7">
-            650+ lessons, 10 asset classes, 20+ indicators — all free, forever.
+          <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-8 leading-relaxed">
+            $100,000 in simulated capital. 650+ lessons. Zero risk.
+            Start building your trading skills today.
           </p>
           <Link
             href="/home"
-            className="inline-flex items-center gap-2 rounded-md bg-primary px-8 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Start Learning Free
             <ArrowRight className="h-4 w-4" />
           </Link>
+          <p className="mt-4 text-xs text-muted-foreground">
+            No account needed. Works in your browser.
+          </p>
         </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 py-6">
-        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <footer className="border-t border-border/40 py-8">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-black text-primary">FS</span>
-            <span className="text-xs text-muted-foreground">FinSim</span>
+            <div className="flex h-6 w-6 items-center justify-center rounded bg-primary/10">
+              <span className="text-[10px] font-black text-primary">FS</span>
+            </div>
+            <span className="text-xs font-semibold">FinSim</span>
           </div>
-          <p className="text-[11px] text-muted-foreground text-center sm:text-right">
-            <span>For educational purposes only. Not financial advice.</span>
+          <p className="text-[11px] text-muted-foreground text-center sm:text-right leading-relaxed">
+            For educational purposes only. Not financial advice.
             <br />
-            <span>All market data is simulated.</span>
-            <br />
-            <span>&copy; {new Date().getFullYear()} FinSim</span>
+            All market data is simulated. &copy;{" "}
+            {new Date().getFullYear()} FinSim
           </p>
         </div>
       </footer>

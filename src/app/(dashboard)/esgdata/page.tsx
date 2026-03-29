@@ -368,7 +368,7 @@ function ProviderComparisonTable() {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full" style={{ background: p.color }} />
                     <div>
-                      <div className="font-semibold text-white">{p.abbr}</div>
+                      <div className="font-semibold text-foreground">{p.abbr}</div>
                       <div className="text-xs text-muted-foreground">{p.owner}</div>
                     </div>
                   </div>
@@ -404,7 +404,7 @@ function ProviderComparisonTable() {
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="w-3 h-3 rounded-full" style={{ background: sel.color }} />
-              <span className="font-semibold text-white">{sel.name}</span>
+              <span className="font-semibold text-foreground">{sel.name}</span>
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
@@ -431,7 +431,7 @@ function ProviderCorrelationScatter() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
           Provider Rating Disagreement (Avg Correlation: 0.61)
         </CardTitle>
@@ -523,7 +523,7 @@ function SourceDataBreakdown() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white">Source Data Breakdown</CardTitle>
+        <CardTitle className="text-base text-foreground">Source Data Breakdown</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-6">
@@ -542,7 +542,7 @@ function SourceDataBreakdown() {
               <div key={seg.label} className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-sm" style={{ background: seg.color }} />
                 <div>
-                  <div className="text-sm text-white font-medium">{seg.label}</div>
+                  <div className="text-sm text-foreground font-medium">{seg.label}</div>
                   <div className="text-xs text-muted-foreground">{seg.pct}% of total input</div>
                 </div>
               </div>
@@ -558,7 +558,7 @@ function ESGWeightBarChart() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white">E / S / G Weight Differences Across Providers</CardTitle>
+        <CardTitle className="text-base text-foreground">E / S / G Weight Differences Across Providers</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
@@ -569,13 +569,13 @@ function ESGWeightBarChart() {
                 <span className="text-muted-foreground text-xs">E·S·G</span>
               </div>
               <div className="flex h-5 rounded overflow-hidden">
-                <div style={{ width: `${p.eWeight}%`, background: "#10b981" }} className="flex items-center justify-center text-[11px] text-white font-bold">
+                <div style={{ width: `${p.eWeight}%`, background: "#10b981" }} className="flex items-center justify-center text-[11px] text-foreground font-bold">
                   {p.eWeight}
                 </div>
-                <div style={{ width: `${p.sWeight}%`, background: "#3b82f6" }} className="flex items-center justify-center text-[11px] text-white font-bold">
+                <div style={{ width: `${p.sWeight}%`, background: "#3b82f6" }} className="flex items-center justify-center text-[11px] text-foreground font-bold">
                   {p.sWeight}
                 </div>
-                <div style={{ width: `${p.gWeight}%`, background: "#f59e0b" }} className="flex items-center justify-center text-[11px] text-white font-bold">
+                <div style={{ width: `${p.gWeight}%`, background: "#f59e0b" }} className="flex items-center justify-center text-[11px] text-foreground font-bold">
                   {p.gWeight}
                 </div>
               </div>
@@ -614,7 +614,7 @@ function FrameworkMatrix() {
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full" style={{ background: f.color }} />
                   <div>
-                    <div className="font-bold text-white">{f.abbr}</div>
+                    <div className="font-bold text-foreground">{f.abbr}</div>
                     <div className="text-xs text-muted-foreground">{f.name}</div>
                   </div>
                 </div>
@@ -649,7 +649,7 @@ function Scope123Diagram() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <Zap className="w-4 h-4 text-amber-400" />
           Scope 1 / 2 / 3 Emissions Boundary
         </CardTitle>
@@ -705,7 +705,7 @@ function DoubleMaterialityCard() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white">Double Materiality Concept (EU CSRD)</CardTitle>
+        <CardTitle className="text-base text-foreground">Double Materiality Concept (EU CSRD)</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex gap-4">
@@ -725,7 +725,7 @@ function DoubleMaterialityCard() {
           </div>
         </div>
         <div className="mt-3 p-3 rounded-lg bg-foreground/5 border border-border text-xs text-muted-foreground">
-          <span className="text-white font-semibold">CSRD scope:</span> ~50,000 EU companies from 2025–2028 phased rollout.
+          <span className="text-foreground font-semibold">CSRD scope:</span> ~50,000 EU companies from 2025–2028 phased rollout.
           Requires assurance (limited initially, reasonable by 2028) by an approved auditor.
         </div>
         <div className="mt-2 grid grid-cols-3 gap-2 text-xs">
@@ -757,7 +757,7 @@ function CDPScoringCard() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <Award className="w-4 h-4 text-emerald-400" />
           CDP Questionnaire Scoring (A–D Scale)
         </CardTitle>
@@ -773,7 +773,7 @@ function CDPScoringCard() {
                 {g.grade}
               </span>
               <div className="flex-1">
-                <div className="text-xs font-semibold text-white">{g.label}</div>
+                <div className="text-xs font-semibold text-foreground">{g.label}</div>
                 <div className="text-xs text-muted-foreground">{g.desc}</div>
               </div>
             </div>
@@ -810,7 +810,7 @@ function GreenwashTaxonomyCard() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <Eye className="w-4 h-4 text-red-400" />
           Greenwashing Taxonomy
         </CardTitle>
@@ -850,7 +850,7 @@ function GreenwashCasesTable() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white">High-Profile Greenwashing Cases</CardTitle>
+        <CardTitle className="text-base text-foreground">High-Profile Greenwashing Cases</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         <div className="overflow-x-auto">
@@ -867,7 +867,7 @@ function GreenwashCasesTable() {
             <tbody>
               {GREENWASH_CASES.map((c) => (
                 <tr key={c.company} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="px-3 py-2 font-semibold text-white max-w-[120px]">{c.company}</td>
+                  <td className="px-3 py-2 font-semibold text-foreground max-w-[120px]">{c.company}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.year}</td>
                   <td className="px-3 py-2 text-muted-foreground">{c.regulator}</td>
                   <td className="px-3 py-2 text-muted-foreground max-w-[200px] line-clamp-2">{c.allegation}</td>
@@ -903,7 +903,7 @@ function GreenwashSignalChecklist() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <Search className="w-4 h-4 text-amber-400" />
           Greenwashing Risk Signal Checklist
         </CardTitle>
@@ -931,7 +931,7 @@ function ImpactVsESGWashing() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white">Impact Washing vs ESG Washing</CardTitle>
+        <CardTitle className="text-base text-foreground">Impact Washing vs ESG Washing</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 gap-3">
@@ -979,7 +979,7 @@ function IntegrationSpectrum() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           ESG Integration Spectrum
         </CardTitle>
@@ -990,7 +990,7 @@ function IntegrationSpectrum() {
             {steps.map((step, i) => (
               <div key={step.label} className="flex-1 flex flex-col items-center gap-1">
                 <div
-                  className="w-full h-8 rounded flex items-center justify-center text-[11px] font-bold text-white text-center leading-tight px-1"
+                  className="w-full h-8 rounded flex items-center justify-center text-[11px] font-bold text-foreground text-center leading-tight px-1"
                   style={{ background: step.color + "44", border: `1px solid ${step.color}66` }}
                 >
                   {step.label}
@@ -1018,7 +1018,7 @@ function SectorMaterialityMatrix() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
           ESG Materiality by Sector (SASB Matrix)
         </CardTitle>
@@ -1075,7 +1075,7 @@ function PRIGrowthChart() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <Globe className="w-4 h-4 text-primary" />
           UN PRI Signatory Growth (2006–2024)
         </CardTitle>
@@ -1134,7 +1134,7 @@ function ActiveOwnershipCard() {
   return (
     <Card className="bg-card/60 border-border">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base text-white flex items-center gap-2">
+        <CardTitle className="text-base text-foreground flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           Active Ownership: Engagement & Proxy Voting
         </CardTitle>
@@ -1146,7 +1146,7 @@ function ActiveOwnershipCard() {
               <div className="text-2xl font-bold" style={{ color: st.color }}>
                 {st.value}
               </div>
-              <div className="text-xs font-semibold text-white mt-0.5">{st.label}</div>
+              <div className="text-xs font-semibold text-foreground mt-0.5">{st.label}</div>
               <div className="text-xs text-muted-foreground">{st.sub}</div>
             </div>
           ))}
@@ -1154,15 +1154,15 @@ function ActiveOwnershipCard() {
         <div className="space-y-2 text-xs">
           <div className="flex gap-2 items-start">
             <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="text-muted-foreground"><span className="text-white font-medium">Engagement</span> — direct dialogue with company management; climate commitments, diversity targets, executive pay</span>
+            <span className="text-muted-foreground"><span className="text-foreground font-medium">Engagement</span> — direct dialogue with company management; climate commitments, diversity targets, executive pay</span>
           </div>
           <div className="flex gap-2 items-start">
             <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-            <span className="text-muted-foreground"><span className="text-white font-medium">Proxy Voting</span> — shareholder resolutions at AGMs; co-filing with activist groups; withhold votes on directors</span>
+            <span className="text-muted-foreground"><span className="text-foreground font-medium">Proxy Voting</span> — shareholder resolutions at AGMs; co-filing with activist groups; withhold votes on directors</span>
           </div>
           <div className="flex gap-2 items-start">
             <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
-            <span className="text-muted-foreground"><span className="text-white font-medium">Factor Contamination</span> — ESG portfolios overweight quality/low-vol factors; alpha may be factor beta, not genuine ESG premium</span>
+            <span className="text-muted-foreground"><span className="text-foreground font-medium">Factor Contamination</span> — ESG portfolios overweight quality/low-vol factors; alpha may be factor beta, not genuine ESG premium</span>
           </div>
         </div>
       </CardContent>
@@ -1189,7 +1189,7 @@ export default function ESGDataPage() {
             <Leaf className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">ESG Data & Ratings</h1>
+            <h1 className="text-xl font-bold text-foreground">ESG Data & Ratings</h1>
             <p className="text-sm text-muted-foreground">
               Rating methodologies, disclosure frameworks, greenwashing, and ESG integration in investment
             </p>
@@ -1225,7 +1225,7 @@ export default function ESGDataPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/15 data-[state=active]:text-white text-muted-foreground"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/15 data-[state=active]:text-foreground text-muted-foreground"
             >
               {tab.icon}
               {tab.label}
@@ -1237,7 +1237,7 @@ export default function ESGDataPage() {
         <TabsContent value="providers" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-white mb-1">Provider Comparison</h2>
+              <h2 className="text-base font-semibold text-foreground mb-1">Provider Comparison</h2>
               <p className="text-xs text-muted-foreground">Click any row to see additional details. ESG ratings correlate at ~0.61 vs 0.92 for credit ratings.</p>
             </div>
             <ProviderComparisonTable />
@@ -1253,7 +1253,7 @@ export default function ESGDataPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Info className="w-4 h-4 text-primary" />
                   Rating Revision Frequency & Lag
                 </CardTitle>
@@ -1278,7 +1278,7 @@ export default function ESGDataPage() {
 
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Shield className="w-4 h-4 text-red-400" />
                   Controversial Sectors Treatment
                 </CardTitle>
@@ -1306,7 +1306,7 @@ export default function ESGDataPage() {
         <TabsContent value="frameworks" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-white mb-1">Global Disclosure Frameworks</h2>
+              <h2 className="text-base font-semibold text-foreground mb-1">Global Disclosure Frameworks</h2>
               <p className="text-xs text-muted-foreground">GRI, SASB, TCFD, TNFD, ISSB — different scopes, different audiences, increasing mandatory adoption.</p>
             </div>
             <FrameworkMatrix />
@@ -1321,7 +1321,7 @@ export default function ESGDataPage() {
 
           <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-white flex items-center gap-2">
+              <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <FileText className="w-4 h-4 text-amber-400" />
                 SEC Climate Disclosure Rule Timeline
               </CardTitle>
@@ -1357,7 +1357,7 @@ export default function ESGDataPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white">EU Taxonomy: 6 Environmental Objectives</CardTitle>
+                <CardTitle className="text-sm text-foreground">EU Taxonomy: 6 Environmental Objectives</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-1.5">
@@ -1385,7 +1385,7 @@ export default function ESGDataPage() {
 
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white">Assurance Requirements</CardTitle>
+                <CardTitle className="text-sm text-foreground">Assurance Requirements</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3 text-xs">
                 <div className="rounded-lg bg-primary/10 border border-border p-3">
@@ -1408,7 +1408,7 @@ export default function ESGDataPage() {
         <TabsContent value="greenwashing" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-white mb-1">Greenwashing & Data Quality</h2>
+              <h2 className="text-base font-semibold text-foreground mb-1">Greenwashing & Data Quality</h2>
               <p className="text-xs text-muted-foreground">Identifying misleading ESG claims, regulatory enforcement, and quality assessment frameworks.</p>
             </div>
             <GreenwashTaxonomyCard />
@@ -1424,7 +1424,7 @@ export default function ESGDataPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Shield className="w-4 h-4 text-primary" />
                   SEC ESG Fund Naming Rules (2023)
                 </CardTitle>
@@ -1453,7 +1453,7 @@ export default function ESGDataPage() {
 
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <Award className="w-4 h-4 text-emerald-400" />
                   Third-Party Verification Market
                 </CardTitle>
@@ -1469,7 +1469,7 @@ export default function ESGDataPage() {
                 ].map((v) => (
                   <div key={v.org} className="flex gap-2 border-b border-border/50 pb-1.5 last:border-0">
                     <div className="flex-1">
-                      <div className="font-semibold text-white">{v.org}</div>
+                      <div className="font-semibold text-foreground">{v.org}</div>
                       <div className="text-muted-foreground text-xs">{v.role}</div>
                     </div>
                     <span className="text-emerald-400 text-xs shrink-0">{v.cost}</span>
@@ -1484,7 +1484,7 @@ export default function ESGDataPage() {
         <TabsContent value="integration" className="data-[state=inactive]:hidden space-y-6">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="mb-4">
-              <h2 className="text-base font-semibold text-white mb-1">ESG Integration in Investment Process</h2>
+              <h2 className="text-base font-semibold text-foreground mb-1">ESG Integration in Investment Process</h2>
               <p className="text-xs text-muted-foreground">From exclusionary screening to impact investing — and the evidence on ESG alpha generation.</p>
             </div>
             <IntegrationSpectrum />
@@ -1500,7 +1500,7 @@ export default function ESGDataPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                   ESG Performance Attribution Debate
                 </CardTitle>
@@ -1533,7 +1533,7 @@ export default function ESGDataPage() {
 
             <Card className="bg-card/60 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-white flex items-center gap-2">
+                <CardTitle className="text-sm text-foreground flex items-center gap-2">
                   <BarChart2 className="w-4 h-4 text-amber-400" />
                   Factor Exposure Contamination
                 </CardTitle>

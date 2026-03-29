@@ -901,7 +901,7 @@ function SmartFeatures() {
                     className={cn(
                       "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
                       answers[qi] === oi
-                        ? "bg-primary border-primary text-white"
+                        ? "bg-primary border-primary text-foreground"
                         : "bg-muted border-border text-muted-foreground hover:border-border"
                     )}
                   >
@@ -1049,7 +1049,7 @@ function AIAndFuture() {
                     ev.status === "past"
                       ? "bg-muted border-border text-muted-foreground"
                       : ev.status === "current"
-                      ? "bg-primary border-primary text-white"
+                      ? "bg-primary border-primary text-foreground"
                       : "bg-card border-dashed border-border text-muted-foreground/70"
                   )}
                 >
@@ -1150,7 +1150,7 @@ export default function RoboAdvisorPage() {
             <TabsTrigger
               key={value}
               value={value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground"
             >
               <Icon className="w-3.5 h-3.5" />
               {label}

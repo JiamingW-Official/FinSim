@@ -241,10 +241,10 @@ function FxPairRow({ pair }: { pair: FxPair }) {
       <td className="py-3 px-4">
         <div className="flex items-center gap-2">
           <span className="text-base">{pair.flag1}{pair.flag2}</span>
-          <span className="font-mono font-semibold text-white text-sm">{pair.symbol}</span>
+          <span className="font-mono font-semibold text-foreground text-sm">{pair.symbol}</span>
         </div>
       </td>
-      <td className="py-3 px-4 font-mono text-white text-sm text-right">{pair.spot}</td>
+      <td className="py-3 px-4 font-mono text-foreground text-sm text-right">{pair.spot}</td>
       <td className="py-3 px-4 font-mono text-muted-foreground text-xs text-right">{pair.bid}</td>
       <td className="py-3 px-4 font-mono text-muted-foreground text-xs text-right">{pair.ask}</td>
       <td className="py-3 px-4 text-right">
@@ -553,7 +553,7 @@ export default function CurrencyMarketsPage() {
             <Globe className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Currency Markets Deep Dive</h1>
+            <h1 className="text-2xl font-bold text-foreground">Currency Markets Deep Dive</h1>
             <p className="text-muted-foreground text-sm">FX structure, carry trades, PPP/UIP theory, and currency crises</p>
           </div>
         </div>
@@ -582,16 +582,16 @@ export default function CurrencyMarketsPage() {
       {/* Tabs */}
       <Tabs defaultValue="structure" className="space-y-4">
         <TabsList className="bg-foreground/[0.05] border border-border p-1 flex flex-wrap gap-1 h-auto">
-          <TabsTrigger value="structure" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="structure" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <Globe className="w-3 h-3 mr-1" /> FX Structure
           </TabsTrigger>
-          <TabsTrigger value="carry" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="carry" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <TrendingUp className="w-3 h-3 mr-1" /> Carry Trades
           </TabsTrigger>
-          <TabsTrigger value="theory" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="theory" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <BookOpen className="w-3 h-3 mr-1" /> Theory
           </TabsTrigger>
-          <TabsTrigger value="crises" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs sm:text-sm">
+          <TabsTrigger value="crises" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs sm:text-sm">
             <ShieldAlert className="w-3 h-3 mr-1" /> Crises
           </TabsTrigger>
         </TabsList>
@@ -603,7 +603,7 @@ export default function CurrencyMarketsPage() {
             <div className="xl:col-span-2">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-white text-base flex items-center gap-2">
+                  <CardTitle className="text-foreground text-base flex items-center gap-2">
                     <BarChart2 className="w-4 h-4 text-primary" />
                     Major Currency Pairs
                   </CardTitle>
@@ -641,7 +641,7 @@ export default function CurrencyMarketsPage() {
             <div className="space-y-4">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-white text-base flex items-center gap-2">
+                  <CardTitle className="text-foreground text-base flex items-center gap-2">
                     <Clock className="w-4 h-4 text-primary" />
                     Trading Sessions (UTC)
                   </CardTitle>
@@ -665,7 +665,7 @@ export default function CurrencyMarketsPage() {
           {/* Volume by Session */}
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-white text-base flex items-center gap-2">
+              <CardTitle className="text-foreground text-base flex items-center gap-2">
                 <Activity className="w-4 h-4 text-emerald-400" />
                 Daily Volume by Hour (UTC)
               </CardTitle>
@@ -710,7 +710,7 @@ export default function CurrencyMarketsPage() {
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <item.icon className={cn("w-4 h-4", item.color)} />
-                    <span className="text-white font-semibold text-sm">{item.title}</span>
+                    <span className="text-foreground font-semibold text-sm">{item.title}</span>
                   </div>
                   <p className="text-muted-foreground text-xs leading-relaxed mb-3">{item.desc}</p>
                   <div className="flex flex-wrap gap-1">
@@ -730,7 +730,7 @@ export default function CurrencyMarketsPage() {
             {/* Carry pair selector */}
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-white text-base flex items-center gap-2">
+                <CardTitle className="text-foreground text-base flex items-center gap-2">
                   <Zap className="w-4 h-4 text-amber-400" />
                   Carry Trade Builder
                 </CardTitle>
@@ -749,7 +749,7 @@ export default function CurrencyMarketsPage() {
                   >
                     <div className="flex items-center gap-2">
                       <span>{cp.flag1}{cp.flag2}</span>
-                      <span className="font-mono font-semibold text-white">{cp.symbol}</span>
+                      <span className="font-mono font-semibold text-foreground">{cp.symbol}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-emerald-400 font-mono text-xs">+{cp.differential.toFixed(2)}%</span>
@@ -766,7 +766,7 @@ export default function CurrencyMarketsPage() {
                 <div className="pt-3 border-t border-border/50">
                   <div className="flex justify-between text-xs text-muted-foreground mb-2">
                     <span>Leverage</span>
-                    <span className="text-white font-mono">{leverage[0]}x</span>
+                    <span className="text-foreground font-mono">{leverage[0]}x</span>
                   </div>
                   <Slider
                     value={leverage}
@@ -784,7 +784,7 @@ export default function CurrencyMarketsPage() {
             <div className="space-y-4">
               <Card className="bg-foreground/[0.03] border-border">
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-white text-sm">
+                  <CardTitle className="text-foreground text-sm">
                     {selectedCarryPair.flag1}{selectedCarryPair.flag2} {selectedCarryPair.symbol} — Rate Differential
                   </CardTitle>
                 </CardHeader>
@@ -837,7 +837,7 @@ export default function CurrencyMarketsPage() {
               {/* Leveraged metrics */}
               <Card className={cn("border", parseFloat(leveragedDD) < -15 ? "bg-red-500/5 border-red-500/20" : "bg-foreground/[0.03] border-border")}>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-white text-sm flex items-center gap-2">
+                  <CardTitle className="text-foreground text-sm flex items-center gap-2">
                     <Zap className="w-3 h-3 text-amber-400" />
                     With {leverage[0]}x Leverage
                   </CardTitle>
@@ -866,7 +866,7 @@ export default function CurrencyMarketsPage() {
             {/* Carry return chart */}
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-white text-sm">30-Period Carry Return</CardTitle>
+                <CardTitle className="text-foreground text-sm">30-Period Carry Return</CardTitle>
               </CardHeader>
               <CardContent>
                 <CarryReturnChart data={selectedCarryPair.carryReturn} color="#10b981" />
@@ -878,7 +878,7 @@ export default function CurrencyMarketsPage() {
           {/* Carry crash risk explainer */}
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-white text-base flex items-center gap-2">
+              <CardTitle className="text-foreground text-base flex items-center gap-2">
                 <ShieldAlert className="w-4 h-4 text-red-400" />
                 Carry Crash Risk: How Carry Trades Unwind
               </CardTitle>
@@ -911,7 +911,7 @@ export default function CurrencyMarketsPage() {
           {/* Big Mac Index */}
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-white text-base flex items-center gap-2">
+              <CardTitle className="text-foreground text-base flex items-center gap-2">
                 <DollarSign className="w-4 h-4 text-amber-400" />
                 Purchasing Power Parity — Big Mac Index
               </CardTitle>
@@ -983,7 +983,7 @@ export default function CurrencyMarketsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-white text-sm flex items-center gap-2">
+                <CardTitle className="text-foreground text-sm flex items-center gap-2">
                   <Info className="w-4 h-4 text-primary" />
                   Uncovered Interest Parity (UIP) — Why It Fails
                 </CardTitle>
@@ -991,11 +991,11 @@ export default function CurrencyMarketsPage() {
               <CardContent className="space-y-3">
                 <div className="bg-primary/10 border border-border rounded-lg p-3">
                   <div className="font-mono text-primary text-xs text-center mb-1">UIP Theory:</div>
-                  <div className="font-mono text-white text-sm text-center">E[ΔS] = i_d − i_f</div>
+                  <div className="font-mono text-foreground text-sm text-center">E[ΔS] = i_d − i_f</div>
                   <div className="text-muted-foreground text-xs text-center mt-1">High-rate currency should depreciate by the rate differential</div>
                 </div>
                 <p className="text-muted-foreground text-xs leading-relaxed">
-                  UIP is one of the most empirically violated theories in international finance. In practice, high-interest-rate currencies tend to <strong className="text-white">appreciate</strong>, not depreciate — the "forward premium puzzle" or "carry trade profitability."
+                  UIP is one of the most empirically violated theories in international finance. In practice, high-interest-rate currencies tend to <strong className="text-foreground">appreciate</strong>, not depreciate — the "forward premium puzzle" or "carry trade profitability."
                 </p>
                 <div className="space-y-2">
                   {[
@@ -1015,7 +1015,7 @@ export default function CurrencyMarketsPage() {
 
             <Card className="bg-foreground/[0.03] border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-white text-sm flex items-center gap-2">
+                <CardTitle className="text-foreground text-sm flex items-center gap-2">
                   <Target className="w-4 h-4 text-emerald-400" />
                   Taylor Rule — Implied FX Rates
                 </CardTitle>
@@ -1023,7 +1023,7 @@ export default function CurrencyMarketsPage() {
               <CardContent className="space-y-3">
                 <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3">
                   <div className="font-mono text-emerald-300 text-xs text-center mb-1">Taylor Rule:</div>
-                  <div className="font-mono text-white text-xs text-center">r = r* + π + 0.5(π−π*) + 0.5·output_gap</div>
+                  <div className="font-mono text-foreground text-xs text-center">r = r* + π + 0.5(π−π*) + 0.5·output_gap</div>
                   <div className="text-muted-foreground text-xs text-center mt-1">Central bank rate setting framework</div>
                 </div>
                 <p className="text-muted-foreground text-xs leading-relaxed">
@@ -1037,7 +1037,7 @@ export default function CurrencyMarketsPage() {
                     { pair: "AUD/USD", taylorGap: -0.5, dir: "USD favored" },
                   ].map((item) => (
                     <div key={item.pair} className="flex items-center justify-between text-xs bg-foreground/[0.02] rounded px-2 py-1.5">
-                      <span className="font-mono text-white">{item.pair}</span>
+                      <span className="font-mono text-foreground">{item.pair}</span>
                       <span className={cn("font-mono", item.taylorGap > 0 ? "text-amber-400" : "text-primary")}>
                         {item.taylorGap > 0 ? "+" : ""}{item.taylorGap}%
                       </span>
@@ -1052,7 +1052,7 @@ export default function CurrencyMarketsPage() {
           {/* REER Chart */}
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-white text-base flex items-center gap-2">
+              <CardTitle className="text-foreground text-base flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-primary" />
                 Real Effective Exchange Rate (REER) — Major Currencies
               </CardTitle>
@@ -1076,7 +1076,7 @@ export default function CurrencyMarketsPage() {
           {/* Crisis Timeline */}
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-white text-base flex items-center gap-2">
+              <CardTitle className="text-foreground text-base flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-red-400" />
                 Historical Currency Crises Timeline
               </CardTitle>
@@ -1113,7 +1113,7 @@ export default function CurrencyMarketsPage() {
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <span className="text-white font-semibold text-sm">{crisis.name}</span>
+                          <span className="text-foreground font-semibold text-sm">{crisis.name}</span>
                           <span className="text-muted-foreground text-xs">{crisis.country}</span>
                           <Badge variant="outline" className="text-xs border-border text-muted-foreground">{crisis.currency}</Badge>
                         </div>
@@ -1143,7 +1143,7 @@ export default function CurrencyMarketsPage() {
             >
               <Card className="border" style={{ borderColor: selectedCrisisData.color + "40", backgroundColor: selectedCrisisData.color + "08" }}>
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-white text-base flex items-center gap-2">
+                  <CardTitle className="text-foreground text-base flex items-center gap-2">
                     <AlertTriangle className="w-4 h-4" style={{ color: selectedCrisisData.color }} />
                     {selectedCrisisData.year} — {selectedCrisisData.name}
                   </CardTitle>
@@ -1172,7 +1172,7 @@ export default function CurrencyMarketsPage() {
                       ].map((ind) => (
                         <div key={ind.label} className="bg-foreground/[0.03] border border-border rounded-lg p-3">
                           <div className="text-muted-foreground text-xs mb-1">{ind.label}</div>
-                          <div className="font-mono font-bold text-white text-lg">{ind.value}{ind.unit}</div>
+                          <div className="font-mono font-bold text-foreground text-lg">{ind.value}{ind.unit}</div>
                         </div>
                       ))}
                     </div>
@@ -1185,7 +1185,7 @@ export default function CurrencyMarketsPage() {
           {/* Crisis Anatomy */}
           <Card className="bg-foreground/[0.03] border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-white text-base flex items-center gap-2">
+              <CardTitle className="text-foreground text-base flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-primary" />
                 Anatomy of a Currency Crisis
               </CardTitle>
@@ -1195,7 +1195,7 @@ export default function CurrencyMarketsPage() {
                 <div className="space-y-3">
                   <div className="text-muted-foreground text-xs font-semibold">First-Generation Model (Krugman 1979)</div>
                   <p className="text-muted-foreground text-xs leading-relaxed">
-                    Fiscal deficits monetized by central banks create inflation, depleting foreign exchange reserves. When reserves approach zero, a speculative attack forces the abandonment of the peg. The attack is rational — speculators anticipate the inevitable. <strong className="text-white">Fundamentals-driven.</strong>
+                    Fiscal deficits monetized by central banks create inflation, depleting foreign exchange reserves. When reserves approach zero, a speculative attack forces the abandonment of the peg. The attack is rational — speculators anticipate the inevitable. <strong className="text-foreground">Fundamentals-driven.</strong>
                   </p>
                   <div className="space-y-1">
                     {["Fiscal imbalance → money printing", "Inflation differential vs peg anchor", "Reserve depletion over time", "Speculative attack when reserves critical", "Peg collapses → sharp devaluation"].map((step, i) => (
@@ -1210,7 +1210,7 @@ export default function CurrencyMarketsPage() {
                 <div className="space-y-3">
                   <div className="text-muted-foreground text-xs font-semibold">Second-Generation Model (Obstfeld 1994)</div>
                   <p className="text-muted-foreground text-xs leading-relaxed">
-                    Multiple equilibria: a peg can be sustainable if everyone believes it will hold, but self-fulfilling attacks can force abandonment even with strong fundamentals. The cost of defending the peg depends on market expectations — creating a coordination game. <strong className="text-white">Expectations-driven.</strong>
+                    Multiple equilibria: a peg can be sustainable if everyone believes it will hold, but self-fulfilling attacks can force abandonment even with strong fundamentals. The cost of defending the peg depends on market expectations — creating a coordination game. <strong className="text-foreground">Expectations-driven.</strong>
                   </p>
                   <div className="space-y-1">
                     {["Peg sustainable at current beliefs", "Speculative pressure increases hedging cost", "Defense requires painful rate hikes", "Government weighs defense cost vs credibility", "Self-fulfilling exit if confidence breaks"].map((step, i) => (

@@ -43,7 +43,7 @@ function StatChip({
   label,
   value,
   sub,
-  color = "text-white",
+  color = "text-foreground",
 }: {
   label: string;
   value: string;
@@ -340,7 +340,7 @@ function SovereignTab() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mb-4">
                 <div className="bg-muted rounded p-3">
                   <div className="text-muted-foreground mb-1">Basis (Local − USD)</div>
-                  <div className="text-white font-mono text-lg font-bold">
+                  <div className="text-foreground font-mono text-lg font-bold">
                     +{fmtPct(sel.localYield - sel.usdYield, 2)}
                   </div>
                   <div className="text-muted-foreground">FX risk premium</div>
@@ -1215,35 +1215,35 @@ export default function EmDebtPage() {
         <TabsList className="bg-card border border-border mb-6 flex flex-wrap gap-1 h-auto p-1">
           <TabsTrigger
             value="sovereign"
-            className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs px-3 py-1.5"
           >
             <Globe className="w-3 h-3 mr-1" />
             Sovereign Dashboard
           </TabsTrigger>
           <TabsTrigger
             value="hardlocal"
-            className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs px-3 py-1.5"
           >
             <DollarSign className="w-3 h-3 mr-1" />
             Hard vs Local
           </TabsTrigger>
           <TabsTrigger
             value="spread"
-            className="data-[state=active]:bg-amber-600 data-[state=active]:text-white text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-amber-600 data-[state=active]:text-foreground text-xs px-3 py-1.5"
           >
             <Activity className="w-3 h-3 mr-1" />
             Spread &amp; Risk
           </TabsTrigger>
           <TabsTrigger
             value="fx"
-            className="data-[state=active]:bg-rose-600 data-[state=active]:text-white text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-rose-600 data-[state=active]:text-foreground text-xs px-3 py-1.5"
           >
             <TrendingDown className="w-3 h-3 mr-1" />
             Currency Impact
           </TabsTrigger>
           <TabsTrigger
             value="crisis"
-            className="data-[state=active]:bg-red-700 data-[state=active]:text-white text-xs px-3 py-1.5"
+            className="data-[state=active]:bg-red-700 data-[state=active]:text-foreground text-xs px-3 py-1.5"
           >
             <AlertTriangle className="w-3 h-3 mr-1" />
             Crisis History

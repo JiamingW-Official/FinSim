@@ -1282,7 +1282,7 @@ export default function FamilyOfficePage() {
             <TabsTrigger
               key={id}
               value={id}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium data-[state=active]:bg-foreground/15 data-[state=active]:text-white text-muted-foreground"
+              className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium data-[state=active]:bg-foreground/15 data-[state=active]:text-foreground text-muted-foreground"
             >
               <Icon className="h-3.5 w-3.5" />
               {label}

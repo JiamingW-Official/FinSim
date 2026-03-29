@@ -251,7 +251,7 @@ function WealthAccumulationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Starting Capital</span>
-              <span className="text-white font-semibold">{fmt(startingCapital)}</span>
+              <span className="text-foreground font-semibold">{fmt(startingCapital)}</span>
             </div>
             <Slider min={0} max={500000} step={1000} value={[startingCapital]} onValueChange={([v]) => setStartingCapital(v)} />
           </div>
@@ -259,7 +259,7 @@ function WealthAccumulationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Monthly Contribution</span>
-              <span className="text-white font-semibold">{fmt(monthlyContrib)}</span>
+              <span className="text-foreground font-semibold">{fmt(monthlyContrib)}</span>
             </div>
             <Slider min={0} max={5000} step={50} value={[monthlyContrib]} onValueChange={([v]) => setMonthlyContrib(v)} />
           </div>
@@ -267,7 +267,7 @@ function WealthAccumulationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Annual Return</span>
-              <span className="text-white font-semibold">{fmtPct(returnRate)}</span>
+              <span className="text-foreground font-semibold">{fmtPct(returnRate)}</span>
             </div>
             <Slider min={1} max={15} step={0.5} value={[returnRate]} onValueChange={([v]) => setReturnRate(v)} />
           </div>
@@ -275,7 +275,7 @@ function WealthAccumulationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Time Horizon</span>
-              <span className="text-white font-semibold">{years} years</span>
+              <span className="text-foreground font-semibold">{years} years</span>
             </div>
             <Slider min={1} max={40} step={1} value={[years]} onValueChange={([v]) => setYears(v)} />
           </div>
@@ -485,7 +485,7 @@ function NetWorthTab() {
             <div key={i} className="space-y-1">
               <div className="flex justify-between text-xs">
                 <span className="flex items-center gap-1 text-muted-foreground">{item.icon}{item.label}</span>
-                <span className="text-white font-medium">{fmt(item.value)}</span>
+                <span className="text-foreground font-medium">{fmt(item.value)}</span>
               </div>
               <Slider
                 min={0}
@@ -508,7 +508,7 @@ function NetWorthTab() {
             <div key={i} className="space-y-1">
               <div className="flex justify-between text-xs">
                 <span className="flex items-center gap-1 text-muted-foreground">{item.icon}{item.label}</span>
-                <span className="text-white font-medium">{fmt(item.value)}</span>
+                <span className="text-foreground font-medium">{fmt(item.value)}</span>
               </div>
               <Slider
                 min={0}
@@ -542,7 +542,7 @@ function NetWorthTab() {
                   className={cn(
                     "px-2 py-0.5 rounded text-xs border transition-colors",
                     ageBracket === bracket
-                      ? "bg-primary border-primary text-white"
+                      ? "bg-primary border-primary text-foreground"
                       : "bg-muted border-border text-muted-foreground hover:border-border"
                   )}
                 >
@@ -690,8 +690,8 @@ function PassiveIncomeTab() {
           </div>
         </div>
         <div className="flex justify-between text-sm mb-2">
-          <span className="text-muted-foreground">Monthly Passive: <span className="text-white font-bold">{fmt(totalMonthlyPassive)}</span></span>
-          <span className="text-muted-foreground">FI Target: <span className="text-white font-bold">{fmt(fiThreshold)}</span></span>
+          <span className="text-muted-foreground">Monthly Passive: <span className="text-foreground font-bold">{fmt(totalMonthlyPassive)}</span></span>
+          <span className="text-muted-foreground">FI Target: <span className="text-foreground font-bold">{fmt(fiThreshold)}</span></span>
         </div>
         <Progress value={fiPct} className="h-3 mb-1" />
         <div className="text-xs text-muted-foreground">{fmtPct(fiPct)} of FI threshold reached</div>
@@ -714,14 +714,14 @@ function PassiveIncomeTab() {
             <div className="space-y-2 text-xs">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Invested</span>
-                <span className="text-white">{fmt(stream.invested)}</span>
+                <span className="text-foreground">{fmt(stream.invested)}</span>
               </div>
               <Slider min={0} max={500000} step={5000} value={[stream.invested]}
                 onValueChange={([v]) => updateStream(stream.id, "invested", v)} />
 
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Yield</span>
-                <span className="text-white">{fmtPct(stream.yield)}</span>
+                <span className="text-foreground">{fmtPct(stream.yield)}</span>
               </div>
               <Slider min={0.5} max={20} step={0.5} value={[stream.yield]}
                 onValueChange={([v]) => updateStream(stream.id, "yield", v)} />
@@ -932,7 +932,7 @@ function TaxOptimizationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Annual Income</span>
-              <span className="text-white font-semibold">{fmt(income)}</span>
+              <span className="text-foreground font-semibold">{fmt(income)}</span>
             </div>
             <Slider min={10000} max={600000} step={5000} value={[income]} onValueChange={([v]) => setIncome(v)} />
           </div>
@@ -960,7 +960,7 @@ function TaxOptimizationTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Annual 401k Contribution</span>
-              <span className="text-white font-semibold">{fmt(annualContrib)}</span>
+              <span className="text-foreground font-semibold">{fmt(annualContrib)}</span>
             </div>
             <Slider min={1000} max={23000} step={500} value={[annualContrib]} onValueChange={([v]) => setAnnualContrib(v)} />
           </div>
@@ -1173,7 +1173,7 @@ function RiskInsuranceTab() {
             <div key={field.label} className="space-y-2">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">{field.label}</span>
-                <span className="text-white font-medium">{field.value >= 10000 ? fmtK(field.value) : field.value}</span>
+                <span className="text-foreground font-medium">{field.value >= 10000 ? fmtK(field.value) : field.value}</span>
               </div>
               <Slider min={field.min} max={field.max} step={field.step} value={[field.value]} onValueChange={([v]) => field.set(v)} />
             </div>
@@ -1237,7 +1237,7 @@ function RiskInsuranceTab() {
             <div key={i} className={cn("bg-muted rounded-xl p-4 border", i === 1 ? "border-border" : "border-border")}>
               {i === 1 && <Badge className="bg-muted/70 text-primary border-border text-xs mb-2">Recommended</Badge>}
               <div className="text-sm font-semibold text-foreground">{opt.label}</div>
-              <div className="text-lg font-bold text-white mt-1">{fmt(opt.premium)}/yr</div>
+              <div className="text-lg font-bold text-foreground mt-1">{fmt(opt.premium)}/yr</div>
               {opt.savings > 0 && <div className="text-xs text-green-400">Save {fmt(opt.savings)}/yr</div>}
               <div className="text-xs text-muted-foreground mt-2">{opt.note}</div>
             </div>
@@ -1394,7 +1394,7 @@ function FIRoadmapTab() {
             <div key={field.label} className="space-y-1">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">{field.label}</span>
-                <span className="text-white font-medium">
+                <span className="text-foreground font-medium">
                   {field.isPercent ? fmtPct(field.value) : fmtK(field.value)}
                 </span>
               </div>
@@ -1426,7 +1426,7 @@ function FIRoadmapTab() {
             <div className="relative h-4 bg-muted rounded-full overflow-hidden">
               <div className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-300"
                 style={{ width: `${progressPct}%` }} />
-              <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
+              <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-foreground">
                 {fmtPct(progressPct)}
               </div>
             </div>
@@ -1470,7 +1470,7 @@ function FIRoadmapTab() {
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Part-Time Earnings/yr</span>
-              <span className="text-white font-medium">{fmt(baristaEarnings)}</span>
+              <span className="text-foreground font-medium">{fmt(baristaEarnings)}</span>
             </div>
             <Slider min={0} max={60000} step={1000} value={[baristaEarnings]} onValueChange={([v]) => setBaristaEarnings(v)} />
           </div>
@@ -1562,10 +1562,10 @@ export default function WealthBuilderPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
-                <TrendingUp size={18} className="text-white" />
+                <TrendingUp size={18} className="text-foreground" />
               </div>
               <div>
-                <h1 className="text-lg font-bold text-white">Wealth Builder</h1>
+                <h1 className="text-lg font-bold text-foreground">Wealth Builder</h1>
                 <p className="text-xs text-muted-foreground">Comprehensive financial independence planning toolkit</p>
               </div>
             </div>
@@ -1587,7 +1587,7 @@ export default function WealthBuilderPage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>

@@ -428,11 +428,11 @@ function StatCard({
       <Card className="bg-card border-border">
         <CardContent className="p-4 flex items-start gap-3">
           <div className={`p-2 rounded-lg ${color}`}>
-            <Icon className="w-4 h-4 text-white" />
+            <Icon className="w-4 h-4 text-foreground" />
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
-            <p className="text-lg font-bold text-white">{value}</p>
+            <p className="text-lg font-bold text-foreground">{value}</p>
             <p className="text-xs text-muted-foreground">{sub}</p>
           </div>
         </CardContent>
@@ -560,10 +560,10 @@ function SWFOverviewTab() {
                   <td className="py-2 px-2">
                     <div className="flex items-center gap-1.5">
                       <span>{fund.flag}</span>
-                      <span className="text-white font-medium truncate max-w-[180px]">{fund.name}</span>
+                      <span className="text-foreground font-medium truncate max-w-[180px]">{fund.name}</span>
                     </div>
                   </td>
-                  <td className="py-2 px-2 text-white font-semibold">${fund.aum.toLocaleString()}B</td>
+                  <td className="py-2 px-2 text-foreground font-semibold">${fund.aum.toLocaleString()}B</td>
                   <td className="py-2 px-2 text-muted-foreground">{fund.founded}</td>
                   <td className="py-2 px-2">
                     <span className={`px-1.5 py-0.5 rounded border text-xs ${mandateColor[fund.mandate]}`}>{fund.mandate}</span>
@@ -717,7 +717,7 @@ function AssetAllocationTab() {
                         <div className="w-2.5 h-2.5 rounded-sm" style={{ backgroundColor: d.color }} />
                         <span className="text-xs text-muted-foreground">{d.label}</span>
                       </div>
-                      <span className="text-xs font-semibold text-white">{d.pct}%</span>
+                      <span className="text-xs font-semibold text-foreground">{d.pct}%</span>
                     </div>
                     <p className="text-xs text-muted-foreground pl-4">{d.description}</p>
                   </div>
@@ -736,7 +736,7 @@ function AssetAllocationTab() {
             {mandateComparison.map((m) => (
               <div key={m.type} className="p-3 bg-muted/50 rounded-lg border border-border/50">
                 <div className="flex items-start justify-between mb-2">
-                  <p className="text-sm font-semibold text-white">{m.type}</p>
+                  <p className="text-sm font-semibold text-foreground">{m.type}</p>
                   <Badge variant="outline" className="text-xs border-border text-muted-foreground">{m.examples}</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mb-3">{m.focus}</p>
@@ -911,7 +911,7 @@ function NorwayModelTab() {
             {exclusions.map((ex) => (
               <div key={ex.sector} className="flex items-center justify-between p-2 bg-muted/50 rounded-lg">
                 <div>
-                  <p className="text-xs font-medium text-white">{ex.sector}</p>
+                  <p className="text-xs font-medium text-foreground">{ex.sector}</p>
                   <p className="text-xs text-muted-foreground">{ex.reason}</p>
                 </div>
                 <Badge variant="outline" className="text-red-400 border-red-500/30 text-xs">
@@ -940,7 +940,7 @@ function NorwayModelTab() {
               <div key={item.title} className="flex gap-3">
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-xs font-medium text-white">{item.title}</p>
+                  <p className="text-xs font-medium text-foreground">{item.title}</p>
                   <p className="text-xs text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
@@ -991,8 +991,8 @@ function EndowmentModelTab() {
             <tbody>
               {ENDOWMENT_PROFILES.map((ep, i) => (
                 <tr key={ep.institution} className={`border-b border-border/50 hover:bg-muted/30 transition-colors ${i === ENDOWMENT_PROFILES.length - 1 ? "text-muted-foreground" : ""}`}>
-                  <td className="py-2 px-2 font-medium text-white">{ep.institution}</td>
-                  <td className="py-2 px-2 text-white">${ep.aum.toFixed(1)}B</td>
+                  <td className="py-2 px-2 font-medium text-foreground">{ep.institution}</td>
+                  <td className="py-2 px-2 text-foreground">${ep.aum.toFixed(1)}B</td>
                   <td className="py-2 px-2 text-indigo-300">{ep.equities}%</td>
                   <td className="py-2 px-2 text-muted-foreground">{ep.fixedIncome}%</td>
                   <td className="py-2 px-2 text-primary">{ep.alternatives}%</td>
@@ -1109,7 +1109,7 @@ function EndowmentModelTab() {
               <div key={item.title} className="flex gap-3 p-2.5 bg-muted/50 rounded-lg">
                 <item.icon className={`w-4 h-4 mt-0.5 flex-shrink-0 ${item.color}`} />
                 <div>
-                  <p className="text-xs font-semibold text-white">{item.title}</p>
+                  <p className="text-xs font-semibold text-foreground">{item.title}</p>
                   <p className="text-xs text-muted-foreground">{item.desc}</p>
                 </div>
               </div>
@@ -1126,7 +1126,7 @@ function EndowmentModelTab() {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="p-3 bg-muted/60 rounded-lg space-y-2">
-              <p className="text-xs font-semibold text-white">Yale Spending Formula</p>
+              <p className="text-xs font-semibold text-foreground">Yale Spending Formula</p>
               <p className="text-xs text-muted-foreground font-mono bg-card p-2 rounded">
                 Spend = 0.8 × Prior_Spend × (1 + CPI) + 0.2 × 5.25% × AUM
               </p>
@@ -1140,7 +1140,7 @@ function EndowmentModelTab() {
             ].map((r) => (
               <div key={r.rule} className="flex items-start justify-between p-2 bg-muted/50 rounded-lg">
                 <div>
-                  <p className="text-xs font-medium text-white">{r.rule}</p>
+                  <p className="text-xs font-medium text-foreground">{r.rule}</p>
                   <p className="text-xs text-muted-foreground">{r.desc}</p>
                 </div>
                 <Badge
@@ -1320,14 +1320,14 @@ function FactorInvestingTab() {
                   className="border-b border-border/50 hover:bg-muted/30 transition-colors cursor-pointer"
                   onClick={() => setSelectedFactor(f.factor === selectedFactor ? null : f.factor)}
                 >
-                  <td className="py-2 px-2 font-semibold text-white">{f.factor}</td>
+                  <td className="py-2 px-2 font-semibold text-foreground">{f.factor}</td>
                   <td className="py-2 px-2 text-emerald-300">{f.expectedPremium}%</td>
                   <td className="py-2 px-2 text-indigo-300">{f.sharpe.toFixed(2)}</td>
                   <td className="py-2 px-2">
                     <Badge variant="outline" className={`text-xs ${capacityColor[f.capacity]}`}>{f.capacity}</Badge>
                   </td>
                   <td className="py-2 px-2 text-red-300">{f.implementationCost}</td>
-                  <td className="py-2 px-2 font-medium text-white">{(f.expectedPremium - f.implementationCost / 100).toFixed(2)}%</td>
+                  <td className="py-2 px-2 font-medium text-foreground">{(f.expectedPremium - f.implementationCost / 100).toFixed(2)}%</td>
                   <td className="py-2 px-2">
                     <div className="flex items-center gap-2">
                       <div className="flex-1 bg-muted rounded-full h-1.5">
@@ -1387,7 +1387,7 @@ function FactorInvestingTab() {
               <div key={item.title} className={`p-3 rounded-lg border ${item.color}`}>
                 <div className="flex items-center gap-2 mb-2">
                   <item.icon className={`w-4 h-4 ${item.iconColor}`} />
-                  <p className="text-xs font-semibold text-white">{item.title}</p>
+                  <p className="text-xs font-semibold text-foreground">{item.title}</p>
                 </div>
                 <p className="text-xs text-muted-foreground">{item.desc}</p>
               </div>
@@ -1409,10 +1409,10 @@ export default function SovereignPage() {
         <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="flex items-center gap-3 mb-1">
             <div className="p-2.5 bg-indigo-600 rounded-xl">
-              <Globe className="w-5 h-5 text-white" />
+              <Globe className="w-5 h-5 text-foreground" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Sovereign Wealth &amp; Institutional Investing</h1>
+              <h1 className="text-2xl font-bold text-foreground">Sovereign Wealth &amp; Institutional Investing</h1>
               <p className="text-sm text-muted-foreground">How the world's largest pools of capital allocate, govern, and grow</p>
             </div>
           </div>
@@ -1427,23 +1427,23 @@ export default function SovereignPage() {
         {/* Tabs */}
         <Tabs defaultValue="overview">
           <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
-            <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white">
+            <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Globe className="w-3.5 h-3.5 mr-1.5" />
               SWF Overview
             </TabsTrigger>
-            <TabsTrigger value="allocation" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white">
+            <TabsTrigger value="allocation" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Layers className="w-3.5 h-3.5 mr-1.5" />
               Asset Allocation
             </TabsTrigger>
-            <TabsTrigger value="norway" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white">
+            <TabsTrigger value="norway" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Shield className="w-3.5 h-3.5 mr-1.5" />
               Norway Model
             </TabsTrigger>
-            <TabsTrigger value="endowment" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white">
+            <TabsTrigger value="endowment" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <BookOpen className="w-3.5 h-3.5 mr-1.5" />
               Endowment Model
             </TabsTrigger>
-            <TabsTrigger value="factors" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white">
+            <TabsTrigger value="factors" className="text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <BarChart3 className="w-3.5 h-3.5 mr-1.5" />
               Factor Investing
             </TabsTrigger>

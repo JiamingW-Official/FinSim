@@ -966,7 +966,7 @@ function PrimaryResearchTab() {
           {expertNetworks.map((en, i) => (
             <div key={i} className="bg-card rounded-lg p-3 border border-border">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-bold text-white bg-primary px-2 py-0.5 rounded">{en.name}</span>
+                <span className="text-xs font-bold text-foreground bg-primary px-2 py-0.5 rounded">{en.name}</span>
               </div>
               <p className="text-xs text-muted-foreground">{en.description}</p>
             </div>
@@ -1248,7 +1248,7 @@ function ThesisTab() {
               onClick={() => setActiveStep(i)}
               className={cn(
                 "text-xs px-2.5 py-1 rounded-lg font-semibold transition-colors",
-                activeStep === i ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+                activeStep === i ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {step.step}
@@ -1487,7 +1487,7 @@ export default function EquityResearch3Page() {
             <Microscope className="w-5 h-5 text-primary" />
             <span className="text-xs font-semibold text-primary">Advanced Equity Research</span>
           </div>
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-2xl font-bold text-foreground">
             SOTP · Primary Research · Forensic Accounting · Thesis Construction
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
@@ -1507,7 +1507,7 @@ export default function EquityResearch3Page() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-muted data-[state=active]:text-white rounded-lg"
+                className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-muted data-[state=active]:text-foreground rounded-lg"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>

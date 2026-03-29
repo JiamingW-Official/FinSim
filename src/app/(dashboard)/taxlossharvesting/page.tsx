@@ -489,7 +489,7 @@ export default function TaxLossHarvestingPage() {
                                 <Button
                                   size="sm"
                                   variant={harvested ? "outline" : "default"}
-                                  className={`h-6 text-xs px-2 ${harvested ? "text-muted-foreground" : "bg-green-600 hover:bg-green-700 text-white"}`}
+                                  className={`h-6 text-xs px-2 ${harvested ? "text-muted-foreground" : "bg-green-600 hover:bg-green-700 text-foreground"}`}
                                   onClick={() => toggleHarvest(h.ticker)}
                                 >
                                   {harvested ? <CheckCircle2 className="w-3 h-3" /> : "Harvest"}

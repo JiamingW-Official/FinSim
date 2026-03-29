@@ -724,19 +724,19 @@ export default function CleantechPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto">
-          <TabsTrigger value="overview" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="overview" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             Energy Transition
           </TabsTrigger>
-          <TabsTrigger value="solarwind" className="data-[state=active]:bg-amber-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="solarwind" className="data-[state=active]:bg-amber-600 data-[state=active]:text-foreground text-xs">
             Solar & Wind
           </TabsTrigger>
-          <TabsTrigger value="storage" className="data-[state=active]:bg-green-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="storage" className="data-[state=active]:bg-green-600 data-[state=active]:text-foreground text-xs">
             Energy Storage
           </TabsTrigger>
-          <TabsTrigger value="vehicles" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
+          <TabsTrigger value="vehicles" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
             Investment Vehicles
           </TabsTrigger>
-          <TabsTrigger value="policy" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
+          <TabsTrigger value="policy" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-xs">
             Policy & Subsidies
           </TabsTrigger>
         </TabsList>

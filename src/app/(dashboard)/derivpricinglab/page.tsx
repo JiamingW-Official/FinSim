@@ -648,9 +648,9 @@ export default function DerivPricingLabPage() {
                 <div className="flex items-start gap-3">
                   <Info className="w-4 h-4 text-sky-400 mt-0.5 shrink-0" />
                   <div className="text-sm text-muted-foreground space-y-1">
-                    <p><span className="text-white font-medium">Risk-Neutral Valuation:</span> We price options as if investors are risk-neutral — discounting at the risk-free rate. This works because we can replicate any option payoff by delta-hedging.</p>
-                    <p><span className="text-white font-medium">Backward Induction:</span> Start at terminal nodes (payoffs), then work backwards multiplying by p (up) and 1−p (down), discounting each step by e^(−rΔt).</p>
-                    <p><span className="text-white font-medium">Convergence:</span> With 3 steps there is a small error vs Black-Scholes. At 50+ steps, the binomial price converges to within cents.</p>
+                    <p><span className="text-foreground font-medium">Risk-Neutral Valuation:</span> We price options as if investors are risk-neutral — discounting at the risk-free rate. This works because we can replicate any option payoff by delta-hedging.</p>
+                    <p><span className="text-foreground font-medium">Backward Induction:</span> Start at terminal nodes (payoffs), then work backwards multiplying by p (up) and 1−p (down), discounting each step by e^(−rΔt).</p>
+                    <p><span className="text-foreground font-medium">Convergence:</span> With 3 steps there is a small error vs Black-Scholes. At 50+ steps, the binomial price converges to within cents.</p>
                   </div>
                 </div>
               </CardContent>
@@ -664,7 +664,7 @@ export default function DerivPricingLabPage() {
               <CardContent className="p-4">
                 <div className="flex items-center gap-6">
                   <div className="flex-1">
-                    <p className="text-xs text-muted-foreground mb-2">Number of Simulations: <span className="text-white font-medium">{mcPaths.toLocaleString()}</span></p>
+                    <p className="text-xs text-muted-foreground mb-2">Number of Simulations: <span className="text-foreground font-medium">{mcPaths.toLocaleString()}</span></p>
                     <Slider
                       min={100} max={10000} step={100}
                       value={[mcPaths]}

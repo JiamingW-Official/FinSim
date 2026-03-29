@@ -124,7 +124,7 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
               onClick={onCancel}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="rounded-lg bg-red-500 px-4 py-2 text-xs font-bold text-white transition-colors hover:bg-red-400"
+              className="rounded-lg bg-red-500 px-4 py-2 text-xs font-bold text-foreground transition-colors hover:bg-red-400"
             >
               Back to Lobby
             </motion.button>

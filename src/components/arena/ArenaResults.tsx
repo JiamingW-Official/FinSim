@@ -281,7 +281,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           onClick={onPlayAgain}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-1.5 rounded-lg bg-red-500 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-red-400"
+          className="flex items-center gap-1.5 rounded-lg bg-red-500 px-6 py-2.5 text-sm font-bold text-foreground shadow-sm transition-colors hover:bg-red-400"
         >
           <Crosshair className="h-3.5 w-3.5" />
           Play Again

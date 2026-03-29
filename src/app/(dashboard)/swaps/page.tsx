@@ -138,18 +138,18 @@ function MetricCard({
 }) {
   return (
     <div className="bg-foreground/5 rounded-lg p-3 flex flex-col gap-1">
-      <span className="text-[11px] text-white/40 uppercase tracking-wide">{label}</span>
+      <span className="text-[11px] text-foreground/40 uppercase tracking-wide">{label}</span>
       <span
         className={cn(
           "text-lg font-semibold tabular-nums",
           positive === true && "text-emerald-400",
           positive === false && "text-red-400",
-          positive === undefined && "text-white",
+          positive === undefined && "text-foreground",
         )}
       >
         {value}
       </span>
-      {sub && <span className="text-[11px] text-white/40">{sub}</span>}
+      {sub && <span className="text-[11px] text-foreground/40">{sub}</span>}
     </div>
   );
 }
@@ -165,7 +165,7 @@ function InfoBox({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-sm font-semibold text-white/70 mb-3">
+    <h3 className="text-sm font-semibold text-foreground/70 mb-3">
       {children}
     </h3>
   );
@@ -192,9 +192,9 @@ function NumberInput({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-xs text-white/50">{label}</label>
+      <label className="text-xs text-foreground/50">{label}</label>
       <div className="flex items-center bg-foreground/5 border border-border rounded-lg px-3 h-9 gap-1">
-        {prefix && <span className="text-white/40 text-sm">{prefix}</span>}
+        {prefix && <span className="text-foreground/40 text-sm">{prefix}</span>}
         <input
           type="number"
           value={value}
@@ -202,9 +202,9 @@ function NumberInput({
           max={max}
           step={step ?? 1}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="bg-transparent flex-1 text-sm text-white outline-none w-full tabular-nums"
+          className="bg-transparent flex-1 text-sm text-foreground outline-none w-full tabular-nums"
         />
-        {suffix && <span className="text-white/40 text-sm">{suffix}</span>}
+        {suffix && <span className="text-foreground/40 text-sm">{suffix}</span>}
       </div>
     </div>
   );
@@ -223,11 +223,11 @@ function SelectInput({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-xs text-white/50">{label}</label>
+      <label className="text-xs text-foreground/50">{label}</label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-foreground/5 border border-border rounded-lg px-3 h-9 text-sm text-white outline-none"
+        className="bg-foreground/5 border border-border rounded-lg px-3 h-9 text-sm text-foreground outline-none"
       >
         {options.map((o) => (
           <option key={o.value} value={o.value} className="bg-card">
@@ -383,7 +383,7 @@ function IRSPricer() {
       <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>Mark-to-Market Sensitivity</SectionTitle>
         <div className="flex items-center gap-4">
-          <span className="text-xs text-white/50 w-32">Rate shift (bps)</span>
+          <span className="text-xs text-foreground/50 w-32">Rate shift (bps)</span>
           <input
             type="range"
             min={-200}
@@ -396,7 +396,7 @@ function IRSPricer() {
           <span
             className={cn(
               "text-sm font-mono w-16 text-right",
-              marketShift > 0 ? "text-emerald-400" : marketShift < 0 ? "text-red-400" : "text-white/60",
+              marketShift > 0 ? "text-emerald-400" : marketShift < 0 ? "text-red-400" : "text-foreground/60",
             )}
           >
             {marketShift > 0 ? "+" : ""}
@@ -677,7 +677,7 @@ function SwapCurveBuilder() {
         <SectionTitle>Bootstrapped Discount Factors</SectionTitle>
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-white/40 text-xs uppercase">
+            <tr className="text-foreground/40 text-xs uppercase">
               <th className="text-left py-1 pr-4">Tenor</th>
               <th className="text-right py-1 pr-4">OIS Quote</th>
               <th className="text-right py-1 pr-4">Disc. Factor</th>
@@ -691,11 +691,11 @@ function SwapCurveBuilder() {
                 className="border-t border-border/50 hover:bg-muted/30 cursor-pointer transition-colors"
                 onClick={() => setSelectedIdx(selectedIdx === i ? null : i)}
               >
-                <td className="py-1.5 pr-4 text-white/80 font-medium">{r.label}</td>
+                <td className="py-1.5 pr-4 text-foreground/80 font-medium">{r.label}</td>
                 <td className="py-1.5 pr-4 text-right tabular-nums text-sky-300">
                   {r.rate.toFixed(2)}%
                 </td>
-                <td className="py-1.5 pr-4 text-right tabular-nums text-white/60">
+                <td className="py-1.5 pr-4 text-right tabular-nums text-foreground/60">
                   {r.df.toFixed(6)}
                 </td>
                 <td className="py-1.5 text-right tabular-nums text-emerald-300">
@@ -914,7 +914,7 @@ function CDSPricer() {
       <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>CDS P&amp;L — Spread Widening/Tightening</SectionTitle>
         <div className="flex items-center gap-4">
-          <span className="text-xs text-white/50 w-36">Spread shift (bps)</span>
+          <span className="text-xs text-foreground/50 w-36">Spread shift (bps)</span>
           <input
             type="range"
             min={-100}
@@ -951,14 +951,14 @@ function CDSPricer() {
         <SectionTitle>CDX Index Snapshot</SectionTitle>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3 space-y-1">
-            <div className="text-xs text-white/40 uppercase">CDX.NA.IG (125 names)</div>
+            <div className="text-xs text-foreground/40 uppercase">CDX.NA.IG (125 names)</div>
             <div className="text-2xl font-bold text-emerald-400">108 bps</div>
-            <div className="text-xs text-white/50">Investment Grade — avg per-name: 0.86 bps</div>
+            <div className="text-xs text-foreground/50">Investment Grade — avg per-name: 0.86 bps</div>
           </div>
           <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-3 space-y-1">
-            <div className="text-xs text-white/40 uppercase">CDX.NA.HY (100 names)</div>
+            <div className="text-xs text-foreground/40 uppercase">CDX.NA.HY (100 names)</div>
             <div className="text-2xl font-bold text-rose-400">450 bps</div>
-            <div className="text-xs text-white/50">High Yield — avg per-name: 4.5 bps</div>
+            <div className="text-xs text-foreground/50">High Yield — avg per-name: 4.5 bps</div>
           </div>
         </div>
       </div>
@@ -1068,13 +1068,13 @@ function TRSPage() {
           />
         )}
         <div className="flex flex-col gap-1">
-          <label className="text-xs text-white/50">Underlying Type</label>
+          <label className="text-xs text-foreground/50">Underlying Type</label>
           <div className="flex gap-2">
             <button
               onClick={() => setUseEquity(false)}
               className={cn(
                 "flex-1 h-9 rounded-lg text-sm transition-colors",
-                !useEquity ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50",
+                !useEquity ? "bg-sky-600 text-foreground" : "bg-foreground/5 text-foreground/50 hover:bg-muted/50",
               )}
             >
               Fixed Income
@@ -1083,7 +1083,7 @@ function TRSPage() {
               onClick={() => setUseEquity(true)}
               className={cn(
                 "flex-1 h-9 rounded-lg text-sm transition-colors",
-                useEquity ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50",
+                useEquity ? "bg-sky-600 text-foreground" : "bg-foreground/5 text-foreground/50 hover:bg-muted/50",
               )}
             >
               Equity TRS
@@ -1149,21 +1149,21 @@ function TRSPage() {
       {/* Structure explanation */}
       <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
         <SectionTitle>TRS Structure &amp; Regulatory Context</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-white/70">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-foreground/70">
           <div className="space-y-2">
-            <p className="font-medium text-white">Economic Exposure vs Legal Ownership</p>
+            <p className="font-medium text-foreground">Economic Exposure vs Legal Ownership</p>
             <p>The Total Return Payer (e.g. prime broker) holds the bond legally but transfers all economic exposure (coupon + price change) to the receiver (hedge fund).</p>
           </div>
           <div className="space-y-2">
-            <p className="font-medium text-white">Prime Brokerage Leverage</p>
+            <p className="font-medium text-foreground">Prime Brokerage Leverage</p>
             <p>${(notional / 1e6).toFixed(1)}M TRS with ${(margin / 1e6).toFixed(1)}M initial margin = {results.leverage.toFixed(1)}× leverage. The fund controls large notional with limited capital.</p>
           </div>
           <div className="space-y-2">
-            <p className="font-medium text-white">Regulatory Treatment (pre-Basel III)</p>
+            <p className="font-medium text-foreground">Regulatory Treatment (pre-Basel III)</p>
             <p>Pre-2008 TRS were off-balance-sheet for the receiver. Post-Dodd-Frank, large TRS positions require disclosure (e.g. Archegos 2021 caused $10B+ losses when positions unwound).</p>
           </div>
           <div className="space-y-2">
-            <p className="font-medium text-white">Equity TRS (S&P 500)</p>
+            <p className="font-medium text-foreground">Equity TRS (S&P 500)</p>
             <p>Hedge funds use equity TRS to gain index exposure without owning shares — avoiding stamp duty and benefiting from synthetic repo financing at near-SOFR rates.</p>
           </div>
         </div>
@@ -1238,17 +1238,17 @@ function SwaptionsPage() {
       {/* Inputs */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         <div className="flex flex-col gap-1">
-          <label className="text-xs text-white/50">Swaption Type</label>
+          <label className="text-xs text-foreground/50">Swaption Type</label>
           <div className="flex gap-2">
             <button
               onClick={() => setIsPayer(true)}
-              className={cn("flex-1 h-9 rounded-lg text-sm", isPayer ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50")}
+              className={cn("flex-1 h-9 rounded-lg text-sm", isPayer ? "bg-sky-600 text-foreground" : "bg-foreground/5 text-foreground/50 hover:bg-muted/50")}
             >
               Payer
             </button>
             <button
               onClick={() => setIsPayer(false)}
-              className={cn("flex-1 h-9 rounded-lg text-sm", !isPayer ? "bg-sky-600 text-white" : "bg-foreground/5 text-white/50 hover:bg-muted/50")}
+              className={cn("flex-1 h-9 rounded-lg text-sm", !isPayer ? "bg-sky-600 text-foreground" : "bg-foreground/5 text-foreground/50 hover:bg-muted/50")}
             >
               Receiver
             </button>
@@ -1404,7 +1404,7 @@ function SwaptionsPage() {
             Swap Tenor →
           </text>
         </svg>
-        <p className="text-xs text-white/40">
+        <p className="text-xs text-foreground/40">
           Expiry (rows) × Swap Tenor (cols) — darker blue = higher vol. Blue=low, red=high implied vol.
           SABR model calibrates α (vol level), β (backbone), ρ (skew), ν (vol-of-vol) to fit surface.
         </p>
@@ -1575,18 +1575,18 @@ function InflationSwapsPage() {
       {/* Inflation cap/floor */}
       <div className="grid grid-cols-2 gap-3">
         <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
-          <div className="text-xs text-white/40 uppercase tracking-wide">Inflation Cap (≥{capStrike}% CPI)</div>
+          <div className="text-xs text-foreground/40 uppercase tracking-wide">Inflation Cap (≥{capStrike}% CPI)</div>
           <div className="text-xl font-bold text-amber-300">
             ${(results.capPV / 1000).toFixed(0)}K
           </div>
-          <p className="text-xs text-white/50">Protects against CPI above {capStrike}% — e.g. pension paying real benefits</p>
+          <p className="text-xs text-foreground/50">Protects against CPI above {capStrike}% — e.g. pension paying real benefits</p>
         </div>
         <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
-          <div className="text-xs text-white/40 uppercase tracking-wide">Inflation Floor (≤{floorStrike}% CPI)</div>
+          <div className="text-xs text-foreground/40 uppercase tracking-wide">Inflation Floor (≤{floorStrike}% CPI)</div>
           <div className="text-xl font-bold text-sky-300">
             ${(results.floorPV / 1000).toFixed(0)}K
           </div>
-          <p className="text-xs text-white/50">Protects against CPI below {floorStrike}% — e.g. inflation-linked bond issuer</p>
+          <p className="text-xs text-foreground/50">Protects against CPI below {floorStrike}% — e.g. inflation-linked bond issuer</p>
         </div>
       </div>
 
@@ -1637,7 +1637,7 @@ function InflationSwapsPage() {
         <SectionTitle>TIPS Breakeven Inflation (nominal − TIPS yield)</SectionTitle>
         <table className="w-full text-sm">
           <thead>
-            <tr className="text-white/40 text-xs uppercase">
+            <tr className="text-foreground/40 text-xs uppercase">
               <th className="text-left py-1 pr-4">Tenor</th>
               <th className="text-right py-1 pr-4">TIPS Real Yield</th>
               <th className="text-right py-1 pr-4">Nominal Yield</th>
@@ -1652,9 +1652,9 @@ function InflationSwapsPage() {
               const basis = breakeven - swapRate;
               return (
                 <tr key={i} className="border-t border-border/50">
-                  <td className="py-1.5 pr-4 text-white/80 font-medium">{row.label}</td>
+                  <td className="py-1.5 pr-4 text-foreground/80 font-medium">{row.label}</td>
                   <td className="py-1.5 pr-4 text-right tabular-nums text-sky-300">{row.tipsYield.toFixed(2)}%</td>
-                  <td className="py-1.5 pr-4 text-right tabular-nums text-white/60">{row.nominalYield.toFixed(2)}%</td>
+                  <td className="py-1.5 pr-4 text-right tabular-nums text-foreground/60">{row.nominalYield.toFixed(2)}%</td>
                   <td className="py-1.5 pr-4 text-right tabular-nums text-amber-300">{breakeven.toFixed(2)}%</td>
                   <td className={cn("py-1.5 text-right tabular-nums text-xs", basis > 0 ? "text-emerald-400" : "text-red-400")}>
                     {basis >= 0 ? "+" : ""}{(basis * 100).toFixed(0)} bps
@@ -1697,8 +1697,8 @@ export default function SwapsPage() {
             <ArrowLeftRight className="w-4 h-4 text-sky-400" />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-white">Interest Rate Swaps &amp; Fixed Income Derivatives</h1>
-            <p className="text-xs text-white/40">
+            <h1 className="text-lg font-semibold text-foreground">Interest Rate Swaps &amp; Fixed Income Derivatives</h1>
+            <p className="text-xs text-foreground/40">
               IRS · Swap Curves · CDS · Total Return Swaps · Swaptions · Inflation Derivatives
             </p>
           </div>
@@ -1712,7 +1712,7 @@ export default function SwapsPage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="data-[state=active]:bg-sky-600 data-[state=active]:text-white text-white/50 flex items-center gap-1.5 px-3 py-1.5 text-sm"
+                className="data-[state=active]:bg-sky-600 data-[state=active]:text-foreground text-foreground/50 flex items-center gap-1.5 px-3 py-1.5 text-sm"
               >
                 <tab.icon className="w-3.5 h-3.5" />
                 {tab.label}

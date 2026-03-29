@@ -733,7 +733,7 @@ function InventoryTab() {
                           ri === ci ? "opacity-100" : "opacity-90"
                         )}
                       >
-                        <span className="text-white text-[11px]">{val.toFixed(2)}</span>
+                        <span className="text-foreground text-[11px]">{val.toFixed(2)}</span>
                       </div>
                     </td>
                   ))}

@@ -1066,7 +1066,7 @@ function ExplanationPanel({
           </a>
         )}
       </Card>
-      <Button onClick={onNext} className="w-full bg-primary hover:bg-primary text-white">
+      <Button onClick={onNext} className="w-full bg-primary hover:bg-primary text-foreground">
         {isLast ? "See Results" : "Next Question"}
         <ChevronRight className="h-4 w-4 ml-1" />
       </Button>
@@ -1112,7 +1112,7 @@ function FinalScoreScreen({
         <p className="text-muted-foreground text-sm">{label}</p>
         <div className="flex items-center justify-center gap-6 mt-4">
           <div className="text-center">
-            <div className="text-2xl font-bold text-white">{correct}/{answers.length}</div>
+            <div className="text-2xl font-bold text-foreground">{correct}/{answers.length}</div>
             <div className="text-xs text-muted-foreground">Correct</div>
           </div>
           <div className="text-center">
@@ -1151,7 +1151,7 @@ function FinalScoreScreen({
         ))}
       </div>
 
-      <Button onClick={onRestart} className="w-full bg-muted hover:bg-muted text-white">
+      <Button onClick={onRestart} className="w-full bg-muted hover:bg-muted text-foreground">
         <BarChart2 className="h-4 w-4 mr-2" />
         Play Again
       </Button>
@@ -1250,7 +1250,7 @@ function DailyChallengeTab() {
           <div className="text-2xl mb-3">
             <Brain className="h-12 w-12 text-primary mx-auto" />
           </div>
-          <h2 className="text-xl font-bold text-white">Daily Challenge</h2>
+          <h2 className="text-xl font-bold text-foreground">Daily Challenge</h2>
           <p className="text-muted-foreground text-sm mt-1">
             10 questions · 30 seconds each · New questions every day
           </p>
@@ -1266,11 +1266,11 @@ function DailyChallengeTab() {
         <Card className="bg-muted/50 border-border/40 p-4 w-full max-w-sm">
           <div className="grid grid-cols-3 gap-3 text-center">
             <div>
-              <div className="text-lg font-bold text-white">10</div>
+              <div className="text-lg font-bold text-foreground">10</div>
               <div className="text-xs text-muted-foreground">Questions</div>
             </div>
             <div>
-              <div className="text-lg font-bold text-white">30s</div>
+              <div className="text-lg font-bold text-foreground">30s</div>
               <div className="text-xs text-muted-foreground">Per Question</div>
             </div>
             <div>
@@ -1281,7 +1281,7 @@ function DailyChallengeTab() {
         </Card>
         <Button
           onClick={() => setPhase("playing")}
-          className="bg-primary hover:bg-primary text-white px-8"
+          className="bg-primary hover:bg-primary text-foreground px-8"
         >
           <Zap className="h-4 w-4 mr-2" />
           Start Daily Challenge
@@ -1382,7 +1382,7 @@ function WeeklyLeagueTab() {
             <div>
               <div className="text-xs text-muted-foreground mb-0.5">Your Standing</div>
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-white">#{userPlayer.rank}</span>
+                <span className="text-2xl font-bold text-foreground">#{userPlayer.rank}</span>
                 <span className={cn("text-sm font-semibold", TIER_COLOR[userPlayer.tier])}>
                   {userPlayer.tier}
                 </span>
@@ -1445,7 +1445,7 @@ function WeeklyLeagueTab() {
       <div className="flex items-center gap-2 flex-wrap">
         <button
           onClick={() => setSelectedTier("all")}
-          className={cn("text-xs px-2 py-1 rounded border transition-colors", selectedTier === "all" ? "bg-muted border-muted-foreground text-white" : "border-border text-muted-foreground hover:border-border")}
+          className={cn("text-xs px-2 py-1 rounded border transition-colors", selectedTier === "all" ? "bg-muted border-muted-foreground text-foreground" : "border-border text-muted-foreground hover:border-border")}
         >
           All
         </button>
@@ -1622,7 +1622,7 @@ function SpeedRoundTab() {
       <div className="flex flex-col items-center gap-6 py-8">
         <div className="text-center">
           <Zap className="h-12 w-12 text-yellow-400 mx-auto mb-3" />
-          <h2 className="text-xl font-bold text-white">Speed Round</h2>
+          <h2 className="text-xl font-bold text-foreground">Speed Round</h2>
           <p className="text-muted-foreground text-sm mt-1">20 questions · 15 seconds each · No pauses</p>
           {personalBest > 0 && (
             <div className="mt-2 inline-flex items-center gap-1 text-yellow-400 text-sm">
@@ -1678,7 +1678,7 @@ function SpeedRoundTab() {
           )}
           <div className="flex justify-center gap-6 mt-4">
             <div className="text-center">
-              <div className="text-lg font-bold text-white">{correct}/{answers.length}</div>
+              <div className="text-lg font-bold text-foreground">{correct}/{answers.length}</div>
               <div className="text-xs text-muted-foreground">Correct</div>
             </div>
             <div className="text-center">
@@ -1924,7 +1924,7 @@ function BossChallengesTab() {
             )}
             <div className="flex justify-center gap-6 mt-4">
               <div className="text-center">
-                <div className="text-lg font-bold text-white">{correctCount}/10</div>
+                <div className="text-lg font-bold text-foreground">{correctCount}/10</div>
                 <div className="text-xs text-muted-foreground">Correct</div>
               </div>
               <div className="text-center">
@@ -2057,7 +2057,7 @@ function BossChallengesTab() {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold text-white">{boss.name}</span>
+                  <span className="text-sm font-bold text-foreground">{boss.name}</span>
                   <span className="text-xs text-muted-foreground">{boss.title}</span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5 line-clamp-1">{boss.description}</p>
@@ -2073,7 +2073,7 @@ function BossChallengesTab() {
                   <Button
                     size="sm"
                     onClick={() => startBoss(boss)}
-                    className="bg-red-600 hover:bg-red-500 text-white text-xs"
+                    className="bg-red-600 hover:bg-red-500 text-foreground text-xs"
                   >
                     Fight
                   </Button>
@@ -2151,7 +2151,7 @@ function QuestionBuilderTab() {
       {/* Builder form */}
       <Card className="bg-card/70 border-border/50 p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <div className="text-sm font-semibold text-white flex items-center gap-2">
+          <div className="text-sm font-semibold text-foreground flex items-center gap-2">
             <Plus className="h-4 w-4 text-primary" />
             Create a Question
           </div>
@@ -2193,7 +2193,7 @@ function QuestionBuilderTab() {
                   formData.correctIndex === idx ? "bg-green-500 border-green-500" : "border-border"
                 )}
               >
-                {formData.correctIndex === idx && <CheckCircle2 className="h-2.5 w-2.5 text-white" />}
+                {formData.correctIndex === idx && <CheckCircle2 className="h-2.5 w-2.5 text-foreground" />}
               </button>
             </div>
           ))}
@@ -2275,7 +2275,7 @@ function QuestionBuilderTab() {
       <div>
         <div className="flex items-center gap-2 mb-3">
           <Users className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm font-semibold text-white">Top Community Questions</span>
+          <span className="text-sm font-semibold text-foreground">Top Community Questions</span>
         </div>
         <div className="space-y-3">
           {communityQs.map((cq) => (
@@ -2343,7 +2343,7 @@ export default function QuizTournamentPage() {
             <Trophy className="h-6 w-6 text-yellow-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Quiz Tournament</h1>
+            <h1 className="text-xl font-bold text-foreground">Quiz Tournament</h1>
             <p className="text-xs text-muted-foreground">Test your financial knowledge across 8 categories</p>
           </div>
           <div className="ml-auto flex items-center gap-1.5">
@@ -2375,7 +2375,7 @@ export default function QuizTournamentPage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex-1 flex items-center justify-center gap-1 text-xs py-1.5 data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+                className="flex-1 flex items-center justify-center gap-1 text-xs py-1.5 data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>

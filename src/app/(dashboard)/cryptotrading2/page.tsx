@@ -374,11 +374,11 @@ function StatChip({
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
     blue: "bg-primary/10 text-primary border-border",
     purple: "bg-primary/10 text-primary border-border",
-    muted: "bg-foreground/5 text-white/60 border-border",
+    muted: "bg-foreground/5 text-foreground/60 border-border",
   };
   return (
     <div className={cn("rounded-lg border px-3 py-2 text-center", colorMap[color])}>
-      <div className="text-xs text-white/50 mb-0.5">{label}</div>
+      <div className="text-xs text-foreground/50 mb-0.5">{label}</div>
       <div className="text-sm font-semibold">{value}</div>
     </div>
   );
@@ -387,8 +387,8 @@ function StatChip({
 function SectionHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className="mb-4">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
-      {subtitle && <p className="text-xs text-white/50 mt-0.5">{subtitle}</p>}
+      <h3 className="text-base font-semibold text-foreground">{title}</h3>
+      {subtitle && <p className="text-xs text-foreground/50 mt-0.5">{subtitle}</p>}
     </div>
   );
 }
@@ -706,7 +706,7 @@ export default function CryptoTrading2Page() {
             <Bitcoin className="h-6 w-6 text-amber-400" />
             Crypto Advanced Trading
           </h1>
-          <p className="text-sm text-white/50 mt-1">
+          <p className="text-sm text-foreground/50 mt-1">
             Market microstructure, on-chain signals, derivatives &amp; risk management
           </p>
         </div>
@@ -730,7 +730,7 @@ export default function CryptoTrading2Page() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-foreground/15 data-[state=active]:text-white text-white/50"
+              className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-lg data-[state=active]:bg-foreground/15 data-[state=active]:text-foreground text-foreground/50"
             >
               {tab.icon}
               {tab.label}
@@ -767,7 +767,7 @@ export default function CryptoTrading2Page() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-xs text-white/60 leading-relaxed">{card.body}</p>
+                  <p className="text-xs text-foreground/60 leading-relaxed">{card.body}</p>
                 </CardContent>
               </Card>
             ))}
@@ -788,7 +788,7 @@ export default function CryptoTrading2Page() {
                     <tr className="border-b border-border/50">
                       {["Pair", "Mark Price", "Index Price", "Basis", "Funding/8h", "Open Interest", "24h Volume", "Trend"].map(
                         (h) => (
-                          <th key={h} className="text-left text-white/40 font-medium px-4 py-3">
+                          <th key={h} className="text-left text-foreground/40 font-medium px-4 py-3">
                             {h}
                           </th>
                         )
@@ -801,11 +801,11 @@ export default function CryptoTrading2Page() {
                         key={m.pair}
                         className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                       >
-                        <td className="px-4 py-3 font-medium text-white">{m.pair}</td>
-                        <td className="px-4 py-3 text-white/80">
+                        <td className="px-4 py-3 font-medium text-foreground">{m.pair}</td>
+                        <td className="px-4 py-3 text-foreground/80">
                           ${m.markPrice.toLocaleString("en-US", { maximumFractionDigits: 2 })}
                         </td>
-                        <td className="px-4 py-3 text-white/60">
+                        <td className="px-4 py-3 text-foreground/60">
                           ${m.indexPrice.toLocaleString("en-US", { maximumFractionDigits: 2 })}
                         </td>
                         <td
@@ -820,13 +820,13 @@ export default function CryptoTrading2Page() {
                         <td
                           className={cn(
                             "px-4 py-3 font-medium",
-                            m.fundingRate > 0.005 ? "text-amber-400" : m.fundingRate < 0 ? "text-red-400" : "text-white/60"
+                            m.fundingRate > 0.005 ? "text-amber-400" : m.fundingRate < 0 ? "text-red-400" : "text-foreground/60"
                           )}
                         >
                           {(m.fundingRate * 100).toFixed(4)}%
                         </td>
-                        <td className="px-4 py-3 text-white/70">${m.openInterest.toFixed(0)}M</td>
-                        <td className="px-4 py-3 text-white/60">${m.volume24h.toFixed(0)}M</td>
+                        <td className="px-4 py-3 text-foreground/70">${m.openInterest.toFixed(0)}M</td>
+                        <td className="px-4 py-3 text-foreground/60">${m.volume24h.toFixed(0)}M</td>
                         <td className="px-4 py-3">
                           <Badge
                             className={cn(
@@ -835,7 +835,7 @@ export default function CryptoTrading2Page() {
                                 ? "bg-green-500/15 text-green-400 border-green-500/30"
                                 : m.trend === "bearish"
                                 ? "bg-red-500/15 text-red-400 border-red-500/30"
-                                : "bg-foreground/[0.08] text-white/50"
+                                : "bg-foreground/[0.08] text-foreground/50"
                             )}
                           >
                             {m.trend}
@@ -857,7 +857,7 @@ export default function CryptoTrading2Page() {
               </CardHeader>
               <CardContent className="pt-0">
                 <OIBarChart markets={perpMarkets} />
-                <p className="text-xs text-white/40 mt-2">
+                <p className="text-xs text-foreground/40 mt-2">
                   Bar color: green = long-biased funding, red = short-biased, purple = neutral
                 </p>
               </CardContent>
@@ -870,7 +870,7 @@ export default function CryptoTrading2Page() {
                 <div style={{ height: 160 }}>
                   <FundingRateChart data={fundingHistory} />
                 </div>
-                <p className="text-xs text-white/40 mt-2">
+                <p className="text-xs text-foreground/40 mt-2">
                   Annualized rate shown. Values &gt;20% suggest crowded longs; negative rates suggest crowded shorts.
                 </p>
               </CardContent>
@@ -926,7 +926,7 @@ export default function CryptoTrading2Page() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-xs text-white/60 leading-relaxed">{card.body}</p>
+                  <p className="text-xs text-foreground/60 leading-relaxed">{card.body}</p>
                 </CardContent>
               </Card>
             ))}
@@ -946,7 +946,7 @@ export default function CryptoTrading2Page() {
                   <thead>
                     <tr className="border-b border-border/50">
                       {["Signal", "Category", "Current Value", "Signal", "Strength", "Interpretation"].map((h) => (
-                        <th key={h} className="text-left text-white/40 font-medium px-4 py-3">
+                        <th key={h} className="text-left text-foreground/40 font-medium px-4 py-3">
                           {h}
                         </th>
                       ))}
@@ -955,9 +955,9 @@ export default function CryptoTrading2Page() {
                   <tbody>
                     {onChainSignals.map((sig) => (
                       <tr key={sig.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="px-4 py-3 font-medium text-white">{sig.name}</td>
-                        <td className="px-4 py-3 text-white/50">{sig.category}</td>
-                        <td className="px-4 py-3 font-mono text-white/80">{sig.value}</td>
+                        <td className="px-4 py-3 font-medium text-foreground">{sig.name}</td>
+                        <td className="px-4 py-3 text-foreground/50">{sig.category}</td>
+                        <td className="px-4 py-3 font-mono text-foreground/80">{sig.value}</td>
                         <td className="px-4 py-3">
                           <Badge
                             className={cn(
@@ -966,7 +966,7 @@ export default function CryptoTrading2Page() {
                                 ? "bg-green-500/15 text-green-400 border-green-500/30"
                                 : sig.signal === "bearish"
                                 ? "bg-red-500/15 text-red-400 border-red-500/30"
-                                : "bg-foreground/[0.08] text-white/50"
+                                : "bg-foreground/[0.08] text-foreground/50"
                             )}
                           >
                             {sig.signal}
@@ -978,10 +978,10 @@ export default function CryptoTrading2Page() {
                               value={sig.strength}
                               className="h-1.5 w-20 bg-foreground/10"
                             />
-                            <span className="text-white/60 tabular-nums">{sig.strength}</span>
+                            <span className="text-foreground/60 tabular-nums">{sig.strength}</span>
                           </div>
                         </td>
-                        <td className="px-4 py-3 text-white/50 max-w-xs">{sig.description}</td>
+                        <td className="px-4 py-3 text-foreground/50 max-w-xs">{sig.description}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1006,7 +1006,7 @@ export default function CryptoTrading2Page() {
                     <div className="flex items-start justify-between">
                       <div>
                         <CardTitle className="text-sm">{opp.name}</CardTitle>
-                        <p className="text-xs text-white/40 mt-0.5">{opp.type}</p>
+                        <p className="text-xs text-foreground/40 mt-0.5">{opp.type}</p>
                       </div>
                       <div className="flex gap-2">
                         <Badge className={cn("text-xs capitalize", riskColor[opp.risk])}>
@@ -1019,17 +1019,17 @@ export default function CryptoTrading2Page() {
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <p className="text-xs text-white/60 leading-relaxed">{opp.description}</p>
+                    <p className="text-xs text-foreground/60 leading-relaxed">{opp.description}</p>
                     <div className="bg-foreground/[0.04] rounded-lg p-3 space-y-1.5">
-                      <p className="text-xs text-white/40 font-medium uppercase tracking-wide mb-2">Mechanics</p>
+                      <p className="text-xs text-foreground/40 font-medium uppercase tracking-wide mb-2">Mechanics</p>
                       {opp.mechanics.map((step) => (
                         <div key={step} className="flex items-start gap-2">
-                          <ChevronRight className="h-3 w-3 text-white/30 mt-0.5 shrink-0" />
-                          <p className="text-xs text-white/70">{step}</p>
+                          <ChevronRight className="h-3 w-3 text-foreground/30 mt-0.5 shrink-0" />
+                          <p className="text-xs text-foreground/70">{step}</p>
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-white/40">
+                    <div className="flex items-center gap-2 text-xs text-foreground/40">
                       <DollarSign className="h-3.5 w-3.5" />
                       Minimum capital: {opp.capital}
                     </div>
@@ -1054,7 +1054,7 @@ export default function CryptoTrading2Page() {
                     <tr className="border-b border-border/50">
                       {["Strategy", "Return", "Risk", "Capital Req.", "Delta Neutral", "Execution Complexity"].map(
                         (h) => (
-                          <th key={h} className="text-left text-white/40 font-medium px-4 py-3">
+                          <th key={h} className="text-left text-foreground/40 font-medium px-4 py-3">
                             {h}
                           </th>
                         )
@@ -1069,7 +1069,7 @@ export default function CryptoTrading2Page() {
                       ["Liquidation Hunting", "30–70% APY", "High", "$5K+", "No", "Very High"],
                     ].map(([strat, ret, risk, cap, delta, comp]) => (
                       <tr key={strat} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="px-4 py-3 font-medium text-white">{strat}</td>
+                        <td className="px-4 py-3 font-medium text-foreground">{strat}</td>
                         <td className="px-4 py-3 text-green-400">{ret}</td>
                         <td className="px-4 py-3">
                           <Badge
@@ -1085,9 +1085,9 @@ export default function CryptoTrading2Page() {
                             {risk}
                           </Badge>
                         </td>
-                        <td className="px-4 py-3 text-white/70">{cap}</td>
-                        <td className="px-4 py-3 text-white/60">{delta}</td>
-                        <td className="px-4 py-3 text-white/60">{comp}</td>
+                        <td className="px-4 py-3 text-foreground/70">{cap}</td>
+                        <td className="px-4 py-3 text-foreground/60">{delta}</td>
+                        <td className="px-4 py-3 text-foreground/60">{comp}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1132,24 +1132,24 @@ export default function CryptoTrading2Page() {
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-medium text-white">{risk.name}</span>
+                        <span className="text-sm font-medium text-foreground">{risk.name}</span>
                         <Badge className={cn("text-xs capitalize", severityColor[risk.severity])}>
                           {risk.severity}
                         </Badge>
-                        <Badge className="text-xs bg-foreground/[0.08] text-white/50 border-border">
+                        <Badge className="text-xs bg-foreground/[0.08] text-foreground/50 border-border">
                           {risk.category}
                         </Badge>
                       </div>
-                      <p className="text-xs text-white/55 mt-1">{risk.description}</p>
+                      <p className="text-xs text-foreground/55 mt-1">{risk.description}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-xs text-white/40">Probability</p>
-                      <p className="text-sm font-semibold text-white/80">{risk.probability}%</p>
+                      <p className="text-xs text-foreground/40">Probability</p>
+                      <p className="text-sm font-semibold text-foreground/80">{risk.probability}%</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-2 bg-foreground/[0.04] rounded-lg px-3 py-2">
                     <Shield className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
-                    <p className="text-xs text-white/60">{risk.mitigation}</p>
+                    <p className="text-xs text-foreground/60">{risk.mitigation}</p>
                   </div>
                 </div>
               ))}
@@ -1190,8 +1190,8 @@ export default function CryptoTrading2Page() {
                   <div key={item.rule} className="flex items-start gap-3">
                     <div className="h-1.5 w-1.5 rounded-full bg-green-400 mt-2 shrink-0" />
                     <div>
-                      <p className="text-xs font-medium text-white/85">{item.rule}</p>
-                      <p className="text-xs text-white/50 mt-0.5">{item.detail}</p>
+                      <p className="text-xs font-medium text-foreground/85">{item.rule}</p>
+                      <p className="text-xs text-foreground/50 mt-0.5">{item.detail}</p>
                     </div>
                   </div>
                 ))}
@@ -1215,8 +1215,8 @@ export default function CryptoTrading2Page() {
                 ].map((item) => (
                   <div key={item.label} className="space-y-1">
                     <div className="flex items-center justify-between text-xs">
-                      <span className="text-white/70">{item.label}</span>
-                      <span className="text-white/60 tabular-nums">{item.weight}%</span>
+                      <span className="text-foreground/70">{item.label}</span>
+                      <span className="text-foreground/60 tabular-nums">{item.weight}%</span>
                     </div>
                     <div className="h-1.5 bg-foreground/[0.08] rounded-full overflow-hidden">
                       <div
@@ -1226,7 +1226,7 @@ export default function CryptoTrading2Page() {
                     </div>
                   </div>
                 ))}
-                <p className="text-xs text-white/40 pt-1">
+                <p className="text-xs text-foreground/40 pt-1">
                   Rebalance monthly. Increase stables during negative funding periods or bearish OBV.
                 </p>
               </CardContent>
@@ -1263,7 +1263,7 @@ export default function CryptoTrading2Page() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-xs text-white/60 leading-relaxed">{card.body}</p>
+                  <p className="text-xs text-foreground/60 leading-relaxed">{card.body}</p>
                 </CardContent>
               </Card>
             ))}
@@ -1279,25 +1279,25 @@ export default function CryptoTrading2Page() {
             </CardHeader>
             <CardContent>
               <VolSurfaceHeatmap data={volSurface} />
-              <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-white/50">
+              <div className="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-foreground/50">
                 <div className="flex items-start gap-1.5">
                   <Info className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
                   <span>
-                    <strong className="text-white/70">Put Skew:</strong> OTM puts trade at higher IV than OTM calls — demand
+                    <strong className="text-foreground/70">Put Skew:</strong> OTM puts trade at higher IV than OTM calls — demand
                     for downside hedging is persistent.
                   </span>
                 </div>
                 <div className="flex items-start gap-1.5">
                   <Info className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
                   <span>
-                    <strong className="text-white/70">Term Structure:</strong> Longer expiries trade at higher IV due to event
+                    <strong className="text-foreground/70">Term Structure:</strong> Longer expiries trade at higher IV due to event
                     uncertainty (halvings, regulatory, macro).
                   </span>
                 </div>
                 <div className="flex items-start gap-1.5">
                   <Info className="h-3.5 w-3.5 text-green-400 mt-0.5 shrink-0" />
                   <span>
-                    <strong className="text-white/70">Trading Implication:</strong> Buy backmonth vega when term structure
+                    <strong className="text-foreground/70">Trading Implication:</strong> Buy backmonth vega when term structure
                     is flat; sell near-term vol when IV Rank &gt;80%.
                   </span>
                 </div>
@@ -1324,7 +1324,7 @@ export default function CryptoTrading2Page() {
                   { label: "Max Pain (BTC, weekly)", value: "$64,000", change: "", positive: true },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between">
-                    <span className="text-xs text-white/60">{item.label}</span>
+                    <span className="text-xs text-foreground/60">{item.label}</span>
                     <div className="flex items-center gap-2">
                       {item.change && (
                         <span
@@ -1336,7 +1336,7 @@ export default function CryptoTrading2Page() {
                           {item.change}
                         </span>
                       )}
-                      <span className="text-xs font-medium text-white tabular-nums">{item.value}</span>
+                      <span className="text-xs font-medium text-foreground tabular-nums">{item.value}</span>
                     </div>
                   </div>
                 ))}
@@ -1382,7 +1382,7 @@ export default function CryptoTrading2Page() {
                     <p className={cn("text-xs font-medium", item.color)}>
                       <span dangerouslySetInnerHTML={{ __html: item.setup }} />
                     </p>
-                    <p className="text-xs text-white/55">{item.action}</p>
+                    <p className="text-xs text-foreground/55">{item.action}</p>
                   </div>
                 ))}
               </CardContent>

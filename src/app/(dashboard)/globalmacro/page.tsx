@@ -204,7 +204,7 @@ function WorldHeatmap() {
               top: tooltipPos.y + 8,
             }}
           >
-            <div className="font-bold text-white mb-1.5 text-sm">
+            <div className="font-bold text-foreground mb-1.5 text-sm">
               {hovered.flag} {hovered.name}
             </div>
             <div className="space-y-1 text-muted-foreground">
@@ -222,7 +222,7 @@ function WorldHeatmap() {
               </div>
               <div className="flex justify-between gap-4">
                 <span>CB Rate</span>
-                <span className="text-white">{hovered.cbRate.toFixed(2)}%</span>
+                <span className="text-foreground">{hovered.cbRate.toFixed(2)}%</span>
               </div>
               <div className="flex justify-between gap-4">
                 <span>FX YTD</span>
@@ -456,7 +456,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
       <CardContent className="p-4">
         <div className="flex items-start justify-between gap-2 mb-2">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-semibold text-sm text-white">{idea.name}</span>
+            <span className="font-semibold text-sm text-foreground">{idea.name}</span>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
             <Badge
@@ -767,7 +767,7 @@ function MacroScorecard({ indicators }: { indicators: MacroIndicator[] }) {
     <Card className="bg-card border-border mb-4">
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-3">
-          <div className="text-sm font-semibold text-white">Macro Expansion Scorecard</div>
+          <div className="text-sm font-semibold text-foreground">Macro Expansion Scorecard</div>
           <span className="text-2xl font-bold" style={{ color: pct >= 60 ? "#22c55e" : pct >= 40 ? "#eab308" : "#ef4444" }}>
             {pct}%
           </span>
@@ -809,7 +809,7 @@ function IndicatorRow({ ind }: { ind: MacroIndicator }) {
       </div>
       <Sparkline seed={ind.sparkSeed} expanding={ind.expanding} />
       <div className="text-right shrink-0 w-16">
-        <div className="text-sm font-bold text-white">{ind.value}{ind.unit}</div>
+        <div className="text-sm font-bold text-foreground">{ind.value}{ind.unit}</div>
         <div className={cn("text-xs", ind.expanding ? "text-green-400" : "text-red-400")}>
           {ind.expanding ? "Expanding" : "Contracting"}
         </div>
@@ -1090,7 +1090,7 @@ export default function GlobalMacroPage() {
             <Globe className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Global Macro Trading</h1>
+            <h1 className="text-xl font-bold text-foreground">Global Macro Trading</h1>
             <p className="text-xs text-muted-foreground">Macro regime analysis · Trade ideas · Central banks · Economic indicators · Currency markets</p>
           </div>
         </div>
@@ -1148,7 +1148,7 @@ export default function GlobalMacroPage() {
                   <div key={c} className="flex items-center gap-2 text-xs">
                     <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: CONVICTION_COLOR[c] }} />
                     <span className="text-muted-foreground">{c} Conviction:</span>
-                    <span className="font-semibold text-white">{count}</span>
+                    <span className="font-semibold text-foreground">{count}</span>
                   </div>
                 );
               })}
@@ -1158,7 +1158,7 @@ export default function GlobalMacroPage() {
                 return (
                   <div key={h} className="flex items-center gap-2 text-xs">
                     <span className="text-muted-foreground">{h}:</span>
-                    <span className="font-semibold text-white">{count}</span>
+                    <span className="font-semibold text-foreground">{count}</span>
                   </div>
                 );
               })}
@@ -1232,7 +1232,7 @@ export default function GlobalMacroPage() {
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{bank.flag}</span>
                           <div>
-                            <div className="font-semibold text-sm text-white">{bank.name}</div>
+                            <div className="font-semibold text-sm text-foreground">{bank.name}</div>
                             <div className="text-xs text-muted-foreground">
                               Rate: <span className="text-foreground font-mono">{bank.rate.toFixed(2)}%</span>
                               <span className="mx-2 text-muted-foreground/50">|</span>

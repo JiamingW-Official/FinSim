@@ -336,7 +336,7 @@ function SpotRateCard({ rate }: { rate: SpotRate }) {
             </Badge>
           </div>
           <div className="flex items-end gap-3">
-            <span className="text-2xl font-mono font-bold text-white">
+            <span className="text-2xl font-mono font-bold text-foreground">
               {rate.bid}
             </span>
             <span className="text-sm font-mono text-muted-foreground mb-0.5">
@@ -626,7 +626,7 @@ function GKCalculator() {
   }
 
   const inputCls =
-    "w-full bg-card border border-border rounded px-2 py-1.5 text-sm font-mono text-white focus:outline-none focus:border-sky-500";
+    "w-full bg-card border border-border rounded px-2 py-1.5 text-sm font-mono text-foreground focus:outline-none focus:border-sky-500";
   const labelCls = "text-xs text-muted-foreground mb-1 block";
 
   return (
@@ -703,7 +703,7 @@ function GKCalculator() {
             size="sm"
             variant={inputs.optionType === "call" ? "default" : "outline"}
             onClick={() => setField("optionType", "call")}
-            className={inputs.optionType === "call" ? "bg-emerald-600 hover:bg-emerald-700 text-white" : "border-border text-muted-foreground hover:bg-muted"}
+            className={inputs.optionType === "call" ? "bg-emerald-600 hover:bg-emerald-700 text-foreground" : "border-border text-muted-foreground hover:bg-muted"}
           >
             Call
           </Button>
@@ -711,7 +711,7 @@ function GKCalculator() {
             size="sm"
             variant={inputs.optionType === "put" ? "default" : "outline"}
             onClick={() => setField("optionType", "put")}
-            className={inputs.optionType === "put" ? "bg-red-600 hover:bg-red-700 text-white" : "border-border text-muted-foreground hover:bg-muted"}
+            className={inputs.optionType === "put" ? "bg-red-600 hover:bg-red-700 text-foreground" : "border-border text-muted-foreground hover:bg-muted"}
           >
             Put
           </Button>
@@ -726,7 +726,7 @@ function GKCalculator() {
         <div className="bg-card border border-border rounded-lg p-4 space-y-2">
           <div className="flex justify-between items-center border-b border-border pb-2 mb-3">
             <span className="text-muted-foreground text-sm">Option Price</span>
-            <span className="text-2xl font-mono font-bold text-white">
+            <span className="text-2xl font-mono font-bold text-foreground">
               {result.price.toFixed(5)}
             </span>
           </div>
@@ -786,7 +786,7 @@ function CarryTradeTable() {
                 key={ct.pair}
                 className="border-b border-card hover:bg-muted/30 transition-colors"
               >
-                <td className="py-2 pl-3 font-semibold text-white">{ct.pair}</td>
+                <td className="py-2 pl-3 font-semibold text-foreground">{ct.pair}</td>
                 <td className="py-2">
                   <Badge
                     variant="outline"
@@ -879,7 +879,7 @@ export default function FXOptionsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
             <BarChart2 className="text-sky-400" size={24} />
             FX Options
           </h1>
@@ -953,7 +953,7 @@ export default function FXOptionsPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <CardTitle className="text-base text-white">
+                <CardTitle className="text-base text-foreground">
                   EUR/USD Vanilla Options Chain
                   <span className="ml-2 text-xs font-normal text-muted-foreground">
                     Spot: {spot.toFixed(5)}
@@ -969,7 +969,7 @@ export default function FXOptionsPage() {
                       onClick={() => setSelectedExpiry(e)}
                       className={
                         selectedExpiry === e
-                          ? "bg-sky-600 hover:bg-sky-700 text-white h-6 text-xs px-2"
+                          ? "bg-sky-600 hover:bg-sky-700 text-foreground h-6 text-xs px-2"
                           : "border-border text-muted-foreground hover:bg-muted h-6 text-xs px-2"
                       }
                     >
@@ -1002,7 +1002,7 @@ export default function FXOptionsPage() {
         <TabsContent value="rr" className="data-[state=inactive]:hidden mt-4">
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-white flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <Activity size={16} className="text-primary" />
                 Risk Reversal &amp; Butterfly Structures
                 <span className="ml-1 text-xs font-normal text-muted-foreground">EUR/USD</span>
@@ -1018,7 +1018,7 @@ export default function FXOptionsPage() {
         <TabsContent value="surface" className="data-[state=inactive]:hidden mt-4">
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-white flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <BarChart2 size={16} className="text-amber-400" />
                 Implied Volatility Surface
                 <span className="ml-1 text-xs font-normal text-muted-foreground">EUR/USD — Delta vs Tenor</span>
@@ -1044,7 +1044,7 @@ export default function FXOptionsPage() {
         <TabsContent value="gk" className="data-[state=inactive]:hidden mt-4">
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-white flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <DollarSign size={16} className="text-sky-400" />
                 Garman-Kohlhagen FX Option Pricer
               </CardTitle>
@@ -1059,7 +1059,7 @@ export default function FXOptionsPage() {
         <TabsContent value="carry" className="data-[state=inactive]:hidden mt-4">
           <Card className="bg-card border-border">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base text-white flex items-center gap-2">
+              <CardTitle className="text-base text-foreground flex items-center gap-2">
                 <TrendingUp size={16} className="text-amber-400" />
                 Carry Trade Monitor
               </CardTitle>

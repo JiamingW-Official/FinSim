@@ -1099,7 +1099,7 @@ export default function ConvertiblesPage() {
               <TabsTrigger
                 key={t.value}
                 value={t.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white rounded-md py-1.5"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground rounded-md py-1.5"
               >
                 {t.icon}
                 <span className="hidden sm:inline">{t.label}</span>

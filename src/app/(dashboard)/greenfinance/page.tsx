@@ -298,7 +298,7 @@ function StatCard({ label, value, sub, highlight }: {
   const valClass =
     highlight === "pos" ? "text-emerald-400" :
     highlight === "neg" ? "text-rose-400" :
-    "text-white";
+    "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
@@ -425,7 +425,7 @@ function GreeniumCalculator() {
             onChange={(e) => setConventionalYield(parseFloat(e.target.value))}
             className="w-full accent-emerald-500"
           />
-          <p className="text-sm font-mono text-white">{conventionalYield.toFixed(2)}%</p>
+          <p className="text-sm font-mono text-foreground">{conventionalYield.toFixed(2)}%</p>
         </div>
         <div className="space-y-1">
           <label className="text-xs text-muted-foreground">Greenium Estimate (bps)</label>
@@ -438,7 +438,7 @@ function GreeniumCalculator() {
             onChange={(e) => setGreeniumBps(parseInt(e.target.value))}
             className="w-full accent-emerald-500"
           />
-          <p className="text-sm font-mono text-white">{greeniumBps} bps</p>
+          <p className="text-sm font-mono text-foreground">{greeniumBps} bps</p>
         </div>
         <div className="space-y-1">
           <label className="text-xs text-muted-foreground">Issuance Size ($M)</label>
@@ -451,7 +451,7 @@ function GreeniumCalculator() {
             onChange={(e) => setIssuanceSize(parseInt(e.target.value))}
             className="w-full accent-emerald-500"
           />
-          <p className="text-sm font-mono text-white">${issuanceSize}M</p>
+          <p className="text-sm font-mono text-foreground">${issuanceSize}M</p>
         </div>
       </div>
 
@@ -552,7 +552,7 @@ export default function GreenFinancePage() {
           <Leaf className="text-emerald-400" size={20} />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-white">Green Bonds &amp; Climate Finance</h1>
+          <h1 className="text-xl font-bold text-foreground">Green Bonds &amp; Climate Finance</h1>
           <p className="text-xs text-muted-foreground">Sustainable debt markets, greenium analysis, carbon markets &amp; taxonomy</p>
         </div>
       </div>
@@ -568,22 +568,22 @@ export default function GreenFinancePage() {
       {/* Main Tabs */}
       <Tabs defaultValue="bonds">
         <TabsList className="bg-card border border-border flex flex-wrap gap-1 h-auto p-1">
-          <TabsTrigger value="bonds" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="bonds" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             <BarChart2 size={12} className="mr-1" /> Bond Market
           </TabsTrigger>
-          <TabsTrigger value="greenium" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="greenium" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             <DollarSign size={12} className="mr-1" /> Greenium Calc
           </TabsTrigger>
-          <TabsTrigger value="taxonomy" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="taxonomy" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             <Globe size={12} className="mr-1" /> EU Taxonomy
           </TabsTrigger>
-          <TabsTrigger value="carbon" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="carbon" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             <Target size={12} className="mr-1" /> Carbon Markets
           </TabsTrigger>
-          <TabsTrigger value="instruments" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="instruments" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             <Layers size={12} className="mr-1" /> Instruments
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="portfolio" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             <Shield size={12} className="mr-1" /> Portfolio Align
           </TabsTrigger>
         </TabsList>
@@ -611,7 +611,7 @@ export default function GreenFinancePage() {
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center gap-2">
                         <ProceedIcon type={bond.proceedIcon} size={14} />
-                        <span className="text-xs font-semibold text-white truncate max-w-[140px]">{bond.issuer}</span>
+                        <span className="text-xs font-semibold text-foreground truncate max-w-[140px]">{bond.issuer}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Badge className="text-xs bg-muted text-muted-foreground border-none py-0">{bond.certification}</Badge>
@@ -620,7 +620,7 @@ export default function GreenFinancePage() {
                     </div>
                     <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
                       <span>{fmtB(bond.size)}</span>
-                      <span className="text-white font-mono">{fmtYield(bond.yield)}</span>
+                      <span className="text-foreground font-mono">{fmtYield(bond.yield)}</span>
                       <span className={cn(bond.greenium < 0 ? "text-emerald-400" : "text-red-400")}>
                         {bond.greenium > 0 ? "+" : ""}{bond.greenium} bps
                       </span>
@@ -638,7 +638,7 @@ export default function GreenFinancePage() {
                   <CardHeader className="pb-2">
                     <div className="flex items-center gap-2">
                       <ProceedIcon type={selectedBond.proceedIcon} size={18} />
-                      <CardTitle className="text-sm text-white">{selectedBond.issuer}</CardTitle>
+                      <CardTitle className="text-sm text-foreground">{selectedBond.issuer}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-3 p-4 pt-0">
@@ -655,7 +655,7 @@ export default function GreenFinancePage() {
                       ].map((row) => (
                         <div key={row.label} className="rounded bg-foreground/5 p-2">
                           <p className="text-xs text-muted-foreground">{row.label}</p>
-                          <p className="text-xs font-semibold text-white">{row.value}</p>
+                          <p className="text-xs font-semibold text-foreground">{row.value}</p>
                         </div>
                       ))}
                     </div>
@@ -691,7 +691,7 @@ export default function GreenFinancePage() {
                 <CardContent className="p-3 pt-0 space-y-2">
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Total tracked issuance</span>
-                    <span className="text-white font-mono">{fmtB(totalIssuance)}</span>
+                    <span className="text-foreground font-mono">{fmtB(totalIssuance)}</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Avg greenium (bps)</span>
@@ -699,11 +699,11 @@ export default function GreenFinancePage() {
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">CBI-certified</span>
-                    <span className="text-white font-mono">{GREEN_BONDS.filter((b) => b.certification === "CBI").length} of {GREEN_BONDS.length}</span>
+                    <span className="text-foreground font-mono">{GREEN_BONDS.filter((b) => b.certification === "CBI").length} of {GREEN_BONDS.length}</span>
                   </div>
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">Avg maturity</span>
-                    <span className="text-white font-mono">{(GREEN_BONDS.reduce((a, b) => a + b.maturity, 0) / GREEN_BONDS.length).toFixed(1)} yrs</span>
+                    <span className="text-foreground font-mono">{(GREEN_BONDS.reduce((a, b) => a + b.maturity, 0) / GREEN_BONDS.length).toFixed(1)} yrs</span>
                   </div>
                 </CardContent>
               </Card>
@@ -791,8 +791,8 @@ export default function GreenFinancePage() {
               <CardContent className="p-3 pt-0">
                 <EtsPriceChart />
                 <div className="flex items-center justify-between mt-2 text-xs text-muted-foreground">
-                  <span>Current: <strong className="text-white">€{euaPrice.toFixed(0)}/t</strong></span>
-                  <span>12m range: <strong className="text-white">€{Math.min(...etsPrices).toFixed(0)}–€{Math.max(...etsPrices).toFixed(0)}</strong></span>
+                  <span>Current: <strong className="text-foreground">€{euaPrice.toFixed(0)}/t</strong></span>
+                  <span>12m range: <strong className="text-foreground">€{Math.min(...etsPrices).toFixed(0)}–€{Math.max(...etsPrices).toFixed(0)}</strong></span>
                 </div>
               </CardContent>
             </Card>
@@ -841,7 +841,7 @@ export default function GreenFinancePage() {
                 {CARBON_CREDITS.map((credit) => (
                   <div key={credit.abbr} className="rounded-lg border border-border bg-foreground/5 p-3">
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-bold text-white">{credit.abbr}</span>
+                      <span className="text-xs font-bold text-foreground">{credit.abbr}</span>
                       <Badge className={cn(
                         "text-[11px] py-0 border-none",
                         credit.market === "compliance" ? "bg-primary/20 text-primary" : "bg-emerald-500/20 text-emerald-300"
@@ -853,7 +853,7 @@ export default function GreenFinancePage() {
                     <div className="space-y-1 text-xs">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Price</span>
-                        <span className="text-white font-mono">${credit.price}/t</span>
+                        <span className="text-foreground font-mono">${credit.price}/t</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Permanence</span>
@@ -1025,12 +1025,12 @@ export default function GreenFinancePage() {
               return (
                 <div key={tier.article} className={cn("rounded-lg border p-4", borders[i])}>
                   <p className={cn("text-sm font-bold mb-1", colors[i])}>{tier.article}</p>
-                  <p className="text-xs text-white mb-1">{tier.label}</p>
+                  <p className="text-xs text-foreground mb-1">{tier.label}</p>
                   <p className="text-xs text-muted-foreground mb-2">{tier.desc}</p>
                   <div className="space-y-1 text-xs">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">AUM</span>
-                      <span className="text-white">${tier.aum}B</span>
+                      <span className="text-foreground">${tier.aum}B</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Implied Temp</span>

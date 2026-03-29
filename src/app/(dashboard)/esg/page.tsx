@@ -1127,7 +1127,7 @@ export default function EsgPage() {
                           onClick={() => toggleCriteria(c.id)}
                           className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${c.active ? "bg-emerald-500 border-emerald-500" : "border-border"}`}
                         >
-                          {c.active && <CheckCircle className="w-3 h-3 text-white" />}
+                          {c.active && <CheckCircle className="w-3 h-3 text-foreground" />}
                         </button>
                         <span className={`text-xs ${c.active ? "text-foreground" : "text-muted-foreground"}`}>{c.label}</span>
                       </label>
@@ -1149,7 +1149,7 @@ export default function EsgPage() {
                           onClick={() => toggleCriteria(c.id)}
                           className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${c.active ? "bg-red-500 border-red-500" : "border-border"}`}
                         >
-                          {c.active && <XCircle className="w-3 h-3 text-white" />}
+                          {c.active && <XCircle className="w-3 h-3 text-foreground" />}
                         </button>
                         <span className={`text-xs ${c.active ? "text-foreground" : "text-muted-foreground"}`}>{c.label}</span>
                       </label>

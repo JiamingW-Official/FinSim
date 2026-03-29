@@ -363,14 +363,14 @@ function TradeActions({ currentPrice, onTrade, disabled }: TradeActionsProps) {
           <button
             onClick={handleBuy}
             disabled={disabled || currentPrice === 0}
-            className="rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700 disabled:opacity-40"
+            className="rounded-md bg-emerald-600 px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-emerald-700 disabled:opacity-40"
           >
             Buy
           </button>
           <button
             onClick={handleSell}
             disabled={disabled || currentPrice === 0}
-            className="rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-red-700 disabled:opacity-40"
+            className="rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-red-700 disabled:opacity-40"
           >
             Sell
           </button>

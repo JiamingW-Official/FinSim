@@ -322,7 +322,7 @@ function BreakingNewsTicker({ headlines, onSelect }: {
     <div className="bg-card border border-border/60 rounded-lg overflow-hidden">
       <div className="flex items-stretch">
         <div className="flex-shrink-0 bg-red-600 px-3 flex items-center">
-          <span className="text-xs font-bold text-white whitespace-nowrap">Breaking</span>
+          <span className="text-xs font-bold text-foreground whitespace-nowrap">Breaking</span>
         </div>
         <div className="flex-1 overflow-hidden py-2">
           <div

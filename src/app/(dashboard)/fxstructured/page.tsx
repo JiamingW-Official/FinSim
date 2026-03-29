@@ -1124,14 +1124,14 @@ function DCDScenarioBar({ scenario }: { scenario: DCDScenario }) {
       </div>
       <div className="flex h-4 rounded overflow-hidden gap-0.5">
         <div
-          className="bg-emerald-500/70 flex items-center justify-center text-xs text-white"
+          className="bg-emerald-500/70 flex items-center justify-center text-xs text-foreground"
           style={{ width: `${depositW}%` }}
         >
           {depositW > 15 ? `+${scenario.depositReturn.toFixed(1)}%` : ""}
         </div>
         {scenario.fxReturn < 0 && (
           <div
-            className="bg-red-500/70 flex items-center justify-center text-xs text-white"
+            className="bg-red-500/70 flex items-center justify-center text-xs text-foreground"
             style={{ width: `${fxW}%` }}
           >
             {fxW > 15 ? `${scenario.fxReturn.toFixed(1)}%` : ""}

@@ -111,7 +111,7 @@ function SliderRow({
     <div className="flex flex-col gap-1">
       <div className="flex justify-between text-xs">
         <span className="text-muted-foreground">{label}</span>
-        <span className="text-white font-mono">{format(value)}</span>
+        <span className="text-foreground font-mono">{format(value)}</span>
       </div>
       <Slider
         min={min} max={max} step={step}
@@ -128,7 +128,7 @@ function GreekChip({ label, value, color }: { label: string; value: string; colo
   return (
     <div className={`flex flex-col items-center p-3 rounded-lg border ${color}`}>
       <span className="text-xs text-muted-foreground mb-1">{label}</span>
-      <span className="text-base font-mono font-semibold text-white">{value}</span>
+      <span className="text-base font-mono font-semibold text-foreground">{value}</span>
     </div>
   );
 }
@@ -343,7 +343,7 @@ function BinomialTree() {
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
                 className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                  optType === t ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+                  optType === t ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 }`}>
                 {t.toUpperCase()}
               </button>
@@ -354,7 +354,7 @@ function BinomialTree() {
           <div className="mt-2 grid grid-cols-2 gap-2">
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">Binomial</div>
-              <div className="text-lg font-mono font-bold text-white">${tree.binomialPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-bold text-foreground">${tree.binomialPrice.toFixed(4)}</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">Black-Scholes</div>
@@ -517,7 +517,7 @@ function MonteCarlo() {
             {(["call", "put"] as const).map(t => (
               <button key={t} onClick={() => setOptType(t)}
                 className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
-                  optType === t ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+                  optType === t ? "bg-primary text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                 }`}>
                 {t.toUpperCase()}
               </button>
@@ -527,7 +527,7 @@ function MonteCarlo() {
           <div className="grid grid-cols-2 gap-2 mt-2">
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">MC Price</div>
-              <div className="text-lg font-mono font-bold text-white">${mcPrice.toFixed(4)}</div>
+              <div className="text-lg font-mono font-bold text-foreground">${mcPrice.toFixed(4)}</div>
             </div>
             <div className="bg-muted rounded-lg p-3 text-center">
               <div className="text-xs text-muted-foreground">BS Price</div>
@@ -550,7 +550,7 @@ function MonteCarlo() {
                 {convergence.map(row => (
                   <tr key={row.n} className="border-b border-border/50">
                     <td className="py-0.5 text-muted-foreground">{row.n}</td>
-                    <td className="text-right text-white">${row.price.toFixed(4)}</td>
+                    <td className="text-right text-foreground">${row.price.toFixed(4)}</td>
                     <td className={`text-right ${Math.abs(row.price - bsPrice) < 0.5 ? "text-emerald-400" : "text-amber-400"}`}>
                       {Math.abs(row.price - bsPrice).toFixed(4)}
                     </td>
@@ -735,9 +735,9 @@ function ExoticOptions() {
                   const diff = ref !== null ? row.price - ref : null;
                   return (
                     <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
-                      <td className="py-2 text-white text-xs font-medium">{row.name}</td>
+                      <td className="py-2 text-foreground text-xs font-medium">{row.name}</td>
                       <td className="py-2 text-muted-foreground font-mono text-xs">{row.formula}</td>
-                      <td className="py-2 text-right font-mono font-semibold text-white">${row.price.toFixed(4)}</td>
+                      <td className="py-2 text-right font-mono font-semibold text-foreground">${row.price.toFixed(4)}</td>
                       <td className="py-2 text-right font-mono text-xs">
                         {diff !== null ? (
                           <span className={diff >= 0 ? "text-amber-400" : "text-emerald-400"}>
@@ -862,7 +862,7 @@ function InterestRateModels() {
               return (
                 <div key={yr} className="bg-muted rounded-lg p-2 text-center">
                   <div className="text-xs text-muted-foreground">{yr}Y Bond</div>
-                  <div className="font-mono text-sm text-white">${row ? row.price.toFixed(2) : "—"}</div>
+                  <div className="font-mono text-sm text-foreground">${row ? row.price.toFixed(2) : "—"}</div>
                   <div className="text-xs text-muted-foreground">
                     {row ? `y: ${(yieldCurve.find(y => y.T === yr)?.yield ?? 0 * 100).toFixed(2)}%` : ""}
                   </div>

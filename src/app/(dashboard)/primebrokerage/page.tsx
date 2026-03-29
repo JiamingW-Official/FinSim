@@ -720,7 +720,7 @@ export default function PrimeBrokeragePage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white flex-1"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground flex-1"
             >
               {tab.icon}
               <span className="hidden sm:inline">{tab.label}</span>

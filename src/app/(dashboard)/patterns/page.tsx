@@ -519,7 +519,7 @@ function PatternLibraryTab() {
             className={cn(
               "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               filterCat === cat
-                ? "bg-indigo-600 border-indigo-500 text-white"
+                ? "bg-indigo-600 border-indigo-500 text-foreground"
                 : "bg-card border-border text-muted-foreground hover:border-border"
             )}
           >
@@ -997,7 +997,7 @@ function ScanSimulatorTab() {
                 className={cn(
                   "px-2.5 py-1 rounded text-xs border transition-colors",
                   filterCat === cat
-                    ? "bg-indigo-600 border-indigo-500 text-white"
+                    ? "bg-indigo-600 border-indigo-500 text-foreground"
                     : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
                 )}
               >
@@ -1009,7 +1009,7 @@ function ScanSimulatorTab() {
               className={cn(
                 "px-2.5 py-1 rounded text-xs border transition-colors",
                 filterConfirmed
-                  ? "bg-emerald-700 border-emerald-600 text-white"
+                  ? "bg-emerald-700 border-emerald-600 text-foreground"
                   : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
               )}
             >
@@ -1203,10 +1203,10 @@ function PatternStatsTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               condition === cond
                 ? cond === "Bull Market"
-                  ? "bg-emerald-700 border-emerald-600 text-white"
+                  ? "bg-emerald-700 border-emerald-600 text-foreground"
                   : cond === "Bear Market"
-                  ? "bg-red-700 border-red-600 text-white"
-                  : "bg-muted border-muted-foreground text-white"
+                  ? "bg-red-700 border-red-600 text-foreground"
+                  : "bg-muted border-muted-foreground text-foreground"
                 : "bg-card border-border text-muted-foreground hover:border-border"
             )}
           >
@@ -1416,19 +1416,19 @@ export default function PatternsPage() {
       {/* Tabs */}
       <Tabs defaultValue="library">
         <TabsList className="bg-card border border-border">
-          <TabsTrigger value="library" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
+          <TabsTrigger value="library" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
             <BookOpen className="h-3.5 w-3.5 mr-1.5" />
             Pattern Library
           </TabsTrigger>
-          <TabsTrigger value="quiz" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
+          <TabsTrigger value="quiz" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
             <Trophy className="h-3.5 w-3.5 mr-1.5" />
             Pattern Quiz
           </TabsTrigger>
-          <TabsTrigger value="scan" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
+          <TabsTrigger value="scan" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
             <ScanLine className="h-3.5 w-3.5 mr-1.5" />
             Scan Simulator
           </TabsTrigger>
-          <TabsTrigger value="stats" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground text-sm">
+          <TabsTrigger value="stats" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground text-sm">
             <BarChart2 className="h-3.5 w-3.5 mr-1.5" />
             Statistics
           </TabsTrigger>

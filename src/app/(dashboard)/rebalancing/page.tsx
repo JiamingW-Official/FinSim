@@ -417,7 +417,7 @@ export default function RebalancingPage() {
         className="flex items-center justify-between"
       >
         <div>
-          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
             <RefreshCw className="w-6 h-6 text-primary" />
             Portfolio Rebalancing
           </h1>
@@ -457,7 +457,7 @@ export default function RebalancingPage() {
                 <span className="text-muted-foreground text-xs">{kpi.label}</span>
                 {kpi.icon}
               </div>
-              <div className="text-xl font-bold text-white">{kpi.value}</div>
+              <div className="text-xl font-bold text-foreground">{kpi.value}</div>
               <div className="text-muted-foreground text-xs mt-0.5">{kpi.sub}</div>
             </CardContent>
           </Card>
@@ -472,19 +472,19 @@ export default function RebalancingPage() {
       >
         <Tabs defaultValue="portfolio">
           <TabsList className="bg-muted/70 border border-border mb-4">
-            <TabsTrigger value="portfolio" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+            <TabsTrigger value="portfolio" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
               <Layers className="w-3.5 h-3.5 mr-1" />Current Portfolio
             </TabsTrigger>
-            <TabsTrigger value="engine" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+            <TabsTrigger value="engine" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
               <RefreshCw className="w-3.5 h-3.5 mr-1" />Rebalancing Engine
             </TabsTrigger>
-            <TabsTrigger value="harvest" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+            <TabsTrigger value="harvest" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
               <TrendingDown className="w-3.5 h-3.5 mr-1" />Tax-Loss Harvesting
             </TabsTrigger>
-            <TabsTrigger value="location" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+            <TabsTrigger value="location" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
               <Shield className="w-3.5 h-3.5 mr-1" />Asset Location
             </TabsTrigger>
-            <TabsTrigger value="drift" className="data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground text-xs">
+            <TabsTrigger value="drift" className="data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground text-xs">
               <BarChart3 className="w-3.5 h-3.5 mr-1" />Drift Analysis
             </TabsTrigger>
           </TabsList>
@@ -546,7 +546,7 @@ export default function RebalancingPage() {
                             className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                           >
                             <td className="px-4 py-2">
-                              <div className="font-semibold text-white">{h.ticker}</div>
+                              <div className="font-semibold text-foreground">{h.ticker}</div>
                               <div className="text-muted-foreground">{h.assetClass}</div>
                             </td>
                             <td className="text-right px-2 py-2 text-muted-foreground">{h.currentWeight.toFixed(1)}%</td>
@@ -621,7 +621,7 @@ export default function RebalancingPage() {
                           onClick={() => setCalendarMode(m)}
                           className={`flex-1 py-2 rounded text-xs font-medium capitalize transition-all ${
                             calendarMode === m
-                              ? "bg-primary text-white"
+                              ? "bg-primary text-foreground"
                               : "bg-muted text-muted-foreground hover:bg-muted"
                           }`}
                         >
@@ -649,15 +649,15 @@ export default function RebalancingPage() {
                       <div className="space-y-1 text-xs text-muted-foreground">
                         <div className="flex justify-between">
                           <span>Frequency</span>
-                          <span className="text-white">Quarterly</span>
+                          <span className="text-foreground">Quarterly</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Next rebalance</span>
-                          <span className="text-white">Jul 1, 2026</span>
+                          <span className="text-foreground">Jul 1, 2026</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Last rebalanced</span>
-                          <span className="text-white">Apr 1, 2026</span>
+                          <span className="text-foreground">Apr 1, 2026</span>
                         </div>
                       </div>
                     )}
@@ -682,11 +682,11 @@ export default function RebalancingPage() {
                   </CardHeader>
                   <CardContent className="space-y-2 text-xs">
                     {[
-                      { label: "Trades to Execute",    value: String(trades.length),   color: "text-white" },
-                      { label: "Total Trade Volume",    value: fmt$(trades.reduce((a,t) => a+t.amount, 0)), color: "text-white" },
+                      { label: "Trades to Execute",    value: String(trades.length),   color: "text-foreground" },
+                      { label: "Total Trade Volume",    value: fmt$(trades.reduce((a,t) => a+t.amount, 0)), color: "text-foreground" },
                       { label: "Transaction Costs",     value: fmt$(totalTxCost, 2),    color: "text-amber-400" },
                       { label: "Est. Tax Impact",       value: fmt$(taxImpact),         color: "text-red-400" },
-                      { label: "Net Rebalance Cost",    value: fmt$(totalTxCost + taxImpact), color: "text-white" },
+                      { label: "Net Rebalance Cost",    value: fmt$(totalTxCost + taxImpact), color: "text-foreground" },
                     ].map(row => (
                       <div key={row.label} className="flex justify-between">
                         <span className="text-muted-foreground">{row.label}</span>
@@ -697,7 +697,7 @@ export default function RebalancingPage() {
                 </Card>
 
                 <Button
-                  className="w-full bg-primary hover:bg-primary text-white"
+                  className="w-full bg-primary hover:bg-primary text-foreground"
                   onClick={handleRebalance}
                   disabled={rebalancing || trades.length === 0}
                 >
@@ -775,13 +775,13 @@ export default function RebalancingPage() {
                               transition={{ delay: i * 0.05 }}
                               className="border-b border-border/50 hover:bg-muted/20 transition-colors"
                             >
-                              <td className="px-4 py-2 font-semibold text-white">{t.ticker}</td>
+                              <td className="px-4 py-2 font-semibold text-foreground">{t.ticker}</td>
                               <td className="px-2 py-2 text-center">
                                 <Badge className={`text-xs ${t.action === "Buy" ? "bg-emerald-500/20 text-emerald-300" : "bg-red-500/20 text-red-300"}`}>
                                   {t.action}
                                 </Badge>
                               </td>
-                              <td className="text-right px-2 py-2 text-white font-mono">{fmt$(t.amount)}</td>
+                              <td className="text-right px-2 py-2 text-foreground font-mono">{fmt$(t.amount)}</td>
                               <td className={`text-right px-2 py-2 ${driftColor(t.drift, driftThreshold)}`}>
                                 {fmtPct(t.drift)}
                               </td>
@@ -813,7 +813,7 @@ export default function RebalancingPage() {
                   <CardContent className="space-y-3">
                     <div className="flex justify-between text-xs">
                       <span className="text-muted-foreground">Loss Candidates</span>
-                      <span className="text-white">{lossPositions.length} positions</span>
+                      <span className="text-foreground">{lossPositions.length} positions</span>
                     </div>
                     <div className="flex justify-between text-xs">
                       <span className="text-muted-foreground">Total Harvestable Loss</span>
@@ -881,11 +881,11 @@ export default function RebalancingPage() {
                             <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
                               selectedHarvest.has(p.ticker) ? "bg-primary border-primary" : "border-border"
                             }`}>
-                              {selectedHarvest.has(p.ticker) && <CheckCircle2 className="w-3 h-3 text-white" />}
+                              {selectedHarvest.has(p.ticker) && <CheckCircle2 className="w-3 h-3 text-foreground" />}
                             </div>
                           </td>
                           <td className="px-2 py-2">
-                            <div className="font-semibold text-white">{p.ticker}</div>
+                            <div className="font-semibold text-foreground">{p.ticker}</div>
                             <div className="text-muted-foreground">{p.taxLot === "long" ? "Long-term" : "Short-term"}</div>
                           </td>
                           <td className="text-right px-2 py-2 text-red-400 font-mono">{fmt$(p.unrealizedLoss)}</td>
@@ -918,7 +918,7 @@ export default function RebalancingPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {Object.entries(SUBSTITUTE_SECURITIES).map(([ticker, subs]) => (
                       <div key={ticker} className="bg-muted/30 rounded-lg p-3 border border-border">
-                        <div className="text-white font-semibold text-sm mb-1">{ticker}</div>
+                        <div className="text-foreground font-semibold text-sm mb-1">{ticker}</div>
                         <div className="text-muted-foreground text-xs mb-2">Sell to harvest loss, then buy:</div>
                         <div className="flex gap-1 flex-wrap">
                           {subs.map(s => (
@@ -1047,7 +1047,7 @@ export default function RebalancingPage() {
                             transition={{ delay: i * 0.05 }}
                             className="border-b border-border/50 hover:bg-muted/20 transition-colors"
                           >
-                            <td className="px-4 py-2 text-white font-medium">{rule.assetClass}</td>
+                            <td className="px-4 py-2 text-foreground font-medium">{rule.assetClass}</td>
                             <td className="px-2 py-2 text-center">
                               <Badge className={`text-xs ${
                                 rule.ideal === "roth"       ? "bg-emerald-500/20 text-emerald-300" :
@@ -1112,7 +1112,7 @@ export default function RebalancingPage() {
                       <div key={i} className="border-b border-border/50 pb-2">
                         <div className="flex justify-between text-xs">
                           <span className="text-muted-foreground">{s.label}</span>
-                          <span className="text-white font-medium">{s.value}</span>
+                          <span className="text-foreground font-medium">{s.value}</span>
                         </div>
                         <div className="text-muted-foreground text-xs mt-0.5">{s.sub}</div>
                       </div>
@@ -1177,7 +1177,7 @@ export default function RebalancingPage() {
                       { title: "Optimal Frequency",     body: "Research suggests threshold-based rebalancing (5% bands) outperforms fixed-calendar rebalancing after transaction costs on a risk-adjusted basis." },
                     ].map((card, i) => (
                       <div key={i} className="bg-muted/30 rounded-lg p-3 border border-border">
-                        <div className="text-white text-xs font-semibold mb-1">{card.title}</div>
+                        <div className="text-foreground text-xs font-semibold mb-1">{card.title}</div>
                         <div className="text-muted-foreground text-xs leading-relaxed">{card.body}</div>
                       </div>
                     ))}

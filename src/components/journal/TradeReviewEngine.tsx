@@ -1364,7 +1364,7 @@ function EmotionalSection({
             <div
               key={d.day}
               title={`Day ${d.day}: ${d.emotion}`}
-              className={cn("h-6 rounded-sm flex items-center justify-center text-[11px] text-white/60", MOOD_BG[d.emotion])}
+              className={cn("h-6 rounded-sm flex items-center justify-center text-[11px] text-foreground/60", MOOD_BG[d.emotion])}
             >
               {d.day}
             </div>

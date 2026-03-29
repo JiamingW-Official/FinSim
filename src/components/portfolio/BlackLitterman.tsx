@@ -772,7 +772,7 @@ export function BlackLitterman() {
                 "flex items-center gap-1 rounded-md px-2 py-1 text-xs transition-colors",
                 views.length >= 5
                   ? "bg-muted text-muted-foreground cursor-not-allowed"
-                  : "bg-indigo-600 text-white hover:bg-indigo-500",
+                  : "bg-indigo-600 text-foreground hover:bg-indigo-500",
               )}
             >
               <Plus className="h-3 w-3" />
@@ -806,7 +806,7 @@ export function BlackLitterman() {
                       onClick={() => updateView(view.id, { type: t })}
                       className={cn(
                         "px-2 py-1 capitalize transition-colors",
-                        view.type === t ? "bg-indigo-600 text-white" : "bg-background text-muted-foreground hover:bg-muted",
+                        view.type === t ? "bg-indigo-600 text-foreground" : "bg-background text-muted-foreground hover:bg-muted",
                       )}
                     >
                       {t}

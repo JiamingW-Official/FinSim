@@ -1056,7 +1056,7 @@ export default function ESGIntegrationPage() {
                       style={{ backgroundColor: sdg.aligned ? `${sdg.color}22` : undefined, borderColor: sdg.aligned ? `${sdg.color}55` : undefined }}
                     >
                       <div
-                        className="w-8 h-8 rounded flex items-center justify-center mx-auto mb-1 text-white text-xs font-bold"
+                        className="w-8 h-8 rounded flex items-center justify-center mx-auto mb-1 text-foreground text-xs font-bold"
                         style={{ backgroundColor: sdg.color }}
                       >
                         {sdg.id}

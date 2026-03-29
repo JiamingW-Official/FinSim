@@ -144,7 +144,7 @@ function SectionCard({ title, icon, children, className }: {
     <div className={cn("bg-card border border-border rounded-xl p-5", className)}>
       <div className="flex items-center gap-2 mb-4">
         <span className="text-primary">{icon}</span>
-        <h3 className="text-sm font-semibold text-white">{title}</h3>
+        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
       </div>
       {children}
     </div>
@@ -244,7 +244,7 @@ function StructureTab() {
                   className="h-full rounded flex items-center pl-2"
                   style={{ backgroundColor: d.color }}
                 >
-                  <span className="text-white text-xs font-semibold">{d.pct}%</span>
+                  <span className="text-foreground text-xs font-semibold">{d.pct}%</span>
                 </motion.div>
               </div>
               <div className="w-16 text-xs text-muted-foreground shrink-0">LTV {d.ltv}</div>
@@ -267,26 +267,26 @@ function StructureTab() {
           <div className="space-y-2 text-sm text-muted-foreground">
             <div className="flex justify-between py-1 border-b border-border">
               <span className="text-muted-foreground">Statutory minimum OC</span>
-              <span className="text-white font-medium">2% (nominal)</span>
+              <span className="text-foreground font-medium">2% (nominal)</span>
             </div>
             <div className="flex justify-between py-1 border-b border-border">
               <span className="text-muted-foreground">Typical voluntary OC</span>
-              <span className="text-white font-medium">15–30%</span>
+              <span className="text-foreground font-medium">15–30%</span>
             </div>
             <div className="flex justify-between py-1 border-b border-border">
               <span className="text-muted-foreground">ECBD commitment level</span>
-              <span className="text-white font-medium">5% (soft OC)</span>
+              <span className="text-foreground font-medium">5% (soft OC)</span>
             </div>
             <div className="flex justify-between py-1">
               <span className="text-muted-foreground">Ratings agency requirement</span>
-              <span className="text-white font-medium">Model-driven (10–40%)</span>
+              <span className="text-foreground font-medium">Model-driven (10–40%)</span>
             </div>
           </div>
         </SectionCard>
 
         <SectionCard title="Cover Pool Monitor" icon={<CheckCircle size={16} />}>
           <div className="space-y-2 text-sm">
-            <p className="text-muted-foreground leading-relaxed">An independent <span className="text-white">Cover Pool Monitor</span> (or Cover Pool Administrator) verifies that cover pool assets meet all eligibility criteria and that statutory OC levels are maintained at all times.</p>
+            <p className="text-muted-foreground leading-relaxed">An independent <span className="text-foreground">Cover Pool Monitor</span> (or Cover Pool Administrator) verifies that cover pool assets meet all eligibility criteria and that statutory OC levels are maintained at all times.</p>
             <div className="mt-3 space-y-1">
               {[
                 "Appointed by regulatory authority",
@@ -428,7 +428,7 @@ function FrameworksTab() {
             )}
           >
             <div className="text-2xl mb-2">{fw.flag}</div>
-            <div className="font-semibold text-white text-sm">{fw.name}</div>
+            <div className="font-semibold text-foreground text-sm">{fw.name}</div>
             <div className="text-xs text-muted-foreground mt-1">{fw.country}</div>
             <div className="mt-2 flex items-center gap-1">
               <span className="text-xs px-1.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20">{fw.type}</span>
@@ -451,7 +451,7 @@ function FrameworksTab() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">{selectedFw.flag}</span>
                 <div>
-                  <h3 className="text-white font-semibold">{selectedFw.name}</h3>
+                  <h3 className="text-foreground font-semibold">{selectedFw.name}</h3>
                   <p className="text-muted-foreground text-xs">{selectedFw.law}</p>
                 </div>
               </div>
@@ -466,7 +466,7 @@ function FrameworksTab() {
                 ].map(({ k, v }) => (
                   <div key={k} className="bg-muted rounded-lg p-3">
                     <div className="text-xs text-muted-foreground mb-0.5">{k}</div>
-                    <div className="text-sm text-white font-medium">{v}</div>
+                    <div className="text-sm text-foreground font-medium">{v}</div>
                   </div>
                 ))}
               </div>
@@ -480,7 +480,7 @@ function FrameworksTab() {
       <SectionCard title="Bail-in Exemption Mechanics" icon={<Shield size={16} />}>
         <div className="flex gap-4 items-start">
           <div className="flex-1 space-y-2 text-sm text-muted-foreground leading-relaxed">
-            <p>Under the <span className="text-white">Bank Recovery and Resolution Directive (BRRD)</span>, covered bonds are explicitly <span className="text-green-400 font-medium">exempt from bail-in</span> (Art. 44(2)(b)). This means covered bond holders cannot have their claims written down or converted to equity in a bank resolution.</p>
+            <p>Under the <span className="text-foreground">Bank Recovery and Resolution Directive (BRRD)</span>, covered bonds are explicitly <span className="text-green-400 font-medium">exempt from bail-in</span> (Art. 44(2)(b)). This means covered bond holders cannot have their claims written down or converted to equity in a bank resolution.</p>
             <p>The exemption applies because covered bonds are <span className="text-primary">secured liabilities backed by specific ring-fenced assets</span>. In resolution, the cover pool continues to service covered bonds under a special administrator, even if the issuing bank is placed in resolution.</p>
           </div>
           <div className="shrink-0 w-36 space-y-2">
@@ -490,7 +490,7 @@ function FrameworksTab() {
             </div>
             <div className="p-3 bg-muted border border-border rounded-lg text-center">
               <div className="text-xs text-muted-foreground">Authority</div>
-              <div className="text-white font-medium text-xs mt-1">BRRD Art. 44(2)(b)</div>
+              <div className="text-foreground font-medium text-xs mt-1">BRRD Art. 44(2)(b)</div>
             </div>
           </div>
         </div>
@@ -615,12 +615,12 @@ function MarketDataTab() {
             <tbody>
               {TOP_ISSUERS.map((row) => (
                 <tr key={row.issuer} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-2 text-white text-xs font-medium">{row.issuer}</td>
+                  <td className="py-2 text-foreground text-xs font-medium">{row.issuer}</td>
                   <td className="py-2 text-center">
                     <span className="text-xs px-1.5 py-0.5 bg-muted rounded text-muted-foreground">{row.country}</span>
                   </td>
                   <td className="py-2 text-muted-foreground text-xs">{row.program}</td>
-                  <td className="py-2 text-right text-white text-xs font-medium">{row.outstanding}</td>
+                  <td className="py-2 text-right text-foreground text-xs font-medium">{row.outstanding}</td>
                   <td className="py-2 text-center">
                     <span className="text-xs px-1.5 py-0.5 bg-green-500/10 border border-green-500/20 rounded text-green-400">{row.rating}</span>
                   </td>
@@ -636,13 +636,13 @@ function MarketDataTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <SectionCard title="ECB Eligibility & CBPP3" icon={<Building2 size={16} />}>
           <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
-            <p>Covered bonds are <span className="text-white">ECB repo-eligible</span> as Category I collateral (haircut ~1–7%). The ECB's <span className="text-primary">Covered Bond Purchase Programmes (CBPP1, CBPP2, CBPP3)</span> bought covered bonds outright to support euro area credit.</p>
+            <p>Covered bonds are <span className="text-foreground">ECB repo-eligible</span> as Category I collateral (haircut ~1–7%). The ECB's <span className="text-primary">Covered Bond Purchase Programmes (CBPP1, CBPP2, CBPP3)</span> bought covered bonds outright to support euro area credit.</p>
             <p>CBPP3, launched Oct 2014, accumulated <span className="text-green-400">€280bn+</span> in holdings, compressing spreads by ~15–20bp and becoming a dominant investor in the market.</p>
           </div>
         </SectionCard>
         <SectionCard title="LCR Level 1B Treatment" icon={<Shield size={16} />}>
           <div className="space-y-2 text-sm text-muted-foreground leading-relaxed">
-            <p>Covered bonds rated <span className="text-white">AA– or above</span> qualify as <span className="text-primary">Level 1B HQLA</span> under Basel III LCR (subject to 7% haircut and 70% cap within total HQLA).</p>
+            <p>Covered bonds rated <span className="text-foreground">AA– or above</span> qualify as <span className="text-primary">Level 1B HQLA</span> under Basel III LCR (subject to 7% haircut and 70% cap within total HQLA).</p>
             <p>This makes covered bonds a preferred instrument for bank liquidity portfolios alongside government bonds, driving structural demand and tighter spreads vs. unsecured bank debt.</p>
           </div>
         </SectionCard>
@@ -837,7 +837,7 @@ export default function CoveredBondsPage() {
             <Shield size={20} className="text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Covered Bonds</h1>
+            <h1 className="text-xl font-bold text-foreground">Covered Bonds</h1>
             <p className="text-muted-foreground text-sm">Dual recourse, cover pool mechanics, and European frameworks</p>
           </div>
         </div>
@@ -866,7 +866,7 @@ export default function CoveredBondsPage() {
             <TabsTrigger
               key={tab.id}
               value={tab.id}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground rounded-md transition-all"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground rounded-md transition-all"
             >
               {tab.icon}
               {tab.label}

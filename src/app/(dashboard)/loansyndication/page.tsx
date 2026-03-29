@@ -664,7 +664,7 @@ function BookBuildingTab() {
                 variant={selectedDealId === d.id ? "default" : "outline"}
                 size="sm"
                 className={selectedDealId === d.id
-                  ? "bg-primary hover:bg-primary/80 text-white border-0"
+                  ? "bg-primary hover:bg-primary/80 text-foreground border-0"
                   : "bg-muted border-border text-muted-foreground hover:bg-muted"}
                 onClick={() => setSelectedDealId(d.id)}
               >
@@ -709,7 +709,7 @@ function BookBuildingTab() {
                 className="h-full bg-primary rounded-full"
                 style={{ width: `${Math.min((selectedDeal.sizeM / totalCommit) * 100, 100)}%` }}
               />
-              <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-white">
+              <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-foreground">
                 {oversubRatio.toFixed(2)}x oversubscribed
               </div>
             </div>

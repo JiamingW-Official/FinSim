@@ -1027,19 +1027,19 @@ export default function CrossAssetMomPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="factor" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
+          <TabsTrigger value="factor" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
             <Activity size={13} className="mr-1.5" />
             Momentum Factor
           </TabsTrigger>
-          <TabsTrigger value="trend" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
+          <TabsTrigger value="trend" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
             <GitBranch size={13} className="mr-1.5" />
             Trend Following
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
+          <TabsTrigger value="portfolio" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
             <Globe size={13} className="mr-1.5" />
             Multi-Asset Portfolio
           </TabsTrigger>
-          <TabsTrigger value="implementation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground">
+          <TabsTrigger value="implementation" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground">
             <Zap size={13} className="mr-1.5" />
             Strategy Implementation
           </TabsTrigger>

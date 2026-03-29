@@ -1100,7 +1100,7 @@ function ValuationTab() {
                 onClick={() => setSortKey(k)}
                 className={cn(
                   "text-xs px-2 py-1 rounded-md transition-colors",
-                  sortKey === k ? "bg-indigo-600 text-white" : "text-muted-foreground hover:text-foreground"
+                  sortKey === k ? "bg-indigo-600 text-foreground" : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {k === "evEbitda" ? "EV/EBITDA" : k === "evRev" ? "EV/Rev" : k === "pe" ? "P/E" : "Growth"}
@@ -1649,7 +1649,7 @@ export default function EquityResearchPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground"
               >
                 {tab.icon}
                 {tab.label}

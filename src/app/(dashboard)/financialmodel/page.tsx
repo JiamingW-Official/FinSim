@@ -303,7 +303,7 @@ function EditableCell({
     <div className="flex items-center gap-1">
       <input
         type="number"
-        className="w-16 bg-foreground/5 border border-border rounded px-1.5 py-0.5 text-xs text-right text-white focus:outline-none focus:border-primary/60"
+        className="w-16 bg-foreground/5 border border-border rounded px-1.5 py-0.5 text-xs text-right text-foreground focus:outline-none focus:border-primary/60"
         value={value}
         min={min}
         max={max}
@@ -623,7 +623,7 @@ function ISRow({
       <td
         className={cn(
           "py-1.5 px-3 text-xs sticky left-0 bg-card",
-          bold ? "font-semibold text-white" : sub ? "pl-6 text-muted-foreground" : "text-muted-foreground"
+          bold ? "font-semibold text-foreground" : sub ? "pl-6 text-muted-foreground" : "text-muted-foreground"
         )}
       >
         {label}
@@ -635,7 +635,7 @@ function ISRow({
             key={i}
             className={cn(
               "py-1.5 px-3 text-xs text-right font-mono",
-              bold ? "font-semibold text-white" : "text-muted-foreground"
+              bold ? "font-semibold text-foreground" : "text-muted-foreground"
             )}
           >
             {formatted}
@@ -947,8 +947,8 @@ export default function FinancialModelPage() {
                   className={cn(
                     "px-3 py-1 rounded-md text-xs font-medium transition-all",
                     company === k
-                      ? "bg-primary text-white shadow"
-                      : "text-muted-foreground hover:text-white"
+                      ? "bg-primary text-foreground shadow"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {k}
@@ -964,11 +964,11 @@ export default function FinancialModelPage() {
                     "px-3 py-1 rounded-md text-xs font-medium capitalize transition-all",
                     scenario === sc
                       ? sc === "bull"
-                        ? "bg-emerald-600 text-white"
+                        ? "bg-emerald-600 text-foreground"
                         : sc === "bear"
-                        ? "bg-red-600 text-white"
-                        : "bg-muted text-white"
-                      : "text-muted-foreground hover:text-white"
+                        ? "bg-red-600 text-foreground"
+                        : "bg-muted text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {sc}
@@ -977,7 +977,7 @@ export default function FinancialModelPage() {
             </div>
             <div className="flex flex-col items-end">
               <span className="text-xs text-muted-foreground">{companyData.name}</span>
-              <span className="text-sm font-semibold text-white">${companyData.currentPrice.toFixed(2)}</span>
+              <span className="text-sm font-semibold text-foreground">${companyData.currentPrice.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -1001,7 +1001,7 @@ export default function FinancialModelPage() {
                 className={cn(
                   "flex items-center gap-1.5 px-3 py-2 text-xs rounded-t-md rounded-b-none border-b-2 transition-all",
                   activeTab === value
-                    ? "border-primary text-white bg-foreground/[0.04]"
+                    ? "border-primary text-foreground bg-foreground/[0.04]"
                     : "border-transparent text-muted-foreground hover:text-muted-foreground"
                 )}
               >
@@ -1156,8 +1156,8 @@ export default function FinancialModelPage() {
                         { label: "Total Assets", value: bsData.totalAssets, bold: true, highlight: true },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight && "bg-primary/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-white")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-white")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-foreground")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-foreground")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1177,8 +1177,8 @@ export default function FinancialModelPage() {
                         { label: "Total Liabilities", value: bsData.totalLiab, bold: true, highlight: true },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight && "bg-red-500/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-white")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-white")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-foreground")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-foreground")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1193,8 +1193,8 @@ export default function FinancialModelPage() {
                         { label: "Total Liab. + Equity", value: bsData.totalLiab + bsData.totalEquity, bold: true },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight && "bg-emerald-500/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-white")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-white")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "font-semibold text-foreground")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", bold && "font-semibold text-foreground")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1212,8 +1212,8 @@ export default function FinancialModelPage() {
                       { label: "Cash Conversion Cycle (CCC)", value: bsData.ccc.toFixed(1) + " days", bold: true },
                     ].map(({ label, value, bold }) => (
                       <div key={label} className="flex justify-between items-center py-1.5 border-b border-border/50">
-                        <span className={cn("text-xs", bold ? "text-white font-semibold" : "text-muted-foreground")}>{label}</span>
-                        <span className={cn("text-xs font-mono", bold ? "text-white font-semibold" : "text-muted-foreground")}>{value}</span>
+                        <span className={cn("text-xs", bold ? "text-foreground font-semibold" : "text-muted-foreground")}>{label}</span>
+                        <span className={cn("text-xs font-mono", bold ? "text-foreground font-semibold" : "text-muted-foreground")}>{value}</span>
                       </div>
                     ))}
                   </div>
@@ -1253,8 +1253,8 @@ export default function FinancialModelPage() {
                         { label: "Operating Cash Flow", value: cfData.operatingCF, bold: true, highlight: "blue" },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight === "blue" && "bg-primary/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-white font-semibold")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-white font-semibold")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-semibold")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-semibold")}>{fmt(value)}</td>
                         </tr>
                       ))}
                       <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-primary font-semibold">Investing Activities</td></tr>
@@ -1264,8 +1264,8 @@ export default function FinancialModelPage() {
                         { label: "Investing Cash Flow", value: cfData.investingCF, bold: true, highlight: "purple" },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight === "purple" && "bg-primary/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-white font-semibold")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-white font-semibold")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-semibold")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-semibold")}>{fmt(value)}</td>
                         </tr>
                       ))}
                       <tr><td colSpan={2} className="pt-3 pb-1 text-xs text-amber-400 font-semibold">Financing Activities</td></tr>
@@ -1276,8 +1276,8 @@ export default function FinancialModelPage() {
                         { label: "Financing Cash Flow", value: cfData.financingCF, bold: true, highlight: "amber" },
                       ].map(({ label, value, bold, highlight }) => (
                         <tr key={label} className={cn("border-b border-border/50", highlight === "amber" && "bg-amber-500/5")}>
-                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-white font-semibold")}>{label}</td>
-                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-white font-semibold")}>{fmt(value)}</td>
+                          <td className={cn("py-1.5 text-muted-foreground", bold && "text-foreground font-semibold")}>{label}</td>
+                          <td className={cn("py-1.5 text-right font-mono", value < 0 ? "text-red-400" : "text-muted-foreground", bold && "text-foreground font-semibold")}>{fmt(value)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -1297,7 +1297,7 @@ export default function FinancialModelPage() {
                         { label: "FCF Conversion", value: fmtPct(cfData.fcfConversion), color: cfData.fcfConversion > 80 ? "text-emerald-400" : "text-amber-400" },
                       ].map(({ label, value, color, big }) => (
                         <div key={label} className="flex justify-between items-center border-b border-border/50 pb-2">
-                          <span className={cn("text-xs", big ? "font-semibold text-white" : "text-muted-foreground")}>{label}</span>
+                          <span className={cn("text-xs", big ? "font-semibold text-foreground" : "text-muted-foreground")}>{label}</span>
                           <span className={cn("text-xs font-mono font-semibold", color, big && "text-base")}>{value}</span>
                         </div>
                       ))}
@@ -1396,7 +1396,7 @@ export default function FinancialModelPage() {
                     { label: "Intrinsic Value/Share", value: fmtM(dcfData.intrinsicGGM), big: true },
                   ].map(({ label, value, big }) => (
                     <div key={label} className="flex justify-between py-1.5 border-b border-border/50">
-                      <span className={cn("text-xs", big ? "text-white font-semibold" : "text-muted-foreground")}>{label}</span>
+                      <span className={cn("text-xs", big ? "text-foreground font-semibold" : "text-muted-foreground")}>{label}</span>
                       <span className={cn("text-xs font-mono", big ? "text-emerald-400 text-sm font-bold" : "text-muted-foreground")}>{value}</span>
                     </div>
                   ))}
@@ -1412,7 +1412,7 @@ export default function FinancialModelPage() {
                     { label: "Intrinsic Value/Share", value: fmtM(dcfData.intrinsicMult), big: true },
                   ].map(({ label, value, big }) => (
                     <div key={label} className="flex justify-between py-1.5 border-b border-border/50">
-                      <span className={cn("text-xs", big ? "text-white font-semibold" : "text-muted-foreground")}>{label}</span>
+                      <span className={cn("text-xs", big ? "text-foreground font-semibold" : "text-muted-foreground")}>{label}</span>
                       <span className={cn("text-xs font-mono", big ? "text-primary text-sm font-bold" : "text-muted-foreground")}>{value}</span>
                     </div>
                   ))}
@@ -1422,7 +1422,7 @@ export default function FinancialModelPage() {
                   <div className="flex flex-col gap-3 mt-2">
                     <div className="flex justify-between">
                       <span className="text-xs text-muted-foreground">Current Price</span>
-                      <span className="text-xs font-mono text-white">{fmtM(companyData.currentPrice)}</span>
+                      <span className="text-xs font-mono text-foreground">{fmtM(companyData.currentPrice)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-xs text-muted-foreground">Intrinsic (GGM)</span>
@@ -1534,7 +1534,7 @@ export default function FinancialModelPage() {
                           <tr key={label} className="border-b border-border/50">
                             <td className="py-1.5 text-muted-foreground">{label}</td>
                             <td className="py-1.5 text-right font-mono text-muted-foreground">{median}</td>
-                            <td className="py-1.5 text-right font-mono text-white font-medium">{fmtM(implied)}</td>
+                            <td className="py-1.5 text-right font-mono text-foreground font-medium">{fmtM(implied)}</td>
                             <td className={cn("py-1.5 text-right font-mono font-semibold", upside >= 0 ? "text-emerald-400" : "text-red-400")}>
                               {upside >= 0 ? "+" : ""}{upside.toFixed(1)}%
                             </td>
@@ -1640,7 +1640,7 @@ export default function FinancialModelPage() {
                   <div className="flex items-center gap-3 bg-foreground/[0.03] border border-border rounded-lg px-4 py-3">
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide">Current Price</p>
-                      <p className="text-lg font-bold text-white">{fmtM(companyData.currentPrice)}</p>
+                      <p className="text-lg font-bold text-foreground">{fmtM(companyData.currentPrice)}</p>
                     </div>
                     <div className="text-muted-foreground text-xl">=</div>
                     <div>

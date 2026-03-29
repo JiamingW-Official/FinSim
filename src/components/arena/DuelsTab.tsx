@@ -509,7 +509,7 @@ export function DuelsTab() {
             <button
               type="button"
               onClick={handleFindMatch}
-              className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500 py-3.5 text-sm font-bold text-white transition-colors hover:bg-teal-400 active:scale-95"
+              className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500 py-3.5 text-sm font-bold text-foreground transition-colors hover:bg-teal-400 active:scale-95"
             >
               <Swords className="h-4 w-4" />
               Find Match

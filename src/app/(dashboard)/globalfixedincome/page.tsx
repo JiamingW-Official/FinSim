@@ -273,10 +273,10 @@ function MarketOverviewTab() {
           <FadeCard key={s.label} className="flex flex-col gap-1">
             <div className="flex items-center gap-1.5">
               <s.icon size={14} className={s.color} />
-              <span className="text-xs text-white/50">{s.label}</span>
+              <span className="text-xs text-foreground/50">{s.label}</span>
             </div>
-            <span className="text-2xl font-bold text-white">{s.value}</span>
-            <span className="text-xs text-white/40">{s.sub}</span>
+            <span className="text-2xl font-bold text-foreground">{s.value}</span>
+            <span className="text-xs text-foreground/40">{s.sub}</span>
           </FadeCard>
         ))}
       </div>
@@ -284,7 +284,7 @@ function MarketOverviewTab() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Donut chart */}
         <FadeCard>
-          <h3 className="mb-3 text-sm font-semibold text-white/80">Global Bond Market by Region ($128T)</h3>
+          <h3 className="mb-3 text-sm font-semibold text-foreground/80">Global Bond Market by Region ($128T)</h3>
           <div className="flex flex-col items-center gap-4 sm:flex-row">
             <svg width={240} height={240} viewBox="0 0 240 240">
               {donutArcs.map((arc) => {
@@ -318,10 +318,10 @@ function MarketOverviewTab() {
                   onClick={() => setSelectedMarket(selectedMarket === m.name ? null : m.name)}
                 >
                   <span className="h-2.5 w-2.5 rounded-full" style={{ background: m.color }} />
-                  <span className={cn("text-xs", selectedMarket === m.name ? "text-white font-medium" : "text-white/60")}>
+                  <span className={cn("text-xs", selectedMarket === m.name ? "text-foreground font-medium" : "text-foreground/60")}>
                     {m.name}
                   </span>
-                  <span className="ml-auto text-xs text-white/40">${m.size}T</span>
+                  <span className="ml-auto text-xs text-foreground/40">${m.size}T</span>
                   <span className="text-xs font-medium" style={{ color: m.color }}>{m.pct}%</span>
                 </button>
               ))}
@@ -331,11 +331,11 @@ function MarketOverviewTab() {
 
         {/* Global Agg composition */}
         <FadeCard>
-          <h3 className="mb-4 text-sm font-semibold text-white/80">Bloomberg Global Aggregate Index Composition</h3>
+          <h3 className="mb-4 text-sm font-semibold text-foreground/80">Bloomberg Global Aggregate Index Composition</h3>
           <div className="space-y-2">
             {GLOBAL_AGG.map((g) => (
               <div key={g.label} className="flex items-center gap-2">
-                <span className="w-28 text-xs text-white/60">{g.label}</span>
+                <span className="w-28 text-xs text-foreground/60">{g.label}</span>
                 <div className="relative flex-1 h-4 rounded bg-foreground/5 overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
@@ -345,7 +345,7 @@ function MarketOverviewTab() {
                     style={{ background: g.color, opacity: 0.75 }}
                   />
                 </div>
-                <span className="w-10 text-right text-xs font-medium text-white">{g.pct}%</span>
+                <span className="w-10 text-right text-xs font-medium text-foreground">{g.pct}%</span>
               </div>
             ))}
           </div>
@@ -354,11 +354,11 @@ function MarketOverviewTab() {
 
       {/* Yield comparison table */}
       <FadeCard>
-        <h3 className="mb-3 text-sm font-semibold text-white/80">10-Year Government Bond Yields — 15 Countries</h3>
+        <h3 className="mb-3 text-sm font-semibold text-foreground/80">10-Year Government Bond Yields — 15 Countries</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-white/40 border-b border-border">
+              <tr className="text-foreground/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Country</th>
                 <th className="pb-2 text-left font-medium">Rating</th>
                 <th className="pb-2 text-right font-medium">Yield</th>
@@ -370,7 +370,7 @@ function MarketOverviewTab() {
             <tbody>
               {YIELD_TABLE.map((row) => (
                 <tr key={row.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-1.5 font-medium text-white">
+                  <td className="py-1.5 font-medium text-foreground">
                     {row.flag} {row.country}
                   </td>
                   <td className="py-1.5">
@@ -391,14 +391,14 @@ function MarketOverviewTab() {
                       {row.rating}
                     </span>
                   </td>
-                  <td className="py-1.5 text-right font-mono font-semibold text-white">
+                  <td className="py-1.5 text-right font-mono font-semibold text-foreground">
                     {row.yield10y.toFixed(2)}%
                   </td>
                   <td className={cn("py-1.5 text-right font-mono", row.change1m >= 0 ? "text-red-400" : "text-emerald-400")}>
                     {row.change1m >= 0 ? "+" : ""}{row.change1m.toFixed(2)}%
                   </td>
-                  <td className="py-1.5 text-right text-white/60">{row.duration.toFixed(1)}</td>
-                  <td className="py-1.5 pl-3 text-white/40">{row.currency}</td>
+                  <td className="py-1.5 text-right text-foreground/60">{row.duration.toFixed(1)}</td>
+                  <td className="py-1.5 pl-3 text-foreground/40">{row.currency}</td>
                 </tr>
               ))}
             </tbody>
@@ -408,8 +408,8 @@ function MarketOverviewTab() {
 
       {/* Negative yield history */}
       <FadeCard>
-        <h3 className="mb-3 text-sm font-semibold text-white/80">10Y Yield History — Japan &amp; Germany (2016–2026)</h3>
-        <p className="mb-3 text-xs text-white/40">
+        <h3 className="mb-3 text-sm font-semibold text-foreground/80">10Y Yield History — Japan &amp; Germany (2016–2026)</h3>
+        <p className="mb-3 text-xs text-foreground/40">
           Both countries had extended periods of negative yields. Japan maintained negative rates until 2024; Germany peaked at −0.45% in 2020.
         </p>
         <svg width="100%" viewBox={`0 0 ${negYieldChart.W} ${negYieldChart.H}`} className="overflow-visible">
@@ -484,7 +484,7 @@ function EMBondsTab() {
             <DollarSign size={14} className="text-primary" />
             <span className="text-sm font-semibold text-primary">Hard Currency (HC) Bonds</span>
           </div>
-          <ul className="space-y-1 text-xs text-white/60">
+          <ul className="space-y-1 text-xs text-foreground/60">
             <li>• Denominated in USD (or EUR/GBP) — eliminates local FX risk</li>
             <li>• Included in JPMorgan EMBI Global index</li>
             <li>• Typical issuers: sovereigns, quasi-sovereigns, corporates</li>
@@ -497,7 +497,7 @@ function EMBondsTab() {
             <Globe size={14} className="text-emerald-400" />
             <span className="text-sm font-semibold text-emerald-300">Local Currency (LC) Bonds</span>
           </div>
-          <ul className="space-y-1 text-xs text-white/60">
+          <ul className="space-y-1 text-xs text-foreground/60">
             <li>• Denominated in local currency — adds FX exposure</li>
             <li>• Included in JPMorgan GBI-EM Global Diversified index</li>
             <li>• Return driver: local yield + FX return vs USD</li>
@@ -510,7 +510,7 @@ function EMBondsTab() {
       {/* Spread bar chart */}
       <FadeCard>
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-white/80">
+          <h3 className="text-sm font-semibold text-foreground/80">
             {view === "hard" ? "Hard Currency Spread vs US Treasuries (bps)" : "Local Currency 10Y Yield (%)"}
           </h3>
           <div className="flex gap-1">
@@ -520,7 +520,7 @@ function EMBondsTab() {
                 onClick={() => setView(v)}
                 className={cn(
                   "rounded px-2 py-1 text-xs font-medium transition-colors",
-                  view === v ? "bg-primary/30 text-primary" : "text-white/40 hover:text-white/60"
+                  view === v ? "bg-primary/30 text-primary" : "text-foreground/40 hover:text-foreground/60"
                 )}
               >
                 {v === "hard" ? "Hard CCY" : "Local CCY"}
@@ -540,7 +540,7 @@ function EMBondsTab() {
                 : "#10b981";
             return (
               <div key={c.name} className="flex items-center gap-3">
-                <span className="w-24 text-xs text-white/70">
+                <span className="w-24 text-xs text-foreground/70">
                   {c.flag} {c.name}
                 </span>
                 <div className="relative flex-1 h-5 rounded bg-foreground/5 overflow-hidden">
@@ -552,7 +552,7 @@ function EMBondsTab() {
                     style={{ background: color, opacity: 0.7 }}
                   />
                 </div>
-                <span className="w-16 text-right font-mono text-xs font-medium text-white">
+                <span className="w-16 text-right font-mono text-xs font-medium text-foreground">
                   {view === "hard" ? `${val}bps` : `${val.toFixed(2)}%`}
                 </span>
                 <span
@@ -571,11 +571,11 @@ function EMBondsTab() {
 
       {/* Default history */}
       <FadeCard>
-        <h3 className="mb-3 text-sm font-semibold text-white/80">EM Sovereign Default &amp; Restructuring History</h3>
+        <h3 className="mb-3 text-sm font-semibold text-foreground/80">EM Sovereign Default &amp; Restructuring History</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-white/40 border-b border-border">
+              <tr className="text-foreground/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Country</th>
                 <th className="pb-2 text-left font-medium">Year</th>
                 <th className="pb-2 text-left font-medium">Instrument</th>
@@ -587,12 +587,12 @@ function EMBondsTab() {
             <tbody>
               {DEFAULT_HISTORY.map((d) => (
                 <tr key={`${d.country}-${d.year}`} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-2 font-medium text-white">{d.flag} {d.country}</td>
-                  <td className="py-2 text-white/60">{d.year}</td>
-                  <td className="py-2 text-white/50">{d.instrument}</td>
-                  <td className="py-2 text-right font-mono text-white">{d.amount}</td>
+                  <td className="py-2 font-medium text-foreground">{d.flag} {d.country}</td>
+                  <td className="py-2 text-foreground/60">{d.year}</td>
+                  <td className="py-2 text-foreground/50">{d.instrument}</td>
+                  <td className="py-2 text-right font-mono text-foreground">{d.amount}</td>
                   <td className="py-2 text-right font-mono text-yellow-300">{d.recovery}</td>
-                  <td className="py-2 pl-3 text-white/50">{d.outcome}</td>
+                  <td className="py-2 pl-3 text-foreground/50">{d.outcome}</td>
                 </tr>
               ))}
             </tbody>
@@ -605,9 +605,9 @@ function EMBondsTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <ShieldCheck size={14} className="text-primary" />
-            <h3 className="text-sm font-semibold text-white/80">IMF Program Mechanics</h3>
+            <h3 className="text-sm font-semibold text-foreground/80">IMF Program Mechanics</h3>
           </div>
-          <div className="space-y-2 text-xs text-white/60">
+          <div className="space-y-2 text-xs text-foreground/60">
             <div className="flex gap-2">
               <span className="text-primary font-semibold w-20 shrink-0">SBA</span>
               <span>Stand-By Arrangement: short-term 12–24 month support; conditionality includes fiscal consolidation, FX flexibility</span>
@@ -621,7 +621,7 @@ function EMBondsTab() {
               <span>Resilience &amp; Sustainability Facility: new climate/pandemic resilience instrument</span>
             </div>
             <div className="rounded bg-foreground/5 p-2 mt-2">
-              <p className="text-white/50">IMF programs signal willingness to reform, often catalyzing private market access. Bond prices typically rally 10–30% on IMF approval.</p>
+              <p className="text-foreground/50">IMF programs signal willingness to reform, often catalyzing private market access. Bond prices typically rally 10–30% on IMF approval.</p>
             </div>
           </div>
         </FadeCard>
@@ -629,9 +629,9 @@ function EMBondsTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <Layers size={14} className="text-primary" />
-            <h3 className="text-sm font-semibold text-white/80">JPMorgan Index Inclusion Criteria</h3>
+            <h3 className="text-sm font-semibold text-foreground/80">JPMorgan Index Inclusion Criteria</h3>
           </div>
-          <div className="space-y-3 text-xs text-white/60">
+          <div className="space-y-3 text-xs text-foreground/60">
             <div>
               <p className="text-primary font-semibold mb-1">EMBI Global (Hard Currency)</p>
               <ul className="space-y-0.5">
@@ -702,16 +702,16 @@ function CurrencyHedgingTab() {
           <FadeCard key={c.title} className="border-border">
             <div className="flex items-center gap-2 mb-2">
               <c.icon size={14} className={c.color} />
-              <span className="text-sm font-semibold text-white/80">{c.title}</span>
+              <span className="text-sm font-semibold text-foreground/80">{c.title}</span>
             </div>
-            <p className="text-xs text-white/50">{c.body}</p>
+            <p className="text-xs text-foreground/50">{c.body}</p>
           </FadeCard>
         ))}
       </div>
 
       {/* Hedged vs unhedged bar chart */}
       <FadeCard>
-        <h3 className="mb-4 text-sm font-semibold text-white/80">Hedged vs Unhedged Return by Currency Pair (vs USD baseline ~4.25%)</h3>
+        <h3 className="mb-4 text-sm font-semibold text-foreground/80">Hedged vs Unhedged Return by Currency Pair (vs USD baseline ~4.25%)</h3>
         <div className="overflow-x-auto">
           <svg width={chartW} height={chartH} viewBox={`0 0 ${chartW} ${chartH}`}>
             {/* Gridlines */}
@@ -781,11 +781,11 @@ function CurrencyHedgingTab() {
 
       {/* Hedge cost table */}
       <FadeCard>
-        <h3 className="mb-3 text-sm font-semibold text-white/80">FX Hedging Cost by Currency Pair</h3>
+        <h3 className="mb-3 text-sm font-semibold text-foreground/80">FX Hedging Cost by Currency Pair</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="text-white/40 border-b border-border">
+              <tr className="text-foreground/40 border-b border-border">
                 <th className="pb-2 text-left font-medium">Pair</th>
                 <th className="pb-2 text-right font-medium">Rate Diff (vs USD)</th>
                 <th className="pb-2 text-right font-medium">Hedge Cost p.a.</th>
@@ -807,15 +807,15 @@ function CurrencyHedgingTab() {
                     )}
                     onClick={() => setSelectedPair(h.pair)}
                   >
-                    <td className="py-1.5 font-semibold text-white">{h.pair}</td>
+                    <td className="py-1.5 font-semibold text-foreground">{h.pair}</td>
                     <td className={cn("py-1.5 text-right font-mono", h.rateDiff < 0 ? "text-red-400" : "text-emerald-400")}>
                       {h.rateDiff > 0 ? "+" : ""}{h.rateDiff.toFixed(2)}%
                     </td>
                     <td className={cn("py-1.5 text-right font-mono", h.hedgeCost < 0 ? "text-red-400" : "text-emerald-400")}>
                       {h.hedgeCost > 0 ? "+" : ""}{h.hedgeCost.toFixed(2)}%
                     </td>
-                    <td className="py-1.5 text-right font-mono text-white">{h.unhedgedRet.toFixed(2)}%</td>
-                    <td className="py-1.5 text-right font-mono text-white">{h.hedgedRet.toFixed(2)}%</td>
+                    <td className="py-1.5 text-right font-mono text-foreground">{h.unhedgedRet.toFixed(2)}%</td>
+                    <td className="py-1.5 text-right font-mono text-foreground">{h.hedgedRet.toFixed(2)}%</td>
                     <td className={cn("py-1.5 text-right font-mono font-semibold", netBenefit >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {netBenefit >= 0 ? "+" : ""}{netBenefit.toFixed(2)}%
                     </td>
@@ -843,29 +843,29 @@ function CurrencyHedgingTab() {
             </div>
             <div className="grid grid-cols-2 gap-4 text-xs sm:grid-cols-4">
               <div>
-                <p className="text-white/40 mb-0.5">Interest Rate Diff</p>
+                <p className="text-foreground/40 mb-0.5">Interest Rate Diff</p>
                 <p className={cn("font-semibold", selected.rateDiff < 0 ? "text-red-300" : "text-emerald-300")}>
                   {selected.rateDiff > 0 ? "+" : ""}{selected.rateDiff.toFixed(2)}% p.a.
                 </p>
               </div>
               <div>
-                <p className="text-white/40 mb-0.5">Hedging Cost</p>
+                <p className="text-foreground/40 mb-0.5">Hedging Cost</p>
                 <p className={cn("font-semibold", selected.hedgeCost < 0 ? "text-red-300" : "text-yellow-300")}>
                   {selected.hedgeCost > 0 ? "+" : ""}{selected.hedgeCost.toFixed(2)}% p.a.
                 </p>
               </div>
               <div>
-                <p className="text-white/40 mb-0.5">Unhedged Return</p>
-                <p className="font-semibold text-white">{selected.unhedgedRet.toFixed(2)}%</p>
+                <p className="text-foreground/40 mb-0.5">Unhedged Return</p>
+                <p className="font-semibold text-foreground">{selected.unhedgedRet.toFixed(2)}%</p>
               </div>
               <div>
-                <p className="text-white/40 mb-0.5">Hedged Return</p>
-                <p className={cn("font-semibold", selected.hedgedRet > selected.unhedgedRet ? "text-emerald-300" : "text-white")}>
+                <p className="text-foreground/40 mb-0.5">Hedged Return</p>
+                <p className={cn("font-semibold", selected.hedgedRet > selected.unhedgedRet ? "text-emerald-300" : "text-foreground")}>
                   {selected.hedgedRet.toFixed(2)}%
                 </p>
               </div>
             </div>
-            <p className="mt-3 text-xs text-white/40">
+            <p className="mt-3 text-xs text-foreground/40">
               {selected.hedgeCost < 0
                 ? `${selected.pair.split("/")[0]} rates are lower than USD, so hedging into USD generates a positive carry of ${Math.abs(selected.hedgeCost).toFixed(2)}% — making foreign bonds more attractive on a hedged basis.`
                 : `${selected.pair.split("/")[0]} rates are higher than USD, so hedging back to USD costs ${selected.hedgeCost.toFixed(2)}% p.a. via forward discount, reducing yield advantage.`}
@@ -879,9 +879,9 @@ function CurrencyHedgingTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-2">
             <ShieldCheck size={14} className="text-emerald-400" />
-            <span className="text-sm font-semibold text-white/80">Strategic Currency Exposure</span>
+            <span className="text-sm font-semibold text-foreground/80">Strategic Currency Exposure</span>
           </div>
-          <ul className="space-y-1 text-xs text-white/50">
+          <ul className="space-y-1 text-xs text-foreground/50">
             <li>• Fully hedge developed market bonds to remove FX noise</li>
             <li>• EUR, GBP, JPY often hedged — rate differentials predictable</li>
             <li>• Swiss Franc hedge is expensive due to very low CHF rates</li>
@@ -892,9 +892,9 @@ function CurrencyHedgingTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-2">
             <TrendingUp size={14} className="text-yellow-400" />
-            <span className="text-sm font-semibold text-white/80">Tactical Currency Overlay</span>
+            <span className="text-sm font-semibold text-foreground/80">Tactical Currency Overlay</span>
           </div>
-          <ul className="space-y-1 text-xs text-white/50">
+          <ul className="space-y-1 text-xs text-foreground/50">
             <li>• Active managers may leave EM currencies unhedged for alpha</li>
             <li>• EM hedging expensive: BRL/USD cost can exceed 8% p.a.</li>
             <li>• Carry strategies: borrow low-yield, invest high-yield currencies</li>
@@ -950,8 +950,8 @@ function PortfolioConstructionTab() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Efficient frontier */}
         <FadeCard>
-          <h3 className="mb-2 text-sm font-semibold text-white/80">Efficient Frontier — Global Bond Portfolios</h3>
-          <p className="mb-3 text-xs text-white/40">Expected 5Y return vs annualized volatility. Hedged global diversification improves Sharpe ratio.</p>
+          <h3 className="mb-2 text-sm font-semibold text-foreground/80">Efficient Frontier — Global Bond Portfolios</h3>
+          <p className="mb-3 text-xs text-foreground/40">Expected 5Y return vs annualized volatility. Hedged global diversification improves Sharpe ratio.</p>
           <svg width="100%" viewBox={`0 0 ${efW} ${efH}`} className="overflow-visible">
             {/* Grid */}
             {[4.0, 4.5, 5.0, 5.5, 6.0].map((v) => {
@@ -1013,7 +1013,7 @@ function PortfolioConstructionTab() {
                 onMouseLeave={() => setHighlightPoint(null)}
               >
                 <span className="h-2 w-2 rounded-full" style={{ background: p.color }} />
-                <span className="text-xs text-white/50">{p.label}</span>
+                <span className="text-xs text-foreground/50">{p.label}</span>
               </div>
             ))}
           </div>
@@ -1021,15 +1021,15 @@ function PortfolioConstructionTab() {
 
         {/* Correlation matrix */}
         <FadeCard>
-          <h3 className="mb-3 text-sm font-semibold text-white/80">Correlation Matrix — Global Bond Sectors</h3>
-          <p className="mb-3 text-xs text-white/40">Lower correlations improve portfolio efficiency. EM Local Currency adds most diversification.</p>
+          <h3 className="mb-3 text-sm font-semibold text-foreground/80">Correlation Matrix — Global Bond Sectors</h3>
+          <p className="mb-3 text-xs text-foreground/40">Lower correlations improve portfolio efficiency. EM Local Currency adds most diversification.</p>
           <div className="overflow-x-auto">
             <table className="text-xs border-collapse">
               <thead>
                 <tr>
-                  <th className="pb-1 pr-2 text-right text-white/30 text-xs font-normal w-20"></th>
+                  <th className="pb-1 pr-2 text-right text-foreground/30 text-xs font-normal w-20"></th>
                   {CORR_LABELS.map((l) => (
-                    <th key={l} className="pb-1 px-1 text-center text-white/40 font-normal text-xs w-14">
+                    <th key={l} className="pb-1 px-1 text-center text-foreground/40 font-normal text-xs w-14">
                       <span className="block truncate w-14">{l}</span>
                     </th>
                   ))}
@@ -1038,7 +1038,7 @@ function PortfolioConstructionTab() {
               <tbody>
                 {CORR_MATRIX.map((row, ri) => (
                   <tr key={ri}>
-                    <td className="py-0.5 pr-2 text-right text-white/60 text-xs whitespace-nowrap">{CORR_LABELS[ri]}</td>
+                    <td className="py-0.5 pr-2 text-right text-foreground/60 text-xs whitespace-nowrap">{CORR_LABELS[ri]}</td>
                     {row.map((val, ci) => (
                       <td key={ci} className="py-0.5 px-0.5">
                         <div
@@ -1063,7 +1063,7 @@ function PortfolioConstructionTab() {
 
       {/* Duration strategies */}
       <FadeCard>
-        <h3 className="mb-4 text-sm font-semibold text-white/80">Duration Strategy Comparison — Ladder vs Barbell vs Bullet</h3>
+        <h3 className="mb-4 text-sm font-semibold text-foreground/80">Duration Strategy Comparison — Ladder vs Barbell vs Bullet</h3>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             {
@@ -1108,13 +1108,13 @@ function PortfolioConstructionTab() {
                 {strat.pros.map((p) => (
                   <div key={p} className="flex gap-1.5">
                     <span className="text-emerald-400 mt-0.5">+</span>
-                    <span className="text-white/50">{p}</span>
+                    <span className="text-foreground/50">{p}</span>
                   </div>
                 ))}
                 {strat.cons.map((c) => (
                   <div key={c} className="flex gap-1.5">
                     <span className="text-red-400 mt-0.5">−</span>
-                    <span className="text-white/50">{c}</span>
+                    <span className="text-foreground/50">{c}</span>
                   </div>
                 ))}
               </div>
@@ -1128,7 +1128,7 @@ function PortfolioConstructionTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <Activity size={14} className="text-yellow-400" />
-            <h3 className="text-sm font-semibold text-white/80">Liquidity Tiers in Global Fixed Income</h3>
+            <h3 className="text-sm font-semibold text-foreground/80">Liquidity Tiers in Global Fixed Income</h3>
           </div>
           <div className="space-y-2">
             {[
@@ -1142,8 +1142,8 @@ function PortfolioConstructionTab() {
                 <span className="rounded px-1.5 py-0.5 text-xs font-bold mt-0.5" style={{ background: `${t.color}25`, color: t.color }}>
                   {t.tier}
                 </span>
-                <div className="flex-1 text-xs text-white/50">{t.label}</div>
-                <span className="text-xs font-mono text-white/40 whitespace-nowrap">{t.bid_ask}</span>
+                <div className="flex-1 text-xs text-foreground/50">{t.label}</div>
+                <span className="text-xs font-mono text-foreground/40 whitespace-nowrap">{t.bid_ask}</span>
               </div>
             ))}
           </div>
@@ -1152,9 +1152,9 @@ function PortfolioConstructionTab() {
         <FadeCard>
           <div className="flex items-center gap-2 mb-3">
             <Building2 size={14} className="text-emerald-400" />
-            <h3 className="text-sm font-semibold text-white/80">ESG Integration in Fixed Income</h3>
+            <h3 className="text-sm font-semibold text-foreground/80">ESG Integration in Fixed Income</h3>
           </div>
-          <div className="space-y-3 text-xs text-white/50">
+          <div className="space-y-3 text-xs text-foreground/50">
             <div>
               <p className="text-emerald-300 font-semibold mb-1">Green / Social / Sustainability Bonds</p>
               <p>Use-of-proceeds bonds with ring-fenced ESG projects. Now $4T+ market. "Greenium" of 3–8bps vs conventional bonds for AAA issuers.</p>
@@ -1205,8 +1205,8 @@ export default function GlobalFixedIncomePage() {
               <Globe size={20} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Global Fixed Income</h1>
-              <p className="text-sm text-white/50">
+              <h1 className="text-2xl font-bold text-foreground">Global Fixed Income</h1>
+              <p className="text-sm text-foreground/50">
                 Cross-border bond investing, sovereign &amp; corporate credit, EM bonds, FX hedging, and portfolio construction
               </p>
             </div>

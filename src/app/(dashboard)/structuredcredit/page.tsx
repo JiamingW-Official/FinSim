@@ -199,7 +199,7 @@ function StatCard({
       ? "text-emerald-400"
       : highlight === "neg"
       ? "text-rose-400"
-      : "text-white";
+      : "text-foreground";
 
   return (
     <div className="rounded-xl border border-border bg-card p-4 flex flex-col gap-1">

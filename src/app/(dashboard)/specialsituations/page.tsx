@@ -672,7 +672,7 @@ function StubCalculator() {
     <div className="bg-card rounded-xl border border-border p-5 space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Calculator className="w-4 h-4 text-indigo-400" />
-        <span className="text-sm font-semibold text-white">Implied Stub Value Calculator</span>
+        <span className="text-sm font-semibold text-foreground">Implied Stub Value Calculator</span>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
@@ -695,7 +695,7 @@ function StubCalculator() {
               onChange={(e) => setter(parseFloat(e.target.value))}
               className="w-full accent-indigo-500"
             />
-            <div className="text-sm font-mono text-white text-right">{value}</div>
+            <div className="text-sm font-mono text-foreground text-right">{value}</div>
           </div>
         ))}
       </div>
@@ -735,7 +735,7 @@ function EventCatalogTab() {
   return (
     <div className="space-y-4">
       <div className="bg-card border border-border rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-white mb-1">8 Core Special Situations</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-1">8 Core Special Situations</h3>
         <p className="text-xs text-muted-foreground">
           Event-driven investing exploits mispricings caused by corporate actions. Each event type has distinct mechanics, holding periods, and risk profiles.
         </p>
@@ -758,7 +758,7 @@ function EventCatalogTab() {
                   className="w-3 h-3 rounded-full shrink-0"
                   style={{ backgroundColor: evt.color }}
                 />
-                <span className="text-sm font-semibold text-white">{evt.name}</span>
+                <span className="text-sm font-semibold text-foreground">{evt.name}</span>
               </div>
               <RiskBadge level={evt.riskLevel} />
             </div>
@@ -835,7 +835,7 @@ function ActivistTab() {
     <div className="space-y-5">
       {/* Campaign Phases */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-1">Activist Campaign Phases</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-1">Activist Campaign Phases</h3>
         <p className="text-xs text-muted-foreground mb-4">
           From initial 13D filing to resolution — each phase has distinct price dynamics and investor behavior.
         </p>
@@ -850,7 +850,7 @@ function ActivistTab() {
             <div key={phase} className="bg-muted rounded-lg p-3">
               <div className="flex items-center gap-1.5 mb-1">
                 {icon}
-                <span className="text-xs font-semibold text-white">{phase}</span>
+                <span className="text-xs font-semibold text-foreground">{phase}</span>
               </div>
               <p className="text-xs text-muted-foreground">{note}</p>
             </div>
@@ -860,7 +860,7 @@ function ActivistTab() {
 
       {/* Top Activist Funds */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Top Activist Funds</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Top Activist Funds</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -873,7 +873,7 @@ function ActivistTab() {
             <tbody>
               {ACTIVIST_FUNDS.map((fund) => (
                 <tr key={fund.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="py-2.5 pr-4 font-semibold text-white">{fund.name}</td>
+                  <td className="py-2.5 pr-4 font-semibold text-foreground">{fund.name}</td>
                   <td className="py-2.5 pr-4 text-indigo-400">{fund.aum}</td>
                   <td className="py-2.5 pr-4 text-muted-foreground">{fund.style}</td>
                   <td className="py-2.5 pr-4">
@@ -898,7 +898,7 @@ function ActivistTab() {
 
       {/* Success Rate by Demand Type */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Success Rate by Demand Type</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Success Rate by Demand Type</h3>
         <div className="space-y-1">
           {DEMAND_TYPES.map((d) => (
             <SuccessRateBar
@@ -919,7 +919,7 @@ function ActivistTab() {
         >
           <div className="flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-red-400" />
-            <span className="text-sm font-semibold text-white">Short Activism Model</span>
+            <span className="text-sm font-semibold text-foreground">Short Activism Model</span>
             <span className="text-xs text-muted-foreground">(Hindenburg / Muddy Waters)</span>
           </div>
           <ChevronRight className={cn("w-4 h-4 text-muted-foreground transition-transform", showShort && "rotate-90")} />
@@ -979,7 +979,7 @@ function ActivistTab() {
 
       {/* Target Selection Criteria */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Target Selection Criteria</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Target Selection Criteria</h3>
         <div className="space-y-2">
           {targetCriteria.map(({ criterion, weight, detail }) => (
             <div key={criterion} className="flex items-start gap-3 py-2 border-b border-border/50 last:border-0">
@@ -994,7 +994,7 @@ function ActivistTab() {
                 {weight}
               </span>
               <div>
-                <div className="text-xs font-medium text-white">{criterion}</div>
+                <div className="text-xs font-medium text-foreground">{criterion}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{detail}</div>
               </div>
             </div>
@@ -1047,7 +1047,7 @@ function PostReorgTab() {
     <div className="space-y-5">
       {/* Why Undervalued */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-2">Why Post-Reorg Equity Outperforms</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-2">Why Post-Reorg Equity Outperforms</h3>
         <p className="text-xs text-muted-foreground leading-relaxed mb-4">
           Studies show post-reorganization equities outperform the market by 40–60% over the first 3 years. The reasons are structural: creditors receive equity they didn&apos;t want, institutional investors can&apos;t hold below-investment-grade equity, and sell-side analysts don&apos;t cover companies without revenue from banking relationships.
         </p>
@@ -1057,7 +1057,7 @@ function PostReorgTab() {
             <div key={title} className="bg-muted rounded-lg p-3">
               <div className="flex items-center gap-2 mb-1.5">
                 {icon}
-                <span className="text-xs font-semibold text-white">{title}</span>
+                <span className="text-xs font-semibold text-foreground">{title}</span>
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">{description}</p>
             </div>
@@ -1067,7 +1067,7 @@ function PostReorgTab() {
 
       {/* Historical Returns Chart */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-1">Historical Post-Reorg Equity Returns</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-1">Historical Post-Reorg Equity Returns</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Median cumulative return vs. S&P 500, equal-weighted basket of 200 post-reorg equities (2000–2024)
         </p>
@@ -1089,13 +1089,13 @@ function PostReorgTab() {
 
       {/* Key Risks */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Key Risks in Post-Reorg Equity</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Key Risks in Post-Reorg Equity</h3>
         <div className="space-y-2">
           {riskFactors.map(({ risk, detail }) => (
             <div key={risk} className="flex items-start gap-3 py-2 border-b border-border/50 last:border-0">
               <AlertTriangle className="w-3.5 h-3.5 text-amber-400 mt-0.5 shrink-0" />
               <div>
-                <div className="text-xs font-medium text-white">{risk}</div>
+                <div className="text-xs font-medium text-foreground">{risk}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{detail}</div>
               </div>
             </div>
@@ -1105,7 +1105,7 @@ function PostReorgTab() {
 
       {/* Due Diligence Checklist */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Due Diligence Checklist</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Due Diligence Checklist</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {[
             "Read Plan of Reorganization (POR) in full",
@@ -1165,7 +1165,7 @@ function StubTradesTab() {
     <div className="space-y-5">
       {/* Mechanics */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-2">Stub Trade Mechanics</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-2">Stub Trade Mechanics</h3>
         <p className="text-xs text-muted-foreground mb-4">
           A stub trade profits when a parent company trades at a discount to the market value of its publicly-listed subsidiary stake. The &quot;stub&quot; represents the residual value of the parent after subtracting its subsidiary holding.
         </p>
@@ -1176,7 +1176,7 @@ function StubTradesTab() {
                 {step}
               </div>
               <div>
-                <div className="text-xs font-semibold text-white">{title}</div>
+                <div className="text-xs font-semibold text-foreground">{title}</div>
                 <div className="text-xs text-muted-foreground mt-0.5">{detail}</div>
               </div>
             </div>
@@ -1189,7 +1189,7 @@ function StubTradesTab() {
 
       {/* Stub Discount Historical */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-1">Stub Discount / Premium Historical Pattern</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-1">Stub Discount / Premium Historical Pattern</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Simulated stub discount trajectory — starts at deep discount, converges toward fair value on catalyst
         </p>
@@ -1210,7 +1210,7 @@ function StubTradesTab() {
 
       {/* Famous Stub Trades */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Famous Stub Trades</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Famous Stub Trades</h3>
         <div className="space-y-2">
           {FAMOUS_STUBS.map((stub, i) => (
             <div key={stub.name} className="border border-border rounded-lg overflow-hidden">
@@ -1220,7 +1220,7 @@ function StubTradesTab() {
               >
                 <div className="flex items-center gap-3">
                   <div className="text-xs font-bold text-indigo-400 w-4">{stub.year}</div>
-                  <span className="text-sm font-semibold text-white">{stub.name}</span>
+                  <span className="text-sm font-semibold text-foreground">{stub.name}</span>
                   <span className="text-xs text-muted-foreground">
                     {stub.parent} / {stub.subsidiary}
                   </span>
@@ -1269,7 +1269,7 @@ function StubTradesTab() {
 
       {/* Pair Trade Setup */}
       <div className="bg-card border border-border rounded-xl p-5">
-        <h3 className="text-sm font-semibold text-white mb-3">Pair Trade Setup & Sizing</h3>
+        <h3 className="text-sm font-semibold text-foreground mb-3">Pair Trade Setup & Sizing</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <h4 className="text-xs font-semibold text-emerald-400">Long Leg (Parent)</h4>
@@ -1323,7 +1323,7 @@ export default function SpecialSituationsPage() {
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Zap className="w-5 h-5 text-indigo-400" />
-            <h1 className="text-xl font-bold text-white">Special Situations Investing</h1>
+            <h1 className="text-xl font-bold text-foreground">Special Situations Investing</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Event-driven strategies — merger arbitrage, activist campaigns, post-reorganization equity, and stub trades
@@ -1343,7 +1343,7 @@ export default function SpecialSituationsPage() {
                 {icon}
                 <span className="text-xs text-muted-foreground">{label}</span>
               </div>
-              <div className="text-lg font-bold font-mono text-white">{value}</div>
+              <div className="text-lg font-bold font-mono text-foreground">{value}</div>
               <div className="text-xs text-muted-foreground">{sub}</div>
             </div>
           ))}
@@ -1352,16 +1352,16 @@ export default function SpecialSituationsPage() {
         {/* Tabs */}
         <Tabs defaultValue="events">
           <TabsList className="bg-card border border-border w-full grid grid-cols-4">
-            <TabsTrigger value="events" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="events" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Event Catalog
             </TabsTrigger>
-            <TabsTrigger value="activist" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="activist" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Activist
             </TabsTrigger>
-            <TabsTrigger value="postreorg" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="postreorg" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Post-Reorg Equity
             </TabsTrigger>
-            <TabsTrigger value="stub" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="stub" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               Stub Trades
             </TabsTrigger>
           </TabsList>

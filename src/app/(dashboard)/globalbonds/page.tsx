@@ -662,7 +662,7 @@ function SovereignYieldsTab() {
       onClick={() => toggle(col)}
       className={cn(
         "flex items-center gap-1 text-xs font-medium transition-colors",
-        sortBy === col ? "text-primary" : "text-muted-foreground hover:text-white"
+        sortBy === col ? "text-primary" : "text-muted-foreground hover:text-foreground"
       )}
     >
       {label}
@@ -715,7 +715,7 @@ function SovereignYieldsTab() {
 
       {/* Yield Bar Chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-4">
+        <h3 className="text-sm font-semibold text-foreground mb-4">
           10Y Sovereign Yields — Sorted by Yield
         </h3>
         <svg
@@ -829,7 +829,7 @@ function SovereignYieldsTab() {
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <span>{bond.flag}</span>
-                      <span className="text-white font-medium text-xs">
+                      <span className="text-foreground font-medium text-xs">
                         {bond.country}
                       </span>
                       <Badge
@@ -1005,7 +1005,7 @@ function YieldCurveTab() {
       <div className="bg-muted/60 border border-border/50 rounded-lg p-3">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-base">{flag}</span>
-          <span className="text-xs font-semibold text-white">{title}</span>
+          <span className="text-xs font-semibold text-foreground">{title}</span>
           <span className="ml-auto text-xs text-muted-foreground">
             2Y / 5Y / 10Y / 30Y
           </span>
@@ -1122,7 +1122,7 @@ function YieldCurveTab() {
 
       {/* Overlay chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">
+        <h3 className="text-sm font-semibold text-foreground mb-3">
           Yield Curve Overlay — US vs Germany vs Japan
         </h3>
         <div className="flex gap-4 mb-3">
@@ -1207,7 +1207,7 @@ function YieldCurveTab() {
 
       {/* Spread Analysis */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">
+        <h3 className="text-sm font-semibold text-foreground mb-3">
           Curve Shape Analysis
         </h3>
         <div className="space-y-2.5">
@@ -1218,7 +1218,7 @@ function YieldCurveTab() {
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <span className="text-xs font-medium text-white">{a.label}</span>
+                  <span className="text-xs font-medium text-foreground">{a.label}</span>
                   <span
                     className={cn(
                       "text-xs font-bold",
@@ -1345,7 +1345,7 @@ function HedgedReturnsTab() {
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <span>{h.flag}</span>
-                      <span className="text-white text-xs font-medium">
+                      <span className="text-foreground text-xs font-medium">
                         {h.currency}
                       </span>
                     </div>
@@ -1422,7 +1422,7 @@ function HedgedReturnsTab() {
 
       {/* Visual comparison bar chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-4">
+        <h3 className="text-sm font-semibold text-foreground mb-4">
           Unhedged vs Hedged Return Comparison
         </h3>
         <svg viewBox="0 0 600 180" className="w-full">
@@ -1576,7 +1576,7 @@ function EMBondsTab() {
 
       {/* EMBI Spread Bar Chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-4">
+        <h3 className="text-sm font-semibold text-foreground mb-4">
           EMBI Spread by Country (bps over UST)
         </h3>
         <svg viewBox="0 0 680 220" className="w-full">
@@ -1697,7 +1697,7 @@ function EMBondsTab() {
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <span>{em.flag}</span>
-                      <span className="text-white text-xs font-medium">
+                      <span className="text-foreground text-xs font-medium">
                         {em.country}
                       </span>
                       <span className="text-muted-foreground text-xs">
@@ -1786,7 +1786,7 @@ function EMBondsTab() {
 
       {/* Hard vs Local Currency comparison note */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">
+        <h3 className="text-sm font-semibold text-foreground mb-3">
           Hard Currency vs Local Currency EM Bonds
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -1850,7 +1850,7 @@ function CentralBankTab() {
     <div className="space-y-6">
       {/* Policy rate differential chart */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-4">
+        <h3 className="text-sm font-semibold text-foreground mb-4">
           G6 Central Bank Policy Rates
         </h3>
         <svg viewBox="0 0 680 200" className="w-full">
@@ -1976,7 +1976,7 @@ function CentralBankTab() {
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{cb.flag}</span>
                     <div>
-                      <div className="text-xs font-semibold text-white">
+                      <div className="text-xs font-semibold text-foreground">
                         {cb.name}
                       </div>
                       <div className="text-xs text-muted-foreground">
@@ -1994,7 +1994,7 @@ function CentralBankTab() {
               </div>
 
               <div className="flex items-end gap-2">
-                <span className="text-2xl font-bold text-white">
+                <span className="text-2xl font-bold text-foreground">
                   {cb.policyRate.toFixed(2)}%
                 </span>
                 <span
@@ -2076,7 +2076,7 @@ function CentralBankTab() {
 
       {/* Divergence Analysis */}
       <div className="bg-muted/60 border border-border/50 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-white mb-3">
+        <h3 className="text-sm font-semibold text-foreground mb-3">
           Policy Divergence Implications
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -2158,7 +2158,7 @@ export default function GlobalBondsPage() {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-card text-white overflow-y-auto">
+    <div className="flex flex-col h-full bg-card text-foreground overflow-y-auto">
       {/* Header */}
       <div className="px-6 pt-6 pb-4 border-b border-border shrink-0">
         <div className="flex items-start justify-between gap-4">
@@ -2167,7 +2167,7 @@ export default function GlobalBondsPage() {
               <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
                 <Globe className="w-4 h-4 text-primary" />
               </div>
-              <h1 className="text-xl font-bold text-white">
+              <h1 className="text-xl font-bold text-foreground">
                 Global Bond Markets
               </h1>
             </div>
@@ -2202,7 +2202,7 @@ export default function GlobalBondsPage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white px-3 py-1.5 rounded-md transition-all"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground px-3 py-1.5 rounded-md transition-all"
               >
                 <tab.icon className="w-3.5 h-3.5" />
                 <span className="hidden sm:inline">{tab.label}</span>

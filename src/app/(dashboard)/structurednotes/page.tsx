@@ -1044,28 +1044,28 @@ export default function StructuredNotesPage() {
         <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
           <TabsTrigger
             value="products"
-            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
           >
             <Layers className="w-3.5 h-3.5 mr-1.5" />
             Product Types
           </TabsTrigger>
           <TabsTrigger
             value="payoff"
-            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
           >
             <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
             Payoff Builder
           </TabsTrigger>
           <TabsTrigger
             value="pricing"
-            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
           >
             <DollarSign className="w-3.5 h-3.5 mr-1.5" />
             Pricing
           </TabsTrigger>
           <TabsTrigger
             value="risk"
-            className="data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
+            className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
           >
             <AlertTriangle className="w-3.5 h-3.5 mr-1.5" />
             Risk Analysis

@@ -1283,7 +1283,7 @@ export default function StrategyLab() {
             <Button
               onClick={handleRunBacktest}
               disabled={isRunning || strategy.entryConditions.length === 0}
-              className="bg-primary hover:bg-primary text-white shrink-0 flex items-center gap-2"
+              className="bg-primary hover:bg-primary text-foreground shrink-0 flex items-center gap-2"
             >
               <Play className="h-3.5 w-3.5" />
               {isRunning ? "Running..." : "Run Backtest (1000 bars)"}
@@ -1531,7 +1531,7 @@ export default function StrategyLab() {
                 </select>
               </div>
               <Button onClick={handleRunOptimization} disabled={isOptimizing}
-                className="bg-primary hover:bg-primary text-white text-xs">
+                className="bg-primary hover:bg-primary text-foreground text-xs">
                 {isOptimizing ? "Optimizing..." : "Run 25 Backtests"}
               </Button>
             </div>
@@ -1620,7 +1620,7 @@ export default function StrategyLab() {
             <Button
               onClick={handleRunMC}
               disabled={isRunningMC || !result || result.trades.length < 3}
-              className="bg-primary hover:bg-primary text-white text-xs flex items-center gap-2"
+              className="bg-primary hover:bg-primary text-foreground text-xs flex items-center gap-2"
             >
               <RefreshCw className={cn("h-3.5 w-3.5", isRunningMC && "animate-spin")} />
               {isRunningMC ? "Simulating..." : "Run 500 Simulations"}

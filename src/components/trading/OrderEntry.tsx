@@ -101,7 +101,7 @@ function PriceLadder({
           className="absolute left-2 right-2 flex items-center justify-between"
           style={{ top: `${((max - l.price) / range) * 100}%`, transform: "translateY(-50%)" }}
         >
-          <span className="rounded px-1 text-[11px] font-semibold text-white" style={{ background: l.color }}>
+          <span className="rounded px-1 text-[11px] font-semibold text-foreground" style={{ background: l.color }}>
             {l.label}
           </span>
           <span className="text-xs tabular-nums font-medium" style={{ color: l.color }}>
@@ -734,11 +734,12 @@ export function OrderEntry() {
       {/* Conditional price inputs */}
       {orderType === "limit" && (
         <div>
-          <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+          <label htmlFor="order-limit-price" className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
             <Target className="h-3 w-3" />
             Limit Price
           </label>
           <Input
+            id="order-limit-price"
             type="number"
             step="0.01"
             placeholder={price > 0 ? price.toFixed(2) : "0.00"}
@@ -750,11 +751,12 @@ export function OrderEntry() {
       )}
       {orderType === "stop_loss" && (
         <div>
-          <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+          <label htmlFor="order-stop-price" className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
             <Shield className="h-3 w-3 text-red-500" />
             Stop Price
           </label>
           <Input
+            id="order-stop-price"
             type="number"
             step="0.01"
             placeholder={price > 0 ? (price * 0.95).toFixed(2) : "0.00"}
@@ -766,11 +768,12 @@ export function OrderEntry() {
       )}
       {orderType === "take_profit" && (
         <div>
-          <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+          <label htmlFor="order-target-price" className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
             <TrendingUp className="h-3 w-3 text-emerald-500" />
             Target Price
           </label>
           <Input
+            id="order-target-price"
             type="number"
             step="0.01"
             placeholder={price > 0 ? (price * 1.1).toFixed(2) : "0.00"}
@@ -783,11 +786,12 @@ export function OrderEntry() {
 
       {/* Quantity */}
       <div>
-        <label className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
+        <label htmlFor="order-quantity" className="mb-1 flex items-center gap-1 text-xs text-muted-foreground">
           <Package className="h-3 w-3" />
           Quantity
         </label>
         <Input
+          id="order-quantity"
           type="number"
           min="1"
           value={quantity}

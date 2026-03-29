@@ -136,7 +136,7 @@ const INVESTOR_MIX = [
 // ── Pill ─────────────────────────────────────────────────────────────────────
 function Pill({ children, color = "default" }: { children: React.ReactNode; color?: "default" | "green" | "red" | "amber" | "blue" | "purple" }) {
   const cls = {
-    default: "bg-foreground/10 text-white/70",
+    default: "bg-foreground/10 text-foreground/70",
     green: "bg-emerald-500/20 text-emerald-300",
     red: "bg-red-500/20 text-red-300",
     amber: "bg-amber-500/20 text-amber-300",
@@ -154,7 +154,7 @@ function Pill({ children, color = "default" }: { children: React.ReactNode; colo
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="bg-foreground/5 rounded-xl border border-border p-4">
-      <p className="text-xs font-semibold text-white/40 mb-3">{title}</p>
+      <p className="text-xs font-semibold text-foreground/40 mb-3">{title}</p>
       {children}
     </div>
   );
@@ -166,11 +166,11 @@ function ExpandSection({ title, children }: { title: string; children: React.Rea
   return (
     <div className="bg-foreground/5 rounded-xl border border-border">
       <button
-        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-white/80 hover:text-white"
+        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground/80 hover:text-foreground"
         onClick={() => setOpen((v) => !v)}
       >
         {title}
-        {open ? <ChevronUp size={14} className="text-white/40" /> : <ChevronDown size={14} className="text-white/40" />}
+        {open ? <ChevronUp size={14} className="text-foreground/40" /> : <ChevronDown size={14} className="text-foreground/40" />}
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -182,7 +182,7 @@ function ExpandSection({ title, children }: { title: string; children: React.Rea
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 text-sm text-white/60 leading-relaxed">{children}</div>
+            <div className="px-4 pb-4 text-sm text-foreground/60 leading-relaxed">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -226,8 +226,8 @@ function DonutChart({ data }: { data: { label: string; pct: number; color: strin
         {data.map((d, i) => (
           <div key={i} className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: d.color }} />
-            <span className="text-sm text-white/70">{d.label}</span>
-            <span className="text-sm font-semibold text-white ml-auto pl-4">{d.pct}%</span>
+            <span className="text-sm text-foreground/70">{d.label}</span>
+            <span className="text-sm font-semibold text-foreground ml-auto pl-4">{d.pct}%</span>
           </div>
         ))}
       </div>
@@ -483,7 +483,7 @@ export default function LoanSyndPage() {
           <h1 className="text-xl font-semibold">Leveraged Loan Syndication</h1>
           <Pill color="purple">Leveraged Finance</Pill>
         </div>
-        <p className="text-sm text-white/50 ml-11">
+        <p className="text-sm text-foreground/50 ml-11">
           Loan structure, arranger economics, CLO demand, covenant analysis, and secondary market trading
         </p>
       </div>
@@ -505,10 +505,10 @@ export default function LoanSyndPage() {
           >
             <div className="flex items-center gap-2 mb-1">
               <kpi.icon size={14} className={kpi.color} />
-              <span className="text-xs text-white/40">{kpi.label}</span>
+              <span className="text-xs text-foreground/40">{kpi.label}</span>
             </div>
             <p className="text-lg font-semibold">{kpi.value}</p>
-            <p className="text-xs text-white/40">{kpi.sub}</p>
+            <p className="text-xs text-foreground/40">{kpi.sub}</p>
           </motion.div>
         ))}
       </div>
@@ -525,7 +525,7 @@ export default function LoanSyndPage() {
             <TabsTrigger
               key={t.id}
               value={t.id}
-              className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-300 text-white/50 text-xs"
+              className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-300 text-foreground/50 text-xs"
             >
               {t.label}
             </TabsTrigger>
@@ -545,7 +545,7 @@ export default function LoanSyndPage() {
                 <thead>
                   <tr className="border-b border-border">
                     {["Company", "Size ($B)", "Spread (bps)", "SOFR Floor", "OID", "Maturity", "Rating", "Type"].map((h) => (
-                      <th key={h} className="px-3 py-2 text-left text-white/40 font-medium whitespace-nowrap">{h}</th>
+                      <th key={h} className="px-3 py-2 text-left text-foreground/40 font-medium whitespace-nowrap">{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -559,16 +559,16 @@ export default function LoanSyndPage() {
                       )}
                       onClick={() => setSelectedLoan(selectedLoan?.company === loan.company ? null : loan)}
                     >
-                      <td className="px-3 py-2 font-medium text-white/90 whitespace-nowrap">{loan.company}</td>
-                      <td className="px-3 py-2 text-white/70">{loan.size.toFixed(1)}</td>
+                      <td className="px-3 py-2 font-medium text-foreground/90 whitespace-nowrap">{loan.company}</td>
+                      <td className="px-3 py-2 text-foreground/70">{loan.size.toFixed(1)}</td>
                       <td className="px-3 py-2 text-amber-300 font-mono">+{loan.spread}</td>
-                      <td className="px-3 py-2 text-white/60">{loan.floor}%</td>
+                      <td className="px-3 py-2 text-foreground/60">{loan.floor}%</td>
                       <td className="px-3 py-2">
-                        <span className={cn("font-mono", loan.oid < 99 ? "text-red-300" : "text-white/70")}>
+                        <span className={cn("font-mono", loan.oid < 99 ? "text-red-300" : "text-foreground/70")}>
                           {loan.oid.toFixed(2)}
                         </span>
                       </td>
-                      <td className="px-3 py-2 text-white/60">{loan.maturity}Y</td>
+                      <td className="px-3 py-2 text-foreground/60">{loan.maturity}Y</td>
                       <td className="px-3 py-2">
                         <Pill color={loan.rating.includes("Caa") || loan.rating.includes("CCC") ? "red" : "blue"}>
                           {loan.rating}
@@ -598,22 +598,22 @@ export default function LoanSyndPage() {
                 <p className="text-sm font-semibold text-indigo-300 mb-2">{selectedLoan.company} — Deal Summary</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                   <div>
-                    <p className="text-white/40 mb-0.5">All-In Yield</p>
-                    <p className="text-white font-mono font-semibold">
+                    <p className="text-foreground/40 mb-0.5">All-In Yield</p>
+                    <p className="text-foreground font-mono font-semibold">
                       {((selectedLoan.spread / 100) + selectedLoan.floor + (100 - selectedLoan.oid) / selectedLoan.maturity).toFixed(2)}%
                     </p>
                   </div>
                   <div>
-                    <p className="text-white/40 mb-0.5">OID Discount</p>
-                    <p className="text-white font-mono font-semibold">{(100 - selectedLoan.oid).toFixed(2)} pts</p>
+                    <p className="text-foreground/40 mb-0.5">OID Discount</p>
+                    <p className="text-foreground font-mono font-semibold">{(100 - selectedLoan.oid).toFixed(2)} pts</p>
                   </div>
                   <div>
-                    <p className="text-white/40 mb-0.5">Spread (bps)</p>
+                    <p className="text-foreground/40 mb-0.5">Spread (bps)</p>
                     <p className="text-amber-300 font-mono font-semibold">{selectedLoan.spread} bps</p>
                   </div>
                   <div>
-                    <p className="text-white/40 mb-0.5">Loan Size</p>
-                    <p className="text-white font-mono font-semibold">${selectedLoan.size.toFixed(1)}B</p>
+                    <p className="text-foreground/40 mb-0.5">Loan Size</p>
+                    <p className="text-foreground font-mono font-semibold">${selectedLoan.size.toFixed(1)}B</p>
                   </div>
                 </div>
               </motion.div>
@@ -633,7 +633,7 @@ export default function LoanSyndPage() {
                   { feature: "Market depth", tla: "Limited", tlb: "Deep / liquid" },
                 ].map((row, i) => (
                   <div key={i} className="grid grid-cols-3 gap-2 py-1.5 border-b border-border/50">
-                    <span className="text-white/40">{row.feature}</span>
+                    <span className="text-foreground/40">{row.feature}</span>
                     <span className="text-muted-foreground">{row.tla}</span>
                     <span className="text-primary">{row.tlb}</span>
                   </div>
@@ -653,7 +653,7 @@ export default function LoanSyndPage() {
           {/* Revolver + Security Package */}
           <div className="grid md:grid-cols-2 gap-4">
             <InfoCard title="Revolver Mechanics">
-              <div className="space-y-2 text-xs text-white/65 leading-relaxed">
+              <div className="space-y-2 text-xs text-foreground/65 leading-relaxed">
                 <p>A revolving credit facility provides a borrower with a committed, drawable line of credit typically sized at 10–20% of total debt.</p>
                 <div className="mt-2 space-y-1.5">
                   {[
@@ -665,7 +665,7 @@ export default function LoanSyndPage() {
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/60 mt-1.5 flex-shrink-0" />
-                      <span><span className="text-white/80 font-medium">{item.label}:</span> {item.val}</span>
+                      <span><span className="text-foreground/80 font-medium">{item.label}:</span> {item.val}</span>
                     </div>
                   ))}
                 </div>
@@ -690,7 +690,7 @@ export default function LoanSyndPage() {
                 ].map((sec, i) => (
                   <div key={i} className={cn("rounded-lg p-3", sec.bg)}>
                     <p className={cn("font-semibold mb-1.5", sec.color)}>{sec.tier} Senior Secured</p>
-                    <ul className="space-y-1 text-white/60">
+                    <ul className="space-y-1 text-foreground/60">
                       {sec.items.map((item, j) => (
                         <li key={j} className="flex items-start gap-1.5">
                           <CheckCircle size={10} className={cn("mt-0.5 flex-shrink-0", sec.color)} />
@@ -716,7 +716,7 @@ export default function LoanSyndPage() {
             {/* Investor type donut */}
             <InfoCard title="Primary Market — Investor Mix">
               <DonutChart data={INVESTOR_MIX} />
-              <div className="mt-4 text-xs text-white/50 leading-relaxed">
+              <div className="mt-4 text-xs text-foreground/50 leading-relaxed">
                 CLOs dominate primary demand (65%), creating a structural bid for leveraged loans that supports tight spreads. CLO formation directly drives new-issue volumes.
               </div>
             </InfoCard>
@@ -734,7 +734,7 @@ export default function LoanSyndPage() {
                   { fee: "Underwriting risk", typical: "Arranger holds ~5–10% if oversubscribed" },
                 ].map((row, i) => (
                   <div key={i} className="flex justify-between items-start py-1.5 border-b border-border/50">
-                    <span className="text-white/60">{row.fee}</span>
+                    <span className="text-foreground/60">{row.fee}</span>
                     <span className="text-amber-300 font-mono text-right ml-4">{row.typical}</span>
                   </div>
                 ))}
@@ -746,7 +746,7 @@ export default function LoanSyndPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <ExpandSection title="Flex Mechanics — How Arrangers Adjust Price">
               <div className="space-y-2">
-                <p>When demand is stronger than expected (oversubscribed), arrangers can <strong className="text-white">flex in</strong> — tighten spread, improve OID, or reduce fees — benefiting the borrower. When undersubscribed, they <strong className="text-white">flex out</strong>.</p>
+                <p>When demand is stronger than expected (oversubscribed), arrangers can <strong className="text-foreground">flex in</strong> — tighten spread, improve OID, or reduce fees — benefiting the borrower. When undersubscribed, they <strong className="text-foreground">flex out</strong>.</p>
                 <ul className="space-y-1.5 mt-2">
                   {[
                     "Spread flex: ±25–75 bps within pre-agreed range",
@@ -821,7 +821,7 @@ export default function LoanSyndPage() {
               ].map((col, i) => (
                 <div key={i}>
                   <p className={cn("font-semibold mb-2", col.color)}>{col.title}</p>
-                  <ul className="space-y-1.5 text-white/60">
+                  <ul className="space-y-1.5 text-foreground/60">
                     {col.points.map((pt, j) => (
                       <li key={j} className="flex items-start gap-1.5">
                         <span className="w-1 h-1 rounded-full bg-foreground/30 mt-1.5 flex-shrink-0" />
@@ -840,8 +840,8 @@ export default function LoanSyndPage() {
           {/* Maintenance vs Incurrence */}
           <div className="grid md:grid-cols-2 gap-4">
             <InfoCard title="Financial Maintenance Covenants">
-              <div className="space-y-2 text-xs text-white/65 leading-relaxed">
-                <p className="text-white/80 font-medium">Tested every quarter — breach triggers default</p>
+              <div className="space-y-2 text-xs text-foreground/65 leading-relaxed">
+                <p className="text-foreground/80 font-medium">Tested every quarter — breach triggers default</p>
                 <ul className="space-y-2 mt-2">
                   {[
                     { name: "Total Leverage Ratio", desc: "Net Debt / EBITDA ≤ defined step-down schedule" },
@@ -851,7 +851,7 @@ export default function LoanSyndPage() {
                   ].map((c, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <CheckCircle size={11} className="text-emerald-400 mt-0.5 flex-shrink-0" />
-                      <span><span className="text-white/80 font-medium">{c.name}:</span> {c.desc}</span>
+                      <span><span className="text-foreground/80 font-medium">{c.name}:</span> {c.desc}</span>
                     </li>
                   ))}
                 </ul>
@@ -862,8 +862,8 @@ export default function LoanSyndPage() {
             </InfoCard>
 
             <InfoCard title="Incurrence Covenants (Cov-Lite)">
-              <div className="space-y-2 text-xs text-white/65 leading-relaxed">
-                <p className="text-white/80 font-medium">Tested only when borrower takes an action</p>
+              <div className="space-y-2 text-xs text-foreground/65 leading-relaxed">
+                <p className="text-foreground/80 font-medium">Tested only when borrower takes an action</p>
                 <ul className="space-y-2 mt-2">
                   {[
                     { name: "Debt Basket", desc: "Cannot incur incremental debt unless Pro Forma leverage ≤ threshold" },
@@ -873,7 +873,7 @@ export default function LoanSyndPage() {
                   ].map((c, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <AlertTriangle size={11} className="text-amber-400 mt-0.5 flex-shrink-0" />
-                      <span><span className="text-white/80 font-medium">{c.name}:</span> {c.desc}</span>
+                      <span><span className="text-foreground/80 font-medium">{c.name}:</span> {c.desc}</span>
                     </li>
                   ))}
                 </ul>
@@ -894,7 +894,7 @@ export default function LoanSyndPage() {
               {COVENANT_TESTS.map((test, i) => (
                 <div key={i} className="space-y-1">
                   <div className="flex items-center justify-between text-xs mb-1">
-                    <span className="text-white/70 font-medium">{test.name}</span>
+                    <span className="text-foreground/70 font-medium">{test.name}</span>
                     <Pill color={test.type === "maintenance" ? "green" : "amber"}>
                       {test.type}
                     </Pill>
@@ -908,7 +908,7 @@ export default function LoanSyndPage() {
           {/* Cov-lite trend */}
           <InfoCard title="Cov-Lite Trend — % of New Issuance">
             <CovLiteChart data={covLiteData} />
-            <p className="text-xs text-white/40 mt-2">
+            <p className="text-xs text-foreground/40 mt-2">
               Cov-lite loans (incurrence only) now represent 90%+ of new TLB issuance, driven by CLO demand and borrower negotiating leverage.
             </p>
           </InfoCard>
@@ -927,7 +927,7 @@ export default function LoanSyndPage() {
                     { basket: "Permitted restricted payment", val: "Tax distributions, management fees" },
                   ].map((b, i) => (
                     <div key={i} className="flex justify-between gap-4">
-                      <span className="text-white/60">{b.basket}</span>
+                      <span className="text-foreground/60">{b.basket}</span>
                       <span className="text-indigo-300 font-mono text-right text-xs">{b.val}</span>
                     </div>
                   ))}
@@ -968,7 +968,7 @@ export default function LoanSyndPage() {
                 <span className="text-sm font-medium">Secondary Loan Price — 30 Day History</span>
               </div>
               <div className="flex items-center gap-3 text-xs">
-                <span className="text-white/50">Nexus Technology TLB</span>
+                <span className="text-foreground/50">Nexus Technology TLB</span>
                 <span className={cn("font-mono font-semibold", priceChange >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {priceChange >= 0 ? "+" : ""}{priceChange.toFixed(3)} pts
                 </span>
@@ -977,15 +977,15 @@ export default function LoanSyndPage() {
             <LoanPriceChart data={loanPrices} />
             <div className="grid grid-cols-3 gap-3 mt-3 text-xs">
               <div className="text-center">
-                <p className="text-white/40">Current Bid</p>
-                <p className="text-white font-mono font-semibold">{(latestPrice - bidAsk / 2).toFixed(3)}</p>
+                <p className="text-foreground/40">Current Bid</p>
+                <p className="text-foreground font-mono font-semibold">{(latestPrice - bidAsk / 2).toFixed(3)}</p>
               </div>
               <div className="text-center">
-                <p className="text-white/40">Current Ask</p>
-                <p className="text-white font-mono font-semibold">{(latestPrice + bidAsk / 2).toFixed(3)}</p>
+                <p className="text-foreground/40">Current Ask</p>
+                <p className="text-foreground font-mono font-semibold">{(latestPrice + bidAsk / 2).toFixed(3)}</p>
               </div>
               <div className="text-center">
-                <p className="text-white/40">Bid/Ask Spread</p>
+                <p className="text-foreground/40">Bid/Ask Spread</p>
                 <p className="text-amber-300 font-mono font-semibold">{bidAsk.toFixed(3)} pts</p>
               </div>
             </div>
@@ -1004,10 +1004,10 @@ export default function LoanSyndPage() {
                     { range: "< 50", label: "Deep Distressed", color: "bg-red-800", note: "Restructuring / bankruptcy risk" },
                   ].map((tier, i) => (
                     <div key={i} className="flex items-center gap-3">
-                      <span className="font-mono text-white/60 w-14 flex-shrink-0">{tier.range}</span>
+                      <span className="font-mono text-foreground/60 w-14 flex-shrink-0">{tier.range}</span>
                       <span className={cn("w-2 h-2 rounded-full flex-shrink-0", tier.color)} />
-                      <span className="text-white/80 font-medium w-24 flex-shrink-0">{tier.label}</span>
-                      <span className="text-white/40">{tier.note}</span>
+                      <span className="text-foreground/80 font-medium w-24 flex-shrink-0">{tier.label}</span>
+                      <span className="text-foreground/40">{tier.note}</span>
                     </div>
                   ))}
                 </div>
@@ -1027,8 +1027,8 @@ export default function LoanSyndPage() {
                   { key: "Consent requirement", val: "Borrower consent (not required for assigns > min)" },
                 ].map((row, i) => (
                   <div key={i} className="flex justify-between py-1.5 border-b border-border/50">
-                    <span className="text-white/50">{row.key}</span>
-                    <span className="text-white/80 text-right ml-4 max-w-[55%]">{row.val}</span>
+                    <span className="text-foreground/50">{row.key}</span>
+                    <span className="text-foreground/80 text-right ml-4 max-w-[55%]">{row.val}</span>
                   </div>
                 ))}
               </div>
@@ -1054,8 +1054,8 @@ export default function LoanSyndPage() {
                   ))}
                 </ul>
                 <div className="mt-2 p-2 bg-foreground/5 rounded-lg">
-                  <p className="text-white/70 font-medium mb-1">TRS cash flows:</p>
-                  <p className="text-white/50">Protection buyer pays SOFR + spread; receives coupon + price appreciation (or pays depreciation) on notional.</p>
+                  <p className="text-foreground/70 font-medium mb-1">TRS cash flows:</p>
+                  <p className="text-foreground/50">Protection buyer pays SOFR + spread; receives coupon + price appreciation (or pays depreciation) on notional.</p>
                 </div>
               </div>
             </ExpandSection>
@@ -1081,7 +1081,7 @@ export default function LoanSyndPage() {
                       <span className={cn("font-semibold", idx.color)}>{idx.name}</span>
                       <Pill color="default">{idx.ticker}</Pill>
                     </div>
-                    <ul className="space-y-1 text-white/50">
+                    <ul className="space-y-1 text-foreground/50">
                       {idx.points.map((pt, j) => (
                         <li key={j} className="flex items-start gap-1.5">
                           <span className="w-1 h-1 rounded-full bg-foreground/30 mt-1.5 flex-shrink-0" />
@@ -1109,9 +1109,9 @@ export default function LoanSyndPage() {
                 { label: "Avg days to settle", val: "12 days", sub: "2024 industry avg" },
               ].map((m, i) => (
                 <div key={i} className="p-3 bg-foreground/5 rounded-lg text-center">
-                  <p className="text-white/40 mb-1">{m.label}</p>
-                  <p className="text-white font-semibold font-mono">{m.val}</p>
-                  <p className="text-white/30 mt-0.5">{m.sub}</p>
+                  <p className="text-foreground/40 mb-1">{m.label}</p>
+                  <p className="text-foreground font-semibold font-mono">{m.val}</p>
+                  <p className="text-foreground/30 mt-0.5">{m.sub}</p>
                 </div>
               ))}
             </div>

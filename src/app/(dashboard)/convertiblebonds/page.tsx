@@ -435,8 +435,8 @@ export default function ConvertibleBondsPage() {
       {/* Header */}
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">Convertible Bonds</h1>
-          <p className="text-sm text-white/50 mt-1">Hybrid instruments combining fixed-income safety with equity upside optionality</p>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground">Convertible Bonds</h1>
+          <p className="text-sm text-foreground/50 mt-1">Hybrid instruments combining fixed-income safety with equity upside optionality</p>
         </div>
         <div className="flex gap-2 flex-wrap">
           {[
@@ -466,7 +466,7 @@ export default function ConvertibleBondsPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-400 text-white/60 text-xs px-3 py-1.5 rounded-md flex items-center gap-1.5"
+              className="data-[state=active]:bg-amber-500/20 data-[state=active]:text-amber-400 text-foreground/60 text-xs px-3 py-1.5 rounded-md flex items-center gap-1.5"
             >
               <t.icon className="w-3.5 h-3.5" />
               {t.label}
@@ -478,7 +478,7 @@ export default function ConvertibleBondsPage() {
         <TabsContent value="scanner" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <Card className="bg-foreground/5 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-white/90 flex items-center gap-2">
+              <CardTitle className="text-base font-semibold text-foreground/90 flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-amber-400" />
                 Convertible Bond Universe
               </CardTitle>
@@ -507,19 +507,19 @@ export default function ConvertibleBondsPage() {
                         )}
                       >
                         <td className="py-2.5 pr-3 whitespace-nowrap">
-                          <div className="font-semibold text-white/90">{cb.issuer}</div>
+                          <div className="font-semibold text-foreground/90">{cb.issuer}</div>
                           <div className="text-muted-foreground/60">{cb.ticker}</div>
                         </td>
-                        <td className="py-2.5 pr-3 text-white/70">{cb.maturity}</td>
-                        <td className="py-2.5 pr-3 text-white/70">{cb.coupon.toFixed(2)}%</td>
+                        <td className="py-2.5 pr-3 text-foreground/70">{cb.maturity}</td>
+                        <td className="py-2.5 pr-3 text-foreground/70">{cb.coupon.toFixed(2)}%</td>
                         <td className="py-2.5 pr-3 font-mono text-foreground/80">${fmt2(cb.conversionPrice)}</td>
                         <td className="py-2.5 pr-3 font-mono text-foreground/80">${fmt2(cb.stockPrice)}</td>
                         <td className={cn("py-2.5 pr-3 font-mono font-bold", d.conversionPremium > 0 ? "text-emerald-400" : "text-rose-400")}>
                           {d.conversionPremium.toFixed(1)}%
                         </td>
                         <td className="py-2.5 pr-3 font-mono text-sky-400">{d.delta.toFixed(2)}</td>
-                        <td className="py-2.5 pr-3 font-mono text-white/70">{fmt2(d.parity)}</td>
-                        <td className="py-2.5 pr-3 font-mono text-white/70">{fmt2(d.investmentValue)}</td>
+                        <td className="py-2.5 pr-3 font-mono text-foreground/70">{fmt2(d.parity)}</td>
+                        <td className="py-2.5 pr-3 font-mono text-foreground/70">{fmt2(d.investmentValue)}</td>
                         <td className="py-2.5">
                           <Badge className={cn("text-xs border", classBadge(d.classification))}>
                             {d.classification}
@@ -543,7 +543,7 @@ export default function ConvertibleBondsPage() {
               <Card key={c.title} className={cn("bg-foreground/5 border", c.border)}>
                 <CardContent className="pt-4">
                   <div className={cn("font-semibold text-sm mb-1", c.color)}>{c.title}</div>
-                  <p className="text-xs text-white/50">{c.desc}</p>
+                  <p className="text-xs text-foreground/50">{c.desc}</p>
                 </CardContent>
               </Card>
             ))}
@@ -554,7 +554,7 @@ export default function ConvertibleBondsPage() {
         <TabsContent value="parity" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <Card className="bg-foreground/5 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base font-semibold text-white/90 flex items-center gap-2">
+              <CardTitle className="text-base font-semibold text-foreground/90 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 text-amber-400" />
                 Parity, Investment Floor & CB Price Curve
               </CardTitle>
@@ -585,7 +585,7 @@ export default function ConvertibleBondsPage() {
                 Reading the Chart
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 text-xs text-white/60">
+            <CardContent className="space-y-2 text-xs text-foreground/60">
               <p><span className="text-primary font-semibold">Purple curve</span> = CB market price. Bounded below by the investment floor and above tracks parity with a diminishing premium.</p>
               <p><span className="text-emerald-400 font-semibold">Green dashed line</span> = Parity (intrinsic conversion value = stock / conv. price × par). CB trades above this by the conversion premium.</p>
               <p><span className="text-amber-400 font-semibold">Amber dashed line</span> = Investment value floor (present value of bond cash flows). Acts as a downside cushion.</p>
@@ -596,7 +596,7 @@ export default function ConvertibleBondsPage() {
 
         {/* ── Greeks Tab ── */}
         <TabsContent value="greeks" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <div className="flex gap-2 flex-wrap text-xs text-white/50 items-center">
+          <div className="flex gap-2 flex-wrap text-xs text-foreground/50 items-center">
             <span>Analyzing:</span>
             {CONVERTIBLES.map((cb, i) => (
               <button
@@ -606,7 +606,7 @@ export default function ConvertibleBondsPage() {
                   "px-2 py-1 rounded border transition-colors",
                   selectedCbId === i
                     ? "bg-amber-500/20 border-amber-500/40 text-amber-400"
-                    : "border-border hover:border-border text-white/50"
+                    : "border-border hover:border-border text-foreground/50"
                 )}
               >
                 {cb.ticker}
@@ -617,7 +617,7 @@ export default function ConvertibleBondsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-foreground/5 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-white/90 flex items-center gap-2">
+                <CardTitle className="text-base text-foreground/90 flex items-center gap-2">
                   <Activity className="w-4 h-4 text-amber-400" />
                   Greeks — {selectedCb.ticker}
                 </CardTitle>
@@ -664,7 +664,7 @@ export default function ConvertibleBondsPage() {
                   CB Greeks vs Equity Option Greeks
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs text-white/60">
+              <CardContent className="space-y-3 text-xs text-foreground/60">
                 <div className="rounded-lg bg-sky-500/5 border border-sky-500/15 p-3">
                   <div className="text-sky-400 font-semibold mb-1">Delta — Dampened</div>
                   <p>Equity call delta is purely a function of moneyness and time. CB delta is lower because the credit spread introduces a floor that reduces equity optionality when out-of-the-money.</p>
@@ -696,7 +696,7 @@ export default function ConvertibleBondsPage() {
               <div key={g.label} className="rounded-xl border border-border bg-foreground/5 p-4 text-center">
                 <div className="text-xs text-muted-foreground/60 mb-1">{g.label}</div>
                 <div className={cn("text-xl font-bold font-mono", g.color)}>{g.value}</div>
-                <div className="text-xs text-white/30 mt-1">{g.sub}</div>
+                <div className="text-xs text-foreground/30 mt-1">{g.sub}</div>
               </div>
             ))}
           </div>
@@ -706,7 +706,7 @@ export default function ConvertibleBondsPage() {
         <TabsContent value="mandatory" className="data-[state=inactive]:hidden mt-4 space-y-4">
           <Card className="bg-foreground/5 border-border">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base text-white/90 flex items-center gap-2">
+              <CardTitle className="text-base text-foreground/90 flex items-center gap-2">
                 <RefreshCw className="w-4 h-4 text-amber-400" />
                 Mandatory Convertible Structures
               </CardTitle>
@@ -721,8 +721,8 @@ export default function ConvertibleBondsPage() {
                         <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-xs">{mc.structure}</Badge>
                         <span className="text-xs text-muted-foreground/60">{mc.mandatoryDate}</span>
                       </div>
-                      <CardTitle className="text-sm text-white/90 mt-2">{mc.fullName}</CardTitle>
-                      <p className="text-xs text-white/50">{mc.issuer}</p>
+                      <CardTitle className="text-sm text-foreground/90 mt-2">{mc.fullName}</CardTitle>
+                      <p className="text-xs text-foreground/50">{mc.issuer}</p>
                     </CardHeader>
                     <CardContent className="space-y-3">
                       <MandatoryPayoffSVG mc={mc} />
@@ -744,7 +744,7 @@ export default function ConvertibleBondsPage() {
                           <div className="text-foreground/80 font-mono">${mc.upperStrike}</div>
                         </div>
                       </div>
-                      <p className="text-xs text-white/50 border-t border-border pt-2">{mc.description}</p>
+                      <p className="text-xs text-foreground/50 border-t border-border pt-2">{mc.description}</p>
                     </CardContent>
                   </Card>
                 ))}
@@ -775,7 +775,7 @@ export default function ConvertibleBondsPage() {
                     { feature: "Investor appeal", prcs: "Income-focused", decs: "High income", aces: "Growth + income" },
                   ].map((row) => (
                     <tr key={row.feature} className="border-b border-border/50">
-                      <td className="py-2 pr-4 text-white/60">{row.feature}</td>
+                      <td className="py-2 pr-4 text-foreground/60">{row.feature}</td>
                       <td className="py-2 pr-4 text-amber-400/80">{row.prcs}</td>
                       <td className="py-2 pr-4 text-amber-400/80">{row.decs}</td>
                       <td className="py-2 pr-4 text-amber-400/80">{row.aces}</td>
@@ -789,7 +789,7 @@ export default function ConvertibleBondsPage() {
 
         {/* ── CB Arb Tab ── */}
         <TabsContent value="arb" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <div className="flex gap-2 flex-wrap text-xs text-white/50 items-center mb-1">
+          <div className="flex gap-2 flex-wrap text-xs text-foreground/50 items-center mb-1">
             <span>Select CB:</span>
             {CONVERTIBLES.map((cb, i) => (
               <button
@@ -799,7 +799,7 @@ export default function ConvertibleBondsPage() {
                   "px-2 py-1 rounded border transition-colors",
                   selectedCbId === i
                     ? "bg-amber-500/20 border-amber-500/40 text-amber-400"
-                    : "border-border hover:border-border text-white/50"
+                    : "border-border hover:border-border text-foreground/50"
                 )}
               >
                 {cb.ticker}
@@ -810,7 +810,7 @@ export default function ConvertibleBondsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-foreground/5 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-white/90 flex items-center gap-2">
+                <CardTitle className="text-base text-foreground/90 flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-amber-400" />
                   Arb Strategy — {selectedCb.ticker}
                 </CardTitle>
@@ -819,28 +819,28 @@ export default function ConvertibleBondsPage() {
                 <div className="rounded-lg bg-amber-500/5 border border-amber-500/20 p-3 space-y-2">
                   <div className="font-semibold text-amber-400 mb-1">Leg Structure</div>
                   <div className="flex justify-between">
-                    <span className="text-white/60">Long CB notional</span>
-                    <span className="text-white/90 font-mono">$1,000,000</span>
+                    <span className="text-foreground/60">Long CB notional</span>
+                    <span className="text-foreground/90 font-mono">$1,000,000</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-white/60">CB delta hedge ratio</span>
+                    <span className="text-foreground/60">CB delta hedge ratio</span>
                     <span className="text-sky-400 font-mono">{selectedDerived.delta.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-white/60">Short equity notional</span>
+                    <span className="text-foreground/60">Short equity notional</span>
                     <span className="text-rose-400 font-mono">
                       ${(selectedDerived.delta * (1_000_000 / selectedCb.par) * selectedCb.stockPrice * (selectedCb.par / selectedCb.conversionPrice)).toFixed(0)}
                     </span>
                   </div>
                   <div className="flex justify-between border-t border-border pt-2">
-                    <span className="text-white/60">Net delta exposure</span>
+                    <span className="text-foreground/60">Net delta exposure</span>
                     <span className="text-emerald-400 font-mono">~0 (delta neutral)</span>
                   </div>
                 </div>
-                <p className="text-white/50">
+                <p className="text-foreground/50">
                   CB arbitrage extracts the volatility premium embedded in convertibles. By going long the CB and delta-hedging the equity component, the arbitrageur isolates gamma and vega, profiting from:
                 </p>
-                <ul className="space-y-1 text-white/50 list-disc list-inside">
+                <ul className="space-y-1 text-foreground/50 list-disc list-inside">
                   <li>Gamma scalping on large stock moves</li>
                   <li>Coupon income exceeding financing cost</li>
                   <li>IV expansion on the embedded option</li>
@@ -868,7 +868,7 @@ export default function ConvertibleBondsPage() {
                   <tbody>
                     {arbScenarios.map((sc) => (
                       <tr key={sc.stockMove} className="border-b border-border/50">
-                        <td className={cn("py-2 pr-3 font-mono font-bold", sc.stockMove > 0 ? "text-emerald-400" : sc.stockMove < 0 ? "text-rose-400" : "text-white/50")}>
+                        <td className={cn("py-2 pr-3 font-mono font-bold", sc.stockMove > 0 ? "text-emerald-400" : sc.stockMove < 0 ? "text-rose-400" : "text-foreground/50")}>
                           {sc.stockMove > 0 ? "+" : ""}{sc.stockMove}%
                         </td>
                         <td className={cn("py-2 pr-3 font-mono", pnlColor(sc.cbPnl))}>
@@ -914,7 +914,7 @@ export default function ConvertibleBondsPage() {
                 ].map((r) => (
                   <div key={r.title} className="rounded-lg bg-foreground/[0.03] border border-border p-3">
                     <div className={cn("font-semibold mb-1", r.color)}>{r.title}</div>
-                    <p className="text-white/50">{r.desc}</p>
+                    <p className="text-foreground/50">{r.desc}</p>
                   </div>
                 ))}
               </CardContent>
@@ -927,7 +927,7 @@ export default function ConvertibleBondsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="bg-foreground/5 border-border">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base text-white/90 flex items-center gap-2">
+                <CardTitle className="text-base text-foreground/90 flex items-center gap-2">
                   <Layers className="w-4 h-4 text-amber-400" />
                   Capital Structure Waterfall
                 </CardTitle>
@@ -942,7 +942,7 @@ export default function ConvertibleBondsPage() {
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm text-foreground/80">Why Issue Convertibles?</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 text-xs text-white/60">
+              <CardContent className="space-y-3 text-xs text-foreground/60">
                 <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/20 p-3">
                   <div className="text-emerald-400 font-semibold mb-1">Issuer Perspective</div>
                   <ul className="space-y-1 list-disc list-inside">
@@ -987,7 +987,7 @@ export default function ConvertibleBondsPage() {
               ].map((g) => (
                 <div key={g.term} className="rounded-lg bg-foreground/[0.03] border border-border p-3">
                   <div className="text-amber-400 font-semibold mb-1">{g.term}</div>
-                  <p className="text-white/50">{g.def}</p>
+                  <p className="text-foreground/50">{g.def}</p>
                 </div>
               ))}
             </CardContent>

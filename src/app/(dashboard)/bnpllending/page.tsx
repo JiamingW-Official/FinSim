@@ -86,7 +86,7 @@ function StatCard({
       ? "text-rose-400"
       : highlight === "warn"
       ? "text-amber-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
@@ -389,7 +389,7 @@ function Tab1BNPLModel() {
             <tbody>
               {BNPL_PLAYERS.map((p, i) => (
                 <tr key={p.name} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
-                  <td className="py-2.5 px-3 font-semibold text-white">{p.name}</td>
+                  <td className="py-2.5 px-3 font-semibold text-foreground">{p.name}</td>
                   <td className="py-2.5 px-3 text-primary">{p.gmv}</td>
                   <td className="py-2.5 px-3 text-emerald-300">{p.takeRate}</td>
                   <td className="py-2.5 px-3 text-rose-300">{p.creditLoss}</td>
@@ -705,7 +705,7 @@ function Tab2DigitalScoring() {
           ].map((seg) => (
             <div key={seg.segment} className="rounded-lg border border-border bg-foreground/5 p-3 space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-white">{seg.segment}</span>
+                <span className="text-xs font-semibold text-foreground">{seg.segment}</span>
                 <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-xs">{seg.size}</Badge>
               </div>
               <p className="text-xs text-muted-foreground"><span className="text-rose-400 font-medium">Barrier: </span>{seg.barrier}</p>
@@ -920,7 +920,7 @@ function Tab3EmbeddedFinance() {
             <div key={cs.company} className="rounded-lg border border-border bg-foreground/5 p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <span className="text-sm font-bold text-white">{cs.company}</span>
+                  <span className="text-sm font-bold text-foreground">{cs.company}</span>
                   <span className="text-xs text-muted-foreground ml-2">— {cs.product}</span>
                 </div>
                 <Badge className="text-xs" style={{ backgroundColor: cs.color + "22", color: cs.color, borderColor: cs.color + "44" }}>
@@ -960,7 +960,7 @@ function Tab3EmbeddedFinance() {
                   <p className="text-xs text-muted-foreground">{row.note}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-bold text-white">{row.value}</p>
+                  <p className="text-sm font-bold text-foreground">{row.value}</p>
                   <p className="text-xs text-emerald-400">{row.lift} vs {row.base}</p>
                 </div>
               </div>
@@ -1267,7 +1267,7 @@ function Tab4RiskRegulation() {
                 <div key={item.event} className="rounded-lg border border-border bg-foreground/5 p-3">
                   <div className="flex items-center gap-2 mb-1">
                     <Badge className={cn("text-xs", severityColor)}>{item.date}</Badge>
-                    <span className="text-xs font-semibold text-white">{item.event}</span>
+                    <span className="text-xs font-semibold text-foreground">{item.event}</span>
                   </div>
                   <p className="text-xs text-muted-foreground">{item.detail}</p>
                 </div>
@@ -1307,7 +1307,7 @@ function Tab4RiskRegulation() {
                 {item.step}
               </div>
               <div className="text-rose-400">{item.icon}</div>
-              <p className="text-xs font-semibold text-white">{item.title}</p>
+              <p className="text-xs font-semibold text-foreground">{item.title}</p>
               <p className="text-xs text-muted-foreground">{item.desc}</p>
             </div>
           ))}
@@ -1350,7 +1350,7 @@ export default function BNPLLendingPage() {
               <CreditCard size={18} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">BNPL &amp; Digital Lending</h1>
+              <h1 className="text-xl font-bold text-foreground">BNPL &amp; Digital Lending</h1>
               <p className="text-xs text-muted-foreground">Buy Now Pay Later business models, digital credit scoring, embedded finance &amp; consumer lending disruption</p>
             </div>
           </div>
@@ -1375,7 +1375,7 @@ export default function BNPLLendingPage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/10 data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground"
               >
                 {tab.icon}
                 {tab.label}

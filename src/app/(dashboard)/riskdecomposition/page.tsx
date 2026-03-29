@@ -826,7 +826,7 @@ function ValueAtRiskTab() {
         <button
           onClick={() => setHorizon("1d")}
           className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-            horizon === "1d" ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+            horizon === "1d" ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
           }`}
         >
           1-Day Horizon
@@ -834,7 +834,7 @@ function ValueAtRiskTab() {
         <button
           onClick={() => setHorizon("10d")}
           className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-            horizon === "10d" ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+            horizon === "10d" ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
           }`}
         >
           10-Day Horizon

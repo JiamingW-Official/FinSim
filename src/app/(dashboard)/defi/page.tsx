@@ -90,7 +90,7 @@ function StatCard({
       ? "text-rose-400"
       : highlight === "warn"
       ? "text-amber-400"
-      : "text-white";
+      : "text-foreground";
   return (
     <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
@@ -1756,7 +1756,7 @@ export default function DefiPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white text-muted-foreground flex items-center gap-1.5 text-xs px-3 py-2"
+                className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-muted-foreground flex items-center gap-1.5 text-xs px-3 py-2"
               >
                 {tab.icon}
                 {tab.label}

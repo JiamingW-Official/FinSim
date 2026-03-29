@@ -1247,11 +1247,11 @@ function LDISection() {
       <div className="rounded-lg border border-border bg-card/40 p-3">
         <p className="text-xs font-semibold text-muted-foreground mb-2">Asset Allocation Split</p>
         <div className="flex rounded-lg overflow-hidden h-5 mb-2">
-          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
+          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-foreground transition-all duration-300"
             style={{ width: `${hedgePct}%` }}>
             {parseInt(hedgePct) > 15 ? `Hedge ${hedgePct}%` : ""}
           </div>
-          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-white transition-all duration-300"
+          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-foreground transition-all duration-300"
             style={{ width: `${growthPct}%` }}>
             {parseInt(growthPct) > 15 ? `Growth ${growthPct}%` : ""}
           </div>

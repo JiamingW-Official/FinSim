@@ -421,7 +421,7 @@ function BusinessCycleClock() {
           <Clock className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-white">Business Cycle Clock</h2>
+          <h2 className="text-base font-semibold text-foreground">Business Cycle Clock</h2>
           <p className="text-xs text-muted-foreground">Current phase drives optimal sector allocation</p>
         </div>
         <Badge className="ml-auto bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
@@ -573,7 +573,7 @@ function BusinessCycleClock() {
               <Card className="bg-card border-border/50">
                 <CardContent className="px-4 py-3">
                   <p className="text-xs text-muted-foreground">
-                    <span className="font-semibold text-white">Transition signal: </span>
+                    <span className="font-semibold text-foreground">Transition signal: </span>
                     {activePhase === "Recovery" && "Watch for PMI crossing 55 and yield curve steepening — signals shift to Expansion."}
                     {activePhase === "Expansion" && "Watch for PMI topping out, yield curve flattening, Fed rate hikes accelerating — signals shift to Slowdown."}
                     {activePhase === "Slowdown" && "Watch for PMI crossing below 50, credit spread widening above 200 bps — signals shift to Contraction."}
@@ -605,7 +605,7 @@ function BusinessCycleClock() {
           >
             <div className="flex items-center gap-2 mb-1">
               <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
-              <span className="text-xs font-semibold text-white">{p.phase}</span>
+              <span className="text-xs font-semibold text-foreground">{p.phase}</span>
               {p.phase === CURRENT_PHASE && (
                 <span className="ml-auto text-xs font-bold" style={{ color: p.color }}>NOW</span>
               )}
@@ -657,7 +657,7 @@ function SectorPerformance() {
           <BarChart3 className="w-5 h-5 text-indigo-400" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-white">Sector Performance by Cycle Phase</h2>
+          <h2 className="text-base font-semibold text-foreground">Sector Performance by Cycle Phase</h2>
           <p className="text-xs text-muted-foreground">Historical average annualized returns per phase (GICS sectors)</p>
         </div>
       </div>
@@ -785,7 +785,7 @@ function SectorPerformance() {
                     <td className="px-4 py-2">
                       <div className="flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full" style={{ backgroundColor: sec.color }} />
-                        <span className="font-semibold text-white">{sec.etf}</span>
+                        <span className="font-semibold text-foreground">{sec.etf}</span>
                         <span className="text-muted-foreground">{sec.name}</span>
                       </div>
                     </td>
@@ -821,7 +821,7 @@ function RotationSignals() {
           <Activity className="w-5 h-5 text-yellow-400" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-white">Rotation Signals Dashboard</h2>
+          <h2 className="text-base font-semibold text-foreground">Rotation Signals Dashboard</h2>
           <p className="text-xs text-muted-foreground">PMI, yield curve, credit spreads, earnings revisions as rotation triggers</p>
         </div>
       </div>
@@ -873,7 +873,7 @@ function RotationSignals() {
                 <CardContent className="px-4 py-3 space-y-2">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="text-sm font-semibold text-white">{sig.name}</p>
+                      <p className="text-sm font-semibold text-foreground">{sig.name}</p>
                       <p className="text-xs text-muted-foreground">{sig.description}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
@@ -995,7 +995,7 @@ function FactorRotation() {
           <Layers className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-white">Factor Rotation by Business Cycle</h2>
+          <h2 className="text-base font-semibold text-foreground">Factor Rotation by Business Cycle</h2>
           <p className="text-xs text-muted-foreground">Value, Growth, Quality, Momentum, Low-Vol factor returns per phase</p>
         </div>
       </div>
@@ -1177,7 +1177,7 @@ function ETFImplementation() {
           <DollarSign className="w-5 h-5 text-green-400" />
         </div>
         <div>
-          <h2 className="text-base font-semibold text-white">ETF Implementation & Tactical Allocation</h2>
+          <h2 className="text-base font-semibold text-foreground">ETF Implementation & Tactical Allocation</h2>
           <p className="text-xs text-muted-foreground">SPDR sector ETFs (XL-series) with tactical weights per cycle phase</p>
         </div>
       </div>
@@ -1192,7 +1192,7 @@ function ETFImplementation() {
             className={cn(
               "px-3 py-1 rounded text-xs font-medium border transition-all",
               selectedPhase === ph
-                ? "text-white"
+                ? "text-foreground"
                 : "border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground bg-transparent",
             )}
             style={selectedPhase === ph ? {
@@ -1290,7 +1290,7 @@ function ETFImplementation() {
                       <td className="px-4 py-2">
                         <div className="flex items-center gap-2">
                           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
-                          <span className="font-semibold text-white">{sec.etf}</span>
+                          <span className="font-semibold text-foreground">{sec.etf}</span>
                         </div>
                       </td>
                       <td className="px-3 py-2 text-muted-foreground">{sec.name}</td>
@@ -1417,7 +1417,7 @@ export default function SectorRotationPage() {
       {/* Page header */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-white">Sector Rotation Strategy</h1>
+          <h1 className="text-xl font-bold text-foreground">Sector Rotation Strategy</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Business cycle investing — allocate to sectors and factors that historically outperform each economic phase
           </p>
@@ -1447,7 +1447,7 @@ export default function SectorRotationPage() {
                 <span className="text-xs text-muted-foreground">{label}</span>
                 <span style={{ color }}>{icon}</span>
               </div>
-              <p className="text-lg font-bold text-white" style={{ color }}>{value}</p>
+              <p className="text-lg font-bold text-foreground" style={{ color }}>{value}</p>
               <p className="text-xs text-muted-foreground">{sub}</p>
             </CardContent>
           </Card>

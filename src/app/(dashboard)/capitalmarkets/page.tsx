@@ -566,7 +566,7 @@ function IPOProcessTab() {
                 <div className={cn(
                   "relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all",
                   selectedStage?.id === stage.id
-                    ? "bg-primary border-primary text-white"
+                    ? "bg-primary border-primary text-foreground"
                     : "bg-muted border-border text-muted-foreground group-hover:border-primary group-hover:text-primary"
                 )}>
                   {stage.icon}
@@ -738,7 +738,7 @@ function IPOValuationTab() {
           {(["all", "profitable", "unprofitable", "lockup"] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors",
-                filter === f ? "bg-primary text-white" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
+                filter === f ? "bg-primary text-foreground" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f === "all" ? "All" : f === "profitable" ? "Profitable" : f === "unprofitable" ? "Underwater" : "Lockup Expired"}
             </button>
           ))}
@@ -816,7 +816,7 @@ function SPACTab() {
               const colorMap: Record<string, string> = { blue: "bg-primary", amber: "bg-amber-500", green: "bg-green-600" };
               return (
                 <div key={i} className="flex gap-3">
-                  <div className={cn("mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-xs font-bold", colorMap[item.color])}>
+                  <div className={cn("mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-foreground text-xs font-bold", colorMap[item.color])}>
                     {i + 1}
                   </div>
                   <div>
@@ -875,7 +875,7 @@ function SPACTab() {
           {(["all", "searching", "announced", "voting"] as const).map((f) => (
             <button key={f} onClick={() => setStatusFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors capitalize",
-                statusFilter === f ? "bg-primary text-white" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
+                statusFilter === f ? "bg-primary text-foreground" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f}
             </button>
           ))}
@@ -1132,7 +1132,7 @@ function DCMTab() {
           {(["all", "investment-grade", "high-yield", "loan"] as const).map((f) => (
             <button key={f} onClick={() => setTypeFilter(f)}
               className={cn("text-xs rounded-full px-3 py-1 transition-colors",
-                typeFilter === f ? "bg-primary text-white" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
+                typeFilter === f ? "bg-primary text-foreground" : "bg-muted/50 text-muted-foreground hover:bg-muted")}>
               {f === "all" ? "All" : f === "investment-grade" ? "Inv. Grade" : f === "high-yield" ? "High Yield" : "Loans"}
             </button>
           ))}
@@ -1349,7 +1349,7 @@ export default function CapitalMarketsPage() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-muted-foreground px-3 py-1.5"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-foreground text-muted-foreground px-3 py-1.5"
             >
               {tab.icon}
               {tab.label}

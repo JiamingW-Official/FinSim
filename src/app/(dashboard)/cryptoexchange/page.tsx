@@ -749,7 +749,7 @@ export default function CryptoExchangePage() {
                       className={cn(
                         "px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
                         selectedPair === pair
-                          ? "bg-indigo-600 text-white"
+                          ? "bg-indigo-600 text-foreground"
                           : "bg-muted text-muted-foreground hover:bg-muted"
                       )}
                     >
@@ -876,7 +876,7 @@ export default function CryptoExchangePage() {
                       onClick={() => setOrderType(t)}
                       className={cn(
                         "flex-1 py-1 rounded text-xs font-medium transition-all",
-                        orderType === t ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted"
+                        orderType === t ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-muted"
                       )}
                     >
                       {t === "stop-limit" ? "Stop" : t.charAt(0).toUpperCase() + t.slice(1)}
@@ -887,13 +887,13 @@ export default function CryptoExchangePage() {
                 <div className="flex gap-1 mb-3">
                   <button
                     onClick={() => setOrderSide("buy")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-white" : "bg-muted text-muted-foreground hover:bg-green-900/30 hover:text-green-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-green-900/30 hover:text-green-400")}
                   >
                     Buy
                   </button>
                   <button
                     onClick={() => setOrderSide("sell")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-white" : "bg-muted text-muted-foreground hover:bg-red-900/30 hover:text-red-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-red-900/30 hover:text-red-400")}
                   >
                     Sell
                   </button>
@@ -974,7 +974,7 @@ export default function CryptoExchangePage() {
                     <button
                       key={pair}
                       onClick={() => setPerpPair(pair)}
-                      className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all", perpPair === pair ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted")}
+                      className={cn("px-4 py-2 rounded-lg text-sm font-medium transition-all", perpPair === pair ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-muted")}
                     >
                       {pair} PERP
                     </button>
@@ -1089,7 +1089,7 @@ export default function CryptoExchangePage() {
                     <button
                       key={lv}
                       onClick={() => setLeverage(lv)}
-                      className={cn("px-2 py-1 rounded text-xs transition-all", leverage === lv ? "bg-amber-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted")}
+                      className={cn("px-2 py-1 rounded text-xs transition-all", leverage === lv ? "bg-amber-600 text-foreground" : "bg-muted text-muted-foreground hover:bg-muted")}
                     >
                       {lv}x
                     </button>
@@ -1134,13 +1134,13 @@ export default function CryptoExchangePage() {
                 <div className="flex gap-2 mt-3">
                   <button
                     onClick={() => setOrderSide("buy")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-white" : "bg-muted text-muted-foreground hover:text-green-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "buy" ? "bg-green-600 text-foreground" : "bg-muted text-muted-foreground hover:text-green-400")}
                   >
                     Long {leverage}x
                   </button>
                   <button
                     onClick={() => setOrderSide("sell")}
-                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-white" : "bg-muted text-muted-foreground hover:text-red-400")}
+                    className={cn("flex-1 py-2 rounded-lg text-sm font-semibold transition-all", orderSide === "sell" ? "bg-red-600 text-foreground" : "bg-muted text-muted-foreground hover:text-red-400")}
                   >
                     Short {leverage}x
                   </button>

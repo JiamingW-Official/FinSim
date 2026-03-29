@@ -927,23 +927,23 @@ export default function AnalyticsPage() {
       <div className="p-6">
         <Tabs defaultValue="attribution">
           <TabsList className="bg-card border border-border mb-6 h-9 flex-wrap">
-            <TabsTrigger value="attribution" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="attribution" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               <BarChart3 className="w-3 h-3 mr-1.5" />
               Performance Attribution
             </TabsTrigger>
-            <TabsTrigger value="risk" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="risk" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               <Shield className="w-3 h-3 mr-1.5" />
               Risk Decomposition
             </TabsTrigger>
-            <TabsTrigger value="behavioral" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="behavioral" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               <Brain className="w-3 h-3 mr-1.5" />
               Behavioral Analytics
             </TabsTrigger>
-            <TabsTrigger value="drawdown" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="drawdown" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               <TrendingDown className="w-3 h-3 mr-1.5" />
               Drawdown Intelligence
             </TabsTrigger>
-            <TabsTrigger value="scenario" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <TabsTrigger value="scenario" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground">
               <Zap className="w-3 h-3 mr-1.5" />
               Scenario Backtesting
             </TabsTrigger>
@@ -1456,7 +1456,7 @@ export default function AnalyticsPage() {
                             <span
                               className={cn(
                                 "text-xs font-bold w-5 h-5 rounded flex items-center justify-center",
-                                selectedDrawdown === i ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground"
+                                selectedDrawdown === i ? "bg-indigo-600 text-foreground" : "bg-muted text-muted-foreground"
                               )}
                             >
                               {i + 1}
@@ -1603,7 +1603,7 @@ export default function AnalyticsPage() {
                         className={cn(
                           "text-xs rounded-full px-2.5 py-0.5 border transition-all font-medium",
                           scenarioVisible[s.key]
-                            ? "border-transparent text-white"
+                            ? "border-transparent text-foreground"
                             : "bg-background border-border text-muted-foreground"
                         )}
                         style={

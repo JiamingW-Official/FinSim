@@ -323,7 +323,7 @@ function OSSCalculator() {
         <div className="space-y-2">
           <div className="flex justify-between text-xs text-muted-foreground">
             <span>Total Revenue (USD thousands)</span>
-            <span className="text-white font-mono">${revenue}k</span>
+            <span className="text-foreground font-mono">${revenue}k</span>
           </div>
           <Slider
             min={200}
@@ -336,7 +336,7 @@ function OSSCalculator() {
         <div className="space-y-2">
           <div className="flex justify-between text-xs text-muted-foreground">
             <span>Total Expenses (USD thousands)</span>
-            <span className="text-white font-mono">${expenses}k</span>
+            <span className="text-foreground font-mono">${expenses}k</span>
           </div>
           <Slider
             min={200}
@@ -1021,7 +1021,7 @@ export default function MicrofinancepagePage() {
               <Globe className="w-5 h-5 text-green-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">
+              <h1 className="text-xl font-bold text-foreground">
                 Microfinance &amp; Financial Inclusion
               </h1>
               <p className="text-xs text-muted-foreground">
@@ -1043,7 +1043,7 @@ export default function MicrofinancepagePage() {
                 className="bg-card border border-border rounded-full px-3 py-1 flex items-center gap-2"
               >
                 <span className="text-xs text-muted-foreground">{chip.label}</span>
-                <span className="text-xs font-semibold text-white">{chip.value}</span>
+                <span className="text-xs font-semibold text-foreground">{chip.value}</span>
               </div>
             ))}
           </div>
@@ -1101,7 +1101,7 @@ export default function MicrofinancepagePage() {
                           key={mfi.type}
                           className={`border-b border-border/50 ${i % 2 === 0 ? "bg-card/50" : ""}`}
                         >
-                          <td className="py-2 px-3 font-medium text-white">{mfi.type}</td>
+                          <td className="py-2 px-3 font-medium text-foreground">{mfi.type}</td>
                           <td className="py-2 px-3">
                             {mfi.regulated ? (
                               <CheckCircle className="w-3.5 h-3.5 text-green-500" />
@@ -1195,7 +1195,7 @@ export default function MicrofinancepagePage() {
                       onClick={() => setSelectedMFI(mfi)}
                       className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${
                         selectedMFI.name === mfi.name
-                          ? "bg-primary text-white"
+                          ? "bg-primary text-foreground"
                           : "bg-muted text-muted-foreground hover:bg-muted"
                       }`}
                     >
@@ -1314,7 +1314,7 @@ export default function MicrofinancepagePage() {
                           }`}
                           onClick={() => setSelectedMFI(mfi)}
                         >
-                          <td className="py-2 px-2 font-medium text-white whitespace-nowrap">{mfi.name}</td>
+                          <td className="py-2 px-2 font-medium text-foreground whitespace-nowrap">{mfi.name}</td>
                           <td className="py-2 px-2 text-muted-foreground">{mfi.country}</td>
                           <td
                             className="py-2 px-2 font-mono"
@@ -1556,7 +1556,7 @@ export default function MicrofinancepagePage() {
                 <Card key={feat.title} className="bg-card border-border">
                   <CardContent className="p-4 space-y-2">
                     <feat.icon className={`w-5 h-5 ${feat.color}`} />
-                    <p className="text-xs font-semibold text-white">{feat.title}</p>
+                    <p className="text-xs font-semibold text-foreground">{feat.title}</p>
                     <p className="text-xs text-muted-foreground">{feat.desc}</p>
                   </CardContent>
                 </Card>

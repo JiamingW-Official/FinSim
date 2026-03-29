@@ -575,7 +575,7 @@ function ConfusionMatrix({ seed }: { seed: number }) {
         ].map((m) => (
           <div key={m.label} className="bg-card/80 rounded p-2">
             <div className="text-muted-foreground">{m.label}</div>
-            <div className="text-white font-semibold">{m.val}</div>
+            <div className="text-foreground font-semibold">{m.val}</div>
           </div>
         ))}
       </div>
@@ -589,7 +589,7 @@ function MetricChip({ label, value, positive }: { label: string; value: string; 
   return (
     <div className="bg-card/80 rounded-lg px-3 py-2 flex flex-col gap-0.5">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <span className={`text-sm font-semibold ${positive === undefined ? "text-white" : positive ? "text-green-400" : "text-red-400"}`}>
+      <span className={`text-sm font-semibold ${positive === undefined ? "text-foreground" : positive ? "text-green-400" : "text-red-400"}`}>
         {value}
       </span>
     </div>
@@ -631,7 +631,7 @@ function FactorModelsTab() {
             }`}
             style={{ borderColor: selected.shortName === model.shortName ? model.color : undefined }}
           >
-            <div className="font-semibold text-sm text-white">{model.shortName}</div>
+            <div className="font-semibold text-sm text-foreground">{model.shortName}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{model.factors.length} factor{model.factors.length > 1 ? "s" : ""}</div>
             <div className="text-xs font-medium mt-1" style={{ color: model.color }}>
               Sharpe {model.sharpe.toFixed(2)}
@@ -643,7 +643,7 @@ function FactorModelsTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base text-white">{selected.name}</CardTitle>
+            <CardTitle className="text-base text-foreground">{selected.name}</CardTitle>
             <SectionBadge color={selected.color}>R² = {(selected.rSquared * 100).toFixed(0)}%</SectionBadge>
           </div>
           <p className="text-xs text-muted-foreground mt-1">{selected.description}</p>
@@ -671,7 +671,7 @@ function FactorModelsTab() {
 
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">Alpha / Beta Comparison</CardTitle>
+          <CardTitle className="text-sm text-foreground">Alpha / Beta Comparison</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">
@@ -737,7 +737,7 @@ function MomentumTab() {
     >
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">Momentum Concepts</CardTitle>
+          <CardTitle className="text-sm text-foreground">Momentum Concepts</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
@@ -780,7 +780,7 @@ function MomentumTab() {
             style={{ borderColor: selected === i ? s.color : undefined }}
           >
             <div className="text-xs text-muted-foreground">{s.formation}m / {s.holding}m</div>
-            <div className="font-medium text-sm text-white mt-0.5 truncate">{s.name}</div>
+            <div className="font-medium text-sm text-foreground mt-0.5 truncate">{s.name}</div>
             <div className="text-xs mt-1" style={{ color: s.color }}>
               {s.annualReturn.toFixed(1)}% ann.
             </div>
@@ -791,7 +791,7 @@ function MomentumTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm text-white">{strat.name}</CardTitle>
+            <CardTitle className="text-sm text-foreground">{strat.name}</CardTitle>
             <div className="flex gap-2 text-xs text-muted-foreground">
               <span>Formation: <strong className="text-foreground">{strat.formation}m</strong></span>
               <span>Holding: <strong className="text-foreground">{strat.holding}m</strong></span>
@@ -818,7 +818,7 @@ function MomentumTab() {
 
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">All Strategies Compared</CardTitle>
+          <CardTitle className="text-sm text-foreground">All Strategies Compared</CardTitle>
         </CardHeader>
         <CardContent>
           <LineChart
@@ -855,7 +855,7 @@ function MeanReversionTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-white">Cointegration Concepts</CardTitle>
+            <CardTitle className="text-sm text-foreground">Cointegration Concepts</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs text-muted-foreground leading-relaxed">
             <p>
@@ -892,7 +892,7 @@ function MeanReversionTab() {
 
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-white">Pairs Universe</CardTitle>
+            <CardTitle className="text-sm text-foreground">Pairs Universe</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
@@ -905,7 +905,7 @@ function MeanReversionTab() {
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-sm text-white">
+                    <span className="font-semibold text-sm text-foreground">
                       {p.ticker1} / {p.ticker2}
                     </span>
                     <div className="flex items-center gap-2 text-xs">
@@ -930,7 +930,7 @@ function MeanReversionTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm text-white">
+            <CardTitle className="text-sm text-foreground">
               {pair.ticker1}/{pair.ticker2} Spread Z-Score
             </CardTitle>
             <div className="flex gap-2">
@@ -1000,7 +1000,7 @@ function StatArbTab() {
 
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">Equity Curves (Market-Neutral)</CardTitle>
+          <CardTitle className="text-sm text-foreground">Equity Curves (Market-Neutral)</CardTitle>
         </CardHeader>
         <CardContent>
           <EquityCurveChart
@@ -1014,7 +1014,7 @@ function StatArbTab() {
 
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">Market Neutrality & Risk Factors</CardTitle>
+          <CardTitle className="text-sm text-foreground">Market Neutrality & Risk Factors</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
@@ -1093,7 +1093,7 @@ function MLSignalsTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-white">Feature Importance</CardTitle>
+            <CardTitle className="text-sm text-foreground">Feature Importance</CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
             {ML_FEATURES.map((f) => (
@@ -1124,7 +1124,7 @@ function MLSignalsTab() {
 
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-white">IC Metrics Table</CardTitle>
+            <CardTitle className="text-sm text-foreground">IC Metrics Table</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="overflow-x-auto">
@@ -1168,7 +1168,7 @@ function MLSignalsTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-white">Signal Combination (Ensemble)</CardTitle>
+            <CardTitle className="text-sm text-foreground">Signal Combination (Ensemble)</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="grid grid-cols-2 gap-2">
@@ -1200,7 +1200,7 @@ function MLSignalsTab() {
               ].map((m) => (
                 <div key={m.label} className="flex justify-between">
                   <span className="text-muted-foreground">{m.label}</span>
-                  <span className="text-white font-medium">{m.val}</span>
+                  <span className="text-foreground font-medium">{m.val}</span>
                 </div>
               ))}
             </div>
@@ -1209,7 +1209,7 @@ function MLSignalsTab() {
 
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-white">Confusion Matrix (Directional)</CardTitle>
+            <CardTitle className="text-sm text-foreground">Confusion Matrix (Directional)</CardTitle>
           </CardHeader>
           <CardContent>
             <ConfusionMatrix seed={622002} />
@@ -1219,7 +1219,7 @@ function MLSignalsTab() {
 
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-white">Category Legend</CardTitle>
+          <CardTitle className="text-sm text-foreground">Category Legend</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2">
@@ -1268,7 +1268,7 @@ export default function QuantStrategiesPage() {
             <BarChart3 className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Quantitative Strategies</h1>
+            <h1 className="text-xl font-bold text-foreground">Quantitative Strategies</h1>
             <p className="text-sm text-muted-foreground">Factor models, momentum, mean reversion, stat arb & ML signals</p>
           </div>
           <span className="ml-4 rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">

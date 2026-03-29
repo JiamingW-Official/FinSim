@@ -387,7 +387,7 @@ function LobbyScreen({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-white">Trading Challenges</h2>
+          <h2 className="text-xl font-bold text-foreground">Trading Challenges</h2>
           <p className="text-sm text-muted-foreground">Test your skills across 5 challenge modes</p>
         </div>
         <button
@@ -439,7 +439,7 @@ function LobbyScreen({
                   {cfg.icon}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white leading-tight">{cfg.name}</p>
+                  <p className="text-sm font-semibold text-foreground leading-tight">{cfg.name}</p>
                   <span className={cn("text-xs border rounded px-1.5 py-0.5 font-medium", DIFFICULTY_COLORS[cfg.difficulty])}>
                     {cfg.difficulty}
                   </span>
@@ -581,7 +581,7 @@ function RapidFireScreen({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-white">{challenge.name}</h3>
+          <h3 className="text-base font-bold text-foreground">{challenge.name}</h3>
           <p className="text-xs text-muted-foreground">Bar {currentBar + 1} / {bars.length}</p>
         </div>
         <motion.div
@@ -601,7 +601,7 @@ function RapidFireScreen({
       <div className="rounded-xl border border-border bg-card/60 p-4">
         <PriceLineChart bars={bars} revealed={currentBar} width={340} height={100} />
         <div className="mt-2 flex items-center justify-between text-sm">
-          <span className="text-muted-foreground">Price: <span className="font-mono text-white">${currentPrice.toFixed(2)}</span></span>
+          <span className="text-muted-foreground">Price: <span className="font-mono text-foreground">${currentPrice.toFixed(2)}</span></span>
           <span className={cn("font-mono font-bold", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {returnPct >= 0 ? "+" : ""}{returnPct.toFixed(2)}%
           </span>
@@ -622,15 +622,15 @@ function RapidFireScreen({
         {position !== "none" && (
           <span className="text-muted-foreground">@ ${entryPrice.toFixed(2)}</span>
         )}
-        <span className="ml-auto text-muted-foreground">Capital: <span className="font-mono text-white">${capital.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></span>
+        <span className="ml-auto text-muted-foreground">Capital: <span className="font-mono text-foreground">${capital.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></span>
       </div>
 
       {/* Action Buttons */}
       <div className="grid grid-cols-3 gap-3">
         {([
-          { action: "buy", label: "BUY", key: "B", color: "bg-emerald-600 hover:bg-emerald-500 text-white" },
-          { action: "hold", label: "HOLD", key: "H", color: "bg-muted hover:bg-muted text-white" },
-          { action: "sell", label: "SELL", key: "S", color: "bg-red-600 hover:bg-red-500 text-white" },
+          { action: "buy", label: "BUY", key: "B", color: "bg-emerald-600 hover:bg-emerald-500 text-foreground" },
+          { action: "hold", label: "HOLD", key: "H", color: "bg-muted hover:bg-muted text-foreground" },
+          { action: "sell", label: "SELL", key: "S", color: "bg-red-600 hover:bg-red-500 text-foreground" },
         ] as const).map(({ action, label, key, color }) => (
           <motion.button
             key={action}
@@ -717,7 +717,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-white">Pattern Recognition</h3>
+          <h3 className="text-base font-bold text-foreground">Pattern Recognition</h3>
           <p className="text-xs text-muted-foreground">Question {index + 1} / {quizzes.length}</p>
         </div>
         <div className="flex items-center gap-3">
@@ -770,7 +770,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
               className={cn(
                 "rounded-lg py-2.5 text-sm font-semibold transition-colors border",
                 !isAnswered
-                  ? "border-border bg-muted text-muted-foreground hover:bg-muted hover:text-white"
+                  ? "border-border bg-muted text-muted-foreground hover:bg-muted hover:text-foreground"
                   : isCorrect
                   ? "border-emerald-500 bg-emerald-500/20 text-emerald-400"
                   : isSelected
@@ -809,7 +809,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
       {isAnswered && (
         <button
           onClick={handleNext}
-          className="w-full rounded-xl bg-muted hover:bg-muted py-2.5 text-sm font-semibold text-white transition-colors"
+          className="w-full rounded-xl bg-muted hover:bg-muted py-2.5 text-sm font-semibold text-foreground transition-colors"
         >
           {index + 1 >= quizzes.length ? "See Results" : "Next Pattern"}
         </button>
@@ -880,13 +880,13 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-white">Strategy Battle</h3>
+          <h3 className="text-base font-bold text-foreground">Strategy Battle</h3>
           <p className="text-xs text-muted-foreground">30-bar simulation across strategies</p>
         </div>
         {done && (
           <button
             onClick={handleReplay}
-            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-white rounded-lg bg-muted hover:bg-muted px-3 py-1.5 transition-colors"
+            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground rounded-lg bg-muted hover:bg-muted px-3 py-1.5 transition-colors"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Replay
@@ -920,7 +920,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
               {bot.name[0]}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white truncate">{bot.name}</p>
+              <p className="text-sm font-semibold text-foreground truncate">{bot.name}</p>
               <p className="text-xs text-muted-foreground truncate">{bot.strategy}</p>
             </div>
             {done && (
@@ -955,7 +955,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
           <button
             disabled={!playerStrategy}
             onClick={handleStart}
-            className="w-full rounded-xl bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground/70 py-2.5 text-sm font-bold text-white transition-colors"
+            className="w-full rounded-xl bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground/70 py-2.5 text-sm font-bold text-foreground transition-colors"
           >
             Battle!
           </button>
@@ -1007,7 +1007,7 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-base font-bold text-white">Leaderboard</h3>
+        <h3 className="text-base font-bold text-foreground">Leaderboard</h3>
         <button onClick={onBack} className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors">
           Back
         </button>
@@ -1054,7 +1054,7 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
             <span className={cn("flex-1 text-sm font-semibold", e.name === "You" ? "text-amber-400" : "text-muted-foreground")}>
               {e.name}
             </span>
-            <span className="font-mono text-sm font-bold text-white">{e.score.toLocaleString()}</span>
+            <span className="font-mono text-sm font-bold text-foreground">{e.score.toLocaleString()}</span>
           </motion.div>
         ))}
       </div>
@@ -1099,7 +1099,7 @@ function ResultsSummary({
       className="space-y-5 text-center"
     >
       <div>
-        <h3 className="text-lg font-bold text-white">{title}</h3>
+        <h3 className="text-lg font-bold text-foreground">{title}</h3>
         <motion.p
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -1119,7 +1119,7 @@ function ResultsSummary({
         </div>
         <div className="rounded-xl border border-border bg-card p-3">
           <p className="text-xs text-muted-foreground mb-1">Score</p>
-          <p className="text-xl font-bold text-white">{score.toLocaleString()}</p>
+          <p className="text-xl font-bold text-foreground">{score.toLocaleString()}</p>
         </div>
         {speedBonus !== undefined && (
           <div className="rounded-xl border border-border bg-card p-3">
@@ -1177,7 +1177,7 @@ export default function TradingChallenge() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="mx-auto max-w-xl px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -1185,7 +1185,7 @@ export default function TradingChallenge() {
             <Trophy className="h-6 w-6 text-amber-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white">Trading Challenge</h1>
+            <h1 className="text-2xl font-bold text-foreground">Trading Challenge</h1>
             <p className="text-sm text-muted-foreground">Arena — Compete &amp; Improve</p>
           </div>
           {screen !== "lobby" && (

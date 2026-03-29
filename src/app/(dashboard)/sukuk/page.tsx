@@ -692,7 +692,7 @@ function ShariahTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-white mb-1">The Five Core Prohibitions</h2>
+        <h2 className="text-lg font-semibold text-foreground mb-1">The Five Core Prohibitions</h2>
         <p className="text-sm text-muted-foreground">Islamic finance is built around avoiding specific categories of harm. These prohibitions shape every sukuk structure.</p>
       </div>
 
@@ -712,7 +712,7 @@ function ShariahTab() {
                 <span className="text-xl">{p.icon}</span>
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">{p.arabic}</span>
+                    <span className="font-semibold text-foreground">{p.arabic}</span>
                     <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{p.english}</span>
                   </div>
                 </div>
@@ -744,7 +744,7 @@ function ShariahTab() {
 
       {/* Halal vs Haram sector table */}
       <div>
-        <h3 className="text-base font-semibold text-white mb-3">Halal vs. Haram Sector Screening</h3>
+        <h3 className="text-base font-semibold text-foreground mb-3">Halal vs. Haram Sector Screening</h3>
         <div className="rounded-xl border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
@@ -781,7 +781,7 @@ function ShariahTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Scale className="h-4 w-4 text-primary" />
-            <span className="font-semibold text-white text-sm">Shariah Board Role</span>
+            <span className="font-semibold text-foreground text-sm">Shariah Board Role</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li>• Approve all product structures before issuance</li>
@@ -794,7 +794,7 @@ function ShariahTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <BookOpen className="h-4 w-4 text-primary" />
-            <span className="font-semibold text-white text-sm">AAOIFI Standards</span>
+            <span className="font-semibold text-foreground text-sm">AAOIFI Standards</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
             <li>• Accounting &amp; Auditing Organization for Islamic Financial Institutions</li>
@@ -818,7 +818,7 @@ function StructuresTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-white mb-1">Sukuk Structure Types</h2>
+        <h2 className="text-lg font-semibold text-foreground mb-1">Sukuk Structure Types</h2>
         <p className="text-sm text-muted-foreground">Different underlying contracts produce different sukuk structures. Each has distinct Shariah requirements, risk profiles, and market uses.</p>
       </div>
 
@@ -831,7 +831,7 @@ function StructuresTab() {
             className={cn(
               "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
               selected === s.id
-                ? "text-white border-transparent"
+                ? "text-foreground border-transparent"
                 : "bg-muted text-muted-foreground border-border hover:border-muted-foreground"
             )}
             style={selected === s.id ? { backgroundColor: s.color, borderColor: s.color } : {}}
@@ -854,7 +854,7 @@ function StructuresTab() {
           <div className="rounded-xl border p-4 bg-muted/40" style={{ borderColor: structure.color + "40" }}>
             <div className="flex items-start justify-between mb-2">
               <div>
-                <h3 className="font-bold text-white text-base">{structure.name}</h3>
+                <h3 className="font-bold text-foreground text-base">{structure.name}</h3>
                 <p className="text-xs text-muted-foreground">{structure.arabic}</p>
               </div>
               <span className="text-xs px-2.5 py-1 rounded-full font-medium" style={{ backgroundColor: structure.color + "25", color: structure.color }}>
@@ -937,7 +937,7 @@ function MarketTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-white mb-1">Global Sukuk Market Overview</h2>
+        <h2 className="text-lg font-semibold text-foreground mb-1">Global Sukuk Market Overview</h2>
         <p className="text-sm text-muted-foreground">The global sukuk market has grown from ~$116B in 2015 to ~$816B outstanding in 2024, driven by GCC sovereign issuance and Southeast Asian corporate demand.</p>
       </div>
 
@@ -1074,7 +1074,7 @@ function ComparisonTab() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-white mb-1">Sukuk vs. Conventional Bonds</h2>
+        <h2 className="text-lg font-semibold text-foreground mb-1">Sukuk vs. Conventional Bonds</h2>
         <p className="text-sm text-muted-foreground">While sukuk and bonds may appear similar as fixed-income instruments, fundamental differences in structure, ownership, and return mechanics distinguish them.</p>
       </div>
 
@@ -1126,7 +1126,7 @@ function ComparisonTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="h-4 w-4 text-primary" />
-            <span className="text-sm font-semibold text-white">Liquidity Differences</span>
+            <span className="text-sm font-semibold text-foreground">Liquidity Differences</span>
           </div>
           <div className="space-y-2 text-xs text-muted-foreground">
             <div className="flex justify-between border-b border-border/40 pb-1.5">
@@ -1154,7 +1154,7 @@ function ComparisonTab() {
         <div className="rounded-xl border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <ArrowRightLeft className="h-4 w-4 text-primary" />
-            <span className="text-sm font-semibold text-white">Crossover Investor Flow</span>
+            <span className="text-sm font-semibold text-foreground">Crossover Investor Flow</span>
           </div>
           <div className="space-y-3 text-xs text-muted-foreground">
             <div className="bg-card/50 rounded-lg p-3">
@@ -1203,7 +1203,7 @@ export default function SukukPage() {
               <Landmark className="h-6 w-6 text-emerald-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-white">Islamic Finance &amp; Sukuk</h1>
+              <h1 className="text-2xl font-bold text-foreground">Islamic Finance &amp; Sukuk</h1>
               <p className="text-sm text-muted-foreground">Shariah-compliant capital markets — structures, principles &amp; global market</p>
             </div>
           </div>

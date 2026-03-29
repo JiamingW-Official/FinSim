@@ -47,13 +47,13 @@ type ImpactType = typeof IMPACT_TYPES[number];
 // ── Sentiment color helpers ─────────────────────────────────────────────────
 
 function sentimentColor(score: number): string {
-  if (score >= 0.6) return "bg-emerald-600 text-white";
-  if (score >= 0.3) return "bg-emerald-500/70 text-white";
+  if (score >= 0.6) return "bg-emerald-600 text-foreground";
+  if (score >= 0.3) return "bg-emerald-500/70 text-foreground";
   if (score >= 0.1) return "bg-emerald-400/50 text-emerald-100";
   if (score >= -0.1) return "bg-muted text-muted-foreground";
   if (score >= -0.3) return "bg-red-400/50 text-red-100";
-  if (score >= -0.6) return "bg-red-500/70 text-white";
-  return "bg-red-700 text-white";
+  if (score >= -0.6) return "bg-red-500/70 text-foreground";
+  return "bg-red-700 text-foreground";
 }
 
 function sentimentBorderColor(score: number): string {
@@ -1000,7 +1000,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
                   {d.bullishPct}% bull
                 </span>
                 {viral && (
-                  <span className="absolute -top-1.5 -right-1.5 flex items-center gap-0.5 rounded-full bg-orange-500 px-1 text-[11px] font-bold text-white">
+                  <span className="absolute -top-1.5 -right-1.5 flex items-center gap-0.5 rounded-full bg-orange-500 px-1 text-[11px] font-bold text-foreground">
                     <Flame className="h-2 w-2" />
                     HOT
                   </span>
@@ -1016,7 +1016,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
             <div className="flex items-center gap-3 flex-wrap">
               <span className="text-sm font-semibold">{selected.ticker}</span>
               {isViral && (
-                <Badge className="bg-orange-500 text-white text-xs">
+                <Badge className="bg-orange-500 text-foreground text-xs">
                   <Flame className="mr-0.5 h-2.5 w-2.5" />
                   VIRAL — {((selected.twitterVolume / selected.sevenDayAvgVolume) * 100 - 100).toFixed(0)}% above 7d avg
                 </Badge>
