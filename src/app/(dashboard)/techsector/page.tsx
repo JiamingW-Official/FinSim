@@ -98,10 +98,10 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "violet";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-primary/30 text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
-    violet: "bg-violet-500/10 border-violet-500/30 text-violet-200",
+    violet: "bg-orange-500/10 border-orange-500/30 text-orange-200",
   };
   return (
     <div className={cn("rounded-lg border p-3 text-xs leading-relaxed", colors[variant])}>
@@ -113,7 +113,7 @@ function InfoBox({
 function MiniBar({
   value,
   max,
-  color = "bg-blue-500",
+  color = "bg-primary",
   label,
   suffix = "%",
 }: {
@@ -361,7 +361,7 @@ function SaasTab() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Badge variant="outline" className="text-blue-300 border-blue-500/40">
+          <Badge variant="outline" className="text-primary border-primary/40">
             12 Companies
           </Badge>
           <Badge variant="outline" className="text-emerald-300 border-emerald-500/40">
@@ -438,7 +438,7 @@ function SaasTab() {
                   className={cn(
                     "border-b border-white/5 cursor-pointer transition-colors",
                     selected === c.ticker
-                      ? "bg-blue-500/10"
+                      ? "bg-primary/10"
                       : "hover:bg-white/5"
                   )}
                 >
@@ -450,7 +450,7 @@ function SaasTab() {
                     <span className={posNegClass(c.arrGrowth)}>{fmtPct(c.arrGrowth, 0)}</span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.nrr >= 120 ? "text-emerald-400 font-bold" : c.nrr >= 110 ? "text-blue-300" : "text-zinc-300"}>
+                    <span className={c.nrr >= 120 ? "text-emerald-400 font-bold" : c.nrr >= 110 ? "text-primary" : "text-zinc-300"}>
                       {c.nrr}%
                     </span>
                   </td>
@@ -465,7 +465,7 @@ function SaasTab() {
                     </span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.magicNumber >= 1.0 ? "text-emerald-400" : c.magicNumber >= 0.75 ? "text-blue-300" : "text-amber-400"}>
+                    <span className={c.magicNumber >= 1.0 ? "text-emerald-400" : c.magicNumber >= 0.75 ? "text-primary" : "text-amber-400"}>
                       {c.magicNumber.toFixed(2)}
                     </span>
                   </td>
@@ -483,7 +483,7 @@ function SaasTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
-            className="rounded-xl border border-blue-500/30 bg-blue-500/5 p-4"
+            className="rounded-xl border border-primary/30 bg-primary/5 p-4"
           >
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-bold text-white text-sm">
@@ -507,9 +507,9 @@ function SaasTab() {
               <StatCard label="LTV/CAC" value={fmtX(selectedCompany.ltvCacRatio)} highlight="pos" />
             </div>
             <div className="space-y-2">
-              <MiniBar label="ARR Growth" value={selectedCompany.arrGrowth} max={maxArr} color="bg-blue-500" />
+              <MiniBar label="ARR Growth" value={selectedCompany.arrGrowth} max={maxArr} color="bg-primary" />
               <MiniBar label="NRR" value={selectedCompany.nrr - 100} max={maxNrr - 100} color="bg-emerald-500" suffix="% above 100" />
-              <MiniBar label="Gross Margin" value={selectedCompany.grossMargin} max={100} color="bg-violet-500" />
+              <MiniBar label="Gross Margin" value={selectedCompany.grossMargin} max={100} color="bg-orange-500" />
               <MiniBar label="Rule of 40" value={selectedCompany.rule40} max={maxRule40} color={selectedCompany.rule40 >= 40 ? "bg-emerald-500" : "bg-amber-500"} suffix="" />
             </div>
           </motion.div>
@@ -529,7 +529,7 @@ function SaasTab() {
                 <span className="font-mono text-xs font-bold text-white w-12">{c.ticker}</span>
                 <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
                   <div
-                    className={cn("h-full rounded-full", c.nrr >= 120 ? "bg-emerald-500" : c.nrr >= 110 ? "bg-blue-500" : "bg-zinc-500")}
+                    className={cn("h-full rounded-full", c.nrr >= 120 ? "bg-emerald-500" : c.nrr >= 110 ? "bg-primary" : "bg-zinc-500")}
                     style={{ width: `${Math.min(100, ((c.nrr - 100) / 35) * 100)}%` }}
                   />
                 </div>
@@ -544,7 +544,7 @@ function SaasTab() {
         {/* Cohort Analysis */}
         <div>
           <SectionTitle>
-            <Activity className="w-4 h-4 text-blue-400" /> 2021 Cohort Revenue (Indexed to 100)
+            <Activity className="w-4 h-4 text-primary" /> 2021 Cohort Revenue (Indexed to 100)
           </SectionTitle>
           <div className="rounded-xl bg-white/5 border border-white/10 p-3">
             <svg viewBox="0 0 360 180" className="w-full">
@@ -686,7 +686,7 @@ function AiInfraTab() {
                   onClick={() => setActiveHyperscaler(activeHyperscaler === h.ticker ? null : h.ticker)}
                   className={cn(
                     "border-b border-white/5 cursor-pointer transition-colors",
-                    activeHyperscaler === h.ticker ? "bg-violet-500/10" : "hover:bg-white/5"
+                    activeHyperscaler === h.ticker ? "bg-orange-500/10" : "hover:bg-white/5"
                   )}
                 >
                   <td className="px-3 py-2.5">
@@ -718,7 +718,7 @@ function AiInfraTab() {
         {/* AI Chip market share */}
         <div>
           <SectionTitle>
-            <Cpu className="w-4 h-4 text-blue-400" /> AI Chip Market Share
+            <Cpu className="w-4 h-4 text-primary" /> AI Chip Market Share
           </SectionTitle>
           <div className="rounded-xl bg-white/5 border border-white/10 p-4">
             {/* Donut */}
@@ -762,7 +762,7 @@ function AiInfraTab() {
         {/* Cloud market share */}
         <div>
           <SectionTitle>
-            <Cloud className="w-4 h-4 text-blue-400" /> Cloud Market Share (IaaS/PaaS)
+            <Cloud className="w-4 h-4 text-primary" /> Cloud Market Share (IaaS/PaaS)
           </SectionTitle>
           <div className="rounded-xl bg-white/5 border border-white/10 p-4">
             <svg viewBox="0 0 200 200" className="w-40 h-40 mx-auto">
@@ -814,7 +814,7 @@ function AiInfraTab() {
               <span className="text-xs font-semibold text-zinc-200 w-32 shrink-0">{stage.stage}</span>
               <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-blue-500 rounded-full"
+                  className="h-full bg-primary rounded-full"
                   style={{ width: `${stage.pct}%` }}
                 />
               </div>
@@ -860,7 +860,7 @@ function AiInfraTab() {
             <div key={item.name} className={cn(
               "rounded-xl border p-3",
               item.color === "emerald" ? "border-emerald-500/30 bg-emerald-500/5"
-              : item.color === "blue" ? "border-blue-500/30 bg-blue-500/5"
+              : item.color === "blue" ? "border-primary/30 bg-primary/5"
               : "border-amber-500/30 bg-amber-500/5"
             )}>
               <div className="flex items-center justify-between mb-2">
@@ -870,7 +870,7 @@ function AiInfraTab() {
                   className={cn(
                     "text-xs",
                     item.color === "emerald" ? "text-emerald-300 border-emerald-500/40"
-                    : item.color === "blue" ? "text-blue-300 border-blue-500/40"
+                    : item.color === "blue" ? "text-primary border-primary/40"
                     : "text-amber-300 border-amber-500/40"
                   )}
                 >
@@ -879,7 +879,7 @@ function AiInfraTab() {
               </div>
               <div className="h-1.5 bg-white/10 rounded-full mb-2">
                 <div
-                  className={cn("h-full rounded-full", item.color === "emerald" ? "bg-emerald-500" : item.color === "blue" ? "bg-blue-500" : "bg-amber-500")}
+                  className={cn("h-full rounded-full", item.color === "emerald" ? "bg-emerald-500" : item.color === "blue" ? "bg-primary" : "bg-amber-500")}
                   style={{ width: `${item.score}%` }}
                 />
               </div>
@@ -931,7 +931,7 @@ function SemiCycleTab() {
       {/* Semiconductor cycle phases */}
       <div>
         <SectionTitle>
-          <Activity className="w-4 h-4 text-blue-400" /> Semiconductor Cycle Phases
+          <Activity className="w-4 h-4 text-primary" /> Semiconductor Cycle Phases
         </SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
           {SEMI_CYCLE_PHASES.map((phase, i) => (
@@ -950,7 +950,7 @@ function SemiCycleTab() {
                 <div
                   className={cn(
                     "w-2 h-2 rounded-full",
-                    i === 4 ? "bg-emerald-500" : i === 2 ? "bg-rose-500" : i === 3 ? "bg-blue-500" : "bg-zinc-500"
+                    i === 4 ? "bg-emerald-500" : i === 2 ? "bg-rose-500" : i === 3 ? "bg-primary" : "bg-zinc-500"
                   )}
                 />
                 <span className="text-xs font-bold text-white">{phase.phase}</span>
@@ -987,7 +987,7 @@ function SemiCycleTab() {
                   onClick={() => setSelectedSemi(selectedSemi === c.ticker ? null : c.ticker)}
                   className={cn(
                     "border-b border-white/5 cursor-pointer transition-colors",
-                    selectedSemi === c.ticker ? "bg-blue-500/10" : "hover:bg-white/5"
+                    selectedSemi === c.ticker ? "bg-primary/10" : "hover:bg-white/5"
                   )}
                 >
                   <td className="px-3 py-2.5">
@@ -1014,7 +1014,7 @@ function SemiCycleTab() {
                     </span>
                   </td>
                   <td className="px-3 py-2.5 text-right">
-                    <span className={c.aiExposure >= 50 ? "text-emerald-400" : c.aiExposure >= 30 ? "text-blue-300" : "text-zinc-400"}>
+                    <span className={c.aiExposure >= 50 ? "text-emerald-400" : c.aiExposure >= 30 ? "text-primary" : "text-zinc-400"}>
                       {c.aiExposure}%
                     </span>
                   </td>
@@ -1127,7 +1127,7 @@ function MegaCapTab() {
             className={cn(
               "px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-colors",
               selected === c.ticker
-                ? "bg-blue-600 text-white"
+                ? "bg-primary text-white"
                 : "bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white"
             )}
           >
@@ -1245,7 +1245,7 @@ function MegaCapTab() {
                   onClick={() => setSelected(c.ticker)}
                   className={cn(
                     "border-b border-white/5 cursor-pointer transition-colors",
-                    selected === c.ticker ? "bg-blue-500/10" : "hover:bg-white/5"
+                    selected === c.ticker ? "bg-primary/10" : "hover:bg-white/5"
                   )}
                 >
                   <td className="px-3 py-2.5 font-mono font-bold text-white">{c.ticker}</td>
@@ -1324,12 +1324,12 @@ function MegaCapTab() {
 // ══════════════════════════════════════════════════════════════════════════════
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Payments: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+  Payments: "bg-primary/20 text-primary border-primary/30",
   "E-commerce": "bg-amber-500/20 text-amber-300 border-amber-500/30",
-  Social: "bg-violet-500/20 text-violet-300 border-violet-500/30",
+  Social: "bg-orange-500/20 text-orange-300 border-orange-500/30",
   "Gig Economy": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
   Gaming: "bg-rose-500/20 text-rose-300 border-rose-500/30",
-  Infra: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
+  Infra: "bg-muted text-muted-foreground border-border",
 };
 
 const PAYMENT_TAKE_RATES = [
@@ -1377,7 +1377,7 @@ function FintechTab() {
             className={cn(
               "px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border",
               activeCategory === cat
-                ? "bg-blue-600 text-white border-blue-500"
+                ? "bg-primary text-white border-primary"
                 : "bg-white/5 text-zinc-400 border-white/10 hover:bg-white/10 hover:text-white"
             )}
           >
@@ -1446,7 +1446,7 @@ function FintechTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <SectionTitle>
-            <DollarSign className="w-4 h-4 text-blue-400" /> Payment Take Rates (% of GMV)
+            <DollarSign className="w-4 h-4 text-primary" /> Payment Take Rates (% of GMV)
           </SectionTitle>
           <div className="rounded-xl bg-white/5 border border-white/10 p-4">
             <div className="space-y-3">
@@ -1472,7 +1472,7 @@ function FintechTab() {
         {/* Social media ARPU */}
         <div>
           <SectionTitle>
-            <Globe className="w-4 h-4 text-violet-400" /> Social Media ARPU (Annual, USD)
+            <Globe className="w-4 h-4 text-orange-400" /> Social Media ARPU (Annual, USD)
           </SectionTitle>
           <div className="rounded-xl bg-white/5 border border-white/10 p-4">
             <svg viewBox="0 0 300 160" className="w-full">
@@ -1531,8 +1531,8 @@ export default function TechSectorPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
-              <Cpu className="w-5 h-5 text-blue-400" />
+            <div className="w-10 h-10 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center">
+              <Cpu className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-white">Technology Sector</h1>
@@ -1540,7 +1540,7 @@ export default function TechSectorPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="text-blue-300 border-blue-500/40">
+            <Badge variant="outline" className="text-primary border-primary/40">
               2026 Data
             </Badge>
             <Badge variant="outline" className="text-emerald-300 border-emerald-500/40">
@@ -1557,10 +1557,10 @@ export default function TechSectorPage() {
           className="grid grid-cols-2 md:grid-cols-5 gap-3"
         >
           {[
-            { label: "S&P 500 Tech Weight", value: "32%", sub: "Historically high concentration", icon: <Target className="w-3.5 h-3.5 text-blue-400" /> },
+            { label: "S&P 500 Tech Weight", value: "32%", sub: "Historically high concentration", icon: <Target className="w-3.5 h-3.5 text-primary" /> },
             { label: "Nasdaq YTD", value: "+8.2%", sub: "AI enthusiasm resilient", icon: <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> },
-            { label: "NVDA Dominance", value: "80%", sub: "AI chip market share", icon: <Cpu className="w-3.5 h-3.5 text-violet-400" /> },
-            { label: "Cloud Growth", value: "+21%", sub: "IaaS/PaaS market", icon: <Cloud className="w-3.5 h-3.5 text-cyan-400" /> },
+            { label: "NVDA Dominance", value: "80%", sub: "AI chip market share", icon: <Cpu className="w-3.5 h-3.5 text-orange-400" /> },
+            { label: "Cloud Growth", value: "+21%", sub: "IaaS/PaaS market", icon: <Cloud className="w-3.5 h-3.5 text-muted-foreground" /> },
             { label: "AI Capex 2025E", value: "$320B+", sub: "Hyperscaler spend", icon: <Zap className="w-3.5 h-3.5 text-yellow-400" /> },
           ].map((item) => (
             <div key={item.label} className="rounded-xl border border-white/10 bg-white/5 p-3 flex gap-2.5 items-start">
@@ -1582,19 +1582,19 @@ export default function TechSectorPage() {
         >
           <Tabs defaultValue="saas" className="space-y-4">
             <TabsList className="bg-white/5 border border-white/10 h-auto flex-wrap gap-1 p-1">
-              <TabsTrigger value="saas" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="saas" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
                 SaaS Metrics
               </TabsTrigger>
-              <TabsTrigger value="ai" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="ai" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
                 AI &amp; Infrastructure
               </TabsTrigger>
-              <TabsTrigger value="semi" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="semi" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
                 Semiconductor Cycle
               </TabsTrigger>
-              <TabsTrigger value="megacap" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="megacap" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
                 Mega-Cap Tech
               </TabsTrigger>
-              <TabsTrigger value="fintech" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-zinc-400 text-xs">
+              <TabsTrigger value="fintech" className="data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 text-xs">
                 Fintech &amp; Internet
               </TabsTrigger>
             </TabsList>

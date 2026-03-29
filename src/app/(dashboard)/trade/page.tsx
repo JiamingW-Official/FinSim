@@ -226,7 +226,7 @@ export default function TradePage() {
           )}
         </div>
 
-        {/* ── Center: Chart + Controls ── */}
+        {/* ── Center: Chart + Controls (hero tier — generous spacing) ── */}
         <div className="flex flex-1 flex-col overflow-hidden">
           <ChartToolbar data-tutorial="indicators" />
           <IndicatorInfoPanel />
@@ -255,7 +255,8 @@ export default function TradePage() {
             </ChartWithDrawing>
           </div>
 
-          <div className="relative" data-tutorial="time-travel">
+          {/* mb-6: breathing space between hero (chart) and action (controls) */}
+          <div className="relative mt-1" data-tutorial="time-travel">
             <TimeTravelControls />
             {showTimeTravel && (
               <OnboardingHint
@@ -272,9 +273,9 @@ export default function TradePage() {
           <ContextualTip />
           <NewsTicker />
 
-          {/* Bottom panel: Fundamentals / Order Book / Compare tabs */}
+          {/* Bottom panel: reference tier — compact spacing (p-3) */}
           <div
-            className="h-40 shrink-0 overflow-hidden border-t border-border"
+            className="h-40 shrink-0 overflow-hidden border-t border-border mt-1"
             data-tutorial="positions"
           >
             <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
@@ -311,7 +312,7 @@ export default function TradePage() {
           </div>
         </div>
 
-        {/* ── Right sidebar (280px): Order Entry + Tabs ── */}
+        {/* ── Right sidebar (280px): Order Entry (action tier p-4) + Tabs ── */}
         <div
           className="relative flex flex-col border-l border-border bg-card shrink-0"
           style={{ width: 280 }}
@@ -367,6 +368,8 @@ export default function TradePage() {
                 <ErrorBoundary name="OrderEntry">
                   <OrderEntry />
                 </ErrorBoundary>
+                {/* Reference tier — compact spacing, separated from action tier */}
+                <div className="mx-4 mb-3 mt-2 border-t border-border/30" />
                 <div className="px-3 pb-3 space-y-2">
                   <ErrorBoundary name="ShortSqueezeAlert">
                     <ShortSqueezeAlert />
@@ -443,7 +446,7 @@ export default function TradePage() {
           </Tabs>
         </div>
         </div>{/* end trade view wrapper */}
-        <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground">
+        <p className="shrink-0 border-t border-border/20 px-3 py-1 text-center text-[10px] text-muted-foreground/60">
           Simulated trading for educational purposes only. Not financial advice.
         </p>
       </div>
@@ -556,7 +559,7 @@ export default function TradePage() {
           </Tabs>
         </div>
       </div>
-      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground md:hidden">
+      <p className="shrink-0 border-t border-border/20 px-3 py-1 text-center text-[10px] text-muted-foreground/60 md:hidden">
         Simulated trading for educational purposes only. Not financial advice.
       </p>
     </>

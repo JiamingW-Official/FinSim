@@ -110,12 +110,7 @@ export default function PortfolioPage() {
           <div className="flex items-center gap-3">
             <Briefcase className="h-5 w-5 text-muted-foreground" />
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-base font-semibold">Portfolio</h1>
-                <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                  Simulation
-                </span>
-              </div>
+              <h1 className="text-base font-semibold">Portfolio</h1>
               <p className="text-xs text-muted-foreground">
                 Track your practice performance
               </p>
@@ -130,7 +125,7 @@ export default function PortfolioPage() {
               </span>
             </div>
             {achievements.length > 0 && (
-              <div className="flex items-center gap-1 rounded-md bg-amber-500/8 px-2 py-1">
+              <div className="flex items-center gap-1 rounded-md bg-muted/50 px-2 py-1">
                 <Trophy className="h-3 w-3 text-amber-400" />
                 <span className="text-xs font-medium text-amber-400">
                   {achievements.length}
@@ -142,16 +137,21 @@ export default function PortfolioPage() {
 
         {/* Quick Stats Row */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-md bg-muted/30 p-3">
+          <div className="rounded-lg bg-muted/30 p-3">
             <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
               <Wallet className="h-3 w-3" />
               Portfolio Value
             </div>
-            <p className="text-base font-semibold tabular-nums">
-              {formatCurrency(portfolioValue)}
-            </p>
+            <div className="flex items-center gap-1.5">
+              <p className="text-base font-semibold tabular-nums">
+                {formatCurrency(portfolioValue)}
+              </p>
+              <span className="rounded-full bg-muted px-1.5 py-0.5 text-[9px] font-medium text-muted-foreground">
+                Simulated
+              </span>
+            </div>
           </div>
-          <div className="rounded-md bg-muted/30 p-3">
+          <div className="rounded-lg bg-muted/30 p-3">
             <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
               {totalPnL >= 0 ? (
                 <TrendingUp className="h-3 w-3 text-emerald-400" />
@@ -171,7 +171,7 @@ export default function PortfolioPage() {
             </p>
             <p
               className={cn(
-                "text-xs font-bold tabular-nums",
+                "text-xs font-medium tabular-nums",
                 totalPnLPct >= 0
                   ? "text-emerald-400/70"
                   : "text-red-400/70",
@@ -181,14 +181,15 @@ export default function PortfolioPage() {
               {totalPnLPct.toFixed(2)}%
             </p>
           </div>
-          <div className="rounded-md bg-muted/30 p-3">
-            <div className="text-xs font-medium text-muted-foreground mb-1">
+          <div className="rounded-lg bg-muted/30 p-3">
+            <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-1">
+              <Briefcase className="h-3 w-3" />
               Positions
             </div>
             <p className="text-base font-semibold tabular-nums">
               {positions.length}
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs tabular-nums text-muted-foreground">
               Cash: {formatCurrency(cash)}
             </p>
           </div>
@@ -196,19 +197,19 @@ export default function PortfolioPage() {
 
         {/* Empty state when no trades exist */}
         {!hasTrades && (
-          <div className="rounded-lg border border-dashed border-border bg-card/30 p-8 text-center">
-            <Briefcase className="mx-auto mb-3 h-8 w-8 text-muted-foreground/40" />
+          <div className="rounded-lg border border-dashed border-border bg-card/30 p-6 text-center">
+            <BarChart3 className="mx-auto mb-3 h-8 w-8 text-muted-foreground/30" />
             <p className="text-sm font-medium text-foreground mb-1">
-              No trades yet
+              No trades yet — start practicing!
             </p>
             <p className="text-xs text-muted-foreground mb-4">
-              Start practicing to build your portfolio and track performance.
+              Place your first simulated trade to begin tracking performance and building your portfolio history.
             </p>
             <Link
               href="/trade"
-              className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
-              Start practicing
+              Go to Trading
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
@@ -319,7 +320,8 @@ export default function PortfolioPage() {
             <TabsContent value="overview" className="space-y-4">
               <LivePnLDashboard />
 
-              <div className="border-l-4 border-primary bg-card p-6 rounded-lg">
+              {/* Hero: Equity Curve */}
+              <div className="border-l-4 border-primary rounded-lg bg-card p-6">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BarChart3 className="h-3.5 w-3.5" />
                   Equity Curve
@@ -327,15 +329,16 @@ export default function PortfolioPage() {
                 <EquityCurve />
               </div>
 
+              {/* Action: Charts */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="rounded-md border border-border/30 p-3">
+                <div className="rounded-lg bg-muted/30 p-4">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                     <Target className="h-3.5 w-3.5" />
                     Win Rate (Rolling 10)
                   </div>
                   <WinRateChart />
                 </div>
-                <div className="rounded-md border border-border/30 p-3">
+                <div className="rounded-lg bg-muted/30 p-4">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                     <Calendar className="h-3.5 w-3.5" />
                     Trade Calendar
@@ -344,7 +347,8 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              <div>
+              {/* Reference: Attribution */}
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <PieChart className="h-3.5 w-3.5" />
                   Portfolio Attribution
@@ -352,7 +356,8 @@ export default function PortfolioPage() {
                 <PortfolioAttribution />
               </div>
 
-              <div>
+              {/* Reference: Performance Metrics */}
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <TrendingUp className="h-3.5 w-3.5" />
                   Performance Metrics
@@ -367,7 +372,7 @@ export default function PortfolioPage() {
 
             {/* ── Analytics tab ── */}
             <TabsContent value="analytics" className="space-y-4">
-              <div>
+              <div className="rounded-lg bg-muted/30 p-4">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Activity className="h-3.5 w-3.5" />
                   Quantitative Analytics
@@ -375,7 +380,7 @@ export default function PortfolioPage() {
                 <QuantDashboard />
               </div>
 
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <TrendingUp className="h-3.5 w-3.5" />
                   Rolling Sharpe Ratio (30-trade window)
@@ -383,7 +388,7 @@ export default function PortfolioPage() {
                 <RollingSharpeChart />
               </div>
 
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Target className="h-3.5 w-3.5" />
                   Rolling Win Rate (20-trade window)
@@ -394,7 +399,7 @@ export default function PortfolioPage() {
 
             {/* ── Rebalance tab ── */}
             <TabsContent value="rebalance" className="space-y-4">
-              <div>
+              <div className="rounded-lg bg-muted/30 p-4">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <RefreshCw className="h-3.5 w-3.5" />
                   Portfolio Rebalancing
@@ -402,7 +407,7 @@ export default function PortfolioPage() {
                 <RebalancingPanel />
               </div>
 
-              <div>
+              <div className="rounded-lg bg-muted/30 p-4">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Scissors className="h-3.5 w-3.5" />
                   Tax Loss Harvesting
@@ -413,7 +418,7 @@ export default function PortfolioPage() {
 
             {/* ── Optimize tab ── */}
             <TabsContent value="optimize" className="space-y-4">
-              <div>
+              <div className="rounded-lg bg-muted/30 p-4">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <LineChart className="h-3.5 w-3.5" />
                   Efficient Frontier &amp; MPT Optimizer
@@ -424,7 +429,7 @@ export default function PortfolioPage() {
 
             {/* ── Frontier tab ── */}
             <TabsContent value="frontier" className="space-y-4">
-              <div>
+              <div className="rounded-lg bg-muted/30 p-4">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <LineChart className="h-3.5 w-3.5" />
                   Efficient Frontier &amp; Portfolio Optimizer
@@ -435,7 +440,7 @@ export default function PortfolioPage() {
 
             {/* ── Income tab ── */}
             <TabsContent value="income" className="space-y-4">
-              <div>
+              <div className="rounded-lg bg-muted/30 p-4">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <DollarSign className="h-3.5 w-3.5" />
                   Dividend Income Tracker
@@ -448,7 +453,7 @@ export default function PortfolioPage() {
             <TabsContent value="journal" className="space-y-3">
               <RecentTradesPreview />
 
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BookOpen className="h-3.5 w-3.5" />
                   Trade Journal
@@ -468,7 +473,7 @@ export default function PortfolioPage() {
 
             {/* ── Achievements tab ── */}
             <TabsContent value="achievements">
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Award className="h-3.5 w-3.5" />
                   Achievements
@@ -489,29 +494,35 @@ export default function PortfolioPage() {
 
             {/* ── Stress Test tab ── */}
             <TabsContent value="stress" className="space-y-4">
-              <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                <Flame className="h-3.5 w-3.5" />
-                Portfolio Stress Testing &amp; Scenario Analysis
+              <div className="rounded-lg bg-muted/30 p-4">
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <Flame className="h-3.5 w-3.5" />
+                  Portfolio Stress Testing &amp; Scenario Analysis
+                </div>
+                <StressTester />
               </div>
-              <StressTester />
             </TabsContent>
 
             {/* ── BL Optimizer tab ── */}
             <TabsContent value="bl-optimizer" className="space-y-4">
-              <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-2">
-                <Target className="h-3.5 w-3.5" />
-                Black-Litterman Portfolio Optimizer
+              <div className="rounded-lg bg-muted/30 p-4">
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <Target className="h-3.5 w-3.5" />
+                  Black-Litterman Portfolio Optimizer
+                </div>
+                <BlackLitterman />
               </div>
-              <BlackLitterman />
             </TabsContent>
 
             {/* ── Rebalance+ tab ── */}
             <TabsContent value="rebalance-tool" className="space-y-4">
-              <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                <RefreshCw className="h-3.5 w-3.5" />
-                Comprehensive Rebalancing Tool
+              <div className="rounded-lg bg-muted/30 p-4">
+                <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                  <RefreshCw className="h-3.5 w-3.5" />
+                  Comprehensive Rebalancing Tool
+                </div>
+                <RebalancingTool />
               </div>
-              <RebalancingTool />
             </TabsContent>
 
             {/* ── Attribution+ tab ── */}
@@ -521,7 +532,7 @@ export default function PortfolioPage() {
 
             {/* ── Deep Analytics tab ── */}
             <TabsContent value="deep" className="space-y-4">
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <BarChart3 className="h-3.5 w-3.5" />
                   Trade Distribution
@@ -529,7 +540,7 @@ export default function PortfolioPage() {
                 <WinLossDistribution />
               </div>
 
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Calendar className="h-3.5 w-3.5" />
                   Holding Period Analysis
@@ -537,7 +548,7 @@ export default function PortfolioPage() {
                 <HoldingPeriodAnalysis />
               </div>
 
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <Activity className="h-3.5 w-3.5" />
                   Day-of-Week Heatmap
@@ -545,7 +556,7 @@ export default function PortfolioPage() {
                 <TradeHeatmap />
               </div>
 
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <FlaskConical className="h-3.5 w-3.5" />
                   MAE/MFE Scatter &mdash; Trade Efficiency
@@ -553,7 +564,7 @@ export default function PortfolioPage() {
                 <MAEMFEScatter />
               </div>
 
-              <div className="rounded-md border border-border/30 p-3">
+              <div className="rounded-lg bg-muted/30 p-3">
                 <div className="mb-3 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
                   <TrendingUp className="h-3.5 w-3.5" />
                   Streak Analysis
@@ -603,7 +614,7 @@ function LearningProgress({
   );
 
   return (
-    <div className="rounded-md bg-muted/30 p-3">
+    <div className="rounded-lg bg-muted/30 p-3">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <GraduationCap className="h-3.5 w-3.5" />
@@ -696,7 +707,7 @@ function RecentTradesPreview() {
 
   if (closedTrades.length === 0) {
     return (
-      <div className="rounded-md border border-border/30 p-3">
+      <div className="rounded-lg bg-muted/30 p-3">
         <div className="mb-2 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <BookOpen className="h-3.5 w-3.5" />
           Recent Trades
@@ -717,7 +728,7 @@ function RecentTradesPreview() {
   }
 
   return (
-    <div className="rounded-md border border-border/30 p-3">
+    <div className="rounded-lg bg-muted/30 p-3">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
           <BookOpen className="h-3.5 w-3.5" />

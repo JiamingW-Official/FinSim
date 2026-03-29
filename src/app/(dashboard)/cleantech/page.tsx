@@ -702,9 +702,9 @@ export default function CleantechPage() {
       >
         {[
           { label: "Global Solar GW", value: capacityLatest.solar.toLocaleString(), icon: Sun, color: "text-amber-400", sub: `+${solarGrowth}% since 2015` },
-          { label: "Global Wind GW", value: capacityLatest.wind.toLocaleString(), icon: Wind, color: "text-blue-400", sub: `+${windGrowth}% since 2015` },
+          { label: "Global Wind GW", value: capacityLatest.wind.toLocaleString(), icon: Wind, color: "text-primary", sub: `+${windGrowth}% since 2015` },
           { label: "Storage GW (Grid)", value: capacityLatest.storage.toLocaleString(), icon: Battery, color: "text-emerald-400", sub: "Grid-scale deployed" },
-          { label: "Onshore Wind LCOE", value: "$26/MWh", icon: TrendingDown, color: "text-purple-400", sub: "Cheapest energy ever" },
+          { label: "Onshore Wind LCOE", value: "$26/MWh", icon: TrendingDown, color: "text-orange-400", sub: "Cheapest energy ever" },
         ].map((kpi) => (
           <div key={kpi.label}>
             <Card className="bg-gray-900 border-gray-800">
@@ -733,10 +733,10 @@ export default function CleantechPage() {
           <TabsTrigger value="storage" className="data-[state=active]:bg-green-600 data-[state=active]:text-white text-xs">
             Energy Storage
           </TabsTrigger>
-          <TabsTrigger value="vehicles" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="vehicles" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
             Investment Vehicles
           </TabsTrigger>
-          <TabsTrigger value="policy" className="data-[state=active]:bg-purple-600 data-[state=active]:text-white text-xs">
+          <TabsTrigger value="policy" className="data-[state=active]:bg-primary data-[state=active]:text-white text-xs">
             Policy & Subsidies
           </TabsTrigger>
         </TabsList>
@@ -806,7 +806,7 @@ export default function CleantechPage() {
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-blue-400" />
+                    <Globe className="w-4 h-4 text-primary" />
                     IEA Net Zero Emissions 2050 Pathway
                   </CardTitle>
                 </CardHeader>
@@ -826,7 +826,7 @@ export default function CleantechPage() {
                           <tr key={row.metric} className="border-b border-gray-800/50 hover:bg-gray-800/30">
                             <td className="py-2 text-gray-300">{row.metric}</td>
                             <td className="py-2 text-right text-gray-200">{row.current}</td>
-                            <td className="py-2 text-right text-blue-300">{row.nze2030}</td>
+                            <td className="py-2 text-right text-muted-foreground">{row.nze2030}</td>
                             <td className="py-2 text-right text-amber-300 font-semibold">{row.nze2050}</td>
                           </tr>
                         ))}
@@ -860,9 +860,9 @@ export default function CleantechPage() {
                   <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
                     {[
                       { label: "Solar cost drop since 2010", value: "~93%", color: "text-amber-400" },
-                      { label: "Wind cost drop since 2010", value: "~70%", color: "text-blue-400" },
+                      { label: "Wind cost drop since 2010", value: "~70%", color: "text-primary" },
                       { label: "Learning rate (solar)", value: "~24% per 2x", color: "text-amber-400" },
-                      { label: "Learning rate (wind)", value: "~18% per 2x", color: "text-blue-400" },
+                      { label: "Learning rate (wind)", value: "~18% per 2x", color: "text-primary" },
                     ].map((s) => (
                       <div key={s.label} className="bg-gray-800 rounded p-2">
                         <div className={`text-base font-bold ${s.color}`}>{s.value}</div>
@@ -1013,7 +1013,7 @@ export default function CleantechPage() {
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Zap className="w-4 h-4 text-violet-400" />
+                    <Zap className="w-4 h-4 text-orange-400" />
                     EV Share of Global New Car Sales (%, 2015–2030E)
                   </CardTitle>
                 </CardHeader>
@@ -1102,7 +1102,7 @@ export default function CleantechPage() {
                         <ul className="text-gray-400 space-y-1">
                           <li className="flex items-start gap-1.5"><Zap className="w-3 h-3 mt-0.5 text-amber-400 shrink-0" />Electricity cost: ~65–70% of green H₂ cost</li>
                           <li className="flex items-start gap-1.5"><Battery className="w-3 h-3 mt-0.5 text-emerald-400 shrink-0" />Electrolyzer capex declining ~18%/yr</li>
-                          <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 mt-0.5 text-blue-400 shrink-0" />IRA 45V credit: up to $3/kg incentive</li>
+                          <li className="flex items-start gap-1.5"><CheckCircle className="w-3 h-3 mt-0.5 text-primary shrink-0" />IRA 45V credit: up to $3/kg incentive</li>
                         </ul>
                       </div>
                     </div>
@@ -1121,7 +1121,7 @@ export default function CleantechPage() {
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart2 className="w-4 h-4 text-blue-400" />
+                    <BarChart2 className="w-4 h-4 text-primary" />
                     Clean Energy ETFs Comparison
                   </CardTitle>
                 </CardHeader>
@@ -1142,7 +1142,7 @@ export default function CleantechPage() {
                       <tbody>
                         {CLEAN_ETFS.map((etf) => (
                           <tr key={etf.ticker} className="border-b border-gray-800/50 hover:bg-gray-800/30">
-                            <td className="py-2 font-semibold text-blue-300">{etf.ticker}</td>
+                            <td className="py-2 font-semibold text-primary">{etf.ticker}</td>
                             <td className="py-2 text-gray-300 hidden md:table-cell">{etf.name}</td>
                             <td className="py-2 text-right text-gray-200">{etf.aum.toFixed(2)}</td>
                             <td className="py-2 text-right text-gray-200">{etf.expenseRatio.toFixed(2)}%</td>
@@ -1300,7 +1300,7 @@ export default function CleantechPage() {
               <Card className="bg-gray-900 border-gray-800 mb-4">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-purple-400" />
+                    <Calendar className="w-4 h-4 text-orange-400" />
                     Global Policy Timeline
                   </CardTitle>
                 </CardHeader>
@@ -1334,7 +1334,7 @@ export default function CleantechPage() {
               <Card className="bg-gray-900 border-gray-800">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Globe className="w-4 h-4 text-blue-400" />
+                    <Globe className="w-4 h-4 text-primary" />
                     Carbon Pricing Impact — Global ETS Systems
                   </CardTitle>
                 </CardHeader>

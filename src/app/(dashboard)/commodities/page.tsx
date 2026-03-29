@@ -525,7 +525,7 @@ function EnergyTab() {
             <div className="text-xs text-zinc-500 mb-2">3 bbl crude → 2 bbl gasoline + 1 bbl heating oil</div>
             {[
               { label: "Gasoline", val: (2.31 * 42).toFixed(2), color: "text-emerald-400" },
-              { label: "Heating Oil", val: (2.67 * 42).toFixed(2), color: "text-blue-400" },
+              { label: "Heating Oil", val: (2.67 * 42).toFixed(2), color: "text-primary" },
               { label: "WTI Crude", val: "78.42", color: "text-amber-400" },
             ].map((row) => (
               <div key={row.label} className="flex justify-between text-sm">
@@ -717,7 +717,7 @@ function MetalsTab() {
                 { label: "GLD ETF flows (1M)", val: "+$2.4B", color: "text-emerald-400" },
                 { label: "IAU ETF flows (1M)", val: "+$1.8B", color: "text-emerald-400" },
                 { label: "Central bank buying", val: "387t (2025)", color: "text-amber-400" },
-                { label: "Real yield (10yr TIPS)", val: "2.18%", color: "text-blue-400" },
+                { label: "Real yield (10yr TIPS)", val: "2.18%", color: "text-primary" },
               ].map((item) => (
                 <div key={item.label} className="text-xs">
                   <div className="text-zinc-500">{item.label}</div>
@@ -939,7 +939,7 @@ function AgricultureTab() {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex items-center gap-2 mb-3">
-              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500">La Nina (Active)</Badge>
+              <Badge className="bg-primary/20 text-primary border-primary">La Nina (Active)</Badge>
               <span className="text-xs text-zinc-400">ONI Index: −1.4</span>
             </div>
             {[
@@ -1258,7 +1258,7 @@ function FuturesCurveTab() {
                       <div className="h-full bg-amber-500/60" style={{ width: `${row.gsci}%` }} />
                     </div>
                     <div className="flex-1 bg-zinc-800 rounded overflow-hidden">
-                      <div className="h-full bg-blue-500/60" style={{ width: `${row.bloomberg}%` }} />
+                      <div className="h-full bg-primary/60" style={{ width: `${row.bloomberg}%` }} />
                     </div>
                   </div>
                 </div>
@@ -1269,7 +1269,7 @@ function FuturesCurveTab() {
                 <span className="w-2 h-2 bg-amber-500/60 rounded-sm inline-block" />GSCI (production-weighted)
               </span>
               <span className="flex items-center gap-1">
-                <span className="w-2 h-2 bg-blue-500/60 rounded-sm inline-block" />BCOM (more diversified)
+                <span className="w-2 h-2 bg-primary/60 rounded-sm inline-block" />BCOM (more diversified)
               </span>
             </div>
           </CardContent>
@@ -1573,9 +1573,9 @@ function PositionSizingTable() {
             <td className="text-right font-mono">
               <div className="flex items-center justify-end gap-1">
                 <div className="w-16 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-blue-500" style={{ width: `${row.posSize * 8}%` }} />
+                  <div className="h-full bg-primary" style={{ width: `${row.posSize * 8}%` }} />
                 </div>
-                <span className="text-blue-400">{row.posSize.toFixed(1)}%</span>
+                <span className="text-primary">{row.posSize.toFixed(1)}%</span>
               </div>
             </td>
             <td className="text-right text-zinc-400 font-mono">${(row.posSize * 100).toFixed(0)}</td>

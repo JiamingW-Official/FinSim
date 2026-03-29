@@ -592,7 +592,7 @@ export function OrderEntry() {
   return (
     <div
       className={cn(
-        "flex flex-col gap-2.5 p-3 transition-colors duration-500",
+        "flex flex-col gap-3 p-4 transition-colors duration-500",
         tradeFlash === "buy" && "trade-flash-buy",
         tradeFlash === "sell" && "trade-flash-sell",
       )}

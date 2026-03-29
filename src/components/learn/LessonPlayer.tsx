@@ -194,7 +194,7 @@ export function LessonPlayer({ lesson }: LessonPlayerProps) {
                 ? "bg-emerald-500"
                 : s.type === "practice"
                   ? "bg-amber-500"
-                  : "bg-blue-500";
+                  : "bg-primary";
             return (
               <div key={i} className="h-1.5 flex-1 rounded-full overflow-hidden bg-muted/50">
                 <motion.div

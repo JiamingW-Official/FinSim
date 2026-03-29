@@ -526,7 +526,7 @@ function CorrelationMatrixTab() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         {/* Stats cards */}
         {[
-          { label: "Avg Correlation",  value: "0.31",  sub: "Across all pairs", icon: <Activity size={16} />, color: "text-blue-400" },
+          { label: "Avg Correlation",  value: "0.31",  sub: "Across all pairs", icon: <Activity size={16} />, color: "text-primary" },
           { label: "Most Correlated",  value: "0.96",  sub: "US Eq / Intl Eq",  icon: <TrendingUp size={16} />, color: "text-red-400" },
           { label: "Least Correlated", value: "-0.52", sub: "US Eq / Bonds",    icon: <Shield size={16} />, color: "text-green-400" },
         ].map((s) => (
@@ -546,7 +546,7 @@ function CorrelationMatrixTab() {
       <Card className="bg-slate-800/50 border-slate-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
-            <BarChart3 size={15} className="text-blue-400" />
+            <BarChart3 size={15} className="text-primary" />
             10×10 Asset Class Correlation Matrix (Current — 252-day)
           </CardTitle>
         </CardHeader>
@@ -786,7 +786,7 @@ function RollingCorrelationsTab() {
                 variant={selectedPair === i ? "default" : "outline"}
                 onClick={() => setSelectedPair(i)}
                 className={selectedPair === i
-                  ? "bg-blue-600 text-white border-blue-600 text-xs"
+                  ? "bg-primary text-white border-primary text-xs"
                   : "border-slate-600 text-slate-300 text-xs hover:bg-slate-700"
                 }
               >
@@ -801,7 +801,7 @@ function RollingCorrelationsTab() {
       <div className="grid grid-cols-4 gap-3">
         {[
           { label: "Current",  value: currentLast.toFixed(3), color: currentLast >= 0 ? "text-green-400" : "text-red-400" },
-          { label: "Average",  value: avgCorr.toFixed(3),     color: "text-blue-400" },
+          { label: "Average",  value: avgCorr.toFixed(3),     color: "text-primary" },
           { label: "Min (60d)", value: minCorr.toFixed(3),    color: "text-red-400" },
           { label: "Max (60d)", value: maxCorr.toFixed(3),    color: "text-green-400" },
         ].map((s) => (
@@ -839,7 +839,7 @@ function RollingCorrelationsTab() {
           </AnimatePresence>
           <div className="mt-3 flex gap-4 text-xs text-slate-400">
             <span className="flex items-center gap-1">
-              <span className="w-3 h-0.5 bg-blue-400 inline-block" /> Rolling corr
+              <span className="w-3 h-0.5 bg-primary inline-block" /> Rolling corr
             </span>
             <span className="flex items-center gap-1">
               <span className="w-3 h-2 bg-green-400/20 inline-block" /> Positive zone
@@ -1170,7 +1170,7 @@ function DiversificationScoreTab() {
       <Card className="bg-slate-800/50 border-slate-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
-            <BarChart3 size={14} className="text-blue-400" />
+            <BarChart3 size={14} className="text-primary" />
             Risk Concentration vs Weight Allocation
           </CardTitle>
         </CardHeader>
@@ -1186,7 +1186,7 @@ function DiversificationScoreTab() {
               </div>
               <div className="relative h-4 bg-slate-700/50 rounded overflow-hidden">
                 <div
-                  className="absolute left-0 top-0 h-full bg-blue-500/50 rounded"
+                  className="absolute left-0 top-0 h-full bg-primary/50 rounded"
                   style={{ width: `${a.weight}%` }}
                 />
                 <div
@@ -1198,7 +1198,7 @@ function DiversificationScoreTab() {
           ))}
           <div className="flex gap-4 text-xs text-slate-400 mt-2">
             <span className="flex items-center gap-1.5">
-              <span className="w-3 h-2 bg-blue-500/50 inline-block rounded-sm" /> Weight
+              <span className="w-3 h-2 bg-primary/50 inline-block rounded-sm" /> Weight
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-3 h-0.5 border-t-2 border-green-400 inline-block" /> Risk contribution (normal)
@@ -1306,10 +1306,10 @@ function OptimalPairsTab() {
       className="space-y-5"
     >
       {/* Intro card */}
-      <Card className="bg-blue-900/20 border-blue-700/50">
+      <Card className="bg-primary/10 border-primary/30">
         <CardContent className="pt-4 pb-4">
           <div className="flex items-start gap-3">
-            <Star size={16} className="text-blue-400 mt-0.5 flex-shrink-0" />
+            <Star size={16} className="text-primary mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-sm font-medium text-slate-200 mb-1">The Free Lunch of Diversification</p>
               <p className="text-sm text-slate-300 leading-relaxed">
@@ -1336,7 +1336,7 @@ function OptimalPairsTab() {
             variant={sortBy === s.key ? "default" : "outline"}
             onClick={() => setSortBy(s.key)}
             className={sortBy === s.key
-              ? "bg-blue-600 text-white border-blue-600 text-xs"
+              ? "bg-primary text-white border-primary text-xs"
               : "border-slate-600 text-slate-300 text-xs hover:bg-slate-700"
             }
           >
@@ -1363,7 +1363,7 @@ function OptimalPairsTab() {
                   >
                     <div className="flex flex-wrap items-center gap-3">
                       <div className="flex items-center gap-2 flex-1 min-w-0">
-                        <GitBranch size={14} className="text-blue-400 flex-shrink-0" />
+                        <GitBranch size={14} className="text-primary flex-shrink-0" />
                         <span className="text-sm font-medium text-slate-200 truncate">
                           {pair.a} <span className="text-slate-500">×</span> {pair.b}
                         </span>
@@ -1462,7 +1462,7 @@ function OptimalPairsTab() {
       <Card className="bg-slate-800/50 border-slate-700">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-slate-200 flex items-center gap-2">
-            <RefreshCw size={13} className="text-blue-400" />
+            <RefreshCw size={13} className="text-primary" />
             Diversification Summary
           </CardTitle>
         </CardHeader>
@@ -1477,7 +1477,7 @@ function OptimalPairsTab() {
               {
                 title: "Uncorrelated Return Streams",
                 body: "Gold and High Yield (ρ = 0.06) are nearly orthogonal in return space. Combining them adds true incremental diversification even when equities dominate the portfolio.",
-                icon: <Activity size={14} className="text-blue-400" />,
+                icon: <Activity size={14} className="text-primary" />,
               },
               {
                 title: "Crisis Regime Warning",
@@ -1513,11 +1513,11 @@ export default function CorrelationsPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-8 h-8 rounded-lg bg-blue-600/20 border border-blue-600/40 flex items-center justify-center">
-            <GitBranch size={16} className="text-blue-400" />
+          <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
+            <GitBranch size={16} className="text-primary" />
           </div>
           <h1 className="text-xl font-semibold text-slate-100">Correlation Analysis</h1>
-          <Badge className="bg-blue-900/40 text-blue-300 border-blue-700/50 text-xs">
+          <Badge className="bg-primary/20 text-primary border-primary/30 text-xs">
             10 Asset Classes
           </Badge>
         </div>
@@ -1539,7 +1539,7 @@ export default function CorrelationsPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-blue-600 data-[state=active]:text-white text-slate-400 px-3 py-1.5"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-white text-slate-400 px-3 py-1.5"
             >
               {t.icon}
               {t.label}

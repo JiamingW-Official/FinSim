@@ -106,7 +106,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald";
 }) {
   const colors = {
-    blue: "bg-blue-500/10 border-blue-500/30 text-blue-200",
+    blue: "bg-primary/10 border-primary/30 text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/10 border-emerald-500/30 text-emerald-200",
   };
@@ -406,7 +406,7 @@ function PropertyAnalyzer() {
             return (
               <div key={yr} className="text-center">
                 <div className="text-xs text-zinc-500">Year {yr}</div>
-                <div className="text-sm font-semibold text-blue-400">{fmtM(d.propValue)}</div>
+                <div className="text-sm font-semibold text-primary">{fmtM(d.propValue)}</div>
                 <div className="text-xs text-emerald-400">{fmtM(d.equity)} equity</div>
               </div>
             );
@@ -558,7 +558,7 @@ function MarketComparisons() {
             onClick={() => setSort(key)}
             className={cn(
               "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
-              sort === key ? "bg-blue-600 text-white" : "bg-white/5 text-zinc-400 hover:bg-white/10"
+              sort === key ? "bg-primary text-white" : "bg-white/5 text-zinc-400 hover:bg-white/10"
             )}
           >
             {label}
@@ -608,8 +608,8 @@ function MarketComparisons() {
                         {fmtPct(m.capRate)}
                       </span>
                     </td>
-                    <td className="px-3 py-2 text-right text-blue-300">{fmtPct(m.rentGrowth)}</td>
-                    <td className="px-3 py-2 text-right text-purple-300">{fmtPct(m.priceGrowth)}</td>
+                    <td className="px-3 py-2 text-right text-primary">{fmtPct(m.rentGrowth)}</td>
+                    <td className="px-3 py-2 text-right text-orange-300">{fmtPct(m.priceGrowth)}</td>
                     <td className="px-3 py-2 text-right">
                       <span className={afford < 5 ? "text-emerald-400" : afford < 8 ? "text-amber-400" : "text-rose-400"}>
                         {afford.toFixed(1)}x
@@ -617,8 +617,8 @@ function MarketComparisons() {
                     </td>
                     <td className="px-3 py-2 text-right">
                       <div className="flex items-center justify-end gap-1.5">
-                        <div className="h-1.5 rounded-full bg-blue-600/30 w-16 overflow-hidden">
-                          <div className="h-full bg-blue-500 rounded-full" style={{ width: `${(score / 10) * 100}%` }} />
+                        <div className="h-1.5 rounded-full bg-primary/30 w-16 overflow-hidden">
+                          <div className="h-full bg-primary rounded-full" style={{ width: `${(score / 10) * 100}%` }} />
                         </div>
                         <span className="text-xs text-zinc-400">{score.toFixed(1)}</span>
                       </div>
@@ -781,7 +781,7 @@ function REITAnalysis() {
                 <tr
                   key={r.ticker}
                   onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
-                  className={cn("border-t border-white/5 cursor-pointer transition-colors", selected === r.ticker ? "bg-blue-600/20" : "hover:bg-white/5")}
+                  className={cn("border-t border-white/5 cursor-pointer transition-colors", selected === r.ticker ? "bg-primary/20" : "hover:bg-white/5")}
                 >
                   <td className="px-3 py-2 font-mono font-bold text-white">{r.ticker}</td>
                   <td className="px-3 py-2">
@@ -815,7 +815,7 @@ function REITAnalysis() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="rounded-xl border border-blue-500/30 bg-blue-500/10 p-5"
+            className="rounded-xl border border-primary/30 bg-primary/10 p-5"
           >
             <div className="flex justify-between items-start mb-3">
               <div>
@@ -889,7 +889,7 @@ function REITAnalysis() {
           ].map(({ factor, reit, direct }) => (
             <div key={factor} className="grid grid-cols-3 text-xs gap-1">
               <span className="text-zinc-500 font-medium">{factor}</span>
-              <span className="text-blue-300">{reit}</span>
+              <span className="text-primary">{reit}</span>
               <span className="text-amber-300">{direct}</span>
             </div>
           ))}
@@ -1510,7 +1510,7 @@ function PortfolioStrategy() {
             { rule: "Tax Deferred", desc: "Not tax-free — basis carries over to new property" },
           ].map(({ rule, desc }) => (
             <div key={rule} className="flex gap-3 text-xs">
-              <span className="font-semibold text-blue-400 w-28 shrink-0">{rule}</span>
+              <span className="font-semibold text-primary w-28 shrink-0">{rule}</span>
               <span className="text-zinc-400">{desc}</span>
             </div>
           ))}
@@ -1559,8 +1559,8 @@ export default function RealEstatePage() {
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="rounded-xl bg-blue-600/20 p-2.5">
-                <Home className="w-6 h-6 text-blue-400" />
+              <div className="rounded-xl bg-primary/20 p-2.5">
+                <Home className="w-6 h-6 text-primary" />
               </div>
               <h1 className="text-2xl font-bold text-white">Real Estate Investment Analysis</h1>
             </div>
@@ -1570,9 +1570,9 @@ export default function RealEstatePage() {
           </div>
           <div className="flex gap-2 flex-wrap">
             {[
-              { label: "Residential", color: "bg-blue-600/20 text-blue-400" },
+              { label: "Residential", color: "bg-primary/20 text-primary" },
               { label: "Commercial", color: "bg-emerald-600/20 text-emerald-400" },
-              { label: "REITs", color: "bg-purple-600/20 text-purple-400" },
+              { label: "REITs", color: "bg-orange-600/20 text-orange-400" },
             ].map(({ label, color }) => (
               <Badge key={label} className={cn("text-xs font-medium border-0", color)}>
                 {label}
@@ -1588,7 +1588,7 @@ export default function RealEstatePage() {
               <TabsTrigger
                 key={id}
                 value={id}
-                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-blue-600 data-[state=active]:text-white text-zinc-400 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium data-[state=active]:bg-primary data-[state=active]:text-white text-zinc-400 hover:text-white transition-colors"
               >
                 {icon}
                 <span className="hidden sm:inline">{label}</span>

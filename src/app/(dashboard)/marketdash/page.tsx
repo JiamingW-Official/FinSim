@@ -730,7 +730,7 @@ export default function MarketDashPage() {
                         "text-[11px] px-1 rounded font-medium",
                         s.reason === "earnings" ? "bg-red-500/20 text-red-400" :
                         s.reason === "downgrade" ? "bg-orange-500/20 text-orange-400" :
-                        s.reason === "sector" ? "bg-purple-500/20 text-purple-400" :
+                        s.reason === "sector" ? "bg-primary/20 text-primary" :
                         "bg-zinc-700/50 text-zinc-400"
                       )}>
                         {s.reason}
@@ -833,7 +833,7 @@ export default function MarketDashPage() {
                             row.flowType === "Sweep"
                               ? "bg-sky-500/20 text-sky-400"
                               : row.flowType === "Block"
-                              ? "bg-purple-500/20 text-purple-400"
+                              ? "bg-primary/20 text-primary"
                               : "bg-zinc-700/50 text-zinc-400"
                           )}>
                             {row.flowType}

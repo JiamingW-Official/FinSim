@@ -147,8 +147,8 @@ const ORDER_TYPES: OrderType[] = [
   {
     name: "Market Order",
     abbr: "MKT",
-    color: "text-blue-400",
-    bg: "bg-blue-500/10 border-blue-500/20",
+    color: "text-primary",
+    bg: "bg-primary/10 border-primary/20",
     description: "Execute immediately at the best available price.",
     whenToUse: "Liquidity is high and speed matters more than price precision.",
     risk: "Medium",
@@ -183,8 +183,8 @@ const ORDER_TYPES: OrderType[] = [
   {
     name: "Market-on-Close",
     abbr: "MOC",
-    color: "text-purple-400",
-    bg: "bg-purple-500/10 border-purple-500/20",
+    color: "text-orange-400",
+    bg: "bg-orange-500/10 border-orange-500/20",
     description: "Executes at the official closing auction price.",
     whenToUse: "Index rebalancing, ETF creation/redemption at closing NAV.",
     risk: "Low",
@@ -201,8 +201,8 @@ const ORDER_TYPES: OrderType[] = [
   {
     name: "TWAP",
     abbr: "TWAP",
-    color: "text-cyan-400",
-    bg: "bg-cyan-500/10 border-cyan-500/20",
+    color: "text-muted-foreground",
+    bg: "bg-muted border-border",
     description: "Splits order evenly across equal time intervals.",
     whenToUse: "Minimizing market impact for large orders over a fixed window.",
     risk: "Low",
@@ -476,14 +476,14 @@ export default function AlgoTradingPage() {
     },
     {
       name: "Statistical Arbitrage",
-      icon: <BarChart2 className="w-5 h-5 text-blue-400" />,
+      icon: <BarChart2 className="w-5 h-5 text-primary" />,
       mechanics:
         "Exploit mean-reversion in correlated instruments (pairs, sector ETFs vs constituents). Enter when spread exceeds 2σ; exit at mean.",
       profitability:
         "Strong risk-adjusted returns; Sharpe 1.5–3. Capacity-constrained and crowded.",
       concern: "Crowding risk — many players use similar signals, leading to simultaneous unwinds.",
       tag: "Mean-Reversion",
-      tagColor: "bg-blue-500/15 text-blue-400 border-blue-500/20",
+      tagColor: "bg-primary/15 text-primary border-primary/20",
     },
     {
       name: "Momentum Ignition",
@@ -522,8 +522,8 @@ export default function AlgoTradingPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
           {[
             { label: "Impl. Shortfall", value: `${IMPL_SHORTFALL_BPS > 0 ? "+" : ""}${IMPL_SHORTFALL_BPS} bps`, sub: "vs arrival price", icon: <Target className="w-4 h-4 text-amber-400" />, col: "text-amber-400" },
-            { label: "TWAP Shortfall", value: `${TWAP_SHORTFALL > 0 ? "+" : ""}${TWAP_SHORTFALL} bps`, sub: "vs benchmark", icon: <Clock className="w-4 h-4 text-cyan-400" />, col: "text-cyan-400" },
-            { label: "VWAP Shortfall", value: `${VWAP_SHORTFALL > 0 ? "+" : ""}${VWAP_SHORTFALL} bps`, sub: "vs benchmark", icon: <BarChart2 className="w-4 h-4 text-purple-400" />, col: "text-purple-400" },
+            { label: "TWAP Shortfall", value: `${TWAP_SHORTFALL > 0 ? "+" : ""}${TWAP_SHORTFALL} bps`, sub: "vs benchmark", icon: <Clock className="w-4 h-4 text-muted-foreground" />, col: "text-muted-foreground" },
+            { label: "VWAP Shortfall", value: `${VWAP_SHORTFALL > 0 ? "+" : ""}${VWAP_SHORTFALL} bps`, sub: "vs benchmark", icon: <BarChart2 className="w-4 h-4 text-orange-400" />, col: "text-orange-400" },
             { label: "Backtest Sharpe", value: sharpe.toFixed(2), sub: "momentum strategy", icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, col: "text-emerald-400" },
           ].map((k) => (
             <Card key={k.label} className="bg-zinc-900/60 border-zinc-800">
@@ -675,8 +675,8 @@ export default function AlgoTradingPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-zinc-400">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-3 h-0.5 bg-cyan-400" style={{ borderTop: "1.5px dashed #22d3ee" }}></div>
-                      <span className="text-cyan-400 font-medium">TWAP — Time Weighted Average Price</span>
+                      <div className="w-3 h-0.5 bg-emerald-400" style={{ borderTop: "1.5px dashed #34d399" }}></div>
+                      <span className="text-emerald-400 font-medium">TWAP — Time Weighted Average Price</span>
                     </div>
                     <p className="leading-relaxed">Divides total order into equal-sized child orders across N time slices. Simple and predictable but ignores volume distribution — may consume disproportionate liquidity during low-volume periods.</p>
                     <div className="mt-2 p-2 bg-zinc-800/50 rounded text-zinc-500 font-mono">
@@ -686,8 +686,8 @@ export default function AlgoTradingPage() {
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-3 h-0.5 bg-purple-400" style={{ borderTop: "1.5px dashed #a78bfa" }}></div>
-                      <span className="text-purple-400 font-medium">VWAP — Volume Weighted Average Price</span>
+                      <div className="w-3 h-0.5 bg-orange-400" style={{ borderTop: "1.5px dashed #fb923c" }}></div>
+                      <span className="text-orange-400 font-medium">VWAP — Volume Weighted Average Price</span>
                     </div>
                     <p className="leading-relaxed">Schedules participation according to a historical intraday volume profile. More sophisticated — trades heavier near open/close when volume is highest, minimizing market impact relative to natural flow.</p>
                     <div className="mt-2 p-2 bg-zinc-800/50 rounded text-zinc-500 font-mono">
@@ -859,9 +859,9 @@ export default function AlgoTradingPage() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
                 { label: "Total Return", value: `${totalReturn >= 0 ? "+" : ""}${(totalReturn * 100).toFixed(1)}%`, icon: <TrendingUp className="w-4 h-4 text-emerald-400" />, col: totalReturn >= 0 ? "text-emerald-400" : "text-red-400" },
-                { label: "Sharpe Ratio", value: sharpe.toFixed(2), icon: <Activity className="w-4 h-4 text-blue-400" />, col: "text-blue-400" },
+                { label: "Sharpe Ratio", value: sharpe.toFixed(2), icon: <Activity className="w-4 h-4 text-primary" />, col: "text-primary" },
                 { label: "Max Drawdown", value: `${(maxDrawdown * 100).toFixed(1)}%`, icon: <ArrowDownRight className="w-4 h-4 text-red-400" />, col: "text-red-400" },
-                { label: "Win Rate", value: `${(winRate * 100).toFixed(1)}%`, icon: <Target className="w-4 h-4 text-purple-400" />, col: "text-purple-400" },
+                { label: "Win Rate", value: `${(winRate * 100).toFixed(1)}%`, icon: <Target className="w-4 h-4 text-orange-400" />, col: "text-orange-400" },
                 { label: "Avg Win", value: `+${(avgWin * 100).toFixed(2)}%`, icon: <ArrowUpRight className="w-4 h-4 text-emerald-400" />, col: "text-emerald-400" },
                 { label: "Avg Loss", value: `-${(avgLoss * 100).toFixed(2)}%`, icon: <ArrowDownRight className="w-4 h-4 text-red-400" />, col: "text-red-400" },
                 { label: "Win/Loss Ratio", value: (avgWin / avgLoss).toFixed(2), icon: <BarChart2 className="w-4 h-4 text-amber-400" />, col: "text-amber-400" },

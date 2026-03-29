@@ -412,7 +412,7 @@ function AMMTab() {
                   title: "Concentrated Liquidity (V3)",
                   formula: "(x + L/√Pb)(y + L·√Pa) = L²",
                   note: "Liquidity providers choose price ranges [Pa, Pb]. Capital efficiency improves 4–4000x vs V2.",
-                  color: "border-purple-500/40 bg-purple-500/5",
+                  color: "border-primary/40 bg-primary/5",
                 },
                 {
                   title: "Stable Swap (Curve)",
@@ -663,9 +663,9 @@ function LendingTab() {
                 {
                   name: "Aave V3",
                   features: ["Efficiency Mode (eMode)", "Isolation Mode", "Portals cross-chain", "Siloed borrowing", "GHO stablecoin"],
-                  color: "border-purple-500/30",
+                  color: "border-primary/30",
                   badge: "Most Features",
-                  badgeColor: "bg-purple-500/20 text-purple-300",
+                  badgeColor: "bg-primary/20 text-primary",
                 },
                 {
                   name: "Compound III",
@@ -677,9 +677,9 @@ function LendingTab() {
                 {
                   name: "Morpho Blue",
                   features: ["Permissionless markets", "No governance risk", "Oracle-free option", "Lending vaults (MetaMorpho)", "Max capital efficiency"],
-                  color: "border-blue-500/30",
+                  color: "border-border",
                   badge: "Most Flexible",
-                  badgeColor: "bg-blue-500/20 text-blue-300",
+                  badgeColor: "bg-muted text-muted-foreground",
                 },
               ].map((p) => (
                 <div key={p.name} className={`rounded-lg border p-4 ${p.color}`}>
