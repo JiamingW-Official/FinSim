@@ -129,6 +129,7 @@ import { UNIT_INFLATION_PROTECTION } from "./unit-inflation-protection";
 import { UNIT_CREDIT_ANALYSIS_ADVANCED } from "./unit-credit-analysis-advanced";
 import { UNIT_SOVEREIGN_WEALTH_FUNDS } from "./unit-sovereign-wealth-funds";
 import { UNIT_PORTFOLIO_RISK_MANAGEMENT } from "./unit-portfolio-risk-management";
+import { UNIT_DERIVATIVES_MARKETS } from "./unit-derivatives-markets";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -261,6 +262,7 @@ export const UNITS: Unit[] = [
   UNIT_CREDIT_ANALYSIS_ADVANCED,
   UNIT_SOVEREIGN_WEALTH_FUNDS,
   UNIT_PORTFOLIO_RISK_MANAGEMENT,
+  UNIT_DERIVATIVES_MARKETS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
