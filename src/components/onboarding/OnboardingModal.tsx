@@ -43,7 +43,7 @@ const FEATURES = [
   {
     icon: <GraduationCap className="h-4 w-4 text-violet-400" />,
     title: "Gamified Learning",
-    desc: "30+ lessons, flashcards, quizzes, XP, achievements and leaderboards",
+    desc: "650+ bite-sized lessons, flashcards, quizzes, XP, achievements and leaderboards",
   },
 ] as const;
 

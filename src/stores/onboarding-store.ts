@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface OnboardingState {
+  _hasHydrated: boolean;
   hasCompletedOnboarding: boolean;
   currentStep: number;
   completeOnboarding: () => void;
@@ -13,6 +14,7 @@ interface OnboardingState {
 export const useOnboardingStore = create<OnboardingState>()(
   persist(
     (set) => ({
+      _hasHydrated: false,
       hasCompletedOnboarding: false,
       currentStep: 0,
       completeOnboarding: () => set({ hasCompletedOnboarding: true }),
@@ -21,6 +23,11 @@ export const useOnboardingStore = create<OnboardingState>()(
       resetOnboarding: () =>
         set({ hasCompletedOnboarding: false, currentStep: 0 }),
     }),
-    { name: "alpha-deck-onboarding" }
+    {
+      name: "alpha-deck-onboarding",
+      onRehydrateStorage: () => () => {
+        useOnboardingStore.setState({ _hasHydrated: true });
+      },
+    }
   )
 );

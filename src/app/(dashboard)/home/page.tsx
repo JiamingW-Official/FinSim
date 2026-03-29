@@ -396,21 +396,45 @@ export default function HomePage() {
   const currentTicker = useChartStore((s) => s.currentTicker);
   const getVisibleBars = useMarketDataStore((s) => s.getVisibleData);
 
-  /* ── Market overview strip — updates every 30s ── */
-  const [overviewSeed, setOverviewSeed] = useState(() => Math.floor(Date.now() / 30000));
-  useEffect(() => {
-    const id = setInterval(() => {
-      setOverviewSeed(Math.floor(Date.now() / 30000));
-    }, 30000);
-    return () => clearInterval(id);
-  }, []);
+  /* ── Single daySeed for all simulated prices (consistent across entire page) ── */
+  const daySeed = Math.floor(Date.now() / 86400000);
 
+  /* ── Market Pulse (VIX + regime + Fear & Greed) — computed early so VIX is available for overview strip ── */
+  const marketPulse = useMemo(() => {
+    const rand = mulberry32(daySeed ^ 0xbeefdead);
+    const vix = +(rand() * 18 + 12).toFixed(2);
+    // Fear & Greed is inversely correlated with VIX to avoid contradictions:
+    // High VIX (fear) → low F&G, Low VIX (calm) → high F&G
+    const vixNorm = Math.max(0, Math.min(1, (vix - 12) / 18)); // 0 = low VIX, 1 = high VIX
+    const baseFG = Math.round((1 - vixNorm) * 80 + 10); // range ~10-90, inversely correlated
+    // Add small daily noise (±8) but clamp to 0-100
+    const noise = Math.round((rand() - 0.5) * 16);
+    const fg = Math.max(0, Math.min(100, baseFG + noise));
+    const regime =
+      vix < 16 && fg > 55 ? "Bull" :
+      vix > 25 || fg < 30 ? "Bear" :
+      "Sideways";
+    const fgLabel =
+      fg >= 75 ? "Extreme Greed" :
+      fg >= 55 ? "Greed" :
+      fg >= 45 ? "Neutral" :
+      fg >= 25 ? "Fear" :
+      "Extreme Fear";
+    return { vix, fg, fgLabel, regime };
+  }, [daySeed]);
+
+  /* ── Market overview strip — uses same daySeed as rest of page for consistency ── */
   const overviewPrices = useMemo(() => {
-    return OVERVIEW_TICKERS.map((ticker) => ({
-      ticker,
-      ...simulateTickerPrice(ticker, overviewSeed),
-    }));
-  }, [overviewSeed]);
+    return OVERVIEW_TICKERS.map((ticker) => {
+      if (ticker === "VIX") {
+        // VIX comes from marketPulse to ensure consistency across the page
+        const baseVix = BASE_PRICES["VIX"];
+        const changePct = ((marketPulse.vix - baseVix) / baseVix) * 100;
+        return { ticker, price: marketPulse.vix, changePct };
+      }
+      return { ticker, ...simulateTickerPrice(ticker, daySeed) };
+    });
+  }, [daySeed, marketPulse.vix]);
 
   /* ── Derived values ── */
   const totalPnL = portfolioValue - INITIAL_CAPITAL;
@@ -463,7 +487,6 @@ export default function HomePage() {
   }, [equityHistory]);
 
   /* ── Market prices (all tickers) ── */
-  const daySeed = Math.floor(Date.now() / 86400000);
   const marketPrices = useMemo(() => {
     return ALL_TICKERS.map((ticker) => ({
       ticker,
@@ -501,24 +524,6 @@ export default function HomePage() {
       callPutRatio: +(rand() * 1.8 + 0.4).toFixed(2),
       iv: +(rand() * 60 + 15).toFixed(1),
     })).sort((a, b) => b.volume - a.volume).slice(0, 5);
-  }, [daySeed]);
-
-  /* ── Market Pulse (VIX + regime + Fear & Greed) ── */
-  const marketPulse = useMemo(() => {
-    const rand = mulberry32(daySeed ^ 0xbeefdead);
-    const vix = +(rand() * 18 + 12).toFixed(2);
-    const fg = Math.floor(rand() * 100);
-    const regime =
-      vix < 16 && fg > 55 ? "Bull" :
-      vix > 25 || fg < 30 ? "Bear" :
-      "Sideways";
-    const fgLabel =
-      fg >= 75 ? "Extreme Greed" :
-      fg >= 55 ? "Greed" :
-      fg >= 45 ? "Neutral" :
-      fg >= 25 ? "Fear" :
-      "Extreme Fear";
-    return { vix, fg, fgLabel, regime };
   }, [daySeed]);
 
   /* ── Market status ── */
@@ -789,7 +794,7 @@ export default function HomePage() {
                 {marketStatus.isOpen ? "Live" : "Closed"}
               </span>
             </div>
-            <span className="text-[10px] text-muted-foreground">Updates every 30s</span>
+            <span className="text-[10px] text-muted-foreground">Daily snapshot</span>
           </div>
           {/* Scrollable row */}
           <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-none">

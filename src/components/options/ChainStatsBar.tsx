@@ -7,6 +7,7 @@ import { formatVolume } from "@/services/options/analytics";
 interface ChainStatsBarProps {
   analytics: ChainAnalytics;
   spotPrice: number;
+  isLoading?: boolean;
 }
 
 interface StatChip {
@@ -15,7 +16,7 @@ interface StatChip {
   colorClass: string;
 }
 
-export function ChainStatsBar({ analytics, spotPrice }: ChainStatsBarProps) {
+export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBarProps) {
   const {
     totalCallVolume, totalPutVolume, putCallRatioVolume,
     totalCallOI, totalPutOI,
@@ -86,6 +87,11 @@ export function ChainStatsBar({ analytics, spotPrice }: ChainStatsBarProps) {
         <span className="text-[11px] font-black tabular-nums">
           ${spotPrice.toFixed(2)}
         </span>
+        {isLoading && (
+          <span className="text-[8px] text-muted-foreground/50 animate-pulse">
+            updating...
+          </span>
+        )}
       </div>
 
       <div className="h-4 w-px shrink-0 bg-border/50" />

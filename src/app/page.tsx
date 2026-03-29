@@ -105,7 +105,7 @@ export default function LandingPage() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.4 }}
         >
-          10+ asset classes&nbsp;&nbsp;•&nbsp;&nbsp;20+ indicators&nbsp;&nbsp;•&nbsp;&nbsp;50+ lessons&nbsp;&nbsp;•&nbsp;&nbsp;Zero real money
+          10+ asset classes&nbsp;&nbsp;•&nbsp;&nbsp;20+ indicators&nbsp;&nbsp;•&nbsp;&nbsp;650+ bite-sized lessons&nbsp;&nbsp;•&nbsp;&nbsp;Zero real money
         </motion.p>
       </section>
 

@@ -66,7 +66,7 @@ const steps: StepConfig[] = [
     iconBg: "bg-violet-500/10",
     title: "Interactive Learning",
     description:
-      "30+ lessons with quizzes, flashcards, and practice simulators for hands-on skill building.",
+      "650+ bite-sized lessons with quizzes, flashcards, and practice simulators for hands-on skill building.",
   },
   {
     icon: <Brain className="h-6 w-6 text-amber-400" />,

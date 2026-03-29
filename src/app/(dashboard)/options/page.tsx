@@ -29,7 +29,7 @@ import { Activity, Loader2 } from "lucide-react";
 import type { OptionContract, ChainFilters } from "@/types/options";
 
 export default function OptionsPage() {
-  const { isLoading, error } = useMarketData();
+  const { isLoading } = useMarketData();
   const { chain, spotPrice, historicalVolatility: hv } = useOptionsChain();
   const currentTicker = useChartStore((s) => s.currentTicker);
   const setChainData = useOptionsStore((s) => s.setChainData);
@@ -102,7 +102,7 @@ export default function OptionsPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* Stats bar */}
-      <ChainStatsBar analytics={analytics} spotPrice={spotPrice} />
+      <ChainStatsBar analytics={analytics} spotPrice={spotPrice} isLoading={isLoading} />
 
       {/* 4-tab layout */}
       <Tabs
@@ -170,21 +170,9 @@ export default function OptionsPage() {
         <div className="flex flex-1 overflow-hidden">
           {/* Main content area */}
           <div className="flex flex-1 flex-col overflow-hidden">
-            {/* Loading / Error states */}
-            {isLoading && (
-              <div className="flex flex-1 items-center justify-center">
-                <Loader2 className="h-6 w-6 animate-spin text-orange-400" />
-              </div>
-            )}
-            {error && (
-              <div className="flex flex-1 items-center justify-center">
-                <p className="text-sm text-destructive">Failed to load data. Please try again.</p>
-              </div>
-            )}
-
-            {!isLoading && !error && (
+            {/* Chains tab */}
+            {chain.length > 0 ? (
               <>
-                {/* Chains tab */}
                 <TabsContent value="chains" className="mt-0 flex flex-1 flex-col overflow-hidden data-[state=inactive]:hidden">
                   <ChainFiltersBar
                     filters={filters}
@@ -333,6 +321,10 @@ export default function OptionsPage() {
                   <FlowAnalysis />
                 </TabsContent>
               </>
+            ) : (
+              <div className="flex flex-1 items-center justify-center">
+                <Loader2 className="h-6 w-6 animate-spin text-orange-400" />
+              </div>
             )}
           </div>
 

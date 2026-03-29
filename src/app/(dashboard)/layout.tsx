@@ -31,6 +31,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const colorblindMode = usePreferencesStore((s) => s.colorblindMode);
+  const hasHydrated = useOnboardingStore((s) => s._hasHydrated);
   const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
 
   return (
@@ -70,7 +71,7 @@ export default function DashboardLayout({
             <StreakCelebration />
             <TradeConfetti />
             <FloatingEmojis />
-            {!hasCompletedOnboarding && <OnboardingModal />}
+            {hasHydrated && !hasCompletedOnboarding && <OnboardingModal />}
             {/* Global keyboard shortcuts handler */}
             <GlobalKeyboardShortcuts />
           </div>
