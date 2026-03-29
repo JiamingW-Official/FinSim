@@ -217,7 +217,7 @@ function SectionCard({ title, children, icon: Icon }: { title: string; children:
     <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-4">
       {title && (
         <div className="flex items-center gap-2 mb-4">
-          {Icon && <Icon className="w-4 h-4 text-primary" />}
+          {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground/50" />}
           <h3 className="text-sm font-semibold text-foreground">{title}</h3>
         </div>
       )}

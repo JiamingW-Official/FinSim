@@ -790,7 +790,7 @@ export default function FXCarryPage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <BarChart2 className="w-4 h-4 text-primary" />
+                  <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   G10 Policy Rates — Sorted by Rate Level
                 </CardTitle>
               </CardHeader>
@@ -855,7 +855,7 @@ export default function FXCarryPage() {
             <Card className="border-border bg-card">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-primary" />
+                  <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Carry Returns vs Volatility Regime
                 </CardTitle>
               </CardHeader>

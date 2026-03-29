@@ -1549,7 +1549,7 @@ function TaxExemptTab() {
         </div>
         <div className="bg-muted/60 rounded-lg border border-primary/20 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Landmark className="w-4 h-4 text-primary" />
+            <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />
             <h3 className="text-sm font-medium text-primary">Build America Bonds (BABs)</h3>
           </div>
           <p className="text-xs text-muted-foreground">

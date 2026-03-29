@@ -838,7 +838,7 @@ export default function CapitalStructurePage() {
 
       {/* Fulcrum callout */}
       <div className="flex items-center gap-3 bg-muted/40 border border-border rounded-lg px-4 py-2.5">
-        <AlertTriangle className="w-4 h-4 text-primary shrink-0" />
+        <AlertTriangle className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
         <div className="text-xs text-muted-foreground">
           <span className="text-muted-foreground">Fulcrum Security at EV ${ev}M: </span>
           <span className="text-primary font-medium">{fulcrumInfo}</span>

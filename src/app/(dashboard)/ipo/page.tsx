@@ -1402,7 +1402,7 @@ export default function IPOPage() {
                   ))}
                 </div>
                 <div className="mt-3 rounded-lg bg-primary/10 border border-border p-3 flex gap-2">
-                  <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                  <Info className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
                   <p className="text-xs text-primary leading-relaxed">
                     Retail investors rarely receive offer-price allocations for hot IPOs. Most retail participation
                     happens in the after-market at a premium to the offer price, which significantly reduces

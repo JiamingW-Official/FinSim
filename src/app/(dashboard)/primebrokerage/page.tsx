@@ -813,7 +813,7 @@ export default function PrimeBrokeragePage() {
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                        <Layers className="w-4 h-4 text-primary" />
+                        <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                         Hard-to-Borrow vs General Collateral
                       </CardTitle>
                     </CardHeader>
@@ -1041,7 +1041,7 @@ export default function PrimeBrokeragePage() {
                   <Card className="bg-card border-border">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4 text-primary" />
+                        <ShieldCheck className="w-3.5 h-3.5 text-muted-foreground/50" />
                         Haircut Table by Asset Class
                       </CardTitle>
                     </CardHeader>
@@ -1214,7 +1214,7 @@ export default function PrimeBrokeragePage() {
                 <Card className="bg-card border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-                      <FileText className="w-4 h-4 text-primary" />
+                      <FileText className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Operational Due Diligence (ODD) Checklist
                     </CardTitle>
                   </CardHeader>

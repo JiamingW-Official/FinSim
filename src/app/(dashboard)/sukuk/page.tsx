@@ -1175,7 +1175,7 @@ function ComparisonTab() {
 
       {/* Info card */}
       <div className="rounded-md border border-border bg-muted/30 p-4 flex gap-3">
-        <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+        <Info className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
         <div className="text-xs text-muted-foreground">
           <span className="text-primary font-medium">Key insight: </span>
           From a cash flow perspective, investment-grade ijara sukuk often look nearly identical to conventional bonds — predictable periodic payments and a bullet redemption. The critical distinction is structural: sukuk holders legally co-own an underlying asset, while bondholders are unsecured creditors of the issuer. This difference has material implications in default scenarios.

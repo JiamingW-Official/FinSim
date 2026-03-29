@@ -231,7 +231,7 @@ function LoanStructureTab() {
       {/* Definition */}
       <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Info className="w-4 h-4 text-primary" />
+          <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
           <span className="text-sm font-semibold text-foreground">What is a Leveraged Loan?</span>
         </div>
         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -359,7 +359,7 @@ function LoanStructureTab() {
         </div>
         <div className="rounded-md border border-border bg-muted/30 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Activity className="w-4 h-4 text-primary" />
+            <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-medium text-primary">Incurrence Covenants (Cov-Lite)</span>
           </div>
           <ul className="text-xs text-muted-foreground space-y-1">
@@ -675,7 +675,7 @@ function CLOStructureTab() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="rounded-md border border-border bg-muted/30 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-medium text-primary">OC (Overcollateralization) Test</span>
           </div>
           <p className="text-xs text-muted-foreground mb-2">OC Ratio = Par Value of Assets / Par Value of Rated Notes</p>

@@ -929,7 +929,7 @@ function ParametricTab() {
       {/* Cat bond connection */}
       <div className="rounded-md border border-border bg-primary/5 p-4">
         <div className="flex gap-2.5">
-          <Shield className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+          <Shield className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
           <div>
             <h3 className="text-xs font-medium text-primary mb-1">Cat Bond Connection</h3>
             <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">
@@ -1189,7 +1189,7 @@ function MarketDynamicsTab() {
       {/* Regulatory sandbox */}
       <div className="rounded-md border border-border bg-primary/5 p-4">
         <div className="flex gap-2.5">
-          <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+          <CheckCircle className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
           <div>
             <h3 className="text-xs font-medium text-primary mb-1">Regulatory Sandbox Participation</h3>
             <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">
@@ -1307,7 +1307,7 @@ export default function InsurtechPage() {
 
       {/* Callout — Hero */}
       <div className="flex gap-2.5 rounded-lg border border-primary/20 bg-primary/5 border-l-4 border-l-primary p-6">
-        <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+        <Info className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
         <p className="text-[11px] text-foreground/70 leading-relaxed">
           <span className="font-medium text-primary">What is InsurTech?</span>{" "}
           InsurTech (Insurance Technology) applies AI, IoT, parametric triggers, and digital distribution to redesign

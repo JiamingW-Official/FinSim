@@ -555,7 +555,7 @@ export default function DerivPricingLabPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Payoff Diagram at Expiry
                 </CardTitle>
               </CardHeader>
@@ -742,7 +742,7 @@ export default function DerivPricingLabPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Convergence Chart (Call Price vs N)
                   </CardTitle>
                 </CardHeader>

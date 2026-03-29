@@ -995,7 +995,7 @@ function FactorTab() {
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Shield className="w-4 h-4 text-primary" />
+            <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             Fixed Income Factor Attribution
           </CardTitle>
         </CardHeader>
@@ -1278,7 +1278,7 @@ function RiskTab() {
       <Card className="border-border bg-card/60">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Info className="w-4 h-4 text-primary" />
+            <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
             Benchmark Selection Impact
           </CardTitle>
         </CardHeader>

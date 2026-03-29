@@ -737,7 +737,7 @@ export default function CryptoStakingPage() {
                   ].map(({ icon: Icon, title, body }) => (
                     <div key={title} className="rounded-lg border border-border bg-card/40 p-3 space-y-1">
                       <div className="flex items-center gap-2 font-medium text-foreground">
-                        <Icon className="w-4 h-4 text-primary flex-shrink-0" />
+                        <Icon className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0" />
                         {title}
                       </div>
                       <p className="text-muted-foreground leading-relaxed">{body}</p>

@@ -829,7 +829,7 @@ export default function BehavioralLabPage() {
                           >
                             <div className="flex items-center gap-2">
                               {selected ? (
-                                <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                                <CheckCircle2 className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0" />
                               ) : (
                                 <Circle className="w-4 h-4 text-muted-foreground shrink-0" />
                               )}

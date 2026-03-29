@@ -1561,7 +1561,7 @@ export default function IndexInvestingPage() {
           <Card className="bg-card border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-primary" />
+                <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                 Smart Beta / Factor ETF Comparison
               </CardTitle>
               <p className="text-xs text-muted-foreground">

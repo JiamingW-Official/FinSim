@@ -897,7 +897,7 @@ export default function CurrencyMarketsPage() {
                 ))}
               </div>
               <div className="mt-3 p-3 bg-primary/10 border border-border rounded-lg flex items-start gap-2">
-                <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                <Info className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
                 <p className="text-muted-foreground text-xs leading-relaxed">
                   <strong className="text-primary">Carry Crash Correlation:</strong> Carry returns exhibit negative skewness and excess kurtosis — they show small consistent gains interspersed with large sudden losses. The Sharpe ratio overstates risk-adjusted returns because it assumes normality. Position sizing and stop-losses are critical.
                 </p>

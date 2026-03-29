@@ -868,7 +868,7 @@ function CountdownTimer() {
 
   return (
     <div className="flex items-center gap-2 rounded-md bg-primary/10 px-3 py-2 text-sm">
-      <Clock className="h-4 w-4 text-primary" />
+      <Clock className="h-3.5 w-3.5 text-muted-foreground/50" />
       <span className="text-muted-foreground">Next high-impact event:</span>
       <span className="font-medium text-primary">PCE Inflation (Mar 29)</span>
       <span className="ml-auto font-mono font-bold text-primary">{remaining}</span>

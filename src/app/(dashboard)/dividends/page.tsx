@@ -589,7 +589,7 @@ function ExDividendCalendarTab() {
       {/* Upcoming strip */}
       <div className="bg-muted/20 border border-border/40 rounded-lg p-4">
         <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-primary" />
+          <Calendar className="w-3.5 h-3.5 text-muted-foreground/50" />
           Upcoming Ex-Dividend Dates (Next 60 Days)
         </h3>
         <div className="space-y-2">
@@ -680,7 +680,7 @@ function ExDividendCalendarTab() {
 
       {/* T+1 note */}
       <div className="bg-primary/5 border border-border rounded-lg p-3 flex gap-2">
-        <Info className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+        <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 flex-shrink-0" />
         <p className="text-xs text-muted-foreground">
           <strong className="text-primary">T+1 Settlement:</strong> To receive the dividend, you must own shares by market close on the business day before the ex-dividend date. Buying on the ex-dividend date itself means you will NOT receive the upcoming dividend payment.
         </p>

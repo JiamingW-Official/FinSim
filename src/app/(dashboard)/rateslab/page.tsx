@@ -294,7 +294,7 @@ function SwapPricerTab() {
       {/* Controls */}
       <Card className="space-y-4 border-l-4 border-l-primary p-6">
         <h3 className="text-lg font-semibold text-foreground/80 flex items-center gap-2">
-          <ArrowLeftRight className="w-4 h-4 text-primary" />
+          <ArrowLeftRight className="w-3.5 h-3.5 text-muted-foreground/50" />
           IRS Parameters
         </h3>
 
@@ -1499,7 +1499,7 @@ export default function RatesLabPage() {
           <div>
             <div className="flex items-center gap-3 mb-1">
               <div className="w-8 h-8 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
-                <BarChart3 className="w-4 h-4 text-primary" />
+                <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
               </div>
               <h1 className="text-xl font-bold text-foreground">Rates Lab</h1>
               <Badge variant="outline" className="text-xs border-border text-primary">

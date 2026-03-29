@@ -917,7 +917,7 @@ export default function StrategiesPage() {
                 {/* Compare header */}
                 {selectedIds.length > 0 && (
                   <div className="flex items-center gap-3 rounded-lg border border-border bg-primary/5 px-4 py-2.5">
-                    <GitCompare className="h-4 w-4 text-primary shrink-0" />
+                    <GitCompare className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
                     <span className="text-xs text-primary flex-1">
                       {selectedIds.length === 1
                         ? "Select one more strategy to compare side-by-side"

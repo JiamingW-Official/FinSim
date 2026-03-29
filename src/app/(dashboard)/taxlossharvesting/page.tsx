@@ -508,7 +508,7 @@ export default function TaxLossHarvestingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     All Holdings — Tax Lot Detail
                   </CardTitle>
                 </CardHeader>
@@ -755,7 +755,7 @@ export default function TaxLossHarvestingPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     ETF Ownership vs Direct Indexing
                   </CardTitle>
                 </CardHeader>
@@ -846,7 +846,7 @@ export default function TaxLossHarvestingPage() {
                 <Card className="border-border bg-primary/5">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-primary" />
+                      <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
                       Who Benefits Most?
                     </CardTitle>
                   </CardHeader>
@@ -872,7 +872,7 @@ export default function TaxLossHarvestingPage() {
 
             <Card className="border-border bg-primary/5">
               <CardContent className="p-4 flex gap-3">
-                <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <Info className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
                 <div className="text-xs text-muted-foreground">
                   <span className="font-medium text-primary">How it works:</span> A direct indexing platform
                   (e.g., Parametric, Fidelity Managed Accounts, Schwab Personalized Indexing) purchases each

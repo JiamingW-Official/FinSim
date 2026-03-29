@@ -841,7 +841,7 @@ export default function AlphaResearchPage() {
               <Card className="border-border bg-card border-border">
                 <CardContent className="pt-4 pb-3">
                   <div className="flex gap-2">
-                    <Brain className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                    <Brain className="w-3.5 h-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
                     <div>
                       <p className="text-xs font-semibold text-primary mb-1">Researcher&apos;s Dilemma</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">

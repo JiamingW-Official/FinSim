@@ -276,7 +276,7 @@ function SovereignTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Globe className="w-4 h-4 text-primary" />
+            <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             EM Sovereign Bond Monitor — click a row for detail
           </CardTitle>
         </CardHeader>
@@ -503,7 +503,7 @@ function HardLocalTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-primary" />
+            <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
             Major EM Debt Benchmarks
           </CardTitle>
         </CardHeader>

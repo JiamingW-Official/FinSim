@@ -740,7 +740,7 @@ function FuturesBasicsTab() {
       <Card className="border-border bg-card">
         <CardContent className="pt-4 pb-3">
           <div className="flex gap-3">
-            <Info className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+            <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 flex-shrink-0" />
             <p className="text-sm text-muted-foreground">
               A <span className="text-foreground font-medium">futures contract</span> is a legally binding agreement to buy or sell a standardized quantity of an asset at a predetermined price on a specified future date. Futures trade on regulated exchanges and use{" "}
               <span className="text-foreground font-medium">margin</span> (performance bond) — not the full notional value — making them highly leveraged instruments.
@@ -1038,7 +1038,7 @@ function BasisTab() {
       <Card className="border-border bg-card">
         <CardContent className="pt-4 pb-3">
           <div className="flex gap-3">
-            <Info className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+            <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 flex-shrink-0" />
             <p className="text-sm text-muted-foreground">
               The <span className="text-foreground font-medium">basis</span> is the difference between the cash (spot) price and the nearest futures price: Basis = Cash − Futures. Basis traders profit from changes in the relationship between spot and futures prices, isolating supply/demand fundamentals from directional price risk.
             </p>

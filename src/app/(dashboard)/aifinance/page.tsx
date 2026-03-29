@@ -1218,7 +1218,7 @@ function RiskRegulationTab() {
         <div className="space-y-2">
           {EXPLAINABILITY_REQS.map((item) => (
             <div key={item.regulation} className="flex items-start gap-3 p-2 bg-muted/30 rounded-lg">
-              <Lock className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+              <Lock className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
                   <span className="text-sm font-medium text-foreground">{item.regulation}</span>

@@ -392,7 +392,7 @@ export default function LeaderboardPage() {
                     className="rounded-md border border-primary/15 bg-primary/5 p-4"
                   >
                     <div className="flex items-start gap-2">
-                      <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                      <Lightbulb className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
                       <div>
                         <span className="text-xs font-medium text-primary/70">
                           Pro Tip

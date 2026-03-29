@@ -408,7 +408,7 @@ function PortfolioStructureTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm text-foreground flex items-center gap-2">
-            <Target className="w-4 h-4 text-primary" />
+            <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
             Risk Budget Allocation
           </CardTitle>
         </CardHeader>

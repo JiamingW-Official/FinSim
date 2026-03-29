@@ -763,7 +763,7 @@ function RollingCorrelationChart() {
         <Card className="border-border bg-muted/20">
           <CardContent className="p-3">
             <div className="flex items-start gap-2">
-              <Zap className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+              <Zap className="h-3.5 w-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
               <div>
                 <p className="text-xs font-medium text-primary">Quality-Low Vol Overlap</p>
                 <p className="text-xs text-muted-foreground mt-0.5">
@@ -821,7 +821,7 @@ export default function SmartBetaPage() {
             <CardContent className="p-4">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div className="flex items-start gap-2">
-                  <BarChart3 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                  <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
                   <div>
                     <p className="font-medium">What is Smart Beta?</p>
                     <p className="text-xs text-muted-foreground mt-1">
@@ -1172,7 +1172,7 @@ function FactorBacktester() {
       <Card className="border-border bg-muted/10">
         <CardContent className="p-4">
           <div className="flex items-start gap-2">
-            <Info className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+            <Info className="h-3.5 w-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground font-medium">Backtester Notes</p>
               <p className="text-xs text-muted-foreground">

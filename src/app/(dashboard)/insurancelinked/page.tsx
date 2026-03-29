@@ -492,7 +492,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-primary" />
+                    <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Annual Cat Bond Issuance 2015–2024
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">USD billions; record $19.8B issued in 2021</p>
@@ -506,7 +506,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-primary" />
+                    <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Active Cat Bond Listings
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">Representative transactions — 2023/2024 vintage</p>
@@ -569,7 +569,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-primary" />
+                    <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
                     Risk-Return: ILS vs Other Asset Classes
                   </CardTitle>
                   <p className="text-xs text-muted-foreground">X-axis: expected loss / volatility | Y-axis: expected annual return</p>
@@ -597,7 +597,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-primary" />
+                    <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
                     ILS Fund Comparison
                   </CardTitle>
                 </CardHeader>
@@ -635,7 +635,7 @@ export default function InsuranceLinkedPage() {
               <Card className="bg-primary/5 border-border">
                 <CardContent className="pt-4">
                   <div className="flex gap-3">
-                    <Info className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                    <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-primary mb-1">Investor Access</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">

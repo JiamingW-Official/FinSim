@@ -315,7 +315,7 @@ function OSSCalculator() {
     <Card className="bg-card border-border">
       <CardHeader>
         <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-          <Calculator className="w-4 h-4 text-primary" />
+          <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
           Operational Self-Sufficiency (OSS) Calculator
         </CardTitle>
       </CardHeader>
@@ -1080,7 +1080,7 @@ export default function MicrofinancepagePage() {
             <Card className="bg-card border-border">
               <CardHeader>
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <Building className="w-4 h-4 text-primary" />
+                  <Building className="w-3.5 h-3.5 text-muted-foreground/50" />
                   MFI Types Comparison
                 </CardTitle>
               </CardHeader>
@@ -1143,7 +1143,7 @@ export default function MicrofinancepagePage() {
             <Card className="bg-card border-border">
               <CardHeader>
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-primary" />
+                  <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Average Loan Size by Region (USD)
                 </CardTitle>
               </CardHeader>
@@ -1512,7 +1512,7 @@ export default function MicrofinancepagePage() {
             <Card className="bg-card border-border">
               <CardHeader>
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-primary" />
+                  <BookOpen className="w-3.5 h-3.5 text-muted-foreground/50" />
                   Randomized Control Trial (RCT) Evidence Summary
                 </CardTitle>
               </CardHeader>
