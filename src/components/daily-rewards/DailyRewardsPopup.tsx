@@ -127,7 +127,7 @@ export function DailyRewardsPopup() {
             )}>
               {/* Animated icon */}
               <div
-                className="flex h-14 w-14 items-center justify-center rounded-md border border-border/40"
+                className="flex h-14 w-14 items-center justify-center rounded-md border border-border/20"
               >
                 {isDay7 ? (
                   <Crown className="h-6 w-6 text-amber-400" />
@@ -166,14 +166,14 @@ export function DailyRewardsPopup() {
                     <motion.div
                       key={i}
                       className={cn(
-                        "relative flex flex-col items-center gap-1 rounded-md border py-2.5 px-1 transition-all",
+                        "relative flex flex-col items-center gap-1 rounded-md border py-2.5 px-1 transition-colors",
                         isClaimed
                           ? "border-emerald-500/40 bg-emerald-500/8"
                           : isCurrent
                             ? isLastDay
                               ? "border-amber-400/60 bg-amber-500/12"
                               : "border-primary/50 bg-primary/10"
-                            : "border-border/30 bg-muted/5 opacity-50",
+                            : "border-border/20 bg-muted/5 opacity-50",
                         isLastDay && !isClaimed && !isFuture && "border-amber-400/50",
                       )}
                       initial={{ opacity: 0, y: 8 }}
@@ -182,7 +182,7 @@ export function DailyRewardsPopup() {
                     >
                       {/* Day label */}
                       <span className={cn(
-                        "text-[11px] font-bold",
+                        "text-[11px] font-semibold",
                         isCurrent ? (isLastDay ? "text-amber-400" : "text-primary") : "text-muted-foreground/60",
                       )}>
                         D{i + 1}
@@ -211,7 +211,7 @@ export function DailyRewardsPopup() {
 
                       {/* XP label */}
                       <span className={cn(
-                        "text-[11px] font-bold tabular-nums leading-tight",
+                        "text-[11px] font-semibold tabular-nums leading-tight",
                         isClaimed
                           ? "text-emerald-400"
                           : isCurrent
@@ -239,7 +239,7 @@ export function DailyRewardsPopup() {
             </div>
 
             {/* Divider */}
-            <div className="mx-5 my-3 border-t border-border/30" />
+            <div className="mx-5 my-3 border-t border-border/20" />
 
             {/* Bottom: Today's reward + claim */}
             <div className="px-5 pb-5 space-y-3">
@@ -296,7 +296,7 @@ export function DailyRewardsPopup() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.96 }}
                     className={cn(
-                      "w-full rounded-md py-3 text-sm font-semibold text-primary-foreground transition-all",
+                      "w-full rounded-md py-3 text-sm font-semibold text-primary-foreground transition-colors",
                       isDay7
                         ? "bg-amber-500 hover:bg-amber-400"
                         : "bg-primary hover:brightness-110",
@@ -305,7 +305,7 @@ export function DailyRewardsPopup() {
                     {isDay7 ? "Claim Day 7 Bonus!" : `Claim Day ${dayIndex + 1} Reward`}
                   </motion.button>
                 ) : (
-                  <div className="flex items-center justify-center gap-2 rounded-md border border-border/30 bg-muted/10 px-5 py-3">
+                  <div className="flex items-center justify-center gap-2 rounded-md border border-border/20 bg-muted/10 px-5 py-3">
                     <Check className="h-4 w-4 text-emerald-400" />
                     <span className="text-sm font-medium text-muted-foreground">Today's reward claimed</span>
                   </div>

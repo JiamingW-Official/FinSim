@@ -232,21 +232,17 @@ export default function JournalPageClient() {
       <div className="space-y-4 p-4">
 
         {/* Header */}
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-            <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
-          </div>
-          <div>
-            <h1 className="text-base font-semibold tracking-tight">Trade Journal</h1>
-            <p className="text-xs text-muted-foreground">
-              {rows.length} closed trade{rows.length !== 1 ? "s" : ""}
-            </p>
-          </div>
+        <div>
+          <p className="text-xs text-muted-foreground mb-1">Analytics</p>
+          <h1 className="text-lg font-semibold tracking-tight">Trade Journal</h1>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            <span className="font-mono tabular-nums">{rows.length}</span> closed trade{rows.length !== 1 ? "s" : ""}
+          </p>
         </div>
 
-        {/* Performance header strip — Hero */}
+        {/* Performance stats */}
         {rows.length > 0 && (
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7 rounded-md border border-border/20 bg-card p-4">
             <StatChip
               label="Win Rate"
               value={`${analytics.winRate.toFixed(1)}%`}
@@ -455,7 +451,7 @@ export default function JournalPageClient() {
                           </span>
                           <div
                             className={cn(
-                              "w-full rounded-sm transition-all",
+                              "w-full rounded-sm transition-colors",
                               barColors[g],
                             )}
                             style={{
@@ -463,7 +459,7 @@ export default function JournalPageClient() {
                             }}
                           />
                           <span
-                            className={cn("text-xs font-bold", labelColors[g])}
+                            className={cn("text-xs font-semibold", labelColors[g])}
                           >
                             {g}
                           </span>
@@ -482,7 +478,7 @@ export default function JournalPageClient() {
                 {/* Equity Curve */}
                 <div className="rounded-lg border border-border bg-card p-3">
                   <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold">
-                    <BarChart3 className="h-3.5 w-3.5 text-primary" />
+                    <BarChart3 className="h-3.5 w-3.5 text-muted-foreground" />
                     Equity Curve with Drawdown
                   </div>
                   <JournalEquityCurve
@@ -531,7 +527,7 @@ export default function JournalPageClient() {
             {/* Tag distribution */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-3 flex items-center gap-1.5 text-xs font-semibold">
-                <BarChart3 className="h-3.5 w-3.5 text-primary" />
+                <BarChart3 className="h-3.5 w-3.5 text-muted-foreground" />
                 Tag Distribution
               </div>
               <TagStatsChart tradeTags={tradeTags} />
@@ -628,7 +624,7 @@ function WinRateDonut({
         </svg>
         <div className="space-y-2 text-xs">
           <div>
-            <p className="text-2xl font-bold tabular-nums text-foreground">
+            <p className="text-2xl font-semibold tabular-nums text-foreground">
               {winRate.toFixed(1)}%
             </p>
             <p className="text-xs text-muted-foreground">Win rate</p>
@@ -688,7 +684,7 @@ function AvgWinLossBar({
           </div>
           <div className="h-2 w-full rounded-full bg-muted/30">
             <div
-              className="h-2 rounded-full bg-green-500/70 transition-all"
+              className="h-2 rounded-full bg-green-500/70 transition-colors"
               style={{ width: `${winPct}%` }}
             />
           </div>
@@ -702,18 +698,18 @@ function AvgWinLossBar({
           </div>
           <div className="h-2 w-full rounded-full bg-muted/30">
             <div
-              className="h-2 rounded-full bg-red-500/70 transition-all"
+              className="h-2 rounded-full bg-red-500/70 transition-colors"
               style={{ width: `${lossPct}%` }}
             />
           </div>
         </div>
-        <div className="flex items-center justify-between border-t border-border/40 pt-2">
+        <div className="flex items-center justify-between border-t border-border/20 pt-2">
           <span className="text-xs text-muted-foreground">
             Reward / Risk ratio
           </span>
           <span
             className={cn(
-              "text-xs font-bold tabular-nums",
+              "text-xs font-semibold tabular-nums",
               parseFloat(rr) >= 1 || rr === "∞"
                 ? "text-green-400"
                 : "text-red-400",
@@ -756,12 +752,12 @@ function TickerBreakdown({ tickerStats }: { tickerStats: TickerStat[] }) {
               <div className="flex h-5 flex-1 overflow-hidden rounded-sm bg-muted/20">
                 {/* Win portion */}
                 <div
-                  className="h-full bg-green-500/50 transition-all"
+                  className="h-full bg-green-500/50 transition-colors"
                   style={{ width: `${(winPct / 100) * barWidth}%` }}
                 />
                 {/* Loss portion */}
                 <div
-                  className="h-full bg-red-500/40 transition-all"
+                  className="h-full bg-red-500/40 transition-colors"
                   style={{ width: `${((100 - winPct) / 100) * barWidth}%` }}
                 />
               </div>
@@ -812,7 +808,7 @@ function StatChip({
       <div className="text-xs font-medium text-muted-foreground">
         {label}
       </div>
-      <div className={cn("mt-1 text-base font-bold tabular-nums", color)}>
+      <div className={cn("mt-1 text-base font-semibold tabular-nums", color)}>
         {value}
       </div>
       {sub && (

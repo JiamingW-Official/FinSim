@@ -43,9 +43,9 @@ export function ScenarioCard({
       whileTap={isLocked ? undefined : { scale: 0.98 }}
       disabled={isLocked}
       className={cn(
-        "relative w-full rounded-md border-2 p-4 text-left transition-all overflow-hidden",
+        "relative w-full rounded-md border-2 p-4 text-left transition-colors overflow-hidden",
         isLocked
-          ? "border-border/50 bg-muted/10 cursor-not-allowed"
+          ? "border-border/20 bg-muted/10 cursor-not-allowed"
           : gradeConfig
             ? `${gradeConfig.border} ${gradeConfig.glow} hover:bg-muted/20 cursor-pointer`
             : "border-border hover:border-primary/50 hover:bg-muted/20 cursor-pointer",
@@ -65,7 +65,7 @@ export function ScenarioCard({
             >
               <Lock className="h-6 w-6 text-muted-foreground" />
             </motion.div>
-            <span className="text-xs font-bold text-muted-foreground">
+            <span className="text-xs font-semibold text-muted-foreground">
               Level {scenario.unlockLevel}
             </span>
           </div>
@@ -74,7 +74,7 @@ export function ScenarioCard({
 
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col gap-1 flex-1 min-w-0">
-          <h3 className="text-sm font-bold truncate">{scenario.name}</h3>
+          <h3 className="text-sm font-semibold truncate">{scenario.name}</h3>
           <p className="text-xs font-medium text-muted-foreground/70">
             {scenario.subtitle}
           </p>
@@ -97,18 +97,18 @@ export function ScenarioCard({
                 </motion.span>
               ))}
             </div>
-            <span className="text-[11px] font-bold text-muted-foreground">
+            <span className="text-[11px] font-semibold text-muted-foreground">
               {DIFFICULTY_LABEL[scenario.difficulty]}
             </span>
           </div>
 
           <div className="flex items-center gap-2 mt-1">
-            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-bold text-primary">
+            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
               +{scenario.xpReward} XP
             </span>
             {bestResult && (
               <span className={cn(
-                "rounded-full px-2 py-0.5 text-[11px] font-bold tabular-nums",
+                "rounded-full px-2 py-0.5 text-[11px] font-semibold tabular-nums",
                 bestResult.pnl >= 0 ? "bg-emerald-500/5 text-emerald-400" : "bg-red-500/5 text-red-400",
               )}>
                 Best: {bestResult.pnl >= 0 ? "+" : ""}{bestResult.pnl.toFixed(0)}
@@ -122,7 +122,7 @@ export function ScenarioCard({
           {bestResult ? (
             <motion.div
               className={cn(
-                "flex h-11 w-11 items-center justify-center rounded-md border-2 text-xl font-bold",
+                "flex h-11 w-11 items-center justify-center rounded-md border-2 text-xl font-semibold",
                 gradeConfig?.border,
                 gradeConfig?.bg,
                 gradeConfig?.text,

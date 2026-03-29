@@ -700,7 +700,7 @@ function FundedRatioCalculator() {
       <div className="grid grid-cols-3 gap-3 pt-2">
         <div className="bg-muted rounded-lg p-3 text-center">
           <div
-            className={`text-xl font-bold ${
+            className={`text-xl font-semibold ${
               fundedRatio >= 100 ? "text-emerald-400" : fundedRatio >= 80 ? "text-yellow-400" : "text-red-400"
             }`}
           >
@@ -709,7 +709,7 @@ function FundedRatioCalculator() {
           <div className="text-xs text-muted-foreground mt-1">Funded Ratio</div>
         </div>
         <div className="bg-muted rounded-lg p-3 text-center">
-          <div className="text-xl font-bold text-red-400">${unfundedLiability.toLocaleString()}M</div>
+          <div className="text-xl font-semibold text-red-400">${unfundedLiability.toLocaleString()}M</div>
           <div className="text-xs text-muted-foreground mt-1">Unfunded Liability</div>
         </div>
         <div className="bg-muted rounded-lg p-3 text-center">
@@ -744,7 +744,7 @@ export default function PensionManagementPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-md bg-primary/20 border border-border flex items-center justify-center">
+          <div className="w-10 h-10 rounded-md bg-muted/10 border border-border flex items-center justify-center">
             <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
@@ -922,7 +922,7 @@ export default function PensionManagementPage() {
                     </thead>
                     <tbody>
                       {TOP_PENSION_FUNDS.map((f) => (
-                        <tr key={f.rank} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <tr key={f.rank} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                           <td className="py-2 pr-2 text-muted-foreground">{f.rank}</td>
                           <td className="py-2 pr-2">
                             <div className="text-foreground font-medium leading-tight max-w-[200px]">{f.name}</div>
@@ -978,13 +978,13 @@ export default function PensionManagementPage() {
                       title: "Immunization Goal",
                       desc: "Match asset duration to liability duration so that a parallel shift in rates leaves the funded ratio unchanged.",
                       badge: "Core LDI",
-                      badgeColor: "bg-primary/20 text-primary",
+                      badgeColor: "bg-muted/10 text-primary",
                     },
                     {
                       title: "Key Rate Duration (KRD)",
                       desc: "Decompose interest rate sensitivity across the yield curve (2Y, 5Y, 10Y, 20Y, 30Y) to hedge non-parallel shifts.",
                       badge: "Advanced",
-                      badgeColor: "bg-primary/20 text-primary",
+                      badgeColor: "bg-muted/10 text-primary",
                     },
                     {
                       title: "Liability Benchmark",
@@ -1040,7 +1040,7 @@ export default function PensionManagementPage() {
                       </thead>
                       <tbody>
                         {KEY_RATE_DURATIONS.map((d) => (
-                          <tr key={d.maturity} className="border-b border-border/50">
+                          <tr key={d.maturity} className="border-b border-border/20">
                             <td className="py-1.5 text-foreground font-medium">{d.maturity}</td>
                             <td className="py-1.5 text-right text-primary">{d.assetDur.toFixed(1)}</td>
                             <td className="py-1.5 text-right text-red-300">{d.liabilityDur.toFixed(1)}</td>
@@ -1157,9 +1157,9 @@ export default function PensionManagementPage() {
                 <button
                   key={sc.name}
                   onClick={() => setSelectedScenario(sc)}
-                  className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-all border ${
+                  className={`px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium transition-colors border ${
                     selectedScenario.name === sc.name
-                      ? "border-primary bg-primary/20 text-primary"
+                      ? "border-primary bg-muted/10 text-primary"
                       : "border-border bg-muted text-muted-foreground hover:border-border"
                   }`}
                 >
@@ -1204,7 +1204,7 @@ export default function PensionManagementPage() {
                           <span className="text-muted-foreground w-24">{seg.label}</span>
                           <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
                             <div
-                              className="h-full rounded-full transition-all duration-300"
+                              className="h-full rounded-full transition-colors duration-300"
                               style={{ width: `${seg.value}%`, backgroundColor: seg.color }}
                             />
                           </div>
@@ -1225,7 +1225,7 @@ export default function PensionManagementPage() {
                     <div
                       key={sc.name}
                       onClick={() => setSelectedScenario(sc)}
-                      className={`p-3 rounded-lg border cursor-pointer transition-all ${
+                      className={`p-3 rounded-lg border cursor-pointer transition-colors ${
                         selectedScenario.name === sc.name
                           ? "border-primary/50 bg-muted/40"
                           : "border-border bg-muted/30 hover:border-border"
@@ -1289,7 +1289,7 @@ export default function PensionManagementPage() {
                         { fr: "90–100%", eq: 20, bond: 65, alt: 15, hedge: 80, action: "Liability-matching dominant; protect gains" },
                         { fr: "> 100%", eq: 10, bond: 80, alt: 10, hedge: 95, action: "Near full immunization; evaluate annuitization" },
                       ].map((row) => (
-                        <tr key={row.fr} className="border-b border-border/50">
+                        <tr key={row.fr} className="border-b border-border/20">
                           <td className="py-2 pr-3 font-medium text-foreground">{row.fr}</td>
                           <td className="py-2 pr-3 text-right text-primary">{row.eq}%</td>
                           <td className="py-2 pr-3 text-right text-primary">{row.bond}%</td>
@@ -1360,7 +1360,7 @@ export default function PensionManagementPage() {
                       </div>
                       <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-primary transition-all"
+                          className="h-full rounded-full bg-primary transition-colors"
                           style={{ width: `${rf.hedgeRatio}%` }}
                         />
                       </div>
@@ -1392,7 +1392,7 @@ export default function PensionManagementPage() {
                     </thead>
                     <tbody>
                       {STRESS_SCENARIOS.map((sc) => (
-                        <tr key={sc.name} className="border-b border-border/50 hover:bg-muted/30">
+                        <tr key={sc.name} className="border-b border-border/20 hover:bg-muted/30">
                           <td className="py-2 pr-3 font-medium text-foreground">{sc.name}</td>
                           <td className="py-2 pr-3 text-right">
                             <span className={sc.rateShift > 0 ? "text-red-400" : "text-emerald-400"}>
@@ -1559,8 +1559,8 @@ export default function PensionManagementPage() {
                   {ESG_INITIATIVES.map((init) => {
                     const catColors: Record<string, string> = {
                       Climate: "bg-emerald-600/20 text-emerald-400 border-emerald-600/30",
-                      "Shareholder Engagement": "bg-primary/20 text-primary border-border",
-                      "Proxy Voting": "bg-primary/20 text-primary border-border",
+                      "Shareholder Engagement": "bg-muted/10 text-primary border-border",
+                      "Proxy Voting": "bg-muted/10 text-primary border-border",
                       "Universal Owner": "bg-amber-600/20 text-amber-400 border-amber-600/30",
                       "DEI & Labor": "bg-pink-600/20 text-pink-400 border-pink-600/30",
                       "Long-Horizon": "bg-cyan-600/20 text-muted-foreground border-cyan-600/30",

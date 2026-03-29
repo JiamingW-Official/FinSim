@@ -532,7 +532,7 @@ function StatChip({ label, value, color = "blue" }: { label: string; value: stri
   return (
     <div className={cn("inline-flex flex-col rounded-lg border px-3 py-2", colorMap[color])}>
       <span className="text-xs text-muted-foreground opacity-70">{label}</span>
-      <span className="text-sm font-bold">{value}</span>
+      <span className="text-sm font-semibold">{value}</span>
     </div>
   );
 }
@@ -564,7 +564,7 @@ function IPOProcessTab() {
                 )}
               >
                 <div className={cn(
-                  "relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all",
+                  "relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors",
                   selectedStage?.id === stage.id
                     ? "bg-primary border-primary text-foreground"
                     : "bg-muted border-border text-muted-foreground group-hover:border-primary group-hover:text-primary"
@@ -816,7 +816,7 @@ function SPACTab() {
               const colorMap: Record<string, string> = { blue: "bg-primary", amber: "bg-amber-500", green: "bg-green-600" };
               return (
                 <div key={i} className="flex gap-3">
-                  <div className={cn("mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-foreground text-xs font-bold", colorMap[item.color])}>
+                  <div className={cn("mt-0.5 w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-foreground text-xs font-semibold", colorMap[item.color])}>
                     {i + 1}
                   </div>
                   <div>
@@ -1322,7 +1322,7 @@ export default function CapitalMarketsPage() {
         className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-muted/10 border border-primary/40 flex items-center justify-center">
             <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <h1 className="text-xl font-semibold text-foreground">Capital Markets</h1>

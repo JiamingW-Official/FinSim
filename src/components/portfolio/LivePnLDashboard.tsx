@@ -434,7 +434,7 @@ export function LivePnLDashboard() {
 
   if (positions.length === 0 && tradeHistory.filter((t) => t.realizedPnL !== 0).length === 0) {
     return (
-      <div className="rounded-lg border border-border/40 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-3">
           <Activity className="h-3.5 w-3.5 text-primary" />
           Live P&L Dashboard
@@ -449,7 +449,7 @@ export function LivePnLDashboard() {
   // ─────────────────────────────────────────────────────────────────────────────
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-5">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-5">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
@@ -537,7 +537,7 @@ export function LivePnLDashboard() {
       {/* ── Section 2: Position Ladder ───────────────────────────────────────── */}
       {sortedPositions.length > 0 && (
         <div>
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
+          <p className="text-xs font-medium text-muted-foreground mb-2">
             Position Ladder
           </p>
           <div className="space-y-1">
@@ -556,7 +556,7 @@ export function LivePnLDashboard() {
                       <span className="font-semibold w-10">{pos.ticker}</span>
                       <span
                         className={cn(
-                          "rounded px-1 py-0.5 text-[11px] font-semibold uppercase",
+                          "rounded px-1 py-0.5 text-[11px] font-semibold",
                           pos.side === "long"
                             ? "bg-emerald-500/12 text-emerald-400"
                             : "bg-red-500/12 text-red-400",
@@ -622,7 +622,7 @@ export function LivePnLDashboard() {
       {/* ── Section 3: P&L Attribution Breakdown ────────────────────────────── */}
       {attribution && (
         <div>
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
+          <p className="text-xs font-medium text-muted-foreground mb-2">
             Daily P&L Attribution
           </p>
           <div className="space-y-2">
@@ -687,7 +687,7 @@ export function LivePnLDashboard() {
             })()}
 
             {/* vs SPY */}
-            <div className="flex items-center gap-2 pt-1 border-t border-border/40">
+            <div className="flex items-center gap-2 pt-1 border-t border-border/20">
               <span className="text-xs text-muted-foreground">vs SPY today:</span>
               <span
                 className={cn(
@@ -717,7 +717,7 @@ export function LivePnLDashboard() {
 
       {/* ── Section 4: Risk Meters ───────────────────────────────────────────── */}
       <div>
-        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">
+        <p className="text-xs font-medium text-muted-foreground mb-3">
           Risk Meters
         </p>
         <div className="grid grid-cols-4 gap-2">
@@ -748,7 +748,7 @@ export function LivePnLDashboard() {
       {/* ── Section 5: Intraday P&L Chart ───────────────────────────────────── */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="text-xs font-medium text-muted-foreground">
             Intraday P&L
           </p>
           <div className="flex items-center gap-2">

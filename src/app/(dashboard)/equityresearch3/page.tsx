@@ -652,7 +652,7 @@ function SOTPTab() {
         ].map((kpi, i) => (
           <div key={i} className="bg-muted border border-border rounded-lg p-3">
             <p className="text-xs text-muted-foreground">{kpi.label}</p>
-            <p className={cn("text-xl font-bold mt-0.5", kpi.color)}>{kpi.value}</p>
+            <p className={cn("text-xl font-semibold mt-0.5", kpi.color)}>{kpi.value}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{kpi.sub}</p>
           </div>
         ))}
@@ -714,7 +714,7 @@ function SOTPTab() {
               <span className="text-xs text-muted-foreground mr-2">
                 {seg.multiple} {seg.multipleVal}×
               </span>
-              <span className="text-sm font-mono font-bold text-foreground">
+              <span className="text-sm font-mono font-semibold text-foreground">
                 ${Math.round(seg.impliedValue / 100) / 10}B
               </span>
               <ChevronDown
@@ -1328,7 +1328,7 @@ function ThesisTab() {
                 <span className="text-xs font-mono font-medium" style={{ color: t.color }}>${t.value}B</span>
                 <div className="w-full flex items-end justify-center">
                   <div
-                    className="w-full rounded-t-md opacity-80 transition-all"
+                    className="w-full rounded-t-md opacity-80 transition-colors"
                     style={{ height: barH, backgroundColor: t.color }}
                   />
                 </div>
@@ -1487,7 +1487,7 @@ export default function EquityResearch3Page() {
             <Microscope className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-xs font-medium text-primary">Advanced Equity Research</span>
           </div>
-          <h1 className="text-xl font-bold text-foreground">
+          <h1 className="text-xl font-semibold text-foreground">
             SOTP · Primary Research · Forensic Accounting · Thesis Construction
           </h1>
           <p className="text-sm text-muted-foreground mt-1">

@@ -228,10 +228,10 @@ export function NotificationCenter() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="absolute right-0 top-full z-50 mt-2 w-[calc(100vw-2rem)] sm:w-72 max-w-72 rounded-lg border border-border/40 bg-card shadow-sm"
+            className="absolute right-0 top-full z-50 mt-2 w-[calc(100vw-2rem)] sm:w-72 max-w-72 rounded-lg border border-border/20 bg-card shadow-sm"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-border/40 px-3 py-2">
+            <div className="flex items-center justify-between border-b border-border/20 px-3 py-2">
               <div className="flex items-center gap-1.5">
                 <span className="text-[11px] font-medium">Notifications</span>
                 {unreadCount > 0 && (
@@ -308,7 +308,7 @@ export function NotificationCenter() {
 
             {/* Footer */}
             {notifications.length > 20 && (
-              <div className="border-t border-border/40 px-3 py-2 text-center text-xs text-muted-foreground">
+              <div className="border-t border-border/20 px-3 py-2 text-center text-xs text-muted-foreground">
                 Showing 20 of {notifications.length} — clear to reset
               </div>
             )}

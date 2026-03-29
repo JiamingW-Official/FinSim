@@ -676,7 +676,7 @@ function ScoreBar({ score }: { score: number }) {
   const color = score >= 65 ? "#10b981" : score >= 40 ? "#f59e0b" : "#ef4444";
   return (
     <div className="w-full bg-foreground/5 rounded-full h-1 mt-1">
-      <div className="h-1 rounded-full transition-all" style={{ width: `${score}%`, backgroundColor: color }} />
+      <div className="h-1 rounded-full transition-colors" style={{ width: `${score}%`, backgroundColor: color }} />
     </div>
   );
 }
@@ -714,14 +714,14 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
       <SectionCard title="Economic Composite Score">
         <div className="flex items-center gap-3">
           <div className="text-center">
-            <div className={cn("text-2xl font-bold", scoreColor)}>{compositeScore}</div>
+            <div className={cn("text-2xl font-semibold", scoreColor)}>{compositeScore}</div>
             <div className="text-xs text-muted-foreground mt-1">out of 100</div>
           </div>
           <div className="flex-1">
             <div className={cn("text-lg font-semibold", scoreColor)}>{scoreLabel}</div>
             <div className="w-full bg-foreground/5 rounded-full h-3 mt-2">
               <div
-                className="h-3 rounded-full transition-all"
+                className="h-3 rounded-full transition-colors"
                 style={{
                   width: `${compositeScore}%`,
                   background: compositeScore >= 65 ? "linear-gradient(90deg,#059669,#10b981)" : compositeScore >= 40 ? "linear-gradient(90deg,#d97706,#f59e0b)" : "linear-gradient(90deg,#dc2626,#ef4444)",
@@ -739,7 +739,7 @@ function USDashboard({ data }: { data: ReturnType<typeof generateData> }) {
               const count = indicators.filter((i) => i.traffic === t).length;
               return (
                 <div key={t} className="text-center">
-                  <div className={cn("text-xl font-bold", t === "green" ? "text-emerald-400" : t === "yellow" ? "text-amber-400" : "text-red-400")}>{count}</div>
+                  <div className={cn("text-xl font-semibold", t === "green" ? "text-emerald-400" : t === "yellow" ? "text-amber-400" : "text-red-400")}>{count}</div>
                   <div className="text-muted-foreground capitalize">{t}</div>
                 </div>
               );
@@ -890,7 +890,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
             </thead>
             <tbody>
               {fedMeetings.map((m, i) => (
-                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-1.5 pr-4 text-foreground font-medium">{m.date}</td>
                   <td className="text-right pr-3 text-red-400">{m.hikePct}%</td>
                   <td className="text-right pr-3 text-muted-foreground">{m.holdPct}%</td>
@@ -1020,7 +1020,7 @@ function GlobalComparison({ data }: { data: ReturnType<typeof generateData> }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.03 }}
-                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-1.5 text-foreground">
                     {c.flag} {c.name}
@@ -1188,7 +1188,7 @@ function SectorDataTab({ data }: { data: ReturnType<typeof generateData> }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                 >
                   <td className="py-1.5 text-foreground flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
@@ -1377,7 +1377,7 @@ export default function EconDataPage() {
             <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
               <Activity className="w-4 h-4 text-indigo-400" />
             </div>
-            <h1 className="text-xl font-bold text-foreground">Economic Data</h1>
+            <h1 className="text-xl font-semibold text-foreground">Economic Data</h1>
             <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Live</span>
           </div>
           <p className="text-sm text-muted-foreground ml-11">Macro indicators, Fed policy, global comparisons, and recession signals</p>
@@ -1392,7 +1392,7 @@ export default function EconDataPage() {
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground transition-all"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground transition-colors"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {tab.label}

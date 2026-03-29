@@ -347,7 +347,7 @@ export function ScreenerPanel({ onSelectTicker }: ScreenerPanelProps) {
       {/* Saved screens pills (if any) */}
       {savedScreens.length > 0 && (
         <div className="space-y-1.5">
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Saved Screens</p>
+          <p className="text-xs font-medium text-muted-foreground">Saved Screens</p>
           <div className="flex flex-wrap gap-1.5">
             {savedScreens.map((screen, idx) => {
               const presetIndex = builtInCount + idx;

@@ -458,11 +458,11 @@ function ScreenerTab() {
         >
           <div>
             <p className="text-xs text-muted-foreground mb-1">Tax-Equiv Yield (37%)</p>
-            <p className="text-xl font-bold text-indigo-400">{selected.teyAt37.toFixed(2)}%</p>
+            <p className="text-xl font-semibold text-indigo-400">{selected.teyAt37.toFixed(2)}%</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-1">Duration</p>
-            <p className="text-xl font-bold text-foreground">{selected.duration.toFixed(1)} yrs</p>
+            <p className="text-xl font-semibold text-foreground">{selected.duration.toFixed(1)} yrs</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-1">Spread to AAA</p>
@@ -710,7 +710,7 @@ function AnalysisTab() {
                 { rating: "A", spread: "45–142 bps", color: "text-yellow-400", note: "Smaller cities, regional hospitals, airports with stable traffic" },
                 { rating: "BBB", spread: "110–240 bps", color: "text-orange-400", note: "Weakest investment grade — distressed municipalities, project risk" },
               ].map((r, i) => (
-                <div key={`rs-${i}`} className="p-3 rounded-lg bg-muted/50 border border-border/50">
+                <div key={`rs-${i}`} className="p-3 rounded-lg bg-muted/50 border border-border/20">
                   <div className="flex justify-between mb-1">
                     <span className={cn("font-medium", r.color)}>{r.rating}</span>
                     <span className="text-muted-foreground text-sm">{r.spread}</span>
@@ -974,7 +974,7 @@ export default function MuniBondsPage() {
         <div>
           <div className="flex items-center gap-3 mb-1">
             <Building2 className="w-6 h-6 text-indigo-400" />
-            <h1 className="text-2xl font-bold text-foreground">Municipal Bonds</h1>
+            <h1 className="text-2xl font-semibold text-foreground">Municipal Bonds</h1>
           </div>
           <p className="text-sm text-muted-foreground max-w-2xl">
             Tax-advantaged debt issued by states, cities, and public agencies. Interest is typically

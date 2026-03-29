@@ -146,7 +146,7 @@ export function StreakCelebration() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.15 }}
                 className={cn(
-                  "font-bold",
+                  "font-semibold",
                   isLarge ? "text-lg" : "text-sm",
                   config.color,
                 )}

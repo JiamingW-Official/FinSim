@@ -611,7 +611,7 @@ function MeanVarianceSection() {
       </div>
 
       {/* Efficient Frontier */}
-      <div className="rounded-lg border border-border/40 bg-muted/20 p-2">
+      <div className="rounded-lg border border-border/20 bg-muted/20 p-2">
         <p className="text-xs font-medium text-muted-foreground mb-1.5">Efficient Frontier (15-Asset Universe)</p>
         <EfficientFrontierSVG
           points={frontierPoints}
@@ -644,7 +644,7 @@ function MeanVarianceSection() {
           { label: "Max Sharpe", stats: maxSharpeStats, color: "text-primary" },
           { label: "Risk Parity", stats: rpStats, color: "text-orange-400" },
         ].map(({ label, stats, color }) => (
-          <div key={label} className="rounded-lg border border-border/40 bg-card/50 p-2.5 space-y-1">
+          <div key={label} className="rounded-lg border border-border/20 bg-card/50 p-2.5 space-y-1">
             <p className={cn("text-xs font-semibold", color)}>{label}</p>
             <div className="space-y-0.5">
               <div className="flex justify-between text-[11px]">
@@ -696,7 +696,7 @@ function MeanVarianceSection() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-border/40 text-muted-foreground">
+                  <tr className="border-b border-border/20 text-muted-foreground">
                     <th className="text-left py-1 px-1">Ticker</th>
                     <th className="text-right py-1 px-1">Exp. Ret %</th>
                     <th className="text-right py-1 px-1">Max-Sharpe Wt</th>
@@ -742,7 +742,7 @@ function MeanVarianceSection() {
               <span className="text-xs font-medium w-11 shrink-0">{t}</span>
               <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-primary transition-all duration-300"
+                  className="h-full rounded-full bg-primary transition-colors duration-300"
                   style={{ width: `${(optimalW[i] * 100).toFixed(1)}%` }}
                 />
               </div>
@@ -812,7 +812,7 @@ function RiskParitySection() {
           { label: "Risk Parity", stats: rpStats, color: "text-orange-400" },
           { label: "Max Sharpe", stats: msStats, color: "text-primary" },
         ].map(({ label, stats, color }) => (
-          <div key={label} className="rounded-lg border border-border/40 bg-card/50 p-2.5 space-y-1">
+          <div key={label} className="rounded-lg border border-border/20 bg-card/50 p-2.5 space-y-1">
             <p className={cn("text-xs font-semibold", color)}>{label}</p>
             <div className="space-y-0.5">
               <div className="flex justify-between text-[11px]">
@@ -833,7 +833,7 @@ function RiskParitySection() {
       </div>
 
       {/* Risk contribution chart */}
-      <div className="rounded-lg border border-border/40 bg-muted/20 p-2">
+      <div className="rounded-lg border border-border/20 bg-muted/20 p-2">
         <p className="text-xs font-medium text-muted-foreground mb-1.5">Risk Contribution % by Asset</p>
         <RiskContributionBarChart
           labels={TICKERS}
@@ -858,7 +858,7 @@ function RiskParitySection() {
       </div>
 
       {/* Leverage panel */}
-      <div className="rounded-lg border border-border/40 bg-card/40 p-3">
+      <div className="rounded-lg border border-border/20 bg-card/40 p-3">
         <p className="text-xs font-semibold text-muted-foreground mb-2">Leverage Implications</p>
         <div className="grid grid-cols-3 gap-3">
           <div>
@@ -882,7 +882,7 @@ function RiskParitySection() {
       </div>
 
       {/* Historical comparison */}
-      <div className="rounded-lg border border-border/40 bg-muted/20 p-2">
+      <div className="rounded-lg border border-border/20 bg-muted/20 p-2">
         <p className="text-xs font-medium text-muted-foreground mb-1">5-Year Historical Comparison (simulated, $100 start)</p>
         <svg viewBox="0 0 340 130" className="w-full" style={{ height: 130 }}>
           {(() => {
@@ -1027,7 +1027,7 @@ function FactorSection() {
               </button>
             ))}
           </div>
-          <div className="rounded border border-border/40 bg-muted/20 p-2">
+          <div className="rounded border border-border/20 bg-muted/20 p-2">
             <p className="text-[11px] text-muted-foreground mb-1">{FACTOR_LABELS[tilt1]}</p>
             <p className="text-xs font-semibold text-primary">
               Ret: {w1Stats.ret.toFixed(1)}% | Vol: {w1Stats.vol.toFixed(1)}% | SR: {w1Stats.sharpe.toFixed(2)}
@@ -1048,7 +1048,7 @@ function FactorSection() {
               </button>
             ))}
           </div>
-          <div className="rounded border border-border/40 bg-muted/20 p-2">
+          <div className="rounded border border-border/20 bg-muted/20 p-2">
             <p className="text-[11px] text-muted-foreground mb-1">{FACTOR_LABELS[tilt2]}</p>
             <p className="text-xs font-semibold text-amber-400">
               Ret: {w2Stats.ret.toFixed(1)}% | Vol: {w2Stats.vol.toFixed(1)}% | SR: {w2Stats.sharpe.toFixed(2)}
@@ -1067,7 +1067,7 @@ function FactorSection() {
         </div>
         <input type="range" min={0} max={100} step={5} value={blendRatio}
           onChange={e => setBlendRatio(Number(e.target.value))} className="w-full h-1" />
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-xs font-semibold text-primary mb-1">Blended Portfolio</p>
           <div className="grid grid-cols-3 gap-2 text-[11px]">
             <div><span className="text-muted-foreground">Return: </span><span className="font-mono">{blendStats.ret.toFixed(1)}%</span></div>
@@ -1083,7 +1083,7 @@ function FactorSection() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 text-muted-foreground">
+              <tr className="border-b border-border/20 text-muted-foreground">
                 <th className="text-left py-1">Portfolio</th>
                 <th className="text-right py-1">Value Score</th>
                 <th className="text-right py-1">Momentum</th>
@@ -1122,7 +1122,7 @@ function FactorSection() {
             <div key={t} className="flex items-center gap-2">
               <span className="text-xs font-medium w-11 shrink-0">{t}</span>
               <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
-                <div className="h-full rounded-full bg-primary transition-all duration-300"
+                <div className="h-full rounded-full bg-primary transition-colors duration-300"
                   style={{ width: `${(blendW[i] * 100).toFixed(1)}%` }} />
               </div>
               <span className="text-xs font-mono text-muted-foreground w-10 text-right">
@@ -1221,21 +1221,21 @@ function LDISection() {
 
       {/* Key metrics */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Liability PV</p>
           <p className="font-mono text-sm font-semibold text-primary">{formatCur(liabilityPV)}</p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Funding Ratio</p>
           <p className={cn("font-mono text-sm font-semibold", fundingRatio >= 1 ? "text-emerald-400" : fundingRatio >= 0.8 ? "text-amber-400" : "text-red-400")}>
             {(fundingRatio * 100).toFixed(0)}%
           </p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Liability Duration</p>
           <p className="font-mono text-sm font-semibold text-primary">{liabilityDuration.toFixed(1)} yrs</p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Deficit / Surplus</p>
           <p className={cn("font-mono text-sm font-semibold", currentAssets >= liabilityPV ? "text-emerald-400" : "text-red-400")}>
             {currentAssets >= liabilityPV ? "+" : ""}{formatCur(currentAssets - liabilityPV)}
@@ -1244,14 +1244,14 @@ function LDISection() {
       </div>
 
       {/* LDI split */}
-      <div className="rounded-lg border border-border/40 bg-card/40 p-3">
+      <div className="rounded-lg border border-border/20 bg-card/40 p-3">
         <p className="text-xs font-semibold text-muted-foreground mb-2">Asset Allocation Split</p>
         <div className="flex rounded-lg overflow-hidden h-5 mb-2">
-          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-foreground transition-all duration-300"
+          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-foreground transition-colors duration-300"
             style={{ width: `${hedgePct}%` }}>
             {parseInt(hedgePct) > 15 ? `Hedge ${hedgePct}%` : ""}
           </div>
-          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-foreground transition-all duration-300"
+          <div className="bg-primary/70 flex items-center justify-center text-[11px] font-semibold text-foreground transition-colors duration-300"
             style={{ width: `${growthPct}%` }}>
             {parseInt(growthPct) > 15 ? `Growth ${growthPct}%` : ""}
           </div>
@@ -1269,7 +1269,7 @@ function LDISection() {
       </div>
 
       {/* Glide path SVG */}
-      <div className="rounded-lg border border-border/40 bg-muted/20 p-2">
+      <div className="rounded-lg border border-border/20 bg-muted/20 p-2">
         <p className="text-xs font-medium text-muted-foreground mb-1">Funding Ratio Glide Path — 30-Year Projection</p>
         <FundingRatioChart bull={bullPath} base={basePath} bear={bearPath} years={30} />
         <div className="flex gap-3 mt-1 justify-center">
@@ -1469,7 +1469,7 @@ function SimulationSection() {
       </div>
 
       {/* Fan chart */}
-      <div className="rounded-lg border border-border/40 bg-muted/20 p-2">
+      <div className="rounded-lg border border-border/20 bg-muted/20 p-2">
         <p className="text-xs font-medium text-muted-foreground mb-1">
           Monte Carlo Fan Chart — 1,000 Paths over {horizonYears} Years
         </p>
@@ -1490,22 +1490,22 @@ function SimulationSection() {
 
       {/* Outcome summary */}
       <div className="grid grid-cols-3 gap-2">
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">Median Outcome</p>
           <p className="font-mono text-sm font-semibold text-primary">{formatCur(finalP50)}</p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">90th Percentile</p>
           <p className="font-mono text-sm font-semibold text-emerald-400">{formatCur(finalP90)}</p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
           <p className="text-[11px] text-muted-foreground">10th Percentile</p>
           <p className="font-mono text-sm font-semibold text-red-400">{formatCur(finalP10)}</p>
         </div>
       </div>
 
       {/* Probability metrics */}
-      <div className="rounded-lg border border-border/40 bg-card/40 p-3 space-y-2">
+      <div className="rounded-lg border border-border/20 bg-card/40 p-3 space-y-2">
         <p className="text-xs font-semibold text-muted-foreground">Probability of Reaching Milestones (from {formatCur(startCapital)} + {formatCur(monthlyContrib)}/mo)</p>
         <div className="grid grid-cols-3 gap-2">
           {[
@@ -1523,7 +1523,7 @@ function SimulationSection() {
             </div>
           ))}
         </div>
-        <div className="border-t border-border/30 pt-2">
+        <div className="border-t border-border/20 pt-2">
           <div className="flex justify-between text-xs">
             <span className="text-muted-foreground">Prob. of reaching goal ({formatCur(goalAmount)})</span>
             <span className={cn("font-mono font-semibold",
@@ -1562,7 +1562,7 @@ export function PortfolioOptimizer() {
   ];
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-sm font-semibold">Advanced Portfolio Optimizer</h3>
@@ -1577,7 +1577,7 @@ export function PortfolioOptimizer() {
       </div>
 
       {/* Section tabs */}
-      <div className="flex gap-1 flex-wrap border-b border-border/40 pb-2">
+      <div className="flex gap-1 flex-wrap border-b border-border/20 pb-2">
         {TABS.map(({ id, shortLabel }) => (
           <button
             key={id}

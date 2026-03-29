@@ -285,7 +285,7 @@ function AssetClassOverview() {
                   onMouseEnter={() => setHovered(asset.id)}
                   onMouseLeave={() => setHovered(null)}
                   className={cn(
-                    "border-b border-border/50 transition-colors cursor-default",
+                    "border-b border-border/20 transition-colors cursor-default",
                     hovered === asset.id ? "bg-muted/60" : "hover:bg-muted/30"
                   )}
                 >
@@ -888,11 +888,11 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
         <div className="grid grid-cols-3 gap-4 mt-4 pt-4 border-t border-border">
           <div className="text-center">
             <p className="text-xs text-muted-foreground">Prob. of $1M+</p>
-            <p className="text-xl font-bold text-emerald-400">{fmtPct(mcResult.probMillion * 100, 0)}</p>
+            <p className="text-xl font-semibold text-emerald-400">{fmtPct(mcResult.probMillion * 100, 0)}</p>
           </div>
           <div className="text-center">
             <p className="text-xs text-muted-foreground">Median Outcome</p>
-            <p className="text-xl font-bold text-indigo-400">{fmtK(mcResult.p50[mcResult.YEARS])}</p>
+            <p className="text-xl font-semibold text-indigo-400">{fmtK(mcResult.p50[mcResult.YEARS])}</p>
           </div>
           <div className="text-center">
             <p className="text-xs text-muted-foreground">Worst 5th %ile</p>
@@ -976,7 +976,7 @@ function ReturnScenarios({ weights }: { weights: number[] }) {
               {historicalReturns.map(sc => {
                 const diff = sc.portReturn - sc.spReturn;
                 return (
-                  <tr key={sc.name} className="border-b border-border/50">
+                  <tr key={sc.name} className="border-b border-border/20">
                     <td className="py-2 text-muted-foreground">{sc.name}</td>
                     <td className={cn("py-2 text-right font-medium", sc.portReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {sc.portReturn.toFixed(1)}%
@@ -1192,7 +1192,7 @@ function RebalancingSimulator({ weights }: { weights: number[] }) {
                 const baseReturn = ((results.none.values[MONTHS] - 100_000) / 100_000) * 100;
                 const premium = totalReturn - baseReturn;
                 return (
-                  <tr key={s.key} className="border-b border-border/50">
+                  <tr key={s.key} className="border-b border-border/20">
                     <td className="py-2">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full" style={{ background: r.color }} />
@@ -1461,7 +1461,7 @@ function LifecyclePlanning() {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 <td className="py-2 text-muted-foreground">Stocks</td>
                 {glidePath.map(p => (
                   <td key={p.age} className={cn("py-2 text-center font-medium", p.age === currentAge ? "text-amber-400" : "text-indigo-400")}>
@@ -1469,7 +1469,7 @@ function LifecyclePlanning() {
                   </td>
                 ))}
               </tr>
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 <td className="py-2 text-muted-foreground">Bonds</td>
                 {glidePath.map(p => (
                   <td key={p.age} className={cn("py-2 text-center", p.age === currentAge ? "text-amber-400" : "text-primary")}>
@@ -1673,7 +1673,7 @@ export default function AllocationPage() {
               { label: "Expected Return", value: fmtPct(m.expectedReturn), color: "text-emerald-400", icon: TrendingUp, bg: "bg-emerald-500/5" },
               { label: "Portfolio Volatility", value: fmtPct(m.volatility), color: "text-amber-400", icon: Activity, bg: "bg-amber-500/10" },
               { label: "Sharpe Ratio", value: m.sharpe.toFixed(2), color: m.sharpe >= 0.5 ? "text-emerald-400" : "text-amber-400", icon: Zap, bg: "bg-indigo-500/10" },
-              { label: "Market Beta", value: m.beta.toFixed(2), color: "text-primary", icon: BarChart3, bg: "bg-primary/10" },
+              { label: "Market Beta", value: m.beta.toFixed(2), color: "text-primary", icon: BarChart3, bg: "bg-muted/10" },
             ];
           })().map(item => (
             <Card key={item.label} className="bg-card border-border p-3">

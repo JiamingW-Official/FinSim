@@ -57,7 +57,7 @@ function StatCard({
   return (
     <div className="rounded-md border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
-      <p className={cn("text-xl font-bold", valClass)}>{value}</p>
+      <p className={cn("text-xl font-semibold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
@@ -270,7 +270,7 @@ function LPLedTab() {
           {sellerReasons.map((r, i) => (
             <button
               key={i}
-              className="text-left rounded-lg border border-border bg-black/20 p-3 hover:border-border transition-all"
+              className="text-left rounded-lg border border-border bg-black/20 p-3 hover:border-border transition-colors"
               onClick={() => setExpandedSeller(expandedSeller === i ? null : i)}
             >
               <div className="flex items-center gap-2 mb-1">
@@ -335,7 +335,7 @@ function LPLedTab() {
               <div className="flex items-center gap-2 mb-2">
                 <span
                   className={cn(
-                    "w-6 h-6 rounded-full text-xs text-muted-foreground font-bold flex items-center justify-center",
+                    "w-6 h-6 rounded-full text-xs text-muted-foreground font-semibold flex items-center justify-center",
                     step.color === "blue"
                       ? "bg-primary text-foreground"
                       : step.color === "violet"
@@ -453,7 +453,7 @@ function LPLedTab() {
           {buyers.map((b) => (
             <div
               key={b.name}
-              className="flex items-center justify-between rounded-lg bg-black/20 border border-border/50 px-3 py-2"
+              className="flex items-center justify-between rounded-lg bg-black/20 border border-border/20 px-3 py-2"
             >
               <div>
                 <p className="text-sm font-medium text-foreground">{b.name}</p>
@@ -508,7 +508,7 @@ function LPLedTab() {
           ].map((p) => (
             <div
               key={p.phase}
-              className="flex gap-4 rounded-lg border border-border/50 bg-black/20 p-3"
+              className="flex gap-4 rounded-lg border border-border/20 bg-black/20 p-3"
             >
               <div className="flex flex-col items-center">
                 <span className="text-xs font-medium text-primary">{p.phase}</span>
@@ -857,7 +857,7 @@ function GPLedTab() {
         />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
           {advisors.map((a) => (
-            <div key={a.name} className="rounded-lg bg-black/20 border border-border/50 px-3 py-2">
+            <div key={a.name} className="rounded-lg bg-black/20 border border-border/20 px-3 py-2">
               <p className="text-sm font-medium text-foreground">{a.name}</p>
               <p className="text-xs text-muted-foreground">{a.role}</p>
             </div>
@@ -1005,7 +1005,7 @@ function NAVFinancingTab() {
           {useCases.map((u, i) => (
             <button
               key={i}
-              className="text-left rounded-lg border border-border bg-black/20 p-3 hover:border-border transition-all"
+              className="text-left rounded-lg border border-border bg-black/20 p-3 hover:border-border transition-colors"
               onClick={() => setExpandedUseCase(expandedUseCase === i ? null : i)}
             >
               <div className="flex items-center gap-2 mb-1">
@@ -1057,7 +1057,7 @@ function NAVFinancingTab() {
                 { attr: "Primary use", nav: "Distributions / follow-ons", sub: "Bridge capital calls" },
                 { attr: "LP disclosure", nav: "Increasingly required", sub: "Standard disclosure" },
               ].map((r) => (
-                <tr key={r.attr} className="border-b border-border/50">
+                <tr key={r.attr} className="border-b border-border/20">
                   <td className="text-muted-foreground py-2 pr-4">{r.attr}</td>
                   <td className="text-foreground py-2 pr-4">{r.nav}</td>
                   <td className="text-foreground py-2">{r.sub}</td>
@@ -1134,7 +1134,7 @@ function NAVFinancingTab() {
           {providers.map((p) => (
             <div
               key={p.name}
-              className="flex items-center justify-between rounded-lg bg-black/20 border border-border/50 px-3 py-2"
+              className="flex items-center justify-between rounded-lg bg-black/20 border border-border/20 px-3 py-2"
             >
               <div>
                 <p className="text-sm font-medium text-foreground">{p.name}</p>
@@ -1511,7 +1511,7 @@ function MarketDynamicsTab() {
                 { axis: "Company Count", target: "300–1,000+ companies", detail: "Extreme diversification via layering" },
                 { axis: "Deal Size", target: "Mix of large/mid/small", detail: "Large for pricing; small for yield" },
               ].map((d) => (
-                <div key={d.axis} className="flex gap-2 rounded bg-black/20 border border-border/50 p-2">
+                <div key={d.axis} className="flex gap-2 rounded bg-black/20 border border-border/20 p-2">
                   <div className="w-28 flex-shrink-0">
                     <p className="text-xs font-medium text-muted-foreground">{d.axis}</p>
                     <p className="text-xs text-primary">{d.target}</p>

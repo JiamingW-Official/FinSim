@@ -281,7 +281,7 @@ function EfficientFrontierTab() {
           <Card key={m.label} className="bg-muted/30 border-border">
             <CardContent className="p-3">
               <p className="text-xs text-muted-foreground">{m.label}</p>
-              <p className={`text-lg font-bold ${m.color}`}>{m.value}</p>
+              <p className={`text-lg font-semibold ${m.color}`}>{m.value}</p>
               <p className="text-xs text-muted-foreground">{m.sub}</p>
             </CardContent>
           </Card>
@@ -1054,7 +1054,7 @@ export default function PortfolioLabPage() {
               <BarChart3 className="h-5 w-5 text-indigo-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Portfolio Construction Lab</h1>
+              <h1 className="text-xl font-semibold text-foreground">Portfolio Construction Lab</h1>
               <p className="text-sm text-muted-foreground">
                 Mean-variance optimization · Black-Litterman · Risk budgeting · Rebalancing
               </p>

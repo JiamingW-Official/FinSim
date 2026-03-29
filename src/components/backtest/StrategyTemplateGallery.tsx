@@ -55,13 +55,13 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
         initial={{ scale: 0.95, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.95, y: 20 }}
-        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-md border border-border/50 bg-card/95"
+        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-md border border-border/20 bg-card/95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-border/30 px-6 py-4">
+        <div className="flex items-center justify-between border-b border-border/20 px-6 py-4">
           <div>
-            <h2 className="text-lg font-bold text-foreground">Strategy Templates</h2>
+            <h2 className="text-lg font-semibold text-foreground">Strategy Templates</h2>
             <p className="text-xs text-muted-foreground">Select a proven strategy to learn about and test</p>
           </div>
           <button onClick={onClose} className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground">
@@ -71,7 +71,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
 
         <div className="flex h-[calc(85vh-64px)] overflow-hidden">
           {/* Left: Card Grid */}
-          <div className="w-[400px] space-y-2 overflow-y-auto border-r border-border/30 p-4">
+          <div className="w-[400px] space-y-2 overflow-y-auto border-r border-border/20 p-4">
             {STRATEGY_TEMPLATES.map((template) => {
               const Icon = ICON_MAP[template.icon] ?? TrendingUp;
               const catInfo = CATEGORY_INFO[template.category];
@@ -84,7 +84,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   className={`flex w-full items-start gap-3 rounded-md border p-3 text-left transition-colors duration-150 ${
                     isSelected
                       ? "border-primary/40 bg-primary/10"
-                      : "border-border/50 bg-muted/20 hover:border-border hover:bg-muted/40"
+                      : "border-border/20 bg-muted/20 hover:border-border hover:bg-muted/40"
                   }`}
                 >
                   <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${catInfo?.bgColor ?? "bg-muted/40"}`}>
@@ -144,7 +144,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                     <div className="space-y-2">
                       {selected.signals.map((signal, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <span className={`mt-0.5 rounded px-1.5 py-0.5 text-[11px] font-bold uppercase ${
+                          <span className={`mt-0.5 rounded px-1.5 py-0.5 text-[11px] font-semibold ${
                             signal.type === "entry"
                               ? "bg-emerald-500/15 text-emerald-400"
                               : "bg-rose-500/15 text-rose-400"
@@ -188,7 +188,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   <Section icon={<Clock className="h-4 w-4 text-muted-foreground" />} title="Key Parameters">
                     <div className="grid grid-cols-2 gap-2">
                       {selected.keyParameters.map((param, i) => (
-                        <div key={i} className="rounded-lg border border-border/30 bg-muted/20 px-3 py-2">
+                        <div key={i} className="rounded-lg border border-border/20 bg-muted/20 px-3 py-2">
                           <div className="flex items-center justify-between">
                             <span className="text-[11px] font-medium text-muted-foreground">{param.name}</span>
                             <span className="rounded bg-primary/20 px-1.5 py-0.5 text-xs font-mono font-semibold text-primary">
@@ -209,7 +209,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   {/* Use Strategy Button */}
                   <button
                     onClick={() => handleUseStrategy(selected)}
-                    className="w-full rounded-md bg-primary py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:bg-primary"
+                    className="w-full rounded-md bg-primary py-3 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-primary"
                   >
                     Use This Strategy
                   </button>
@@ -237,7 +237,7 @@ function Section({ icon, title, children }: { icon: React.ReactNode; title: stri
     <div>
       <div className="mb-2 flex items-center gap-2">
         {icon}
-        <h3 className="text-xs font-bold text-muted-foreground">{title}</h3>
+        <h3 className="text-xs font-semibold text-muted-foreground">{title}</h3>
       </div>
       {children}
     </div>

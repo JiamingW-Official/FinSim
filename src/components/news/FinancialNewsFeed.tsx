@@ -322,7 +322,7 @@ function BreakingNewsTicker({ headlines, onSelect }: {
     <div className="bg-card border border-border/60 rounded-lg overflow-hidden">
       <div className="flex items-stretch">
         <div className="flex-shrink-0 bg-red-600 px-3 flex items-center">
-          <span className="text-xs font-bold text-foreground whitespace-nowrap">Breaking</span>
+          <span className="text-xs font-semibold text-foreground whitespace-nowrap">Breaking</span>
         </div>
         <div className="flex-1 overflow-hidden py-2">
           <div
@@ -398,10 +398,10 @@ function ArticleCard({ article }: { article: Article }) {
   }[article.sentiment];
 
   const categoryColor: Record<ArticleCategory, string> = {
-    Macro: "bg-primary/15 text-primary border-border",
+    Macro: "bg-muted/10 text-primary border-border",
     Equities: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
     Bonds: "bg-amber-500/15 text-amber-400 border-amber-500/30",
-    Crypto: "bg-primary/15 text-primary border-border",
+    Crypto: "bg-muted/10 text-primary border-border",
     Options: "bg-orange-500/15 text-orange-400 border-orange-500/30",
   };
 
@@ -450,7 +450,7 @@ function ArticleCard({ article }: { article: Article }) {
       <div className="flex items-center justify-between pt-1">
         <div className="flex flex-wrap gap-1">
           {article.tickers.map((t) => (
-            <span key={t} className="text-xs font-mono bg-muted/50 text-foreground px-1.5 py-0.5 rounded border border-border/40 cursor-pointer hover:bg-muted transition-colors">
+            <span key={t} className="text-xs font-mono bg-muted/50 text-foreground px-1.5 py-0.5 rounded border border-border/20 cursor-pointer hover:bg-muted transition-colors">
               ${t}
             </span>
           ))}
@@ -518,7 +518,7 @@ function EarningsCalendar({ entries }: { entries: EarningsEntry[] }) {
             <div className="flex items-center justify-between gap-2">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="flex-shrink-0">
-                  <p className="text-xs font-bold text-foreground font-mono">{e.ticker}</p>
+                  <p className="text-xs font-semibold text-foreground font-mono">{e.ticker}</p>
                   <p className="text-xs text-muted-foreground truncate max-w-[100px]">{e.company}</p>
                 </div>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -607,7 +607,7 @@ function EconomicCalendar({ releases }: { releases: EconRelease[] }) {
           </div>
           <div className="ml-auto text-right">
             <p className="text-xs text-muted-foreground">Countdown</p>
-            <p className="text-xs font-mono font-bold text-red-400">
+            <p className="text-xs font-mono font-semibold text-red-400">
               {nextHigh.daysFromNow === 0 ? `${nextHigh.hoursFromNow}h` : `${nextHigh.daysFromNow}d ${nextHigh.hoursFromNow % 24}h`}
             </p>
           </div>
@@ -630,7 +630,7 @@ function EconomicCalendar({ releases }: { releases: EconRelease[] }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.02 }}
-                className="border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors"
+                className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors"
               >
                 <td className="px-3 py-2 font-mono text-muted-foreground whitespace-nowrap">{r.date}</td>
                 <td className="px-3 py-2 font-medium text-foreground whitespace-nowrap">{r.name}</td>
@@ -726,10 +726,10 @@ function AnalystRatings({ ratings }: { ratings: AnalystRating[] }) {
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: i * 0.025 }}
-                className="border-b border-border/40 last:border-0 hover:bg-muted/20 transition-colors"
+                className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors"
               >
                 <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{r.firm}</td>
-                <td className="px-3 py-2 font-mono font-bold text-foreground">{r.ticker}</td>
+                <td className="px-3 py-2 font-mono font-semibold text-foreground">{r.ticker}</td>
                 <td className="px-3 py-2">
                   <span className={cn("font-semibold", actionConfig[r.action])}>
                     {r.action === "Upgrade" && <ArrowUp className="w-3 h-3 inline mr-0.5" />}
@@ -839,9 +839,9 @@ function SocialSentimentPulse({ data }: { data: SocialTicker[] }) {
           <div className="flex items-center gap-3 flex-wrap">
             <div className="w-20 flex-shrink-0">
               <div className="flex items-center gap-1.5">
-                <p className="text-xs font-bold font-mono text-foreground">{d.ticker}</p>
+                <p className="text-xs font-semibold font-mono text-foreground">{d.ticker}</p>
                 {d.memeAlert && (
-                  <span className="text-[11px] bg-orange-500/15 text-orange-400 border border-orange-500/30 px-1 py-0.5 rounded font-bold uppercase tracking-wide">Meme</span>
+                  <span className="text-[11px] bg-orange-500/15 text-orange-400 border border-orange-500/30 px-1 py-0.5 rounded font-semibold uppercase tracking-wide">Meme</span>
                 )}
               </div>
               <div className={cn(

@@ -25,7 +25,7 @@ function MetricCell({
   color?: string;
 }) {
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-3" title={tooltip}>
+    <div className="rounded-lg border border-border/20 bg-card p-3" title={tooltip}>
       <div className="text-xs font-medium text-muted-foreground">
         {label}
       </div>
@@ -236,7 +236,7 @@ export function QuantDashboard() {
 
   if (!hasData) {
     return (
-      <div className="rounded-lg border border-border/40 bg-card p-6 text-center text-sm text-muted-foreground">
+      <div className="rounded-lg border border-border/20 bg-card p-6 text-center text-sm text-muted-foreground">
         Start trading to generate quantitative analytics. Metrics will appear
         after your first few trades.
       </div>
@@ -422,7 +422,7 @@ export function QuantDashboard() {
 
           {/* Sector weights */}
           {Object.keys(portfolio.sectorWeights).length > 0 && (
-            <div className="mt-3 rounded-lg border border-border/40 bg-card p-3">
+            <div className="mt-3 rounded-lg border border-border/20 bg-card p-3">
               <div className="mb-2 text-xs font-medium text-muted-foreground">
                 Sector Allocation
               </div>
@@ -451,7 +451,7 @@ export function QuantDashboard() {
 
           {/* Risk contributions */}
           {portfolio.riskContributions.length > 0 && (
-            <div className="mt-3 rounded-lg border border-border/40 bg-card p-3">
+            <div className="mt-3 rounded-lg border border-border/20 bg-card p-3">
               <div className="mb-2 text-xs font-medium text-muted-foreground">
                 Risk Contribution
               </div>
@@ -487,7 +487,7 @@ export function QuantDashboard() {
         <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Drawdown
         </h3>
-        <div className="rounded-lg border border-border/40 bg-card p-3">
+        <div className="rounded-lg border border-border/20 bg-card p-3">
           <DrawdownChart data={drawdownData} />
         </div>
       </div>

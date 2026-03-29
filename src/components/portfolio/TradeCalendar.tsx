@@ -87,7 +87,7 @@ export function TradeCalendar() {
         {hovered ? (
           <span>
             {hovered.date}{" "}
-            <span className={cn("font-bold", hovered.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+            <span className={cn("font-semibold", hovered.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
               {hovered.pnl >= 0 ? "+" : ""}{formatCurrency(hovered.pnl)}
             </span>
           </span>

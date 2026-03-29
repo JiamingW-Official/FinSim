@@ -60,7 +60,7 @@ function StatCard({
   return (
     <div className="rounded-md border border-border bg-muted/30 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
-      <p className={cn("text-xl font-bold", valClass)}>{value}</p>
+      <p className={cn("text-xl font-semibold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
@@ -347,7 +347,7 @@ function DealStructureTab() {
             </thead>
             <tbody>
               {igVsLev.map((row, i) => (
-                <tr key={row.attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
+                <tr key={row.attr} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground">{row.attr}</td>
                   <td className="py-2 pr-4 text-emerald-300/80">{row.ig}</td>
                   <td className="py-2 text-amber-300/80">{row.lev}</td>
@@ -363,7 +363,7 @@ function DealStructureTab() {
         <SectionHeading title="Typical Deal Economics" sub="Fee waterfall from borrower to syndicate" />
         <div className="space-y-2">
           {economics.map((e) => (
-            <div key={e.fee} className="flex items-start gap-3 rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
+            <div key={e.fee} className="flex items-start gap-3 rounded-lg border border-border/20 bg-foreground/[0.03] p-3">
               <InfoPill text={e.fee} color={e.color} />
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap gap-2 items-center">
@@ -489,7 +489,7 @@ function PricingMechanicsTab() {
           {sofr.map((s) => (
             <div key={s.tenor} className="rounded-lg border border-border bg-muted/30 p-4 text-center">
               <div className="text-xs text-muted-foreground mb-1">{s.tenor}</div>
-              <div className="text-2xl font-bold" style={{ color: s.color }}>{s.rate.toFixed(2)}%</div>
+              <div className="text-2xl font-semibold" style={{ color: s.color }}>{s.rate.toFixed(2)}%</div>
               <div className="text-xs text-muted-foreground mt-1">CME Term SOFR</div>
             </div>
           ))}
@@ -648,7 +648,7 @@ function PricingMechanicsTab() {
               <div className="w-24 text-xs font-mono text-muted-foreground">{rl.leverage}</div>
               <div className="flex-1 h-3 bg-foreground/5 rounded overflow-hidden">
                 <div
-                  className="h-full rounded bg-primary transition-all"
+                  className="h-full rounded bg-primary transition-colors"
                   style={{ width: `${(rl.spread / 600) * 100}%` }}
                 />
               </div>

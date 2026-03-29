@@ -43,7 +43,7 @@ export function DailyTab({ onSelectChallenge }: DailyTabProps) {
               />
             ))}
           </div>
-          <span className="text-[11px] font-bold text-muted-foreground tabular-nums">
+          <span className="text-[11px] font-semibold text-muted-foreground tabular-nums">
             {completedCount}/{challenges.length}
           </span>
         </div>
@@ -59,7 +59,7 @@ export function DailyTab({ onSelectChallenge }: DailyTabProps) {
         >
           <PartyPopper className="h-5 w-5 text-emerald-400 shrink-0" />
           <div>
-            <p className="text-xs font-bold text-emerald-400">All done for today!</p>
+            <p className="text-xs font-semibold text-emerald-400">All done for today!</p>
             <p className="text-xs text-emerald-400/70">Come back tomorrow for new challenges.</p>
           </div>
         </motion.div>
@@ -68,7 +68,7 @@ export function DailyTab({ onSelectChallenge }: DailyTabProps) {
       {/* Educational tip */}
       {!allDone && (
         <motion.div
-          className="flex items-start gap-2 rounded-lg border border-border/50 bg-card/30 px-3 py-2"
+          className="flex items-start gap-2 rounded-lg border border-border/20 bg-card/30 px-3 py-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}

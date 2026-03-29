@@ -140,8 +140,8 @@ function Pill({ children, color = "default" }: { children: React.ReactNode; colo
     green: "bg-emerald-500/20 text-emerald-300",
     red: "bg-red-500/20 text-red-300",
     amber: "bg-amber-500/20 text-amber-300",
-    blue: "bg-primary/20 text-primary",
-    purple: "bg-primary/20 text-primary",
+    blue: "bg-muted/10 text-primary",
+    purple: "bg-muted/10 text-primary",
   }[color];
   return (
     <span className={cn("text-xs text-muted-foreground font-medium px-2 py-0.5 rounded-full", cls)}>
@@ -554,7 +554,7 @@ export default function LoanSyndPage() {
                     <tr
                       key={i}
                       className={cn(
-                        "border-b border-border/50 cursor-pointer transition-colors",
+                        "border-b border-border/20 cursor-pointer transition-colors",
                         selectedLoan?.company === loan.company ? "bg-indigo-500/10" : "hover:bg-muted/30"
                       )}
                       onClick={() => setSelectedLoan(selectedLoan?.company === loan.company ? null : loan)}
@@ -632,7 +632,7 @@ export default function LoanSyndPage() {
                   { feature: "Prepayment", tla: "Flexible", tlb: "Soft call 101 (6–12mo)" },
                   { feature: "Market depth", tla: "Limited", tlb: "Deep / liquid" },
                 ].map((row, i) => (
-                  <div key={i} className="grid grid-cols-3 gap-2 py-1.5 border-b border-border/50">
+                  <div key={i} className="grid grid-cols-3 gap-2 py-1.5 border-b border-border/20">
                     <span className="text-foreground/40">{row.feature}</span>
                     <span className="text-muted-foreground">{row.tla}</span>
                     <span className="text-primary">{row.tlb}</span>
@@ -733,7 +733,7 @@ export default function LoanSyndPage() {
                   { fee: "OID flex", typical: "±0.50–1.0 pts pricing flex" },
                   { fee: "Underwriting risk", typical: "Arranger holds ~5–10% if oversubscribed" },
                 ].map((row, i) => (
-                  <div key={i} className="flex justify-between items-start py-1.5 border-b border-border/50">
+                  <div key={i} className="flex justify-between items-start py-1.5 border-b border-border/20">
                     <span className="text-foreground/60">{row.fee}</span>
                     <span className="text-amber-300 font-mono text-right ml-4">{row.typical}</span>
                   </div>
@@ -1026,7 +1026,7 @@ export default function LoanSyndPage() {
                   { key: "Minimum transfer", val: "$1M (par), $250K (distressed)" },
                   { key: "Consent requirement", val: "Borrower consent (not required for assigns > min)" },
                 ].map((row, i) => (
-                  <div key={i} className="flex justify-between py-1.5 border-b border-border/50">
+                  <div key={i} className="flex justify-between py-1.5 border-b border-border/20">
                     <span className="text-foreground/50">{row.key}</span>
                     <span className="text-foreground/80 text-right ml-4 max-w-[55%]">{row.val}</span>
                   </div>

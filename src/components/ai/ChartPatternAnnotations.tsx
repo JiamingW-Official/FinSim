@@ -54,7 +54,7 @@ function CurrentAnnotations({ patterns, barIndex }: CurrentAnnotationsProps) {
           >
             <span
               className={cn(
-                "font-bold text-[11px] leading-none w-4 text-center",
+                "font-semibold text-[11px] leading-none w-4 text-center",
                 isBull
                   ? "text-green-400"
                   : isBear
@@ -69,7 +69,7 @@ function CurrentAnnotations({ patterns, barIndex }: CurrentAnnotationsProps) {
             </span>
             <span
               className={cn(
-                "text-[11px] font-bold leading-none",
+                "text-[11px] font-semibold leading-none",
                 isBull
                   ? "text-green-400/60"
                   : isBear
@@ -111,11 +111,11 @@ function HistoryAnnotations({ history }: HistoryAnnotationsProps) {
           <div
             key={`hist-${entry.barIndex}-${i}`}
             title={`${entry.pattern.name} at bar ${entry.barIndex}`}
-            className="flex items-center gap-1 rounded border border-border/30 bg-muted/20 px-1.5 py-0.5"
+            className="flex items-center gap-1 rounded border border-border/20 bg-muted/20 px-1.5 py-0.5"
           >
             <span
               className={cn(
-                "font-bold text-[11px] leading-none w-3 text-center",
+                "font-semibold text-[11px] leading-none w-3 text-center",
                 isBull
                   ? "text-green-400/70"
                   : isBear
@@ -169,10 +169,10 @@ export function ChartPatternAnnotations({
   if (!hasAnything) return null;
 
   return (
-    <div className="border-t border-border/30 bg-card/60 backdrop-blur-sm px-3 py-1.5 space-y-1">
+    <div className="border-t border-border/20 bg-card/60 backdrop-blur-sm px-3 py-1.5 space-y-1">
       {currentPatterns.length > 0 && (
         <div className="flex items-start gap-1.5">
-          <span className="text-[11px] font-bold text-primary/60 shrink-0 mt-0.5 w-14">
+          <span className="text-[11px] font-semibold text-primary/60 shrink-0 mt-0.5 w-14">
             Detected
           </span>
           <CurrentAnnotations
@@ -184,7 +184,7 @@ export function ChartPatternAnnotations({
 
       {history.length > 1 && (
         <div className="flex items-start gap-1.5">
-          <span className="text-[11px] font-bold text-muted-foreground/40 shrink-0 mt-0.5 w-14">
+          <span className="text-[11px] font-semibold text-muted-foreground/40 shrink-0 mt-0.5 w-14">
             Prior
           </span>
           <HistoryAnnotations history={history} />

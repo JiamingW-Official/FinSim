@@ -39,7 +39,7 @@ const GRADE_CONFIG = {
   S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", icon: Trophy, label: "Outstanding!" },
   A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", icon: Star, label: "Excellent!" },
   B: { color: "text-primary", bg: "bg-primary/10", border: "border-primary/30", icon: ThumbsUp, label: "Good job!" },
-  C: { color: "text-muted-foreground", bg: "bg-muted/50", border: "border-border/40", icon: Dumbbell, label: "Keep trying!" },
+  C: { color: "text-muted-foreground", bg: "bg-muted/50", border: "border-border/20", icon: Dumbbell, label: "Keep trying!" },
 } as const;
 
 type Tab = "overview" | "analytics" | "montecarlo" | "trades" | "compare";
@@ -69,12 +69,12 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
   return (
     <div className="flex h-full flex-col bg-card/30">
       {/* Tab Bar */}
-      <div className="flex border-b border-border/40">
+      <div className="flex border-b border-border/20">
         {TABS.map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
-            className={`flex flex-1 items-center justify-center gap-1 py-2.5 text-xs font-medium transition-all ${
+            className={`flex flex-1 items-center justify-center gap-1 py-2.5 text-xs font-medium transition-colors ${
               tab === t.id
                 ? "border-b-2 border-primary text-primary"
                 : "text-muted-foreground hover:text-foreground"
@@ -100,7 +100,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
                 className={`flex flex-col items-center gap-1 rounded-md border p-4 ${config.bg} ${config.border}`}
               >
                 <GradeIcon className={`h-8 w-8 ${config.color}`} />
-                <div className={`text-3xl font-semibold ${config.color}`}>{grade}</div>
+                <div className={`text-lg font-semibold ${config.color}`}>{grade}</div>
                 <div className="text-[11px] text-muted-foreground">{config.label}</div>
                 <div className="mt-1 rounded-full bg-primary/20 px-2.5 py-0.5 text-[11px] font-medium text-primary">
                   +{xpEarned} XP
@@ -142,8 +142,8 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             </div>
 
             {/* ── Detailed metrics grid — CONSOLE card ─────────── */}
-            <div className="mt-8 rounded-lg bg-card border border-border/40 p-3">
-              <h3 className="mb-2 text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">Performance Metrics</h3>
+            <div className="mt-8 rounded-lg bg-card border border-border/20 p-3">
+              <h3 className="mb-2 text-[10px] font-semibold text-muted-foreground">Performance Metrics</h3>
               <div className="grid grid-cols-4 gap-2">
                 <CompactMetric label="Profit Factor" value={metrics.profitFactor > 100 ? "\u221e" : metrics.profitFactor.toFixed(2)} positive={metrics.profitFactor > 1} />
                 <CompactMetric label="Sortino" value={metrics.sortinoRatio.toFixed(2)} positive={metrics.sortinoRatio > 0} />
@@ -202,7 +202,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-muted-foreground">
                   <thead>
-                    <tr className="border-b border-border/40 text-left text-muted-foreground">
+                    <tr className="border-b border-border/20 text-left text-muted-foreground">
                       <th className="pb-1.5 pr-3 font-medium">Entry</th>
                       <th className="pb-1.5 pr-3 font-medium">Exit</th>
                       <th className="pb-1.5 pr-3 font-medium">Bars</th>
@@ -247,11 +247,11 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
       </div>
 
       {/* Actions (always visible) */}
-      <div className="flex gap-2 border-t border-border/40 p-3">
+      <div className="flex gap-2 border-t border-border/20 p-3">
         <button onClick={onSave} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">
           <Save className="h-3.5 w-3.5" /> Save
         </button>
-        <button onClick={onRerun} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border/40 bg-muted/50 py-2 text-xs font-medium text-foreground transition-colors hover:bg-muted">
+        <button onClick={onRerun} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border/20 bg-muted/50 py-2 text-xs font-medium text-foreground transition-colors hover:bg-muted">
           <RefreshCw className="h-3.5 w-3.5" /> Rerun
         </button>
       </div>
@@ -271,7 +271,7 @@ function computeOmegaRatio(trades: { pnl: number }[]): number {
 
 function CompactMetric({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
   return (
-    <div className="rounded-lg border border-border/40 bg-card/40 px-2.5 py-2">
+    <div className="rounded-lg border border-border/20 bg-card/40 px-2.5 py-2">
       <div className="text-[10px] text-muted-foreground">{label}</div>
       <div className={`text-xs font-semibold ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}

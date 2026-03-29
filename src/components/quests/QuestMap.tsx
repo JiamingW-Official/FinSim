@@ -117,7 +117,7 @@ export function QuestMap() {
         >
           <Milestone className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           <div>
-            <p className="text-xs font-bold text-muted-foreground">Next milestone</p>
+            <p className="text-xs font-semibold text-muted-foreground">Next milestone</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">{activeNode.nextHint}</p>
             <p className="text-xs text-muted-foreground/70 mt-0.5">
               {nextNode.sublabel} to reach <span className="text-muted-foreground font-semibold">{nextNode.label}</span>
@@ -171,7 +171,7 @@ export function QuestMap() {
 
                     <div
                       className={cn(
-                        "flex h-12 w-12 items-center justify-center rounded-full border-2 transition-all",
+                        "flex h-12 w-12 items-center justify-center rounded-full border-2 transition-colors",
                         unlocked
                           ? TIER_COLORS[node.tier]
                           : "border-border bg-card text-muted-foreground/50",
@@ -196,7 +196,7 @@ export function QuestMap() {
                   >
                     <span
                       className={cn(
-                        "text-xs font-bold leading-tight",
+                        "text-xs font-semibold leading-tight",
                         unlocked
                           ? isCurrent
                             ? "text-foreground"
@@ -222,11 +222,11 @@ export function QuestMap() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="flex items-center justify-between rounded-lg border border-border/50 bg-foreground/[0.02] px-4 py-2.5"
+        className="flex items-center justify-between rounded-lg border border-border/20 bg-foreground/[0.02] px-4 py-2.5"
       >
         <span className="text-xs text-muted-foreground">Total quests completed</span>
         <div className="flex items-center gap-2">
-          <span className="text-sm font-bold tabular-nums text-foreground">{totalCompleted}</span>
+          <span className="text-sm font-semibold tabular-nums text-foreground">{totalCompleted}</span>
           {nextNode && (
             <span className="text-xs text-muted-foreground/70">
               / {nextNode.requiredQuests} for {nextNode.label}

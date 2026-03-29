@@ -268,7 +268,7 @@ function ReadinessTab() {
             </div>
             <div className="border-t border-border pt-2 flex justify-between">
               <span className="text-muted-foreground">Monthly Gap</span>
-              <span className={cn("font-bold", calc.gap > 0 ? "text-red-500" : "text-emerald-500")}>
+              <span className={cn("font-semibold", calc.gap > 0 ? "text-red-500" : "text-emerald-500")}>
                 {calc.gap > 0 ? `+${fmtK(calc.monthlyGap)}/mo needed` : "Fully Covered!"}
               </span>
             </div>
@@ -329,7 +329,7 @@ function ReadinessTab() {
           <div className="grid grid-cols-3 gap-3 text-center text-xs text-muted-foreground">
             <div className="rounded-lg bg-muted/50 p-2">
               <p className="text-muted-foreground">Years to Retire</p>
-              <p className="font-bold text-lg">{state.retirementAge - state.currentAge}</p>
+              <p className="font-semibold text-lg">{state.retirementAge - state.currentAge}</p>
             </div>
             <div className="rounded-lg bg-muted/50 p-2">
               <p className="text-muted-foreground">Total Contributions</p>
@@ -463,7 +463,7 @@ function AccountsTab() {
             </thead>
             <tbody>
               {ACCOUNTS.map((a, i) => (
-                <tr key={a.name} className={cn("border-b border-border/40 hover:bg-muted/20 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
+                <tr key={a.name} className={cn("border-b border-border/20 hover:bg-muted/20 transition-colors", i % 2 === 0 ? "" : "bg-muted/10")}>
                   <td className="p-3">
                     <span className={cn("font-medium", a.color)}>{a.name}</span>
                   </td>
@@ -507,7 +507,7 @@ function AccountsTab() {
               </div>
               <Slider min={0} max={37} step={1} value={[retireRate]} onValueChange={([v]) => setRetireRate(v)} />
             </div>
-            <div className={cn("rounded-lg p-3 text-sm", rothBetter ? "bg-emerald-500/5 border border-emerald-500/30" : "bg-primary/10 border border-border")}>
+            <div className={cn("rounded-lg p-3 text-sm", rothBetter ? "bg-emerald-500/5 border border-emerald-500/30" : "bg-muted/10 border border-border")}>
               {rothBetter ? (
                 <p><span className="font-medium text-emerald-400">Roth IRA is better</span> — you expect a higher tax rate in retirement. Pay taxes now at {nowRate}%, withdraw tax-free later.</p>
               ) : nowRate === retireRate ? (
@@ -641,7 +641,7 @@ function SocialSecurityTab() {
                   Claim at {c.age}
                 </Badge>
               </div>
-              <p className="text-2xl font-bold" style={{ color: c.color }}>${c.monthly.toLocaleString()}/mo</p>
+              <p className="text-2xl font-semibold" style={{ color: c.color }}>${c.monthly.toLocaleString()}/mo</p>
               <p className="text-xs text-muted-foreground">
                 ${(c.monthly * 12).toLocaleString()}/year
               </p>
@@ -1008,7 +1008,7 @@ function InvestmentStrategyTab() {
               pct: "5–10%",
               color: "text-primary",
               border: "border-border",
-              bg: "bg-primary/5",
+              bg: "bg-muted/5",
             },
             {
               label: "Bucket 2",
@@ -1086,7 +1086,7 @@ function HealthcareRMDsTab() {
         </p>
         <div className="flex items-start gap-3 flex-wrap">
           {[
-            { age: "Age 65", event: "Medicare Eligibility Begins", detail: "Initial enrollment window: 3 months before, month of, 3 months after your 65th birthday (7-month window).", color: "bg-primary/20 border-primary/40" },
+            { age: "Age 65", event: "Medicare Eligibility Begins", detail: "Initial enrollment window: 3 months before, month of, 3 months after your 65th birthday (7-month window).", color: "bg-muted/10 border-primary/40" },
             { age: "Late Penalty", event: "Part B Penalty", detail: "10% premium increase for each 12-month period you could have enrolled but didn't (unless you have qualifying employer coverage).", color: "bg-red-500/20 border-red-500/40" },
             { age: "Age 65+", event: "Special Enrollment", detail: "If covered by employer plan at 65, you have 8 months to enroll in Part B after losing employer coverage.", color: "bg-emerald-500/20 border-emerald-500/40" },
           ].map((e) => (
@@ -1198,7 +1198,7 @@ function HealthcareRMDsTab() {
             </thead>
             <tbody>
               {rmdData.map((d, i) => (
-                <tr key={d.age} className={cn("border-b border-border/30 hover:bg-muted/20", i % 2 === 0 ? "" : "bg-muted/10")}>
+                <tr key={d.age} className={cn("border-b border-border/20 hover:bg-muted/20", i % 2 === 0 ? "" : "bg-muted/10")}>
                   <td className="p-1.5 font-medium">{d.age}</td>
                   <td className="p-1.5 text-muted-foreground">{d.divisor}</td>
                   <td className="p-1.5 text-right font-mono">{fmtK(d.rmd)}</td>

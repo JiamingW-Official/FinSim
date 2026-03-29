@@ -781,11 +781,11 @@ export default function InstitutionalAllocPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-primary/10">
+          <div className="p-2 rounded-lg bg-muted/10">
             <Building2 className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Institutional Asset Allocation</h1>
+            <h1 className="text-2xl font-semibold text-foreground">Institutional Asset Allocation</h1>
             <p className="text-sm text-muted-foreground">
               Endowment model · Pension LDI · Sovereign wealth · Yale/Harvard/Norway strategies
             </p>
@@ -841,10 +841,10 @@ export default function InstitutionalAllocPage() {
                 <button
                   key={m.shortName}
                   onClick={() => setActiveModel(m.shortName)}
-                  className={`rounded-md border p-3 text-left transition-all ${activeModel === m.shortName ? "border-primary bg-primary/10" : "border-border bg-card/60 hover:border-border"}`}
+                  className={`rounded-md border p-3 text-left transition-colors ${activeModel === m.shortName ? "border-primary bg-muted/10" : "border-border bg-card/60 hover:border-border"}`}
                 >
                   <div className="text-xs text-muted-foreground mb-1 truncate">{m.name}</div>
-                  <div className="text-lg font-bold" style={{ color: m.color }}>
+                  <div className="text-lg font-semibold" style={{ color: m.color }}>
                     {m.annualReturn.toFixed(1)}%
                   </div>
                   <div className="text-xs text-muted-foreground">10yr ann.</div>
@@ -982,7 +982,7 @@ export default function InstitutionalAllocPage() {
                       <div className="flex items-center gap-2 mb-1">
                         <div className="flex-1 bg-muted rounded-full h-2">
                           <div
-                            className="h-2 rounded-full transition-all"
+                            className="h-2 rounded-full transition-colors"
                             style={{ width: `${ac.pct}%`, backgroundColor: ac.color }}
                           />
                         </div>
@@ -1190,8 +1190,8 @@ export default function InstitutionalAllocPage() {
                           <span className="text-xs text-muted-foreground">{g.label}</span>
                         </div>
                         <div className="flex rounded overflow-hidden h-3 gap-0.5">
-                          <div className="h-full bg-primary transition-all" style={{ width: `${g.eq}%` }} title={`Equities ${g.eq}%`} />
-                          <div className="h-full bg-emerald-500 transition-all" style={{ width: `${g.ldi}%` }} title={`LDI ${g.ldi}%`} />
+                          <div className="h-full bg-primary transition-colors" style={{ width: `${g.eq}%` }} title={`Equities ${g.eq}%`} />
+                          <div className="h-full bg-emerald-500 transition-colors" style={{ width: `${g.ldi}%` }} title={`LDI ${g.ldi}%`} />
                         </div>
                         <div className="flex justify-between mt-1">
                           <span className="text-xs text-primary">Eq {g.eq}%</span>
@@ -1292,7 +1292,7 @@ export default function InstitutionalAllocPage() {
                 <button
                   key={swf.name}
                   onClick={() => setActiveSWF(swf.name)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${activeSWF === swf.name ? "text-foreground border-primary bg-primary/20" : "text-muted-foreground border-border hover:border-border"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${activeSWF === swf.name ? "text-foreground border-primary bg-muted/10" : "text-muted-foreground border-border hover:border-border"}`}
                 >
                   {swf.name}
                 </button>
@@ -1323,7 +1323,7 @@ export default function InstitutionalAllocPage() {
                     <div className="text-xs font-medium text-muted-foreground mb-1">Governance</div>
                     <p className="text-xs text-muted-foreground leading-relaxed">{selectedSWF.governance}</p>
                   </div>
-                  <div className="bg-primary/10 border border-border rounded-lg p-3">
+                  <div className="bg-muted/10 border border-border rounded-lg p-3">
                     <div className="flex items-start gap-2">
                       <CheckCircle className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                       <p className="text-xs text-primary">{selectedSWF.highlight}</p>

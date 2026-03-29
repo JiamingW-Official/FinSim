@@ -715,16 +715,16 @@ function PersonalityCard({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "w-full rounded-md border px-2 py-2 text-left transition-all",
+        "w-full rounded-md border px-2 py-2 text-left transition-colors",
         selected
           ? "border-primary/50 bg-primary/10"
-          : "border-border/40 bg-background/30 hover:bg-muted/10",
+          : "border-border/20 bg-background/30 hover:bg-muted/10",
       )}
     >
       <div className="flex items-center gap-2">
         <span className="text-lg leading-none shrink-0">{personality.icon}</span>
         <div className="min-w-0">
-          <div className={cn("text-xs font-bold leading-none", selected ? "text-primary" : "text-foreground")}>
+          <div className={cn("text-xs font-semibold leading-none", selected ? "text-primary" : "text-foreground")}>
             {personality.name}
           </div>
           <div className="text-[8.5px] text-muted-foreground mt-0.5">{personality.subtitle}</div>
@@ -752,7 +752,7 @@ function SectionAccordion({
 }) {
   const [open, setOpen] = useState(defaultOpen ?? false);
   return (
-    <div className="rounded-md border border-border/40 bg-background/20">
+    <div className="rounded-md border border-border/20 bg-background/20">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
@@ -760,7 +760,7 @@ function SectionAccordion({
       >
         <div className="flex items-center gap-1.5">
           <Icon className="h-3 w-3 text-primary/70 shrink-0" />
-          <span className="text-[9.5px] font-bold text-foreground/70">{title}</span>
+          <span className="text-[9.5px] font-semibold text-foreground/70">{title}</span>
         </div>
         {open ? (
           <ChevronUp className="h-3 w-3 text-muted-foreground shrink-0" />
@@ -889,7 +889,7 @@ export function PersonalizedCoach() {
           ))}
         </div>
         <div className="text-[8.5px] text-muted-foreground/70 text-center pt-1">
-          Active: <span className="text-primary font-bold">{personality.name}</span>
+          Active: <span className="text-primary font-semibold">{personality.name}</span>
         </div>
       </SectionAccordion>
 
@@ -926,7 +926,7 @@ export function PersonalizedCoach() {
                         className={cn("h-full rounded-full", color)}
                       />
                     </div>
-                    <span className={cn("w-6 text-right font-mono text-[11px] font-bold shrink-0", textColor)}>
+                    <span className={cn("w-6 text-right font-mono text-[11px] font-semibold shrink-0", textColor)}>
                       {value}
                     </span>
                   </div>
@@ -936,21 +936,21 @@ export function PersonalizedCoach() {
 
             {/* Stats row */}
             <div className="grid grid-cols-3 gap-1 text-center">
-              <div className="rounded border border-border/30 bg-background/30 py-1">
+              <div className="rounded border border-border/20 bg-background/30 py-1">
                 <div className="text-[11px] text-muted-foreground">Win Rate</div>
-                <div className={cn("text-xs font-bold font-mono", profile.winRate >= 0.5 ? "text-emerald-400" : "text-amber-400")}>
+                <div className={cn("text-xs font-semibold font-mono", profile.winRate >= 0.5 ? "text-emerald-400" : "text-amber-400")}>
                   {(profile.winRate * 100).toFixed(0)}%
                 </div>
               </div>
-              <div className="rounded border border-border/30 bg-background/30 py-1">
+              <div className="rounded border border-border/20 bg-background/30 py-1">
                 <div className="text-[11px] text-muted-foreground">Avg Win</div>
-                <div className="text-xs font-bold font-mono text-emerald-400">
+                <div className="text-xs font-semibold font-mono text-emerald-400">
                   ${profile.avgWin.toFixed(0)}
                 </div>
               </div>
-              <div className="rounded border border-border/30 bg-background/30 py-1">
+              <div className="rounded border border-border/20 bg-background/30 py-1">
                 <div className="text-[11px] text-muted-foreground">Avg Loss</div>
-                <div className="text-xs font-bold font-mono text-red-400">
+                <div className="text-xs font-semibold font-mono text-red-400">
                   ${profile.avgLoss.toFixed(0)}
                 </div>
               </div>
@@ -959,7 +959,7 @@ export function PersonalizedCoach() {
             {/* Strengths / Weaknesses */}
             <div className="grid grid-cols-2 gap-1.5">
               <div className="rounded border border-emerald-500/20 bg-emerald-500/5 px-2 py-1.5">
-                <div className="text-[11px] font-bold text-emerald-400/70 mb-1">
+                <div className="text-[11px] font-semibold text-emerald-400/70 mb-1">
                   Top Strengths
                 </div>
                 {profile.strengths.map((s) => (
@@ -970,7 +970,7 @@ export function PersonalizedCoach() {
                 ))}
               </div>
               <div className="rounded border border-red-500/20 bg-red-500/5 px-2 py-1.5">
-                <div className="text-[11px] font-bold text-red-400/70 mb-1">
+                <div className="text-[11px] font-semibold text-red-400/70 mb-1">
                   Work On
                 </div>
                 {profile.weaknesses.map((w) => (
@@ -992,7 +992,7 @@ export function PersonalizedCoach() {
               )}
               <div className="flex items-center gap-1.5 text-[8.5px] text-muted-foreground">
                 <BarChart2 className="h-2.5 w-2.5 shrink-0" />
-                Trend: <span className={cn("font-bold ml-0.5", profile.recentTrend === "improving" ? "text-emerald-400" : profile.recentTrend === "declining" ? "text-red-400" : "text-amber-400")}>
+                Trend: <span className={cn("font-semibold ml-0.5", profile.recentTrend === "improving" ? "text-emerald-400" : profile.recentTrend === "declining" ? "text-red-400" : "text-amber-400")}>
                   {profile.recentTrend}
                 </span>
               </div>
@@ -1007,13 +1007,13 @@ export function PersonalizedCoach() {
           <div className="flex items-center gap-1.5">
             <span className="text-base leading-none shrink-0">{personality.icon}</span>
             <div>
-              <div className="text-xs font-bold text-foreground">{brief.heading}</div>
+              <div className="text-xs font-semibold text-foreground">{brief.heading}</div>
               <div className="text-[11px] text-muted-foreground">{personality.name} mode</div>
             </div>
           </div>
           <p className="text-[11px] text-muted-foreground leading-relaxed">{brief.body}</p>
           <div className="rounded border border-primary/30 bg-primary/10 px-2 py-1.5">
-            <div className="text-[11px] font-bold text-primary/70 mb-0.5">
+            <div className="text-[11px] font-semibold text-primary/70 mb-0.5">
               Today&apos;s Focus
             </div>
             <p className="text-[11px] text-foreground/80 leading-tight">{brief.focus}</p>
@@ -1033,7 +1033,7 @@ export function PersonalizedCoach() {
         <div className="space-y-2">
           {/* Preset questions */}
           <div className="space-y-1">
-            <div className="text-[11px] font-bold text-foreground/40">
+            <div className="text-[11px] font-semibold text-foreground/40">
               Quick Questions
             </div>
             <div className="flex flex-wrap gap-1">
@@ -1043,10 +1043,10 @@ export function PersonalizedCoach() {
                   type="button"
                   onClick={() => handleAskQuestion(q)}
                   className={cn(
-                    "rounded border px-1.5 py-0.5 text-[7.5px] leading-none transition-all whitespace-nowrap",
+                    "rounded border px-1.5 py-0.5 text-[7.5px] leading-none transition-colors whitespace-nowrap",
                     qaQuestion === q
-                      ? "border-primary/50 bg-primary/15 text-primary font-bold"
-                      : "border-border/40 bg-background/20 text-muted-foreground hover:bg-muted/10 hover:text-foreground",
+                      ? "border-primary/50 bg-primary/15 text-primary font-semibold"
+                      : "border-border/20 bg-background/20 text-muted-foreground hover:bg-muted/10 hover:text-foreground",
                   )}
                 >
                   {q}
@@ -1062,11 +1062,11 @@ export function PersonalizedCoach() {
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
-                className="rounded-md border border-border/30 bg-background/40 px-2.5 py-2"
+                className="rounded-md border border-border/20 bg-background/40 px-2.5 py-2"
               >
                 <div className="flex items-center gap-1.5 mb-1">
                   <span className="text-sm leading-none">{personality.icon}</span>
-                  <span className="text-[11px] font-bold text-muted-foreground">
+                  <span className="text-[11px] font-semibold text-muted-foreground">
                     {personality.name}
                   </span>
                   {isTyping && (
@@ -1095,7 +1095,7 @@ export function PersonalizedCoach() {
 
           {/* Custom input */}
           <div className="space-y-1">
-            <div className="text-[11px] font-bold text-foreground/40">
+            <div className="text-[11px] font-semibold text-foreground/40">
               Ask Anything
             </div>
             <div className="flex gap-1.5">
@@ -1107,7 +1107,7 @@ export function PersonalizedCoach() {
                   if (e.key === "Enter") handleCustomSubmit();
                 }}
                 placeholder={`Ask ${personality.name.split(" ").pop()}...`}
-                className="flex-1 rounded border border-border/40 bg-background/30 px-2 py-1 text-[11px] text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary/50 focus:bg-background/50 transition-colors"
+                className="flex-1 rounded border border-border/20 bg-background/30 px-2 py-1 text-[11px] text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary/50 focus:bg-background/50 transition-colors"
               />
               <button
                 type="button"

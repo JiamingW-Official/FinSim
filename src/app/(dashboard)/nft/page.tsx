@@ -348,7 +348,7 @@ function clr(val: number): string {
 function severityColor(s: "High" | "Medium" | "Low"): string {
   if (s === "High") return "bg-red-500/20 text-red-400 border-red-500/30";
   if (s === "Medium") return "bg-amber-500/20 text-amber-400 border-amber-500/30";
-  return "bg-primary/20 text-primary border-border";
+  return "bg-muted/10 text-primary border-border";
 }
 
 // ── SVG Charts ────────────────────────────────────────────────────────────────
@@ -720,7 +720,7 @@ function MarketOverview() {
                 <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
                 <span className="text-xs text-muted-foreground">{kpi.label}</span>
               </div>
-              <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
+              <p className={`text-xl font-semibold ${kpi.color}`}>{kpi.value}</p>
             </CardContent>
           </Card>
         ))}
@@ -748,7 +748,7 @@ function MarketOverview() {
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.04 }}
-                    className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                    className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                   >
                     <td className="px-3 py-2 font-medium text-foreground">{c.name}</td>
                     <td className="px-3 py-2 text-primary">{fmtETH(c.floorPrice)}</td>
@@ -848,7 +848,7 @@ function CollectionAnalysis() {
             ].map((m) => (
               <div key={m.label} className="bg-muted/40 rounded-lg p-3 text-center">
                 <p className="text-xs text-muted-foreground mb-1">{m.label}</p>
-                <p className={`text-lg font-bold ${m.status === "healthy" ? "text-green-400" : m.status === "moderate" ? "text-amber-400" : "text-red-400"}`}>
+                <p className={`text-lg font-semibold ${m.status === "healthy" ? "text-green-400" : m.status === "moderate" ? "text-amber-400" : "text-red-400"}`}>
                   {m.value}
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5">{m.sub}</p>
@@ -912,7 +912,7 @@ function PricingModels() {
               </thead>
               <tbody>
                 {TRAIT_PRICING.map((tp, i) => (
-                  <tr key={i} className="border-b border-border/50 hover:bg-muted/30">
+                  <tr key={i} className="border-b border-border/20 hover:bg-muted/30">
                     <td className="px-3 py-2 font-medium text-foreground">{tp.trait}</td>
                     <td className="px-3 py-2 text-muted-foreground">{tp.rarity}%</td>
                     <td className={`px-3 py-2 font-medium ${tp.floorMultiplier > 3 ? "text-green-400" : tp.floorMultiplier > 1.5 ? "text-amber-400" : "text-muted-foreground"}`}>
@@ -1022,7 +1022,7 @@ function NFTFinancialization() {
               </div>
             ))}
           </div>
-          <div className="p-3 bg-primary/10 border border-border rounded-lg">
+          <div className="p-3 bg-muted/10 border border-border rounded-lg">
             <p className="text-xs text-primary">
               <strong>Key Risk:</strong> Peer-to-peer lending (NFTfi) shifts liquidation risk to individual lenders. Pool-based models (BendDAO) socialize risk but can suffer bank runs when floor prices crash — causing a liquidation spiral.
             </p>
@@ -1065,7 +1065,7 @@ function NFTFinancialization() {
               </div>
             ))}
           </div>
-          <div className="p-3 bg-primary/10 border border-border rounded-lg">
+          <div className="p-3 bg-muted/10 border border-border rounded-lg">
             <p className="text-xs text-primary">
               <strong>Reconstruction Risk:</strong> When more than 50% of fraction holders vote to buy out the NFT, fractions are redeemed at a fixed price. This can cause arbitrage if the buyout price differs from the implied fraction market cap.
             </p>
@@ -1241,7 +1241,7 @@ function InvestmentFramework() {
               <div className="mt-3 p-3 bg-muted/60 rounded-lg flex items-center justify-between">
                 <div>
                   <p className="text-xs text-muted-foreground">Total Score</p>
-                  <p className="text-2xl font-bold text-green-400">153<span className="text-sm text-muted-foreground">/200</span></p>
+                  <p className="text-2xl font-semibold text-green-400">153<span className="text-sm text-muted-foreground">/200</span></p>
                 </div>
                 <div className="text-center">
                   <Badge className="bg-green-500/20 text-green-400 border border-green-500/30 text-sm px-3">
@@ -1301,7 +1301,7 @@ function InvestmentFramework() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: i * 0.05 }}
-                    className="border-b border-border/50 hover:bg-muted/20 align-top"
+                    className="border-b border-border/20 hover:bg-muted/20 align-top"
                   >
                     <td className="px-3 py-3">
                       <span className={`font-medium ${categoryColors[c.category]}`}>{c.category}</span>
@@ -1369,7 +1369,7 @@ export default function NFTPage() {
         <div className="flex items-start justify-between">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-muted/10 rounded-lg flex items-center justify-center">
                 <Image className="w-3.5 h-3.5 text-muted-foreground/50" />
               </div>
               <h1 className="text-lg font-medium text-foreground">NFT Markets</h1>

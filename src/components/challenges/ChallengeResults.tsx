@@ -78,7 +78,7 @@ export function ChallengeResults({
         {/* Grade letter — big dramatic reveal */}
         <motion.div
           className={cn(
-            "flex h-24 w-24 items-center justify-center rounded-md border-2 text-5xl font-bold",
+            "flex h-24 w-24 items-center justify-center rounded-md border-2 text-2xl font-semibold",
             config.border,
             config.bg,
             config.color,
@@ -106,12 +106,12 @@ export function ChallengeResults({
           >
             {config.emoji}
           </motion.span>
-          <h2 className="text-xl font-bold">{config.label}</h2>
+          <h2 className="text-xl font-semibold">{config.label}</h2>
         </motion.div>
 
         {/* Stats — card style */}
         <motion.div
-          className="w-full space-y-1 rounded-md border border-border/50 bg-card/50 p-3"
+          className="w-full space-y-1 rounded-md border border-border/20 bg-card/50 p-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -121,7 +121,7 @@ export function ChallengeResults({
               value={pnl}
               format={pnlFormat}
               className={cn(
-                "font-bold tabular-nums",
+                "font-semibold tabular-nums",
                 pnl >= 0 ? "text-emerald-400" : "text-red-400",
               )}
             />
@@ -129,7 +129,7 @@ export function ChallengeResults({
 
           <ResultRow label="Return" icon="📊" delay={0.6}>
             <span className={cn(
-              "font-bold tabular-nums",
+              "font-semibold tabular-nums",
               pnlPercent >= 0 ? "text-emerald-400" : "text-red-400",
             )}>
               {pnlPercent >= 0 ? "+" : ""}{pnlPercent.toFixed(1)}%
@@ -138,7 +138,7 @@ export function ChallengeResults({
 
           <ResultRow label="Objectives" icon="🎯" delay={0.65}>
             <span className={cn(
-              "font-bold tabular-nums",
+              "font-semibold tabular-nums",
               objectivesCompleted === objectivesTotal ? "text-emerald-400" : "text-foreground",
             )}>
               {objectivesCompleted}/{objectivesTotal}
@@ -146,7 +146,7 @@ export function ChallengeResults({
           </ResultRow>
 
           <ResultRow label="Time" icon="⏱️" delay={0.7}>
-            <span className="font-bold tabular-nums text-foreground">
+            <span className="font-semibold tabular-nums text-foreground">
               {formatTime(timeTakenMs)}
             </span>
           </ResultRow>
@@ -162,11 +162,11 @@ export function ChallengeResults({
           <AnimatedNumber
             value={xpEarned}
             format={xpFormat}
-            className="text-xl font-bold text-primary"
+            className="text-xl font-semibold text-primary"
           />
           {grade === "S" && (
             <motion.span
-              className={cn("text-xs font-bold rounded-full px-2 py-0.5", config.bg, config.color)}
+              className={cn("text-xs font-semibold rounded-full px-2 py-0.5", config.bg, config.color)}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.9, type: "spring", stiffness: 400 }}
@@ -176,7 +176,7 @@ export function ChallengeResults({
           )}
           {grade === "A" && (
             <motion.span
-              className={cn("text-xs font-bold rounded-full px-2 py-0.5", config.bg, config.color)}
+              className={cn("text-xs font-semibold rounded-full px-2 py-0.5", config.bg, config.color)}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.9, type: "spring", stiffness: 400 }}
@@ -212,7 +212,7 @@ export function ChallengeResults({
           transition={{ delay: 1.0 }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+          className="w-full rounded-md bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:brightness-110"
         >
           Continue
         </motion.button>

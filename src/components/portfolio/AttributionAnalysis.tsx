@@ -268,7 +268,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
   const barH = Math.max(4, chartH / rows.length - 2);
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 1 — Brinson-Hood-Beebower Attribution"
         subtitle="Decomposes active return into allocation, selection, and interaction effects by GICS sector"
@@ -284,7 +284,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
         ].map((chip) => (
           <div key={chip.label} className={cn("rounded-md p-2 text-center", chip.color.split(" ")[0])}>
             <p className="text-[11px] text-muted-foreground mb-0.5">{chip.label}</p>
-            <p className={cn("text-xs font-bold tabular-nums", chip.color.split(" ")[1])}>
+            <p className={cn("text-xs font-semibold tabular-nums", chip.color.split(" ")[1])}>
               {pct(chip.value)}
             </p>
           </div>
@@ -347,7 +347,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
       <div className="overflow-x-auto">
         <table className="w-full text-xs border-collapse">
           <thead>
-            <tr className="border-b border-border/50">
+            <tr className="border-b border-border/20">
               {["Sector", "Wt%", "Bm%", "Rp%", "Rb%", "Alloc", "Select", "Interact", "Total"].map((h) => (
                 <th key={h} className="text-right first:text-left py-1 px-1 text-muted-foreground font-medium whitespace-nowrap">
                   {h}
@@ -370,13 +370,13 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
               </tr>
             ))}
             {/* Totals row */}
-            <tr className="border-t border-border/40 bg-muted/20">
+            <tr className="border-t border-border/20 bg-muted/20">
               <td className="py-1 px-1 font-semibold">Total</td>
               <td colSpan={4} />
               <td className={cn("py-1 px-1 text-right tabular-nums font-semibold", effectColor(totals.allocationEffect))}>{pct(totals.allocationEffect, 2)}</td>
               <td className={cn("py-1 px-1 text-right tabular-nums font-semibold", effectColor(totals.selectionEffect))}>{pct(totals.selectionEffect, 2)}</td>
               <td className={cn("py-1 px-1 text-right tabular-nums font-semibold", effectColor(totals.interactionEffect))}>{pct(totals.interactionEffect, 2)}</td>
-              <td className={cn("py-1 px-1 text-right tabular-nums font-bold text-sm", effectColor(totals.totalContribution))}>{pct(totals.totalContribution, 2)}</td>
+              <td className={cn("py-1 px-1 text-right tabular-nums font-semibold text-sm", effectColor(totals.totalContribution))}>{pct(totals.totalContribution, 2)}</td>
             </tr>
           </tbody>
         </table>
@@ -402,7 +402,7 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
   const totalR2 = Math.min(0.97, factors.reduce((s, f) => s + Math.abs(f.contribution) * 0.8, 0));
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 2 — Factor Exposure (Fama-French + Momentum)"
         subtitle="Portfolio factor loadings, active tilts vs benchmark, and factor return contribution"
@@ -412,7 +412,7 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
       <div className="flex items-center gap-3">
         <div className="rounded-md bg-primary/10 px-2 py-1">
           <span className="text-[11px] text-muted-foreground">Factor R²</span>
-          <span className="ml-1.5 text-xs font-bold text-primary">{(totalR2 * 100).toFixed(1)}%</span>
+          <span className="ml-1.5 text-xs font-semibold text-primary">{(totalR2 * 100).toFixed(1)}%</span>
         </div>
         <p className="text-xs text-muted-foreground">
           {(totalR2 * 100).toFixed(0)}% of portfolio variance explained by 5 systematic factors
@@ -431,7 +431,7 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
               <div className="h-3 bg-muted/30 rounded-full overflow-hidden relative flex items-center">
                 <div
                   className={cn(
-                    "absolute h-full rounded-full transition-all",
+                    "absolute h-full rounded-full transition-colors",
                     isPos ? "left-1/2 bg-primary/60" : "right-1/2 bg-amber-500/60"
                   )}
                   style={{ width: `${barPct * 50}%` }}
@@ -462,7 +462,7 @@ function FactorExposureSection({ factors }: { factors: Factor[] }) {
         <div className="overflow-x-auto">
           <table className="w-full text-xs border-collapse">
             <thead>
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 {["Factor", "Portfolio Loading", "Benchmark Loading", "Active Bet", "Factor Return", "Return Contrib."].map((h) => (
                   <th key={h} className="text-right first:text-left py-1 px-1.5 text-muted-foreground font-medium whitespace-nowrap">{h}</th>
                 ))}
@@ -548,7 +548,7 @@ function RollingPerformanceSection({ points }: { points: RollingPoint[] }) {
   const activeColor = metrics.find((m) => m.key === activeMetric)?.color ?? "#34d399";
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 3 — Rolling Performance (90-day window)"
         subtitle="3-month rolling alpha, beta, Sharpe ratio, and information ratio over 252 trading days"
@@ -558,17 +558,17 @@ function RollingPerformanceSection({ points }: { points: RollingPoint[] }) {
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md bg-emerald-500/5 p-2">
           <p className="text-[11px] text-muted-foreground">Consistency Score</p>
-          <p className="text-xs font-bold text-emerald-400 tabular-nums">{alphaPositivePct.toFixed(0)}%</p>
+          <p className="text-xs font-semibold text-emerald-400 tabular-nums">{alphaPositivePct.toFixed(0)}%</p>
           <p className="text-[11px] text-muted-foreground">rolling periods w/ positive alpha</p>
         </div>
         <div className="rounded-md bg-primary/10 p-2">
           <p className="text-[11px] text-muted-foreground">Up-Mkt Alpha (avg)</p>
-          <p className={cn("text-xs font-bold tabular-nums", effectColor(upAlpha))}>{pct(upAlpha, 2)}</p>
+          <p className={cn("text-xs font-semibold tabular-nums", effectColor(upAlpha))}>{pct(upAlpha, 2)}</p>
           <p className="text-[11px] text-muted-foreground">first half of period</p>
         </div>
         <div className="rounded-md bg-amber-500/10 p-2">
           <p className="text-[11px] text-muted-foreground">Dn-Mkt Alpha (avg)</p>
-          <p className={cn("text-xs font-bold tabular-nums", effectColor(dnAlpha))}>{pct(dnAlpha, 2)}</p>
+          <p className={cn("text-xs font-semibold tabular-nums", effectColor(dnAlpha))}>{pct(dnAlpha, 2)}</p>
           <p className="text-[11px] text-muted-foreground">second half of period</p>
         </div>
       </div>
@@ -649,7 +649,7 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
   const maxVaR = Math.max(...varPositions.map((p) => p.componentVaR));
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
       <SectionHeader
         title="Section 4 — Risk Attribution (Component VaR)"
         subtitle="1-day 95% VaR decomposed by position; marginal VaR shows incremental risk of adding 1 more share"
@@ -659,17 +659,17 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md bg-rose-500/10 p-2">
           <p className="text-[11px] text-muted-foreground">Portfolio VaR (95%)</p>
-          <p className="text-xs font-bold text-rose-400 tabular-nums">{pct(totalPortfolioVaR, 3)}</p>
+          <p className="text-xs font-semibold text-rose-400 tabular-nums">{pct(totalPortfolioVaR, 3)}</p>
           <p className="text-[11px] text-muted-foreground">1-day at 95% confidence</p>
         </div>
         <div className="rounded-md bg-primary/10 p-2">
           <p className="text-[11px] text-muted-foreground">Sum of Individual VaRs</p>
-          <p className="text-xs font-bold text-primary tabular-nums">{pct(sumIndividualVaR, 3)}</p>
+          <p className="text-xs font-semibold text-primary tabular-nums">{pct(sumIndividualVaR, 3)}</p>
           <p className="text-[11px] text-muted-foreground">undiversified VaR</p>
         </div>
         <div className="rounded-md bg-emerald-500/5 p-2">
           <p className="text-[11px] text-muted-foreground">Diversification Benefit</p>
-          <p className="text-xs font-bold text-emerald-400 tabular-nums">{divBenefitPct.toFixed(1)}%</p>
+          <p className="text-xs font-semibold text-emerald-400 tabular-nums">{divBenefitPct.toFixed(1)}%</p>
           <p className="text-[11px] text-muted-foreground">reduction from correlation</p>
         </div>
       </div>
@@ -701,7 +701,7 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
       <div className="overflow-x-auto">
         <table className="w-full text-xs border-collapse">
           <thead>
-            <tr className="border-b border-border/50">
+            <tr className="border-b border-border/20">
               {["Ticker", "Weight", "Component VaR", "Marginal VaR", "Corr Contribution", "Role"].map((h) => (
                 <th key={h} className="text-right first:text-left py-1 px-1.5 text-muted-foreground font-medium whitespace-nowrap">{h}</th>
               ))}
@@ -761,7 +761,7 @@ export function AttributionAnalysis() {
   return (
     <div className="space-y-4">
       {/* Header banner */}
-      <div className="rounded-lg border border-border/40 bg-primary/5 p-3">
+      <div className="rounded-lg border border-border/20 bg-primary/5 p-3">
         <div className="flex items-start gap-2">
           <Info className="h-3.5 w-3.5 text-primary mt-0.5 shrink-0" />
           <div>

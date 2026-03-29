@@ -174,7 +174,7 @@ function WithdrawalStrategiesTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-primary/10">
+        <div className="p-2 rounded-lg bg-muted/10">
           <TrendingUp className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
@@ -289,15 +289,15 @@ function WithdrawalStrategiesTab() {
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="rounded-lg bg-muted/10 p-3 text-center">
               <p className="text-xs text-muted-foreground">Annual Income</p>
-              <p className="text-xl font-bold text-primary">
+              <p className="text-xl font-semibold text-primary">
                 {fmtK(annualIncome)}
               </p>
             </div>
-            <div className="rounded-lg bg-primary/10 p-3 text-center">
+            <div className="rounded-lg bg-muted/10 p-3 text-center">
               <p className="text-xs text-muted-foreground">Monthly Income</p>
-              <p className="text-xl font-bold text-primary">
+              <p className="text-xl font-semibold text-primary">
                 {fmtK(monthlyIncome)}
               </p>
             </div>
@@ -810,7 +810,7 @@ function SequenceRiskTab() {
             {
               name: "Bond Tent (Rising equity glidepath)",
               colorCls: "text-primary",
-              bgCls: "bg-primary/10",
+              bgCls: "bg-muted/10",
               desc: "Enter retirement with 40% bonds, decline to 20% over the first 10 years as the sequence risk window passes. Protects early years, captures equity growth later.",
             },
             {
@@ -973,7 +973,7 @@ function SocialSecurityTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-primary/10">
+        <div className="p-2 rounded-lg bg-muted/10">
           <Landmark className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
@@ -1010,7 +1010,7 @@ function SocialSecurityTab() {
             monthly: monthlyBenefit70,
             label: "Maximum",
             colorCls: "text-primary",
-            bgCls: "bg-primary/10",
+            bgCls: "bg-muted/10",
             reduction: "+32% vs FRA",
           },
         ].map((opt) => (
@@ -1245,7 +1245,7 @@ function SocialSecurityTab() {
                 by 2/3 of pension. WEP reduces own SS benefit.
               </p>
             </div>
-            <div className="rounded-lg bg-primary/10 p-2">
+            <div className="rounded-lg bg-muted/10 p-2">
               <p className="font-medium text-primary mb-1">
                 Earnings Test (before FRA)
               </p>
@@ -1400,7 +1400,7 @@ function IncomeFlooringTab() {
   return (
     <div className="space-y-4">
       <div className="flex items-start gap-3">
-        <div className="p-2 rounded-lg bg-primary/10">
+        <div className="p-2 rounded-lg bg-muted/10">
           <Umbrella className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
@@ -1423,7 +1423,7 @@ function IncomeFlooringTab() {
           </span>
         </div>
         <div className="grid grid-cols-2 gap-4">
-          <div className="rounded-lg bg-primary/10 border border-border p-3">
+          <div className="rounded-lg bg-muted/10 border border-border p-3">
             <p className="text-xs font-medium text-primary mb-2">
               Income Floor (Guaranteed)
             </p>
@@ -1448,7 +1448,7 @@ function IncomeFlooringTab() {
               ))}
             </ul>
           </div>
-          <div className="rounded-lg bg-primary/10 border border-border p-3">
+          <div className="rounded-lg bg-muted/10 border border-border p-3">
             <p className="text-xs font-medium text-primary mb-2">
               Upside Portfolio (Growth)
             </p>
@@ -1504,7 +1504,7 @@ function IncomeFlooringTab() {
             </thead>
             <tbody>
               {annuities.map((ann) => (
-                <tr key={ann.name} className="border-b border-border/50">
+                <tr key={ann.name} className="border-b border-border/20">
                   <td className="py-2">
                     <p className="font-medium text-foreground">{ann.name}</p>
                     <p className="text-muted-foreground">{ann.full}</p>
@@ -1851,7 +1851,7 @@ function IncomeFlooringTab() {
             </div>
           ))}
         </div>
-        <div className="mt-3 rounded-lg bg-primary/10 border border-border p-3 text-xs text-muted-foreground">
+        <div className="mt-3 rounded-lg bg-muted/10 border border-border p-3 text-xs text-muted-foreground">
           <span className="font-medium text-primary">
             QLAC (Qualified Longevity Annuity Contract):{" "}
           </span>
@@ -1885,7 +1885,7 @@ export default function RetirementIncomePage() {
         className="px-6 pt-6 pb-4 border-b border-border shrink-0 border-l-4 border-l-primary"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-md bg-primary/10">
+          <div className="p-2.5 rounded-md bg-muted/10">
             <DollarSign className="w-6 h-6 text-primary" />
           </div>
           <div>
@@ -1898,7 +1898,7 @@ export default function RetirementIncomePage() {
             </p>
           </div>
           <div className="ml-auto flex gap-2">
-            <Badge className="bg-primary/10 text-primary text-xs">
+            <Badge className="bg-muted/10 text-primary text-xs">
               Decumulation
             </Badge>
             <Badge className="bg-muted/50 text-muted-foreground text-xs">
@@ -1923,7 +1923,7 @@ export default function RetirementIncomePage() {
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className="flex flex-col items-center gap-1 py-2 px-1 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground rounded-lg transition-all"
+                  className="flex flex-col items-center gap-1 py-2 px-1 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=inactive]:text-muted-foreground rounded-lg transition-colors"
                 >
                   <Icon className="w-4 h-4" />
                   <span className="leading-tight text-center">

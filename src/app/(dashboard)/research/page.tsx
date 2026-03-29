@@ -823,7 +823,7 @@ function ValuationMonitor() {
               >
                 <GaugeArc percentile={m.percentile} size={80} />
                 <p className="text-xs font-medium text-muted-foreground text-center leading-tight mt-1">{m.label}</p>
-                <p className="text-lg font-bold text-foreground">{m.current}{m.unit}</p>
+                <p className="text-lg font-semibold text-foreground">{m.current}{m.unit}</p>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <span className="text-muted-foreground">Avg: {m.historicalAvg}{m.unit}</span>
                   <span className={cn("font-medium", m.percentile >= 80 ? "text-red-400" : m.percentile >= 60 ? "text-yellow-400" : "text-emerald-400")}>
@@ -860,7 +860,7 @@ function ValuationMonitor() {
                     className="h-5 rounded-full flex items-center justify-end pr-2"
                     style={{ backgroundColor: item.color + "99" }}
                   >
-                    <span className="text-xs font-bold text-foreground">{item.pe}x</span>
+                    <span className="text-xs font-semibold text-foreground">{item.pe}x</span>
                   </motion.div>
                 </div>
               </div>
@@ -901,7 +901,7 @@ function ValuationMonitor() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: idx * 0.04 }}
-                      className="border-b border-border/50"
+                      className="border-b border-border/20"
                     >
                       <td className="py-2 pr-3 text-muted-foreground font-medium">{s.sector}</td>
                       <td className="text-center py-2 px-2">
@@ -1049,7 +1049,7 @@ function EconCalendar() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: idx * 0.025 }}
-                    className="border-b border-border/40 hover:bg-muted/30 transition-colors"
+                    className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                   >
                     <td className="py-2 pr-2 text-muted-foreground font-mono whitespace-nowrap">{ev.date}</td>
                     <td className="py-2 pr-2 text-muted-foreground">{ev.name}</td>
@@ -1094,7 +1094,7 @@ function EconCalendar() {
                   { label: "Unemployment",   vals: ["4.0%", "4.1%", "4.0%", "4.1%"],  color: "text-primary" },
                   { label: "Fed Funds Rate", vals: ["4.375%","3.625%","2.875%","2.5%"],color: "text-rose-400" },
                 ].map(row => (
-                  <tr key={row.label} className="border-b border-border/40">
+                  <tr key={row.label} className="border-b border-border/20">
                     <td className="py-2 pr-3 text-muted-foreground font-medium">{row.label}</td>
                     {row.vals.map((v, i) => (
                       <td key={i} className={cn("text-center py-2 font-mono font-medium", row.color)}>{v}</td>
@@ -1361,7 +1361,7 @@ function DataLibrary() {
                       animate={{ opacity: 1 }}
                       transition={{ delay: idx * 0.03 }}
                       className={cn(
-                        "border-b border-border/40 cursor-pointer transition-colors",
+                        "border-b border-border/20 cursor-pointer transition-colors",
                         storyId === ind.name ? "bg-indigo-950/20" : "hover:bg-muted/30"
                       )}
                       onClick={() => setStoryId(prev => prev === ind.name ? null : ind.name)}
@@ -1390,7 +1390,7 @@ function DataLibrary() {
                       </td>
                     </motion.tr>
                     {storyId === ind.name && (
-                      <tr key={`${ind.name}-story`} className="bg-indigo-950/20 border-b border-border/40">
+                      <tr key={`${ind.name}-story`} className="bg-indigo-950/20 border-b border-border/20">
                         <td colSpan={6} className="px-3 py-2">
                           <div className="flex gap-2 items-start">
                             <Info className="w-3.5 h-3.5 text-indigo-400 shrink-0 mt-0.5" />
@@ -1478,7 +1478,7 @@ function DataLibrary() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: idx * 0.07 }}
-                    className="border-b border-border/40"
+                    className="border-b border-border/20"
                   >
                     <td className="py-3 pr-3">
                       <div className="flex items-center gap-2">

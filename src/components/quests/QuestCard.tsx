@@ -69,12 +69,12 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
       whileHover={!isClaimed ? { scale: 1.01, y: -1 } : {}}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
-        "relative rounded-md border p-3 transition-all",
+        "relative rounded-md border p-3 transition-colors",
         isClaimed
           ? "border-emerald-500/20 bg-emerald-500/5"
           : isComplete
             ? "border-border bg-primary/5"
-            : "border-border/50 bg-muted/10 hover:border-border hover:bg-muted/30",
+            : "border-border/20 bg-muted/10 hover:border-border hover:bg-muted/30",
       )}
     >
       <div className="flex items-start gap-2.5">
@@ -99,7 +99,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
           <div className="flex items-center gap-2">
             <h3
               className={cn(
-                "text-sm font-bold truncate",
+                "text-sm font-semibold truncate",
                 isClaimed ? "text-emerald-300" : "text-foreground",
               )}
             >
@@ -109,7 +109,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               <motion.span
                 initial={{ opacity: 0, x: -4 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-0.5 text-xs font-bold text-emerald-400 shrink-0"
+                className="flex items-center gap-0.5 text-xs font-semibold text-emerald-400 shrink-0"
               >
                 <Check className="h-2.5 w-2.5" />
                 CLAIMED
@@ -169,7 +169,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
             isClaimed ? "bg-emerald-500/5" : "bg-amber-500/10",
           )}>
             <Star className={cn("h-3 w-3", isClaimed ? "text-emerald-400" : "text-amber-400")} />
-            <span className={cn("text-xs font-bold", isClaimed ? "text-emerald-400" : "text-amber-400")}>
+            <span className={cn("text-xs font-semibold", isClaimed ? "text-emerald-400" : "text-amber-400")}>
               {isClaimed ? "" : "+"}{quest.xpReward} XP
             </span>
           </div>
@@ -183,7 +183,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleClaim}
-              className="quest-claim flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-sm transition-colors hover:bg-primary"
+              className="quest-claim flex items-center gap-1 rounded-lg bg-primary px-3 py-1.5 text-xs font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary"
             >
               <Gift className="h-3 w-3" />
               Claim
@@ -199,7 +199,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               animate={{ opacity: 1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => router.push(quest.route!)}
-              className="flex items-center gap-1 rounded-lg border border-border/50 bg-muted/20 px-2.5 py-1 text-xs font-bold text-muted-foreground transition-colors duration-150 hover:bg-muted/40 hover:text-foreground"
+              className="flex items-center gap-1 rounded-lg border border-border/20 bg-muted/20 px-2.5 py-1 text-xs font-semibold text-muted-foreground transition-colors duration-150 hover:bg-muted/40 hover:text-foreground"
             >
               {routeLabel}
               <ArrowRight className="h-3 w-3" />

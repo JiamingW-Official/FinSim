@@ -329,7 +329,7 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
     Catastrophic: "text-red-400 bg-red-500/5 border-red-500/20",
     Extreme: "text-orange-400 bg-orange-500/10 border-orange-500/20",
     Sudden: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-    Prolonged: "text-primary bg-primary/10 border-border/40",
+    Prolonged: "text-primary bg-primary/10 border-border/20",
   };
 
   return (
@@ -338,20 +338,20 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
       onClick={onSelect}
       whileHover={{ y: -2 }}
       whileTap={{ scale: 0.98 }}
-      className="group w-full rounded-lg border border-border/30 bg-muted/10 p-4 text-left transition-all hover:border-border/50 hover:bg-muted/30"
+      className="group w-full rounded-lg border border-border/20 bg-muted/10 p-4 text-left transition-colors hover:border-border/20 hover:bg-muted/30"
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <div>
-          <div className="text-sm font-bold text-foreground">{scenario.name}</div>
+          <div className="text-sm font-semibold text-foreground">{scenario.name}</div>
           <div className="text-xs text-muted-foreground mt-0.5">{scenario.subtitle}</div>
         </div>
-        <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-bold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-muted-foreground bg-muted border-border/40")}>
+        <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-semibold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-muted-foreground bg-muted border-border/20")}>
           {scenario.severity}
         </span>
       </div>
 
       <div className="flex items-center gap-3 mt-3 text-xs text-muted-foreground">
-        <span className="text-red-400 font-bold">-{scenario.drop}%</span>
+        <span className="text-red-400 font-semibold">-{scenario.drop}%</span>
         <span>{scenario.bars} bars</span>
         <span>{scenario.events.length} key events</span>
       </div>
@@ -471,7 +471,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-sm font-bold text-foreground">{scenario.name}</div>
+          <div className="text-sm font-semibold text-foreground">{scenario.name}</div>
           <div className="text-xs text-muted-foreground">Bar {revealedBars} / {scenario.bars}</div>
         </div>
         <button
@@ -485,26 +485,26 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
 
       {/* Portfolio value */}
       <div className="grid grid-cols-3 gap-2">
-        <div className="rounded-lg border border-border/30 bg-muted/10 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-2.5">
           <div className="text-[11px] text-muted-foreground/70 mb-1">Portfolio</div>
-          <div className="text-sm font-bold tabular-nums text-foreground">
+          <div className="text-sm font-semibold tabular-nums text-foreground">
             ${Math.round(portfolio).toLocaleString()}
           </div>
-          <div className={cn("text-xs font-bold tabular-nums", pnlPct >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-xs font-semibold tabular-nums", pnlPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%
           </div>
         </div>
-        <div className="rounded-lg border border-border/30 bg-muted/10 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-2.5">
           <div className="text-[11px] text-muted-foreground/70 mb-1">Market</div>
-          <div className={cn("text-sm font-bold tabular-nums", pricePct >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-sm font-semibold tabular-nums", pricePct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pricePct >= 0 ? "+" : ""}{pricePct.toFixed(1)}%
           </div>
           <div className="text-[11px] text-muted-foreground/70">{scenario.drop}% max drop</div>
         </div>
-        <div className="rounded-lg border border-border/30 bg-muted/10 p-2.5">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-2.5">
           <div className="text-[11px] text-muted-foreground/70 mb-1">Exposure</div>
-          <div className="text-sm font-bold tabular-nums text-foreground">{100 - soldPct}%</div>
-          <div className={cn("text-[11px] font-bold", hedged ? "text-amber-400" : "text-muted-foreground/70")}>
+          <div className="text-sm font-semibold tabular-nums text-foreground">{100 - soldPct}%</div>
+          <div className={cn("text-[11px] font-semibold", hedged ? "text-amber-400" : "text-muted-foreground/70")}>
             {hedged ? "Hedged" : "Unhedged"}
           </div>
         </div>
@@ -524,7 +524,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
             >
               <AlertTriangle className="h-3 w-3 text-amber-400 shrink-0 mt-0.5" />
               <div>
-                <span className="text-xs font-bold text-amber-400">{currentEvent.label}: </span>
+                <span className="text-xs font-semibold text-amber-400">{currentEvent.label}: </span>
                 <span className="text-xs text-muted-foreground">{currentEvent.detail}</span>
               </div>
             </motion.div>
@@ -546,7 +546,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           onClick={() => setIsPlaying((p) => !p)}
           disabled={isComplete}
           className={cn(
-            "flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-bold transition-colors",
+            "flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition-colors",
             isPlaying
               ? "bg-amber-500/20 border border-amber-500/30 text-amber-400 hover:bg-amber-500/30"
               : "bg-teal-500/20 border border-teal-500/30 text-emerald-400 hover:bg-teal-500/30",
@@ -558,14 +558,14 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
         </button>
 
         {/* Speed */}
-        <div className="flex items-center gap-0.5 rounded-lg border border-border/30 bg-muted/10 p-0.5">
+        <div className="flex items-center gap-0.5 rounded-lg border border-border/20 bg-muted/10 p-0.5">
           {([1, 2, 5] as Speed[]).map((s) => (
             <button
               key={s}
               type="button"
               onClick={() => setSpeed(s)}
               className={cn(
-                "rounded px-2 py-1 text-xs font-bold transition-colors",
+                "rounded px-2 py-1 text-xs font-semibold transition-colors",
                 speed === s ? "bg-foreground/10 text-foreground" : "text-muted-foreground/70 hover:text-muted-foreground",
               )}
             >
@@ -578,7 +578,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           type="button"
           onClick={doAdvance}
           disabled={isComplete || isPlaying}
-          className="rounded-lg border border-border/30 bg-muted/10 px-3 py-2 text-xs text-muted-foreground hover:text-muted-foreground disabled:opacity-40 transition-colors"
+          className="rounded-lg border border-border/20 bg-muted/10 px-3 py-2 text-xs text-muted-foreground hover:text-muted-foreground disabled:opacity-40 transition-colors"
         >
           Step
         </button>
@@ -590,7 +590,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           type="button"
           onClick={handleSell25}
           disabled={soldPct >= 100}
-          className="flex items-center justify-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/5 py-2.5 text-xs font-bold text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex items-center justify-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/5 py-2.5 text-xs font-semibold text-red-400 transition-colors hover:bg-red-500/20 disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <TrendingDown className="h-3.5 w-3.5" />
           Sell 25% ({soldPct}% sold)
@@ -600,10 +600,10 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           type="button"
           onClick={handleHedge}
           className={cn(
-            "flex items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-bold transition-colors",
+            "flex items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-semibold transition-colors",
             hedged
               ? "border-amber-500/40 bg-amber-500/15 text-amber-400 hover:bg-amber-500/25"
-              : "border-border/50 bg-muted/20 text-muted-foreground hover:bg-muted/50",
+              : "border-border/20 bg-muted/20 text-muted-foreground hover:bg-muted/50",
           )}
         >
           <Shield className="h-3.5 w-3.5" />
@@ -653,23 +653,23 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 15 }}
-          className={cn("text-6xl font-bold", color)}
+          className={cn("text-2xl font-semibold", color)}
         >
           {grade}
         </motion.div>
-        <div className={cn("text-sm font-bold", color)}>{label}</div>
+        <div className={cn("text-sm font-semibold", color)}>{label}</div>
         <div className="text-xs text-muted-foreground">{scenario.name}</div>
       </div>
 
       {/* Result chips */}
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-lg border border-border/30 bg-muted/10 p-3 text-center">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-3 text-center">
           <div className="text-xs text-muted-foreground/70 mb-1">Final Portfolio</div>
-          <div className="text-sm font-bold tabular-nums text-foreground">${Math.round(finalPortfolio).toLocaleString()}</div>
+          <div className="text-sm font-semibold tabular-nums text-foreground">${Math.round(finalPortfolio).toLocaleString()}</div>
         </div>
-        <div className="rounded-lg border border-border/30 bg-muted/10 p-3 text-center">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-3 text-center">
           <div className="text-xs text-muted-foreground/70 mb-1">Loss</div>
-          <div className={cn("text-sm font-bold tabular-nums", lossPct < 20 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-sm font-semibold tabular-nums", lossPct < 20 ? "text-emerald-400" : "text-red-400")}>
             -{lossPct.toFixed(1)}%
           </div>
         </div>
@@ -685,7 +685,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
           : <AlertTriangle className="h-4 w-4 text-red-400 shrink-0" />
         }
         <div>
-          <div className={cn("text-xs font-bold", passed ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-xs font-semibold", passed ? "text-emerald-400" : "text-red-400")}>
             {gold ? "Gold rank achieved!" : passed ? "Passed — loss below 20%" : "Failed — loss exceeded 20%"}
           </div>
           <div className="text-xs text-muted-foreground mt-0.5">
@@ -695,8 +695,8 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
       </div>
 
       {/* What actually happened */}
-      <div className="rounded-lg border border-border/30 bg-muted/10 p-3">
-        <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
+      <div className="rounded-lg border border-border/20 bg-muted/10 p-3">
+        <div className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
           <BookOpen className="h-3.5 w-3.5 text-emerald-400" />
           What Actually Happened
         </div>
@@ -704,11 +704,11 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
       </div>
 
       {/* Lessons */}
-      <div className="rounded-lg border border-border/30 bg-muted/10 overflow-hidden">
+      <div className="rounded-lg border border-border/20 bg-muted/10 overflow-hidden">
         <button
           type="button"
           onClick={() => setShowLessons((v) => !v)}
-          className="w-full flex items-center justify-between px-3 py-2.5 text-xs font-bold text-muted-foreground hover:bg-muted/20 transition-colors"
+          className="w-full flex items-center justify-between px-3 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted/20 transition-colors"
         >
           <span className="flex items-center gap-1.5">
             <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
@@ -742,14 +742,14 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
         <button
           type="button"
           onClick={onPlayAgain}
-          className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-2.5 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30"
+          className="flex-1 flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-2.5 text-sm font-semibold text-emerald-400 transition-colors hover:bg-teal-500/30"
         >
           Try Again
         </button>
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-border/50 bg-muted/20 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
+          className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-border/20 bg-muted/20 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           Scenarios
         </button>
@@ -800,7 +800,7 @@ export function BlackSwanTab() {
         {phase === "select" && (
           <motion.div key="select" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
             <div className="rounded-lg border border-amber-500/15 bg-amber-500/5 px-3 py-2.5">
-              <div className="text-xs font-bold text-amber-400 flex items-center gap-1.5 mb-1">
+              <div className="text-xs font-semibold text-amber-400 flex items-center gap-1.5 mb-1">
                 <AlertTriangle className="h-3.5 w-3.5" />
                 Black Swan Mode
               </div>
@@ -809,7 +809,7 @@ export function BlackSwanTab() {
               </div>
             </div>
 
-            <div className="text-xs font-bold text-muted-foreground mb-2">Choose a Scenario</div>
+            <div className="text-xs font-semibold text-muted-foreground mb-2">Choose a Scenario</div>
 
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {SCENARIOS.map((s) => (

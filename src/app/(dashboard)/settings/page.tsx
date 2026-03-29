@@ -26,16 +26,12 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ResetConfirmDialog } from "@/components/settings/ResetConfirmDialog";
 import { DataManager } from "@/components/settings/DataManager";
 import {
-  Settings,
   BarChart2,
   Monitor,
   Bell,
   User,
   Database,
-  Shield,
   AlertTriangle,
-  Keyboard,
-  Info,
   Check,
 } from "lucide-react";
 
@@ -43,7 +39,7 @@ import {
 
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-xs font-bold text-muted-foreground pb-1">
+    <div className="text-xs font-semibold text-muted-foreground pb-1">
       {children}
     </div>
   );
@@ -150,9 +146,9 @@ function RadioCards<T extends string>({
           key={opt.value}
           onClick={() => onChange(opt.value)}
           className={cn(
-            "flex flex-col items-start rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-all",
+            "flex flex-col items-start rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-colors",
             value === opt.value
-              ? "border-primary bg-primary/10 text-primary"
+              ? "border-primary bg-primary/5 text-primary"
               : "border-border bg-card text-muted-foreground hover:border-border/80 hover:bg-muted/20",
           )}
         >
@@ -195,7 +191,7 @@ function RangeSlider({
         onChange={(e) => onChange(Number(e.target.value))}
         className="time-slider w-28"
       />
-      <span className="w-12 text-right text-xs font-bold tabular-nums text-foreground">
+      <span className="w-12 text-right text-xs font-semibold font-mono tabular-nums text-foreground">
         {label}
       </span>
     </div>
@@ -217,9 +213,9 @@ function CheckboxItem({
     <button
       onClick={() => onChange(!checked)}
       className={cn(
-        "flex items-start gap-2.5 rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-all w-full",
+        "flex items-start gap-2.5 rounded-md border px-3 py-2 text-left text-xs text-muted-foreground transition-colors w-full",
         checked
-          ? "border-primary/40 bg-primary/5"
+          ? "border-primary/40 bg-card"
           : "border-border bg-card hover:bg-muted/20",
       )}
     >
@@ -822,7 +818,6 @@ function AccountTab() {
 
       <Card className="border-destructive/20 space-y-3">
         <div className="flex items-center gap-2 text-sm font-medium text-destructive">
-          <AlertTriangle className="h-4 w-4" />
           Danger Zone
         </div>
         <SettingRow
@@ -916,8 +911,7 @@ function DataTab() {
       </Card>
 
       <Card>
-        <div className="flex items-center gap-2 mb-3">
-          <Keyboard className="h-4 w-4 text-muted-foreground" />
+        <div className="mb-3">
           <SectionHeader>Keyboard Shortcuts</SectionHeader>
         </div>
         <div className="overflow-hidden rounded-md border border-border">
@@ -940,7 +934,7 @@ function DataTab() {
                 <tr
                   key={i}
                   className={cn(
-                    "border-b border-border/50 last:border-0",
+                    "border-b border-border/20 last:border-0",
                     i % 2 === 0 ? "bg-card" : "bg-muted/10",
                   )}
                 >
@@ -961,8 +955,7 @@ function DataTab() {
       </Card>
 
       <Card>
-        <div className="flex items-center gap-2 mb-3">
-          <Info className="h-4 w-4 text-muted-foreground" />
+        <div className="mb-3">
           <SectionHeader>About FinSim</SectionHeader>
         </div>
         <div className="flex flex-wrap gap-x-8 gap-y-1 text-xs text-muted-foreground mb-4">
@@ -999,53 +992,34 @@ function DataTab() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SettingsPage() {
-  const level = useGameStore((s) => s.level);
-  const title = useGameStore((s) => s.title);
-
   return (
     <div className="flex h-full flex-col overflow-y-auto">
       <div className="space-y-5 p-4 max-w-2xl">
         {/* Header */}
-        <div className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted">
-            <Settings className="h-4 w-4 text-muted-foreground" />
-          </div>
-          <div>
-            <h1 className="text-lg font-medium">Settings</h1>
-            <p className="text-xs text-muted-foreground">
-              Customize your trading experience
-            </p>
-          </div>
-          <div className="flex-1" />
-          <div className="flex items-center gap-1.5 rounded-md border border-border bg-card px-2.5 py-1.5">
-            <Shield className="h-3 w-3 text-primary" />
-            <span className="text-xs font-medium text-primary">
-              Lv.{level} {title}
-            </span>
-          </div>
+        <div>
+          <p className="text-xs text-muted-foreground mb-1">Preferences</p>
+          <h1 className="text-lg font-semibold">Settings</h1>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Customize your trading experience
+          </p>
         </div>
 
         {/* Tabs */}
         <Tabs defaultValue="trading">
-          <TabsList className="w-full justify-start overflow-x-auto">
-            <TabsTrigger value="trading" className="gap-1.5 text-xs text-muted-foreground">
-              <BarChart2 className="h-3.5 w-3.5" />
+          <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+            <TabsTrigger value="trading" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Trading
             </TabsTrigger>
-            <TabsTrigger value="display" className="gap-1.5 text-xs text-muted-foreground">
-              <Monitor className="h-3.5 w-3.5" />
+            <TabsTrigger value="display" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Display
             </TabsTrigger>
-            <TabsTrigger value="notifications" className="gap-1.5 text-xs text-muted-foreground">
-              <Bell className="h-3.5 w-3.5" />
+            <TabsTrigger value="notifications" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Notifications
             </TabsTrigger>
-            <TabsTrigger value="account" className="gap-1.5 text-xs text-muted-foreground">
-              <User className="h-3.5 w-3.5" />
+            <TabsTrigger value="account" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Account
             </TabsTrigger>
-            <TabsTrigger value="data" className="gap-1.5 text-xs text-muted-foreground">
-              <Database className="h-3.5 w-3.5" />
+            <TabsTrigger value="data" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
               Data
             </TabsTrigger>
           </TabsList>

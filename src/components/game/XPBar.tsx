@@ -46,7 +46,7 @@ export function XPBar() {
       >
         <div
           className={cn(
-            "absolute inset-y-0 left-0 rounded-full transition-all duration-300 ease-out",
+            "absolute inset-y-0 left-0 rounded-full transition-colors duration-300 ease-out",
             "bg-primary/60",
           )}
           style={{ width: `${percent}%` }}
@@ -56,7 +56,7 @@ export function XPBar() {
         {progressXP}/{neededXP} XP
       </span>
       {floatXP !== null && (
-        <span className="xp-float-up absolute -top-4 left-1/2 -translate-x-1/2 text-xs font-bold text-emerald-400">
+        <span className="xp-float-up absolute -top-4 left-1/2 -translate-x-1/2 text-xs font-semibold text-emerald-400">
           +{floatXP} XP
         </span>
       )}

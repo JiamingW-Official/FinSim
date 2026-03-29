@@ -140,7 +140,7 @@ export function DataManager() {
   return (
     <div className="space-y-4">
       {/* Header row */}
-      <div className="flex items-center gap-2 text-sm font-bold">
+      <div className="flex items-center gap-2 text-sm font-semibold">
         <Database className="h-4 w-4 text-indigo-400" />
         Data and Privacy
       </div>
@@ -169,7 +169,7 @@ export function DataManager() {
 
       {/* Export buttons */}
       <div className="space-y-2">
-        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Export</p>
+        <p className="text-xs text-muted-foreground font-medium">Export</p>
         <div className="flex flex-wrap gap-2">
           <Button
             variant="outline"
@@ -205,7 +205,7 @@ export function DataManager() {
 
       {/* Import */}
       <div className="space-y-2">
-        <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">Import</p>
+        <p className="text-xs text-muted-foreground font-medium">Import</p>
         <input
           ref={fileInputRef}
           type="file"

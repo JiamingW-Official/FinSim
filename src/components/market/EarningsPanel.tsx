@@ -44,7 +44,7 @@ function BeatMeter({ probability }: { probability: number }) {
     <div className="flex items-center gap-2">
       <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
         <div
-          className={cn("h-full rounded-full transition-all duration-300", color)}
+          className={cn("h-full rounded-full transition-colors duration-300", color)}
           style={{ width: `${probability}%` }}
         />
       </div>

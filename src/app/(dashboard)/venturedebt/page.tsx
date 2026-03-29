@@ -254,7 +254,7 @@ function InfoBox({
   variant?: "info" | "warn" | "success";
 }) {
   const styles = {
-    info: "border-border bg-primary/10 text-primary",
+    info: "border-border bg-muted/10 text-primary",
     warn: "border-amber-500/30 bg-amber-500/10 text-amber-300",
     success: "border-emerald-500/30 bg-emerald-500/5 text-emerald-300",
   };
@@ -1021,7 +1021,7 @@ function RBFTab() {
               icon: RefreshCw,
               color: "text-primary",
               border: "border-border",
-              bg: "bg-primary/5",
+              bg: "bg-muted/5",
               pros: [
                 "No equity dilution",
                 "Payments flex with revenue",
@@ -1512,7 +1512,7 @@ export default function VentureDebtPage() {
                   Alternative Finance
                 </Badge>
               </div>
-              <h1 className="text-xl font-bold text-foreground">
+              <h1 className="text-xl font-semibold text-foreground">
                 Venture Debt &amp; Growth Financing
               </h1>
               <p className="mt-2 text-muted-foreground max-w-2xl">

@@ -159,7 +159,7 @@ function OrderTypeBadge({ orderType }: { orderType: UnusualActivityItem["orderTy
 // ── Row color class based on sentiment ───────────────────────────────────────
 
 function rowColorClass(_item: UnusualActivityItem): string {
-  return "border-b border-border/50 hover:bg-muted/50";
+  return "border-b border-border/20 hover:bg-muted/50";
 }
 
 // ── Main Component ────────────────────────────────────────────────────────────
@@ -207,8 +207,8 @@ export function UnusualActivityFeed({
   return (
     <div className="flex h-full flex-col">
       {/* Filter bar */}
-      <div className="flex shrink-0 flex-wrap items-center gap-1.5 border-b border-border/50 px-3 py-1.5">
-        <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
+      <div className="flex shrink-0 flex-wrap items-center gap-1.5 border-b border-border/20 px-3 py-1.5">
+        <div className="flex items-center gap-0.5 rounded-md border border-border/20 bg-card p-0.5">
           {filterOptions.map(({ value, label }) => (
             <ToggleButton
               key={value}
@@ -234,7 +234,7 @@ export function UnusualActivityFeed({
         ) : (
           <table className="w-full border-collapse text-[11px]">
             <thead className="sticky top-0 z-10 bg-card">
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 {[
                   { col: "Time", align: "text-left" },
                   { col: "Ticker", align: "text-left" },

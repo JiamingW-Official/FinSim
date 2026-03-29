@@ -593,7 +593,7 @@ function EventImpactTab() {
           <Card key={item.label} className="bg-card border-border">
             <CardContent className="p-4">
               <div className={cn("mb-1", item.color)}>{item.icon}</div>
-              <div className="text-xl font-bold text-foreground">{item.value}</div>
+              <div className="text-xl font-semibold text-foreground">{item.value}</div>
               <div className="text-xs text-muted-foreground">{item.label}</div>
               <div className="text-xs text-muted-foreground/70 mt-0.5">{item.sub}</div>
             </CardContent>
@@ -629,7 +629,7 @@ function EventImpactTab() {
                       key={evt.id}
                       onClick={() => setSelectedEvent(evt)}
                       className={cn(
-                        "border-b border-border/50 cursor-pointer transition-colors",
+                        "border-b border-border/20 cursor-pointer transition-colors",
                         selectedEvent?.id === evt.id
                           ? "bg-muted"
                           : "hover:bg-muted/40"
@@ -838,7 +838,7 @@ function SanctionsTradeTab() {
                     </thead>
                     <tbody>
                       {SWIFT_ROWS.map(row => (
-                        <tr key={row.metric} className="border-b border-border/50 hover:bg-muted/30">
+                        <tr key={row.metric} className="border-b border-border/20 hover:bg-muted/30">
                           <td className="px-4 py-2 text-muted-foreground font-medium">{row.metric}</td>
                           <td className="text-center px-3 py-2 text-muted-foreground">{row.preExclusion}</td>
                           <td className="text-center px-3 py-2 text-red-400">{row.t6months}</td>
@@ -902,7 +902,7 @@ function SanctionsTradeTab() {
                       { level: 5, label: "SWIFT Exclusion", desc: "Cuts off global payment network access — nuclear financial option", color: "#991b1b" },
                     ].map(({ level, label, desc, color }) => (
                       <div key={level} className="flex items-start gap-3 p-2 rounded" style={{ background: color + "11", borderLeft: `3px solid ${color}` }}>
-                        <span className="font-bold text-sm mt-0.5" style={{ color, minWidth: 16 }}>{level}</span>
+                        <span className="font-semibold text-sm mt-0.5" style={{ color, minWidth: 16 }}>{level}</span>
                         <div>
                           <div className="font-medium text-foreground">{label}</div>
                           <div className="text-muted-foreground">{desc}</div>
@@ -1127,7 +1127,7 @@ function RiskPremiumTab() {
               </thead>
               <tbody>
                 {SECTOR_SCENARIOS.map(row => (
-                  <tr key={row.scenario} className="border-b border-border/50 hover:bg-muted/30">
+                  <tr key={row.scenario} className="border-b border-border/20 hover:bg-muted/30">
                     <td className="px-4 py-2 text-muted-foreground font-medium whitespace-nowrap">{row.scenario}</td>
                     {[row.energy, row.defense, row.tech, row.food, row.finance, row.travel].map((v, i) => (
                       <td key={i} className="px-3 py-2">
@@ -1226,7 +1226,7 @@ function PortfolioPositioningTab() {
             key={sc.id}
             onClick={() => setSelectedScenario(sc)}
             className={cn(
-              "rounded p-3 text-left text-xs text-muted-foreground transition-all border",
+              "rounded p-3 text-left text-xs text-muted-foreground transition-colors border",
               selectedScenario.id === sc.id
                 ? "bg-red-900/30 border-red-700"
                 : "bg-card border-border hover:border-border"
@@ -1319,7 +1319,7 @@ function PortfolioPositioningTab() {
               </thead>
               <tbody>
                 {HEDGE_STRATEGIES.map(hs => (
-                  <tr key={hs.name} className="border-b border-border/50 hover:bg-muted/30">
+                  <tr key={hs.name} className="border-b border-border/20 hover:bg-muted/30">
                     <td className="px-4 py-2 text-foreground font-medium">{hs.name}</td>
                     <td className="px-3 py-2">
                       <div className="flex flex-col items-center gap-1">
@@ -1470,7 +1470,7 @@ export default function GeopoliticsPage() {
             <Globe className="w-5 h-5 text-red-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Geopolitics & Financial Markets</h1>
+            <h1 className="text-xl font-semibold text-foreground">Geopolitics & Financial Markets</h1>
             <p className="text-sm text-muted-foreground">
               How geopolitical events move markets — sanctions, trade wars, currency weaponization, and risk premiums
             </p>

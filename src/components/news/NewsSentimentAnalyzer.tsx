@@ -542,7 +542,7 @@ function MarketSentimentHeatmap({
                     onClick={() => setSelected(selected?.ticker === cell.ticker && selected?.period === cell.period ? null : cell)}
                     title={`${cell.ticker} ${cell.period}: ${cell.score > 0 ? "+" : ""}${cell.score.toFixed(2)}`}
                     className={cn(
-                      "flex-1 rounded-sm py-2 text-[11px] font-bold transition-all hover:ring-1 hover:ring-white/30",
+                      "flex-1 rounded-sm py-2 text-[11px] font-semibold transition-colors hover:ring-1 hover:ring-white/30",
                       sentimentColor(cell.score),
                       selected?.ticker === cell.ticker && selected?.period === cell.period && "ring-2 ring-white"
                     )}
@@ -674,7 +674,7 @@ function TopStoryAnalysis({ stories }: { stories: TopStory[] }) {
             <div
               key={story.id}
               className={cn(
-                "rounded-lg border border-border bg-background/50 transition-all",
+                "rounded-lg border border-border bg-background/50 transition-colors",
                 isExpanded && sentimentBorderColor(story.sentimentScore)
               )}
             >
@@ -711,7 +711,7 @@ function TopStoryAnalysis({ stories }: { stories: TopStory[] }) {
                 <div className="flex shrink-0 flex-col items-end gap-1">
                   <span
                     className={cn(
-                      "rounded-full px-1.5 py-0.5 text-xs font-bold",
+                      "rounded-full px-1.5 py-0.5 text-xs font-semibold",
                       sentimentColor(story.sentimentScore)
                     )}
                   >
@@ -804,7 +804,7 @@ function EarningsCommentary({ calls }: { calls: EarningsCall[] }) {
             {/* Header */}
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-xs font-semibold">{call.company}</span>
-              <span className="rounded bg-primary/10 px-1.5 text-xs font-bold text-primary">{call.ticker}</span>
+              <span className="rounded bg-primary/10 px-1.5 text-xs font-semibold text-primary">{call.ticker}</span>
               <span className="text-xs text-muted-foreground">{call.date}</span>
               <span className={cn("rounded-full px-2 py-0.5 text-xs font-medium", toneColor[call.managementTone])}>
                 Mgmt: {call.managementTone}
@@ -819,7 +819,7 @@ function EarningsCommentary({ calls }: { calls: EarningsCall[] }) {
 
             {/* Keyword frequency */}
             <div className="space-y-1">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              <p className="text-xs font-medium text-muted-foreground">
                 Keyword Frequency
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -892,7 +892,7 @@ function EarningsCommentary({ calls }: { calls: EarningsCall[] }) {
 
         {/* Scatter: sentiment vs stock reaction */}
         <div>
-          <p className="mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-1 text-xs font-medium text-muted-foreground">
             Sentiment Score vs. D+1 Stock Reaction
           </p>
           <svg width={W} height={H} className="overflow-visible">
@@ -984,7 +984,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
                 key={d.ticker}
                 onClick={() => setSelectedTicker(d.ticker)}
                 className={cn(
-                  "relative flex flex-col items-center rounded-lg border px-3 py-1.5 text-xs transition-all",
+                  "relative flex flex-col items-center rounded-lg border px-3 py-1.5 text-xs transition-colors",
                   selectedTicker === d.ticker
                     ? "border-primary bg-primary/10"
                     : "border-border bg-background/50 hover:border-border/80"
@@ -1000,7 +1000,7 @@ function SocialMediaPulse({ data }: { data: SocialData[] }) {
                   {d.bullishPct}% bull
                 </span>
                 {viral && (
-                  <span className="absolute -top-1.5 -right-1.5 flex items-center gap-0.5 rounded-full bg-orange-500 px-1 text-[11px] font-bold text-foreground">
+                  <span className="absolute -top-1.5 -right-1.5 flex items-center gap-0.5 rounded-full bg-orange-500 px-1 text-[11px] font-semibold text-foreground">
                     <Flame className="h-2 w-2" />
                     HOT
                   </span>
@@ -1187,7 +1187,7 @@ function MacroEventImpact({
               <p className="text-xs text-muted-foreground">{m.label}</p>
               <p
                 className={cn(
-                  "text-sm font-bold",
+                  "text-sm font-semibold",
                   m.value >= 0 ? "text-emerald-400" : "text-red-400"
                 )}
               >
@@ -1207,7 +1207,7 @@ function MacroEventImpact({
 
         {/* Scatter plot */}
         <div>
-          <p className="mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-1 text-xs font-medium text-muted-foreground">
             Surprise Magnitude vs. Market Reaction (historical)
           </p>
           <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
@@ -1256,7 +1256,7 @@ function MacroEventImpact({
 
         {/* Surprise index chips */}
         <div>
-          <p className="mb-1.5 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-1.5 text-xs font-medium text-muted-foreground">
             Surprise Index — Current Economic Releases
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -1286,7 +1286,7 @@ function MacroEventImpact({
 
         {/* Upcoming events playbook */}
         <div>
-          <p className="mb-2 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="mb-2 text-xs font-medium text-muted-foreground">
             Upcoming Event Playbook
           </p>
           <div className="space-y-2">

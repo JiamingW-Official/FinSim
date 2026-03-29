@@ -626,7 +626,7 @@ function RollYieldCalc() {
           </div>
           <div className="text-right">
             <p className="text-xs text-muted-foreground">Annualized Roll Yield</p>
-            <p className={`text-xl font-bold mt-1 ${rollYield >= 0 ? "text-green-400" : "text-red-400"}`}>
+            <p className={`text-xl font-semibold mt-1 ${rollYield >= 0 ? "text-green-400" : "text-red-400"}`}>
               {rollYield > 0 ? "+" : ""}{rollYield.toFixed(2)}%
             </p>
           </div>
@@ -709,7 +709,7 @@ function HedgeRatioCalc() {
         <div className="rounded-lg p-3 border border-border bg-muted/40 grid grid-cols-3 gap-3 text-center">
           <div>
             <p className="text-xs text-muted-foreground">Contracts Needed</p>
-            <p className="text-lg font-bold text-primary mt-1">{contracts}</p>
+            <p className="text-lg font-semibold text-primary mt-1">{contracts}</p>
           </div>
           <div>
             <p className="text-xs text-muted-foreground">Notional Hedged</p>
@@ -777,7 +777,7 @@ function FuturesBasicsTab() {
                   <tr
                     key={c.symbol}
                     onClick={() => setSelectedContract(selectedContract?.symbol === c.symbol ? null : c)}
-                    className="border-b border-border/50 hover:bg-muted/40 cursor-pointer transition-colors"
+                    className="border-b border-border/20 hover:bg-muted/40 cursor-pointer transition-colors"
                   >
                     <td className="px-4 py-2.5">
                       <div className="flex items-center gap-2">
@@ -812,7 +812,7 @@ function FuturesBasicsTab() {
       {/* Contract Detail Drawer */}
       {selectedContract && (
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}>
-          <Card className="border-primary/40 bg-primary/5">
+          <Card className="border-primary/40 bg-muted/5">
             <CardContent className="pt-4 pb-4">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-2">
@@ -839,7 +839,7 @@ function FuturesBasicsTab() {
                   <p className="text-lg font-medium text-foreground">${Math.round(selectedContract.margin * 0.75).toLocaleString()}</p>
                 </div>
               </div>
-              <div className="mt-3 pt-3 border-t border-border/50">
+              <div className="mt-3 pt-3 border-t border-border/20">
                 <p className="text-xs text-muted-foreground">
                   A 1-tick ({selectedContract.tickSize}) move in {selectedContract.symbol} is worth <span className="text-foreground font-medium">${selectedContract.tickValue}</span> per contract.
                   With ${selectedContract.margin.toLocaleString()} margin and {(selectedContract.notional / selectedContract.margin).toFixed(1)}× leverage,
@@ -1083,9 +1083,9 @@ function BasisTab() {
               <button
                 key={sp.name}
                 onClick={() => setSelectedSpread(sp)}
-                className={`text-left p-2 rounded-lg border transition-all text-xs text-muted-foreground ${
+                className={`text-left p-2 rounded-lg border transition-colors text-xs text-muted-foreground ${
                   selectedSpread.name === sp.name
-                    ? "border-primary bg-primary/10"
+                    ? "border-primary bg-muted/10"
                     : "border-border bg-muted/40 hover:border-primary/40"
                 }`}
               >
@@ -1152,7 +1152,7 @@ function BasisTab() {
                 <p className="text-sm text-muted-foreground">Gross Refining Margin</p>
                 <p className="text-xs text-muted-foreground mt-0.5">(2 × RBOB + 1 × HO − 3 × CL) / 3</p>
               </div>
-              <p className="text-2xl font-bold text-orange-400">$24.40/bbl</p>
+              <p className="text-2xl font-semibold text-orange-400">$24.40/bbl</p>
             </div>
             <p className="text-xs text-muted-foreground">
               Refiners lock in profits by selling crack spread (short gasoline + HO futures, long crude futures). Traders buy crack spread when they expect refining margins to expand.
@@ -1283,7 +1283,7 @@ function HedgingTab() {
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">{futuresPnL > 0 ? "Futures offset the loss" : "Opportunity cost of hedge"}</p>
               </div>
-              <div className={`rounded p-3 border ${Math.abs(netPnL) < 5000 ? "border-border bg-primary/10" : netPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-amber-500/30 bg-amber-500/10"}`}>
+              <div className={`rounded p-3 border ${Math.abs(netPnL) < 5000 ? "border-border bg-muted/10" : netPnL > 0 ? "border-green-500/30 bg-green-500/10" : "border-amber-500/30 bg-amber-500/10"}`}>
                 <p className="text-xs text-muted-foreground">Net P&L (Residual)</p>
                 <p className={`text-lg font-medium ${Math.abs(netPnL) < 5000 ? "text-primary" : netPnL > 0 ? "text-green-400" : "text-amber-400"}`}>
                   {netPnL >= 0 ? "+" : ""}${Math.abs(netPnL / 1000).toFixed(0)}K
@@ -1291,7 +1291,7 @@ function HedgingTab() {
                 <p className="text-xs text-muted-foreground mt-1">Basis risk residual</p>
               </div>
             </div>
-            <div className="mt-3 rounded p-2 bg-primary/5 border border-primary/20 flex items-center justify-between">
+            <div className="mt-3 rounded p-2 bg-muted/5 border border-primary/20 flex items-center justify-between">
               <p className="text-xs text-muted-foreground">Effective {scenario.type === "short" ? "Sale" : "Purchase"} Price</p>
               <p className="text-foreground font-medium">${effectivePrice.toFixed(2)} <span className="text-xs text-muted-foreground ml-1">(target was ${scenario.targetPrice.toFixed(2)})</span></p>
             </div>
@@ -1552,11 +1552,11 @@ export default function FuturesTradingPage() {
         {/* Header */}
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className="border-l-4 border-l-primary rounded-lg bg-card p-6 space-y-1">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
+            <div className="p-2 rounded-lg bg-muted/10 border border-primary/20">
               <BarChart2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Futures Trading</h1>
+              <h1 className="text-xl font-semibold text-foreground">Futures Trading</h1>
               <p className="text-sm text-muted-foreground">Commodities, financials, hedging &amp; speculation</p>
             </div>
           </div>

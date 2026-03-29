@@ -199,7 +199,7 @@ export function ScenarioSimulator() {
       <div className="space-y-4">
         <div className="flex items-center gap-2 mb-3">
           <Zap className="h-4 w-4 text-primary" />
-          <h3 className="text-sm font-bold">Historical Scenario Simulator</h3>
+          <h3 className="text-sm font-semibold">Historical Scenario Simulator</h3>
         </div>
         <p className="text-[11px] text-muted-foreground">
           Experience famous market events. See how your portfolio would react and learn why staying invested matters.
@@ -209,14 +209,14 @@ export function ScenarioSimulator() {
             <motion.button
               key={s.id}
               onClick={() => handleSelectScenario(s)}
-              className="flex items-center gap-3 rounded-md border border-border bg-card/50 p-4 text-left transition-all hover:border-primary/30 hover:bg-card"
+              className="flex items-center gap-3 rounded-md border border-border bg-card/50 p-4 text-left transition-colors hover:border-primary/30 hover:bg-card"
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
             >
               <span className="text-2xl">{s.icon}</span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-bold">{s.name}</span>
+                  <span className="text-sm font-semibold">{s.name}</span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{s.description}</p>
               </div>
@@ -234,7 +234,7 @@ export function ScenarioSimulator() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-lg">{selectedScenario.icon}</span>
-          <h3 className="text-sm font-bold">{selectedScenario.name}</h3>
+          <h3 className="text-sm font-semibold">{selectedScenario.name}</h3>
         </div>
         <button
           onClick={() => setSelectedScenario(null)}
@@ -248,11 +248,11 @@ export function ScenarioSimulator() {
       <div className="flex items-center gap-4">
         <div>
           <div className="text-xs text-muted-foreground">Portfolio Value</div>
-          <div className="text-lg font-bold tabular-nums">{formatCurrency(currentValue)}</div>
+          <div className="text-lg font-semibold tabular-nums">{formatCurrency(currentValue)}</div>
         </div>
         <div>
           <div className="text-xs text-muted-foreground">P&L</div>
-          <div className={cn("text-sm font-bold tabular-nums", pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-sm font-semibold tabular-nums", pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pnl >= 0 ? "+" : ""}{formatCurrency(pnl)} ({pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(1)}%)
           </div>
         </div>
@@ -262,7 +262,7 @@ export function ScenarioSimulator() {
       </div>
 
       {/* Chart */}
-      <div className="rounded-lg border border-border/50 bg-card/30 p-3">
+      <div className="rounded-lg border border-border/20 bg-card/30 p-3">
         <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="w-full h-32" preserveAspectRatio="none">
           {/* Grid */}
           {[0, 45, 90, 135, 180].map((y) => (
@@ -301,7 +301,7 @@ export function ScenarioSimulator() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="rounded-lg border border-border/50 bg-card/50 p-3"
+            className="rounded-lg border border-border/20 bg-card/50 p-3"
           >
             <div className="flex items-center gap-2 mb-1">
               {currentEvent.marketChange >= 0 ? (
@@ -309,9 +309,9 @@ export function ScenarioSimulator() {
               ) : (
                 <TrendingDown className="h-3.5 w-3.5 text-red-400" />
               )}
-              <span className="text-[11px] font-bold">{currentEvent.label}</span>
+              <span className="text-[11px] font-semibold">{currentEvent.label}</span>
               <span className={cn(
-                "text-xs font-bold tabular-nums",
+                "text-xs font-semibold tabular-nums",
                 currentEvent.marketChange >= 0 ? "text-emerald-400" : "text-red-400"
               )}>
                 {currentEvent.marketChange >= 0 ? "+" : ""}{currentEvent.marketChange}%
@@ -327,14 +327,14 @@ export function ScenarioSimulator() {
         <button
           onClick={handlePlay}
           disabled={isPlaying || dayProgress >= selectedScenario.durationDays}
-          className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-[11px] font-bold text-primary-foreground transition-all hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-1.5 rounded-lg bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Play className="h-3 w-3" />
           {dayProgress === 0 ? "Start Simulation" : "Continue"}
         </button>
         <button
           onClick={handleReset}
-          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-[11px] font-bold transition-all hover:bg-card"
+          className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-[11px] font-semibold transition-colors hover:bg-card"
         >
           <RotateCcw className="h-3 w-3" />
           Reset
@@ -365,7 +365,7 @@ export function ScenarioSimulator() {
             <div className="rounded-md border border-primary/20 bg-primary/5 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-4 w-4 text-primary" />
-                <span className="text-xs font-bold text-primary">Key Lesson</span>
+                <span className="text-xs font-semibold text-primary">Key Lesson</span>
               </div>
               <p className="text-[11px] text-foreground/80 leading-relaxed">
                 {selectedScenario.lesson}

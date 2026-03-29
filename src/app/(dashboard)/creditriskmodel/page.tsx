@@ -236,12 +236,12 @@ function StatCard({
       : "text-foreground";
 
   return (
-    <div className="bg-muted/60 border border-border/50 rounded-lg p-3 flex flex-col gap-1">
+    <div className="bg-muted/60 border border-border/20 rounded-lg p-3 flex flex-col gap-1">
       <div className="flex items-center gap-1.5 text-muted-foreground text-xs">
         {Icon && <Icon className="w-3.5 h-3.5" />}
         {label}
       </div>
-      <div className={`text-lg font-bold ${valClass}`}>{value}</div>
+      <div className={`text-lg font-semibold ${valClass}`}>{value}</div>
       {sub && <div className="text-muted-foreground text-xs">{sub}</div>}
     </div>
   );
@@ -552,15 +552,15 @@ function LossHistogram({
         <text x={svgW / 2} y={svgH - 2} textAnchor="middle" fill="#71717a" fontSize={9}>Loss Amount</text>
       </svg>
       <div className="grid grid-cols-3 gap-2 mt-2">
-        <div className="bg-muted/60 border border-border/50 rounded p-2 text-center">
+        <div className="bg-muted/60 border border-border/20 rounded p-2 text-center">
           <div className="text-muted-foreground text-xs">Expected Loss</div>
-          <div className="text-emerald-400 font-bold text-sm">{fmtM(el)}</div>
+          <div className="text-emerald-400 font-semibold text-sm">{fmtM(el)}</div>
         </div>
-        <div className="bg-muted/60 border border-border/50 rounded p-2 text-center">
+        <div className="bg-muted/60 border border-border/20 rounded p-2 text-center">
           <div className="text-muted-foreground text-xs">VaR ({confidence}%)</div>
           <div className="text-rose-400 font-medium text-sm">{fmtM(varLoss)}</div>
         </div>
-        <div className="bg-muted/60 border border-border/50 rounded p-2 text-center">
+        <div className="bg-muted/60 border border-border/20 rounded p-2 text-center">
           <div className="text-muted-foreground text-xs">Economic Capital</div>
           <div className="text-amber-400 font-medium text-sm">{fmtM(econCapital)}</div>
         </div>
@@ -668,11 +668,11 @@ function PortfolioScatter({
         <text x={svgW - padR - 74} y={padT + 30} fill="#71717a" fontSize={8}>Average</text>
       </svg>
       <div className="grid grid-cols-2 gap-2 mt-1.5">
-        <div className="bg-muted/60 border border-border/50 rounded p-2 text-center">
+        <div className="bg-muted/60 border border-border/20 rounded p-2 text-center">
           <div className="text-muted-foreground text-xs">Avg Base Loss</div>
           <div className="text-primary font-medium text-sm">{fmtM(avgBase)}</div>
         </div>
-        <div className="bg-muted/60 border border-border/50 rounded p-2 text-center">
+        <div className="bg-muted/60 border border-border/20 rounded p-2 text-center">
           <div className="text-muted-foreground text-xs">Avg Stressed Loss</div>
           <div className="text-rose-400 font-medium text-sm">{fmtM(avgStressed)}</div>
         </div>
@@ -762,7 +762,7 @@ export default function CreditRiskModelPage() {
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-primary/10 rounded-lg border border-border">
+          <div className="p-2 bg-muted/10 rounded-lg border border-border">
             <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
@@ -1078,7 +1078,7 @@ export default function CreditRiskModelPage() {
                       <button
                         key={rr}
                         onClick={() => setSelectedFromRating(rr)}
-                        className={`px-2.5 py-0.5 rounded text-xs text-muted-foreground font-medium border transition-all ${
+                        className={`px-2.5 py-0.5 rounded text-xs text-muted-foreground font-medium border transition-colors ${
                           selectedFromRating === rr
                             ? "text-black"
                             : "bg-transparent text-muted-foreground border-border"
@@ -1150,7 +1150,7 @@ export default function CreditRiskModelPage() {
                         </span>
                         <div className="flex-1 h-3 bg-muted rounded overflow-hidden">
                           <div
-                            className="h-full rounded transition-all"
+                            className="h-full rounded transition-colors"
                             style={{
                               width: `${Math.min(def, 100)}%`,
                               background: RATING_COLORS[rtg],
@@ -1179,7 +1179,7 @@ export default function CreditRiskModelPage() {
                       <button
                         key={i}
                         onClick={() => setAnimStep(i)}
-                        className={`px-2 py-0.5 rounded text-xs text-muted-foreground transition-all border ${
+                        className={`px-2 py-0.5 rounded text-xs text-muted-foreground transition-colors border ${
                           animStep === i
                             ? "bg-primary border-primary text-foreground"
                             : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
@@ -1324,7 +1324,7 @@ export default function CreditRiskModelPage() {
                 </div>
 
                 {/* Recovery rate note */}
-                <div className="bg-primary/10 border border-border rounded-lg p-3 text-xs text-muted-foreground">
+                <div className="bg-muted/10 border border-border rounded-lg p-3 text-xs text-muted-foreground">
                   <div className="text-primary font-medium mb-1 flex items-center gap-1">
                     <Info className="w-3 h-3" /> Recovery Rate
                   </div>
@@ -1357,7 +1357,7 @@ export default function CreditRiskModelPage() {
 
                 {/* Basel framework note */}
                 <div className="mt-4 grid grid-cols-2 gap-3">
-                  <div className="bg-muted/60 border border-border/50 rounded-lg p-3 text-xs text-muted-foreground">
+                  <div className="bg-muted/60 border border-border/20 rounded-lg p-3 text-xs text-muted-foreground">
                     <div className="text-muted-foreground font-medium mb-1.5">Basel III Capital</div>
                     <div className="space-y-1 text-muted-foreground">
                       <div className="flex justify-between">
@@ -1378,7 +1378,7 @@ export default function CreditRiskModelPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-muted/60 border border-border/50 rounded-lg p-3 text-xs text-muted-foreground">
+                  <div className="bg-muted/60 border border-border/20 rounded-lg p-3 text-xs text-muted-foreground">
                     <div className="text-muted-foreground font-medium mb-1.5">IRBA Risk Weight</div>
                     <div className="space-y-1 text-muted-foreground">
                       <div className="flex justify-between">
@@ -1447,7 +1447,7 @@ export default function CreditRiskModelPage() {
                           }
                           className={`cursor-pointer transition-colors ${
                             selectedLoan === loan.id
-                              ? "bg-primary/10"
+                              ? "bg-muted/10"
                               : "hover:bg-muted/40"
                           }`}
                         >
@@ -1579,7 +1579,7 @@ export default function CreditRiskModelPage() {
                   <PortfolioScatter loans={PORTFOLIO_LOANS} correlation={portCorr} />
 
                   {/* Correlation impact */}
-                  <div className="mt-3 bg-muted/60 border border-border/50 rounded-lg p-2.5 text-xs text-muted-foreground">
+                  <div className="mt-3 bg-muted/60 border border-border/20 rounded-lg p-2.5 text-xs text-muted-foreground">
                     <div className="text-muted-foreground font-medium mb-1.5 flex items-center gap-1">
                       <AlertTriangle className="w-3 h-3 text-amber-400" />
                       Correlation Impact
@@ -1610,7 +1610,7 @@ export default function CreditRiskModelPage() {
             title: "Merton / KMV",
             desc: "Structural credit models treat equity as a call option on firm assets. Distance to default (DD) measures how many standard deviations the firm is from insolvency.",
             color: "text-primary",
-            bg: "bg-primary/10",
+            bg: "bg-muted/10",
             border: "border-border",
           },
           {

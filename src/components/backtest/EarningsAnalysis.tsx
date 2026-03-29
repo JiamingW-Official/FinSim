@@ -130,10 +130,10 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
         <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Earnings History
         </h3>
-        <div className="overflow-x-auto rounded-lg border border-border/30">
+        <div className="overflow-x-auto rounded-lg border border-border/20">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/30 bg-muted/10">
+              <tr className="border-b border-border/20 bg-muted/10">
                 <th className="px-3 py-2 text-left text-muted-foreground font-medium">Date</th>
                 <th className="px-3 py-2 text-right text-muted-foreground font-medium">Est. EPS</th>
                 <th className="px-3 py-2 text-right text-muted-foreground font-medium">Actual EPS</th>
@@ -147,7 +147,7 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
               {data.map((row, i) => (
                 <tr
                   key={i}
-                  className={`border-b border-border/30 transition-colors hover:bg-muted/30 ${
+                  className={`border-b border-border/20 transition-colors hover:bg-muted/30 ${
                     row.buyRumorSellNews ? "bg-amber-500/5" : ""
                   }`}
                 >
@@ -206,9 +206,9 @@ function SummaryChip({ label, value, positive, neutral }: {
     ? "text-emerald-400"
     : "text-rose-400";
   return (
-    <div className="rounded-lg border border-border/30 bg-muted/15 px-3 py-2">
+    <div className="rounded-lg border border-border/20 bg-muted/15 px-3 py-2">
       <div className="text-[11px] text-muted-foreground/70">{label}</div>
-      <div className={`mt-0.5 text-xs font-bold ${color}`}>{value}</div>
+      <div className={`mt-0.5 text-xs font-semibold ${color}`}>{value}</div>
     </div>
   );
 }

@@ -339,7 +339,7 @@ function ScoreBadge({ score }: { score: number }) {
       ? "text-amber-400 bg-amber-500/10 border-amber-500/30"
       : "text-red-400 bg-red-500/5 border-red-500/30";
   return (
-    <span className={cn("px-2 py-0.5 rounded text-xs font-bold border", color)}>
+    <span className={cn("px-2 py-0.5 rounded text-xs font-semibold border", color)}>
       {score}
     </span>
   );
@@ -520,7 +520,7 @@ function EarningsQualitySection() {
           </div>
           <div className="text-right">
             <div className="text-xs text-muted-foreground mb-0.5">Overall Score</div>
-            <div className={cn("text-2xl font-bold", scoreColor(company.overallScore))}>
+            <div className={cn("text-2xl font-semibold", scoreColor(company.overallScore))}>
               {company.overallScore}
             </div>
             <div className="text-xs text-muted-foreground">/ 100</div>
@@ -559,7 +559,7 @@ function EarningsQualitySection() {
                 </div>
                 <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <div
-                    className={cn("h-full rounded-full transition-all", barColor(value))}
+                    className={cn("h-full rounded-full transition-colors", barColor(value))}
                     style={{ width: `${value}%` }}
                   />
                 </div>
@@ -598,7 +598,7 @@ function EarningsQualitySection() {
           ].map(({ label, value, good, suffix }) => (
             <div key={label} className="text-center">
               <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
-              <div className={cn("text-sm font-bold font-mono", good ? "text-emerald-400" : "text-red-400")}>
+              <div className={cn("text-sm font-semibold font-mono", good ? "text-emerald-400" : "text-red-400")}>
                 {value}{suffix}
               </div>
             </div>
@@ -665,7 +665,7 @@ function EarningsQualitySection() {
                 <tr
                   key={d.ticker}
                   className={cn(
-                    "border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors",
+                    "border-b border-border/20 cursor-pointer hover:bg-muted/30 transition-colors",
                     selected === d.ticker && "bg-muted/40"
                   )}
                   onClick={() => setSelected(d.ticker)}
@@ -755,7 +755,7 @@ function PEADSection() {
         ].map(({ label, value, color, sub }) => (
           <div key={label} className="bg-card border border-border rounded-lg p-3">
             <div className="text-xs text-muted-foreground mb-1">{label}</div>
-            <div className={cn("text-xl font-bold", color)}>{value}</div>
+            <div className={cn("text-xl font-semibold", color)}>{value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>
           </div>
         ))}
@@ -928,7 +928,7 @@ function EstimateRevisionsSection() {
           </div>
           <div className="text-right">
             <div className="text-xs text-muted-foreground">Current Est.</div>
-            <div className="text-lg font-bold font-mono text-foreground">${company.currentEst.toFixed(2)}</div>
+            <div className="text-lg font-semibold font-mono text-foreground">${company.currentEst.toFixed(2)}</div>
             <div className={cn("text-xs font-semibold", isUpward ? "text-emerald-400" : "text-red-400")}>
               {isUpward ? "+" : ""}{((company.currentEst - company.est12w) / company.est12w * 100).toFixed(1)}% vs 12w ago
             </div>
@@ -1014,7 +1014,7 @@ function EstimateRevisionsSection() {
                   <tr
                     key={d.ticker}
                     className={cn(
-                      "border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors",
+                      "border-b border-border/20 cursor-pointer hover:bg-muted/30 transition-colors",
                       selected === d.ticker && "bg-muted/40"
                     )}
                     onClick={() => setSelected(d.ticker)}
@@ -1043,7 +1043,7 @@ function EstimateRevisionsSection() {
         </div>
       </div>
 
-      <div className="bg-muted/20 border border-border/50 rounded-lg p-3 text-[11px] text-muted-foreground space-y-1.5">
+      <div className="bg-muted/20 border border-border/20 rounded-lg p-3 text-[11px] text-muted-foreground space-y-1.5">
         <div className="font-semibold text-foreground text-xs mb-1">Revision Strategies</div>
         <div><span className="text-emerald-400 font-medium">Accelerating upgrades:</span> Look for stocks where both 4-week and 8-week momentum are positive. Often leads the price by 2–4 weeks.</div>
         <div><span className="text-red-400 font-medium">Negative revisions:</span> Downward estimate revisions frequently precede earnings misses. Consider reducing exposure early.</div>
@@ -1097,7 +1097,7 @@ function SectorEarningsSection() {
         ].map(({ label, value, color, sub }) => (
           <div key={label} className="bg-card border border-border rounded-lg p-3">
             <div className="text-xs text-muted-foreground mb-1">{label}</div>
-            <div className={cn("text-xl font-bold", color)}>{value}</div>
+            <div className={cn("text-xl font-semibold", color)}>{value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>
           </div>
         ))}
@@ -1182,7 +1182,7 @@ function SectorEarningsSection() {
             </thead>
             <tbody>
               {data.map((d) => (
-                <tr key={d.sector} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                <tr key={d.sector} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                   <td className="px-3 py-2 font-medium text-foreground">{d.sector}</td>
                   <td className={cn("px-3 py-2 text-right font-mono font-semibold", d.earningsGrowthTTM >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {d.earningsGrowthTTM > 0 ? "+" : ""}{d.earningsGrowthTTM.toFixed(1)}%
@@ -1294,7 +1294,7 @@ function EarningsOptionsSection() {
                   <tr
                     key={d.ticker}
                     className={cn(
-                      "border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors",
+                      "border-b border-border/20 cursor-pointer hover:bg-muted/30 transition-colors",
                       selected === d.ticker && "bg-muted/40"
                     )}
                     onClick={() => setSelected(selected === d.ticker ? null : d.ticker)}
@@ -1347,7 +1347,7 @@ function EarningsOptionsSection() {
             ].map(({ label, value, color }) => (
               <div key={label} className="bg-muted/30 rounded-lg p-2">
                 <div className="text-xs text-muted-foreground mb-0.5">{label}</div>
-                <div className={cn("text-base font-bold font-mono", color)}>{value}</div>
+                <div className={cn("text-base font-semibold font-mono", color)}>{value}</div>
               </div>
             ))}
           </div>
@@ -1367,7 +1367,7 @@ function EarningsOptionsSection() {
                 {company.strategy}
               </span>
               <span className="text-xs text-muted-foreground ml-2">Exp. Value:</span>
-              <span className={cn("text-xs font-bold font-mono", company.expectedValue > 0 ? "text-emerald-400" : "text-red-400")}>
+              <span className={cn("text-xs font-semibold font-mono", company.expectedValue > 0 ? "text-emerald-400" : "text-red-400")}>
                 {company.expectedValue > 0 ? "+" : ""}${company.expectedValue} / contract
               </span>
             </div>
@@ -1422,7 +1422,7 @@ export default function EarningsDeepDive() {
       <EarningsOptionsSection />
 
       {/* Footer disclaimer */}
-      <div className="bg-muted/20 border border-border/50 rounded-lg p-4 text-[11px] text-muted-foreground leading-relaxed">
+      <div className="bg-muted/20 border border-border/20 rounded-lg p-4 text-[11px] text-muted-foreground leading-relaxed">
         <span className="font-semibold text-foreground">Educational Disclaimer: </span>
         All data on this page is synthetically generated using seeded random number generation for educational purposes only. Earnings quality scores, PEAD drift projections, estimate revisions, and options expected value calculations do not represent real securities or trading recommendations. Past earnings patterns do not predict future results.
       </div>

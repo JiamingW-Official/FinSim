@@ -75,7 +75,7 @@ interface StatRowProps {
 }
 function StatRow({ label, value, sub, positive, negative }: StatRowProps) {
   return (
-    <div className="flex items-center justify-between py-1.5 border-b border-border/40 last:border-0">
+    <div className="flex items-center justify-between py-1.5 border-b border-border/20 last:border-0">
       <span className="text-xs text-muted-foreground">{label}</span>
       <div className="text-right">
         <span

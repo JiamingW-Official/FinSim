@@ -571,7 +571,7 @@ function IPODetailModal({
         <div className="mb-4 flex items-start justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-bold text-foreground">{ipo.company}</h2>
+              <h2 className="text-lg font-semibold text-foreground">{ipo.company}</h2>
               <span className="rounded bg-muted px-1.5 py-0.5 text-xs font-mono font-medium text-muted-foreground">
                 {ipo.ticker}
               </span>
@@ -623,7 +623,7 @@ function IPODetailModal({
                 className={cn(
                   "rounded-full px-2.5 py-0.5 text-xs text-muted-foreground font-medium border",
                   uw === ipo.bookrunner
-                    ? "border-primary/40 bg-primary/10 text-primary"
+                    ? "border-primary/40 bg-muted/10 text-primary"
                     : "border-border bg-muted text-muted-foreground"
                 )}
               >
@@ -796,7 +796,7 @@ function FlipSimulator({ ipo }: { ipo: RecentIPO }) {
       <div className="grid grid-cols-2 gap-3">
         <div className={cn("rounded-lg p-3 border", day1Pnl >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/5 border-red-500/20")}>
           <p className="text-xs text-muted-foreground mb-1">Sold on Day 1</p>
-          <p className="font-bold text-foreground">${day1Value.toFixed(0)}</p>
+          <p className="font-semibold text-foreground">${day1Value.toFixed(0)}</p>
           <p className={cn("text-sm font-medium", day1Pnl >= 0 ? "text-green-400" : "text-red-400")}>
             {day1Pnl >= 0 ? "+" : ""}${day1Pnl.toFixed(0)} ({ipo.firstDayReturn >= 0 ? "+" : ""}{ipo.firstDayReturn.toFixed(1)}%)
           </p>
@@ -853,7 +853,7 @@ export default function IPOPage() {
       {/* Header — Hero */}
       <div className="shrink-0 border-b border-border border-l-4 border-l-primary px-6 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted/10">
             <Building2 className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
@@ -918,7 +918,7 @@ export default function IPOPage() {
                     {UPCOMING_IPOS.map((ipo) => (
                       <tr
                         key={ipo.id}
-                        className="border-b border-border/50 transition-colors hover:bg-muted/30 cursor-pointer"
+                        className="border-b border-border/20 transition-colors hover:bg-muted/30 cursor-pointer"
                         onClick={() => setSelectedIPO(ipo)}
                       >
                         <td className="px-4 py-3">
@@ -940,7 +940,7 @@ export default function IPOPage() {
                         <td className="px-4 py-3 text-right text-muted-foreground text-xs">{ipo.sharesOffered}M</td>
                         <td className="px-4 py-3 text-right text-foreground font-medium text-xs">${ipo.impliedValuation}B</td>
                         <td className="px-4 py-3">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary border border-primary/20">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-muted/10 px-2 py-0.5 text-xs text-primary border border-primary/20">
                             <Award className="h-3 w-3" /> {ipo.bookrunner.split(" ")[0]}
                           </span>
                         </td>
@@ -1016,7 +1016,7 @@ export default function IPOPage() {
                       const lockupExpired = new Date(ipo.lockupExpiry) < new Date(BASE_DATE);
                       const daysToLockup = daysUntil(ipo.lockupExpiry);
                       return (
-                        <tr key={ipo.id} className="border-b border-border/50 hover:bg-muted/20">
+                        <tr key={ipo.id} className="border-b border-border/20 hover:bg-muted/20">
                           <td className="px-4 py-3">
                             <div>
                               <p className="font-medium text-foreground">{ipo.company}</p>
@@ -1149,9 +1149,9 @@ export default function IPOPage() {
                   <div className="mt-4 rounded-md border border-border bg-muted/20 p-4">
                     <div className="flex items-center gap-4 mb-3">
                       <div className={cn(
-                        "flex h-14 w-14 items-center justify-center rounded-md text-2xl font-bold border-2",
+                        "flex h-14 w-14 items-center justify-center rounded-md text-2xl font-semibold border-2",
                         gradeResult.score >= 78 ? "border-green-500 bg-green-500/10 text-green-400" :
-                        gradeResult.score >= 55 ? "border-primary bg-primary/10 text-primary" :
+                        gradeResult.score >= 55 ? "border-primary bg-muted/10 text-primary" :
                         gradeResult.score >= 38 ? "border-amber-500 bg-amber-500/10 text-amber-400" :
                         "border-red-500 bg-red-500/5 text-red-400"
                       )}>
@@ -1162,7 +1162,7 @@ export default function IPOPage() {
                         <div className="mt-1 h-2 w-48 rounded-full bg-muted overflow-hidden">
                           <div
                             className={cn(
-                              "h-full rounded-full transition-all",
+                              "h-full rounded-full transition-colors",
                               gradeResult.score >= 78 ? "bg-green-500" :
                               gradeResult.score >= 55 ? "bg-primary" :
                               gradeResult.score >= 38 ? "bg-amber-500" : "bg-red-500"
@@ -1401,7 +1401,7 @@ export default function IPOPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 rounded-lg bg-primary/10 border border-border p-3 flex gap-2">
+                <div className="mt-3 rounded-lg bg-muted/10 border border-border p-3 flex gap-2">
                   <Info className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0 mt-0.5" />
                   <p className="text-xs text-primary leading-relaxed">
                     Retail investors rarely receive offer-price allocations for hot IPOs. Most retail participation

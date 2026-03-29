@@ -154,11 +154,11 @@ function KeyboardShortcutsModal({
 }) {
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="glass max-w-2xl border-border/50 p-0">
+      <DialogContent className="glass max-w-2xl border-border/20 p-0">
         {/* Header */}
         <div className="rounded-t-lg bg-primary/10 px-5 py-3">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-sm font-bold text-primary">
+            <DialogTitle className="flex items-center gap-2 text-sm font-semibold text-primary">
               <Keyboard className="h-4 w-4" />
               Keyboard Shortcuts
             </DialogTitle>
@@ -171,7 +171,7 @@ function KeyboardShortcutsModal({
             <div key={section.title}>
               {/* Section heading */}
               <div
-                className={`mb-2.5 flex items-center gap-1.5 text-[11px] font-bold ${section.color}`}
+                className={`mb-2.5 flex items-center gap-1.5 text-[11px] font-semibold ${section.color}`}
               >
                 <section.icon className="h-3 w-3" />
                 {section.title}
@@ -211,7 +211,7 @@ function KeyboardShortcutsModal({
         </div>
 
         {/* Footer */}
-        <div className="border-t border-border/50 px-5 pb-4 pt-2">
+        <div className="border-t border-border/20 px-5 pb-4 pt-2">
           <p className="text-center text-xs text-muted-foreground">
             Press{" "}
             <KbdKey label="?" /> to toggle this guide &middot; Press{" "}

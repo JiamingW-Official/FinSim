@@ -332,7 +332,7 @@ function LeverageDisplay() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <span className="text-sm text-muted-foreground">Volatility Target</span>
-        <span className="font-mono font-bold text-lg">{volTarget}%</span>
+        <span className="font-mono font-semibold text-lg">{volTarget}%</span>
       </div>
       <input
         type="range" min={5} max={18} step={0.5}
@@ -343,7 +343,7 @@ function LeverageDisplay() {
       <div className="grid grid-cols-3 gap-3 text-center">
         <div className="rounded-lg bg-muted/40 p-3">
           <div className="text-xs text-muted-foreground mb-1">Leverage</div>
-          <div className="font-mono font-bold text-primary">{leverage}×</div>
+          <div className="font-mono font-semibold text-primary">{leverage}×</div>
         </div>
         <div className="rounded-lg bg-muted/40 p-3">
           <div className="text-xs text-muted-foreground mb-1">Margin Used</div>
@@ -405,11 +405,11 @@ export default function RiskParityPage() {
         className="flex flex-col gap-1"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-primary/10">
+          <div className="p-2 rounded-lg bg-muted/10">
             <Shield className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">Risk Parity Portfolio</h1>
+            <h1 className="text-2xl font-semibold">Risk Parity Portfolio</h1>
             <p className="text-sm text-muted-foreground">
               Equal risk contribution across asset classes — Bridgewater All-Weather style
             </p>
@@ -542,7 +542,7 @@ export default function RiskParityPage() {
                         <>
                           <tr
                             key={a.name}
-                            className="border-b border-border/50 hover:bg-muted/30 cursor-pointer transition-colors"
+                            className="border-b border-border/20 hover:bg-muted/30 cursor-pointer transition-colors"
                             onClick={() => setExpandedAsset(expandedAsset === i ? null : i)}
                           >
                             <td className="py-2 pr-3">
@@ -705,7 +705,7 @@ export default function RiskParityPage() {
                         { metric: "Sortino", rp: "1.04", s60: "0.73" },
                         { metric: "Calmar", rp: "0.61", s60: "0.38" },
                       ].map(r => (
-                        <tr key={r.metric} className="border-b border-border/30">
+                        <tr key={r.metric} className="border-b border-border/20">
                           <td className="py-1.5 text-muted-foreground">{r.metric}</td>
                           <td className="py-1.5 text-right font-mono text-primary">{r.rp}</td>
                           <td className="py-1.5 text-right font-mono text-muted-foreground">{r.s60}</td>
@@ -749,7 +749,7 @@ export default function RiskParityPage() {
                       ].map(r => (
                         <tr
                           key={r.name}
-                          className={`border-b border-border/40 ${r.highlight ? "bg-primary/5" : ""}`}
+                          className={`border-b border-border/20 ${r.highlight ? "bg-muted/5" : ""}`}
                         >
                           <td className="py-1.5 font-medium">{r.name}</td>
                           <td className={`py-1.5 text-right font-mono ${r.highlight ? "text-primary" : ""}`}>{r.sharpe}</td>
@@ -808,7 +808,7 @@ export default function RiskParityPage() {
                         color: "text-red-400",
                       },
                     ].map(r => (
-                      <div key={r.regime} className="rounded-lg border border-border/50 p-2.5">
+                      <div key={r.regime} className="rounded-lg border border-border/20 p-2.5">
                         <div className="flex justify-between items-start">
                           <span className="text-xs text-muted-foreground font-medium">{r.regime}</span>
                           <div className="flex gap-3 text-xs text-muted-foreground font-mono text-right">

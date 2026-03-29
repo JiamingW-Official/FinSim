@@ -103,7 +103,7 @@ function TargetAllocationSetup({
   };
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-semibold">Target Allocation</h4>
         <span
@@ -125,7 +125,7 @@ function TargetAllocationSetup({
             <select
               value={row.ticker}
               onChange={(e) => updateTicker(i, e.target.value)}
-              className="h-7 w-20 rounded border border-border/40 bg-background px-1.5 text-[11px] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-7 w-20 rounded border border-border/20 bg-background px-1.5 text-[11px] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {availableForRow(i).map((t) => (
                 <option key={t} value={t}>
@@ -142,7 +142,7 @@ function TargetAllocationSetup({
               step={0.5}
               value={row.weight}
               onChange={(e) => updateWeight(i, e.target.value)}
-              className="h-7 w-20 rounded border border-border/40 bg-background px-2 text-[11px] tabular-nums text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="h-7 w-20 rounded border border-border/20 bg-background px-2 text-[11px] tabular-nums text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             />
             <span className="text-xs text-muted-foreground">%</span>
 
@@ -321,7 +321,7 @@ function DriftBadge({ drift }: { drift: number }) {
 
 function DriftAnalysis({ entries }: { entries: DriftEntry[] }) {
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
       <h4 className="text-xs font-semibold">Drift Analysis</h4>
 
       {entries.length === 0 ? (
@@ -335,7 +335,7 @@ function DriftAnalysis({ entries }: { entries: DriftEntry[] }) {
           <div className="overflow-x-auto">
             <table className="w-full text-[11px]">
               <thead>
-                <tr className="border-b border-border/50 text-muted-foreground">
+                <tr className="border-b border-border/20 text-muted-foreground">
                   <th className="text-left py-1 px-1 font-medium">Asset</th>
                   <th className="text-right py-1 px-1 font-medium">Current</th>
                   <th className="text-right py-1 px-1 font-medium">Target</th>
@@ -345,7 +345,7 @@ function DriftAnalysis({ entries }: { entries: DriftEntry[] }) {
               </thead>
               <tbody>
                 {entries.map((e) => (
-                  <tr key={e.ticker} className="border-b border-border/30">
+                  <tr key={e.ticker} className="border-b border-border/20">
                     <td className="py-1.5 px-1 font-medium flex items-center gap-1.5">
                       <span
                         className="h-2 w-2 rounded-sm shrink-0"
@@ -417,7 +417,7 @@ function RebalancingOrders({
   const actionOrders = orders.filter((o) => o.action !== "Hold");
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-semibold">Rebalancing Orders</h4>
         {actionOrders.length > 0 && (
@@ -454,7 +454,7 @@ function RebalancingOrders({
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-border/50 text-muted-foreground">
+              <tr className="border-b border-border/20 text-muted-foreground">
                 <th className="text-left py-1 px-1 font-medium">Asset</th>
                 <th className="text-right py-1 px-1 font-medium">Current $</th>
                 <th className="text-right py-1 px-1 font-medium">Target $</th>
@@ -465,7 +465,7 @@ function RebalancingOrders({
             </thead>
             <tbody>
               {orders.map((o) => (
-                <tr key={o.ticker} className="border-b border-border/30">
+                <tr key={o.ticker} className="border-b border-border/20">
                   <td className="py-1.5 px-1 font-medium">{o.ticker}</td>
                   <td className="py-1.5 px-1 text-right tabular-nums">{fmt$(o.currentValue)}</td>
                   <td className="py-1.5 px-1 text-right tabular-nums">{fmt$(o.targetValue)}</td>
@@ -551,7 +551,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
   }
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-xs font-semibold">Tax Loss Harvesting Scanner</h4>
         <span className="text-xs text-muted-foreground">22% short-term rate</span>
@@ -560,15 +560,15 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
       {/* Summary chips */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-md bg-muted/40 p-2 space-y-0.5">
-          <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Opportunities</p>
+          <p className="text-[11px] text-muted-foreground">Opportunities</p>
           <p className="text-sm font-semibold tabular-nums">{lossPositions.length}</p>
         </div>
         <div className="rounded-md bg-muted/40 p-2 space-y-0.5">
-          <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Harvestable Losses</p>
+          <p className="text-[11px] text-muted-foreground">Harvestable Losses</p>
           <p className="text-sm font-semibold tabular-nums text-red-400">-{fmt$(totalLosses)}</p>
         </div>
         <div className="rounded-md bg-muted/40 p-2 space-y-0.5">
-          <p className="text-[11px] text-muted-foreground uppercase tracking-wide">Est. Tax Savings</p>
+          <p className="text-[11px] text-muted-foreground">Est. Tax Savings</p>
           <p className="text-sm font-semibold tabular-nums text-emerald-400">{fmt$(totalSavings)}</p>
         </div>
       </div>
@@ -639,7 +639,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
               {/* Loss magnitude bar */}
               <div className="mt-2 h-1 rounded-full bg-muted overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-red-500 transition-all duration-300"
+                  className="h-full rounded-full bg-red-500 transition-colors duration-300"
                   style={{
                     width: `${Math.min(100, (p.unrealizedLoss / (p.costBasis + 1)) * 300)}%`,
                   }}
@@ -712,7 +712,7 @@ const REBALANCE_HISTORY = [
 
 function RebalancingHistory() {
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
       <div className="flex items-center gap-1.5">
         <History className="h-3.5 w-3.5 text-muted-foreground" />
         <h4 className="text-xs font-semibold">Rebalancing History</h4>
@@ -722,7 +722,7 @@ function RebalancingHistory() {
       <div className="overflow-x-auto">
         <table className="w-full text-[11px]">
           <thead>
-            <tr className="border-b border-border/50 text-muted-foreground">
+            <tr className="border-b border-border/20 text-muted-foreground">
               <th className="text-left py-1 px-1 font-medium">Date</th>
               <th className="text-center py-1 px-1 font-medium">Trades</th>
               <th className="text-right py-1 px-1 font-medium">Total Cost</th>
@@ -731,7 +731,7 @@ function RebalancingHistory() {
           </thead>
           <tbody>
             {REBALANCE_HISTORY.map((ev) => (
-              <tr key={ev.id} className="border-b border-border/30">
+              <tr key={ev.id} className="border-b border-border/20">
                 <td className="py-1.5 px-1 text-muted-foreground">{ev.date}</td>
                 <td className="py-1.5 px-1 text-center tabular-nums font-medium">
                   {ev.trades}

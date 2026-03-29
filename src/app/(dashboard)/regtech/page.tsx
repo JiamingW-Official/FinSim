@@ -704,11 +704,11 @@ function ROICalculator() {
       <div className="grid grid-cols-3 gap-3 pt-2 border-t border-border">
         <div className="text-center">
           <p className="text-xs text-muted-foreground">Annual Savings</p>
-          <p className="text-lg font-bold text-green-400">${(savings / 1000).toFixed(0)}k</p>
+          <p className="text-lg font-semibold text-green-400">${(savings / 1000).toFixed(0)}k</p>
         </div>
         <div className="text-center">
           <p className="text-xs text-muted-foreground">Net Benefit</p>
-          <p className={`text-lg font-bold ${netSavings >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+          <p className={`text-lg font-semibold ${netSavings >= 0 ? "text-emerald-400" : "text-red-400"}`}>
             ${(netSavings / 1000).toFixed(0)}k
           </p>
         </div>
@@ -1393,11 +1393,11 @@ export default function RegtechPage() {
         transition={{ duration: 0.4 }}
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-md bg-primary/20 border border-primary/40 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-md bg-muted/10 border border-primary/40 flex items-center justify-center">
             <ShieldCheck className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">RegTech & Compliance Automation</h1>
+            <h1 className="text-2xl font-semibold text-foreground">RegTech & Compliance Automation</h1>
             <p className="text-sm text-muted-foreground">
               AML/KYC automation, regulatory reporting, sanctions screening, and compliance cost reduction
             </p>

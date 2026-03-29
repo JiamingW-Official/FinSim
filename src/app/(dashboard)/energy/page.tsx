@@ -74,7 +74,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose";
 }) {
   const colors: Record<string, string> = {
-    blue: "bg-primary/10 border-border text-primary",
+    blue: "bg-muted/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
@@ -514,7 +514,7 @@ function Tab1() {
                 </div>
                 <span className="w-2.5 h-2.5 rounded-full mt-1" style={{ backgroundColor: ep.color }} />
               </div>
-              <div className="text-2xl font-bold text-foreground mb-2">{ep.name.includes("EU") ? "€" : "$"}{ep.price.toFixed(2)}</div>
+              <div className="text-2xl font-semibold text-foreground mb-2">{ep.name.includes("EU") ? "€" : "$"}{ep.price.toFixed(2)}</div>
               <div className="flex gap-3 text-xs text-muted-foreground">
                 <span className="text-muted-foreground">1M</span>
                 <span className={posNeg(ep.change1m)}>{fmtPct(ep.change1m)}</span>
@@ -597,7 +597,7 @@ function Tab1() {
               </div>
               <div className="flex items-center gap-1.5 shrink-0">
                 {d.priceImpact > 0 ? <TrendingUp className="w-3 h-3 text-emerald-400" /> : <TrendingDown className="w-3 h-3 text-rose-400" />}
-                <span className={cn("text-sm font-bold", posNeg(d.priceImpact))}>{fmtPct(d.priceImpact)}</span>
+                <span className={cn("text-sm font-semibold", posNeg(d.priceImpact))}>{fmtPct(d.priceImpact)}</span>
                 <span className="text-xs text-muted-foreground">price impact</span>
               </div>
             </Card>
@@ -686,7 +686,7 @@ function Tab2() {
                 </div>
                 <div className="flex-1 h-5 bg-muted/60 rounded-md overflow-hidden relative">
                   <div
-                    className="h-full rounded-md transition-all duration-300"
+                    className="h-full rounded-md transition-colors duration-300"
                     style={{
                       width: `${(b.breakeven / 70) * 100}%`,
                       backgroundColor:
@@ -1460,7 +1460,7 @@ function Tab5() {
                 </div>
                 <div className="flex-1 h-5 bg-muted/60 rounded-md overflow-hidden relative">
                   <div
-                    className="h-full rounded-md transition-all"
+                    className="h-full rounded-md transition-colors"
                     style={{
                       width: `${(c.cost / 450) * 100}%`,
                       backgroundColor: c.cost < 60 ? "#34d399" : c.cost < 130 ? "#fbbf24" : "#f87171",

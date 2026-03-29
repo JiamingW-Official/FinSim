@@ -21,7 +21,7 @@ export function ArenaRankBadge({ rank, size = "md", showLabel = true }: ArenaRan
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-lg border font-bold",
+        "inline-flex items-center rounded-lg border font-semibold",
         info.bgColor,
         info.borderColor,
         info.color,

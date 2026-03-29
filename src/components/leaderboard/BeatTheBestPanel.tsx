@@ -141,9 +141,9 @@ export function BeatTheBestPanel({ top3 }: BeatTheBestPanelProps) {
       {/* Header */}
       <div className="flex items-center gap-2">
         <Swords className="h-4 w-4 text-amber-400 shrink-0" />
-        <span className="text-sm font-bold">Beat the Best</span>
+        <span className="text-sm font-semibold">Beat the Best</span>
         {activeChallenges.filter((c) => !c.completed).length > 0 && (
-          <span className="ml-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-1.5 py-0.5 text-[11px] font-bold text-amber-400 tabular-nums">
+          <span className="ml-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-1.5 py-0.5 text-[11px] font-semibold text-amber-400 tabular-nums">
             {activeChallenges.filter((c) => !c.completed).length} active
           </span>
         )}
@@ -177,7 +177,7 @@ export function BeatTheBestPanel({ top3 }: BeatTheBestPanelProps) {
           <button
             type="button"
             onClick={() => setHistoryOpen((v) => !v)}
-            className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors"
           >
             <Trophy className="h-3 w-3" />
             History ({completedChallenges.length})
@@ -216,7 +216,7 @@ export function BeatTheBestPanel({ top3 }: BeatTheBestPanelProps) {
                       <div className="flex-1 min-w-0">
                         <span
                           className={cn(
-                            "text-xs font-bold block",
+                            "text-xs font-semibold block",
                             c.won ? "text-green-400" : "text-red-400",
                           )}
                         >
@@ -266,12 +266,12 @@ function NPCRow({
     <div className="rounded-lg border border-border/60 bg-muted/10">
       {/* NPC info */}
       <div className="flex items-center gap-2 px-3 py-2.5">
-        <span className="text-xs font-bold text-muted-foreground w-5 text-center shrink-0">
+        <span className="text-xs font-semibold text-muted-foreground w-5 text-center shrink-0">
           {placeLabel}
         </span>
         <div
           className={cn(
-            "flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-bold text-primary-foreground",
+            "flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-xs font-semibold text-primary-foreground",
             color,
           )}
         >
@@ -279,7 +279,7 @@ function NPCRow({
         </div>
 
         <div className="flex-1 min-w-0">
-          <span className="text-[11px] font-bold truncate block">{npc.name}</span>
+          <span className="text-[11px] font-semibold truncate block">{npc.name}</span>
           <div className="flex items-center gap-1.5 mt-0.5">
             <span className="text-[11px] text-muted-foreground tabular-nums">
               ELO {npc.elo.toLocaleString()}
@@ -291,7 +291,7 @@ function NPCRow({
             {npc.currentStreak > 0 && (
               <>
                 <span className="text-[11px] text-muted-foreground/40">|</span>
-                <span className="text-[11px] text-amber-400 tabular-nums font-bold">
+                <span className="text-[11px] text-amber-400 tabular-nums font-semibold">
                   {npc.currentStreak}W streak
                 </span>
               </>
@@ -312,7 +312,7 @@ function NPCRow({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="shrink-0 rounded-md bg-primary/10 border border-primary/20 px-2.5 py-1 text-xs font-bold text-primary hover:bg-primary/20 transition-colors"
+              className="shrink-0 rounded-md bg-primary/10 border border-primary/20 px-2.5 py-1 text-xs font-semibold text-primary hover:bg-primary/20 transition-colors"
             >
               Challenge
             </motion.button>
@@ -324,7 +324,7 @@ function NPCRow({
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="shrink-0 rounded-md bg-muted/20 px-2.5 py-1 text-xs font-bold text-muted-foreground hover:bg-muted/30 transition-colors"
+              className="shrink-0 rounded-md bg-muted/20 px-2.5 py-1 text-xs font-semibold text-muted-foreground hover:bg-muted/30 transition-colors"
             >
               Clear
             </motion.button>
@@ -334,7 +334,7 @@ function NPCRow({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="shrink-0 rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-1 text-[11px] font-bold text-amber-400"
+              className="shrink-0 rounded-md bg-amber-500/10 border border-amber-500/20 px-2 py-1 text-[11px] font-semibold text-amber-400"
             >
               Active
             </motion.span>
@@ -350,10 +350,10 @@ function NPCRow({
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.18 }}
-            className="overflow-hidden border-t border-border/40"
+            className="overflow-hidden border-t border-border/20"
           >
             <div className="px-3 py-2 space-y-1">
-              <span className="text-[11px] font-bold text-muted-foreground">
+              <span className="text-[11px] font-semibold text-muted-foreground">
                 Select challenge type
               </span>
               {(["pnl_race", "accuracy", "risk_adjusted"] as ChallengeType[]).map((type) => (
@@ -371,7 +371,7 @@ function NPCRow({
                     className="h-3 w-3 text-muted-foreground group-hover:text-foreground transition-colors shrink-0"
                   />
                   <div className="min-w-0">
-                    <span className="text-xs font-bold block">
+                    <span className="text-xs font-semibold block">
                       {challengeTypeLabel(type)}
                     </span>
                     <span className="text-[11px] text-muted-foreground">
@@ -393,7 +393,7 @@ function NPCRow({
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="overflow-hidden border-t border-border/40"
+            className="overflow-hidden border-t border-border/20"
           >
             <div className="px-3 py-2">
               {challenge.completed ? (
@@ -443,7 +443,7 @@ function ChallengeProgress({ challenge, capital }: { challenge: ActiveChallenge;
       {/* Type label + remaining trades */}
       <div className="flex items-center gap-1.5">
         <TypeIcon type={challenge.type} className="h-3 w-3 text-muted-foreground" />
-        <span className="text-xs font-bold text-muted-foreground">
+        <span className="text-xs font-semibold text-muted-foreground">
           {challengeTypeLabel(challenge.type)}
         </span>
         <span className="ml-auto text-[11px] text-muted-foreground tabular-nums">
@@ -475,13 +475,13 @@ function ChallengeProgress({ challenge, capital }: { challenge: ActiveChallenge;
           ) : (
             <TrendingDown className="h-3 w-3 text-red-400 shrink-0" />
           )}
-          <span className={cn("font-bold", userAhead ? "text-green-400" : "text-red-400")}>
+          <span className={cn("font-semibold", userAhead ? "text-green-400" : "text-red-400")}>
             {userLabel}
           </span>
           <span className="text-muted-foreground/60">|</span>
           <span className="text-muted-foreground">{npcLabel}</span>
           {userAhead && (
-            <span className="ml-auto font-bold text-green-400 text-[11px]">WINNING</span>
+            <span className="ml-auto font-semibold text-green-400 text-[11px]">WINNING</span>
           )}
         </div>
       ) : (
@@ -529,7 +529,7 @@ function ChallengeResult({ challenge, capital: _capital }: { challenge: ActiveCh
       <div className="min-w-0">
         <span
           className={cn(
-            "text-xs font-bold block",
+            "text-xs font-semibold block",
             won ? "text-green-400" : "text-red-400",
           )}
         >

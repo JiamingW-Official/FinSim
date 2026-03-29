@@ -69,11 +69,11 @@ function ImbalanceMeter({ imbalance }: { imbalance: number }) {
       </div>
       <div className="h-1.5 rounded-full bg-muted overflow-hidden flex">
         <div
-          className="h-full bg-emerald-500/70 transition-all duration-300"
+          className="h-full bg-emerald-500/70 transition-colors duration-300"
           style={{ width: `${pct}%` }}
         />
         <div
-          className="h-full bg-red-500/70 transition-all duration-300"
+          className="h-full bg-red-500/70 transition-colors duration-300"
           style={{ width: `${100 - pct}%` }}
         />
       </div>
@@ -102,7 +102,7 @@ function LevelRow({
       {/* Depth background bar (cumulative) */}
       <div
         className={cn(
-          "absolute top-0 h-full transition-all duration-300",
+          "absolute top-0 h-full transition-colors duration-300",
           isBid ? "left-0 bg-emerald-500/5" : "right-0 bg-red-500/5",
         )}
         style={{ width: `${depthBarWidth}%` }}
@@ -110,7 +110,7 @@ function LevelRow({
       {/* Size bar */}
       <div
         className={cn(
-          "absolute top-0 h-full transition-all duration-150",
+          "absolute top-0 h-full transition-colors duration-150",
           isBid ? "left-0 bg-emerald-500/15" : "right-0 bg-red-500/15",
         )}
         style={{ width: `${sizeBarWidth}%` }}
@@ -196,9 +196,9 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
   const bps = spreadBps(book.spread, book.midpoint);
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card overflow-hidden">
+    <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/40">
+      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/20">
         <span className="text-xs font-semibold text-muted-foreground">
           Level 2 Order Book
         </span>
@@ -213,7 +213,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       </div>
 
       {/* Mid price */}
-      <div className="flex items-center justify-center py-1.5 border-b border-border/40 bg-muted/20">
+      <div className="flex items-center justify-center py-1.5 border-b border-border/20 bg-muted/20">
         <span className="text-sm font-semibold font-mono tabular-nums text-foreground">
           {formatPrice(book.midpoint)}
         </span>
@@ -224,7 +224,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       <ImbalanceMeter imbalance={book.imbalance} />
 
       {/* Column headers */}
-      <div className="flex px-1 py-0.5 border-b border-border/50">
+      <div className="flex px-1 py-0.5 border-b border-border/20">
         <div className="flex items-center w-1/2 gap-1 text-[11px] text-muted-foreground/60">
           <span className="w-[52px] text-right">Size</span>
           <span className="w-[36px] text-right">Ord</span>
@@ -240,7 +240,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       {/* Order book levels */}
       <div className="flex">
         {/* Bids column */}
-        <div className="w-1/2 border-r border-border/30">
+        <div className="w-1/2 border-r border-border/20">
           {book.bids.map((level, i) => (
             <LevelRow key={i} level={level} maxSize={maxSize} maxCumulative={maxCumulative} side="bid" />
           ))}
@@ -254,7 +254,7 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       </div>
 
       {/* Footer totals */}
-      <div className="flex items-center justify-between px-2 py-1 border-t border-border/40 text-[11px] font-mono tabular-nums text-muted-foreground">
+      <div className="flex items-center justify-between px-2 py-1 border-t border-border/20 text-[11px] font-mono tabular-nums text-muted-foreground">
         <span>
           Bid Vol: <span className="text-emerald-500">{formatSize(totalBidVol)}</span>
         </span>
@@ -265,8 +265,8 @@ export function OrderBookDisplay({ ticker, currentPrice }: OrderBookDisplayProps
       </div>
 
       {/* Tape section */}
-      <div className="border-t border-border/40">
-        <div className="px-2 py-1 border-b border-border/50">
+      <div className="border-t border-border/20">
+        <div className="px-2 py-1 border-b border-border/20">
           <span className="text-[11px] font-semibold text-muted-foreground">
             Last Trades
           </span>

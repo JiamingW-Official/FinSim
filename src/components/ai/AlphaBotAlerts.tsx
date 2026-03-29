@@ -70,7 +70,7 @@ export function AlphaBotAlerts() {
               <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                 <span className="text-base shrink-0">{isSupport ? "🛡️" : "⚡"}</span>
                 <div className="min-w-0">
-                  <div className="font-bold text-amber-400 leading-tight">
+                  <div className="font-semibold text-amber-400 leading-tight">
                     {isSupport ? "Support Zone" : "Resistance Zone"}
                   </div>
                   <div className="text-muted-foreground leading-tight mt-0.5">{msg}</div>
@@ -108,7 +108,7 @@ export function AlphaBotAlerts() {
             >
               <span className="text-base shrink-0">{emoji}</span>
               <div className="min-w-0">
-                <div className={`font-bold ${dirColor} leading-tight`}>{pattern.name}</div>
+                <div className={`font-semibold ${dirColor} leading-tight`}>{pattern.name}</div>
                 <div className="text-muted-foreground leading-tight mt-0.5">
                   {pattern.description.length > 70
                     ? pattern.description.slice(0, 70) + "…"
@@ -166,7 +166,7 @@ export function AlphaBotAlerts() {
                 <span className="text-base shrink-0">{isProfit ? "🎯" : "⚠️"}</span>
                 <div className="min-w-0">
                   <div
-                    className={`font-bold ${isProfit ? "text-emerald-400" : "text-red-400"} leading-tight`}
+                    className={`font-semibold ${isProfit ? "text-emerald-400" : "text-red-400"} leading-tight`}
                   >
                     {isProfit ? "Profit Milestone" : "Drawdown Alert"}
                   </div>
@@ -235,7 +235,7 @@ export function AlphaBotAlerts() {
             >
               <span className="text-base shrink-0">{isBull ? "🔥" : "❄️"}</span>
               <div className="min-w-0">
-                <div className={`font-bold ${textColor} leading-tight`}>Setup Forming</div>
+                <div className={`font-semibold ${textColor} leading-tight`}>Setup Forming</div>
                 <div className="text-muted-foreground leading-tight mt-0.5">
                   {dominantCount} {dominantDir} signals aligning — high-probability {isBull ? "long" : "short"} setup developing
                 </div>
@@ -277,7 +277,7 @@ export function AlphaBotAlerts() {
             >
               <span className="text-base shrink-0">📊</span>
               <div className="min-w-0">
-                <div className={`font-bold ${textColor} leading-tight`}>Volume Surge</div>
+                <div className={`font-semibold ${textColor} leading-tight`}>Volume Surge</div>
                 <div className="text-muted-foreground leading-tight mt-0.5">
                   {ratio.toFixed(1)}× avg volume — {isBullCandle ? "strong buying" : "heavy selling"} pressure. Breakout or breakdown likely
                 </div>

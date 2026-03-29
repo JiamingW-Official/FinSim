@@ -47,7 +47,7 @@ function BankrollBar({
       <div className="h-2 w-full overflow-hidden rounded-full bg-muted/40">
         <div
           className={cn(
-            "h-full rounded-full transition-all duration-300",
+            "h-full rounded-full transition-colors duration-300",
             danger ? "bg-red-500/60" : color === "text-green-400" ? "bg-green-500/60" : color === "text-primary" ? "bg-primary/60" : "bg-amber-500/60",
           )}
           style={{ width: `${Math.min(pct, 100)}%` }}

@@ -47,19 +47,19 @@ export function LessonNode({
       transition={{ delay, type: "spring", stiffness: 200, damping: 20 }}
       whileHover={isUnlocked ? { y: -2, transition: { duration: 0.15 } } : undefined}
       className={cn(
-        "group relative flex items-center gap-3 rounded-md border-2 p-3 text-left transition-all w-full max-w-[280px]",
+        "group relative flex items-center gap-3 rounded-md border-2 p-3 text-left transition-colors w-full max-w-[280px]",
         isCompleted
           ? "border-[var(--unit-color)]/30 bg-[var(--unit-color)]/5"
           : isUnlocked
             ? "border-border hover:border-[var(--unit-color)]/50 hover:bg-muted/20 cursor-pointer"
-            : "border-border/30 opacity-50 cursor-not-allowed",
+            : "border-border/20 opacity-50 cursor-not-allowed",
       )}
       style={{ "--unit-color": unitColor } as React.CSSProperties}
     >
       {/* Circle */}
       <div
         className={cn(
-          "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 transition-all",
+          "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
           isCompleted
             ? "border-[var(--unit-color)] bg-[var(--unit-color)]/20"
             : isUnlocked
@@ -129,7 +129,7 @@ export function LessonNode({
 
       {/* XP badge */}
       {isUnlocked && !isCompleted && (
-        <span className="text-xs font-bold text-muted-foreground">
+        <span className="text-xs font-semibold text-muted-foreground">
           +{lesson.xpReward} XP
         </span>
       )}

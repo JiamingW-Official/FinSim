@@ -891,9 +891,9 @@ function DailyPnLChart({ days }: { days: DailyPnL[] }) {
 
 function LabMetric({ label, value, positive, sub }: { label: string; value: string; positive?: boolean; sub?: string }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-md border border-border/50 bg-card/60 px-3 py-2 min-w-[100px]">
-      <span className="text-[11px] text-muted-foreground uppercase tracking-wide">{label}</span>
-      <span className={cn("text-sm font-bold tabular-nums",
+    <div className="flex flex-col gap-0.5 rounded-md border border-border/20 bg-card/60 px-3 py-2 min-w-[100px]">
+      <span className="text-[11px] text-muted-foreground">{label}</span>
+      <span className={cn("text-sm font-semibold tabular-nums",
         positive === true ? "text-green-400" : positive === false ? "text-red-400" : "text-foreground")}>
         {value}
       </span>
@@ -919,7 +919,7 @@ function ConditionRow({
 }) {
   const meta = options.find(o => o.type === condition.type) ?? options[0];
   return (
-    <div className="flex items-center gap-2 rounded-md border border-border/50 bg-card/60 px-3 py-2">
+    <div className="flex items-center gap-2 rounded-md border border-border/20 bg-card/60 px-3 py-2">
       <select
         value={condition.type}
         onChange={e => {
@@ -1229,7 +1229,7 @@ export default function StrategyLab() {
   return (
     <div className="space-y-0">
       {/* Sub-tab bar */}
-      <div className="flex gap-0 border-b border-border/50 bg-black/10 overflow-x-auto shrink-0">
+      <div className="flex gap-0 border-b border-border/20 bg-black/10 overflow-x-auto shrink-0">
         {LAB_SECTIONS.map(s => (
           <button key={s.id} onClick={() => setSection(s.id)}
             className={cn(
@@ -1261,7 +1261,7 @@ export default function StrategyLab() {
             <div className="flex flex-wrap gap-2">
               {PRESETS.map(p => (
                 <button key={p.id} onClick={() => handleLoadPreset(p)}
-                  className="rounded-full border border-border/40 bg-card px-3 py-1 text-xs text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
+                  className="rounded-full border border-border/20 bg-card px-3 py-1 text-xs text-muted-foreground hover:border-primary/50 hover:text-primary transition-colors"
                   title={p.description}
                 >
                   {p.name}
@@ -1277,7 +1277,7 @@ export default function StrategyLab() {
               <input
                 value={strategy.name}
                 onChange={e => setStrategy(s => ({ ...s, name: e.target.value }))}
-                className="w-full max-w-xs rounded-md border border-border/40 bg-card px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
+                className="w-full max-w-xs rounded-md border border-border/20 bg-card px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
               />
             </div>
             <Button
@@ -1293,9 +1293,9 @@ export default function StrategyLab() {
           {/* Main builder grid */}
           <div className="grid grid-cols-3 gap-4">
             {/* Entry conditions */}
-            <Card className="border-border/50 bg-card/50 p-4 space-y-3">
+            <Card className="border-border/20 bg-card/50 p-4 space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-foreground uppercase tracking-wide">Entry Rules</h3>
+                <h3 className="text-xs font-semibold text-foreground">Entry Rules</h3>
                 <Badge className="text-[11px] bg-muted text-muted-foreground">up to 3</Badge>
               </div>
               <div className="space-y-2">
@@ -1320,9 +1320,9 @@ export default function StrategyLab() {
             </Card>
 
             {/* Exit conditions */}
-            <Card className="border-border/50 bg-card/50 p-4 space-y-3">
+            <Card className="border-border/20 bg-card/50 p-4 space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-bold text-foreground uppercase tracking-wide">Exit Rules</h3>
+                <h3 className="text-xs font-semibold text-foreground">Exit Rules</h3>
                 <Badge className="text-[11px] bg-muted text-muted-foreground">up to 2</Badge>
               </div>
               <div className="space-y-2">
@@ -1347,8 +1347,8 @@ export default function StrategyLab() {
             </Card>
 
             {/* Position sizing + risk */}
-            <Card className="border-border/50 bg-card/50 p-4 space-y-4">
-              <h3 className="text-xs font-bold text-foreground uppercase tracking-wide">Sizing & Risk</h3>
+            <Card className="border-border/20 bg-card/50 p-4 space-y-4">
+              <h3 className="text-xs font-semibold text-foreground">Sizing & Risk</h3>
               <div className="space-y-2">
                 {([
                   { v: "fixed_dollar", label: "Fixed $ Amount" },
@@ -1374,12 +1374,12 @@ export default function StrategyLab() {
                     type="number"
                     value={strategy.sizingValue}
                     onChange={e => setStrategy(s => ({ ...s, sizingValue: parseFloat(e.target.value) || 0 }))}
-                    className="w-full rounded-md border border-border/40 bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
+                    className="w-full rounded-md border border-border/20 bg-muted px-3 py-1.5 text-sm text-foreground outline-none focus:ring-1 focus:ring-violet-500"
                   />
                 </div>
               )}
-              <div className="space-y-2 pt-1 border-t border-border/50">
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Risk Rules</p>
+              <div className="space-y-2 pt-1 border-t border-border/20">
+                <p className="text-xs font-semibold text-muted-foreground">Risk Rules</p>
                 {[
                   { key: "maxPositionPct", label: "Max position size (%)", min: 1, max: 100 },
                   { key: "maxPortfolioRiskPct", label: "Max portfolio risk (%)", min: 0.1, max: 10 },
@@ -1393,7 +1393,7 @@ export default function StrategyLab() {
                       onChange={e => setStrategy(s => ({
                         ...s, riskRules: { ...s.riskRules, [key]: parseFloat(e.target.value) || 0 },
                       }))}
-                      className="w-full rounded border border-border/40 bg-muted px-2 py-1 text-xs text-foreground outline-none focus:ring-1 focus:ring-violet-500"
+                      className="w-full rounded border border-border/20 bg-muted px-2 py-1 text-xs text-foreground outline-none focus:ring-1 focus:ring-violet-500"
                     />
                   </div>
                 ))}
@@ -1402,8 +1402,8 @@ export default function StrategyLab() {
           </div>
 
           {/* Strategy description */}
-          <Card className="border-border/50 bg-card/50 p-4">
-            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">Strategy Logic</p>
+          <Card className="border-border/20 bg-card/50 p-4">
+            <p className="text-xs font-semibold text-muted-foreground mb-1.5">Strategy Logic</p>
             <p className="text-sm text-foreground leading-relaxed">{description}</p>
           </Card>
         </div>
@@ -1447,9 +1447,9 @@ export default function StrategyLab() {
               </div>
 
               {/* Equity curve */}
-              <Card className="border-border/50 bg-card/50 p-4">
+              <Card className="border-border/20 bg-card/50 p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wide">Equity Curve</h3>
+                  <h3 className="text-xs font-semibold text-muted-foreground">Equity Curve</h3>
                   <div className="flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 bg-primary" /> Strategy</span>
                     <span className="flex items-center gap-1.5"><span className="inline-block h-0.5 w-4 bg-muted" style={{ borderTop: "1px dashed" }} /> B&H</span>
@@ -1460,14 +1460,14 @@ export default function StrategyLab() {
               </Card>
 
               {/* Trade log */}
-              <Card className="border-border/50 bg-card/50 p-4">
-                <h3 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">
+              <Card className="border-border/20 bg-card/50 p-4">
+                <h3 className="mb-3 text-xs font-semibold text-muted-foreground">
                   Trade Log ({result.trades.length} trades, showing first 20)
                 </h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-border/50 text-left text-muted-foreground">
+                      <tr className="border-b border-border/20 text-left text-muted-foreground">
                         <th className="pb-2 pr-3 font-medium">#</th>
                         <th className="pb-2 pr-3 font-medium">Entry Bar</th>
                         <th className="pb-2 pr-3 font-medium">Entry $</th>
@@ -1509,13 +1509,13 @@ export default function StrategyLab() {
       {section === "optimization" && (
         <div className="p-6 space-y-6">
           {/* Controls */}
-          <Card className="border-border/50 bg-card/50 p-4 space-y-4">
-            <h3 className="text-xs font-bold text-foreground uppercase tracking-wide">Parameter Sweep (5×5 = 25 combinations)</h3>
+          <Card className="border-border/20 bg-card/50 p-4 space-y-4">
+            <h3 className="text-xs font-semibold text-foreground">Parameter Sweep (5×5 = 25 combinations)</h3>
             <div className="grid grid-cols-3 gap-4 items-end">
               <div>
                 <label className="mb-1 block text-xs text-muted-foreground">Parameter A (rows)</label>
                 <select value={optParamA} onChange={e => setOptParamA(e.target.value as typeof optParamA)}
-                  className="w-full rounded-md border border-border/40 bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
+                  className="w-full rounded-md border border-border/20 bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
                   <option value="rsi_period">RSI Threshold (10–30)</option>
                   <option value="volume_mult">Volume Multiplier (1.2–3.0)</option>
                   <option value="profit_target">Profit Target % (4–12)</option>
@@ -1524,7 +1524,7 @@ export default function StrategyLab() {
               <div>
                 <label className="mb-1 block text-xs text-muted-foreground">Parameter B (columns)</label>
                 <select value={optParamB} onChange={e => setOptParamB(e.target.value as typeof optParamB)}
-                  className="w-full rounded-md border border-border/40 bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
+                  className="w-full rounded-md border border-border/20 bg-muted px-3 py-1.5 text-xs text-muted-foreground outline-none">
                   <option value="stop_loss">Stop Loss % (2–6)</option>
                   <option value="time_exit">Time Exit Bars (10–40)</option>
                   <option value="ma_period">MA Period (20–200)</option>
@@ -1563,7 +1563,7 @@ export default function StrategyLab() {
             <div className="flex items-start gap-2">
               <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-xs font-bold text-amber-300">Overfitting Warning</h4>
+                <h4 className="text-xs font-semibold text-amber-300">Overfitting Warning</h4>
                 <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
                   Best in-sample parameters may not generalize to live trading. The more parameters you optimize,
                   the higher the overfitting risk. Always validate on out-of-sample data before allocating capital.
@@ -1574,15 +1574,15 @@ export default function StrategyLab() {
           </Card>
 
           {/* Walk-forward 70/30 */}
-          <Card className="border-border/50 bg-card/50 p-4 space-y-4">
-            <h3 className="text-xs font-bold text-foreground uppercase tracking-wide">Walk-Forward Analysis — 70% Train / 30% Out-of-Sample</h3>
+          <Card className="border-border/20 bg-card/50 p-4 space-y-4">
+            <h3 className="text-xs font-semibold text-foreground">Walk-Forward Analysis — 70% Train / 30% Out-of-Sample</h3>
             <div className="grid grid-cols-2 gap-4">
               {[
                 { label: "In-Sample (700 bars)", r: wfInSample },
                 { label: "Out-of-Sample (300 bars)", r: wfOutSample },
               ].map(({ label, r }) => (
-                <div key={label} className="rounded-md border border-border/50 bg-card/60 p-3 space-y-1.5">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{label}</p>
+                <div key={label} className="rounded-md border border-border/20 bg-card/60 p-3 space-y-1.5">
+                  <p className="text-xs font-semibold text-muted-foreground">{label}</p>
                   {[
                     { l: "Return", v: `${(r.totalReturn * 100).toFixed(1)}%`, pos: r.totalReturn >= 0 },
                     { l: "CAGR", v: `${(r.cagr * 100).toFixed(1)}%`, pos: r.cagr >= 0 },
@@ -1614,7 +1614,7 @@ export default function StrategyLab() {
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-bold text-foreground">Monte Carlo Analysis</h3>
+              <h3 className="text-sm font-semibold text-foreground">Monte Carlo Analysis</h3>
               <p className="text-xs text-muted-foreground mt-0.5">500 simulations by shuffling trade returns. Requires backtest results.</p>
             </div>
             <Button
@@ -1628,14 +1628,14 @@ export default function StrategyLab() {
           </div>
 
           {!result && (
-            <Card className="border-border/50 bg-card/40 p-8 text-center">
+            <Card className="border-border/20 bg-card/40 p-8 text-center">
               <p className="text-muted-foreground text-sm">Run a backtest first to enable Monte Carlo analysis.</p>
               <Button variant="outline" className="mt-4 text-xs" onClick={() => setSection("builder")}>Go to Builder</Button>
             </Card>
           )}
 
           {result && !mcSimulations && !isRunningMC && (
-            <Card className="border-border/50 bg-card/40 p-8 text-center">
+            <Card className="border-border/20 bg-card/40 p-8 text-center">
               <p className="text-muted-foreground text-sm">Click "Run 500 Simulations" to generate Monte Carlo analysis.</p>
             </Card>
           )}
@@ -1643,30 +1643,30 @@ export default function StrategyLab() {
           {mcSimulations && mcFinalValues && mcRisk && (
             <>
               {/* Fan chart */}
-              <Card className="border-border/50 bg-card/50 p-4">
-                <h3 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">Equity Fan Chart — 500 Paths</h3>
+              <Card className="border-border/20 bg-card/50 p-4">
+                <h3 className="mb-3 text-xs font-semibold text-muted-foreground">Equity Fan Chart — 500 Paths</h3>
                 <MonteCarloFan simulations={mcSimulations} buyAndHold={result?.buyAndHold ?? 0} />
               </Card>
 
               {/* Risk metrics */}
               <div className="grid grid-cols-3 gap-4">
-                <Card className="border-border/50 bg-card/50 p-4 text-center space-y-1">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wide">Prob. of Positive Returns</p>
-                  <p className={cn("text-2xl font-bold tabular-nums", mcRisk.pctPositive >= 0.5 ? "text-green-400" : "text-red-400")}>
+                <Card className="border-border/20 bg-card/50 p-4 text-center space-y-1">
+                  <p className="text-xs text-muted-foreground">Prob. of Positive Returns</p>
+                  <p className={cn("text-2xl font-semibold tabular-nums", mcRisk.pctPositive >= 0.5 ? "text-green-400" : "text-red-400")}>
                     {(mcRisk.pctPositive * 100).toFixed(1)}%
                   </p>
                   <p className="text-xs text-muted-foreground/70">of 500 paths end profitable</p>
                 </Card>
-                <Card className="border-border/50 bg-card/50 p-4 text-center space-y-1">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wide">Worst-Case P5 (5th pct)</p>
-                  <p className={cn("text-2xl font-bold tabular-nums", mcRisk.worstP5 >= 10000 ? "text-green-400" : "text-red-400")}>
+                <Card className="border-border/20 bg-card/50 p-4 text-center space-y-1">
+                  <p className="text-xs text-muted-foreground">Worst-Case P5 (5th pct)</p>
+                  <p className={cn("text-2xl font-semibold tabular-nums", mcRisk.worstP5 >= 10000 ? "text-green-400" : "text-red-400")}>
                     ${mcRisk.worstP5.toFixed(0)}
                   </p>
                   <p className="text-xs text-muted-foreground/70">on $10,000 start</p>
                 </Card>
-                <Card className="border-border/50 bg-card/50 p-4 text-center space-y-1">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wide">Prob. of 20%+ Drawdown</p>
-                  <p className={cn("text-2xl font-bold tabular-nums", mcRisk.pct20dd <= 0.2 ? "text-green-400" : "text-red-400")}>
+                <Card className="border-border/20 bg-card/50 p-4 text-center space-y-1">
+                  <p className="text-xs text-muted-foreground">Prob. of 20%+ Drawdown</p>
+                  <p className={cn("text-2xl font-semibold tabular-nums", mcRisk.pct20dd <= 0.2 ? "text-green-400" : "text-red-400")}>
                     {(mcRisk.pct20dd * 100).toFixed(1)}%
                   </p>
                   <p className="text-xs text-muted-foreground/70">equity falls below $8,000</p>
@@ -1674,8 +1674,8 @@ export default function StrategyLab() {
               </div>
 
               {/* Final value histogram */}
-              <Card className="border-border/50 bg-card/50 p-4">
-                <h3 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">Distribution of Final Portfolio Values</h3>
+              <Card className="border-border/20 bg-card/50 p-4">
+                <h3 className="mb-3 text-xs font-semibold text-muted-foreground">Distribution of Final Portfolio Values</h3>
                 <OutcomeHistogram finalValues={mcFinalValues} />
                 <div className="flex gap-4 mt-2 text-xs">
                   {[
@@ -1700,7 +1700,7 @@ export default function StrategyLab() {
         <div className="p-6 space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-bold text-foreground">Live Paper Trading</h3>
+              <h3 className="text-sm font-semibold text-foreground">Live Paper Trading</h3>
               <p className="text-xs text-muted-foreground mt-0.5">Synthetic signals refresh every 5 seconds. Not real data.</p>
             </div>
             <Badge className="bg-green-500/15 text-green-400 text-xs flex items-center gap-1.5">
@@ -1710,12 +1710,12 @@ export default function StrategyLab() {
           </div>
 
           {/* Current signals table */}
-          <Card className="border-border/50 bg-card/50 p-4">
-            <h3 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">Recent Signals (last 20)</h3>
+          <Card className="border-border/20 bg-card/50 p-4">
+            <h3 className="mb-3 text-xs font-semibold text-muted-foreground">Recent Signals (last 20)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
                 <thead>
-                  <tr className="border-b border-border/50 text-left text-muted-foreground">
+                  <tr className="border-b border-border/20 text-left text-muted-foreground">
                     <th className="pb-2 pr-4 font-medium">Ticker</th>
                     <th className="pb-2 pr-4 font-medium">Signal</th>
                     <th className="pb-2 pr-4 font-medium">Condition</th>
@@ -1727,7 +1727,7 @@ export default function StrategyLab() {
                   {liveSignals.map((sig, i) => (
                     <tr key={sig.id} className="border-b border-border/20 hover:bg-muted/30">
                       <td className="py-1.5 pr-4">
-                        <span className="font-bold text-foreground">{sig.ticker}</span>
+                        <span className="font-semibold text-foreground">{sig.ticker}</span>
                       </td>
                       <td className="py-1.5 pr-4">
                         <Badge className="text-[11px] bg-primary/15 text-primary">{sig.signalType}</Badge>
@@ -1745,21 +1745,21 @@ export default function StrategyLab() {
           {/* P&L attribution */}
           {attribution && (
             <div className="grid grid-cols-3 gap-4">
-              <Card className="border-border/50 bg-card/50 p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Strategy P&L (20d)</p>
-                <p className={cn("text-2xl font-bold tabular-nums", attribution.strategyTotal >= 0 ? "text-green-400" : "text-red-400")}>
+              <Card className="border-border/20 bg-card/50 p-4 text-center">
+                <p className="text-xs text-muted-foreground mb-1">Strategy P&L (20d)</p>
+                <p className={cn("text-2xl font-semibold tabular-nums", attribution.strategyTotal >= 0 ? "text-green-400" : "text-red-400")}>
                   {attribution.strategyTotal >= 0 ? "+" : ""}{(attribution.strategyTotal * 100).toFixed(2)}%
                 </p>
               </Card>
-              <Card className="border-border/50 bg-card/50 p-4 text-center">
-                <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">SPY Benchmark (20d)</p>
-                <p className={cn("text-2xl font-bold tabular-nums", attribution.benchmarkTotal >= 0 ? "text-muted-foreground" : "text-red-400")}>
+              <Card className="border-border/20 bg-card/50 p-4 text-center">
+                <p className="text-xs text-muted-foreground mb-1">SPY Benchmark (20d)</p>
+                <p className={cn("text-2xl font-semibold tabular-nums", attribution.benchmarkTotal >= 0 ? "text-muted-foreground" : "text-red-400")}>
                   {attribution.benchmarkTotal >= 0 ? "+" : ""}{(attribution.benchmarkTotal * 100).toFixed(2)}%
                 </p>
               </Card>
               <Card className={cn("p-4 text-center", attribution.alpha >= 0 ? "border-green-500/20 bg-green-500/5" : "border-red-500/20 bg-red-500/5")}>
-                <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Alpha (vs SPY)</p>
-                <p className={cn("text-2xl font-bold tabular-nums", attribution.alpha >= 0 ? "text-green-400" : "text-red-400")}>
+                <p className="text-xs text-muted-foreground mb-1">Alpha (vs SPY)</p>
+                <p className={cn("text-2xl font-semibold tabular-nums", attribution.alpha >= 0 ? "text-green-400" : "text-red-400")}>
                   {attribution.alpha >= 0 ? "+" : ""}{(attribution.alpha * 100).toFixed(2)}%
                 </p>
               </Card>
@@ -1768,8 +1768,8 @@ export default function StrategyLab() {
 
           {/* Daily P&L bar chart */}
           {dailyPnL.length > 0 && (
-            <Card className="border-border/50 bg-card/50 p-4">
-              <h3 className="mb-3 text-xs font-bold text-muted-foreground uppercase tracking-wide">Daily P&L — Last 20 Days (Strategy vs SPY)</h3>
+            <Card className="border-border/20 bg-card/50 p-4">
+              <h3 className="mb-3 text-xs font-semibold text-muted-foreground">Daily P&L — Last 20 Days (Strategy vs SPY)</h3>
               <DailyPnLChart days={dailyPnL} />
             </Card>
           )}

@@ -426,7 +426,7 @@ function StatCard({ label, value, change, sub, icon, color = "text-indigo-400" }
             </Badge>
           )}
         </div>
-        <p className="text-2xl font-bold text-foreground mt-2">{value}</p>
+        <p className="text-2xl font-semibold text-foreground mt-2">{value}</p>
         <p className="text-xs text-muted-foreground mt-1">{label}</p>
         {sub && <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>}
       </CardContent>

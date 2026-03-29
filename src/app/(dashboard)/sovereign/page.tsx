@@ -432,7 +432,7 @@ function StatCard({
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
-            <p className="text-lg font-bold text-foreground">{value}</p>
+            <p className="text-lg font-semibold text-foreground">{value}</p>
             <p className="text-xs text-muted-foreground">{sub}</p>
           </div>
         </CardContent>
@@ -555,7 +555,7 @@ function SWFOverviewTab() {
             </thead>
             <tbody>
               {SWF_DATA.map((fund) => (
-                <tr key={fund.rank} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={fund.rank} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2 px-2 text-muted-foreground">{fund.rank}</td>
                   <td className="py-2 px-2">
                     <div className="flex items-center gap-1.5">
@@ -734,7 +734,7 @@ function AssetAllocationTab() {
           </CardHeader>
           <CardContent className="space-y-4">
             {mandateComparison.map((m) => (
-              <div key={m.type} className="p-3 bg-muted/50 rounded-lg border border-border/50">
+              <div key={m.type} className="p-3 bg-muted/50 rounded-lg border border-border/20">
                 <div className="flex items-start justify-between mb-2">
                   <p className="text-sm font-medium text-foreground">{m.type}</p>
                   <Badge variant="outline" className="text-xs border-border text-muted-foreground">{m.examples}</Badge>
@@ -990,7 +990,7 @@ function EndowmentModelTab() {
             </thead>
             <tbody>
               {ENDOWMENT_PROFILES.map((ep, i) => (
-                <tr key={ep.institution} className={`border-b border-border/50 hover:bg-muted/30 transition-colors ${i === ENDOWMENT_PROFILES.length - 1 ? "text-muted-foreground" : ""}`}>
+                <tr key={ep.institution} className={`border-b border-border/20 hover:bg-muted/30 transition-colors ${i === ENDOWMENT_PROFILES.length - 1 ? "text-muted-foreground" : ""}`}>
                   <td className="py-2 px-2 font-medium text-foreground">{ep.institution}</td>
                   <td className="py-2 px-2 text-foreground">${ep.aum.toFixed(1)}B</td>
                   <td className="py-2 px-2 text-indigo-300">{ep.equities}%</td>
@@ -1002,7 +1002,7 @@ function EndowmentModelTab() {
                   </td>
                   <td className="py-2 px-2 text-muted-foreground">{ep.spendingRate}%</td>
                   <td className="py-2 px-2">
-                    <span className={`font-bold ${ep.tenYearReturn >= 10 ? "text-emerald-400" : ep.tenYearReturn >= 9 ? "text-emerald-300" : "text-muted-foreground"}`}>
+                    <span className={`font-semibold ${ep.tenYearReturn >= 10 ? "text-emerald-400" : ep.tenYearReturn >= 9 ? "text-emerald-300" : "text-muted-foreground"}`}>
                       {ep.tenYearReturn}%
                     </span>
                   </td>
@@ -1317,7 +1317,7 @@ function FactorInvestingTab() {
               {FACTOR_DATA.map((f) => (
                 <tr
                   key={f.factor}
-                  className="border-b border-border/50 hover:bg-muted/30 transition-colors cursor-pointer"
+                  className="border-b border-border/20 hover:bg-muted/30 transition-colors cursor-pointer"
                   onClick={() => setSelectedFactor(f.factor === selectedFactor ? null : f.factor)}
                 >
                   <td className="py-2 px-2 font-medium text-foreground">{f.factor}</td>
@@ -1379,7 +1379,7 @@ function FactorInvestingTab() {
               {
                 title: "Crowding",
                 desc: "When a factor is widely known, competition arbitrages away 20–40% of the premium over a decade.",
-                color: "bg-primary/10 border-border",
+                color: "bg-muted/10 border-border",
                 icon: Globe,
                 iconColor: "text-primary",
               },
@@ -1412,7 +1412,7 @@ export default function SovereignPage() {
               <Globe className="w-5 h-5 text-foreground" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Sovereign Wealth &amp; Institutional Investing</h1>
+              <h1 className="text-xl font-semibold text-foreground">Sovereign Wealth &amp; Institutional Investing</h1>
               <p className="text-sm text-muted-foreground">How the world's largest pools of capital allocate, govern, and grow</p>
             </div>
           </div>

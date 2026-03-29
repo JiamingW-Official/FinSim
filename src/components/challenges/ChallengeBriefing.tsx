@@ -66,7 +66,7 @@ function difficultyDisplay(difficulty: string | number) {
   };
   return (
     <span className={cn(
-      "rounded-full border px-3 py-1 text-xs font-bold",
+      "rounded-full border px-3 py-1 text-xs font-semibold",
       colors[difficulty as keyof typeof colors] ?? "bg-muted text-muted-foreground border-border",
     )}>
       {difficulty}
@@ -96,7 +96,7 @@ export function ChallengeBriefing({
 
       {/* Title */}
       <motion.h1
-        className="text-2xl font-bold text-center"
+        className="text-2xl font-semibold text-center"
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.15 }}
@@ -113,7 +113,7 @@ export function ChallengeBriefing({
       >
         {difficultyDisplay(difficulty)}
         <motion.span
-          className="flex items-center gap-1 rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-[11px] font-bold text-primary"
+          className="flex items-center gap-1 rounded-full bg-primary/10 border border-primary/20 px-3 py-1 text-[11px] font-semibold text-primary"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.4, type: "spring", stiffness: 400, damping: 15 }}
@@ -125,12 +125,12 @@ export function ChallengeBriefing({
 
       {/* Description — narrative box */}
       <motion.div
-        className="w-full rounded-md border border-border/50 bg-card/50 p-4"
+        className="w-full rounded-md border border-border/20 bg-card/50 p-4"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
       >
-        <p className="text-xs font-bold text-muted-foreground mb-2">
+        <p className="text-xs font-semibold text-muted-foreground mb-2">
           Mission Briefing
         </p>
         <p className="text-sm text-foreground/90 leading-relaxed">
@@ -140,12 +140,12 @@ export function ChallengeBriefing({
 
       {/* Objectives — checklist style */}
       <motion.div
-        className="w-full rounded-md border border-border/50 bg-card p-4"
+        className="w-full rounded-md border border-border/20 bg-card p-4"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.45 }}
       >
-        <p className="text-xs font-bold text-muted-foreground mb-3">
+        <p className="text-xs font-semibold text-muted-foreground mb-3">
           Objectives
         </p>
         <div className="flex flex-col gap-2.5">
@@ -186,7 +186,7 @@ export function ChallengeBriefing({
         transition={{ delay: 0.6 }}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
-        className="relative w-full max-w-xs rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+        className="relative w-full max-w-xs rounded-md bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:brightness-110"
       >
         {/* Pulse ring */}
         <motion.span

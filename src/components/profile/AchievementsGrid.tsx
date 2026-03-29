@@ -53,7 +53,7 @@ function AchievementCard({
         "relative rounded-lg border p-3 space-y-2 transition-colors",
         unlocked
           ? "border-border bg-card"
-          : "border-border/40 bg-card/30 opacity-60",
+          : "border-border/20 bg-card/30 opacity-60",
       )}
     >
       {/* Lock overlay */}
@@ -80,7 +80,7 @@ function AchievementCard({
 
       {/* Text */}
       <div className="space-y-0.5">
-        <p className={cn("text-[11px] font-bold leading-tight", !unlocked && "text-muted-foreground")}>
+        <p className={cn("text-[11px] font-semibold leading-tight", !unlocked && "text-muted-foreground")}>
           {name}
         </p>
         <p className="text-[11px] leading-snug text-muted-foreground line-clamp-2">
@@ -92,7 +92,7 @@ function AchievementCard({
       {xpReward && (
         <div className="flex items-center gap-1">
           <Zap className="h-2.5 w-2.5 text-amber-400/70" />
-          <span className="text-[11px] font-bold text-amber-400/70">
+          <span className="text-[11px] font-semibold text-amber-400/70">
             {xpReward} XP
           </span>
         </div>
@@ -103,7 +103,7 @@ function AchievementCard({
         <div className="space-y-0.5">
           <div className="h-1 w-full rounded-full bg-muted/40 overflow-hidden">
             <div
-              className="h-full rounded-full bg-primary/40 transition-all"
+              className="h-full rounded-full bg-primary/40 transition-colors"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -163,10 +163,10 @@ export function AchievementsGrid() {
       <div className="flex items-center justify-between rounded-lg border border-border bg-card/50 px-3 py-2">
         <div className="flex items-center gap-2">
           <Trophy className="h-4 w-4 text-amber-400" />
-          <span className="text-xs font-bold">Achievements</span>
+          <span className="text-xs font-semibold">Achievements</span>
         </div>
         <span className="text-xs text-muted-foreground">
-          <span className="font-bold text-foreground">{unlockedCount}</span>
+          <span className="font-semibold text-foreground">{unlockedCount}</span>
           {" / "}
           {totalCount} unlocked
         </span>
@@ -176,7 +176,7 @@ export function AchievementsGrid() {
       <div className="space-y-1.5">
         <div className="h-2 w-full rounded-full bg-muted/30 overflow-hidden">
           <div
-            className="h-full rounded-full bg-primary/60 transition-all"
+            className="h-full rounded-full bg-primary/60 transition-colors"
             style={{ width: `${(unlockedCount / totalCount) * 100}%` }}
           />
         </div>
@@ -192,7 +192,7 @@ export function AchievementsGrid() {
         return (
           <div key={cat} className="space-y-2">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-bold text-muted-foreground">
+              <p className="text-xs font-semibold text-muted-foreground">
                 {CATEGORY_LABELS[cat] ?? cat}
               </p>
               <span className="text-xs text-muted-foreground">

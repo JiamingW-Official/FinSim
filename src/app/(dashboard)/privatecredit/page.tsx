@@ -59,7 +59,7 @@ function StatCard({
   return (
     <div className="rounded-md border border-border bg-muted/30 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
-      <p className={cn("text-xl font-bold", valClass)}>{value}</p>
+      <p className={cn("text-xl font-semibold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
     </div>
   );
@@ -259,7 +259,7 @@ function DirectLendingTab() {
             </thead>
             <tbody>
               {bdcVsPrivate.map((row, i) => (
-                <tr key={row.attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
+                <tr key={row.attr} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{row.attr}</td>
                   <td className="py-2 pr-4 text-muted-foreground">{row.bdc}</td>
                   <td className="py-2 text-muted-foreground">{row.pvt}</td>
@@ -284,7 +284,7 @@ function DirectLendingTab() {
             </thead>
             <tbody>
               {unitranche.map((row, i) => (
-                <tr key={row.attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
+                <tr key={row.attr} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{row.attr}</td>
                   <td className="py-2 pr-4 text-amber-300">{row.uni}</td>
                   <td className="py-2 text-muted-foreground">{row.fl}</td>
@@ -300,7 +300,7 @@ function DirectLendingTab() {
         <SectionHeading title="Lender-Friendly Terms & Protections" sub="Common provisions in private credit documentation" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {lenderTerms.map((item) => (
-            <div key={item.term} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
+            <div key={item.term} className="rounded-lg border border-border/20 bg-foreground/[0.03] p-3">
               <InfoPill text={item.term} color={item.color} />
               <p className="text-xs text-muted-foreground mt-2">{item.desc}</p>
             </div>
@@ -422,7 +422,7 @@ function MezzanineTab() {
                 className="flex-1 rounded-md border border-border bg-muted/30 p-4 self-start"
               >
                 <p className="text-xs text-muted-foreground mb-1">Selected Layer</p>
-                <p className="text-base font-bold" style={{ color: capitalLayers[selected].color }}>
+                <p className="text-base font-semibold" style={{ color: capitalLayers[selected].color }}>
                   {capitalLayers[selected].label}
                 </p>
                 <p className="text-sm text-muted-foreground mt-2">
@@ -491,7 +491,7 @@ function MezzanineTab() {
         <SectionHeading title="Special Situations Categories" sub="8 sub-strategies with typical return outcomes" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {specialSit.map((s) => (
-            <div key={s.category} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
+            <div key={s.category} className="rounded-lg border border-border/20 bg-foreground/[0.03] p-3">
               <div className="flex items-start justify-between gap-2">
                 <p className="text-xs font-semibold text-foreground">{s.category}</p>
                 <div className="flex gap-1.5 shrink-0">
@@ -582,7 +582,7 @@ function DistressedTab() {
         <SectionHeading title="Stressed vs. Distressed vs. Default" sub="Market pricing thresholds" />
         <div className="grid grid-cols-3 gap-4">
           {definitions.map((d) => (
-            <div key={d.term} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3 text-center">
+            <div key={d.term} className="rounded-lg border border-border/20 bg-foreground/[0.03] p-3 text-center">
               <InfoPill text={d.term} color={d.color} />
               <p className="text-sm font-medium text-foreground mt-2">{d.price}</p>
               <p className="text-xs text-muted-foreground">{d.spread}</p>
@@ -627,7 +627,7 @@ function DistressedTab() {
             { label: "Pricing", value: "SOFR + 300–500 bps", desc: "Plus upfront fee 1–3%, commitment fee 50–75 bps", color: "blue" },
             { label: "Control Rights", value: "Milestones & covenants", desc: "DIP lender sets restructuring timeline and process milestones", color: "violet" },
           ].map((item) => (
-            <div key={item.label} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-4">
+            <div key={item.label} className="rounded-lg border border-border/20 bg-foreground/[0.03] p-4">
               <InfoPill text={item.label} color={item.color} />
               <p className="text-sm font-medium text-foreground mt-2">{item.value}</p>
               <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
@@ -641,7 +641,7 @@ function DistressedTab() {
         <SectionHeading title="Opportunistic Credit Strategies" sub="Fallen angels, rating migrations, secondary purchases, and more" />
         <div className="space-y-3">
           {opCredit.map((s) => (
-            <div key={s.type} className="flex items-start gap-3 rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
+            <div key={s.type} className="flex items-start gap-3 rounded-lg border border-border/20 bg-foreground/[0.03] p-3">
               <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
               <div className="flex-1">
                 <div className="flex items-center gap-2">
@@ -832,7 +832,7 @@ function MarketDynamicsTab() {
         <SectionHeading title="Key Risks in Private Credit" sub="Concentration, illiquidity, valuation opacity, and documentation creep" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {risks.map((risk) => (
-            <div key={risk.risk} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
+            <div key={risk.risk} className="rounded-lg border border-border/20 bg-foreground/[0.03] p-3">
               <div className="flex items-start gap-2">
                 <AlertTriangle className={cn("w-3.5 h-3.5 mt-0.5 shrink-0", risk.color === "rose" ? "text-rose-400" : risk.color === "amber" ? "text-amber-400" : "text-primary")} />
                 <div>
@@ -907,7 +907,7 @@ export default function PrivateCreditPage() {
       {/* Header */}
       <div className="border-b border-border border-l-4 border-l-primary bg-card/60 backdrop-blur px-6 py-6">
         <div className="max-w-6xl mx-auto flex items-start gap-4">
-          <div className="rounded-md bg-primary/20 p-2.5 border border-border">
+          <div className="rounded-md bg-muted/10 p-2.5 border border-border">
             <Briefcase className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>

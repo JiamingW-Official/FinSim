@@ -46,7 +46,7 @@ function Section({
         className="flex w-full items-center justify-between px-3 py-2 text-left hover:bg-muted/30 transition-colors"
       >
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-bold text-foreground">
+          <span className="text-[11px] font-semibold text-foreground">
             {title}
           </span>
           {badge}
@@ -67,7 +67,7 @@ function Section({
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="border-t border-border/40 p-3">{children}</div>
+            <div className="border-t border-border/20 p-3">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -79,7 +79,7 @@ function Badge({ color, children }: { color: string; children: React.ReactNode }
   return (
     <span
       className={cn(
-        "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide",
+        "rounded px-1.5 py-0.5 text-[11px] font-semibold",
         color,
       )}
     >
@@ -725,7 +725,7 @@ function PivotPointsSection({
           const dist = ((val - currentPrice) / currentPrice) * 100;
           return (
             <div key={key} className="flex items-center justify-between py-0.5 col-span-1">
-              <span className="text-[11px] font-bold" style={{ color: levelColors[key] }}>
+              <span className="text-[11px] font-semibold" style={{ color: levelColors[key] }}>
                 {key}
               </span>
               <span className="text-[11px] tabular-nums text-muted-foreground">
@@ -879,7 +879,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
       </div>
 
       {/* A/D Line */}
-      <p className="mb-0.5 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
+      <p className="mb-0.5 text-[11px] font-semibold text-muted-foreground">
         A/D Line (20 periods)
       </p>
       <svg viewBox={`0 0 ${svgW} ${adH}`} className="w-full" style={{ maxHeight: 64 }}>
@@ -891,7 +891,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
       </svg>
 
       {/* McClellan Oscillator */}
-      <p className="mb-0.5 mt-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
+      <p className="mb-0.5 mt-2 text-[11px] font-semibold text-muted-foreground">
         McClellan Oscillator
       </p>
       <svg viewBox={`0 0 ${svgW} ${mcoH}`} className="w-full" style={{ maxHeight: 54 }}>
@@ -1100,7 +1100,7 @@ function ElliottWaveSection({
       </svg>
 
       {/* Fibonacci relationships */}
-      <p className="mt-2 mb-1 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
+      <p className="mt-2 mb-1 text-[11px] font-semibold text-muted-foreground">
         Fibonacci Relationships
       </p>
       <div className="grid grid-cols-2 gap-x-3">
@@ -1116,7 +1116,7 @@ function ElliottWaveSection({
       </div>
 
       {/* Wave tooltips */}
-      <p className="mt-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-1">
+      <p className="mt-2 text-[11px] font-semibold text-muted-foreground mb-1">
         Wave Descriptions
       </p>
       <div className="grid grid-cols-1 gap-0.5">
@@ -1124,7 +1124,7 @@ function ElliottWaveSection({
           <div key={pt.label} className="flex items-start gap-1.5">
             <span
               className={cn(
-                "mt-0.5 shrink-0 rounded px-1 py-0 text-[11px] font-bold",
+                "mt-0.5 shrink-0 rounded px-1 py-0 text-[11px] font-semibold",
                 ["a", "b", "c"].includes(pt.label)
                   ? "bg-red-500/15 text-red-400"
                   : "bg-primary/15 text-primary",
@@ -1396,11 +1396,11 @@ function WyckoffSection({
       <div className="mb-3 flex items-center justify-between">
         <div>
           <p className="text-xs text-muted-foreground">Detected Phase</p>
-          <p className={cn("text-[13px] font-bold", phaseColor[phase])}>{phase}</p>
+          <p className={cn("text-[13px] font-semibold", phaseColor[phase])}>{phase}</p>
         </div>
         <div className="text-right">
           <p className="text-xs text-muted-foreground">Confidence</p>
-          <p className={cn("text-[13px] font-bold tabular-nums", confColor)}>
+          <p className={cn("text-[13px] font-semibold tabular-nums", confColor)}>
             {confidence.toFixed(0)}%
           </p>
         </div>
@@ -1426,7 +1426,7 @@ function WyckoffSection({
       <p className="mt-2 text-[11px] leading-relaxed text-muted-foreground">{phaseDesc}</p>
 
       {/* Detected events */}
-      <p className="mt-2 mb-1 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+      <p className="mt-2 mb-1 text-[11px] font-semibold text-muted-foreground">
         Detected Events
       </p>
       <div className="grid grid-cols-1 gap-1">
@@ -1442,7 +1442,7 @@ function WyckoffSection({
             >
               <span
                 className={cn(
-                  "mt-0.5 shrink-0 rounded px-1 py-0 text-[11px] font-bold tabular-nums",
+                  "mt-0.5 shrink-0 rounded px-1 py-0 text-[11px] font-semibold tabular-nums",
                   isDetected
                     ? evt.bullish
                       ? "bg-emerald-500/20 text-emerald-400"
@@ -1483,7 +1483,7 @@ export default function AdvancedChartTools({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-sm font-bold text-foreground">Advanced Chart Tools</h2>
+          <h2 className="text-sm font-semibold text-foreground">Advanced Chart Tools</h2>
           <p className="text-xs text-muted-foreground">
             Professional analysis for{" "}
             <span className="font-semibold text-primary">{ticker}</span> ·{" "}

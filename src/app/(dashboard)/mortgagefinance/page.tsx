@@ -527,11 +527,11 @@ export default function MortgageFinancePage() {
         className="flex flex-col gap-1"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+          <div className="p-2 rounded-lg bg-muted/10 border border-border">
             <Home className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Mortgage &amp; Real Estate Finance</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Mortgage &amp; Real Estate Finance</h1>
             <p className="text-sm text-muted-foreground">
               MBS structure, prepayment risk, home affordability &amp; buy vs. rent analysis
             </p>
@@ -555,7 +555,7 @@ export default function MortgageFinancePage() {
                   <span className="text-xs text-muted-foreground">{m.label}</span>
                   <Icon className={cn("w-4 h-4", m.color)} />
                 </div>
-                <div className="text-xl font-bold">{m.value}</div>
+                <div className="text-xl font-semibold">{m.value}</div>
                 <div className={cn("text-xs mt-1 flex items-center gap-1", m.up ? "text-emerald-400" : "text-rose-400")}>
                   {m.up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
                   {m.change}
@@ -705,7 +705,7 @@ export default function MortgageFinancePage() {
 
                   {/* Results */}
                   <div className="border-t border-border pt-3 grid grid-cols-2 gap-2">
-                    <div className="bg-primary/10 border border-border rounded p-2">
+                    <div className="bg-muted/10 border border-border rounded p-2">
                       <div className="text-xs text-primary font-medium mb-1">Buy</div>
                       <div className="text-xs text-muted-foreground">Monthly all-in</div>
                       <div className="font-medium text-sm">{fmtUSD(bvr.totalMonthlyBuy)}</div>
@@ -723,7 +723,7 @@ export default function MortgageFinancePage() {
 
                   <div className={cn(
                     "rounded p-2 text-center text-sm font-medium",
-                    bvr.npvDiff > 0 ? "bg-primary/10 text-primary" : "bg-emerald-500/5 text-emerald-300"
+                    bvr.npvDiff > 0 ? "bg-muted/10 text-primary" : "bg-emerald-500/5 text-emerald-300"
                   )}>
                     {bvr.npvDiff > 0
                       ? `Buying favored by ${fmtK(Math.abs(bvr.npvDiff))} NPV over ${horizonYears}yr`
@@ -807,7 +807,7 @@ export default function MortgageFinancePage() {
                       </thead>
                       <tbody>
                         {MBS_TRANCHES.map((t) => (
-                          <tr key={t.id} className="border-b border-border/40 hover:bg-muted/20">
+                          <tr key={t.id} className="border-b border-border/20 hover:bg-muted/20">
                             <td className="py-1.5 font-medium">{t.id}</td>
                             <td className="py-1.5 text-center">
                               <Badge
@@ -1080,7 +1080,7 @@ export default function MortgageFinancePage() {
                     </ul>
                   </div>
                 </div>
-                <div className="mt-3 bg-primary/10 border border-border rounded p-3 text-xs text-muted-foreground">
+                <div className="mt-3 bg-muted/10 border border-border rounded p-3 text-xs text-muted-foreground">
                   <span className="font-medium text-primary">OAS Hedging: </span>
                   MBS portfolio managers use interest-rate swaps, swaptions, and Treasury futures to hedge duration and convexity. The OAS measures the spread remaining after hedging away the embedded prepayment option.
                 </div>

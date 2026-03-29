@@ -399,7 +399,7 @@ function MajorPairsTab() {
                       animate="visible"
                       onClick={() => setSelectedPair(pair.symbol)}
                       className={cn(
-                        "border-b border-border/50 cursor-pointer transition-colors",
+                        "border-b border-border/20 cursor-pointer transition-colors",
                         isSelected ? "bg-muted" : "hover:bg-muted/60"
                       )}
                     >
@@ -630,7 +630,7 @@ function CarryTradeTab() {
                       variants={fadeUp}
                       initial="hidden"
                       animate="visible"
-                      className="border-b border-border/50 hover:bg-muted/40"
+                      className="border-b border-border/20 hover:bg-muted/40"
                     >
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
@@ -650,7 +650,7 @@ function CarryTradeTab() {
                       <td className={cn("px-4 py-3 text-right font-mono", pair.spotReturn >= 0 ? "text-emerald-400" : "text-rose-400")}>
                         {pair.spotReturn >= 0 ? "+" : ""}{pair.spotReturn.toFixed(2)}%
                       </td>
-                      <td className={cn("px-4 py-3 text-right font-mono font-bold", totalPos ? "text-emerald-400" : "text-rose-400")}>
+                      <td className={cn("px-4 py-3 text-right font-mono font-semibold", totalPos ? "text-emerald-400" : "text-rose-400")}>
                         {totalPos ? "+" : ""}{pair.totalReturn.toFixed(2)}%
                       </td>
                     </motion.tr>
@@ -1061,7 +1061,7 @@ function MacroDriversTab() {
                       variants={fadeUp}
                       initial="hidden"
                       animate="visible"
-                      className="border-b border-border/50"
+                      className="border-b border-border/20"
                     >
                       <td className="py-2 font-medium text-foreground">{d.pair}</td>
                       <td className="py-2 text-right font-mono text-muted-foreground">{d.currentSpot.toFixed(4)}</td>
@@ -1527,7 +1527,7 @@ export default function ForexPage() {
         className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
       >
         <div>
-          <h1 className="text-lg font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-lg font-semibold text-foreground flex items-center gap-2">
             <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
             Foreign Exchange
           </h1>
@@ -1558,7 +1558,7 @@ export default function ForexPage() {
         ].map((chip) => (
           <div
             key={chip.label}
-            className="flex items-center gap-1.5 bg-muted/70 border border-border/50 rounded-full px-3 py-1 text-xs text-muted-foreground"
+            className="flex items-center gap-1.5 bg-muted/70 border border-border/20 rounded-full px-3 py-1 text-xs text-muted-foreground"
           >
             <span className={chip.color}>{chip.icon}</span>
             <span className="text-muted-foreground">{chip.label}</span>

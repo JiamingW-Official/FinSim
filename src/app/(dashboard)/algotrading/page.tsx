@@ -148,7 +148,7 @@ const ORDER_TYPES: OrderType[] = [
     name: "Market Order",
     abbr: "MKT",
     color: "text-primary",
-    bg: "bg-primary/10 border-primary/20",
+    bg: "bg-muted/10 border-primary/20",
     description: "Execute immediately at the best available price.",
     whenToUse: "Liquidity is high and speed matters more than price precision.",
     risk: "Medium",
@@ -483,7 +483,7 @@ export default function AlgoTradingPage() {
         "Strong risk-adjusted returns; Sharpe 1.5–3. Capacity-constrained and crowded.",
       concern: "Crowding risk — many players use similar signals, leading to simultaneous unwinds.",
       tag: "Mean-Reversion",
-      tagColor: "bg-primary/15 text-primary border-primary/20",
+      tagColor: "bg-muted/10 text-primary border-primary/20",
     },
     {
       name: "Momentum Ignition",
@@ -748,7 +748,7 @@ export default function AlgoTradingPage() {
                     <Card className="bg-muted/60 border-border">
                       <CardContent className="p-3">
                         <div className="text-xs text-muted-foreground mb-1">Estimated Market Impact</div>
-                        <div className="text-2xl font-bold text-amber-400 tabular-nums">{impactBps.toFixed(1)} bps</div>
+                        <div className="text-2xl font-semibold text-amber-400 tabular-nums">{impactBps.toFixed(1)} bps</div>
                         <div className="text-xs text-muted-foreground mt-0.5">
                           ≈ ${(impactBps / 10000 * 100).toFixed(3)} per $100 notional
                         </div>

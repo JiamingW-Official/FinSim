@@ -76,12 +76,12 @@ function DeviationBar({ deviation }: { deviation: number }) {
         <div className="absolute left-1/2 top-0 w-px h-full bg-muted-foreground/30" />
         {isOver ? (
           <div
-            className="absolute h-full bg-red-500 rounded-r-full transition-all duration-300"
+            className="absolute h-full bg-red-500 rounded-r-full transition-colors duration-300"
             style={{ left: "50%", width: `${pct}%` }}
           />
         ) : (
           <div
-            className="absolute h-full bg-emerald-500 rounded-l-full transition-all duration-300"
+            className="absolute h-full bg-emerald-500 rounded-l-full transition-colors duration-300"
             style={{ right: "50%", width: `${pct}%` }}
           />
         )}

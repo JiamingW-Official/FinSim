@@ -33,7 +33,7 @@ function RankMedal({ rank }: { rank: number }) {
   if (rank === 2) return <span className="text-base">🥈</span>;
   if (rank === 3) return <span className="text-base">🥉</span>;
   return (
-    <span className="text-xs font-bold tabular-nums text-muted-foreground">
+    <span className="text-xs font-semibold tabular-nums text-muted-foreground">
       {rank}
     </span>
   );
@@ -64,7 +64,7 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
       {/* Avatar */}
       <div
         className={cn(
-          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-bold text-primary-foreground",
+          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-semibold text-primary-foreground",
           entry.isUser ? "bg-primary" : colorClass,
         )}
       >
@@ -74,11 +74,11 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
       {/* Name + meta */}
       <div className="flex flex-1 flex-col min-w-0">
         <div className="flex items-center gap-1.5">
-          <span className={cn("text-sm font-bold truncate", entry.isUser && "text-primary")}>
+          <span className={cn("text-sm font-semibold truncate", entry.isUser && "text-primary")}>
             {entry.name}
           </span>
           {entry.isUser && (
-            <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[11px] font-bold text-primary">
+            <span className="shrink-0 rounded-full bg-primary/15 px-1.5 py-0.5 text-[11px] font-semibold text-primary">
               You
             </span>
           )}
@@ -95,7 +95,7 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
       <div className="shrink-0 text-right">
         <span
           className={cn(
-            "text-sm font-bold tabular-nums",
+            "text-sm font-semibold tabular-nums",
             dimConfig.id === "total_pnl"
               ? value >= 0 ? "text-emerald-400" : "text-red-400"
               : dimConfig.id === "risk_control"

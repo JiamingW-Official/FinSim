@@ -158,7 +158,7 @@ function SectionHeader({
       onClick={onToggle}
       className="flex w-full items-center justify-between px-3 py-2 hover:bg-muted/40 transition-colors"
     >
-      <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+      <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
         <Icon className="h-3.5 w-3.5" />
         {title}
       </span>
@@ -264,7 +264,7 @@ function AccountBar({
           style={{ width: `${equityPct}%` }}
         >
           {equityPct > 10 && (
-            <span className="text-[11px] font-bold text-foreground/90 px-1 truncate">
+            <span className="text-[11px] font-semibold text-foreground/90 px-1 truncate">
               Equity
             </span>
           )}
@@ -583,15 +583,15 @@ export function MarginDashboard() {
   );
 
   return (
-    <div className="rounded-md border border-border/40 bg-card overflow-hidden">
+    <div className="rounded-md border border-border/20 bg-card overflow-hidden">
       {/* ── Dashboard Header ── */}
       <div
         className={cn(
-          "flex items-center justify-between px-3 py-2 border-b border-border/40",
+          "flex items-center justify-between px-3 py-2 border-b border-border/20",
           isMarginCall ? "bg-loss/10" : "bg-muted/10",
         )}
       >
-        <span className="flex items-center gap-1.5 text-xs font-bold tracking-wide text-foreground">
+        <span className="flex items-center gap-1.5 text-xs font-semibold tracking-wide text-foreground">
           <BarChart2 className="h-4 w-4 text-primary" />
           Margin Dashboard
         </span>
@@ -600,7 +600,7 @@ export function MarginDashboard() {
             <motion.span
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-foreground"
+              className="rounded bg-loss px-1.5 py-0.5 text-[11px] font-semibold text-foreground"
             >
               MARGIN CALL
             </motion.span>
@@ -619,7 +619,7 @@ export function MarginDashboard() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 1: Account Overview
           ═══════════════════════════════════════════════════════ */}
-      <div className="border-b border-border/30">
+      <div className="border-b border-border/20">
         <SectionHeader
           icon={Shield}
           title="Account Overview"
@@ -738,7 +738,7 @@ export function MarginDashboard() {
                   <button
                     type="button"
                     onClick={accrueMarginInterest}
-                    className="w-full rounded border border-border/40 py-1 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                    className="w-full rounded border border-border/20 py-1 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                   >
                     Simulate 1-Day Interest Accrual (
                     {formatCurrency(dailyInterest)})
@@ -753,7 +753,7 @@ export function MarginDashboard() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 2: Short Selling Panel
           ═══════════════════════════════════════════════════════ */}
-      <div className="border-b border-border/30">
+      <div className="border-b border-border/20">
         <SectionHeader
           icon={TrendingDown}
           title="Short Selling Panel"
@@ -792,10 +792,10 @@ export function MarginDashboard() {
                       return (
                         <div
                           key={`short-${p.ticker}`}
-                          className="rounded-md border border-border/30 bg-muted/20 p-2 space-y-2"
+                          className="rounded-md border border-border/20 bg-muted/20 p-2 space-y-2"
                         >
                           <div className="flex items-center justify-between">
-                            <span className="font-bold text-xs text-short">
+                            <span className="font-semibold text-xs text-short">
                               {p.ticker}
                             </span>
                             <RiskMeter score={squeezeScore} />
@@ -901,7 +901,7 @@ export function MarginDashboard() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-xs border-collapse">
                       <thead>
-                        <tr className="border-b border-border/30">
+                        <tr className="border-b border-border/20">
                           <th className="text-left py-0.5 text-muted-foreground font-normal">
                             Ticker
                           </th>
@@ -1000,7 +1000,7 @@ export function MarginDashboard() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 3: Leverage Analytics
           ═══════════════════════════════════════════════════════ */}
-      <div className="border-b border-border/30">
+      <div className="border-b border-border/20">
         <SectionHeader
           icon={Activity}
           title="Leverage Analytics"
@@ -1026,7 +1026,7 @@ export function MarginDashboard() {
                     </span>
                     <span
                       className={cn(
-                        "tabular-nums font-bold",
+                        "tabular-nums font-semibold",
                         currentLeverage >= 4
                           ? "text-loss"
                           : currentLeverage >= 2.5
@@ -1082,7 +1082,7 @@ export function MarginDashboard() {
                 </div>
 
                 {/* Kelly Criterion */}
-                <div className="rounded-md bg-muted/30 border border-border/30 p-2 space-y-1.5">
+                <div className="rounded-md bg-muted/30 border border-border/20 p-2 space-y-1.5">
                   <div className="text-xs font-semibold text-muted-foreground">
                     Kelly Criterion — Optimal Leverage
                   </div>
@@ -1137,7 +1137,7 @@ export function MarginDashboard() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 4: Margin Call Simulator
           ═══════════════════════════════════════════════════════ */}
-      <div className="border-b border-border/30">
+      <div className="border-b border-border/20">
         <SectionHeader
           icon={Zap}
           title="Margin Call Simulator"
@@ -1163,7 +1163,7 @@ export function MarginDashboard() {
                     </span>
                     <span
                       className={cn(
-                        "tabular-nums font-bold",
+                        "tabular-nums font-semibold",
                         shockPct < -20
                           ? "text-loss"
                           : shockPct < -10
@@ -1197,7 +1197,7 @@ export function MarginDashboard() {
                     </span>
                     <span
                       className={cn(
-                        "tabular-nums font-bold",
+                        "tabular-nums font-semibold",
                         correctedShockedEquity < maintenanceReq &&
                           maintenanceReq > 0
                           ? "text-loss"
@@ -1246,7 +1246,7 @@ export function MarginDashboard() {
                   <div className="rounded-md bg-loss/10 border border-loss/30 px-2 py-2 text-xs text-loss">
                     <AlertTriangle className="inline h-3 w-3 mr-1" />
                     Margin call triggers at approximately{" "}
-                    <span className="font-bold">
+                    <span className="font-semibold">
                       {marginCallDrop.toFixed(1)}%
                     </span>{" "}
                     market decline with current positions.
@@ -1299,13 +1299,13 @@ export function MarginDashboard() {
                     {SHOCK_SCENARIOS.map((s) => (
                       <div
                         key={s.year}
-                        className="rounded-md border border-border/30 bg-muted/20 p-2 text-xs"
+                        className="rounded-md border border-border/20 bg-muted/20 p-2 text-xs"
                       >
                         <div className="flex items-center justify-between mb-0.5">
                           <span className="font-semibold text-foreground">
                             {s.label} ({s.year})
                           </span>
-                          <span className="text-loss font-bold">
+                          <span className="text-loss font-semibold">
                             -{s.maxDrop}%
                           </span>
                         </div>
@@ -1375,7 +1375,7 @@ export function MarginDashboard() {
                         key={item.step}
                         className="flex gap-2 rounded bg-muted/30 px-2 py-1.5"
                       >
-                        <span className="font-bold text-short shrink-0 w-12">
+                        <span className="font-semibold text-short shrink-0 w-12">
                           {item.step}
                         </span>
                         <span className="text-muted-foreground leading-snug">
@@ -1446,7 +1446,7 @@ export function MarginDashboard() {
                     Burry paid ~$100M in annual premiums for 2 years while
                     markets continued rising and investors demanded he unwind.
                     When the housing market collapsed in 2007–2008, his fund
-                    returned <span className="text-profit font-bold">489%</span> — a
+                    returned <span className="text-profit font-semibold">489%</span> — a
                     $700M profit on a $1B fund.
                   </p>
                   <div className="flex gap-2 text-[11px]">
@@ -1460,7 +1460,7 @@ export function MarginDashboard() {
                 </div>
 
                 {/* Locate requirements */}
-                <div className="rounded-md bg-muted/30 border border-border/30 p-2 space-y-1">
+                <div className="rounded-md bg-muted/30 border border-border/20 p-2 space-y-1">
                   <div className="font-semibold text-foreground">
                     Locate Requirements & Hard-to-Borrow
                   </div>

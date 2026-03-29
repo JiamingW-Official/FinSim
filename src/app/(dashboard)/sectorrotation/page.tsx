@@ -417,7 +417,7 @@ function BusinessCycleClock() {
     <div className="space-y-4">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-primary/10">
+        <div className="p-2 rounded-lg bg-muted/10">
           <Clock className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
@@ -431,7 +431,7 @@ function BusinessCycleClock() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {/* SVG Clock */}
-        <Card className="bg-card border-border/50">
+        <Card className="bg-card border-border/20">
           <CardContent className="pt-4 flex items-center justify-center">
             <svg viewBox="0 0 400 400" className="w-full max-w-sm" style={{ maxHeight: 340 }}>
               {/* Background ring */}
@@ -527,7 +527,7 @@ function BusinessCycleClock() {
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <Card className="bg-card border-border/50" style={{ borderLeftColor: activeData.color, borderLeftWidth: 3 }}>
+              <Card className="bg-card border-border/20" style={{ borderLeftColor: activeData.color, borderLeftWidth: 3 }}>
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm font-semibold" style={{ color: activeData.color }}>
                     {activePhase} Phase
@@ -549,7 +549,7 @@ function BusinessCycleClock() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card border-border/50">
+              <Card className="bg-card border-border/20">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-xs font-semibold text-muted-foreground">Best Sectors This Phase</CardTitle>
                 </CardHeader>
@@ -570,7 +570,7 @@ function BusinessCycleClock() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-card border-border/50">
+              <Card className="bg-card border-border/20">
                 <CardContent className="px-4 py-3">
                   <p className="text-xs text-muted-foreground">
                     <span className="font-medium text-foreground">Transition signal: </span>
@@ -593,7 +593,7 @@ function BusinessCycleClock() {
             key={p.phase}
             onClick={() => setActivePhase(p.phase)}
             className={cn(
-              "rounded-lg border p-3 text-left transition-all",
+              "rounded-lg border p-3 text-left transition-colors",
               activePhase === p.phase
                 ? "border-opacity-70 bg-opacity-10"
                 : "border-border bg-card hover:border-muted-foreground",
@@ -607,7 +607,7 @@ function BusinessCycleClock() {
               <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
               <span className="text-xs font-medium text-foreground">{p.phase}</span>
               {p.phase === CURRENT_PHASE && (
-                <span className="ml-auto text-xs font-bold" style={{ color: p.color }}>NOW</span>
+                <span className="ml-auto text-xs font-semibold" style={{ color: p.color }}>NOW</span>
               )}
             </div>
             <p className="text-xs text-muted-foreground leading-snug">{p.description.split(",")[0]}</p>
@@ -663,7 +663,7 @@ function SectorPerformance() {
       </div>
 
       {/* Heatmap SVG */}
-      <Card className="bg-card border-border/50 overflow-hidden">
+      <Card className="bg-card border-border/20 overflow-hidden">
         <CardContent className="pt-4 pb-4 overflow-x-auto">
           <svg
             viewBox={`0 0 ${svgW} ${svgH}`}
@@ -763,7 +763,7 @@ function SectorPerformance() {
       </div>
 
       {/* Performance table */}
-      <Card className="bg-card border-border/50">
+      <Card className="bg-card border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">Phase Return Summary Table</CardTitle>
         </CardHeader>
@@ -771,7 +771,7 @@ function SectorPerformance() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-muted-foreground">
               <thead>
-                <tr className="border-b border-border/50">
+                <tr className="border-b border-border/20">
                   <th className="px-4 py-2 text-left text-muted-foreground font-medium">Sector</th>
                   <th className="px-3 py-2 text-center text-green-400 font-medium">Recovery</th>
                   <th className="px-3 py-2 text-center text-primary font-medium">Expansion</th>
@@ -865,7 +865,7 @@ function RotationSignals() {
             <motion.div key={sig.id} layout>
               <Card
                 className={cn(
-                  "bg-card border-border/50 cursor-pointer transition-all hover:border-muted-foreground",
+                  "bg-card border-border/20 cursor-pointer transition-colors hover:border-muted-foreground",
                   isOpen && "border-muted-foreground",
                 )}
                 onClick={() => setExpanded(isOpen ? null : sig.id)}
@@ -894,7 +894,7 @@ function RotationSignals() {
                         transition={{ duration: 0.2 }}
                         className="overflow-hidden"
                       >
-                        <div className="pt-2 border-t border-border/50 mt-1">
+                        <div className="pt-2 border-t border-border/20 mt-1">
                           <div className="flex items-start gap-2 text-xs text-muted-foreground">
                             <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-primary" />
                             <p>{sig.detail}</p>
@@ -915,7 +915,7 @@ function RotationSignals() {
       </div>
 
       {/* Cycle positioning recommendation */}
-      <Card className="bg-card border-border/50">
+      <Card className="bg-card border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">Current Cycle Positioning</CardTitle>
         </CardHeader>
@@ -991,7 +991,7 @@ function FactorRotation() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3">
-        <div className="p-2 rounded-lg bg-primary/10">
+        <div className="p-2 rounded-lg bg-muted/10">
           <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
         </div>
         <div>
@@ -1001,7 +1001,7 @@ function FactorRotation() {
       </div>
 
       {/* Factor cycle chart */}
-      <Card className="bg-card border-border/50">
+      <Card className="bg-card border-border/20">
         <CardHeader className="pb-1 pt-4 px-4">
           <CardTitle className="text-sm">Factor Return by Cycle Phase (avg annualized %)</CardTitle>
         </CardHeader>
@@ -1101,7 +1101,7 @@ function FactorRotation() {
             <Card
               key={factor.name}
               className={cn(
-                "bg-card border-border/50 transition-all",
+                "bg-card border-border/20 transition-colors",
                 isCurrent && "ring-1",
               )}
               style={(isCurrent ? { ringColor: factor.color, borderColor: factor.color } : {}) as React.CSSProperties}
@@ -1190,7 +1190,7 @@ function ETFImplementation() {
             key={ph}
             onClick={() => setSelectedPhase(ph)}
             className={cn(
-              "px-3 py-1 rounded text-xs text-muted-foreground font-medium border transition-all",
+              "px-3 py-1 rounded text-xs text-muted-foreground font-medium border transition-colors",
               selectedPhase === ph
                 ? "text-foreground"
                 : "border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground bg-transparent",
@@ -1208,7 +1208,7 @@ function ETFImplementation() {
       </div>
 
       {/* Allocation chart */}
-      <Card className="bg-card border-border/50">
+      <Card className="bg-card border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">
             Tactical Allocation — <span style={{ color: phaseColors[selectedPhase] }}>{selectedPhase} Phase</span>
@@ -1261,7 +1261,7 @@ function ETFImplementation() {
       </Card>
 
       {/* ETF details table */}
-      <Card className="bg-card border-border/50">
+      <Card className="bg-card border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm">SPDR Sector ETF Reference</CardTitle>
         </CardHeader>
@@ -1269,7 +1269,7 @@ function ETFImplementation() {
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-muted-foreground">
               <thead>
-                <tr className="border-b border-border/50 bg-muted/50">
+                <tr className="border-b border-border/20 bg-muted/50">
                   <th className="px-4 py-2 text-left text-muted-foreground font-medium">ETF</th>
                   <th className="px-3 py-2 text-left text-muted-foreground font-medium">Sector</th>
                   <th className="px-3 py-2 text-center text-muted-foreground font-medium">Exp. Ratio</th>
@@ -1378,12 +1378,12 @@ function ETFImplementation() {
             ],
           },
         ].map(({ icon, color, title, points }) => (
-          <Card key={title} className="bg-card border-border/50">
+          <Card key={title} className="bg-card border-border/20">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm flex items-center gap-2">
                 <span className={cn(
                   "p-1.5 rounded",
-                  color === "blue" && "bg-primary/10 text-primary",
+                  color === "blue" && "bg-muted/10 text-primary",
                   color === "yellow" && "bg-yellow-500/10 text-yellow-400",
                   color === "green" && "bg-green-500/10 text-green-400",
                 )}>
@@ -1417,7 +1417,7 @@ export default function SectorRotationPage() {
       {/* Page header */}
       <div className="flex items-start justify-between gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
         <div>
-          <h1 className="text-xl font-bold text-foreground">Sector Rotation Strategy</h1>
+          <h1 className="text-xl font-semibold text-foreground">Sector Rotation Strategy</h1>
           <p className="text-sm text-muted-foreground mt-1">
             Business cycle investing — allocate to sectors and factors that historically outperform each economic phase
           </p>
@@ -1441,13 +1441,13 @@ export default function SectorRotationPage() {
           { label: "Avoid", value: "XLY", sub: "Consumer Disc. -5.1%", icon: <TrendingDown className="w-4 h-4" />, color: "#ef4444" },
           { label: "Best Factor", value: "Quality", sub: "+5.8% avg slowdown", icon: <Shield className="w-4 h-4" />, color: "#6366f1" },
         ].map(({ label, value, sub, icon, color }) => (
-          <Card key={label} className="bg-card border-border/50">
+          <Card key={label} className="bg-card border-border/20">
             <CardContent className="px-4 py-3">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-muted-foreground">{label}</span>
                 <span style={{ color }}>{icon}</span>
               </div>
-              <p className="text-lg font-bold text-foreground" style={{ color }}>{value}</p>
+              <p className="text-lg font-semibold text-foreground" style={{ color }}>{value}</p>
               <p className="text-xs text-muted-foreground">{sub}</p>
             </CardContent>
           </Card>
@@ -1456,7 +1456,7 @@ export default function SectorRotationPage() {
 
       {/* Main tabs */}
       <Tabs defaultValue="clock" className="mt-8 space-y-4">
-        <TabsList className="bg-muted border border-border/50 h-auto flex-wrap">
+        <TabsList className="bg-muted border border-border/20 h-auto flex-wrap">
           <TabsTrigger value="clock" className="data-[state=active]:bg-muted text-xs text-muted-foreground">
             Business Cycle Clock
           </TabsTrigger>

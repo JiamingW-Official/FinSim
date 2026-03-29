@@ -55,7 +55,7 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
             return (
               <div
                 key={p.period}
-                className="group relative flex h-10 w-10 flex-col items-center justify-center rounded-md border border-border/50 text-[11px]"
+                className="group relative flex h-10 w-10 flex-col items-center justify-center rounded-md border border-border/20 text-[11px]"
                 style={{
                   backgroundColor: isPositive
                     ? `rgba(16, 185, 129, ${0.1 + intensity * 0.4})`
@@ -86,14 +86,14 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
       <div>
         <h3 className="mb-2 text-xs font-semibold text-muted-foreground">Trade Quality (MAE / MFE)</h3>
         <div className="grid grid-cols-2 gap-2">
-          <div className="rounded-lg border border-border/40 bg-muted/30 p-3">
+          <div className="rounded-lg border border-border/20 bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground">Avg Max Adverse</div>
-            <div className="text-sm font-bold text-rose-400">-{metrics.avgMAE.toFixed(2)}%</div>
+            <div className="text-sm font-semibold text-rose-400">-{metrics.avgMAE.toFixed(2)}%</div>
             <div className="text-[11px] text-muted-foreground/70">Avg worst drawdown per trade</div>
           </div>
-          <div className="rounded-lg border border-border/40 bg-muted/30 p-3">
+          <div className="rounded-lg border border-border/20 bg-muted/30 p-3">
             <div className="text-xs text-muted-foreground">Avg Max Favorable</div>
-            <div className="text-sm font-bold text-emerald-400">+{metrics.avgMFE.toFixed(2)}%</div>
+            <div className="text-sm font-semibold text-emerald-400">+{metrics.avgMFE.toFixed(2)}%</div>
             <div className="text-[11px] text-muted-foreground/70">Avg best unrealized gain per trade</div>
           </div>
         </div>
@@ -104,9 +104,9 @@ export default function AnalyticsPanel({ result }: AnalyticsPanelProps) {
 
 function MiniMetric({ label, value, good }: { label: string; value: string | number; good?: boolean }) {
   return (
-    <div className="rounded-lg border border-border/40 bg-muted/30 px-2 py-1.5">
+    <div className="rounded-lg border border-border/20 bg-muted/30 px-2 py-1.5">
       <div className="text-[11px] text-muted-foreground/70">{label}</div>
-      <div className={`text-sm font-bold ${good === undefined ? "text-foreground" : good ? "text-emerald-400" : "text-rose-400"}`}>
+      <div className={`text-sm font-semibold ${good === undefined ? "text-foreground" : good ? "text-emerald-400" : "text-rose-400"}`}>
         {typeof value === "number" ? value.toFixed(2) : value}
       </div>
     </div>
@@ -188,7 +188,7 @@ function TradeDistribution({ trades }: { trades: { pnl: number }[] }) {
         return (
           <div
             key={i}
-            className="group relative flex-1 rounded-t-sm transition-all hover:opacity-80"
+            className="group relative flex-1 rounded-t-sm transition-colors hover:opacity-80"
             style={{
               height: `${Math.max(height, 2)}%`,
               backgroundColor: isPositive ? "rgba(16, 185, 129, 0.5)" : "rgba(239, 68, 68, 0.5)",

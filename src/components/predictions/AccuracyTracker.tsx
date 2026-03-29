@@ -368,7 +368,7 @@ export function AccuracyTracker() {
           <div className="text-xs text-muted-foreground">{grade.description}</div>
         </div>
         <div className="text-right shrink-0">
-          <div className="font-mono text-2xl font-bold tabular-nums text-foreground">
+          <div className="font-mono text-2xl font-semibold tabular-nums text-foreground">
             {stats.accuracy}%
           </div>
           <div className="text-xs text-muted-foreground">
@@ -389,14 +389,14 @@ export function AccuracyTracker() {
               Mean Brier Score
             </span>
           </div>
-          <span className="font-mono tabular-nums text-sm font-bold text-foreground">
+          <span className="font-mono tabular-nums text-sm font-semibold text-foreground">
             {stats.brierScore.toFixed(3)}
           </span>
         </div>
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted/50">
           <div
             className={cn(
-              "h-full rounded-full transition-all",
+              "h-full rounded-full transition-colors",
               stats.brierScore <= 0.15
                 ? "bg-green-500/60"
                 : stats.brierScore <= 0.25

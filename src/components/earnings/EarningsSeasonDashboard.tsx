@@ -550,17 +550,17 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
             key={stat.label}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-lg border border-border/40 bg-card/60 p-3"
+            className="rounded-lg border border-border/20 bg-card/60 p-3"
           >
             <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
-            <p className={cn("text-xl font-bold tabular-nums", stat.color)}>{stat.value}</p>
+            <p className={cn("text-xl font-semibold tabular-nums", stat.color)}>{stat.value}</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">{stat.sublabel}</p>
           </motion.div>
         ))}
       </div>
 
       {/* Progress bar */}
-      <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
+      <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-2">
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium">Q1 2025 Reporting Progress</span>
           <span className="text-xs text-primary font-semibold">{currentQ.reportedPct}% complete</span>
@@ -580,7 +580,7 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
             { label: "Lowered", value: currentQ.guidanceLowered, color: "text-red-400" },
           ].map((g) => (
             <div key={g.label} className="text-center">
-              <p className={cn("text-base font-bold", g.color)}>{g.value}%</p>
+              <p className={cn("text-base font-semibold", g.color)}>{g.value}%</p>
               <p className="text-[11px] text-muted-foreground">{g.label}</p>
             </div>
           ))}
@@ -588,12 +588,12 @@ function SP500Tracker({ quarters, currentQ }: { quarters: QuarterSummary[]; curr
       </div>
 
       {/* 5-quarter comparison */}
-      <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-3">
+      <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-3">
         <p className="text-xs font-semibold text-muted-foreground">5-Quarter Comparison</p>
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="text-muted-foreground border-b border-border/30">
+              <tr className="text-muted-foreground border-b border-border/20">
                 <th className="text-left pb-1 font-medium">Quarter</th>
                 <th className="text-center pb-1 font-medium">EPS Beat%</th>
                 <th className="text-center pb-1 font-medium">Rev Beat%</th>
@@ -649,7 +649,7 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
     <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Heatmap */}
-        <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
+        <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-2">
           <p className="text-xs font-semibold text-muted-foreground">Beat Rate Heatmap</p>
           <div className="overflow-x-auto">
             <SectorHeatmap sectors={sectors} />
@@ -670,7 +670,7 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
         </div>
 
         {/* Revision trend */}
-        <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
+        <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-2">
           <p className="text-xs font-semibold text-muted-foreground">Estimate Revision Trend</p>
           <div className="space-y-1.5">
             {sectors.map((sec) => (
@@ -682,15 +682,15 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
                 <div className="flex items-center gap-1.5">
                   {sec.revisionTrend === "upgrade" ? (
                     <span className="flex items-center gap-0.5 text-xs text-emerald-400">
-                      <ChevronUp className="w-3 h-3" /> Upgrade
+                      Upgrade
                     </span>
                   ) : sec.revisionTrend === "downgrade" ? (
                     <span className="flex items-center gap-0.5 text-xs text-red-400">
-                      <ChevronDown className="w-3 h-3" /> Downgrade
+                      Downgrade
                     </span>
                   ) : (
                     <span className="flex items-center gap-0.5 text-xs text-muted-foreground">
-                      <Minus className="w-3 h-3" /> Flat
+                      Flat
                     </span>
                   )}
                 </div>
@@ -701,7 +701,7 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
       </div>
 
       {/* Table */}
-      <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
+      <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-2">
         <div className="flex items-center justify-between">
           <p className="text-xs font-semibold text-muted-foreground">Sector Scorecard</p>
           <div className="flex gap-1">
@@ -724,7 +724,7 @@ function SectorScoreCardSection({ sectors }: { sectors: SectorScorecard[] }) {
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="text-muted-foreground border-b border-border/30">
+              <tr className="text-muted-foreground border-b border-border/20">
                 <th className="text-left pb-1 font-medium">Sector</th>
                 <th className="text-center pb-1 font-medium">Beat%</th>
                 <th className="text-center pb-1 font-medium">EPS Surp%</th>
@@ -787,7 +787,7 @@ function EarningsFeedSection({
             onClick={() => setView(v)}
             className={cn(
               "px-3 py-1 rounded text-xs font-medium transition-colors",
-              view === v ? "bg-indigo-500/30 text-indigo-300 border border-indigo-500/40" : "text-muted-foreground border border-border/30 hover:border-border/60"
+              view === v ? "bg-indigo-500/30 text-indigo-300 border border-indigo-500/40" : "text-muted-foreground border border-border/20 hover:border-border/60"
             )}
           >
             {v === "upcoming" ? "Upcoming (20)" : "Reported (20)"}
@@ -798,11 +798,11 @@ function EarningsFeedSection({
       <AnimatePresence mode="wait">
         {view === "upcoming" ? (
           <motion.div key="upcoming" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="rounded-lg border border-border/40 bg-card/60 overflow-hidden">
+            <div className="rounded-lg border border-border/20 bg-card/60 overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-[11px]">
                   <thead className="bg-card/60">
-                    <tr className="text-muted-foreground border-b border-border/30">
+                    <tr className="text-muted-foreground border-b border-border/20">
                       <th className="text-left px-3 py-2 font-medium">Ticker</th>
                       <th className="text-center px-3 py-2 font-medium">Date</th>
                       <th className="text-center px-3 py-2 font-medium">Time</th>
@@ -846,11 +846,11 @@ function EarningsFeedSection({
           </motion.div>
         ) : (
           <motion.div key="reported" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="rounded-lg border border-border/40 bg-card/60 overflow-hidden">
+            <div className="rounded-lg border border-border/20 bg-card/60 overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-[11px]">
                   <thead className="bg-card/60">
-                    <tr className="text-muted-foreground border-b border-border/30">
+                    <tr className="text-muted-foreground border-b border-border/20">
                       <th className="text-left px-3 py-2 font-medium">Ticker</th>
                       <th className="text-center px-2 py-2 font-medium">EPS Act/Est</th>
                       <th className="text-center px-2 py-2 font-medium">EPS Surp</th>
@@ -926,9 +926,8 @@ function RevisionMomentumSection({
     <div className="space-y-4">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Biggest upward */}
-        <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
+        <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-2">
           <div className="flex items-center gap-2">
-            <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
             <p className="text-xs font-semibold text-emerald-400">Biggest Upward Revisions (30d)</p>
           </div>
           <div className="space-y-1.5">
@@ -945,7 +944,7 @@ function RevisionMomentumSection({
                       whisper {t.whisperVsConsensus > 0 ? "+" : ""}{t.whisperVsConsensus}%
                     </span>
                   )}
-                  <span className="text-[11px] font-bold text-emerald-400">+{t.revisionPct}%</span>
+                  <span className="text-[11px] font-semibold text-emerald-400">+{t.revisionPct}%</span>
                 </div>
               </div>
             ))}
@@ -953,9 +952,8 @@ function RevisionMomentumSection({
         </div>
 
         {/* Biggest downward */}
-        <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
+        <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-2">
           <div className="flex items-center gap-2">
-            <TrendingDown className="w-3.5 h-3.5 text-red-400" />
             <p className="text-xs font-semibold text-red-400">Biggest Downward Revisions (30d)</p>
           </div>
           <div className="space-y-1.5">
@@ -972,7 +970,7 @@ function RevisionMomentumSection({
                       whisper {t.whisperVsConsensus.toFixed(1)}%
                     </span>
                   )}
-                  <span className="text-[11px] font-bold text-red-400">{t.revisionPct}%</span>
+                  <span className="text-[11px] font-semibold text-red-400">{t.revisionPct}%</span>
                 </div>
               </div>
             ))}
@@ -983,7 +981,6 @@ function RevisionMomentumSection({
       {/* Whisper number explainer */}
       <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-3">
         <div className="flex items-start gap-2">
-          <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
             <p className="text-xs font-semibold text-amber-400">Whisper Number vs. Consensus</p>
             <p className="text-xs text-muted-foreground mt-1">
@@ -995,7 +992,7 @@ function RevisionMomentumSection({
       </div>
 
       {/* Revision breadth by sector */}
-      <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-3">
+      <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-3">
         <p className="text-xs font-semibold text-muted-foreground">Revision Breadth by Sector (% analysts raising)</p>
         <div className="overflow-x-auto">
           <RevisionBreadthChart data={revisionBreadth} />
@@ -1016,9 +1013,8 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
     <div className="space-y-4">
       {/* Implied vs Historical Move */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-3">
+        <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-3">
           <div className="flex items-center gap-2">
-            <BarChart2 className="w-3.5 h-3.5 text-indigo-400" />
             <p className="text-xs font-semibold">Implied vs Historical Move</p>
           </div>
           <p className="text-xs text-muted-foreground">
@@ -1032,9 +1028,8 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
         </div>
 
         {/* IV Crush */}
-        <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-3">
+        <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-3">
           <div className="flex items-center gap-2">
-            <Zap className="w-3.5 h-3.5 text-amber-400" />
             <p className="text-xs font-semibold">Post-Earnings IV Crush</p>
           </div>
           <p className="text-xs text-muted-foreground">
@@ -1050,11 +1045,11 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
       </div>
 
       {/* Per-ticker details */}
-      <div className="rounded-lg border border-border/40 bg-card/60 overflow-hidden">
+      <div className="rounded-lg border border-border/20 bg-card/60 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead className="bg-card/60">
-              <tr className="text-muted-foreground border-b border-border/30">
+              <tr className="text-muted-foreground border-b border-border/20">
                 <th className="text-left px-3 py-2 font-medium">Ticker</th>
                 <th className="text-center px-2 py-2 font-medium">Impl ±Move</th>
                 <th className="text-center px-2 py-2 font-medium">Hist ±Move</th>
@@ -1103,7 +1098,6 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
       {/* Straddle explainer */}
       <div className="rounded-lg border border-indigo-500/20 bg-indigo-500/5 p-3 space-y-2">
         <div className="flex items-center gap-2">
-          <Target className="w-4 h-4 text-indigo-400" />
           <p className="text-xs font-semibold text-indigo-300">Implied Move Calculator</p>
         </div>
         <p className="text-xs text-muted-foreground">
@@ -1118,7 +1112,7 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
             { label: "Avg IV crush", value: `-${Math.round(data.reduce((s, d) => s + d.ivCrush, 0) / data.length)}%`, color: "text-emerald-400" },
           ].map((stat) => (
             <div key={stat.label} className="bg-card/40 rounded p-2 text-center">
-              <p className={cn("text-base font-bold", stat.color)}>{stat.value}</p>
+              <p className={cn("text-base font-semibold", stat.color)}>{stat.value}</p>
               <p className="text-[11px] text-muted-foreground mt-0.5">{stat.label}</p>
             </div>
           ))}
@@ -1126,9 +1120,8 @@ function OptionsPositioningSection({ data }: { data: OptionsPositioning[] }) {
       </div>
 
       {/* Put/Call skew explainer */}
-      <div className="rounded-lg border border-border/40 bg-card/60 p-3 space-y-2">
+      <div className="rounded-lg border border-border/20 bg-card/60 p-3 space-y-2">
         <div className="flex items-center gap-2">
-          <Eye className="w-3.5 h-3.5 text-primary" />
           <p className="text-xs font-semibold">Put/Call Skew Interpretation</p>
         </div>
         <div className="grid grid-cols-3 gap-2">
@@ -1162,8 +1155,7 @@ export default function EarningsSeasonDashboard() {
         className="flex items-center justify-between flex-wrap gap-3"
       >
         <div>
-          <h2 className="text-lg font-bold flex items-center gap-2">
-            <Activity className="w-5 h-5 text-indigo-400" />
+          <h2 className="text-lg font-semibold flex items-center gap-2">
             Earnings Season Dashboard
           </h2>
           <p className="text-xs text-muted-foreground mt-0.5">Q1 2025 · Simulated estimates and reporting analytics</p>
@@ -1174,11 +1166,9 @@ export default function EarningsSeasonDashboard() {
             Season Active
           </span>
           <span className="text-xs text-muted-foreground flex items-center gap-1">
-            <Calendar className="w-3 h-3" />
             Q1 2025
           </span>
           <span className="text-xs text-muted-foreground flex items-center gap-1">
-            <Clock className="w-3 h-3" />
             67% reported
           </span>
         </div>
@@ -1186,20 +1176,19 @@ export default function EarningsSeasonDashboard() {
 
       {/* Tabs */}
       <Tabs defaultValue="tracker">
-        <TabsList className="flex flex-wrap h-auto gap-1 bg-card/60 p-1 w-full">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {[
-            { value: "tracker", label: "S&P 500 Tracker", icon: BarChart2 },
-            { value: "sectors", label: "Sector Scorecard", icon: Target },
-            { value: "feed", label: "Earnings Feed", icon: Activity },
-            { value: "revisions", label: "Revision Momentum", icon: TrendingUp },
-            { value: "options", label: "Options Positioning", icon: Zap },
-          ].map(({ value, label, icon: Icon }) => (
+            { value: "tracker", label: "S&P 500 Tracker" },
+            { value: "sectors", label: "Sector Scorecard" },
+            { value: "feed", label: "Earnings Feed" },
+            { value: "revisions", label: "Revision Momentum" },
+            { value: "options", label: "Options Positioning" },
+          ].map(({ value, label }) => (
             <TabsTrigger
               key={value}
               value={value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-300 flex-1 min-w-fit"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
             >
-              <Icon className="w-3 h-3" />
               {label}
             </TabsTrigger>
           ))}

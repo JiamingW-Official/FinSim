@@ -123,7 +123,7 @@ function ResultScreen({
 
   const gradeColors: Record<string, string> = {
     A: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
-    B: "text-primary border-border/40 bg-primary/10",
+    B: "text-primary border-border/20 bg-primary/10",
     C: "text-amber-400 border-amber-400/30 bg-amber-400/10",
     D: "text-orange-400 border-orange-400/30 bg-orange-400/10",
     F: "text-red-400 border-red-400/30 bg-red-400/10",
@@ -141,7 +141,7 @@ function ResultScreen({
       <div
         className={`rounded-md border px-6 py-3 ${gradeColors[grade] ?? ""}`}
       >
-        <div className="text-4xl font-bold">{grade}</div>
+        <div className="text-xl font-semibold">{grade}</div>
         <div className="text-sm mt-0.5 font-medium">{label}</div>
       </div>
 
@@ -336,7 +336,7 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -direction * 48 }}
           transition={{ duration: 0.22, ease: "easeOut" }}
-          className="rounded-lg border border-border/40 bg-card p-4 space-y-4"
+          className="rounded-lg border border-border/20 bg-card p-4 space-y-4"
         >
           {/* Question front */}
           <div className="space-y-1">
@@ -363,13 +363,13 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
 
               if (answerState === "idle") {
                 optionClass +=
-                  " border-border/40 bg-muted/20 hover:border-primary/50 hover:bg-muted/40 cursor-pointer";
+                  " border-border/20 bg-muted/20 hover:border-primary/50 hover:bg-muted/40 cursor-pointer";
               } else if (isCorrect) {
                 optionClass += " border-emerald-500/50 bg-emerald-500/5 text-emerald-400 cursor-default";
               } else if (isSelected && !isCorrect) {
                 optionClass += " border-red-500/50 bg-red-500/5 text-red-400 cursor-default";
               } else {
-                optionClass += " border-border/40 bg-muted/10 text-muted-foreground/50 cursor-default";
+                optionClass += " border-border/20 bg-muted/10 text-muted-foreground/50 cursor-default";
               }
 
               return (
@@ -381,7 +381,7 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
                   disabled={answerState !== "idle"}
                 >
                   <div className="flex items-start gap-2">
-                    <span className="shrink-0 text-xs font-bold text-muted-foreground/50 mt-0.5">
+                    <span className="shrink-0 text-xs font-semibold text-muted-foreground/50 mt-0.5">
                       {String.fromCharCode(65 + i)}
                     </span>
                     <span className="flex-1">{opt}</span>

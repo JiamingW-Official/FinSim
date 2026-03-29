@@ -99,11 +99,11 @@ function NetSentimentMeter({ flows }: { flows: OptionsFlowItem[] }) {
       </div>
       <div className="h-2 rounded-full bg-muted flex overflow-hidden">
         <div
-          className="h-full bg-emerald-500 transition-all duration-300"
+          className="h-full bg-emerald-500 transition-colors duration-300"
           style={{ width: `${bullishPct}%` }}
         />
         <div
-          className="h-full bg-red-500 transition-all duration-300"
+          className="h-full bg-red-500 transition-colors duration-300"
           style={{ width: `${100 - bullishPct}%` }}
         />
       </div>

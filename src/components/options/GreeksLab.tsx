@@ -26,7 +26,7 @@ function clamp(v: number, lo: number, hi: number) {
 function SectionTitle({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className="mb-2 flex items-baseline gap-2">
-      <span className="text-[11px] font-bold uppercase tracking-wide text-foreground">
+      <span className="text-[11px] font-semibold text-foreground">
         {title}
       </span>
       {subtitle && (
@@ -45,7 +45,7 @@ interface PortfolioGreeksSummaryProps {
 function PortfolioGreeksSummary({ positions }: PortfolioGreeksSummaryProps) {
   if (positions.length === 0) {
     return (
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <SectionTitle title="Portfolio Greeks Summary" />
         <p className="text-[11px] text-muted-foreground">
           No open options positions. Open a position from the Chains tab to see
@@ -110,7 +110,7 @@ function PortfolioGreeksSummary({ positions }: PortfolioGreeksSummaryProps) {
   ];
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <SectionTitle
         title="Portfolio Greeks Summary"
         subtitle={`${positions.length} position${positions.length > 1 ? "s" : ""}`}
@@ -231,12 +231,12 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
   }, [inputs.strike, inputs.quantity, inputs.delta, inputs.optionType, spotPrice, T, sigma, optionPrice, sharesNeeded]);
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <SectionTitle title="Delta Hedging Calculator" />
 
       <div className="grid grid-cols-2 gap-3 mb-3">
         <div>
-          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold text-muted-foreground mb-1">
             Option Type
           </label>
           <div className="flex gap-1">
@@ -257,18 +257,18 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
           </div>
         </div>
         <div>
-          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold text-muted-foreground mb-1">
             Strike
           </label>
           <input
             type="number"
             value={inputs.strike}
             onChange={(e) => setInputs((p) => ({ ...p, strike: Number(e.target.value) }))}
-            className="w-full rounded border border-border/40 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
+            className="w-full rounded border border-border/20 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
           />
         </div>
         <div>
-          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold text-muted-foreground mb-1">
             Contracts
           </label>
           <input
@@ -276,11 +276,11 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
             min={1}
             value={inputs.quantity}
             onChange={(e) => setInputs((p) => ({ ...p, quantity: Math.max(1, Number(e.target.value)) }))}
-            className="w-full rounded border border-border/40 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
+            className="w-full rounded border border-border/20 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
           />
         </div>
         <div>
-          <label className="block text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1">
+          <label className="block text-[11px] font-semibold text-muted-foreground mb-1">
             Delta
           </label>
           <input
@@ -290,7 +290,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
             max={1}
             value={inputs.delta}
             onChange={(e) => setInputs((p) => ({ ...p, delta: Number(e.target.value) }))}
-            className="w-full rounded border border-border/40 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
+            className="w-full rounded border border-border/20 bg-background px-2 py-1 text-[11px] text-foreground outline-none focus:border-primary"
           />
         </div>
       </div>
@@ -302,8 +302,8 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
           { label: "Hedge Ratio", value: (hedgeRatio * 100).toFixed(1) + "%" },
           { label: "Hedge Cost", value: "$" + hedgeCost.toLocaleString(undefined, { maximumFractionDigits: 0 }) },
         ].map((chip) => (
-          <div key={chip.label} className="rounded-lg border border-border/50 bg-muted/20 p-2 text-center">
-            <div className="font-mono text-[11px] font-bold text-foreground">{chip.value}</div>
+          <div key={chip.label} className="rounded-lg border border-border/20 bg-muted/20 p-2 text-center">
+            <div className="font-mono text-[11px] font-semibold text-foreground">{chip.value}</div>
             <div className="text-[11px] text-muted-foreground">{chip.label}</div>
           </div>
         ))}
@@ -320,7 +320,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 <th className="py-1 text-left font-semibold text-muted-foreground">Move</th>
                 <th className="py-1 text-right font-semibold text-muted-foreground">Spot</th>
                 <th className="py-1 text-right font-semibold text-muted-foreground">Option</th>
@@ -347,7 +347,7 @@ function DeltaHedgingCalculator({ spotPrice, analytics }: { spotPrice: number; a
                   <td className={cn("py-1 text-right font-mono", s.stockPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {s.stockPnL >= 0 ? "+" : ""}${Math.abs(s.stockPnL).toFixed(0)}
                   </td>
-                  <td className={cn("py-1 text-right font-mono font-bold", s.netPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("py-1 text-right font-mono font-semibold", s.netPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {s.netPnL >= 0 ? "+" : ""}${Math.abs(s.netPnL).toFixed(0)}
                   </td>
                 </tr>
@@ -376,7 +376,7 @@ function PnLAttribution({
 }) {
   if (positions.length === 0) {
     return (
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <SectionTitle title="P&L Attribution" />
         <p className="text-[11px] text-muted-foreground">
           Open a position to see P&L attribution.
@@ -425,7 +425,7 @@ function PnLAttribution({
   const centerX = padLeft + barAreaW / 2;
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <SectionTitle
         title="P&L Attribution"
         subtitle="per 1% price move, 1pp IV change, 1 day"
@@ -538,7 +538,7 @@ function GammaScalpingSimulator({
   const ivPct = iv * 100;
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <SectionTitle title="Gamma Scalping Simulator" subtitle="ATM Straddle" />
 
       <div className="grid grid-cols-2 gap-2 mb-3">
@@ -554,15 +554,15 @@ function GammaScalpingSimulator({
             sub: hv > iv ? "RV > IV (favorable)" : "IV > RV (unfavorable)",
           },
         ].map((c) => (
-          <div key={c.label} className="rounded-lg border border-border/50 bg-muted/20 p-2">
-            <div className="font-mono text-[11px] font-bold text-foreground">{c.value}</div>
+          <div key={c.label} className="rounded-lg border border-border/20 bg-muted/20 p-2">
+            <div className="font-mono text-[11px] font-semibold text-foreground">{c.value}</div>
             <div className="text-[11px] font-semibold text-foreground/70">{c.label}</div>
             <div className="text-[11px] text-muted-foreground">{c.sub}</div>
           </div>
         ))}
       </div>
 
-      <div className="rounded-lg border border-border/40 bg-muted/10 p-3">
+      <div className="rounded-lg border border-border/20 bg-muted/10 p-3">
         <p className="text-xs font-semibold text-foreground mb-1">
           How Gamma Scalping Works
         </p>
@@ -607,7 +607,7 @@ function VolSkewExplanation({
 }) {
   if (smile.length < 3) {
     return (
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <SectionTitle title="Vol Skew Explanation" />
         <p className="text-[11px] text-muted-foreground">No smile data available.</p>
       </div>
@@ -682,7 +682,7 @@ function VolSkewExplanation({
   const yTicks = [minIV, minIV + (maxIV - minIV) * 0.5, maxIV];
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <SectionTitle title="Vol Skew Explanation" />
 
       {/* Skew reading */}
@@ -755,7 +755,7 @@ function VolSkewExplanation({
 
       {/* Educational panels */}
       <div className="space-y-2">
-        <div className="rounded-lg border border-border/40 bg-muted/10 p-3">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-3">
           <p className="mb-1 text-xs font-semibold text-foreground">Why Skew Exists</p>
           <p className="text-xs text-muted-foreground leading-relaxed">
             Equity markets have historically crashed down faster than they rally.
@@ -765,7 +765,7 @@ function VolSkewExplanation({
             "volatility skew" or "smirk" — in equity options.
           </p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-muted/10 p-3">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-3">
           <p className="mb-1 text-xs font-semibold text-foreground">How to Trade Skew</p>
           <ul className="space-y-1 text-xs text-muted-foreground">
             <li>

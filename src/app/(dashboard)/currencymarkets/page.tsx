@@ -237,7 +237,7 @@ const CRISES: CrisisEvent[] = (() => {
 function FxPairRow({ pair }: { pair: FxPair }) {
   const up = pair.change1d >= 0;
   return (
-    <tr className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+    <tr className="border-b border-border/20 hover:bg-muted/30 transition-colors">
       <td className="py-3 px-4">
         <div className="flex items-center gap-2">
           <span className="text-base">{pair.flag1}{pair.flag2}</span>
@@ -261,7 +261,7 @@ function FxPairRow({ pair }: { pair: FxPair }) {
         </span>
       </td>
       <td className="py-3 px-4 text-right">
-        <Badge className={cn("text-xs", pair.vol30d > 8 ? "bg-amber-500/20 text-amber-300 border-amber-500/30" : "bg-primary/20 text-primary border-border")}>
+        <Badge className={cn("text-xs", pair.vol30d > 8 ? "bg-amber-500/20 text-amber-300 border-amber-500/30" : "bg-muted/10 text-primary border-border")}>
           {pair.vol30d}%
         </Badge>
       </td>
@@ -549,7 +549,7 @@ export default function CurrencyMarketsPage() {
       {/* HERO Header */}
       <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-md bg-primary/20 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-md bg-muted/10 flex items-center justify-center">
             <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
@@ -570,7 +570,7 @@ export default function CurrencyMarketsPage() {
               <CardContent className="p-3 flex items-center gap-3">
                 <stat.icon className={cn("w-5 h-5 flex-shrink-0", stat.color)} />
                 <div>
-                  <div className={cn("text-lg font-bold", stat.color)}>{stat.value}</div>
+                  <div className={cn("text-lg font-semibold", stat.color)}>{stat.value}</div>
                   <div className="text-muted-foreground text-xs">{stat.label}</div>
                 </div>
               </CardContent>
@@ -630,7 +630,7 @@ export default function CurrencyMarketsPage() {
                       </tbody>
                     </table>
                   </div>
-                  <div className="px-4 py-3 border-t border-border/50 text-xs text-muted-foreground">
+                  <div className="px-4 py-3 border-t border-border/20 text-xs text-muted-foreground">
                     Spread in pips (1 pip = 0.0001 for majors, 0.01 for JPY pairs). Prices are indicative.
                   </div>
                 </CardContent>
@@ -743,8 +743,8 @@ export default function CurrencyMarketsPage() {
                     className={cn(
                       "w-full flex items-center justify-between p-3 rounded-lg border transition-colors text-sm",
                       selectedCarry === i
-                        ? "border-primary/50 bg-primary/10"
-                        : "border-border/50 bg-foreground/[0.02] hover:bg-muted/30"
+                        ? "border-primary/50 bg-muted/10"
+                        : "border-border/20 bg-foreground/[0.02] hover:bg-muted/30"
                     )}
                   >
                     <div className="flex items-center gap-2">
@@ -763,7 +763,7 @@ export default function CurrencyMarketsPage() {
                 ))}
 
                 {/* Leverage slider */}
-                <div className="pt-3 border-t border-border/50">
+                <div className="pt-3 border-t border-border/20">
                   <div className="flex justify-between text-xs text-muted-foreground mb-2">
                     <span>Leverage</span>
                     <span className="text-foreground font-mono">{leverage[0]}x</span>
@@ -802,7 +802,7 @@ export default function CurrencyMarketsPage() {
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center py-2 border-t border-border/50">
+                  <div className="flex justify-between items-center py-2 border-t border-border/20">
                     <span className="text-muted-foreground text-sm">Net Differential</span>
                     <span className="text-amber-400 font-mono font-medium text-lg">+{selectedCarryPair.differential.toFixed(2)}%</span>
                   </div>
@@ -896,7 +896,7 @@ export default function CurrencyMarketsPage() {
                   </div>
                 ))}
               </div>
-              <div className="mt-3 p-3 bg-primary/10 border border-border rounded-lg flex items-start gap-2">
+              <div className="mt-3 p-3 bg-muted/10 border border-border rounded-lg flex items-start gap-2">
                 <Info className="w-3.5 h-3.5 text-muted-foreground/50 flex-shrink-0 mt-0.5" />
                 <p className="text-muted-foreground text-xs leading-relaxed">
                   <strong className="text-primary">Carry Crash Correlation:</strong> Carry returns exhibit negative skewness and excess kurtosis — they show small consistent gains interspersed with large sudden losses. The Sharpe ratio overstates risk-adjusted returns because it assumes normality. Position sizing and stop-losses are critical.
@@ -938,7 +938,7 @@ export default function CurrencyMarketsPage() {
                       const pct = Math.abs(row.valuation);
                       const barWidth = Math.min(100, pct * 2);
                       return (
-                        <tr key={row.country} className="border-b border-border/50 hover:bg-muted/30">
+                        <tr key={row.country} className="border-b border-border/20 hover:bg-muted/30">
                           <td className="py-2.5 px-3">
                             <span className="mr-2">{row.flag}</span>
                             <span className="text-foreground text-xs">{row.country}</span>
@@ -989,7 +989,7 @@ export default function CurrencyMarketsPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <div className="bg-primary/10 border border-border rounded-lg p-3">
+                <div className="bg-muted/10 border border-border rounded-lg p-3">
                   <div className="font-mono text-primary text-xs text-center mb-1">UIP Theory:</div>
                   <div className="font-mono text-foreground text-sm text-center">E[ΔS] = i_d − i_f</div>
                   <div className="text-muted-foreground text-xs text-center mt-1">High-rate currency should depreciate by the rate differential</div>
@@ -1095,7 +1095,7 @@ export default function CurrencyMarketsPage() {
                         "w-full flex items-start gap-4 p-3 rounded-lg border text-left transition-colors",
                         selectedCrisis === i
                           ? "border-opacity-50 bg-opacity-10"
-                          : "border-border/50 bg-foreground/[0.01] hover:bg-muted/30"
+                          : "border-border/20 bg-foreground/[0.01] hover:bg-muted/30"
                       )}
                       style={selectedCrisis === i ? { borderColor: crisis.color + "80", backgroundColor: crisis.color + "0a" } : {}}
                     >
@@ -1199,7 +1199,7 @@ export default function CurrencyMarketsPage() {
                   <div className="space-y-1">
                     {["Fiscal imbalance → money printing", "Inflation differential vs peg anchor", "Reserve depletion over time", "Speculative attack when reserves critical", "Peg collapses → sharp devaluation"].map((step, i) => (
                       <div key={step} className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
+                        <span className="w-5 h-5 rounded-full bg-muted/10 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
                         <span className="text-muted-foreground">{step}</span>
                       </div>
                     ))}
@@ -1214,7 +1214,7 @@ export default function CurrencyMarketsPage() {
                   <div className="space-y-1">
                     {["Peg sustainable at current beliefs", "Speculative pressure increases hedging cost", "Defense requires painful rate hikes", "Government weighs defense cost vs credibility", "Self-fulfilling exit if confidence breaks"].map((step, i) => (
                       <div key={step} className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <span className="w-5 h-5 rounded-full bg-primary/20 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
+                        <span className="w-5 h-5 rounded-full bg-muted/10 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
                         <span className="text-muted-foreground">{step}</span>
                       </div>
                     ))}
@@ -1228,7 +1228,7 @@ export default function CurrencyMarketsPage() {
                   { title: "Central Bank Defense Tools", items: ["FX intervention (sell USD, buy local)", "Emergency rate hikes (100–1000bps)", "Capital controls on outflows", "IMF emergency credit lines", "Coordinated CB swap lines"] },
                   { title: "Post-Crisis Recovery", items: ["IMF conditionality programs", "Structural reform packages", "Debt restructuring / haircuts", "Gradual reserve rebuilding", "New monetary framework (inflation target)"] },
                 ].map((section) => (
-                  <div key={section.title} className="bg-foreground/[0.02] border border-border/50 rounded-lg p-3">
+                  <div key={section.title} className="bg-foreground/[0.02] border border-border/20 rounded-lg p-3">
                     <div className="text-muted-foreground text-xs font-medium mb-2">{section.title}</div>
                     {section.items.map((item) => (
                       <div key={item} className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">

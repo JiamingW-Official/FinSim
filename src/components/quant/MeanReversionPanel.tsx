@@ -64,7 +64,7 @@ function ZScoreIndicator({ zScore }: { zScore: number }) {
         {/* Position dot */}
         <div
           className={cn(
-            "absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300",
+            "absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-colors duration-300",
             color,
           )}
           style={{ left: `calc(${pct}% - 4px)` }}
@@ -99,7 +99,7 @@ function BollingerBar({ position }: { position: number }) {
       <div className="w-12 h-1.5 rounded-full bg-muted overflow-hidden">
         <div
           className={cn(
-            "h-full rounded-full transition-all duration-300",
+            "h-full rounded-full transition-colors duration-300",
             position < 0.3
               ? "bg-emerald-500"
               : position > 0.7

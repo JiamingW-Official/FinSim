@@ -302,7 +302,7 @@ function BlackSwanTab() {
                 <tr
                   key={i}
                   className={cn(
-                    "border-b border-border/50 transition-colors cursor-default",
+                    "border-b border-border/20 transition-colors cursor-default",
                     hoveredRow === i ? "bg-muted/50" : i % 2 === 0 ? "bg-card/20" : ""
                   )}
                   onMouseEnter={() => setHoveredRow(i)}
@@ -1279,7 +1279,7 @@ export default function TailRiskPage() {
             <Shield className="h-6 w-6 text-red-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Tail Risk Hedging</h1>
+            <h1 className="text-xl font-semibold text-foreground">Tail Risk Hedging</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               Protecting portfolios against black swans, volatility spikes, and the cost-benefit of tail protection strategies.
             </p>
@@ -1299,7 +1299,7 @@ export default function TailRiskPage() {
                 <Icon className={cn("h-3.5 w-3.5", color)} />
                 <span className="text-xs text-muted-foreground">{label}</span>
               </div>
-              <p className={cn("text-lg font-bold font-mono", color)}>{value}</p>
+              <p className={cn("text-lg font-semibold font-mono", color)}>{value}</p>
               <p className="text-xs text-muted-foreground">{sub}</p>
             </div>
           ))}

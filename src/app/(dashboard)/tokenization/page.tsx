@@ -752,7 +752,7 @@ export default function TokenizationPage() {
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <Coins className="w-6 h-6 text-primary" />
-                <h1 className="text-xl font-bold text-foreground">Tokenization of Real-World Assets</h1>
+                <h1 className="text-xl font-semibold text-foreground">Tokenization of Real-World Assets</h1>
               </div>
               <p className="text-muted-foreground text-sm max-w-2xl">
                 Blockchain-based tokenization is digitizing trillions in real-world assets — from US Treasuries and
@@ -787,7 +787,7 @@ export default function TokenizationPage() {
                     <kpi.icon className={`w-4 h-4 ${kpi.color}`} />
                     <span className="text-xs text-muted-foreground">{kpi.label}</span>
                   </div>
-                  <p className={`text-xl font-bold ${kpi.color}`}>{kpi.value}</p>
+                  <p className={`text-xl font-semibold ${kpi.color}`}>{kpi.value}</p>
                   <p className="text-xs text-muted-foreground">{kpi.sub}</p>
                 </CardContent>
               </Card>
@@ -896,8 +896,8 @@ export default function TokenizationPage() {
                       color: "text-emerald-400",
                     },
                   ].map((item) => (
-                    <div key={item.step} className="p-3 rounded-lg bg-muted/50 border border-border/50">
-                      <div className={`text-2xl font-bold ${item.color} mb-1`}>{item.step}</div>
+                    <div key={item.step} className="p-3 rounded-lg bg-muted/50 border border-border/20">
+                      <div className={`text-2xl font-semibold ${item.color} mb-1`}>{item.step}</div>
                       <p className="text-sm font-medium text-foreground mb-1">{item.title}</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
                     </div>
@@ -988,7 +988,7 @@ export default function TokenizationPage() {
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: i * 0.04 }}
-                          className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                          className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                         >
                           <td className="py-2 px-2 font-medium text-foreground">{prod.name}</td>
                           <td className="py-2 px-2 text-muted-foreground">{prod.issuer}</td>
@@ -1025,7 +1025,7 @@ export default function TokenizationPage() {
                     { title: "Custodian Risk", desc: "Underlying T-bills held by off-chain custodian. Counterparty failure could impair redemption.", severity: "Medium" },
                     { title: "Liquidity Risk", desc: "Secondary market depth is limited. Large redemptions may not settle instantly on-chain.", severity: "Medium" },
                   ].map((r) => (
-                    <div key={r.title} className="p-3 rounded-lg bg-muted/40 border border-border/50">
+                    <div key={r.title} className="p-3 rounded-lg bg-muted/40 border border-border/20">
                       <div className="flex justify-between items-start mb-1">
                         <p className="text-xs font-medium text-foreground">{r.title}</p>
                         <Badge
@@ -1078,7 +1078,7 @@ export default function TokenizationPage() {
                       { label: "Dividends", value: "Auto", note: "Smart contract" },
                       { label: "Global Trading", value: "24/7", note: "DEX / ATS" },
                     ].map((item) => (
-                      <div key={item.label} className="p-2 rounded bg-muted/50 border border-border/50">
+                      <div key={item.label} className="p-2 rounded bg-muted/50 border border-border/20">
                         <p className="text-xs text-muted-foreground">{item.label}</p>
                         <p className="text-sm font-medium text-primary">{item.value}</p>
                         <p className="text-xs text-muted-foreground">{item.note}</p>
@@ -1146,7 +1146,7 @@ export default function TokenizationPage() {
                       { label: "Income per Token/Year", value: "$0.07 (7% yield)" },
                       { label: "Mgmt Fee", value: "0.5% / year (on-chain)" },
                     ].map((row) => (
-                      <div key={row.label} className="flex justify-between text-xs text-muted-foreground border-b border-border/50 py-1">
+                      <div key={row.label} className="flex justify-between text-xs text-muted-foreground border-b border-border/20 py-1">
                         <span className="text-muted-foreground">{row.label}</span>
                         <span className="text-foreground font-mono">{row.value}</span>
                       </div>
@@ -1205,7 +1205,7 @@ export default function TokenizationPage() {
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {CREDIT_PROTOCOLS.map((proto) => (
-                    <div key={proto.name} className="p-3 rounded-lg bg-muted/40 border border-border/50 space-y-2">
+                    <div key={proto.name} className="p-3 rounded-lg bg-muted/40 border border-border/20 space-y-2">
                       <div className="flex justify-between items-start">
                         <p className="text-sm font-medium text-foreground">{proto.name}</p>
                         <Badge
@@ -1297,7 +1297,7 @@ export default function TokenizationPage() {
               <CardContent>
                 <div className="space-y-3">
                   {JURISDICTIONS.map((jur) => (
-                    <div key={jur.name} className="p-3 rounded-lg bg-muted/40 border border-border/50">
+                    <div key={jur.name} className="p-3 rounded-lg bg-muted/40 border border-border/20">
                       <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
                         <div>
                           <p className="text-sm font-medium text-foreground">{jur.name}</p>
@@ -1342,7 +1342,7 @@ export default function TokenizationPage() {
                       { entity: "Prometheum", year: "2023", note: "First SEC-approved special purpose broker-dealer for digital assets" },
                       { entity: "tZERO ATS", year: "2019", note: "No-action for security token secondary trading on ATS platform" },
                     ].map((item) => (
-                      <div key={item.entity} className="p-2 rounded bg-muted/40 border border-border/30 text-xs text-muted-foreground">
+                      <div key={item.entity} className="p-2 rounded bg-muted/40 border border-border/20 text-xs text-muted-foreground">
                         <div className="flex justify-between mb-0.5">
                           <span className="font-medium text-foreground">{item.entity}</span>
                           <span className="text-muted-foreground">{item.year}</span>
@@ -1373,7 +1373,7 @@ export default function TokenizationPage() {
                       { cat: "EMT (E-Money Token)", rule: "Backed 1:1 by fiat. Only credit institutions / e-money firms may issue.", color: "text-primary" },
                       { cat: "Security Tokens", rule: "Existing MiFID II rules apply. DLT Pilot Regime for trading & settlement.", color: "text-muted-foreground" },
                     ].map((item) => (
-                      <div key={item.cat} className="p-2 rounded bg-muted/40 border border-border/30 text-xs text-muted-foreground">
+                      <div key={item.cat} className="p-2 rounded bg-muted/40 border border-border/20 text-xs text-muted-foreground">
                         <p className={`font-medium mb-0.5 ${item.color}`}>{item.cat}</p>
                         <p className="text-muted-foreground">{item.rule}</p>
                       </div>
@@ -1414,7 +1414,7 @@ export default function TokenizationPage() {
                     { name: "Citi", role: "Citi Token Services", status: "Pilot", via: "Permissioned DLT" },
                     { name: "UBS", role: "Tokenized money market fund", status: "Active", via: "Ethereum / Canton" },
                   ].map((inst) => (
-                    <div key={inst.name} className="p-3 rounded-lg bg-muted/40 border border-border/50">
+                    <div key={inst.name} className="p-3 rounded-lg bg-muted/40 border border-border/20">
                       <div className="flex justify-between items-start mb-1">
                         <p className="text-sm font-medium text-foreground">{inst.name}</p>
                         <Badge
@@ -1472,7 +1472,7 @@ export default function TokenizationPage() {
                       color: "text-muted-foreground",
                     },
                   ].map((item) => (
-                    <div key={item.title} className="flex items-start gap-2 p-3 rounded-lg bg-muted/40 border border-border/50">
+                    <div key={item.title} className="flex items-start gap-2 p-3 rounded-lg bg-muted/40 border border-border/20">
                       <item.icon className={`w-4 h-4 ${item.color} mt-0.5 flex-shrink-0`} />
                       <div>
                         <p className="text-xs font-medium text-foreground">{item.title}</p>

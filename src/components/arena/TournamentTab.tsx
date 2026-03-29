@@ -43,7 +43,7 @@ const TIER_BG: Record<EloTier, string> = {
   Silver:   "bg-muted-foreground/10 border-muted-foreground/20",
   Gold:     "bg-yellow-400/10 border-yellow-400/25",
   Platinum: "bg-cyan-300/10 border-cyan-300/25",
-  Diamond:  "bg-primary/10 border-border/40",
+  Diamond:  "bg-primary/10 border-border/20",
 };
 
 // Win probability: P(win) = 1 / (1 + 10^((oppElo - myElo)/400))
@@ -214,7 +214,7 @@ function EloHistoryChart({ history }: { history: number[] }) {
 
 function MatchCard({ match }: { match: BracketMatch }) {
   return (
-    <div className="rounded-lg border border-border/30 bg-muted/10 overflow-hidden text-[11px]">
+    <div className="rounded-lg border border-border/20 bg-muted/10 overflow-hidden text-[11px]">
       {[match.playerA, match.playerB].map((p, idx) => {
         if (!p) return <div key={idx} className="px-2.5 py-1.5 text-muted-foreground/50">TBD</div>;
         const isWinner = match.winner?.id === p.id;
@@ -232,7 +232,7 @@ function MatchCard({ match }: { match: BracketMatch }) {
             {isWinner && match.winner !== null && (
               <Star className="h-2.5 w-2.5 text-yellow-400 shrink-0" />
             )}
-            <span className={cn("font-bold truncate flex-1", p.isPlayer ? "text-emerald-300" : "text-muted-foreground")}>
+            <span className={cn("font-semibold truncate flex-1", p.isPlayer ? "text-emerald-300" : "text-muted-foreground")}>
               {p.name}
             </span>
             <span className={cn("tabular-nums shrink-0 font-mono", TIER_COLORS[tier])}>
@@ -345,13 +345,13 @@ export function TournamentTab() {
   return (
     <div className="space-y-5 pb-4">
       {/* ELO Badge + History */}
-      <div className="rounded-md border border-border/30 bg-muted/10 p-4">
+      <div className="rounded-md border border-border/20 bg-muted/10 p-4">
         <div className="flex items-center gap-4">
           <div className={cn("rounded-md border px-4 py-2 text-center", TIER_BG[tier])}>
-            <div className={cn("text-2xl font-bold tabular-nums", TIER_COLORS[tier])}>
+            <div className={cn("text-2xl font-semibold tabular-nums", TIER_COLORS[tier])}>
               {eloRating}
             </div>
-            <div className={cn("text-xs font-bold", TIER_COLORS[tier])}>
+            <div className={cn("text-xs font-semibold", TIER_COLORS[tier])}>
               {tier}
             </div>
           </div>
@@ -367,7 +367,7 @@ export function TournamentTab() {
         <button
           type="button"
           onClick={handleJoin}
-          className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500 py-3.5 text-sm font-bold text-foreground transition-colors hover:bg-teal-400 active:scale-95"
+          className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-teal-400 active:scale-95"
         >
           <Trophy className="h-4 w-4" />
           Join Tournament
@@ -376,7 +376,7 @@ export function TournamentTab() {
         <button
           type="button"
           onClick={handleReset}
-          className="w-full flex items-center justify-center gap-2 rounded-lg border border-border/50 bg-muted/20 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
+          className="w-full flex items-center justify-center gap-2 rounded-lg border border-border/20 bg-muted/20 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           New Tournament
         </button>
@@ -397,10 +397,10 @@ export function TournamentTab() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className={cn(
-                  "rounded-lg border px-4 py-3 text-center text-sm font-bold",
+                  "rounded-lg border px-4 py-3 text-center text-sm font-semibold",
                   bracket.final.winner?.isPlayer
                     ? "border-yellow-400/30 bg-yellow-400/10 text-yellow-400"
-                    : "border-border/50 bg-muted/20 text-muted-foreground",
+                    : "border-border/20 bg-muted/20 text-muted-foreground",
                 )}
               >
                 {bracket.final.winner?.isPlayer
@@ -418,7 +418,7 @@ export function TournamentTab() {
 
               return (
                 <div key={round}>
-                  <div className="text-[11px] font-bold text-muted-foreground mb-2">
+                  <div className="text-[11px] font-semibold text-muted-foreground mb-2">
                     {round}
                   </div>
                   <div className={cn(
@@ -441,16 +441,16 @@ export function TournamentTab() {
               if (!opp) return null;
               const prob = winProb(eloRating, opp.elo);
               return (
-                <div className="rounded-lg border border-border/30 bg-muted/10 p-3">
+                <div className="rounded-lg border border-border/20 bg-muted/10 p-3">
                   <div className="text-[11px] text-muted-foreground mb-2">Win probability vs QF opponent</div>
                   <div className="flex items-center gap-3">
                     <div className="flex-1 h-2 rounded-full bg-foreground/[0.04] overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-teal-500 transition-all duration-300"
+                        className="h-full rounded-full bg-teal-500 transition-colors duration-300"
                         style={{ width: `${prob * 100}%` }}
                       />
                     </div>
-                    <span className={cn("text-xs font-bold tabular-nums w-10 text-right", prob >= 0.5 ? "text-emerald-400" : "text-red-400")}>
+                    <span className={cn("text-xs font-semibold tabular-nums w-10 text-right", prob >= 0.5 ? "text-emerald-400" : "text-red-400")}>
                       {(prob * 100).toFixed(0)}%
                     </span>
                     <span className="text-xs text-muted-foreground/70">vs {opp.name} ({opp.elo})</span>
@@ -466,7 +466,7 @@ export function TournamentTab() {
       <div>
         <div className="flex items-center gap-1.5 mb-2.5">
           <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
-          <span className="text-xs font-bold text-muted-foreground">Upcoming Tournaments</span>
+          <span className="text-xs font-semibold text-muted-foreground">Upcoming Tournaments</span>
         </div>
         <div className="space-y-2">
           {UPCOMING.map((ev) => {
@@ -477,12 +477,12 @@ export function TournamentTab() {
                 className={cn(
                   "rounded-lg border p-3 transition-colors",
                   canEnter
-                    ? "border-border/30 bg-muted/10 hover:bg-muted/30"
+                    ? "border-border/20 bg-muted/10 hover:bg-muted/30"
                     : "border-foreground/[0.03] bg-foreground/[0.01] opacity-60",
                 )}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-foreground">{ev.name}</span>
+                  <span className="text-xs font-semibold text-foreground">{ev.name}</span>
                   <span className="text-xs text-muted-foreground">{ev.date}</span>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -490,7 +490,7 @@ export function TournamentTab() {
                     <Users className="h-2.5 w-2.5" /> Lv.{ev.minLevel}+
                   </span>
                   <span>Buy-in: {ev.buyin.toLocaleString()} VC</span>
-                  <span className="text-emerald-400 font-bold">
+                  <span className="text-emerald-400 font-semibold">
                     Prize: {ev.prizePool.toLocaleString()} VC
                   </span>
                   {!canEnter && (
@@ -507,14 +507,14 @@ export function TournamentTab() {
       <div>
         <div className="flex items-center gap-1.5 mb-2.5">
           <Trophy className="h-3.5 w-3.5 text-muted-foreground" />
-          <span className="text-xs font-bold text-muted-foreground">Past Results</span>
+          <span className="text-xs font-semibold text-muted-foreground">Past Results</span>
         </div>
-        <div className="rounded-lg border border-border/30 overflow-hidden">
+        <div className="rounded-lg border border-border/20 overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
               <tr className="border-b border-foreground/[0.04] bg-muted/10">
                 {["Tournament", "Place", "Prize", "ELO"].map((h) => (
-                  <th key={h} className="px-3 py-2 text-left font-bold text-muted-foreground">{h}</th>
+                  <th key={h} className="px-3 py-2 text-left font-semibold text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -525,11 +525,11 @@ export function TournamentTab() {
                   className={cn("border-b border-foreground/[0.03] last:border-0", i % 2 === 0 ? "bg-transparent" : "bg-foreground/[0.01]")}
                 >
                   <td className="px-3 py-2 text-muted-foreground truncate max-w-[100px]">{r.name}</td>
-                  <td className="px-3 py-2 font-bold text-foreground">{placementLabel(r.placement)}</td>
-                  <td className="px-3 py-2 text-emerald-400 font-bold tabular-nums">
+                  <td className="px-3 py-2 font-semibold text-foreground">{placementLabel(r.placement)}</td>
+                  <td className="px-3 py-2 text-emerald-400 font-semibold tabular-nums">
                     +{r.prize.toLocaleString()}
                   </td>
-                  <td className={cn("px-3 py-2 font-bold tabular-nums flex items-center gap-1", r.eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("px-3 py-2 font-semibold tabular-nums flex items-center gap-1", r.eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {r.eloChange >= 0 ? (
                       <TrendingUp className="h-3 w-3" />
                     ) : (

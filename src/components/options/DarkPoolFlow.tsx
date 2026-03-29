@@ -163,7 +163,7 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
   return (
     <div className="flex flex-col gap-3">
       {/* 24h Buy/Sell ratio bar */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 flex items-center justify-between text-xs">
           <span className="font-medium text-foreground">24h Simulated Institutional Flow Ratio</span>
           <span className="text-muted-foreground">
@@ -172,11 +172,11 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
         </div>
         <div className="flex h-3 overflow-hidden rounded-full">
           <div
-            className="flex items-center justify-center bg-emerald-500/70 transition-all"
+            className="flex items-center justify-center bg-emerald-500/70 transition-colors"
             style={{ width: `${buyPct.toFixed(1)}%` }}
           />
           <div
-            className="flex items-center justify-center bg-red-500/70 transition-all"
+            className="flex items-center justify-center bg-red-500/70 transition-colors"
             style={{ width: `${sellPct.toFixed(1)}%` }}
           />
         </div>
@@ -194,7 +194,7 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
       <div className="overflow-auto">
         <table className="w-full border-collapse text-[11px]">
           <thead className="sticky top-0 z-10 bg-card">
-            <tr className="border-b border-border/50">
+            <tr className="border-b border-border/20">
               {["Time", "Ticker", "Size", "Price", "vs Last", "Side"].map((col) => (
                 <th
                   key={col}
@@ -212,7 +212,7 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
               return (
                 <tr
                   key={p.id}
-                  className="border-b border-border/50 transition-colors hover:bg-muted/50"
+                  className="border-b border-border/20 transition-colors hover:bg-muted/50"
                 >
                   <td className="px-3 py-2 text-muted-foreground">
                     {relTime(p.timestamp)}

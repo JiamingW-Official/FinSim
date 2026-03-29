@@ -105,7 +105,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
         </motion.div>
 
         <div className="text-center">
-          <h3 className="text-lg font-bold">Session Complete!</h3>
+          <h3 className="text-lg font-semibold">Session Complete!</h3>
           <p className="text-[11px] text-muted-foreground mt-1">Great practice session</p>
         </div>
 
@@ -123,14 +123,14 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             transition={{ delay: 0.3 }}
           >
             <Flame className="h-4 w-4 text-amber-400" />
-            <span className="text-xs font-bold text-amber-400">Best streak: {bestStreak}</span>
+            <span className="text-xs font-semibold text-amber-400">Best streak: {bestStreak}</span>
           </motion.div>
         )}
 
         <button
           type="button"
           onClick={onClose}
-          className="mt-2 rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-foreground transition-all hover:bg-primary/90 active:scale-95"
+          className="mt-2 rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-primary/90 active:scale-95"
         >
           Done
         </button>
@@ -142,7 +142,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
     return (
       <div className="flex flex-col items-center gap-3 p-6">
         <Sparkles className="h-8 w-8 text-amber-400" />
-        <p className="text-sm font-bold">No cards available</p>
+        <p className="text-sm font-semibold">No cards available</p>
         <button type="button" onClick={onClose} className="text-xs text-primary hover:underline">
           Go back
         </button>
@@ -159,7 +159,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Brain className="h-4 w-4 text-primary" />
-          <span className="text-sm font-bold">Flashcards</span>
+          <span className="text-sm font-semibold">Flashcards</span>
         </div>
         <div className="flex items-center gap-3">
           {streak > 0 && (
@@ -170,7 +170,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
               key={streak}
             >
               <Flame className="h-3.5 w-3.5 text-amber-400 streak-fire" />
-              <span className="text-xs font-bold tabular-nums text-amber-400">{streak}</span>
+              <span className="text-xs font-semibold tabular-nums text-amber-400">{streak}</span>
             </motion.div>
           )}
           <button type="button" onClick={onClose} className="rounded-lg p-1 hover:bg-muted/30 transition-colors">
@@ -188,7 +188,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             transition={{ duration: 0.3 }}
           />
         </div>
-        <span className="text-xs font-bold tabular-nums text-muted-foreground">
+        <span className="text-xs font-semibold tabular-nums text-muted-foreground">
           {cardIndex + 1}/{cards.length}
         </span>
       </div>
@@ -210,11 +210,11 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             {/* Front */}
             <div className="card-flip-front rounded-md border border-border bg-card p-6 min-h-[220px] flex flex-col items-center justify-center gap-3">
               {cat && (
-                <span className={cn("text-[11px] font-bold", cat.color)}>
+                <span className={cn("text-[11px] font-semibold", cat.color)}>
                   {cat.label}
                 </span>
               )}
-              <p className="text-center text-lg font-bold whitespace-pre-line">
+              <p className="text-center text-lg font-semibold whitespace-pre-line">
                 {currentCard.front}
               </p>
               {!flipped && (
@@ -232,7 +232,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             {/* Back */}
             <div className="card-flip-back rounded-md border border-primary/20 bg-card p-6 min-h-[220px] flex flex-col justify-center gap-3">
               {cat && (
-                <span className={cn("text-[11px] font-bold", cat.color)}>
+                <span className={cn("text-[11px] font-semibold", cat.color)}>
                   {cat.label}
                 </span>
               )}
@@ -262,7 +262,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             <button
               type="button"
               onClick={() => handleAnswer(false)}
-              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-rose-500/30 bg-rose-500/10 py-3 text-sm font-bold text-rose-400 transition-all hover:bg-rose-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-rose-500/30 bg-rose-500/10 py-3 text-sm font-semibold text-rose-400 transition-colors hover:bg-rose-500/20 active:scale-95"
             >
               <RotateCcw className="h-4 w-4" />
               Still Learning
@@ -270,7 +270,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             <button
               type="button"
               onClick={() => handleAnswer(true)}
-              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/5 py-3 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/5 py-3 text-sm font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/20 active:scale-95"
             >
               <Check className="h-4 w-4" />
               Got It
@@ -300,8 +300,8 @@ function StatBox({ label, value, color }: { label: string; value: string; color:
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 }}
     >
-      <span className={cn("text-lg font-bold tabular-nums", color)}>{value}</span>
-      <span className="text-[11px] font-bold text-muted-foreground/60">
+      <span className={cn("text-lg font-semibold tabular-nums", color)}>{value}</span>
+      <span className="text-[11px] font-semibold text-muted-foreground/60">
         {label}
       </span>
     </motion.div>

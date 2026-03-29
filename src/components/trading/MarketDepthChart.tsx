@@ -136,8 +136,8 @@ export function MarketDepthChart({ ticker, currentPrice, priceMin, priceMax }: M
   });
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card overflow-hidden">
-      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/40">
+    <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
+      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/20">
         <span className="text-xs font-semibold text-muted-foreground">
           Market Depth
         </span>

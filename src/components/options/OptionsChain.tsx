@@ -71,7 +71,7 @@ export function OptionsChain({
     <div className="overflow-x-auto">
       <table className="w-full text-[11px]" role="table">
         <thead className="sticky top-0 z-10 bg-card">
-          <tr className="border-b border-border/50">
+          <tr className="border-b border-border/20">
             {showCalls && (
               <th
                 colSpan={CALL_COLS.length}
@@ -92,7 +92,7 @@ export function OptionsChain({
               </th>
             )}
           </tr>
-          <tr className="border-b border-border/50">
+          <tr className="border-b border-border/20">
             {showCalls &&
               CALL_COLS.map((col) => (
                 <th key={`call-${col}`} scope="col" className="px-1.5 py-0.5 text-right text-[10px] font-medium text-muted-foreground whitespace-nowrap">
@@ -140,7 +140,7 @@ export function OptionsChain({
               <tr
                 key={call.strike}
                 className={cn(
-                  "border-b border-border/50 transition-colors hover:bg-muted/50",
+                  "border-b border-border/20 transition-colors hover:bg-muted/50",
                   isAtm && "border-y border-orange-500/30",
                 )}
               >

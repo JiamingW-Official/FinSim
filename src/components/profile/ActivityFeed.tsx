@@ -147,7 +147,7 @@ export function ActivityFeed() {
               {/* Content */}
               <div className="flex-1 min-w-0 pt-1">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="text-[11px] font-bold leading-snug">{item.title}</p>
+                  <p className="text-[11px] font-semibold leading-snug">{item.title}</p>
                   <span className="shrink-0 text-[11px] tabular-nums text-muted-foreground/50 mt-0.5">
                     {formatRelativeTime(item.timestamp)}
                   </span>

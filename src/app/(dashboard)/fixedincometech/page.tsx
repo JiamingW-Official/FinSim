@@ -63,7 +63,7 @@ const PLATFORMS = [
     adv: "$36B",
     focus: "IG Credit",
     color: "text-primary",
-    bg: "bg-primary/10",
+    bg: "bg-muted/10",
     border: "border-border",
   },
   {
@@ -72,7 +72,7 @@ const PLATFORMS = [
     adv: "$28B",
     focus: "Rates & Credit",
     color: "text-primary",
-    bg: "bg-primary/10",
+    bg: "bg-muted/10",
     border: "border-border",
   },
   {
@@ -114,7 +114,7 @@ const ALGO_STRATEGIES = [
     label: "Passive / TWAP",
     icon: Clock,
     color: "text-primary",
-    bg: "bg-primary/10",
+    bg: "bg-muted/10",
     border: "border-border",
     description: "Slice over time, minimize market impact",
     tactics: ["Post at midpoint or better", "Work order over hours/days", "Pull back if adverse price move"],
@@ -127,7 +127,7 @@ const ALGO_STRATEGIES = [
     label: "Implementation Shortfall",
     icon: Target,
     color: "text-primary",
-    bg: "bg-primary/10",
+    bg: "bg-muted/10",
     border: "border-border",
     description: "Balance market impact vs timing risk dynamically",
     tactics: ["Dynamic child orders based on liquidity", "Adapt aggression to real-time spread", "Minimize total cost vs arrival price"],
@@ -240,7 +240,7 @@ function SectionHeader({
 }) {
   return (
     <div className="flex items-start gap-3 mb-6">
-      <div className="p-2 rounded-lg bg-primary/10 shrink-0">
+      <div className="p-2 rounded-lg bg-muted/10 shrink-0">
         <Icon className="w-3.5 h-3.5 text-muted-foreground/50" />
       </div>
       <div>
@@ -376,7 +376,7 @@ function ElectronicMarketsTab() {
             <motion.div
               key={p.name}
               className={cn(
-                "rounded-lg border p-3 cursor-pointer transition-all",
+                "rounded-lg border p-3 cursor-pointer transition-colors",
                 p.bg,
                 p.border,
                 hoveredPlatform === p.name ? "scale-[1.02]" : ""
@@ -500,7 +500,7 @@ function ElectronicMarketsTab() {
               { step: "6", text: "Premium collapses back to NAV", color: "text-green-400" },
             ].map((s) => (
               <div key={s.step} className="flex items-start gap-2">
-                <span className={cn("text-xs text-muted-foreground font-bold shrink-0 w-4", s.color)}>{s.step}.</span>
+                <span className={cn("text-xs text-muted-foreground font-semibold shrink-0 w-4", s.color)}>{s.step}.</span>
                 <span className="text-xs text-muted-foreground">{s.text}</span>
               </div>
             ))}
@@ -583,7 +583,7 @@ function AlgoExecutionTab() {
             </div>
           </div>
         </div>
-        <div className="mt-3 p-2 rounded-lg bg-primary/10 border border-border">
+        <div className="mt-3 p-2 rounded-lg bg-muted/10 border border-border">
           <p className="text-xs text-primary">
             Bond algos must use <strong>AI-driven liquidity scoring</strong> and <strong>venue fragmentation maps</strong> to approximate VWAP — no single source provides complete market data.
           </p>
@@ -598,7 +598,7 @@ function AlgoExecutionTab() {
               key={a.id}
               onClick={() => setSelectedAlgo(a.id)}
               className={cn(
-                "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-all",
+                "px-3 py-1.5 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
                 selectedAlgo === a.id ? cn(a.bg, a.border, a.color) : "bg-muted/30 border-border text-muted-foreground hover:text-foreground"
               )}
             >
@@ -913,8 +913,8 @@ function BondPricingTab() {
               key={f.name}
               onClick={() => setSelectedFV(f.name)}
               className={cn(
-                "px-3 py-1 rounded-lg text-xs text-muted-foreground font-medium border transition-all",
-                selectedFV === f.name ? "bg-primary/20 border-primary/40 text-primary" : "bg-muted/30 border-border text-muted-foreground hover:text-foreground"
+                "px-3 py-1 rounded-lg text-xs text-muted-foreground font-medium border transition-colors",
+                selectedFV === f.name ? "bg-muted/10 border-primary/40 text-primary" : "bg-muted/30 border-border text-muted-foreground hover:text-foreground"
               )}
             >
               {f.name}
@@ -1127,7 +1127,7 @@ function CreditStructureTab() {
           </svg>
         </div>
         <div className="grid grid-cols-2 gap-3 mt-3">
-          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+          <div className="p-2 rounded-lg bg-muted/10 border border-border">
             <p className="text-xs font-medium text-primary">Negative Basis (IG)</p>
             <p className="text-xs text-muted-foreground mt-1">CDS tighter than bond — bond is "cheap" vs CDS. Dealers short CDS and buy bonds to capture the basis (negative basis trade).</p>
           </div>
@@ -1164,7 +1164,7 @@ function CreditStructureTab() {
                 impact: "Pre/post-trade transparency mandates",
                 result: "Increased electronic adoption in EUR credit",
                 color: "text-primary",
-                bg: "bg-primary/10",
+                bg: "bg-muted/10",
                 border: "border-border",
               },
             ].map((r) => (
@@ -1190,7 +1190,7 @@ function CreditStructureTab() {
               </div>
             ))}
           </div>
-          <div className="mt-3 p-2 rounded-lg bg-primary/10 border border-border">
+          <div className="mt-3 p-2 rounded-lg bg-muted/10 border border-border">
             <p className="text-xs text-primary">
               Alt data provides an edge in early detection of credit deterioration before it appears in quarterly financials — especially valuable for high-yield and leveraged loan analysis.
             </p>
@@ -1266,11 +1266,11 @@ export default function FixedIncomeTechPage() {
           className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2.5 rounded-md bg-primary/10">
+            <div className="p-2.5 rounded-md bg-muted/10">
               <Activity className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Fixed Income Technology &amp; Electronic Trading</h1>
+              <h1 className="text-xl font-semibold text-foreground">Fixed Income Technology &amp; Electronic Trading</h1>
               <p className="text-sm text-muted-foreground mt-0.5">
                 How technology transformed bond markets — from voice to algo, from opaque to transparent
               </p>

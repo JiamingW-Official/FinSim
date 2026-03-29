@@ -228,7 +228,7 @@ function DonutChart({
           d={sl.path}
           fill={sl.color}
           opacity={hovered === null ? 0.85 : hovered === sl.i ? 1 : 0.45}
-          className="cursor-pointer transition-all duration-150"
+          className="cursor-pointer transition-colors duration-150"
           onMouseEnter={() => setHovered(sl.i)}
           onMouseLeave={() => setHovered(null)}
         />
@@ -332,7 +332,7 @@ function TrafficLight({ status }: { status: "green" | "yellow" | "red" }) {
         <div
           key={c}
           className={cn(
-            "h-3 w-3 rounded-full transition-all",
+            "h-3 w-3 rounded-full transition-colors",
             c === status
               ? c === "green"
                 ? "bg-emerald-400"
@@ -369,7 +369,7 @@ function SectionCard({
   className?: string;
 }) {
   return (
-    <div className={cn("rounded-md border border-border/40 bg-card p-4", className)}>
+    <div className={cn("rounded-md border border-border/20 bg-card p-4", className)}>
       <div className="mb-3 flex items-center gap-2">
         <span className="text-primary">{icon}</span>
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -391,9 +391,9 @@ function MetricChip({
   valueClass?: string;
 }) {
   return (
-    <div className="flex flex-col items-center rounded-lg border border-border/40 bg-background px-3 py-2">
+    <div className="flex flex-col items-center rounded-lg border border-border/20 bg-background px-3 py-2">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <span className={cn("mt-0.5 text-sm font-bold tabular-nums", valueClass ?? "text-foreground")}>
+      <span className={cn("mt-0.5 text-sm font-semibold tabular-nums", valueClass ?? "text-foreground")}>
         {value}
       </span>
     </div>
@@ -418,34 +418,34 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
     <div className="space-y-4">
       {/* Totals bar */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-lg border border-border/40 bg-background p-3">
+        <div className="rounded-lg border border-border/20 bg-background p-3">
           <div className="text-xs text-muted-foreground">Total Value</div>
-          <div className="mt-1 text-lg font-bold text-foreground">
+          <div className="mt-1 text-lg font-semibold text-foreground">
             <AnimatedCounter value={totalValue} formatter={(v) => fmt$(v)} />
           </div>
         </div>
-        <div className="rounded-lg border border-border/40 bg-background p-3">
+        <div className="rounded-lg border border-border/20 bg-background p-3">
           <div className="text-xs text-muted-foreground">Total Cost</div>
-          <div className="mt-1 text-lg font-bold text-foreground">{fmt$(totalCost)}</div>
+          <div className="mt-1 text-lg font-semibold text-foreground">{fmt$(totalCost)}</div>
         </div>
-        <div className="rounded-lg border border-border/40 bg-background p-3">
+        <div className="rounded-lg border border-border/20 bg-background p-3">
           <div className="text-xs text-muted-foreground">Unrealized P&L</div>
-          <div className={cn("mt-1 text-lg font-bold tabular-nums", pctColor(totalPnL))}>
+          <div className={cn("mt-1 text-lg font-semibold tabular-nums", pctColor(totalPnL))}>
             <AnimatedCounter value={totalPnL} formatter={(v) => fmt$(v, true)} />
           </div>
         </div>
-        <div className="rounded-lg border border-border/40 bg-background p-3">
+        <div className="rounded-lg border border-border/20 bg-background p-3">
           <div className="text-xs text-muted-foreground">Overall Return</div>
-          <div className={cn("mt-1 text-lg font-bold tabular-nums", pctColor(totalReturn))}>
+          <div className={cn("mt-1 text-lg font-semibold tabular-nums", pctColor(totalReturn))}>
             <AnimatedCounter value={totalReturn} formatter={(v) => fmtPct(v, true)} />
           </div>
         </div>
       </div>
 
       {/* Positions table */}
-      <div className="overflow-x-auto rounded-lg border border-border/40">
+      <div className="overflow-x-auto rounded-lg border border-border/20">
         <table className="w-full text-xs">
-          <thead className="border-b border-border/40 bg-muted/30">
+          <thead className="border-b border-border/20 bg-muted/30">
             <tr>
               {["Symbol", "Shares", "Cost", "Price", "Value", "P&L $", "P&L %", "Weight"].map((h) => (
                 <th key={h} className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">
@@ -490,7 +490,7 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
                   <Medal size={12} className={medalColors[i]} />
                   <span className="text-xs font-semibold text-foreground">{p.symbol}</span>
                 </div>
-                <span className="text-xs font-bold text-emerald-400">{fmtPct(p.pnlPct, true)}</span>
+                <span className="text-xs font-semibold text-emerald-400">{fmtPct(p.pnlPct, true)}</span>
               </div>
             ))}
           </div>
@@ -507,7 +507,7 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
                   <Medal size={12} className={medalColors[i]} />
                   <span className="text-xs font-semibold text-foreground">{p.symbol}</span>
                 </div>
-                <span className="text-xs font-bold text-red-400">{fmtPct(p.pnlPct, true)}</span>
+                <span className="text-xs font-semibold text-red-400">{fmtPct(p.pnlPct, true)}</span>
               </div>
             ))}
           </div>
@@ -571,7 +571,7 @@ function AssetAllocationMonitor({ classes }: { classes: AssetClass[] }) {
                   <div className="flex items-center gap-3 tabular-nums">
                     <span className="text-muted-foreground">T: {c.target}%</span>
                     <span className="font-semibold text-foreground">A: {c.actual.toFixed(1)}%</span>
-                    <span className={cn("font-bold", alerting ? (drift > 0 ? "text-amber-400" : "text-red-400") : "text-muted-foreground")}>
+                    <span className={cn("font-semibold", alerting ? (drift > 0 ? "text-amber-400" : "text-red-400") : "text-muted-foreground")}>
                       {drift >= 0 ? "+" : ""}{drift.toFixed(1)}%
                     </span>
                   </div>
@@ -583,7 +583,7 @@ function AssetAllocationMonitor({ classes }: { classes: AssetClass[] }) {
                     style={{ left: `${Math.min(100, (c.target / 50) * 100)}%` }}
                   />
                   <div
-                    className="h-full rounded-full transition-all duration-300"
+                    className="h-full rounded-full transition-colors duration-300"
                     style={{
                       width: `${Math.min(100, (c.actual / 50) * 100)}%`,
                       backgroundColor: c.color,
@@ -593,7 +593,7 @@ function AssetAllocationMonitor({ classes }: { classes: AssetClass[] }) {
               </div>
             );
           })}
-          <div className="mt-3 rounded-lg border border-border/40 bg-background p-2 text-xs text-muted-foreground">
+          <div className="mt-3 rounded-lg border border-border/20 bg-background p-2 text-xs text-muted-foreground">
             <span className="font-semibold text-foreground">Next review:</span> in {daysUntilReview} days. Rebalance triggers when drift &gt; 5%.
           </div>
         </div>
@@ -649,7 +649,7 @@ function RiskDashboard({
         </h4>
         <div className="space-y-2">
           {clusters.map((cl) => (
-            <div key={cl.label} className="flex items-center justify-between rounded-lg border border-border/40 bg-background px-3 py-2">
+            <div key={cl.label} className="flex items-center justify-between rounded-lg border border-border/20 bg-background px-3 py-2">
               <div className="flex items-center gap-2">
                 <Shield size={13} className="text-amber-400" />
                 <span className="text-xs font-semibold text-foreground">{cl.label}</span>
@@ -661,7 +661,7 @@ function RiskDashboard({
                   ))}
                 </div>
               </div>
-              <span className="text-xs font-bold text-amber-400">ρ={cl.corr.toFixed(2)}</span>
+              <span className="text-xs font-semibold text-amber-400">ρ={cl.corr.toFixed(2)}</span>
             </div>
           ))}
         </div>
@@ -732,12 +732,12 @@ function PerformanceAttribution() {
         </h4>
         <div className="space-y-1.5">
           {attribution.map((a) => (
-            <div key={a.name} className="flex items-center justify-between rounded-lg border border-border/40 bg-background px-3 py-2">
+            <div key={a.name} className="flex items-center justify-between rounded-lg border border-border/20 bg-background px-3 py-2">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full" style={{ backgroundColor: a.color }} />
                 <span className="text-xs text-muted-foreground">{a.name}</span>
               </div>
-              <span className={cn("text-xs font-bold tabular-nums", pctColor(a.value))}>
+              <span className={cn("text-xs font-semibold tabular-nums", pctColor(a.value))}>
                 {fmtPct(a.value, true)}
               </span>
             </div>
@@ -752,9 +752,9 @@ function PerformanceAttribution() {
         </h4>
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {factors.map((f) => (
-            <div key={f.name} className="rounded-lg border border-border/40 bg-background px-2 py-1.5">
+            <div key={f.name} className="rounded-lg border border-border/20 bg-background px-2 py-1.5">
               <div className="text-xs text-muted-foreground">{f.name}</div>
-              <div className={cn("text-xs font-bold tabular-nums", pctColor(f.loading))}>
+              <div className={cn("text-xs font-semibold tabular-nums", pctColor(f.loading))}>
                 {f.loading >= 0 ? "+" : ""}{f.loading}
               </div>
               <div className="mt-1 h-1 overflow-hidden rounded-full bg-muted">
@@ -794,7 +794,7 @@ function PerformanceAttribution() {
                 <span className={medalColors[i]}><Medal size={11} /></span>
                 <span className="text-xs text-foreground">{c.label}</span>
               </div>
-              <span className="text-xs font-bold text-emerald-400">{fmtPct(c.value, true)}</span>
+              <span className="text-xs font-semibold text-emerald-400">{fmtPct(c.value, true)}</span>
             </div>
           ))}
         </div>
@@ -806,7 +806,7 @@ function PerformanceAttribution() {
                 <span className={medalColors[i]}><Medal size={11} /></span>
                 <span className="text-xs text-foreground">{c.label}</span>
               </div>
-              <span className="text-xs font-bold text-red-400">{fmtPct(c.value, true)}</span>
+              <span className="text-xs font-semibold text-red-400">{fmtPct(c.value, true)}</span>
             </div>
           ))}
         </div>
@@ -906,7 +906,7 @@ function TradeSuggestions({
 
   return (
     <div className="space-y-3">
-      <div className="rounded-lg border border-border/40 bg-background p-2.5 text-xs text-muted-foreground">
+      <div className="rounded-lg border border-border/20 bg-background p-2.5 text-xs text-muted-foreground">
         <Info size={12} className="mr-1.5 inline text-primary" />
         Suggestions ordered by priority: tax-loss harvests first, then rebalancing trades.
       </div>
@@ -921,14 +921,14 @@ function TradeSuggestions({
             "rounded-md border p-3",
             t.priority === "tax-loss"
               ? "border-emerald-500/30 bg-emerald-500/5"
-              : "border-border/40 bg-card"
+              : "border-border/20 bg-card"
           )}
         >
           <div className="flex items-start justify-between gap-2">
             <div className="flex items-center gap-2">
               <Badge
                 className={cn(
-                  "text-xs font-bold",
+                  "text-xs font-semibold",
                   t.action === "BUY"
                     ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30"
                     : "bg-red-500/20 text-red-400 hover:bg-red-500/30"
@@ -936,7 +936,7 @@ function TradeSuggestions({
               >
                 {t.action}
               </Badge>
-              <span className="font-bold text-foreground">{t.symbol}</span>
+              <span className="font-semibold text-foreground">{t.symbol}</span>
               <span className="text-xs text-muted-foreground">{t.shares} shares</span>
               {t.priority === "tax-loss" && (
                 <Badge variant="outline" className="border-emerald-500/50 text-xs text-emerald-400">
@@ -944,7 +944,7 @@ function TradeSuggestions({
                 </Badge>
               )}
             </div>
-            <span className="text-xs font-bold text-foreground">{fmt$(t.value)}</span>
+            <span className="text-xs font-semibold text-foreground">{fmt$(t.value)}</span>
           </div>
           <p className="mt-1.5 text-xs text-muted-foreground">{t.reason}</p>
           <div className="mt-2 flex flex-wrap gap-3 text-xs text-muted-foreground">
@@ -1068,7 +1068,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
   return (
     <div className="space-y-2">
       {groups.map((g) => (
-        <div key={g.key} className="rounded-md border border-border/40 overflow-hidden">
+        <div key={g.key} className="rounded-md border border-border/20 overflow-hidden">
           <button
             onClick={() => setExpanded(expanded === g.key ? null : g.key)}
             className="flex w-full items-center justify-between bg-card px-4 py-2.5 text-left hover:bg-muted/30 transition-colors"
@@ -1095,7 +1095,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
                 transition={{ duration: 0.2 }}
                 className="overflow-hidden"
               >
-                <div className="divide-y divide-border border-t border-border/40">
+                <div className="divide-y divide-border border-t border-border/20">
                   {g.alerts.map((a) => (
                     <div
                       key={a.id}
@@ -1170,7 +1170,7 @@ export default function PortfolioMonitor() {
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-foreground">Portfolio Monitor</h1>
+          <h1 className="text-xl font-semibold text-foreground">Portfolio Monitor</h1>
           <p className="mt-0.5 text-xs text-muted-foreground">
             Simulated monitoring, rebalancing &amp; risk analytics
           </p>
@@ -1188,7 +1188,7 @@ export default function PortfolioMonitor() {
           )}
           <button
             onClick={handleRefresh}
-            className="flex items-center gap-1.5 rounded-lg border border-border/40 bg-card px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50 transition-colors"
+            className="flex items-center gap-1.5 rounded-lg border border-border/20 bg-card px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/50 transition-colors"
           >
             <RefreshCw size={12} />
             Refresh
@@ -1198,21 +1198,20 @@ export default function PortfolioMonitor() {
 
       {/* Tabs */}
       <Tabs defaultValue="snapshot">
-        <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-muted/30">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
           {[
-            { value: "snapshot",    label: "Snapshot",    icon: <BarChart2 size={13} /> },
-            { value: "allocation",  label: "Allocation",  icon: <Target size={13} /> },
-            { value: "risk",        label: "Risk",        icon: <Shield size={13} /> },
-            { value: "attribution", label: "Attribution", icon: <TrendingUp size={13} /> },
-            { value: "trades",      label: "Suggestions", icon: <Zap size={13} /> },
-            { value: "alerts",      label: "Alerts",      icon: <Bell size={13} /> },
+            { value: "snapshot",    label: "Snapshot" },
+            { value: "allocation",  label: "Allocation" },
+            { value: "risk",        label: "Risk" },
+            { value: "attribution", label: "Attribution" },
+            { value: "trades",      label: "Suggestions" },
+            { value: "alerts",      label: "Alerts" },
           ].map((t) => (
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background data-[state=active]:text-foreground"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
             >
-              {t.icon}
               {t.label}
             </TabsTrigger>
           ))}

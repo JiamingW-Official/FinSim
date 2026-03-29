@@ -589,7 +589,7 @@ export function RebalancingTool() {
   // ── No positions fallback ──
   if (positions.length === 0) {
     return (
-      <div className="rounded-lg border border-border/40 bg-card/50 p-6 text-center">
+      <div className="rounded-lg border border-border/20 bg-card/50 p-6 text-center">
         <RefreshCw className="mx-auto mb-3 h-8 w-8 text-muted-foreground/40" />
         <p className="text-sm font-medium text-muted-foreground">No positions to rebalance</p>
         <p className="text-[11px] text-muted-foreground/60 mt-1">Open some trades first, then come back to set targets.</p>
@@ -627,7 +627,7 @@ export function RebalancingTool() {
       {activeSection === "setup" && (
         <div className="space-y-3">
           {/* Strategy Presets */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
                 <Target className="h-3.5 w-3.5 text-primary" />
@@ -650,7 +650,7 @@ export function RebalancingTool() {
                         });
                         setTargetMode("assetClass");
                       }}
-                      className="rounded-md border border-border/40 bg-background/50 p-2.5 text-left hover:border-primary/50 hover:bg-primary/5 transition-colors"
+                      className="rounded-md border border-border/20 bg-background/50 p-2.5 text-left hover:border-primary/50 hover:bg-primary/5 transition-colors"
                     >
                       <p className="text-[11px] font-semibold">{preset.label}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{preset.description}</p>
@@ -691,7 +691,7 @@ export function RebalancingTool() {
 
           {/* Asset Class Sliders */}
           {targetMode === "assetClass" && (
-            <Card className="border-border/40 bg-card/50">
+            <Card className="border-border/20 bg-card/50">
               <CardHeader className="pb-2 pt-3 px-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
@@ -762,7 +762,7 @@ export function RebalancingTool() {
 
           {/* Ticker-Level Targets */}
           {targetMode === "ticker" && (
-            <Card className="border-border/40 bg-card/50">
+            <Card className="border-border/20 bg-card/50">
               <CardHeader className="pb-2 pt-3 px-3">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xs font-semibold">Ticker Targets</CardTitle>
@@ -806,7 +806,7 @@ export function RebalancingTool() {
                     </span>
                   </div>
                 ))}
-                <div className="pt-1 border-t border-border/40">
+                <div className="pt-1 border-t border-border/20">
                   <p className="text-xs text-muted-foreground">
                     Total: {initializedTickerTargets.reduce((s, t) => s + t.target, 0).toFixed(1)}%
                     {Math.abs(initializedTickerTargets.reduce((s, t) => s + t.target, 0) - 100) > 1 && (
@@ -819,7 +819,7 @@ export function RebalancingTool() {
           )}
 
           {/* Drift Threshold */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
                 <Info className="h-3.5 w-3.5 text-muted-foreground" />
@@ -838,7 +838,7 @@ export function RebalancingTool() {
                 step={1}
                 onValueChange={([v]) => setDriftThreshold(v)}
               />
-              <div className="rounded-md bg-primary/8 border border-border/40 p-2.5 space-y-1">
+              <div className="rounded-md bg-primary/8 border border-border/20 p-2.5 space-y-1">
                 <p className="text-xs font-medium text-primary">Threshold vs Calendar Rebalancing</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   <strong className="text-foreground">Threshold (5%)</strong> — only rebalance when a position drifts more than 5% from target.
@@ -886,7 +886,7 @@ export function RebalancingTool() {
           </div>
 
           {/* Holdings Table */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold">Current vs Target Weights</CardTitle>
             </CardHeader>
@@ -894,7 +894,7 @@ export function RebalancingTool() {
               <div className="overflow-x-auto">
                 <table className="w-full text-[11px]">
                   <thead>
-                    <tr className="border-b border-border/40">
+                    <tr className="border-b border-border/20">
                       <th className="px-3 py-2 text-left font-medium text-muted-foreground">Ticker</th>
                       <th className="px-3 py-2 text-right font-medium text-muted-foreground">Current</th>
                       <th className="px-3 py-2 text-right font-medium text-muted-foreground">Target</th>
@@ -938,7 +938,7 @@ export function RebalancingTool() {
           </Card>
 
           {/* Bar Chart */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
                 <BarChart3 className="h-3.5 w-3.5 text-primary" />
@@ -970,7 +970,7 @@ export function RebalancingTool() {
               },
             ].map((item) => (
               <div key={item.label} className={cn("rounded-lg border p-2.5 text-center", item.className.split(" ").slice(0, 2).join(" "))}>
-                <p className={cn("text-xl font-bold tabular-nums", item.className.split(" ").slice(2).join(" "))}>{item.count}</p>
+                <p className={cn("text-xl font-semibold tabular-nums", item.className.split(" ").slice(2).join(" "))}>{item.count}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{item.label}</p>
                 <p className="text-[11px] text-muted-foreground/60">
                   {item.label === "On Target" ? "<2%" : item.label === "Minor Drift" ? "2–5%" : ">5%"}
@@ -986,17 +986,17 @@ export function RebalancingTool() {
         <div className="space-y-3">
           {/* Summary */}
           <div className="grid grid-cols-3 gap-2">
-            <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+            <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
               <p className="text-xs text-muted-foreground">Trades Needed</p>
-              <p className="text-base font-bold tabular-nums">{totalTrades}</p>
+              <p className="text-base font-semibold tabular-nums">{totalTrades}</p>
             </div>
-            <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+            <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
               <p className="text-xs text-muted-foreground">Est. Cost</p>
-              <p className="text-base font-bold tabular-nums">{formatCurrency(estimatedCost)}</p>
+              <p className="text-base font-semibold tabular-nums">{formatCurrency(estimatedCost)}</p>
             </div>
-            <div className="rounded-lg border border-border/40 bg-card/50 p-2.5">
+            <div className="rounded-lg border border-border/20 bg-card/50 p-2.5">
               <p className="text-xs text-muted-foreground">Drift Score</p>
-              <p className={cn("text-base font-bold tabular-nums", getDriftColor(driftScore - 0))}>
+              <p className={cn("text-base font-semibold tabular-nums", getDriftColor(driftScore - 0))}>
                 {driftScore.toFixed(1)}%
               </p>
             </div>
@@ -1039,7 +1039,7 @@ export function RebalancingTool() {
                       <Badge
                         variant="outline"
                         className={cn(
-                          "text-[11px] font-bold",
+                          "text-[11px] font-semibold",
                           trade.action === "sell"
                             ? "border-red-500/30 text-red-400"
                             : "border-emerald-500/30 text-emerald-400",
@@ -1047,9 +1047,9 @@ export function RebalancingTool() {
                       >
                         {trade.action === "sell" ? "SELL" : "BUY"}
                       </Badge>
-                      <span className="text-[12px] font-bold">{trade.ticker}</span>
+                      <span className="text-[12px] font-semibold">{trade.ticker}</span>
                       {trade.isLosser && trade.action === "sell" && (
-                        <Badge variant="outline" className="text-[11px] border-border/40 text-primary">
+                        <Badge variant="outline" className="text-[11px] border-border/20 text-primary">
                           Tax Loss
                         </Badge>
                       )}
@@ -1075,7 +1075,7 @@ export function RebalancingTool() {
               ))}
 
               {/* Priority legend */}
-              <div className="rounded-md bg-card/60 border border-border/40 p-2.5 text-xs text-muted-foreground">
+              <div className="rounded-md bg-card/60 border border-border/20 p-2.5 text-xs text-muted-foreground">
                 <p className="font-medium text-foreground mb-1">Execution Order</p>
                 <ol className="list-decimal list-inside space-y-0.5">
                   <li>Sell losing positions (realize tax losses first)</li>
@@ -1087,7 +1087,7 @@ export function RebalancingTool() {
           )}
 
           {/* Dollar Cost Averaging Alternative */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
                 <DollarSign className="h-3.5 w-3.5 text-emerald-400" />
@@ -1121,20 +1121,20 @@ export function RebalancingTool() {
         <div className="space-y-3">
           {/* Expected benefit */}
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-lg border border-border/40 bg-card/50 p-3">
+            <div className="rounded-lg border border-border/20 bg-card/50 p-3">
               <p className="text-xs text-muted-foreground mb-1">Expected Annual Benefit</p>
-              <p className="text-sm font-bold text-emerald-400">+0.25–0.50%</p>
+              <p className="text-sm font-semibold text-emerald-400">+0.25–0.50%</p>
               <p className="text-xs text-muted-foreground">Higher returns via reduced variance drag</p>
             </div>
-            <div className="rounded-lg border border-border/40 bg-card/50 p-3">
+            <div className="rounded-lg border border-border/20 bg-card/50 p-3">
               <p className="text-xs text-muted-foreground mb-1">Tax Drag (est.)</p>
-              <p className="text-sm font-bold text-amber-400">−0.10–0.30%</p>
+              <p className="text-sm font-semibold text-amber-400">−0.10–0.30%</p>
               <p className="text-xs text-muted-foreground">From selling appreciated positions annually</p>
             </div>
           </div>
 
           {/* Drift chart */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
                 <BarChart3 className="h-3.5 w-3.5 text-primary" />
@@ -1152,7 +1152,7 @@ export function RebalancingTool() {
           </Card>
 
           {/* Rebalancing history log */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-2 pt-3 px-3">
               <CardTitle className="text-xs font-semibold flex items-center gap-1.5">
                 <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
@@ -1162,7 +1162,7 @@ export function RebalancingTool() {
             <CardContent className="px-0 pb-0">
               <table className="w-full text-[11px]">
                 <thead>
-                  <tr className="border-b border-border/40">
+                  <tr className="border-b border-border/20">
                     <th className="px-3 py-2 text-left font-medium text-muted-foreground">Date</th>
                     <th className="px-3 py-2 text-center font-medium text-muted-foreground">Trades</th>
                     <th className="px-3 py-2 text-right font-medium text-muted-foreground">Post-Drift</th>
@@ -1190,7 +1190,7 @@ export function RebalancingTool() {
           </Card>
 
           {/* Drift Simulator */}
-          <Card className="border-border/40 bg-card/50">
+          <Card className="border-border/20 bg-card/50">
             <CardHeader className="pb-0 pt-3 px-3">
               <button
                 type="button"
@@ -1237,13 +1237,13 @@ export function RebalancingTool() {
                 )}>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-medium">Projected Drift Score</span>
-                    <span className={cn("text-[11px] font-bold tabular-nums", simDrift > driftThreshold ? "text-red-400" : "text-emerald-400")}>
+                    <span className={cn("text-[11px] font-semibold tabular-nums", simDrift > driftThreshold ? "text-red-400" : "text-emerald-400")}>
                       {simDrift.toFixed(1)}%
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-medium">Projected Portfolio Value</span>
-                    <span className="text-[11px] font-bold tabular-nums">{formatCurrency(simTotal)}</span>
+                    <span className="text-[11px] font-semibold tabular-nums">{formatCurrency(simTotal)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-medium">Rebalance Triggered?</span>

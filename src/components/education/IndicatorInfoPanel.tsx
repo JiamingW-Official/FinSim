@@ -98,7 +98,7 @@ export function IndicatorInfoPanel() {
                     <div className="flex items-start gap-2">
                       <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0 text-amber-400" />
                       <div>
-                        <span className="text-[11px] font-bold text-amber-400">
+                        <span className="text-[11px] font-semibold text-amber-400">
                           Common mistake
                         </span>
                         <p className="text-xs leading-relaxed text-muted-foreground">
@@ -111,7 +111,7 @@ export function IndicatorInfoPanel() {
                     <div className="flex items-start gap-2">
                       <Star className="mt-0.5 h-3 w-3 shrink-0 text-primary" />
                       <div>
-                        <span className="text-[11px] font-bold text-primary">
+                        <span className="text-[11px] font-semibold text-primary">
                           Pro tip
                         </span>
                         <p className="text-xs leading-relaxed text-muted-foreground">
@@ -121,8 +121,8 @@ export function IndicatorInfoPanel() {
                     </div>
 
                     {/* Example scenario */}
-                    <div className="rounded-md bg-muted/30 border border-border/40 px-2 py-1.5">
-                      <span className="text-[11px] font-bold text-foreground/50">
+                    <div className="rounded-md bg-muted/30 border border-border/20 px-2 py-1.5">
+                      <span className="text-[11px] font-semibold text-foreground/50">
                         Example
                       </span>
                       <p className="text-xs leading-relaxed text-muted-foreground mt-0.5">

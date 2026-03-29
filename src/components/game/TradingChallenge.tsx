@@ -387,7 +387,7 @@ function LobbyScreen({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-foreground">Trading Challenges</h2>
+          <h2 className="text-xl font-semibold text-foreground">Trading Challenges</h2>
           <p className="text-sm text-muted-foreground">Test your skills across 5 challenge modes</p>
         </div>
         <button
@@ -430,7 +430,7 @@ function LobbyScreen({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="group cursor-pointer rounded-md border border-border bg-card/60 p-4 hover:border-border hover:bg-muted/60 transition-all"
+            className="group cursor-pointer rounded-md border border-border bg-card/60 p-4 hover:border-border hover:bg-muted/60 transition-colors"
             onClick={() => onSelect(cfg)}
           >
             <div className="flex items-start justify-between mb-2">
@@ -581,14 +581,14 @@ function RapidFireScreen({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-foreground">{challenge.name}</h3>
+          <h3 className="text-base font-semibold text-foreground">{challenge.name}</h3>
           <p className="text-xs text-muted-foreground">Bar {currentBar + 1} / {bars.length}</p>
         </div>
         <motion.div
           animate={{ scale: urgency ? [1, 1.05, 1] : 1 }}
           transition={{ repeat: urgency ? Infinity : 0, duration: 0.5 }}
           className={cn(
-            "flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-bold",
+            "flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-semibold",
             urgency ? "bg-red-500/20 text-red-400 border border-red-500/40" : "bg-muted text-muted-foreground"
           )}
         >
@@ -602,7 +602,7 @@ function RapidFireScreen({
         <PriceLineChart bars={bars} revealed={currentBar} width={340} height={100} />
         <div className="mt-2 flex items-center justify-between text-sm">
           <span className="text-muted-foreground">Price: <span className="font-mono text-foreground">${currentPrice.toFixed(2)}</span></span>
-          <span className={cn("font-mono font-bold", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <span className={cn("font-mono font-semibold", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {returnPct >= 0 ? "+" : ""}{returnPct.toFixed(2)}%
           </span>
         </div>
@@ -636,7 +636,7 @@ function RapidFireScreen({
             key={action}
             whileTap={{ scale: 0.95 }}
             onClick={() => handleAction(action)}
-            className={cn("rounded-md py-4 font-bold text-lg transition-colors relative", color)}
+            className={cn("rounded-md py-4 font-semibold text-lg transition-colors relative", color)}
           >
             {label}
             <span className="absolute bottom-1.5 right-2 text-xs opacity-50 font-normal">[{key}]</span>
@@ -717,19 +717,19 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-foreground">Pattern Recognition</h3>
+          <h3 className="text-base font-semibold text-foreground">Pattern Recognition</h3>
           <p className="text-xs text-muted-foreground">Question {index + 1} / {quizzes.length}</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 text-amber-400 text-sm">
             <Flame className="h-4 w-4" />
-            <span className="font-bold">{streak}</span>
+            <span className="font-semibold">{streak}</span>
           </div>
           <motion.div
             animate={{ scale: timeLeft <= 2 ? [1, 1.1, 1] : 1 }}
             transition={{ repeat: timeLeft <= 2 ? Infinity : 0, duration: 0.4 }}
             className={cn(
-              "rounded-lg px-3 py-1.5 text-sm font-bold",
+              "rounded-lg px-3 py-1.5 text-sm font-semibold",
               timeLeft <= 2 ? "bg-red-500/20 text-red-400" : "bg-muted text-muted-foreground"
             )}
           >
@@ -880,7 +880,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-base font-bold text-foreground">Strategy Battle</h3>
+          <h3 className="text-base font-semibold text-foreground">Strategy Battle</h3>
           <p className="text-xs text-muted-foreground">30-bar simulation across strategies</p>
         </div>
         {done && (
@@ -912,10 +912,10 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
 
       {/* Bot cards */}
       <div className="space-y-2">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Competitors</p>
+        <p className="text-xs font-semibold text-muted-foreground">Competitors</p>
         {BOT_CONFIGS.map((bot) => (
           <div key={bot.id} className="flex items-center gap-3 rounded-lg bg-card border border-border p-3">
-            <div className="h-8 w-8 rounded-full flex items-center justify-center font-bold text-xs"
+            <div className="h-8 w-8 rounded-full flex items-center justify-center font-semibold text-xs"
               style={{ backgroundColor: bot.color + "22", color: bot.color }}>
               {bot.name[0]}
             </div>
@@ -924,7 +924,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
               <p className="text-xs text-muted-foreground truncate">{bot.strategy}</p>
             </div>
             {done && (
-              <span className={cn("text-sm font-mono font-bold", botReturns[bot.id] >= 0 ? "text-emerald-400" : "text-red-400")}>
+              <span className={cn("text-sm font-mono font-semibold", botReturns[bot.id] >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {botReturns[bot.id] >= 0 ? "+" : ""}{botReturns[bot.id].toFixed(1)}%
               </span>
             )}
@@ -935,14 +935,14 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
       {/* Strategy selector */}
       {!running && !done && (
         <div className="space-y-2">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Choose Your Strategy</p>
+          <p className="text-xs font-semibold text-muted-foreground">Choose Your Strategy</p>
           <div className="grid grid-cols-3 gap-2">
             {BOT_CONFIGS.map((bot) => (
               <button
                 key={bot.id}
                 onClick={() => setPlayerStrategy(bot.id)}
                 className={cn(
-                  "rounded-lg border p-2.5 text-xs font-semibold transition-all",
+                  "rounded-lg border p-2.5 text-xs font-semibold transition-colors",
                   playerStrategy === bot.id
                     ? "border-foreground/40 bg-foreground/10 text-foreground"
                     : "border-border bg-card text-muted-foreground hover:border-border hover:text-foreground"
@@ -955,7 +955,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
           <button
             disabled={!playerStrategy}
             onClick={handleStart}
-            className="w-full rounded-md bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground/70 py-2.5 text-sm font-bold text-foreground transition-colors"
+            className="w-full rounded-md bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground/70 py-2.5 text-sm font-semibold text-foreground transition-colors"
           >
             Battle!
           </button>
@@ -965,22 +965,22 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
       {/* Final leaderboard */}
       {done && (
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-2">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Final Results</p>
+          <p className="text-xs font-semibold text-muted-foreground">Final Results</p>
           {allResults.map((r, i) => (
             <div key={r.name} className={cn(
               "flex items-center gap-3 rounded-lg border p-3",
               r.isPlayer ? "border-amber-500/40 bg-amber-500/10" : "border-border bg-card"
             )}>
-              <span className="text-xs font-bold text-muted-foreground w-4">#{i + 1}</span>
+              <span className="text-xs font-semibold text-muted-foreground w-4">#{i + 1}</span>
               <span className={cn("flex-1 text-sm font-semibold", r.isPlayer ? "text-amber-400" : "text-muted-foreground")}>{r.name}</span>
-              <span className={cn("font-mono font-bold text-sm", r.ret >= 0 ? "text-emerald-400" : "text-red-400")}>
+              <span className={cn("font-mono font-semibold text-sm", r.ret >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {r.ret >= 0 ? "+" : ""}{r.ret.toFixed(1)}%
               </span>
             </div>
           ))}
           <button
             onClick={() => onFinish(score)}
-            className="w-full rounded-md bg-amber-500 hover:bg-amber-400 py-2.5 text-sm font-bold text-black transition-colors"
+            className="w-full rounded-md bg-amber-500 hover:bg-amber-400 py-2.5 text-sm font-semibold text-black transition-colors"
           >
             Submit Score
           </button>
@@ -1007,7 +1007,7 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-base font-bold text-foreground">Leaderboard</h3>
+        <h3 className="text-base font-semibold text-foreground">Leaderboard</h3>
         <button onClick={onBack} className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors">
           Back
         </button>
@@ -1029,7 +1029,7 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
         <div className="rounded-md border border-amber-500/40 bg-amber-500/10 p-3 flex items-center gap-3">
           <Crown className="h-5 w-5 text-amber-400" />
           <div>
-            <p className="text-sm font-bold text-amber-400">Your Rank: #{playerEntry.rank}</p>
+            <p className="text-sm font-semibold text-amber-400">Your Rank: #{playerEntry.rank}</p>
             <p className="text-xs text-muted-foreground">Score: {playerEntry.score.toLocaleString()}</p>
           </div>
         </div>
@@ -1048,13 +1048,13 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
               e.name === "You" ? "border-amber-500/40 bg-amber-500/10" : "border-border bg-card"
             )}
           >
-            <span className="text-xs font-bold w-5 text-muted-foreground">
+            <span className="text-xs font-semibold w-5 text-muted-foreground">
               {e.rank === 1 ? "🥇" : e.rank === 2 ? "🥈" : e.rank === 3 ? "🥉" : `#${e.rank}`}
             </span>
             <span className={cn("flex-1 text-sm font-semibold", e.name === "You" ? "text-amber-400" : "text-muted-foreground")}>
               {e.name}
             </span>
-            <span className="font-mono text-sm font-bold text-foreground">{e.score.toLocaleString()}</span>
+            <span className="font-mono text-sm font-semibold text-foreground">{e.score.toLocaleString()}</span>
           </motion.div>
         ))}
       </div>
@@ -1099,12 +1099,12 @@ function ResultsSummary({
       className="space-y-5 text-center"
     >
       <div>
-        <h3 className="text-lg font-bold text-foreground">{title}</h3>
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
         <motion.p
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, type: "spring" }}
-          className={cn("text-6xl font-bold mt-3", gradeColor)}
+          className={cn("text-2xl font-semibold mt-3", gradeColor)}
         >
           {grade}
         </motion.p>
@@ -1113,18 +1113,18 @@ function ResultsSummary({
       <div className="grid grid-cols-2 gap-3">
         <div className="rounded-md border border-border bg-card p-3">
           <p className="text-xs text-muted-foreground mb-1">Return</p>
-          <p className={cn("text-xl font-bold font-mono", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <p className={cn("text-xl font-semibold font-mono", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {returnPct >= 0 ? "+" : ""}{returnPct.toFixed(2)}%
           </p>
         </div>
         <div className="rounded-md border border-border bg-card p-3">
           <p className="text-xs text-muted-foreground mb-1">Score</p>
-          <p className="text-xl font-bold text-foreground">{score.toLocaleString()}</p>
+          <p className="text-xl font-semibold text-foreground">{score.toLocaleString()}</p>
         </div>
         {speedBonus !== undefined && (
           <div className="rounded-md border border-border bg-card p-3">
             <p className="text-xs text-muted-foreground mb-1">Speed Bonus</p>
-            <p className="text-xl font-bold text-amber-400">{speedBonus.toFixed(2)}×</p>
+            <p className="text-xl font-semibold text-amber-400">{speedBonus.toFixed(2)}×</p>
           </div>
         )}
         {extra && (
@@ -1137,7 +1137,7 @@ function ResultsSummary({
 
       <button
         onClick={onFinish}
-        className="w-full rounded-md bg-amber-500 hover:bg-amber-400 py-3 text-sm font-bold text-black transition-colors"
+        className="w-full rounded-md bg-amber-500 hover:bg-amber-400 py-3 text-sm font-semibold text-black transition-colors"
       >
         Submit to Leaderboard
       </button>
@@ -1185,7 +1185,7 @@ export default function TradingChallenge() {
             <Trophy className="h-6 w-6 text-amber-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Trading Challenge</h1>
+            <h1 className="text-2xl font-semibold text-foreground">Trading Challenge</h1>
             <p className="text-sm text-muted-foreground">Arena — Compete &amp; Improve</p>
           </div>
           {screen !== "lobby" && (

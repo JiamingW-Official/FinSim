@@ -538,7 +538,7 @@ function ScoreBar({ score, label }: { score: number; label: string }) {
       <span className="w-28 text-xs text-muted-foreground shrink-0">{label}</span>
       <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
         <div
-          className="h-full rounded-full transition-all"
+          className="h-full rounded-full transition-colors"
           style={{ width: `${pct}%`, backgroundColor: color }}
         />
       </div>
@@ -784,10 +784,10 @@ export function TradeReplay() {
     <div className="flex h-full overflow-hidden">
       {/* ── Left panel: Trade selection ── */}
       <div
-        className="flex flex-col border-r border-border/40 bg-card overflow-y-auto shrink-0"
+        className="flex flex-col border-r border-border/20 bg-card overflow-y-auto shrink-0"
         style={{ width: 280 }}
       >
-        <div className="px-3 py-2 border-b border-border/40">
+        <div className="px-3 py-2 border-b border-border/20">
           <p className="text-xs font-semibold text-muted-foreground">
             Recent Trades
           </p>
@@ -888,7 +888,7 @@ export function TradeReplay() {
             </div>
             <div
               className={cn(
-                "text-3xl font-bold",
+                "text-lg font-semibold",
                 gradeColor[replayData.grade as keyof typeof gradeColor] ?? "text-muted-foreground",
               )}
             >
@@ -899,7 +899,7 @@ export function TradeReplay() {
           <div className="flex gap-4">
             {/* ── Center: Replay Chart ── */}
             <div className="flex-1 min-w-0">
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-1 pt-3 px-3">
                   <CardTitle className="text-xs font-medium text-muted-foreground">
                     Price Replay — ±20 Bars
@@ -924,7 +924,7 @@ export function TradeReplay() {
 
             {/* ── Right: Trade Stats ── */}
             <div className="shrink-0" style={{ width: 220 }}>
-              <Card className="border-border/50 h-full">
+              <Card className="border-border/20 h-full">
                 <CardHeader className="pb-1 pt-3 px-3">
                   <CardTitle className="text-xs font-medium text-muted-foreground">
                     Trade Stats
@@ -1007,7 +1007,7 @@ export function TradeReplay() {
           </div>
 
           {/* ── AI Critique ── */}
-          <Card className="border-border/50">
+          <Card className="border-border/20">
             <CardHeader className="pb-1 pt-3 px-3">
               <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                 <AlertTriangle className="h-3.5 w-3.5" />
@@ -1030,7 +1030,7 @@ export function TradeReplay() {
               </div>
 
               {/* Rubric scores */}
-              <div className="border-t border-border/50 pt-3 space-y-2">
+              <div className="border-t border-border/20 pt-3 space-y-2">
                 <ScoreBar score={replayData.rubric.entryTiming} label="Entry Timing" />
                 <ScoreBar score={replayData.rubric.exitTiming} label="Exit Timing" />
                 <ScoreBar score={replayData.rubric.riskManagement} label="Risk Management" />
@@ -1038,11 +1038,11 @@ export function TradeReplay() {
               </div>
 
               {/* Overall grade */}
-              <div className="border-t border-border/50 pt-2 flex items-center justify-between">
+              <div className="border-t border-border/20 pt-2 flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">Overall Grade</span>
                 <span
                   className={cn(
-                    "text-xl font-bold",
+                    "text-xl font-semibold",
                     gradeColor[replayData.grade as keyof typeof gradeColor] ?? "text-muted-foreground",
                   )}
                 >
@@ -1053,7 +1053,7 @@ export function TradeReplay() {
           </Card>
 
           {/* ── Hypothetical Alternatives ── */}
-          <Card className="border-border/50">
+          <Card className="border-border/20">
             <CardHeader className="pb-1 pt-3 px-3">
               <CardTitle className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                 <TrendingUp className="h-3.5 w-3.5" />
@@ -1065,7 +1065,7 @@ export function TradeReplay() {
                 {replayData.alternatives.map((alt, i) => (
                   <div
                     key={i}
-                    className="rounded-lg border border-border/50 bg-background/50 p-3 space-y-2"
+                    className="rounded-lg border border-border/20 bg-background/50 p-3 space-y-2"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold">{alt.label}</span>

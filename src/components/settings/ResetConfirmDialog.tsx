@@ -29,10 +29,10 @@ export function ResetConfirmDialog({
 }: ResetConfirmDialogProps) {
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onCancel()}>
-      <DialogContent className="glass max-w-xs border-border/50 p-0">
+      <DialogContent className="glass max-w-xs border-border/20 p-0">
         <div className="rounded-t-lg bg-destructive/10 px-4 py-3">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-sm font-bold text-destructive">
+            <DialogTitle className="flex items-center gap-2 text-sm font-semibold text-destructive">
               <AlertTriangle className="h-4 w-4" />
               {title}
             </DialogTitle>

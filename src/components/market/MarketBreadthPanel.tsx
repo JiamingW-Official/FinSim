@@ -33,7 +33,7 @@ function RatioBar({
         </span>
         <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden flex">
           <div
-            className={cn("h-full transition-all duration-300", leftColor.replace("text-", "bg-"))}
+            className={cn("h-full transition-colors duration-300", leftColor.replace("text-", "bg-"))}
             style={{ width: `${leftPct}%` }}
           />
           <div
@@ -78,7 +78,7 @@ function ProgressBar({
       </div>
       <div className="h-1.5 w-full rounded-full bg-muted">
         <div
-          className={cn("h-full rounded-full transition-all duration-300", color)}
+          className={cn("h-full rounded-full transition-colors duration-300", color)}
           style={{ width: `${Math.max(2, Math.min(100, value))}%` }}
         />
       </div>

@@ -83,10 +83,10 @@ export function KeyboardShortcutGuide() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="glass max-w-sm border-border/50 p-0">
+      <DialogContent className="glass max-w-sm border-border/20 p-0">
         <div className="rounded-t-lg bg-primary/10 px-4 py-3">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-sm font-bold text-primary">
+            <DialogTitle className="flex items-center gap-2 text-sm font-semibold text-primary">
               <Keyboard className="h-4 w-4" />
               Keyboard Shortcuts
             </DialogTitle>
@@ -96,7 +96,7 @@ export function KeyboardShortcutGuide() {
         <div className="space-y-4 px-4 pb-4">
           {SHORTCUT_SECTIONS.map((section) => (
             <div key={section.title}>
-              <div className={`mb-2 flex items-center gap-1.5 text-[11px] font-bold ${section.color}`}>
+              <div className={`mb-2 flex items-center gap-1.5 text-[11px] font-semibold ${section.color}`}>
                 <section.icon className="h-3 w-3" />
                 {section.title}
               </div>
@@ -123,7 +123,7 @@ export function KeyboardShortcutGuide() {
             </div>
           ))}
 
-          <div className="border-t border-border/50 pt-2">
+          <div className="border-t border-border/20 pt-2">
             <p className="text-center text-xs text-muted-foreground">
               Press <kbd className="mx-0.5 rounded border border-border bg-muted/50 px-1 py-0.5 text-[11px] font-mono">?</kbd> to toggle this guide
             </p>

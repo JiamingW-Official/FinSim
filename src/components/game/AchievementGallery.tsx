@@ -102,7 +102,7 @@ export function AchievementGallery() {
               type="button"
               onClick={() => setActiveTab(tab.key)}
               className={cn(
-                "relative rounded-lg px-2.5 py-1 text-xs font-bold transition-colors",
+                "relative rounded-lg px-2.5 py-1 text-xs font-semibold transition-colors",
                 activeTab === tab.key
                   ? "bg-primary/10 text-primary"
                   : "text-muted-foreground hover:text-foreground",
@@ -155,7 +155,7 @@ export function AchievementGallery() {
                 )}
               </div>
               <p className={cn(
-                "text-xs font-bold leading-tight",
+                "text-xs font-semibold leading-tight",
                 isUnlocked ? "text-amber-300" : "text-muted-foreground",
               )}>
                 {def.name}

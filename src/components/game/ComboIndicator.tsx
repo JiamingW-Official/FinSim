@@ -36,10 +36,10 @@ export function ComboIndicator() {
           className="fixed left-1/2 top-20 z-[90] -translate-x-1/2"
         >
           <div className="flex items-center gap-2 rounded-full border border-amber-500/40 bg-card/95 px-5 py-2.5 shadow-sm backdrop-blur-sm">
-            <span className="text-2xl font-bold tabular-nums text-amber-400">
+            <span className="text-2xl font-semibold tabular-nums text-amber-400">
               {comboNum}x
             </span>
-            <span className="text-sm font-bold text-amber-500">
+            <span className="text-sm font-semibold text-amber-500">
               COMBO!
             </span>
           </div>

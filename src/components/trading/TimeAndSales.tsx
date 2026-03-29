@@ -129,9 +129,9 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
   const sellRatio = totalVolBuySell > 0 ? ((sellVolume / totalVolBuySell) * 100).toFixed(0) : "50";
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card overflow-hidden">
+    <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/40">
+      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/20">
         <span className="text-xs font-semibold text-muted-foreground">
           Time &amp; Sales
         </span>
@@ -141,7 +141,7 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
       </div>
 
       {/* Stats row */}
-      <div className="flex items-center gap-3 px-2 py-1 border-b border-border/50 text-[11px] font-mono tabular-nums">
+      <div className="flex items-center gap-3 px-2 py-1 border-b border-border/20 text-[11px] font-mono tabular-nums">
         <div className="flex items-center gap-1">
           <span className="text-muted-foreground/70">Vol:</span>
           <span className="text-foreground font-medium">{formatSize(totalVolume)}</span>
@@ -160,7 +160,7 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
       </div>
 
       {/* Column headers */}
-      <div className="flex items-center gap-1 px-2 py-0.5 border-b border-border/30 text-[11px] text-muted-foreground/60">
+      <div className="flex items-center gap-1 px-2 py-0.5 border-b border-border/20 text-[11px] text-muted-foreground/60">
         <span className="w-[56px]">Time</span>
         <span className="flex-1 text-right">Price</span>
         <span className="w-[52px] text-right">Size</span>
@@ -198,7 +198,7 @@ export function TimeAndSales({ ticker, currentPrice }: TimeAndSalesProps) {
               <span
                 className={cn(
                   "w-[52px] text-right",
-                  isLarge ? "text-amber-400 font-bold" : "text-muted-foreground",
+                  isLarge ? "text-amber-400 font-semibold" : "text-muted-foreground",
                 )}
               >
                 {formatSize(entry.size)}

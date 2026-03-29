@@ -542,7 +542,7 @@ export default function QuantRiskPage() {
         className="flex items-start justify-between"
       >
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
             <Shield className="w-6 h-6 text-indigo-500" />
             Quantitative Risk Management
           </h1>
@@ -575,7 +575,7 @@ export default function QuantRiskPage() {
                 {kpi.icon}
                 <span className="text-xs text-muted-foreground">{kpi.label}</span>
               </div>
-              <div className="text-xl font-bold text-foreground">{kpi.value}</div>
+              <div className="text-xl font-semibold text-foreground">{kpi.value}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{kpi.sub}</div>
             </CardContent>
           </Card>
@@ -676,7 +676,7 @@ export default function QuantRiskPage() {
                         const selVar =
                           confidenceIdx === 0 ? row.var95 : confidenceIdx === 1 ? row.var99 : row.var999;
                         return (
-                          <tr key={row.method} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                          <tr key={row.method} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                             <td className="py-2.5 font-medium" style={{ color: row.color }}>{row.method}</td>
                             <td className="py-2.5 text-right tabular-nums">{fmtUSD(row.var95)}</td>
                             <td className="py-2.5 text-right tabular-nums">{fmtUSD(row.var99)}</td>
@@ -866,7 +866,7 @@ export default function QuantRiskPage() {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
-                      className="mt-2 pt-2 border-t border-border/50 grid grid-cols-2 gap-1 text-xs text-muted-foreground"
+                      className="mt-2 pt-2 border-t border-border/20 grid grid-cols-2 gap-1 text-xs text-muted-foreground"
                     >
                       <span className="text-muted-foreground">Equity P&L:</span>
                       <span className="text-right text-red-400">{fmtPct(sc.equityLoss)}</span>
@@ -935,7 +935,7 @@ export default function QuantRiskPage() {
                   </thead>
                   <tbody>
                     {stressScenarios.map((sc) => (
-                      <tr key={sc.name} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                      <tr key={sc.name} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                         <td className="py-2 font-medium" style={{ color: sc.color }}>{sc.name} ({sc.year})</td>
                         <td className="py-2 text-right text-red-400 tabular-nums">{fmtPct(sc.portfolioLoss)}</td>
                         <td className="py-2 text-right text-red-400 tabular-nums">{fmtPct(sc.equityLoss)}</td>
@@ -981,7 +981,7 @@ export default function QuantRiskPage() {
                         </span>
                       </div>
                     ))}
-                    <div className="pt-2 border-t border-border/50 text-xs text-muted-foreground">
+                    <div className="pt-2 border-t border-border/20 text-xs text-muted-foreground">
                       Total: {totalFactorContrib.toFixed(1)}% allocated across {riskFactors.length} risk factors
                     </div>
                   </div>
@@ -1050,7 +1050,7 @@ export default function QuantRiskPage() {
                       const betaVal = 0.85 + i * 0.15 + rand() * 0.2;
                       const compVaR = f.marginalVaR * notional;
                       return (
-                        <tr key={f.name} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                        <tr key={f.name} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                           <td className="py-2 font-medium" style={{ color: f.color }}>{f.name}</td>
                           <td className="py-2 text-right tabular-nums">{fmtUSD(notional)}</td>
                           <td className="py-2 text-right tabular-nums">{fmtPct(weight)}</td>

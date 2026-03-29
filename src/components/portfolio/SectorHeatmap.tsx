@@ -64,7 +64,7 @@ export function SectorHeatmap({ performance }: SectorHeatmapProps) {
   });
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card overflow-hidden">
+    <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
       {/* Header with period selector */}
       <div className="flex items-center justify-between px-3 py-2 border-b border-border">
         <span className="text-xs font-semibold text-muted-foreground">

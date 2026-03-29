@@ -68,7 +68,7 @@ function PatternCard({ pattern }: { pattern: CandlestickPattern }) {
       </button>
 
       {expanded && (
-        <div className="space-y-2.5 pt-1 border-t border-border/40">
+        <div className="space-y-2.5 pt-1 border-t border-border/20">
           <div>
             <p className="text-[11px] font-medium text-foreground mb-0.5">Strategy</p>
             <p className="text-xs text-muted-foreground leading-relaxed">{pattern.howToTrade}</p>

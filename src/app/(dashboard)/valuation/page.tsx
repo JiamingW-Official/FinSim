@@ -233,7 +233,7 @@ function RelativeValuationTab() {
             key={t}
             onClick={() => setTicker(t)}
             className={cn(
-              "px-3 py-1.5 rounded-md text-sm font-mono font-semibold transition-all",
+              "px-3 py-1.5 rounded-md text-sm font-mono font-semibold transition-colors",
               ticker === t
                 ? "bg-primary text-primary-foreground"
                 : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80",
@@ -269,7 +269,7 @@ function RelativeValuationTab() {
                 const vsSec = sec > 0 ? ((val - sec) / sec) * 100 : 0;
                 const vsSP = sp > 0 ? ((val - sp) / sp) * 100 : 0;
                 return (
-                  <tr key={m.key} className="border-b border-border/40 hover:bg-secondary/20 transition-colors">
+                  <tr key={m.key} className="border-b border-border/20 hover:bg-secondary/20 transition-colors">
                     <td className="py-2.5">
                       <span className="font-medium">{m.label}</span>
                       <span className="ml-2 text-xs text-muted-foreground">{m.desc}</span>
@@ -375,7 +375,7 @@ function RelativeValuationTab() {
         <div className="rounded-md border border-border bg-card p-5">
           <h3 className="text-sm font-medium text-muted-foreground mb-3">PEG Ratio Analysis</h3>
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-2xl font-bold font-mono">{fmt2(co.peg)}</span>
+            <span className="text-2xl font-semibold font-mono">{fmt2(co.peg)}</span>
             <span className={cn("px-2 py-1 rounded-md text-xs text-muted-foreground font-medium", pegStatus.bg, pegStatus.color)}>
               {pegStatus.label}
             </span>
@@ -601,7 +601,7 @@ function DCFTab() {
             </thead>
             <tbody>
               {projections.rows.map((r) => (
-                <tr key={r.yr} className="border-b border-border/40 hover:bg-secondary/20">
+                <tr key={r.yr} className="border-b border-border/20 hover:bg-secondary/20">
                   <td className="py-2">Year {r.yr}</td>
                   <td className="text-right py-2">{r.rev.toFixed(1)}</td>
                   <td className="text-right py-2">{r.ebitda.toFixed(1)}</td>
@@ -643,7 +643,7 @@ function DCFTab() {
           {/* Gauge bar */}
           <div className="relative h-8 rounded-full bg-secondary/40 overflow-hidden mb-2">
             <div
-              className="absolute inset-y-0 left-0 rounded-full transition-all duration-300"
+              className="absolute inset-y-0 left-0 rounded-full transition-colors duration-300"
               style={{
                 width: `${Math.min(Math.max((marketPrice / (projections.intrinsic * 1.5)) * 100, 5), 95)}%`,
                 background: projections.mos > 20 ? "#10b981" : projections.mos > 0 ? "#f59e0b" : "#ef4444",
@@ -677,7 +677,7 @@ function DCFTab() {
             </thead>
             <tbody>
               {waccRange.map((w, wi) => (
-                <tr key={w} className="border-b border-border/30">
+                <tr key={w} className="border-b border-border/20">
                   <td className="py-1.5 text-muted-foreground">{w}%</td>
                   {tgRange.map((tg, ti) => {
                     const val = sensTable[wi][ti];
@@ -686,7 +686,7 @@ function DCFTab() {
                     return (
                       <td
                         key={tg}
-                        className={cn("text-right py-1.5 px-1", color, isBase && "ring-1 ring-primary/50 rounded bg-primary/10")}
+                        className={cn("text-right py-1.5 px-1", color, isBase && "ring-1 ring-primary/50 rounded bg-muted/10")}
                       >
                         ${val.toFixed(0)}
                       </td>
@@ -1051,7 +1051,7 @@ function DDMTab() {
             key={t}
             onClick={() => loadPreset(t)}
             className={cn(
-              "px-4 py-2 rounded-lg text-sm font-mono font-medium transition-all",
+              "px-4 py-2 rounded-lg text-sm font-mono font-medium transition-colors",
               ticker === t ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground hover:text-foreground",
             )}
           >
@@ -1143,7 +1143,7 @@ function DDMTab() {
           </thead>
           <tbody>
             {gRange.map((g, gi) => (
-              <tr key={g} className="border-b border-border/30">
+              <tr key={g} className="border-b border-border/20">
                 <td className="py-1.5 text-muted-foreground">{g}%</td>
                 {rRange.map((dr, ri) => {
                   const val = sensGrid[gi][ri];
@@ -1154,7 +1154,7 @@ function DDMTab() {
                       className={cn(
                         "text-right py-1.5 px-1",
                         val === null ? "text-muted-foreground/30" : val > price ? "text-emerald-400" : "text-red-400",
-                        isBase && "ring-1 ring-primary/50 rounded bg-primary/10",
+                        isBase && "ring-1 ring-primary/50 rounded bg-muted/10",
                       )}
                     >
                       {val === null ? "—" : `$${val.toFixed(0)}`}
@@ -1254,7 +1254,7 @@ function RealOptionsTab() {
               key={key}
               onClick={() => setSelectedOption(key)}
               className={cn(
-                "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all",
+                "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
                 selectedOption === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-muted-foreground hover:text-foreground",
@@ -1348,7 +1348,7 @@ function RealOptionsTab() {
           </thead>
           <tbody>
             {sigRange.map((sig, si) => (
-              <tr key={sig} className="border-b border-border/30">
+              <tr key={sig} className="border-b border-border/20">
                 <td className="py-1.5 text-muted-foreground">{sig}%</td>
                 {tRange.map((t, ti) => {
                   const val = realOptSens[si][ti];
@@ -1356,7 +1356,7 @@ function RealOptionsTab() {
                   return (
                     <td
                       key={t}
-                      className={cn("text-right py-1.5 px-1 text-emerald-400", isBase && "ring-1 ring-primary/50 rounded bg-primary/10")}
+                      className={cn("text-right py-1.5 px-1 text-emerald-400", isBase && "ring-1 ring-primary/50 rounded bg-muted/10")}
                     >
                       ${val.toFixed(0)}
                     </td>
@@ -1396,7 +1396,7 @@ function RealOptionsTab() {
             );
           })}
         </div>
-        <div className="flex justify-between items-center p-3 rounded-lg bg-primary/10 border border-primary/20">
+        <div className="flex justify-between items-center p-3 rounded-lg bg-muted/10 border border-primary/20">
           <span className="font-medium text-sm">Total Pipeline Value (Risk-Adjusted)</span>
           <span className="text-lg font-medium font-mono text-primary">${pharmaTotal.toFixed(0)}M</span>
         </div>
@@ -1612,7 +1612,7 @@ function SynthesisTab() {
                 key={sc}
                 onClick={() => setScenario(sc)}
                 className={cn(
-                  "capitalize px-3 py-1.5 rounded-md text-xs text-muted-foreground font-medium transition-all",
+                  "capitalize px-3 py-1.5 rounded-md text-xs text-muted-foreground font-medium transition-colors",
                   scenario === sc
                     ? sc === "bull"
                       ? "bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-400/30"
@@ -1640,7 +1640,7 @@ function SynthesisTab() {
               </div>
             ))}
           </div>
-          <div className="border-t border-border/40 pt-3">
+          <div className="border-t border-border/20 pt-3">
             <h4 className={cn("text-xs text-muted-foreground font-medium mb-2 capitalize", scenarioColors[scenario])}>
               {scenario} Case Catalysts
             </h4>
@@ -1693,11 +1693,11 @@ function SynthesisTab() {
           <div className="relative h-16 flex items-center justify-center mb-3">
             <div className="relative w-full h-8 flex rounded-lg overflow-hidden">
               <div
-                className="bg-emerald-500/30 transition-all duration-300"
+                className="bg-emerald-500/30 transition-colors duration-300"
                 style={{ width: `${(upside / (upside + downside)) * 100}%` }}
               />
               <div
-                className="bg-red-500/30 transition-all duration-300"
+                className="bg-red-500/30 transition-colors duration-300"
                 style={{ width: `${(downside / (upside + downside)) * 100}%` }}
               />
             </div>
@@ -1758,7 +1758,7 @@ export default function ValuationPage() {
           className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-md bg-primary/10">
+            <div className="p-2 rounded-md bg-muted/10">
               <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>

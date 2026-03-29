@@ -79,7 +79,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
       >
         <motion.span
           className={cn(
-            "text-5xl font-bold tracking-tight",
+            "text-2xl font-semibold tracking-tight",
             result.playerWon ? "text-emerald-400" : "text-red-400",
           )}
           animate={{}}
@@ -108,7 +108,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
         >
           <span className="text-xs text-muted-foreground">You</span>
           <span className={cn(
-            "text-4xl font-bold tabular-nums",
+            "text-xl font-semibold tabular-nums",
             result.playerWon ? "text-emerald-400" : "text-muted-foreground",
           )}>
             {playerScoreAnim}
@@ -116,7 +116,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
         </motion.div>
 
         <motion.span
-          className="text-2xl font-bold text-muted-foreground/50"
+          className="text-2xl font-semibold text-muted-foreground/50"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.35, type: "spring" }}
@@ -132,7 +132,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
         >
           <span className="text-xs text-muted-foreground">{result.opponentName}</span>
           <span className={cn(
-            "text-4xl font-bold tabular-nums",
+            "text-xl font-semibold tabular-nums",
             !result.playerWon ? "text-red-400" : "text-muted-foreground",
           )}>
             {oppScoreAnim}
@@ -153,7 +153,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5 + i * 0.08 }}
-            className="flex items-center gap-2.5 rounded-lg border border-border/40 bg-muted/10 px-3 py-2"
+            className="flex items-center gap-2.5 rounded-lg border border-border/20 bg-muted/10 px-3 py-2"
           >
             <span className="text-muted-foreground">{cat.icon}</span>
             <span className="text-[11px] text-muted-foreground w-14">{cat.label}</span>
@@ -165,7 +165,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
                 transition={{ delay: 0.7 + i * 0.1, duration: 0.6, ease: "easeOut" }}
               />
             </div>
-            <span className="text-xs font-bold tabular-nums text-muted-foreground w-8 text-right">
+            <span className="text-xs font-semibold tabular-nums text-muted-foreground w-8 text-right">
               {Math.round(cat.value)}
             </span>
           </motion.div>
@@ -216,13 +216,13 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
       >
         <div className="flex items-center gap-3">
           <span className="text-sm text-muted-foreground">ELO</span>
-          <span className="text-lg font-bold tabular-nums text-muted-foreground">{result.eloBefore}</span>
+          <span className="text-lg font-semibold tabular-nums text-muted-foreground">{result.eloBefore}</span>
           <motion.span
             initial={{ x: -10, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.9 }}
             className={cn(
-              "flex items-center gap-1 text-lg font-bold tabular-nums",
+              "flex items-center gap-1 text-lg font-semibold tabular-nums",
               result.eloChange >= 0 ? "text-emerald-400" : "text-red-400",
             )}
           >
@@ -230,7 +230,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
             {result.eloChange >= 0 ? "+" : ""}{result.eloChange}
           </motion.span>
           <motion.span
-            className="text-lg font-bold tabular-nums text-foreground"
+            className="text-lg font-semibold tabular-nums text-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1 }}
@@ -247,7 +247,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
               initial={{ scale: 0, rotate: -10 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 1.1, type: "spring", stiffness: 400 }}
-              className="text-xs font-bold text-amber-400 flex items-center gap-1"
+              className="text-xs font-semibold text-amber-400 flex items-center gap-1"
             >
               <Trophy className="h-3 w-3" />
               RANK UP!
@@ -265,7 +265,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           className="flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 px-4 py-2"
         >
           <Star className="h-4 w-4 text-amber-400" />
-          <span className="text-sm font-bold text-amber-400">+{result.xpEarned} XP</span>
+          <span className="text-sm font-semibold text-amber-400">+{result.xpEarned} XP</span>
         </motion.div>
       )}
 
@@ -281,7 +281,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           onClick={onPlayAgain}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-1.5 rounded-lg bg-red-500 px-6 py-2.5 text-sm font-bold text-foreground shadow-sm transition-colors hover:bg-red-400"
+          className="flex items-center gap-1.5 rounded-lg bg-red-500 px-6 py-2.5 text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-red-400"
         >
           <Crosshair className="h-3.5 w-3.5" />
           Play Again
@@ -291,7 +291,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           onClick={onBackToLobby}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="rounded-lg border border-border/50 bg-muted/20 px-6 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
+          className="rounded-lg border border-border/20 bg-muted/20 px-6 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           Back to Lobby
         </motion.button>
@@ -316,10 +316,10 @@ function StatRow({
   opponentColor?: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-border/40 bg-muted/10 px-3 py-1.5">
+    <div className="flex items-center gap-3 rounded-lg border border-border/20 bg-muted/10 px-3 py-1.5">
       <span className="text-muted-foreground">{icon}</span>
       <span className="text-[11px] text-muted-foreground flex-1">{label}</span>
-      <span className={cn("text-xs font-bold tabular-nums", valueColor)}>{value}</span>
+      <span className={cn("text-xs font-semibold tabular-nums", valueColor)}>{value}</span>
       {opponent && (
         <span className={cn("text-xs tabular-nums", opponentColor ?? "text-muted-foreground/70")}>
           vs {opponent}

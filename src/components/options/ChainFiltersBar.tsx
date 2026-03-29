@@ -65,9 +65,9 @@ export function ChainFiltersBar({
   onSelectExpiry,
 }: ChainFiltersBarProps) {
   return (
-    <div className="flex shrink-0 items-center gap-2 border-b border-border/50 bg-card/50 px-2 py-1 overflow-x-auto">
+    <div className="flex shrink-0 items-center gap-2 border-b border-border/20 bg-card/50 px-2 py-1 overflow-x-auto">
       {/* Type filter */}
-      <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
+      <div className="flex items-center gap-0.5 rounded-md border border-border/20 bg-card p-0.5">
         {TYPE_OPTIONS.map((opt) => (
           <ToggleButton
             key={opt.value}
@@ -82,7 +82,7 @@ export function ChainFiltersBar({
       <div className="h-4 w-px bg-border/50" />
 
       {/* Moneyness filter */}
-      <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
+      <div className="flex items-center gap-0.5 rounded-md border border-border/20 bg-card p-0.5">
         {MONEYNESS_OPTIONS.map((opt) => (
           <ToggleButton
             key={opt.value}

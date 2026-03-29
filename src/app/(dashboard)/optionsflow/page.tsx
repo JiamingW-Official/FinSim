@@ -461,11 +461,11 @@ export default function OptionsFlowPage() {
           className="space-y-1"
         >
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 border border-border">
+            <div className="p-2 rounded-lg bg-muted/10 border border-border">
               <Eye className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight">
+              <h1 className="text-2xl font-semibold tracking-tight">
                 Options Flow &amp; Dark Pool Tracker
               </h1>
               <p className="text-sm text-muted-foreground">
@@ -488,7 +488,7 @@ export default function OptionsFlowPage() {
               value: `$${totalPremium}M`,
               icon: <DollarSign className="w-4 h-4" />,
               color: "text-primary",
-              bg: "bg-primary/10",
+              bg: "bg-muted/10",
               border: "border-border",
               sub: "today's flow",
             },
@@ -531,7 +531,7 @@ export default function OptionsFlowPage() {
                   <div className="flex items-start justify-between">
                     <div className="space-y-1">
                       <p className="text-xs text-muted-foreground">{m.label}</p>
-                      <p className={`text-xl font-bold ${m.color}`}>{m.value}</p>
+                      <p className={`text-xl font-semibold ${m.color}`}>{m.value}</p>
                       <p className="text-xs text-muted-foreground">{m.sub}</p>
                     </div>
                     <div className={`p-2 rounded-lg ${m.bg} ${m.color}`}>{m.icon}</div>
@@ -611,7 +611,7 @@ export default function OptionsFlowPage() {
                         {filteredTrades.map((trade, idx) => (
                           <tr
                             key={trade.id}
-                            className={`border-b border-border/50 hover:bg-muted/20 transition-colors ${idx % 2 === 0 ? "" : "bg-muted/5"}`}
+                            className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${idx % 2 === 0 ? "" : "bg-muted/5"}`}
                           >
                             <td className="px-4 py-2.5 text-xs text-muted-foreground font-mono">
                               <Clock className="w-3 h-3 inline mr-1 opacity-60" />
@@ -658,7 +658,7 @@ export default function OptionsFlowPage() {
               </Card>
 
               {/* Info note */}
-              <div className="mt-8 flex items-start gap-2 p-3 rounded-lg bg-primary/5 border border-border text-xs text-muted-foreground">
+              <div className="mt-8 flex items-start gap-2 p-3 rounded-lg bg-muted/5 border border-border text-xs text-muted-foreground">
                 <Info className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
                 <span>
                   <strong className="text-primary">Unusual activity</strong> is flagged when a trade has contract volume significantly above open interest or when premium size is outsized relative to historical norms for that ticker. This may indicate informed institutional positioning.
@@ -694,7 +694,7 @@ export default function OptionsFlowPage() {
                         {darkPoolPrints.map((print, idx) => (
                           <tr
                             key={print.id}
-                            className={`border-b border-border/50 hover:bg-muted/20 transition-colors ${idx % 2 === 0 ? "" : "bg-muted/5"}`}
+                            className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${idx % 2 === 0 ? "" : "bg-muted/5"}`}
                           >
                             <td className="px-4 py-2.5 text-xs text-muted-foreground font-mono">
                               <Clock className="w-3 h-3 inline mr-1 opacity-60" />
@@ -840,7 +840,7 @@ export default function OptionsFlowPage() {
                         {sweepOrders.map((sweep, idx) => (
                           <tr
                             key={sweep.id}
-                            className={`border-b border-border/50 hover:bg-muted/20 transition-colors ${idx % 2 === 0 ? "" : "bg-muted/5"}`}
+                            className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${idx % 2 === 0 ? "" : "bg-muted/5"}`}
                           >
                             <td className="px-4 py-2.5 text-xs text-muted-foreground font-mono">
                               <Clock className="w-3 h-3 inline mr-1 opacity-60" />

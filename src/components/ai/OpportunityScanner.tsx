@@ -65,7 +65,7 @@ function ScorePill({ score }: { score: number }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded border px-1.5 py-0.5 text-[11px] font-bold font-mono leading-none",
+        "inline-flex items-center rounded border px-1.5 py-0.5 text-[11px] font-semibold font-mono leading-none",
         cls,
       )}
     >
@@ -78,20 +78,20 @@ function ScorePill({ score }: { score: number }) {
 function BiasBadge({ bias }: { bias: ScanRow["bias"] }) {
   if (bias === "bullish")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/30 bg-emerald-500/5 px-1 py-0.5 text-[11px] font-bold text-emerald-400">
+      <span className="inline-flex items-center gap-0.5 rounded border border-emerald-500/30 bg-emerald-500/5 px-1 py-0.5 text-[11px] font-semibold text-emerald-400">
         <TrendingUp className="h-2.5 w-2.5" />
         Bull
       </span>
     );
   if (bias === "bearish")
     return (
-      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/30 bg-red-500/5 px-1 py-0.5 text-[11px] font-bold text-red-400">
+      <span className="inline-flex items-center gap-0.5 rounded border border-red-500/30 bg-red-500/5 px-1 py-0.5 text-[11px] font-semibold text-red-400">
         <TrendingDown className="h-2.5 w-2.5" />
         Bear
       </span>
     );
   return (
-    <span className="inline-flex items-center gap-0.5 rounded border border-border/40 bg-muted px-1 py-0.5 text-[11px] font-bold text-muted-foreground">
+    <span className="inline-flex items-center gap-0.5 rounded border border-border/20 bg-muted px-1 py-0.5 text-[11px] font-semibold text-muted-foreground">
       <Minus className="h-2.5 w-2.5" />
       Neutral
     </span>
@@ -241,10 +241,10 @@ export function OpportunityScanner({
               type="button"
               onClick={() => setFilter(f.value)}
               className={cn(
-                "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all",
+                "rounded border px-1.5 py-0.5 text-[11px] font-semibold leading-none transition-colors",
                 filter === f.value
                   ? "bg-primary/15 border-primary/30 text-primary"
-                  : "border-border/40 bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/30",
+                  : "border-border/20 bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/30",
               )}
             >
               {f.label}
@@ -256,7 +256,7 @@ export function OpportunityScanner({
           onClick={handleScanAll}
           disabled={scanning}
           className={cn(
-            "flex items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none transition-all shrink-0",
+            "flex items-center gap-1 rounded border px-1.5 py-0.5 text-[11px] font-semibold leading-none transition-colors shrink-0",
             scanning
               ? "cursor-not-allowed border-border bg-muted text-muted-foreground/50"
               : "border-primary/30 bg-primary/10 text-primary hover:bg-primary/20",
@@ -273,19 +273,19 @@ export function OpportunityScanner({
 
       {/* Column header */}
       <div className="grid grid-cols-[3rem_2.5rem_3.5rem_1fr_2rem] gap-1 px-1">
-        <span className="text-[7px] font-bold text-muted-foreground/50 uppercase tracking-wide">
+        <span className="text-[7px] font-semibold text-muted-foreground/50">
           Ticker
         </span>
-        <span className="text-[7px] font-bold text-muted-foreground/50 uppercase tracking-wide">
+        <span className="text-[7px] font-semibold text-muted-foreground/50">
           Score
         </span>
-        <span className="text-[7px] font-bold text-muted-foreground/50 uppercase tracking-wide">
+        <span className="text-[7px] font-semibold text-muted-foreground/50">
           Bias
         </span>
-        <span className="text-[7px] font-bold text-muted-foreground/50 uppercase tracking-wide">
+        <span className="text-[7px] font-semibold text-muted-foreground/50">
           Top Signal
         </span>
-        <span className="text-[7px] font-bold text-muted-foreground/50 uppercase tracking-wide text-right">
+        <span className="text-[7px] font-semibold text-muted-foreground/50 text-right">
           Cvx
         </span>
       </div>
@@ -305,10 +305,10 @@ export function OpportunityScanner({
               "w-full grid grid-cols-[3rem_2.5rem_3.5rem_1fr_2rem] items-center gap-1 rounded border px-1.5 py-1.5 text-left transition-colors",
               currentTicker === row.ticker
                 ? "border-primary/40 bg-primary/10"
-                : "border-border/30 bg-background/30 hover:bg-muted/20",
+                : "border-border/20 bg-background/30 hover:bg-muted/20",
             )}
           >
-            <span className="text-xs font-bold text-foreground leading-none">
+            <span className="text-xs font-semibold text-foreground leading-none">
               {row.ticker}
             </span>
             <ScorePill score={row.score} />

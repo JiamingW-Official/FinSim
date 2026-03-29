@@ -75,7 +75,7 @@ function PatternCard({ pattern }: { pattern: ChartPattern }) {
       </button>
 
       {expanded && (
-        <div className="space-y-3 pt-2 border-t border-border/40">
+        <div className="space-y-3 pt-2 border-t border-border/20">
           {/* How to identify */}
           <div>
             <p className="text-[11px] font-medium text-foreground mb-1.5">How to Identify</p>

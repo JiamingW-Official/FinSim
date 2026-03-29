@@ -127,7 +127,7 @@ export function PredictionLeaderboard() {
               <tr
                 key={entry.username}
                 className={cn(
-                  "border-b border-border/50 last:border-0 transition-colors",
+                  "border-b border-border/20 last:border-0 transition-colors",
                   entry.isCurrentUser
                     ? "bg-primary/5"
                     : "hover:bg-muted/20",
@@ -136,11 +136,11 @@ export function PredictionLeaderboard() {
                 {/* Rank with medal for top 3 */}
                 <td className="px-3 py-1.5 font-mono tabular-nums">
                   {entry.rank === 1 ? (
-                    <span className="text-amber-400 font-bold">1</span>
+                    <span className="text-amber-400 font-semibold">1</span>
                   ) : entry.rank === 2 ? (
-                    <span className="text-muted-foreground font-bold">2</span>
+                    <span className="text-muted-foreground font-semibold">2</span>
                   ) : entry.rank === 3 ? (
-                    <span className="text-orange-600 font-bold">3</span>
+                    <span className="text-orange-600 font-semibold">3</span>
                   ) : (
                     <span className="text-muted-foreground">{entry.rank}</span>
                   )}
@@ -159,7 +159,7 @@ export function PredictionLeaderboard() {
                     {entry.username}
                   </span>
                   {entry.isCurrentUser && (
-                    <span className="ml-1.5 rounded bg-primary/10 px-1 py-0.5 text-[11px] font-semibold uppercase text-primary">
+                    <span className="ml-1.5 rounded bg-primary/10 px-1 py-0.5 text-[11px] font-semibold text-primary">
                       You
                     </span>
                   )}

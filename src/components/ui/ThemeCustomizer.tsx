@@ -122,10 +122,10 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
             animate={{ x: 0 }}
             exit={{ x: 320 }}
             transition={{ type: "spring", stiffness: 320, damping: 32, mass: 0.8 }}
-            className="fixed right-0 top-0 z-50 flex h-full w-80 flex-col border-l border-border/50 bg-card shadow-sm"
+            className="fixed right-0 top-0 z-50 flex h-full w-80 flex-col border-l border-border/20 bg-card shadow-sm"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-border/50 px-4 py-3.5">
+            <div className="flex items-center justify-between border-b border-border/20 px-4 py-3.5">
               <div>
                 <h2 className="text-sm font-semibold text-foreground">Theme</h2>
                 <p className="text-xs text-muted-foreground/60 mt-0.5">
@@ -165,7 +165,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                       >
                         {/* Swatch circle */}
                         <div
-                          className="relative h-12 w-12 rounded-full border border-border/40 shadow-sm flex items-center justify-center"
+                          className="relative h-12 w-12 rounded-full border border-border/20 shadow-sm flex items-center justify-center"
                           style={{ background: preset.swatchBg }}
                         >
                           {/* Inner accent dot */}
@@ -315,7 +315,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                 />
 
                 {/* Live preview */}
-                <div className="mt-4 rounded-md border border-border/40 bg-background/60 p-3 space-y-1">
+                <div className="mt-4 rounded-md border border-border/20 bg-background/60 p-3 space-y-1">
                   <p
                     className="font-semibold text-foreground transition-all duration-200"
                     style={{ fontSize: `calc(0.875rem * ${config.fontScale})` }}
@@ -342,7 +342,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
             </div>
 
             {/* Footer */}
-            <div className="shrink-0 border-t border-border/50 px-4 py-3">
+            <div className="shrink-0 border-t border-border/20 px-4 py-3">
               <button
                 type="button"
                 onClick={() => {
@@ -355,7 +355,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                     fontScale: 1.0,
                   });
                 }}
-                className="w-full rounded-md border border-border/50 bg-background/50 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
+                className="w-full rounded-md border border-border/20 bg-background/50 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
               >
                 Reset to defaults
               </button>

@@ -202,7 +202,7 @@ function StatChip({
     green: "bg-emerald-500/5 text-emerald-400 border-emerald-500/20",
     red: "bg-red-500/5 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-primary/10 text-primary border-border",
+    blue: "bg-muted/10 text-primary border-border",
   };
   return (
     <div className={cn("rounded-lg border px-3 py-2 text-center", colors[color])}>
@@ -214,7 +214,7 @@ function StatChip({
 
 function SectionCard({ title, children, icon: Icon }: { title: string; children: React.ReactNode; icon?: React.ElementType }) {
   return (
-    <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-4">
+    <div className="rounded-md border border-border/20 bg-foreground/[0.03] p-4">
       {title && (
         <div className="flex items-center gap-2 mb-4">
           {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground/50" />}
@@ -460,7 +460,7 @@ function TipsMechanicsTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-muted-foreground">
             <thead>
-              <tr className="text-muted-foreground border-b border-border/50">
+              <tr className="text-muted-foreground border-b border-border/20">
                 <th className="text-left py-2 pr-3">Market</th>
                 <th className="text-left py-2 pr-3">Instrument</th>
                 <th className="text-right py-2 pr-3">Size</th>
@@ -472,7 +472,7 @@ function TipsMechanicsTab() {
             </thead>
             <tbody>
               {GLOBAL_LINKER_MARKETS.map((m) => (
-                <tr key={m.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={m.country} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-3 text-foreground font-medium">
                     {m.flag} {m.country}
                   </td>
@@ -600,7 +600,7 @@ function RealYieldsTab() {
           />
         </div>
 
-        <div className="p-3 rounded bg-foreground/[0.04] border border-border/50 space-y-1.5 text-xs text-muted-foreground">
+        <div className="p-3 rounded bg-foreground/[0.04] border border-border/20 space-y-1.5 text-xs text-muted-foreground">
           <div className="flex justify-between">
             <span className="text-muted-foreground">Fisher Equation:</span>
             <span className="text-foreground font-mono">(1 + r_nominal) = (1 + r_real) × (1 + inflation)</span>
@@ -878,7 +878,7 @@ function DurationRiskTab() {
           <StatChip label="Real Dur < Mod Dur" value={`${modDur - realDur > 0 ? "−" : "+"}${Math.abs(modDur - realDur).toFixed(2)}y`} color="default" />
         </div>
 
-        <div className="mt-3 p-3 rounded bg-foreground/[0.04] border border-border/50 text-xs text-muted-foreground space-y-1">
+        <div className="mt-3 p-3 rounded bg-foreground/[0.04] border border-border/20 text-xs text-muted-foreground space-y-1">
           <p><span className="text-primary">Modified Duration</span>: sensitivity to changes in real yields. A {modDur.toFixed(1)}y ModDur means ~{modDur.toFixed(1)}% price change per 100bps real yield shift.</p>
           <p><span className="text-primary">Real Duration</span>: further adjusted for inflation expectations — TIPS have lower interest rate risk in real terms than ModDur implies.</p>
           <p><span className="text-primary">Key insight</span>: TIPS carry inflation risk on the accreted principal, but this is the risk you <em>want</em> when hedging inflation.</p>
@@ -890,7 +890,7 @@ function DurationRiskTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-muted-foreground">
             <thead>
-              <tr className="text-muted-foreground border-b border-border/50">
+              <tr className="text-muted-foreground border-b border-border/20">
                 <th className="text-left py-2 pr-3">Asset</th>
                 <th className="text-right py-2 pr-3">Inflation Beta</th>
                 <th className="text-right py-2 pr-3">Correlation</th>
@@ -899,7 +899,7 @@ function DurationRiskTab() {
             </thead>
             <tbody>
               {INFLATION_BETA_TABLE.map((row) => (
-                <tr key={row.asset} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={row.asset} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-3 text-foreground font-medium">{row.asset}</td>
                   <td className={cn("py-2 pr-3 text-right font-semibold font-mono", row.beta > 0.5 ? "text-emerald-400" : row.beta < 0 ? "text-red-400" : "text-amber-400")}>
                     {row.beta > 0 ? "+" : ""}{row.beta.toFixed(2)}
@@ -1008,7 +1008,7 @@ function InflationHedgingTab() {
 
   // Regime indicator
   const inflationRegimes = [
-    { label: "Disinflation", range: "<1%", active: false, color: "text-primary bg-primary/10 border-border" },
+    { label: "Disinflation", range: "<1%", active: false, color: "text-primary bg-muted/10 border-border" },
     { label: "On Target", range: "1–2%", active: false, color: "text-green-400 bg-green-500/10 border-green-500/20" },
     { label: "Mild Overshoot", range: "2–3%", active: true, color: "text-emerald-400 bg-emerald-500/15 border-emerald-400/30" },
     { label: "Elevated", range: "3–5%", active: false, color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
@@ -1025,14 +1025,14 @@ function InflationHedgingTab() {
             <div
               key={r.label}
               className={cn(
-                "flex flex-col items-center px-3 py-2 rounded-lg border text-xs text-muted-foreground transition-all",
+                "flex flex-col items-center px-3 py-2 rounded-lg border text-xs text-muted-foreground transition-colors",
                 r.color,
                 r.active ? "ring-1 ring-current" : "opacity-60"
               )}
             >
               <span className="font-semibold">{r.label}</span>
               <span className="text-[11px] opacity-70 mt-0.5">{r.range}</span>
-              {r.active && <span className="text-[11px] mt-1 font-bold uppercase tracking-wide">CURRENT</span>}
+              {r.active && <span className="text-[11px] mt-1 font-semibold uppercase tracking-wide">CURRENT</span>}
             </div>
           ))}
         </div>
@@ -1051,7 +1051,7 @@ function InflationHedgingTab() {
               className={cn(
                 "text-xs text-muted-foreground px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
-                  ? "bg-primary/20 border-primary/40 text-primary"
+                  ? "bg-muted/10 border-primary/40 text-primary"
                   : "bg-foreground/5 border-border text-muted-foreground hover:bg-muted/30"
               )}
             >
@@ -1063,7 +1063,7 @@ function InflationHedgingTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-muted-foreground">
             <thead>
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 <th className="text-left py-2 pr-3 text-muted-foreground">Scenario</th>
                 {HEDGING_ASSETS.map((a) => (
                   <th key={a} className="text-center py-2 px-2 text-muted-foreground">{a}</th>
@@ -1075,8 +1075,8 @@ function InflationHedgingTab() {
                 <tr
                   key={sc}
                   className={cn(
-                    "border-b border-border/50 transition-colors",
-                    si === selectedScenario ? "bg-primary/5" : "hover:bg-muted/30"
+                    "border-b border-border/20 transition-colors",
+                    si === selectedScenario ? "bg-muted/5" : "hover:bg-muted/30"
                   )}
                 >
                   <td className={cn("py-2 pr-3 font-medium", si === selectedScenario ? "text-primary" : "text-muted-foreground")}>
@@ -1084,7 +1084,7 @@ function InflationHedgingTab() {
                   </td>
                   {HEDGING_MATRIX[si].map((score, ai) => (
                     <td key={ai} className="py-2 px-2 text-center">
-                      <span className={cn("inline-block w-7 h-7 rounded text-xs text-muted-foreground font-bold flex items-center justify-center border", heatColor(score))}>
+                      <span className={cn("inline-block w-7 h-7 rounded text-xs text-muted-foreground font-semibold flex items-center justify-center border", heatColor(score))}>
                         {score}
                       </span>
                     </td>
@@ -1117,7 +1117,7 @@ function InflationHedgingTab() {
               className={cn(
                 "text-xs text-muted-foreground px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
-                  ? "bg-primary/20 border-primary/40 text-primary"
+                  ? "bg-muted/10 border-primary/40 text-primary"
                   : "bg-foreground/5 border-border text-muted-foreground hover:bg-muted/30"
               )}
             >
@@ -1187,7 +1187,7 @@ function InflationHedgingTab() {
               className={cn(
                 "text-xs text-muted-foreground px-3 py-1.5 rounded border transition-colors",
                 selectedScenario === i
-                  ? "bg-primary/20 border-primary/40 text-primary"
+                  ? "bg-muted/10 border-primary/40 text-primary"
                   : "bg-foreground/5 border-border text-muted-foreground hover:bg-muted/30"
               )}
             >
@@ -1213,7 +1213,7 @@ function InflationHedgingTab() {
             ].map(({ key, label, color }) => {
               const val = currentRec[key as keyof typeof currentRec] as number;
               return (
-                <div key={key} className="rounded-lg border border-border/50 bg-foreground/[0.03] p-2 text-center">
+                <div key={key} className="rounded-lg border border-border/20 bg-foreground/[0.03] p-2 text-center">
                   <div className="text-[11px] text-muted-foreground mb-1">{label}</div>
                   <div className="text-lg font-medium" style={{ color }}>{val}%</div>
                   <div className="w-full bg-foreground/5 rounded-full h-1.5 mt-1">
@@ -1246,7 +1246,7 @@ export default function InflationLinkedPage() {
           className="mb-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-lg bg-primary/15 border border-border">
+            <div className="p-2 rounded-lg bg-muted/10 border border-border">
               <Flame className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>
@@ -1311,7 +1311,7 @@ export default function InflationLinkedPage() {
         </Tabs>
 
         {/* Footer disclaimer */}
-        <div className="mt-8 p-3 rounded-lg border border-border/50 bg-foreground/[0.02] flex items-start gap-2">
+        <div className="mt-8 p-3 rounded-lg border border-border/20 bg-foreground/[0.02] flex items-start gap-2">
           <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
           <p className="text-xs text-muted-foreground">
             All yield data, breakevens, and returns are simulated for educational purposes. TIPS returns depend on actual realized CPI vs breakeven at purchase. Real past performance varies; consult a financial advisor before investing in inflation-linked securities.

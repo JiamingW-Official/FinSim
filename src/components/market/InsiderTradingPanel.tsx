@@ -60,7 +60,7 @@ export default function InsiderTradingPanel({ ticker }: InsiderTradingPanelProps
       <div className="border border-border/60 rounded-lg bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[400px]">
           <thead>
-            <tr className="border-b border-border/40 text-xs text-muted-foreground">
+            <tr className="border-b border-border/20 text-xs text-muted-foreground">
               <th className="text-left p-2.5 font-medium">Insider</th>
               <th className="text-left p-2.5 font-medium">Type</th>
               <th className="text-right p-2.5 font-medium">Shares</th>

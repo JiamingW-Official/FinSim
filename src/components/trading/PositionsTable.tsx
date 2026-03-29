@@ -116,7 +116,7 @@ export function PositionsTable() {
     <div className="overflow-x-auto">
       <table className="w-full text-xs" role="table">
         <thead>
-          <tr className="border-b border-border/40 text-muted-foreground">
+          <tr className="border-b border-border/20 text-muted-foreground">
             <th scope="col" className="w-4 px-1 py-1.5" />
             <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Ticker</th>
             <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">P&amp;L</th>
@@ -180,7 +180,7 @@ export function PositionsTable() {
                   exit={{ opacity: 0, x: 8 }}
                   transition={{ delay: index * 0.05, duration: 0.2 }}
                   className={cn(
-                    "border-b border-border/50 hover:bg-muted/10 border-l-2 transition-colors duration-150",
+                    "border-b border-border/20 hover:bg-muted/10 border-l-2 transition-colors duration-150",
                     urgencyRowClass,
                     leftBorderClass,
                     isExpanded && "bg-muted/10",
@@ -332,7 +332,7 @@ export function PositionsTable() {
                       transition={{ duration: 0.15 }}
                     >
                       <td colSpan={8} className="px-3 pb-2 pt-0">
-                        <div className="rounded border border-border/40 bg-accent/10 p-2 text-xs space-y-1">
+                        <div className="rounded border border-border/20 bg-accent/10 p-2 text-xs space-y-1">
                           {/* Entry + current price */}
                           <div className="flex gap-4 flex-wrap">
                             <div>

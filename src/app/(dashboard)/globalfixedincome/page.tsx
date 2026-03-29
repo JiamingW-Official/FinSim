@@ -275,7 +275,7 @@ function MarketOverviewTab() {
               <s.icon size={14} className={s.color} />
               <span className="text-xs text-foreground/50">{s.label}</span>
             </div>
-            <span className="text-2xl font-bold text-foreground">{s.value}</span>
+            <span className="text-2xl font-semibold text-foreground">{s.value}</span>
             <span className="text-xs text-foreground/40">{s.sub}</span>
           </FadeCard>
         ))}
@@ -369,7 +369,7 @@ function MarketOverviewTab() {
             </thead>
             <tbody>
               {YIELD_TABLE.map((row) => (
-                <tr key={row.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={row.country} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-1.5 font-medium text-foreground">
                     {row.flag} {row.country}
                   </td>
@@ -380,7 +380,7 @@ function MarketOverviewTab() {
                         row.rating.startsWith("AA") || row.rating === "AAA"
                           ? "bg-emerald-500/20 text-emerald-300"
                           : row.rating.startsWith("A")
-                          ? "bg-primary/20 text-primary"
+                          ? "bg-muted/10 text-primary"
                           : row.rating.startsWith("BBB")
                           ? "bg-yellow-500/20 text-yellow-300"
                           : row.rating.startsWith("BB")
@@ -479,7 +479,7 @@ function EMBondsTab() {
     <div className="space-y-4">
       {/* Explainer cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <FadeCard className="border-border bg-primary/5">
+        <FadeCard className="border-border bg-muted/5">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign size={14} className="text-muted-foreground/50" />
             <span className="text-sm font-medium text-primary">Hard Currency (HC) Bonds</span>
@@ -586,7 +586,7 @@ function EMBondsTab() {
             </thead>
             <tbody>
               {DEFAULT_HISTORY.map((d) => (
-                <tr key={`${d.country}-${d.year}`} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={`${d.country}-${d.year}`} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2 font-medium text-foreground">{d.flag} {d.country}</td>
                   <td className="py-2 text-foreground/60">{d.year}</td>
                   <td className="py-2 text-foreground/50">{d.instrument}</td>
@@ -802,8 +802,8 @@ function CurrencyHedgingTab() {
                   <tr
                     key={h.pair}
                     className={cn(
-                      "border-b border-border/50 cursor-pointer transition-colors",
-                      isSelected ? "bg-primary/10" : "hover:bg-muted/30"
+                      "border-b border-border/20 cursor-pointer transition-colors",
+                      isSelected ? "bg-muted/10" : "hover:bg-muted/30"
                     )}
                     onClick={() => setSelectedPair(h.pair)}
                   >
@@ -836,7 +836,7 @@ function CurrencyHedgingTab() {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25 }}
         >
-          <FadeCard className="border-border bg-primary/5">
+          <FadeCard className="border-border bg-muted/5">
             <div className="flex items-center gap-2 mb-3">
               <ArrowUpDown size={14} className="text-muted-foreground/50" />
               <h3 className="text-sm font-medium text-primary">{selected.pair} Hedge Analysis</h3>
@@ -1139,7 +1139,7 @@ function PortfolioConstructionTab() {
               { tier: "Tier 5", label: "Distressed/defaulted bonds, illiquid EM", bid_ask: "200bps+", color: "#ef4444" },
             ].map((t) => (
               <div key={t.tier} className="flex items-start gap-2">
-                <span className="rounded px-1.5 py-0.5 text-xs font-bold mt-0.5" style={{ background: `${t.color}25`, color: t.color }}>
+                <span className="rounded px-1.5 py-0.5 text-xs font-semibold mt-0.5" style={{ background: `${t.color}25`, color: t.color }}>
                   {t.tier}
                 </span>
                 <div className="flex-1 text-xs text-foreground/50">{t.label}</div>
@@ -1201,11 +1201,11 @@ export default function GlobalFixedIncomePage() {
           className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg bg-primary/15 p-2">
+            <div className="rounded-lg bg-muted/10 p-2">
               <Globe size={20} className="text-muted-foreground/50" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Global Fixed Income</h1>
+              <h1 className="text-xl font-semibold text-foreground">Global Fixed Income</h1>
               <p className="text-sm text-foreground/50">
                 Cross-border bond investing, sovereign &amp; corporate credit, EM bonds, FX hedging, and portfolio construction
               </p>

@@ -498,7 +498,7 @@ export default function ESGIntegrationPage() {
                 {COMPANIES.map((co) => (
                   <motion.div key={co.ticker} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
                     <Card
-                      className={`border cursor-pointer transition-colors ${selectedCompany.ticker === co.ticker ? "border-primary/50 bg-primary/5" : "border-border hover:border-border/80"}`}
+                      className={`border cursor-pointer transition-colors ${selectedCompany.ticker === co.ticker ? "border-primary/50 bg-muted/5" : "border-border hover:border-border/80"}`}
                       onClick={() => setSelectedCompany(co)}
                     >
                       <CardContent className="p-3">
@@ -556,11 +556,11 @@ export default function ESGIntegrationPage() {
                         <div className="grid grid-cols-3 gap-3 text-center">
                           {[
                             { label: "Environmental", value: selectedCompany.eScore, color: "text-emerald-400", bg: "bg-emerald-500/5" },
-                            { label: "Social", value: selectedCompany.sScore, color: "text-primary", bg: "bg-primary/10" },
-                            { label: "Governance", value: selectedCompany.gScore, color: "text-primary", bg: "bg-primary/10" },
+                            { label: "Social", value: selectedCompany.sScore, color: "text-primary", bg: "bg-muted/10" },
+                            { label: "Governance", value: selectedCompany.gScore, color: "text-primary", bg: "bg-muted/10" },
                           ].map((dim) => (
                             <div key={dim.label} className={`rounded-lg p-3 ${dim.bg}`}>
-                              <p className={`text-2xl font-bold ${dim.color}`}>{dim.value.toFixed(0)}</p>
+                              <p className={`text-2xl font-semibold ${dim.color}`}>{dim.value.toFixed(0)}</p>
                               <p className="text-xs text-muted-foreground mt-0.5">{dim.label}</p>
                             </div>
                           ))}
@@ -616,7 +616,7 @@ export default function ESGIntegrationPage() {
                         </thead>
                         <tbody>
                           {COMPANIES.map((co) => (
-                            <tr key={co.ticker} className="border-b border-border/50 hover:bg-muted/20 cursor-pointer" onClick={() => setSelectedCompany(co)}>
+                            <tr key={co.ticker} className="border-b border-border/20 hover:bg-muted/20 cursor-pointer" onClick={() => setSelectedCompany(co)}>
                               <td className="p-3">
                                 <p className="font-medium">{co.ticker}</p>
                                 <p className="text-muted-foreground">{co.sector}</p>
@@ -984,7 +984,7 @@ export default function ESGIntegrationPage() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-border">
+                <div className="mt-3 p-3 rounded-lg bg-muted/5 border border-border">
                   <p className="text-xs text-primary flex items-start gap-1.5">
                     <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" />
                     Principal Adverse Impacts (PAI) — Article 8 and 9 products must consider 18 mandatory PAI indicators including GHG emissions, biodiversity, water, waste, and social violations.
@@ -1027,7 +1027,7 @@ export default function ESGIntegrationPage() {
                 <div className="mt-3 flex items-center gap-2">
                   <div className="flex-1 h-2 rounded-full bg-muted overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-emerald-500 transition-all"
+                      className="h-full rounded-full bg-emerald-500 transition-colors"
                       style={{ width: `${(Object.values(priChecks).filter(Boolean).length / priPrinciples.length) * 100}%` }}
                     />
                   </div>
@@ -1054,11 +1054,11 @@ export default function ESGIntegrationPage() {
                   {UN_SDGS.map((sdg) => (
                     <div
                       key={sdg.id}
-                      className={`relative rounded-lg p-2 text-center border transition-all ${sdg.aligned ? "border-transparent opacity-100" : "opacity-30 border-border"}`}
+                      className={`relative rounded-lg p-2 text-center border transition-colors ${sdg.aligned ? "border-transparent opacity-100" : "opacity-30 border-border"}`}
                       style={{ backgroundColor: sdg.aligned ? `${sdg.color}22` : undefined, borderColor: sdg.aligned ? `${sdg.color}55` : undefined }}
                     >
                       <div
-                        className="w-8 h-8 rounded flex items-center justify-center mx-auto mb-1 text-foreground text-xs font-bold"
+                        className="w-8 h-8 rounded flex items-center justify-center mx-auto mb-1 text-foreground text-xs font-semibold"
                         style={{ backgroundColor: sdg.color }}
                       >
                         {sdg.id}

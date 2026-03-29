@@ -144,7 +144,7 @@ export function OnboardingFlow() {
               </div>
 
               {/* Title */}
-              <h2 className="text-2xl font-bold tracking-tight">
+              <h2 className="text-2xl font-semibold tracking-tight">
                 {step.title}
               </h2>
 
@@ -195,7 +195,7 @@ export function OnboardingFlow() {
                 onClick={() => setStep(i)}
                 aria-label={`Go to step ${i + 1}`}
                 className={cn(
-                  "h-2 rounded-full transition-all duration-300",
+                  "h-2 rounded-full transition-colors duration-300",
                   i === currentStep
                     ? "w-6 bg-emerald-500"
                     : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"

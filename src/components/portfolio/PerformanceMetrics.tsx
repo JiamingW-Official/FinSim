@@ -16,7 +16,7 @@ function MetricCard({
   color?: string;
 }) {
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-3">
+    <div className="rounded-lg border border-border/20 bg-card p-3">
       <div className="text-xs font-medium text-muted-foreground">
         {label}
       </div>

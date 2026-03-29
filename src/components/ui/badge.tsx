@@ -17,7 +17,7 @@ const badgeVariants = cva(
         success:
           "bg-emerald-500/5 text-emerald-500 [a&]:hover:bg-emerald-500/15",
         outline:
-          "border-border/40 text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+          "border-border/20 text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         ghost: "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         link: "text-primary underline-offset-4 [a&]:hover:underline",
       },

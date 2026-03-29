@@ -192,7 +192,7 @@ const RISK_PREMIUMS: number[][] = [
 function SectionHeader({ icon: Icon, title, subtitle }: { icon: React.ElementType; title: string; subtitle?: string }) {
   return (
     <div className="flex items-start gap-3 mb-6">
-      <div className="p-2 rounded-lg bg-primary/10 text-primary shrink-0">
+      <div className="p-2 rounded-lg bg-muted/10 text-primary shrink-0">
         <Icon size={20} />
       </div>
       <div>
@@ -300,8 +300,8 @@ function ECAOverviewTab() {
                 <tr
                   key={eca.shortName}
                   className={cn(
-                    "border-b border-border/50 cursor-pointer transition-colors",
-                    selected?.shortName === eca.shortName ? "bg-primary/5" : "hover:bg-muted/20"
+                    "border-b border-border/20 cursor-pointer transition-colors",
+                    selected?.shortName === eca.shortName ? "bg-muted/5" : "hover:bg-muted/20"
                   )}
                   onClick={() => setSelected(selected?.shortName === eca.shortName ? null : eca)}
                 >
@@ -355,7 +355,7 @@ function ECAOverviewTab() {
               <div className="text-xs font-medium text-muted-foreground mb-2">Product Range</div>
               <div className="flex flex-wrap gap-2">
                 {selected.products.map((p) => (
-                  <span key={p} className="px-2 py-1 rounded-md text-xs font-medium bg-primary/10 text-primary">{p}</span>
+                  <span key={p} className="px-2 py-1 rounded-md text-xs font-medium bg-muted/10 text-primary">{p}</span>
                 ))}
               </div>
             </div>
@@ -472,7 +472,7 @@ function OECDConsensusTab() {
             </thead>
             <tbody>
               {Object.entries(cirrByCurrency).map(([ccy, rates]) => (
-                <tr key={ccy} className="border-b border-border/40">
+                <tr key={ccy} className="border-b border-border/20">
                   <td className="p-2 font-medium text-foreground">{ccy}</td>
                   {rates.map((r) => (
                     <td key={r.maturity} className="p-2 text-center text-primary font-mono">{r.rate.toFixed(2)}%</td>
@@ -501,7 +501,7 @@ function OECDConsensusTab() {
             </thead>
             <tbody>
               {SECTOR_TERMS.map((sec) => (
-                <tr key={sec.sector} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                <tr key={sec.sector} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                   <td className="p-2 font-medium text-foreground">{sec.sector}</td>
                   <td className="p-2 text-center font-mono text-primary">{sec.maxRepayment} yrs</td>
                   <td className="p-2 text-center font-mono text-amber-400">{sec.maxLocal}%</td>
@@ -966,19 +966,19 @@ function DealStructuringTab() {
       <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">ECA-Covered Loan Pricing Formula</h3>
         <div className="flex flex-wrap items-center gap-2 mb-5 text-sm">
-          <div className="bg-primary/15 border border-border rounded-lg px-3 py-2 text-center">
+          <div className="bg-muted/10 border border-border rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">Base Rate</div>
             <div className="font-medium text-primary">CIRR / SOFR</div>
             <div className="text-xs text-primary">{baseRate.toFixed(2)}%</div>
           </div>
-          <span className="text-muted-foreground font-bold text-lg">+</span>
+          <span className="text-muted-foreground font-semibold text-lg">+</span>
           <div className="bg-amber-500/15 border border-amber-500/30 rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">ECA Premium</div>
             <div className="font-medium text-amber-400">MPR (risk cat)</div>
             <div className="text-xs text-amber-400">{ecaPremium.toFixed(2)}%</div>
           </div>
-          <span className="text-muted-foreground font-bold text-lg">+</span>
-          <div className="bg-primary/15 border border-border rounded-lg px-3 py-2 text-center">
+          <span className="text-muted-foreground font-semibold text-lg">+</span>
+          <div className="bg-muted/10 border border-border rounded-lg px-3 py-2 text-center">
             <div className="text-xs text-muted-foreground">Bank Margin</div>
             <div className="font-medium text-primary">Credit spread</div>
             <div className="text-xs text-primary">{bankMargin.toFixed(2)}%</div>
@@ -1206,11 +1206,11 @@ export default function ExportCreditPage() {
           className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2.5 rounded-md bg-primary/10 text-primary">
+            <div className="p-2.5 rounded-md bg-muted/10 text-primary">
               <Globe size={24} />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Export Credit Agencies & Trade Finance</h1>
+              <h1 className="text-xl font-semibold text-foreground">Export Credit Agencies & Trade Finance</h1>
               <p className="text-sm text-muted-foreground">
                 ECA-backed financing, OECD Consensus, political risk insurance, and deal structuring
               </p>

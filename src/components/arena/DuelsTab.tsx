@@ -106,7 +106,7 @@ function PnlRaceBar({ yourPnl, oppPnl }: { yourPnl: number; oppPnl: number }) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs font-bold text-muted-foreground w-6 text-right">YOU</span>
+      <span className="text-xs font-semibold text-muted-foreground w-6 text-right">YOU</span>
       <div className="flex-1 relative h-5 rounded-full bg-foreground/[0.03] overflow-hidden flex">
         {/* Left half — you */}
         <div className="w-1/2 flex justify-end">
@@ -128,12 +128,12 @@ function PnlRaceBar({ yourPnl, oppPnl }: { yourPnl: number; oppPnl: number }) {
         </div>
         {/* Center label */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[11px] font-bold tabular-nums", youAhead ? "text-emerald-400" : "text-muted-foreground")}>
+          <span className={cn("text-[11px] font-semibold tabular-nums", youAhead ? "text-emerald-400" : "text-muted-foreground")}>
             {(yourPnl - oppPnl) >= 0 ? "+" : ""}{(yourPnl - oppPnl).toFixed(0)}
           </span>
         </div>
       </div>
-      <span className="text-xs font-bold text-muted-foreground w-6">OPP</span>
+      <span className="text-xs font-semibold text-muted-foreground w-6">OPP</span>
     </div>
   );
 }
@@ -244,7 +244,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
           animate={isUrgent ? { scale: [1, 1.06, 1] } : {}}
           transition={isUrgent ? { duration: 0.6, repeat: Infinity } : {}}
           className={cn(
-            "flex items-center gap-2 rounded-md px-5 py-2 font-mono text-2xl font-bold tabular-nums",
+            "flex items-center gap-2 rounded-md px-5 py-2 font-mono text-2xl font-semibold tabular-nums",
             isUrgent ? "bg-red-500/15 text-red-400" : "bg-muted/20 text-foreground",
           )}
         >
@@ -257,8 +257,8 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
       <div className="grid grid-cols-2 gap-2">
         {/* Your side */}
         <div className="rounded-lg border border-teal-500/20 bg-teal-500/5 p-3">
-          <div className="text-xs font-bold text-emerald-400 mb-1">YOU</div>
-          <div className={cn("text-lg font-bold tabular-nums", yours.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className="text-xs font-semibold text-emerald-400 mb-1">YOU</div>
+          <div className={cn("text-lg font-semibold tabular-nums", yours.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {yours.pnl >= 0 ? "+" : ""}${yours.pnl.toFixed(0)}
           </div>
           <div className="text-xs text-muted-foreground mt-0.5">{yours.trades} trades</div>
@@ -266,12 +266,12 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
         </div>
 
         {/* Opponent side */}
-        <div className="rounded-lg border border-border/30 bg-muted/10 p-3">
+        <div className="rounded-lg border border-border/20 bg-muted/10 p-3">
           <div className="flex items-center gap-1 mb-1">
             <ArenaRankBadge rank={opponent.rank} size="xs" showLabel={false} />
-            <span className="text-xs font-bold text-muted-foreground truncate">{opponent.name}</span>
+            <span className="text-xs font-semibold text-muted-foreground truncate">{opponent.name}</span>
           </div>
-          <div className={cn("text-lg font-bold tabular-nums", opp.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-lg font-semibold tabular-nums", opp.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {opp.pnl >= 0 ? "+" : ""}${opp.pnl.toFixed(0)}
           </div>
           <div className="text-xs text-muted-foreground mt-0.5">{opp.trades} trades</div>
@@ -283,7 +283,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
       <PnlRaceBar yourPnl={yours.pnl} oppPnl={opp.pnl} />
 
       {/* Chart */}
-      <div className="rounded-lg border border-border/30 bg-muted/10 p-2">
+      <div className="rounded-lg border border-border/20 bg-muted/10 p-2">
         <MiniSVGChart seed={matchSeed} revealedBars={revealedBars} totalBars={TOTAL_BARS} />
       </div>
 
@@ -292,7 +292,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
         <button
           type="button"
           onClick={handleBuy}
-          className="flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30 active:scale-95"
+          className="flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-semibold text-emerald-400 transition-colors hover:bg-teal-500/30 active:scale-95"
         >
           <TrendingUp className="h-4 w-4" />
           Buy / Long
@@ -300,7 +300,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
         <button
           type="button"
           onClick={handleSell}
-          className="flex items-center justify-center gap-2 rounded-lg bg-red-500/20 border border-red-500/30 py-3 text-sm font-bold text-red-400 transition-colors hover:bg-red-500/30 active:scale-95"
+          className="flex items-center justify-center gap-2 rounded-lg bg-red-500/20 border border-red-500/30 py-3 text-sm font-semibold text-red-400 transition-colors hover:bg-red-500/30 active:scale-95"
         >
           <TrendingDown className="h-4 w-4" />
           Sell / Short
@@ -346,7 +346,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         initial={{ scale: 0, rotate: -10 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 15 }}
-        className={cn("text-4xl font-bold tracking-tight", won ? "text-emerald-400" : "text-red-400")}
+        className={cn("text-xl font-semibold tracking-tight", won ? "text-emerald-400" : "text-red-400")}
       >
         {won ? "VICTORY!" : "DEFEAT"}
       </motion.div>
@@ -357,18 +357,18 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
       <div className="flex items-center gap-6">
         <div className="text-center">
           <div className="text-xs text-muted-foreground mb-1">You</div>
-          <div className={cn("text-2xl font-bold tabular-nums", yourPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-2xl font-semibold tabular-nums", yourPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {yourPnl >= 0 ? "+" : ""}${yourPnl.toFixed(0)}
           </div>
           <div className="text-xs text-muted-foreground/70 mt-0.5">{yourTrades} trades</div>
         </div>
-        <div className="text-muted-foreground/50 text-xl font-bold">vs</div>
+        <div className="text-muted-foreground/50 text-xl font-semibold">vs</div>
         <div className="text-center">
           <div className="flex items-center justify-center gap-1 mb-1">
             <ArenaRankBadge rank={opponent.rank} size="xs" showLabel={false} />
             <span className="text-xs text-muted-foreground">{opponent.name}</span>
           </div>
-          <div className={cn("text-2xl font-bold tabular-nums", oppPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
+          <div className={cn("text-2xl font-semibold tabular-nums", oppPnl >= 0 ? "text-emerald-400" : "text-red-400")}>
             {oppPnl >= 0 ? "+" : ""}${oppPnl.toFixed(0)}
           </div>
           <div className="text-xs text-muted-foreground/70 mt-0.5">{opponent.elo} ELO</div>
@@ -376,15 +376,15 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
       </div>
 
       {/* ELO change */}
-      <div className="flex items-center gap-3 rounded-lg border border-border/30 bg-muted/10 px-4 py-2">
+      <div className="flex items-center gap-3 rounded-lg border border-border/20 bg-muted/10 px-4 py-2">
         <span className="text-xs text-muted-foreground">ELO</span>
-        <span className="text-sm font-bold text-muted-foreground tabular-nums">{eloBefore}</span>
+        <span className="text-sm font-semibold text-muted-foreground tabular-nums">{eloBefore}</span>
         <ChevronRight className="h-3 w-3 text-muted-foreground/70" />
-        <span className={cn("text-sm font-bold tabular-nums", eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
+        <span className={cn("text-sm font-semibold tabular-nums", eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
           {eloChange >= 0 ? "+" : ""}{eloChange}
         </span>
         <ChevronRight className="h-3 w-3 text-muted-foreground/70" />
-        <span className="text-sm font-bold text-foreground tabular-nums">{eloAfter}</span>
+        <span className="text-sm font-semibold text-foreground tabular-nums">{eloAfter}</span>
         <ArenaRankBadge rank={getArenaRankForElo(eloAfter)} size="xs" showLabel={false} />
       </div>
 
@@ -393,7 +393,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         <button
           type="button"
           onClick={onRematch}
-          className="flex items-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 px-5 py-2.5 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30"
+          className="flex items-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 px-5 py-2.5 text-sm font-semibold text-emerald-400 transition-colors hover:bg-teal-500/30"
         >
           <RotateCcw className="h-3.5 w-3.5" />
           Rematch
@@ -401,7 +401,7 @@ function DuelResults({ yourPnl, oppPnl, yourTrades, opponent, mode, eloChange, e
         <button
           type="button"
           onClick={onFindNew}
-          className="flex items-center gap-2 rounded-lg border border-border/50 bg-muted/20 px-5 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-muted/50"
+          className="flex items-center gap-2 rounded-lg border border-border/20 bg-muted/20 px-5 py-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-muted/50"
         >
           <ArrowRight className="h-3.5 w-3.5" />
           Find New Match
@@ -481,7 +481,7 @@ export function DuelsTab() {
           <motion.div key="lobby" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-4">
             {/* Mode selector */}
             <div>
-              <div className="text-xs font-bold text-muted-foreground mb-2">Game Mode</div>
+              <div className="text-xs font-semibold text-muted-foreground mb-2">Game Mode</div>
               <div className="grid grid-cols-3 gap-2">
                 {DUEL_MODES.map((m) => (
                   <button
@@ -489,13 +489,13 @@ export function DuelsTab() {
                     type="button"
                     onClick={() => setSelectedMode(m)}
                     className={cn(
-                      "rounded-lg border px-3 py-3 text-left transition-all",
+                      "rounded-lg border px-3 py-3 text-left transition-colors",
                       selectedMode.id === m.id
                         ? "border-teal-500/40 bg-teal-500/10"
-                        : "border-border/30 bg-muted/10 hover:bg-muted/30",
+                        : "border-border/20 bg-muted/10 hover:bg-muted/30",
                     )}
                   >
-                    <div className={cn("text-xs font-bold", selectedMode.id === m.id ? "text-emerald-400" : "text-muted-foreground")}>
+                    <div className={cn("text-xs font-semibold", selectedMode.id === m.id ? "text-emerald-400" : "text-muted-foreground")}>
                       {m.label}
                     </div>
                     <div className="text-xs text-muted-foreground mt-0.5">{m.duration}s</div>
@@ -509,24 +509,24 @@ export function DuelsTab() {
             <button
               type="button"
               onClick={handleFindMatch}
-              className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500 py-3.5 text-sm font-bold text-foreground transition-colors hover:bg-teal-400 active:scale-95"
+              className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-teal-400 active:scale-95"
             >
               <Swords className="h-4 w-4" />
               Find Match
             </button>
 
             {/* Your ELO */}
-            <div className="flex items-center justify-between rounded-lg border border-border/30 bg-muted/10 px-3 py-2">
+            <div className="flex items-center justify-between rounded-lg border border-border/20 bg-muted/10 px-3 py-2">
               <span className="text-xs text-muted-foreground">Your ELO</span>
               <div className="flex items-center gap-2">
-                <span className="text-sm font-bold tabular-nums text-foreground">{elo}</span>
+                <span className="text-sm font-semibold tabular-nums text-foreground">{elo}</span>
                 <ArenaRankBadge rank={getArenaRankForElo(elo)} size="xs" showLabel={false} />
               </div>
             </div>
 
             {/* Nearby opponents */}
             <div>
-              <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
+              <div className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
                 <Trophy className="h-3 w-3" />
                 Potential Opponents
               </div>
@@ -554,7 +554,7 @@ export function DuelsTab() {
             >
               <Search className="h-10 w-10 text-emerald-400" />
             </motion.div>
-            <div className="text-sm font-bold text-foreground">Finding opponent...</div>
+            <div className="text-sm font-semibold text-foreground">Finding opponent...</div>
             <div className="text-xs text-muted-foreground tabular-nums">{searchSeconds}s elapsed</div>
             <button
               type="button"
@@ -569,7 +569,7 @@ export function DuelsTab() {
         {phase === "active" && foundOpponent && (
           <motion.div key="active" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-xs font-bold text-muted-foreground">
+              <span className="text-xs font-semibold text-muted-foreground">
                 {selectedMode.label} Duel
               </span>
               <span className="text-xs text-muted-foreground/70">vs {foundOpponent.name}</span>

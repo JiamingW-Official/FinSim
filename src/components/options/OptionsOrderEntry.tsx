@@ -142,12 +142,12 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
         <>
           {/* Probability of Profit & Risk Stats */}
           {pop !== null && (
-            <div className="rounded-lg border border-border/50 bg-card/30 p-2 space-y-1.5">
+            <div className="rounded-lg border border-border/20 bg-card/30 p-2 space-y-1.5">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Prob of Profit</span>
                 <span
                   className={cn(
-                    "font-bold",
+                    "font-semibold",
                     pop > 50 ? "text-emerald-400" : pop < 40 ? "text-red-400" : "text-amber-400",
                   )}
                 >
@@ -157,7 +157,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
               <div className="w-full h-1 bg-muted/30 rounded overflow-hidden">
                 <div
                   className={cn(
-                    "h-full rounded transition-all",
+                    "h-full rounded transition-colors",
                     pop > 50 ? "bg-emerald-500" : pop < 40 ? "bg-red-500" : "bg-amber-500",
                   )}
                   style={{ width: `${Math.min(100, Math.max(0, pop))}%` }}
@@ -165,7 +165,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
               </div>
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground font-medium">Risk / Reward</span>
-                <span className="font-bold text-foreground">{rorDisplay}</span>
+                <span className="font-semibold text-foreground">{rorDisplay}</span>
               </div>
               {breakevens.length > 0 && (
                 <div className="flex flex-wrap items-center gap-1">
@@ -187,13 +187,13 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           {totalGreeks && <GreeksPanel greeks={totalGreeks} />}
 
           {/* Cost summary */}
-          <div className="space-y-1 rounded-lg border border-border/40 bg-card/50 p-2.5">
+          <div className="space-y-1 rounded-lg border border-border/20 bg-card/50 p-2.5">
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">
                 {isDebit ? "Net Debit" : "Net Credit"}
               </span>
               <span
-                className={cn("font-bold", isDebit ? "text-red-400" : "text-emerald-400")}
+                className={cn("font-semibold", isDebit ? "text-red-400" : "text-emerald-400")}
               >
                 {formatCurrency(Math.abs(netDebit))}
               </span>
@@ -204,12 +204,12 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
                 {formatCurrency(commission)}
               </span>
             </div>
-            <div className="border-t border-border/30" />
+            <div className="border-t border-border/20" />
             <div className="flex items-center justify-between text-[11px]">
               <span className="font-medium">Total</span>
               <span
                 className={cn(
-                  "font-bold",
+                  "font-semibold",
                   totalCost > 0 ? "text-red-400" : "text-emerald-400",
                 )}
               >
@@ -231,7 +231,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           <div className="flex gap-2">
             <motion.button
               onClick={clearLegs}
-              className="flex items-center gap-1 rounded-lg border border-border/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted/30"
+              className="flex items-center gap-1 rounded-lg border border-border/20 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted/30"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

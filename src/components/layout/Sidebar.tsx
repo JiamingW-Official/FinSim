@@ -197,7 +197,7 @@ function NavLink({
 
       {/* NEW badge text */}
       {!collapsed && item.badgeText && (
-        <span className="ml-auto rounded bg-primary/10 px-1 py-0.5 text-[9px] font-semibold uppercase leading-none text-primary/70">
+        <span className="ml-auto rounded bg-primary/10 px-1 py-0.5 text-[9px] font-semibold leading-none text-primary/70">
           {item.badgeText}
         </span>
       )}
@@ -231,7 +231,7 @@ function NavLink({
         <TooltipContent side="right" sideOffset={10} className="text-xs font-medium">
           <span>{item.label}</span>
           {item.badgeText && (
-            <span className="ml-1.5 rounded bg-primary/15 px-1 py-0.5 text-[7px] font-medium uppercase text-primary">
+            <span className="ml-1.5 rounded bg-primary/15 px-1 py-0.5 text-[7px] font-medium text-primary">
               {item.badgeText}
             </span>
           )}
@@ -280,7 +280,7 @@ function SectionToggle({
       <Icon className="h-3.5 w-3.5 shrink-0" />
       {!sidebarCollapsed && (
         <>
-          <span className="flex-1 text-left text-[10px] font-medium uppercase tracking-wider leading-none">
+          <span className="flex-1 text-left text-[10px] font-medium leading-none">
             {label}
           </span>
           <ChevronDown
@@ -372,7 +372,7 @@ export function Sidebar() {
   return (
     <div
       className={cn(
-        "relative hidden md:flex flex-col border-r border-border/40 bg-sidebar py-2 transition-[width] duration-200 ease-in-out overflow-hidden",
+        "relative hidden md:flex flex-col border-r border-border/20 bg-sidebar py-2 transition-[width] duration-200 ease-in-out overflow-hidden",
         collapsed ? "w-12 items-center" : "w-52 items-stretch",
       )}
     >
@@ -424,7 +424,7 @@ export function Sidebar() {
           </div>
           <div
             className={cn(
-              "flex flex-col overflow-hidden transition-all duration-200 ease-in-out",
+              "flex flex-col overflow-hidden transition-colors duration-200 ease-in-out",
               collapsed ? "items-center w-full" : "w-full",
               exploreOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
             )}
@@ -454,7 +454,7 @@ export function Sidebar() {
           </div>
           <div
             className={cn(
-              "flex flex-col overflow-hidden transition-all duration-200 ease-in-out",
+              "flex flex-col overflow-hidden transition-colors duration-200 ease-in-out",
               collapsed ? "items-center w-full" : "w-full",
               advancedOpen ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0",
             )}
@@ -463,7 +463,7 @@ export function Sidebar() {
               <div key={cat.label} className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
                 {!collapsed && (
                   <div className="mb-0.5 mt-2.5 px-1">
-                    <span className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground/35 select-none">
+                    <span className="text-[10px] font-normal text-muted-foreground/35 select-none">
                       {cat.label}
                     </span>
                   </div>
@@ -485,7 +485,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground/35 select-none">
+              <span className="text-[10px] font-normal text-muted-foreground/35 select-none">
                 Learn
               </span>
             </div>
@@ -502,7 +502,7 @@ export function Sidebar() {
         <div className={cn("flex flex-col", collapsed ? "items-center w-full" : "w-full")}>
           {!collapsed && (
             <div className="mb-1 px-1">
-              <span className="text-[10px] font-normal uppercase tracking-wider text-muted-foreground/35 select-none">
+              <span className="text-[10px] font-normal text-muted-foreground/35 select-none">
                 Social
               </span>
             </div>

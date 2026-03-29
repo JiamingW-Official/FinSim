@@ -126,7 +126,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
         </motion.div>
 
         <div className="text-center">
-          <h3 className="text-lg font-bold">
+          <h3 className="text-lg font-semibold">
             {accuracy >= 80 ? "Amazing!" : accuracy >= 60 ? "Nice job!" : "Keep Practicing!"}
           </h3>
           <p className="text-[11px] text-muted-foreground mt-1">{ROUNDS} rounds completed</p>
@@ -146,14 +146,14 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
             transition={{ delay: 0.3 }}
           >
             <Flame className="h-4 w-4 text-amber-400" />
-            <span className="text-xs font-bold text-amber-400">Best streak: {bestStreak}</span>
+            <span className="text-xs font-semibold text-amber-400">Best streak: {bestStreak}</span>
           </motion.div>
         )}
 
         <button
           type="button"
           onClick={onClose}
-          className="mt-2 rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-foreground transition-all hover:bg-primary/90 active:scale-95"
+          className="mt-2 rounded-md bg-primary px-6 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-primary/90 active:scale-95"
         >
           Done
         </button>
@@ -175,7 +175,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <TrendingUp className="h-4 w-4 text-emerald-400" />
-          <span className="text-sm font-bold">Price Prediction</span>
+          <span className="text-sm font-semibold">Price Prediction</span>
           <span className="text-xs text-muted-foreground">Round {round + 1}/{ROUNDS}</span>
         </div>
         <div className="flex items-center gap-3">
@@ -187,7 +187,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
               animate={{ scale: 1 }}
             >
               <Flame className="h-3.5 w-3.5 text-amber-400 streak-fire" />
-              <span className="text-xs font-bold tabular-nums text-amber-400">{currentStreak}</span>
+              <span className="text-xs font-semibold tabular-nums text-amber-400">{currentStreak}</span>
             </motion.div>
           )}
           <button type="button" onClick={onClose} className="rounded-lg p-1 hover:bg-muted/30 transition-colors">
@@ -201,7 +201,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
         <div className="flex items-center justify-center gap-2">
           <Timer className={cn("h-3.5 w-3.5", countdown <= 2 ? "text-rose-400" : "text-muted-foreground")} />
           <span className={cn(
-            "text-xs font-bold tabular-nums",
+            "text-xs font-semibold tabular-nums",
             countdown <= 2 ? "text-rose-400" : "text-muted-foreground",
           )}>
             {countdown}s
@@ -279,7 +279,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
                   animate={{ opacity: [0.3, 0.7, 0.3] }}
                   transition={{ duration: 1.5, repeat: Infinity, type: "tween" }}
                 >
-                  <span className="text-[11px] font-bold text-muted-foreground">?</span>
+                  <span className="text-[11px] font-semibold text-muted-foreground">?</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -300,7 +300,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
             >
               <motion.div
                 className={cn(
-                  "rounded-md px-4 py-2 font-bold text-sm",
+                  "rounded-md px-4 py-2 font-semibold text-sm",
                   result === "correct"
                     ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                     : "bg-rose-500/20 text-rose-400 border border-rose-500/30",
@@ -328,7 +328,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
             <button
               type="button"
               onClick={() => handlePredict("green")}
-              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/5 py-3.5 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/5 py-3.5 text-sm font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/20 active:scale-95"
             >
               <TrendingUp className="h-5 w-5" />
               Green (Up)
@@ -336,7 +336,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
             <button
               type="button"
               onClick={() => handlePredict("red")}
-              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-rose-500/30 bg-rose-500/10 py-3.5 text-sm font-bold text-rose-400 transition-all hover:bg-rose-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-rose-500/30 bg-rose-500/10 py-3.5 text-sm font-semibold text-rose-400 transition-colors hover:bg-rose-500/20 active:scale-95"
             >
               <TrendingDown className="h-5 w-5" />
               Red (Down)
@@ -368,8 +368,8 @@ function SummaryStatBox({ label, value, color }: { label: string; value: string;
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
     >
-      <span className={cn("text-lg font-bold tabular-nums", color)}>{value}</span>
-      <span className="text-[11px] font-bold text-muted-foreground/60">
+      <span className={cn("text-lg font-semibold tabular-nums", color)}>{value}</span>
+      <span className="text-[11px] font-semibold text-muted-foreground/60">
         {label}
       </span>
     </motion.div>

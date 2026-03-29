@@ -692,7 +692,7 @@ export default function CreditDerivativesPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {CREDIT_EVENTS.map((ev) => (
                     <div key={ev.name} className={cn("rounded-lg p-3 bg-background border", ev.borderColor)}>
-                      <p className={cn("text-xs text-muted-foreground font-bold mb-1", ev.textColor)}>{ev.name}</p>
+                      <p className={cn("text-xs text-muted-foreground font-semibold mb-1", ev.textColor)}>{ev.name}</p>
                       <p className="text-xs text-muted-foreground mb-1">{ev.desc}</p>
                       <p className="text-xs text-muted-foreground italic">e.g. {ev.example}</p>
                     </div>
@@ -781,7 +781,7 @@ export default function CreditDerivativesPage() {
                     </thead>
                     <tbody>
                       {UPFRONT_DATA.map((row, i) => (
-                        <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                           <td className="py-2 pr-4 text-muted-foreground">{row.scenario}</td>
                           <td className="py-2 pr-4 text-muted-foreground">{row.runningCoupon}</td>
                           <td className="py-2 pr-4 text-muted-foreground">{row.fairSpread}</td>
@@ -920,7 +920,7 @@ export default function CreditDerivativesPage() {
                           { entry: "300bps", current: "500bps", delta: "+200bps", dv01: "$4,400", pnl: "+$88,000", up: true },
                           { entry: "500bps", current: "800bps", delta: "+300bps", dv01: "$3,800", pnl: "+$114,000", up: true },
                         ].map((row, i) => (
-                          <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                          <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                             <td className="py-2 pr-4 text-muted-foreground">{row.entry}</td>
                             <td className="py-2 pr-4 text-muted-foreground">{row.current}</td>
                             <td className={cn("py-2 pr-4 font-medium", row.up ? "text-emerald-400" : "text-red-400")}>{row.delta}</td>
@@ -1257,7 +1257,7 @@ export default function CreditDerivativesPage() {
                     </thead>
                     <tbody>
                       {TRS_VS_REPO.map((row, i) => (
-                        <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                           <td className="py-2 pr-4 text-muted-foreground">{row.aspect}</td>
                           <td className="py-2 pr-4 text-muted-foreground">{row.trs}</td>
                           <td className="py-2 text-muted-foreground">{row.repo}</td>

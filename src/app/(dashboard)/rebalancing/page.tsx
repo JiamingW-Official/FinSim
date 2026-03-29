@@ -417,7 +417,7 @@ export default function RebalancingPage() {
         className="flex items-center justify-between"
       >
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
             <RefreshCw className="w-6 h-6 text-primary" />
             Portfolio Rebalancing
           </h1>
@@ -457,7 +457,7 @@ export default function RebalancingPage() {
                 <span className="text-muted-foreground text-xs">{kpi.label}</span>
                 {kpi.icon}
               </div>
-              <div className="text-xl font-bold text-foreground">{kpi.value}</div>
+              <div className="text-xl font-semibold text-foreground">{kpi.value}</div>
               <div className="text-muted-foreground text-xs mt-0.5">{kpi.sub}</div>
             </CardContent>
           </Card>
@@ -543,7 +543,7 @@ export default function RebalancingPage() {
                             initial={{ opacity: 0, x: -8 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.04 }}
-                            className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                            className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                           >
                             <td className="px-4 py-2">
                               <div className="font-semibold text-foreground">{h.ticker}</div>
@@ -581,7 +581,7 @@ export default function RebalancingPage() {
                       <span className="text-muted-foreground text-xs w-12 text-right">{h.ticker}</span>
                       <div className="flex-1 h-4 bg-muted/50 rounded-full overflow-hidden relative">
                         <div
-                          className={`absolute top-0 h-full rounded-full transition-all duration-300 ${
+                          className={`absolute top-0 h-full rounded-full transition-colors duration-300 ${
                             h.drift > 0 ? "right-1/2" : "left-1/2"
                           } ${h.driftAbs >= driftThreshold ? "bg-red-500/70" : h.driftAbs >= driftThreshold * 0.5 ? "bg-amber-500/70" : "bg-emerald-500/70"}`}
                           style={{ width: `${Math.min((h.driftAbs / 8) * 50, 50)}%` }}
@@ -619,7 +619,7 @@ export default function RebalancingPage() {
                         <button
                           key={m}
                           onClick={() => setCalendarMode(m)}
-                          className={`flex-1 py-2 rounded text-xs text-muted-foreground font-medium capitalize transition-all ${
+                          className={`flex-1 py-2 rounded text-xs text-muted-foreground font-medium capitalize transition-colors ${
                             calendarMode === m
                               ? "bg-primary text-foreground"
                               : "bg-muted text-muted-foreground hover:bg-muted"
@@ -773,7 +773,7 @@ export default function RebalancingPage() {
                               initial={{ opacity: 0, y: 8 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: i * 0.05 }}
-                              className="border-b border-border/50 hover:bg-muted/20 transition-colors"
+                              className="border-b border-border/20 hover:bg-muted/20 transition-colors"
                             >
                               <td className="px-4 py-2 font-semibold text-foreground">{t.ticker}</td>
                               <td className="px-2 py-2 text-center">
@@ -872,8 +872,8 @@ export default function RebalancingPage() {
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.06 }}
-                          className={`border-b border-border/50 cursor-pointer transition-colors ${
-                            selectedHarvest.has(p.ticker) ? "bg-primary/10" : "hover:bg-muted/20"
+                          className={`border-b border-border/20 cursor-pointer transition-colors ${
+                            selectedHarvest.has(p.ticker) ? "bg-muted/10" : "hover:bg-muted/20"
                           }`}
                           onClick={() => toggleHarvest(p.ticker)}
                         >
@@ -1045,14 +1045,14 @@ export default function RebalancingPage() {
                             initial={{ opacity: 0, y: 6 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.05 }}
-                            className="border-b border-border/50 hover:bg-muted/20 transition-colors"
+                            className="border-b border-border/20 hover:bg-muted/20 transition-colors"
                           >
                             <td className="px-4 py-2 text-foreground font-medium">{rule.assetClass}</td>
                             <td className="px-2 py-2 text-center">
                               <Badge className={`text-xs text-muted-foreground ${
                                 rule.ideal === "roth"       ? "bg-emerald-500/20 text-emerald-300" :
                                 rule.ideal === "traditional" ? "bg-amber-500/20 text-amber-300" :
-                                                              "bg-primary/20 text-primary"
+                                                              "bg-muted/10 text-primary"
                               }`}>
                                 {rule.ideal === "traditional" ? "Trad. IRA" : rule.ideal === "roth" ? "Roth IRA" : "Taxable"}
                               </Badge>
@@ -1109,7 +1109,7 @@ export default function RebalancingPage() {
                       { label: "Peak Drift Reached",   value: fmtPct(Math.max(...DRIFT_HISTORY.map(d => Math.abs(d.equityDrift)))), sub: "Equity allocation" },
                       { label: "Volatility Drag Est.", value: `${volDrag}%`,    sub: "Annualized drag from drift" },
                     ].map((s, i) => (
-                      <div key={i} className="border-b border-border/50 pb-2">
+                      <div key={i} className="border-b border-border/20 pb-2">
                         <div className="flex justify-between text-xs text-muted-foreground">
                           <span className="text-muted-foreground">{s.label}</span>
                           <span className="text-foreground font-medium">{s.value}</span>

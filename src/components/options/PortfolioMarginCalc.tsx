@@ -444,7 +444,7 @@ function fmtSigned(n: number, decimals = 4): string {
 function SectionTitle({ children, subtitle }: { children: React.ReactNode; subtitle?: string }) {
   return (
     <div className="mb-3 flex items-baseline gap-2">
-      <span className="text-[11px] font-bold uppercase tracking-wide text-foreground/90">
+      <span className="text-[11px] font-semibold text-foreground/90">
         {children}
       </span>
       {subtitle && (
@@ -585,7 +585,7 @@ export function PortfolioMarginCalc() {
       <Card className="border-border/60 bg-card">
         <CardHeader className="pb-2 pt-3 px-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xs font-bold uppercase tracking-wide">
+            <CardTitle className="text-xs font-semibold">
               Position Input
             </CardTitle>
             <Button
@@ -601,7 +601,7 @@ export function PortfolioMarginCalc() {
         <CardContent className="overflow-x-auto px-3 pb-3">
           <table className="w-full min-w-[860px] text-xs">
             <thead>
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 {[
                   "Symbol", "Type", "Strike", "Expiry", "Qty", "Price", "IV",
                   "Underlying", "Delta", "Gamma", "Theta/day", "Vega/1%", "",
@@ -624,7 +624,7 @@ export function PortfolioMarginCalc() {
                     {/* Symbol */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-14 px-1 text-xs bg-transparent border-border/40"
+                        className="h-6 w-14 px-1 text-xs bg-transparent border-border/20"
                         value={pos.symbol}
                         onChange={(e) => updatePosition(pos.id, "symbol", e.target.value)}
                       />
@@ -632,7 +632,7 @@ export function PortfolioMarginCalc() {
                     {/* Type */}
                     <td className="py-1 pr-2">
                       <select
-                        className="h-6 rounded border border-border/40 bg-transparent px-1 text-xs text-foreground"
+                        className="h-6 rounded border border-border/20 bg-transparent px-1 text-xs text-foreground"
                         value={pos.type}
                         onChange={(e) => updatePosition(pos.id, "type", e.target.value)}
                       >
@@ -643,7 +643,7 @@ export function PortfolioMarginCalc() {
                     {/* Strike */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/40"
+                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/20"
                         type="number"
                         value={pos.strike}
                         onChange={(e) => updatePosition(pos.id, "strike", e.target.value)}
@@ -652,7 +652,7 @@ export function PortfolioMarginCalc() {
                     {/* Expiry */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-24 px-1 text-xs bg-transparent border-border/40"
+                        className="h-6 w-24 px-1 text-xs bg-transparent border-border/20"
                         type="date"
                         value={pos.expiry}
                         onChange={(e) => updatePosition(pos.id, "expiry", e.target.value)}
@@ -662,7 +662,7 @@ export function PortfolioMarginCalc() {
                     <td className="py-1 pr-2">
                       <Input
                         className={cn(
-                          "h-6 w-14 px-1 text-xs bg-transparent border-border/40",
+                          "h-6 w-14 px-1 text-xs bg-transparent border-border/20",
                           isShort ? "text-red-500" : "text-emerald-500",
                         )}
                         type="number"
@@ -673,7 +673,7 @@ export function PortfolioMarginCalc() {
                     {/* Price */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/40"
+                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/20"
                         type="number"
                         step="0.01"
                         value={pos.currentPrice.toFixed(2)}
@@ -683,7 +683,7 @@ export function PortfolioMarginCalc() {
                     {/* IV */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-14 px-1 text-xs bg-transparent border-border/40"
+                        className="h-6 w-14 px-1 text-xs bg-transparent border-border/20"
                         type="number"
                         step="0.01"
                         value={pos.iv.toFixed(2)}
@@ -693,7 +693,7 @@ export function PortfolioMarginCalc() {
                     {/* Underlying */}
                     <td className="py-1 pr-2">
                       <Input
-                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/40"
+                        className="h-6 w-16 px-1 text-xs bg-transparent border-border/20"
                         type="number"
                         step="0.01"
                         value={pos.underlyingPrice}
@@ -740,7 +740,7 @@ export function PortfolioMarginCalc() {
         {/* Reg-T */}
         <Card className="border-border/60 bg-card">
           <CardHeader className="pb-2 pt-3 px-3">
-            <CardTitle className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide">
+            <CardTitle className="flex items-center gap-2 text-xs font-semibold">
               Reg-T Margin
               <Badge variant="outline" className="text-[11px] px-1 py-0 border-amber-500/50 text-amber-400">
                 Standard
@@ -750,9 +750,9 @@ export function PortfolioMarginCalc() {
           <CardContent className="px-3 pb-3 space-y-2">
             <div className="flex items-end justify-between">
               <span className="text-xs text-muted-foreground">Total Margin Required</span>
-              <span className="text-xl font-bold text-amber-400">{fmt$(regTMargin)}</span>
+              <span className="text-xl font-semibold text-amber-400">{fmt$(regTMargin)}</span>
             </div>
-            <div className="rounded-md border border-border/40 bg-muted/20 p-2 text-xs text-muted-foreground">
+            <div className="rounded-md border border-border/20 bg-muted/20 p-2 text-xs text-muted-foreground">
               <p className="font-semibold text-foreground/80 mb-1">Calculation basis</p>
               <p>20% × underlying value per contract</p>
               <p>Minimum $250 per contract</p>
@@ -782,7 +782,7 @@ export function PortfolioMarginCalc() {
         {/* Portfolio Margin */}
         <Card className="border-border/60 bg-card">
           <CardHeader className="pb-2 pt-3 px-3">
-            <CardTitle className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide">
+            <CardTitle className="flex items-center gap-2 text-xs font-semibold">
               Portfolio Margin
               {pmEligible ? (
                 <Badge className="text-[11px] px-1 py-0 bg-emerald-500/20 text-emerald-500 border-emerald-500/30">
@@ -798,9 +798,9 @@ export function PortfolioMarginCalc() {
           <CardContent className="px-3 pb-3 space-y-2">
             <div className="flex items-end justify-between">
               <span className="text-xs text-muted-foreground">Stress-Test Margin</span>
-              <span className="text-xl font-bold text-emerald-500">{fmt$(pmMargin)}</span>
+              <span className="text-xl font-semibold text-emerald-500">{fmt$(pmMargin)}</span>
             </div>
-            <div className="rounded-md border border-border/40 bg-muted/20 p-2 text-xs text-muted-foreground">
+            <div className="rounded-md border border-border/20 bg-muted/20 p-2 text-xs text-muted-foreground">
               <p className="font-semibold text-foreground/80 mb-1">Stress scenarios</p>
               <p>Stock ±15%, ±10%, ±5%, ±3%, 0%</p>
               <p>IV shift ±4 percentage points</p>
@@ -810,13 +810,13 @@ export function PortfolioMarginCalc() {
             <div className="rounded-md border border-emerald-500/20 bg-emerald-500/5 p-2">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Capital Savings vs Reg-T</span>
-                <span className="font-bold text-emerald-500">
+                <span className="font-semibold text-emerald-500">
                   {fmt$(Math.max(regTMargin - pmMargin, 0))}
                 </span>
               </div>
               <div className="flex justify-between text-xs mt-1">
                 <span className="text-muted-foreground">% Reduction</span>
-                <span className="font-bold text-emerald-500">
+                <span className="font-semibold text-emerald-500">
                   {savings > 0 ? `${(savings * 100).toFixed(1)}%` : "0%"}
                 </span>
               </div>
@@ -828,7 +828,7 @@ export function PortfolioMarginCalc() {
       {/* ── Section 3: Stress Test SVG Chart ─────────────────────────────── */}
       <Card className="border-border/60 bg-card">
         <CardHeader className="pb-2 pt-3 px-3">
-          <CardTitle className="text-xs font-bold uppercase tracking-wide">
+          <CardTitle className="text-xs font-semibold">
             Stress Test P&amp;L Chart
           </CardTitle>
         </CardHeader>
@@ -840,7 +840,7 @@ export function PortfolioMarginCalc() {
               <div className="overflow-x-auto">
                 <table className="w-full text-[11px]">
                   <thead>
-                    <tr className="border-b border-border/40">
+                    <tr className="border-b border-border/20">
                       <th className="pb-1 pr-2 text-left text-muted-foreground">Move</th>
                       <th className="pb-1 pr-2 text-right text-orange-500">IV +4pp</th>
                       <th className="pb-1 pr-2 text-right text-orange-400">Base IV</th>
@@ -879,7 +879,7 @@ export function PortfolioMarginCalc() {
       {/* ── Section 4: Greeks Aggregation ────────────────────────────────── */}
       <Card className="border-border/60 bg-card">
         <CardHeader className="pb-2 pt-3 px-3">
-          <CardTitle className="text-xs font-bold uppercase tracking-wide">
+          <CardTitle className="text-xs font-semibold">
             Portfolio Greeks
           </CardTitle>
         </CardHeader>
@@ -914,10 +914,10 @@ export function PortfolioMarginCalc() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="rounded-lg border border-border/40 bg-muted/10 p-2 text-center"
+                className="rounded-lg border border-border/20 bg-muted/10 p-2 text-center"
               >
                 <p className="text-[11px] text-muted-foreground">{item.label}</p>
-                <p className={cn("text-sm font-bold font-mono", item.color)}>{item.value}</p>
+                <p className={cn("text-sm font-semibold font-mono", item.color)}>{item.value}</p>
                 <p className="text-[11px] text-muted-foreground">{item.sub}</p>
               </div>
             ))}
@@ -926,7 +926,7 @@ export function PortfolioMarginCalc() {
           {/* Dollar impact table */}
           <div>
             <SectionTitle subtitle="estimated">1% Stock Move Impact</SectionTitle>
-            <div className="rounded-md border border-border/40 bg-muted/10 p-2 text-xs space-y-1">
+            <div className="rounded-md border border-border/20 bg-muted/10 p-2 text-xs space-y-1">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">
                   Delta P&L (net Δ × avg spot × 1%)
@@ -943,9 +943,9 @@ export function PortfolioMarginCalc() {
                   {fmt$(gammaImpact, 2)}
                 </span>
               </div>
-              <div className="flex justify-between border-t border-border/30 pt-1">
+              <div className="flex justify-between border-t border-border/20 pt-1">
                 <span className="font-semibold text-foreground/80">Total Impact</span>
-                <span className={cn("font-mono font-bold", totalImpact >= 0 ? "text-emerald-500" : "text-red-500")}>
+                <span className={cn("font-mono font-semibold", totalImpact >= 0 ? "text-emerald-500" : "text-red-500")}>
                   {fmt$(totalImpact, 2)}
                 </span>
               </div>
@@ -1005,7 +1005,7 @@ export function PortfolioMarginCalc() {
       {/* ── Section 5: Margin Efficiency Metrics ─────────────────────────── */}
       <Card className="border-border/60 bg-card">
         <CardHeader className="pb-2 pt-3 px-3">
-          <CardTitle className="text-xs font-bold uppercase tracking-wide">
+          <CardTitle className="text-xs font-semibold">
             Margin Efficiency
           </CardTitle>
         </CardHeader>
@@ -1039,7 +1039,7 @@ export function PortfolioMarginCalc() {
                     <p className="text-xs text-foreground/80">{item.label}</p>
                     <p className="text-[11px] text-muted-foreground">{item.desc}</p>
                   </div>
-                  <span className={cn("text-sm font-bold font-mono shrink-0", item.color)}>
+                  <span className={cn("text-sm font-semibold font-mono shrink-0", item.color)}>
                     {item.value}
                   </span>
                 </div>

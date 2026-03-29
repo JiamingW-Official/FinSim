@@ -58,8 +58,8 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
-                <span className="text-[11px] font-bold">{pos.ticker}</span>
-                <span className="text-[11px] font-bold text-orange-400">
+                <span className="text-[11px] font-semibold">{pos.ticker}</span>
+                <span className="text-[11px] font-semibold text-orange-400">
                   {pos.strategyName}
                 </span>
               </div>
@@ -101,7 +101,7 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
             <div className="text-right">
               <div
                 className={cn(
-                  "text-[11px] font-bold tabular-nums",
+                  "text-[11px] font-semibold tabular-nums",
                   pos.unrealizedPnL >= 0
                     ? "text-emerald-500"
                     : "text-red-500",
@@ -112,7 +112,7 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
               </div>
               <div
                 className={cn(
-                  "text-[11px] font-bold tabular-nums",
+                  "text-[11px] font-semibold tabular-nums",
                   pos.unrealizedPnLPercent >= 0
                     ? "text-emerald-500/70"
                     : "text-red-500/70",

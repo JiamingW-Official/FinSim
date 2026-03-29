@@ -102,10 +102,10 @@ export function ContractDetail({
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: "100%", opacity: 0 }}
       transition={{ type: "spring", damping: 28, stiffness: 300 }}
-      className="flex flex-col h-full bg-card border-l border-border/40 text-sm"
+      className="flex flex-col h-full bg-card border-l border-border/20 text-sm"
     >
       {/* Section 1 - Header */}
-      <div className="px-2.5 py-1.5 border-b border-border/40 flex items-center justify-between">
+      <div className="px-2.5 py-1.5 border-b border-border/20 flex items-center justify-between">
         <span className="font-medium text-[11px] text-foreground">
           {contract.ticker} {contract.expiry.slice(5)} ${contract.strike}
           {contract.type[0].toUpperCase()}
@@ -121,8 +121,8 @@ export function ContractDetail({
       </div>
 
       {/* Section 2 - Price block */}
-      <div className="px-2.5 py-1.5 border-b border-border/40 flex items-center gap-1.5">
-        <span className="text-sm font-bold tabular-nums text-foreground">
+      <div className="px-2.5 py-1.5 border-b border-border/20 flex items-center gap-1.5">
+        <span className="text-sm font-semibold tabular-nums text-foreground">
           ${contract.mid.toFixed(2)}
         </span>
         <span
@@ -144,13 +144,13 @@ export function ContractDetail({
       </div>
 
       {/* Section 3 - Greeks 2x3 grid */}
-      <div className="px-2.5 py-1.5 border-b border-border/40">
-        <p className="text-[10px] text-muted-foreground/70 uppercase mb-1">Greeks</p>
+      <div className="px-2.5 py-1.5 border-b border-border/20">
+        <p className="text-[10px] text-muted-foreground/70 mb-1">Greeks</p>
         <div className="grid grid-cols-3 gap-1">
           {greekRows.map((g) => (
             <div
               key={g.label}
-              className="rounded bg-background/50 border border-border/30 px-1.5 py-1 flex flex-col"
+              className="rounded bg-background/50 border border-border/20 px-1.5 py-1 flex flex-col"
             >
               <span className={cn("text-[10px] font-medium", g.color)}>{g.symbol}</span>
               <span className="text-[10px] font-medium tabular-nums text-foreground">{g.value}</span>
@@ -160,7 +160,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 4 - Contract stats */}
-      <div className="px-2.5 py-1.5 border-b border-border/40">
+      <div className="px-2.5 py-1.5 border-b border-border/20">
         <div className="grid grid-cols-2 gap-x-3 gap-y-0.5">
           {[
             { label: "IV", value: `${(contract.iv * 100).toFixed(1)}%` },
@@ -179,7 +179,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 5 - Bid/Ask visual */}
-      <div className="px-2.5 py-1.5 border-b border-border/40">
+      <div className="px-2.5 py-1.5 border-b border-border/20">
         <div className="flex items-center gap-1.5 mb-0.5">
           <span className="text-[10px] font-medium text-emerald-400 tabular-nums">
             {contract.bid.toFixed(2)}
@@ -217,7 +217,7 @@ export function ContractDetail({
       </div>
 
       {/* Section 6 - Mini sparkline */}
-      <div className="px-2.5 py-1 border-b border-border/40">
+      <div className="px-2.5 py-1 border-b border-border/20">
         <svg
           width="100%"
           height="28"
@@ -237,8 +237,8 @@ export function ContractDetail({
       </div>
 
       {/* Section 7 - Probability */}
-      <div className="px-2.5 py-1.5 border-b border-border/40">
-        <p className="text-[10px] text-muted-foreground/70 uppercase mb-1">Probability</p>
+      <div className="px-2.5 py-1.5 border-b border-border/20">
+        <p className="text-[10px] text-muted-foreground/70 mb-1">Probability</p>
         <div className="flex flex-col gap-1.5">
           <div>
             <div className="flex justify-between mb-px">
@@ -247,7 +247,7 @@ export function ContractDetail({
             </div>
             <div className="w-full h-1 bg-muted/30 rounded overflow-hidden">
               <div
-                className="h-full bg-emerald-500 rounded transition-all"
+                className="h-full bg-emerald-500 rounded transition-colors"
                 style={{ width: `${Math.min(100, Math.max(0, pop))}%` }}
               />
             </div>
@@ -261,7 +261,7 @@ export function ContractDetail({
             </div>
             <div className="w-full h-1 bg-muted/30 rounded overflow-hidden">
               <div
-                className="h-full bg-orange-500 rounded transition-all"
+                className="h-full bg-orange-500 rounded transition-colors"
                 style={{ width: `${Math.min(100, Math.max(0, probITM))}%` }}
               />
             </div>

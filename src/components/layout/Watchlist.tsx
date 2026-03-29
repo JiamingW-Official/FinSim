@@ -25,9 +25,9 @@ export function Watchlist() {
       : 0;
 
   return (
-    <div className="flex w-44 flex-col border-r border-border/40 bg-card">
-      <div className="border-b border-border/40 px-3 py-1.5">
-        <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/50">
+    <div className="flex w-44 flex-col border-r border-border/20 bg-card">
+      <div className="border-b border-border/20 px-3 py-1.5">
+        <span className="text-[10px] font-medium text-muted-foreground/50">
           Watchlist
         </span>
       </div>

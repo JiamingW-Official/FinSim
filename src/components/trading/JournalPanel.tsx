@@ -104,7 +104,7 @@ export function JournalPanel() {
 
       {/* Filters */}
       {showFilters && (
-        <div className="flex flex-wrap gap-1 border border-border/40 rounded-lg p-2 bg-muted/20">
+        <div className="flex flex-wrap gap-1 border border-border/20 rounded-lg p-2 bg-muted/20">
           <button
             onClick={() => setFilterTag(null)}
             className={cn(
@@ -156,7 +156,7 @@ export function JournalPanel() {
           return (
             <div
               key={entry.id}
-              className="border border-border/50 rounded-lg bg-muted/10 overflow-hidden"
+              className="border border-border/20 rounded-lg bg-muted/10 overflow-hidden"
             >
               {/* Summary Row */}
               <button
@@ -227,7 +227,7 @@ export function JournalPanel() {
 
               {/* Expanded Content */}
               {isExpanded && (
-                <div className="px-3 pb-3 space-y-2 border-t border-border/30">
+                <div className="px-3 pb-3 space-y-2 border-t border-border/20">
                   {/* Price Info */}
                   <div className="flex items-center gap-4 pt-2">
                     <div>

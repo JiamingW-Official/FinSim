@@ -122,7 +122,7 @@ export function ObjectiveTracker({
               <button
                 type="button"
                 onClick={onContinue}
-                className="rounded-lg bg-profit px-3 py-1.5 text-xs font-bold text-foreground transition-all hover:brightness-110 active:scale-[0.97]"
+                className="rounded-lg bg-profit px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:brightness-110 active:scale-[0.97]"
               >
                 Continue
               </button>
@@ -153,7 +153,7 @@ export function ObjectiveTracker({
               <button
                 type="button"
                 onClick={onContinue}
-                className="rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-foreground transition-all hover:brightness-110 active:scale-[0.97]"
+                className="rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:brightness-110 active:scale-[0.97]"
               >
                 Continue
               </button>

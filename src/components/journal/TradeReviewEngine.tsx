@@ -608,7 +608,7 @@ function GradeEngineSection({
             <div key={t.id} className="flex items-center gap-2 text-[11px]">
               <span className="w-4 text-right tabular-nums text-muted-foreground/50">{i + 1}</span>
               <span className="w-10 font-semibold text-foreground/80">{t.ticker}</span>
-              <span className={cn("w-6 rounded px-1 text-center font-bold text-xs", GRADE_COLORS[t.grade], GRADE_BG[t.grade])}>
+              <span className={cn("w-6 rounded px-1 text-center font-semibold text-xs", GRADE_COLORS[t.grade], GRADE_BG[t.grade])}>
                 {t.grade}
               </span>
               <div className="flex-1">
@@ -747,17 +747,17 @@ function ReconstructionSection({
         <div className="mt-3 grid grid-cols-3 gap-2 text-center">
           <div>
             <p className="text-[11px] text-muted-foreground">MAE</p>
-            <p className="text-sm font-bold text-red-400">{selectedTrade.mae.toFixed(2)}%</p>
+            <p className="text-sm font-semibold text-red-400">{selectedTrade.mae.toFixed(2)}%</p>
             <p className="text-[11px] text-muted-foreground">Worst unrealized</p>
           </div>
           <div>
             <p className="text-[11px] text-muted-foreground">MFE</p>
-            <p className="text-sm font-bold text-green-400">+{selectedTrade.mfe.toFixed(2)}%</p>
+            <p className="text-sm font-semibold text-green-400">+{selectedTrade.mfe.toFixed(2)}%</p>
             <p className="text-[11px] text-muted-foreground">Best unrealized</p>
           </div>
           <div>
             <p className="text-[11px] text-muted-foreground">Efficiency</p>
-            <p className={cn("text-sm font-bold", selectedTrade.efficiency >= 70 ? "text-green-400" : selectedTrade.efficiency >= 40 ? "text-amber-400" : "text-red-400")}>
+            <p className={cn("text-sm font-semibold", selectedTrade.efficiency >= 70 ? "text-green-400" : selectedTrade.efficiency >= 40 ? "text-amber-400" : "text-red-400")}>
               {selectedTrade.efficiency.toFixed(0)}%
             </p>
             <p className="text-[11px] text-muted-foreground">Profit captured</p>
@@ -1040,7 +1040,7 @@ function PatternSection({ trades }: { trades: GradedTrade[] }) {
               <div key={b.label} className="flex flex-1 flex-col items-center gap-1 h-full justify-end">
                 <span className="text-[11px] text-muted-foreground tabular-nums">{b.count}</span>
                 <div
-                  className="w-full rounded-sm transition-all"
+                  className="w-full rounded-sm transition-colors"
                   style={{
                     height: `${Math.max(pct > 0 ? 6 : 0, pct * 0.65)}px`,
                     background: `linear-gradient(to top, rgba(74,222,128,${wr / 100}), rgba(96,165,250,0.3))`,
@@ -1063,7 +1063,7 @@ function PatternSection({ trades }: { trades: GradedTrade[] }) {
               <span className="w-16 text-[11px] capitalize font-medium text-foreground/80">{c.label}</span>
               <div className="flex-1 h-4 rounded bg-muted/20 overflow-hidden">
                 <div
-                  className={cn("h-full rounded transition-all", c.avg >= 0 ? "bg-green-500/50" : "bg-red-500/40")}
+                  className={cn("h-full rounded transition-colors", c.avg >= 0 ? "bg-green-500/50" : "bg-red-500/40")}
                   style={{ width: `${Math.min(100, Math.abs(c.avg) / 5 * 100)}%` }}
                 />
               </div>
@@ -1216,7 +1216,7 @@ function EmotionalSection({
     <div>
       <div className="flex items-center justify-between mb-1">
         <label className="text-[11px] text-muted-foreground">{label}</label>
-        <span className="text-[11px] font-bold text-foreground">{value}/5</span>
+        <span className="text-[11px] font-semibold text-foreground">{value}/5</span>
       </div>
       <input
         type="range" min={1} max={5} step={1} value={value}
@@ -1343,7 +1343,7 @@ function EmotionalSection({
               <span className={cn("w-20 capitalize text-[11px] font-medium", EMOTION_COLORS[s.emotion])}>{s.emotion}</span>
               <div className="flex-1 h-3 rounded bg-muted/20 overflow-hidden">
                 <div
-                  className={cn("h-full rounded transition-all", s.avg >= 0 ? "bg-green-500/50" : "bg-red-500/40")}
+                  className={cn("h-full rounded transition-colors", s.avg >= 0 ? "bg-green-500/50" : "bg-red-500/40")}
                   style={{ width: `${Math.min(100, Math.abs(s.avg) * 15 + 5)}%` }}
                 />
               </div>
@@ -1645,9 +1645,9 @@ function ScoreChip({ label, value, max, color }: { label: string; value: string;
   return (
     <div className="rounded-lg border border-border bg-card p-3 space-y-1.5">
       <p className="text-xs text-muted-foreground font-medium">{label}</p>
-      <p className={cn("text-xl font-bold tabular-nums", color)}>{value}</p>
+      <p className={cn("text-xl font-semibold tabular-nums", color)}>{value}</p>
       <div className="h-1 w-full rounded-full bg-muted/30">
-        <div className={cn("h-1 rounded-full transition-all", color.replace("text-", "bg-"))} style={{ width: `${pct}%` }} />
+        <div className={cn("h-1 rounded-full transition-colors", color.replace("text-", "bg-"))} style={{ width: `${pct}%` }} />
       </div>
     </div>
   );

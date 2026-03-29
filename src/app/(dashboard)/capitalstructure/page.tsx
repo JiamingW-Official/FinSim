@@ -625,7 +625,7 @@ function CovenantTracker() {
                 ? "bg-red-950/20 border-red-500/20"
                 : isTight
                 ? "bg-yellow-950/20 border-yellow-500/20"
-                : "bg-muted/40 border-border/30"
+                : "bg-muted/40 border-border/20"
             }`}
           >
             <div className="flex items-center justify-between mb-1">
@@ -638,7 +638,7 @@ function CovenantTracker() {
             <div className="flex items-center gap-3 mt-2">
               <div className="flex-1 bg-muted/40 rounded-full h-2 overflow-hidden">
                 <div
-                  className="h-2 rounded-full transition-all"
+                  className="h-2 rounded-full transition-colors"
                   style={{ width: `${Math.min(pct, 100)}%`, backgroundColor: barColor }}
                 />
               </div>
@@ -672,7 +672,7 @@ const BADGE_META: Record<string, { label: string; color: string }> = {
   covenant: { label: "Covenant Stress", color: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" },
   maturity: { label: "Near Maturity", color: "bg-orange-500/20 text-orange-400 border-orange-500/30" },
   liquidity: { label: "Liquidity Squeeze", color: "bg-red-500/20 text-red-400 border-red-500/30" },
-  restructuring: { label: "Restructuring", color: "bg-primary/20 text-primary border-border" },
+  restructuring: { label: "Restructuring", color: "bg-muted/10 text-primary border-border" },
 };
 
 function DistressedScreener() {
@@ -688,10 +688,10 @@ function DistressedScreener() {
         return (
           <div
             key={i}
-            className={`rounded-lg border cursor-pointer transition-all ${
+            className={`rounded-lg border cursor-pointer transition-colors ${
               isSelected
                 ? "bg-muted/40 border-muted-foreground/50"
-                : "bg-muted/40 border-border/30 hover:border-border/50"
+                : "bg-muted/40 border-border/20 hover:border-border/20"
             }`}
             onClick={() => setSelected(isSelected ? null : i)}
           >
@@ -729,11 +729,11 @@ function DistressedScreener() {
                   <span className="text-muted-foreground">EBITDA </span>
                   <span className="text-muted-foreground">${co.ebitda.toFixed(0)}M</span>
                 </div>
-                <Badge className="text-xs bg-muted/50 text-muted-foreground border-border/30">{co.industry}</Badge>
+                <Badge className="text-xs bg-muted/50 text-muted-foreground border-border/20">{co.industry}</Badge>
               </div>
             </div>
             {isSelected && (
-              <div className="border-t border-border/40 px-3 py-2 space-y-2">
+              <div className="border-t border-border/20 px-3 py-2 space-y-2">
                 <p className="text-xs text-muted-foreground leading-relaxed">{co.situation}</p>
                 <div className="flex gap-2 flex-wrap">
                   <div className="bg-muted/60 rounded p-2 text-xs text-muted-foreground flex-1 min-w-24">
@@ -807,10 +807,10 @@ export default function CapitalStructurePage() {
           </p>
         </div>
         <div className="flex gap-2 flex-wrap">
-          <Badge className="bg-primary/15 text-primary border-border text-xs">
+          <Badge className="bg-muted/10 text-primary border-border text-xs">
             <BarChart2 className="w-3 h-3 mr-1" /> EV ${ev}M
           </Badge>
-          <Badge className="bg-muted/60 text-muted-foreground border-border/40 text-xs">
+          <Badge className="bg-muted/60 text-muted-foreground border-border/20 text-xs">
             <ShieldCheck className="w-3 h-3 mr-1" /> LTV {ltv}%
           </Badge>
         </div>
@@ -824,7 +824,7 @@ export default function CapitalStructurePage() {
           { label: "Est. Leverage", value: `${leverage}x`, icon: Activity, color: "text-orange-400" },
           { label: "Fulcrum Security", value: fulcrumInfo.split("—")[0].trim(), icon: Target, color: "text-primary" },
         ].map((k) => (
-          <Card key={k.label} className="bg-muted/60 border-border/40">
+          <Card key={k.label} className="bg-muted/60 border-border/20">
             <CardContent className="p-3 flex items-center gap-2">
               <k.icon className={`w-4 h-4 ${k.color} shrink-0`} />
               <div>
@@ -846,7 +846,7 @@ export default function CapitalStructurePage() {
       </div>
 
       {/* EV Slider */}
-      <Card className="bg-muted/60 border-border/40">
+      <Card className="bg-muted/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm flex items-center gap-2 text-foreground">
             <DollarSign className="w-4 h-4 text-emerald-400" />
@@ -894,7 +894,7 @@ export default function CapitalStructurePage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-muted/60 border border-border/40 h-auto flex-wrap gap-1 p-1">
+        <TabsList className="bg-muted/60 border border-border/20 h-auto flex-wrap gap-1 p-1">
           <TabsTrigger value="waterfall" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
             Waterfall
           </TabsTrigger>
@@ -911,7 +911,7 @@ export default function CapitalStructurePage() {
 
         {/* Waterfall Tab */}
         <TabsContent value="waterfall" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-muted/60 border-border/40">
+          <Card className="bg-muted/60 border-border/20">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Layers className="w-4 h-4 text-emerald-400" />
@@ -925,7 +925,7 @@ export default function CapitalStructurePage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs text-muted-foreground">
                   <thead>
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-border/20">
                       <th className="text-left py-1.5 text-muted-foreground font-medium">Tranche</th>
                       <th className="text-right py-1.5 text-muted-foreground font-medium">Face ($M)</th>
                       <th className="text-right py-1.5 text-muted-foreground font-medium">Coupon</th>
@@ -943,12 +943,12 @@ export default function CapitalStructurePage() {
                         const cents = t.amount > 0 ? (rec / t.amount) * 100 : 0;
                         const isFulcrum = rec > 0 && rec < t.amount;
                         return (
-                          <tr key={t.name} className={`border-b border-border/50 ${isFulcrum ? "bg-muted/30" : ""}`}>
+                          <tr key={t.name} className={`border-b border-border/20 ${isFulcrum ? "bg-muted/30" : ""}`}>
                             <td className="py-1.5 flex items-center gap-1.5">
                               <div className="w-2 h-2 rounded-sm" style={{ backgroundColor: t.color }} />
                               <span className={isFulcrum ? "text-primary font-medium" : "text-muted-foreground"}>{t.name}</span>
                               {isFulcrum && (
-                                <Badge className="text-[11px] bg-primary/20 text-primary border-border px-1 py-0">
+                                <Badge className="text-[11px] bg-muted/10 text-primary border-border px-1 py-0">
                                   FULCRUM
                                 </Badge>
                               )}
@@ -983,7 +983,7 @@ export default function CapitalStructurePage() {
 
         {/* Merton Model Tab */}
         <TabsContent value="merton" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-muted/60 border-border/40">
+          <Card className="bg-muted/60 border-border/20">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -998,7 +998,7 @@ export default function CapitalStructurePage() {
 
         {/* Covenants Tab */}
         <TabsContent value="covenants" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-muted/60 border-border/40">
+          <Card className="bg-muted/60 border-border/20">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-yellow-400" />
@@ -1013,7 +1013,7 @@ export default function CapitalStructurePage() {
 
         {/* Distressed Screener Tab */}
         <TabsContent value="screener" className="data-[state=inactive]:hidden mt-4">
-          <Card className="bg-muted/60 border-border/40">
+          <Card className="bg-muted/60 border-border/20">
             <CardHeader className="pb-2 pt-4 px-4">
               <CardTitle className="text-sm text-foreground flex items-center gap-2">
                 <TrendingDown className="w-4 h-4 text-red-400" />
@@ -1052,7 +1052,7 @@ export default function CapitalStructurePage() {
             body: "Distressed debt can yield 20–40%+ if the investor correctly assesses recovery value — a blend of credit analysis and legal expertise.",
           },
         ].map((tip) => (
-          <div key={tip.title} className="bg-muted/40 border border-border/30 rounded-lg p-3">
+          <div key={tip.title} className="bg-muted/40 border border-border/20 rounded-lg p-3">
             <div className="flex items-center gap-2 mb-1.5">
               <tip.icon className={`w-4 h-4 ${tip.color} shrink-0`} />
               <span className="text-xs font-medium text-foreground">{tip.title}</span>

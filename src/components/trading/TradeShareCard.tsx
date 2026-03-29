@@ -117,7 +117,7 @@ function TradeResultCard({
   return (
     <>
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium tracking-widest text-primary">
             FINSIM
@@ -139,8 +139,8 @@ function TradeResultCard({
       <div className="flex flex-col items-center gap-3 px-6 py-5">
         {/* Ticker + Grade */}
         <div className="flex w-full items-center justify-between">
-          <span className="text-2xl font-bold tracking-wide">{trade.ticker}</span>
-          <span className={`text-3xl font-bold ${GRADE_COLOR[grade]}`}>{grade}</span>
+          <span className="text-2xl font-semibold tracking-wide">{trade.ticker}</span>
+          <span className={`text-2xl font-semibold ${GRADE_COLOR[grade]}`}>{grade}</span>
         </div>
 
         {/* P&L */}
@@ -151,7 +151,7 @@ function TradeResultCard({
             ) : (
               <TrendingDown className="h-5 w-5" />
             )}
-            <span className="text-3xl font-bold tabular-nums">
+            <span className="text-2xl font-semibold tabular-nums">
               {pnlSign}{formatCurrency(Math.abs(pnl))}
             </span>
           </div>
@@ -182,12 +182,12 @@ function TradeResultCard({
         <div className="flex gap-4 text-center">
           <div>
             <div className="text-xs text-muted-foreground">Level</div>
-            <div className="text-lg font-bold text-primary">{level}</div>
+            <div className="text-lg font-semibold text-primary">{level}</div>
           </div>
           <div className="h-8 w-px self-center bg-border/50" />
           <div>
             <div className="text-xs text-muted-foreground">Total XP</div>
-            <div className="text-lg font-bold">{xp.toLocaleString()}</div>
+            <div className="text-lg font-semibold">{xp.toLocaleString()}</div>
           </div>
         </div>
 
@@ -199,7 +199,7 @@ function TradeResultCard({
       </div>
 
       {/* Actions */}
-      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
+      <div className="flex gap-2 border-t border-border/20 px-4 py-3">
         <button
           onClick={handleCopy}
           className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90 active:bg-primary/80"
@@ -209,7 +209,7 @@ function TradeResultCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
+          className="rounded-lg border border-border/20 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -242,7 +242,7 @@ function StreakShareCard({
 
   return (
     <>
-      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Win Streak</span>
@@ -258,8 +258,8 @@ function StreakShareCard({
       <div className="flex flex-col items-center gap-4 px-6 py-6">
         <Flame className="h-10 w-10 text-orange-400" />
         <div className="flex items-baseline gap-1">
-          <span className="text-6xl font-bold tabular-nums text-orange-400">{streak}</span>
-          <span className="text-lg font-bold text-muted-foreground">in a row</span>
+          <span className="text-2xl font-semibold tabular-nums text-orange-400">{streak}</span>
+          <span className="text-lg font-semibold text-muted-foreground">in a row</span>
         </div>
         <div className="text-center">
           <div className="text-sm font-medium">Trade Win Streak</div>
@@ -268,7 +268,7 @@ function StreakShareCard({
         <div className="text-xs text-muted-foreground">Can you beat this?</div>
       </div>
 
-      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
+      <div className="flex gap-2 border-t border-border/20 px-4 py-3">
         <button
           onClick={handleCopy}
           className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90"
@@ -278,7 +278,7 @@ function StreakShareCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
+          className="rounded-lg border border-border/20 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -313,7 +313,7 @@ function LevelUpShareCard({
 
   return (
     <>
-      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Level Up</span>
@@ -331,18 +331,18 @@ function LevelUpShareCard({
         <div className="flex flex-col items-center">
           <div className="flex items-baseline gap-1">
             <span className="text-xs text-muted-foreground">Level</span>
-            <span className="text-6xl font-bold tabular-nums text-primary">{level}</span>
+            <span className="text-2xl font-semibold tabular-nums text-primary">{level}</span>
           </div>
-          <span className="mt-1 text-base font-bold text-foreground">{title}</span>
+          <span className="mt-1 text-base font-semibold text-foreground">{title}</span>
         </div>
         <div className="rounded-lg bg-background/60 px-4 py-2 text-center">
           <div className="text-xs text-muted-foreground">Total XP</div>
-          <div className="text-lg font-bold tabular-nums">{xp.toLocaleString()}</div>
+          <div className="text-lg font-semibold tabular-nums">{xp.toLocaleString()}</div>
         </div>
         <div className="text-xs text-muted-foreground">finsim.app</div>
       </div>
 
-      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
+      <div className="flex gap-2 border-t border-border/20 px-4 py-3">
         <button
           onClick={handleCopy}
           className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90"
@@ -352,7 +352,7 @@ function LevelUpShareCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
+          className="rounded-lg border border-border/20 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -388,7 +388,7 @@ function PortfolioMilestoneCard({
 
   return (
     <>
-      <div className="flex items-center justify-between border-b border-border/40 bg-background/60 px-4 py-3">
+      <div className="flex items-center justify-between border-b border-border/20 bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Portfolio Milestone</span>
@@ -405,10 +405,10 @@ function PortfolioMilestoneCard({
         <BarChart2 className="h-8 w-8 text-emerald-400" />
         <div className="text-center">
           <div className="text-xs text-muted-foreground">Portfolio Value</div>
-          <div className="text-3xl font-bold tabular-nums text-emerald-400">
+          <div className="text-2xl font-semibold tabular-nums text-emerald-400">
             {formatCurrency(portfolioValue)}
           </div>
-          <div className="text-sm font-bold text-emerald-400">
+          <div className="text-sm font-semibold text-emerald-400">
             +{growthPct.toFixed(1)}% from start
           </div>
         </div>
@@ -416,7 +416,7 @@ function PortfolioMilestoneCard({
         <div className="text-xs text-muted-foreground">Level {level} • finsim.app</div>
       </div>
 
-      <div className="flex gap-2 border-t border-border/40 px-4 py-3">
+      <div className="flex gap-2 border-t border-border/20 px-4 py-3">
         <button
           onClick={handleCopy}
           className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-medium text-primary-foreground transition-colors hover:bg-primary/90"
@@ -426,7 +426,7 @@ function PortfolioMilestoneCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
+          className="rounded-lg border border-border/20 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -535,7 +535,7 @@ export function TradeShareCard() {
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
             onClick={(e) => e.stopPropagation()}
-            className="w-80 overflow-hidden rounded-md border border-border/40 bg-card shadow-sm"
+            className="w-80 overflow-hidden rounded-md border border-border/20 bg-card shadow-sm"
           >
             {variant.type === "trade" && (
               <TradeResultCard

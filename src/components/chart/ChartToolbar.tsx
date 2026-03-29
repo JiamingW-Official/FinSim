@@ -69,7 +69,7 @@ export function ChartToolbar() {
   } = useChartStore();
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-y-0.5 border-b border-border/30 bg-transparent px-3 py-1">
+    <div className="flex flex-wrap items-center justify-between gap-y-0.5 border-b border-border/20 bg-transparent px-3 py-1">
       <div className="flex flex-wrap items-center gap-1">
         {/* Intraday timeframes */}
         <div className="flex items-center gap-0.5">
@@ -291,7 +291,7 @@ export function ChartToolbar() {
         onChange={(e) => setTicker(e.target.value)}
         title="Select ticker"
         aria-label="Select ticker"
-        className="rounded border border-border/30 bg-transparent px-2 py-0.5 text-[11px] text-muted-foreground outline-none focus-visible:ring-1 focus-visible:ring-ring/50"
+        className="rounded border border-border/20 bg-transparent px-2 py-0.5 text-[11px] text-muted-foreground outline-none focus-visible:ring-1 focus-visible:ring-ring/50"
       >
         {WATCHLIST_STOCKS.map((stock) => (
           <option key={stock.ticker} value={stock.ticker}>

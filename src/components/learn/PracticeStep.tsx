@@ -44,10 +44,10 @@ function LegacyPractice({
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <p className="text-xs font-medium text-amber-500 uppercase tracking-wide mb-1">
+        <p className="text-xs font-medium text-amber-500 mb-1">
           Hands-On Practice
         </p>
-        <h2 className="text-base font-bold">{step.instruction}</h2>
+        <h2 className="text-base font-semibold">{step.instruction}</h2>
       </motion.div>
 
       <motion.div
@@ -68,7 +68,7 @@ function LegacyPractice({
         <Link
           href="/trade"
           target="_blank"
-          className="flex w-full items-center justify-center gap-2 rounded-md border-2 border-primary bg-primary/10 py-3 text-sm font-bold text-primary transition-all hover:bg-primary/20 active:scale-[0.98]"
+          className="flex w-full items-center justify-center gap-2 rounded-md border-2 border-primary bg-primary/10 py-3 text-sm font-semibold text-primary transition-colors hover:bg-primary/20 active:scale-[0.98]"
         >
           <ExternalLink className="h-4 w-4" />
           Go Practice
@@ -102,7 +102,7 @@ function LegacyPractice({
           <button
             type="button"
             onClick={onContinue}
-            className="w-full rounded-md bg-primary py-3 text-sm font-bold text-primary-foreground transition-all hover:brightness-110 active:scale-[0.98]"
+            className="w-full rounded-md bg-primary py-3 text-sm font-semibold text-primary-foreground transition-colors hover:brightness-110 active:scale-[0.98]"
           >
             Continue
           </button>

@@ -176,11 +176,11 @@ export function ChallengePlayer({
             >
               <X className="h-5 w-5" />
             </button>
-            <span className="text-sm font-bold truncate flex-1">{name}</span>
+            <span className="text-sm font-semibold truncate flex-1">{name}</span>
 
             {/* Mode badge */}
             <span className={cn(
-              "rounded-full px-2 py-0.5 text-[11px] font-bold",
+              "rounded-full px-2 py-0.5 text-[11px] font-semibold",
               mode === "scenario"
                 ? "bg-amber-500/10 text-amber-400"
                 : "bg-primary/10 text-primary",
@@ -200,7 +200,7 @@ export function ChallengePlayer({
             {/* Live P&L */}
             <motion.div
               className={cn(
-                "flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold",
+                "flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold",
                 totalPnl > 0
                   ? "bg-emerald-500/5 text-emerald-400"
                   : totalPnl < 0

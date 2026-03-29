@@ -583,7 +583,7 @@ function StatCard({
         <div className="flex items-start justify-between">
           <div>
             <p className="text-xs text-muted-foreground mb-1">{title}</p>
-            <p className={`text-2xl font-bold ${color}`}>{value}</p>
+            <p className={`text-2xl font-semibold ${color}`}>{value}</p>
             <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
           </div>
           <div className={`p-2 rounded-lg bg-muted`}>
@@ -623,7 +623,7 @@ export default function MonteCarloPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-primary/10">
+          <div className="p-2 rounded-lg bg-muted/10">
             <Shuffle className="h-6 w-6 text-primary" />
           </div>
           <div>
@@ -860,7 +860,7 @@ export default function MonteCarloPage() {
                         const error = Math.abs(row.mcPrice - row.bsPrice);
                         const accuracy = 100 - (error / row.bsPrice) * 100;
                         return (
-                          <tr key={row.paths} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                          <tr key={row.paths} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                             <td className="py-2 pr-4 font-mono">
                               {row.paths >= 1000 ? `${row.paths / 1000}K` : row.paths}
                             </td>
@@ -979,7 +979,7 @@ export default function MonteCarloPage() {
                         return (
                           <tr
                             key={row.withdrawalRate}
-                            className={`border-b border-border/50 hover:bg-muted/30 transition-colors ${isGold ? "bg-amber-500/5" : ""}`}
+                            className={`border-b border-border/20 hover:bg-muted/30 transition-colors ${isGold ? "bg-amber-500/5" : ""}`}
                           >
                             <td className="py-3 pr-4">
                               <span className={`font-medium ${isGold ? "text-amber-400" : ""}`}>
@@ -1141,7 +1141,7 @@ export default function MonteCarloPage() {
                           strengths: "Best of both worlds",
                         },
                       ].map(row => (
-                        <tr key={row.method} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <tr key={row.method} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                           <td className="py-3 pr-4 font-medium">{row.method}</td>
                           <td className="text-right py-3 pr-4 font-mono text-red-400">{row.var99.toFixed(2)}%</td>
                           <td className="text-right py-3 pr-4 font-mono text-amber-400">{row.var95.toFixed(2)}%</td>

@@ -68,30 +68,30 @@ export function StatsBreakdown() {
     <div className="space-y-4">
       {/* Summary row */}
       <div className="flex gap-3">
-        <div className="flex-1 rounded-lg border border-border/50 bg-card/50 p-2">
+        <div className="flex-1 rounded-lg border border-border/20 bg-card/50 p-2">
           <p className="text-[11px] text-muted-foreground">Most Traded</p>
-          <p className="text-sm font-bold">{mostTraded}</p>
+          <p className="text-sm font-semibold">{mostTraded}</p>
         </div>
-        <div className="flex-1 rounded-lg border border-border/50 bg-card/50 p-2">
+        <div className="flex-1 rounded-lg border border-border/20 bg-card/50 p-2">
           <p className="text-[11px] text-muted-foreground">Avg Position Size</p>
-          <p className="text-sm font-bold tabular-nums">{formatCurrency(avgSize)}</p>
+          <p className="text-sm font-semibold tabular-nums">{formatCurrency(avgSize)}</p>
         </div>
       </div>
 
       {/* Win Rate by Ticker */}
       {tickerStats.length > 0 && (
         <div>
-          <p className="mb-1.5 text-xs font-bold text-muted-foreground">
+          <p className="mb-1.5 text-xs font-semibold text-muted-foreground">
             Win Rate by Ticker
           </p>
           <div className="space-y-1.5">
             {tickerStats.map((s) => (
               <div key={s.ticker} className="flex items-center gap-2">
-                <span className="w-10 text-[11px] font-bold">{s.ticker}</span>
+                <span className="w-10 text-[11px] font-semibold">{s.ticker}</span>
                 <div className="flex-1 h-2.5 rounded-full bg-muted/20 overflow-hidden">
                   <div
                     className={cn(
-                      "h-full rounded-full transition-all",
+                      "h-full rounded-full transition-colors",
                       s.winRate >= 50 ? "bg-emerald-500/70" : "bg-red-500/50",
                     )}
                     style={{ width: `${Math.max(s.winRate, 2)}%` }}
@@ -112,7 +112,7 @@ export function StatsBreakdown() {
       {/* Best & Worst Trades */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <p className="mb-1.5 flex items-center gap-1 text-xs font-bold text-emerald-400">
+          <p className="mb-1.5 flex items-center gap-1 text-xs font-semibold text-emerald-400">
             <TrendingUp className="h-3 w-3" />
             Best Trades
           </p>
@@ -123,8 +123,8 @@ export function StatsBreakdown() {
                 className="rounded-lg border border-emerald-500/20 bg-emerald-500/5 px-2 py-1.5"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold">{t.ticker}</span>
-                  <span className="text-[11px] font-bold tabular-nums text-emerald-400">
+                  <span className="text-[11px] font-semibold">{t.ticker}</span>
+                  <span className="text-[11px] font-semibold tabular-nums text-emerald-400">
                     +{formatCurrency(t.realizedPnL)}
                   </span>
                 </div>
@@ -136,7 +136,7 @@ export function StatsBreakdown() {
           </div>
         </div>
         <div>
-          <p className="mb-1.5 flex items-center gap-1 text-xs font-bold text-red-400">
+          <p className="mb-1.5 flex items-center gap-1 text-xs font-semibold text-red-400">
             <TrendingDown className="h-3 w-3" />
             Worst Trades
           </p>
@@ -147,8 +147,8 @@ export function StatsBreakdown() {
                 className="rounded-lg border border-red-500/20 bg-red-500/5 px-2 py-1.5"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold">{t.ticker}</span>
-                  <span className="text-[11px] font-bold tabular-nums text-red-400">
+                  <span className="text-[11px] font-semibold">{t.ticker}</span>
+                  <span className="text-[11px] font-semibold tabular-nums text-red-400">
                     {formatCurrency(t.realizedPnL)}
                   </span>
                 </div>
@@ -163,7 +163,7 @@ export function StatsBreakdown() {
 
       {/* P&L Distribution */}
       <div>
-        <p className="mb-1.5 text-xs font-bold text-muted-foreground">
+        <p className="mb-1.5 text-xs font-semibold text-muted-foreground">
           P&L Distribution
         </p>
         <div className="rounded-md border border-border bg-card/50 p-3">

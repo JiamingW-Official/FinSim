@@ -479,7 +479,7 @@ export default function VaRCalculator({ portfolioValue }: VaRCalculatorProps) {
                   </div>
                   <span className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${m.tagCls}`}>{m.tag}</span>
                 </div>
-                <div className="border-t border-border/40 pt-2 space-y-1.5 text-xs">
+                <div className="border-t border-border/20 pt-2 space-y-1.5 text-xs">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">1-Day 95% VaR</span>
                     <span className="font-semibold text-red-500">
@@ -540,7 +540,7 @@ export default function VaRCalculator({ portfolioValue }: VaRCalculatorProps) {
                 return curMax > bestMax ? idx : best;
               }, 0);
               return (
-                <div key={s.scenario} className={`rounded-lg border p-2 text-[11px] space-y-0.5 ${isWorst ? "border-red-500/40 bg-red-500/5" : "border-border/50"}`}>
+                <div key={s.scenario} className={`rounded-lg border p-2 text-[11px] space-y-0.5 ${isWorst ? "border-red-500/40 bg-red-500/5" : "border-border/20"}`}>
                   <div className="flex items-center gap-1 flex-wrap">
                     <span className="font-medium text-foreground">{s.scenario}</span>
                     {isWorst && <Badge variant="destructive" className="text-[11px] px-1 py-0">Worst</Badge>}
@@ -576,7 +576,7 @@ export default function VaRCalculator({ portfolioValue }: VaRCalculatorProps) {
           <div className="overflow-x-auto">
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-border/50">
+                <tr className="border-b border-border/20">
                   <th className="py-2 text-left font-medium text-muted-foreground">Method</th>
                   <th className="py-2 text-right font-medium text-muted-foreground">VaR 95%</th>
                   <th className="py-2 text-right font-medium text-muted-foreground">ES 95%</th>
@@ -633,8 +633,8 @@ export default function VaRCalculator({ portfolioValue }: VaRCalculatorProps) {
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="rounded-lg border border-border/50 px-4 py-2.5 text-center">
-              <p className="text-2xl font-bold text-orange-500">{exceptions}</p>
+            <div className="rounded-lg border border-border/20 px-4 py-2.5 text-center">
+              <p className="text-2xl font-semibold text-orange-500">{exceptions}</p>
               <p className="text-[11px] text-muted-foreground">Exceptions (60 days)</p>
             </div>
             <div className={`rounded-lg px-4 py-2.5 ${baselZone.cls}`}>

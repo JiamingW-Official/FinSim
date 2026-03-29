@@ -66,7 +66,7 @@ export function CareerStats() {
             {card.icon}
             {card.label}
           </div>
-          <p className={cn("text-sm font-bold tabular-nums", card.valueClass)}>
+          <p className={cn("text-sm font-semibold tabular-nums", card.valueClass)}>
             {card.value}
           </p>
           {card.sub && (

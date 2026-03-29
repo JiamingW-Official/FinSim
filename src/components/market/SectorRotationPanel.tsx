@@ -58,7 +58,7 @@ function CycleTimeline({ currentCycle }: { currentCycle: BusinessCycle }) {
           <div key={phase.id} className="flex items-center flex-1">
             <div
               className={cn(
-                "flex-1 rounded-lg px-2 py-2 text-center transition-all duration-300 border",
+                "flex-1 rounded-lg px-2 py-2 text-center transition-colors duration-300 border",
                 isActive
                   ? `${phase.bgColor}/15 border-current ${phase.color}`
                   : "bg-muted/30 border-transparent text-muted-foreground",

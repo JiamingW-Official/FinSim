@@ -73,7 +73,7 @@ export function SeasonRewardTrack() {
                   whileHover={isAvailable ? { scale: 1.1 } : {}}
                   whileTap={isAvailable ? { scale: 0.95 } : {}}
                   className={cn(
-                    "season-tier-unlock relative flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-md border-2 transition-all",
+                    "season-tier-unlock relative flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-md border-2 transition-colors",
                     isClaimed
                       ? "border-primary/50 bg-primary/10 text-primary"
                       : isAvailable
@@ -90,13 +90,13 @@ export function SeasonRewardTrack() {
                   ) : (
                     <span className="text-sm">{tier.reward.icon}</span>
                   )}
-                  <span className="text-[11px] font-bold mt-0.5">{tier.tier}</span>
+                  <span className="text-[11px] font-semibold mt-0.5">{tier.tier}</span>
                 </motion.button>
 
                 {/* Tooltip on hover — group class on parent div enables group-hover */}
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-20">
                   <div className="rounded-lg border border-border bg-card px-3 py-2 shadow-sm whitespace-nowrap text-center">
-                    <p className="text-xs font-bold text-foreground">{tier.reward.label}</p>
+                    <p className="text-xs font-semibold text-foreground">{tier.reward.label}</p>
                     <p className="text-[11px] text-muted-foreground mt-0.5">{tier.xpRequired} XP required</p>
                   </div>
                 </div>

@@ -379,7 +379,7 @@ function PerformanceAttribution() {
           { label: "Hit Rate", value: `${(hitRate * 100).toFixed(0)}%`, color: hitRate >= 0.5 ? "text-emerald-400" : "text-amber-400" },
           { label: "Positive Contributors", value: `${positiveRows}/10`, color: "text-primary" },
         ].map((s) => (
-          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
+          <div key={s.label} className="rounded-md border border-border/20 bg-background/60 px-3 py-2">
             <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
           </div>
@@ -387,10 +387,10 @@ function PerformanceAttribution() {
       </div>
 
       {/* Attribution table */}
-      <div className="overflow-x-auto rounded-md border border-border/50">
+      <div className="overflow-x-auto rounded-md border border-border/20">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-border/40 bg-muted/30">
+            <tr className="border-b border-border/20 bg-muted/30">
               {["Sector", "Wt %", "Allocation", "Selection", "Interaction", "Total"].map((h) => (
                 <th key={h} className={cn("px-3 py-2 font-medium text-muted-foreground", h === "Sector" ? "text-left" : "text-right")}>{h}</th>
               ))}
@@ -456,7 +456,7 @@ function PerformanceAttribution() {
         </div>
         <div className="flex flex-col justify-center gap-2">
           <div className="text-xs text-muted-foreground">IC measures correlation between predicted and actual returns. Target &gt; 0.05 is considered skilled.</div>
-          <div className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
+          <div className="rounded-md border border-border/20 bg-background/60 px-3 py-2">
             <div className="text-[11px] text-muted-foreground">Estimated IC</div>
             <div className="text-sm font-semibold text-primary tabular-nums">0.12</div>
           </div>
@@ -529,10 +529,10 @@ function RiskAdjustedSection() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Metrics table */}
-        <div className="overflow-x-auto rounded-md border border-border/50">
+        <div className="overflow-x-auto rounded-md border border-border/20">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
+              <tr className="border-b border-border/20 bg-muted/30">
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Metric</th>
                 <th className="px-3 py-2 text-right font-medium text-muted-foreground">Portfolio</th>
                 <th className="px-3 py-2 text-right font-medium text-muted-foreground">Benchmark</th>
@@ -554,11 +554,11 @@ function RiskAdjustedSection() {
         <div className="flex flex-col gap-3 items-center justify-center">
           <CalmarGauge value={metrics.calmar} />
           <div className="grid grid-cols-2 gap-2 w-full">
-            <div className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2 text-center">
+            <div className="rounded-md border border-border/20 bg-background/60 px-2.5 py-2 text-center">
               <div className="text-[11px] text-muted-foreground">Up Capture</div>
               <div className={cn("text-sm font-semibold tabular-nums", metrics.upsideCapture > 100 ? "text-emerald-400" : "text-amber-400")}>{metrics.upsideCapture.toFixed(1)}%</div>
             </div>
-            <div className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2 text-center">
+            <div className="rounded-md border border-border/20 bg-background/60 px-2.5 py-2 text-center">
               <div className="text-[11px] text-muted-foreground">Down Capture</div>
               <div className={cn("text-sm font-semibold tabular-nums", metrics.downsideCapture < 100 ? "text-emerald-400" : "text-red-400")}>{metrics.downsideCapture.toFixed(1)}%</div>
             </div>
@@ -635,7 +635,7 @@ function FactorAnalysisSection() {
           { label: "Jensen's Alpha", value: `${jensensAlpha > 0 ? "+" : ""}${jensensAlpha.toFixed(2)}%`, color: jensensAlpha >= 0 ? "text-emerald-400" : "text-red-400", desc: "Factor-adj. excess return" },
           { label: "Active Factors", value: `${loadings.filter((f) => Math.abs(f.tStat) > 2).length}/5`, color: "text-amber-400", desc: "|t-stat| > 2" },
         ].map((s) => (
-          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-3 py-2">
+          <div key={s.label} className="rounded-md border border-border/20 bg-background/60 px-3 py-2">
             <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
             <div className="text-[11px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
@@ -645,10 +645,10 @@ function FactorAnalysisSection() {
 
       <FactorLoadingChart loadings={loadings} />
 
-      <div className="overflow-x-auto rounded-md border border-border/50">
+      <div className="overflow-x-auto rounded-md border border-border/20">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-border/40 bg-muted/30">
+            <tr className="border-b border-border/20 bg-muted/30">
               <th className="px-3 py-2 text-left font-medium text-muted-foreground">Factor</th>
               <th className="px-3 py-2 text-right font-medium text-muted-foreground">Loading</th>
               <th className="px-3 py-2 text-right font-medium text-muted-foreground">t-stat</th>
@@ -743,7 +743,7 @@ function DrawdownSection() {
           { label: "DD Correlation", value: ddCorrelation.toFixed(3), color: "text-amber-400" },
           { label: "Current Drawdown", value: `${underwaterSeries[underwaterSeries.length - 1].toFixed(2)}%`, color: underwaterSeries[underwaterSeries.length - 1] < -5 ? "text-red-400" : "text-emerald-400" },
         ].map((s) => (
-          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2">
+          <div key={s.label} className="rounded-md border border-border/20 bg-background/60 px-2.5 py-2">
             <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
           </div>
@@ -752,10 +752,10 @@ function DrawdownSection() {
 
       <UnderwaterChart series={underwaterSeries} />
 
-      <div className="overflow-x-auto rounded-md border border-border/50">
+      <div className="overflow-x-auto rounded-md border border-border/20">
         <table className="w-full text-xs">
           <thead>
-            <tr className="border-b border-border/40 bg-muted/30">
+            <tr className="border-b border-border/20 bg-muted/30">
               {["#", "Peak", "Trough", "Recovery", "Depth", "Duration", "Recovery Time"].map((h, i) => (
                 <th key={i} className={cn("px-3 py-2 font-medium text-muted-foreground", i <= 3 ? "text-left" : "text-right")}>{h}</th>
               ))}
@@ -777,7 +777,7 @@ function DrawdownSection() {
         </table>
       </div>
 
-      <div className="flex items-start gap-1.5 rounded-md border border-border/40 bg-primary/8 px-3 py-2 text-xs text-muted-foreground">
+      <div className="flex items-start gap-1.5 rounded-md border border-border/20 bg-primary/8 px-3 py-2 text-xs text-muted-foreground">
         <span className="text-primary font-medium shrink-0">DD Correlation {ddCorrelation.toFixed(2)}:</span>
         <span>{ddCorrelation > 0.6 ? "Portfolio drawdowns are highly correlated with market drawdowns — limited diversification benefit in crises." : "Portfolio shows some independence from market drawdowns — provides diversification in stress."}</span>
       </div>
@@ -854,7 +854,7 @@ function TailRiskSection() {
           { label: "Excess Kurtosis", value: data.excessKurtosis.toFixed(2), color: data.excessKurtosis > 1 ? "text-amber-400" : "text-muted-foreground", desc: "Fat tail indicator" },
           { label: "Skewness", value: data.skewness.toFixed(2), color: data.skewness < 0 ? "text-red-400" : "text-emerald-400", desc: "Left skew = more bad days" },
         ].map((s) => (
-          <div key={s.label} className="rounded-md border border-border/50 bg-background/60 px-2.5 py-2">
+          <div key={s.label} className="rounded-md border border-border/20 bg-background/60 px-2.5 py-2">
             <div className="text-[11px] text-muted-foreground">{s.label}</div>
             <div className={cn("text-sm font-semibold tabular-nums mt-0.5", s.color)}>{s.value}</div>
             <div className="text-[11px] text-muted-foreground/70 mt-0.5">{s.desc}</div>
@@ -875,10 +875,10 @@ function TailRiskSection() {
 
       <div>
         <div className="text-xs text-muted-foreground mb-2">Black Swan Resilience — Crisis Period Performance</div>
-        <div className="overflow-x-auto rounded-md border border-border/50">
+        <div className="overflow-x-auto rounded-md border border-border/20">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
+              <tr className="border-b border-border/20 bg-muted/30">
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Crisis Period</th>
                 <th className="px-3 py-2 text-right font-medium text-muted-foreground">Portfolio</th>
                 <th className="px-3 py-2 text-right font-medium text-muted-foreground">Market</th>
@@ -931,7 +931,7 @@ function StyleBox({ styleIndex }: { styleIndex: number }) {
                 key={`${ri}-${ci}`}
                 className={cn(
                   "h-8 w-8 rounded-sm border text-[11px] flex items-center justify-center text-center leading-none",
-                  isActive ? "bg-primary/30 border-primary/60 text-primary font-bold" : "border-border/40 bg-muted/10 text-muted-foreground/40"
+                  isActive ? "bg-primary/30 border-primary/60 text-primary font-semibold" : "border-border/20 bg-muted/10 text-muted-foreground/40"
                 )}
                 title={`${r} / ${c}`}
               >
@@ -970,10 +970,10 @@ function PeerComparisonSection() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Peer metrics table */}
-        <div className="overflow-x-auto rounded-md border border-border/50">
+        <div className="overflow-x-auto rounded-md border border-border/20">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
+              <tr className="border-b border-border/20 bg-muted/30">
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Metric</th>
                 <th className="px-3 py-2 text-right font-medium text-muted-foreground">Value</th>
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground pl-3">Quartile Rank</th>
@@ -995,7 +995,7 @@ function PeerComparisonSection() {
 
         {/* Style box + conviction metrics */}
         <div className="space-y-3">
-          <div className="flex items-start gap-6 p-3 rounded-md border border-border/50 bg-background/60">
+          <div className="flex items-start gap-6 p-3 rounded-md border border-border/20 bg-background/60">
             <StyleBox styleIndex={styleBox} />
             <div className="space-y-1.5 text-xs">
               <div className="text-muted-foreground font-medium">Style Classification</div>
@@ -1071,7 +1071,7 @@ export default function AdvancedAnalytics() {
             type="button"
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-all",
+              "flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
               activeTab === tab.id
                 ? cn("bg-card border border-border shadow-sm", tab.color)
                 : "text-muted-foreground hover:text-foreground hover:bg-muted/30"
@@ -1093,7 +1093,7 @@ export default function AdvancedAnalytics() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="rounded-lg border border-border/40 bg-card p-4"
+          className="rounded-lg border border-border/20 bg-card p-4"
         >
           <div className="flex items-center gap-2 mb-4">
             <span className={cn("h-1.5 w-1.5 rounded-full inline-block", activeTabMeta.color.replace("text-", "bg-"))} />

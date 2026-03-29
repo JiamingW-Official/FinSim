@@ -253,7 +253,7 @@ function DashboardTab() {
               <div
                 key={p.name}
                 className={cn(
-                  "flex-1 text-center py-2 rounded text-xs text-muted-foreground font-semibold transition-all",
+                  "flex-1 text-center py-2 rounded text-xs text-muted-foreground font-semibold transition-colors",
                   p.active
                     ? "bg-amber-500/30 border border-amber-500 text-amber-300"
                     : "bg-muted text-muted-foreground"
@@ -314,7 +314,7 @@ function DashboardTab() {
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.03 }}
-                    className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                    className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                   >
                     <td className="py-2 pr-4">
                       <div className="flex flex-col">
@@ -494,7 +494,7 @@ function EnergyTab() {
           </CardHeader>
           <CardContent>
             <div className="flex items-end gap-2 mb-4">
-              <span className="text-2xl font-bold text-foreground">$78.42</span>
+              <span className="text-2xl font-semibold text-foreground">$78.42</span>
               <span className="text-emerald-400 text-sm mb-1">+$0.95 (+1.23%)</span>
             </div>
             <div className="flex gap-1 flex-wrap">
@@ -795,7 +795,7 @@ function MetalsTab() {
               </thead>
               <tbody>
                 {lmeStocks.map((row) => (
-                  <tr key={row.metal} className="border-b border-border/40">
+                  <tr key={row.metal} className="border-b border-border/20">
                     <td className="py-1.5 text-muted-foreground">{row.metal}</td>
                     <td className="text-right text-muted-foreground font-mono">{fmtLarge(row.stock)}</td>
                     <td className={`text-right font-mono ${row.chg >= 0 ? "text-emerald-400" : "text-red-400"}`}>
@@ -939,7 +939,7 @@ function AgricultureTab() {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="flex items-center gap-2 mb-3">
-              <Badge className="bg-primary/20 text-primary border-primary">La Nina (Active)</Badge>
+              <Badge className="bg-muted/10 text-primary border-primary">La Nina (Active)</Badge>
               <span className="text-xs text-muted-foreground">ONI Index: −1.4</span>
             </div>
             {[
@@ -949,7 +949,7 @@ function AgricultureTab() {
               { region: "Australia", crop: "Wheat", impact: "Above avg rainfall", risk: "Low" },
               { region: "West Africa", crop: "Cocoa", impact: "Dry Harmattan", risk: "Very High" },
             ].map((row) => (
-              <div key={row.region} className="flex items-center gap-3 text-xs text-muted-foreground border-b border-border/40 pb-2">
+              <div key={row.region} className="flex items-center gap-3 text-xs text-muted-foreground border-b border-border/20 pb-2">
                 <div className="w-28 text-muted-foreground">{row.region}</div>
                 <div className="text-muted-foreground flex-1">{row.crop}</div>
                 <div className="text-muted-foreground">{row.impact}</div>
@@ -1026,7 +1026,7 @@ function AgricultureTab() {
             </thead>
             <tbody>
               {WASDE_DATA.map((row) => (
-                <tr key={row.crop} className="border-b border-border/40">
+                <tr key={row.crop} className="border-b border-border/20">
                   <td className="py-2 pr-4 text-foreground font-medium">{row.crop}</td>
                   <td className="text-right pr-4 font-mono text-muted-foreground">{row.supply}</td>
                   <td className="text-right pr-4 font-mono text-muted-foreground">{row.demand}</td>
@@ -1291,7 +1291,7 @@ function FuturesCurveTab() {
               </thead>
               <tbody>
                 {rollSchedule.map((row) => (
-                  <tr key={row.commodity} className="border-b border-border/40">
+                  <tr key={row.commodity} className="border-b border-border/20">
                     <td className="py-1.5 text-muted-foreground font-medium">{row.commodity}</td>
                     <td className="text-muted-foreground">{row.exchange}</td>
                     <td className="text-muted-foreground">{row.rollDay}</td>
@@ -1567,7 +1567,7 @@ function PositionSizingTable() {
       </thead>
       <tbody>
         {commodities.map((row) => (
-          <tr key={row.name} className="border-b border-border/40">
+          <tr key={row.name} className="border-b border-border/20">
             <td className="py-2 text-muted-foreground">{row.name}</td>
             <td className="text-right text-muted-foreground font-mono">{row.vol.toFixed(1)}%</td>
             <td className="text-right font-mono">
@@ -1647,7 +1647,7 @@ function ETFvsChart() {
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.method} className="border-b border-border/40">
+            <tr key={row.method} className="border-b border-border/20">
               <td className="py-2 text-muted-foreground font-medium pr-3 w-40">{row.method}</td>
               <td className="text-emerald-400 pr-3">{row.pros}</td>
               <td className="text-red-400 pr-3">{row.cons}</td>

@@ -705,7 +705,7 @@ function IcmaComponent({
         onClick={() => setOpen((v) => !v)}
       >
         <span
-          className="text-xs text-muted-foreground font-bold px-2 py-1 rounded"
+          className="text-xs text-muted-foreground font-semibold px-2 py-1 rounded"
           style={{ background: color + "33", color }}
         >
           {num}
@@ -793,7 +793,7 @@ export default function GreenBondsPage() {
             <Leaf size={20} className="text-green-400" />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-foreground">Green, Social & Sustainability Bonds</h1>
+            <h1 className="text-lg font-semibold text-foreground">Green, Social & Sustainability Bonds</h1>
             <p className="text-xs text-muted-foreground">
               GSS frameworks · use of proceeds · second-party opinions · impact reporting · greenium
             </p>
@@ -886,7 +886,7 @@ export default function GreenBondsPage() {
                         initial={{ opacity: 0, x: -8 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.04 }}
-                        className="border-b border-border/50 hover:bg-muted/30"
+                        className="border-b border-border/20 hover:bg-muted/30"
                       >
                         <td className="py-1.5 font-medium text-foreground">{iss.name}</td>
                         <td className="py-1.5 text-center">
@@ -1178,7 +1178,7 @@ export default function GreenBondsPage() {
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className={`border-b border-border/50 cursor-pointer transition-colors ${
+                      className={`border-b border-border/20 cursor-pointer transition-colors ${
                         selectedBond?.issuer === bond.issuer
                           ? "bg-muted/40"
                           : "hover:bg-muted/30"
@@ -1517,7 +1517,7 @@ export default function GreenBondsPage() {
                   ].map((row) => {
                     const growth = ((row.v24 - row.v23) / row.v23) * 100;
                     return (
-                      <tr key={row.metric} className="border-b border-border/50 hover:bg-muted/20">
+                      <tr key={row.metric} className="border-b border-border/20 hover:bg-muted/20">
                         <td className="py-2 text-foreground font-medium">{row.metric}</td>
                         <td className="py-2 text-right font-mono text-muted-foreground">{row.v22}</td>
                         <td className="py-2 text-right font-mono text-muted-foreground">{row.v23}</td>

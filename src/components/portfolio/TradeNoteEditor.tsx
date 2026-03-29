@@ -42,20 +42,20 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
       transition={{ duration: 0.2, ease: "easeOut" }}
       className="overflow-hidden"
     >
-      <div className="space-y-2 border-t border-border/30 pt-2">
+      <div className="space-y-2 border-t border-border/20 pt-2">
         {/* Textarea */}
         <textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           rows={3}
-          className="w-full resize-none rounded-lg border border-border/40 bg-background px-2.5 py-1.5 text-xs outline-none placeholder:text-muted-foreground/50 focus:ring-1 focus:ring-primary"
+          className="w-full resize-none rounded-lg border border-border/20 bg-background px-2.5 py-1.5 text-xs outline-none placeholder:text-muted-foreground/50 focus:ring-1 focus:ring-primary"
           placeholder="Add notes about this trade..."
           autoFocus
         />
 
         {/* Tags */}
         <div>
-          <p className="mb-1 text-[11px] font-bold text-muted-foreground/60">
+          <p className="mb-1 text-[11px] font-semibold text-muted-foreground/60">
             Tags
           </p>
           <div className="flex flex-wrap gap-1">
@@ -70,7 +70,7 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
                     "rounded-full border px-2 py-0.5 text-xs font-medium transition-colors",
                     isActive
                       ? "border-primary/30 bg-primary/15 text-primary"
-                      : "border-border/40 bg-muted/30 text-muted-foreground hover:bg-muted/50",
+                      : "border-border/20 bg-muted/30 text-muted-foreground hover:bg-muted/50",
                   )}
                 >
                   {tag}
@@ -85,14 +85,14 @@ export function TradeNoteEditor({ trade, onSave, onCancel }: TradeNoteEditorProp
           <button
             type="button"
             onClick={onCancel}
-            className="rounded-lg px-2.5 py-1 text-xs font-bold text-muted-foreground hover:bg-muted/30"
+            className="rounded-lg px-2.5 py-1 text-xs font-semibold text-muted-foreground hover:bg-muted/30"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={() => onSave(notes, tags)}
-            className="rounded-lg bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary hover:bg-primary/20"
+            className="rounded-lg bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary hover:bg-primary/20"
           >
             Save
           </button>

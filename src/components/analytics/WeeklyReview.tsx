@@ -265,7 +265,7 @@ function MetricRow({
   sub?: string;
 }) {
   return (
-    <div className="flex items-center justify-between py-1.5 border-b border-border/30 last:border-0">
+    <div className="flex items-center justify-between py-1.5 border-b border-border/20 last:border-0">
       <span className="text-[11px] text-muted-foreground">{label}</span>
       <div className="text-right">
         <span className={cn("text-[11px] font-semibold tabular-nums", color)}>{value}</span>
@@ -287,7 +287,7 @@ function InsightSection({
   iconColor: string;
 }) {
   return (
-    <div className="rounded-md border border-border/50 bg-card/40 p-3">
+    <div className="rounded-md border border-border/20 bg-card/40 p-3">
       <div className={cn("mb-1.5 flex items-center gap-1.5 text-[11px] font-semibold", iconColor)}>
         {icon}
         {title}
@@ -367,7 +367,7 @@ export function WeeklyReview() {
           <div className="flex flex-col items-center">
             <div
               className={cn(
-                "flex h-12 w-12 items-center justify-center rounded-md border-2 font-bold text-xl",
+                "flex h-12 w-12 items-center justify-center rounded-md border-2 font-semibold text-xl",
                 grade === "A" ? "border-emerald-400/40 bg-emerald-400/10" :
                 grade === "B" ? "border-teal-400/40 bg-teal-400/10" :
                 grade === "C" ? "border-amber-400/40 bg-amber-400/10" :
@@ -385,7 +385,7 @@ export function WeeklyReview() {
 
         {/* P&L vs previous week */}
         {metrics.totalTrades > 0 && (
-          <div className="mt-3 flex items-center gap-3 rounded-md bg-card/60 px-3 py-2 border border-border/40">
+          <div className="mt-3 flex items-center gap-3 rounded-md bg-card/60 px-3 py-2 border border-border/20">
             <div>
               <p className="text-xs text-muted-foreground">Week P&amp;L</p>
               <p className={cn("text-sm font-semibold tabular-nums", metrics.totalPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -522,36 +522,36 @@ export function WeeklyReview() {
         </div>
 
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
+          <div className="rounded-md border border-border/20 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Zap className="h-3 w-3 text-amber-400" />
               <span className="text-xs text-muted-foreground">Total XP</span>
             </div>
-            <p className="text-sm font-bold text-amber-400 tabular-nums">{xp.toLocaleString()}</p>
+            <p className="text-sm font-semibold text-amber-400 tabular-nums">{xp.toLocaleString()}</p>
           </div>
 
-          <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
+          <div className="rounded-md border border-border/20 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <BookOpen className="h-3 w-3 text-primary" />
               <span className="text-xs text-muted-foreground">Lessons</span>
             </div>
-            <p className="text-sm font-bold text-primary tabular-nums">{completedLessons.length}</p>
+            <p className="text-sm font-semibold text-primary tabular-nums">{completedLessons.length}</p>
           </div>
 
-          <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
+          <div className="rounded-md border border-border/20 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Flame className="h-3 w-3 text-orange-400" />
               <span className="text-xs text-muted-foreground">Learn Streak</span>
             </div>
-            <p className="text-sm font-bold text-orange-400 tabular-nums">{learningStreak}d</p>
+            <p className="text-sm font-semibold text-orange-400 tabular-nums">{learningStreak}d</p>
           </div>
 
-          <div className="rounded-md border border-border/40 bg-card/60 p-2.5 text-center">
+          <div className="rounded-md border border-border/20 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Flame className="h-3 w-3 text-red-400" />
               <span className="text-xs text-muted-foreground">Login Streak</span>
             </div>
-            <p className="text-sm font-bold text-red-400 tabular-nums">{loginStreak}d</p>
+            <p className="text-sm font-semibold text-red-400 tabular-nums">{loginStreak}d</p>
           </div>
         </div>
       </div>
@@ -566,7 +566,7 @@ export function WeeklyReview() {
         <ol className="space-y-2">
           {insights.actionItems.map((item, i) => (
             <li key={i} className="flex items-start gap-2.5">
-              <span className="flex-shrink-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary/15 text-xs font-bold text-primary mt-0.5">
+              <span className="flex-shrink-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-primary mt-0.5">
                 {i + 1}
               </span>
               <p className="text-[11px] text-muted-foreground leading-relaxed">{item}</p>

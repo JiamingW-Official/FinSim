@@ -190,7 +190,7 @@ function MetricCard({
         </div>
         <div>
           <p className="text-xs text-muted-foreground mb-0.5">{label}</p>
-          <p className={cn("text-xl font-bold", valClass)}>{value}</p>
+          <p className={cn("text-xl font-semibold", valClass)}>{value}</p>
           <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
         </div>
       </CardContent>
@@ -215,7 +215,7 @@ function StatusBadge({ status }: { status: DdItem["status"] }) {
 function SeverityBadge({ severity }: { severity: RedFlag["severity"] }) {
   if (severity === "critical") return <Badge className="bg-rose-500/20 text-rose-400 border-rose-500/30 text-xs">CRITICAL</Badge>;
   if (severity === "high") return <Badge className="bg-amber-500/20 text-amber-400 border-amber-500/30 text-xs">HIGH</Badge>;
-  return <Badge className="bg-primary/20 text-primary border-border text-xs">MEDIUM</Badge>;
+  return <Badge className="bg-muted/10 text-primary border-border text-xs">MEDIUM</Badge>;
 }
 
 // ── SVG: Performance Attribution Chart ───────────────────────────────────────
@@ -389,7 +389,7 @@ export default function HFDueDiligencePage() {
             <Search className="h-5 w-5 text-muted-foreground" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Hedge Fund Due Diligence</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Hedge Fund Due Diligence</h1>
             <p className="text-sm text-muted-foreground">Institutional allocator framework — quantitative &amp; operational DD on target fund</p>
           </div>
           <div className="ml-auto flex items-center gap-2">
@@ -501,7 +501,7 @@ export default function HFDueDiligencePage() {
                   ].map((m) => (
                     <div key={m.label} className="p-3 rounded-lg bg-muted/30 border border-border">
                       <p className="text-xs text-muted-foreground mb-1">{m.label}</p>
-                      <p className="text-base font-bold text-foreground">{m.value}</p>
+                      <p className="text-base font-semibold text-foreground">{m.value}</p>
                       <p className={cn("text-xs mt-0.5", m.pos ? "text-emerald-400" : "text-rose-400")}>{m.diff}</p>
                     </div>
                   ))}

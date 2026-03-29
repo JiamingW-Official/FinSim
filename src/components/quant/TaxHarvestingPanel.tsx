@@ -119,7 +119,7 @@ function OpportunityCard({
         <div className="mt-2">
           <div className="h-1 rounded-full bg-muted overflow-hidden">
             <div
-              className="h-full bg-red-500 rounded-full transition-all duration-300"
+              className="h-full bg-red-500 rounded-full transition-colors duration-300"
               style={{
                 width: `${Math.min(100, Math.abs(lossPct) * 3)}%`,
               }}

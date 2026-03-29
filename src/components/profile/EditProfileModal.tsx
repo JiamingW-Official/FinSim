@@ -38,13 +38,13 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
       <DialogContent className="max-w-sm">
         <DialogHeader>
-          <DialogTitle className="text-base font-bold">Edit Profile</DialogTitle>
+          <DialogTitle className="text-base font-semibold">Edit Profile</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
           {/* Name */}
           <div>
-            <label className="mb-1 block text-xs font-bold text-muted-foreground">
+            <label className="mb-1 block text-xs font-semibold text-muted-foreground">
               Display Name
             </label>
             <input
@@ -59,7 +59,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
 
           {/* Avatar Emoji */}
           <div>
-            <label className="mb-1 block text-xs font-bold text-muted-foreground">
+            <label className="mb-1 block text-xs font-semibold text-muted-foreground">
               Avatar
             </label>
             <div className="grid grid-cols-10 gap-1">
@@ -69,7 +69,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
                   type="button"
                   onClick={() => setEmoji(e)}
                   className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-lg text-lg transition-all",
+                    "flex h-8 w-8 items-center justify-center rounded-lg text-lg transition-colors",
                     emoji === e
                       ? "bg-primary/15 ring-2 ring-primary/40 scale-110"
                       : "hover:bg-muted/30",
@@ -83,7 +83,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
 
           {/* Avatar Color */}
           <div>
-            <label className="mb-1 block text-xs font-bold text-muted-foreground">
+            <label className="mb-1 block text-xs font-semibold text-muted-foreground">
               Color
             </label>
             <div className="flex gap-2">
@@ -93,7 +93,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
                   type="button"
                   onClick={() => setColor(c)}
                   className={cn(
-                    "h-7 w-7 rounded-full transition-all",
+                    "h-7 w-7 rounded-full transition-colors",
                     color === c && "ring-2 ring-white/40 ring-offset-2 ring-offset-background scale-110",
                   )}
                   style={{ backgroundColor: c }}
@@ -104,7 +104,7 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
 
           {/* Bio */}
           <div>
-            <label className="mb-1 block text-xs font-bold text-muted-foreground">
+            <label className="mb-1 block text-xs font-semibold text-muted-foreground">
               Bio
             </label>
             <textarea
@@ -122,14 +122,14 @@ export function EditProfileModal({ open, onClose }: EditProfileModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg px-3 py-1.5 text-xs font-bold text-muted-foreground hover:bg-muted/30"
+              className="rounded-lg px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:bg-muted/30"
             >
               Cancel
             </button>
             <button
               type="button"
               onClick={handleSave}
-              className="rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary hover:bg-primary/20"
+              className="rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20"
             >
               Save
             </button>

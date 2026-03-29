@@ -180,9 +180,9 @@ function HBar({ label, value, maxVal, color = "#6366f1" }: { label: string; valu
 
 function StatCard({ label, value, sub, color = "text-foreground" }: { label: string; value: string; sub?: string; color?: string }) {
   return (
-    <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+    <div className="bg-muted/60 rounded-md p-4 border border-border/20">
       <div className="text-xs text-muted-foreground mb-1">{label}</div>
-      <div className={cn("text-xl font-bold", color)}>{value}</div>
+      <div className={cn("text-xl font-semibold", color)}>{value}</div>
       {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
     </div>
   );
@@ -255,7 +255,7 @@ function RiskMetricsDashboard() {
       <div>
         <SectionHeader title="Portfolio Risk Metrics" sub="Based on current positions & 1-day horizon" />
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div className="bg-muted/60 rounded-md p-3 border border-border/40 text-center">
+          <div className="bg-muted/60 rounded-md p-3 border border-border/20 text-center">
             <GaugeSVG
               value={Math.min(99, (Math.abs(var95) / PORTFOLIO_VALUE) * 2000)}
               label={`$${(var95 / 1000).toFixed(1)}k`}
@@ -265,7 +265,7 @@ function RiskMetricsDashboard() {
             <div className="text-xs text-muted-foreground mt-1">Value at Risk 95%</div>
             <div className="text-xs text-muted-foreground">1-day</div>
           </div>
-          <div className="bg-muted/60 rounded-md p-3 border border-border/40 text-center">
+          <div className="bg-muted/60 rounded-md p-3 border border-border/20 text-center">
             <GaugeSVG
               value={Math.min(99, (Math.abs(var99) / PORTFOLIO_VALUE) * 1500)}
               label={`$${(var99 / 1000).toFixed(1)}k`}
@@ -275,7 +275,7 @@ function RiskMetricsDashboard() {
             <div className="text-xs text-muted-foreground mt-1">Value at Risk 99%</div>
             <div className="text-xs text-muted-foreground">1-day</div>
           </div>
-          <div className="bg-muted/60 rounded-md p-3 border border-border/40 text-center">
+          <div className="bg-muted/60 rounded-md p-3 border border-border/20 text-center">
             <GaugeSVG
               value={Math.min(99, maxDD * 1.2)}
               label={`${maxDD.toFixed(1)}%`}
@@ -285,7 +285,7 @@ function RiskMetricsDashboard() {
             <div className="text-xs text-muted-foreground mt-1">Max Drawdown</div>
             <div className="text-xs text-muted-foreground">historical est.</div>
           </div>
-          <div className="bg-muted/60 rounded-md p-3 border border-border/40 text-center">
+          <div className="bg-muted/60 rounded-md p-3 border border-border/20 text-center">
             <GaugeSVG
               value={Math.min(99, realizedVol * 2)}
               label={`${realizedVol.toFixed(1)}%`}
@@ -309,7 +309,7 @@ function RiskMetricsDashboard() {
       {/* Risk decomposition + VaR budget */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Pie: factor vs idiosyncratic */}
-        <div className="bg-muted/60 rounded-md p-6 border border-border/40 border-l-4 border-l-primary">
+        <div className="bg-muted/60 rounded-md p-6 border border-border/20 border-l-4 border-l-primary">
           <SectionHeader title="Risk Decomposition" sub="Factor risk vs idiosyncratic risk" />
           <div className="flex items-center gap-3">
             <svg width={160} height={140} viewBox="0 0 160 140">
@@ -323,7 +323,7 @@ function RiskMetricsDashboard() {
                 <div className="w-3 h-3 rounded-sm bg-indigo-500" />
                 <div>
                   <div className="text-sm font-medium text-foreground">Factor Risk</div>
-                  <div className="text-lg font-bold text-indigo-400">{factorRisk}%</div>
+                  <div className="text-lg font-semibold text-indigo-400">{factorRisk}%</div>
                   <div className="text-xs text-muted-foreground">Market, sector, size</div>
                 </div>
               </div>
@@ -340,7 +340,7 @@ function RiskMetricsDashboard() {
         </div>
 
         {/* VaR budget */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Risk Budget (VaR Contribution)" sub="Each position's % contribution to portfolio VaR" />
           <div className="space-y-1">
             {varContributions.map(({ ticker, contrib }) => (
@@ -477,7 +477,7 @@ function VaRModels() {
   return (
     <div className="space-y-4">
       {/* Model comparison table */}
-      <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+      <div className="bg-muted/60 rounded-md p-4 border border-border/20">
         <SectionHeader title="VaR Model Comparison" sub="1-day VaR as % of portfolio" />
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -496,7 +496,7 @@ function VaRModels() {
                 { model: "Parametric",     v95: var95param, v99: var99param, assume: "Normal dist.",  best: "Speed" },
                 { model: "Monte Carlo",    v95: var95mc,   v99: var99mc,   assume: "Simulation",   best: "Complex portfolios" },
               ].map(row => (
-                <tr key={row.model} className="border-b border-border/30 hover:bg-muted/20">
+                <tr key={row.model} className="border-b border-border/20 hover:bg-muted/20">
                   <td className="py-2 text-foreground font-medium">{row.model}</td>
                   <td className="py-2 text-right text-amber-400">{(row.v95 * 100).toFixed(2)}%</td>
                   <td className="py-2 text-right text-red-400">{(row.v99 * 100).toFixed(2)}%</td>
@@ -511,7 +511,7 @@ function VaRModels() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Historical simulation histogram */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Historical Simulation" sub="500-day return distribution" />
           <svg width={histW} height={histH} viewBox={`0 0 ${histW} ${histH}`} className="w-full">
             {counts.map((c, i) => {
@@ -542,7 +542,7 @@ function VaRModels() {
         </div>
 
         {/* Parametric: normal vs fat tail */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Parametric vs Fat-Tail" sub="Normal dist. vs empirical" />
           <svg width={histW} height={histH} viewBox={`0 0 ${histW} ${histH}`} className="w-full">
             {/* Normal curve */}
@@ -570,7 +570,7 @@ function VaRModels() {
       </div>
 
       {/* Monte Carlo fan chart */}
-      <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+      <div className="bg-muted/60 rounded-md p-4 border border-border/20">
         <SectionHeader title="Monte Carlo VaR" sub="1,000 portfolio simulations — 30-day horizon fan chart" />
         <svg width={fanW} height={fanH} viewBox={`0 0 ${fanW} ${fanH}`} className="w-full">
           {fanPaths.map((sim, i) => (
@@ -603,14 +603,14 @@ function VaRModels() {
       </div>
 
       {/* Backtesting */}
-      <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+      <div className="bg-muted/60 rounded-md p-4 border border-border/20">
         <SectionHeader title="VaR Backtesting — Traffic Light Test" sub="Count VaR breaches over 250 trading days" />
         <div className="flex items-center gap-3">
           <div
             className="w-20 h-20 rounded-full flex flex-col items-center justify-center border-4 shrink-0"
             style={{ borderColor: backtestColor }}
           >
-            <span className="text-2xl font-bold" style={{ color: backtestColor }}>{breaches}</span>
+            <span className="text-2xl font-semibold" style={{ color: backtestColor }}>{breaches}</span>
             <span className="text-xs text-muted-foreground">breaches</span>
           </div>
           <div>
@@ -694,7 +694,7 @@ function StressTesting() {
             return (
               <motion.div
                 key={sc.name}
-                className="bg-muted/60 rounded-md border border-border/40 overflow-hidden"
+                className="bg-muted/60 rounded-md border border-border/20 overflow-hidden"
                 layout
               >
                 <button
@@ -758,7 +758,7 @@ function StressTesting() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Custom scenario */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Hypothetical Shock Scenario" sub="Adjust sliders to model custom stress event" />
           <div className="space-y-4">
             <div>
@@ -782,7 +782,7 @@ function StressTesting() {
               </div>
               <Slider value={creditShock} onValueChange={setCreditShock} min={0} max={500} step={10} className="w-full" />
             </div>
-            <div className="mt-3 pt-3 border-t border-border/40">
+            <div className="mt-3 pt-3 border-t border-border/20">
               <div className="text-xs text-muted-foreground mb-1">Portfolio Impact</div>
               <div className={cn("text-lg font-medium", customImpact() < 0 ? "text-red-400" : "text-green-400")}>
                 {customImpact() >= 0 ? "+" : ""}{(customImpact() * 100).toFixed(2)}%
@@ -796,7 +796,7 @@ function StressTesting() {
 
         {/* Reverse stress + correlation spike */}
         <div className="space-y-4">
-          <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+          <div className="bg-muted/60 rounded-md p-4 border border-border/20">
             <SectionHeader title="Reverse Stress Test" sub="How severe must equity fall to lose 20% of portfolio?" />
             <div className="text-center py-3">
               <div className="text-lg font-medium text-red-400">{(reverseShock * 100).toFixed(1)}%</div>
@@ -809,7 +809,7 @@ function StressTesting() {
             </div>
           </div>
 
-          <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+          <div className="bg-muted/60 rounded-md p-4 border border-border/20">
             <SectionHeader title="Crisis Correlation Spike" sub="Correlations rise in stress — diversification fails" />
             <svg width={corrW} height={corrH} viewBox={`0 0 ${corrW} ${corrH}`} className="w-full">
               <polyline points={corrPoints} fill="none" stroke="#6366f1" strokeWidth={2} />
@@ -944,7 +944,7 @@ function DrawdownAnalysis() {
   return (
     <div className="space-y-4">
       {/* Underwater chart */}
-      <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+      <div className="bg-muted/60 rounded-md p-4 border border-border/20">
         <SectionHeader title="Underwater Chart — 3-Year Drawdown" sub="Percentage below previous peak" />
         <svg width={uwW} height={uwH} viewBox={`0 0 ${uwW} ${uwH}`} className="w-full">
           <path d={areaPath} fill="#ef444422" />
@@ -969,7 +969,7 @@ function DrawdownAnalysis() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Monthly heatmap */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Monthly Return Heatmap" sub="Color intensity by return magnitude" />
           <div className="overflow-x-auto">
             <table className="text-xs text-muted-foreground border-collapse w-full">
@@ -1008,7 +1008,7 @@ function DrawdownAnalysis() {
 
         {/* Recovery analysis + pain gauge */}
         <div className="space-y-4">
-          <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+          <div className="bg-muted/60 rounded-md p-4 border border-border/20">
             <SectionHeader title="Drawdown Episodes" sub="Peak → Trough → Recovery timeline" />
             <div className="space-y-2">
               {episodes.map(ep => (
@@ -1035,7 +1035,7 @@ function DrawdownAnalysis() {
             </div>
           </div>
 
-          <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+          <div className="bg-muted/60 rounded-md p-4 border border-border/20">
             <SectionHeader title="Psychology Pain Index" sub="Duration × Magnitude composite" />
             <div className="flex items-center gap-4">
               <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
@@ -1122,7 +1122,7 @@ function PositionSizing() {
   return (
     <div className="space-y-4">
       {/* Kelly criterion */}
-      <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+      <div className="bg-muted/60 rounded-md p-4 border border-border/20">
         <SectionHeader title="Kelly Criterion" sub="Optimal position size to maximize long-run growth rate" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="space-y-4">
@@ -1190,7 +1190,7 @@ function PositionSizing() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* Fixed fractional */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Fixed Fractional Position Sizing" sub="Risk a fixed % of account per trade" />
           <div className="space-y-4">
             <div>
@@ -1229,7 +1229,7 @@ function PositionSizing() {
         </div>
 
         {/* Risk parity */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Risk Parity Sizing" sub="Equal risk contribution per position" />
           <div className="space-y-1 mb-3">
             {riskParityShares.map(p => (
@@ -1244,7 +1244,7 @@ function PositionSizing() {
 
       {/* Concentration + stop loss */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Concentration Limits" sub="Current vs recommended maximums" />
           <div className="space-y-3">
             {[
@@ -1279,7 +1279,7 @@ function PositionSizing() {
           </div>
         </div>
 
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Stop Loss Placement" sub="ATR-based vs support-based comparison" />
           <div className="space-y-3 text-sm">
             <div className="bg-muted/40 rounded p-3">
@@ -1380,7 +1380,7 @@ function HedgingTools() {
     <div className="space-y-4">
       {/* Equity hedge */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Equity Hedge — SPY Puts" sub="Long portfolio + protective puts" />
           <div className="space-y-4">
             <div>
@@ -1422,7 +1422,7 @@ function HedgingTools() {
         </div>
 
         {/* Options collar */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="Options Collar Strategy" sub="Sell OTM calls, buy OTM puts (near zero-cost)" />
           <div className="space-y-3">
             <div>
@@ -1469,7 +1469,7 @@ function HedgingTools() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         {/* VIX hedge */}
-        <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+        <div className="bg-muted/60 rounded-md p-4 border border-border/20">
           <SectionHeader title="VIX Tail Risk Hedge" sub="Long VIX calls as portfolio insurance" />
           <div className="space-y-3">
             <div>
@@ -1504,7 +1504,7 @@ function HedgingTools() {
 
         {/* Beta hedge + hedge ratio calculator */}
         <div className="space-y-4">
-          <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+          <div className="bg-muted/60 rounded-md p-4 border border-border/20">
             <SectionHeader title="Beta Hedge — Short SPY Futures" sub="Neutralize market beta exposure" />
             <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
               <div className="bg-muted/40 rounded p-2">
@@ -1528,7 +1528,7 @@ function HedgingTools() {
             </div>
           </div>
 
-          <div className="bg-muted/60 rounded-md p-4 border border-border/40">
+          <div className="bg-muted/60 rounded-md p-4 border border-border/20">
             <SectionHeader title="Hedge Ratio Calculator" sub="Optimal ratio = ρ × (σ_portfolio / σ_hedge)" />
             <div className="space-y-2 text-xs text-muted-foreground">
               {[
@@ -1536,7 +1536,7 @@ function HedgingTools() {
                 { label: "Portfolio Vol (σ_p)", value: `${(portVol * 100).toFixed(1)}%` },
                 { label: "Hedge Vol (σ_h = SPY)", value: `${(spyVol * 100).toFixed(1)}%` },
               ].map(row => (
-                <div key={row.label} className="flex justify-between py-1 border-b border-border/30">
+                <div key={row.label} className="flex justify-between py-1 border-b border-border/20">
                   <span className="text-muted-foreground">{row.label}</span>
                   <span className="text-foreground font-medium">{row.value}</span>
                 </div>
@@ -1603,7 +1603,7 @@ export default function RiskManagementPage() {
               { label: "Max DD (est.)", value: "~18%", color: "text-red-400" },
               { label: "Diversification Ratio", value: "1.31×", color: "text-green-400" },
             ].map(s => (
-              <div key={s.label} className="bg-muted/60 rounded-lg px-3 py-1.5 text-xs text-muted-foreground border border-border/40 flex items-center gap-2">
+              <div key={s.label} className="bg-muted/60 rounded-lg px-3 py-1.5 text-xs text-muted-foreground border border-border/20 flex items-center gap-2">
                 <span className="text-muted-foreground">{s.label}</span>
                 <span className={cn("font-semibold", s.color)}>{s.value}</span>
               </div>
@@ -1613,7 +1613,7 @@ export default function RiskManagementPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="bg-muted/80 border border-border/40 flex-wrap h-auto p-1 gap-0.5 mb-6">
+          <TabsList className="bg-muted/80 border border-border/20 flex-wrap h-auto p-1 gap-0.5 mb-6">
             {tabs.map(tab => {
               const Icon = tab.icon;
               return (

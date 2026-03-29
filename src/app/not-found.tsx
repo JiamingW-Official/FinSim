@@ -21,7 +21,7 @@ export default function NotFound() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
       <div className="flex w-full max-w-lg flex-col items-center gap-8 text-center">
         <div className="flex flex-col items-center gap-3">
-          <p className="text-6xl font-bold tabular-nums text-muted-foreground/20 select-none">
+          <p className="text-2xl font-semibold tabular-nums text-muted-foreground/20 select-none">
             404
           </p>
           <h1 className="text-2xl font-semibold tracking-tight text-foreground">
@@ -33,7 +33,7 @@ export default function NotFound() {
         </div>
 
         <div className="w-full">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground/60">
+          <p className="mb-3 text-xs font-medium text-muted-foreground/60">
             Where would you like to go?
           </p>
           <div className="grid grid-cols-2 gap-2">

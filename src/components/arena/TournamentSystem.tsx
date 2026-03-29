@@ -92,7 +92,7 @@ const TOURNAMENTS: TournamentDef[] = [
     icon: <BarChart2 className="h-4 w-4" />,
     color: "text-primary",
     bgColor: "bg-primary/10",
-    borderColor: "border-border/40",
+    borderColor: "border-border/20",
     inviteOnly: false,
   },
   {
@@ -108,7 +108,7 @@ const TOURNAMENTS: TournamentDef[] = [
     icon: <Target className="h-4 w-4" />,
     color: "text-primary",
     bgColor: "bg-primary/10",
-    borderColor: "border-border/40",
+    borderColor: "border-border/20",
     inviteOnly: false,
   },
   {
@@ -319,7 +319,7 @@ function Podium({ entries }: PodiumProps) {
           <div key={i} className="flex flex-col items-center">
             <span
               className={cn(
-                "text-xs font-bold truncate w-full text-center",
+                "text-xs font-semibold truncate w-full text-center",
                 p.entry?.isPlayer ? "text-emerald-300" : "text-muted-foreground",
               )}
             >
@@ -367,7 +367,7 @@ interface TournamentLobbyProps {
 function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: TournamentLobbyProps) {
   return (
     <div className="space-y-4">
-      <div className="text-xs font-bold text-muted-foreground">Active Tournaments</div>
+      <div className="text-xs font-semibold text-muted-foreground">Active Tournaments</div>
       <div className="grid gap-3">
         {TOURNAMENTS.map((t) => {
           const joined = joinedIds.has(t.id);
@@ -381,10 +381,10 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               className={cn(
-                "rounded-md border p-4 transition-all",
+                "rounded-md border p-4 transition-colors",
                 joined
                   ? `${t.borderColor} ${t.bgColor}`
-                  : "border-border/30 bg-muted/10 hover:bg-muted/15",
+                  : "border-border/20 bg-muted/10 hover:bg-muted/15",
               )}
             >
               {/* Header */}
@@ -395,7 +395,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-sm font-bold text-foreground">{t.name}</span>
+                      <span className="text-sm font-semibold text-foreground">{t.name}</span>
                       {t.inviteOnly && (
                         <Lock className="h-3 w-3 text-amber-400" />
                       )}
@@ -408,7 +408,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                 </div>
                 {/* Prize pool */}
                 <div className="text-right shrink-0">
-                  <div className={cn("text-xs font-bold", t.color)}>{t.prizes[0].toLocaleString()} XP</div>
+                  <div className={cn("text-xs font-semibold", t.color)}>{t.prizes[0].toLocaleString()} XP</div>
                   <div className="text-xs text-muted-foreground/70">1st prize</div>
                 </div>
               </div>
@@ -420,7 +420,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                 {["🥇", "🥈", "🥉"].map((medal, i) => (
                   <div key={i} className="flex items-center gap-1">
                     <span className="text-xs">{medal}</span>
-                    <span className={cn("text-xs font-bold tabular-nums", t.color)}>
+                    <span className={cn("text-xs font-semibold tabular-nums", t.color)}>
                       {t.prizes[i].toLocaleString()} XP
                     </span>
                   </div>
@@ -449,7 +449,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                     type="button"
                     onClick={() => onViewLeaderboard(t.id)}
                     className={cn(
-                      "flex-1 flex items-center justify-center gap-1.5 rounded-lg border py-2 text-xs font-bold transition-colors",
+                      "flex-1 flex items-center justify-center gap-1.5 rounded-lg border py-2 text-xs font-semibold transition-colors",
                       `${t.borderColor} ${t.color} hover:opacity-80`,
                     )}
                   >
@@ -462,10 +462,10 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                     onClick={() => canAfford && onJoin(t.id)}
                     disabled={!canAfford}
                     className={cn(
-                      "flex-1 flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-bold transition-all",
+                      "flex-1 flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-semibold transition-colors",
                       canAfford
                         ? `${t.bgColor} ${t.color} border ${t.borderColor} hover:opacity-80 active:scale-95`
-                        : "border border-border/30 bg-muted/10 text-muted-foreground/70 cursor-not-allowed",
+                        : "border border-border/20 bg-muted/10 text-muted-foreground/70 cursor-not-allowed",
                     )}
                   >
                     {canAfford ? (
@@ -490,7 +490,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
       {/* My Tournaments */}
       {joinedIds.size > 0 && (
         <div>
-          <div className="text-xs font-bold text-muted-foreground mb-2">My Tournaments</div>
+          <div className="text-xs font-semibold text-muted-foreground mb-2">My Tournaments</div>
           <div className="space-y-2">
             {[...joinedIds].map((id) => {
               const def = TOURNAMENTS.find((t) => t.id === id)!;
@@ -506,13 +506,13 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                 >
                   <span className={def.color}>{def.icon}</span>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-foreground truncate">{def.name}</div>
+                    <div className="text-xs font-semibold text-foreground truncate">{def.name}</div>
                     <div className="text-xs text-muted-foreground">{daysLeft}d remaining · Active</div>
                   </div>
                   <button
                     type="button"
                     onClick={() => onViewLeaderboard(id)}
-                    className={cn("text-xs font-bold", def.color)}
+                    className={cn("text-xs font-semibold", def.color)}
                   >
                     View →
                   </button>
@@ -557,18 +557,18 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
         </button>
         <div className={cn("flex items-center gap-1.5 ml-1", def.color)}>
           {def.icon}
-          <span className="text-sm font-bold text-foreground">{def.name}</span>
+          <span className="text-sm font-semibold text-foreground">{def.name}</span>
         </div>
       </div>
 
       {/* Podium */}
-      <div className="rounded-md border border-border/30 bg-muted/10 p-4">
-        <div className="text-xs font-bold text-muted-foreground mb-3">Top Traders</div>
+      <div className="rounded-md border border-border/20 bg-muted/10 p-4">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">Top Traders</div>
         <Podium entries={entries} />
       </div>
 
       {/* Time progress */}
-      <div className="rounded-md border border-border/30 bg-muted/10 px-4 py-3">
+      <div className="rounded-md border border-border/20 bg-muted/10 px-4 py-3">
         <TimeBar daysRemaining={daysLeft} totalDays={def.durationDays} />
       </div>
 
@@ -577,9 +577,9 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
         "rounded-lg border px-4 py-3 flex items-center gap-3",
         def.borderColor, def.bgColor,
       )}>
-        <div className={cn("text-2xl font-bold tabular-nums", def.color)}>#{playerEntry.rank}</div>
+        <div className={cn("text-2xl font-semibold tabular-nums", def.color)}>#{playerEntry.rank}</div>
         <div>
-          <div className="text-xs font-bold text-foreground">Your Ranking</div>
+          <div className="text-xs font-semibold text-foreground">Your Ranking</div>
           <div className="text-xs text-muted-foreground">
             {playerEntry.returnPct >= 0 ? "+" : ""}{playerEntry.returnPct.toFixed(1)}% return ·{" "}
             Sharpe {playerEntry.sharpe.toFixed(2)} ·{" "}
@@ -592,18 +592,18 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
       </div>
 
       {/* Full table */}
-      <div className="rounded-md border border-border/30 overflow-hidden">
+      <div className="rounded-md border border-border/20 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-border/30 bg-muted/15">
-                <th className="px-3 py-2 text-left font-bold text-muted-foreground w-10">Rank</th>
-                <th className="px-3 py-2 text-left font-bold text-muted-foreground">Trader</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Return</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Sharpe</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Win%</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Trades</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">ELO</th>
+              <tr className="border-b border-border/20 bg-muted/15">
+                <th className="px-3 py-2 text-left font-semibold text-muted-foreground w-10">Rank</th>
+                <th className="px-3 py-2 text-left font-semibold text-muted-foreground">Trader</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Return</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Sharpe</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Win%</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Trades</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">ELO</th>
               </tr>
             </thead>
             <tbody>
@@ -622,7 +622,7 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
                     <td className="px-3 py-2">
                       <div className="flex items-center gap-1">
                         <span className={cn(
-                          "font-bold tabular-nums",
+                          "font-semibold tabular-nums",
                           e.rank === 1 ? "text-yellow-400"
                           : e.rank === 2 ? "text-muted-foreground"
                           : e.rank === 3 ? "text-amber-600"
@@ -638,11 +638,11 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
                       </div>
                     </td>
                     <td className="px-3 py-2">
-                      <span className={cn("font-bold", e.isPlayer ? "text-emerald-300" : "text-foreground")}>
+                      <span className={cn("font-semibold", e.isPlayer ? "text-emerald-300" : "text-foreground")}>
                         {e.isPlayer ? "You" : e.name}
                       </span>
                     </td>
-                    <td className={cn("px-3 py-2 text-right font-bold tabular-nums", e.returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
+                    <td className={cn("px-3 py-2 text-right font-semibold tabular-nums", e.returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {e.returnPct >= 0 ? "+" : ""}{e.returnPct.toFixed(1)}%
                     </td>
                     <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{e.sharpe.toFixed(2)}</td>
@@ -665,7 +665,7 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
 function EloChangeBadge({ change, small }: { change: number; small?: boolean }) {
   return (
     <span className={cn(
-      "inline-flex items-center gap-0.5 font-bold tabular-nums",
+      "inline-flex items-center gap-0.5 font-semibold tabular-nums",
       small ? "text-xs" : "text-xs",
       change >= 0 ? "text-emerald-400" : "text-red-400",
     )}>
@@ -736,23 +736,23 @@ function H2HSection({ playerElo }: H2HProps) {
           { label: "W/L", value: `${winCount}/${lossCount}`, color: "text-emerald-400" },
           { label: "Win Rate", value: `${Math.round((winCount / Math.max(1, matchHistory.length)) * 100)}%`, color: "text-primary" },
         ].map((s) => (
-          <div key={s.label} className="rounded-lg border border-border/30 bg-muted/10 p-3 text-center">
-            <div className={cn("text-sm font-bold tabular-nums", s.color)}>{s.value}</div>
+          <div key={s.label} className="rounded-lg border border-border/20 bg-muted/10 p-3 text-center">
+            <div className={cn("text-sm font-semibold tabular-nums", s.color)}>{s.value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
           </div>
         ))}
       </div>
 
       {/* Matchmaking */}
-      <div className="rounded-md border border-border/30 bg-muted/10 p-4 space-y-3">
-        <div className="text-xs font-bold text-muted-foreground">Find a Match</div>
+      <div className="rounded-md border border-border/20 bg-muted/10 p-4 space-y-3">
+        <div className="text-xs font-semibold text-muted-foreground">Find a Match</div>
         <p className="text-[11px] text-muted-foreground">
           24-hour paper trading duel — whoever has higher return % wins. ELO-based matchmaking finds opponents near your rating.
         </p>
         <button
           type="button"
           onClick={handleFindMatch}
-          className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-bold text-emerald-400 transition-colors hover:bg-teal-500/30 active:scale-95"
+          className="w-full flex items-center justify-center gap-2 rounded-lg bg-teal-500/20 border border-teal-500/30 py-3 text-sm font-semibold text-emerald-400 transition-colors hover:bg-teal-500/30 active:scale-95"
         >
           <Swords className="h-4 w-4" />
           Find Opponent (±{Math.round(playerElo * 0.1)} ELO)
@@ -767,7 +767,7 @@ function H2HSection({ playerElo }: H2HProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Challenge by username..."
-              className="w-full rounded-lg border border-border/30 bg-muted/10 py-2 pl-8 pr-3 text-xs text-muted-foreground placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="w-full rounded-lg border border-border/20 bg-muted/10 py-2 pl-8 pr-3 text-xs text-muted-foreground placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               onKeyDown={(e) => { if (e.key === "Enter") handleChallengeUser(); }}
             />
           </div>
@@ -775,7 +775,7 @@ function H2HSection({ playerElo }: H2HProps) {
             type="button"
             onClick={handleChallengeUser}
             disabled={!searchQuery.trim()}
-            className="rounded-lg border border-border/30 bg-muted/15 px-3 py-2 text-xs font-bold text-muted-foreground transition-colors hover:bg-muted/30 disabled:opacity-40"
+            className="rounded-lg border border-border/20 bg-muted/15 px-3 py-2 text-xs font-semibold text-muted-foreground transition-colors hover:bg-muted/30 disabled:opacity-40"
           >
             Challenge
           </button>
@@ -792,7 +792,7 @@ function H2HSection({ playerElo }: H2HProps) {
             className="rounded-md border border-teal-500/25 bg-teal-500/5 p-4 space-y-3"
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-emerald-400">Active Match · 24h Duel</span>
+              <span className="text-xs font-semibold text-emerald-400">Active Match · 24h Duel</span>
               <span className="text-xs text-muted-foreground">vs {currentMatch.opponent} ({currentMatch.opponentElo} ELO)</span>
             </div>
 
@@ -802,13 +802,13 @@ function H2HSection({ playerElo }: H2HProps) {
             <div className="grid grid-cols-2 gap-2 text-center">
               <div className="rounded-lg bg-muted/15 px-3 py-2">
                 <div className="text-xs text-muted-foreground">Your Return</div>
-                <div className={cn("text-sm font-bold tabular-nums", currentMatch.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
+                <div className={cn("text-sm font-semibold tabular-nums", currentMatch.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {currentMatch.yourReturn >= 0 ? "+" : ""}{currentMatch.yourReturn.toFixed(2)}%
                 </div>
               </div>
               <div className="rounded-lg bg-muted/15 px-3 py-2">
                 <div className="text-xs text-muted-foreground">{currentMatch.opponent}</div>
-                <div className={cn("text-sm font-bold tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-emerald-400")}>
+                <div className={cn("text-sm font-semibold tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-emerald-400")}>
                   {currentMatch.oppReturn >= 0 ? "+" : ""}{currentMatch.oppReturn.toFixed(2)}%
                 </div>
               </div>
@@ -827,16 +827,16 @@ function H2HSection({ playerElo }: H2HProps) {
 
       {/* Match history */}
       <div>
-        <div className="text-xs font-bold text-muted-foreground mb-2">Recent Matches (Last 10)</div>
-        <div className="rounded-md border border-border/30 overflow-hidden">
+        <div className="text-xs font-semibold text-muted-foreground mb-2">Recent Matches (Last 10)</div>
+        <div className="rounded-md border border-border/20 overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-border/30 bg-muted/15">
-                <th className="px-3 py-2 text-left font-bold text-muted-foreground">Opponent</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Your %</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Opp %</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Result</th>
-                <th className="px-3 py-2 text-right font-bold text-muted-foreground">ELO</th>
+              <tr className="border-b border-border/20 bg-muted/15">
+                <th className="px-3 py-2 text-left font-semibold text-muted-foreground">Opponent</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Your %</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Opp %</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">Result</th>
+                <th className="px-3 py-2 text-right font-semibold text-muted-foreground">ELO</th>
               </tr>
             </thead>
             <tbody>
@@ -848,7 +848,7 @@ function H2HSection({ playerElo }: H2HProps) {
                       <span className="text-[11px] text-muted-foreground/70">{m.date} · {m.opponentElo} ELO</span>
                     </div>
                   </td>
-                  <td className={cn("px-3 py-2 text-right tabular-nums font-bold", m.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("px-3 py-2 text-right tabular-nums font-semibold", m.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {m.yourReturn >= 0 ? "+" : ""}{m.yourReturn.toFixed(1)}%
                   </td>
                   <td className={cn("px-3 py-2 text-right tabular-nums", m.oppReturn >= 0 ? "text-muted-foreground" : "text-muted-foreground")}>
@@ -882,7 +882,7 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[11px] font-bold text-muted-foreground w-5 text-right">YOU</span>
+      <span className="text-[11px] font-semibold text-muted-foreground w-5 text-right">YOU</span>
       <div className="flex-1 relative h-4 rounded-full bg-muted/15 overflow-hidden flex">
         <div className="w-1/2 flex justify-end">
           <motion.div
@@ -900,12 +900,12 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[11px] font-bold tabular-nums", youLeading ? "text-emerald-400" : "text-muted-foreground")}>
+          <span className={cn("text-[11px] font-semibold tabular-nums", youLeading ? "text-emerald-400" : "text-muted-foreground")}>
             {(yourReturn - oppReturn) >= 0 ? "+" : ""}{(yourReturn - oppReturn).toFixed(1)}%
           </span>
         </div>
       </div>
-      <span className="text-[11px] font-bold text-muted-foreground w-5">OPP</span>
+      <span className="text-[11px] font-semibold text-muted-foreground w-5">OPP</span>
     </div>
   );
 }
@@ -978,16 +978,16 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
       <div className="rounded-md border border-yellow-400/20 bg-yellow-400/5 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Star className="h-4 w-4 text-yellow-400" />
-          <span className="text-xs font-bold text-yellow-400">Monthly Awards — March 2026</span>
+          <span className="text-xs font-semibold text-yellow-400">Monthly Awards — March 2026</span>
         </div>
         <div className="grid grid-cols-2 gap-3">
           {[
             { label: "Best Trade", winner: "SigmaForce", detail: "+47.3% single trade" },
             { label: "Most Consistent", winner: "QuantKing", detail: "Sharpe 4.21 over 30d" },
           ].map((award) => (
-            <div key={award.label} className="rounded-lg border border-border/30 bg-muted/10 p-3">
-              <div className="text-xs font-bold text-muted-foreground mb-1">{award.label}</div>
-              <div className="text-xs font-bold text-foreground">{award.winner}</div>
+            <div key={award.label} className="rounded-lg border border-border/20 bg-muted/10 p-3">
+              <div className="text-xs font-semibold text-muted-foreground mb-1">{award.label}</div>
+              <div className="text-xs font-semibold text-foreground">{award.winner}</div>
               <div className="text-[11px] text-muted-foreground/70 mt-0.5">{award.detail}</div>
             </div>
           ))}
@@ -1001,11 +1001,11 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
         { title: "Most Tournament Wins", entries: mostWins, unit: "wins" },
       ].map((board) => (
         <div key={board.title}>
-          <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
+          <div className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
             <Medal className="h-3.5 w-3.5 text-yellow-500" />
             {board.title}
           </div>
-          <div className="rounded-md border border-border/30 overflow-hidden">
+          <div className="rounded-md border border-border/20 overflow-hidden">
             {board.entries.map((e) => (
               <div
                 key={e.name + e.rank}
@@ -1015,7 +1015,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 )}
               >
                 <span className={cn(
-                  "w-5 text-center text-xs font-bold tabular-nums",
+                  "w-5 text-center text-xs font-semibold tabular-nums",
                   e.rank === 1 ? "text-yellow-400"
                   : e.rank === 2 ? "text-muted-foreground"
                   : e.rank === 3 ? "text-amber-600"
@@ -1026,7 +1026,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 <span className={cn("flex-1 text-xs font-medium", e.isPlayer ? "text-emerald-300" : "text-foreground")}>
                   {e.name}
                 </span>
-                <span className={cn("text-xs font-bold tabular-nums", e.isPlayer ? "text-emerald-400" : "text-muted-foreground")}>
+                <span className={cn("text-xs font-semibold tabular-nums", e.isPlayer ? "text-emerald-400" : "text-muted-foreground")}>
                   {e.value}
                 </span>
               </div>
@@ -1037,14 +1037,14 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
 
       {/* Career stats */}
       <div>
-        <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
+        <div className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
           <Award className="h-3.5 w-3.5 text-primary" />
           Your Career Stats
         </div>
         <div className="grid grid-cols-2 gap-2">
           {careerStats.map((s) => (
-            <div key={s.label} className="rounded-lg border border-border/30 bg-muted/10 p-3">
-              <div className="text-sm font-bold tabular-nums text-foreground">{s.value}</div>
+            <div key={s.label} className="rounded-lg border border-border/20 bg-muted/10 p-3">
+              <div className="text-sm font-semibold tabular-nums text-foreground">{s.value}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
             </div>
           ))}
@@ -1053,7 +1053,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
 
       {/* Badges */}
       <div>
-        <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
+        <div className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
           <Trophy className="h-3.5 w-3.5 text-amber-400" />
           Tournament Badges
         </div>
@@ -1062,7 +1062,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
             <div
               key={badge.id}
               className={cn(
-                "rounded-lg border p-3 transition-all",
+                "rounded-lg border p-3 transition-colors",
                 badge.earned
                   ? "border-teal-500/25 bg-teal-500/5"
                   : "border-foreground/[0.04] bg-foreground/[0.01] opacity-50",
@@ -1070,7 +1070,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
             >
               <div className="flex items-center gap-2 mb-1">
                 <span className={badge.earned ? badge.color : "text-muted-foreground/70"}>{badge.icon}</span>
-                <span className={cn("text-xs font-bold", badge.earned ? "text-foreground" : "text-muted-foreground/70")}>
+                <span className={cn("text-xs font-semibold", badge.earned ? "text-foreground" : "text-muted-foreground/70")}>
                   {badge.name}
                 </span>
                 {badge.earned && <CheckCircle className="h-3 w-3 text-emerald-400 ml-auto" />}
@@ -1186,14 +1186,14 @@ export function TournamentSystem() {
     <div className="space-y-4">
       {/* Sub-tab bar (hidden when viewing leaderboard) */}
       {activeSection !== "leaderboard" && (
-        <div className="flex rounded-md border border-border/30 bg-muted/10 overflow-hidden">
+        <div className="flex rounded-md border border-border/20 bg-muted/10 overflow-hidden">
           {SECTION_TABS.map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setActiveSection(tab.id)}
               className={cn(
-                "flex flex-1 items-center justify-center gap-1.5 py-2.5 text-xs font-bold transition-colors",
+                "flex flex-1 items-center justify-center gap-1.5 py-2.5 text-xs font-semibold transition-colors",
                 activeSection === tab.id
                   ? "bg-teal-500/15 text-emerald-400"
                   : "text-muted-foreground hover:text-muted-foreground",

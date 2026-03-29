@@ -33,13 +33,13 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
         <div className="flex items-center gap-1.5">
           <span
             className={cn(
-              "text-[11px] font-bold uppercase",
+              "text-[11px] font-semibold",
               isLong ? "text-emerald-400" : "text-red-400",
             )}
           >
             {leg.side}
           </span>
-          <span className="text-xs font-bold">
+          <span className="text-xs font-semibold">
             {leg.quantity}x
           </span>
           <span
@@ -59,7 +59,7 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
             })}
           </span>
           <span>@${leg.price.toFixed(2)}</span>
-          <span className={cn("font-bold", isLong ? "text-red-400" : "text-emerald-400")}>
+          <span className={cn("font-semibold", isLong ? "text-red-400" : "text-emerald-400")}>
             {isLong ? "-" : "+"}${cost.toFixed(0)}
           </span>
         </div>

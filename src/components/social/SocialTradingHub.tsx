@@ -375,7 +375,7 @@ const DISCUSSION_DATA = generateDiscussionThreads();
 function Avatar({ initials, color, size = "md" }: { initials: string; color: string; size?: "sm" | "md" | "lg" }) {
   const sizeClass = size === "sm" ? "h-7 w-7 text-xs" : size === "lg" ? "h-11 w-11 text-sm" : "h-9 w-9 text-xs";
   return (
-    <div className={cn("shrink-0 rounded-full flex items-center justify-center font-bold text-foreground", color, sizeClass)}>
+    <div className={cn("shrink-0 rounded-full flex items-center justify-center font-semibold text-foreground", color, sizeClass)}>
       {initials}
     </div>
   );
@@ -388,7 +388,7 @@ function BadgePill({ tier }: { tier: BadgeTier }) {
     ? "bg-muted-foreground/15 text-muted-foreground border-muted-foreground/30"
     : "bg-amber-700/15 text-amber-600 border-amber-700/30";
   return (
-    <span className={cn("inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border text-[11px] font-bold uppercase", cls)}>
+    <span className={cn("inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border text-[11px] font-semibold", cls)}>
       <Star className="h-2.5 w-2.5 fill-current" />
       {tier}
     </span>
@@ -501,8 +501,8 @@ function StrategyCard({ strategy, followed, copied, onFollow, onCopy }: {
 }) {
   return (
     <div className={cn(
-      "rounded-md border p-4 space-y-3 transition-all",
-      followed ? "border-primary/30 bg-primary/3" : "border-border/50 bg-card hover:border-border/70",
+      "rounded-md border p-4 space-y-3 transition-colors",
+      followed ? "border-primary/30 bg-primary/3" : "border-border/20 bg-card hover:border-border/70",
     )}>
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
@@ -639,7 +639,7 @@ function TrendingStrategiesSection() {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value as StrategyType | "All")}
-            className="text-xs bg-muted/50 border border-border/50 rounded px-2 py-1 text-muted-foreground"
+            className="text-xs bg-muted/50 border border-border/20 rounded px-2 py-1 text-muted-foreground"
           >
             <option value="All">All Types</option>
             {STRATEGY_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
@@ -647,7 +647,7 @@ function TrendingStrategiesSection() {
           <select
             value={filterRisk}
             onChange={(e) => setFilterRisk(e.target.value as RiskLevel | "All")}
-            className="text-xs bg-muted/50 border border-border/50 rounded px-2 py-1 text-muted-foreground"
+            className="text-xs bg-muted/50 border border-border/20 rounded px-2 py-1 text-muted-foreground"
           >
             <option value="All">All Risk</option>
             {RISK_LEVELS.map((r) => <option key={r} value={r}>{r}</option>)}
@@ -686,7 +686,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
   const rr = Math.abs((idea.target - idea.entry) / (idea.entry - idea.stop));
 
   return (
-    <div className="rounded-md border border-border/50 bg-card p-4 space-y-3 hover:border-border/70 transition-colors">
+    <div className="rounded-md border border-border/20 bg-card p-4 space-y-3 hover:border-border/70 transition-colors">
       {/* Author row */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -706,7 +706,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
           </div>
         </div>
         <div className={cn(
-          "flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-bold",
+          "flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-semibold",
           isLong ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400",
         )}>
           {isLong ? <TrendingUp className="h-3.5 w-3.5" /> : <TrendingDown className="h-3.5 w-3.5" />}
@@ -717,26 +717,26 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
       {/* Ticker + Levels */}
       <div className="flex items-center gap-4">
         <div>
-          <p className="text-base font-bold">{idea.ticker}</p>
+          <p className="text-base font-semibold">{idea.ticker}</p>
           <p className="text-xs text-muted-foreground">{idea.company}</p>
         </div>
         <div className="flex-1 grid grid-cols-3 gap-2">
           <div className="text-center">
-            <p className="text-[11px] text-muted-foreground/70 uppercase">Entry</p>
+            <p className="text-[11px] text-muted-foreground/70">Entry</p>
             <p className="text-xs font-semibold tabular-nums">${idea.entry}</p>
           </div>
           <div className="text-center">
-            <p className="text-[11px] text-muted-foreground/70 uppercase">Stop</p>
+            <p className="text-[11px] text-muted-foreground/70">Stop</p>
             <p className="text-xs font-semibold tabular-nums text-rose-400">${idea.stop}</p>
           </div>
           <div className="text-center">
-            <p className="text-[11px] text-muted-foreground/70 uppercase">Target</p>
+            <p className="text-[11px] text-muted-foreground/70">Target</p>
             <p className="text-xs font-semibold tabular-nums text-emerald-400">${idea.target}</p>
           </div>
         </div>
         <div className="text-right shrink-0">
           <p className="text-[11px] text-muted-foreground/70">R:R</p>
-          <p className="text-xs font-bold text-amber-400">{rr.toFixed(1)}:1</p>
+          <p className="text-xs font-semibold text-amber-400">{rr.toFixed(1)}:1</p>
         </div>
       </div>
 
@@ -767,7 +767,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between pt-1 border-t border-border/30">
+      <div className="flex items-center justify-between pt-1 border-t border-border/20">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
             <Heart className="h-3.5 w-3.5" />
@@ -785,7 +785,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
               "flex items-center gap-1 px-2 py-1 rounded text-xs font-medium border transition-colors",
               agreed
                 ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-400"
-                : "border-border/50 text-muted-foreground hover:border-emerald-500/40 hover:text-emerald-400",
+                : "border-border/20 text-muted-foreground hover:border-emerald-500/40 hover:text-emerald-400",
             )}
           >
             <ThumbsUp className="h-3 w-3" />
@@ -797,7 +797,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
               "flex items-center gap-1 px-2 py-1 rounded text-xs font-medium border transition-colors",
               disagreed
                 ? "border-rose-500/40 bg-rose-500/10 text-rose-400"
-                : "border-border/50 text-muted-foreground hover:border-rose-500/40 hover:text-rose-400",
+                : "border-border/20 text-muted-foreground hover:border-rose-500/40 hover:text-rose-400",
             )}
           >
             <ThumbsDown className="h-3 w-3" />
@@ -960,11 +960,11 @@ function LeaderboardRankingsSection() {
       </div>
 
       {/* Table */}
-      <div className="bg-card border border-border/50 rounded-md overflow-hidden">
+      <div className="bg-card border border-border/20 rounded-md overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/20">
+              <tr className="border-b border-border/20 bg-muted/20">
                 <th className="text-left px-3 py-2.5 text-xs font-semibold text-muted-foreground/70 w-8">Rank</th>
                 <th className="text-left px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Trader</th>
                 <th className="text-right px-3 py-2.5 text-xs font-semibold text-muted-foreground/70">Return</th>
@@ -1010,7 +1010,7 @@ function LeaderboardRankingsSection() {
                   </td>
                   <td className="px-3 py-2 text-right">
                     {!entry.isYou && (
-                      <button className="text-xs px-2 py-0.5 rounded border border-border/50 text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors">
+                      <button className="text-xs px-2 py-0.5 rounded border border-border/20 text-muted-foreground hover:border-primary/40 hover:text-primary transition-colors">
                         Challenge
                       </button>
                     )}
@@ -1031,7 +1031,7 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
   const [cloned, setCloned] = useState(false);
 
   return (
-    <div className="rounded-md border border-border/50 bg-card p-4 space-y-4">
+    <div className="rounded-md border border-border/20 bg-card p-4 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -1069,7 +1069,7 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
 
         {/* Positions table */}
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-semibold text-muted-foreground/70 uppercase mb-1">Top Positions</p>
+          <p className="text-xs font-semibold text-muted-foreground/70 mb-1">Top Positions</p>
           <div className="space-y-1">
             {trader.positions.map((p) => (
               <div key={p.ticker} className="flex items-center justify-between text-[11px]">
@@ -1087,7 +1087,7 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
 
       {/* Recent trades */}
       <div>
-        <p className="text-xs font-semibold text-muted-foreground/70 uppercase mb-1.5">Recent Trades</p>
+        <p className="text-xs font-semibold text-muted-foreground/70 mb-1.5">Recent Trades</p>
         <div className="flex items-center gap-2 flex-wrap">
           {trader.recentTrades.map((t, i) => (
             <div
@@ -1210,7 +1210,7 @@ function DiscussionSection() {
   return (
     <div className="space-y-4">
       {/* Top mentions widget */}
-      <div className="bg-card border border-border/50 rounded-md p-4">
+      <div className="bg-card border border-border/20 rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <Flame className="h-4 w-4 text-orange-400" />
           <h3 className="text-xs font-semibold text-muted-foreground/80">Today&apos;s Hot Mentions</h3>
@@ -1218,10 +1218,10 @@ function DiscussionSection() {
         <div className="flex items-center gap-3">
           {topMentions.map(([ticker, count], i) => (
             <div key={ticker} className="flex items-center gap-2 bg-muted/50 rounded-lg px-3 py-2">
-              <span className={cn("text-xs font-bold", i === 0 ? "text-amber-400" : i === 1 ? "text-muted-foreground" : "text-amber-600")}>
+              <span className={cn("text-xs font-semibold", i === 0 ? "text-amber-400" : i === 1 ? "text-muted-foreground" : "text-amber-600")}>
                 #{i + 1}
               </span>
-              <span className="text-sm font-bold">{ticker}</span>
+              <span className="text-sm font-semibold">{ticker}</span>
               <span className="text-xs text-muted-foreground">{count} mentions</span>
             </div>
           ))}
@@ -1238,7 +1238,7 @@ function DiscussionSection() {
               "w-full text-left px-4 py-3 rounded-md border transition-colors",
               activeThread === i
                 ? "border-primary/30 bg-primary/5"
-                : "border-border/50 bg-card hover:border-border/70",
+                : "border-border/20 bg-card hover:border-border/70",
             )}
           >
             <div className="flex items-center justify-between">
@@ -1257,8 +1257,8 @@ function DiscussionSection() {
 
       {/* Active thread messages */}
       {thread && (
-        <div className="bg-card border border-border/50 rounded-md p-4 space-y-4">
-          <h3 className="text-sm font-semibold border-b border-border/30 pb-3">{thread.topic}</h3>
+        <div className="bg-card border border-border/20 rounded-md p-4 space-y-4">
+          <h3 className="text-sm font-semibold border-b border-border/20 pb-3">{thread.topic}</h3>
           <div className="space-y-4">
             {thread.messages.map((msg) => (
               <MessageBubble
@@ -1271,7 +1271,7 @@ function DiscussionSection() {
           </div>
 
           {/* Reply input */}
-          <div className="border-t border-border/30 pt-3">
+          <div className="border-t border-border/20 pt-3">
             {replyPosted ? (
               <div className="flex items-center gap-2 text-emerald-400 text-xs">
                 <AlertCircle className="h-3.5 w-3.5" />
@@ -1285,7 +1285,7 @@ function DiscussionSection() {
                   onChange={(e) => setReplyText(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handlePostReply()}
                   placeholder="Share your thoughts..."
-                  className="flex-1 text-xs bg-muted/50 border border-border/50 rounded-lg px-3 py-2 placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors"
+                  className="flex-1 text-xs bg-muted/50 border border-border/20 rounded-lg px-3 py-2 placeholder:text-muted-foreground/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors"
                 />
                 <button
                   onClick={handlePostReply}

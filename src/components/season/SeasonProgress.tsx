@@ -28,9 +28,9 @@ export function SeasonProgress() {
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           <Crown className="h-3.5 w-3.5 text-primary" />
-          <span className="text-xs font-bold text-foreground">{season.name}</span>
+          <span className="text-xs font-semibold text-foreground">{season.name}</span>
         </div>
-        <span className="text-xs font-bold tabular-nums text-muted-foreground">
+        <span className="text-xs font-semibold tabular-nums text-muted-foreground">
           Tier {currentTier}/{totalTiers}
         </span>
       </div>

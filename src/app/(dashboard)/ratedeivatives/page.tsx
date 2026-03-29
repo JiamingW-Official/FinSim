@@ -322,7 +322,7 @@ function MetricCard({
   icon?: React.ElementType;
 }) {
   return (
-    <div className="bg-muted/60 border border-border/50 rounded-md p-4 flex flex-col gap-1">
+    <div className="bg-muted/60 border border-border/20 rounded-md p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5 text-muted-foreground text-xs font-medium uppercase tracking-wide">
         {Icon && <Icon className="w-3 h-3" />}
         {label}
@@ -597,12 +597,12 @@ function SwaptionGrid({
                   <td key={ten}>
                     <button
                       onClick={() => onSelect(exp, ten)}
-                      className={`w-14 h-10 rounded flex flex-col items-center justify-center transition-all ${
+                      className={`w-14 h-10 rounded flex flex-col items-center justify-center transition-colors ${
                         isSelected ? "ring-2 ring-foreground/60" : ""
                       }`}
                       style={{ backgroundColor: volColor(cell.vol) + (isSelected ? "" : "bb") }}
                     >
-                      <span className="text-foreground font-bold text-xs leading-none">{cell.vol.toFixed(1)}%</span>
+                      <span className="text-foreground font-semibold text-xs leading-none">{cell.vol.toFixed(1)}%</span>
                       <span className="text-foreground/70 text-[11px] leading-none mt-0.5">{fmtK(cell.price)}</span>
                     </button>
                   </td>
@@ -1273,7 +1273,7 @@ export default function RateDerivativesPage() {
             <Activity className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Interest Rate Derivatives</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Interest Rate Derivatives</h1>
             <p className="text-muted-foreground text-sm">IRS · Swaptions · Caps & Floors · Vol Surface</p>
           </div>
         </div>
@@ -1287,7 +1287,7 @@ export default function RateDerivativesPage() {
           <Badge variant="outline" className="border-emerald-500/40 text-emerald-300 text-xs">
             DV01
           </Badge>
-          <div className="text-xs text-muted-foreground border border-border/50 rounded px-2 py-1">
+          <div className="text-xs text-muted-foreground border border-border/20 rounded px-2 py-1">
             Base 5Y: <span className="text-foreground font-medium">{baseRate.toFixed(2)}%</span>
           </div>
         </div>
@@ -1526,7 +1526,7 @@ export default function RateDerivativesPage() {
                   <SwapSpreadChart data={swapSpreads} />
                   <div className="mt-2 flex flex-wrap gap-2">
                     {swapSpreads.map((d) => (
-                      <span key={d.tenor} className="text-xs text-muted-foreground bg-muted/60 border border-border/50 rounded px-2 py-0.5">
+                      <span key={d.tenor} className="text-xs text-muted-foreground bg-muted/60 border border-border/20 rounded px-2 py-0.5">
                         <span className="text-muted-foreground">{d.tenor}: </span>
                         <span className="text-indigo-300 font-medium">{d.spread} bps</span>
                       </span>
@@ -2147,7 +2147,7 @@ export default function RateDerivativesPage() {
                   />
                   <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
                     {volStrikes.map((k, i) => (
-                      <span key={i} className="bg-muted/50 border border-border/50 rounded px-2 py-0.5">
+                      <span key={i} className="bg-muted/50 border border-border/20 rounded px-2 py-0.5">
                         <span className="text-muted-foreground">{k.toFixed(2)}%:</span>{" "}
                         <span className="text-orange-300 font-medium">
                           {showNormalVol
@@ -2192,7 +2192,7 @@ export default function RateDerivativesPage() {
                           return (
                             <tr
                               key={ten}
-                              className={`border-b border-border/50 cursor-pointer ${
+                              className={`border-b border-border/20 cursor-pointer ${
                                 isSelected ? "bg-orange-600/10" : "hover:bg-muted/40"
                               }`}
                               onClick={() => setSelectedVolTenorIdx(ti)}

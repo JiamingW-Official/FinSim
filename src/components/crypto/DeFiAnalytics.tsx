@@ -514,9 +514,9 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
           { label: "Lido TVL",       value: `$${lidoTVL.toFixed(1)}B` },
           { label: "Lido LS Share",  value: `${((lidoTVL / (lidoTVL + otherLSSlice)) * 100).toFixed(0)}%` },
         ].map((c) => (
-          <div key={c.label} className="rounded-lg border border-border/50 bg-card p-3">
+          <div key={c.label} className="rounded-lg border border-border/20 bg-card p-3">
             <div className="text-xs text-muted-foreground mb-1">{c.label}</div>
-            <div className="text-lg font-bold tabular-nums">{c.value}</div>
+            <div className="text-lg font-semibold tabular-nums">{c.value}</div>
           </div>
         ))}
       </div>
@@ -530,7 +530,7 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
             "rounded-full px-3 py-1 text-xs font-medium transition-colors",
             catFilter === "All"
               ? "bg-primary text-primary-foreground"
-              : "border border-border/50 text-muted-foreground hover:bg-muted/20",
+              : "border border-border/20 text-muted-foreground hover:bg-muted/20",
           )}
         >
           All
@@ -544,7 +544,7 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
               "rounded-full px-3 py-1 text-xs font-medium border transition-colors",
               catFilter === cat
                 ? "text-primary-foreground border-transparent"
-                : "border-border/50 text-muted-foreground hover:bg-muted/20",
+                : "border-border/20 text-muted-foreground hover:bg-muted/20",
             )}
             style={catFilter === cat ? { background: CATEGORY_COLORS[cat] } : {}}
           >
@@ -554,17 +554,17 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
       </div>
 
       {/* Protocol table */}
-      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+      <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
-                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground uppercase tracking-wide">Protocol</th>
-                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground uppercase tracking-wide hidden sm:table-cell">Chain</th>
-                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground uppercase tracking-wide">TVL ($B)</th>
-                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground uppercase tracking-wide">24h</th>
-                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground uppercase tracking-wide hidden md:table-cell">7d</th>
-                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground uppercase tracking-wide hidden lg:table-cell">Category</th>
+              <tr className="border-b border-border/20 bg-muted/30">
+                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground">Protocol</th>
+                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground hidden sm:table-cell">Chain</th>
+                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground">TVL ($B)</th>
+                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground">24h</th>
+                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground hidden md:table-cell">7d</th>
+                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground hidden lg:table-cell">Category</th>
               </tr>
             </thead>
             <tbody>
@@ -601,8 +601,8 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
       {/* Charts row */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* TVL bar chart */}
-        <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
+          <div className="text-xs font-semibold text-muted-foreground mb-3">
             TVL by Protocol (horizontal)
           </div>
           <HorizontalBars
@@ -618,8 +618,8 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
         </div>
 
         {/* Lido dominance donut */}
-        <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
+          <div className="text-xs font-semibold text-muted-foreground mb-3">
             Liquid Staking Dominance
           </div>
           <DonutChart slices={dominanceSlices} />
@@ -665,8 +665,8 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
   return (
     <div className="flex flex-col gap-4">
       {/* Gas price tiers */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Ethereum Gas Prices (Gwei)
         </div>
         <div className="grid grid-cols-3 gap-3">
@@ -675,9 +675,9 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
             { label: "Standard", value: gasPrice.standard, color: "text-amber-400",  time: "~30 sec" },
             { label: "Fast",     value: gasPrice.fast,     color: "text-red-500",    time: "~10 sec" },
           ] as const).map((tier) => (
-            <div key={tier.label} className="rounded-md border border-border/40 p-3 text-center">
+            <div key={tier.label} className="rounded-md border border-border/20 p-3 text-center">
               <div className="text-xs text-muted-foreground mb-1">{tier.label}</div>
-              <div className={cn("text-xl font-bold tabular-nums", tier.color)}>
+              <div className={cn("text-xl font-semibold tabular-nums", tier.color)}>
                 {tier.value.toFixed(1)}
               </div>
               <div className="text-xs text-muted-foreground mt-0.5">{tier.time}</div>
@@ -687,8 +687,8 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
       </div>
 
       {/* 24h gas heatmap */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           24-Hour Gas Price Heatmap (7-Day)
         </div>
         <div className="overflow-x-auto">
@@ -702,8 +702,8 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
       {/* Gas Alert + Tx Cost Calculator */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Gas alert */}
-        <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-1.5">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
+          <div className="text-xs font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
             <Flame className="h-3.5 w-3.5" />
             Gas Alert Threshold
           </div>
@@ -737,8 +737,8 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
         </div>
 
         {/* Tx cost calculator */}
-        <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 flex items-center gap-1.5">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
+          <div className="text-xs font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
             <Activity className="h-3.5 w-3.5" />
             Transaction Cost Calculator
           </div>
@@ -766,7 +766,7 @@ function GasTracker({ gasPrice }: { gasPrice: GasPrice }) {
             </div>
             <div className="flex justify-between rounded-md bg-primary/10 border border-primary/20 px-3 py-2">
               <span className="font-semibold">Cost (USD)</span>
-              <span className="tabular-nums font-bold text-primary">${costUSD.toFixed(2)}</span>
+              <span className="tabular-nums font-semibold text-primary">${costUSD.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -838,9 +838,9 @@ function WhaleTracker({
       )}
 
       {/* Whale table */}
-      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border/40">
-          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+      <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
+        <div className="px-4 py-3 border-b border-border/20">
+          <div className="text-xs font-semibold text-muted-foreground">
             Whale Wallet Activity (Last 24h)
           </div>
           <div className="text-xs text-muted-foreground mt-0.5">Trades &gt; $500K by smart money wallets</div>
@@ -848,7 +848,7 @@ function WhaleTracker({
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/30 bg-muted/20">
+              <tr className="border-b border-border/20 bg-muted/20">
                 <th className="py-2 px-3 text-left font-semibold text-muted-foreground">Wallet</th>
                 <th className="py-2 px-3 text-center font-semibold text-muted-foreground">Action</th>
                 <th className="py-2 px-3 text-left font-semibold text-muted-foreground">Token</th>
@@ -891,8 +891,8 @@ function WhaleTracker({
       </div>
 
       {/* Consensus summary */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Token Consensus Summary
         </div>
         <div className="flex flex-col gap-2">
@@ -901,7 +901,7 @@ function WhaleTracker({
               <span className="w-12 font-semibold">{c.token}</span>
               <div className="flex-1 h-2 rounded-full bg-muted/40 overflow-hidden">
                 <div
-                  className="h-full rounded-full bg-green-500 transition-all"
+                  className="h-full rounded-full bg-green-500 transition-colors"
                   style={{ width: `${c.bullPct}%` }}
                 />
               </div>
@@ -917,8 +917,8 @@ function WhaleTracker({
       </div>
 
       {/* Flow chart */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
+        <div className="text-xs font-semibold text-muted-foreground mb-3">
           Protocol Money Flow (Synthetic)
         </div>
         <div className="overflow-x-auto">
@@ -985,7 +985,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
                 "rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
                 assetFilter === asset
                   ? "bg-primary text-primary-foreground"
-                  : "border border-border/50 text-muted-foreground hover:bg-muted/20",
+                  : "border border-border/20 text-muted-foreground hover:bg-muted/20",
               )}
             >
               {asset}
@@ -1003,7 +1003,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
                 "rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
                 sortBy === val
                   ? "bg-primary text-primary-foreground"
-                  : "border border-border/50 text-muted-foreground hover:bg-muted/20",
+                  : "border border-border/20 text-muted-foreground hover:bg-muted/20",
               )}
             >
               {label}
@@ -1013,17 +1013,17 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
       </div>
 
       {/* Yield table */}
-      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+      <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
-                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground uppercase tracking-wide">Protocol</th>
-                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground uppercase tracking-wide hidden sm:table-cell">Strategy</th>
-                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground uppercase tracking-wide">APY</th>
-                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground uppercase tracking-wide hidden md:table-cell">TVL</th>
-                <th className="py-2.5 px-3 text-center font-semibold text-muted-foreground uppercase tracking-wide">Risk</th>
-                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground uppercase tracking-wide">Risk-Adj</th>
+              <tr className="border-b border-border/20 bg-muted/30">
+                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground">Protocol</th>
+                <th className="py-2.5 px-3 text-left font-semibold text-muted-foreground hidden sm:table-cell">Strategy</th>
+                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground">APY</th>
+                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground hidden md:table-cell">TVL</th>
+                <th className="py-2.5 px-3 text-center font-semibold text-muted-foreground">Risk</th>
+                <th className="py-2.5 px-3 text-right font-semibold text-muted-foreground">Risk-Adj</th>
               </tr>
             </thead>
             <tbody>
@@ -1050,7 +1050,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
             </tbody>
           </table>
         </div>
-        <div className="px-4 py-2 border-t border-border/30 bg-muted/10">
+        <div className="px-4 py-2 border-t border-border/20 bg-muted/10">
           <div className="text-xs text-muted-foreground">
             Risk-Adj = APY × (1 − discount): Low 5% · Medium 15% · High 30%
           </div>
@@ -1058,10 +1058,10 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
       </div>
 
       {/* Impermanent Loss Calculator */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="flex items-center gap-1.5 mb-3">
           <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
-          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <div className="text-xs font-semibold text-muted-foreground">
             Impermanent Loss Calculator
           </div>
         </div>
@@ -1103,7 +1103,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
         <div className="mt-3 flex flex-col gap-2 text-xs">
           <div className="flex justify-between rounded-md bg-muted/30 px-3 py-2.5">
             <span className="text-muted-foreground">Impermanent Loss</span>
-            <span className={cn("tabular-nums font-bold", ilValue < -1 ? "text-red-500" : "text-green-500")}>
+            <span className={cn("tabular-nums font-semibold", ilValue < -1 ? "text-red-500" : "text-green-500")}>
               {ilValue.toFixed(2)}%
             </span>
           </div>
@@ -1113,7 +1113,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
               ${ilDollarLoss.toFixed(2)}
             </span>
           </div>
-          <div className="rounded-md bg-muted/20 border border-border/30 px-3 py-2.5 text-muted-foreground leading-relaxed">
+          <div className="rounded-md bg-muted/20 border border-border/20 px-3 py-2.5 text-muted-foreground leading-relaxed">
             Formula: IL = 2·√r/(1+r) − 1, where r is the price ratio change.
             A 50% price move causes ~5.7% IL; 300% causes ~25% IL.
             This is realized only when you withdraw from the pool.
@@ -1156,7 +1156,7 @@ export function DeFiAnalytics() {
               "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
               section === s.id
                 ? "bg-primary text-primary-foreground"
-                : "border border-border/50 text-muted-foreground hover:bg-muted/20",
+                : "border border-border/20 text-muted-foreground hover:bg-muted/20",
             )}
           >
             {s.icon}

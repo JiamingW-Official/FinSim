@@ -84,7 +84,7 @@ function StatCard({
   return (
     <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <span className={cn("text-xl font-bold", valClass)}>{value}</span>
+      <span className={cn("text-xl font-semibold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
@@ -98,7 +98,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "violet";
 }) {
   const colors = {
-    blue: "bg-primary/10 border-primary/30 text-primary",
+    blue: "bg-muted/10 border-primary/30 text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     violet: "bg-orange-500/10 border-orange-500/30 text-orange-200",
@@ -355,7 +355,7 @@ function SaasTab() {
       {/* Page header */}
       <div className="flex items-start justify-between">
         <div>
-          <h2 className="text-lg font-bold text-foreground">SaaS Metrics Dashboard</h2>
+          <h2 className="text-lg font-semibold text-foreground">SaaS Metrics Dashboard</h2>
           <p className="text-sm text-muted-foreground mt-0.5">
             Key operating metrics for cloud software companies
           </p>
@@ -436,9 +436,9 @@ function SaasTab() {
                   key={c.ticker}
                   onClick={() => setSelected(selected === c.ticker ? null : c.ticker)}
                   className={cn(
-                    "border-b border-border/50 cursor-pointer transition-colors",
+                    "border-b border-border/20 cursor-pointer transition-colors",
                     selected === c.ticker
-                      ? "bg-primary/10"
+                      ? "bg-muted/10"
                       : "hover:bg-muted/30"
                   )}
                 >
@@ -483,7 +483,7 @@ function SaasTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
-            className="rounded-md border border-primary/30 bg-primary/5 p-4"
+            className="rounded-md border border-primary/30 bg-muted/5 p-4"
           >
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-medium text-foreground text-sm">
@@ -685,7 +685,7 @@ function AiInfraTab() {
                   key={h.ticker}
                   onClick={() => setActiveHyperscaler(activeHyperscaler === h.ticker ? null : h.ticker)}
                   className={cn(
-                    "border-b border-border/50 cursor-pointer transition-colors",
+                    "border-b border-border/20 cursor-pointer transition-colors",
                     activeHyperscaler === h.ticker ? "bg-orange-500/10" : "hover:bg-muted/30"
                   )}
                 >
@@ -860,7 +860,7 @@ function AiInfraTab() {
             <div key={item.name} className={cn(
               "rounded-md border p-3",
               item.color === "emerald" ? "border-emerald-500/30 bg-emerald-500/5"
-              : item.color === "blue" ? "border-primary/30 bg-primary/5"
+              : item.color === "blue" ? "border-primary/30 bg-muted/5"
               : "border-amber-500/30 bg-amber-500/5"
             )}>
               <div className="flex items-center justify-between mb-2">
@@ -986,8 +986,8 @@ function SemiCycleTab() {
                   key={c.ticker}
                   onClick={() => setSelectedSemi(selectedSemi === c.ticker ? null : c.ticker)}
                   className={cn(
-                    "border-b border-border/50 cursor-pointer transition-colors",
-                    selectedSemi === c.ticker ? "bg-primary/10" : "hover:bg-muted/30"
+                    "border-b border-border/20 cursor-pointer transition-colors",
+                    selectedSemi === c.ticker ? "bg-muted/10" : "hover:bg-muted/30"
                   )}
                 >
                   <td className="px-3 py-2.5">
@@ -1162,7 +1162,7 @@ function MegaCapTab() {
                   { label: "Buyback Yield", value: `${company.buybackYield}%`, cls: company.buybackYield > 1 ? "text-emerald-400" : "text-muted-foreground" },
                   { label: "Net Cash", value: fmtB(Math.abs(company.netCashB)), cls: company.netCashB >= 0 ? "text-emerald-400" : "text-rose-400" },
                 ].map((m) => (
-                  <div key={m.label} className="flex justify-between text-xs text-muted-foreground border-b border-border/50 py-1.5">
+                  <div key={m.label} className="flex justify-between text-xs text-muted-foreground border-b border-border/20 py-1.5">
                     <span className="text-muted-foreground">{m.label}</span>
                     <span className={cn("font-mono font-medium", m.cls ?? "text-foreground")}>{m.value}</span>
                   </div>
@@ -1244,8 +1244,8 @@ function MegaCapTab() {
                   key={c.ticker}
                   onClick={() => setSelected(c.ticker)}
                   className={cn(
-                    "border-b border-border/50 cursor-pointer transition-colors",
-                    selected === c.ticker ? "bg-primary/10" : "hover:bg-muted/30"
+                    "border-b border-border/20 cursor-pointer transition-colors",
+                    selected === c.ticker ? "bg-muted/10" : "hover:bg-muted/30"
                   )}
                 >
                   <td className="px-3 py-2.5 font-mono font-medium text-foreground">{c.ticker}</td>
@@ -1324,7 +1324,7 @@ function MegaCapTab() {
 // ══════════════════════════════════════════════════════════════════════════════
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Payments: "bg-primary/20 text-primary border-primary/30",
+  Payments: "bg-muted/10 text-primary border-primary/30",
   "E-commerce": "bg-amber-500/20 text-amber-300 border-amber-500/30",
   Social: "bg-orange-500/20 text-orange-300 border-orange-500/30",
   "Gig Economy": "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
@@ -1407,7 +1407,7 @@ function FintechTab() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                  className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                 >
                   <td className="px-3 py-2.5">
                     <span className="font-mono font-medium text-foreground">{c.ticker}</span>
@@ -1531,7 +1531,7 @@ export default function TechSectorPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-md bg-primary/20 border border-primary/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-muted/10 border border-primary/30 flex items-center justify-center">
               <Cpu className="w-3.5 h-3.5 text-muted-foreground/50" />
             </div>
             <div>

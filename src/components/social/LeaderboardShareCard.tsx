@@ -40,7 +40,7 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border bg-background/60 px-4 py-3">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-bold tracking-widest text-primary">FINSIM</span>
+          <span className="text-xs font-semibold tracking-widest text-primary">FINSIM</span>
           <span className="text-xs text-muted-foreground">Leaderboard</span>
         </div>
         <button
@@ -62,7 +62,7 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
           )}
           <div className="flex items-baseline gap-1">
             <span className="text-xs text-muted-foreground">#</span>
-            <span className="text-5xl font-bold tabular-nums text-foreground">{rank}</span>
+            <span className="text-2xl font-semibold tabular-nums text-foreground">{rank}</span>
           </div>
           <div className="text-xs text-muted-foreground">
             of {totalPlayers.toLocaleString()} players
@@ -71,7 +71,7 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
 
         {/* Top N% badge */}
         {isTop10 && (
-          <div className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
+          <div className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
             Top {Math.ceil(topPct)}% of all players
           </div>
         )}
@@ -80,17 +80,17 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
         <div className="grid w-full grid-cols-3 gap-2 rounded-lg bg-background/60 px-3 py-3 text-center text-xs">
           <div>
             <div className="text-muted-foreground">Return</div>
-            <div className={`font-bold tabular-nums ${portfolioReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+            <div className={`font-semibold tabular-nums ${portfolioReturn >= 0 ? "text-emerald-400" : "text-red-400"}`}>
               {returnSign}{portfolioReturn.toFixed(1)}%
             </div>
           </div>
           <div>
             <div className="text-muted-foreground">Win Rate</div>
-            <div className="font-bold tabular-nums">{winRate.toFixed(0)}%</div>
+            <div className="font-semibold tabular-nums">{winRate.toFixed(0)}%</div>
           </div>
           <div>
             <div className="text-muted-foreground">Trades</div>
-            <div className="font-bold tabular-nums">{totalTrades}</div>
+            <div className="font-semibold tabular-nums">{totalTrades}</div>
           </div>
         </div>
 
@@ -101,14 +101,14 @@ export function LeaderboardShareCard({ data, onClose }: LeaderboardShareCardProp
       <div className="flex gap-2 border-t border-border px-4 py-3">
         <button
           onClick={handleCopy}
-          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-bold text-foreground transition-colors hover:bg-primary/90 active:bg-primary/80"
+          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-primary py-2 text-[11px] font-semibold text-foreground transition-colors hover:bg-primary/90 active:bg-primary/80"
         >
           <Copy className="h-3.5 w-3.5" />
           Copy Share Text
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border px-3 py-2 text-[11px] font-bold text-muted-foreground transition-colors hover:bg-muted/30"
+          className="rounded-lg border border-border px-3 py-2 text-[11px] font-semibold text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -168,7 +168,7 @@ export function LeaderboardShareButton({ data }: LeaderboardShareButtonProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-bold text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
+        className="flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
       >
         <Trophy className="h-3.5 w-3.5" />
         Share Rank

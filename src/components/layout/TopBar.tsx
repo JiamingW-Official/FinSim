@@ -117,8 +117,8 @@ function TickerDropdown({
   return (
     <>
       <div className="fixed inset-0 z-40" onClick={onClose} />
-      <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-border/40 bg-popover shadow-sm">
-        <div className="flex items-center gap-2 border-b border-border/40 px-3 py-2">
+      <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-border/20 bg-popover shadow-sm">
+        <div className="flex items-center gap-2 border-b border-border/20 px-3 py-2">
           <Search className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
           <input
             ref={inputRef}
@@ -242,13 +242,13 @@ function QuickActionsMenu() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex h-6 w-6 items-center justify-center rounded-md border border-border/30 text-muted-foreground/40 transition-colors hover:bg-muted/30 hover:text-foreground/70"
+        className="flex h-6 w-6 items-center justify-center rounded-md border border-border/20 text-muted-foreground/40 transition-colors hover:bg-muted/30 hover:text-foreground/70"
         title="Quick actions"
       >
         <Plus className="h-3.5 w-3.5" />
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-border/40 bg-popover shadow-sm py-1">
+        <div className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-border/20 bg-popover shadow-sm py-1">
           {actions.map((a) => (
             <button
               key={a.href}
@@ -344,7 +344,7 @@ export function TopBar() {
   const [tickerQuery, setTickerQuery] = useState("");
 
   return (
-    <div className="relative flex h-9 items-center justify-between px-4 border-b border-border/40 bg-background">
+    <div className="relative flex h-9 items-center justify-between px-4 border-b border-border/20 bg-background">
       {/* ── Left ── */}
       <div className="flex items-center gap-3">
         {/* Ticker — clickable to open search */}

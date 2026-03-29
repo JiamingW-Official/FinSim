@@ -240,7 +240,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
               "rounded-md border px-2.5 py-1 text-[11px] font-medium transition-colors",
               activeCategory === cat.id
                 ? "border-primary bg-primary/10 text-primary"
-                : "border-border/50 bg-muted/30 text-muted-foreground hover:border-border hover:text-foreground",
+                : "border-border/20 bg-muted/30 text-muted-foreground hover:border-border hover:text-foreground",
             )}
           >
             {cat.label}
@@ -259,7 +259,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
               className="flex items-center gap-1 rounded-md border border-amber-500/20 bg-amber-500/10 px-2 py-0.5"
             >
               <Flame className="h-3 w-3 text-amber-400" />
-              <span className="text-[11px] font-bold text-amber-400">
+              <span className="text-[11px] font-semibold text-amber-400">
                 Streak: {streak}
               </span>
             </motion.div>
@@ -290,23 +290,23 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="rounded-md border border-border/50 bg-muted/20 px-3 py-2 text-xs text-muted-foreground">
+            <div className="rounded-md border border-border/20 bg-muted/20 px-3 py-2 text-xs text-muted-foreground">
               <div className="grid grid-cols-2 gap-x-4 gap-y-0.5">
                 <span>
-                  <kbd className="rounded border border-border/50 bg-muted px-1 font-mono">Space</kbd> flip card
+                  <kbd className="rounded border border-border/20 bg-muted px-1 font-mono">Space</kbd> flip card
                 </span>
                 <span>
-                  <kbd className="rounded border border-border/50 bg-muted px-1 font-mono">←</kbd>
-                  <kbd className="rounded border border-border/50 bg-muted px-1 font-mono">→</kbd> navigate
+                  <kbd className="rounded border border-border/20 bg-muted px-1 font-mono">←</kbd>
+                  <kbd className="rounded border border-border/20 bg-muted px-1 font-mono">→</kbd> navigate
                 </span>
                 <span>
-                  <kbd className="rounded border border-border/50 bg-muted px-1 font-mono">1</kbd> Again
+                  <kbd className="rounded border border-border/20 bg-muted px-1 font-mono">1</kbd> Again
                 </span>
                 <span>
-                  <kbd className="rounded border border-border/50 bg-muted px-1 font-mono">2</kbd> Hard
+                  <kbd className="rounded border border-border/20 bg-muted px-1 font-mono">2</kbd> Hard
                 </span>
                 <span>
-                  <kbd className="rounded border border-border/50 bg-muted px-1 font-mono">3</kbd> Easy
+                  <kbd className="rounded border border-border/20 bg-muted px-1 font-mono">3</kbd> Easy
                 </span>
               </div>
             </div>
@@ -342,12 +342,12 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
               onClick={handleFlip}
             >
               {/* Front */}
-              <div className="card-flip-front min-h-[220px] rounded-md border border-border/40 bg-card p-5 flex flex-col items-center justify-center gap-3">
+              <div className="card-flip-front min-h-[220px] rounded-md border border-border/20 bg-card p-5 flex flex-col items-center justify-center gap-3">
                 <div className="flex w-full items-center justify-between">
                   {cat && (
                     <span
                       className={cn(
-                        "text-[11px] font-bold",
+                        "text-[11px] font-semibold",
                         cat.color,
                       )}
                     >
@@ -356,7 +356,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   )}
                   <div className="ml-auto flex items-center gap-1.5">
                     {isNew && (
-                      <span className="rounded-sm bg-primary/10 px-1.5 py-0.5 text-[11px] font-bold text-primary">
+                      <span className="rounded-sm bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold text-primary">
                         New
                       </span>
                     )}
@@ -391,7 +391,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                 {cat && (
                   <span
                     className={cn(
-                      "text-[11px] font-bold",
+                      "text-[11px] font-semibold",
                       cat.color,
                     )}
                   >
@@ -402,7 +402,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   {currentCard.back}
                 </p>
                 {currentCard.hint && (
-                  <p className="text-xs text-muted-foreground italic border-t border-border/40 pt-2 mt-1">
+                  <p className="text-xs text-muted-foreground italic border-t border-border/20 pt-2 mt-1">
                     {currentCard.hint}
                   </p>
                 )}
@@ -441,7 +441,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
                   type="button"
                   onClick={() => advance(rating)}
                   className={cn(
-                    "flex flex-1 items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-semibold transition-all hover:brightness-110 active:scale-95",
+                    "flex flex-1 items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-semibold transition-colors hover:brightness-110 active:scale-95",
                     isEasy &&
                       "border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20",
                     rating === 2 &&
@@ -468,7 +468,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
             type="button"
             onClick={handlePrev}
             disabled={cardIndex === 0}
-            className="flex items-center gap-1 rounded-md border border-border/50 bg-muted/20 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors hover:border-border hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+            className="flex items-center gap-1 rounded-md border border-border/20 bg-muted/20 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors hover:border-border hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
           >
             <ChevronLeft className="h-3.5 w-3.5" />
             Prev
@@ -482,7 +482,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
             type="button"
             onClick={handleNext}
             disabled={cardIndex + 1 >= totalCards}
-            className="flex items-center gap-1 rounded-md border border-border/50 bg-muted/20 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors hover:border-border hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+            className="flex items-center gap-1 rounded-md border border-border/20 bg-muted/20 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors hover:border-border hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
           >
             Next
             <ChevronRight className="h-3.5 w-3.5" />
@@ -541,11 +541,11 @@ function StatTile({
   valueColor?: string;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-3 py-2.5">
-      <span className="text-[11px] font-bold text-muted-foreground">
+    <div className="flex flex-col gap-0.5 rounded-lg border border-border/20 bg-card px-3 py-2.5">
+      <span className="text-[11px] font-semibold text-muted-foreground">
         {label}
       </span>
-      <span className={cn("text-sm font-bold tabular-nums", valueColor)}>{value}</span>
+      <span className={cn("text-sm font-semibold tabular-nums", valueColor)}>{value}</span>
       <span className="text-[11px] text-muted-foreground">{sub}</span>
     </div>
   );

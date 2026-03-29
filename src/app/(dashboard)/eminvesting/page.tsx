@@ -484,7 +484,7 @@ export default function EMInvestingPage() {
           <div className="p-2 rounded-lg bg-orange-500/10 border border-orange-500/20">
             <Globe className="w-5 h-5 text-orange-400" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Emerging Markets Investing</h1>
+          <h1 className="text-2xl font-semibold text-foreground">Emerging Markets Investing</h1>
           <Badge variant="outline" className="border-orange-500/30 text-orange-400 text-xs">Advanced</Badge>
         </div>
         <p className="text-muted-foreground text-sm max-w-2xl">
@@ -509,7 +509,7 @@ export default function EMInvestingPage() {
             <CardContent className="p-3 flex items-center gap-3">
               <div className={cn("p-1.5 rounded-md bg-muted", chip.color)}>{chip.icon}</div>
               <div>
-                <div className={cn("text-lg font-bold leading-none", chip.color)}>{chip.value}</div>
+                <div className={cn("text-lg font-semibold leading-none", chip.color)}>{chip.value}</div>
                 <div className="text-muted-foreground text-xs mt-0.5">{chip.label}</div>
                 <div className="text-muted-foreground text-xs">{chip.sub}</div>
               </div>
@@ -648,7 +648,7 @@ export default function EMInvestingPage() {
                   </thead>
                   <tbody>
                     {EM_FACTOR_PREMIUMS.map((f, i) => (
-                      <tr key={`fac-${i}`} className="border-b border-border/50">
+                      <tr key={`fac-${i}`} className="border-b border-border/20">
                         <td className="py-2 text-muted-foreground font-medium">{f.factor}</td>
                         <td className="py-2 text-right text-orange-400 font-mono">{f.emAlpha}</td>
                         <td className="py-2 text-right text-indigo-400 font-mono">{f.dmAlpha}</td>
@@ -827,7 +827,7 @@ export default function EMInvestingPage() {
                 {RISK_FRAMEWORK.map((cat, i) => (
                   <div
                     key={`rf-${i}`}
-                    className="rounded-lg p-3 cursor-pointer border transition-all"
+                    className="rounded-lg p-3 cursor-pointer border transition-colors"
                     style={{ borderColor: expandedRisk === i ? cat.color : cat.color + "30", background: expandedRisk === i ? cat.color + "15" : "#18181b" }}
                     onClick={() => setExpandedRisk(expandedRisk === i ? null : i)}
                   >
@@ -909,7 +909,7 @@ export default function EMInvestingPage() {
               {CASE_STUDIES.map((cs, i) => (
                 <div
                   key={`cs-${i}`}
-                  className="rounded-lg border cursor-pointer transition-all"
+                  className="rounded-lg border cursor-pointer transition-colors"
                   style={{ borderColor: expandedCase === i ? cs.color : cs.color + "30" }}
                   onClick={() => setExpandedCase(expandedCase === i ? null : i)}
                 >
@@ -1099,7 +1099,7 @@ export default function EMInvestingPage() {
                   </thead>
                   <tbody>
                     {CBDC_DATA.map((c, i) => (
-                      <tr key={`cbdc-${i}`} className="border-b border-border/50">
+                      <tr key={`cbdc-${i}`} className="border-b border-border/20">
                         <td className="py-2 font-medium" style={{ color: c.color }}>{c.country}</td>
                         <td className="py-2 text-muted-foreground">{c.system}</td>
                         <td className="py-2">

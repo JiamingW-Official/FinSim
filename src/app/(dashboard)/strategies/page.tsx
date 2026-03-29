@@ -25,9 +25,9 @@ interface PrebuiltStrategy {
 type PageTab = "library" | "my-strategies" | "builder";
 
 const CATEGORY_META: Record<StrategyCategory, { label: string; color: string; bg: string }> = {
-  trend:           { label: "Trend",           color: "text-primary",   bg: "bg-primary/10" },
+  trend:           { label: "Trend",           color: "text-foreground",   bg: "bg-muted/60" },
   "mean-reversion":{ label: "Mean Reversion",  color: "text-amber-400",  bg: "bg-amber-500/10" },
-  momentum:        { label: "Momentum",         color: "text-primary", bg: "bg-primary/10" },
+  momentum:        { label: "Momentum",         color: "text-foreground", bg: "bg-muted/60" },
   breakout:        { label: "Breakout",         color: "text-emerald-400",   bg: "bg-teal-500/10" },
 };
 
@@ -452,11 +452,11 @@ function StrategyCard({
     (resultSharpe ?? strategy.sharpe) >= 1.5
       ? "text-emerald-400"
       : (resultSharpe ?? strategy.sharpe) >= 1.0
-      ? "text-primary"
+      ? "text-foreground"
       : "text-amber-400";
 
   return (
-    <div className="flex flex-col rounded-md border border-border/50 bg-foreground/[0.025] p-4 gap-3 hover:border-border transition-colors">
+    <div className="flex flex-col rounded-md border border-border/20 bg-foreground/[0.025] p-4 gap-3 hover:border-border transition-colors">
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
@@ -483,16 +483,16 @@ function StrategyCard({
       </ul>
 
       {/* Stats row */}
-      <div className="grid grid-cols-4 gap-2 rounded-lg border border-border/50 bg-black/20 px-3 py-2">
+      <div className="grid grid-cols-4 gap-2 rounded-lg border border-border/20 bg-black/20 px-3 py-2">
         <div className="flex flex-col items-center gap-0.5">
           <span className="text-[11px] text-muted-foreground">Sharpe</span>
-          <span className={`text-xs text-muted-foreground font-bold tabular-nums ${sharpeColor}`}>
+          <span className={`text-xs text-muted-foreground font-semibold tabular-nums ${sharpeColor}`}>
             {resultSharpe ?? strategy.sharpe}
           </span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
           <span className="text-[11px] text-muted-foreground">Win%</span>
-          <span className="text-xs font-bold tabular-nums text-muted-foreground">{strategy.winRate}%</span>
+          <span className="text-xs font-semibold tabular-nums text-muted-foreground">{strategy.winRate}%</span>
         </div>
         <div className="flex flex-col items-center gap-0.5">
           <span className="text-[11px] text-muted-foreground">Best Yr</span>
@@ -513,7 +513,7 @@ function StrategyCard({
           </div>
           <div className="h-1 w-full rounded-full bg-foreground/5 overflow-hidden">
             <div
-              className="h-full bg-primary transition-all duration-100"
+              className="h-full bg-primary transition-colors duration-100"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -577,7 +577,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
   return (
     <div
       className={`flex items-center gap-3 rounded-lg border px-4 py-3 transition-colors ${
-        selected ? "border-primary/40 bg-primary/5" : "border-border/50 bg-foreground/[0.02] hover:border-border"
+        selected ? "border-primary/40 bg-primary/5" : "border-border/20 bg-foreground/[0.02] hover:border-border"
       }`}
     >
       {/* Select checkbox for compare */}
@@ -607,7 +607,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         {strategy.lastBacktestSharpe != null && (
           <div className="text-center">
             <div className="text-[11px] text-muted-foreground">Sharpe</div>
-            <div className={`text-xs font-medium tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-primary" : "text-amber-400"}`}>
+            <div className={`text-xs font-medium tabular-nums ${strategy.lastBacktestSharpe >= 1 ? "text-foreground" : "text-amber-400"}`}>
               {strategy.lastBacktestSharpe.toFixed(2)}
             </div>
           </div>
@@ -627,7 +627,7 @@ function SavedStrategyRow({ strategy, onEdit, onBacktest, onDelete, onExport, se
         <button onClick={onEdit} className="rounded p-1.5 text-muted-foreground hover:bg-muted/30 hover:text-muted-foreground transition-colors" title="Edit">
           <Edit2 className="h-3.5 w-3.5" />
         </button>
-        <button onClick={onBacktest} className="rounded p-1.5 text-muted-foreground hover:bg-muted/30 hover:text-primary transition-colors" title="Backtest">
+        <button onClick={onBacktest} className="rounded p-1.5 text-muted-foreground hover:bg-muted/30 hover:text-foreground transition-colors" title="Backtest">
           <Play className="h-3.5 w-3.5" />
         </button>
         <button onClick={onExport} className="rounded p-1.5 text-muted-foreground hover:bg-muted/30 hover:text-muted-foreground transition-colors" title="Export JSON">
@@ -687,12 +687,12 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
       </div>
 
       <div className="grid grid-cols-[1fr_auto_1fr] gap-4 text-center">
-        <div className="rounded-lg border border-border/50 bg-foreground/[0.02] px-3 py-2">
-          <span className="text-xs font-medium text-primary">{a.name}</span>
+        <div className="rounded-lg border border-border/20 bg-foreground/[0.02] px-3 py-2">
+          <span className="text-xs font-medium text-foreground">{a.name}</span>
         </div>
         <span className="flex items-center text-xs text-muted-foreground">vs</span>
-        <div className="rounded-lg border border-border/50 bg-foreground/[0.02] px-3 py-2">
-          <span className="text-xs font-medium text-primary">{b.name}</span>
+        <div className="rounded-lg border border-border/20 bg-foreground/[0.02] px-3 py-2">
+          <span className="text-xs font-medium text-foreground">{b.name}</span>
         </div>
       </div>
 
@@ -703,7 +703,7 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
           const aWins = row.higherBetter ? nA > nB : nA < nB;
           const bWins = row.higherBetter ? nB > nA : nB < nA;
           return (
-            <div key={row.label} className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-1 border-b border-border/50 last:border-0">
+            <div key={row.label} className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 py-1 border-b border-border/20 last:border-0">
               <div className={`text-right text-xs tabular-nums font-medium ${aWins ? "text-emerald-400" : "text-muted-foreground"}`}>{row.aVal}</div>
               <div className="text-center text-xs text-muted-foreground w-24">{row.label}</div>
               <div className={`text-left text-xs tabular-nums font-medium ${bWins ? "text-emerald-400" : "text-muted-foreground"}`}>{row.bVal}</div>
@@ -824,10 +824,7 @@ export default function StrategiesPage() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="flex items-center gap-3 border-b border-border/50 bg-black/30 px-6 py-6 border-l-4 border-l-primary">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
-          <BookMarked className="h-3.5 w-3.5 text-muted-foreground/50" />
-        </div>
+      <div className="flex items-center gap-3 border-b border-border/20 px-6 py-6 border-l-4 border-l-primary">
         <div>
           <h1 className="text-sm font-medium text-foreground">Strategy Library</h1>
           <p className="text-xs text-muted-foreground">Browse, customize, and build trading strategies</p>
@@ -839,7 +836,7 @@ export default function StrategiesPage() {
       </div>
 
       {/* Tab Bar */}
-      <div className="flex border-b border-border/50 bg-black/20">
+      <div className="flex border-b border-border/20 bg-black/20">
         {TABS.map((tab) => (
           <button
             key={tab.id}
@@ -875,7 +872,7 @@ export default function StrategiesPage() {
         {activeTab === "library" && (
           <div className="flex h-full flex-col overflow-hidden">
             {/* Category filter bar */}
-            <div className="flex items-center gap-2 border-b border-border/50 bg-black/10 px-6 py-2.5">
+            <div className="flex items-center gap-2 border-b border-border/20 bg-black/10 px-6 py-2.5">
               <span className="text-xs text-muted-foreground mr-1">Filter:</span>
               {(["all", "trend", "mean-reversion", "momentum", "breakout"] as const).map((cat) => {
                 const meta = cat === "all" ? null : CATEGORY_META[cat];
@@ -916,9 +913,9 @@ export default function StrategiesPage() {
               <div className="mx-auto max-w-4xl space-y-4">
                 {/* Compare header */}
                 {selectedIds.length > 0 && (
-                  <div className="flex items-center gap-3 rounded-lg border border-border bg-primary/5 px-4 py-2.5">
+                  <div className="flex items-center gap-3 rounded-lg border border-border bg-muted/30 px-4 py-2.5">
                     <GitCompare className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
-                    <span className="text-xs text-primary flex-1">
+                    <span className="text-xs text-foreground flex-1">
                       {selectedIds.length === 1
                         ? "Select one more strategy to compare side-by-side"
                         : "2 strategies selected for comparison"}
@@ -1090,10 +1087,10 @@ function StrategyBuilderWrapper({
     <div className="space-y-3">
       {/* Template notice */}
       {(cloneTemplate || editStrategy) && (
-        <div className="flex items-center justify-between rounded-lg border border-border bg-primary/5 px-4 py-2.5">
+        <div className="flex items-center justify-between rounded-lg border border-border bg-muted/30 px-4 py-2.5">
           <div className="flex items-center gap-2">
-            <Zap className="h-3.5 w-3.5 text-primary shrink-0" />
-            <span className="text-xs text-primary">
+            <Zap className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+            <span className="text-xs text-foreground">
               {editStrategy ? `Editing: ${editStrategy.name}` : `Cloned from: ${cloneTemplate?.name}`}
               {" — load it from the dropdown below"}
             </span>

@@ -167,7 +167,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
   return (
     <div className="space-y-4">
       {/* Controls */}
-      <div className="rounded-lg border border-border/30 bg-muted/10 p-4 space-y-3">
+      <div className="rounded-lg border border-border/20 bg-muted/10 p-4 space-y-3">
         <h3 className="text-xs font-semibold text-muted-foreground">
           Grid Search Parameters
         </h3>
@@ -178,7 +178,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           <select
             value={selectedStrategyIdx}
             onChange={(e) => setSelectedStrategyIdx(parseInt(e.target.value, 10))}
-            className="flex-1 appearance-none rounded-md border border-border/50 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex-1 appearance-none rounded-md border border-border/20 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {savedStrategies.length === 0 ? (
               <option value={0}>Demo Strategy (no saved strategies)</option>
@@ -196,7 +196,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           <select
             value={param1}
             onChange={(e) => setParam1(e.target.value as ParamKey)}
-            className="flex-1 appearance-none rounded-md border border-border/50 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex-1 appearance-none rounded-md border border-border/20 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(Object.keys(PARAM_CONFIGS) as ParamKey[]).map((k) => (
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
@@ -213,7 +213,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           <select
             value={param2}
             onChange={(e) => setParam2(e.target.value as ParamKey)}
-            className="flex-1 appearance-none rounded-md border border-border/50 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex-1 appearance-none rounded-md border border-border/20 bg-card px-2 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(Object.keys(PARAM_CONFIGS) as ParamKey[]).filter((k) => k !== param1).map((k) => (
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
@@ -247,20 +247,20 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
         <div className="space-y-3">
           {/* Best parameters callout */}
           {bestCell && (
-            <div className="rounded-lg border border-border/40 bg-primary/5 px-4 py-2.5">
+            <div className="rounded-lg border border-border/20 bg-primary/5 px-4 py-2.5">
               <div className="text-xs text-primary font-semibold">Best Parameters Found</div>
               <div className="mt-1 flex gap-4 text-xs">
                 <span className="text-muted-foreground">
-                  {PARAM_CONFIGS[param1].label}: <span className="font-bold text-primary">{bestCell.p1}</span>
+                  {PARAM_CONFIGS[param1].label}: <span className="font-semibold text-primary">{bestCell.p1}</span>
                 </span>
                 <span className="text-muted-foreground">
-                  {PARAM_CONFIGS[param2].label}: <span className="font-bold text-primary">{bestCell.p2}</span>
+                  {PARAM_CONFIGS[param2].label}: <span className="font-semibold text-primary">{bestCell.p2}</span>
                 </span>
                 <span className="text-muted-foreground">
-                  Sharpe: <span className="font-bold text-emerald-400">{bestCell.sharpe.toFixed(2)}</span>
+                  Sharpe: <span className="font-semibold text-emerald-400">{bestCell.sharpe.toFixed(2)}</span>
                 </span>
                 <span className="text-muted-foreground">
-                  Return: <span className={`font-bold ${bestCell.totalReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+                  Return: <span className={`font-semibold ${bestCell.totalReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                     {bestCell.totalReturn >= 0 ? "+" : ""}{bestCell.totalReturn.toFixed(1)}%
                   </span>
                 </span>
@@ -306,7 +306,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
       )}
 
       {!hasRun && (
-        <div className="flex h-32 items-center justify-center rounded-lg border border-border/30 bg-muted/5 text-sm text-muted-foreground/70">
+        <div className="flex h-32 items-center justify-center rounded-lg border border-border/20 bg-muted/5 text-sm text-muted-foreground/70">
           Configure parameters and run the grid search to see the heatmap
         </div>
       )}

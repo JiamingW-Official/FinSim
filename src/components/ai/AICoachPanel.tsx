@@ -200,7 +200,7 @@ function SignalChips({
             onClick={() => onSelect(selectedId === s.id ? null : s.id)}
             title={s.description}
             className={cn(
-              "shrink-0 rounded border px-1.5 py-0.5 text-[10px] font-bold leading-none whitespace-nowrap transition-all",
+              "shrink-0 rounded border px-1.5 py-0.5 text-[10px] font-semibold leading-none whitespace-nowrap transition-colors",
               s.direction === "bullish"
                 ? selectedId === s.id
                   ? "bg-emerald-500/20 text-emerald-400/90 border-emerald-500/40 ring-1 ring-emerald-500/30"
@@ -233,7 +233,7 @@ function SignalChips({
               )}
             >
               <div className="flex items-center justify-between mb-0.5">
-                <span className="font-bold text-foreground/80">{selectedSig.shortLabel}</span>
+                <span className="font-semibold text-foreground/80">{selectedSig.shortLabel}</span>
                 <span className="text-amber-400 text-xs">
                   {"★".repeat(selectedSig.strength)}{"☆".repeat(3 - selectedSig.strength)}
                 </span>
@@ -270,22 +270,22 @@ function LevelLadder({
       : null;
 
   return (
-    <div className="rounded-md bg-background/40 border border-border/40 px-2 py-1.5 space-y-0.5">
+    <div className="rounded-md bg-background/40 border border-border/20 px-2 py-1.5 space-y-0.5">
       {nearestRes && (
         <div className="flex items-center justify-between text-[11px]">
-          <span className="text-red-400 font-bold">${nearestRes.price.toFixed(2)}</span>
+          <span className="text-red-400 font-semibold">${nearestRes.price.toFixed(2)}</span>
           <span className="text-muted-foreground/70">{nearestRes.label}</span>
           <span className="text-red-400/60 text-[11px]">▲ R</span>
         </div>
       )}
-      <div className="flex items-center justify-between text-[11px] py-0.5 border-y border-border/30">
-        <span className="text-foreground font-bold">● ${currentPrice.toFixed(2)}</span>
+      <div className="flex items-center justify-between text-[11px] py-0.5 border-y border-border/20">
+        <span className="text-foreground font-semibold">● ${currentPrice.toFixed(2)}</span>
         <span className="text-muted-foreground/50 text-[11px]">current</span>
-        {rr && <span className="text-amber-400 font-bold text-[11px]">R/R {rr}</span>}
+        {rr && <span className="text-amber-400 font-semibold text-[11px]">R/R {rr}</span>}
       </div>
       {nearestSup && (
         <div className="flex items-center justify-between text-[11px]">
-          <span className="text-emerald-400 font-bold">${nearestSup.price.toFixed(2)}</span>
+          <span className="text-emerald-400 font-semibold">${nearestSup.price.toFixed(2)}</span>
           <span className="text-muted-foreground/70">{nearestSup.label}</span>
           <span className="text-emerald-400/60 text-[11px]">▼ S</span>
         </div>
@@ -319,7 +319,7 @@ function DivergenceAlert({ divergences }: { divergences: AnalysisResult["diverge
       />
       <span
         className={cn(
-          "text-[11px] font-bold leading-tight",
+          "text-[11px] font-semibold leading-tight",
           isBull ? "text-emerald-500/80" : "text-red-500/80",
         )}
       >
@@ -335,10 +335,10 @@ function ProfileCard({ profile }: { profile: AnalysisResult["traderProfile"] }) 
   const styleLabel = profile.style.charAt(0).toUpperCase() + profile.style.slice(1);
 
   return (
-    <div className="rounded bg-background/40 border border-border/50 px-2 py-1.5 space-y-0.5">
+    <div className="rounded bg-background/40 border border-border/20 px-2 py-1.5 space-y-0.5">
       <div className="flex items-center gap-1.5 text-[11px]">
         <span className="text-xs">📊</span>
-        <span className="font-bold text-foreground/80">{styleLabel}</span>
+        <span className="font-semibold text-foreground/80">{styleLabel}</span>
         <span className="text-muted-foreground">
           {(profile.winRate * 100).toFixed(0)}% WR
         </span>
@@ -364,8 +364,8 @@ function GradeBadge({ grade }: { grade: string }) {
 
   return (
     <div className={cn("rounded border px-3 py-2 text-center", cls)}>
-      <div className="text-2xl font-bold leading-none">{grade}</div>
-      <div className="text-[11px] font-bold mt-0.5 opacity-80">TRADE GRADE</div>
+      <div className="text-2xl font-semibold leading-none">{grade}</div>
+      <div className="text-[11px] font-semibold mt-0.5 opacity-80">TRADE GRADE</div>
     </div>
   );
 }
@@ -379,11 +379,11 @@ function ReviewDisplay({ result }: { result: AnalysisResult }) {
         <GradeBadge grade={result.grade} />
         <div className="flex-1 space-y-1">
           <div className="text-[11px] text-emerald-400 leading-tight">
-            <span className="font-bold">✓ Worked: </span>
+            <span className="font-semibold">✓ Worked: </span>
             {result.wentWell}
           </div>
           <div className="text-[11px] text-amber-400 leading-tight">
-            <span className="font-bold">↑ Improve: </span>
+            <span className="font-semibold">↑ Improve: </span>
             {result.improve}
           </div>
         </div>
@@ -396,7 +396,7 @@ function SmallBadge({ label, cls }: { label: string; cls: { bg: string; text: st
   return (
     <span
       className={cn(
-        "rounded border px-1 py-0.5 text-[11px] font-bold leading-none",
+        "rounded border px-1 py-0.5 text-[11px] font-semibold leading-none",
         cls.bg, cls.text, cls.border,
       )}
     >
@@ -416,7 +416,7 @@ const REGIME_CLASSES: Record<string, { bg: string; text: string; border: string 
 const CONVICTION_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
   high:   { bg: "bg-primary/15",   text: "text-primary",          border: "border-primary/30" },
   medium: { bg: "bg-orange-500/15", text: "text-orange-400",       border: "border-orange-500/30" },
-  low:    { bg: "bg-muted",         text: "text-muted-foreground", border: "border-border/40" },
+  low:    { bg: "bg-muted",         text: "text-muted-foreground", border: "border-border/20" },
 };
 
 // ─── Multi-Timeframe Confluence Panel ────────────────────────────────────────
@@ -485,13 +485,13 @@ function MultiTimeframePanel({ barIndex, bias }: { barIndex: number; bias: strin
 
   return (
     <div
-      className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1.5"
+      className="rounded-md border border-border/20 bg-background/30 px-2 py-2 space-y-1.5"
     >
       <div className="flex items-center justify-between">
         <div className="text-[11px] font-medium text-foreground/50">
           Multi-TF Confluence
         </div>
-        <span className={cn("text-[11px] font-bold", confluenceColor)}>
+        <span className={cn("text-[11px] font-semibold", confluenceColor)}>
           {agreeing}/3 aligned
         </span>
       </div>
@@ -514,8 +514,8 @@ function MultiTimeframePanel({ barIndex, bias }: { barIndex: number; bias: strin
 
         return (
           <div key={row.label} className="flex items-center gap-2 text-[11px]">
-            <span className="w-9 text-muted-foreground font-bold shrink-0">{row.label}</span>
-            <span className={cn("w-3 font-bold shrink-0", dirColor)}>{arrow}</span>
+            <span className="w-9 text-muted-foreground font-semibold shrink-0">{row.label}</span>
+            <span className={cn("w-3 font-semibold shrink-0", dirColor)}>{arrow}</span>
             <StrengthBars value={row.strength} color={barColor} />
             <span className="text-muted-foreground/70 truncate min-w-0">{row.topSignal}</span>
           </div>
@@ -583,13 +583,13 @@ function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisRes
 
   return (
     <div
-      className="rounded-md border border-border/40 bg-background/30 px-2 py-2 space-y-1"
+      className="rounded-md border border-border/20 bg-background/30 px-2 py-2 space-y-1"
     >
       <div className="flex items-center justify-between">
         <div className="text-[11px] font-medium text-foreground/50">
           Confidence Check
         </div>
-        <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none", badgeColor)}>
+        <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-semibold leading-none", badgeColor)}>
           {metCount}/5 {badgeLabel}
         </span>
       </div>
@@ -639,7 +639,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
 
   return (
     <div
-      className="rounded-md border border-border/40 bg-muted/30 px-2 py-2 space-y-1"
+      className="rounded-md border border-border/20 bg-muted/30 px-2 py-2 space-y-1"
     >
       <div className="text-[11px] font-medium text-foreground/50">
         Suggested Plan
@@ -667,10 +667,10 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
       </div>
 
       {/* R:R Calculator */}
-      <div className="border-t border-border/30 pt-1 space-y-0.5">
+      <div className="border-t border-border/20 pt-1 space-y-0.5">
         <div className="flex items-center justify-between text-[11px]">
           <span className="text-muted-foreground">R:R Ratio</span>
-          <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none", rrColor)}>
+          <span className={cn("rounded border px-1.5 py-0.5 text-[11px] font-semibold leading-none", rrColor)}>
             {rrRatio.toFixed(1)}:1
           </span>
         </div>
@@ -687,7 +687,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
       </div>
 
       {/* Position Sizing */}
-      <div className="border-t border-border/30 pt-1 space-y-0.5">
+      <div className="border-t border-border/20 pt-1 space-y-0.5">
         <div className="text-[11px] font-medium text-foreground/40">
           Position Sizing (2% risk)
         </div>
@@ -696,8 +696,8 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
           <span className="font-mono text-foreground/60">{conservativeSize} sh · ${conservativeVal.toFixed(0)}</span>
         </div>
         <div className="flex justify-between text-[11px]">
-          <span className="text-foreground/70 font-bold">Standard (2%)</span>
-          <span className="font-mono text-primary font-bold">{plan.positionSize} sh · ${(plan.positionSize * entry).toFixed(0)}</span>
+          <span className="text-foreground/70 font-semibold">Standard (2%)</span>
+          <span className="font-mono text-primary font-semibold">{plan.positionSize} sh · ${(plan.positionSize * entry).toFixed(0)}</span>
         </div>
         <div className="flex justify-between text-[11px]">
           <span className="text-muted-foreground/70">Aggressive (3%)</span>
@@ -705,7 +705,7 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
         </div>
       </div>
 
-      <p className="text-[10px] text-muted-foreground/60 leading-tight border-t border-border/30 pt-1">
+      <p className="text-[10px] text-muted-foreground/60 leading-tight border-t border-border/20 pt-1">
         {plan.rationale}
       </p>
     </div>
@@ -799,7 +799,7 @@ function LivePositionCoach({
         </span>
         <span
           className={cn(
-            "text-xs font-bold font-mono",
+            "text-xs font-semibold font-mono",
             isProfit ? "text-emerald-400" : "text-red-400",
           )}
         >
@@ -1022,7 +1022,7 @@ export function AICoachPanel() {
     const msg = messages[revealedCount % messages.length];
     toast.custom(
       () => (
-        <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-card px-3 py-1.5 shadow text-xs max-w-56">
+        <div className="flex items-center gap-2 rounded-lg border border-border/20 bg-card px-3 py-1.5 shadow text-xs max-w-56">
           <span className="shrink-0">📊</span>
           <span className="text-muted-foreground">{msg}</span>
         </div>
@@ -1178,7 +1178,7 @@ export function AICoachPanel() {
                     }}
                     title={m.desc}
                     className={cn(
-                      "flex-1 rounded px-1 py-1 text-[10px] font-semibold transition-all leading-tight min-w-0",
+                      "flex-1 rounded px-1 py-1 text-[10px] font-semibold transition-colors leading-tight min-w-0",
                       mode === m.value
                         ? "bg-primary/15 text-primary border border-primary/30"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted/30 border border-transparent",
@@ -1218,7 +1218,7 @@ export function AICoachPanel() {
                       {/* Setup name hero badge */}
                       {result.setupName && (
                         <div className={cn("rounded-md border px-2 py-2 text-center", regimeCls.bg, regimeCls.border)}>
-                          <div className={cn("text-xs font-bold tracking-wider uppercase", regimeCls.text)}>
+                          <div className={cn("text-xs font-semibold", regimeCls.text)}>
                             {moodEmoji} {result.setupName}
                           </div>
                         </div>
@@ -1349,7 +1349,7 @@ export function AICoachPanel() {
               {/* ── Ideas tab ─────────────────────────────────────────────── */}
               {mode === "ideas" && (
                 <div className="space-y-1.5">
-                  <div className="text-[11px] font-bold text-foreground/40">
+                  <div className="text-[11px] font-semibold text-foreground/40">
                     Trade Ideas — All Tickers
                   </div>
                   <TradeIdeaFeed compact />
@@ -1359,7 +1359,7 @@ export function AICoachPanel() {
               {/* ── Scan tab ──────────────────────────────────────────────── */}
               {mode === "scan" && (
                 <div className="space-y-1.5">
-                  <div className="text-[11px] font-bold text-foreground/40">
+                  <div className="text-[11px] font-semibold text-foreground/40">
                     Opportunity Scanner
                   </div>
                   <OpportunityScanner
@@ -1401,7 +1401,7 @@ export function AICoachPanel() {
                   size="sm"
                   onClick={handleAnalyze}
                   disabled={loading}
-                  className="flex-1 text-xs font-bold"
+                  className="flex-1 text-xs font-semibold"
                 >
                   {loading ? "Analyzing…" : "Get Analysis"}
                 </Button>

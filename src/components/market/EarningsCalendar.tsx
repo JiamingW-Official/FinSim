@@ -257,7 +257,7 @@ function UpcomingStrip({
             <div className="flex items-center justify-between gap-1">
               <span className="font-mono text-xs font-semibold">{ev.ticker}</span>
               {isToday && (
-                <span className="text-[11px] font-bold bg-primary text-primary-foreground px-1.5 py-0.5 rounded">
+                <span className="text-[11px] font-semibold bg-primary text-primary-foreground px-1.5 py-0.5 rounded">
                   TODAY
                 </span>
               )}
@@ -369,7 +369,7 @@ function CalendarGrid({
   return (
     <div className="rounded-lg border bg-card overflow-hidden">
       {/* Day-of-week header */}
-      <div className="grid grid-cols-7 border-b border-border/30">
+      <div className="grid grid-cols-7 border-b border-border/20">
         {DOW.map((d) => (
           <div key={d} className="text-center text-xs font-medium text-muted-foreground py-2">
             {d}
@@ -484,7 +484,7 @@ function EarningsDetailPanel({
         <div className="flex items-start gap-3">
           {/* Logo placeholder */}
           <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center shrink-0">
-            <span className="text-xs font-bold font-mono">{event.ticker.slice(0, 2)}</span>
+            <span className="text-xs font-semibold font-mono">{event.ticker.slice(0, 2)}</span>
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -523,12 +523,12 @@ function EarningsDetailPanel({
         <div className="grid grid-cols-2 gap-2">
           <div className="rounded-lg bg-muted/40 p-2.5">
             <p className="text-[11px] text-muted-foreground">Expected</p>
-            <p className="font-mono tabular-nums text-sm font-bold">${event.epsEstimate.toFixed(2)}</p>
+            <p className="font-mono tabular-nums text-sm font-semibold">${event.epsEstimate.toFixed(2)}</p>
           </div>
           <div className="rounded-lg bg-muted/40 p-2.5">
             <p className="text-[11px] text-muted-foreground">Previous</p>
             <div className="flex items-center gap-1.5">
-              <p className="font-mono tabular-nums text-sm font-bold">${event.prevEPS.toFixed(2)}</p>
+              <p className="font-mono tabular-nums text-sm font-semibold">${event.prevEPS.toFixed(2)}</p>
               <span
                 className={cn(
                   "text-[11px] font-medium",
@@ -550,12 +550,12 @@ function EarningsDetailPanel({
         <div className="grid grid-cols-2 gap-2">
           <div className="rounded-lg bg-muted/40 p-2.5">
             <p className="text-[11px] text-muted-foreground">Expected</p>
-            <p className="font-mono tabular-nums text-sm font-bold">${event.revenueEstimate.toFixed(1)}B</p>
+            <p className="font-mono tabular-nums text-sm font-semibold">${event.revenueEstimate.toFixed(1)}B</p>
           </div>
           <div className="rounded-lg bg-muted/40 p-2.5">
             <p className="text-[11px] text-muted-foreground">Previous</p>
             <div className="flex items-center gap-1.5">
-              <p className="font-mono tabular-nums text-sm font-bold">${event.prevRevenue.toFixed(1)}B</p>
+              <p className="font-mono tabular-nums text-sm font-semibold">${event.prevRevenue.toFixed(1)}B</p>
               <span
                 className={cn(
                   "text-[11px] font-medium",
@@ -622,7 +622,7 @@ function EarningsDetailPanel({
           </div>
           <div className="flex items-center justify-between rounded-lg bg-muted/40 px-3 py-2">
             <span className="text-xs text-muted-foreground">Expected Move</span>
-            <span className="font-mono tabular-nums text-sm font-bold">
+            <span className="font-mono tabular-nums text-sm font-semibold">
               ±{event.expectedMove}%
             </span>
           </div>
@@ -713,7 +713,7 @@ function EarningsPlayIdeas({ events }: { events: CalendarEarningsEvent[] }) {
               <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">
                 {strategy.rationale}
               </p>
-              <div className="flex items-center justify-between text-[11px] text-muted-foreground border-t border-border/30 pt-2">
+              <div className="flex items-center justify-between text-[11px] text-muted-foreground border-t border-border/20 pt-2">
                 <span>IV Rank: <span className="font-semibold text-foreground">{ev.ivRank}</span></span>
                 <span>Exp. Move: <span className="font-semibold text-foreground">±{ev.expectedMove}%</span></span>
                 <span className="bg-muted px-1 py-0.5 rounded">{strategy.riskLabel}</span>

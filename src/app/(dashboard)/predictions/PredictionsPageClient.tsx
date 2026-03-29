@@ -195,7 +195,7 @@ function MarketRow({
         {market.expiresInDays}d
       </span>
 
-      <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/0 transition-all group-hover:text-muted-foreground/60 group-hover:translate-x-0.5" />
+      <ChevronRight className="h-3 w-3 shrink-0 text-muted-foreground/0 transition-colors group-hover:text-muted-foreground/60 group-hover:translate-x-0.5" />
     </button>
   );
 }
@@ -538,10 +538,10 @@ function MyBetsTab() {
           <h2 className="mb-3 text-xs font-medium text-muted-foreground">
             Active Positions ({activeBets.length})
           </h2>
-          <div className="overflow-x-auto rounded-lg bg-card border border-border/40 p-0">
+          <div className="overflow-x-auto rounded-lg bg-card border border-border/20 p-0">
             <table className="w-full text-[11px] min-w-[480px]">
               <thead className="sticky top-0 z-10 bg-card">
-                <tr className="border-b border-border/50">
+                <tr className="border-b border-border/20">
                   <th className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground">Market</th>
                   <th className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground">Position</th>
                   <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Stake</th>
@@ -558,7 +558,7 @@ function MyBetsTab() {
                     : Math.round(bet.amount * (1 / (1 - prob)));
                   const estPnl = estPayout - bet.amount;
                   return (
-                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/50 last:border-0 transition-colors hover:bg-muted/50">
+                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/20 last:border-0 transition-colors hover:bg-muted/50">
                       <td className="max-w-[200px] truncate px-3 py-2 text-foreground">
                         {market?.question.slice(0, 40) ?? bet.marketId}
                         {(market?.question.length ?? 0) > 40 ? "…" : ""}
@@ -657,7 +657,7 @@ function CalibrationChartSection() {
   }
 
   return (
-    <div className="rounded-lg bg-card border border-border/40 p-3">
+    <div className="rounded-lg bg-card border border-border/20 p-3">
       <h3 className="mb-3 text-[10px] text-muted-foreground">Predicted vs actual outcomes</h3>
       <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ maxWidth: w }} aria-hidden>
         {[0, 0.25, 0.5, 0.75, 1].map((v) => (
@@ -714,7 +714,7 @@ function PredictorTips() {
       {PREDICTOR_TIPS.map((tip, i) => (
         <div key={i} className="bg-transparent p-0 py-2">
           <div className="mb-1 flex items-center gap-2">
-            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-medium text-primary">
+            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium text-foreground">
               {i + 1}
             </span>
             <span className="text-xs font-medium text-foreground">{tip.title}</span>
@@ -793,7 +793,7 @@ export function PredictionsPageClient() {
   return (
     <div className="flex h-full flex-col">
       {/* Header */}
-      <div className="border-b border-border/50 px-4 pt-4 pb-0">
+      <div className="border-b border-border/20 px-4 pt-4 pb-0">
         <div className="flex items-center gap-3 pb-3">
           <div className="min-w-0">
             <h1 className="text-sm font-medium">Prediction Markets</h1>
@@ -836,7 +836,7 @@ export function PredictionsPageClient() {
             >
               {tab.label}
               {tab.value === "bets" && activeBetCount > 0 && (
-                <span className="rounded-full bg-primary/20 px-1 text-[11px] font-medium text-primary">{activeBetCount}</span>
+                <span className="rounded-full bg-muted px-1 text-[11px] font-medium text-foreground">{activeBetCount}</span>
               )}
             </button>
           ))}
@@ -845,7 +845,7 @@ export function PredictionsPageClient() {
 
       {/* Stats row (Markets tab only) */}
       {pageTab === "markets" && (
-        <div className="border-b border-border/50 px-4 py-2">
+        <div className="border-b border-border/20 px-4 py-2">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
             <span className="text-muted-foreground">Bets <span className="font-mono tabular-nums font-medium text-foreground">{bets.length}</span></span>
             <span className="text-border/30">&middot;</span>
@@ -875,7 +875,7 @@ export function PredictionsPageClient() {
             ) : (
               <>
                 {/* Search + filter + sort bar */}
-                <div className="border-b border-border/50 px-4 py-3 space-y-2">
+                <div className="border-b border-border/20 px-4 py-3 space-y-2">
                   {/* Search */}
                   <div className="relative">
                     <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
@@ -904,7 +904,7 @@ export function PredictionsPageClient() {
                             "shrink-0 rounded-md border px-2 py-1 text-xs font-medium transition-colors",
                             activeFilter === tab.value
                               ? "border-primary/30 bg-primary/10 text-primary"
-                              : "border-border/40 text-muted-foreground hover:text-foreground",
+                              : "border-border/20 text-muted-foreground hover:text-foreground",
                           )}
                         >
                           {tab.label}
@@ -977,7 +977,7 @@ export function PredictionsPageClient() {
       {pageTab === "tools" && (
         <div className="flex-1 overflow-y-auto">
           {/* Tool sub-tabs */}
-          <div className="border-b border-border/50 px-4">
+          <div className="border-b border-border/20 px-4">
             <div className="flex items-center gap-0.5 overflow-x-auto">
               {(
                 [

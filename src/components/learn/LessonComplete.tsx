@@ -126,7 +126,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
         {/* Grade letter with bounce */}
         <motion.div
           className={cn(
-            "relative flex h-24 w-24 items-center justify-center rounded-md border-2 text-5xl font-bold",
+            "relative flex h-24 w-24 items-center justify-center rounded-md border-2 text-2xl font-semibold",
             config.border,
             config.bg,
             config.color,
@@ -155,7 +155,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45 }}
         >
-          <h2 className="text-xl font-bold">{config.label}</h2>
+          <h2 className="text-xl font-semibold">{config.label}</h2>
           <p className="text-xs text-muted-foreground mt-0.5">{config.sublabel}</p>
         </motion.div>
 
@@ -181,13 +181,13 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           )}
 
           <motion.div
-            className="flex items-center justify-between border-t border-border/50 pt-2 mt-2"
+            className="flex items-center justify-between border-t border-border/20 pt-2 mt-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.78 }}
           >
-            <span className="text-sm font-bold">Total Score</span>
-            <span className={cn("text-sm font-bold tabular-nums", config.color)}>
+            <span className="text-sm font-semibold">Total Score</span>
+            <span className={cn("text-sm font-semibold tabular-nums", config.color)}>
               {breakdown.totalPoints} / {breakdown.maxPoints}
             </span>
           </motion.div>
@@ -206,10 +206,10 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           <AnimatedNumber
             value={adjustedXP}
             format={xpFormat}
-            className={cn("text-lg font-bold", config.color)}
+            className={cn("text-lg font-semibold", config.color)}
           />
           {gradeMultiplier > 1 && (
-            <span className={cn("text-xs font-bold rounded-full px-1.5 py-0.5 border", config.bg, config.color, config.border)}>
+            <span className={cn("text-xs font-semibold rounded-full px-1.5 py-0.5 border", config.bg, config.color, config.border)}>
               {gradeMultiplier === 1.5 ? "×1.5 BONUS 🎁" : "×1.2 BONUS 🎁"}
             </span>
           )}
@@ -224,7 +224,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           transition={{ delay: 0.9 }}
-          className="w-full rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+          className="w-full rounded-md bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:brightness-110"
         >
           Continue 🚀
         </motion.button>
@@ -249,7 +249,7 @@ function ScoreRow({
       transition={{ delay }}
     >
       <span className="text-muted-foreground">{label}</span>
-      <span className={cn("font-bold tabular-nums", highlight && "text-primary")}>
+      <span className={cn("font-semibold tabular-nums", highlight && "text-primary")}>
         {value}
       </span>
     </motion.div>

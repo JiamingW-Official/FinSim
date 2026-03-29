@@ -56,12 +56,12 @@ export function PnLHistogram() {
             key={bucket.label}
             className="flex flex-1 flex-col items-center gap-1"
           >
-            <span className="text-[11px] font-bold tabular-nums text-muted-foreground">
+            <span className="text-[11px] font-semibold tabular-nums text-muted-foreground">
               {bucket.count > 0 ? bucket.count : ""}
             </span>
             <div
               className={cn(
-                "w-full rounded-t transition-all",
+                "w-full rounded-t transition-colors",
                 isNeg ? "bg-red-500/50" : "bg-emerald-500/50",
               )}
               style={{

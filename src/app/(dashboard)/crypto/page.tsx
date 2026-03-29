@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import { DeFiAnalytics } from "@/components/crypto/DeFiAnalytics";
 import {
-  Bitcoin,
   TrendingUp,
   TrendingDown,
   Droplets,
@@ -543,7 +542,7 @@ function FearGreedGauge({ value }: { value: number }) {
         <circle cx={CX} cy={CY} r={5} fill={needleColor} />
       </svg>
       <div className="text-center -mt-1">
-        <div className="text-2xl font-bold font-mono tabular-nums" style={{ color: needleColor }}>{value}</div>
+        <div className="text-2xl font-semibold font-mono tabular-nums" style={{ color: needleColor }}>{value}</div>
         <div className="text-xs text-muted-foreground">{label}</div>
       </div>
     </div>
@@ -626,21 +625,21 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
     <div className="flex flex-col gap-4">
       {/* Summary cards */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-lg border border-border/50 bg-card p-3">
+        <div className="rounded-lg border border-border/20 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">Total Market Cap</div>
           <div className="text-sm font-medium font-mono tabular-nums">{fmtBil(totalMcap)}</div>
         </div>
-        <div className="rounded-lg border border-border/50 bg-card p-3">
+        <div className="rounded-lg border border-border/20 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">24h Volume</div>
           <div className="text-sm font-medium font-mono tabular-nums">{fmtBil(totalVol)}</div>
         </div>
-        <div className="rounded-lg border border-border/50 bg-card p-3">
+        <div className="rounded-lg border border-border/20 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">BTC Dominance</div>
           <div className="text-sm font-medium font-mono tabular-nums">
             {((rows.find((r) => r.symbol === "BTC")?.marketCap ?? 0) / totalMcap * 100).toFixed(1)}%
           </div>
         </div>
-        <div className="rounded-lg border border-border/50 bg-card p-3">
+        <div className="rounded-lg border border-border/20 bg-card p-3">
           <div className="text-xs text-muted-foreground mb-1">Active Assets</div>
           <div className="text-sm font-medium font-mono tabular-nums">{rows.length}</div>
         </div>
@@ -648,13 +647,13 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
 
       {/* Charts row */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">
             Market Cap Dominance
           </div>
           <DominancePie rows={rows} />
         </div>
-        <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">
             Fear &amp; Greed Index
           </div>
@@ -663,11 +662,11 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
       </div>
 
       {/* Price table */}
-      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+      <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
+              <tr className="border-b border-border/20 bg-muted/30">
                 <th className="py-2.5 px-3 text-left text-xs font-medium text-muted-foreground">#</th>
                 <th className="py-2.5 px-3 text-left text-xs font-medium text-muted-foreground">Asset</th>
                 <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground">Price</th>
@@ -683,7 +682,7 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
                   <td className="py-2.5 px-3 text-muted-foreground tabular-nums text-xs">{i + 1}</td>
                   <td className="py-2.5 px-3">
                     <div className="flex items-center gap-2">
-                      <span className="font-medium text-xs text-primary w-12">{r.symbol}</span>
+                      <span className="font-medium text-xs text-foreground w-12">{r.symbol}</span>
                       <span className="text-xs text-muted-foreground hidden sm:inline">{r.name}</span>
                     </div>
                   </td>
@@ -708,15 +707,15 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
       </div>
 
       {/* ── Risk Metrics ── */}
-      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border/40">
+      <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
+        <div className="px-4 py-3 border-b border-border/20">
           <div className="text-xs font-medium text-muted-foreground">Crypto Risk Metrics</div>
           <div className="text-xs text-muted-foreground mt-0.5">30d realized volatility, max drawdown from ATH, Sharpe ratio</div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-muted-foreground">
             <thead>
-              <tr className="border-b border-border/30 bg-muted/20">
+              <tr className="border-b border-border/20 bg-muted/20">
                 <th className="py-2 px-3 text-left text-muted-foreground font-medium">Asset</th>
                 <th className="py-2 px-3 text-right text-muted-foreground font-medium">Vol 30d</th>
                 <th className="py-2 px-3 text-right text-muted-foreground font-medium">Max DD</th>
@@ -728,7 +727,7 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
             <tbody>
               {riskMetrics.slice(0, 8).map((m) => (
                 <tr key={m.symbol} className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors">
-                  <td className="py-2.5 px-3 font-medium text-primary">{m.symbol}</td>
+                  <td className="py-2.5 px-3 font-medium text-foreground">{m.symbol}</td>
                   <td className="py-2.5 px-3 text-right tabular-nums">
                     <span className={cn("font-medium", m.realizedVol30d > 80 ? "text-red-500" : m.realizedVol30d > 60 ? "text-amber-500" : "text-muted-foreground")}>
                       {m.realizedVol30d.toFixed(1)}%
@@ -753,7 +752,7 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
             </tbody>
           </table>
         </div>
-        <div className="px-4 py-3 border-t border-border/30 bg-muted/10">
+        <div className="px-4 py-3 border-t border-border/20 bg-muted/10">
           <div className="text-xs text-muted-foreground leading-relaxed">
             <span className="font-medium text-foreground">Education:</span> Crypto assets typically carry 3-8x higher volatility than equities.
             S&amp;P 500 historical vol is ~16% annualized. A Sharpe ratio above 1.0 is considered good; most crypto assets have negative Sharpe in bear markets.
@@ -827,7 +826,7 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
                 "rounded-md px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                 selectedPair === pair
                   ? "bg-primary text-primary-foreground"
-                  : "border border-border/50 text-muted-foreground hover:bg-muted/20",
+                  : "border border-border/20 text-muted-foreground hover:bg-muted/20",
               )}
             >
               {pair}
@@ -836,7 +835,7 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
         </div>
 
         {/* Price + chart */}
-        <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
           <div className="flex items-baseline gap-3 mb-3">
             <span className="text-xl font-medium tabular-nums">{fmtPrice(price)}</span>
             <span className={cn("text-sm font-medium tabular-nums", (currentRow?.change24h ?? 0) >= 0 ? "text-green-500" : "text-red-500")}>
@@ -847,9 +846,9 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
         </div>
 
         {/* Order entry */}
-        <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-3">
+        <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col gap-3">
           <div className="text-xs font-medium text-muted-foreground">Spot Order</div>
-          <div className="flex rounded-md border border-border/50 overflow-hidden">
+          <div className="flex rounded-md border border-border/20 overflow-hidden">
             <button
               type="button"
               onClick={() => setSide("buy")}
@@ -907,7 +906,7 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
 
       {/* Right: Positions */}
       <div className="lg:w-72 flex flex-col gap-3">
-        <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">My Positions</div>
           {positions.length === 0 ? (
             <div className="text-xs text-muted-foreground text-center py-6">No open positions</div>
@@ -919,9 +918,9 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
                 const pnl = (livePrice - pos.avgPrice) * pos.qty;
                 const pnlPct = ((livePrice - pos.avgPrice) / pos.avgPrice) * 100;
                 return (
-                  <div key={pos.symbol} className="rounded-md border border-border/40 p-2.5 text-xs text-muted-foreground">
+                  <div key={pos.symbol} className="rounded-md border border-border/20 p-2.5 text-xs text-muted-foreground">
                     <div className="flex justify-between mb-1">
-                      <span className="font-medium text-primary">{pos.symbol}</span>
+                      <span className="font-medium text-foreground">{pos.symbol}</span>
                       <span className={cn("font-medium tabular-nums", pnl >= 0 ? "text-green-500" : "text-red-500")}>
                         {pnl >= 0 ? "+" : ""}${pnl.toFixed(2)}
                       </span>
@@ -976,7 +975,7 @@ function YieldFarmingSimulator() {
   }
 
   return (
-    <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col gap-4">
       <div className="text-xs font-medium text-muted-foreground">Yield Farming Simulator</div>
 
       {/* Protocol selector */}
@@ -990,7 +989,7 @@ function YieldFarmingSimulator() {
               "rounded-md px-2.5 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
               selectedFarm.id === f.id
                 ? "bg-primary text-primary-foreground"
-                : "border border-border/50 text-muted-foreground hover:bg-muted/20",
+                : "border border-border/20 text-muted-foreground hover:bg-muted/20",
             )}
           >
             {f.protocol} · {f.apy}%
@@ -999,7 +998,7 @@ function YieldFarmingSimulator() {
       </div>
 
       {/* Selected farm info */}
-      <div className="rounded-md bg-muted/20 border border-border/30 px-3 py-2.5 text-xs text-muted-foreground flex items-center justify-between">
+      <div className="rounded-md bg-muted/20 border border-border/20 px-3 py-2.5 text-xs text-muted-foreground flex items-center justify-between">
         <div>
           <span className="font-medium">{selectedFarm.protocol}</span>
           <span className="text-muted-foreground ml-1">— {selectedFarm.pool}</span>
@@ -1013,7 +1012,7 @@ function YieldFarmingSimulator() {
       </div>
 
       {/* APY vs APR explanation */}
-      <div className="rounded-md bg-primary/5 border border-border px-3 py-2 text-xs text-muted-foreground leading-relaxed">
+      <div className="rounded-md bg-muted/30 border border-border/20 px-3 py-2 text-xs text-muted-foreground leading-relaxed">
         <span className="font-medium text-foreground">APR vs APY:</span> APR ({apr.toFixed(1)}%) is simple interest — the base rate without compounding.
         APY ({apy.toFixed(2)}%) accounts for compounding every day. The gap grows as the rate increases.
         Daily compounding turns {apr.toFixed(1)}% APR into {apy.toFixed(2)}% APY.
@@ -1058,7 +1057,7 @@ function YieldFarmingSimulator() {
 
       {/* Compound effect */}
       {deposit > 0 && (
-        <div className="rounded-md border border-border/40 p-3 text-xs text-muted-foreground flex flex-col gap-2">
+        <div className="rounded-md border border-border/20 p-3 text-xs text-muted-foreground flex flex-col gap-2">
           <div className="font-medium text-muted-foreground text-xs">Auto-Compound Effect ({days} days)</div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Simple (no compounding)</span>
@@ -1074,7 +1073,7 @@ function YieldFarmingSimulator() {
           </div>
           {selectedFarm.isLP && (
             <>
-              <div className="border-t border-border/30 pt-2 flex justify-between">
+              <div className="border-t border-border/20 pt-2 flex justify-between">
                 <span className="text-muted-foreground">Est. IL (50% price move)</span>
                 <span className="tabular-nums text-red-500 font-medium">-${ilImpact.toFixed(2)}</span>
               </div>
@@ -1098,7 +1097,7 @@ function YieldFarmingSimulator() {
           type="button"
           onClick={harvestRewards}
           className={cn(
-            "flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-all",
+            "flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium transition-colors",
             harvested
               ? "bg-green-600 text-foreground"
               : "bg-primary text-primary-foreground hover:bg-primary/90",
@@ -1157,12 +1156,12 @@ function DeFiTab({ seed }: { seed: number }) {
       <YieldFarmingSimulator />
 
       {/* Liquidity Pools */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Liquidity Pools</div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border/40">
+              <tr className="border-b border-border/20">
                 <th className="py-2 px-3 text-left text-xs font-medium text-muted-foreground">Pool</th>
                 <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground">APY</th>
                 <th className="py-2 px-3 text-right text-xs font-medium text-muted-foreground">TVL</th>
@@ -1176,7 +1175,7 @@ function DeFiTab({ seed }: { seed: number }) {
                   key={pool.id}
                   className={cn(
                     "border-b border-border/20 last:border-0 transition-colors",
-                    selectedPool?.id === pool.id ? "bg-primary/10" : "hover:bg-muted/20",
+                    selectedPool?.id === pool.id ? "bg-muted/30" : "hover:bg-muted/20",
                   )}
                 >
                   <td className="py-2.5 px-3">
@@ -1192,7 +1191,7 @@ function DeFiTab({ seed }: { seed: number }) {
                     <button
                       type="button"
                       onClick={() => setSelectedPool(selectedPool?.id === pool.id ? null : pool)}
-                      className="text-xs rounded-md border border-border/50 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-muted/20 transition-colors"
+                      className="text-xs rounded-md border border-border/20 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-muted/20 transition-colors"
                     >
                       Add
                     </button>
@@ -1206,7 +1205,7 @@ function DeFiTab({ seed }: { seed: number }) {
 
       {/* Add Liquidity flow */}
       {selectedPool && (
-        <div className="rounded-lg border border-primary/30 bg-card p-4 flex flex-col gap-3">
+        <div className="rounded-lg border border-border bg-card p-4 flex flex-col gap-3">
           <div className="text-xs font-medium text-muted-foreground">
             Add Liquidity — {selectedPool.pair}
           </div>
@@ -1253,12 +1252,12 @@ function DeFiTab({ seed }: { seed: number }) {
 
       {/* My Positions */}
       {lpPositions.length > 0 && (
-        <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">My Positions</div>
           <div className="flex flex-col gap-2">
             {lpPositions.map((pos, i) => (
-              <div key={i} className="rounded-md border border-border/40 p-2.5 text-xs text-muted-foreground grid grid-cols-2 gap-x-4 gap-y-1">
-                <div className="col-span-2 font-medium text-primary">{pos.pair}</div>
+              <div key={i} className="rounded-md border border-border/20 p-2.5 text-xs text-muted-foreground grid grid-cols-2 gap-x-4 gap-y-1">
+                <div className="col-span-2 font-medium text-foreground">{pos.pair}</div>
                 <div className="text-muted-foreground">Deposited</div>
                 <div className="text-right tabular-nums">${pos.amount.toLocaleString()}</div>
                 <div className="text-muted-foreground">LP Tokens</div>
@@ -1274,11 +1273,11 @@ function DeFiTab({ seed }: { seed: number }) {
       )}
 
       {/* Staking Pools */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Yield Farming / Staking</div>
         <div className="flex flex-col gap-2">
           {stakingPools.map((s) => (
-            <div key={s.id} className="flex items-center justify-between rounded-md border border-border/30 px-3 py-2.5">
+            <div key={s.id} className="flex items-center justify-between rounded-md border border-border/20 px-3 py-2.5">
               <div>
                 <div className="text-xs text-muted-foreground font-medium">{s.name}</div>
                 <div className="text-xs text-muted-foreground">Min {s.minStake} {s.asset} · {s.lockDays === 0 ? "Flexible" : `${s.lockDays}d lock`}</div>
@@ -1292,7 +1291,7 @@ function DeFiTab({ seed }: { seed: number }) {
       </div>
 
       {/* IL Calculator */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Impermanent Loss Calculator</div>
         <div className="flex flex-col gap-3">
           <div>
@@ -1350,7 +1349,7 @@ function OnChainTab({ seed }: { seed: number }) {
   return (
     <div className="flex flex-col gap-4">
       {/* Gas tracker */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">
           ETH Gas Tracker (Gwei)
         </div>
@@ -1360,7 +1359,7 @@ function OnChainTab({ seed }: { seed: number }) {
             { label: "Standard", value: ethGas.standard, color: "text-amber-500",  time: "~30 sec" },
             { label: "Fast",     value: ethGas.fast,     color: "text-red-500",    time: "~10 sec" },
           ].map((tier) => (
-            <div key={tier.label} className="rounded-md border border-border/40 p-3 text-center">
+            <div key={tier.label} className="rounded-md border border-border/20 p-3 text-center">
               <div className="text-xs text-muted-foreground mb-1">{tier.label}</div>
               <div className={cn("text-sm font-medium font-mono tabular-nums", tier.color)}>{tier.value.toFixed(1)}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{tier.time}</div>
@@ -1370,7 +1369,7 @@ function OnChainTab({ seed }: { seed: number }) {
       </div>
 
       {/* Network stats */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Network Stats</div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {[
@@ -1381,7 +1380,7 @@ function OnChainTab({ seed }: { seed: number }) {
             { label: "Daily Txns",   value: networkStats.txCount.toLocaleString() },
             { label: "Avg Fee (USD)",value: `$${networkStats.avgFee.toFixed(2)}` },
           ].map((s) => (
-            <div key={s.label} className="rounded-md border border-border/30 p-2.5 text-xs text-muted-foreground">
+            <div key={s.label} className="rounded-md border border-border/20 p-2.5 text-xs text-muted-foreground">
               <div className="text-muted-foreground">{s.label}</div>
               <div className="font-medium tabular-nums mt-0.5">{s.value}</div>
             </div>
@@ -1390,15 +1389,15 @@ function OnChainTab({ seed }: { seed: number }) {
       </div>
 
       {/* Whale tracker */}
-      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border/40">
+      <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
+        <div className="px-4 py-3 border-b border-border/20">
           <div className="text-xs font-medium text-muted-foreground">Whale Tracker</div>
           <div className="text-xs text-muted-foreground mt-0.5">Large transactions (&gt; $500K)</div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-muted-foreground">
             <thead>
-              <tr className="border-b border-border/30 bg-muted/20">
+              <tr className="border-b border-border/20 bg-muted/20">
                 <th className="py-2 px-3 text-left text-muted-foreground font-medium">Wallet</th>
                 <th className="py-2 px-3 text-right text-muted-foreground font-medium">Amount</th>
                 <th className="py-2 px-3 text-left text-muted-foreground font-medium">Asset</th>
@@ -1414,7 +1413,7 @@ function OnChainTab({ seed }: { seed: number }) {
                   <td className="py-2.5 px-3 text-right tabular-nums font-medium">
                     ${(w.amount / 1_000_000).toFixed(2)}M
                   </td>
-                  <td className="py-2.5 px-3 font-medium text-primary">{w.asset}</td>
+                  <td className="py-2.5 px-3 font-medium text-foreground">{w.asset}</td>
                   <td className={cn("py-2.5 px-3 font-medium", directionColor(w.direction))}>{w.direction}</td>
                   <td className="py-2.5 px-3 text-muted-foreground hidden sm:table-cell">{w.chain}</td>
                   <td className="py-2.5 px-3 text-right text-muted-foreground">{w.timeAgo}</td>
@@ -1483,7 +1482,7 @@ function EducationTab() {
               "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
               activeSection === sec.id
                 ? "bg-primary text-primary-foreground"
-                : "border border-border/50 text-muted-foreground hover:bg-muted/20",
+                : "border border-border/20 text-muted-foreground hover:bg-muted/20",
             )}
           >
             {sec.icon}
@@ -1496,7 +1495,7 @@ function EducationTab() {
       {activeSection === "glossary" && (
         <div className="flex flex-col gap-2">
           {DEFI_GLOSSARY.map((g) => (
-            <div key={g.term} className="rounded-lg border border-border/50 bg-card overflow-hidden">
+            <div key={g.term} className="rounded-lg border border-border/20 bg-card overflow-hidden">
               <button
                 type="button"
                 className="w-full flex items-center justify-between px-4 py-3 text-left"
@@ -1523,14 +1522,14 @@ function EducationTab() {
 
       {/* How DeFi Works */}
       {activeSection === "howdefi" && (
-        <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
           <div className="text-xs font-medium text-muted-foreground mb-4">
             How DeFi Works — Step by Step
           </div>
           <div className="flex flex-col gap-3">
             {HOW_DEFI_STEPS.map((s) => (
               <div key={s.step} className="flex gap-3">
-                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-medium text-primary">
+                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium text-foreground">
                   {s.step}
                 </div>
                 <div>
@@ -1588,15 +1587,15 @@ function NftTab({ seed }: { seed: number }) {
   return (
     <div className="flex flex-col gap-4">
       {/* Top collections table */}
-      <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
-        <div className="px-4 py-3 border-b border-border/40">
+      <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
+        <div className="px-4 py-3 border-b border-border/20">
           <div className="text-xs font-medium text-muted-foreground">Top NFT Collections</div>
           <div className="text-xs text-muted-foreground mt-0.5">Floor price in ETH · 24h volume</div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-muted-foreground">
             <thead>
-              <tr className="border-b border-border/30 bg-muted/20">
+              <tr className="border-b border-border/20 bg-muted/20">
                 <th className="py-2 px-3 text-left text-muted-foreground font-medium">Collection</th>
                 <th className="py-2 px-3 text-right text-muted-foreground font-medium">Floor (ETH)</th>
                 <th className="py-2 px-3 text-right text-muted-foreground font-medium">24h Vol (ETH)</th>
@@ -1608,7 +1607,7 @@ function NftTab({ seed }: { seed: number }) {
               {collections.map((c) => (
                 <tr key={c.symbol} className="border-b border-border/20 last:border-0 hover:bg-muted/20 transition-colors">
                   <td className="py-2.5 px-3">
-                    <div className="font-medium text-primary">{c.name}</div>
+                    <div className="font-medium text-foreground">{c.name}</div>
                     <div className="text-muted-foreground">{c.symbol}</div>
                   </td>
                   <td className="py-2.5 px-3 text-right tabular-nums font-medium">
@@ -1633,7 +1632,7 @@ function NftTab({ seed }: { seed: number }) {
       </div>
 
       {/* Floor price bar chart */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Floor Price Comparison (ETH)</div>
         <BarChart
           bars={collections.map((c) => ({ label: c.symbol, value: c.floorPrice }))}
@@ -1643,11 +1642,11 @@ function NftTab({ seed }: { seed: number }) {
       </div>
 
       {/* NFT vs Stocks comparison */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">NFT vs Other Assets — Risk/Reward Profile</div>
         <div className="flex flex-col gap-2">
           {COMPARISON.map((a) => (
-            <div key={a.asset} className="rounded-md border border-border/30 p-3 text-xs text-muted-foreground">
+            <div key={a.asset} className="rounded-md border border-border/20 p-3 text-xs text-muted-foreground">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-medium">{a.asset}</span>
                 <div className="flex gap-3">
@@ -1663,12 +1662,12 @@ function NftTab({ seed }: { seed: number }) {
       </div>
 
       {/* What determines NFT value */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">What Determines NFT Value?</div>
         <div className="flex flex-col gap-2">
           {WHAT_DETERMINES_VALUE.map((w, i) => (
             <div key={w.title} className="flex gap-3 text-xs text-muted-foreground">
-              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-medium text-primary">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-medium text-foreground">
                 {i + 1}
               </div>
               <div>
@@ -1801,7 +1800,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
           { label: "Diversification", val: `${divScore}/100`,
             color: divScore >= 60 ? "text-green-500" : divScore >= 40 ? "text-amber-500" : "text-red-500" },
         ].map((c) => (
-          <div key={c.label} className="rounded-lg border border-border/50 bg-card p-3">
+          <div key={c.label} className="rounded-lg border border-border/20 bg-card p-3">
             <div className="text-xs text-muted-foreground mb-1">{c.label}</div>
             <div className={cn("text-sm font-medium font-mono tabular-nums", c.color)}>{c.val}</div>
           </div>
@@ -1810,22 +1809,22 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
 
       {/* Donut + Holdings */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-lg border border-border/50 bg-card p-4">
+        <div className="rounded-lg border border-border/20 bg-card p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">Portfolio Weights</div>
           {syncedPortfolio.length > 0 && <PortfolioDonut assets={syncedPortfolio} />}
         </div>
 
-        <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-2">
+        <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col gap-2">
           <div className="text-xs font-medium text-muted-foreground mb-1">Holdings</div>
           {syncedPortfolio.map((a) => {
             const val  = a.qty * a.currentPrice;
             const pnl  = (a.currentPrice - a.avgPrice) * a.qty;
             const pnlPct = ((a.currentPrice - a.avgPrice) / a.avgPrice) * 100;
             return (
-              <div key={a.symbol} className="rounded-md border border-border/30 p-2.5 text-xs text-muted-foreground flex items-start gap-2">
+              <div key={a.symbol} className="rounded-md border border-border/20 p-2.5 text-xs text-muted-foreground flex items-start gap-2">
                 <div className="flex-1">
                   <div className="flex justify-between">
-                    <span className="font-medium text-primary">{a.symbol}</span>
+                    <span className="font-medium text-foreground">{a.symbol}</span>
                     <span className="tabular-nums font-medium">${val.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground mt-0.5">
@@ -1849,7 +1848,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
       </div>
 
       {/* Add asset */}
-      <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col gap-3">
         <div className="text-xs font-medium text-muted-foreground">Add Asset</div>
         <div className="flex gap-2 flex-wrap">
           <select
@@ -1884,10 +1883,10 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
           <div className="flex flex-col gap-1.5">
             {rebalanceSuggestions.map((s) => (
               <div key={s.symbol} className="flex items-center gap-2 text-xs text-muted-foreground">
-                <span className="font-medium text-primary w-10">{s.symbol}</span>
+                <span className="font-medium text-foreground w-10">{s.symbol}</span>
                 <span className="text-muted-foreground">
                   is {s.diff > 0 ? "over" : "under"}-weight by{" "}
-                  <span className={cn("font-medium", s.diff > 0 ? "text-amber-500" : "text-primary")}>
+                  <span className={cn("font-medium", s.diff > 0 ? "text-amber-500" : "text-foreground")}>
                     {Math.abs(s.diff).toFixed(1)}%
                   </span>
                   {" "}(actual {s.actualWeight.toFixed(1)}% vs target {s.targetWeight}%)
@@ -1899,7 +1898,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
       )}
 
       {/* 24h P&L breakdown */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="text-xs font-medium text-muted-foreground mb-2">24h P&amp;L Breakdown</div>
         <div className="flex flex-col gap-1.5">
           {syncedPortfolio.map((a) => {
@@ -1907,7 +1906,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
             const dailyPnl = a.qty * a.currentPrice * (row?.change24h ?? 0) / 100;
             return (
               <div key={a.symbol} className="flex items-center gap-2 text-xs text-muted-foreground">
-                <span className="font-medium text-primary w-10">{a.symbol}</span>
+                <span className="font-medium text-foreground w-10">{a.symbol}</span>
                 <div className="flex-1 h-1.5 rounded-full bg-muted/40 overflow-hidden">
                   <div
                     className={cn("h-full rounded-full", dailyPnl >= 0 ? "bg-green-500" : "bg-red-500")}
@@ -1923,7 +1922,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
         </div>
       </div>
 
-      <div className="rounded-md bg-muted/10 border border-border/30 px-3 py-2 text-xs text-muted-foreground leading-relaxed">
+      <div className="rounded-md bg-muted/10 border border-border/20 px-3 py-2 text-xs text-muted-foreground leading-relaxed">
         <span className="font-medium text-foreground">Diversification Score:</span> Calculated using the Herfindahl-Hirschman Index (HHI).
         A score near 100 means equal distribution; near 0 means concentration risk.
         Target weights are illustrative — adjust based on your risk tolerance.
@@ -1957,17 +1956,14 @@ export default function CryptoPage() {
   // suppress unused import warnings for icons only used in JSX
   void ArrowDownRight;
   void Zap;
-  void Bitcoin;
   void ShieldAlert;
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
-      {/* HERO Header */}
-      <div className="shrink-0 border-b border-border/50 border-l-4 border-l-primary bg-background px-4 pt-4 pb-0">
-        <div className="flex items-center gap-2 mb-3">
-          <Bitcoin className="h-3.5 w-3.5 text-muted-foreground/50" />
-          <h1 className="text-sm font-medium">Crypto &amp; DeFi</h1>
-        </div>
+      {/* Header */}
+      <div className="shrink-0 border-b border-border bg-background px-4 pt-4 pb-0">
+        <p className="text-xs text-muted-foreground mb-1">Markets</p>
+        <h1 className="text-lg font-semibold mb-3">Crypto &amp; DeFi</h1>
 
         {/* Tab bar */}
         <div className="flex gap-0.5 overflow-x-auto">

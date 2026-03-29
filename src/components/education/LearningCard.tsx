@@ -29,7 +29,7 @@ export function LearningCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay, ease: "easeOut" }}
-      className="glass rounded-lg border border-border/40 overflow-hidden"
+      className="glass rounded-lg border border-border/20 overflow-hidden"
     >
       <button
         type="button"
@@ -70,7 +70,7 @@ export function LearningCard({
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="border-t border-border/50 bg-muted/30 px-4 py-3">
+            <div className="border-t border-border/20 bg-muted/30 px-4 py-3">
               <p className="whitespace-pre-line text-xs leading-relaxed text-muted-foreground">
                 {detail}
               </p>

@@ -202,7 +202,7 @@ const STRATEGY_TYPES = [
     maxDD: -18,
     ytd: 9.4,
     color: "text-primary",
-    bg: "bg-primary/10",
+    bg: "bg-muted/10",
     border: "border-border",
   },
   {
@@ -215,7 +215,7 @@ const STRATEGY_TYPES = [
     maxDD: -12,
     ytd: 6.8,
     color: "text-primary",
-    bg: "bg-primary/10",
+    bg: "bg-muted/10",
     border: "border-border",
   },
   {
@@ -274,7 +274,7 @@ function MetricCard({
           </div>
           <div
             className={cn(
-              "text-2xl font-bold",
+              "text-2xl font-semibold",
               positive ? "text-emerald-400" : "text-rose-400"
             )}
           >
@@ -731,7 +731,7 @@ export default function FXCarryPage() {
                           initial={{ opacity: 0, x: -12 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3, delay: i * 0.06 }}
-                          className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+                          className="border-b border-border/20 hover:bg-muted/30 transition-colors"
                         >
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
@@ -900,7 +900,7 @@ export default function FXCarryPage() {
                         { scenario: "2008-Style Shock", unwind: 40, nzdjpy: -14.2, audjpy: -12.8, basket: -11.3, severity: "High" },
                         { scenario: "Flash Crash (1hr)", unwind: 30, nzdjpy: -8.6, audjpy: -7.9, basket: -7.1, severity: "High" },
                       ].map((row, i) => (
-                        <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                           <td className="px-3 py-2 font-medium">{row.scenario}</td>
                           <td className="px-3 py-2 text-right font-mono text-amber-400">{row.unwind}%</td>
                           <td className="px-3 py-2 text-right font-mono text-rose-400">{row.nzdjpy}%</td>

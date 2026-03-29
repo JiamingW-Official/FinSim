@@ -277,7 +277,7 @@ export default function BacktestPage() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 text-xs font-medium transition-colors ${
+            className={`px-3 py-1.5 text-xs font-medium transition-colors ${
               activeTab === tab.id
                 ? "border-b-2 border-primary text-foreground"
                 : "border-b-2 border-transparent text-muted-foreground hover:text-foreground"
@@ -295,7 +295,7 @@ export default function BacktestPage() {
           <div className="flex flex-1 flex-col overflow-hidden">
             {/* When results exist: compact config summary bar at top */}
             {hasResult && !editorExpanded && (
-              <div className="flex items-center gap-3 border-b border-border/40 bg-card/40 px-4 py-2">
+              <div className="flex items-center gap-3 border-b border-border/20 bg-card/40 px-4 py-2">
                 <span className="flex-1 truncate text-xs text-muted-foreground">
                   {configSummary}
                 </span>
@@ -323,7 +323,7 @@ export default function BacktestPage() {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ type: "spring", damping: 24, stiffness: 260 }}
-                  className="overflow-hidden border-b border-border/40"
+                  className="overflow-hidden border-b border-border/20"
                 >
                   <div className="flex">
                     <div className="flex-1 overflow-y-auto" style={{ maxHeight: "50vh" }}>

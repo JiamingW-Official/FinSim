@@ -262,7 +262,7 @@ function MethodRow({
     <>
       <tr
         className={`
-          border-b border-border/50 cursor-pointer transition-colors
+          border-b border-border/20 cursor-pointer transition-colors
           hover:bg-muted/20
           ${isRecommended ? "bg-primary/5" : ""}
         `}
@@ -272,7 +272,7 @@ function MethodRow({
           <div className="flex items-center gap-2">
             <span className="font-medium text-foreground text-xs">{result.method}</span>
             {isRecommended && (
-              <span className="text-[11px] font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded bg-primary/10 text-primary dark:text-primary">
+              <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded bg-primary/10 text-primary dark:text-primary">
                 Suggested
               </span>
             )}
@@ -292,7 +292,7 @@ function MethodRow({
         </td>
       </tr>
       {isExpanded && (
-        <tr className="border-b border-border/50 bg-muted/10">
+        <tr className="border-b border-border/20 bg-muted/10">
           <td colSpan={5} className="px-4 py-3">
             <p className="text-xs text-muted-foreground leading-relaxed">
               {result.explanation}

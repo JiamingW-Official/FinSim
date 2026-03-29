@@ -56,8 +56,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/5 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-primary/10 text-primary border-border",
-    purple: "bg-primary/10 text-primary border-border",
+    blue: "bg-muted/10 text-primary border-border",
+    purple: "bg-muted/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -81,8 +81,8 @@ function InfoBox({
     default: "border-border bg-muted/30",
     green: "border-green-500/30 bg-green-500/5",
     amber: "border-amber-500/30 bg-amber-500/5",
-    blue: "border-border bg-primary/5",
-    purple: "border-border bg-primary/5",
+    blue: "border-border bg-muted/5",
+    purple: "border-border bg-muted/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
@@ -659,14 +659,14 @@ function LifeInsuranceTab() {
         {policies.map((p) => {
           const colorCls = {
             green: "border-green-500/20 bg-green-500/5",
-            blue: "border-border bg-primary/5",
-            purple: "border-border bg-primary/5",
+            blue: "border-border bg-muted/5",
+            purple: "border-border bg-muted/5",
             amber: "border-amber-500/20 bg-amber-500/5",
           }[p.color];
           const badgeCls = {
             green: "bg-green-500/10 text-green-400 border-green-500/20",
-            blue: "bg-primary/10 text-primary border-border",
-            purple: "bg-primary/10 text-primary border-border",
+            blue: "bg-muted/10 text-primary border-border",
+            purple: "bg-muted/10 text-primary border-border",
             amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
           }[p.color];
           return (
@@ -678,14 +678,14 @@ function LifeInsuranceTab() {
             >
               <div className="flex items-center justify-between">
                 <div className="text-sm font-medium text-foreground">{p.name}</div>
-                <div className="text-base font-bold text-foreground">{fmt$(p.annual)}<span className="text-xs font-normal text-muted-foreground">/yr</span></div>
+                <div className="text-base font-semibold text-foreground">{fmt$(p.annual)}<span className="text-xs font-normal text-muted-foreground">/yr</span></div>
               </div>
               <div className="flex gap-2 flex-wrap">
                 <Badge className={cn("text-xs text-muted-foreground", badgeCls)}>{fmt$(p.annual / 12)}/mo</Badge>
-                <Badge className={cn("text-xs", p.cashValue ? "bg-primary/10 text-primary border-border" : "bg-muted text-muted-foreground border-border")}>
+                <Badge className={cn("text-xs", p.cashValue ? "bg-muted/10 text-primary border-border" : "bg-muted text-muted-foreground border-border")}>
                   {p.cashValue ? "Cash Value" : "No Cash Value"}
                 </Badge>
-                <Badge className={cn("text-xs", p.permanentCoverage ? "bg-primary/10 text-primary border-border" : "bg-muted text-muted-foreground border-border")}>
+                <Badge className={cn("text-xs", p.permanentCoverage ? "bg-muted/10 text-primary border-border" : "bg-muted text-muted-foreground border-border")}>
                   {p.permanentCoverage ? "Permanent" : "Term Only"}
                 </Badge>
               </div>
@@ -1116,10 +1116,10 @@ function PropertyAutoTab() {
           {autoLimits.map((limit) => {
             const recommended = limit.label === "100/300/100";
             return (
-              <div key={limit.label} className={cn("rounded-lg border p-3", recommended ? "border-primary/30 bg-primary/5" : "border-border")}>
+              <div key={limit.label} className={cn("rounded-lg border p-3", recommended ? "border-primary/30 bg-muted/5" : "border-border")}>
                 <div className="flex items-center justify-between mb-1">
                   <div className="text-sm font-medium text-foreground">{limit.label}</div>
-                  {recommended && <Badge className="bg-primary/10 text-primary border-primary/20 text-xs">Recommended</Badge>}
+                  {recommended && <Badge className="bg-muted/10 text-primary border-primary/20 text-xs">Recommended</Badge>}
                 </div>
                 <div className="text-xs text-muted-foreground mb-2">{limit.desc}</div>
                 <div className="grid grid-cols-3 gap-2 text-xs text-muted-foreground">
@@ -1315,7 +1315,7 @@ function HealthMedicareTab() {
           </div>
 
           {/* HSA Triple Tax Advantage */}
-          <div className="rounded-md border border-primary/20 bg-primary/5 p-4 space-y-3">
+          <div className="rounded-md border border-primary/20 bg-muted/5 p-4 space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium text-foreground">
               <DollarSign className="h-3.5 w-3.5 text-muted-foreground/50" />
               HSA Triple Tax Advantage ({fmt$(hsaContrib)}/yr contribution)
@@ -1339,7 +1339,7 @@ function HealthMedicareTab() {
               ))}
               <div className="flex items-center justify-between text-xs text-muted-foreground border-t border-primary/20 pt-2">
                 <span className="font-medium text-foreground">Total Annual Tax Savings</span>
-                <span className="font-bold text-primary">{fmt$(totalHsaSavings + Math.round(annualClaims * (marginalRate / 100)))}</span>
+                <span className="font-semibold text-primary">{fmt$(totalHsaSavings + Math.round(annualClaims * (marginalRate / 100)))}</span>
               </div>
             </div>
             <div className="text-xs text-muted-foreground">
@@ -1406,9 +1406,9 @@ function HealthMedicareTab() {
             },
           ].map((part) => {
             const colorCls = {
-              blue: "border-border bg-primary/5",
+              blue: "border-border bg-muted/5",
               green: "border-green-500/20 bg-green-500/5",
-              purple: "border-border bg-primary/5",
+              purple: "border-border bg-muted/5",
               amber: "border-amber-500/20 bg-amber-500/5",
             }[part.color];
             const partCls = {
@@ -1454,7 +1454,7 @@ export default function PersonalInsurancePage() {
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
         {/* Page Header */}
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <div className="h-10 w-10 rounded-lg bg-muted/10 flex items-center justify-center">
             <Shield className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
@@ -1462,10 +1462,10 @@ export default function PersonalInsurancePage() {
             <p className="text-sm text-muted-foreground">Risk protection analysis — life, disability, property, health</p>
           </div>
           <div className="ml-auto flex gap-2 flex-wrap">
-            <Badge className="bg-primary/10 text-primary border-border text-xs">
+            <Badge className="bg-muted/10 text-primary border-border text-xs">
               <Heart className="h-3 w-3 mr-1" />Life
             </Badge>
-            <Badge className="bg-primary/10 text-primary border-border text-xs">
+            <Badge className="bg-muted/10 text-primary border-border text-xs">
               <Activity className="h-3 w-3 mr-1" />Disability
             </Badge>
             <Badge className="bg-green-500/10 text-green-400 border-green-500/20 text-xs">
@@ -1489,7 +1489,7 @@ export default function PersonalInsurancePage() {
               amber: "border-amber-500/20 bg-amber-500/5 text-amber-400",
               red: "border-red-500/20 bg-red-500/5 text-red-400",
               green: "border-green-500/20 bg-green-500/5 text-green-400",
-              blue: "border-border bg-primary/5 text-primary",
+              blue: "border-border bg-muted/5 text-primary",
             }[chip.color];
             return (
               <div key={chip.label} className={cn("rounded-md border p-3", cls)}>

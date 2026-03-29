@@ -463,7 +463,7 @@ function ScenarioPnLChart({ themes }: { themes: MacroTheme[] }) {
 
 function StatPill({ label, value, sub, positive }: { label: string; value: string; sub?: string; positive?: boolean }) {
   return (
-    <div className="flex flex-col gap-0.5 bg-muted/60 rounded-lg px-3 py-2 border border-border/40">
+    <div className="flex flex-col gap-0.5 bg-muted/60 rounded-lg px-3 py-2 border border-border/20">
       <span className="text-xs text-muted-foreground uppercase tracking-wide">{label}</span>
       <span className={`text-sm font-semibold ${positive === undefined ? "text-foreground" : positive ? "text-green-400" : "text-red-400"}`}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -496,7 +496,7 @@ function LongShortTab() {
       </div>
 
       {/* Sector neutrality */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -522,7 +522,7 @@ function LongShortTab() {
       </Card>
 
       {/* Pair positions table */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Repeat className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -543,7 +543,7 @@ function LongShortTab() {
                 {pairs.map((p, i) => (
                   <tr
                     key={p.longTicker}
-                    className={`border-b border-border/40 cursor-pointer transition-colors ${selected === i ? "bg-muted/50" : "hover:bg-muted/30"}`}
+                    className={`border-b border-border/20 cursor-pointer transition-colors ${selected === i ? "bg-muted/50" : "hover:bg-muted/30"}`}
                     onClick={() => setSelected(selected === i ? null : i)}
                   >
                     <td className="py-2 pr-4 text-green-400 font-medium">{p.longTicker}</td>
@@ -565,7 +565,7 @@ function LongShortTab() {
       </Card>
 
       {/* SVG Exposure chart */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -602,7 +602,7 @@ function GlobalMacroTab() {
       </div>
 
       {/* Theme builder */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -613,7 +613,7 @@ function GlobalMacroTab() {
           {themes.map((t) => (
             <div
               key={t.id}
-              className={`rounded-lg border p-3 cursor-pointer transition-all ${activeTheme === t.id ? "border-muted-foreground bg-muted/70" : "border-border/60 bg-muted/20 hover:border-border"}`}
+              className={`rounded-lg border p-3 cursor-pointer transition-colors ${activeTheme === t.id ? "border-muted-foreground bg-muted/70" : "border-border/60 bg-muted/20 hover:border-border"}`}
               onClick={() => setActiveTheme(activeTheme === t.id ? null : t.id)}
             >
               <div className="flex items-start justify-between gap-2">
@@ -641,7 +641,7 @@ function GlobalMacroTab() {
               </div>
               <AnimatePresence>
                 {activeTheme === t.id && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-2 pt-2 border-t border-border/40">
+                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="mt-2 pt-2 border-t border-border/20">
                     <p className="text-xs text-muted-foreground">{t.rationale}</p>
                   </motion.div>
                 )}
@@ -652,7 +652,7 @@ function GlobalMacroTab() {
       </Card>
 
       {/* Correlation matrix */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -665,7 +665,7 @@ function GlobalMacroTab() {
       </Card>
 
       {/* Scenario P&L */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Zap className="w-4 h-4 text-amber-400" />
@@ -725,7 +725,7 @@ function EventDrivenTab() {
       <AnimatePresence mode="wait">
         {subTab === "merger" && (
           <motion.div key="merger" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-card/60 border-border/40">
+            <Card className="bg-card/60 border-border/20">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <GitMerge className="w-4 h-4 text-green-400" />
@@ -744,7 +744,7 @@ function EventDrivenTab() {
                     </thead>
                     <tbody>
                       {deals.map((d) => (
-                        <tr key={d.target} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                        <tr key={d.target} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                           <td className="py-2 pr-3 text-muted-foreground">{d.acquirer}</td>
                           <td className="py-2 pr-3 text-foreground font-medium">{d.target}</td>
                           <td className="py-2 pr-3 text-green-400 font-medium">${d.spread.toFixed(2)}</td>
@@ -774,7 +774,7 @@ function EventDrivenTab() {
 
         {subTab === "distressed" && (
           <motion.div key="distressed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-card/60 border-border/40">
+            <Card className="bg-card/60 border-border/20">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -793,7 +793,7 @@ function EventDrivenTab() {
                     </thead>
                     <tbody>
                       {distressed.map((d) => (
-                        <tr key={d.issuer} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                        <tr key={d.issuer} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                           <td className="py-2 pr-3 text-foreground font-medium">{d.issuer}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{d.coupon.toFixed(3)}%</td>
                           <td className="py-2 pr-3 text-muted-foreground">{d.maturity}</td>
@@ -822,7 +822,7 @@ function EventDrivenTab() {
 
         {subTab === "special" && (
           <motion.div key="special" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-card/60 border-border/40">
+            <Card className="bg-card/60 border-border/20">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -901,7 +901,7 @@ function RelativeValueTab() {
       <AnimatePresence mode="wait">
         {rvMode === "convertible" && (
           <motion.div key="conv" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-card/60 border-border/40">
+            <Card className="bg-card/60 border-border/20">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -920,7 +920,7 @@ function RelativeValueTab() {
                     </thead>
                     <tbody>
                       {convertibles.map((c) => (
-                        <tr key={c.issuer} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                        <tr key={c.issuer} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                           <td className="py-2 pr-3 text-foreground font-medium text-[11px]">{c.issuer}</td>
                           <td className="py-2 pr-3 text-muted-foreground">{c.conversionPremium.toFixed(1)}%</td>
                           <td className="py-2 pr-3 text-muted-foreground">{c.theoreticalValue.toFixed(1)}</td>
@@ -944,7 +944,7 @@ function RelativeValueTab() {
 
         {rvMode === "capstructure" && (
           <motion.div key="cap" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-card/60 border-border/40">
+            <Card className="bg-card/60 border-border/20">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-green-400" />
@@ -984,7 +984,7 @@ function RelativeValueTab() {
 
         {rvMode === "statarb" && (
           <motion.div key="stat" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <Card className="bg-card/60 border-border/40">
+            <Card className="bg-card/60 border-border/20">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
                   <RefreshCw className="w-4 h-4 text-muted-foreground" />
@@ -1003,7 +1003,7 @@ function RelativeValueTab() {
                     </thead>
                     <tbody>
                       {statArbPairs.map((p) => (
-                        <tr key={p.name} className="border-b border-border/40 hover:bg-muted/20 transition-colors">
+                        <tr key={p.name} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                           <td className="py-2 pr-3 text-foreground font-medium">{p.name}</td>
                           <td className="py-2 pr-3 text-primary">{p.correlation.toFixed(3)}</td>
                           <td className={`py-2 pr-3 font-medium ${Math.abs(p.zScore) > 1.5 ? "text-amber-400" : "text-muted-foreground"}`}>
@@ -1052,7 +1052,7 @@ function PerformanceTab() {
       </div>
 
       {/* Equity curve */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-green-400" />
@@ -1066,7 +1066,7 @@ function PerformanceTab() {
 
       {/* Alpha/Beta decomposition */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Card className="bg-card/60 border-border/40">
+        <Card className="bg-card/60 border-border/20">
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1106,7 +1106,7 @@ function PerformanceTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-card/60 border-border/40">
+        <Card className="bg-card/60 border-border/20">
           <CardHeader className="pb-2 pt-4 px-4">
             <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
               <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1120,7 +1120,7 @@ function PerformanceTab() {
       </div>
 
       {/* Monthly return heatmap */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-amber-400" />
@@ -1154,7 +1154,7 @@ function PerformanceTab() {
       </Card>
 
       {/* Risk metrics */}
-      <Card className="bg-card/60 border-border/40">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
             <Scale className="w-4 h-4 text-muted-foreground" />
@@ -1173,7 +1173,7 @@ function PerformanceTab() {
               { label: "Skewness", value: "+0.32", positive: true },
               { label: "Kurtosis", value: "3.12", positive: undefined },
             ].map((m) => (
-              <div key={m.label} className="bg-muted/40 rounded-lg p-2.5 border border-border/30">
+              <div key={m.label} className="bg-muted/40 rounded-lg p-2.5 border border-border/20">
                 <div className="text-xs text-muted-foreground mb-0.5">{m.label}</div>
                 <div className={`text-sm font-medium ${m.positive === true ? "text-green-400" : m.positive === false ? "text-red-400" : "text-foreground"}`}>
                   {m.value}
@@ -1196,7 +1196,7 @@ export default function HFStrategiesPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
               <Layers className="w-6 h-6 text-primary" />
               Hedge Fund Strategies
             </h1>

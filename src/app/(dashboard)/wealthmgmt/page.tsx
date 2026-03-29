@@ -60,7 +60,7 @@ function StatCard({
   return (
     <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <span className={cn("text-xl font-bold", valClass)}>{value}</span>
+      <span className={cn("text-xl font-semibold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
@@ -82,10 +82,10 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "violet";
 }) {
   const colors = {
-    blue: "bg-primary/10 border-border text-primary",
+    blue: "bg-muted/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
-    violet: "bg-primary/10 border-border text-primary",
+    violet: "bg-muted/10 border-border text-primary",
   };
   return (
     <div className={cn("rounded-lg border p-3 text-xs text-muted-foreground leading-relaxed", colors[variant])}>
@@ -295,7 +295,7 @@ function ClientSegmentationTab() {
                   "w-full text-left rounded-lg border p-2 text-xs text-muted-foreground transition-colors",
                   selectedSeg === i
                     ? "border-foreground/30 bg-foreground/10"
-                    : "border-border/50 bg-foreground/[0.03] hover:bg-muted/30"
+                    : "border-border/20 bg-foreground/[0.03] hover:bg-muted/30"
                 )}
               >
                 <div className="flex items-center justify-between mb-0.5">
@@ -344,7 +344,7 @@ function ClientSegmentationTab() {
                     </div>
                     <div className="h-1.5 rounded-full bg-foreground/10">
                       <div
-                        className="h-1.5 rounded-full transition-all"
+                        className="h-1.5 rounded-full transition-colors"
                         style={{
                           width: `${g.pct}%`,
                           background: g.color.replace("text-", "").replace("-400", ""),
@@ -383,7 +383,7 @@ function ClientSegmentationTab() {
                   ? "border-rose-500/30 bg-rose-500/10"
                   : b.color === "amber"
                   ? "border-amber-500/30 bg-amber-500/10"
-                  : "border-border bg-primary/10"
+                  : "border-border bg-muted/10"
               )}
             >
               <div className="flex items-center justify-between mb-1">
@@ -395,7 +395,7 @@ function ClientSegmentationTab() {
                       ? "bg-rose-500/20 text-rose-300"
                       : b.color === "amber"
                       ? "bg-amber-500/20 text-amber-300"
-                      : "bg-primary/20 text-primary"
+                      : "bg-muted/10 text-primary"
                   )}
                 >
                   {b.severity}
@@ -643,7 +643,7 @@ function FinancialPlanningTab() {
             {CFP_STEPS.map((step) => (
               <div key={step.step} className="flex gap-2 text-xs text-muted-foreground">
                 <span
-                  className="w-5 h-5 rounded-full flex items-center justify-center text-foreground font-bold text-xs flex-shrink-0"
+                  className="w-5 h-5 rounded-full flex items-center justify-center text-foreground font-semibold text-xs flex-shrink-0"
                   style={{ backgroundColor: step.color }}
                 >
                   {step.step}
@@ -669,7 +669,7 @@ function FinancialPlanningTab() {
                 <div className="text-rose-400 font-medium">10th Pct</div>
                 <div className="text-muted-foreground">Bear scenario</div>
               </div>
-              <div className="rounded bg-primary/10 border border-border p-1.5">
+              <div className="rounded bg-muted/10 border border-border p-1.5">
                 <div className="text-primary font-medium">Median</div>
                 <div className="text-muted-foreground">Base case</div>
               </div>
@@ -1042,7 +1042,7 @@ function AssetAllocationTab() {
               className={cn(
                 "rounded-lg border p-3 text-xs text-muted-foreground",
                 m.color === "blue"
-                  ? "border-border bg-primary/10"
+                  ? "border-border bg-muted/10"
                   : m.color === "amber"
                   ? "border-amber-500/30 bg-amber-500/10"
                   : "border-emerald-500/30 bg-emerald-500/5"
@@ -1278,9 +1278,9 @@ function FeeModelsTab() {
                   className={cn(
                     "rounded-lg border p-2.5 text-xs text-muted-foreground",
                     m.color === "blue"
-                      ? "border-border bg-primary/10"
+                      ? "border-border bg-muted/10"
                       : m.color === "violet"
-                      ? "border-border bg-primary/10"
+                      ? "border-border bg-muted/10"
                       : m.color === "amber"
                       ? "border-amber-500/30 bg-amber-500/10"
                       : "border-rose-500/30 bg-rose-500/10"
@@ -1435,7 +1435,7 @@ export default function WealthMgmtPage() {
               <Briefcase size={22} className="text-amber-400" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">Wealth Management</h1>
+              <h1 className="text-xl font-semibold text-foreground">Wealth Management</h1>
               <p className="text-sm text-muted-foreground">
                 HNW client segmentation, financial planning, asset allocation, fee models, and family offices
               </p>

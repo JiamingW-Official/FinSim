@@ -135,12 +135,12 @@ export function MiniTradePanel({
   const showIndicators = actionType === "indicator" || isFreeTradeMode;
 
   return (
-    <div className="glass-subtle rounded-md border border-border/50 p-3 space-y-2.5">
+    <div className="glass-subtle rounded-md border border-border/20 p-3 space-y-2.5">
       {/* Price + Cash */}
       <div className="flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
           <span className="text-muted-foreground">Price</span>
-          <span className="font-bold tabular-nums text-foreground text-sm">${currentPrice.toFixed(2)}</span>
+          <span className="font-semibold tabular-nums text-foreground text-sm">${currentPrice.toFixed(2)}</span>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-muted-foreground">Cash</span>
@@ -161,7 +161,7 @@ export function MiniTradePanel({
                   ? <ArrowUpRight className="h-3 w-3 text-emerald-400" />
                   : <ArrowDownRight className="h-3 w-3 text-red-400" />
                 }
-                <span className={cn("text-xs font-bold uppercase", position.side === "long" ? "text-emerald-400" : "text-red-400")}>
+                <span className={cn("text-xs font-semibold", position.side === "long" ? "text-emerald-400" : "text-red-400")}>
                   {position.side}
                 </span>
                 <span className="text-muted-foreground">
@@ -169,7 +169,7 @@ export function MiniTradePanel({
                 </span>
               </div>
               <motion.span key={Math.round(unrealizedPnL * 100)} initial={{ scale: 1.3 }} animate={{ scale: 1 }}
-                className={cn("font-bold tabular-nums", unrealizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
+                className={cn("font-semibold tabular-nums", unrealizedPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {unrealizedPnL >= 0 ? "+" : ""}{unrealizedPnL.toFixed(2)}
               </motion.span>
             </div>
@@ -186,13 +186,13 @@ export function MiniTradePanel({
             <div className="flex items-center gap-0.5 rounded-lg border border-border bg-card">
               {QTY_OPTIONS.map((q) => (
                 <button key={q} type="button" onClick={() => setQty(q)}
-                  className={cn("px-2 py-1 text-xs font-bold transition-colors rounded-md",
+                  className={cn("px-2 py-1 text-xs font-semibold transition-colors rounded-md",
                     qty === q ? "bg-primary/15 text-primary" : "text-muted-foreground hover:text-foreground")}>
                   {q}
                 </button>
               ))}
               <button type="button" onClick={() => { if (maxBuyQty > 0) setQty(maxBuyQty); }}
-                className={cn("px-2 py-1 text-xs font-bold transition-colors rounded-md",
+                className={cn("px-2 py-1 text-xs font-semibold transition-colors rounded-md",
                   qty === maxBuyQty && maxBuyQty > 0 ? "bg-primary/15 text-primary" : "text-muted-foreground hover:text-foreground")}>
                 MAX
               </button>
@@ -204,7 +204,7 @@ export function MiniTradePanel({
             <motion.button type="button" onClick={handleBuy}
               disabled={isShort || cash < currentPrice * qty || allComplete || atEnd}
               whileTap={{ scale: 0.95 }}
-              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
+              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-emerald-500 py-2 text-xs font-semibold text-foreground transition-colors hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowUpRight className="h-3 w-3" />
               Long {qty}
               {enableKeyboard && <kbd className="ml-1 rounded bg-foreground/20 px-1 py-0.5 text-[11px] font-mono leading-none">W</kbd>}
@@ -212,7 +212,7 @@ export function MiniTradePanel({
             <motion.button type="button" onClick={handleShort}
               disabled={isLong || cash < currentPrice * qty || allComplete || atEnd}
               whileTap={{ scale: 0.95 }}
-              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-30 shadow-sm">
+              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-red-500 py-2 text-xs font-semibold text-foreground transition-colors hover:brightness-110 disabled:opacity-30 shadow-sm">
               <ArrowDownRight className="h-3 w-3" />
               Short {qty}
               {enableKeyboard && <kbd className="ml-1 rounded bg-foreground/20 px-1 py-0.5 text-[11px] font-mono leading-none">S</kbd>}
@@ -225,7 +225,7 @@ export function MiniTradePanel({
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}>
                 <motion.button type="button" onClick={handleClose}
                   disabled={allComplete || atEnd} whileTap={{ scale: 0.95 }}
-                  className="w-full flex items-center justify-center gap-1.5 rounded-lg border border-border/50 bg-muted/20 py-1.5 text-[11px] font-bold text-muted-foreground uppercase tracking-wide transition-all hover:bg-muted/50 disabled:opacity-30">
+                  className="w-full flex items-center justify-center gap-1.5 rounded-lg border border-border/20 bg-muted/20 py-1.5 text-[11px] font-semibold text-muted-foreground transition-colors hover:bg-muted/50 disabled:opacity-30">
                   <X className="h-3 w-3" />
                   Close {position.side === "long" ? "Long" : "Short"} ({position.quantity})
                   {enableKeyboard && <kbd className="ml-1 rounded bg-muted/50 px-1 py-0.5 text-[11px] font-mono leading-none text-muted-foreground">Q</kbd>}
@@ -244,7 +244,7 @@ export function MiniTradePanel({
               <div className="flex items-center gap-0.5 rounded-lg border border-border bg-card">
                 {[1, 5, 10].map((q) => (
                   <button key={q} type="button" onClick={() => setQty(q)}
-                    className={cn("px-2.5 py-1.5 text-xs font-bold transition-colors rounded-md",
+                    className={cn("px-2.5 py-1.5 text-xs font-semibold transition-colors rounded-md",
                       qty === q ? "bg-primary/15 text-primary" : "text-muted-foreground hover:text-foreground")}>
                     {q}
                   </button>
@@ -253,7 +253,7 @@ export function MiniTradePanel({
               <motion.button type="button" onClick={handleBuy}
                 disabled={cash < currentPrice * qty || allComplete || atEnd}
                 whileTap={{ scale: 0.95 }}
-                className="flex-1 rounded-lg bg-emerald-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-40 shadow-sm">
+                className="flex-1 rounded-lg bg-emerald-500 py-2 text-xs font-semibold text-foreground transition-colors hover:brightness-110 disabled:opacity-40 shadow-sm">
                 Buy {qty}
               </motion.button>
             </>
@@ -261,7 +261,7 @@ export function MiniTradePanel({
           {showLegacySell && position && (
             <motion.button type="button" onClick={handleSell}
               disabled={allComplete || atEnd} whileTap={{ scale: 0.95 }}
-              className="flex-1 rounded-lg bg-red-500 py-2 text-xs font-bold text-foreground uppercase tracking-wide transition-all hover:brightness-110 disabled:opacity-40 shadow-sm">
+              className="flex-1 rounded-lg bg-red-500 py-2 text-xs font-semibold text-foreground transition-colors hover:brightness-110 disabled:opacity-40 shadow-sm">
               Sell {position.quantity}
             </motion.button>
           )}
@@ -274,7 +274,7 @@ export function MiniTradePanel({
           {indicatorChips.map((ind) => (
             <button key={ind.id} type="button" onClick={() => onToggleIndicator(ind.id)}
               className={cn(
-                "rounded-full px-2 py-0.5 text-[11px] font-bold transition-all border",
+                "rounded-full px-2 py-0.5 text-[11px] font-semibold transition-colors border",
                 activeIndicators.includes(ind.id)
                   ? "bg-primary/15 text-primary border-primary/30"
                   : "text-muted-foreground hover:text-foreground bg-muted/30 border-transparent",
@@ -287,7 +287,7 @@ export function MiniTradePanel({
 
       {/* Playback controls */}
       {!hidePlayback && (
-        <div className="rounded-lg border border-border/50 bg-card/50 p-2.5 space-y-2">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-2.5 space-y-2">
           <div className="h-2 w-full rounded-full bg-muted/50 overflow-hidden">
             <motion.div
               className={cn("h-full rounded-full transition-colors",
@@ -300,7 +300,7 @@ export function MiniTradePanel({
           <div className="flex items-center gap-2">
             <motion.button type="button" onClick={isPlaying ? onPause : onPlay} disabled={atEnd}
               whileTap={{ scale: 0.85 }}
-              className={cn("relative flex h-10 w-10 items-center justify-center rounded-full font-bold transition-all disabled:opacity-30 shrink-0",
+              className={cn("relative flex h-10 w-10 items-center justify-center rounded-full font-semibold transition-colors disabled:opacity-30 shrink-0",
                 isPlaying ? "bg-amber-500 text-foreground"
                   : "bg-primary text-primary-foreground")}>
               {isPlaying && !atEnd && (
@@ -327,7 +327,7 @@ export function MiniTradePanel({
             </motion.button>
             <div className="flex-1" />
             <motion.div layout className={cn(
-              "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold tracking-wider uppercase",
+              "flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold",
               isPlaying ? "bg-amber-500/10 text-amber-400"
                 : atEnd ? "bg-emerald-500/5 text-emerald-400" : "bg-muted/40 text-muted-foreground")}>
               {isPlaying && (

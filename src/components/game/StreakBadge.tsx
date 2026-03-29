@@ -11,7 +11,7 @@ export function StreakBadge() {
   return (
     <div className="flex items-center gap-1 rounded-full bg-orange-500/10 px-2 py-0.5">
       <Flame className="h-3 w-3 text-orange-500" />
-      <span className="text-xs font-bold tabular-nums text-orange-500">
+      <span className="text-xs font-semibold tabular-nums text-orange-500">
         {dailyStreak}
       </span>
     </div>

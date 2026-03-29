@@ -55,13 +55,13 @@ export function QuestDailyTab() {
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex items-center justify-between rounded-lg border border-border/50 bg-foreground/[0.02] px-4 py-2.5"
+        className="flex items-center justify-between rounded-lg border border-border/20 bg-foreground/[0.02] px-4 py-2.5"
       >
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <Clock className="h-3.5 w-3.5" />
           <span>Resets in</span>
         </div>
-        <span className="text-sm font-bold font-mono tabular-nums text-muted-foreground">
+        <span className="text-sm font-semibold font-mono tabular-nums text-muted-foreground">
           {countdown}
         </span>
       </motion.div>
@@ -75,7 +75,7 @@ export function QuestDailyTab() {
         >
           <CheckCircle2 className="h-5 w-5 text-emerald-400" />
           <div>
-            <p className="text-xs font-bold text-emerald-300">All daily quests completed!</p>
+            <p className="text-xs font-semibold text-emerald-300">All daily quests completed!</p>
             <p className="text-xs text-emerald-400/60">Come back tomorrow for new quests.</p>
           </div>
         </motion.div>

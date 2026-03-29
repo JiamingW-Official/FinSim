@@ -149,7 +149,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
 
   return (
     <div className="space-y-3">
-      <div className="overflow-hidden rounded-lg border border-border/50 bg-black/20 p-2">
+      <div className="overflow-hidden rounded-lg border border-border/20 bg-black/20 p-2">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: 185 }}>
           {/* Grid lines */}
           {yTicks.map((v) => {
@@ -261,10 +261,10 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
       {/* Top Sharpe table */}
       <div>
         <h4 className="mb-1 text-xs font-semibold text-muted-foreground">Top Strategies by Sharpe</h4>
-        <div className="overflow-hidden rounded-lg border border-border/50 bg-black/20">
+        <div className="overflow-hidden rounded-lg border border-border/20 bg-black/20">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 <th className="py-1.5 pl-3 text-left text-[11px] font-medium text-muted-foreground/70">Strategy</th>
                 <th className="py-1.5 text-center text-[11px] font-medium text-muted-foreground/70">Vol %</th>
                 <th className="py-1.5 text-center text-[11px] font-medium text-muted-foreground/70">Return %</th>
@@ -276,7 +276,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
                 .sort((a, b) => b.sharpe - a.sharpe)
                 .slice(0, 4)
                 .map((p, i) => (
-                  <tr key={i} className={`border-b border-border/50 ${i === 0 ? "bg-emerald-500/5" : ""}`}>
+                  <tr key={i} className={`border-b border-border/20 ${i === 0 ? "bg-emerald-500/5" : ""}`}>
                     <td className="py-1.5 pl-3 text-xs text-muted-foreground">{p.label}</td>
                     <td className="py-1.5 text-center font-mono text-xs text-muted-foreground">{p.volatility.toFixed(1)}</td>
                     <td className={`py-1.5 text-center font-mono text-xs font-semibold ${p.returnPct >= 0 ? "text-emerald-400" : "text-rose-400"}`}>

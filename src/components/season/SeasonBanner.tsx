@@ -53,9 +53,9 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
         {/* Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="text-xs font-bold text-foreground truncate">{season.name}</h3>
+            <h3 className="text-xs font-semibold text-foreground truncate">{season.name}</h3>
             <span className={cn(
-              "text-xs font-bold",
+              "text-xs font-semibold",
               currentTier >= 20 ? "text-primary" : "text-muted-foreground",
             )}>
               Tier {currentTier}/20
@@ -78,7 +78,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
               <span className="text-muted-foreground">/ {nextTier.required} for Tier {nextTier.tierNumber}</span>
             )}
             {currentTier >= 20 && (
-              <span className="text-primary font-bold">MAX TIER</span>
+              <span className="text-primary font-semibold">MAX TIER</span>
             )}
           </div>
         </div>
@@ -87,7 +87,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
         <div className="flex flex-col items-end gap-1">
           <div className={cn(
             "flex items-center gap-1 text-xs",
-            daysUrgent ? "text-red-400 font-bold" : "text-muted-foreground",
+            daysUrgent ? "text-red-400 font-semibold" : "text-muted-foreground",
           )}>
             <Calendar className="h-3 w-3" />
             {daysDisplay}

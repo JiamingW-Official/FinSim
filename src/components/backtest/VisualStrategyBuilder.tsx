@@ -128,7 +128,7 @@ function ConditionRow({
   const relevantPresets = defaults.commonPresets;
 
   return (
-    <div className="flex flex-wrap items-center gap-2 rounded-lg border border-border/30 bg-muted/10 px-3 py-2">
+    <div className="flex flex-wrap items-center gap-2 rounded-lg border border-border/20 bg-muted/10 px-3 py-2">
       {/* Indicator dropdown */}
       <div className="relative">
         <select
@@ -143,7 +143,7 @@ function ConditionRow({
               targetNumber: def.defaultTarget,
             });
           }}
-          className="appearance-none rounded-md border border-border/50 bg-card px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="appearance-none rounded-md border border-border/20 bg-card px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           {INDICATORS.map((i) => (
             <option key={i} value={i}>{i}</option>
@@ -156,7 +156,7 @@ function ConditionRow({
         <select
           value={cond.condition}
           onChange={(e) => onChange({ ...cond, condition: e.target.value as ConditionChoice })}
-          className="appearance-none rounded-md border border-border/50 bg-card px-2 py-1 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="appearance-none rounded-md border border-border/20 bg-card px-2 py-1 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           {CONDITIONS.map((c) => (
             <option key={c} value={c}>{c}</option>
@@ -191,7 +191,7 @@ function ConditionRow({
           className={`w-16 rounded-md border px-2 py-0.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
             !cond.usePreset
               ? "border-primary bg-muted/40"
-              : "border-border/50 bg-card"
+              : "border-border/20 bg-card"
           }`}
         />
       </div>
@@ -259,7 +259,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
   };
 
   return (
-    <div className="rounded-lg border border-border/30 bg-card/50">
+    <div className="rounded-lg border border-border/20 bg-card/50">
       {/* Header row */}
       <button
         className="flex w-full items-center justify-between px-4 py-3"
@@ -277,14 +277,14 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
       </button>
 
       {!isCollapsed && (
-        <div className="space-y-4 border-t border-border/30 px-4 pb-4 pt-3">
+        <div className="space-y-4 border-t border-border/20 px-4 pb-4 pt-3">
           {/* Strategy name + load saved */}
           <div className="flex gap-2">
             <input
               type="text"
               value={strategyName}
               onChange={(e) => setStrategyName(e.target.value)}
-              className="flex-1 rounded-md border border-border/50 bg-card px-3 py-1.5 text-xs text-foreground placeholder-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex-1 rounded-md border border-border/20 bg-card px-3 py-1.5 text-xs text-foreground placeholder-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               placeholder="Strategy name..."
             />
             {savedStrategies.length > 0 && (
@@ -294,7 +294,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                   const idx = parseInt(e.target.value, 10);
                   if (!isNaN(idx)) loadSaved(idx);
                 }}
-                className="appearance-none rounded-md border border-border/50 bg-card px-2 py-1.5 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="appearance-none rounded-md border border-border/20 bg-card px-2 py-1.5 text-xs text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <option value="">Load saved...</option>
                 {savedStrategies.map((s, i) => (
@@ -313,7 +313,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
               <div className="flex items-center gap-2">
                 {/* AND/OR toggle */}
                 {entryConditions.length > 1 && (
-                  <div className="flex rounded-md border border-border/50 overflow-hidden">
+                  <div className="flex rounded-md border border-border/20 overflow-hidden">
                     {(["AND", "OR"] as const).map((l) => (
                       <button
                         key={l}
@@ -330,7 +330,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                 {entryConditions.length < 3 && (
                   <button
                     onClick={addEntry}
-                    className="flex items-center gap-1 rounded-md border border-border/50 bg-muted/20 px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
+                    className="flex items-center gap-1 rounded-md border border-border/20 bg-muted/20 px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
                   >
                     <Plus className="h-3 w-3" /> Add
                   </button>
@@ -366,7 +366,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
               </span>
               <div className="flex items-center gap-2">
                 {exitConditions.length > 1 && (
-                  <div className="flex rounded-md border border-border/50 overflow-hidden">
+                  <div className="flex rounded-md border border-border/20 overflow-hidden">
                     {(["AND", "OR"] as const).map((l) => (
                       <button
                         key={l}
@@ -383,7 +383,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                 {exitConditions.length < 2 && (
                   <button
                     onClick={addExit}
-                    className="flex items-center gap-1 rounded-md border border-border/50 bg-muted/20 px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
+                    className="flex items-center gap-1 rounded-md border border-border/20 bg-muted/20 px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
                   >
                     <Plus className="h-3 w-3" /> Add
                   </button>
@@ -411,7 +411,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
             ))}
 
             {/* Stop loss */}
-            <div className="flex items-center gap-3 rounded-lg border border-border/30 bg-muted/10 px-3 py-2">
+            <div className="flex items-center gap-3 rounded-lg border border-border/20 bg-muted/10 px-3 py-2">
               <span className="text-xs text-muted-foreground">Stop loss at</span>
               <input
                 type="number"
@@ -424,7 +424,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                   setStopLoss(isNaN(v) ? null : v);
                 }}
                 placeholder="off"
-                className="w-14 rounded-md border border-border/50 bg-card px-2 py-0.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-14 rounded-md border border-border/20 bg-card px-2 py-0.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
               <span className="text-xs text-muted-foreground">%</span>
               {stopLoss !== null && (
@@ -444,7 +444,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
               <span className="text-xs font-semibold text-muted-foreground">
                 Position Size
               </span>
-              <span className="text-xs font-bold text-primary">{positionSize}% of portfolio</span>
+              <span className="text-xs font-semibold text-primary">{positionSize}% of portfolio</span>
             </div>
             <input
               type="range"
@@ -466,7 +466,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
           <div className="flex gap-2 pt-1">
             <button
               onClick={handleSave}
-              className="flex items-center gap-1.5 rounded-lg border border-border/50 bg-muted/20 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/50"
+              className="flex items-center gap-1.5 rounded-lg border border-border/20 bg-muted/20 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/50"
             >
               <Save className="h-3.5 w-3.5" /> Save
             </button>

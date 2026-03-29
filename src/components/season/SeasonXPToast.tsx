@@ -25,7 +25,7 @@ export function SeasonXPToast() {
           className="fixed bottom-6 left-1/2 z-50 flex items-center gap-2 rounded-full border border-amber-500/20 bg-card/90 px-4 py-2 shadow-sm backdrop-blur"
         >
           <Star className="h-3.5 w-3.5 text-amber-400" />
-          <span className="text-xs font-bold text-amber-400">
+          <span className="text-xs font-semibold text-amber-400">
             +{lastGain.amount} Season XP
           </span>
         </motion.div>

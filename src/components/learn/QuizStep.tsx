@@ -110,7 +110,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-1.5">
+          <p className="text-[10px] font-semibold text-amber-400 mb-1.5">
             📋 Scenario
           </p>
           <p className="text-sm text-foreground/90 leading-relaxed">{step.scenario}</p>
@@ -122,10 +122,10 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: step.type === "quiz-scenario" ? 0.12 : 0 }}
       >
-        <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="text-[10px] font-semibold text-muted-foreground mb-2">
           {step.type === "quiz-tf" ? "True or False?" : "Question"}
         </p>
-        <h2 className="text-base font-bold leading-snug">{question}</h2>
+        <h2 className="text-base font-semibold leading-snug">{question}</h2>
       </motion.div>
 
       <div className={cn(
@@ -184,7 +184,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
               )}
             >
               <span className={cn(
-                "mr-2.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold shrink-0",
+                "mr-2.5 inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold shrink-0",
                 showResult && isThis && isCorrect ? "bg-emerald-500/30 text-emerald-300"
                   : showResult && isThis && !isCorrect ? "bg-red-500/30 text-red-300"
                   : showResult && isRight ? "bg-emerald-500/20 text-emerald-400/80"
@@ -275,7 +275,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
           whileTap={{ scale: 0.97 }}
           transition={{ delay: 0.15 }}
           className={cn(
-            "w-full rounded-md py-3.5 text-sm font-bold transition-all",
+            "w-full rounded-md py-3.5 text-sm font-semibold transition-colors",
             isCorrect
               ? "bg-emerald-500 text-foreground hover:bg-emerald-400"
               : "bg-red-500 text-foreground hover:bg-red-400",

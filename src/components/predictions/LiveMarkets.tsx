@@ -134,7 +134,7 @@ function MarketCard({
             {market.resolution !== "pending" && (
               <span
                 className={cn(
-                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
+                  "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[11px] font-semibold",
                   market.resolution === "yes"
                     ? "bg-green-500/10 text-green-400"
                     : "bg-red-500/5 text-red-400",
@@ -149,7 +149,7 @@ function MarketCard({
               </span>
             )}
             {position && (
-              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold uppercase text-primary">
+              <span className="rounded bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold text-primary">
                 {position.side.toUpperCase()} {position.shares}sh
               </span>
             )}
@@ -174,7 +174,7 @@ function MarketCard({
           </div>
           <div className="h-1 w-full overflow-hidden rounded-full bg-red-500/20">
             <div
-              className="h-full rounded-full bg-green-500/60 transition-all"
+              className="h-full rounded-full bg-green-500/60 transition-colors"
               style={{ width: `${market.yesPrice}%` }}
             />
           </div>
@@ -295,7 +295,7 @@ function MarketDetail({
           {market.resolution !== "pending" && (
             <span
               className={cn(
-                "flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
+                "flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] font-semibold",
                 market.resolution === "yes"
                   ? "bg-green-500/10 text-green-400"
                   : "bg-red-500/5 text-red-400",
@@ -578,7 +578,7 @@ function PositionsList({
             <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono tabular-nums">
               <span
                 className={cn(
-                  "rounded px-1 py-0.5 text-[11px] font-semibold uppercase",
+                  "rounded px-1 py-0.5 text-[11px] font-semibold",
                   pos.side === "yes"
                     ? "bg-green-500/10 text-green-400"
                     : "bg-red-500/5 text-red-400",
@@ -592,7 +592,7 @@ function PositionsList({
               {market.resolution !== "pending" && (
                 <span
                   className={cn(
-                    "rounded px-1 py-0.5 text-[11px] font-semibold uppercase",
+                    "rounded px-1 py-0.5 text-[11px] font-semibold",
                     market.resolution === "yes"
                       ? "bg-green-500/10 text-green-400"
                       : "bg-red-500/5 text-red-400",
@@ -747,7 +747,7 @@ export function LiveMarkets() {
   return (
     <div className="flex h-full flex-col">
       {/* Balance + stats bar */}
-      <div className="border-b border-border/50 px-4 py-3">
+      <div className="border-b border-border/20 px-4 py-3">
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-1.5 rounded-md bg-muted/50 px-2.5 py-1.5">
             <Wallet className="h-3.5 w-3.5 text-muted-foreground" />
@@ -793,7 +793,7 @@ export function LiveMarkets() {
               >
                 {tab}
                 {tab === "positions" && positions.size > 0 && (
-                  <span className="ml-1 rounded-full bg-primary/20 px-1 text-[11px] font-bold text-primary">
+                  <span className="ml-1 rounded-full bg-primary/20 px-1 text-[11px] font-semibold text-primary">
                     {positions.size}
                   </span>
                 )}
@@ -817,7 +817,7 @@ export function LiveMarkets() {
                     "shrink-0 rounded-md border px-2.5 py-1 text-[11px] font-medium transition-colors",
                     categoryFilter === f.value
                       ? "bg-primary/15 text-primary border-primary/30"
-                      : "border-border/40 text-muted-foreground hover:text-foreground",
+                      : "border-border/20 text-muted-foreground hover:text-foreground",
                   )}
                 >
                   {f.label}

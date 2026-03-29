@@ -71,7 +71,7 @@ function BiasCard({ bias }: { bias: BehavioralBias }) {
       </button>
 
       {expanded && (
-        <div className="px-4 pb-4 space-y-3 border-t border-border/40 pt-3">
+        <div className="px-4 pb-4 space-y-3 border-t border-border/20 pt-3">
           {/* Example */}
           <div>
             <p className="text-[11px] font-medium text-foreground mb-1">Example</p>

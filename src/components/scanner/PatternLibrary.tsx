@@ -775,11 +775,11 @@ function PatternCard({
     <button
       type="button"
       onClick={onClick}
-      className="group flex flex-col overflow-hidden rounded-lg border border-border/50 bg-card text-left transition-colors hover:border-primary/40 hover:bg-muted/10"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border/20 bg-card text-left transition-colors hover:border-primary/40 hover:bg-muted/10"
       style={{ width: 200, minHeight: 160 }}
     >
       {/* SVG thumb */}
-      <div className="flex items-center justify-center border-b border-border/30 bg-muted/20"
+      <div className="flex items-center justify-center border-b border-border/20 bg-muted/20"
         style={{ width: 200, height: 90 }}>
         <div style={{ width: 80, height: 60 }} className="text-foreground">
           {pattern.miniSvg}
@@ -800,15 +800,15 @@ function PatternCard({
         </div>
         <div className="mt-auto flex items-center justify-between pt-1">
           <div className="text-center">
-            <p className="text-xs font-bold tabular-nums text-emerald-400">{pattern.successRate}%</p>
+            <p className="text-xs font-semibold tabular-nums text-emerald-400">{pattern.successRate}%</p>
             <p className="text-[11px] text-muted-foreground">Success</p>
           </div>
           <div className="text-center">
-            <p className="text-xs font-bold tabular-nums text-primary">+{pattern.avgGain}%</p>
+            <p className="text-xs font-semibold tabular-nums text-primary">+{pattern.avgGain}%</p>
             <p className="text-[11px] text-muted-foreground">Avg Gain</p>
           </div>
           <div className="text-center">
-            <p className="text-xs font-bold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
+            <p className="text-xs font-semibold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
             <p className="text-[11px] text-muted-foreground">Bars</p>
           </div>
         </div>
@@ -833,7 +833,7 @@ function PatternDetail({
         <button
           type="button"
           onClick={onBack}
-          className="inline-flex items-center gap-1 rounded-md border border-border/50 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+          className="inline-flex items-center gap-1 rounded-md border border-border/20 px-2.5 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
         >
           <ChevronLeft className="h-3.5 w-3.5" />
           Back
@@ -852,22 +852,22 @@ function PatternDetail({
         </div>
         <div className="ml-auto flex gap-4 text-center">
           <div>
-            <p className="text-sm font-bold tabular-nums text-emerald-400">{pattern.successRate}%</p>
+            <p className="text-sm font-semibold tabular-nums text-emerald-400">{pattern.successRate}%</p>
             <p className="text-xs text-muted-foreground">Success Rate</p>
           </div>
           <div>
-            <p className="text-sm font-bold tabular-nums text-primary">+{pattern.avgGain}%</p>
+            <p className="text-sm font-semibold tabular-nums text-primary">+{pattern.avgGain}%</p>
             <p className="text-xs text-muted-foreground">Avg Gain</p>
           </div>
           <div>
-            <p className="text-sm font-bold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
+            <p className="text-sm font-semibold tabular-nums text-foreground">{pattern.avgFormationBars}</p>
             <p className="text-xs text-muted-foreground">Avg Bars</p>
           </div>
         </div>
       </div>
 
       {/* Large SVG */}
-      <div className="overflow-hidden rounded-lg border border-border/40 bg-muted/10" style={{ height: 250 }}>
+      <div className="overflow-hidden rounded-lg border border-border/20 bg-muted/10" style={{ height: 250 }}>
         <div className="h-full w-full text-foreground">
           {pattern.detailSvg}
         </div>
@@ -1011,7 +1011,7 @@ function QuizSection() {
           <button
             type="button"
             onClick={startFlash}
-            className="inline-flex items-center gap-2 rounded-md border border-border/50 px-4 py-2 text-xs font-medium text-muted-foreground hover:text-foreground"
+            className="inline-flex items-center gap-2 rounded-md border border-border/20 px-4 py-2 text-xs font-medium text-muted-foreground hover:text-foreground"
           >
             <Shuffle className="h-3.5 w-3.5" />
             Flash Cards
@@ -1029,8 +1029,8 @@ function QuizSection() {
           <p className="text-xs text-muted-foreground">{flashIdx + 1} / {PATTERNS.length}</p>
           <button type="button" onClick={() => setMode("idle")} className="text-[11px] text-muted-foreground hover:text-foreground">Exit</button>
         </div>
-        <div className="flex w-full max-w-sm flex-col overflow-hidden rounded-md border border-border/50 bg-card">
-          <div className="flex h-40 items-center justify-center border-b border-border/30 bg-muted/20">
+        <div className="flex w-full max-w-sm flex-col overflow-hidden rounded-md border border-border/20 bg-card">
+          <div className="flex h-40 items-center justify-center border-b border-border/20 bg-muted/20">
             <div style={{ width: 120, height: 90 }} className="text-foreground">{p.miniSvg}</div>
           </div>
           <div className="p-4 text-center">
@@ -1045,7 +1045,7 @@ function QuizSection() {
           <button
             type="button"
             onClick={() => setFlashIdx((i) => (i - 1 + PATTERNS.length) % PATTERNS.length)}
-            className="rounded-md border border-border/50 px-4 py-1.5 text-xs text-muted-foreground hover:text-foreground"
+            className="rounded-md border border-border/20 px-4 py-1.5 text-xs text-muted-foreground hover:text-foreground"
           >
             Prev
           </button>
@@ -1069,7 +1069,7 @@ function QuizSection() {
       <div className="flex flex-col items-center gap-4 py-10 text-center">
         <Trophy className={cn("h-10 w-10", pct >= 70 ? "text-amber-400" : "text-muted-foreground/40")} />
         <div>
-          <p className="text-2xl font-bold text-foreground">{grade}</p>
+          <p className="text-2xl font-semibold text-foreground">{grade}</p>
           <p className="text-sm text-muted-foreground">{score} / 10 correct ({pct}%)</p>
           {xpEarned > 0 && (
             <p className="mt-1 text-xs text-primary">+{xpEarned} XP earned</p>
@@ -1095,7 +1095,7 @@ function QuizSection() {
       <div className="flex items-center gap-2">
         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted/40">
           <div
-            className="h-full rounded-full bg-primary transition-all"
+            className="h-full rounded-full bg-primary transition-colors"
             style={{ width: `${((qIndex) / questions.length) * 100}%` }}
           />
         </div>
@@ -1107,7 +1107,7 @@ function QuizSection() {
 
       {/* Pattern display */}
       <div className="flex justify-center">
-        <div className="flex items-center justify-center overflow-hidden rounded-md border border-border/40 bg-muted/20"
+        <div className="flex items-center justify-center overflow-hidden rounded-md border border-border/20 bg-muted/20"
           style={{ width: 200, height: 150 }}>
           <div style={{ width: 140, height: 105 }} className="text-foreground">{q.pattern.miniSvg}</div>
         </div>
@@ -1127,10 +1127,10 @@ function QuizSection() {
               onClick={() => handleAnswer(opt)}
               className={cn(
                 "rounded-lg border px-3 py-2.5 text-left text-xs font-medium transition-colors",
-                !revealed && "border-border/50 text-foreground hover:border-primary/40 hover:bg-muted/10",
+                !revealed && "border-border/20 text-foreground hover:border-primary/40 hover:bg-muted/10",
                 revealed && isCorrect && "border-emerald-400/60 bg-emerald-400/10 text-emerald-400",
                 revealed && isSelected && !isCorrect && "border-rose-400/60 bg-rose-400/10 text-rose-400",
-                revealed && !isSelected && !isCorrect && "border-border/30 text-muted-foreground",
+                revealed && !isSelected && !isCorrect && "border-border/20 text-muted-foreground",
               )}
             >
               <span className="flex items-center gap-2">
@@ -1207,8 +1207,8 @@ function StatsDashboard() {
         </p>
         <div className="flex gap-3">
           {sorted.map(({ p }, rank) => (
-            <div key={p.id} className="flex flex-1 items-center gap-2 rounded-md border border-border/40 bg-card px-3 py-2">
-              <span className="text-sm font-bold text-muted-foreground">#{rank + 1}</span>
+            <div key={p.id} className="flex flex-1 items-center gap-2 rounded-md border border-border/20 bg-card px-3 py-2">
+              <span className="text-sm font-semibold text-muted-foreground">#{rank + 1}</span>
               <div className="min-w-0">
                 <p className="truncate text-xs font-semibold text-foreground">{p.name}</p>
                 <p className="text-xs text-emerald-400">{p.successRate}% success</p>
@@ -1221,7 +1221,7 @@ function StatsDashboard() {
       {/* Success Rate Bar Chart */}
       <div className="space-y-2">
         <p className="text-xs font-semibold text-muted-foreground">Success Rate by Pattern</p>
-        <div className="overflow-hidden rounded-lg border border-border/40 bg-card p-4">
+        <div className="overflow-hidden rounded-lg border border-border/20 bg-card p-4">
           <svg viewBox={`0 0 600 ${barData.length * 22 + 10}`} className="w-full">
             {barData.map((p, i) => {
               const barW = (p.successRate / maxRate) * 380;
@@ -1246,10 +1246,10 @@ function StatsDashboard() {
       {/* Market condition matrix */}
       <div className="space-y-2">
         <p className="text-xs font-semibold text-muted-foreground">Market Condition Matrix</p>
-        <div className="overflow-hidden rounded-lg border border-border/40">
+        <div className="overflow-hidden rounded-lg border border-border/20">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
+              <tr className="border-b border-border/20 bg-muted/30">
                 <th className="px-3 py-2 text-left text-xs font-semibold text-muted-foreground">Pattern</th>
                 <th className="px-3 py-2 text-center text-xs font-semibold text-emerald-400">Bull Market</th>
                 <th className="px-3 py-2 text-center text-xs font-semibold text-rose-400">Bear Market</th>
@@ -1280,12 +1280,12 @@ function StatsDashboard() {
         <p className="text-xs font-semibold text-muted-foreground">Best Pattern by Sector</p>
         <div className="grid grid-cols-2 gap-2">
           {SECTOR_PATTERNS.map((s) => (
-            <div key={s.sector} className="flex items-center gap-3 rounded-lg border border-border/40 bg-card px-3 py-2.5">
+            <div key={s.sector} className="flex items-center gap-3 rounded-lg border border-border/20 bg-card px-3 py-2.5">
               <div className="min-w-0 flex-1">
                 <p className="text-xs font-medium text-muted-foreground">{s.sector}</p>
                 <p className="truncate text-[11px] font-semibold text-foreground">{s.bestPattern}</p>
               </div>
-              <span className="text-xs font-bold text-emerald-400">{s.winRate}%</span>
+              <span className="text-xs font-semibold text-emerald-400">{s.winRate}%</span>
             </div>
           ))}
         </div>
@@ -1328,7 +1328,7 @@ export function PatternLibrary() {
   return (
     <div className="space-y-4">
       {/* Section tabs */}
-      <div className="flex gap-1 rounded-lg border border-border/40 bg-muted/20 p-1">
+      <div className="flex gap-1 rounded-lg border border-border/20 bg-muted/20 p-1">
         {SECTIONS.map((s) => (
           <button
             key={s.id}
@@ -1355,7 +1355,7 @@ export function PatternLibrary() {
             <>
               {/* Filters */}
               <div className="flex flex-wrap items-center gap-2">
-                <div className="flex gap-1 rounded-md border border-border/50 p-0.5">
+                <div className="flex gap-1 rounded-md border border-border/20 p-0.5">
                   {categories.map((cat) => (
                     <button
                       key={cat}
@@ -1375,7 +1375,7 @@ export function PatternLibrary() {
 
                 <div className="ml-auto flex items-center gap-2">
                   <span className="text-xs text-muted-foreground">Sort:</span>
-                  <div className="flex gap-1 rounded-md border border-border/50 p-0.5">
+                  <div className="flex gap-1 rounded-md border border-border/20 p-0.5">
                     {(["successRate", "avgGain", "name"] as SortKey[]).map((k) => (
                       <button
                         key={k}

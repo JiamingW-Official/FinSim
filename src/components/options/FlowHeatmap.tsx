@@ -283,7 +283,7 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
       {/* Tooltip */}
       {tooltip && (
         <div
-          className="pointer-events-none absolute z-20 rounded-md border border-border/40 bg-popover p-2 shadow-sm"
+          className="pointer-events-none absolute z-20 rounded-md border border-border/20 bg-popover p-2 shadow-sm"
           style={{
             left: Math.min(tooltip.x + 8, (svgWidth * 0.75)),
             top: tooltip.y - 60,
@@ -307,7 +307,7 @@ export function FlowHeatmap({ items }: FlowHeatmapProps) {
                 {formatCompact(tooltip.putFlow)}
               </span>
             </div>
-            <div className="flex justify-between gap-4 border-t border-border/50 pt-0.5 font-medium">
+            <div className="flex justify-between gap-4 border-t border-border/20 pt-0.5 font-medium">
               <span className="text-muted-foreground">Net</span>
               <span className={cn(tooltip.netFlow > 0 ? "text-emerald-400" : tooltip.netFlow < 0 ? "text-red-400" : "text-foreground")}>
                 {formatCompact(tooltip.netFlow)}

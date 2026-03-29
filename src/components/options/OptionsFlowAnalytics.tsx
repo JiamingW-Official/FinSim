@@ -277,8 +277,8 @@ function FilterChip({
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <div className="border-b border-border/50 px-4 py-2">
-      <span className="text-xs font-bold text-muted-foreground">
+    <div className="border-b border-border/20 px-4 py-2">
+      <span className="text-xs font-semibold text-muted-foreground">
         {children}
       </span>
     </div>
@@ -321,18 +321,18 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
   return (
     <div className="flex flex-col gap-3">
       {/* Summary bar */}
-      <div className="mx-4 mt-3 rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="mx-4 mt-3 rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 flex items-center justify-between">
           <span className="text-xs font-semibold text-foreground">Daily Flow Summary</span>
           <span className="text-[11px] text-muted-foreground">{entries.length} alerts</span>
         </div>
         <div className="flex h-2.5 overflow-hidden rounded-full">
           <div
-            className="bg-emerald-500/70 transition-all"
+            className="bg-emerald-500/70 transition-colors"
             style={{ width: totalFlow > 0 ? `${(totalBullish / totalFlow * 100).toFixed(1)}%` : "50%" }}
           />
           <div
-            className="bg-red-500/70 transition-all"
+            className="bg-red-500/70 transition-colors"
             style={{ width: totalFlow > 0 ? `${(totalBearish / totalFlow * 100).toFixed(1)}%` : "50%" }}
           />
         </div>
@@ -347,8 +347,8 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
       </div>
 
       {/* Filter + sort bar */}
-      <div className="flex flex-wrap items-center gap-1.5 border-b border-border/50 px-4 pb-2">
-        <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
+      <div className="flex flex-wrap items-center gap-1.5 border-b border-border/20 px-4 pb-2">
+        <div className="flex items-center gap-0.5 rounded-md border border-border/20 bg-card p-0.5">
           {filters.map(({ v, l }) => (
             <FilterChip key={v} active={filter === v} onClick={() => setFilter(v)}>{l}</FilterChip>
           ))}
@@ -374,7 +374,7 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
       <div className="overflow-auto">
         <table className="w-full border-collapse text-[11px]">
           <thead className="sticky top-0 z-10 bg-card">
-            <tr className="border-b border-border/50">
+            <tr className="border-b border-border/20">
               {["Time","Ticker","Exp","Strike","C/P","Type","Size","Premium","OI%","IV","Sentiment"].map((h, i) => (
                 <th key={`h-${i}`} className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground whitespace-nowrap">
                   {h}
@@ -395,7 +395,7 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="border-b border-border/50 transition-colors hover:bg-muted/50"
+                    className="border-b border-border/20 transition-colors hover:bg-muted/50"
                   >
                     <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">
                       {relTime(e.timestamp)}
@@ -520,7 +520,7 @@ function FlowHeatmapSection({ entries }: { entries: FlowEntry[] }) {
     <div className="flex flex-col gap-3 px-4 py-3">
       {/* Summary */}
       <div className="flex items-center gap-3">
-        <div className="flex-1 rounded-md border border-border/50 bg-card/40 p-2">
+        <div className="flex-1 rounded-md border border-border/20 bg-card/40 p-2">
           <div className="mb-1 text-[11px] text-muted-foreground">Today&apos;s Flow</div>
           <div className="flex h-2 overflow-hidden rounded-full">
             <div className="bg-emerald-500/60" style={{ width: `${(totalBull / totalAll * 100).toFixed(0)}%` }} />
@@ -532,7 +532,7 @@ function FlowHeatmapSection({ entries }: { entries: FlowEntry[] }) {
           </div>
         </div>
         {topSector && (
-          <div className="rounded-md border border-border/50 bg-card/40 p-2 text-center">
+          <div className="rounded-md border border-border/20 bg-card/40 p-2 text-center">
             <div className="text-[11px] text-muted-foreground">Most Active Sector</div>
             <div className={cn(
               "mt-0.5 text-[11px] font-semibold",
@@ -725,7 +725,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
           return (
             <div key={label} className={cn("rounded-md border p-3", color)}>
               <div className="text-[11px] text-muted-foreground">{label}</div>
-              <div className="text-[22px] font-bold tabular-nums">{value.toFixed(2)}</div>
+              <div className="text-[22px] font-semibold tabular-nums">{value.toFixed(2)}</div>
               <div className="text-[11px] font-medium">{signal}</div>
               <div className="mt-0.5 text-[11px] text-muted-foreground">{desc}</div>
             </div>
@@ -734,7 +734,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
       </div>
 
       {/* 5-day chart */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 text-xs font-semibold">5-Day P/C Ratio</div>
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="overflow-visible">
           <defs>
@@ -812,7 +812,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
       </div>
 
       {/* Sector P/C bar chart */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 text-xs font-semibold">P/C Ratio by Sector</div>
         <svg viewBox={`0 0 260 ${barSvgH}`} width="100%">
           {sorted.map(({ sector, pc }, i) => {
@@ -839,7 +839,7 @@ function PCRatioDashboard({ seed }: { seed: number }) {
       </div>
 
       {/* Historical P/C extremes */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 text-xs font-semibold">Historical Extremes (Contrarian Signals)</div>
         <div className="space-y-1.5">
           {extremes.map((ex) => (
@@ -915,25 +915,25 @@ function OIAnalysis({ seed }: { seed: number }) {
 
       {/* Max Pain + Walls summary */}
       <div className="grid grid-cols-3 gap-2">
-        <div className="rounded-md border border-border/50 bg-card/40 p-2 text-center">
+        <div className="rounded-md border border-border/20 bg-card/40 p-2 text-center">
           <div className="text-[11px] text-muted-foreground">Max Pain</div>
-          <div className="text-[14px] font-bold tabular-nums">${maxPain}</div>
+          <div className="text-[14px] font-semibold tabular-nums">${maxPain}</div>
           <div className="text-[11px] text-muted-foreground">Options expire worthless</div>
         </div>
         <div className="rounded-md border border-emerald-500/20 bg-emerald-500/5 p-2 text-center">
           <div className="text-[11px] text-muted-foreground">Call Wall</div>
-          <div className="text-[14px] font-bold tabular-nums text-emerald-400">${callWall?.strike ?? 0}</div>
+          <div className="text-[14px] font-semibold tabular-nums text-emerald-400">${callWall?.strike ?? 0}</div>
           <div className="text-[11px] text-muted-foreground">{fmtShares(callWall?.callOI ?? 0)} OI</div>
         </div>
         <div className="rounded-md border border-red-500/20 bg-red-500/5 p-2 text-center">
           <div className="text-[11px] text-muted-foreground">Put Wall</div>
-          <div className="text-[14px] font-bold tabular-nums text-red-400">${putWall?.strike ?? 0}</div>
+          <div className="text-[14px] font-semibold tabular-nums text-red-400">${putWall?.strike ?? 0}</div>
           <div className="text-[11px] text-muted-foreground">{fmtShares(putWall?.putOI ?? 0)} OI</div>
         </div>
       </div>
 
       {/* OI by Strike chart */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 text-xs font-semibold">OI by Strike — {expLabel.slice(5)}</div>
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="overflow-visible">
           {/* Y-axis */}
@@ -996,7 +996,7 @@ function OIAnalysis({ seed }: { seed: number }) {
       </div>
 
       {/* GEX chart */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-1 text-xs font-semibold">Gamma Exposure (GEX) by Strike</div>
         <div className="mb-2 text-[11px] text-muted-foreground">Positive GEX = market makers long gamma (stabilizing) · Negative GEX = short gamma (amplifying)</div>
         <svg viewBox={`0 0 ${W} 90`} width="100%" className="overflow-visible">
@@ -1065,7 +1065,7 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
   return (
     <div className="flex flex-col gap-4 px-4 py-3">
       {/* Dark pool buy/sell summary */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 flex items-center justify-between text-xs">
           <span className="font-semibold">Simulated Institutional 24h Flow</span>
           <span className="text-muted-foreground">{prints.length} prints</span>
@@ -1081,12 +1081,12 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
       </div>
 
       {/* Correlation table */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 text-xs font-semibold">DP + Options Signal Correlation</div>
         <div className="overflow-auto">
           <table className="w-full border-collapse text-[11px]">
             <thead className="sticky top-0 z-10 bg-card">
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 {["Ticker","DP Buy%","Opts Bull%","Corr","Score","Follow-Thru","DP First?"].map((h, i) => (
                   <th key={`dph-${i}`} className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground whitespace-nowrap">
                     {h}
@@ -1098,7 +1098,7 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
               {correlations.map((c) => {
                 const highConviction = c.signalScore >= 70;
                 return (
-                  <tr key={c.ticker} className="border-b border-border/50 transition-colors hover:bg-muted/50">
+                  <tr key={c.ticker} className="border-b border-border/20 transition-colors hover:bg-muted/50">
                     <td className="px-3 py-2 font-medium">{c.ticker}</td>
                     <td className={cn("px-3 py-2 text-right font-mono tabular-nums", c.dpBuySide > 55 ? "text-emerald-500" : "text-red-500")}>
                       {c.dpBuySide.toFixed(0)}%
@@ -1148,7 +1148,7 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
       </div>
 
       {/* Scatter: DP buy% vs Options bull% */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-1 text-xs font-semibold">DP Buy% vs Options Bullish% (Conviction Map)</div>
         <svg viewBox={`0 0 ${W} ${H}`} width="100%" className="overflow-visible">
           <defs>
@@ -1209,12 +1209,12 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
       </div>
 
       {/* DP prints feed (top 10) */}
-      <div className="rounded-md border border-border/50 bg-card/40 p-3">
+      <div className="rounded-md border border-border/20 bg-card/40 p-3">
         <div className="mb-2 text-xs font-semibold">Recent Simulated Institutional Prints</div>
         <div className="overflow-auto">
           <table className="w-full border-collapse text-[11px]">
             <thead className="sticky top-0 z-10 bg-card">
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 {["Time","Ticker","Size","Price","$Value","Side"].map((h, i) => (
                   <th key={`dpt-${i}`} className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground">
                     {h}
@@ -1227,7 +1227,7 @@ function DarkPoolCorrelation({ seed }: { seed: number }) {
                 const isAbove = p.side === "above_ask";
                 const isBelow = p.side === "below_bid";
                 return (
-                  <tr key={p.id} className="border-b border-border/50 transition-colors hover:bg-muted/50">
+                  <tr key={p.id} className="border-b border-border/20 transition-colors hover:bg-muted/50">
                     <td className="px-3 py-2 text-muted-foreground">{relTime(p.timestamp)}</td>
                     <td className="px-3 py-2 font-medium">{p.ticker}</td>
                     <td className="px-3 py-2 text-right font-mono tabular-nums font-medium">{fmtShares(p.size)}</td>
@@ -1293,9 +1293,9 @@ export default function OptionsFlowAnalytics() {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-md border border-border/60 bg-card text-foreground">
       {/* Header */}
-      <div className="flex shrink-0 items-center justify-between border-b border-border/50 px-4 py-2">
+      <div className="flex shrink-0 items-center justify-between border-b border-border/20 px-4 py-2">
         <div className="flex items-center gap-2">
-          <span className="text-[11px] font-bold">Options Flow Analytics</span>
+          <span className="text-[11px] font-semibold">Options Flow Analytics</span>
           <motion.span
             key={tick}
             initial={{ opacity: 0, scale: 0.7 }}
@@ -1307,14 +1307,14 @@ export default function OptionsFlowAnalytics() {
         </div>
         <button
           onClick={refresh}
-          className="rounded border border-border/50 bg-muted/20 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+          className="rounded border border-border/20 bg-muted/20 px-2 py-1 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
         >
           Refresh
         </button>
       </div>
 
       {/* Tab bar */}
-      <div className="flex shrink-0 items-center gap-0.5 border-b border-border/50 px-4 py-1.5">
+      <div className="flex shrink-0 items-center gap-0.5 border-b border-border/20 px-4 py-1.5">
         {TABS.map(({ key, label }) => (
           <button
             key={key}

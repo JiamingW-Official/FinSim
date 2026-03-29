@@ -84,7 +84,7 @@ export function PositionAlerts() {
                     {threshold >= 15 ? "💎" : threshold >= 10 ? "🚀" : "🎯"}
                   </span>
                   <div className="min-w-0">
-                    <div className="font-bold text-emerald-400 leading-tight">
+                    <div className="font-semibold text-emerald-400 leading-tight">
                       Profit +{threshold}%
                     </div>
                     <div className="text-muted-foreground leading-tight mt-0.5">{msg}</div>
@@ -115,7 +115,7 @@ export function PositionAlerts() {
                 <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">{absT >= 5 ? "🛑" : "⚠️"}</span>
                   <div className="min-w-0">
-                    <div className="font-bold text-red-400 leading-tight">
+                    <div className="font-semibold text-red-400 leading-tight">
                       Loss Alert {threshold}%
                     </div>
                     <div className="text-muted-foreground leading-tight mt-0.5">{msg}</div>
@@ -148,7 +148,7 @@ export function PositionAlerts() {
                 <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">⚡</span>
                   <div className="min-w-0">
-                    <div className="font-bold text-amber-400 leading-tight">ATR Stop Proximity</div>
+                    <div className="font-semibold text-amber-400 leading-tight">ATR Stop Proximity</div>
                     <div className="text-muted-foreground leading-tight mt-0.5">
                       {pos.ticker} within {distToPct.toFixed(2)}% of ATR trailing stop ${atrStop.toFixed(2)} — prepare to exit
                     </div>
@@ -172,10 +172,10 @@ export function PositionAlerts() {
             alertedTimeExit.current.add(key);
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-border/20 bg-card px-3 py-2 shadow-sm text-[11px] max-w-64">
                   <span className="text-base shrink-0">⏱️</span>
                   <div className="min-w-0">
-                    <div className="font-bold text-primary leading-tight">Long-Held Position</div>
+                    <div className="font-semibold text-primary leading-tight">Long-Held Position</div>
                     <div className="text-muted-foreground leading-tight mt-0.5">
                       {pos.ticker} held {barsHeld} bars — re-evaluate thesis. Is momentum still supportive?
                     </div>

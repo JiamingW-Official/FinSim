@@ -41,7 +41,7 @@ const SENTIMENTS: {
   {
     value: "neutral",
     label: "Neutral",
-    activeClass: "bg-muted border-border/40 text-muted-foreground",
+    activeClass: "bg-muted border-border/20 text-muted-foreground",
     icon: "→",
   },
   {
@@ -98,8 +98,8 @@ export function StrategyBuilderV2({
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Sentiment selection */}
-      <div className="px-4 pt-3 pb-3 border-b border-border/50 shrink-0">
-        <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-2">
+      <div className="px-4 pt-3 pb-3 border-b border-border/20 shrink-0">
+        <p className="text-[11px] font-semibold text-muted-foreground mb-2">
           What&apos;s your market outlook?
         </p>
         <div className="grid grid-cols-3 gap-1.5">
@@ -111,10 +111,10 @@ export function StrategyBuilderV2({
                 "rounded-lg border px-2 py-2 flex flex-col items-center gap-0.5 transition-colors text-center",
                 sentiment === s.value
                   ? s.activeClass
-                  : "border-border/50 text-muted-foreground hover:text-foreground hover:border-border",
+                  : "border-border/20 text-muted-foreground hover:text-foreground hover:border-border",
               )}
             >
-              <span className="text-base font-bold leading-none">{s.icon}</span>
+              <span className="text-base font-semibold leading-none">{s.icon}</span>
               <span className="text-[11px] font-semibold leading-tight">{s.label}</span>
             </button>
           ))}
@@ -123,18 +123,18 @@ export function StrategyBuilderV2({
 
       {/* Analytics summary */}
       {analytics.atmIV > 0 && (
-        <div className="px-4 py-2 border-b border-border/50 shrink-0 flex items-center gap-3">
+        <div className="px-4 py-2 border-b border-border/20 shrink-0 flex items-center gap-3">
           <div className="flex flex-col">
-            <span className="text-[11px] text-muted-foreground uppercase">ATM IV</span>
-            <span className="text-[11px] font-bold text-orange-400">
+            <span className="text-[11px] text-muted-foreground">ATM IV</span>
+            <span className="text-[11px] font-semibold text-orange-400">
               {(analytics.atmIV * 100).toFixed(1)}%
             </span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[11px] text-muted-foreground uppercase">IV Rank</span>
+            <span className="text-[11px] text-muted-foreground">IV Rank</span>
             <span
               className={cn(
-                "text-[11px] font-bold",
+                "text-[11px] font-semibold",
                 analytics.ivRank < 30
                   ? "text-emerald-400"
                   : analytics.ivRank < 60
@@ -146,14 +146,14 @@ export function StrategyBuilderV2({
             </span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[11px] text-muted-foreground uppercase">Exp Move</span>
-            <span className="text-[11px] font-bold text-amber-400/80">
+            <span className="text-[11px] text-muted-foreground">Exp Move</span>
+            <span className="text-[11px] font-semibold text-amber-400/80">
               ±${analytics.expectedMove1SD.toFixed(2)}
             </span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[11px] text-muted-foreground uppercase">DTE</span>
-            <span className="text-[11px] font-bold">{dte}d</span>
+            <span className="text-[11px] text-muted-foreground">DTE</span>
+            <span className="text-[11px] font-semibold">{dte}d</span>
           </div>
         </div>
       )}
@@ -178,7 +178,7 @@ export function StrategyBuilderV2({
       ) : (
         <div className="flex-1 overflow-auto p-3">
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
+            <p className="text-[11px] font-semibold text-muted-foreground">
               Recommended Strategies
             </p>
             <span className="text-[11px] text-muted-foreground bg-accent/30 rounded px-1.5 py-0.5">

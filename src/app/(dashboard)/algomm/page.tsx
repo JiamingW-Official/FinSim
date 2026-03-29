@@ -186,11 +186,11 @@ function InfoCard({
   accent?: "blue" | "amber" | "green" | "red" | "purple";
 }) {
   const colors: Record<string, string> = {
-    blue: "border-primary/40 bg-primary/5",
+    blue: "border-primary/40 bg-muted/5",
     amber: "border-amber-500/40 bg-amber-500/5",
     green: "border-green-500/40 bg-green-500/5",
     red: "border-red-500/40 bg-red-500/5",
-    purple: "border-primary/40 bg-primary/5",
+    purple: "border-primary/40 bg-muted/5",
   };
   return (
     <div className={cn("rounded-lg border p-4", colors[accent])}>
@@ -750,7 +750,7 @@ function Tab1MarketMaking101() {
 
         {/* Right: interactive order book */}
         <div className="space-y-4">
-          <div className="rounded-lg border border-border/50 bg-background/60 p-4">
+          <div className="rounded-lg border border-border/20 bg-background/60 p-4">
             <div className="flex items-center justify-between mb-3">
               <p className="text-xs font-semibold text-muted-foreground">
                 Live Order Book (simulated)
@@ -860,7 +860,7 @@ function Tab2SpreadModeling() {
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-lg border border-border/50 bg-background/60 p-4">
+          <div className="rounded-lg border border-border/20 bg-background/60 p-4">
             <p className="text-xs font-medium text-muted-foreground mb-3">
               Quote Displacement by Inventory (A-S Model)
             </p>
@@ -928,10 +928,10 @@ function Tab3HFTStrategies() {
             The edge window is often 10–100μs — invisible to humans.
           </p>
         </InfoCard>
-        <div className="rounded-lg border border-border/50 overflow-hidden">
+        <div className="rounded-lg border border-border/20 overflow-hidden">
           <table className="w-full text-xs text-muted-foreground">
             <thead>
-              <tr className="border-b border-border/50 bg-muted/30">
+              <tr className="border-b border-border/20 bg-muted/30">
                 <th className="text-left p-2.5 text-muted-foreground font-medium">Venue</th>
                 <th className="text-right p-2.5 text-muted-foreground font-medium">Co-located (μs)</th>
                 <th className="text-right p-2.5 text-muted-foreground font-medium">Remote (μs)</th>
@@ -943,7 +943,7 @@ function Tab3HFTStrategies() {
                 <tr
                   key={row.venue}
                   className={cn(
-                    "border-b border-border/30 hover:bg-muted/20",
+                    "border-b border-border/20 hover:bg-muted/20",
                     i % 2 === 0 ? "bg-background/30" : ""
                   )}
                 >
@@ -1019,7 +1019,7 @@ function Tab3HFTStrategies() {
           ].map((item) => (
             <div
               key={item.label}
-              className="rounded-md border border-border/40 bg-muted/20 p-3"
+              className="rounded-md border border-border/20 bg-muted/20 p-3"
             >
               <p className="text-[11px] text-muted-foreground mb-0.5">{item.label}</p>
               <p className="text-sm font-medium text-primary">{item.value}</p>
@@ -1084,8 +1084,8 @@ function Tab3HFTStrategies() {
               className={cn(
                 "flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                 selectedStrategy === strat.id
-                  ? "border-primary bg-primary/10 text-primary"
-                  : "border-border/50 text-muted-foreground hover:border-border hover:text-foreground"
+                  ? "border-primary bg-muted/10 text-primary"
+                  : "border-border/20 text-muted-foreground hover:border-border hover:text-foreground"
               )}
             >
               <Icon className={cn("h-3.5 w-3.5", selectedStrategy === strat.id ? "text-primary" : strat.color)} />
@@ -1154,11 +1154,11 @@ function Tab4PnlAttribution() {
             desc: "Gain/loss from net inventory position carried across time",
           },
         ].map((item) => (
-          <div key={item.label} className="rounded-lg border border-border/50 bg-background/60 p-4">
+          <div key={item.label} className="rounded-lg border border-border/20 bg-background/60 p-4">
             <p className="text-xs font-medium text-muted-foreground mb-2">
               {item.label}
             </p>
-            <p className={cn("text-xl font-bold tabular-nums mb-1", item.textColor)}>
+            <p className={cn("text-xl font-semibold tabular-nums mb-1", item.textColor)}>
               {fmtDollar(item.value)}
             </p>
             <div className="w-full h-1.5 rounded-full bg-muted/40 mb-2">
@@ -1173,11 +1173,11 @@ function Tab4PnlAttribution() {
       </div>
 
       {/* Net P&L summary */}
-      <div className="flex items-center gap-3 rounded-lg border border-border/50 bg-muted/20 p-3">
+      <div className="flex items-center gap-3 rounded-lg border border-border/20 bg-muted/20 p-3">
         <Target className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
         <div className="flex-1 min-w-0">
           <p className="text-xs text-muted-foreground">30-Day Net P&L</p>
-          <p className={cn("text-lg font-bold tabular-nums", total >= 0 ? "text-green-400" : "text-red-400")}>
+          <p className={cn("text-lg font-semibold tabular-nums", total >= 0 ? "text-green-400" : "text-red-400")}>
             {fmtDollar(total)}
           </p>
         </div>
@@ -1188,7 +1188,7 @@ function Tab4PnlAttribution() {
       </div>
 
       {/* P&L chart */}
-      <div className="rounded-lg border border-border/50 bg-background/60 p-4">
+      <div className="rounded-lg border border-border/20 bg-background/60 p-4">
         <p className="text-xs font-medium text-muted-foreground mb-4">
           Cumulative P&L — 30 Days
         </p>
@@ -1196,14 +1196,14 @@ function Tab4PnlAttribution() {
       </div>
 
       {/* Per-day breakdown table */}
-      <div className="rounded-lg border border-border/50 overflow-hidden">
-        <p className="text-xs font-medium text-muted-foreground p-3 border-b border-border/50">
+      <div className="rounded-lg border border-border/20 overflow-hidden">
+        <p className="text-xs font-medium text-muted-foreground p-3 border-b border-border/20">
           Daily Breakdown
         </p>
         <div className="overflow-x-auto max-h-48 overflow-y-auto">
           <table className="w-full text-xs text-muted-foreground">
             <thead className="sticky top-0 bg-background/95">
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 {["Day", "Spread", "Adverse Sel.", "Inventory", "Net", "Cumulative"].map((h) => (
                   <th key={h} className="text-right first:text-left p-2 text-muted-foreground font-medium">
                     {h}
@@ -1292,13 +1292,13 @@ function Tab5RegulationRisk() {
       </div>
 
       {/* Circuit Breakers */}
-      <div className="rounded-lg border border-border/50 overflow-hidden">
-        <p className="text-xs font-medium text-muted-foreground p-3 border-b border-border/50">
+      <div className="rounded-lg border border-border/20 overflow-hidden">
+        <p className="text-xs font-medium text-muted-foreground p-3 border-b border-border/20">
           US Market Circuit Breakers
         </p>
         <table className="w-full text-xs text-muted-foreground">
           <thead>
-            <tr className="border-b border-border/40 bg-muted/20">
+            <tr className="border-b border-border/20 bg-muted/20">
               {["Type", "Trigger", "Halt Duration"].map((h) => (
                 <th key={h} className="text-left p-2.5 text-muted-foreground font-medium">
                   {h}
@@ -1376,7 +1376,7 @@ function Tab5RegulationRisk() {
         ].map((section) => {
           const Icon = section.icon;
           return (
-            <div key={section.label} className="rounded-lg border border-border/50 p-4">
+            <div key={section.label} className="rounded-lg border border-border/20 p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Icon className={cn("h-4 w-4", section.color)} />
                 <p className="text-xs text-muted-foreground font-medium">{section.label}</p>
@@ -1487,7 +1487,7 @@ export default function AlgoMMPage() {
         className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1"
       >
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-muted/10 border border-primary/20">
             <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
@@ -1508,7 +1508,7 @@ export default function AlgoMMPage() {
           ].map((kpi) => (
             <div
               key={kpi.label}
-              className="flex items-center gap-1.5 rounded-full border border-border/50 bg-muted/30 px-3 py-1 text-xs text-muted-foreground"
+              className="flex items-center gap-1.5 rounded-full border border-border/20 bg-muted/30 px-3 py-1 text-xs text-muted-foreground"
             >
               <span className="text-muted-foreground">{kpi.label}:</span>
               <span className="font-medium">{kpi.value}</span>

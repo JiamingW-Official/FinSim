@@ -80,7 +80,7 @@ function StatCard({
   return (
     <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
-      <span className={cn("text-xl font-bold", valClass)}>{value}</span>
+      <span className={cn("text-xl font-semibold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
@@ -106,7 +106,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald";
 }) {
   const colors = {
-    blue: "bg-primary/10 border-primary/30 text-primary",
+    blue: "bg-muted/10 border-primary/30 text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
   };
@@ -592,7 +592,7 @@ function MarketComparisons() {
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.02 }}
-                    className="border-t border-border/50 hover:bg-muted/30 transition-colors"
+                    className="border-t border-border/20 hover:bg-muted/30 transition-colors"
                   >
                     <td className="px-3 py-2 font-medium text-foreground">
                       {m.city}, {m.state}
@@ -781,9 +781,9 @@ function REITAnalysis() {
                 <tr
                   key={r.ticker}
                   onClick={() => setSelected(r.ticker === selected ? null : r.ticker)}
-                  className={cn("border-t border-border/50 cursor-pointer transition-colors", selected === r.ticker ? "bg-primary/20" : "hover:bg-muted/30")}
+                  className={cn("border-t border-border/20 cursor-pointer transition-colors", selected === r.ticker ? "bg-muted/10" : "hover:bg-muted/30")}
                 >
-                  <td className="px-3 py-2 font-mono font-bold text-foreground">{r.ticker}</td>
+                  <td className="px-3 py-2 font-mono font-semibold text-foreground">{r.ticker}</td>
                   <td className="px-3 py-2">
                     <span className="rounded px-1.5 py-0.5 text-xs" style={{ backgroundColor: (SECTOR_COLORS[r.sector] ?? "#6b7280") + "30", color: SECTOR_COLORS[r.sector] ?? "#9ca3af" }}>
                       {r.sector}
@@ -815,7 +815,7 @@ function REITAnalysis() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="rounded-md border border-primary/30 bg-primary/10 p-5"
+            className="rounded-md border border-primary/30 bg-muted/10 p-5"
           >
             <div className="flex justify-between items-start mb-3">
               <div>
@@ -1006,7 +1006,7 @@ function CommercialRE() {
             </div>
           ))}
           <div className={cn("rounded-lg p-4 text-center", dscr >= 1.25 ? "bg-emerald-500/15 border border-emerald-500/30" : dscr >= 1.0 ? "bg-amber-500/15 border border-amber-500/30" : "bg-rose-500/15 border border-rose-500/30")}>
-            <div className={cn("text-2xl font-bold", dscr >= 1.25 ? "text-emerald-400" : dscr >= 1.0 ? "text-amber-400" : "text-rose-400")}>
+            <div className={cn("text-2xl font-semibold", dscr >= 1.25 ? "text-emerald-400" : dscr >= 1.0 ? "text-amber-400" : "text-rose-400")}>
               {dscr.toFixed(2)}x
             </div>
             <div className="text-xs text-muted-foreground mt-1">DSCR — {dscr >= 1.25 ? "Lender approved (>1.25x)" : dscr >= 1.0 ? "Borderline — may require more equity" : "Below 1.0x — property cash flow negative"}</div>
@@ -1261,7 +1261,7 @@ function DevelopmentTab() {
               {renos
                 .sort((a, b) => b.roi - a.roi)
                 .map((r) => (
-                  <tr key={r.item} className="border-t border-border/50 hover:bg-muted/30 transition-colors">
+                  <tr key={r.item} className="border-t border-border/20 hover:bg-muted/30 transition-colors">
                     <td className="px-3 py-2 text-muted-foreground">{r.item}</td>
                     <td className="px-3 py-2 text-right text-muted-foreground">{fmtUSD(r.cost)}</td>
                     <td className="px-3 py-2 text-right text-emerald-400">{fmtUSD(r.addedVal)}</td>
@@ -1488,7 +1488,7 @@ function PortfolioStrategy() {
               <div key={ltvTest} className="flex items-center gap-3 text-xs text-muted-foreground">
                 <span className="text-muted-foreground w-14">{ltvTest}% LTV</span>
                 <div className="flex-1 h-4 rounded-full bg-foreground/10 overflow-hidden relative">
-                  <div className={cn("absolute inset-y-0 left-0 rounded-full transition-all", coc > 5.5 ? "bg-emerald-500/60" : coc >= 0 ? "bg-amber-500/60" : "bg-rose-500/60")} style={{ width: `${Math.max(0, Math.min(100, coc * 5))}%` }} />
+                  <div className={cn("absolute inset-y-0 left-0 rounded-full transition-colors", coc > 5.5 ? "bg-emerald-500/60" : coc >= 0 ? "bg-amber-500/60" : "bg-rose-500/60")} style={{ width: `${Math.max(0, Math.min(100, coc * 5))}%` }} />
                 </div>
                 <span className={cn("w-16 text-right font-medium", coc > 5.5 ? "text-emerald-400" : coc >= 0 ? "text-amber-400" : "text-rose-400")}>{fmtPct(coc)} CoC</span>
               </div>
@@ -1559,7 +1559,7 @@ export default function RealEstatePage() {
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="rounded-md bg-primary/20 p-2.5">
+              <div className="rounded-md bg-muted/10 p-2.5">
                 <Home className="w-6 h-6 text-primary" />
               </div>
               <h1 className="text-lg font-medium text-foreground">Real Estate Investment Analysis</h1>
@@ -1570,7 +1570,7 @@ export default function RealEstatePage() {
           </div>
           <div className="flex gap-2 flex-wrap">
             {[
-              { label: "Residential", color: "bg-primary/20 text-primary" },
+              { label: "Residential", color: "bg-muted/10 text-primary" },
               { label: "Commercial", color: "bg-emerald-600/20 text-emerald-400" },
               { label: "REITs", color: "bg-orange-600/20 text-orange-400" },
             ].map(({ label, color }) => (

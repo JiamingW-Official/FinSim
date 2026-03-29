@@ -133,7 +133,7 @@ export default function LearnPage() {
           <div className="flex items-center gap-2">
             <div className="w-24 h-1 rounded-full bg-muted/40 overflow-hidden">
               <div
-                className="h-full rounded-full bg-muted-foreground/40 transition-all"
+                className="h-full rounded-full bg-muted-foreground/40 transition-colors"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
@@ -148,7 +148,7 @@ export default function LearnPage() {
 
           {/* Continue learning — subtle inline link */}
           {recommendedLesson && (
-            <div className="mb-5">
+            <div className="mb-3">
               <Link
                 href={`/learn/${recommendedLesson.lesson.id}`}
                 className="group inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
@@ -170,7 +170,7 @@ export default function LearnPage() {
                 placeholder="Search lessons..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded border border-border/50 bg-transparent pl-6 pr-2 py-1 text-xs placeholder:text-muted-foreground/40 focus:outline-none focus:border-border"
+                className="w-full rounded border border-border/20 bg-transparent pl-6 pr-2 py-1 text-xs placeholder:text-muted-foreground/40 focus:outline-none focus:border-border"
               />
             </div>
             <div className="flex items-center gap-1">
@@ -195,7 +195,7 @@ export default function LearnPage() {
           {filteredUnits.length === 0 ? (
             <p className="text-xs text-muted-foreground py-8 text-center">No lessons match your search.</p>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-4">
               {filteredUnits.map((unit) => {
                 const unitCompletedCount = unit.lessons.filter((l) =>
                   completedLessons.includes(l.id)
@@ -266,7 +266,7 @@ export default function LearnPage() {
           )}
 
           {/* Practice tools — minimal footer section */}
-          <div className="mt-8 pt-6 border-t border-border/30">
+          <div className="mt-4 pt-4 border-t border-border/20">
             <p className="text-[11px] text-muted-foreground/40 mb-3">Practice</p>
             <div className="flex items-center gap-4">
               <button
@@ -309,7 +309,7 @@ export default function LearnPage() {
                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 className="overflow-hidden mt-4"
               >
-                <div className="rounded border border-border/40 p-4">
+                <div className="rounded border border-border/20 p-4">
                   {activeTool === "scenario" ? <ScenarioSimulator /> : <CompoundCalculator />}
                 </div>
               </motion.div>

@@ -70,12 +70,12 @@ export function MarginPanel() {
         "rounded-md border p-3 space-y-2.5",
         isMarginCall
           ? "border-loss/50 bg-loss/5"
-          : "border-border/40 bg-muted/20",
+          : "border-border/20 bg-muted/20",
       )}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
-        <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+        <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
           <BarChart2 className="h-3.5 w-3.5" />
           Margin Account
         </span>
@@ -85,7 +85,7 @@ export function MarginPanel() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: [1, 1.05, 1], opacity: 1 }}
               transition={{ repeat: Infinity, duration: 1.2 }}
-              className="rounded bg-loss px-1.5 py-0.5 text-xs font-bold text-foreground"
+              className="rounded bg-loss px-1.5 py-0.5 text-xs font-semibold text-foreground"
             >
               MARGIN CALL!
             </motion.span>
@@ -213,7 +213,7 @@ export function MarginPanel() {
       <button
         type="button"
         onClick={accrueMarginInterest}
-        className="w-full rounded border border-border/40 py-1 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+        className="w-full rounded border border-border/20 py-1 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
       >
         Accrue 1 Day Interest ({formatCurrency(totalDailyInterest)})
       </button>

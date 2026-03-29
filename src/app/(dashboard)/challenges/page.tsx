@@ -274,9 +274,9 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
   const remaining = useCountdown(event.endsAt);
 
   return (
-    <div className="rounded-md border border-border/40 overflow-hidden">
+    <div className="rounded-md border border-border/20 overflow-hidden">
       {/* Header row */}
-      <div className="flex items-center justify-between px-3 py-2 border-b border-border/30">
+      <div className="flex items-center justify-between px-3 py-2 border-b border-border/20">
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium text-foreground">{event.title}</span>
           {event.isNew && (
@@ -354,10 +354,10 @@ function HistoryTab() {
       </div>
 
       {/* History table */}
-      <div className="overflow-x-auto rounded-lg border border-border/40">
+      <div className="overflow-x-auto rounded-lg border border-border/20">
         <table className="w-full text-xs min-w-[420px]">
           <thead>
-            <tr className="border-b border-border/50 bg-muted/5">
+            <tr className="border-b border-border/20 bg-muted/5">
               <th className="px-3 py-1.5 text-left text-xs font-medium text-muted-foreground">Challenge</th>
               <th className="px-3 py-1.5 text-left text-xs font-medium text-muted-foreground">Date</th>
               <th className="px-3 py-1.5 text-right text-xs font-medium text-muted-foreground">XP</th>
@@ -532,7 +532,7 @@ export default function ChallengesPage() {
   return (
     <div className="flex h-full flex-col">
       {/* ===== HEADER ===== */}
-      <div className="border-b border-border/50 px-4 pt-4 pb-0">
+      <div className="border-b border-border/20 px-4 pt-4 pb-0">
         <div className="flex items-center gap-3 pb-2">
           <div className="min-w-0">
             <h1 className="text-sm font-medium">Challenges</h1>

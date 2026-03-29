@@ -685,7 +685,7 @@ export default function MicrostructurePage() {
         className="flex flex-col md:flex-row md:items-center md:justify-between gap-3"
       >
         <div>
-          <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
+          <h1 className="text-2xl font-semibold tracking-tight flex items-center gap-2">
             <Activity className="w-7 h-7 text-primary" />
             Equity Market Microstructure
           </h1>
@@ -747,7 +747,7 @@ export default function MicrostructurePage() {
             trendLabel: "low quality risk",
           },
         ].map((m, i) => (
-          <Card key={i} className="border-border/50">
+          <Card key={i} className="border-border/20">
             <CardContent className="pt-4 pb-3">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2">
@@ -758,7 +758,7 @@ export default function MicrostructurePage() {
                 {m.trend === "down" && <TrendingDown className="w-3 h-3 text-primary" />}
               </div>
               <div className="mt-2">
-                <div className="text-xl font-bold">{m.value}</div>
+                <div className="text-xl font-semibold">{m.value}</div>
                 <div className="text-xs text-muted-foreground">{m.sub}</div>
               </div>
               <div className="text-xs text-muted-foreground mt-1 opacity-60">{m.trendLabel}</div>
@@ -798,7 +798,7 @@ export default function MicrostructurePage() {
           <TabsContent value="orderbook" className="data-[state=inactive]:hidden space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               {/* L2 Depth Chart */}
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Layers className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -811,7 +811,7 @@ export default function MicrostructurePage() {
               </Card>
 
               {/* Ladder view */}
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -821,7 +821,7 @@ export default function MicrostructurePage() {
                 <CardContent>
                   <div className="space-y-0.5 text-xs text-muted-foreground font-mono">
                     {/* Header */}
-                    <div className="grid grid-cols-3 text-muted-foreground border-b border-border/40 pb-1 mb-2">
+                    <div className="grid grid-cols-3 text-muted-foreground border-b border-border/20 pb-1 mb-2">
                       <span>Size</span>
                       <span className="text-center">Price</span>
                       <span className="text-right">Size</span>
@@ -870,7 +870,7 @@ export default function MicrostructurePage() {
             </div>
 
             {/* NBBO explanation */}
-            <Card className="border-border/50 border-border bg-primary/5">
+            <Card className="border-border/20 border-border bg-muted/5">
               <CardContent className="pt-4 pb-3">
                 <div className="flex gap-3">
                   <Info className="w-3.5 h-3.5 text-muted-foreground/50 mt-0.5 shrink-0" />
@@ -896,7 +896,7 @@ export default function MicrostructurePage() {
           {/* ── Price Discovery Tab ── */}
           <TabsContent value="pricediscovery" className="data-[state=inactive]:hidden space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Activity className="w-4 h-4 text-indigo-400" />
@@ -911,7 +911,7 @@ export default function MicrostructurePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <BookOpen className="w-4 h-4 text-emerald-400" />
@@ -959,7 +959,7 @@ export default function MicrostructurePage() {
             </div>
 
             {/* Order type table */}
-            <Card className="border-border/50">
+            <Card className="border-border/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Clock className="w-4 h-4 text-amber-400" />
@@ -970,7 +970,7 @@ export default function MicrostructurePage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs text-muted-foreground">
                     <thead>
-                      <tr className="border-b border-border/40">
+                      <tr className="border-b border-border/20">
                         <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Type</th>
                         <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Fill</th>
                         <th className="text-left py-2 pr-3 text-muted-foreground font-medium">Price Risk</th>
@@ -1030,7 +1030,7 @@ export default function MicrostructurePage() {
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="mt-4 p-3 rounded-lg bg-muted/30 border border-border/40"
+                    className="mt-4 p-3 rounded-lg bg-muted/30 border border-border/20"
                   >
                     <div className="text-sm font-medium mb-2">{selectedOrderData.name}</div>
                     <div className="grid md:grid-cols-2 gap-3 text-xs text-muted-foreground">
@@ -1070,7 +1070,7 @@ export default function MicrostructurePage() {
           {/* ── Liquidity Tab ── */}
           <TabsContent value="liquidity" className="data-[state=inactive]:hidden space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Clock className="w-4 h-4 text-amber-400" />
@@ -1085,7 +1085,7 @@ export default function MicrostructurePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <DollarSign className="w-4 h-4 text-green-400" />
@@ -1162,7 +1162,7 @@ export default function MicrostructurePage() {
             </div>
 
             {/* Liquidity providers */}
-            <Card className="border-border/50">
+            <Card className="border-border/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <Zap className="w-4 h-4 text-amber-400" />
@@ -1197,7 +1197,7 @@ export default function MicrostructurePage() {
                       badge: "Voluntary",
                     },
                   ].map((mm, i) => (
-                    <div key={i} className="p-3 rounded-lg bg-muted/20 border border-border/30">
+                    <div key={i} className="p-3 rounded-lg bg-muted/20 border border-border/20">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center gap-2">
                           {mm.icon}
@@ -1207,7 +1207,7 @@ export default function MicrostructurePage() {
                       </div>
                       <div className="text-xs text-muted-foreground mb-2">{mm.name}</div>
                       <div className="text-xs text-muted-foreground leading-relaxed">{mm.role}</div>
-                      <div className="mt-2 text-sm font-bold">{mm.share} <span className="text-xs font-normal text-muted-foreground">of volume</span></div>
+                      <div className="mt-2 text-sm font-semibold">{mm.share} <span className="text-xs font-normal text-muted-foreground">of volume</span></div>
                     </div>
                   ))}
                 </div>
@@ -1218,7 +1218,7 @@ export default function MicrostructurePage() {
           {/* ── Fragmentation Tab ── */}
           <TabsContent value="fragmentation" className="data-[state=inactive]:hidden space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <Network className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -1233,7 +1233,7 @@ export default function MicrostructurePage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-border/50">
+              <Card className="border-border/20">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
                     <AlertTriangle className="w-4 h-4 text-amber-400" />
@@ -1281,7 +1281,7 @@ export default function MicrostructurePage() {
             </div>
 
             {/* Exchange comparison table */}
-            <Card className="border-border/50">
+            <Card className="border-border/20">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-indigo-400" />
@@ -1292,7 +1292,7 @@ export default function MicrostructurePage() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs text-muted-foreground">
                     <thead>
-                      <tr className="border-b border-border/40">
+                      <tr className="border-b border-border/20">
                         {["Venue", "Type", "Market Share", "Fee Model", "Unique Feature"].map((h) => (
                           <th key={h} className="text-left py-2 pr-4 text-muted-foreground font-medium">
                             {h}
@@ -1324,7 +1324,7 @@ export default function MicrostructurePage() {
             </Card>
 
             {/* Regulatory note */}
-            <Card className="border-border/50 border-amber-500/20 bg-amber-500/5">
+            <Card className="border-border/20 border-amber-500/20 bg-amber-500/5">
               <CardContent className="pt-4 pb-3">
                 <div className="flex gap-3">
                   <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />

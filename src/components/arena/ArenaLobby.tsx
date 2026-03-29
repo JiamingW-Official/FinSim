@@ -47,14 +47,14 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-lg bg-card border border-border/40 p-3 text-xs"
+        className="rounded-lg bg-card border border-border/20 p-3 text-xs"
       >
         <div className="flex items-center gap-4">
           <ArenaRankBadge rank={rank} size="lg" />
 
           <div className="flex-1">
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold tabular-nums text-foreground">{elo}</span>
+              <span className="text-2xl font-semibold tabular-nums text-foreground">{elo}</span>
               <span className="text-xs text-muted-foreground">ELO</span>
             </div>
             {totalMatches === 0 && (
@@ -64,11 +64,11 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
 
           <div className="flex items-center gap-4 text-xs">
             <div className="text-center">
-              <div className="font-bold tabular-nums text-foreground">{totalWins}/{totalMatches}</div>
+              <div className="font-semibold tabular-nums text-foreground">{totalWins}/{totalMatches}</div>
               <div className="text-muted-foreground/70">W/L</div>
             </div>
             <div className="text-center">
-              <div className="font-bold tabular-nums text-foreground">{winRate}%</div>
+              <div className="font-semibold tabular-nums text-foreground">{winRate}%</div>
               <div className="text-muted-foreground/70">Win Rate</div>
             </div>
             {currentStreak > 0 && (
@@ -78,7 +78,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
-                <div className="flex items-center gap-0.5 font-bold tabular-nums text-orange-400">
+                <div className="flex items-center gap-0.5 font-semibold tabular-nums text-orange-400">
                   <Flame className="h-3 w-3" />
                   {currentStreak}
                 </div>
@@ -87,7 +87,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
             )}
             {bestStreak > 0 && currentStreak === 0 && (
               <div className="text-center">
-                <div className="font-bold tabular-nums text-muted-foreground">{bestStreak}</div>
+                <div className="font-semibold tabular-nums text-muted-foreground">{bestStreak}</div>
                 <div className="text-muted-foreground/70">Best</div>
               </div>
             )}
@@ -112,7 +112,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
               className={cn(
                 "group relative overflow-hidden rounded-lg p-4 text-left cursor-pointer",
                 "hover:bg-muted/20 transition-colors duration-150",
-                "border border-border/30",
+                "border border-border/20",
               )}
             >
               {/* Colored top accent */}
@@ -124,7 +124,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
                   {ARENA_ICONS[config.icon] ?? <Crosshair className="h-5 w-5" />}
                 </div>
                 <div>
-                  <h3 className={cn("text-sm font-bold", config.color)}>{config.name}</h3>
+                  <h3 className={cn("text-sm font-semibold", config.color)}>{config.name}</h3>
                   <span className="text-xs text-muted-foreground/70">{config.timeLimitSeconds}s</span>
                 </div>
               </div>
@@ -150,7 +150,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
 
               {/* Stats if played */}
               {stats && stats.matches > 0 && (
-                <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-3 text-xs text-muted-foreground">
+                <div className="mt-3 pt-2 border-t border-border/20 flex items-center gap-3 text-xs text-muted-foreground">
                   <span>{stats.wins}/{stats.matches} W</span>
                   <span className="text-muted-foreground/70">|</span>
                   <span>Best: {stats.bestScore}</span>
@@ -159,7 +159,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
 
               {/* Hover CTA */}
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-center rounded-b-xl bg-gradient-to-t from-black/40 to-transparent py-3 opacity-0 transition-opacity group-hover:opacity-100">
-                <span className={cn("flex items-center gap-1.5 text-xs font-bold", config.color)}>
+                <span className={cn("flex items-center gap-1.5 text-xs font-semibold", config.color)}>
                   <Crosshair className="h-3 w-3" />
                   Find Match
                 </span>
@@ -187,7 +187,7 @@ function RecentMatches() {
       animate={{ opacity: 1 }}
       className="bg-transparent p-0"
     >
-      <h3 className="text-xs font-bold text-muted-foreground mb-3 flex items-center gap-1.5">
+      <h3 className="text-xs font-semibold text-muted-foreground mb-3 flex items-center gap-1.5">
         <Trophy className="h-3 w-3" />
         Recent Matches
       </h3>
@@ -202,14 +202,14 @@ function RecentMatches() {
             className="flex items-center gap-3 py-1.5 text-xs"
           >
             <span className={cn(
-              "flex h-5 w-5 items-center justify-center rounded text-xs font-bold",
+              "flex h-5 w-5 items-center justify-center rounded text-xs font-semibold",
               m.playerWon ? "bg-emerald-500/15 text-emerald-400" : "bg-red-500/15 text-red-400",
             )}>
               {m.playerWon ? "W" : "L"}
             </span>
             <span className="text-muted-foreground flex-1 truncate">vs {m.opponentName}</span>
             <span className="text-muted-foreground/70 tabular-nums">{m.playerScore} - {m.opponentScore}</span>
-            <span className={cn("tabular-nums font-bold", m.eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
+            <span className={cn("tabular-nums font-semibold", m.eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
               {m.eloChange >= 0 ? "+" : ""}{m.eloChange}
             </span>
           </motion.div>

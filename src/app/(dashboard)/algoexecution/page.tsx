@@ -587,7 +587,7 @@ export default function AlgoExecutionPage() {
             <Zap className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Algorithmic Execution Strategies</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Algorithmic Execution Strategies</h1>
             <p className="text-sm text-muted-foreground">
               VWAP · TWAP · Implementation Shortfall · POV — minimize market impact and transaction costs
             </p>
@@ -609,7 +609,7 @@ export default function AlgoExecutionPage() {
                 <span className="text-xs text-muted-foreground">{m.label}</span>
                 <m.icon className={`w-4 h-4 ${m.color}`} />
               </div>
-              <div className={`text-xl font-bold ${m.color}`}>{m.value}</div>
+              <div className={`text-xl font-semibold ${m.color}`}>{m.value}</div>
               <div className="text-xs text-muted-foreground mt-1">{m.sub}</div>
             </CardContent>
           </Card>
@@ -953,7 +953,7 @@ export default function AlgoExecutionPage() {
                         {ALGO_DATA.map((a) => (
                           <tr
                             key={a.name}
-                            className={`border-b border-border/50 cursor-pointer transition-colors hover:bg-muted/30 ${
+                            className={`border-b border-border/20 cursor-pointer transition-colors hover:bg-muted/30 ${
                               selectedAlgo === a.name ? "bg-muted/40" : ""
                             }`}
                             onClick={() => setSelectedAlgo(a.name)}
@@ -1098,7 +1098,7 @@ export default function AlgoExecutionPage() {
                               ? "text-primary"
                               : "text-green-400";
                           return (
-                            <tr key={v.name} className="border-b border-border/50">
+                            <tr key={v.name} className="border-b border-border/20">
                               <td className={`py-2 font-medium ${typeColor}`}>{v.name}</td>
                               <td className="py-2 text-center text-muted-foreground">
                                 {(v.fillRate * 100).toFixed(0)}%
@@ -1202,7 +1202,7 @@ export default function AlgoExecutionPage() {
                     { step: "4", label: "Post & Internalize", desc: "Post remainder or internalize if broker has inventory", color: "bg-yellow-500" },
                   ].map((item) => (
                     <div key={item.step} className="flex gap-3 p-3 rounded-lg border border-border bg-muted/20">
-                      <div className={`w-6 h-6 rounded-full ${item.color} flex items-center justify-center text-foreground font-bold flex-shrink-0`}>
+                      <div className={`w-6 h-6 rounded-full ${item.color} flex items-center justify-center text-foreground font-semibold flex-shrink-0`}>
                         {item.step}
                       </div>
                       <div>

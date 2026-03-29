@@ -523,7 +523,7 @@ export default function CorrelationAnalysis({ positions, portfolioValue }: Corre
             {rollingSeries.map((series, idx) => {
               const avgCorr = series.reduce((a, s) => a + s.corr, 0) / series.length;
               return (
-                <div key={`pair-${idx}`} className="rounded-lg border border-border/50 p-2.5">
+                <div key={`pair-${idx}`} className="rounded-lg border border-border/20 p-2.5">
                   <RollingCorrChart
                     series={series}
                     pairLabel={`${pairs[idx]} — 30-day rolling`}
@@ -547,8 +547,8 @@ export default function CorrelationAnalysis({ positions, portfolioValue }: Corre
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center gap-4 flex-wrap">
-            <div className="text-center rounded-lg border border-border/50 px-5 py-3">
-              <p className="text-3xl font-bold">{overallStability}</p>
+            <div className="text-center rounded-lg border border-border/20 px-5 py-3">
+              <p className="text-lg font-semibold">{overallStability}</p>
               <p className="text-xs text-muted-foreground mt-0.5">Portfolio Stability</p>
             </div>
             <Badge className={stabilityLabel.cls + " text-xs px-3 py-1"}>{stabilityLabel.label}</Badge>
@@ -573,7 +573,7 @@ export default function CorrelationAnalysis({ positions, portfolioValue }: Corre
             ))}
           </div>
 
-          <div className="rounded-lg border border-border/50 bg-muted/20 p-3 text-xs text-muted-foreground">
+          <div className="rounded-lg border border-border/20 bg-muted/20 p-3 text-xs text-muted-foreground">
             <p className="font-medium text-foreground mb-1">How stability is measured</p>
             <p>
               Stability = 1 − 3 × std_dev(rolling 30-day correlations), scaled 0–100. A portfolio with unstable
@@ -605,21 +605,21 @@ export default function CorrelationAnalysis({ positions, portfolioValue }: Corre
           <div className="grid grid-cols-3 gap-3">
             <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Sum of VaRs</p>
-              <p className="mt-1 text-lg font-bold text-red-500">
+              <p className="mt-1 text-lg font-semibold text-red-500">
                 ${sumIndividualVaR.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
               <p className="text-xs text-muted-foreground">(no diversification)</p>
             </div>
             <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Portfolio VaR</p>
-              <p className="mt-1 text-lg font-bold text-primary">
+              <p className="mt-1 text-lg font-semibold text-primary">
                 ${portfolioVaR.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
               <p className="text-xs text-muted-foreground">(with diversification)</p>
             </div>
             <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-3 text-center">
               <p className="text-[11px] text-muted-foreground">Benefit</p>
-              <p className="mt-1 text-lg font-bold text-green-500">
+              <p className="mt-1 text-lg font-semibold text-green-500">
                 ${diversificationBenefit.toLocaleString("en-US", { maximumFractionDigits: 0 })}
               </p>
               <p className="text-xs text-muted-foreground">

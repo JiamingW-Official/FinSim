@@ -341,7 +341,7 @@ function StylePie({ slices }: { slices: StyleSlice[] }) {
 function RiskBar({ pct, color }: { pct: number; color: string }) {
   return (
     <div className="h-1.5 rounded-full bg-muted overflow-hidden">
-      <div className="h-full rounded-full transition-all duration-300" style={{ width: `${Math.max(pct, 0)}%`, backgroundColor: color }} />
+      <div className="h-full rounded-full transition-colors duration-300" style={{ width: `${Math.max(pct, 0)}%`, backgroundColor: color }} />
     </div>
   );
 }
@@ -557,7 +557,7 @@ export function PortfolioAttribution() {
 
   if (positions.length === 0) {
     return (
-      <div className="rounded-lg border border-border/40 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <p className="text-sm font-semibold mb-1">Attribution Analysis</p>
         <p className="text-xs text-muted-foreground py-8 text-center">
           No open positions. Buy stocks to see BHB attribution analysis.
@@ -575,7 +575,7 @@ export function PortfolioAttribution() {
   ];
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -633,7 +633,7 @@ export function PortfolioAttribution() {
 
           {/* Table */}
           <div>
-            <div className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[80px_1fr_1fr_1fr_1fr] gap-1 text-[11px] text-muted-foreground border-b border-border/20 pb-1 mb-1">
               <span>Sector</span>
               <span className="text-right">Alloc</span>
               <span className="text-right">Select</span>
@@ -730,7 +730,7 @@ export function PortfolioAttribution() {
           </div>
 
           <div>
-            <div className="grid grid-cols-[80px_48px_56px_56px_56px] gap-1 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[80px_48px_56px_56px_56px] gap-1 text-[11px] text-muted-foreground border-b border-border/20 pb-1 mb-1">
               <span>Sector</span>
               <span className="text-right">Port%</span>
               <span className="text-right">Bench%</span>
@@ -786,7 +786,7 @@ export function PortfolioAttribution() {
           <SectionHeader>Risk Attribution — Contribution to Portfolio Variance</SectionHeader>
 
           <div>
-            <div className="grid grid-cols-[52px_1fr_52px_52px_52px] gap-1 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[52px_1fr_52px_52px_52px] gap-1 text-[11px] text-muted-foreground border-b border-border/20 pb-1 mb-1">
               <span>Ticker</span>
               <span>Var Contrib</span>
               <span className="text-right">Wt%</span>
@@ -830,7 +830,7 @@ export function PortfolioAttribution() {
           <StylePie slices={styleSlices} />
 
           <div>
-            <div className="grid grid-cols-[80px_1fr_60px] gap-2 text-[11px] text-muted-foreground border-b border-border/50 pb-1 mb-1">
+            <div className="grid grid-cols-[80px_1fr_60px] gap-2 text-[11px] text-muted-foreground border-b border-border/20 pb-1 mb-1">
               <span>Style</span>
               <span>Exposure</span>
               <span className="text-right">Weight</span>

@@ -40,7 +40,7 @@ import { RefreshCw } from "lucide-react";
 
 // ── Shared tab trigger style ────────────────────────────────────────────────
 const tabTrigger =
-  "h-5 rounded-none border-b border-transparent px-1.5 text-[10px] font-mono tracking-tight text-muted-foreground/50 data-[state=active]:border-foreground/40 data-[state=active]:text-foreground/80 data-[state=active]:bg-transparent transition-colors";
+  "rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground";
 
 // ── Chart area wrapper with DrawingOverlay ────────────────────────────────────
 
@@ -177,7 +177,6 @@ export default function TradePage() {
                 : "text-muted-foreground/40 hover:text-muted-foreground/70",
             )}
           >
-            <RefreshCw className="h-2.5 w-2.5" />
             Replay
           </button>
         </div>
@@ -217,7 +216,6 @@ export default function TradePage() {
               {isLoading && (
                 <div className="absolute inset-0 z-10 flex flex-col gap-1 bg-background/80 p-3">
                   <div className="flex items-center justify-between">
-                    <Skeleton className="h-3 w-16" />
                     <Skeleton className="h-3 w-12" />
                   </div>
                   <div className="flex flex-1 items-end gap-[2px] px-1">
@@ -263,14 +261,14 @@ export default function TradePage() {
             data-tutorial="positions"
           >
             <Tabs defaultValue="fundamentals" className="h-full flex flex-col">
-              <TabsList className="h-5 w-full justify-start rounded-none border-b border-border/10 bg-transparent px-2 shrink-0">
-                <TabsTrigger value="fundamentals" className={tabTrigger}>
+              <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+                <TabsTrigger value="fundamentals" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                   Fundamentals
                 </TabsTrigger>
-                <TabsTrigger value="orderbook" className={tabTrigger}>
+                <TabsTrigger value="orderbook" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                   Book
                 </TabsTrigger>
-                <TabsTrigger value="compare" className={tabTrigger}>
+                <TabsTrigger value="compare" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                   Compare
                 </TabsTrigger>
               </TabsList>
@@ -295,23 +293,23 @@ export default function TradePage() {
         >
           <Tabs defaultValue="order" className="flex flex-col h-full">
             {/* Tab bar */}
-            <TabsList className="h-5 w-full justify-start rounded-none border-b border-border/10 bg-transparent px-1 shrink-0">
-              <TabsTrigger value="order" className={tabTrigger}>
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
+              <TabsTrigger value="order" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Order
               </TabsTrigger>
-              <TabsTrigger value="positions" className={tabTrigger}>
+              <TabsTrigger value="positions" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Pos
               </TabsTrigger>
-              <TabsTrigger value="pending" className={tabTrigger}>
+              <TabsTrigger value="pending" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Ord{pendingCount > 0 && <span className="ml-0.5 font-mono text-[9px] text-muted-foreground/40">{pendingCount}</span>}
               </TabsTrigger>
-              <TabsTrigger value="history" className={tabTrigger}>
+              <TabsTrigger value="history" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Hist
               </TabsTrigger>
-              <TabsTrigger value="execution" className={tabTrigger}>
+              <TabsTrigger value="execution" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Exec
               </TabsTrigger>
-              <TabsTrigger value="margin" className={tabTrigger}>
+              <TabsTrigger value="margin" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
                 Mgn
               </TabsTrigger>
             </TabsList>
@@ -413,7 +411,6 @@ export default function TradePage() {
           <ChartWithDrawing flashClass={flashClass}>
             {isLoading && (
               <div className="absolute inset-0 z-10 flex flex-col gap-1 bg-background/80 p-2">
-                <Skeleton className="h-3 w-16" />
                 <div className="flex flex-1 items-end gap-[2px]">
                   {Array.from({ length: 32 }).map((_, i) => (
                     <Skeleton
@@ -450,12 +447,12 @@ export default function TradePage() {
         {/* Mobile tab panel */}
         <div className="border-t border-border/10">
           <Tabs defaultValue="order">
-            <TabsList className="h-7 w-full justify-start rounded-none border-b border-border/10 bg-transparent px-1 overflow-x-auto flex-nowrap">
+            <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto">
               {["order", "positions", "history", "pending", "watchlist", "ai", "replay"].map((val) => (
                 <TabsTrigger
                   key={val}
                   value={val}
-                  className="h-5 shrink-0 rounded-none border-b border-transparent px-2 text-[10px] font-mono text-muted-foreground/50 data-[state=active]:border-foreground/40 data-[state=active]:text-foreground/80 data-[state=active]:bg-transparent"
+                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
                 >
                   {val === "order" ? "Order" :
                    val === "positions" ? "Positions" :

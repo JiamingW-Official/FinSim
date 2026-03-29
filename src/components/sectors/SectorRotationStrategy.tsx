@@ -357,7 +357,7 @@ function BusinessCycleClock() {
   const currentPhase = CYCLE_PHASES[CURRENT_PHASE_IDX];
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 text-xs font-semibold text-muted-foreground">Business Cycle Clock</div>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
         {/* SVG Clock */}
@@ -466,7 +466,7 @@ function BusinessCycleClock() {
           <div className="rounded border p-3" style={{ borderColor: currentPhase.color + "40", background: currentPhase.color + "08" }}>
             <div className="mb-2 flex items-center gap-2">
               <span className="h-2.5 w-2.5 rounded-full" style={{ background: currentPhase.color }} />
-              <span className="text-xs font-bold" style={{ color: currentPhase.color }}>{currentPhase.label}</span>
+              <span className="text-xs font-semibold" style={{ color: currentPhase.color }}>{currentPhase.label}</span>
               <span className="ml-auto rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">CURRENT</span>
             </div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
@@ -508,13 +508,13 @@ function BusinessCycleClock() {
 
 function CyclePerformanceMatrix() {
   return (
-    <div className="overflow-x-auto rounded-lg border border-border/40 bg-card">
+    <div className="overflow-x-auto rounded-lg border border-border/20 bg-card">
       <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground">
         Sector Performance Matrix by Cycle Phase
       </div>
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-border/40 bg-muted/10">
+          <tr className="border-b border-border/20 bg-muted/10">
             <th className="py-2 pl-4 pr-3 text-left text-xs font-semibold text-muted-foreground">Sector</th>
             {CYCLE_PHASES.map((p, i) => (
               <th key={p.label} className="px-2 py-2 text-center text-xs font-semibold" style={{ color: p.color }}>
@@ -575,13 +575,13 @@ function RSSparkline({ history, color }: { history: number[]; color: string }) {
 
 function RSRankingTable({ ranked }: { ranked: SectorRS[] }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-border/40 bg-card">
+    <div className="overflow-x-auto rounded-lg border border-border/20 bg-card">
       <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground">
         RS Ranking vs S&P 500 (90-day)
       </div>
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-border/40 bg-muted/10">
+          <tr className="border-b border-border/20 bg-muted/10">
             <th className="py-2 pl-4 pr-2 text-left text-xs font-semibold text-muted-foreground">Rank</th>
             <th className="py-2 pr-3 text-left text-xs font-semibold text-muted-foreground">Sector</th>
             <th className="px-2 py-2 text-right text-xs font-semibold text-muted-foreground">RS Now</th>
@@ -648,7 +648,7 @@ function RSMomentumMatrix({ ranked }: { ranked: SectorRS[] }) {
   ];
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 text-xs font-semibold text-muted-foreground">JdK RS Momentum Matrix</div>
       <div className="grid grid-cols-2 gap-2">
         {quadrants.map((q) => {
@@ -657,7 +657,7 @@ function RSMomentumMatrix({ ranked }: { ranked: SectorRS[] }) {
           );
           return (
             <div key={q.label} className={cn("rounded border p-3", q.cls)}>
-              <div className="mb-1 text-xs font-bold text-foreground/80">{q.label}</div>
+              <div className="mb-1 text-xs font-semibold text-foreground/80">{q.label}</div>
               <div className="mb-1 text-[11px] text-muted-foreground">{q.desc}</div>
               <div className="flex flex-wrap gap-1">
                 {sectors.length === 0 ? (
@@ -700,13 +700,13 @@ function EtfPerfHeatmap({ perfs }: { perfs: SectorPerfData[] }) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-border/40 bg-card">
+    <div className="overflow-x-auto rounded-lg border border-border/20 bg-card">
       <div className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground">
         Sector ETF Performance Heatmap
       </div>
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-border/40 bg-muted/10">
+          <tr className="border-b border-border/20 bg-muted/10">
             <th className="py-2 pl-4 pr-3 text-left text-xs font-semibold text-muted-foreground">Sector</th>
             {cols.map((c) => (
               <th key={c.key} className="px-2 py-2 text-center text-xs font-semibold text-muted-foreground">{c.label}</th>
@@ -748,13 +748,13 @@ function SeasonalityChart({ data }: { data: SeasonalityData[] }) {
   const W = 480, H = 80, BAR_W = W / 12;
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 flex items-center justify-between">
         <div className="text-xs font-semibold text-muted-foreground">Sector Seasonality Patterns</div>
         <select
           value={selectedSector}
           onChange={(e) => setSelectedSector(e.target.value)}
-          className="rounded border border-border/40 bg-background px-2 py-1 text-xs text-foreground"
+          className="rounded border border-border/20 bg-background px-2 py-1 text-xs text-foreground"
         >
           {data.map((d) => (
             <option key={d.name} value={d.name}>{d.etf} — {d.name}</option>
@@ -797,7 +797,7 @@ function SeasonalityChart({ data }: { data: SeasonalityData[] }) {
 
 function BreadthBars({ perfs }: { perfs: SectorPerfData[] }) {
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 text-xs font-semibold text-muted-foreground">
         Sector Breadth — % Stocks Above MAs
       </div>
@@ -847,7 +847,7 @@ function RotationSignal({ ranked }: { ranked: SectorRS[] }) {
           </div>
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full" style={{ background: buy.color }} />
-            <span className="font-mono text-sm font-bold" style={{ color: buy.color }}>{buy.etf}</span>
+            <span className="font-mono text-sm font-semibold" style={{ color: buy.color }}>{buy.etf}</span>
             <span className="text-xs text-muted-foreground">{buy.name}</span>
           </div>
           <div className="mt-1 text-[11px] text-muted-foreground">
@@ -860,7 +860,7 @@ function RotationSignal({ ranked }: { ranked: SectorRS[] }) {
           </div>
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full" style={{ background: sell.color }} />
-            <span className="font-mono text-sm font-bold" style={{ color: sell.color }}>{sell.etf}</span>
+            <span className="font-mono text-sm font-semibold" style={{ color: sell.color }}>{sell.etf}</span>
             <span className="text-xs text-muted-foreground">{sell.name}</span>
           </div>
           <div className="mt-1 text-[11px] text-muted-foreground">
@@ -892,7 +892,7 @@ function FactorRSChart({ factors }: { factors: FactorRS[] }) {
   }
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 text-xs font-semibold text-muted-foreground">Factor RS vs S&P 500 (90 days)</div>
       <svg viewBox={`0 0 ${W} ${H + 4}`} className="w-full" style={{ height: H + 4 }}>
         {/* RS = 1.0 baseline */}
@@ -942,7 +942,7 @@ function FactorCycleGrid({ factors }: { factors: FactorRS[] }) {
   };
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 text-xs font-semibold text-muted-foreground">Factor Cycle Analysis</div>
       <div className="grid gap-2 sm:grid-cols-2">
         {CYCLE_PHASES.map((p, i) => {
@@ -993,7 +993,7 @@ function FactorLeadershipPanel({ factors }: { factors: FactorRS[] }) {
   const bottom2 = sorted.slice(-2);
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 text-xs font-semibold text-muted-foreground">Current Factor Leadership</div>
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
@@ -1005,7 +1005,7 @@ function FactorLeadershipPanel({ factors }: { factors: FactorRS[] }) {
               <div key={f.name} className="flex items-center justify-between rounded border border-emerald-500/20 bg-emerald-500/5 px-2.5 py-1.5">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full" style={{ background: f.color }} />
-                  <span className="font-mono text-xs font-bold" style={{ color: f.color }}>{f.etf}</span>
+                  <span className="font-mono text-xs font-semibold" style={{ color: f.color }}>{f.etf}</span>
                   <span className="text-xs text-muted-foreground">{f.name}</span>
                 </div>
                 <span className="font-mono text-xs text-emerald-400">{f.rsNow.toFixed(3)}</span>
@@ -1022,7 +1022,7 @@ function FactorLeadershipPanel({ factors }: { factors: FactorRS[] }) {
               <div key={f.name} className="flex items-center justify-between rounded border border-red-500/20 bg-red-500/5 px-2.5 py-1.5">
                 <div className="flex items-center gap-2">
                   <span className="h-2 w-2 rounded-full" style={{ background: f.color }} />
-                  <span className="font-mono text-xs font-bold" style={{ color: f.color }}>{f.etf}</span>
+                  <span className="font-mono text-xs font-semibold" style={{ color: f.color }}>{f.etf}</span>
                   <span className="text-xs text-muted-foreground">{f.name}</span>
                 </div>
                 <span className="font-mono text-xs text-red-400">{f.rsNow.toFixed(3)}</span>
@@ -1043,13 +1043,13 @@ function RegionalSectorLeadership({ regionals }: { regionals: RegionalData[] }) 
   };
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 flex items-center gap-2 text-xs font-semibold text-muted-foreground">
         <Globe className="h-3.5 w-3.5" /> Regional Sector Leadership
       </div>
       <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
         {regionals.map((r) => (
-          <div key={r.region} className="rounded border border-border/30 bg-muted/10 p-3">
+          <div key={r.region} className="rounded border border-border/20 bg-muted/10 p-3">
             <div className="mb-2 font-semibold text-xs" style={{ color: regionColors[r.region] }}>
               {r.region}
             </div>
@@ -1115,7 +1115,7 @@ function CurrencyCommodityImpact() {
           imp.effect === "headwind" ? "bg-red-500/5" : "bg-amber-500/5";
         return (
           <div key={imp.title} className={cn("rounded-lg border p-3", borderCls, bgCls)}>
-            <div className="mb-1.5 text-xs font-bold text-foreground/80">{imp.title}</div>
+            <div className="mb-1.5 text-xs font-semibold text-foreground/80">{imp.title}</div>
             <div className="mb-2 text-[11px] text-muted-foreground leading-relaxed">{imp.desc}</div>
             <div className="space-y-1 text-[11px]">
               <div>
@@ -1157,7 +1157,7 @@ function CapitalFlowsChart({ flows }: { flows: CapitalFlow[] }) {
   const W = 480, BAR_H = 26, LBL_W = 50, MID = LBL_W + 140;
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4">
+    <div className="rounded-lg border border-border/20 bg-card p-4">
       <div className="mb-3 text-xs font-semibold text-muted-foreground">
         Sector ETF Capital Flows (4-week, $B)
       </div>
@@ -1276,10 +1276,10 @@ export default function SectorRotationStrategy() {
           <RegionalSectorLeadership regionals={regionals} />
           <CurrencyCommodityImpact />
           <CapitalFlowsChart flows={capitalFlows} />
-          <div className="rounded-lg border border-border/40 bg-card p-4">
+          <div className="rounded-lg border border-border/20 bg-card p-4">
             <div className="mb-3 text-xs font-semibold text-muted-foreground">Geopolitical Sector Impact</div>
             <div className="grid gap-3 sm:grid-cols-3 text-xs">
-              <div className="rounded border border-border/30 bg-muted/10 p-3 space-y-1.5">
+              <div className="rounded border border-border/20 bg-muted/10 p-3 space-y-1.5">
                 <div className="font-semibold text-foreground/80">Defense Spending</div>
                 <div className="text-muted-foreground leading-relaxed">NATO budget increases drive Industrials demand. Key names: LMT, NOC, RTX, BA, GD.</div>
                 <div className="flex gap-1 flex-wrap">
@@ -1288,7 +1288,7 @@ export default function SectorRotationStrategy() {
                   ))}
                 </div>
               </div>
-              <div className="rounded border border-border/30 bg-muted/10 p-3 space-y-1.5">
+              <div className="rounded border border-border/20 bg-muted/10 p-3 space-y-1.5">
                 <div className="font-semibold text-foreground/80">Energy Independence</div>
                 <div className="text-muted-foreground leading-relaxed">Domestic energy production themes benefit XLE, XOP. LNG export infrastructure investment rising.</div>
                 <div className="flex gap-1 flex-wrap">
@@ -1297,7 +1297,7 @@ export default function SectorRotationStrategy() {
                   ))}
                 </div>
               </div>
-              <div className="rounded border border-border/30 bg-muted/10 p-3 space-y-1.5">
+              <div className="rounded border border-border/20 bg-muted/10 p-3 space-y-1.5">
                 <div className="font-semibold text-foreground/80">Supply Chain Reshoring</div>
                 <div className="text-muted-foreground leading-relaxed">CHIPS Act + IRA drive domestic manufacturing build-out. Industrials & Materials positioned well.</div>
                 <div className="flex gap-1 flex-wrap">

@@ -37,7 +37,7 @@ export function DailyChallengeCard({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "relative w-full rounded-md border-2 p-4 text-left transition-all",
+        "relative w-full rounded-md border-2 p-4 text-left transition-colors",
         isComplete
           ? "border-emerald-500/30 bg-emerald-500/5"
           : `border-border hover:border-primary/50 hover:bg-muted/20 ${config.glow}`,
@@ -59,7 +59,7 @@ export function DailyChallengeCard({
         {/* Number badge */}
         <motion.div
           className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-md text-lg font-bold shrink-0",
+            "flex h-10 w-10 items-center justify-center rounded-md text-lg font-semibold shrink-0",
             isComplete
               ? "bg-emerald-500/5 text-emerald-500"
               : `${config.bg} ${config.text}`,
@@ -77,7 +77,7 @@ export function DailyChallengeCard({
 
         <div className="flex flex-col gap-1 flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="text-sm font-bold truncate">{definition.name}</h3>
+            <h3 className="text-sm font-semibold truncate">{definition.name}</h3>
           </div>
 
           <p className="text-[11px] text-muted-foreground line-clamp-1">
@@ -86,12 +86,12 @@ export function DailyChallengeCard({
 
           <div className="flex items-center gap-2 mt-0.5">
             <span className={cn(
-              "rounded-full px-2 py-0.5 text-[11px] font-bold",
+              "rounded-full px-2 py-0.5 text-[11px] font-semibold",
               config.bg, config.text,
             )}>
               {config.label}
             </span>
-            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-bold text-primary">
+            <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
               +{definition.xpReward} XP
             </span>
           </div>
@@ -105,7 +105,7 @@ export function DailyChallengeCard({
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               className={cn(
-                "rounded-lg px-2 py-1 text-[11px] font-bold tabular-nums",
+                "rounded-lg px-2 py-1 text-[11px] font-semibold tabular-nums",
                 progress.finalPnL >= 0 ? "bg-emerald-500/5 text-emerald-400" : "bg-red-500/5 text-red-400",
               )}
             >

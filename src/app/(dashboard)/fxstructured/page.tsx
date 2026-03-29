@@ -399,7 +399,7 @@ function FXOptionsTab() {
           className={cn(
             "px-3 py-1 rounded text-xs text-muted-foreground font-medium transition-colors",
             !showExporter
-              ? "bg-primary/20 text-primary border border-primary/40"
+              ? "bg-muted/10 text-primary border border-primary/40"
               : "text-muted-foreground hover:text-muted-foreground",
           )}
         >
@@ -480,7 +480,7 @@ function FXOptionsTab() {
               </thead>
               <tbody>
                 {COST_COMPARISON.map((row, i) => (
-                  <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                  <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                     <td className="py-2 pr-4 text-foreground font-medium">{row.strategy}</td>
                     <td className="py-2 pr-4">
                       <Badge
@@ -930,12 +930,12 @@ function AccumulatorsTab() {
                 key={i}
                 onClick={() => setActiveScenario(i)}
                 className={cn(
-                  "text-left p-3 rounded-lg border transition-all",
+                  "text-left p-3 rounded-lg border transition-colors",
                   activeScenario === i
                     ? s.color === "emerald"
                       ? "bg-emerald-500/5 border-emerald-500/50"
                       : s.color === "blue"
-                        ? "bg-primary/10 border-primary/50"
+                        ? "bg-muted/10 border-primary/50"
                         : s.color === "red"
                           ? "bg-red-500/5 border-red-500/50"
                           : "bg-amber-500/10 border-amber-500/50"
@@ -969,7 +969,7 @@ function AccumulatorsTab() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="p-4 bg-muted/40 rounded-lg border border-border/50"
+              className="p-4 bg-muted/40 rounded-lg border border-border/20"
             >
               <p className="text-sm font-medium text-foreground">{TARF_SCENARIOS[activeScenario].name}</p>
               <p className="text-xs text-muted-foreground mt-2">{TARF_SCENARIOS[activeScenario].result}</p>
@@ -1163,11 +1163,11 @@ function DualCurrencyTab() {
           </CardHeader>
           <CardContent className="space-y-3 text-xs text-muted-foreground">
             <div className="flex gap-3 items-start">
-              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-bold shrink-0">1</div>
+              <div className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-semibold shrink-0">1</div>
               <p>Investor deposits USD (or other base currency) for a fixed tenor (typically 1–4 weeks).</p>
             </div>
             <div className="flex gap-3 items-start">
-              <div className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold shrink-0">2</div>
+              <div className="w-6 h-6 rounded-full bg-muted/10 text-primary flex items-center justify-center text-xs font-semibold shrink-0">2</div>
               <p>Bank pays an enhanced interest rate because investor has sold a put option to the bank (embedded option).</p>
             </div>
             <div className="flex gap-3 items-start">
@@ -1279,7 +1279,7 @@ function DualCurrencyTab() {
                     ["Early exit", "Possible (penalty)", "Generally not permitted"],
                     ["Regulatory status", "Deposit", "Investment product"],
                   ].map(([feat, plain, dcd]) => (
-                    <tr key={feat as string} className="border-b border-border/30">
+                    <tr key={feat as string} className="border-b border-border/20">
                       <td className="py-1.5 pr-4 text-muted-foreground">{feat}</td>
                       <td className="py-1.5 pr-4 text-muted-foreground">{plain}</td>
                       <td className="py-1.5 text-muted-foreground">{dcd}</td>
@@ -1450,9 +1450,9 @@ function CorporateHedgingTab() {
                 className={cn(
                   "p-4 rounded-lg border",
                   exp.color === "blue"
-                    ? "bg-primary/5 border-border"
+                    ? "bg-muted/5 border-border"
                     : exp.color === "purple"
-                      ? "bg-primary/5 border-border"
+                      ? "bg-muted/5 border-border"
                       : "bg-amber-500/5 border-amber-500/30",
                 )}
               >
@@ -1555,7 +1555,7 @@ function CorporateHedgingTab() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.2 }}
-                className="p-4 bg-muted/40 rounded-lg border border-border/50"
+                className="p-4 bg-muted/40 rounded-lg border border-border/20"
               >
                 <div className="text-sm font-medium text-foreground">{HEDGE_RATIOS[selectedRatio].ratio} — {HEDGE_RATIOS[selectedRatio].label}</div>
                 <div className="mt-2 space-y-1 text-xs text-muted-foreground">
@@ -1667,7 +1667,7 @@ function CorporateHedgingTab() {
                     verdictColor: "text-primary",
                   },
                 ].map((row) => (
-                  <tr key={row.strategy} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                  <tr key={row.strategy} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                     <td className="py-2.5 pr-4 text-foreground font-medium">{row.strategy}</td>
                     <td className="py-2.5 pr-4 text-muted-foreground">{row.effectiveRate}</td>
                     <td className="py-2.5 pr-4 text-muted-foreground">{row.usdRevenue}</td>
@@ -1693,7 +1693,7 @@ export default function FXStructuredPage() {
       {/* Header — Hero */}
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 bg-primary/10 rounded-lg border border-border">
+          <div className="p-2 bg-muted/10 rounded-lg border border-border">
             <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>

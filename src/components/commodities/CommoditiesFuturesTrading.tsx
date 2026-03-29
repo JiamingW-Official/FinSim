@@ -511,7 +511,7 @@ function ContractExplorer({
                 "px-2.5 py-1 rounded-md text-xs font-medium transition-colors border",
                 sectorFilter === s
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
+                  : "bg-muted/30 border-border/20 text-muted-foreground hover:bg-muted/20"
               )}
             >
               {s === "all" ? "All" : SECTOR_LABELS[s as Sector]}
@@ -528,7 +528,7 @@ function ContractExplorer({
                 "px-2 py-0.5 rounded text-xs transition-colors border",
                 sortKey === k
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
+                  : "bg-muted/30 border-border/20 text-muted-foreground hover:bg-muted/20"
               )}
             >
               {k === "contango" ? "Contango %" : k === "volume" ? "Volume" : "Name"}
@@ -538,10 +538,10 @@ function ContractExplorer({
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-border/50">
+      <div className="overflow-x-auto rounded-lg border border-border/20">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border/40 bg-muted/20">
+            <tr className="border-b border-border/20 bg-muted/20">
               <th className="text-left py-2 px-3 text-xs text-muted-foreground font-medium">Contract</th>
               <th className="text-right py-2 px-3 text-xs text-muted-foreground font-medium">Spot</th>
               <th className="text-right py-2 px-3 text-xs text-muted-foreground font-medium">M1</th>
@@ -647,7 +647,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
         <select
           value={selectedId}
           onChange={(e) => setSelectedId(e.target.value)}
-          className="bg-card border border-border/50 rounded-md px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="bg-card border border-border/20 rounded-md px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           {(["energy", "metals", "grains", "softs", "livestock"] as Sector[]).map((sec) => (
             <optgroup key={sec} label={SECTOR_LABELS[sec]}>
@@ -661,7 +661,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Curve chart */}
-        <div className="lg:col-span-2 rounded-lg border border-border/50 bg-card p-4">
+        <div className="lg:col-span-2 rounded-lg border border-border/20 bg-card p-4">
           <div className="flex items-center justify-between mb-1">
             <h3 className="text-sm font-semibold">{g.name} ({g.symbol}) — Full Futures Curve</h3>
             <span
@@ -693,9 +693,9 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
         {/* Analytics */}
         <div className="space-y-3">
           {/* Roll yield */}
-          <div className="rounded-lg border border-border/50 bg-card p-3">
+          <div className="rounded-lg border border-border/20 bg-card p-3">
             <div className="text-xs text-muted-foreground mb-1">Annualized Roll Yield</div>
-            <div className={cn("text-xl font-bold tabular-nums", rollPositive ? "text-green-400" : "text-red-400")}>
+            <div className={cn("text-xl font-semibold tabular-nums", rollPositive ? "text-green-400" : "text-red-400")}>
               {rollPositive ? "+" : ""}{rollYield}%
             </div>
             <p className="text-xs text-muted-foreground mt-1">
@@ -704,7 +704,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
           </div>
 
           {/* Cost of carry breakdown */}
-          <div className="rounded-lg border border-border/50 bg-card p-3 space-y-2">
+          <div className="rounded-lg border border-border/20 bg-card p-3 space-y-2">
             <div className="text-xs font-semibold">Carry Decomposition</div>
             <div className="flex justify-between text-xs">
               <span className="text-muted-foreground">Storage Cost</span>
@@ -720,7 +720,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
               <span className="text-muted-foreground">Risk-Free Rate</span>
               <span className="text-primary font-medium">+5.25% ann.</span>
             </div>
-            <div className="border-t border-border/30 pt-1.5 flex justify-between text-xs font-semibold">
+            <div className="border-t border-border/20 pt-1.5 flex justify-between text-xs font-semibold">
               <span>Net Carry</span>
               <span className={cn(isBackwardation ? "text-green-400" : "text-red-400")}>
                 {isBackwardation ? "-" : "+"}{Math.abs(parseFloat(storageCostPct) - parseFloat(convenienceYieldPct) + 5.25).toFixed(2)}% ann.
@@ -729,7 +729,7 @@ function CurveVisualizer({ initialContractId }: { initialContractId: string }) {
           </div>
 
           {/* Curve points */}
-          <div className="rounded-lg border border-border/50 bg-card p-3">
+          <div className="rounded-lg border border-border/20 bg-card p-3">
             <div className="text-xs font-semibold mb-2">Curve Prices</div>
             <div className="space-y-1">
               {["Spot", "M1", "M2", "M3", "M4", "M5", "M6"].map((label, i) => {
@@ -793,7 +793,7 @@ function SpreadTrading() {
   return (
     <div className="space-y-5">
       {/* Inter-commodity spreads */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <h3 className="text-sm font-semibold mb-3">Inter-Commodity Spreads</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {INTER_SPREADS.map((s, idx) => {
@@ -810,7 +810,7 @@ function SpreadTrading() {
                     <div className="text-xs text-muted-foreground mt-0.5">{s.leg1} / {s.leg2}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-sm font-bold tabular-nums" style={{ color: s.color }}>
+                    <div className="text-sm font-semibold tabular-nums" style={{ color: s.color }}>
                       {currentVal >= 100 ? currentVal.toFixed(1) : currentVal.toFixed(2)}
                     </div>
                     <div className="text-xs text-muted-foreground">{s.unit}</div>
@@ -837,7 +837,7 @@ function SpreadTrading() {
       </div>
 
       {/* Intra-commodity calendar spreads */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <h3 className="text-sm font-semibold mb-3">Calendar Spreads (Intra-Commodity)</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {INTRA_SPREADS.map((s, idx) => {
@@ -853,7 +853,7 @@ function SpreadTrading() {
                     <div className="text-xs font-semibold">{s.name}</div>
                   </div>
                   <div className="text-right">
-                    <div className={cn("text-sm font-bold tabular-nums", isPositive ? "text-green-400" : "text-red-400")}>
+                    <div className={cn("text-sm font-semibold tabular-nums", isPositive ? "text-green-400" : "text-red-400")}>
                       {isPositive ? "+" : ""}{currentVal.toFixed(3)}
                     </div>
                     <div className="text-xs text-muted-foreground">{s.unit}</div>
@@ -874,7 +874,7 @@ function SpreadTrading() {
       </div>
 
       {/* Crack spread calculator */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="flex items-center gap-2 mb-3">
           <Calculator className="h-4 w-4 text-primary" />
           <h3 className="text-sm font-semibold">3-2-1 Crack Spread Calculator</h3>
@@ -895,7 +895,7 @@ function SpreadTrading() {
                 value={val}
                 step={step}
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
-                className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full bg-muted/30 border border-border/20 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
               <div className={cn("text-xs mt-0.5 tabular-nums", color)}>
                 {label.includes("gal") ? `= $${(val * 42).toFixed(2)}/bbl` : ""}
@@ -910,7 +910,7 @@ function SpreadTrading() {
         )}>
           <div className="text-xs text-muted-foreground mb-1">3-2-1 Crack Spread</div>
           <div className={cn(
-            "text-3xl font-bold tabular-nums",
+            "text-2xl font-semibold tabular-nums",
             crackSpread >= 10 ? "text-green-400" : crackSpread >= 0 ? "text-amber-400" : "text-red-400"
           )}>
             ${crackSpread.toFixed(2)}/bbl
@@ -925,7 +925,7 @@ function SpreadTrading() {
       </div>
 
       {/* Crush spread calculator */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="flex items-center gap-2 mb-3">
           <Calculator className="h-4 w-4 text-green-400" />
           <h3 className="text-sm font-semibold">Soybean Crush Spread</h3>
@@ -946,7 +946,7 @@ function SpreadTrading() {
                 value={val}
                 step={step}
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
-                className="w-full bg-muted/30 border border-border/50 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full bg-muted/30 border border-border/20 rounded-md px-2.5 py-1.5 text-sm font-medium tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
               <div className={cn("text-xs mt-0.5 font-medium tabular-nums", color)}>
                 {label.includes("Oil") ? `$${(val * 100).toFixed(2)}¢/lb equiv.` : ""}
@@ -961,7 +961,7 @@ function SpreadTrading() {
         )}>
           <div className="text-xs text-muted-foreground mb-1">Gross Processing Margin</div>
           <div className={cn(
-            "text-3xl font-bold tabular-nums",
+            "text-2xl font-semibold tabular-nums",
             crushSpread >= 1.5 ? "text-green-400" : crushSpread >= 0.5 ? "text-amber-400" : "text-red-400"
           )}>
             ${crushSpread.toFixed(2)}/bu
@@ -1037,7 +1037,7 @@ function OrderEntrySimulator() {
             <span className="text-primary font-medium tabular-nums">{leverage.toFixed(1)}x</span>
           </div>
         </div>
-        <div className="mt-2 pt-2 border-t border-border/40 text-xs text-muted-foreground">
+        <div className="mt-2 pt-2 border-t border-border/20 text-xs text-muted-foreground">
           Order simulated — no real positions opened
         </div>
       </div>
@@ -1047,7 +1047,7 @@ function OrderEntrySimulator() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {/* Left: order form */}
-      <div className="rounded-lg border border-border/50 bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
         <h3 className="text-sm font-semibold">Order Configuration</h3>
 
         {/* Contract select */}
@@ -1059,7 +1059,7 @@ function OrderEntrySimulator() {
               setSelectedId(e.target.value);
               setEntryPrice("");
             }}
-            className="w-full bg-muted/30 border border-border/50 rounded-md px-3 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full bg-muted/30 border border-border/20 rounded-md px-3 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(["energy", "metals", "grains", "softs", "livestock"] as Sector[]).map((sec) => (
               <optgroup key={sec} label={SECTOR_LABELS[sec]}>
@@ -1083,7 +1083,7 @@ function OrderEntrySimulator() {
                   "py-1.5 rounded-md text-xs font-medium border transition-colors",
                   tradeType === t
                     ? "bg-primary/20 border-primary/40 text-primary"
-                    : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
+                    : "bg-muted/30 border-border/20 text-muted-foreground hover:bg-muted/20"
                 )}
               >
                 {t === "outright" ? "Outright" : "Calendar Spread"}
@@ -1102,7 +1102,7 @@ function OrderEntrySimulator() {
                 "py-1.5 rounded-md text-xs font-semibold border transition-colors",
                 direction === "long"
                   ? "bg-green-500/20 border-green-500/40 text-green-400"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
+                  : "bg-muted/30 border-border/20 text-muted-foreground hover:bg-muted/20"
               )}
             >
               Long (Buy)
@@ -1113,7 +1113,7 @@ function OrderEntrySimulator() {
                 "py-1.5 rounded-md text-xs font-semibold border transition-colors",
                 direction === "short"
                   ? "bg-red-500/20 border-red-500/40 text-red-400"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
+                  : "bg-muted/30 border-border/20 text-muted-foreground hover:bg-muted/20"
               )}
             >
               Short (Sell)
@@ -1148,7 +1148,7 @@ function OrderEntrySimulator() {
             step={g.tickSize}
             placeholder={fmtPrice(g.m1)}
             onChange={(e) => setEntryPrice(e.target.value === "" ? "" : parseFloat(e.target.value))}
-            className="w-full bg-muted/30 border border-border/50 rounded-md px-3 py-1.5 text-sm tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="w-full bg-muted/30 border border-border/20 rounded-md px-3 py-1.5 text-sm tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
 
@@ -1167,11 +1167,11 @@ function OrderEntrySimulator() {
       </div>
 
       {/* Right: analytics */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <h3 className="text-sm font-semibold mb-3">Risk & Margin Analysis</h3>
         <div className="space-y-3">
           {/* Contract specs */}
-          <div className="p-2.5 rounded-md bg-muted/20 border border-border/30 space-y-1.5">
+          <div className="p-2.5 rounded-md bg-muted/20 border border-border/20 space-y-1.5">
             <div className="text-xs font-semibold text-muted-foreground mb-1">Contract Specs</div>
             <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
               <div className="text-muted-foreground">Symbol</div>
@@ -1247,7 +1247,7 @@ function StorageCarryAnalysis() {
   return (
     <div className="space-y-5">
       {/* Cost of carry calculator */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="flex items-center gap-2 mb-3">
           <Calculator className="h-4 w-4 text-primary" />
           <h3 className="text-sm font-semibold">Cost of Carry Calculator</h3>
@@ -1272,32 +1272,32 @@ function StorageCarryAnalysis() {
                 min={min}
                 max={max}
                 onChange={(e) => set(parseFloat(e.target.value) || 0)}
-                className="w-full bg-muted/30 border border-border/50 rounded-md px-2 py-1.5 text-sm tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="w-full bg-muted/30 border border-border/20 rounded-md px-2 py-1.5 text-sm tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               />
             </div>
           ))}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="rounded-lg bg-muted/20 border border-border/30 p-3 text-center">
+          <div className="rounded-lg bg-muted/20 border border-border/20 p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Spot Price</div>
-            <div className="text-xl font-bold tabular-nums text-foreground">${spot.toFixed(2)}</div>
+            <div className="text-xl font-semibold tabular-nums text-foreground">${spot.toFixed(2)}</div>
           </div>
           <div className="rounded-lg bg-primary/10 border border-primary/20 p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Fair Value ({timeMonths}M Futures)</div>
-            <div className="text-xl font-bold tabular-nums text-primary">${fairValue.toFixed(2)}</div>
+            <div className="text-xl font-semibold tabular-nums text-primary">${fairValue.toFixed(2)}</div>
             <div className="text-xs text-muted-foreground mt-0.5">
               {fairValue > spot ? "Contango" : "Backwardation"}: {fmtPct(((fairValue - spot) / spot) * 100)}
             </div>
           </div>
           <div className={cn(
             "rounded-lg border p-3 text-center",
-            Math.abs(basisPct) < 0.5 ? "bg-muted/20 border-border/30" :
+            Math.abs(basisPct) < 0.5 ? "bg-muted/20 border-border/20" :
             basis > 0 ? "bg-amber-500/10 border-amber-500/20" : "bg-primary/10 border-border"
           )}>
             <div className="text-xs text-muted-foreground mb-1">Market vs Fair Value (Basis)</div>
             <div className={cn(
-              "text-xl font-bold tabular-nums",
+              "text-xl font-semibold tabular-nums",
               Math.abs(basisPct) < 0.5 ? "text-muted-foreground" :
               basis > 0 ? "text-amber-400" : "text-primary"
             )}>
@@ -1312,7 +1312,7 @@ function StorageCarryAnalysis() {
       </div>
 
       {/* Seasonality chart */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <BarChart3 className="h-4 w-4 text-primary" />
@@ -1321,7 +1321,7 @@ function StorageCarryAnalysis() {
           <select
             value={selectedSeasonId}
             onChange={(e) => setSelectedSeasonId(e.target.value)}
-            className="bg-card border border-border/50 rounded-md px-2 py-1 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="bg-card border border-border/20 rounded-md px-2 py-1 text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {(["energy", "metals", "grains", "softs", "livestock"] as Sector[]).map((sec) => (
               <optgroup key={sec} label={SECTOR_LABELS[sec]}>
@@ -1351,7 +1351,7 @@ function StorageCarryAnalysis() {
       </div>
 
       {/* Inventory levels */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <div className="flex items-center gap-2 mb-3">
           <Warehouse className="h-4 w-4 text-primary" />
           <h3 className="text-sm font-semibold">Inventory Levels vs 5-Year Average</h3>
@@ -1389,7 +1389,7 @@ function StorageCarryAnalysis() {
                   <div className="text-xs text-muted-foreground w-20">Current</div>
                   <div className="flex-1 relative h-4 bg-muted rounded overflow-hidden">
                     <div
-                      className="absolute inset-y-0 left-0 rounded transition-all"
+                      className="absolute inset-y-0 left-0 rounded transition-colors"
                       style={{ width: `${currPct}%`, background: above ? "#f87171" : "#4ade80" }}
                     />
                     <span className="absolute inset-y-0 right-2 flex items-center text-xs font-medium text-foreground">
@@ -1453,7 +1453,7 @@ export default function CommoditiesFuturesTrading() {
               "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               section === id
                 ? "bg-primary/20 border-primary/40 text-primary"
-                : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20 hover:text-foreground"
+                : "bg-muted/30 border-border/20 text-muted-foreground hover:bg-muted/20 hover:text-foreground"
             )}
           >
             <Icon className="h-3.5 w-3.5" />

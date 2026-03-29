@@ -276,13 +276,13 @@ function FactorCard({ factor, rank }: { factor: FactorMetric; rank: number }) {
           <div className="grid grid-cols-2 gap-2">
             <div>
               <p className="text-xs text-muted-foreground">Ann. Return</p>
-              <p className={cn("text-sm font-bold", factor.annualReturn >= 5.3 ? "text-emerald-400" : "text-foreground")}>
+              <p className={cn("text-sm font-semibold", factor.annualReturn >= 5.3 ? "text-emerald-400" : "text-foreground")}>
                 {factor.annualReturn > 0 ? "+" : ""}{factor.annualReturn}%
               </p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Sharpe</p>
-              <p className="text-sm font-bold">{factor.sharpe.toFixed(2)}</p>
+              <p className="text-sm font-semibold">{factor.sharpe.toFixed(2)}</p>
             </div>
             <div>
               <p className="text-xs text-muted-foreground">Volatility</p>
@@ -491,7 +491,7 @@ function ETFComparisonTable() {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.04 }}
-              className="border-b border-border/50 hover:bg-muted/30 transition-colors"
+              className="border-b border-border/20 hover:bg-muted/30 transition-colors"
             >
               <td className="p-2 font-medium font-mono" style={{ color: etf.color }}>{etf.ticker}</td>
               <td className="p-2 text-xs text-muted-foreground max-w-[200px] truncate">{etf.name}</td>
@@ -590,7 +590,7 @@ function FactorExposureAnalyzer() {
                     </div>
                     <div className="relative h-2 bg-muted/30 rounded-full" style={{ width: "100%" }}>
                       <div
-                        className="absolute top-0 h-2 rounded-full transition-all"
+                        className="absolute top-0 h-2 rounded-full transition-colors"
                         style={{
                           left: isPos ? "50%" : `${50 - pct / 2}%`,
                           width: `${pct / 2}%`,
@@ -633,7 +633,7 @@ function FactorExposureAnalyzer() {
             </thead>
             <tbody>
               {selectedHoldings.map((h) => (
-                <tr key={h.ticker} className="border-b border-border/30 hover:bg-muted/20">
+                <tr key={h.ticker} className="border-b border-border/20 hover:bg-muted/20">
                   <td className="p-2 font-mono font-medium text-primary">{h.ticker}</td>
                   {exposureFactors.map((fid) => {
                     const v = TICKER_EXPOSURES[h.ticker]?.[fid] ?? 0;
@@ -796,11 +796,11 @@ export default function SmartBetaPage() {
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 rounded-lg bg-primary/10">
+                <div className="p-2 rounded-lg bg-muted/10">
                   <Layers className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold tracking-tight">Smart Beta & Factor ETFs</h1>
+                  <h1 className="text-xl font-semibold tracking-tight">Smart Beta & Factor ETFs</h1>
                   <p className="text-sm text-muted-foreground mt-0.5">
                     Rules-based systematic exposure to return premia — between passive and active
                   </p>

@@ -59,8 +59,8 @@ function StatChip({
     green: "bg-green-500/10 text-green-400 border-green-500/20",
     red: "bg-red-500/5 text-red-400 border-red-500/20",
     amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    blue: "bg-primary/10 text-primary border-border",
-    purple: "bg-primary/10 text-primary border-border",
+    blue: "bg-muted/10 text-primary border-border",
+    purple: "bg-muted/10 text-primary border-border",
     default: "bg-muted text-muted-foreground border-border",
   }[color];
   return (
@@ -84,8 +84,8 @@ function InfoBox({
     default: "border-border bg-muted/30",
     green: "border-green-500/20 bg-green-500/5",
     amber: "border-amber-500/20 bg-amber-500/5",
-    blue: "border-border bg-primary/5",
-    purple: "border-border bg-primary/5",
+    blue: "border-border bg-muted/5",
+    purple: "border-border bg-muted/5",
   }[variant];
   return (
     <div className={cn("rounded-lg border p-4", cls)}>
@@ -250,7 +250,7 @@ function BasicsTab() {
           ].map((item) => (
             <div key={item.label} className={cn(
               "rounded-lg border p-3",
-              item.color === "blue" ? "border-border bg-primary/5" : "border-border bg-primary/5"
+              item.color === "blue" ? "border-border bg-muted/5" : "border-border bg-muted/5"
             )}>
               <div className="text-xs font-medium text-foreground mb-1">{item.label}</div>
               <div className="text-xs text-muted-foreground">{item.desc}</div>
@@ -282,7 +282,7 @@ function BasicsTab() {
             </thead>
             <tbody>
               {MAJOR_REINSURERS.map((r, i) => (
-                <tr key={r.name} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-muted/10" : "")}>
+                <tr key={r.name} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-muted/10" : "")}>
                   <td className="px-4 py-2.5 font-medium text-foreground">{r.name}</td>
                   <td className="px-4 py-2.5 text-muted-foreground">{r.country}</td>
                   <td className="px-4 py-2.5 text-primary font-mono">{r.premiums}</td>
@@ -556,10 +556,10 @@ function CatBondsTab() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {TRIGGER_TYPES.map((t) => {
             const colorCls = {
-              blue: { border: "border-border", bg: "bg-primary/5", title: "text-primary", badge: "bg-primary/10 text-primary border-border" },
+              blue: { border: "border-border", bg: "bg-muted/5", title: "text-primary", badge: "bg-muted/10 text-primary border-border" },
               green: { border: "border-green-500/20", bg: "bg-green-500/5", title: "text-green-400", badge: "bg-green-500/10 text-green-400 border-green-500/20" },
               amber: { border: "border-amber-500/20", bg: "bg-amber-500/5", title: "text-amber-400", badge: "bg-amber-500/10 text-amber-400 border-amber-500/20" },
-              purple: { border: "border-border", bg: "bg-primary/5", title: "text-primary", badge: "bg-primary/10 text-primary border-border" },
+              purple: { border: "border-border", bg: "bg-muted/5", title: "text-primary", badge: "bg-muted/10 text-primary border-border" },
             }[t.color];
             return (
               <div key={t.type} className={cn("rounded-lg border p-4", colorCls?.border, colorCls?.bg)}>
@@ -762,7 +762,7 @@ function ILSTab() {
                   amber: "text-amber-400",
                 };
                 return (
-                  <tr key={item.name} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-muted/10" : "")}>
+                  <tr key={item.name} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-muted/10" : "")}>
                     <td className={cn("px-4 py-2.5 font-medium", colorMap[item.color as keyof typeof colorMap])}>{item.name}</td>
                     <td className="px-4 py-2.5 text-muted-foreground font-mono text-xs">{item.size}</td>
                     <td className="px-4 py-2.5 text-muted-foreground text-xs">{item.liquidity}</td>
@@ -801,7 +801,7 @@ function ILSTab() {
           ].map((item) => {
             const Icon = item.icon;
             const cls = {
-              blue: { border: "border-border", bg: "bg-primary/5", icon: "text-primary" },
+              blue: { border: "border-border", bg: "bg-muted/5", icon: "text-primary" },
               green: { border: "border-green-500/20", bg: "bg-green-500/5", icon: "text-green-400" },
               amber: { border: "border-amber-500/20", bg: "bg-amber-500/5", icon: "text-amber-400" },
             }[item.color];
@@ -1107,11 +1107,11 @@ export default function ReinsurancePage() {
           className="mb-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg p-2 bg-primary/10 border border-border">
+            <div className="rounded-lg p-2 bg-muted/10 border border-border">
               <Shield size={20} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Reinsurance Markets</h1>
+              <h1 className="text-2xl font-semibold text-foreground">Reinsurance Markets</h1>
               <p className="text-sm text-muted-foreground">
                 Insurance of insurers — cat bonds, ILS, and underwriting cycles
               </p>

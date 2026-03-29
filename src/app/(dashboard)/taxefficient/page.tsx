@@ -209,14 +209,14 @@ function AssetLocationTab() {
         <Card className="border-green-500/30 bg-green-500/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Annual Tax Alpha</p>
-            <p className="text-xl font-bold text-green-400">{fmtK(annualAlphaDollar)}</p>
+            <p className="text-xl font-semibold text-green-400">{fmtK(annualAlphaDollar)}</p>
             <p className="text-xs text-muted-foreground mt-1">saved per year</p>
           </CardContent>
         </Card>
-        <Card className="border-border bg-primary/5">
+        <Card className="border-border bg-muted/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">20-Yr Compounded Benefit</p>
-            <p className="text-xl font-bold text-primary">{fmtK(compoundedBenefit)}</p>
+            <p className="text-xl font-semibold text-primary">{fmtK(compoundedBenefit)}</p>
             <p className="text-xs text-muted-foreground mt-1">optimal placement</p>
           </CardContent>
         </Card>
@@ -373,7 +373,7 @@ function AssetLocationTab() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-xs text-muted-foreground/70 italic border-t border-border/30 pt-2">{bucket.note}</p>
+                <p className="text-xs text-muted-foreground/70 italic border-t border-border/20 pt-2">{bucket.note}</p>
               </div>
             ))}
           </div>
@@ -503,7 +503,7 @@ function TaxLossHarvestingTab() {
             <p className="text-xl font-medium text-green-400">{fmtK(totalSavings)}</p>
           </CardContent>
         </Card>
-        <Card className="border-border bg-primary/5">
+        <Card className="border-border bg-muted/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Eligible Positions</p>
             <p className="text-xl font-medium text-primary">{eligibleCount} / {positions.length}</p>
@@ -529,7 +529,7 @@ function TaxLossHarvestingTab() {
                 onClick={() => setSelectedPos(isSelected ? null : p)}
                 className={cn(
                   "rounded-lg p-3 cursor-pointer transition-colors border",
-                  isSelected ? "border-primary bg-primary/5" : "border-border bg-muted/20 hover:bg-muted/30",
+                  isSelected ? "border-primary bg-muted/5" : "border-border bg-muted/20 hover:bg-muted/30",
                   p.washSaleRisk && "opacity-75"
                 )}
               >
@@ -805,7 +805,7 @@ function RothConversionTab() {
 
       {/* Summary */}
       <div className="grid grid-cols-4 gap-3">
-        <Card className="border-border bg-primary/5">
+        <Card className="border-border bg-muted/5">
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">Tax Cost Now</p>
             <p className="text-lg font-medium text-primary">{fmtK(conversionTax)}</p>
@@ -823,7 +823,7 @@ function RothConversionTab() {
             <p className="text-lg font-medium text-green-400">{rothBreakevenYrs} yrs</p>
           </CardContent>
         </Card>
-        <Card className={cn("border-border bg-primary/5", irmaa ? "" : "border-muted/30")}>
+        <Card className={cn("border-border bg-muted/5", irmaa ? "" : "border-muted/30")}>
           <CardContent className="pt-3 pb-3 text-center">
             <p className="text-xs text-muted-foreground">IRMAA Status</p>
             <p className="text-lg font-medium text-primary">{irmaa ? "Safe" : "Breached"}</p>
@@ -857,7 +857,7 @@ function RothConversionTab() {
                   <div className="flex-1 bg-muted/30 rounded-full h-4 relative overflow-hidden">
                     {/* Income fill */}
                     <div
-                      className="absolute left-0 top-0 h-full rounded-full transition-all"
+                      className="absolute left-0 top-0 h-full rounded-full transition-colors"
                       style={{
                         width: `${Math.min(pctFilled, 100)}%`,
                         backgroundColor: isCurrentIncome ? "#3b82f6" : isCrossed ? "#64748b" : "transparent",
@@ -866,7 +866,7 @@ function RothConversionTab() {
                     {/* Conversion fill */}
                     {convFills && (
                       <div
-                        className="absolute top-0 h-full rounded-full transition-all"
+                        className="absolute top-0 h-full rounded-full transition-colors"
                         style={{
                           left: `${((currentIncome - start) / (b.max - start)) * 100}%`,
                           width: `${((Math.min(totalIncome, b.max) - Math.max(currentIncome, start)) / (b.max - start)) * 100}%`,
@@ -876,8 +876,8 @@ function RothConversionTab() {
                     )}
                   </div>
                   <span className="text-xs text-muted-foreground w-20 text-right">{fmtK(b.max)}</span>
-                  {isCurrentIncome && <Badge className="text-xs bg-primary/20 text-primary border-border">Income</Badge>}
-                  {convFills && <Badge className="text-xs bg-primary/20 text-primary border-border">Conversion</Badge>}
+                  {isCurrentIncome && <Badge className="text-xs bg-muted/10 text-primary border-border">Income</Badge>}
+                  {convFills && <Badge className="text-xs bg-muted/10 text-primary border-border">Conversion</Badge>}
                 </div>
               );
             })}
@@ -955,7 +955,7 @@ function RothConversionTab() {
           </CardHeader>
           <CardContent className="space-y-1">
             {IRMAA_THRESHOLDS.slice(0, 4).map((t, i) => (
-              <div key={i} className={cn("flex justify-between text-xs py-1 border-b border-border/30 last:border-0", totalIncome > (IRMAA_THRESHOLDS[i - 1]?.income ?? 0) && totalIncome <= t.income && "text-amber-400 font-medium")}>
+              <div key={i} className={cn("flex justify-between text-xs py-1 border-b border-border/20 last:border-0", totalIncome > (IRMAA_THRESHOLDS[i - 1]?.income ?? 0) && totalIncome <= t.income && "text-amber-400 font-medium")}>
                 <span className="text-muted-foreground">≤ {fmtK(t.income)}</span>
                 <span>{fmtDollar(t.premium, 2)}/mo Part B</span>
               </div>
@@ -1263,7 +1263,7 @@ export default function TaxEfficientPage() {
           { label: "Roth Conversion Window", value: "Low-income years", icon: RefreshCw, color: "#a855f7" },
           { label: "LTCG vs ST Rate Gap", value: "Up to 17%", icon: TrendingDown, color: "#3b82f6" },
         ].map((stat) => (
-          <Card key={stat.label} className="border-border/40">
+          <Card key={stat.label} className="border-border/20">
             <CardContent className="pt-3 pb-3">
               <div className="flex items-center gap-2">
                 <stat.icon className="h-4 w-4 shrink-0" style={{ color: stat.color }} />

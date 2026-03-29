@@ -674,7 +674,7 @@ export default function CrisisHistoryPage() {
                 <div className="w-8 h-8 rounded-md bg-muted flex items-center justify-center">{s.icon}</div>
                 <div>
                   <p className="text-xs text-muted-foreground">{s.label}</p>
-                  <p className="text-lg font-bold text-foreground">{s.value}</p>
+                  <p className="text-lg font-semibold text-foreground">{s.value}</p>
                 </div>
               </CardContent>
             </Card>
@@ -722,7 +722,7 @@ export default function CrisisHistoryPage() {
               <button
                 key={c.id}
                 onClick={() => setSelectedCrisis(c.id === selectedCrisis ? null : c.id)}
-                className={`text-left rounded-lg border p-3 transition-all ${
+                className={`text-left rounded-lg border p-3 transition-colors ${
                   c.id === selectedCrisis
                     ? "border-muted-foreground bg-muted"
                     : "border-border bg-card hover:border-border"
@@ -759,7 +759,7 @@ export default function CrisisHistoryPage() {
                         <p className="text-xs text-muted-foreground mt-1">{selected.cause}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-2xl font-bold text-red-400">{selected.peak_loss}</p>
+                        <p className="text-2xl font-semibold text-red-400">{selected.peak_loss}</p>
                         <p className="text-xs text-muted-foreground">peak decline</p>
                         <p className="text-xs text-muted-foreground mt-1">GDP: {selected.gdpImpact}</p>
                       </div>
@@ -932,7 +932,7 @@ export default function CrisisHistoryPage() {
           {/* Phase detail cards */}
           <div className="grid grid-cols-1 sm:grid-cols-5 gap-3">
             {[
-              { phase: "1. Displacement", color: "border-primary/40 bg-primary/5", tc: "text-primary",
+              { phase: "1. Displacement", color: "border-primary/40 bg-muted/5", tc: "text-primary",
                 desc: "An exogenous shock creates new profit opportunities: a new technology, deregulation, war, or policy shift.",
                 examples: ["Internet (1995)", "Low rates (2001)", "Financial innovation (2004)", "COVID stimulus (2020)"] },
               { phase: "2. Boom", color: "border-emerald-500/40 bg-emerald-500/5", tc: "text-emerald-400",
@@ -1090,7 +1090,7 @@ export default function CrisisHistoryPage() {
                     <p className="text-xs text-amber-400 font-semibold mb-0.5">Notable Exception</p>
                     <p className="text-xs text-muted-foreground">{a.exception}</p>
                   </div>
-                  <div className="bg-primary/10 border border-border rounded p-2">
+                  <div className="bg-muted/10 border border-border rounded p-2">
                     <p className="text-xs text-primary font-semibold mb-0.5">Investor Rule</p>
                     <p className="text-xs text-muted-foreground">{a.rule}</p>
                   </div>

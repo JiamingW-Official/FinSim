@@ -219,7 +219,7 @@ export function TagStatsChart({ tradeTags }: { tradeTags: Record<string, string[
             </span>
             <div className="flex h-4 flex-1 overflow-hidden rounded-sm bg-muted/20">
               <div
-                className="h-full bg-primary/40 transition-all"
+                className="h-full bg-primary/40 transition-colors"
                 style={{ width: `${(count / maxCount) * 100}%` }}
               />
             </div>
@@ -437,7 +437,7 @@ export function TradeLogTable({ rows }: Props) {
           <Filter className="h-3 w-3" />
           Filters
           {activeFilterCount > 0 && (
-            <span className="ml-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[11px] font-bold text-primary-foreground">
+            <span className="ml-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[11px] font-semibold text-primary-foreground">
               {activeFilterCount}
             </span>
           )}
@@ -588,7 +588,7 @@ export function TradeLogTable({ rows }: Props) {
                       key={row.id}
                       onClick={() => handleRowClick(row.id, t.notes ?? "")}
                       className={cn(
-                        "border-b border-border/40 cursor-pointer transition-colors last:border-0",
+                        "border-b border-border/20 cursor-pointer transition-colors last:border-0",
                         isExpanded
                           ? "bg-accent/30"
                           : "hover:bg-muted/10",
@@ -604,7 +604,7 @@ export function TradeLogTable({ rows }: Props) {
                       <td className="px-3 py-1.5">
                         <span
                           className={cn(
-                            "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
+                            "rounded px-1.5 py-0.5 text-[11px] font-semibold",
                             row.direction === "long"
                               ? "bg-green-500/12 text-green-400"
                               : "bg-red-500/12 text-red-400",
@@ -654,7 +654,7 @@ export function TradeLogTable({ rows }: Props) {
                       <td className="px-3 py-1.5">
                         <span
                           className={cn(
-                            "text-sm font-bold",
+                            "text-sm font-semibold",
                             row.grade.color,
                           )}
                         >
@@ -701,7 +701,7 @@ export function TradeLogTable({ rows }: Props) {
                     {isExpanded && (
                       <tr
                         key={`${row.id}-notes`}
-                        className="border-b border-border/40 bg-accent/10"
+                        className="border-b border-border/20 bg-accent/10"
                       >
                         <td
                           colSpan={TABLE_COLS.length + 1}

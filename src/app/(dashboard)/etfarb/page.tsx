@@ -126,7 +126,7 @@ function MetricCard({
           </div>
           <div className="min-w-0">
             <p className="text-xs text-muted-foreground truncate">{label}</p>
-            <p className="text-xl font-bold text-foreground leading-tight">{value}</p>
+            <p className="text-xl font-semibold text-foreground leading-tight">{value}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
           </div>
         </div>
@@ -384,8 +384,8 @@ function ETFTable() {
             const pd = row.avgPremiumDiscount;
             const pdColor = pd > 0.15 ? "text-amber-400" : pd > 0.05 ? "text-yellow-400" : "text-green-400";
             return (
-              <tr key={row.ticker} className={`border-b border-border/50 hover:bg-muted/20 transition-colors ${i % 2 === 0 ? "" : "bg-muted/10"}`}>
-                <td className="px-3 py-2.5 font-bold text-primary">{row.ticker}</td>
+              <tr key={row.ticker} className={`border-b border-border/20 hover:bg-muted/20 transition-colors ${i % 2 === 0 ? "" : "bg-muted/10"}`}>
+                <td className="px-3 py-2.5 font-semibold text-primary">{row.ticker}</td>
                 <td className="px-3 py-2.5 text-muted-foreground text-xs">{row.assetClass}</td>
                 <td className="px-3 py-2.5 font-medium">${row.aum}B</td>
                 <td className={`px-3 py-2.5 font-semibold ${pdColor}`}>
@@ -483,8 +483,8 @@ function ArbCalculator() {
       <div className="space-y-2">
         <p className="text-sm font-medium text-foreground">Arbitrage Steps</p>
         {steps.map((st) => (
-          <div key={st.step} className="flex items-center gap-3 p-3 rounded-lg bg-muted/20 border border-border/50">
-            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 text-primary text-xs font-medium flex items-center justify-center">
+          <div key={st.step} className="flex items-center gap-3 p-3 rounded-lg bg-muted/20 border border-border/20">
+            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-muted/10 text-primary text-xs font-medium flex items-center justify-center">
               {st.step}
             </span>
             <span className="flex-1 text-sm text-foreground">{st.action}</span>
@@ -629,7 +629,7 @@ export default function ETFArbPage() {
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+            <h1 className="text-2xl font-semibold text-foreground flex items-center gap-2">
               <ArrowLeftRight className="h-6 w-6 text-primary" />
               ETF Arbitrage &amp; Market Mechanics
             </h1>
@@ -796,7 +796,7 @@ export default function ETFArbPage() {
                     { dir: "Premium", icon: TrendingUp, color: "text-red-400", reasons: ["Strong retail demand surge", "Short-selling pressure on underlying", "International ETFs when local mkt closed", "Fast-moving market open minutes"] },
                     { dir: "Discount", icon: TrendingDown, color: "text-green-400", reasons: ["Market stress / flight to safety", "Illiquid underlying bonds or EM stocks", "APs withdrawing from market-making", "End-of-day institutional selling"] },
                   ].map((section) => (
-                    <div key={section.dir} className="p-3 rounded-lg bg-muted/20 border border-border/50">
+                    <div key={section.dir} className="p-3 rounded-lg bg-muted/20 border border-border/20">
                       <p className={`text-xs text-muted-foreground font-medium ${section.color} mb-2 flex items-center gap-1`}>
                         <section.icon className="h-3 w-3" /> {section.dir} Causes
                       </p>

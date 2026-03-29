@@ -241,7 +241,7 @@ function ABSStructureTab() {
             </thead>
             <tbody>
               {TRANCHES.map((t) => (
-                <tr key={t.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={t.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2 text-foreground/90">
                     <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: t.color }} />
                     {t.name}
@@ -524,7 +524,7 @@ function PrepaymentModelsTab() {
             </thead>
             <tbody>
               {PREPAY_SCENARIOS.map((s, i) => (
-                <tr key={i} className={cn("border-b border-border/50 hover:bg-muted/30 transition-colors", s.psa === psaSpeed ? "bg-primary/10" : "")}>
+                <tr key={i} className={cn("border-b border-border/20 hover:bg-muted/30 transition-colors", s.psa === psaSpeed ? "bg-muted/10" : "")}>
                   <td className="py-2 text-foreground/90">{s.label}</td>
                   <td className="py-2 text-center text-foreground/80">{s.psa}</td>
                   <td className="py-2 text-center text-foreground/80">{s.wal}</td>
@@ -611,7 +611,7 @@ function PricingYieldTab() {
       {/* Z-Spread vs OAS */}
       <div className="grid gap-4 sm:grid-cols-3">
         <InfoCard title="Z-Spread">
-          <p className="text-2xl font-bold text-primary">+{zSpread.toFixed(0)} bps</p>
+          <p className="text-2xl font-semibold text-primary">+{zSpread.toFixed(0)} bps</p>
           <p className="text-xs text-foreground/50 mt-1">Constant spread over interpolated Treasury curve that equates PV to market price.</p>
         </InfoCard>
         <InfoCard title="Option-Adjusted Spread">
@@ -891,7 +891,7 @@ function CreditEnhancementTab() {
             </thead>
             <tbody>
               {ASSET_CLASS_LOSSES.map((row, i) => (
-                <tr key={i} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={i} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2 text-foreground/90">{row.assetClass}</td>
                   <td className="py-2 text-center">
                     <div className="flex items-center justify-center gap-1">
@@ -934,7 +934,7 @@ export default function ABSPricingPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="rounded-lg bg-primary/15 p-2">
+            <div className="rounded-lg bg-muted/10 p-2">
               <Layers className="h-6 w-6 text-primary" />
             </div>
             <div>
@@ -1008,7 +1008,7 @@ export default function ABSPricingPage() {
         </Tabs>
 
         {/* Footer info */}
-        <div className="mt-8 rounded-md border border-border/50 bg-foreground/[0.03] p-4">
+        <div className="mt-8 rounded-md border border-border/20 bg-foreground/[0.03] p-4">
           <div className="flex items-start gap-2">
             <Info className="h-4 w-4 text-foreground/30 mt-0.5 shrink-0" />
             <p className="text-xs text-foreground/30">

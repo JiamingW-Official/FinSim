@@ -88,7 +88,7 @@ export function UnitNode({
         onClick={() => isUnitUnlocked && setExpanded(!expanded)}
         disabled={!isUnitUnlocked}
         className={cn(
-          "group relative flex items-center gap-3 rounded-md border-2 p-4 transition-all overflow-hidden",
+          "group relative flex items-center gap-3 rounded-md border-2 p-4 transition-colors overflow-hidden",
           isUnitUnlocked
             ? "cursor-pointer hover:bg-muted/20"
             : "cursor-not-allowed opacity-40",
@@ -96,7 +96,7 @@ export function UnitNode({
             ? "border-[var(--mastery-color)]"
             : isUnitUnlocked
               ? "border-[var(--unit-color)]/50"
-              : "border-border/30",
+              : "border-border/20",
         )}
         style={{
           "--unit-color": unit.color,
@@ -116,7 +116,7 @@ export function UnitNode({
         {/* Icon circle with radial gradient */}
         <div
           className={cn(
-            "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 text-lg transition-all",
+            "flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 text-lg transition-colors",
             isUnitUnlocked
               ? mastery !== "none"
                 ? "border-[var(--mastery-color)]"
@@ -141,14 +141,14 @@ export function UnitNode({
         <div className="text-left flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <h3 className={cn(
-              "text-sm font-bold",
+              "text-sm font-semibold",
               !isUnitUnlocked && "text-muted-foreground",
             )}>
               {unit.title}
             </h3>
             {mastery !== "none" && (
               <span
-                className="rounded-full px-2 py-0.5 text-[11px] font-bold uppercase"
+                className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
                 style={{
                   color: MASTERY_COLORS[mastery],
                   background: `${MASTERY_COLORS[mastery]}20`,

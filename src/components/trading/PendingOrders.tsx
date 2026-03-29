@@ -35,7 +35,7 @@ export function PendingOrders() {
     <div className="overflow-auto">
       <table className="w-full text-xs">
         <thead>
-          <tr className="border-b border-border/40 text-muted-foreground">
+          <tr className="border-b border-border/20 text-muted-foreground">
             <th className="px-2 py-1.5 text-left font-medium">Ticker</th>
             <th className="px-2 py-1.5 text-center font-medium">Type</th>
             <th className="px-2 py-1.5 text-center font-medium">Side</th>
@@ -64,7 +64,7 @@ export function PendingOrders() {
               <tr
                 key={order.id}
                 className={cn(
-                  "border-b border-border/50 border-l-2 border-l-amber-500/40 transition-colors duration-150 hover:bg-muted/10",
+                  "border-b border-border/20 border-l-2 border-l-amber-500/40 transition-colors duration-150 hover:bg-muted/10",
                   isVeryNear && "bg-red-500/5",
                 )}
               >

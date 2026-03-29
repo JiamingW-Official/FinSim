@@ -746,7 +746,7 @@ function MomentumSection({ data }: { data: MomentumRow[] }) {
       <div className="overflow-x-auto">
         <table className="w-full text-xs min-w-[640px]">
           <thead>
-            <tr className="border-b border-border/50">
+            <tr className="border-b border-border/20">
               <th className="text-left py-2 px-2 text-muted-foreground font-medium w-36">Sector</th>
               <th className="text-right py-2 px-2 text-muted-foreground font-medium">1W</th>
               <th className="text-right py-2 px-2 text-muted-foreground font-medium">1M</th>
@@ -758,7 +758,7 @@ function MomentumSection({ data }: { data: MomentumRow[] }) {
           </thead>
           <tbody>
             {data.map((row) => (
-              <tr key={row.name} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
+              <tr key={row.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                 <td className="py-1.5 px-2">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: row.color }} />
@@ -791,8 +791,8 @@ function MomentumSection({ data }: { data: MomentumRow[] }) {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
         {/* Rotation Signals */}
-        <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-          <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">Rotation Signals</div>
+        <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+          <div className="text-xs font-semibold text-muted-foreground mb-2">Rotation Signals</div>
           <div className="space-y-1.5">
             {topDecile.map((n) => (
               <div key={n} className="flex items-center gap-2 text-xs">
@@ -812,8 +812,8 @@ function MomentumSection({ data }: { data: MomentumRow[] }) {
         </div>
 
         {/* Momentum Composite Ranking */}
-        <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-          <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">Composite Rank</div>
+        <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+          <div className="text-xs font-semibold text-muted-foreground mb-2">Composite Rank</div>
           <div className="space-y-1">
             {sortedByComp.slice(0, 5).map((row, i) => (
               <div key={row.name} className="flex items-center gap-2">
@@ -829,8 +829,8 @@ function MomentumSection({ data }: { data: MomentumRow[] }) {
         </div>
 
         {/* Momentum Persistence */}
-        <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-          <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">Momentum Persistence</div>
+        <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+          <div className="text-xs font-semibold text-muted-foreground mb-2">Momentum Persistence</div>
           <div className="space-y-2 text-xs text-muted-foreground">
             <p>Sector momentum typically persists for <span className="text-foreground font-medium">3–6 months</span> before mean-reverting.</p>
             <p>Top-decile sectors outperform by ~<span className="text-emerald-400 font-medium">2.4% / month</span> on average.</p>
@@ -904,7 +904,7 @@ export default function SectorTimingDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 flex-wrap border-b border-border/50 pb-2">
+      <div className="flex gap-1 flex-wrap border-b border-border/20 pb-2">
         {TABS.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -912,7 +912,7 @@ export default function SectorTimingDashboard() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={cn(
-                "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all",
+                "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors",
                 activeTab === tab.id
                   ? "bg-primary/15 text-primary"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
@@ -938,8 +938,8 @@ export default function SectorTimingDashboard() {
           {activeTab === "cycle" && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               {/* Clock */}
-              <div className="flex flex-col items-center gap-3 bg-muted/15 rounded-lg p-4 border border-border/40">
-                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+              <div className="flex flex-col items-center gap-3 bg-muted/15 rounded-lg p-4 border border-border/20">
+                <div className="text-xs font-semibold text-muted-foreground">
                   Business Cycle Position
                 </div>
                 <BusinessCycleClock phaseIdx={CURRENT_PHASE_IDX} phase={currentPhase} />
@@ -953,8 +953,8 @@ export default function SectorTimingDashboard() {
 
               {/* Overweight / Underweight */}
               <div className="flex flex-col gap-3">
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                  <div className="text-xs font-semibold text-emerald-400 mb-2 uppercase tracking-wide">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                  <div className="text-xs font-semibold text-emerald-400 mb-2">
                     Overweight — {currentPhase.label}
                   </div>
                   <div className="space-y-1.5">
@@ -970,8 +970,8 @@ export default function SectorTimingDashboard() {
                     })}
                   </div>
                 </div>
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                  <div className="text-xs font-semibold text-red-400 mb-2 uppercase tracking-wide">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                  <div className="text-xs font-semibold text-red-400 mb-2">
                     Underweight — {currentPhase.label}
                   </div>
                   <div className="space-y-1.5">
@@ -990,13 +990,13 @@ export default function SectorTimingDashboard() {
               </div>
 
               {/* Historical performance table */}
-              <div className="bg-muted/15 rounded-lg p-3 border border-border/40 overflow-x-auto">
-                <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+              <div className="bg-muted/15 rounded-lg p-3 border border-border/20 overflow-x-auto">
+                <div className="text-xs font-semibold text-muted-foreground mb-2">
                   Avg Returns by Cycle Phase (%)
                 </div>
                 <table className="w-full text-xs min-w-[260px]">
                   <thead>
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-border/20">
                       <th className="text-left py-1 px-1 text-muted-foreground font-medium">Sector</th>
                       {CYCLE_PHASES.map((p) => (
                         <th
@@ -1013,7 +1013,7 @@ export default function SectorTimingDashboard() {
                     {SECTORS.map((sec) => {
                       const rets = PHASE_RETURNS[sec.name];
                       return (
-                        <tr key={sec.name} className="border-b border-border/30 hover:bg-muted/30">
+                        <tr key={sec.name} className="border-b border-border/20 hover:bg-muted/30">
                           <td className="py-1 px-1 text-muted-foreground truncate max-w-[70px]">{sec.short}</td>
                           {rets.map((r, i) => (
                             <td
@@ -1044,14 +1044,14 @@ export default function SectorTimingDashboard() {
           {activeTab === "rs" && (
             <div className="space-y-4">
               {/* RS Ranked Table */}
-              <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                <div className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+              <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                <div className="text-xs font-semibold text-muted-foreground mb-3">
                   RS Ranking vs S&P 500 — Strongest to Weakest
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs min-w-[560px]">
                     <thead>
-                      <tr className="border-b border-border/50">
+                      <tr className="border-b border-border/20">
                         <th className="text-left py-2 px-2 text-muted-foreground font-medium">Rank</th>
                         <th className="text-left py-2 px-2 text-muted-foreground font-medium">Sector</th>
                         <th className="text-right py-2 px-2 text-muted-foreground font-medium">RS Now</th>
@@ -1064,7 +1064,7 @@ export default function SectorTimingDashboard() {
                     </thead>
                     <tbody>
                       {rsRanked.map((row, i) => (
-                        <tr key={row.name} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
+                        <tr key={row.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                           <td className="py-1.5 px-2 text-muted-foreground font-mono">{i + 1}</td>
                           <td className="py-1.5 px-2">
                             <div className="flex items-center gap-1.5">
@@ -1118,10 +1118,10 @@ export default function SectorTimingDashboard() {
 
               {/* Breakouts + Divergences */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
                   <div className="flex items-center gap-2 mb-2">
                     <Zap className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wide">RS Breakouts</span>
+                    <span className="text-xs font-semibold text-emerald-400">RS Breakouts</span>
                   </div>
                   <div className="space-y-1.5">
                     {rsRanked.filter((r) => r.atNewHigh).length === 0 && (
@@ -1138,10 +1138,10 @@ export default function SectorTimingDashboard() {
                     ))}
                   </div>
                 </div>
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
                   <div className="flex items-center gap-2 mb-2">
                     <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
-                    <span className="text-xs font-semibold text-amber-400 uppercase tracking-wide">RS Divergences</span>
+                    <span className="text-xs font-semibold text-amber-400">RS Divergences</span>
                   </div>
                   <div className="space-y-1.5">
                     {rsRanked.filter((r) => r.divergence).length === 0 && (
@@ -1168,9 +1168,9 @@ export default function SectorTimingDashboard() {
               {/* Indicator Cards */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {ECON_INDICATORS.map((ind) => (
-                  <div key={ind.name} className="bg-muted/15 rounded-lg p-3 border border-border/40">
+                  <div key={ind.name} className="bg-muted/15 rounded-lg p-3 border border-border/20">
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                      <span className="text-xs font-semibold text-muted-foreground">
                         {ind.shortName}
                       </span>
                       <div className={cn(
@@ -1181,21 +1181,21 @@ export default function SectorTimingDashboard() {
                         {ind.direction.toUpperCase()}
                       </div>
                     </div>
-                    <div className="text-sm font-bold text-foreground">{ind.value}</div>
+                    <div className="text-sm font-semibold text-foreground">{ind.value}</div>
                     <div className="text-xs text-muted-foreground mt-0.5 truncate">{ind.name}</div>
                   </div>
                 ))}
               </div>
 
               {/* Signal Matrix */}
-              <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                <div className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+              <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                <div className="text-xs font-semibold text-muted-foreground mb-3">
                   Current Signal Matrix — Econ Indicator Impact per Sector
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs min-w-[560px]">
                     <thead>
-                      <tr className="border-b border-border/50">
+                      <tr className="border-b border-border/20">
                         <th className="text-left py-1.5 px-2 text-muted-foreground font-medium w-36">Sector</th>
                         {ECON_INDICATORS.map((ind) => (
                           <th key={ind.shortName} className="text-center py-1.5 px-1 text-muted-foreground font-medium">
@@ -1209,7 +1209,7 @@ export default function SectorTimingDashboard() {
                       {SECTORS.map((sec) => {
                         const econ = econMatrix[sec.name];
                         return (
-                          <tr key={sec.name} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
+                          <tr key={sec.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                             <td className="py-1.5 px-2">
                               <div className="flex items-center gap-1.5">
                                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
@@ -1223,8 +1223,8 @@ export default function SectorTimingDashboard() {
                               const isNeg = ind.direction === "up" ? isBear : isBull;
                               return (
                                 <td key={ind.shortName} className="py-1.5 px-1 text-center">
-                                  {isPos && <span className="text-emerald-400 font-bold">+</span>}
-                                  {isNeg && <span className="text-red-400 font-bold">-</span>}
+                                  {isPos && <span className="text-emerald-400 font-semibold">+</span>}
+                                  {isNeg && <span className="text-red-400 font-semibold">-</span>}
                                   {!isPos && !isNeg && <span className="text-muted-foreground/30">·</span>}
                                 </td>
                               );
@@ -1232,7 +1232,7 @@ export default function SectorTimingDashboard() {
                             <td className="py-1.5 px-2 text-center">
                               <span
                                 className={cn(
-                                  "text-xs font-bold px-1.5 py-0.5 rounded",
+                                  "text-xs font-semibold px-1.5 py-0.5 rounded",
                                   econ.net > 1 ? "bg-emerald-500/20 text-emerald-400" :
                                   econ.net < -1 ? "bg-red-500/20 text-red-400" :
                                   "bg-muted/20 text-muted-foreground",
@@ -1250,8 +1250,8 @@ export default function SectorTimingDashboard() {
               </div>
 
               {/* Confluence */}
-              <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+              <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                <div className="text-xs font-semibold text-muted-foreground mb-2">
                   Signal Confluence — Top Bullish / Bearish Setups
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1308,7 +1308,7 @@ export default function SectorTimingDashboard() {
               {/* Cross-asset overview */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 {CROSS_ASSETS.map((asset) => (
-                  <div key={asset.ticker} className="bg-muted/15 rounded-lg p-3 border border-border/40">
+                  <div key={asset.ticker} className="bg-muted/15 rounded-lg p-3 border border-border/20">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-semibold text-muted-foreground">{asset.ticker}</span>
                       <span className={cn(
@@ -1320,7 +1320,7 @@ export default function SectorTimingDashboard() {
                         {asset.direction}
                       </span>
                     </div>
-                    <div className="text-sm font-bold text-foreground">{asset.price}</div>
+                    <div className="text-sm font-semibold text-foreground">{asset.price}</div>
                     <div className={cn(
                       "text-xs font-medium mt-0.5",
                       asset.change >= 0 ? "text-emerald-400" : "text-red-400",
@@ -1333,8 +1333,8 @@ export default function SectorTimingDashboard() {
               </div>
 
               {/* Risk-On / Risk-Off Barometer */}
-              <div className="bg-muted/15 rounded-lg p-4 border border-border/40">
-                <div className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+              <div className="bg-muted/15 rounded-lg p-4 border border-border/20">
+                <div className="text-xs font-semibold text-muted-foreground mb-3">
                   Risk-On / Risk-Off Barometer
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-4">
@@ -1360,14 +1360,14 @@ export default function SectorTimingDashboard() {
               </div>
 
               {/* Cross-Asset Correlations Table */}
-              <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                <div className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+              <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                <div className="text-xs font-semibold text-muted-foreground mb-3">
                   Sector Correlations vs Cross Assets
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs min-w-[480px]">
                     <thead>
-                      <tr className="border-b border-border/50">
+                      <tr className="border-b border-border/20">
                         <th className="text-left py-2 px-2 text-muted-foreground font-medium w-36">Sector</th>
                         <th className="text-center py-2 px-2 text-muted-foreground font-medium">Bonds</th>
                         <th className="text-center py-2 px-2 text-muted-foreground font-medium">Gold</th>
@@ -1380,7 +1380,7 @@ export default function SectorTimingDashboard() {
                       {correlations.map((row) => {
                         const sec = SECTORS.find((s) => s.name === row.name)!;
                         return (
-                          <tr key={row.name} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
+                          <tr key={row.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                             <td className="py-1.5 px-2">
                               <div className="flex items-center gap-1.5">
                                 <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: sec.color }} />
@@ -1402,10 +1402,10 @@ export default function SectorTimingDashboard() {
 
               {/* Dollar & Oil impact */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
                   <div className="flex items-center gap-2 mb-2">
                     <DollarSign className="w-3.5 h-3.5 text-amber-400" />
-                    <span className="text-xs font-semibold text-amber-400 uppercase tracking-wide">Strong Dollar Impact</span>
+                    <span className="text-xs font-semibold text-amber-400">Strong Dollar Impact</span>
                   </div>
                   <div className="space-y-1 text-xs">
                     <div className="flex items-center gap-2 text-red-300">
@@ -1418,10 +1418,10 @@ export default function SectorTimingDashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
                   <div className="flex items-center gap-2 mb-2">
                     <Activity className="w-3.5 h-3.5 text-red-400" />
-                    <span className="text-xs font-semibold text-red-400 uppercase tracking-wide">Oil Price Impact</span>
+                    <span className="text-xs font-semibold text-red-400">Oil Price Impact</span>
                   </div>
                   <div className="space-y-1 text-xs">
                     <div className="flex items-center gap-2 text-emerald-300">
@@ -1462,13 +1462,13 @@ export default function SectorTimingDashboard() {
               </div>
 
               {/* Main table */}
-              <div className="bg-muted/15 rounded-lg p-3 border border-border/40 overflow-x-auto">
-                <div className="text-xs font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+              <div className="bg-muted/15 rounded-lg p-3 border border-border/20 overflow-x-auto">
+                <div className="text-xs font-semibold text-muted-foreground mb-3">
                   Factor Model — Combined Signal Scores
                 </div>
                 <table className="w-full text-xs min-w-[700px]">
                   <thead>
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-border/20">
                       <th className="text-left py-2 px-2 text-muted-foreground font-medium w-36">Sector</th>
                       <th className="text-center py-2 px-2 text-muted-foreground font-medium">Mom</th>
                       <th className="text-center py-2 px-2 text-muted-foreground font-medium">Econ</th>
@@ -1497,7 +1497,7 @@ export default function SectorTimingDashboard() {
                           );
                         }
                         return (
-                          <tr key={row.name} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
+                          <tr key={row.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                             <td className="py-1.5 px-2">
                               <div className="flex items-center gap-1.5">
                                 <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: row.color }} />
@@ -1510,7 +1510,7 @@ export default function SectorTimingDashboard() {
                             <td className="py-1.5 px-2 text-center">{scoreCell(row.interMarketScore)}</td>
                             <td className="py-1.5 px-2 text-center">
                               <span className={cn(
-                                "font-mono font-bold",
+                                "font-mono font-semibold",
                                 row.composite >= 0.8 ? "text-emerald-400" : row.composite <= -0.5 ? "text-red-400" : "text-amber-400",
                               )}>
                                 {row.composite >= 0 ? "+" : ""}{row.composite.toFixed(2)}
@@ -1557,8 +1557,8 @@ export default function SectorTimingDashboard() {
 
               {/* Model notes */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                  <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                  <div className="text-xs font-semibold text-muted-foreground mb-2">
                     Model Methodology
                   </div>
                   <ul className="space-y-1 text-xs text-muted-foreground">
@@ -1568,8 +1568,8 @@ export default function SectorTimingDashboard() {
                     <li>• Inter-market (25%): HY/bond/dollar correlations</li>
                   </ul>
                 </div>
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                  <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                  <div className="text-xs font-semibold text-muted-foreground mb-2">
                     Model vs Equal-Weight
                   </div>
                   <div className="space-y-1 text-xs">
@@ -1591,8 +1591,8 @@ export default function SectorTimingDashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="bg-muted/15 rounded-lg p-3 border border-border/40">
-                  <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
+                <div className="bg-muted/15 rounded-lg p-3 border border-border/20">
+                  <div className="text-xs font-semibold text-muted-foreground mb-2">
                     Top Conviction
                   </div>
                   <div className="space-y-1.5">
@@ -1618,7 +1618,7 @@ export default function SectorTimingDashboard() {
       </AnimatePresence>
 
       {/* Footer */}
-      <div className="flex items-center justify-between pt-2 border-t border-border/50">
+      <div className="flex items-center justify-between pt-2 border-t border-border/20">
         <p className="text-xs text-muted-foreground">
           Simulated data for educational purposes only. Not investment advice.
         </p>

@@ -744,7 +744,7 @@ function QuestDetailPanel({
         <div className="flex items-center gap-2.5">
           <div
             className={cn(
-              "h-9 w-9 rounded-lg flex items-center justify-center text-lg font-bold",
+              "h-9 w-9 rounded-lg flex items-center justify-center text-lg font-semibold",
               node.status === "complete"
                 ? "bg-emerald-500/5"
                 : node.status === "in_progress"
@@ -765,7 +765,7 @@ function QuestDetailPanel({
             )}
           </div>
           <div>
-            <p className="text-sm font-bold text-foreground leading-tight">
+            <p className="text-sm font-semibold text-foreground leading-tight">
               {node.label}
             </p>
             <p className={cn("text-xs font-semibold", branch.color)}>
@@ -793,14 +793,14 @@ function QuestDetailPanel({
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1 rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-1">
             <Zap className="h-3 w-3 text-amber-400" />
-            <span className="text-[11px] font-bold text-amber-400">
+            <span className="text-[11px] font-semibold text-amber-400">
               {node.xpReward} XP
             </span>
           </div>
           {node.badgeReward && (
             <div className="flex items-center gap-1 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-2.5 py-1">
               <Star className="h-3 w-3 text-yellow-400" />
-              <span className="text-[11px] font-bold text-yellow-400">
+              <span className="text-[11px] font-semibold text-yellow-400">
                 {node.badgeReward}
               </span>
             </div>
@@ -811,7 +811,7 @@ function QuestDetailPanel({
         <div>
           <span
             className={cn(
-              "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide border",
+              "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold border",
               node.status === "complete"
                 ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/5"
                 : node.status === "in_progress"
@@ -833,7 +833,7 @@ function QuestDetailPanel({
 
         {/* Objectives */}
         <div className="space-y-3">
-          <p className="text-[11px] font-bold text-foreground uppercase tracking-wide">
+          <p className="text-[11px] font-semibold text-foreground">
             Objectives
           </p>
           {node.objectives.map((obj) => {
@@ -842,7 +842,7 @@ function QuestDetailPanel({
               <div key={obj.id} className="space-y-1.5">
                 <div className="flex items-center justify-between text-[11px]">
                   <span className="text-muted-foreground">{obj.label}</span>
-                  <span className="font-bold tabular-nums text-foreground">
+                  <span className="font-semibold tabular-nums text-foreground">
                     {obj.unit === "$"
                       ? `$${obj.current.toLocaleString()} / $${obj.target.toLocaleString()}`
                       : `${obj.current} / ${obj.target}`}
@@ -867,7 +867,7 @@ function QuestDetailPanel({
         {/* Prerequisites */}
         {prereqNodes.length > 0 && (
           <div className="space-y-2">
-            <p className="text-[11px] font-bold text-foreground uppercase tracking-wide">
+            <p className="text-[11px] font-semibold text-foreground">
               Prerequisites
             </p>
             {prereqNodes.map((pn) =>
@@ -894,7 +894,7 @@ function QuestDetailPanel({
         <button
           type="button"
           className={cn(
-            "w-full rounded-lg py-2 text-sm font-bold transition-colors",
+            "w-full rounded-lg py-2 text-sm font-semibold transition-colors",
             node.status === "complete"
               ? "bg-emerald-500/5 text-emerald-400 border border-emerald-500/20 cursor-default"
               : node.status === "locked"
@@ -945,7 +945,7 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
       <div className="flex items-center justify-between">
         <span
           className={cn(
-            "text-[11px] font-bold px-1.5 py-0.5 rounded border",
+            "text-[11px] font-semibold px-1.5 py-0.5 rounded border",
             RARITY_COLORS[rarity],
           )}
         >
@@ -983,7 +983,7 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
 
       {/* Name + desc */}
       <div>
-        <p className="text-[11px] font-bold leading-tight">{achievement.name}</p>
+        <p className="text-[11px] font-semibold leading-tight">{achievement.name}</p>
         <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2 leading-tight">
           {achievement.description}
         </p>
@@ -1118,14 +1118,14 @@ export function QuestTree() {
         {/* SVG Tree */}
         <div className="flex-1 min-w-0 rounded-md border border-border bg-card overflow-hidden">
           <div className="px-4 pt-3 pb-2 border-b border-border">
-            <p className="text-xs font-bold text-foreground">Quest Skill Tree</p>
+            <p className="text-xs font-semibold text-foreground">Quest Skill Tree</p>
             <p className="text-[11px] text-muted-foreground">
               Click any node to view quest details
             </p>
           </div>
 
           {/* Legend */}
-          <div className="px-4 py-2 flex items-center gap-4 flex-wrap border-b border-border/50">
+          <div className="px-4 py-2 flex items-center gap-4 flex-wrap border-b border-border/20">
             {[
               { label: "Locked", color: "#52525b", fill: "#27272a" },
               { label: "Available", color: "#a1a1aa", fill: "#18181b" },
@@ -1151,7 +1151,7 @@ export function QuestTree() {
           {/* Branch labels */}
           <div className="relative px-2">
             <div
-              className="flex text-[11px] font-bold"
+              className="flex text-[11px] font-semibold"
               style={{ paddingTop: 6 }}
             >
               {[
@@ -1364,13 +1364,13 @@ export function QuestTree() {
       <div className="rounded-md border border-border bg-card overflow-hidden">
         <div className="px-4 pt-3 pb-2 border-b border-border flex items-center justify-between">
           <div>
-            <p className="text-xs font-bold text-foreground">Achievement Showcase</p>
+            <p className="text-xs font-semibold text-foreground">Achievement Showcase</p>
             <p className="text-[11px] text-muted-foreground">
               {achievements.length} earned · hover to inspect
             </p>
           </div>
           {nearAchievements.length > 0 && (
-            <span className="text-xs font-bold text-amber-400 border border-amber-500/20 rounded-full px-2 py-0.5 bg-amber-500/10">
+            <span className="text-xs font-semibold text-amber-400 border border-amber-500/20 rounded-full px-2 py-0.5 bg-amber-500/10">
               {nearAchievements.length} almost done
             </span>
           )}
@@ -1397,8 +1397,8 @@ export function QuestTree() {
 
         {/* Near-completion rings */}
         {nearAchievements.length > 0 && (
-          <div className="px-4 py-3 border-t border-border/50 flex items-center gap-4 flex-wrap">
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
+          <div className="px-4 py-3 border-t border-border/20 flex items-center gap-4 flex-wrap">
+            <p className="text-xs font-semibold text-muted-foreground">
               Almost earned
             </p>
             {nearAchievements.map((nc) => (
@@ -1410,7 +1410,7 @@ export function QuestTree() {
                   size={36}
                 />
                 <div>
-                  <p className="text-xs font-bold text-foreground">
+                  <p className="text-xs font-semibold text-foreground">
                     {nc.name}
                   </p>
                   <p className="text-[11px] text-muted-foreground tabular-nums">
@@ -1435,7 +1435,7 @@ export function QuestTree() {
               <Clock className="h-3.5 w-3.5 text-primary-foreground" />
             </div>
             <div className="text-left">
-              <p className="text-xs font-bold text-foreground">
+              <p className="text-xs font-semibold text-foreground">
                 Seasonal Challenges
               </p>
               <p className="text-xs text-muted-foreground">
@@ -1444,7 +1444,7 @@ export function QuestTree() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-amber-400">
+            <span className="text-xs font-semibold text-amber-400">
               {SEASONAL.filter((s) => s.current >= s.target).length}/{SEASONAL.length} done
             </span>
             {seasonExpanded ? (
@@ -1466,7 +1466,7 @@ export function QuestTree() {
             >
               {/* Season ends gradient banner */}
               <div className="px-4 py-2 bg-amber-500/10 border-b border-amber-500/10">
-                <p className="text-[11px] font-bold text-amber-400">
+                <p className="text-[11px] font-semibold text-amber-400">
                   Season ends in {SEASONAL[0].endsInDays} days — complete challenges for bonus XP!
                 </p>
               </div>
@@ -1493,7 +1493,7 @@ export function QuestTree() {
                           <div className="flex items-center gap-2">
                             <p
                               className={cn(
-                                "text-sm font-bold",
+                                "text-sm font-semibold",
                                 done ? "text-emerald-400" : "text-foreground",
                               )}
                             >
@@ -1513,7 +1513,7 @@ export function QuestTree() {
                               </span>
                               <span
                                 className={cn(
-                                  "font-bold tabular-nums",
+                                  "font-semibold tabular-nums",
                                   done
                                     ? "text-emerald-400"
                                     : "text-muted-foreground",
@@ -1542,7 +1542,7 @@ export function QuestTree() {
                         <div className="flex flex-col items-end gap-1 shrink-0">
                           <div className="flex items-center gap-1 rounded-full border border-amber-500/20 bg-amber-500/10 px-2 py-0.5">
                             <Clock className="h-2.5 w-2.5 text-amber-400" />
-                            <span className="text-[11px] font-bold text-amber-400">
+                            <span className="text-[11px] font-semibold text-amber-400">
                               {sc.endsInDays}d left
                             </span>
                           </div>

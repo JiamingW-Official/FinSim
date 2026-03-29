@@ -145,7 +145,7 @@ export function LearningProgressCard() {
           </svg>
           {/* Center text */}
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-sm font-bold tabular-nums text-primary">
+            <span className="text-sm font-semibold tabular-nums text-primary">
               {progressPct}%
             </span>
           </div>
@@ -233,7 +233,7 @@ function MiniStat({
       {icon}
       <div className="min-w-0">
         <p className="text-xs text-muted-foreground">{label}</p>
-        <p className="text-[11px] font-bold tabular-nums">{value}</p>
+        <p className="text-[11px] font-semibold tabular-nums">{value}</p>
       </div>
     </div>
   );

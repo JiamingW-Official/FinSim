@@ -13,7 +13,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       {...props}
     >
       <div
-        className="h-full bg-primary transition-all rounded-full"
+        className="h-full bg-primary transition-colors rounded-full"
         style={{ width: `${Math.min(Math.max(value, 0), 100)}%` }}
       />
     </div>

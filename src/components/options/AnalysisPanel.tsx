@@ -44,8 +44,8 @@ function CardTitle({
   subtitle?: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center justify-between border-b border-border/50 px-3 py-1.5">
-      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+    <div className="flex items-center justify-between border-b border-border/20 px-3 py-1.5">
+      <span className="text-xs font-medium text-muted-foreground">
         {title}
       </span>
       {subtitle && (
@@ -92,7 +92,7 @@ function VolumeChart({
   const subtitle = `Total: ${fmt(analytics.totalCallVolume + analytics.totalPutVolume)} | P/C: ${analytics.putCallRatioVolume.toFixed(2)}`;
 
   return (
-    <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+    <div className="flex flex-col rounded-lg border border-border/20 bg-card">
       <CardTitle title="Call vs Put Volume" subtitle={subtitle} />
       <div className="flex-1">
         <svg viewBox="0 0 300 120" className="w-full">
@@ -243,7 +243,7 @@ function VolatilityChart({ analytics }: { analytics: ChainAnalytics }) {
   const gridLines = [0.25, 0.5, 0.75, 1];
 
   return (
-    <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+    <div className="flex flex-col rounded-lg border border-border/20 bg-card">
       <CardTitle title="Volatility Analysis" subtitle={spreadSubtitle} />
       <div className="flex-1">
         <svg viewBox="0 0 300 120" className="w-full">
@@ -352,7 +352,7 @@ function HorizontalStrikeChart({
 }) {
   if (oiVol.length === 0) {
     return (
-      <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+      <div className="flex flex-col rounded-lg border border-border/20 bg-card">
         <CardTitle title={title} subtitle={subtitle} />
         <div className="flex flex-1 items-center justify-center py-8">
           <span className="text-xs text-muted-foreground">No data</span>
@@ -384,7 +384,7 @@ function HorizontalStrikeChart({
   const maxBarHalf = 110 - labelW / 2;
 
   return (
-    <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+    <div className="flex flex-col rounded-lg border border-border/20 bg-card">
       <CardTitle title={title} subtitle={subtitle} />
       <div className="flex-1">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
@@ -480,7 +480,7 @@ function VolSmileChart({
 }) {
   if (smile.length === 0) {
     return (
-      <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+      <div className="flex flex-col rounded-lg border border-border/20 bg-card">
         <CardTitle title="Volatility Smile" />
         <div className="flex flex-1 items-center justify-center py-8">
           <span className="text-xs text-muted-foreground">No data</span>
@@ -529,7 +529,7 @@ function VolSmileChart({
   const yTicks = [minIV, minIV + (maxIV - minIV) * 0.5, maxIV];
 
   return (
-    <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+    <div className="flex flex-col rounded-lg border border-border/20 bg-card">
       <CardTitle title="Volatility Smile" />
       <div className="flex-1">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
@@ -639,7 +639,7 @@ function TermStructureChart({
 }) {
   if (termStructure.length === 0) {
     return (
-      <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+      <div className="flex flex-col rounded-lg border border-border/20 bg-card">
         <CardTitle title="Vol Term Structure" />
         <div className="flex flex-1 items-center justify-center py-8">
           <span className="text-xs text-muted-foreground">No data</span>
@@ -677,7 +677,7 @@ function TermStructureChart({
   const gridLines = [0.25, 0.5, 0.75, 1];
 
   return (
-    <div className="flex flex-col rounded-lg border border-border/50 bg-card">
+    <div className="flex flex-col rounded-lg border border-border/20 bg-card">
       <CardTitle title="Vol Term Structure" />
       <div className="flex-1">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
@@ -806,7 +806,7 @@ function ScenarioAnalysis({
   }
 
   return (
-    <div className="col-span-2 flex flex-col rounded-lg border border-border/50 bg-card">
+    <div className="col-span-2 flex flex-col rounded-lg border border-border/20 bg-card">
       <CardTitle
         title="Scenario Analysis — ATM Call P&L"
         subtitle={`Base: $${refPrice.toFixed(2)} | T=${dte}d | IV=${(baseIV * 100).toFixed(0)}%`}

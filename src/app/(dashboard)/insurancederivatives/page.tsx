@@ -150,8 +150,8 @@ const PERIL_COLORS: Record<string, string> = {
 };
 
 const TRIGGER_COLORS: Record<string, string> = {
-  Indemnity: "bg-primary/20 text-primary border-border",
-  "PCS Index": "bg-primary/20 text-primary border-border",
+  Indemnity: "bg-muted/10 text-primary border-border",
+  "PCS Index": "bg-muted/10 text-primary border-border",
   Parametric: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
 };
 
@@ -543,7 +543,7 @@ export default function InsuranceDerivativesPage() {
                             key={b.id}
                             onClick={() => setSelectedBond(b.id === selectedBond ? null : b.id)}
                             className={cn(
-                              "border-b border-border/50 cursor-pointer hover:bg-muted/40 transition-colors",
+                              "border-b border-border/20 cursor-pointer hover:bg-muted/40 transition-colors",
                               selectedBond === b.id && "bg-muted/60"
                             )}
                           >
@@ -685,7 +685,7 @@ export default function InsuranceDerivativesPage() {
                   </thead>
                   <tbody>
                     {EXCEEDANCE_POINTS.map((p) => (
-                      <tr key={p.returnPeriod} className="border-b border-border/50">
+                      <tr key={p.returnPeriod} className="border-b border-border/20">
                         <td className="py-2 text-foreground font-medium">{p.returnPeriod}-year</td>
                         <td className="py-2 text-muted-foreground">{p.annualProb.toFixed(2)}%</td>
                         <td className="py-2 text-right text-amber-400">${p.loss}B</td>
@@ -752,9 +752,9 @@ export default function InsuranceDerivativesPage() {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs text-muted-foreground">
                 {[
-                  { stage: "Hazard Module", desc: "Physical characteristics of the event (wind speed, PGA, surge height)", color: "border-border bg-primary/5" },
+                  { stage: "Hazard Module", desc: "Physical characteristics of the event (wind speed, PGA, surge height)", color: "border-border bg-muted/5" },
                   { stage: "Vulnerability Module", desc: "Damage functions mapping hazard intensity to mean damage ratios by construction type", color: "border-amber-500/30 bg-amber-500/5" },
-                  { stage: "Exposure Module", desc: "Geo-coded insured values, occupancy types, policy terms and conditions", color: "border-border bg-primary/5" },
+                  { stage: "Exposure Module", desc: "Geo-coded insured values, occupancy types, policy terms and conditions", color: "border-border bg-muted/5" },
                   { stage: "Financial Module", desc: "Applies policy terms, reinsurance structure, occurrence and aggregate limits", color: "border-emerald-500/30 bg-emerald-500/5" },
                 ].map((s) => (
                   <div key={s.stage} className={cn("rounded-lg border p-3", s.color)}>
@@ -781,7 +781,7 @@ export default function InsuranceDerivativesPage() {
                     <p className="text-emerald-300 font-medium">ILS Advantage</p>
                     <p className="text-muted-foreground mt-1">Near-zero correlation to equities makes ILS a powerful diversifier in multi-asset portfolios.</p>
                   </div>
-                  <div className="bg-primary/10 border border-border rounded p-2">
+                  <div className="bg-muted/10 border border-border rounded p-2">
                     <p className="text-primary font-medium">Reinsurance Advantage</p>
                     <p className="text-muted-foreground mt-1">Long-standing relationships, broader peril coverage, and established claims handling expertise.</p>
                   </div>
@@ -804,7 +804,7 @@ export default function InsuranceDerivativesPage() {
                   </thead>
                   <tbody>
                     {ILS_COMPARISON.map((row, i) => (
-                      <tr key={i} className="border-b border-border/50">
+                      <tr key={i} className="border-b border-border/20">
                         <td className="px-4 py-2 text-muted-foreground">{row.metric}</td>
                         <td className="px-4 py-2 text-emerald-300">{row.ils}</td>
                         <td className="px-4 py-2 text-primary">{row.trad}</td>
@@ -823,7 +823,7 @@ export default function InsuranceDerivativesPage() {
             <CardContent>
               <div className="flex items-center justify-between gap-2 text-xs text-muted-foreground overflow-x-auto pb-2">
                 {[
-                  { label: "Cedent\n(Sponsor)", sub: "Insurance / Re co.", color: "bg-primary/20 border-primary/40" },
+                  { label: "Cedent\n(Sponsor)", sub: "Insurance / Re co.", color: "bg-muted/10 border-primary/40" },
                   { label: "Reinsurance\nAgreement", sub: "Premium payments", color: "bg-muted border-border", arrow: true },
                   { label: "SPV\n(Special Purpose Vehicle)", sub: "Cayman / Bermuda", color: "bg-amber-500/20 border-amber-500/40" },
                   { label: "CAT Bond\nIssuance", sub: "Principal proceeds", color: "bg-muted border-border", arrow: true },
@@ -1042,7 +1042,7 @@ export default function InsuranceDerivativesPage() {
                       { row: "JP Typhoon", vals: [0.05, 0.08, 0.02, 1.00, 0.02] },
                       { row: "US Equities", vals: [0.03, 0.02, 0.01, 0.02, 1.00] },
                     ].map((r) => (
-                      <tr key={r.row} className="border-b border-border/50">
+                      <tr key={r.row} className="border-b border-border/20">
                         <td className="text-muted-foreground py-1.5 pr-4">{r.row}</td>
                         {r.vals.map((v, i) => (
                           <td
@@ -1074,7 +1074,7 @@ export default function InsuranceDerivativesPage() {
                 value: "Heating Degree Days",
                 desc: "Max(0, 65°F – Avg daily temp). Energy demand proxy in winter months.",
                 color: "text-primary",
-                bg: "bg-primary/10 border-border",
+                bg: "bg-muted/10 border-border",
                 icon: <Thermometer className="h-3.5 w-3.5 text-muted-foreground/50" />,
               },
               {

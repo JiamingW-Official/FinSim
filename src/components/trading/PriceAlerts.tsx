@@ -61,7 +61,7 @@ function ProximityBar({ distancePct, direction }: { distancePct: number; directi
     <div className="h-1 w-full rounded-full bg-muted overflow-hidden">
       <div
         className={cn(
-          "h-full rounded-full transition-all duration-300",
+          "h-full rounded-full transition-colors duration-300",
           isClose
             ? "bg-amber-500"
             : direction === "above"
@@ -88,7 +88,7 @@ function AlertRow({ alert, onToggle, onRemove }: AlertRowProps) {
   return (
     <div
       className={cn(
-        "group px-3 py-2.5 border-b border-border/50 last:border-0 transition-colors",
+        "group px-3 py-2.5 border-b border-border/20 last:border-0 transition-colors",
         !enabled && "opacity-50",
         isClose && enabled && "bg-amber-500/5",
       )}
@@ -137,7 +137,7 @@ function AlertRow({ alert, onToggle, onRemove }: AlertRowProps) {
         <button
           onClick={() => onRemove(ticker, direction)}
           title="Remove alert"
-          className="shrink-0 rounded p-1 text-muted-foreground/30 opacity-0 group-hover:opacity-100 hover:text-red-500 transition-all"
+          className="shrink-0 rounded p-1 text-muted-foreground/30 opacity-0 group-hover:opacity-100 hover:text-red-500 transition-colors"
         >
           <X className="h-3 w-3" />
         </button>
@@ -204,7 +204,7 @@ export function PriceAlerts() {
   return (
     <div className="flex flex-col h-full bg-card">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-border/40 px-3 py-2 shrink-0">
+      <div className="flex items-center justify-between border-b border-border/20 px-3 py-2 shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-xs font-medium text-muted-foreground">
             Price Alerts

@@ -145,14 +145,14 @@ interface BondRow extends BondDef {
 
 function ratingColor(rating: string): string {
   if (["AAA", "AA+", "AA", "AA-"].includes(rating)) return "text-green-400 bg-green-500/10";
-  if (["A+", "A", "A-", "BBB+", "BBB", "BBB-"].includes(rating)) return "text-primary bg-primary/10";
+  if (["A+", "A", "A-", "BBB+", "BBB", "BBB-"].includes(rating)) return "text-primary bg-muted/10";
   if (["BB+", "BB", "BB-", "B+"].includes(rating)) return "text-amber-400 bg-amber-500/10";
   return "text-red-400 bg-red-500/5";
 }
 
 function typeLabel(type: BondDef["type"]) {
-  if (type === "treasury") return { label: "GOVT", cls: "bg-primary/10 text-primary" };
-  if (type === "corporate-ig") return { label: "IG", cls: "bg-primary/10 text-primary" };
+  if (type === "treasury") return { label: "GOVT", cls: "bg-muted/10 text-primary" };
+  if (type === "corporate-ig") return { label: "IG", cls: "bg-muted/10 text-primary" };
   return { label: "HY", cls: "bg-red-500/5 text-red-400" };
 }
 
@@ -588,7 +588,7 @@ export default function BondsPage() {
   return (
     <div className="flex h-full flex-col overflow-hidden">
       {/* HERO Header */}
-      <div className="flex items-center gap-3 border-b border-border/50 border-l-4 border-l-primary px-6 py-4">
+      <div className="flex items-center gap-3 border-b border-border/20 border-l-4 border-l-primary px-6 py-4">
         <Landmark className="h-3.5 w-3.5 text-muted-foreground/50" />
         <div>
           <h1 className="text-lg font-semibold leading-none">Fixed Income Simulator</h1>
@@ -640,7 +640,7 @@ export default function BondsPage() {
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             {/* Yield curve card */}
             <div className="mb-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
-              <div className="col-span-2 rounded-lg border border-border/50 bg-card p-4">
+              <div className="col-span-2 rounded-lg border border-border/20 bg-card p-4">
                 <div className="mb-3 flex items-center justify-between">
                   <span className="text-xs font-semibold text-muted-foreground">
                     US Treasury Yield Curve
@@ -666,7 +666,7 @@ export default function BondsPage() {
                   <div className="text-xs font-medium text-muted-foreground mb-1">
                     10Y – 2Y Spread
                   </div>
-                  <div className={cn("text-2xl font-bold tabular-nums",
+                  <div className={cn("text-2xl font-semibold tabular-nums",
                     isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
                     {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(1)} bps
                   </div>
@@ -677,7 +677,7 @@ export default function BondsPage() {
                   </div>
                 </div>
                 {yieldCurve.current.map(p => (
-                  <div key={p.label} className="flex items-center justify-between rounded-md border border-border/40 bg-card px-3 py-1.5">
+                  <div key={p.label} className="flex items-center justify-between rounded-md border border-border/20 bg-card px-3 py-1.5">
                     <span className="text-xs text-muted-foreground">{p.label} Treasury</span>
                     <span className="text-xs font-medium tabular-nums text-foreground">{p.ytm.toFixed(3)}%</span>
                   </div>
@@ -712,14 +712,14 @@ export default function BondsPage() {
                           initial={{ opacity: 0, scale: 0.97 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.25 }}
-                          className="rounded-lg border border-border/50 bg-card p-4"
+                          className="rounded-lg border border-border/20 bg-card p-4"
                         >
                           <div className="mb-2 flex items-start justify-between">
                             <div>
                               <div className="text-xs font-medium text-muted-foreground">{b.ticker}</div>
                               <div className="mt-0.5 text-xs font-medium text-foreground leading-tight">{b.name}</div>
                             </div>
-                            <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-bold", rc)}>
+                            <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-semibold", rc)}>
                               {b.creditRating}
                             </span>
                           </div>
@@ -772,7 +772,7 @@ export default function BondsPage() {
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
               {/* Inputs */}
-              <div className="rounded-lg border border-border/50 bg-card p-5">
+              <div className="rounded-lg border border-border/20 bg-card p-5">
                 <h3 className="mb-4 text-sm font-medium">Bond Parameters</h3>
                 <div className="space-y-4">
                   <div>
@@ -806,7 +806,7 @@ export default function BondsPage() {
                         <button key={f} onClick={() => setCalcFreq(f)} className={cn(
                           "flex-1 rounded-md border px-3 py-1.5 text-xs text-muted-foreground font-medium transition-colors",
                           calcFreq === f
-                            ? "border-primary bg-primary/10 text-primary"
+                            ? "border-primary bg-muted/10 text-primary"
                             : "border-border/60 text-muted-foreground hover:border-primary/40",
                         )}>
                           {f === 1 ? "Annual" : "Semi-Annual"}
@@ -819,7 +819,7 @@ export default function BondsPage() {
 
               {/* Outputs */}
               <div className="flex flex-col gap-4">
-                <div className="rounded-lg border border-border/50 bg-card p-5">
+                <div className="rounded-lg border border-border/20 bg-card p-5">
                   <h3 className="mb-4 text-sm font-medium">Calculated Metrics</h3>
                   <div className="grid grid-cols-2 gap-3">
                     {[
@@ -831,7 +831,7 @@ export default function BondsPage() {
                       { label: "DV01", value: `$${calcOutputs.dv01.toFixed(4)}`, sub: "$ value of 1 bp" },
                     ].map(({ label, value, highlight, sub }) => (
                       <div key={label} className={cn("rounded-md border p-3",
-                        highlight ? "border-primary/30 bg-primary/5" : "border-border/40 bg-muted/20")}>
+                        highlight ? "border-primary/30 bg-muted/5" : "border-border/20 bg-muted/20")}>
                         <div className="text-[11px] font-medium text-muted-foreground">{label}</div>
                         <div className={cn("mt-1 text-sm font-medium tabular-nums", highlight ? "text-primary" : "text-foreground")}>
                           {value}
@@ -843,7 +843,7 @@ export default function BondsPage() {
                 </div>
 
                 {/* Duration visual explainer */}
-                <div className="rounded-lg border border-border/50 bg-card p-4">
+                <div className="rounded-lg border border-border/20 bg-card p-4">
                   <h4 className="mb-3 text-xs font-medium text-muted-foreground">
                     Duration Impact — Rate Scenarios
                   </h4>
@@ -880,7 +880,7 @@ export default function BondsPage() {
             </div>
 
             {/* Price-yield chart */}
-            <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
+            <div className="mt-5 rounded-lg border border-border/20 bg-card p-5">
               <div className="mb-3 flex items-center justify-between">
                 <span className="text-xs font-medium text-muted-foreground">
                   Price–Yield Relationship (Convex Curve, 1%–15%)
@@ -899,7 +899,7 @@ export default function BondsPage() {
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             {/* Historical curves */}
             <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
-              <div className="col-span-2 rounded-lg border border-border/50 bg-card p-5">
+              <div className="col-span-2 rounded-lg border border-border/20 bg-card p-5">
                 <div className="mb-3 flex items-center justify-between">
                   <span className="text-xs font-medium text-muted-foreground">
                     Yield Curve — Historical Comparison
@@ -942,7 +942,7 @@ export default function BondsPage() {
                 </div>
 
                 {/* Curve shape guide */}
-                <div className="rounded-lg border border-border/50 bg-card p-4">
+                <div className="rounded-lg border border-border/20 bg-card p-4">
                   <div className="text-xs font-medium text-muted-foreground mb-3">Shape Guide</div>
                   <div className="space-y-2.5">
                     {[
@@ -966,7 +966,7 @@ export default function BondsPage() {
 
             {/* Spread analysis */}
             <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
-              <div className="rounded-lg border border-border/50 bg-card p-5">
+              <div className="rounded-lg border border-border/20 bg-card p-5">
                 <h3 className="mb-4 text-sm font-medium">Spread Analysis (bps)</h3>
                 <SpreadBarSVG />
                 <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
@@ -978,7 +978,7 @@ export default function BondsPage() {
                     { label: "OAS (IG)", value: `${spreads.oasIg.toFixed(0)} bps`, color: "text-primary" },
                     { label: "OAS (HY)", value: `${spreads.oasHy.toFixed(0)} bps`, color: "text-amber-400" },
                   ].map(s => (
-                    <div key={s.label} className="rounded-md border border-border/40 bg-muted/20 px-3 py-2">
+                    <div key={s.label} className="rounded-md border border-border/20 bg-muted/20 px-3 py-2">
                       <div className="text-muted-foreground">{s.label}</div>
                       <div className={cn("mt-0.5 font-medium tabular-nums", s.color)}>{s.value}</div>
                     </div>
@@ -986,7 +986,7 @@ export default function BondsPage() {
                 </div>
               </div>
 
-              <div className="rounded-lg border border-border/50 bg-card p-5">
+              <div className="rounded-lg border border-border/20 bg-card p-5">
                 <h3 className="mb-4 text-sm font-medium">Spread Interpretation</h3>
                 <div className="space-y-3">
                   {[
@@ -1037,11 +1037,11 @@ export default function BondsPage() {
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
               {/* Bond selector */}
-              <div className="rounded-lg border border-border/50 bg-card p-5">
+              <div className="rounded-lg border border-border/20 bg-card p-5">
                 <h3 className="mb-3 text-sm font-medium">Bond Universe</h3>
 
                 {/* Target duration slider */}
-                <div className="mb-4 rounded-md border border-border/40 bg-muted/20 p-3">
+                <div className="mb-4 rounded-md border border-border/20 bg-muted/20 p-3">
                   <div className="mb-2 flex items-center justify-between text-xs text-muted-foreground">
                     <span className="text-muted-foreground">Target Portfolio Duration</span>
                     <span className="font-medium text-primary">{targetDuration.toFixed(1)} yrs</span>
@@ -1063,7 +1063,7 @@ export default function BondsPage() {
                     return (
                       <div key={b.id} className={cn(
                         "flex items-center justify-between rounded-md border px-3 py-2 transition-colors",
-                        inPortfolio ? "border-primary/40 bg-primary/5" : "border-border/40 bg-card hover:bg-muted/20",
+                        inPortfolio ? "border-primary/40 bg-muted/5" : "border-border/20 bg-card hover:bg-muted/20",
                       )}>
                         <div className="flex items-center gap-2">
                           <span className={cn("rounded px-1 py-0.5 text-[11px] font-medium", tl.cls)}>{tl.label}</span>
@@ -1078,7 +1078,7 @@ export default function BondsPage() {
                             "rounded p-1 transition-colors",
                             inPortfolio
                               ? "text-red-400 hover:bg-red-500/5"
-                              : "text-primary hover:bg-primary/10",
+                              : "text-primary hover:bg-muted/10",
                           )}
                         >
                           {inPortfolio ? <Trash2 className="h-3.5 w-3.5" /> : <PlusCircle className="h-3.5 w-3.5" />}
@@ -1100,14 +1100,14 @@ export default function BondsPage() {
                         color: Math.abs(portfolioMetrics.wAvgDuration - targetDuration) < 1 ? "text-green-400" : "text-amber-400" },
                       { label: "Annual Coupon / $100k", value: `$${portfolioMetrics.totalCouponPer100k.toLocaleString("en-US", { maximumFractionDigits: 0 })}`, color: "text-foreground" },
                     ].map(m => (
-                      <div key={m.label} className="rounded-lg border border-border/50 bg-card px-4 py-3">
+                      <div key={m.label} className="rounded-lg border border-border/20 bg-card px-4 py-3">
                         <div className="text-[11px] font-medium text-muted-foreground">{m.label}</div>
                         <div className={cn("mt-1 text-base font-medium tabular-nums", m.color)}>{m.value}</div>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="rounded-lg border border-dashed border-border/50 bg-card/50 p-4 text-center">
+                  <div className="rounded-lg border border-dashed border-border/20 bg-card/50 p-4 text-center">
                     <Landmark className="mx-auto h-7 w-7 text-muted-foreground/30" />
                     <p className="mt-2 text-sm font-medium text-muted-foreground">Add bonds to build your portfolio</p>
                     <p className="mt-1 text-xs text-muted-foreground/60">Click the + icon on any bond in the universe.</p>
@@ -1116,11 +1116,11 @@ export default function BondsPage() {
 
                 {/* Portfolio table */}
                 {portfolio.length > 0 && (
-                  <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
+                  <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
                     <div className="overflow-x-auto">
                       <table className="w-full text-xs text-muted-foreground">
                         <thead>
-                          <tr className="border-b border-border/50 bg-muted/30">
+                          <tr className="border-b border-border/20 bg-muted/30">
                             {["Bond", "Weight %", "Dur Contrib", "Yield Contrib", "Remove"].map(h => (
                               <th key={h} className="px-3 py-2.5 text-left text-[11px] font-medium text-muted-foreground whitespace-nowrap">
                                 {h}
@@ -1146,7 +1146,7 @@ export default function BondsPage() {
                                   <input
                                     type="number" min={0} max={100} value={h.weight}
                                     onChange={e => updateWeight(h.bondId, Math.max(0, Math.min(100, Number(e.target.value))))}
-                                    className="w-16 rounded border border-border/50 bg-background px-1.5 py-0.5 text-xs text-foreground focus:border-primary focus:outline-none"
+                                    className="w-16 rounded border border-border/20 bg-background px-1.5 py-0.5 text-xs text-foreground focus:border-primary focus:outline-none"
                                   />
                                 </td>
                                 <td className="px-3 py-2.5 tabular-nums text-primary">{durContrib.toFixed(3)}</td>
@@ -1168,7 +1168,7 @@ export default function BondsPage() {
 
                 {/* Maturity ladder SVG */}
                 {portfolio.length > 0 && (
-                  <div className="rounded-lg border border-border/50 bg-card p-5">
+                  <div className="rounded-lg border border-border/20 bg-card p-5">
                     <h4 className="mb-3 text-xs font-medium text-muted-foreground">
                       Bond Maturity Ladder
                     </h4>
@@ -1248,7 +1248,7 @@ export default function BondsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className={cn(
                       "rounded-lg border bg-card p-4",
-                      ca.atRisk ? "border-red-500/30" : "border-border/50",
+                      ca.atRisk ? "border-red-500/30" : "border-border/20",
                     )}
                   >
                     {/* Header */}
@@ -1289,7 +1289,7 @@ export default function BondsPage() {
                           color: ca.debtEbitda < 2 ? "text-green-400" : ca.debtEbitda < 4 ? "text-amber-400" : "text-red-400",
                         },
                       ].map(m => (
-                        <div key={m.label} className="rounded border border-border/30 bg-muted/20 px-2 py-1.5">
+                        <div key={m.label} className="rounded border border-border/20 bg-muted/20 px-2 py-1.5">
                           <div className="text-muted-foreground">{m.label}</div>
                           <div className={cn("mt-0.5 font-medium tabular-nums", m.color || "text-foreground")}>{m.value}</div>
                         </div>
@@ -1297,7 +1297,7 @@ export default function BondsPage() {
                     </div>
 
                     {/* Altman Z-score */}
-                    <div className="mt-3 rounded border border-border/30 bg-muted/20 px-3 py-2">
+                    <div className="mt-3 rounded border border-border/20 bg-muted/20 px-3 py-2">
                       <div className="flex items-center justify-between">
                         <span className="text-[11px] text-muted-foreground">Altman Z-Score</span>
                         <span className={cn("text-xs text-muted-foreground font-medium tabular-nums", zColor)}>
@@ -1306,7 +1306,7 @@ export default function BondsPage() {
                       </div>
                       <div className="mt-1.5 h-1.5 w-full rounded-full bg-muted/40 overflow-hidden">
                         <div
-                          className={cn("h-full rounded-full transition-all", zColor.replace("text-", "bg-"))}
+                          className={cn("h-full rounded-full transition-colors", zColor.replace("text-", "bg-"))}
                           style={{ width: `${Math.min(100, (ca.zScore / 5) * 100)}%` }}
                         />
                       </div>
@@ -1336,7 +1336,7 @@ export default function BondsPage() {
             </div>
 
             {/* Credit metric legend */}
-            <div className="mt-5 rounded-lg border border-border/50 bg-card p-5">
+            <div className="mt-5 rounded-lg border border-border/20 bg-card p-5">
               <h3 className="mb-3 text-sm font-medium">Credit Metric Benchmarks</h3>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                 {[

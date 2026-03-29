@@ -101,11 +101,11 @@ export function StrategyRecommendationCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
       onClick={() => onSelect(rec)}
-      className="rounded-lg border border-border/50 bg-card p-2.5 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-muted/20 transition-colors duration-150"
+      className="rounded-lg border border-border/20 bg-card p-2.5 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-muted/20 transition-colors duration-150"
     >
       {/* Row 1: Name + Sentiment badge */}
       <div className="flex justify-between items-start gap-1">
-        <span className="text-[11px] font-bold text-foreground leading-tight">{preset.name}</span>
+        <span className="text-[11px] font-semibold text-foreground leading-tight">{preset.name}</span>
         <span
           className={cn(
             "text-[11px] font-semibold px-1.5 py-0.5 rounded shrink-0",
@@ -193,19 +193,19 @@ export function StrategyRecommendationCard({
       <div className="grid grid-cols-2 gap-1 text-[11px]">
         <div className="flex gap-1 items-baseline">
           <span className="text-muted-foreground">P/P:</span>
-          <span className={cn("font-bold", popColor)}>{probabilityOfProfit.toFixed(0)}%</span>
+          <span className={cn("font-semibold", popColor)}>{probabilityOfProfit.toFixed(0)}%</span>
         </div>
         <div className="flex gap-1 items-baseline">
           <span className="text-muted-foreground">RoR:</span>
-          <span className="font-bold text-foreground">{rorDisplay}</span>
+          <span className="font-semibold text-foreground">{rorDisplay}</span>
         </div>
         <div className="flex gap-1 items-baseline">
           <span className="text-muted-foreground">Max P:</span>
-          <span className="font-bold text-emerald-400">{formatPnlLabel(maxProfit)}</span>
+          <span className="font-semibold text-emerald-400">{formatPnlLabel(maxProfit)}</span>
         </div>
         <div className="flex gap-1 items-baseline">
           <span className="text-muted-foreground">Max L:</span>
-          <span className="font-bold text-red-400">{formatPnlLabel(maxLoss)}</span>
+          <span className="font-semibold text-red-400">{formatPnlLabel(maxLoss)}</span>
         </div>
       </div>
 
@@ -222,7 +222,7 @@ export function StrategyRecommendationCard({
           e.stopPropagation();
           onSelect(rec);
         }}
-        className="w-full rounded bg-primary/10 border border-primary/20 text-primary text-xs font-bold py-1 hover:bg-primary/20 transition-colors"
+        className="w-full rounded bg-primary/10 border border-primary/20 text-primary text-xs font-semibold py-1 hover:bg-primary/20 transition-colors"
       >
         Select Strategy &rarr;
       </button>

@@ -353,7 +353,7 @@ export function JournalNotes() {
 
       {/* Notes list */}
       {filteredNotes.length === 0 && !showForm ? (
-        <div className="flex h-32 flex-col items-center justify-center gap-2 text-muted-foreground rounded-lg border border-dashed border-border/50">
+        <div className="flex h-32 flex-col items-center justify-center gap-2 text-muted-foreground rounded-lg border border-dashed border-border/20">
           {notes.length === 0 ? (
             <>
               <p className="text-sm">No journal notes yet.</p>

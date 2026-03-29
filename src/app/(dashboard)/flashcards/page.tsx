@@ -77,7 +77,6 @@ function BrowseTab() {
     <div className="flex flex-col gap-2.5">
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
         <Input
           className="h-8 pl-8 text-xs"
           placeholder="Search terms..."
@@ -96,8 +95,8 @@ function BrowseTab() {
             className={cn(
               "rounded-md border px-2.5 py-1 text-[11px] font-medium transition-colors",
               deck === d.id
-                ? "border-primary bg-primary/10 text-primary"
-                : "border-border/50 bg-muted/30 text-muted-foreground hover:border-border hover:text-foreground",
+                ? "border-primary bg-primary/5 text-primary"
+                : "border-border/20 bg-muted/30 text-muted-foreground hover:border-border hover:text-foreground",
             )}
           >
             {d.label}
@@ -168,7 +167,7 @@ function BrowseTab() {
                 </div>
 
                 {/* Back */}
-                <div className="card-flip-back rounded-lg border border-primary/20 bg-card p-4 flex flex-col gap-1.5">
+                <div className="card-flip-back rounded-lg border border-border bg-card p-4 flex flex-col gap-1.5">
                   {cat && (
                     <span
                       className={cn(
@@ -183,7 +182,7 @@ function BrowseTab() {
                     {card.back}
                   </p>
                   {card.hint && (
-                    <p className="text-[11px] text-muted-foreground italic border-t border-border/40 pt-1.5">
+                    <p className="text-[11px] text-muted-foreground italic border-t border-border/20 pt-1.5">
                       {card.hint}
                     </p>
                   )}
@@ -195,7 +194,6 @@ function BrowseTab() {
 
         {filtered.length === 0 && (
           <div className="col-span-2 flex flex-col items-center justify-center py-12 text-center">
-            <Brain className="mb-2 h-8 w-8 text-muted-foreground/40" />
             <p className="text-sm font-medium text-muted-foreground">No cards found</p>
             <p className="text-xs text-muted-foreground/60">
               Try a different search or deck filter
@@ -291,19 +289,16 @@ function StatsTab() {
 
   return (
     <div className="flex flex-col gap-2">
-      {/* Cards due — hero element */}
-      <div className="border-l-4 border-l-primary rounded-lg bg-card p-5">
+      {/* Cards due */}
+      <div className="rounded-lg border border-border/20 bg-card p-4">
         <p className="text-xs font-medium text-muted-foreground">
           Cards due for review
         </p>
-        <p className="mt-1 text-2xl font-bold tabular-nums text-foreground">
+        <p className="mt-1 text-xl font-semibold font-mono tabular-nums text-foreground">
           {dueCount}
         </p>
         <p className="text-[11px] text-muted-foreground">unseen cards remaining</p>
       </div>
-
-      {/* Buffer — breathing after hero */}
-      <div className="mt-4" />
 
       {/* Summary cards — compact secondary */}
       <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
@@ -340,7 +335,7 @@ function StatsTab() {
       </div>
 
       {/* 30-day heatmap */}
-      <div className="mt-5 rounded-lg border border-border/50 bg-card p-3">
+      <div className="mt-5 rounded-lg border border-border/20 bg-card p-3">
         <h3 className="mb-2 text-xs font-medium text-muted-foreground">30-Day Study Activity</h3>
         <div className="flex flex-wrap gap-1">
           {heatmapData.map((day) => (
@@ -368,7 +363,7 @@ function StatsTab() {
       </div>
 
       {/* Performance by deck */}
-      <div className="mt-3 rounded-lg border border-border/50 bg-card p-3">
+      <div className="mt-3 rounded-lg border border-border/20 bg-card p-3">
         <h3 className="mb-2 text-xs font-medium text-muted-foreground">Performance by Deck</h3>
         <div className="flex flex-col gap-1.5">
           {deckStats.map(({ cat, label, color, total, mastered, pct }) => (
@@ -383,7 +378,7 @@ function StatsTab() {
               </div>
               <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted/30">
                 <div
-                  className="h-full rounded-full bg-primary transition-all duration-300"
+                  className="h-full rounded-full bg-primary transition-colors duration-300"
                   style={{ width: `${pct}%` }}
                 />
               </div>
@@ -412,7 +407,7 @@ function StatCard({
   valueColor?: string;
 }) {
   return (
-    <div className="flex flex-col gap-0.5 rounded-lg border border-border/50 bg-card px-2 py-1.5">
+    <div className="flex flex-col gap-0.5 rounded-lg border border-border/20 bg-card px-2 py-1.5">
       <span className="text-[11px] font-medium text-muted-foreground">
         {label}
       </span>
@@ -442,33 +437,25 @@ export default function FlashcardsPage() {
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
       <div className="border-b border-border px-4 py-4 shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-            <Brain className="h-4.5 w-4.5 text-primary" />
-          </div>
-          <div>
-            <h1 className="text-base font-medium tracking-tight">Flashcards</h1>
-            <p className="text-[11px] text-muted-foreground">
-              {FLASHCARDS.length} cards &middot; {overallMastery}% mastery &middot;{" "}
-              {totalReviewed} reviews
-            </p>
-          </div>
-        </div>
+        <p className="text-xs text-muted-foreground mb-1">Study</p>
+        <h1 className="text-lg font-semibold tracking-tight">Flashcards</h1>
+        <p className="text-xs text-muted-foreground mt-0.5">
+          <span className="font-mono tabular-nums">{FLASHCARDS.length}</span> cards &middot;{" "}
+          <span className="font-mono tabular-nums">{overallMastery}%</span> mastery &middot;{" "}
+          <span className="font-mono tabular-nums">{totalReviewed}</span> reviews
+        </p>
       </div>
 
       {/* Tabs */}
       <Tabs defaultValue="study" className="flex flex-1 flex-col overflow-hidden">
-        <TabsList className="mx-4 mt-3 mb-1 shrink-0 h-8 w-auto self-start gap-0 rounded-md bg-muted/40 p-0.5">
-          <TabsTrigger value="study" className="flex items-center gap-1.5 h-7 px-3 text-xs">
-            <BookOpen className="h-3 w-3" />
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mx-4 mt-3 mb-1 shrink-0 w-auto self-start">
+          <TabsTrigger value="study" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Study
           </TabsTrigger>
-          <TabsTrigger value="browse" className="flex items-center gap-1.5 h-7 px-3 text-xs">
-            <Grid className="h-3 w-3" />
+          <TabsTrigger value="browse" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Browse
           </TabsTrigger>
-          <TabsTrigger value="stats" className="flex items-center gap-1.5 h-7 px-3 text-xs">
-            <BarChart2 className="h-3 w-3" />
+          <TabsTrigger value="stats" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
             Stats
           </TabsTrigger>
         </TabsList>

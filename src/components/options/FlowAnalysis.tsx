@@ -321,8 +321,8 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
   return (
     <div className="flex flex-col">
       {/* Filter bar */}
-      <div className="flex shrink-0 flex-wrap items-center gap-1.5 border-b border-border/50 px-3 py-1.5">
-        <div className="flex items-center gap-0.5 rounded-md border border-border/50 bg-card p-0.5">
+      <div className="flex shrink-0 flex-wrap items-center gap-1.5 border-b border-border/20 px-3 py-1.5">
+        <div className="flex items-center gap-0.5 rounded-md border border-border/20 bg-card p-0.5">
           {filterOptions.map((f) => (
             <ToggleButton key={f} active={filter === f} onClick={() => setFilter(f)}>
               {f}
@@ -338,7 +338,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
       <div className="overflow-auto">
         <table className="w-full border-collapse text-[11px]">
           <thead className="sticky top-0 z-10 bg-card">
-            <tr className="border-b border-border/50">
+            <tr className="border-b border-border/20">
               {[
                 { col: "Time", align: "text-left" },
                 { col: "Ticker", align: "text-left" },
@@ -371,7 +371,7 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                 <tr
                   key={order.id}
                   onClick={() => onTickerExpiry?.(order.ticker, order.expiry)}
-                  className="cursor-pointer border-b border-border/50 transition-colors hover:bg-muted/50"
+                  className="cursor-pointer border-b border-border/20 transition-colors hover:bg-muted/50"
                 >
                   <td className="px-3 py-2 text-muted-foreground">{relTime(order.timestamp)}</td>
                   <td className="px-3 py-2 font-medium">{order.ticker}</td>
@@ -548,7 +548,7 @@ function TickerHeatmap({ orders, onFilter }: TickerHeatmapProps) {
 
       {tooltip && (
         <div
-          className="pointer-events-none absolute z-20 rounded-md border border-border/40 bg-popover p-2 shadow-sm"
+          className="pointer-events-none absolute z-20 rounded-md border border-border/20 bg-popover p-2 shadow-sm"
           style={{ left: tooltip.x + 8, top: tooltip.y - 60, minWidth: 152 }}
         >
           <div className="mb-1 flex justify-between gap-3">
@@ -568,7 +568,7 @@ function TickerHeatmap({ orders, onFilter }: TickerHeatmapProps) {
                 {fmtPremium(Math.abs(tooltip.putFlow))}
               </span>
             </div>
-            <div className="flex justify-between gap-4 border-t border-border/50 pt-0.5">
+            <div className="flex justify-between gap-4 border-t border-border/20 pt-0.5">
               <span className="text-muted-foreground">Volume</span>
               <span>{tooltip.vol.toLocaleString()} contracts</span>
             </div>
@@ -628,7 +628,7 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
       )}
 
       {/* Educational tooltip */}
-      <details className="group rounded-md border border-border/40 bg-card/30 px-3 py-2">
+      <details className="group rounded-md border border-border/20 bg-card/30 px-3 py-2">
         <summary className="cursor-pointer list-none text-xs font-medium text-muted-foreground hover:text-foreground">
           <span className="mr-1 text-[11px] group-open:hidden">▶</span>
           <span className="mr-1 hidden text-[11px] group-open:inline">▼</span>
@@ -647,7 +647,7 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
       <div className="overflow-auto">
         <table className="w-full border-collapse text-[11px]">
           <thead className="sticky top-0 z-10 bg-card">
-            <tr className="border-b border-border/50">
+            <tr className="border-b border-border/20">
               {[
                 { col: "Time", align: "text-left" },
                 { col: "Ticker", align: "text-left" },
@@ -675,7 +675,7 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
               return (
                 <tr
                   key={p.id}
-                  className="border-b border-border/50 transition-colors hover:bg-muted/50"
+                  className="border-b border-border/20 transition-colors hover:bg-muted/50"
                 >
                   <td className="px-3 py-2 text-muted-foreground">{relTime(p.timestamp)}</td>
                   <td className="px-3 py-2 font-medium">{p.ticker}</td>
@@ -902,31 +902,31 @@ function PcDashboard({ seed }: PcDashboardProps) {
 
       {/* Smart money vs retail explanation */}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        <div className="rounded-md border border-border/40 bg-card/30 p-2">
+        <div className="rounded-md border border-border/20 bg-card/30 p-2">
           <p className="text-[11px] text-muted-foreground">Smart $ Bullish</p>
           <p className="text-[11px] text-muted-foreground/60">(orders &gt;$250K calls)</p>
-          <p className="mt-1 text-base font-bold text-emerald-400">
+          <p className="mt-1 text-base font-semibold text-emerald-400">
             {tickerRatios.reduce((s, r) => s + r.largeBullish, 0)}
           </p>
         </div>
-        <div className="rounded-md border border-border/40 bg-card/30 p-2">
+        <div className="rounded-md border border-border/20 bg-card/30 p-2">
           <p className="text-[11px] text-muted-foreground">Smart $ Bearish</p>
           <p className="text-[11px] text-muted-foreground/60">(orders &gt;$250K puts)</p>
-          <p className="mt-1 text-base font-bold text-red-400">
+          <p className="mt-1 text-base font-semibold text-red-400">
             {tickerRatios.reduce((s, r) => s + r.largeBearish, 0)}
           </p>
         </div>
-        <div className="rounded-md border border-border/40 bg-card/30 p-2">
+        <div className="rounded-md border border-border/20 bg-card/30 p-2">
           <p className="text-[11px] text-muted-foreground">Retail Bullish</p>
           <p className="text-[11px] text-muted-foreground/60">(orders &lt;$50K calls)</p>
-          <p className="mt-1 text-base font-bold text-emerald-400/70">
+          <p className="mt-1 text-base font-semibold text-emerald-400/70">
             {tickerRatios.reduce((s, r) => s + r.retailBullish, 0)}
           </p>
         </div>
-        <div className="rounded-md border border-border/40 bg-card/30 p-2">
+        <div className="rounded-md border border-border/20 bg-card/30 p-2">
           <p className="text-[11px] text-muted-foreground">Retail Bearish</p>
           <p className="text-[11px] text-muted-foreground/60">(orders &lt;$50K puts)</p>
-          <p className="mt-1 text-base font-bold text-red-400/70">
+          <p className="mt-1 text-base font-semibold text-red-400/70">
             {tickerRatios.reduce((s, r) => s + r.retailBearish, 0)}
           </p>
         </div>
@@ -938,7 +938,7 @@ function PcDashboard({ seed }: PcDashboardProps) {
         <div className="overflow-auto">
           <table className="w-full border-collapse text-[11px]">
             <thead className="sticky top-0 z-10 bg-card">
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 {[
                   { col: "Ticker", align: "text-left" },
                   { col: "P/C Ratio", align: "text-right" },
@@ -962,7 +962,7 @@ function PcDashboard({ seed }: PcDashboardProps) {
                 const isHighFear = r.ratio > 1.5;
                 const isHighGreed = r.ratio < 0.65;
                 return (
-                  <tr key={r.ticker} className="border-b border-border/50 transition-colors hover:bg-muted/50">
+                  <tr key={r.ticker} className="border-b border-border/20 transition-colors hover:bg-muted/50">
                     <td className="px-3 py-2 font-medium">{r.ticker}</td>
                     <td className={cn("px-3 py-2 text-right font-mono tabular-nums font-medium",
                       isHighFear ? "text-red-500" : isHighGreed ? "text-emerald-500" : "text-foreground")}>
@@ -1028,7 +1028,7 @@ export function FlowAnalysis() {
   return (
     <div className="flex flex-col gap-0">
       {/* Section tabs */}
-      <div className="flex shrink-0 items-center gap-0 border-b border-border/50 bg-card/40 px-3">
+      <div className="flex shrink-0 items-center gap-0 border-b border-border/20 bg-card/40 px-3">
         {sectionTabs.map(({ key, label }) => (
           <button
             key={key}

@@ -521,10 +521,10 @@ function ExchangeLandscapeTab() {
               className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-primary bg-muted/40" : "border-border hover:border-border bg-card/40")}
             >
               <div className="flex items-center justify-between mb-1">
-                <span className="text-xs font-bold text-foreground">{ex.abbr}</span>
+                <span className="text-xs font-semibold text-foreground">{ex.abbr}</span>
                 <Badge variant="outline" className="text-xs px-1.5 py-0 border-border text-muted-foreground">{ex.country}</Badge>
               </div>
-              <div className="text-lg font-bold" style={{ color: ex.color }}>{ex.marketCap}</div>
+              <div className="text-lg font-semibold" style={{ color: ex.color }}>{ex.marketCap}</div>
               <div className="text-xs text-muted-foreground mt-1">{ex.hours}</div>
             </motion.div>
           ))}
@@ -841,7 +841,7 @@ function PriceDiscoveryTab() {
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="rounded-lg bg-card/50 border border-border/50 p-4"
+              className="rounded-lg bg-card/50 border border-border/20 p-4"
             >
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-medium text-foreground" style={{ background: s.color }}>
@@ -936,7 +936,7 @@ function PriceDiscoveryTab() {
           </div>
           <div className="space-y-2">
             {CIRCUIT_BREAKERS.map((cb, i) => (
-              <div key={i} className="text-xs text-muted-foreground bg-card/50 rounded-lg p-2.5 border border-border/40">
+              <div key={i} className="text-xs text-muted-foreground bg-card/50 rounded-lg p-2.5 border border-border/20">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-muted-foreground font-medium">{cb.level}</span>
                   <span className={cn("text-xs font-mono", i === 2 ? "text-rose-400" : i === 1 ? "text-amber-400" : "text-yellow-400")}>{cb.trigger}</span>
@@ -947,7 +947,7 @@ function PriceDiscoveryTab() {
             <div className="mt-2 text-xs text-muted-foreground">
               <div className="font-medium text-muted-foreground mb-1">LULD Bands (Limit Up-Limit Down)</div>
               {LULD_BANDS.map((l, i) => (
-                <div key={i} className="flex justify-between py-0.5 border-b border-border/30">
+                <div key={i} className="flex justify-between py-0.5 border-b border-border/20">
                   <span className="truncate pr-2">{l.tier.split("(")[0]}</span>
                   <span className="text-amber-400">{l.normal}</span>
                 </div>
@@ -1291,7 +1291,7 @@ function RegulationTab() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.04 }}
-              className="rounded-lg bg-card/50 border border-border/40 p-3"
+              className="rounded-lg bg-card/50 border border-border/20 p-3"
               style={{ borderTopColor: item.color, borderTopWidth: 2 }}
             >
               <div className="text-xs font-medium text-foreground mb-1">{item.term}</div>
@@ -1312,10 +1312,10 @@ export default function MarketStructurePage() {
       <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 rounded-lg bg-primary/15 border border-border">
+            <div className="p-2 rounded-lg bg-muted/10 border border-border">
               <Network size={20} className="text-muted-foreground/50" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground">Market Structure</h1>
+            <h1 className="text-2xl font-semibold text-foreground">Market Structure</h1>
           </div>
           <p className="text-sm text-muted-foreground">How trading venues, order types, price discovery, liquidity, and regulation shape every trade</p>
         </div>
@@ -1362,7 +1362,7 @@ export default function MarketStructurePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="exchanges" className="space-y-4">
-        <TabsList className="bg-muted/60 border border-border/50 h-auto flex flex-wrap gap-1 p-1">
+        <TabsList className="bg-muted/60 border border-border/20 h-auto flex flex-wrap gap-1 p-1">
           {[
             { value: "exchanges", label: "Exchange Landscape", icon: Globe },
             { value: "orders", label: "Order Types", icon: BookOpen },

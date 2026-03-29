@@ -70,7 +70,7 @@ export function PnLCalendar({ trades }: Props) {
   }
 
   function getCellStyle(summary: DaySummary | undefined): string {
-    if (!summary || summary.tradeCount === 0) return "bg-card border-border/40";
+    if (!summary || summary.tradeCount === 0) return "bg-card border-border/20";
     const intensity = getIntensity(summary.pnl);
     if (summary.pnl > 0) {
       if (intensity > 0.66) return "bg-green-500/40 border-green-500/50 text-green-300";
@@ -110,7 +110,7 @@ export function PnLCalendar({ trades }: Props) {
       <div className="flex items-center justify-between">
         <button
           onClick={prevMonth}
-          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
+          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/20 text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
         >
           <ChevronLeft className="h-3.5 w-3.5" />
         </button>
@@ -119,7 +119,7 @@ export function PnLCalendar({ trades }: Props) {
         </span>
         <button
           onClick={nextMonth}
-          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
+          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/20 text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
         >
           <ChevronRight className="h-3.5 w-3.5" />
         </button>
@@ -153,7 +153,7 @@ export function PnLCalendar({ trades }: Props) {
               onMouseEnter={() => setHoverDay(key)}
               onMouseLeave={() => setHoverDay(null)}
               className={cn(
-                "relative flex aspect-square flex-col items-center justify-center rounded border text-xs font-medium transition-all cursor-default select-none",
+                "relative flex aspect-square flex-col items-center justify-center rounded border text-xs font-medium transition-colors cursor-default select-none",
                 getCellStyle(summary),
                 isToday && "ring-1 ring-primary/60",
                 hoverDay === key && "ring-1 ring-white/20",
@@ -189,7 +189,7 @@ export function PnLCalendar({ trades }: Props) {
           </p>
         </div>
       ) : (
-        <div className="rounded-lg border border-border/40 bg-card/30 px-2.5 py-2 text-xs text-muted-foreground/50 text-center">
+        <div className="rounded-lg border border-border/20 bg-card/30 px-2.5 py-2 text-xs text-muted-foreground/50 text-center">
           Hover a day to see details
         </div>
       )}
@@ -201,7 +201,7 @@ export function PnLCalendar({ trades }: Props) {
           Loss
         </div>
         <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-          <div className="h-2 w-2 rounded-sm bg-card border border-border/40" />
+          <div className="h-2 w-2 rounded-sm bg-card border border-border/20" />
           No trades
         </div>
         <div className="flex items-center gap-1 text-[11px] text-muted-foreground">

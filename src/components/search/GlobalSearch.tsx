@@ -364,7 +364,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
             onKeyDown={handleKeyDown}
           >
             {/* Search input row */}
-            <div className="flex items-center gap-3 px-4 py-3 border-b border-border/40">
+            <div className="flex items-center gap-3 px-4 py-3 border-b border-border/20">
               <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
               <input
                 ref={inputRef}
@@ -390,7 +390,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
                     <X className="h-3.5 w-3.5" />
                   </button>
                 )}
-                <kbd className="hidden sm:inline-flex items-center rounded border border-border/50 bg-muted/50 px-1.5 py-0.5 text-xs font-mono text-muted-foreground">
+                <kbd className="hidden sm:inline-flex items-center rounded border border-border/20 bg-muted/50 px-1.5 py-0.5 text-xs font-mono text-muted-foreground">
                   ESC
                 </kbd>
               </div>
@@ -453,7 +453,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
                         key={s}
                         type="button"
                         onClick={() => setQuery(s)}
-                        className="rounded-full border border-border/40 bg-muted/30 px-2.5 py-0.5 text-xs text-muted-foreground hover:border-border hover:text-foreground transition-colors"
+                        className="rounded-full border border-border/20 bg-muted/30 px-2.5 py-0.5 text-xs text-muted-foreground hover:border-border hover:text-foreground transition-colors"
                       >
                         {s}
                       </button>
@@ -476,15 +476,15 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
 
             {/* Footer */}
             {flatList.length > 0 && (
-              <div className="flex items-center justify-between border-t border-border/30 px-4 py-2">
+              <div className="flex items-center justify-between border-t border-border/20 px-4 py-2">
                 <div className="flex items-center gap-3 text-xs text-muted-foreground/50">
                   <span className="flex items-center gap-1">
-                    <kbd className="rounded border border-border/40 bg-muted/40 px-1 py-px font-mono">↑</kbd>
-                    <kbd className="rounded border border-border/40 bg-muted/40 px-1 py-px font-mono">↓</kbd>
+                    <kbd className="rounded border border-border/20 bg-muted/40 px-1 py-px font-mono">↑</kbd>
+                    <kbd className="rounded border border-border/20 bg-muted/40 px-1 py-px font-mono">↓</kbd>
                     navigate
                   </span>
                   <span className="flex items-center gap-1">
-                    <kbd className="rounded border border-border/40 bg-muted/40 px-1 py-px font-mono">↵</kbd>
+                    <kbd className="rounded border border-border/20 bg-muted/40 px-1 py-px font-mono">↵</kbd>
                     select
                   </span>
                 </div>

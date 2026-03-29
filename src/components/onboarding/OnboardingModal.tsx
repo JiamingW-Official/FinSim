@@ -101,7 +101,7 @@ export function OnboardingModal() {
       >
         <div className="rounded-md border border-border/60 bg-card shadow-sm overflow-hidden">
           {/* Header bar */}
-          <div className="flex items-center justify-between border-b border-border/40 px-5 py-3.5">
+          <div className="flex items-center justify-between border-b border-border/20 px-5 py-3.5">
             <span className="text-xs font-medium text-muted-foreground">
               Step {currentStep + 1} of {TOTAL_STEPS}
             </span>
@@ -144,7 +144,7 @@ export function OnboardingModal() {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-border/40 px-5 py-4 flex items-center gap-3">
+          <div className="border-t border-border/20 px-5 py-4 flex items-center gap-3">
             {currentStep === 1 && (
               <Button
                 variant="outline"
@@ -180,7 +180,7 @@ export function OnboardingModal() {
               <span
                 key={i}
                 className={cn(
-                  "block h-1.5 rounded-full transition-all duration-300",
+                  "block h-1.5 rounded-full transition-colors duration-300",
                   i === currentStep
                     ? "w-5 bg-primary"
                     : i < currentStep
@@ -244,7 +244,7 @@ function FeatureRow({
   desc: string;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-md border border-border/40 bg-muted/20 px-3.5 py-3">
+    <div className="flex items-start gap-3 rounded-md border border-border/20 bg-muted/20 px-3.5 py-3">
       <div className="mt-0.5 flex-shrink-0">{icon}</div>
       <div>
         <p className="text-xs font-semibold">{title}</p>
@@ -316,7 +316,7 @@ function PathCard({
         "flex items-start gap-3.5 rounded-md border px-4 py-4 text-left transition-colors",
         active
           ? "border-primary bg-primary/8 text-foreground"
-          : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-muted/20 hover:text-foreground"
+          : "border-border/20 bg-muted/10 text-muted-foreground hover:bg-muted/20 hover:text-foreground"
       )}
     >
       <div

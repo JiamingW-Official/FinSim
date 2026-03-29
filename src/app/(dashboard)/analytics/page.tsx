@@ -778,7 +778,7 @@ function ScoreBar({ label, score, max = 100 }: { label: string; score: number; m
     <div className="flex items-center gap-3">
       <span className="text-xs text-muted-foreground w-24 shrink-0">{label}</span>
       <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-        <div className={cn("h-full rounded-full transition-all", color)} style={{ width: `${pct}%` }} />
+        <div className={cn("h-full rounded-full transition-colors", color)} style={{ width: `${pct}%` }} />
       </div>
       <span className="text-xs font-semibold text-foreground w-8 text-right tabular-nums">{score}</span>
     </div>
@@ -1071,7 +1071,7 @@ export default function AnalyticsPage() {
                           {m.good ? "Strong" : "Weak"}
                         </Badge>
                       </div>
-                      <div className={cn("text-xl font-bold tabular-nums", m.good ? "text-green-400" : "text-red-400")}>
+                      <div className={cn("text-xl font-semibold tabular-nums", m.good ? "text-green-400" : "text-red-400")}>
                         {m.value}
                       </div>
                       <p className="text-xs text-muted-foreground mt-1">{m.description}</p>
@@ -1151,7 +1151,7 @@ export default function AnalyticsPage() {
                       </thead>
                       <tbody>
                         {data.factorBetas.map((f) => (
-                          <tr key={f.factor} className="border-b border-border/50">
+                          <tr key={f.factor} className="border-b border-border/20">
                             <td className="py-2 text-foreground font-medium">{f.factor}</td>
                             <td className="py-2 text-right text-foreground tabular-nums">
                               {f.factor === "Idiosyncratic" ? "—" : f.beta.toFixed(2)}
@@ -1203,7 +1203,7 @@ export default function AnalyticsPage() {
                   ].map((item) => (
                     <div key={item.label} className="rounded-lg bg-background border border-border p-3 text-center">
                       <div className="text-xs text-muted-foreground mb-2">{item.label}</div>
-                      <div className="text-2xl font-bold tabular-nums" style={{ color: item.color }}>
+                      <div className="text-2xl font-semibold tabular-nums" style={{ color: item.color }}>
                         {item.te.toFixed(1)}%
                       </div>
                       <div className="text-xs text-muted-foreground mt-0.5">TE contribution</div>
@@ -1445,7 +1445,7 @@ export default function AnalyticsPage() {
                         key={evt.id}
                         onClick={() => setSelectedDrawdown(i)}
                         className={cn(
-                          "w-full rounded-lg border p-2.5 text-left transition-all",
+                          "w-full rounded-lg border p-2.5 text-left transition-colors",
                           selectedDrawdown === i
                             ? "bg-indigo-500/15 border-indigo-600/50"
                             : "bg-background border-border hover:border-border"
@@ -1601,7 +1601,7 @@ export default function AnalyticsPage() {
                           setScenarioVisible((prev) => ({ ...prev, [s.key]: !prev[s.key] }))
                         }
                         className={cn(
-                          "text-xs text-muted-foreground rounded-full px-2.5 py-0.5 border transition-all font-medium",
+                          "text-xs text-muted-foreground rounded-full px-2.5 py-0.5 border transition-colors font-medium",
                           scenarioVisible[s.key]
                             ? "border-transparent text-foreground"
                             : "bg-background border-border text-muted-foreground"
@@ -1661,7 +1661,7 @@ export default function AnalyticsPage() {
                         const diff = ((s.final - actualFinal) / actualFinal) * 100;
                         const pos = diff >= 0;
                         return (
-                          <tr key={s.key} className="border-b border-border/50">
+                          <tr key={s.key} className="border-b border-border/20">
                             <td className="py-2.5">
                               <div className="flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />

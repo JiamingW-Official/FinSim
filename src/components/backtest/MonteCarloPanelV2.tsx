@@ -134,7 +134,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
         </h3>
         <button
           onClick={() => setShowParams((v) => !v)}
-          className="flex items-center gap-1.5 rounded-md border border-border/50 bg-muted/20 px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
+          className="flex items-center gap-1.5 rounded-md border border-border/20 bg-muted/20 px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted/50"
         >
           <Settings className="h-3 w-3" />
           Adjust Parameters
@@ -143,7 +143,7 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
 
       {/* Adjust Parameters Panel */}
       {showParams && (
-        <div className="space-y-3 rounded-lg border border-border/30 bg-muted/10 p-4">
+        <div className="space-y-3 rounded-lg border border-border/20 bg-muted/10 p-4">
           <h4 className="text-xs font-semibold text-muted-foreground">Simulation Parameters</h4>
 
           <div className="grid grid-cols-2 gap-3">
@@ -310,9 +310,9 @@ export default function MonteCarloPanelV2({ result, startingCapital }: MonteCarl
                 const idx = Math.floor((pct / 100) * (sorted.length - 1));
                 const val = sorted[idx] ?? 0;
                 return (
-                  <div key={pct} className="rounded-lg border border-border/30 bg-muted/20 p-2 text-center">
+                  <div key={pct} className="rounded-lg border border-border/20 bg-muted/20 p-2 text-center">
                     <div className="text-[11px] text-muted-foreground/70">P{pct}</div>
-                    <div className="text-xs font-bold text-rose-400">{val.toFixed(1)}%</div>
+                    <div className="text-xs font-semibold text-rose-400">{val.toFixed(1)}%</div>
                   </div>
                 );
               })}
@@ -350,7 +350,7 @@ function ParamInput({ label, value, onChange, min, max, step }: {
           const v = parseFloat(e.target.value);
           if (!isNaN(v) && v >= min && v <= max) onChange(v);
         }}
-        className="w-full rounded-md border border-border/50 bg-card px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="w-full rounded-md border border-border/20 bg-card px-2 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       />
     </div>
   );
@@ -360,9 +360,9 @@ function ParamInput({ label, value, onChange, min, max, step }: {
 
 function StatCard({ label, value, good }: { label: string; value: string; good?: boolean }) {
   return (
-    <div className="rounded-lg border border-border/30 bg-muted/20 px-3 py-2">
+    <div className="rounded-lg border border-border/20 bg-muted/20 px-3 py-2">
       <div className="text-[11px] text-muted-foreground/70">{label}</div>
-      <div className={`text-sm font-bold ${good === undefined ? "text-foreground" : good ? "text-emerald-400" : "text-rose-400"}`}>
+      <div className={`text-sm font-semibold ${good === undefined ? "text-foreground" : good ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
     </div>
@@ -537,7 +537,7 @@ function ReturnHistogram({ runs }: { runs: { totalReturnPercent: number }[] }) {
         return (
           <div
             key={i}
-            className="group relative flex-1 rounded-t-sm transition-all hover:brightness-125"
+            className="group relative flex-1 rounded-t-sm transition-colors hover:brightness-125"
             style={{
               height: `${Math.max(height, 1)}%`,
               backgroundColor: isPositive

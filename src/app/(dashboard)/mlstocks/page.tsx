@@ -86,7 +86,7 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
     name: "Price & Returns",
     icon: <TrendingUp className="w-4 h-4" />,
     color: "text-primary",
-    bgColor: "bg-primary/10",
+    bgColor: "bg-muted/10",
     importance: 0.28,
     count: 24,
     features: [
@@ -102,7 +102,7 @@ const FEATURE_CATEGORIES: FeatureCategory[] = [
     name: "Volume & Market Microstructure",
     icon: <BarChart3 className="w-4 h-4" />,
     color: "text-primary",
-    bgColor: "bg-primary/10",
+    bgColor: "bg-muted/10",
     importance: 0.19,
     count: 18,
     features: [
@@ -725,7 +725,7 @@ export default function MLStocksPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-lg bg-primary/10 border border-border">
+          <div className="p-2 rounded-lg bg-muted/10 border border-border">
             <Brain className="w-3.5 h-3.5 text-muted-foreground/50" />
           </div>
           <div>
@@ -737,8 +737,8 @@ export default function MLStocksPage() {
         {/* KPI chips */}
         <div className="flex flex-wrap gap-2 mt-3">
           {[
-            { label: `${totalFeatures} Features`, color: "text-primary bg-primary/10 border-border" },
-            { label: "8 Model Types", color: "text-primary bg-primary/10 border-border" },
+            { label: `${totalFeatures} Features`, color: "text-primary bg-muted/10 border-border" },
+            { label: "8 Model Types", color: "text-primary bg-muted/10 border-border" },
             { label: "5 Pitfalls", color: "text-red-400 bg-red-500/5 border-red-500/20" },
             { label: "IC/ICIR Framework", color: "text-green-400 bg-green-500/10 border-green-500/20" },
             { label: "10-Stock Ranking", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
@@ -757,16 +757,16 @@ export default function MLStocksPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
-          <TabsTrigger value="features" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
+          <TabsTrigger value="features" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
             <Database className="w-3 h-3 mr-1" />Feature Engineering
           </TabsTrigger>
-          <TabsTrigger value="models" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
+          <TabsTrigger value="models" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
             <Cpu className="w-3 h-3 mr-1" />Model Zoo
           </TabsTrigger>
-          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
+          <TabsTrigger value="backtest" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
             <FlaskConical className="w-3 h-3 mr-1" />Backtesting
           </TabsTrigger>
-          <TabsTrigger value="signals" className="text-xs data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
+          <TabsTrigger value="signals" className="text-xs data-[state=active]:bg-muted/10 data-[state=active]:text-primary">
             <Zap className="w-3 h-3 mr-1" />Live Signals
           </TabsTrigger>
         </TabsList>
@@ -781,7 +781,7 @@ export default function MLStocksPage() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {FEATURE_CATEGORIES.map(cat => (
-                  <div key={cat.name} className={`rounded-lg p-3 border border-border/50 ${cat.bgColor}`}>
+                  <div key={cat.name} className={`rounded-lg p-3 border border-border/20 ${cat.bgColor}`}>
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <span className={cat.color}>{cat.icon}</span>
@@ -901,7 +901,7 @@ export default function MLStocksPage() {
                       {MODELS.map((m, i) => (
                         <tr
                           key={m.name}
-                          className="border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors"
+                          className="border-b border-border/20 cursor-pointer hover:bg-muted/30 transition-colors"
                           onClick={() => setExpandedModel(expandedModel === i ? null : i)}
                         >
                           <td className="py-2">
@@ -1035,7 +1035,7 @@ export default function MLStocksPage() {
                       { cost: "Slippage", est: "1–3 bps", note: "Signal delay between decision and execution" },
                       { cost: "Total (round-trip)", est: "14–48 bps", note: "Must be earned by alpha signal daily" },
                     ].map(row => (
-                      <div key={row.cost} className="flex items-start justify-between text-xs text-muted-foreground py-1.5 border-b border-border/50">
+                      <div key={row.cost} className="flex items-start justify-between text-xs text-muted-foreground py-1.5 border-b border-border/20">
                         <div>
                           <span className="text-foreground font-medium">{row.cost}</span>
                           <span className="text-muted-foreground ml-2">{row.note}</span>
@@ -1058,7 +1058,7 @@ export default function MLStocksPage() {
                   {PITFALLS.map((p, i) => (
                     <div
                       key={p.name}
-                      className={`rounded-lg border cursor-pointer transition-all ${severityColor(p.severity)}`}
+                      className={`rounded-lg border cursor-pointer transition-colors ${severityColor(p.severity)}`}
                       onClick={() => setExpandedPitfall(expandedPitfall === i ? null : i)}
                     >
                       <div className="flex items-center justify-between p-3">
@@ -1153,7 +1153,7 @@ export default function MLStocksPage() {
                       { label: "Model Infer", val: "< 10ms", color: "text-orange-400" },
                     ].map(m => (
                       <div key={m.label} className="bg-muted/50 rounded-lg p-2 text-center">
-                        <p className={`text-sm font-bold ${m.color}`}>{m.val}</p>
+                        <p className={`text-sm font-semibold ${m.color}`}>{m.val}</p>
                         <p className="text-xs text-muted-foreground">{m.label}</p>
                       </div>
                     ))}
@@ -1179,7 +1179,7 @@ export default function MLStocksPage() {
                       { label: "LSTM IC", val: "0.068", note: "Borderline", color: "text-amber-400" },
                     ].map(m => (
                       <div key={m.label} className="bg-muted/50 rounded-lg p-2">
-                        <p className={`text-sm font-bold ${m.color}`}>{m.val}</p>
+                        <p className={`text-sm font-semibold ${m.color}`}>{m.val}</p>
                         <p className="text-xs text-muted-foreground">{m.label}</p>
                         <p className="text-xs text-muted-foreground">{m.note}</p>
                       </div>
@@ -1236,7 +1236,7 @@ export default function MLStocksPage() {
                           const scoreColor = sig.score > 20 ? "text-green-400" : sig.score > 0 ? "text-emerald-400" : sig.score > -20 ? "text-muted-foreground" : "text-red-400";
                           const fmtScore = (v: number) => (v >= 0 ? "+" : "") + v.toFixed(1);
                           return (
-                            <tr key={sig.ticker} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                            <tr key={sig.ticker} className="border-b border-border/20 hover:bg-muted/20 transition-colors">
                               <td className="py-1.5">
                                 <div className="flex items-center gap-1">
                                   <span className="text-muted-foreground w-4">{i + 1}</span>
@@ -1244,7 +1244,7 @@ export default function MLStocksPage() {
                                 </div>
                               </td>
                               <td className="py-1.5 text-muted-foreground">{sig.sector}</td>
-                              <td className={`py-1.5 text-right font-bold ${scoreColor}`}>{fmtScore(sig.score)}</td>
+                              <td className={`py-1.5 text-right font-semibold ${scoreColor}`}>{fmtScore(sig.score)}</td>
                               <td className={`py-1.5 text-right ${sig.momentum >= 0 ? "text-green-400" : "text-red-400"}`}>{fmtScore(sig.momentum)}</td>
                               <td className={`py-1.5 text-right ${sig.value >= 0 ? "text-green-400" : "text-red-400"}`}>{fmtScore(sig.value)}</td>
                               <td className={`py-1.5 text-right ${sig.quality >= 0 ? "text-green-400" : "text-red-400"}`}>{fmtScore(sig.quality)}</td>

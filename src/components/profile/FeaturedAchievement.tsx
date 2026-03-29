@@ -18,14 +18,14 @@ export function FeaturedAchievement() {
   return (
     <div className="card-hover-glow rounded-md border border-amber-500/20 bg-amber-500/5 p-3">
       <div className="mb-2 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300">
+        <div className="flex items-center gap-1.5 text-xs font-semibold text-amber-300">
           <Star className="h-3.5 w-3.5" />
           Featured Achievement
         </div>
         <button
           type="button"
           onClick={() => setPickerOpen(!pickerOpen)}
-          className="flex items-center gap-0.5 rounded-lg px-2 py-0.5 text-xs font-bold text-amber-400/70 hover:bg-amber-500/10"
+          className="flex items-center gap-0.5 rounded-lg px-2 py-0.5 text-xs font-semibold text-amber-400/70 hover:bg-amber-500/10"
         >
           {featured ? "Change" : "Select"}
           <ChevronDown className={cn("h-3 w-3 transition-transform", pickerOpen && "rotate-180")} />
@@ -39,7 +39,7 @@ export function FeaturedAchievement() {
             <Trophy className="h-5 w-5 text-amber-400" />
           </div>
           <div>
-            <p className="text-sm font-bold text-amber-300">{featured.name}</p>
+            <p className="text-sm font-semibold text-amber-300">{featured.name}</p>
             <p className="text-xs text-muted-foreground">{featured.description ?? "Achievement unlocked"}</p>
           </div>
         </div>
@@ -74,11 +74,11 @@ export function FeaturedAchievement() {
                     "flex items-center gap-2 rounded-lg border p-2 text-left transition-colors",
                     a.id === featuredId
                       ? "border-amber-500/30 bg-amber-500/10"
-                      : "border-border/50 hover:bg-muted/20",
+                      : "border-border/20 hover:bg-muted/20",
                   )}
                 >
                   <Trophy className="h-3.5 w-3.5 shrink-0 text-amber-400" />
-                  <span className="text-xs font-bold leading-tight truncate">
+                  <span className="text-xs font-semibold leading-tight truncate">
                     {a.name}
                   </span>
                 </button>

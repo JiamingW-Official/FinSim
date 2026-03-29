@@ -616,11 +616,11 @@ export default function ProfilePage() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-lg font-bold tracking-tight">Investor Profile</h1>
+              <h1 className="text-lg font-semibold tracking-tight">Investor Profile</h1>
               <p className="text-xs text-muted-foreground">Personalized analysis & learning path</p>
             </div>
             <div className="flex items-center gap-2">
-              <Badge variant="secondary" className="gap-1 text-sm font-bold px-3 py-1">
+              <Badge variant="secondary" className="gap-1 text-sm font-semibold px-3 py-1">
                 <Zap className="h-3.5 w-3.5 text-amber-400" />
                 Level {level}
               </Badge>
@@ -711,7 +711,7 @@ export default function ProfilePage() {
                             return (
                               <div className="space-y-3">
                                 <div className="flex items-center gap-2">
-                                  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10">
+                                  <div className="flex h-7 w-7 items-center justify-center rounded-md bg-muted/10">
                                     <Icon className="h-3.5 w-3.5 text-primary" />
                                   </div>
                                   <p className="text-sm font-medium">{q.question}</p>
@@ -724,10 +724,10 @@ export default function ProfilePage() {
                                       <button
                                         key={i}
                                         onClick={() => handleQuizAnswer(currentQuestion, i)}
-                                        className={`w-full text-left rounded-lg border px-3 py-2.5 text-sm transition-all ${
+                                        className={`w-full text-left rounded-lg border px-3 py-2.5 text-sm transition-colors ${
                                           isSelected
-                                            ? "border-primary/60 bg-primary/10 text-foreground"
-                                            : "border-border bg-background/50 text-muted-foreground hover:border-primary/30 hover:bg-primary/5 hover:text-foreground"
+                                            ? "border-primary/60 bg-muted/10 text-foreground"
+                                            : "border-border bg-background/50 text-muted-foreground hover:border-primary/30 hover:bg-muted/5 hover:text-foreground"
                                         }`}
                                       >
                                         <span className="mr-2 text-xs text-muted-foreground opacity-50">{["A", "B", "C"][i]}.</span>
@@ -758,8 +758,8 @@ export default function ProfilePage() {
                     {QUIZ_QUESTIONS.map((_, i) => (
                       <div
                         key={i}
-                        className={`h-1.5 rounded-full transition-all ${
-                          i < quizAnswers.length ? "w-4 bg-primary" : i === currentQuestion ? "w-4 bg-primary/50" : "w-1.5 bg-border"
+                        className={`h-1.5 rounded-full transition-colors ${
+                          i < quizAnswers.length ? "w-4 bg-primary" : i === currentQuestion ? "w-4 bg-muted/50" : "w-1.5 bg-border"
                         }`}
                       />
                     ))}
@@ -807,7 +807,7 @@ export default function ProfilePage() {
                         </div>
                       </div>
 
-                      <div className="rounded-lg bg-primary/5 border border-primary/15 p-3">
+                      <div className="rounded-lg bg-muted/5 border border-primary/15 p-3">
                         <p className="text-xs text-primary font-medium uppercase mb-2">Recommended Strategies</p>
                         <div className="flex flex-wrap gap-1.5">
                           {archetype.strategies.map((s) => (
@@ -928,13 +928,13 @@ export default function ProfilePage() {
                           <div className="flex gap-1.5 items-center">
                             <div className="flex-1 h-1.5 rounded-full bg-foreground/[0.08]">
                               <div
-                                className="h-full rounded-full transition-all"
+                                className="h-full rounded-full transition-colors"
                                 style={{ width: `${(branch.level / 4) * 100}%`, backgroundColor: branch.color }}
                               />
                             </div>
                             <div className="flex-1 h-1.5 rounded-full bg-foreground/[0.08]">
                               <div
-                                className="h-full rounded-full bg-foreground/25 transition-all"
+                                className="h-full rounded-full bg-foreground/25 transition-colors"
                                 style={{ width: `${(avgLevel / 4) * 100}%` }}
                               />
                             </div>
@@ -1031,9 +1031,9 @@ export default function ProfilePage() {
                         <button
                           key={style.id}
                           onClick={() => setLearningStyle(style.id as typeof learningStyle)}
-                          className={`rounded-lg border py-2 text-xs text-muted-foreground font-medium transition-all ${
+                          className={`rounded-lg border py-2 text-xs text-muted-foreground font-medium transition-colors ${
                             learningStyle === style.id
-                              ? "border-primary/60 bg-primary/10 text-foreground"
+                              ? "border-primary/60 bg-muted/10 text-foreground"
                               : "border-border bg-background/50 text-muted-foreground hover:border-primary/30"
                           }`}
                         >
@@ -1055,7 +1055,7 @@ export default function ProfilePage() {
                   {curriculum.map((week, wi) => (
                     <div key={wi} className="space-y-2">
                       <div className="flex items-center gap-2">
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[11px] font-medium text-primary">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-muted/10 text-[11px] font-medium text-primary">
                           {week.week}
                         </div>
                         <span className="text-xs text-muted-foreground font-medium">Week {week.week}: {week.theme}</span>
@@ -1211,7 +1211,7 @@ export default function ProfilePage() {
                       { style: "Short Selling", trades: stats.shortTradesCount, winRate: Math.max(0, winRate - 8), pnl: stats.totalPnL * 0.2 },
                       { style: "Options", trades: stats.optionsTradesCount, winRate: Math.max(0, winRate - 3), pnl: stats.optionsTotalPnL },
                     ].map((row) => (
-                      <div key={row.style} className="flex items-center justify-between py-2 border-b border-border/50 last:border-0">
+                      <div key={row.style} className="flex items-center justify-between py-2 border-b border-border/20 last:border-0">
                         <div>
                           <p className="text-xs text-muted-foreground font-medium">{row.style}</p>
                           <p className="text-xs text-muted-foreground">{row.trades} trades</p>
@@ -1304,7 +1304,7 @@ export default function ProfilePage() {
                 <CardContent className="pt-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/15 border border-primary/25">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-muted/10 border border-primary/25">
                         <span className="text-sm font-medium text-primary">{level}</span>
                       </div>
                       <div>
@@ -1318,7 +1318,7 @@ export default function ProfilePage() {
                         <p className="text-xs text-muted-foreground font-medium text-right">Level {nextLevel}</p>
                         <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
                       </div>
-                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/15 border border-border">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-muted/10 border border-border">
                         <span className="text-sm font-medium text-primary">{nextLevel}</span>
                       </div>
                     </div>

@@ -586,7 +586,7 @@ export function DrawingOverlay({ priceHigh, priceLow, height, width }: DrawingOv
       {/* Text input popover */}
       {pendingText && (
         <div
-          className="absolute z-20 flex items-center gap-1 rounded border border-border/40 bg-card px-1.5 py-1 shadow-sm"
+          className="absolute z-20 flex items-center gap-1 rounded border border-border/20 bg-card px-1.5 py-1 shadow-sm"
           style={{
             left: Math.min(pendingText.p.x + 4, width - 180),
             top: pendingText.p.y - 28,

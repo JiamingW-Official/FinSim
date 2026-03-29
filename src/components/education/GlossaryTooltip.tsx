@@ -63,7 +63,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
       <TooltipContent
         side="top"
         sideOffset={4}
-        className="max-w-[300px] space-y-1.5 bg-card text-card-foreground border border-border/40 p-3"
+        className="max-w-[300px] space-y-1.5 bg-card text-card-foreground border border-border/20 p-3"
       >
         {/* Header */}
         <div className="flex items-center gap-2">
@@ -82,7 +82,7 @@ export function GlossaryTooltip({ term, children }: GlossaryTooltipProps) {
 
         {/* Formula (if present) */}
         {entry.formula && (
-          <code className="block rounded bg-muted/40 border border-border/40 px-2 py-1 text-xs leading-relaxed font-mono text-foreground/80 whitespace-pre-wrap">
+          <code className="block rounded bg-muted/40 border border-border/20 px-2 py-1 text-xs leading-relaxed font-mono text-foreground/80 whitespace-pre-wrap">
             {entry.formula}
           </code>
         )}

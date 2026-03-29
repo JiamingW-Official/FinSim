@@ -146,7 +146,7 @@ function IndicatorCard({
   return (
     <div
       className={cn(
-        "border border-border/50 rounded-lg bg-card transition-colors",
+        "border border-border/20 rounded-lg bg-card transition-colors",
         expanded && "border-border",
       )}
     >
@@ -194,7 +194,7 @@ function IndicatorCard({
       </button>
 
       {expanded && (
-        <div className="px-3 pb-3 border-t border-border/30 space-y-2 pt-2">
+        <div className="px-3 pb-3 border-t border-border/20 space-y-2 pt-2">
           <p className="text-xs text-muted-foreground leading-relaxed">
             {indicator.description}
           </p>

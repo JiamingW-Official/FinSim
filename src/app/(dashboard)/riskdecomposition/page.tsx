@@ -307,7 +307,7 @@ function RiskDecompositionTab() {
                 <item.icon className={`w-4 h-4 ${item.color}`} />
                 <span className="text-xs text-muted-foreground">{item.label}</span>
               </div>
-              <div className="text-2xl font-bold text-foreground">{item.value}</div>
+              <div className="text-2xl font-semibold text-foreground">{item.value}</div>
               <div className="text-xs text-muted-foreground mt-0.5">{item.sub}</div>
             </CardContent>
           </Card>
@@ -417,7 +417,7 @@ function RiskDecompositionTab() {
                   const r2 = Math.min(0.95, 0.45 + (p.beta - 0.5) * 0.35);
                   const syst = parseFloat((r2 * 100).toFixed(1));
                   return (
-                    <tr key={p.ticker} className="border-b border-border/50 hover:bg-muted/30">
+                    <tr key={p.ticker} className="border-b border-border/20 hover:bg-muted/30">
                       <td className="py-2 font-medium text-foreground">{p.ticker}</td>
                       <td className="py-2 text-right text-muted-foreground">{p.weight}%</td>
                       <td className="py-2 text-right text-muted-foreground">{p.beta.toFixed(2)}</td>
@@ -519,7 +519,7 @@ function MarginalContributionTab() {
                   {MCTR_NORMALISED.map((r) => {
                     const over = r.pctRiskContrib > r.weight;
                     return (
-                      <tr key={r.ticker} className="border-b border-border/50 hover:bg-muted/30">
+                      <tr key={r.ticker} className="border-b border-border/20 hover:bg-muted/30">
                         <td className="py-2">
                           <div className="flex items-center gap-2">
                             <div className="w-2.5 h-2.5 rounded-sm" style={{ background: r.color }} />
@@ -670,7 +670,7 @@ function StressTestingTab() {
                   <>
                     <tr
                       key={sc.name}
-                      className={`border-b border-border/50 cursor-pointer transition-colors ${
+                      className={`border-b border-border/20 cursor-pointer transition-colors ${
                         selected === i ? "bg-muted/60" : "hover:bg-muted/30"
                       }`}
                       onClick={() => setSelected(selected === i ? null : i)}
@@ -1212,7 +1212,7 @@ function RiskBudgetingTab() {
                 {RISK_BUDGET_FINAL.map((r) => {
                   const delta = r.ercWeight - r.currentWeight;
                   return (
-                    <tr key={r.ticker} className="border-b border-border/50 hover:bg-muted/30">
+                    <tr key={r.ticker} className="border-b border-border/20 hover:bg-muted/30">
                       <td className="py-2">
                         <div className="flex items-center gap-2">
                           <div className="w-2.5 h-2.5 rounded-sm" style={{ background: r.color }} />

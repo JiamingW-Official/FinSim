@@ -708,7 +708,7 @@ function StubCalculator() {
         ].map(({ label, value, color }) => (
           <div key={label} className="bg-muted rounded-lg p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">{label}</div>
-            <div className={cn("text-base font-bold font-mono", color)}>{value}</div>
+            <div className={cn("text-base font-semibold font-mono", color)}>{value}</div>
           </div>
         ))}
       </div>
@@ -872,7 +872,7 @@ function ActivistTab() {
             </thead>
             <tbody>
               {ACTIVIST_FUNDS.map((fund) => (
-                <tr key={fund.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={fund.name} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2.5 pr-4 font-medium text-foreground">{fund.name}</td>
                   <td className="py-2.5 pr-4 text-indigo-400">{fund.aum}</td>
                   <td className="py-2.5 pr-4 text-muted-foreground">{fund.style}</td>
@@ -944,7 +944,7 @@ function ActivistTab() {
                     "Forensic accounting review",
                   ].map((step, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                      <div className="w-4 h-4 rounded-full bg-red-900/50 flex items-center justify-center text-red-400 text-xs font-bold">
+                      <div className="w-4 h-4 rounded-full bg-red-900/50 flex items-center justify-center text-red-400 text-xs font-semibold">
                         {i + 1}
                       </div>
                       {step}
@@ -982,7 +982,7 @@ function ActivistTab() {
         <h3 className="text-sm font-medium text-foreground mb-3">Target Selection Criteria</h3>
         <div className="space-y-2">
           {targetCriteria.map(({ criterion, weight, detail }) => (
-            <div key={criterion} className="flex items-start gap-3 py-2 border-b border-border/50 last:border-0">
+            <div key={criterion} className="flex items-start gap-3 py-2 border-b border-border/20 last:border-0">
               <span
                 className={cn(
                   "text-xs text-muted-foreground px-1.5 py-0.5 rounded font-medium shrink-0",
@@ -1092,7 +1092,7 @@ function PostReorgTab() {
         <h3 className="text-sm font-medium text-foreground mb-3">Key Risks in Post-Reorg Equity</h3>
         <div className="space-y-2">
           {riskFactors.map(({ risk, detail }) => (
-            <div key={risk} className="flex items-start gap-3 py-2 border-b border-border/50 last:border-0">
+            <div key={risk} className="flex items-start gap-3 py-2 border-b border-border/20 last:border-0">
               <AlertTriangle className="w-3.5 h-3.5 text-amber-400 mt-0.5 shrink-0" />
               <div>
                 <div className="text-xs font-medium text-foreground">{risk}</div>

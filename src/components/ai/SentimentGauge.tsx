@@ -235,17 +235,17 @@ export function SentimentGauge({ score, bias, signals }: SentimentGaugeProps) {
       {/* Signal breakdown chips */}
       {signals.length > 0 && (
         <div className="flex items-center justify-center gap-2">
-          <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/5 px-2 py-0.5 text-[11px] font-bold text-emerald-400">
+          <span className="inline-flex items-center gap-1 rounded border border-emerald-500/30 bg-emerald-500/5 px-2 py-0.5 text-[11px] font-semibold text-emerald-400">
             Bullish{" "}
-            <span className="font-bold">{bullCount}</span>
+            <span className="font-semibold">{bullCount}</span>
           </span>
-          <span className="inline-flex items-center gap-1 rounded border border-border/40 bg-muted px-2 py-0.5 text-[11px] font-bold text-muted-foreground">
+          <span className="inline-flex items-center gap-1 rounded border border-border/20 bg-muted px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
             Neutral{" "}
-            <span className="font-bold">{neutCount}</span>
+            <span className="font-semibold">{neutCount}</span>
           </span>
-          <span className="inline-flex items-center gap-1 rounded border border-red-500/30 bg-red-500/5 px-2 py-0.5 text-[11px] font-bold text-red-400">
+          <span className="inline-flex items-center gap-1 rounded border border-red-500/30 bg-red-500/5 px-2 py-0.5 text-[11px] font-semibold text-red-400">
             Bearish{" "}
-            <span className="font-bold">{bearCount}</span>
+            <span className="font-semibold">{bearCount}</span>
           </span>
         </div>
       )}

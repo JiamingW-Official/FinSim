@@ -67,7 +67,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
         </div>
         <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
           <div
-            className="h-full rounded-full bg-emerald-500 transition-all duration-300"
+            className="h-full rounded-full bg-emerald-500 transition-colors duration-300"
             style={{ width: `${market.initialProbability}%` }}
           />
         </div>

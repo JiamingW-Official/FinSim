@@ -84,14 +84,14 @@ export function MarketRegimeCard() {
 
   if (!result) {
     return (
-      <div className="border-b border-border/40 px-3 py-2 text-xs text-muted-foreground">
+      <div className="border-b border-border/20 px-3 py-2 text-xs text-muted-foreground">
         Advance the chart to detect market regime.
       </div>
     );
   }
 
   const { regime, bias, conviction } = result;
-  const borderCls = REGIME_BORDER[regime.regime] ?? "border-border/40";
+  const borderCls = REGIME_BORDER[regime.regime] ?? "border-border/20";
   const labelCls  = REGIME_LABEL_COLOR[regime.regime] ?? "text-foreground";
   const dotCls    = REGIME_DOT[regime.regime] ?? "bg-muted-foreground";
   const biasCls   = BIAS_COLOR[bias] ?? "text-foreground";
@@ -108,7 +108,7 @@ export function MarketRegimeCard() {
       {/* Header row */}
       <div className="flex items-center gap-2">
         <div className={cn("h-2 w-2 rounded-full shrink-0", dotCls)} />
-        <span className={cn("text-[11px] font-bold tracking-wide", labelCls)}>
+        <span className={cn("text-[11px] font-semibold tracking-wide", labelCls)}>
           {regime.label}
         </span>
         <span className="text-[11px] text-muted-foreground font-medium ml-auto">
@@ -120,7 +120,7 @@ export function MarketRegimeCard() {
       <div className="flex items-center gap-1.5 flex-wrap">
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none",
+            "rounded border px-1.5 py-0.5 text-[11px] font-semibold leading-none",
             bias === "bullish"
               ? "bg-green-500/10 border-green-500/25"
               : bias === "bearish"
@@ -133,12 +133,12 @@ export function MarketRegimeCard() {
         </span>
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none",
+            "rounded border px-1.5 py-0.5 text-[11px] font-semibold leading-none",
             conviction === "high"
               ? "bg-primary/10 border-primary/25"
               : conviction === "medium"
               ? "bg-orange-500/10 border-orange-500/25"
-              : "bg-muted border-border/40",
+              : "bg-muted border-border/20",
             convCls,
           )}
         >
@@ -146,7 +146,7 @@ export function MarketRegimeCard() {
         </span>
         <span
           className={cn(
-            "rounded border px-1.5 py-0.5 text-[11px] font-bold leading-none text-muted-foreground border-border/40 bg-muted",
+            "rounded border px-1.5 py-0.5 text-[11px] font-semibold leading-none text-muted-foreground border-border/20 bg-muted",
           )}
         >
           ADX: {regime.adxLevel}

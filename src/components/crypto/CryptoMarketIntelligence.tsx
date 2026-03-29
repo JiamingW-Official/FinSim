@@ -212,7 +212,7 @@ function HBar({
     <div className="flex items-center gap-3">
       <div className="w-24 text-right text-xs text-muted-foreground shrink-0">{label}</div>
       <div className="flex-1 bg-muted rounded-full h-2 overflow-hidden">
-        <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
+        <div className="h-full rounded-full transition-colors" style={{ width: `${pct}%`, backgroundColor: color }} />
       </div>
       {subLabel && <div className="w-16 text-xs text-muted-foreground shrink-0">{subLabel}</div>}
     </div>
@@ -233,7 +233,7 @@ function SectionCard({
   className?: string;
 }) {
   return (
-    <div className={cn("bg-muted/40 border border-border/50 rounded-md p-4", className)}>
+    <div className={cn("bg-muted/40 border border-border/20 rounded-md p-4", className)}>
       <div className="flex items-center gap-2 mb-4">
         <Icon className="w-4 h-4 text-indigo-400" />
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -557,7 +557,7 @@ export default function CryptoMarketIntelligence() {
             })}
 
             {/* Composite reading */}
-            <div className="mt-4 p-3 bg-muted/30 rounded-lg border border-border/30">
+            <div className="mt-4 p-3 bg-muted/30 rounded-lg border border-border/20">
               <p className="text-xs text-muted-foreground">
                 <span className="font-semibold text-amber-400">Composite Reading:</span>{" "}
                 Market sentiment leans{" "}
@@ -581,7 +581,7 @@ export default function CryptoMarketIntelligence() {
               <div
                 key={band.label}
                 className={cn(
-                  "flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-all",
+                  "flex items-center justify-between px-3 py-1.5 rounded-lg text-xs transition-colors",
                   i === currentBTCBand
                     ? "ring-1 ring-foreground/30 bg-foreground/5 font-semibold"
                     : "opacity-60"
@@ -617,7 +617,7 @@ export default function CryptoMarketIntelligence() {
             {/* Days since last halving */}
             <div className="p-3 bg-amber-400/5 border border-amber-400/20 rounded-lg">
               <p className="text-xs text-amber-400 font-semibold">Days Since Last Halving (Apr 2024)</p>
-              <p className="text-2xl font-bold text-amber-300 mt-1">340 days</p>
+              <p className="text-2xl font-semibold text-amber-300 mt-1">340 days</p>
               <p className="text-xs text-muted-foreground mt-1">Historically: peak occurs 12–18 months post-halving</p>
             </div>
           </div>
@@ -663,7 +663,7 @@ export default function CryptoMarketIntelligence() {
             <p className="text-xs text-muted-foreground mb-3">Large Transactions — Last 24h</p>
             <table className="w-full text-xs">
               <thead>
-                <tr className="border-b border-border/50">
+                <tr className="border-b border-border/20">
                   {["Time", "From", "To", "Asset", "Amount", "Type"].map((h) => (
                     <th key={h} className="text-left pb-2 pr-3 text-muted-foreground font-medium whitespace-nowrap">{h}</th>
                   ))}
@@ -726,10 +726,10 @@ export default function CryptoMarketIntelligence() {
             </div>
 
             {/* Whale accumulation score */}
-            <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+            <div className="p-3 bg-muted/30 rounded-lg border border-border/20">
               <p className="text-xs text-muted-foreground mb-1">Whale Wallet Accumulation Score (30d)</p>
               <div className="flex items-end gap-2">
-                <span className="text-2xl font-bold text-emerald-400">{whaleAccumulationScore}</span>
+                <span className="text-2xl font-semibold text-emerald-400">{whaleAccumulationScore}</span>
                 <span className="text-xs text-muted-foreground mb-1">/ 100</span>
               </div>
               <div className="h-1.5 bg-muted rounded-full overflow-hidden mt-1">
@@ -826,7 +826,7 @@ export default function CryptoMarketIntelligence() {
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>
-                    <tr className="border-b border-border/50">
+                    <tr className="border-b border-border/20">
                       {["Protocol", "Chain", "TVL", "24h", "APY"].map((h) => (
                         <th key={h} className="text-left pb-1.5 pr-2 text-muted-foreground font-medium">{h}</th>
                       ))}
@@ -850,7 +850,7 @@ export default function CryptoMarketIntelligence() {
             </div>
 
             {/* Gas tracker */}
-            <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+            <div className="p-3 bg-muted/30 rounded-lg border border-border/20">
               <p className="text-xs text-muted-foreground mb-2">ETH Gas Tracker</p>
               <div className="flex gap-3 mb-2">
                 {[
@@ -860,7 +860,7 @@ export default function CryptoMarketIntelligence() {
                 ].map((tier) => (
                   <div key={tier.label} className="flex-1 text-center p-1.5 rounded bg-muted/50">
                     <p className="text-xs text-muted-foreground">{tier.label}</p>
-                    <p className="text-sm font-bold" style={{ color: tier.color }}>{tier.gwei}</p>
+                    <p className="text-sm font-semibold" style={{ color: tier.color }}>{tier.gwei}</p>
                     <p className="text-xs text-muted-foreground/70">Gwei</p>
                   </div>
                 ))}
@@ -965,15 +965,15 @@ export default function CryptoMarketIntelligence() {
             <div className="mt-2 flex gap-3 text-xs">
               <div className="p-2 bg-muted/30 rounded flex-1">
                 <span className="text-muted-foreground">Market Cap</span>
-                <p className="font-bold text-amber-400">${fmt(onChainBTC.marketCap, 0)}B</p>
+                <p className="font-semibold text-amber-400">${fmt(onChainBTC.marketCap, 0)}B</p>
               </div>
               <div className="p-2 bg-muted/30 rounded flex-1">
                 <span className="text-muted-foreground">Realized Cap</span>
-                <p className="font-bold text-indigo-400">${fmt(onChainBTC.realizedCap, 1)}B</p>
+                <p className="font-semibold text-indigo-400">${fmt(onChainBTC.realizedCap, 1)}B</p>
               </div>
               <div className="p-2 bg-muted/30 rounded flex-1">
                 <span className="text-muted-foreground">MVRV</span>
-                <p className="font-bold text-foreground">{fmt(onChainBTC.mvrvRatio)}x</p>
+                <p className="font-semibold text-foreground">{fmt(onChainBTC.mvrvRatio)}x</p>
                 <p className="text-muted-foreground/70 text-xs">Slight overvaluation vs cost basis</p>
               </div>
             </div>
@@ -1003,9 +1003,9 @@ export default function CryptoMarketIntelligence() {
               </p>
             </div>
 
-            <div className="p-3 bg-muted/30 rounded-lg border border-border/30">
+            <div className="p-3 bg-muted/30 rounded-lg border border-border/20">
               <p className="text-xs text-muted-foreground mb-1">Stablecoin Supply Ratio (SSR)</p>
-              <p className="text-xl font-bold text-foreground">{fmt(stablecoinSupplyRatio, 1)}%</p>
+              <p className="text-xl font-semibold text-foreground">{fmt(stablecoinSupplyRatio, 1)}%</p>
               <div className="h-1.5 bg-muted rounded-full overflow-hidden mt-1">
                 <div className="h-full rounded-full bg-sky-400" style={{ width: `${(stablecoinSupplyRatio / 25) * 100}%` }} />
               </div>
@@ -1020,11 +1020,11 @@ export default function CryptoMarketIntelligence() {
               <p className="text-xs text-emerald-400 font-semibold mb-1">SOPR Signal</p>
               <div className="flex gap-2">
                 <div className="text-center flex-1">
-                  <p className="text-lg font-bold text-amber-300">1.043</p>
+                  <p className="text-lg font-semibold text-amber-300">1.043</p>
                   <p className="text-xs text-muted-foreground">BTC SOPR</p>
                 </div>
                 <div className="text-center flex-1">
-                  <p className="text-lg font-bold text-indigo-300">1.012</p>
+                  <p className="text-lg font-semibold text-indigo-300">1.012</p>
                   <p className="text-xs text-muted-foreground">ETH SOPR</p>
                 </div>
               </div>
@@ -1036,7 +1036,7 @@ export default function CryptoMarketIntelligence() {
         </div>
 
         {/* Educational footer */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2 border-t border-border/50 pt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2 border-t border-border/20 pt-4">
           {[
             {
               icon: CheckCircle,

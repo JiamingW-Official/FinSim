@@ -155,7 +155,7 @@ export function PortfolioHeatmap() {
   return (
     <div className="px-2 pb-2">
       <div className="mb-1 flex items-center justify-between">
-        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+        <span className="text-xs font-medium text-muted-foreground">
           Portfolio Heatmap
         </span>
         <span
@@ -171,7 +171,7 @@ export function PortfolioHeatmap() {
         <svg
           width={WIDTH}
           height={HEIGHT}
-          className="rounded overflow-hidden border border-border/40"
+          className="rounded overflow-hidden border border-border/20"
         >
           {cells.map((cell) => {
             const isHovered = hovered === cell.ticker;
@@ -237,8 +237,8 @@ export function PortfolioHeatmap() {
 
         {/* Hover tooltip */}
         {hoveredPos && (
-          <div className="absolute top-1 right-0 z-10 rounded border border-border/40 bg-card px-2 py-1 text-xs shadow-sm min-w-[110px]">
-            <div className="font-bold">{hoveredPos.ticker}</div>
+          <div className="absolute top-1 right-0 z-10 rounded border border-border/20 bg-card px-2 py-1 text-xs shadow-sm min-w-[110px]">
+            <div className="font-semibold">{hoveredPos.ticker}</div>
             <div className="text-muted-foreground">
               Value: {formatCurrency(hoveredPos.quantity * hoveredPos.currentPrice)}
             </div>

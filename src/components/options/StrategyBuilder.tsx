@@ -67,7 +67,7 @@ export function StrategyBuilder() {
 
   return (
     <div className="p-2">
-      <div className="mb-2 text-xs font-bold text-muted-foreground px-1">
+      <div className="mb-2 text-xs font-semibold text-muted-foreground px-1">
         Strategy Presets
       </div>
       <div className="space-y-1">
@@ -82,10 +82,10 @@ export function StrategyBuilder() {
               onClick={() => handleApply(preset)}
               disabled={!currentChain}
               className={cn(
-                "flex w-full items-center gap-2 rounded-lg border px-2 py-1.5 text-left transition-all",
+                "flex w-full items-center gap-2 rounded-lg border px-2 py-1.5 text-left transition-colors",
                 isActive
                   ? "border-orange-400/40 bg-orange-500/10"
-                  : "border-border/50 bg-card/30 hover:bg-muted/20",
+                  : "border-border/20 bg-card/30 hover:bg-muted/20",
                 !currentChain && "cursor-not-allowed opacity-40",
               )}
               whileHover={currentChain ? { scale: 1.01 } : {}}
@@ -100,7 +100,7 @@ export function StrategyBuilder() {
                 <Icon className={cn("h-3 w-3", colors.text)} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-xs font-bold leading-tight">
+                <div className="text-xs font-semibold leading-tight">
                   {preset.name}
                 </div>
                 <div className="text-[11px] text-muted-foreground leading-tight truncate">
@@ -109,7 +109,7 @@ export function StrategyBuilder() {
               </div>
               <span
                 className={cn(
-                  "shrink-0 rounded px-1 py-0.5 text-[7px] font-bold uppercase",
+                  "shrink-0 rounded px-1 py-0.5 text-[7px] font-semibold",
                   colors.bg,
                   colors.text,
                 )}

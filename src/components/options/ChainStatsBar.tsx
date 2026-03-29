@@ -78,7 +78,7 @@ export function ChainStatsBar({ analytics, spotPrice, isLoading }: ChainStatsBar
   ];
 
   return (
-    <div className="flex shrink-0 items-center gap-0 overflow-x-auto border-b border-border/40 bg-card px-3 py-1.5 text-[10px]">
+    <div className="flex shrink-0 items-center gap-0 overflow-x-auto border-b border-border/20 bg-card px-3 py-1.5 text-[10px]">
       <span className="shrink-0 text-muted-foreground">Spot</span>
       <span className="ml-1 shrink-0 font-medium tabular-nums">${spotPrice.toFixed(2)}</span>
       {isLoading && (

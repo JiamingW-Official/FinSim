@@ -211,7 +211,7 @@ export function LandingDemoChart() {
   }, [initChart]);
 
   return (
-    <div className="rounded-lg border border-border/30 bg-card overflow-hidden">
+    <div className="rounded-lg border border-border/20 bg-card overflow-hidden">
       {/* App content */}
       <div className="flex">
         {/* Chart area */}
@@ -274,13 +274,13 @@ export function LandingDemoChart() {
           <div className="space-y-1.5">
             <div>
               <div className="text-[9px] text-muted-foreground/60 mb-0.5">Shares</div>
-              <div className="rounded-md border border-border/30 bg-background px-2.5 py-1.5 text-[10px] tabular-nums">
+              <div className="rounded-md border border-border/20 bg-background px-2.5 py-1.5 text-[10px] tabular-nums">
                 100
               </div>
             </div>
             <div>
               <div className="text-[9px] text-muted-foreground/60 mb-0.5">Type</div>
-              <div className="rounded-md border border-border/30 bg-background px-2.5 py-1.5 text-[10px]">
+              <div className="rounded-md border border-border/20 bg-background px-2.5 py-1.5 text-[10px]">
                 Market
               </div>
             </div>

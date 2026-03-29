@@ -798,12 +798,12 @@ export function EfficientFrontier() {
   return (
     <div className="space-y-4">
       {/* ── Controls ── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
         <h3 className="text-sm font-semibold">Efficient Frontier Optimizer</h3>
 
         {/* Asset Universe */}
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <p className="text-xs font-medium text-muted-foreground mb-2">
             Asset Universe
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -819,7 +819,7 @@ export function EfficientFrontier() {
                     "flex flex-col items-center rounded-md border px-2.5 py-1.5 text-xs font-semibold transition-colors",
                     selected
                       ? "border-primary/50 bg-primary/10 text-primary"
-                      : "border-border/40 bg-background text-muted-foreground hover:border-primary/30",
+                      : "border-border/20 bg-background text-muted-foreground hover:border-primary/30",
                   )}
                 >
                   <span>{ticker}</span>
@@ -900,7 +900,7 @@ export function EfficientFrontier() {
 
         {/* Objective */}
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <p className="text-xs font-medium text-muted-foreground mb-2">
             Optimization Objective
           </p>
           <div className="flex flex-wrap gap-2">
@@ -933,13 +933,13 @@ export function EfficientFrontier() {
       </div>
 
       {/* ── Efficient Frontier Chart ── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+          <p className="text-xs font-medium text-muted-foreground">
             Efficient Frontier — {scatterPoints.length} random portfolios
           </p>
         </div>
-        <div className="rounded-lg border border-border/50 bg-muted/20 p-2">
+        <div className="rounded-lg border border-border/20 bg-muted/20 p-2">
           <FrontierChart
             points={scatterPoints}
             frontierCurve={frontierCurve}
@@ -979,7 +979,7 @@ export function EfficientFrontier() {
       </div>
 
       {/* ── Optimal Portfolio Results ── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
         <h4 className="text-sm font-semibold">Optimal Portfolio Results</h4>
 
         {/* Stats comparison */}
@@ -1024,7 +1024,7 @@ export function EfficientFrontier() {
 
         {/* Weight table */}
         <div>
-          <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground mb-2">
+          <p className="text-xs font-medium text-muted-foreground mb-2">
             Recommended Weights
           </p>
           <div className="overflow-x-auto">
@@ -1040,7 +1040,7 @@ export function EfficientFrontier() {
               </thead>
               <tbody>
                 {weightRows.map((row) => (
-                  <tr key={row.ticker} className="border-b border-border/30">
+                  <tr key={row.ticker} className="border-b border-border/20">
                     <td className="py-1.5 px-1 font-semibold">{row.ticker}</td>
                     <td className="py-1.5 px-1 text-right">
                       <div className="flex items-center justify-end gap-1.5">
@@ -1060,7 +1060,7 @@ export function EfficientFrontier() {
                     </td>
                     <td className="py-1.5 px-1 text-right">
                       <span className={cn(
-                        "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
+                        "rounded px-1.5 py-0.5 text-[11px] font-semibold",
                         row.action === "buy"
                           ? "bg-emerald-500/12 text-emerald-400"
                           : row.action === "sell"
@@ -1085,7 +1085,7 @@ export function EfficientFrontier() {
       </div>
 
       {/* ── Correlation Matrix ── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
           <h4 className="text-sm font-semibold">Correlation Matrix</h4>
           <span className="text-xs text-muted-foreground">

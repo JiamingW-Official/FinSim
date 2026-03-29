@@ -953,7 +953,7 @@ function StatCard({
           <Icon size={14} style={{ color }} />
           <span className="text-xs text-muted-foreground">{label}</span>
         </div>
-        <div className="text-xl font-bold" style={{ color }}>
+        <div className="text-xl font-semibold" style={{ color }}>
           {value}
         </div>
         {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
@@ -1084,7 +1084,7 @@ export default function CrossAssetMomPage() {
                     { title: "Cross-Sectional (XS-MOM)", body: "Rank all assets. Go long top decile, short bottom decile. Captures relative performance; beta-neutral within universe." },
                     { title: "Time-Series (TSMOM)", body: "Moskowitz, Ooi & Pedersen (2012). Each asset independently: long if past return > 0, short if < 0. Works across asset classes." },
                   ].map((item) => (
-                    <div key={item.title} className="bg-muted/60 rounded-lg p-3 border border-border/50">
+                    <div key={item.title} className="bg-muted/60 rounded-lg p-3 border border-border/20">
                       <p className="text-xs font-semibold text-indigo-300 mb-1">{item.title}</p>
                       <p className="text-xs text-muted-foreground leading-relaxed">{item.body}</p>
                     </div>
@@ -1200,7 +1200,7 @@ export default function CrossAssetMomPage() {
                     { period: "12-36 Months", alpha: "6.8% ann.", effect: "Fading, still positive", sentiment: "moderate", color: "#f59e0b" },
                     { period: "36+ Months", alpha: "-2.1% ann.", effect: "Reversal to value", sentiment: "negative", color: "#ef4444" },
                   ].map((p) => (
-                    <div key={p.period} className="bg-muted/60 border border-border/50 rounded-lg p-3">
+                    <div key={p.period} className="bg-muted/60 border border-border/20 rounded-lg p-3">
                       <p className="text-xs font-medium text-muted-foreground">{p.period}</p>
                       <p className="text-lg font-medium mt-1" style={{ color: p.color }}>{p.alpha}</p>
                       <p className="text-xs text-muted-foreground mt-0.5">{p.effect}</p>
@@ -1264,14 +1264,14 @@ export default function CrossAssetMomPage() {
               <CardContent>
                 <MAcrossoverSVG />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                  <div className="bg-muted/60 rounded-lg p-3 border border-border/50">
+                  <div className="bg-muted/60 rounded-lg p-3 border border-border/20">
                     <p className="text-xs font-medium text-emerald-400 mb-1">Long Signal</p>
                     <p className="text-xs text-muted-foreground">
                       Fast MA &gt; Slow MA — asset is in uptrend. Position = +1 (or fraction based on conviction).
                       Typical: SMA20 crosses above SMA50.
                     </p>
                   </div>
-                  <div className="bg-muted/60 rounded-lg p-3 border border-border/50">
+                  <div className="bg-muted/60 rounded-lg p-3 border border-border/20">
                     <p className="text-xs font-medium text-red-400 mb-1">Short Signal</p>
                     <p className="text-xs text-muted-foreground">
                       Fast MA &lt; Slow MA — asset is in downtrend. Position = -1 (or fraction).
@@ -1317,10 +1317,10 @@ export default function CrossAssetMomPage() {
                     <button
                       key={m.shortName}
                       onClick={() => setSelectedModel(selectedModel === m.shortName ? null : m.shortName)}
-                      className={`text-left rounded-lg p-3 border transition-all ${
+                      className={`text-left rounded-lg p-3 border transition-colors ${
                         selectedModel === m.shortName
                           ? "border-indigo-500 bg-indigo-900/20"
-                          : "border-border/50 bg-muted/60 hover:border-border"
+                          : "border-border/20 bg-muted/60 hover:border-border"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
@@ -1412,7 +1412,7 @@ export default function CrossAssetMomPage() {
                   {ASSET_CLASSES.map((a) => (
                     <div
                       key={a.shortName}
-                      className="bg-muted/60 border border-border/50 rounded-lg p-3"
+                      className="bg-muted/60 border border-border/20 rounded-lg p-3"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-xs font-medium text-muted-foreground">{a.shortName}</span>
@@ -1630,7 +1630,7 @@ export default function CrossAssetMomPage() {
                       color: "#f59e0b",
                     },
                   ].map((item) => (
-                    <div key={item.title} className="bg-muted/60 border border-border/50 rounded-lg p-3">
+                    <div key={item.title} className="bg-muted/60 border border-border/20 rounded-lg p-3">
                       <p className="text-xs font-medium mb-1" style={{ color: item.color }}>
                         {item.title}
                       </p>
@@ -1719,7 +1719,7 @@ export default function CrossAssetMomPage() {
                       correlation: "Negative to momentum",
                     },
                   ].map((f) => (
-                    <div key={f.name} className="bg-muted/60 border border-border/50 rounded-lg p-3">
+                    <div key={f.name} className="bg-muted/60 border border-border/20 rounded-lg p-3">
                       <p className="text-sm font-medium mb-1" style={{ color: f.color }}>{f.name}</p>
                       <p className="text-xs text-muted-foreground mb-2">{f.description}</p>
                       <div className="flex items-center gap-2 mb-1">
@@ -1741,7 +1741,7 @@ export default function CrossAssetMomPage() {
                       </p>
                     </div>
                     <div className="text-right ml-4">
-                      <p className="text-2xl font-bold text-indigo-300">1.12</p>
+                      <p className="text-2xl font-semibold text-indigo-300">1.12</p>
                       <p className="text-xs text-muted-foreground">combined Sharpe</p>
                     </div>
                   </div>
@@ -1806,7 +1806,7 @@ export default function CrossAssetMomPage() {
                   ].map((section) => (
                     <div
                       key={section.title}
-                      className="bg-muted/60 border border-border/50 rounded-lg p-3"
+                      className="bg-muted/60 border border-border/20 rounded-lg p-3"
                     >
                       <div className="flex items-center gap-2 mb-2">
                         <section.icon size={13} style={{ color: section.color }} />
@@ -1894,7 +1894,7 @@ export default function CrossAssetMomPage() {
                   ].map((p) => (
                     <div
                       key={p.paper}
-                      className="bg-muted/60 border border-border/50 rounded-lg p-3"
+                      className="bg-muted/60 border border-border/20 rounded-lg p-3"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div className="flex-1">

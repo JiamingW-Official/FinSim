@@ -22,7 +22,7 @@ export function ProfileHeader() {
         <div className="flex items-center gap-4">
           {/* Avatar */}
           <motion.div
-            className="flex h-16 w-16 items-center justify-center rounded-md text-3xl"
+            className="flex h-16 w-16 items-center justify-center rounded-md text-lg"
             style={{ backgroundColor: `${avatarColor}20` }}
             initial={{ scale: 0, rotate: -15 }}
             animate={{ scale: 1, rotate: 0 }}
@@ -34,7 +34,7 @@ export function ProfileHeader() {
           {/* Info */}
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold">{displayName}</h1>
+              <h1 className="text-xl font-semibold">{displayName}</h1>
               <motion.button
                 type="button"
                 onClick={() => setEditOpen(true)}
@@ -48,7 +48,7 @@ export function ProfileHeader() {
             <div className="flex items-center gap-2 mt-0.5">
               <div className="badge-premium flex items-center gap-1 rounded-md px-2 py-0.5">
                 <Shield className="h-3 w-3 text-primary" />
-                <span className="text-xs font-bold text-primary">
+                <span className="text-xs font-semibold text-primary">
                   Lv.{level} {title}
                 </span>
               </div>

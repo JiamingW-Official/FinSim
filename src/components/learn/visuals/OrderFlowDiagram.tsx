@@ -20,7 +20,7 @@ export function OrderFlowDiagram() {
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: i * 0.2 }}
-              className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 text-lg font-bold"
+              className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 text-lg font-semibold"
               style={{ borderColor: step.color, color: step.color, background: `${step.color}15` }}
             >
               {i + 1}
@@ -46,7 +46,7 @@ export function OrderFlowDiagram() {
         {STEPS.map((step, i) => (
           <div key={step.label} className="flex items-start">
             <div className="flex w-16 shrink-0 flex-col items-center gap-0.5">
-              <span className="text-xs font-bold" style={{ color: step.color }}>
+              <span className="text-xs font-semibold" style={{ color: step.color }}>
                 {step.label}
               </span>
               <span className="max-w-[72px] text-center text-[11px] leading-tight text-muted-foreground">

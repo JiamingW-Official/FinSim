@@ -85,7 +85,7 @@ function SimpleQuestCard({
       <div className="flex-1 min-w-[80px]">
         <div className="h-1 w-full overflow-hidden rounded-full bg-muted">
           <div
-            className={cn("h-full rounded-full transition-all", isComplete ? "bg-muted-foreground" : "bg-primary")}
+            className={cn("h-full rounded-full transition-colors", isComplete ? "bg-muted-foreground" : "bg-primary")}
             style={{ width: `${pct}%` }}
           />
         </div>

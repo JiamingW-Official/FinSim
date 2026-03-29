@@ -566,9 +566,9 @@ function EmotionPerformance({ rows, emotions, rng }: {
         <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-3">
           <div className="flex items-center gap-1.5 mb-1">
             <Star className="h-3.5 w-3.5 text-green-400" />
-            <p className="text-xs font-semibold text-green-400 uppercase tracking-wide">Best Trading State</p>
+            <p className="text-xs font-semibold text-green-400">Best Trading State</p>
           </div>
-          <p className="text-sm font-bold text-foreground">{bestEmotion.label}</p>
+          <p className="text-sm font-semibold text-foreground">{bestEmotion.label}</p>
           <p className="text-xs text-muted-foreground mt-0.5">
             {bestEmotion.winRate.toFixed(0)}% win rate
             {bestEmotion.count > 0 ? ` across ${bestEmotion.count} trades` : " (projected)"}
@@ -577,9 +577,9 @@ function EmotionPerformance({ rows, emotions, rng }: {
         <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-3">
           <div className="flex items-center gap-1.5 mb-1">
             <AlertTriangle className="h-3.5 w-3.5 text-red-400" />
-            <p className="text-xs font-semibold text-red-400 uppercase tracking-wide">Danger Zone</p>
+            <p className="text-xs font-semibold text-red-400">Danger Zone</p>
           </div>
-          <p className="text-sm font-bold text-foreground">{dangerEmotion.label}</p>
+          <p className="text-sm font-semibold text-foreground">{dangerEmotion.label}</p>
           <p className="text-xs text-muted-foreground mt-0.5">
             Avg {formatCurrency(dangerEmotion.avgPnL)} per trade
             {dangerEmotion.count > 0 ? "" : " (projected)"}
@@ -739,7 +739,7 @@ function TradeNarratives({ rows, emotions }: {
 
   if (rows.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-border/50 flex h-24 items-center justify-center">
+      <div className="rounded-lg border border-dashed border-border/20 flex h-24 items-center justify-center">
         <p className="text-[11px] text-muted-foreground">Complete trades to generate narratives.</p>
       </div>
     );
@@ -768,7 +768,7 @@ function TradeNarratives({ rows, emotions }: {
                 <p className="text-[11px] text-foreground leading-relaxed">{narrative}</p>
                 <p className="text-xs text-muted-foreground italic">Key lesson: {lesson}</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-xs font-bold text-green-400">
+                  <span className="text-xs font-semibold text-green-400">
                     +{formatCurrency(bestOfMonth.trade.realizedPnL)}
                   </span>
                   <span className="text-xs text-muted-foreground">
@@ -805,7 +805,7 @@ function TradeNarratives({ rows, emotions }: {
               </div>
               <span
                 className={cn(
-                  "text-xs font-bold tabular-nums",
+                  "text-xs font-semibold tabular-nums",
                   n.isWin ? "text-green-400" : "text-red-400"
                 )}
               >
@@ -813,7 +813,7 @@ function TradeNarratives({ rows, emotions }: {
               </span>
             </div>
             {expandedNarrative === n.tradeId && (
-              <div className="mt-2 space-y-1.5 border-t border-border/40 pt-2">
+              <div className="mt-2 space-y-1.5 border-t border-border/20 pt-2">
                 <p className="text-[11px] text-foreground leading-relaxed">{n.narrative}</p>
                 <p className="text-xs text-muted-foreground italic">Key lesson: {n.lesson}</p>
               </div>
@@ -838,7 +838,7 @@ function TradeNarratives({ rows, emotions }: {
                 </div>
                 <span
                   className={cn(
-                    "text-xs font-bold tabular-nums",
+                    "text-xs font-semibold tabular-nums",
                     week.totalPnL >= 0 ? "text-green-400" : "text-red-400"
                   )}
                 >
@@ -972,7 +972,7 @@ function HabitTracking({ rows, rng }: { rows: TradeRow[]; rng: () => number }) {
         <div className="rounded-lg border border-border bg-card p-3">
           <p className="text-xs font-medium text-muted-foreground">Discipline Score</p>
           <p className={cn(
-            "mt-1 text-xl font-bold tabular-nums",
+            "mt-1 text-xl font-semibold tabular-nums",
             habitStats.avgDiscipline >= 75 ? "text-green-400"
             : habitStats.avgDiscipline >= 50 ? "text-amber-400"
             : "text-red-400"
@@ -983,7 +983,7 @@ function HabitTracking({ rows, rng }: { rows: TradeRow[]; rng: () => number }) {
         </div>
         <div className="rounded-lg border border-border bg-card p-3">
           <p className="text-xs font-medium text-muted-foreground">High Discipline</p>
-          <p className="mt-1 text-xl font-bold tabular-nums text-green-400">
+          <p className="mt-1 text-xl font-semibold tabular-nums text-green-400">
             {habitStats.highAvgPnL !== null ? formatCurrency(habitStats.highAvgPnL) : "—"}
           </p>
           <p className="text-xs text-muted-foreground">Avg P&L (≥75%)</p>
@@ -991,7 +991,7 @@ function HabitTracking({ rows, rng }: { rows: TradeRow[]; rng: () => number }) {
         <div className="rounded-lg border border-border bg-card p-3">
           <p className="text-xs font-medium text-muted-foreground">Low Discipline</p>
           <p className={cn(
-            "mt-1 text-xl font-bold tabular-nums",
+            "mt-1 text-xl font-semibold tabular-nums",
             (habitStats.lowAvgPnL ?? 0) >= 0 ? "text-foreground" : "text-red-400"
           )}>
             {habitStats.lowAvgPnL !== null ? formatCurrency(habitStats.lowAvgPnL) : "—"}
@@ -1017,7 +1017,7 @@ function HabitTracking({ rows, rng }: { rows: TradeRow[]; rng: () => number }) {
                       <span className="text-xs text-muted-foreground">{formatDate(row.trade.simulationDate)}</span>
                     </div>
                     <span className={cn(
-                      "text-xs font-bold",
+                      "text-xs font-semibold",
                       score >= 75 ? "text-green-400" : score >= 50 ? "text-amber-400" : "text-red-400"
                     )}>
                       {score}%
@@ -1034,14 +1034,14 @@ function HabitTracking({ rows, rng }: { rows: TradeRow[]; rng: () => number }) {
                             "flex items-center gap-1.5 rounded px-2 py-1 text-xs transition-colors text-left",
                             checked
                               ? "bg-green-500/15 text-green-400 border border-green-500/30"
-                              : "bg-muted/20 text-muted-foreground border border-border/50 hover:border-border"
+                              : "bg-muted/20 text-muted-foreground border border-border/20 hover:border-border"
                           )}
                         >
                           <div className={cn(
                             "h-3 w-3 rounded-sm border shrink-0 flex items-center justify-center",
                             checked ? "border-green-500 bg-green-500/30" : "border-muted-foreground/40"
                           )}>
-                            {checked && <span className="text-[7px] text-green-400 font-bold leading-none">✓</span>}
+                            {checked && <span className="text-[7px] text-green-400 font-semibold leading-none">✓</span>}
                           </div>
                           {label}
                         </button>
@@ -1072,7 +1072,7 @@ function HabitTracking({ rows, rng }: { rows: TradeRow[]; rng: () => number }) {
                 key={i}
                 title={`${day.date.toLocaleDateString()}: ${day.hasTrade ? `${(day.score ?? 0).toFixed(0)}%` : "No trades"}`}
                 className={cn(
-                  "h-4 w-full rounded-sm transition-all",
+                  "h-4 w-full rounded-sm transition-colors",
                   fill
                 )}
               />
@@ -1272,7 +1272,7 @@ function ImprovementRoadmap({ rows, rng }: { rows: TradeRow[]; rng: () => number
             )}
           >
             <div className="flex items-start gap-2.5">
-              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted/30 text-xs font-bold text-foreground mt-0.5">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-muted/30 text-xs font-semibold text-foreground mt-0.5">
                 {i + 1}
               </div>
               <div className="min-w-0 flex-1">
@@ -1307,7 +1307,7 @@ function ImprovementRoadmap({ rows, rng }: { rows: TradeRow[]; rng: () => number
             <TrendingUp className="h-3.5 w-3.5 text-primary" />
             <p className="text-xs font-semibold text-primary">Total Addressable Improvement</p>
           </div>
-          <p className="text-base font-bold text-foreground">
+          <p className="text-base font-semibold text-foreground">
             +{formatCurrency(suggestions.reduce((s, x) => s + x.estimatedGain, 0))}
           </p>
           <p className="text-xs text-muted-foreground">Estimated monthly P&L improvement if top suggestions are applied</p>

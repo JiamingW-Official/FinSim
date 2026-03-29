@@ -93,7 +93,7 @@ function StatCard({
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
       </div>
-      <span className={cn("text-xl font-bold", valClass)}>{value}</span>
+      <span className={cn("text-xl font-semibold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
     </div>
   );
@@ -115,7 +115,7 @@ function InfoBox({
   variant?: "blue" | "amber" | "emerald" | "rose";
 }) {
   const colors = {
-    blue: "bg-primary/10 border-border text-primary",
+    blue: "bg-muted/10 border-border text-primary",
     amber: "bg-amber-500/10 border-amber-500/30 text-amber-200",
     emerald: "bg-emerald-500/5 border-emerald-500/30 text-emerald-200",
     rose: "bg-rose-500/10 border-rose-500/30 text-rose-200",
@@ -130,7 +130,7 @@ function InfoBox({
 function StageBadge({ stage }: { stage: CBDCStage }) {
   const map: Record<CBDCStage, string> = {
     launched: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-    pilot: "bg-primary/20 text-primary border-border",
+    pilot: "bg-muted/10 text-primary border-border",
     research: "bg-amber-500/20 text-amber-300 border-amber-500/30",
     cancelled: "bg-rose-500/20 text-rose-300 border-rose-500/30",
   };
@@ -367,7 +367,7 @@ function FundamentalsTab() {
                 ["Disintermediation Risk", "High — replaces deposits", "Low — wholesale only", "Low — private issuer buffer"],
                 ["Examples", "e-CNY, digital euro, e-Rupee", "Project mBridge, Jura", "Narrow bank stablecoins"],
               ].map(([attr, retail, wholesale, synthetic], i) => (
-                <tr key={attr} className={cn("border-b border-border/50", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
+                <tr key={attr} className={cn("border-b border-border/20", i % 2 === 0 ? "bg-foreground/[0.02]" : "")}>
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{attr}</td>
                   <td className="py-2 pr-4 text-foreground">{retail}</td>
                   <td className="py-2 pr-4 text-foreground">{wholesale}</td>
@@ -381,7 +381,7 @@ function FundamentalsTab() {
 
       {/* Account-Based vs Token-Based */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-md border border-border bg-primary/5 p-4">
+        <div className="rounded-md border border-border bg-muted/5 p-4">
           <div className="flex items-center gap-2 mb-3">
             <Shield className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-semibold text-primary">Account-Based CBDC</span>
@@ -394,7 +394,7 @@ function FundamentalsTab() {
             <li className="flex items-start gap-1.5"><XCircle className="w-3 h-3 text-rose-400 mt-0.5 shrink-0" />Excludes unbanked without digital ID infrastructure</li>
           </ul>
         </div>
-        <div className="rounded-md border border-border bg-primary/5 p-4">
+        <div className="rounded-md border border-border bg-muted/5 p-4">
           <div className="flex items-center gap-2 mb-3">
             <Lock className="w-3.5 h-3.5 text-muted-foreground/50" />
             <span className="text-sm font-semibold text-primary">Token-Based CBDC</span>
@@ -423,7 +423,7 @@ function FundamentalsTab() {
         </SectionTitle>
         <div className="space-y-2">
           {DESIGN_CHOICES.map((choice, i) => (
-            <div key={choice.dimension} className="border border-border/50 rounded-lg overflow-hidden">
+            <div key={choice.dimension} className="border border-border/20 rounded-lg overflow-hidden">
               <button
                 className="w-full flex items-center justify-between px-3 py-2.5 hover:bg-muted/30 transition-colors"
                 onClick={() => setExpandedRow(expandedRow === i ? null : i)}
@@ -431,9 +431,9 @@ function FundamentalsTab() {
                 <div className="flex items-center gap-3 text-left">
                   <span className="text-xs font-medium text-muted-foreground w-36 shrink-0">{choice.dimension}</span>
                   <div className="flex items-center gap-2">
-                    <Badge className="bg-primary/20 text-primary border-border text-xs">{choice.optionA}</Badge>
+                    <Badge className="bg-muted/10 text-primary border-border text-xs">{choice.optionA}</Badge>
                     <span className="text-muted-foreground text-xs">vs</span>
-                    <Badge className="bg-primary/20 text-primary border-border text-xs">{choice.optionB}</Badge>
+                    <Badge className="bg-muted/10 text-primary border-border text-xs">{choice.optionB}</Badge>
                   </div>
                 </div>
                 {expandedRow === i
@@ -487,7 +487,7 @@ function FundamentalsTab() {
                 ["Tier 2", "€2,001 – €5,000", "Policy rate – 1.5%", "Moderate savings discouraged"],
                 ["Tier 3", "> €5,000", "0% or penalty rate", "Large holdings penalised to prevent bank run"],
               ].map(([tier, limit, rate, purpose]) => (
-                <tr key={tier} className="border-b border-border/50">
+                <tr key={tier} className="border-b border-border/20">
                   <td className="py-1.5 pr-4 text-amber-300 font-medium">{tier}</td>
                   <td className="py-1.5 pr-4 text-foreground">{limit}</td>
                   <td className="py-1.5 pr-4 text-foreground">{rate}</td>
@@ -783,13 +783,13 @@ function GlobalTrackerTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.2 }}
-            className="rounded-md border border-border bg-primary/5 p-4"
+            className="rounded-md border border-border bg-muted/5 p-4"
           >
             <div className="flex items-start justify-between gap-2 mb-2">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-2xl">{selectedCard.flag}</span>
-                  <span className="text-base font-bold text-foreground">{selectedCard.name}</span>
+                  <span className="text-base font-semibold text-foreground">{selectedCard.name}</span>
                   <StageBadge stage={selectedCard.stage} />
                 </div>
                 <div className="text-xs text-muted-foreground">{selectedCard.country}</div>
@@ -851,7 +851,7 @@ function GlobalTrackerTab() {
             className={cn(
               "rounded-md border p-3 cursor-pointer transition-colors",
               selected === c.country
-                ? "border-primary/50 bg-primary/10"
+                ? "border-primary/50 bg-muted/10"
                 : "border-border bg-foreground/5 hover:bg-muted/40"
             )}
             onClick={() => setSelected((prev) => (prev === c.country ? null : c.country))}
@@ -1038,10 +1038,10 @@ function MonetaryPolicyTab() {
           ].map((item) => (
             <div key={item.title} className={cn(
               "rounded-lg border p-3",
-              item.color === "blue" ? "border-border bg-primary/5" :
+              item.color === "blue" ? "border-border bg-muted/5" :
               item.color === "emerald" ? "border-emerald-500/30 bg-emerald-500/5" :
               item.color === "amber" ? "border-amber-500/30 bg-amber-500/5" :
-              "border-border bg-primary/5"
+              "border-border bg-muted/5"
             )}>
               <div className="flex items-center gap-2 mb-2">
                 {item.icon}
@@ -1289,7 +1289,7 @@ function CrossBorderTab() {
                 ["Adoption", "11,000+ financial institutions", "Pilot stage — 4 central banks"],
                 ["Governance", "Cooperative (Belgian HQ)", "BIS + member central banks"],
               ].map(([dim, swift, cbdc]) => (
-                <tr key={dim as string} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                <tr key={dim as string} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                   <td className="py-2 pr-4 text-muted-foreground font-medium">{dim as string}</td>
                   <td className="py-2 pr-4 text-muted-foreground">{swift as string}</td>
                   <td className="py-2 text-muted-foreground">{cbdc as string}</td>
@@ -1360,7 +1360,7 @@ function CrossBorderTab() {
             <div key={proj.name} className="rounded-lg border border-border bg-foreground/[0.03] p-3">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-sm font-medium text-foreground">{proj.name}</span>
-                <Badge className={cn("text-xs", proj.statusColor === "emerald" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : proj.statusColor === "blue" ? "bg-primary/20 text-primary border-border" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
+                <Badge className={cn("text-xs", proj.statusColor === "emerald" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" : proj.statusColor === "blue" ? "bg-muted/10 text-primary border-border" : "bg-amber-500/20 text-amber-300 border-amber-500/30")}>
                   {proj.status}
                 </Badge>
               </div>

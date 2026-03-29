@@ -233,7 +233,7 @@ function LiveTickerSection({ assets }: { assets: TickerAsset[] }) {
               layout
             >
               <div className="flex items-center gap-2 min-w-0">
-                <span className="font-mono text-xs font-bold w-16 shrink-0 text-foreground">{asset.symbol}</span>
+                <span className="font-mono text-xs font-semibold w-16 shrink-0 text-foreground">{asset.symbol}</span>
                 <span className="text-xs text-muted-foreground truncate hidden sm:block">{asset.name}</span>
               </div>
               <div className="flex items-center gap-3 shrink-0">
@@ -372,7 +372,7 @@ function MarketBreadthSection({ seed }: { seed: number }) {
           </span>
         </div>
         {/* McClellan Oscillator */}
-        <div className="flex items-center justify-between pt-1 border-t border-border/50">
+        <div className="flex items-center justify-between pt-1 border-t border-border/20">
           <span className="text-xs text-muted-foreground">McClellan Osc.</span>
           <span className={cn("font-mono text-xs font-semibold",
             mcclellan > 0 ? "text-emerald-400" : "text-red-400")}>
@@ -623,7 +623,7 @@ function SectorRotationSection({ seed }: { seed: number }) {
         <SectorHeatmapGrid sectors={sectors} period={period} />
       </div>
       {/* Money flow */}
-      <div className="pt-2 border-t border-border/50">
+      <div className="pt-2 border-t border-border/20">
         <p className="text-xs text-muted-foreground">
           Inflows today:{" "}
           <span className="text-emerald-400 font-mono">{inflowSectors.join(", ")}</span>
@@ -704,7 +704,7 @@ function VolatilitySection({ seed }: { seed: number }) {
       <SectionHeader title="Volatility Dashboard" />
       <div className="flex items-center justify-between mb-3">
         <div>
-          <span className="font-mono text-xl font-bold text-foreground">{data.spot.toFixed(2)}</span>
+          <span className="font-mono text-xl font-semibold text-foreground">{data.spot.toFixed(2)}</span>
           <span className="text-xs text-muted-foreground ml-1">VIX</span>
         </div>
         <VolRegimeBadge vix={data.spot} />
@@ -849,7 +849,7 @@ function CorrelationSection({ seed }: { seed: number }) {
       </div>
       {/* Divergence alerts */}
       {brokenPairs.length > 0 && (
-        <div className="space-y-1 pt-2 border-t border-border/50">
+        <div className="space-y-1 pt-2 border-t border-border/20">
           <p className="text-xs text-muted-foreground font-semibold">Correlation Breaks</p>
           {brokenPairs.map((pair) => (
             <div key={pair} className="flex items-center gap-1.5">
@@ -932,7 +932,7 @@ export default function MarketPulseWidget() {
             <div className="w-2 h-2 rounded-full bg-yellow-500" />
             <div className="w-2 h-2 rounded-full bg-green-500" />
           </div>
-          <span className="text-[11px] font-semibold text-foreground tracking-wider uppercase">
+          <span className="text-[11px] font-semibold text-foreground">
             Market Pulse Terminal
           </span>
         </div>

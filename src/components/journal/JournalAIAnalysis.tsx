@@ -466,7 +466,7 @@ function EmotionWinRateBar({
             </span>
             <div className="flex h-4 flex-1 overflow-hidden rounded-sm bg-muted/20">
               <div
-                className={cn("h-full transition-all", wr >= 50 ? "bg-green-500/60" : "bg-red-500/50")}
+                className={cn("h-full transition-colors", wr >= 50 ? "bg-green-500/60" : "bg-red-500/50")}
                 style={{ width: `${wr}%` }}
               />
             </div>
@@ -615,7 +615,7 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
 
   if (rows.length === 0) {
     return (
-      <div className="flex h-32 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border/50 text-muted-foreground">
+      <div className="flex h-32 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border/20 text-muted-foreground">
         <Brain className="h-5 w-5 opacity-30" />
         <p className="text-sm">No trades to analyze yet.</p>
       </div>
@@ -638,7 +638,7 @@ export function JournalAIAnalysis({ rows, notes = {} }: Props) {
             Journaling Streak
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="text-lg font-bold tabular-nums text-orange-400">
+            <span className="text-lg font-semibold tabular-nums text-orange-400">
               {streakData.currentStreak}
             </span>
             <span className="text-xs text-muted-foreground">days</span>

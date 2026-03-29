@@ -101,7 +101,7 @@ export function TutorialOverlay() {
               {Array.from({ length: totalSteps }, (_, i) => (
                 <div
                   key={i}
-                  className={`h-1.5 rounded-full transition-all ${
+                  className={`h-1.5 rounded-full transition-colors ${
                     i === stepIndex
                       ? "w-4 bg-primary"
                       : i < stepIndex

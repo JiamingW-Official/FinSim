@@ -62,7 +62,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
     <div className="flex flex-col gap-4">
       {/* Title */}
       <motion.h2
-        className="text-lg font-bold leading-snug"
+        className="text-lg font-semibold leading-snug"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.28 }}
@@ -91,7 +91,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
             return (
               <motion.div
                 key={bi}
-                className="rounded-md border border-border/40 bg-muted/25 px-4 py-3.5"
+                className="rounded-md border border-border/20 bg-muted/25 px-4 py-3.5"
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.28, delay }}
@@ -117,7 +117,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
           return (
             <motion.div
               key={bi}
-              className="rounded-md border border-border/40 bg-muted/25 px-4 py-3.5"
+              className="rounded-md border border-border/20 bg-muted/25 px-4 py-3.5"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.28, delay }}
@@ -138,13 +138,13 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
           animate={{ opacity: 1 }}
           transition={{ delay: 0.45 }}
         >
-          <span className="text-[11px] font-bold text-muted-foreground/50 mr-0.5">
+          <span className="text-[11px] font-semibold text-muted-foreground/50 mr-0.5">
             Key terms
           </span>
           {step.highlight.map((term, i) => (
             <motion.span
               key={term}
-              className="cursor-default rounded-full border border-primary/20 bg-primary/8 px-2.5 py-0.5 text-xs font-semibold text-primary transition-all hover:bg-primary/15 hover:border-primary/40"
+              className="cursor-default rounded-full border border-primary/20 bg-primary/8 px-2.5 py-0.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/15 hover:border-primary/40"
               initial={{ scale: 0.75, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.48 + i * 0.06, type: "spring", stiffness: 400, damping: 15 }}
@@ -160,7 +160,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
       <motion.button
         type="button"
         onClick={onContinue}
-        className="mt-1 w-full rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+        className="mt-1 w-full rounded-md bg-primary py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:brightness-110"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.01 }}

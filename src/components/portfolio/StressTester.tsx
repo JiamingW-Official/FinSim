@@ -621,7 +621,7 @@ function ScenarioCard({
     <div
       className={cn(
         "rounded-lg border bg-card/50 p-3 transition-colors",
-        isActive ? "border-primary/60 bg-primary/5" : "border-border/40 hover:border-border/80",
+        isActive ? "border-primary/60 bg-primary/5" : "border-border/20 hover:border-border/80",
       )}
     >
       <div className="mb-1 flex items-start justify-between gap-2">
@@ -665,9 +665,9 @@ function ResultsPanel({ result }: { result: StressResult }) {
     <div className="space-y-4">
       {/* Summary row */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-lg border border-border/40 bg-card/50 p-3">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-3">
           <p className="mb-0.5 text-xs text-muted-foreground">P&amp;L Impact</p>
-          <p className={cn("text-sm font-bold tabular-nums", impactColor)}>
+          <p className={cn("text-sm font-semibold tabular-nums", impactColor)}>
             {result.totalDollarImpact >= 0 ? "+" : ""}
             {formatCurrency(result.totalDollarImpact)}
           </p>
@@ -676,28 +676,28 @@ function ResultsPanel({ result }: { result: StressResult }) {
             {result.totalPctImpact.toFixed(2)}%
           </p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-3">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-3">
           <p className="mb-0.5 text-xs text-muted-foreground">Risk Budget</p>
-          <p className={cn("text-sm font-bold tabular-nums", riskLevel.color.split(" ")[0])}>
+          <p className={cn("text-sm font-semibold tabular-nums", riskLevel.color.split(" ")[0])}>
             {result.riskBudgetUsed.toFixed(1)}%
           </p>
           <span className={cn("inline-flex rounded border px-1.5 py-0.5 text-[11px] font-medium", riskLevel.color)}>
             {riskLevel.label}
           </span>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-3">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-3">
           <p className="mb-0.5 text-xs text-muted-foreground">Recovery Est.</p>
-          <p className="text-sm font-bold tabular-nums">
+          <p className="text-sm font-semibold tabular-nums">
             {result.recoveryMonths}
             <span className="ml-1 text-xs font-normal text-muted-foreground">mo</span>
           </p>
           <p className="text-xs text-muted-foreground">historical avg</p>
         </div>
-        <div className="rounded-lg border border-border/40 bg-card/50 p-3">
+        <div className="rounded-lg border border-border/20 bg-card/50 p-3">
           <p className="mb-0.5 text-xs text-muted-foreground">Worst Position</p>
           {result.worstPosition ? (
             <>
-              <p className="text-sm font-bold text-red-400">{result.worstPosition.ticker}</p>
+              <p className="text-sm font-semibold text-red-400">{result.worstPosition.ticker}</p>
               <p className="text-xs tabular-nums text-red-400/70">
                 {result.worstPosition.percentPnL.toFixed(1)}%
               </p>
@@ -730,10 +730,10 @@ function ResultsPanel({ result }: { result: StressResult }) {
 
       {/* Position table */}
       {result.positionImpacts.length > 0 && (
-        <div className="overflow-x-auto rounded-lg border border-border/40">
+        <div className="overflow-x-auto rounded-lg border border-border/20">
           <table className="w-full text-[11px]">
             <thead>
-              <tr className="border-b border-border/40 bg-muted/30">
+              <tr className="border-b border-border/20 bg-muted/30">
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Ticker</th>
                 <th className="px-3 py-2 text-left font-medium text-muted-foreground">Side</th>
                 <th className="px-3 py-2 text-right font-medium text-muted-foreground">Current Value</th>
@@ -746,13 +746,13 @@ function ResultsPanel({ result }: { result: StressResult }) {
               {result.positionImpacts.map((pos, i) => (
                 <tr
                   key={`${pos.ticker}-${i}`}
-                  className="border-b border-border/40 hover:bg-muted/10"
+                  className="border-b border-border/20 hover:bg-muted/10"
                 >
                   <td className="px-3 py-2 font-semibold">{pos.ticker}</td>
                   <td className="px-3 py-2">
                     <span
                       className={cn(
-                        "rounded px-1.5 py-0.5 text-[11px] font-semibold uppercase",
+                        "rounded px-1.5 py-0.5 text-[11px] font-semibold",
                         pos.side === "long"
                           ? "bg-emerald-400/10 text-emerald-400"
                           : "bg-red-400/10 text-red-400",
@@ -793,7 +793,7 @@ function ResultsPanel({ result }: { result: StressResult }) {
       )}
 
       {result.positionImpacts.length === 0 && (
-        <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-border/40 py-8">
+        <div className="flex flex-col items-center gap-2 rounded-lg border border-dashed border-border/20 py-8">
           <Shield className="h-8 w-8 text-muted-foreground/30" />
           <p className="text-xs text-muted-foreground">No open positions to stress test.</p>
           <p className="text-xs text-muted-foreground/60">Open positions in the Trading tab first.</p>
@@ -848,18 +848,18 @@ function MonteCarloPanel({ portfolioValue }: { portfolioValue: number }) {
         {statItems.map((item) => {
           const Icon = item.icon;
           return (
-            <div key={item.label} className="rounded-lg border border-border/40 bg-card/50 p-3">
+            <div key={item.label} className="rounded-lg border border-border/20 bg-card/50 p-3">
               <div className="mb-1 flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Icon className="h-3 w-3" />
                 {item.label}
               </div>
-              <p className={cn("text-base font-bold tabular-nums", item.color)}>{item.value}</p>
+              <p className={cn("text-base font-semibold tabular-nums", item.color)}>{item.value}</p>
             </div>
           );
         })}
       </div>
 
-      <div className="rounded-lg border border-border/40 bg-card/50 px-3 py-2">
+      <div className="rounded-lg border border-border/20 bg-card/50 px-3 py-2">
         <p className="text-xs text-muted-foreground leading-relaxed">
           <span className="font-medium text-foreground/80">Legend:</span>{" "}
           <span className="text-primary">Purple</span> = Median path.{" "}
@@ -948,7 +948,7 @@ function CustomBuilder({
           <div key={slider.key}>
             <div className="mb-1.5 flex items-center justify-between">
               <span className="text-[11px] font-medium text-foreground/80">{slider.label}</span>
-              <span className={cn("text-[11px] font-bold tabular-nums", colorClass)}>
+              <span className={cn("text-[11px] font-semibold tabular-nums", colorClass)}>
                 {slider.format(val)}
               </span>
             </div>
@@ -974,7 +974,7 @@ function CustomBuilder({
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="h-8 flex-1 rounded-md border border-border/40 bg-background px-2.5 text-[11px] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="h-8 flex-1 rounded-md border border-border/20 bg-background px-2.5 text-[11px] text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           placeholder="Scenario name…"
         />
         <Button size="sm" variant="outline" className="h-8 text-[11px]" onClick={handleSave}>
@@ -1108,7 +1108,7 @@ export function StressTester() {
 
       {/* Custom Builder */}
       {activeSection === "custom" && (
-        <Card className="border-border/40 bg-card/50">
+        <Card className="border-border/20 bg-card/50">
           <CardHeader className="pb-3 pt-4">
             <CardTitle className="flex items-center gap-2 text-[13px]">
               <Activity className="h-4 w-4 text-muted-foreground" />
@@ -1151,7 +1151,7 @@ export function StressTester() {
           {stressResult ? (
             <ResultsPanel result={stressResult} />
           ) : (
-            <div className="flex flex-col items-center gap-3 rounded-lg border border-dashed border-border/40 py-12">
+            <div className="flex flex-col items-center gap-3 rounded-lg border border-dashed border-border/20 py-12">
               <Shield className="h-10 w-10 text-muted-foreground/20" />
               <p className="text-sm text-muted-foreground">No scenario applied yet</p>
               <p className="text-[11px] text-muted-foreground/60">

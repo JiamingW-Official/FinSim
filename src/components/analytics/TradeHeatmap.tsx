@@ -133,7 +133,7 @@ export function TradeHeatmap() {
           const slot = dayStats[d];
           return (
             <div key={d} className="text-center">
-              <p className="text-[11px] font-medium uppercase text-muted-foreground">
+              <p className="text-[11px] font-medium text-muted-foreground">
                 {DAY_LABELS[d - 1]}
               </p>
               <p

@@ -196,7 +196,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
               x={toX(be)}
               y={PAD.top - 4}
               textAnchor="middle"
-              className="fill-amber-400 text-[7px] font-bold"
+              className="fill-amber-400 text-[7px] font-semibold"
             >
               BE ${be.toFixed(0)}
             </text>
@@ -263,7 +263,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
             <text
               x={hoverX + 10}
               y={toY(hoverPoint.pnl) - 4}
-              className="fill-foreground text-[11px] font-bold"
+              className="fill-foreground text-[11px] font-semibold"
             >
               ${hoverPoint.spotPrice} → {hoverPoint.pnl >= 0 ? "+" : ""}
               {formatCurrency(hoverPoint.pnl).replace("$", "")}
@@ -280,12 +280,12 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
             <span className="text-muted-foreground">At Expiry</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="h-0.5 w-3 border-t border-dashed border-border/40" />
+            <div className="h-0.5 w-3 border-t border-dashed border-border/20" />
             <span className="text-muted-foreground">Current</span>
           </div>
           <span className="text-muted-foreground">
             Max Profit:{" "}
-            <span className="font-bold text-emerald-400">
+            <span className="font-semibold text-emerald-400">
               {maxProfit === "unlimited"
                 ? "Unlimited"
                 : formatCurrency(maxProfit as number)}
@@ -293,7 +293,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
           </span>
           <span className="text-muted-foreground">
             Max Loss:{" "}
-            <span className="font-bold text-red-400">
+            <span className="font-semibold text-red-400">
               {maxLoss === "unlimited"
                 ? "Unlimited"
                 : formatCurrency(maxLoss as number)}

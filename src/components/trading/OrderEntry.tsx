@@ -89,7 +89,7 @@ function PriceLadder({
   const range = max - min || 1;
 
   return (
-    <div className="relative h-24 rounded-md border border-border/30 bg-muted/30 px-2 py-1">
+    <div className="relative h-24 rounded-md border border-border/20 bg-muted/30 px-2 py-1">
       {/* Current price line */}
       <div
         className="absolute left-0 right-0 border-t border-dashed border-primary/40"
@@ -174,13 +174,13 @@ function AdvancedOrderTicket({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.92, opacity: 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
-        className="w-full max-w-xs rounded-md border border-border/50 bg-background shadow-sm"
+        className="w-full max-w-xs rounded-md border border-border/20 bg-background shadow-sm"
       >
         {/* Header */}
         <div className="rounded-t-xl bg-amber-500/10 px-4 py-3">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-bold text-amber-500">ORDER TICKET</span>
-            <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground uppercase">
+            <span className="text-sm font-semibold text-amber-500">ORDER TICKET</span>
+            <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
               {advancedType.replace("_", " ")}
             </span>
           </div>
@@ -231,7 +231,7 @@ function AdvancedOrderTicket({
                 <Row label="Limit Price" value={formatCurrency(summary.condLimitPrice ?? price)} />
               </>
             )}
-            <div className="my-1 border-t border-border/50" />
+            <div className="my-1 border-t border-border/20" />
             <Row label="Est. Cost" value={formatCurrency(estimatedCost)} />
             <Row label="% of Portfolio" value={`${pctOfPortfolio.toFixed(1)}%`} muted />
             {maxLoss && <Row label="Max Loss" value={formatCurrency(maxLoss)} colored="red" />}
@@ -611,7 +611,7 @@ export function OrderEntry() {
         <span className="text-sm font-semibold">{currentTicker}</span>
         <span
           className={cn(
-            "text-lg font-bold tabular-nums transition-colors duration-300",
+            "text-lg font-semibold tabular-nums transition-colors duration-300",
             priceFlash === "up" && "price-flash-up",
             priceFlash === "down" && "price-flash-down",
           )}
@@ -808,7 +808,7 @@ export function OrderEntry() {
             type="button"
             onClick={() => setQuantity(String(q))}
             className={cn(
-              "flex-1 rounded py-1 text-xs font-medium transition-all duration-150",
+              "flex-1 rounded py-1 text-xs font-medium transition-colors duration-150",
               parseInt(quantity) === q
                 ? "bg-primary/20 text-primary"
                 : "bg-muted text-muted-foreground hover:bg-muted/40 hover:text-foreground",
@@ -920,7 +920,7 @@ export function OrderEntry() {
             transition={{ duration: 0.22, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <div className="space-y-2.5 rounded-md border border-border/30 bg-muted/20 p-2.5">
+            <div className="space-y-2.5 rounded-md border border-border/20 bg-muted/20 p-2.5">
               {/* Advanced type selector */}
               <div className="grid grid-cols-2 gap-1">
                 {ADVANCED_ORDER_TYPES.map((at) => {
@@ -931,10 +931,10 @@ export function OrderEntry() {
                       type="button"
                       onClick={() => setAdvancedType(at.value)}
                       className={cn(
-                        "flex flex-col items-start rounded-md border px-2 py-1.5 text-left transition-all",
+                        "flex flex-col items-start rounded-md border px-2 py-1.5 text-left transition-colors",
                         advancedType === at.value
                           ? "border-amber-500/60 bg-amber-500/10 text-amber-500"
-                          : "border-border/30 text-muted-foreground hover:border-border hover:text-foreground",
+                          : "border-border/20 text-muted-foreground hover:border-border hover:text-foreground",
                       )}
                     >
                       <span className="inline-flex items-center gap-1 text-xs font-semibold">
@@ -1157,7 +1157,7 @@ export function OrderEntry() {
                           )}
                         </span>
                       </div>
-                      <div className="mt-1 flex justify-between border-t border-border/30 pt-1">
+                      <div className="mt-1 flex justify-between border-t border-border/20 pt-1">
                         <span className="text-muted-foreground">Current stop</span>
                         <span className="font-semibold text-red-500">{formatCurrency(currentTrailStop)}</span>
                       </div>

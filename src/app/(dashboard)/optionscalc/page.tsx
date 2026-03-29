@@ -609,7 +609,7 @@ function MetricRow({ label, value, colored, info }: { label: string; value: stri
     ? value.startsWith("+") ? "text-emerald-400" : value.startsWith("-") ? "text-red-400" : "text-foreground"
     : "text-foreground";
   return (
-    <div className="flex items-center justify-between py-1.5 border-b border-border/50">
+    <div className="flex items-center justify-between py-1.5 border-b border-border/20">
       <span className="text-xs text-muted-foreground flex items-center gap-1">
         {label}
         {info && <Info size={10} className="text-muted-foreground" aria-label={info} />}
@@ -734,7 +734,7 @@ function SingleOptionTab() {
               </thead>
               <tbody>
                 {scenarios.map(s => (
-                  <tr key={s.pct} className={`border-b border-border/50 ${s.pct === 0 ? "bg-muted/30" : ""}`}>
+                  <tr key={s.pct} className={`border-b border-border/20 ${s.pct === 0 ? "bg-muted/30" : ""}`}>
                     <td className="py-1 text-muted-foreground">{s.pct > 0 ? `+${s.pct}` : s.pct}%</td>
                     <td className="py-1 text-right text-muted-foreground">${s.S.toFixed(2)}</td>
                     <td className={`py-1 text-right font-mono ${clsNum(s.pnl)}`}>{fmtDollar(s.pnl)}</td>
@@ -858,7 +858,7 @@ function StrategyBuilderTab() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 max-h-40 overflow-y-auto">
             {Object.entries(presets).map(([name, preset]) => (
               <button key={name} onClick={() => applyPreset(name)}
-                className={`text-left p-2 rounded border text-xs text-muted-foreground transition-all ${selectedPreset === name ? "border-primary bg-muted/50" : "border-border bg-muted/50 hover:border-border"}`}>
+                className={`text-left p-2 rounded border text-xs text-muted-foreground transition-colors ${selectedPreset === name ? "border-primary bg-muted/50" : "border-border bg-muted/50 hover:border-border"}`}>
                 <div className="font-medium text-foreground truncate">{name}</div>
                 <div className="flex flex-wrap gap-0.5 mt-1">
                   {preset.tags.map(t => <span key={t} className={`px-1 py-0.5 rounded text-[11px] ${tagColors[t] ?? "bg-muted text-muted-foreground"}`}>{t}</span>)}
@@ -977,7 +977,7 @@ function VolatilityTab() {
                 const sig = d.ivPct > 75 ? { label: "Rich", cls: "text-amber-400" } : d.ivPct < 25 ? { label: "Cheap", cls: "text-emerald-400" } : { label: "Fair", cls: "text-muted-foreground" };
                 return (
                   <tr key={d.ticker} onClick={() => setSelectedTicker(d.ticker)}
-                    className={`border-b border-border/50 cursor-pointer hover:bg-muted/30 transition-colors ${d.ticker === selectedTicker ? "bg-muted/40" : ""}`}>
+                    className={`border-b border-border/20 cursor-pointer hover:bg-muted/30 transition-colors ${d.ticker === selectedTicker ? "bg-muted/40" : ""}`}>
                     <td className="py-1.5 pr-4 font-medium text-foreground">{d.ticker}</td>
                     <td className="py-1.5 pr-4 text-primary">{(d.iv * 100).toFixed(1)}%</td>
                     <td className="py-1.5 pr-4 text-muted-foreground">{(d.hv * 100).toFixed(1)}%</td>
@@ -1155,14 +1155,14 @@ function StrategyComparisonTab() {
                 { label: "Prob. of Profit", vals: metrics.map(m => `${(m.pop * 100).toFixed(1)}%`), colored: false },
                 { label: "Theta/Day", vals: metrics.map(m => fmtDollar(m.netTheta)), colored: true },
               ].map(row => (
-                <tr key={row.label} className="border-b border-border/50">
+                <tr key={row.label} className="border-b border-border/20">
                   <td className="py-1.5 text-muted-foreground">{row.label}</td>
                   {row.vals.map((v, i) => (
                     <td key={i} className={`py-1.5 text-right font-mono pr-4 ${row.colored ? (v.startsWith("+") ? "text-emerald-400" : v.startsWith("-") ? "text-red-400" : "text-muted-foreground") : "text-muted-foreground"}`}>{v}</td>
                   ))}
                 </tr>
               ))}
-              <tr className="border-b border-border/50">
+              <tr className="border-b border-border/20">
                 <td className="py-1.5 text-muted-foreground">Best For</td>
                 {selected.map(name => (
                   <td key={name} className="py-1.5 text-right pr-4">
@@ -1303,7 +1303,7 @@ function GreeksDashboardTab() {
                 const g = bsGreeks(spot, pos.strike, T, r, sigma, pos.type === "call");
                 const sign = pos.side === "long" ? 1 : -1;
                 return (
-                  <tr key={pos.id} className="border-b border-border/50">
+                  <tr key={pos.id} className="border-b border-border/20">
                     <td className="py-1.5 pr-2"><input value={pos.ticker} onChange={e => updatePos(pos.id, "ticker", e.target.value)} className="w-14 bg-muted border border-border rounded px-1 py-0.5 text-xs text-foreground" /></td>
                     <td className="pr-2"><select value={pos.side} onChange={e => updatePos(pos.id, "side", e.target.value)} className="bg-muted border border-border text-xs text-foreground rounded px-1 py-0.5">
                       <option value="long">Long</option><option value="short">Short</option>
@@ -1370,11 +1370,11 @@ export default function OptionsCalcPage() {
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="flex items-center gap-3 mb-1">
-            <div className="p-2 bg-primary/20 rounded-lg">
+            <div className="p-2 bg-muted/10 rounded-lg">
               <Calculator size={20} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Options Strategies Calculator</h1>
+              <h1 className="text-2xl font-semibold text-foreground">Options Strategies Calculator</h1>
               <p className="text-sm text-muted-foreground">Black-Scholes pricing · Interactive payoff diagrams · Multi-leg strategies</p>
             </div>
           </div>

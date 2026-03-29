@@ -241,7 +241,7 @@ function REITUniverseTab() {
           { label: "Avg Occupancy", value: `${fmt(REITS.reduce((a, r) => a + r.occupancy, 0) / REITS.length, 1)}%`, icon: <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" /> },
           { label: "Total Mkt Cap", value: fmtB(REITS.reduce((a, r) => a + r.marketCap, 0)),                        icon: <DollarSign className="w-4 h-4 text-amber-400" /> },
         ].map((s) => (
-          <Card key={s.label} className="bg-card/60 border-border/50">
+          <Card key={s.label} className="bg-card/60 border-border/20">
             <CardContent className="p-3 flex items-center gap-2">
               <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
               <div>
@@ -254,7 +254,7 @@ function REITUniverseTab() {
       </div>
 
       {/* Table */}
-      <Card className="bg-card/60 border-border/50 border-l-4 border-l-primary">
+      <Card className="bg-card/60 border-border/20 border-l-4 border-l-primary">
         <CardHeader className="p-4 pb-2">
           <CardTitle className="text-lg font-medium flex items-center gap-2">
             <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -265,7 +265,7 @@ function REITUniverseTab() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-border/50">
+                <tr className="border-b border-border/20">
                   <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Ticker / Name</th>
                   <th className="px-3 py-2 text-left text-xs font-medium text-muted-foreground">Sector</th>
                   <SortHdr label="Price"     k="price" />
@@ -286,7 +286,7 @@ function REITUniverseTab() {
                       key={r.ticker}
                       initial={{ opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="border-b border-border/30 hover:bg-muted/20 transition-colors"
+                      className="border-b border-border/20 hover:bg-muted/20 transition-colors"
                     >
                       <td className="px-3 py-2.5">
                         <div className="font-semibold text-foreground">{r.ticker}</div>
@@ -329,7 +329,7 @@ function REITUniverseTab() {
       </Card>
 
       {/* Sector Legend */}
-      <Card className="bg-card/60 border-border/50">
+      <Card className="bg-card/60 border-border/20">
         <CardContent className="p-3">
           <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1">
             <Info className="w-3 h-3" /> NAV Premium/Discount = (Market Price − NAV per share) / NAV per share × 100
@@ -400,7 +400,7 @@ function ValuationTab() {
   return (
     <div className="space-y-4">
       {/* NAV Calculator */}
-      <Card className="bg-card/60 border-border/50">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Calculator className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -432,7 +432,7 @@ function ValuationTab() {
                   type="number"
                   value={noi}
                   onChange={(e) => setNoi(Number(e.target.value))}
-                  className="w-full bg-muted/40 border border-border/50 rounded-md px-3 py-1.5 text-sm font-mono"
+                  className="w-full bg-muted/40 border border-border/20 rounded-md px-3 py-1.5 text-sm font-mono"
                 />
               </div>
             </div>
@@ -443,10 +443,10 @@ function ValuationTab() {
                 { label: "Implied Yield",         value: `${capRate.toFixed(1)}%`,         highlight: false },
                 { label: "Shares Outstanding",   value: "50,000,000",                     highlight: false },
               ].map((s) => (
-                <Card key={s.label} className={`border-border/40 ${s.highlight ? "bg-primary/10 border-primary/30" : "bg-muted/30"}`}>
+                <Card key={s.label} className={`border-border/20 ${s.highlight ? "bg-muted/10 border-primary/30" : "bg-muted/30"}`}>
                   <CardContent className="p-3">
                     <p className="text-xs text-muted-foreground">{s.label}</p>
-                    <p className={`text-base font-bold font-mono ${s.highlight ? "text-primary" : ""}`}>{s.value}</p>
+                    <p className={`text-base font-semibold font-mono ${s.highlight ? "text-primary" : ""}`}>{s.value}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -460,7 +460,7 @@ function ValuationTab() {
       </Card>
 
       {/* FFO vs AFFO Waterfall */}
-      <Card className="bg-card/60 border-border/50">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
             <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -510,7 +510,7 @@ function ValuationTab() {
       </Card>
 
       {/* P/FFO vs Historical Average */}
-      <Card className="bg-card/60 border-border/50">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
             <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -612,7 +612,7 @@ function DividendsTab() {
   return (
     <div className="space-y-4">
       {/* REIT selector chips */}
-      <Card className="bg-card/60 border-border/50">
+      <Card className="bg-card/60 border-border/20">
         <CardContent className="p-3 flex flex-wrap gap-2">
           <span className="text-xs text-muted-foreground my-auto">Viewing:</span>
           {REITS.map((r) => (
@@ -638,7 +638,7 @@ function DividendsTab() {
           { label: "AFFO Payout Ratio",    value: `${fmt(affoPayout, 1)}%`,          icon: <Percent className="w-4 h-4 text-amber-400" /> },
           { label: "Sustainability Score", value: `${sustainScore.toFixed(0)} / 100`, icon: <Activity className="w-3.5 h-3.5 text-muted-foreground/50" /> },
         ].map((s) => (
-          <Card key={s.label} className="bg-card/60 border-border/50">
+          <Card key={s.label} className="bg-card/60 border-border/20">
             <CardContent className="p-3 flex items-center gap-2">
               <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
               <div>
@@ -651,7 +651,7 @@ function DividendsTab() {
       </div>
 
       {/* Dividend history bar chart */}
-      <Card className="bg-card/60 border-border/50">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-emerald-400" />
@@ -719,7 +719,7 @@ function DividendsTab() {
 
       {/* Sustainability Gauge */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="bg-card/60 border-border/50">
+        <Card className="bg-card/60 border-border/20">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Activity className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -789,7 +789,7 @@ function DividendsTab() {
           </CardContent>
         </Card>
 
-        <Card className="bg-card/60 border-border/50">
+        <Card className="bg-card/60 border-border/20">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <Info className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -883,7 +883,7 @@ function PortfolioTab() {
           { label: "Portfolio Beta",  value: blendedBeta.toFixed(2),          icon: <Activity className="w-4 h-4 text-amber-400" /> },
           { label: "Sector Spread",   value: `${portfolio.length} Sectors`,  icon: <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" /> },
         ].map((s) => (
-          <Card key={s.label} className="bg-card/60 border-border/50">
+          <Card key={s.label} className="bg-card/60 border-border/20">
             <CardContent className="p-3 flex items-center gap-2">
               <div className="p-1.5 rounded-md bg-muted/50">{s.icon}</div>
               <div>
@@ -897,7 +897,7 @@ function PortfolioTab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Sector allocation donut */}
-        <Card className="bg-card/60 border-border/50">
+        <Card className="bg-card/60 border-border/20">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <PieChart className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -948,7 +948,7 @@ function PortfolioTab() {
         </Card>
 
         {/* Correlation table */}
-        <Card className="bg-card/60 border-border/50">
+        <Card className="bg-card/60 border-border/20">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
               <BarChart3 className="w-3.5 h-3.5 text-muted-foreground/50" />
@@ -986,7 +986,7 @@ function PortfolioTab() {
       </div>
 
       {/* Interest rate sensitivity */}
-      <Card className="bg-card/60 border-border/50">
+      <Card className="bg-card/60 border-border/20">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-rose-400" />
@@ -1059,7 +1059,7 @@ export default function REITsPage() {
         className="flex items-start justify-between gap-4"
       >
         <div>
-          <h1 className="text-xl font-bold flex items-center gap-2">
+          <h1 className="text-xl font-semibold flex items-center gap-2">
             <Building2 className="w-3.5 h-3.5 text-muted-foreground/50" />
             REIT Analysis & Portfolio
           </h1>

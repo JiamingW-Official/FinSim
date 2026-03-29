@@ -305,7 +305,7 @@ function PutCallDashboard({ data }: { data: PutCallData }) {
                   <p className="text-[11px] font-medium">{r.label}</p>
                   <p className="text-xs text-muted-foreground">{r.desc}</p>
                 </div>
-                <span className="font-mono tabular-nums text-sm font-bold shrink-0">
+                <span className="font-mono tabular-nums text-sm font-semibold shrink-0">
                   {r.value.toFixed(2)}
                 </span>
               </div>
@@ -320,7 +320,7 @@ function PutCallDashboard({ data }: { data: PutCallData }) {
 
       {/* Threshold legend */}
       <div className="rounded-lg bg-muted/30 p-3 space-y-1.5 text-xs">
-        <p className="font-medium text-[11px] text-muted-foreground uppercase tracking-wide">Signal Guide</p>
+        <p className="font-medium text-[11px] text-muted-foreground">Signal Guide</p>
         <div className="grid grid-cols-1 gap-1">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
@@ -402,7 +402,7 @@ function MarketBreadthSection({ data }: { data: BreadthData }) {
           return (
             <div key={item.label} className="bg-muted/40 rounded-lg p-3 space-y-1.5">
               <p className="text-[11px] font-medium">{item.label}</p>
-              <p className={cn("font-mono tabular-nums text-xl font-bold", isHealthy ? "text-emerald-500" : "text-red-400")}>
+              <p className={cn("font-mono tabular-nums text-xl font-semibold", isHealthy ? "text-emerald-500" : "text-red-400")}>
                 {item.value}%
               </p>
               <div className="h-1.5 bg-muted rounded-full overflow-hidden">
@@ -445,7 +445,7 @@ function MarketBreadthSection({ data }: { data: BreadthData }) {
       <div className="rounded-lg bg-muted/40 p-3 space-y-1.5">
         <div className="flex items-center justify-between text-xs">
           <span className="font-medium">McClellan Oscillator</span>
-          <span className={cn("font-mono tabular-nums font-bold", data.mcclellan > 0 ? "text-emerald-500" : "text-red-400")}>
+          <span className={cn("font-mono tabular-nums font-semibold", data.mcclellan > 0 ? "text-emerald-500" : "text-red-400")}>
             {data.mcclellan > 0 ? "+" : ""}{data.mcclellan}
           </span>
         </div>
@@ -630,7 +630,7 @@ function SentimentSummaryCard({
     )}>
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Market Temperature</h3>
-        <span className={cn("text-lg font-bold tracking-tight", temp.color)}>
+        <span className={cn("text-lg font-semibold tracking-tight", temp.color)}>
           {temp.label}
         </span>
       </div>
@@ -644,7 +644,7 @@ function SentimentSummaryCard({
               <div key={i} className={cn("h-full flex-1", c, "opacity-30")} />
             ))}
             <div
-              className="absolute inset-y-0 left-0 h-3 rounded-full transition-all"
+              className="absolute inset-y-0 left-0 h-3 rounded-full transition-colors"
               style={{ background: "linear-gradient(to right, #60a5fa, #fb923c)", width: `${thermometerWidth}%` }}
             />
           </div>
@@ -667,7 +667,7 @@ function SentimentSummaryCard({
 
       {/* Indicator breakdown */}
       <div className="space-y-1.5">
-        <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Indicator Breakdown</p>
+        <p className="text-[11px] font-medium text-muted-foreground">Indicator Breakdown</p>
         <div className="space-y-1">
           {indicators.map((ind) => (
             <div key={ind.name} className="flex items-start gap-2 text-xs">

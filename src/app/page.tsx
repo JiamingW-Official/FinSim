@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 
 const LandingDemoChart = dynamic(
   () => import("@/components/landing/LandingDemoChart").then((m) => m.LandingDemoChart),
-  { ssr: false, loading: () => <div className="h-[340px] rounded-md bg-card border border-border/30 animate-pulse" /> },
+  { ssr: false, loading: () => <div className="h-[340px] rounded-md bg-card border border-border/20 animate-pulse" /> },
 );
 
 const fadeUp = {
@@ -56,7 +56,7 @@ export default function LandingPage() {
           </div>
           <Link
             href="/home"
-            className="flex items-center gap-1.5 rounded-md bg-foreground/5 border border-border/30 px-4 py-1.5 text-xs font-medium text-foreground/80 transition-all duration-150 hover:bg-foreground/10 hover:text-foreground"
+            className="flex items-center gap-1.5 rounded-md bg-foreground/5 border border-border/20 px-4 py-1.5 text-xs font-medium text-foreground/80 transition-colors duration-150 hover:bg-foreground/10 hover:text-foreground"
           >
             Launch App
             <ArrowRight className="h-3 w-3" />
@@ -104,7 +104,7 @@ export default function LandingPage() {
         >
           <Link
             href="/home"
-            className="inline-flex items-center justify-center gap-2 rounded-md bg-foreground h-10 px-7 text-sm font-medium text-background transition-all duration-150 hover:bg-foreground/90 active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-2 rounded-md bg-foreground h-10 px-7 text-sm font-medium text-background transition-colors duration-150 hover:bg-foreground/90 active:scale-[0.98]"
           >
             Start Learning
             <ArrowRight className="h-3.5 w-3.5" />

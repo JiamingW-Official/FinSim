@@ -204,7 +204,7 @@ function WorldHeatmap() {
               top: tooltipPos.y + 8,
             }}
           >
-            <div className="font-bold text-foreground mb-1.5 text-sm">
+            <div className="font-semibold text-foreground mb-1.5 text-sm">
               {hovered.flag} {hovered.name}
             </div>
             <div className="space-y-1 text-muted-foreground">
@@ -277,7 +277,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
             <div
               key={opt}
               className={cn(
-                "flex-1 text-center py-1 px-1 rounded text-xs text-muted-foreground font-semibold transition-all",
+                "flex-1 text-center py-1 px-1 rounded text-xs text-muted-foreground font-semibold transition-colors",
                 opt === indicator.current
                   ? "text-background"
                   : "bg-muted text-muted-foreground"
@@ -290,7 +290,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
         </div>
         <div className="relative h-1.5 bg-muted rounded-full mb-2">
           <div
-            className="absolute top-0 left-0 h-full rounded-full transition-all"
+            className="absolute top-0 left-0 h-full rounded-full transition-colors"
             style={{ width: `${pct}%`, backgroundColor: indicator.color }}
           />
           <div
@@ -688,7 +688,7 @@ function PolicyDivergenceHeatmap() {
           className="flex flex-col items-center gap-1 p-1.5 rounded-lg bg-muted/60 border border-border"
         >
           <span className="text-lg">{bank.flag}</span>
-          <span className="text-xs font-bold text-muted-foreground">{bank.abbr}</span>
+          <span className="text-xs font-semibold text-muted-foreground">{bank.abbr}</span>
           <span className="text-xs text-muted-foreground">{bank.rate}%</span>
           <Badge
             className="text-[11px] px-1 py-0"
@@ -768,7 +768,7 @@ function MacroScorecard({ indicators }: { indicators: MacroIndicator[] }) {
       <CardContent className="p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="text-sm font-semibold text-foreground">Macro Expansion Scorecard</div>
-          <span className="text-2xl font-bold" style={{ color: pct >= 60 ? "#22c55e" : pct >= 40 ? "#eab308" : "#ef4444" }}>
+          <span className="text-2xl font-semibold" style={{ color: pct >= 60 ? "#22c55e" : pct >= 40 ? "#eab308" : "#ef4444" }}>
             {pct}%
           </span>
         </div>

@@ -151,7 +151,7 @@ export default function HomePage() {
         </p>
 
         {/* ── Market ticker strip ── */}
-        <div className="flex items-center gap-4 overflow-x-auto scrollbar-none mb-8">
+        <div className="flex items-center gap-4 overflow-x-auto scrollbar-none mb-4">
           {!mounted ? (
             OVERVIEW_TICKERS.map((t) => (
               <div key={t} className="flex shrink-0 items-center gap-2">
@@ -189,10 +189,10 @@ export default function HomePage() {
         </div>
 
         {/* ── Primary: Portfolio + Market Brief (2/3 + 1/3) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
 
           {/* Portfolio — dominant card */}
-          <div className="lg:col-span-2 rounded-lg border border-border/40 bg-card p-6">
+          <div className="lg:col-span-2 rounded-lg border border-border/20 bg-card p-4">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <p className="text-[11px] text-muted-foreground mb-1">Portfolio Value</p>
@@ -211,7 +211,7 @@ export default function HomePage() {
           </div>
 
           {/* Market brief — secondary */}
-          <div className="rounded-lg border border-border/40 bg-card p-5 flex flex-col justify-between">
+          <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col justify-between">
             <div>
               <p className="text-[11px] text-muted-foreground mb-3">Market Brief</p>
               <p className="text-xs leading-relaxed text-foreground/80">{marketBrief}</p>
@@ -234,10 +234,10 @@ export default function HomePage() {
         </div>
 
         {/* ── Secondary row: Recent Trades + Learning (2/3 + 1/3) ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
 
           {/* Recent trades */}
-          <div className="lg:col-span-2 rounded-lg border border-border/40 bg-card p-5">
+          <div className="lg:col-span-2 rounded-lg border border-border/20 bg-card p-4">
             <div className="flex items-center justify-between mb-3">
               <p className="text-[11px] text-muted-foreground">Recent Trades</p>
               {tradeHistory.length > 0 && <Link href="/portfolio" className="text-[11px] text-muted-foreground hover:text-foreground transition-colors">View all</Link>}
@@ -266,13 +266,13 @@ export default function HomePage() {
           </div>
 
           {/* Learning progress */}
-          <div className="rounded-lg border border-border/40 bg-card p-5 flex flex-col justify-between">
+          <div className="rounded-lg border border-border/20 bg-card p-4 flex flex-col justify-between">
             <div>
               <p className="text-[11px] text-muted-foreground mb-3">Learning</p>
               <p className="text-lg tabular-nums">{learnProgress.completed}<span className="text-muted-foreground text-sm">/{learnProgress.total}</span></p>
               <p className="text-[11px] text-muted-foreground mt-0.5">lessons completed</p>
               <div className="mt-3 h-1 overflow-hidden rounded-full bg-muted/30">
-                <div className="h-full rounded-full bg-foreground/20 transition-all duration-300" style={{ width: `${learnProgress.pct}%` }} />
+                <div className="h-full rounded-full bg-foreground/20 transition-colors duration-300" style={{ width: `${learnProgress.pct}%` }} />
               </div>
             </div>
             {nextLesson && (
@@ -303,7 +303,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <p className="mt-6 text-[11px] text-muted-foreground/30">All market data is simulated for educational purposes.</p>
+        <p className="mt-4 text-[11px] text-muted-foreground/30">All market data is simulated for educational purposes.</p>
 
       </div>
     </div>

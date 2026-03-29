@@ -48,10 +48,10 @@ export function QuestMilestoneTab() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: chainIdx * 0.06 }}
             className={cn(
-              "rounded-md border p-4 transition-all",
+              "rounded-md border p-4 transition-colors",
               isChainComplete
                 ? "border-emerald-500/20 bg-emerald-500/5"
-                : "border-border/50 bg-foreground/[0.02]",
+                : "border-border/20 bg-foreground/[0.02]",
             )}
           >
             {/* Chain header */}
@@ -64,7 +64,7 @@ export function QuestMilestoneTab() {
                 {CHAIN_ICONS[chain.icon] ?? <Star className="h-4 w-4" />}
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className={cn("text-sm font-bold", chain.color)}>{chain.name}</h3>
+                <h3 className={cn("text-sm font-semibold", chain.color)}>{chain.name}</h3>
                 {/* Progress bar for the chain */}
                 <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-foreground/5">
                   <motion.div
@@ -79,7 +79,7 @@ export function QuestMilestoneTab() {
                 </div>
               </div>
               <span className={cn(
-                "text-xs font-bold tabular-nums",
+                "text-xs font-semibold tabular-nums",
                 isChainComplete ? "text-emerald-400" : "text-muted-foreground/70",
               )}>
                 {claimedCount}/{chainQuests.length}
@@ -126,7 +126,7 @@ export function QuestMilestoneTab() {
                         animate={{ scale: 1 }}
                         transition={{ delay: i * 0.08, type: "spring", stiffness: 400, damping: 20 }}
                         className={cn(
-                          "flex h-10 w-10 items-center justify-center rounded-full border-2 transition-all",
+                          "flex h-10 w-10 items-center justify-center rounded-full border-2 transition-colors",
                           isClaimed
                             ? "border-emerald-500 bg-emerald-500/20 text-emerald-400"
                             : isComplete
@@ -148,11 +148,11 @@ export function QuestMilestoneTab() {
                       {/* Tooltip */}
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-10 pointer-events-none">
                         <div className="rounded-lg border border-border bg-card px-3 py-2 shadow-sm whitespace-nowrap">
-                          <p className="text-xs font-bold text-foreground">{quest.name}</p>
+                          <p className="text-xs font-semibold text-foreground">{quest.name}</p>
                           <p className="text-xs text-muted-foreground mt-0.5">{quest.description}</p>
                           <div className="flex items-center gap-1 mt-1">
                             <Star className="h-2.5 w-2.5 text-amber-400" />
-                            <span className="text-xs font-bold text-amber-400">+{quest.xpReward} XP</span>
+                            <span className="text-xs font-semibold text-amber-400">+{quest.xpReward} XP</span>
                           </div>
                           {isClaimed && (
                             <span className="text-[11px] text-emerald-400 mt-0.5 block">Claimed</span>

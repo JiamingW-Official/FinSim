@@ -695,7 +695,7 @@ export function BlackLitterman() {
   return (
     <div className="space-y-5 text-[12px]">
       {/* ── Section 1: Market Equilibrium ─────────────────────────────────── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-semibold text-foreground">Section 1: Market Equilibrium (CAPM Prior)</h3>
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -744,14 +744,14 @@ export function BlackLitterman() {
       </div>
 
       {/* ── Section 2: Investor Views ─────────────────────────────────────── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-3">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-3">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-semibold text-foreground">Section 2: Investor Views (P, Q, Ω)</h3>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={loadExamples}
-              className="flex items-center gap-1 rounded-md border border-border/40 bg-background px-2 py-1 text-xs hover:bg-muted transition-colors"
+              className="flex items-center gap-1 rounded-md border border-border/20 bg-background px-2 py-1 text-xs hover:bg-muted transition-colors"
             >
               <Lightbulb className="h-3 w-3 text-amber-400" />
               Example Views
@@ -759,7 +759,7 @@ export function BlackLitterman() {
             <button
               type="button"
               onClick={() => setViews([])}
-              className="flex items-center gap-1 rounded-md border border-border/40 bg-background px-2 py-1 text-xs hover:bg-muted transition-colors"
+              className="flex items-center gap-1 rounded-md border border-border/20 bg-background px-2 py-1 text-xs hover:bg-muted transition-colors"
             >
               <X className="h-3 w-3 text-muted-foreground" />
               Clear All
@@ -789,7 +789,7 @@ export function BlackLitterman() {
 
         <div className="space-y-2">
           {views.map((view, vi) => (
-            <div key={view.id} className="rounded-md border border-border/40 bg-background/60 p-3 space-y-2">
+            <div key={view.id} className="rounded-md border border-border/20 bg-background/60 p-3 space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-semibold text-muted-foreground">View {vi + 1}</span>
                 <button type="button" onClick={() => removeView(view.id)} className="text-muted-foreground/50 hover:text-red-400 transition-colors">
@@ -798,7 +798,7 @@ export function BlackLitterman() {
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 {/* Type toggle */}
-                <div className="flex rounded-md overflow-hidden border border-border/40 text-xs">
+                <div className="flex rounded-md overflow-hidden border border-border/20 text-xs">
                   {(["absolute", "relative"] as ViewType[]).map((t) => (
                     <button
                       key={t}
@@ -818,7 +818,7 @@ export function BlackLitterman() {
                 <select
                   value={view.asset1}
                   onChange={(e) => updateView(view.id, { asset1: e.target.value as Asset })}
-                  className="rounded border border-border/40 bg-background px-1.5 py-1 text-xs text-foreground"
+                  className="rounded border border-border/20 bg-background px-1.5 py-1 text-xs text-foreground"
                 >
                   {ASSETS.map((a) => (
                     <option key={a} value={a}>{a}</option>
@@ -831,7 +831,7 @@ export function BlackLitterman() {
                     <select
                       value={view.asset2}
                       onChange={(e) => updateView(view.id, { asset2: e.target.value as Asset })}
-                      className="rounded border border-border/40 bg-background px-1.5 py-1 text-xs text-foreground"
+                      className="rounded border border-border/20 bg-background px-1.5 py-1 text-xs text-foreground"
                     >
                       {ASSETS.filter((a) => a !== view.asset1).map((a) => (
                         <option key={a} value={a}>{a}</option>
@@ -854,7 +854,7 @@ export function BlackLitterman() {
                     step={0.5}
                     value={view.expectedReturn}
                     onChange={(e) => updateView(view.id, { expectedReturn: parseFloat(e.target.value) || 0 })}
-                    className="w-14 rounded border border-border/40 bg-background px-1.5 py-1 text-xs text-foreground text-right tabular-nums"
+                    className="w-14 rounded border border-border/20 bg-background px-1.5 py-1 text-xs text-foreground text-right tabular-nums"
                   />
                   <span className="text-muted-foreground text-xs">%</span>
                 </div>
@@ -886,7 +886,7 @@ export function BlackLitterman() {
       </div>
 
       {/* ── Section 3: BL Combined Returns ───────────────────────────────── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
         <h3 className="text-xs font-semibold text-foreground">Section 3: Black-Litterman Combined Returns</h3>
 
         <div className="text-xs text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono space-y-0.5">
@@ -913,11 +913,11 @@ export function BlackLitterman() {
               const isPos = tilt > 0.0001;
               const isNeg = tilt < -0.0001;
               return (
-                <div key={a} className="rounded border border-border/40 bg-background/50 px-2 py-1.5 text-center">
+                <div key={a} className="rounded border border-border/20 bg-background/50 px-2 py-1.5 text-center">
                   <div className="text-[11px] text-muted-foreground font-medium">{a}</div>
                   <div
                     className={cn(
-                      "text-xs font-bold tabular-nums",
+                      "text-xs font-semibold tabular-nums",
                       isPos ? "text-emerald-400" : isNeg ? "text-red-400" : "text-muted-foreground",
                     )}
                   >
@@ -932,7 +932,7 @@ export function BlackLitterman() {
       </div>
 
       {/* ── Section 4: Optimal Portfolio Weights ─────────────────────────── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
         <h3 className="text-xs font-semibold text-foreground">Section 4: Optimal Portfolio Weights</h3>
         <div className="text-xs text-muted-foreground bg-muted/30 rounded px-3 py-2 font-mono">
           w* ∝ Σ⁻¹ × μ_BL &nbsp;|&nbsp; constraints: long-only, max 30% per asset
@@ -948,7 +948,7 @@ export function BlackLitterman() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40">
+              <tr className="border-b border-border/20">
                 <th className="text-left py-1.5 pr-3 text-muted-foreground font-medium">Asset</th>
                 <th className="text-right py-1.5 px-2 text-muted-foreground font-medium">Market Cap</th>
                 <th className="text-right py-1.5 px-2 text-muted-foreground font-medium">Before Views</th>
@@ -962,7 +962,7 @@ export function BlackLitterman() {
                 const isPos = change > 0.001;
                 const isNeg = change < -0.001;
                 return (
-                  <tr key={a} className="border-b border-border/30 hover:bg-muted/20">
+                  <tr key={a} className="border-b border-border/20 hover:bg-muted/20">
                     <td className="py-1.5 pr-3 font-semibold text-foreground">{a}</td>
                     <td className="text-right px-2 tabular-nums text-muted-foreground">
                       {(result.marketCapWeights[i] * 100).toFixed(1)}%
@@ -971,7 +971,7 @@ export function BlackLitterman() {
                     <td className="text-right px-2 tabular-nums font-semibold">{(result.blWeights[i] * 100).toFixed(1)}%</td>
                     <td
                       className={cn(
-                        "text-right pl-2 tabular-nums font-bold",
+                        "text-right pl-2 tabular-nums font-semibold",
                         isPos ? "text-emerald-400" : isNeg ? "text-red-400" : "text-muted-foreground",
                       )}
                     >
@@ -987,14 +987,14 @@ export function BlackLitterman() {
       </div>
 
       {/* ── Section 5: Portfolio Statistics ──────────────────────────────── */}
-      <div className="rounded-lg border border-border/40 bg-card p-4 space-y-4">
+      <div className="rounded-lg border border-border/20 bg-card p-4 space-y-4">
         <h3 className="text-xs font-semibold text-foreground">Section 5: Portfolio Statistics Comparison</h3>
 
         {/* Stats table */}
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-border/40">
+              <tr className="border-b border-border/20">
                 <th className="text-left py-1.5 pr-3 text-muted-foreground font-medium">Portfolio</th>
                 <th className="text-right py-1.5 px-2 text-muted-foreground font-medium">Exp. Return</th>
                 <th className="text-right py-1.5 px-2 text-muted-foreground font-medium">Volatility</th>
@@ -1008,7 +1008,7 @@ export function BlackLitterman() {
                   <tr
                     key={s.label}
                     className={cn(
-                      "border-b border-border/30",
+                      "border-b border-border/20",
                       isBL ? "bg-indigo-500/8 font-semibold" : "hover:bg-muted/20",
                     )}
                   >
@@ -1023,7 +1023,7 @@ export function BlackLitterman() {
                     </td>
                     <td
                       className={cn(
-                        "text-right pl-2 tabular-nums font-bold",
+                        "text-right pl-2 tabular-nums font-semibold",
                         s.sharpe > 0.5 ? "text-emerald-400" : s.sharpe > 0 ? "text-amber-400" : "text-red-400",
                       )}
                     >

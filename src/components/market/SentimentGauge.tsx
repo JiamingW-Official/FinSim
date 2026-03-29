@@ -121,7 +121,7 @@ function ComponentBar({ name, value, signal }: { name: string; value: number; si
       </div>
       <div className="h-1.5 w-full rounded-full bg-muted">
         <div
-          className={cn("h-full rounded-full transition-all duration-300", barColor)}
+          className={cn("h-full rounded-full transition-colors duration-300", barColor)}
           style={{ width: `${Math.max(2, value)}%` }}
         />
       </div>

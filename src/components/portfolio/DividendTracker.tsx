@@ -138,7 +138,7 @@ function CompoundingCalc({
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">10-Year Projection</p>
+        <p className="text-xs font-semibold text-muted-foreground">10-Year Projection</p>
         <div className="text-right">
           <p className="text-sm font-semibold text-emerald-400">
             ${(finalValue / 1000).toFixed(1)}K
@@ -234,7 +234,7 @@ function IncomeBar({ stocks }: { stocks: DividendStock[] }) {
 
   return (
     <div>
-      <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Monthly Income Distribution</p>
+      <p className="text-xs font-medium text-muted-foreground mb-2">Monthly Income Distribution</p>
       <div className="flex items-end gap-1 h-12">
         {monthlyIncome.map((inc, m) => {
           const height = maxIncome > 0 ? (inc / maxIncome) * 100 : 0;
@@ -243,7 +243,7 @@ function IncomeBar({ stocks }: { stocks: DividendStock[] }) {
               <div className="w-full flex items-end justify-center" style={{ height: 40 }}>
                 <div
                   className={cn(
-                    "w-full rounded-t-sm transition-all duration-300",
+                    "w-full rounded-t-sm transition-colors duration-300",
                     m === currentMonth ? "bg-primary" : "bg-muted-foreground/30",
                   )}
                   style={{ height: `${height}%` }}
@@ -279,7 +279,7 @@ export function DividendTracker() {
   const selectedStock = DIVIDEND_STOCKS.find((s) => s.ticker === selectedTicker) ?? DIVIDEND_STOCKS[0];
 
   return (
-    <div className="rounded-lg border border-border/40 bg-card p-4 space-y-5">
+    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-5">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold">Dividend Tracker</h3>
         <span className="text-xs text-muted-foreground">Income Portfolio</span>
@@ -305,7 +305,7 @@ export function DividendTracker() {
 
       {/* Holdings table */}
       <div>
-        <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Holdings</p>
+        <p className="text-xs font-medium text-muted-foreground mb-2">Holdings</p>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -346,7 +346,7 @@ export function DividendTracker() {
       </div>
 
       {/* Compounding calculator */}
-      <div className="rounded-lg border border-border/40 bg-muted/20 p-3">
+      <div className="rounded-lg border border-border/20 bg-muted/20 p-3">
         <CompoundingCalc
           annualIncome={totalAnnualIncome}
           totalMarketValue={totalMarketValue}
@@ -356,7 +356,7 @@ export function DividendTracker() {
 
       {/* Historical dividends per stock */}
       <div>
-        <p className="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Historical Dividends (Last 4 Quarters)</p>
+        <p className="text-xs font-medium text-muted-foreground mb-2">Historical Dividends (Last 4 Quarters)</p>
         <div className="flex gap-1 mb-3 flex-wrap">
           {DIVIDEND_STOCKS.map((s) => (
             <button

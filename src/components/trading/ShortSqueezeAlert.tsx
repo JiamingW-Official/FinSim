@@ -84,7 +84,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
           className={cn("rounded-md border p-3 space-y-2.5", className,
             isPotentialSqueeze
               ? "border-warning/50 bg-warning/5"
-              : "border-border/40 bg-muted/20",
+              : "border-border/20 bg-muted/20",
           )}
         >
           {/* Header */}
@@ -103,7 +103,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               {isPotentialSqueeze ? "Potential Short Squeeze" : "Short Interest Monitor"}
             </span>
             {isExtremeShort && priceRising && (
-              <span className="ml-auto rounded bg-loss px-1.5 py-0.5 text-[11px] font-bold text-foreground">
+              <span className="ml-auto rounded bg-loss px-1.5 py-0.5 text-[11px] font-semibold text-foreground">
                 EXTREME
               </span>
             )}
@@ -215,7 +215,7 @@ export function ShortSqueezeAlert({ className }: ShortSqueezeAlertProps) {
               {SQUEEZE_EXAMPLES.slice(0, 2).map((ex) => (
                 <div
                   key={ex.ticker}
-                  className="rounded-md border border-border/30 bg-muted/30 p-2 text-xs"
+                  className="rounded-md border border-border/20 bg-muted/30 p-2 text-xs"
                 >
                   <div className="flex items-center justify-between mb-0.5">
                     <span className="font-semibold text-warning">

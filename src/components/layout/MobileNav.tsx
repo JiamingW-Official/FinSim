@@ -38,7 +38,7 @@ export function MobileNav() {
         <div className="fixed inset-0 z-40 md:hidden" onClick={() => setShowMore(false)}>
           <div className="absolute inset-0 bg-black/50" />
           <div
-            className="absolute bottom-14 left-0 right-0 bg-card border-t border-border/40 rounded-t-xl p-3 grid grid-cols-3 gap-2"
+            className="absolute bottom-14 left-0 right-0 bg-card border-t border-border/20 rounded-t-xl p-3 grid grid-cols-3 gap-2"
             onClick={(e) => e.stopPropagation()}
           >
             {MORE_NAV.map((item) => (
@@ -63,7 +63,7 @@ export function MobileNav() {
       {/* Bottom nav bar */}
       <nav
         aria-label="Mobile navigation"
-        className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden h-14 items-center justify-around border-t border-border/50 bg-card/95 backdrop-blur-sm px-1 pb-[env(safe-area-inset-bottom)]"
+        className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden h-14 items-center justify-around border-t border-border/20 bg-card/95 backdrop-blur-sm px-1 pb-[env(safe-area-inset-bottom)]"
       >
         {PRIMARY_NAV.map((item) => {
           const isActive = pathname === item.href;

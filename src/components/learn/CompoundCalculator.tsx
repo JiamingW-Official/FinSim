@@ -56,7 +56,7 @@ export function CompoundCalculator() {
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-1">
         <Calculator className="h-4 w-4 text-primary" />
-        <h3 className="text-sm font-bold">Compound Interest Calculator</h3>
+        <h3 className="text-sm font-semibold">Compound Interest Calculator</h3>
       </div>
       <p className="text-xs text-muted-foreground">
         See how your money grows over time with the power of compound interest.
@@ -122,7 +122,7 @@ export function CompoundCalculator() {
       </div>
 
       {/* Chart */}
-      <div className="rounded-lg border border-border/50 bg-card/30 p-3">
+      <div className="rounded-lg border border-border/20 bg-card/30 p-3">
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full h-40" preserveAspectRatio="none">
           {/* Grid */}
           {[0, 40, 80, 120, 160].map((y) => (
@@ -203,7 +203,7 @@ export function CompoundCalculator() {
       {/* Insight */}
       <div className="rounded-lg border border-primary/10 bg-primary/5 p-3">
         <p className="text-xs text-foreground/70 leading-relaxed">
-          <span className="font-bold text-primary">
+          <span className="font-semibold text-primary">
             {((result.totalInterest / result.totalContributed) * 100).toFixed(0)}% of your final balance
           </span>{" "}
           comes from compound interest — money your money earned for you. Starting early and staying
@@ -232,7 +232,7 @@ function InputField({
   step: number;
 }) {
   return (
-    <div className="rounded-lg border border-border/50 bg-card/30 p-2.5">
+    <div className="rounded-lg border border-border/20 bg-card/30 p-2.5">
       <div className="flex items-center gap-1 mb-1">
         {icon}
         <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
@@ -244,7 +244,7 @@ function InputField({
         min={min}
         max={max}
         step={step}
-        className="w-full bg-transparent text-sm font-bold tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+        className="w-full bg-transparent text-sm font-semibold tabular-nums outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       />
       <input
         type="range"
@@ -269,9 +269,9 @@ function ResultCard({
   className?: string;
 }) {
   return (
-    <div className="rounded-lg border border-border/50 bg-card/30 p-2.5 text-center">
+    <div className="rounded-lg border border-border/20 bg-card/30 p-2.5 text-center">
       <div className="text-[11px] text-muted-foreground mb-0.5">{label}</div>
-      <div className={cn("text-xs font-bold tabular-nums", className)}>{value}</div>
+      <div className={cn("text-xs font-semibold tabular-nums", className)}>{value}</div>
     </div>
   );
 }

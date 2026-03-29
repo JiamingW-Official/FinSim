@@ -56,7 +56,7 @@ export function TradeConfirmDialog({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onCancel()}>
-      <DialogContent className="glass max-w-xs border-border/50 p-0">
+      <DialogContent className="glass max-w-xs border-border/20 p-0">
         {/* Colored header banner */}
         <div
           className={cn(
@@ -67,7 +67,7 @@ export function TradeConfirmDialog({
           <DialogHeader>
             <DialogTitle
               className={cn(
-                "text-sm font-bold",
+                "text-sm font-semibold",
                 isBuy ? "text-profit" : "text-loss",
               )}
             >
@@ -79,7 +79,7 @@ export function TradeConfirmDialog({
         <div className="space-y-3 px-4 pb-4">
           {/* Ticker + Type */}
           <div className="flex items-center justify-between">
-            <span className="text-sm font-bold">{ticker}</span>
+            <span className="text-sm font-semibold">{ticker}</span>
             <span className="rounded bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
               {typeLabel}
             </span>
@@ -96,7 +96,7 @@ export function TradeConfirmDialog({
               label={isBuy ? "Est. Cost" : "Est. Proceeds"}
               value={formatCurrency(subtotal)}
             />
-            <div className="my-1 border-t border-border/50" />
+            <div className="my-1 border-t border-border/20" />
             <Row
               label="Commission"
               value={formatCurrency(commission)}
@@ -109,7 +109,7 @@ export function TradeConfirmDialog({
                 muted
               />
             )}
-            <div className="my-1 border-t border-border/50" />
+            <div className="my-1 border-t border-border/20" />
             <div className="flex items-center justify-between font-semibold">
               <span>Total</span>
               <span className="tabular-nums">{formatCurrency(total)}</span>

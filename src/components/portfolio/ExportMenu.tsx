@@ -133,12 +133,12 @@ export function ExportMenu() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.95 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-md border border-border/40 bg-card shadow-sm"
+            className="absolute right-0 top-full z-50 mt-1 w-56 overflow-hidden rounded-md border border-border/20 bg-card shadow-sm"
           >
-            <div className="px-3 py-2 text-xs font-bold text-muted-foreground">
+            <div className="px-3 py-2 text-xs font-semibold text-muted-foreground">
               Export & Share
             </div>
-            <div className="border-t border-border/50">
+            <div className="border-t border-border/20">
               {ITEMS.map((item) => (
                 <button
                   key={item.label}
@@ -148,7 +148,7 @@ export function ExportMenu() {
                 >
                   <item.icon className={cn("h-3.5 w-3.5", item.color)} />
                   <div>
-                    <p className="text-[11px] font-bold">{item.label}</p>
+                    <p className="text-[11px] font-semibold">{item.label}</p>
                     <p className="text-[11px] text-muted-foreground">
                       {item.description}
                     </p>

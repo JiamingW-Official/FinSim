@@ -19,7 +19,7 @@ export function DailyGoal({ compact }: DailyGoalProps) {
     return (
       <div className="flex items-center gap-1.5">
         <ProgressRing progress={progress} size={20} strokeWidth={2.5}>
-          <span className="text-[7px] font-bold">{dailyLessonsCompleted}</span>
+          <span className="text-[7px] font-semibold">{dailyLessonsCompleted}</span>
         </ProgressRing>
         <span className="text-xs text-muted-foreground">
           {dailyLessonsCompleted}/{dailyGoal}
@@ -35,7 +35,7 @@ export function DailyGoal({ compact }: DailyGoalProps) {
       transition={{ duration: 0.5, type: "tween" }}
     >
       <ProgressRing progress={progress} size={40} strokeWidth={3.5}>
-        <span className="text-xs font-bold">{dailyLessonsCompleted}</span>
+        <span className="text-xs font-semibold">{dailyLessonsCompleted}</span>
       </ProgressRing>
       <div>
         <p className="text-xs font-semibold">

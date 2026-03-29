@@ -196,7 +196,7 @@ function VolSurface3D() {
   ];
 
   return (
-    <div className="rounded-md border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-md border border-border/20 bg-card p-4 space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-foreground">3D Volatility Surface</p>
@@ -207,7 +207,7 @@ function VolSurface3D() {
             <button
               key={m.id}
               onClick={() => setMode(m.id)}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                 mode === m.id
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:text-foreground"
@@ -366,7 +366,7 @@ function PnlAttribution() {
   const zero = W / 2;
 
   return (
-    <div className="rounded-md border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-md border border-border/20 bg-card p-4 space-y-4">
       <div>
         <p className="text-sm font-semibold text-foreground">Greeks P&L Attribution</p>
         <p className="text-xs text-muted-foreground">Long 1 ATM call (S=$100, K=$100, 30DTE, σ=30%)</p>
@@ -641,7 +641,7 @@ function DeltaHedgingSimulator() {
   const rehedgeCount = hedgeData.filter((d) => d.rehedged).length;
 
   return (
-    <div className="rounded-md border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-md border border-border/20 bg-card p-4 space-y-4">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-semibold text-foreground">Delta Hedging Simulation</p>
@@ -827,7 +827,7 @@ function VolTradingMechanics() {
   }, [regime, rv]);
 
   return (
-    <div className="rounded-md border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-md border border-border/20 bg-card p-4 space-y-4">
       <div>
         <p className="text-sm font-semibold text-foreground">Volatility Trading Mechanics</p>
         <p className="text-xs text-muted-foreground">Long straddle (ATM call + put) — how realized vs implied vol drives P&L</p>
@@ -839,7 +839,7 @@ function VolTradingMechanics() {
           <button
             key={key}
             onClick={() => setRegime(key)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors border ${
               regime === key
                 ? "bg-card border-border text-foreground"
                 : "bg-muted border-transparent text-muted-foreground hover:text-foreground"
@@ -885,7 +885,7 @@ function VolTradingMechanics() {
           {rvCalcs.map((c) => (
             <div key={c.label} className="flex-1 rounded-lg bg-muted p-2 text-center">
               <p className="text-xs text-muted-foreground">{c.label}</p>
-              <p className={`text-sm font-mono font-bold ${c.rv < iv ? "text-emerald-500" : "text-red-500"}`}>
+              <p className={`text-sm font-mono font-semibold ${c.rv < iv ? "text-emerald-500" : "text-red-500"}`}>
                 {(c.rv * 100).toFixed(1)}%
               </p>
               <p className="text-xs text-muted-foreground">{c.rv < iv ? "< IV" : "> IV"}</p>
@@ -893,7 +893,7 @@ function VolTradingMechanics() {
           ))}
           <div className="flex-1 rounded-lg bg-muted p-2 text-center">
             <p className="text-xs text-muted-foreground">Straddle Gamma</p>
-            <p className="text-sm font-mono font-bold text-foreground">{(stradGamma * 100).toFixed(4)}</p>
+            <p className="text-sm font-mono font-semibold text-foreground">{(stradGamma * 100).toFixed(4)}</p>
           </div>
         </div>
       </div>
@@ -974,7 +974,7 @@ function SkewTradingPanel() {
   function smileSy(iv: number) { return padT + cH - ((iv - ivMin) / (ivMax - ivMin)) * cH; }
 
   return (
-    <div className="rounded-md border border-border/40 bg-card p-4 space-y-4">
+    <div className="rounded-md border border-border/20 bg-card p-4 space-y-4">
       <div>
         <p className="text-sm font-semibold text-foreground">Risk Reversal & Skew Trading</p>
         <p className="text-xs text-muted-foreground">25-delta risk reversal: sell OTM put, buy OTM call</p>
@@ -1051,7 +1051,7 @@ function SkewTradingPanel() {
             <button
               key={key}
               onClick={() => setScenario(key as typeof scenario)}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-all ${
+              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
                 scenario === key
                   ? "bg-primary text-primary-foreground"
                   : "bg-muted text-muted-foreground hover:text-foreground"
@@ -1107,12 +1107,12 @@ export default function GreeksSimulator() {
   return (
     <div className="space-y-4">
       {/* Section nav */}
-      <div className="rounded-md border border-border/40 bg-card p-1 flex flex-wrap gap-1">
+      <div className="rounded-md border border-border/20 bg-card p-1 flex flex-wrap gap-1">
         {SECTIONS.map((s) => (
           <button
             key={s.id}
             onClick={() => setActive(s.id)}
-            className={`flex-1 min-w-[100px] flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-medium transition-all ${
+            className={`flex-1 min-w-[100px] flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg text-xs font-medium transition-colors ${
               active === s.id
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:text-foreground hover:bg-muted"

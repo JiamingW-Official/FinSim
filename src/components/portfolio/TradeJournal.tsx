@@ -35,7 +35,7 @@ export function TradeJournal() {
       {tradeHistory.slice(0, 100).map((trade) => (
         <div
           key={trade.id}
-          className="rounded border border-border/50 bg-card p-2.5 text-xs"
+          className="rounded border border-border/20 bg-card p-2.5 text-xs"
         >
           {/* Trade row — clickable to expand */}
           <button

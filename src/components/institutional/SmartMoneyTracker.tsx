@@ -278,7 +278,7 @@ function FilingTracker() {
             <div className="overflow-x-auto">
               <table className="w-full text-xs min-w-[420px]">
                 <thead>
-                  <tr className="border-b border-border/40 text-xs text-muted-foreground">
+                  <tr className="border-b border-border/20 text-xs text-muted-foreground">
                     <th className="text-left p-2.5 font-medium">Ticker</th>
                     <th className="text-right p-2.5 font-medium">Value</th>
                     <th className="text-right p-2.5 font-medium">% Portfolio</th>
@@ -444,7 +444,7 @@ function GuroPicks() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="overflow-hidden border-t border-border/40"
+                    className="overflow-hidden border-t border-border/20"
                   >
                     <div className="px-4 py-3 space-y-3">
                       {/* Track record bars */}
@@ -676,7 +676,7 @@ function CongressTracker() {
       <div className="rounded-lg border border-border/60 bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[520px]">
           <thead>
-            <tr className="border-b border-border/40 text-xs text-muted-foreground">
+            <tr className="border-b border-border/20 text-xs text-muted-foreground">
               <th className="text-left p-2.5 font-medium">Representative</th>
               <th className="text-left p-2.5 font-medium">Ticker</th>
               <th className="text-left p-2.5 font-medium">Type</th>
@@ -838,7 +838,7 @@ function ShortInterest() {
       <div className="rounded-lg border border-border/60 bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[560px]">
           <thead>
-            <tr className="border-b border-border/40 text-xs text-muted-foreground">
+            <tr className="border-b border-border/20 text-xs text-muted-foreground">
               <th className="text-left p-2.5 font-medium">Ticker</th>
               <th className="text-right p-2.5 font-medium">Short Float</th>
               <th className="text-right p-2.5 font-medium">Days Cover</th>
@@ -873,7 +873,7 @@ function ShortInterest() {
                   </td>
                   <td className="p-2.5">
                     <div className="w-full h-3 bg-muted/30 rounded-full overflow-hidden">
-                      <div className={cn("h-full rounded-full transition-all", painColor)} style={{ width: `${painW}%` }} />
+                      <div className={cn("h-full rounded-full transition-colors", painColor)} style={{ width: `${painW}%` }} />
                     </div>
                     <p className="text-[11px] text-muted-foreground mt-0.5">{row.painMeter.toFixed(1)}</p>
                   </td>
@@ -906,7 +906,7 @@ function ShortInterest() {
         <div className="space-y-3">
           {HISTORICAL_SQUEEZES.map((sq) => (
             <div key={sq.ticker} className="flex items-start gap-3">
-              <span className="text-lg font-bold text-foreground shrink-0 w-12">{sq.ticker}</span>
+              <span className="text-lg font-semibold text-foreground shrink-0 w-12">{sq.ticker}</span>
               <div>
                 <p className="text-emerald-400 font-semibold text-xs">{sq.peak}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{sq.catalyst}</p>
@@ -1086,7 +1086,7 @@ function InstitutionalOptions() {
       <div className="rounded-lg border border-border/60 bg-card overflow-x-auto">
         <table className="w-full text-xs min-w-[600px]">
           <thead>
-            <tr className="border-b border-border/40 text-xs text-muted-foreground">
+            <tr className="border-b border-border/20 text-xs text-muted-foreground">
               <th className="text-left p-2.5 font-medium">Institution</th>
               <th className="text-left p-2.5 font-medium">Ticker</th>
               <th className="text-left p-2.5 font-medium">Contract</th>
@@ -1189,7 +1189,7 @@ export default function SmartMoneyTracker() {
 
       {/* Main tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="flex h-auto flex-wrap gap-1 bg-transparent p-0 mb-4">
+        <TabsList className="bg-transparent border-b border-border/20 rounded-none p-0 h-auto mb-4">
           {[
             { value: "13f", label: "13F Filings" },
             { value: "gurus", label: "Guru Picks" },
@@ -1200,7 +1200,7 @@ export default function SmartMoneyTracker() {
             <TabsTrigger
               key={tab.value}
               value={tab.value}
-              className="rounded-full border border-border/60 bg-muted/30 px-3 py-1.5 text-xs data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary"
+              className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
             >
               {tab.label}
             </TabsTrigger>

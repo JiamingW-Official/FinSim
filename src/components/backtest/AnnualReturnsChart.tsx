@@ -90,7 +90,7 @@ export default function AnnualReturnsChart({ result }: Props) {
 
   return (
     <div className="space-y-2">
-      <div className="overflow-hidden rounded-lg border border-border/50 bg-black/20 p-2">
+      <div className="overflow-hidden rounded-lg border border-border/20 bg-black/20 p-2">
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full" style={{ height: 145 }}>
           {/* Horizontal grid */}
           {tickVals.map((v) => {
@@ -200,14 +200,14 @@ export default function AnnualReturnsChart({ result }: Props) {
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2">
           <div className="text-[11px] text-amber-500/70">Best Year</div>
-          <div className="text-sm font-bold text-amber-400">{bestYear.year}</div>
+          <div className="text-sm font-semibold text-amber-400">{bestYear.year}</div>
           <div className="text-xs text-muted-foreground">
             +{bestYear.strategy.toFixed(1)}% vs SPY {bestYear.spy > 0 ? "+" : ""}{bestYear.spy.toFixed(1)}%
           </div>
         </div>
         <div className="rounded-lg border border-rose-500/20 bg-rose-500/5 px-3 py-2">
           <div className="text-[11px] text-rose-500/70">Worst Year</div>
-          <div className="text-sm font-bold text-rose-400">{worstYear.year}</div>
+          <div className="text-sm font-semibold text-rose-400">{worstYear.year}</div>
           <div className="text-xs text-muted-foreground">
             {worstYear.strategy.toFixed(1)}% vs SPY {worstYear.spy > 0 ? "+" : ""}{worstYear.spy.toFixed(1)}%
           </div>

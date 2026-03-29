@@ -49,7 +49,7 @@ export function RecentActivity() {
               <IconComp className={cn("h-3 w-3", n.color)} />
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-[11px] font-bold truncate">{n.title}</p>
+              <p className="text-[11px] font-semibold truncate">{n.title}</p>
               {n.description && (
                 <p className="text-[11px] text-muted-foreground truncate">{n.description}</p>
               )}

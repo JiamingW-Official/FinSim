@@ -468,8 +468,8 @@ function PerformanceTable({ sectors }: { sectors: SectorData[] }) {
   function cellStyle(val: number, col: keyof SectorData): string {
     const bw = bestWorst[col as string];
     if (!bw) return "";
-    if (val === bw.best) return "bg-emerald-500/20 text-emerald-400 font-bold";
-    if (val === bw.worst) return "bg-red-500/20 text-red-400 font-bold";
+    if (val === bw.best) return "bg-emerald-500/20 text-emerald-400 font-semibold";
+    if (val === bw.worst) return "bg-red-500/20 text-red-400 font-semibold";
     const maxAbs = Math.max(Math.abs(bw.best), Math.abs(bw.worst), 0.01);
     const intensity = Math.min(Math.abs(val) / maxAbs, 1);
     if (val >= 0) return `text-emerald-500`;
@@ -485,13 +485,13 @@ function PerformanceTable({ sectors }: { sectors: SectorData[] }) {
 
   return (
     <div className="rounded-lg border bg-card overflow-x-auto">
-      <div className="px-4 py-3 border-b border-border/40 flex items-center justify-between">
+      <div className="px-4 py-3 border-b border-border/20 flex items-center justify-between">
         <h3 className="text-sm font-semibold">Sector Performance Matrix</h3>
         <span className="text-xs text-muted-foreground">Click column to sort | Green/Red = best/worst</span>
       </div>
       <table className="w-full text-xs min-w-[500px]">
         <thead>
-          <tr className="border-b border-border/40 text-xs text-muted-foreground">
+          <tr className="border-b border-border/20 text-xs text-muted-foreground">
             {cols.map((col) => (
               <th
                 key={col.id}
@@ -589,7 +589,7 @@ function EconomicCyclePanel({
                 <div className="flex flex-col items-center flex-1">
                   <div
                     className={cn(
-                      "w-4 h-4 rounded-full border-2 transition-all",
+                      "w-4 h-4 rounded-full border-2 transition-colors",
                       isActive
                         ? "border-primary bg-primary scale-125"
                         : isPast
@@ -621,7 +621,7 @@ function EconomicCyclePanel({
 
         {/* Current stage details */}
         <div className="rounded-md bg-muted/40 p-3 space-y-1">
-          <p className={cn("text-sm font-bold", CYCLE_COLOR[cycleStage])}>{cycleStage}</p>
+          <p className={cn("text-sm font-semibold", CYCLE_COLOR[cycleStage])}>{cycleStage}</p>
           <p className="text-[11px] text-muted-foreground leading-relaxed">
             {CYCLE_DESCRIPTION[cycleStage]}
           </p>
@@ -791,7 +791,7 @@ export function SectorRotation() {
       </div>
 
       {/* Sub-tab bar */}
-      <div className="flex items-center gap-0 border-b border-border/40 overflow-x-auto shrink-0">
+      <div className="flex items-center gap-0 border-b border-border/20 overflow-x-auto shrink-0">
         {subTabs.map((tab) => (
           <button
             key={tab.id}
@@ -848,8 +848,8 @@ export function SectorRotation() {
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
                       <span className="text-[11px] font-medium">{s.name}</span>
-                      {isOver && <span className="text-[11px] font-bold text-emerald-500 bg-emerald-500/5 px-1 py-0.5 rounded">OW</span>}
-                      {isUnder && <span className="text-[11px] font-bold text-red-500 bg-red-500/5 px-1 py-0.5 rounded">UW</span>}
+                      {isOver && <span className="text-[11px] font-semibold text-emerald-500 bg-emerald-500/5 px-1 py-0.5 rounded">OW</span>}
+                      {isUnder && <span className="text-[11px] font-semibold text-red-500 bg-red-500/5 px-1 py-0.5 rounded">UW</span>}
                     </div>
                     <span className={cn("text-[11px] font-mono font-semibold", s.perf1M >= 0 ? "text-emerald-500" : "text-red-500")}>
                       {s.perf1M >= 0 ? "+" : ""}{s.perf1M.toFixed(2)}%
@@ -900,7 +900,7 @@ export function SectorRotation() {
               };
               return (
                 <div key={q} className={cn("rounded-lg border p-3 space-y-1", colors[q])}>
-                  <p className="text-[11px] font-bold">{q}</p>
+                  <p className="text-[11px] font-semibold">{q}</p>
                   <p className="text-xs opacity-80 leading-relaxed">{descs[q]}</p>
                 </div>
               );

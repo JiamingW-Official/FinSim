@@ -368,14 +368,14 @@ function GlobalDemographicsTab() {
                     { label: "Elderly (65+)", value: `${country.oldDep.toFixed(1)}%`, color: "text-red-400" },
                   ].map((stat) => (
                     <div key={stat.label} className="bg-muted rounded-lg p-3 text-center">
-                      <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
+                      <div className={cn("text-xl font-semibold", stat.color)}>{stat.value}</div>
                       <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
                     </div>
                   ))}
                 </div>
                 <div className="bg-muted rounded-lg p-3">
                   <div className="text-xs text-muted-foreground mb-2">Support Ratio (workers per dependent)</div>
-                  <div className="text-2xl font-bold text-foreground">
+                  <div className="text-2xl font-semibold text-foreground">
                     {(country.workingAge / (country.youngDep + country.oldDep)).toFixed(2)}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1">
@@ -478,7 +478,7 @@ function GlobalDemographicsTab() {
               </thead>
               <tbody>
                 {MEDIAN_AGE_TABLE.map((row) => (
-                  <tr key={row.country} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                  <tr key={row.country} className="border-b border-border/20 hover:bg-muted/30 transition-colors">
                     <td className="py-2 pr-4">
                       <span className="mr-1.5">{row.flag}</span>
                       <span className="text-foreground">{row.country}</span>
@@ -1038,13 +1038,13 @@ function JapanCaseStudyTab() {
             title: "BOJ Yield Curve Control",
             body: "BOJ capped 10-year JGB yields at 0% (then 0.5%, 1%) to prevent deflation. The world's most aggressive monetary experiment — and a cautionary tale for other aging economies approaching similar conditions.",
             icon: Activity,
-            accent: "bg-primary/10 border border-border text-primary",
+            accent: "bg-muted/10 border border-border text-primary",
           },
           {
             title: "Investment Lesson",
             body: "Despite terrible demographics, the Nikkei hit all-time highs in 2024. Demographics create secular headwinds but policy, corporate governance reform, and foreign flows can still drive equity returns. Invest in the policy response, not just the trend.",
             icon: DollarSign,
-            accent: "bg-primary/10 border border-border text-primary",
+            accent: "bg-muted/10 border border-border text-primary",
           },
         ].map((item) => (
           <InsightCard key={item.title} icon={item.icon} title={item.title} body={item.body} accent={item.accent} />
@@ -1369,7 +1369,7 @@ export default function DemographicsPage() {
       <div className="max-w-5xl mx-auto px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2 bg-primary/10 rounded-lg border border-border">
+          <div className="p-2 bg-muted/10 rounded-lg border border-border">
             <Users className="w-6 h-6 text-primary" />
           </div>
           <div>
