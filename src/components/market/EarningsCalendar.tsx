@@ -144,7 +144,7 @@ function earningsPlayStrategy(event: CalendarEarningsEvent): {
       name: "Bull Call Spread",
       rationale: `${event.ticker} beat estimates in ${event.beatHistory.filter((h) => h === "beat").length}/4 recent quarters with ${sentiment} consensus. Buy ATM call, sell OTM call.`,
       riskLabel: "Defined risk",
-      color: "text-emerald-500 bg-emerald-500/10",
+      color: "text-emerald-500 bg-emerald-500/5",
     };
   }
   if (!bullish && sentiment !== "N/A") {
@@ -152,7 +152,7 @@ function earningsPlayStrategy(event: CalendarEarningsEvent): {
       name: "Bear Put Spread",
       rationale: `${sentiment} analyst consensus + lower beat rate. Buy ATM put, sell OTM put to cap cost.`,
       riskLabel: "Defined risk",
-      color: "text-red-500 bg-red-500/10",
+      color: "text-red-500 bg-red-500/5",
     };
   }
   return {
@@ -213,9 +213,9 @@ function IVRankBar({ ivRank }: { ivRank: number }) {
 function RatingChip({ rating }: { rating: string }) {
   const colors: Record<string, string> = {
     "Strong Buy": "bg-emerald-500/15 text-emerald-500",
-    Buy: "bg-emerald-500/10 text-emerald-400",
+    Buy: "bg-emerald-500/5 text-emerald-400",
     Hold: "bg-amber-500/10 text-amber-500",
-    Sell: "bg-red-500/10 text-red-500",
+    Sell: "bg-red-500/5 text-red-500",
     "Strong Sell": "bg-red-500/15 text-red-500",
     "N/A": "bg-muted text-muted-foreground",
   };
@@ -269,7 +269,7 @@ function UpcomingStrip({
                 className={cn(
                   "text-[11px] font-medium px-1 py-0.5 rounded",
                   ev.callTime === "BMO"
-                    ? "bg-emerald-500/10 text-emerald-500"
+                    ? "bg-emerald-500/5 text-emerald-500"
                     : ev.callTime === "AMC"
                       ? "bg-primary/10 text-primary"
                       : "bg-muted text-muted-foreground",
@@ -493,7 +493,7 @@ function EarningsDetailPanel({
                 className={cn(
                   "text-xs font-medium px-1.5 py-0.5 rounded",
                   event.callTime === "BMO"
-                    ? "bg-emerald-500/10 text-emerald-500"
+                    ? "bg-emerald-500/5 text-emerald-500"
                     : event.callTime === "AMC"
                       ? "bg-primary/10 text-primary"
                       : "bg-muted text-muted-foreground",
@@ -696,7 +696,7 @@ function EarningsPlayIdeas({ events }: { events: CalendarEarningsEvent[] }) {
                   className={cn(
                     "text-[11px] font-medium px-1.5 py-0.5 rounded",
                     ev.callTime === "BMO"
-                      ? "bg-emerald-500/10 text-emerald-500"
+                      ? "bg-emerald-500/5 text-emerald-500"
                       : ev.callTime === "AMC"
                         ? "bg-primary/10 text-primary"
                         : "bg-muted text-muted-foreground",

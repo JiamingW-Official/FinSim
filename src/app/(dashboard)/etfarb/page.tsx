@@ -706,7 +706,7 @@ export default function ETFArbPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <RefreshCw className="h-4 w-4 text-primary" />
+                    <RefreshCw className="h-3.5 w-3.5 text-muted-foreground/50" />
                     Creation &amp; Redemption Flow
                   </CardTitle>
                 </CardHeader>
@@ -733,7 +733,7 @@ export default function ETFArbPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="h-4 w-4 text-primary" />
+                    <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
                     ETF Universe: Key Metrics
                   </CardTitle>
                 </CardHeader>
@@ -750,7 +750,7 @@ export default function ETFArbPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2 pt-4 px-4">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-primary" />
+                    <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
                     ETF Price vs NAV — 90 Day Simulation
                   </CardTitle>
                 </CardHeader>
@@ -820,7 +820,7 @@ export default function ETFArbPage() {
             <Card className="bg-card border-border">
               <CardHeader className="pb-2 pt-4 px-4">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-primary" />
+                  <Zap className="h-3.5 w-3.5 text-muted-foreground/50" />
                   AP Arbitrage P&amp;L Calculator
                 </CardTitle>
               </CardHeader>

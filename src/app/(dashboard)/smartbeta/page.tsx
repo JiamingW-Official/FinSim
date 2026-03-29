@@ -545,7 +545,7 @@ function FactorExposureAnalyzer() {
         <Card className="border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Filter className="h-4 w-4 text-primary" />
+              <Filter className="h-3.5 w-3.5 text-muted-foreground/50" />
               Sample Portfolio Holdings
             </CardTitle>
           </CardHeader>
@@ -568,7 +568,7 @@ function FactorExposureAnalyzer() {
         <Card className="border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Target className="h-4 w-4 text-primary" />
+              <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
               Portfolio Factor Tilts
             </CardTitle>
           </CardHeader>
@@ -880,7 +880,7 @@ export default function SmartBetaPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-primary" />
+                    <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
                     Cumulative Factor Returns (2014 = 100)
                   </CardTitle>
                 </CardHeader>
@@ -891,7 +891,7 @@ export default function SmartBetaPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <BarChart3 className="h-4 w-4 text-primary" />
+                    <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
                     Factor Performance Cycle (2015–2024)
                   </CardTitle>
                 </CardHeader>
@@ -906,7 +906,7 @@ export default function SmartBetaPage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm flex items-center gap-2">
-                    <DollarSign className="h-4 w-4 text-primary" />
+                    <DollarSign className="h-3.5 w-3.5 text-muted-foreground/50" />
                     Popular Factor ETFs
                   </CardTitle>
                 </CardHeader>
@@ -957,7 +957,7 @@ export default function SmartBetaPage() {
           <Card className="border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="h-4 w-4 text-primary" />
+                <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
                 Rolling Factor Correlations (36-Month)
               </CardTitle>
             </CardHeader>

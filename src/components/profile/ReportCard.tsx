@@ -32,11 +32,11 @@ const GRADE_COLOR: Record<Grade, string> = {
 };
 
 const GRADE_BG: Record<Grade, string> = {
-  A: "bg-emerald-500/10 border-emerald-500/20",
+  A: "bg-emerald-500/5 border-emerald-500/20",
   B: "bg-primary/10 border-border",
   C: "bg-amber-500/10 border-amber-500/20",
   D: "bg-orange-500/10 border-orange-500/20",
-  F: "bg-red-500/10 border-red-500/20",
+  F: "bg-red-500/5 border-red-500/20",
 };
 
 function gradeComment(label: string, grade: Grade): string {

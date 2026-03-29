@@ -47,8 +47,8 @@ export function ScenarioCard({
         isLocked
           ? "border-border/50 bg-muted/10 cursor-not-allowed"
           : gradeConfig
-            ? `${gradeConfig.border} ${gradeConfig.glow} hover:bg-accent/30 cursor-pointer`
-            : "border-border hover:border-primary/50 hover:bg-accent/30 cursor-pointer",
+            ? `${gradeConfig.border} ${gradeConfig.glow} hover:bg-muted/20 cursor-pointer`
+            : "border-border hover:border-primary/50 hover:bg-muted/20 cursor-pointer",
       )}
     >
       {/* Lock overlay */}
@@ -109,7 +109,7 @@ export function ScenarioCard({
             {bestResult && (
               <span className={cn(
                 "rounded-full px-2 py-0.5 text-[11px] font-bold tabular-nums",
-                bestResult.pnl >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400",
+                bestResult.pnl >= 0 ? "bg-emerald-500/5 text-emerald-400" : "bg-red-500/5 text-red-400",
               )}>
                 Best: {bestResult.pnl >= 0 ? "+" : ""}{bestResult.pnl.toFixed(0)}
               </span>

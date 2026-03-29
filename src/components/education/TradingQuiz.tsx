@@ -365,9 +365,9 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
                 optionClass +=
                   " border-border/40 bg-muted/20 hover:border-primary/50 hover:bg-muted/40 cursor-pointer";
               } else if (isCorrect) {
-                optionClass += " border-emerald-500/50 bg-emerald-500/10 text-emerald-400 cursor-default";
+                optionClass += " border-emerald-500/50 bg-emerald-500/5 text-emerald-400 cursor-default";
               } else if (isSelected && !isCorrect) {
-                optionClass += " border-red-500/50 bg-red-500/10 text-red-400 cursor-default";
+                optionClass += " border-red-500/50 bg-red-500/5 text-red-400 cursor-default";
               } else {
                 optionClass += " border-border/40 bg-muted/10 text-muted-foreground/50 cursor-default";
               }
@@ -406,8 +406,8 @@ export function TradingQuiz({ onComplete, category }: TradingQuizProps) {
                 exit={{ opacity: 0 }}
                 className={`flex items-center gap-2 rounded-md px-3 py-2 text-xs font-medium ${
                   answerState === "correct"
-                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                    : "bg-red-500/10 text-red-400 border border-red-500/20"
+                    ? "bg-emerald-500/5 text-emerald-400 border border-emerald-500/20"
+                    : "bg-red-500/5 text-red-400 border border-red-500/20"
                 }`}
               >
                 {answerState === "correct" ? (

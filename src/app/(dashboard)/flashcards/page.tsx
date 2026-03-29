@@ -290,7 +290,7 @@ function StatsTab() {
   };
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2">
       {/* Cards due — hero element */}
       <div className="border-l-4 border-l-primary rounded-lg bg-card p-5">
         <p className="text-xs font-medium text-muted-foreground">
@@ -306,7 +306,7 @@ function StatsTab() {
       <div className="mt-4" />
 
       {/* Summary cards — compact secondary */}
-      <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
         <StatCard label="Today" value={String(todayCards)} sub="cards reviewed" />
         <StatCard
           label="Total Reviewed"
@@ -340,8 +340,8 @@ function StatsTab() {
       </div>
 
       {/* 30-day heatmap */}
-      <div className="rounded-lg border border-border/50 bg-card p-4">
-        <h3 className="mb-3 text-xs font-medium text-muted-foreground">30-Day Study Activity</h3>
+      <div className="mt-5 rounded-lg border border-border/50 bg-card p-3">
+        <h3 className="mb-2 text-xs font-medium text-muted-foreground">30-Day Study Activity</h3>
         <div className="flex flex-wrap gap-1">
           {heatmapData.map((day) => (
             <div
@@ -368,9 +368,9 @@ function StatsTab() {
       </div>
 
       {/* Performance by deck */}
-      <div className="rounded-lg border border-border/50 bg-card p-3">
+      <div className="mt-3 rounded-lg border border-border/50 bg-card p-3">
         <h3 className="mb-2 text-xs font-medium text-muted-foreground">Performance by Deck</h3>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1.5">
           {deckStats.map(({ cat, label, color, total, mastered, pct }) => (
             <div key={cat} className="flex flex-col gap-1">
               <div className="flex items-center justify-between">

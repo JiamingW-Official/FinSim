@@ -221,7 +221,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
 
           {/* Cash check */}
           {!canAfford && (
-            <div className="flex items-center gap-1.5 rounded-md bg-red-500/10 px-2 py-1.5 text-xs text-red-400">
+            <div className="flex items-center gap-1.5 rounded-md bg-red-500/5 px-2 py-1.5 text-xs text-red-400">
               <AlertTriangle className="h-3 w-3" />
               Insufficient funds ({formatCurrency(cash)} available)
             </div>
@@ -231,7 +231,7 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
           <div className="flex gap-2">
             <motion.button
               onClick={clearLegs}
-              className="flex items-center gap-1 rounded-lg border border-border/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent"
+              className="flex items-center gap-1 rounded-lg border border-border/40 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted/30"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

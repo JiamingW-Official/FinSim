@@ -318,7 +318,7 @@ export default function OptionsPage() {
                           />
                         </div>
                         <div className="border-t border-border/50 px-3 pt-4 pb-3">
-                          <h3 className="mb-1.5 text-[11px] font-semibold text-foreground/80">
+                          <h3 className="mb-1.5 text-[11px] font-medium text-muted-foreground">
                             Options Flow Heatmap
                           </h3>
                           <p className="mb-2 text-xs text-muted-foreground">
@@ -327,7 +327,7 @@ export default function OptionsPage() {
                           <FlowHeatmap items={unusualActivity} />
                         </div>
                         <div className="border-t border-border/50 px-3 pt-3 pb-4">
-                          <h3 className="mb-2 text-[11px] font-semibold text-foreground/80">
+                          <h3 className="mb-2 text-[11px] font-medium text-muted-foreground">
                             Simulated Institutional Flow
                           </h3>
                           <p className="mb-3 text-xs text-muted-foreground">
@@ -388,7 +388,7 @@ export default function OptionsPage() {
                     <Activity className="h-3.5 w-3.5 text-orange-400" />
                   </motion.div>
                   <div>
-                    <h1 className="text-xs font-bold">{currentTicker} Options <span className="font-normal text-muted-foreground">(Simulated)</span></h1>
+                    <h1 className="text-xs font-medium">{currentTicker} Options <span className="font-normal text-muted-foreground">(Simulated)</span></h1>
                     <p className="text-[11px] text-muted-foreground">
                       Spot: ${spotPrice.toFixed(2)}
                     </p>

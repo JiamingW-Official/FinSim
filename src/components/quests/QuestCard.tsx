@@ -200,7 +200,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.05, x: 2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => router.push(quest.route!)}
-              className="flex items-center gap-1 rounded-lg border border-border/50 bg-muted/20 px-2.5 py-1 text-xs font-bold text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
+              className="flex items-center gap-1 rounded-lg border border-border/50 bg-muted/20 px-2.5 py-1 text-xs font-bold text-muted-foreground transition-colors duration-150 hover:bg-muted/40 hover:text-foreground"
             >
               {routeLabel}
               <ArrowRight className="h-3 w-3" />

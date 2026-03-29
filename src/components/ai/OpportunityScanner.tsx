@@ -305,7 +305,7 @@ export function OpportunityScanner({
               "w-full grid grid-cols-[3rem_2.5rem_3.5rem_1fr_2rem] items-center gap-1 rounded border px-1.5 py-1.5 text-left transition-colors",
               currentTicker === row.ticker
                 ? "border-primary/40 bg-primary/10"
-                : "border-border/30 bg-background/30 hover:bg-accent/40",
+                : "border-border/30 bg-background/30 hover:bg-muted/20",
             )}
           >
             <span className="text-xs font-bold text-foreground leading-none">

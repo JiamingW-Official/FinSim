@@ -43,7 +43,7 @@ function Section({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between px-3 py-2 text-left hover:bg-accent/30 transition-colors"
+        className="flex w-full items-center justify-between px-3 py-2 text-left hover:bg-muted/30 transition-colors"
       >
         <div className="flex items-center gap-2">
           <span className="text-[11px] font-bold text-foreground">

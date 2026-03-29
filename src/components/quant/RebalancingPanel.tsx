@@ -107,8 +107,8 @@ function DeviationBar({ deviation }: { deviation: number }) {
 
 function ActionBadge({ action }: { action: RebalanceAction["action"] }) {
   const config = {
-    buy: { text: "BUY", className: "bg-emerald-500/10 text-emerald-500" },
-    sell: { text: "SELL", className: "bg-red-500/10 text-red-500" },
+    buy: { text: "BUY", className: "bg-emerald-500/5 text-emerald-500" },
+    sell: { text: "SELL", className: "bg-red-500/5 text-red-500" },
     hold: { text: "HOLD", className: "bg-muted text-muted-foreground" },
   };
   const c = config[action];
@@ -182,7 +182,7 @@ export function RebalancingPanel() {
             "text-xs px-1.5 py-0.5 rounded font-medium",
             result.needsRebalance
               ? "bg-amber-500/10 text-amber-500"
-              : "bg-emerald-500/10 text-emerald-500",
+              : "bg-emerald-500/5 text-emerald-500",
           )}
         >
           {result.needsRebalance ? "Rebalance Needed" : "Balanced"}

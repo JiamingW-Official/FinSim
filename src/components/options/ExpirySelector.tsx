@@ -34,7 +34,7 @@ export function ExpirySelector({
               "relative rounded-md px-2.5 py-1 text-xs font-bold transition-colors",
               isActive
                 ? "bg-orange-500/15 text-orange-400"
-                : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
             )}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

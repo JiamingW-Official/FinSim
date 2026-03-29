@@ -427,7 +427,7 @@ function CalendarTab() {
       {upcoming.length > 0 && (
         <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 space-y-3">
           <h2 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Clock className="h-4 w-4 text-primary" />
+            <Clock className="h-3.5 w-3.5 text-muted-foreground/50" />
             Next Earnings Event
           </h2>
           {(() => {
@@ -497,7 +497,7 @@ function CalendarTab() {
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-medium text-foreground flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-primary" />
+            <Calendar className="h-3.5 w-3.5 text-muted-foreground/50" />
             {monthLabel} Earnings Calendar
           </h2>
           <div className="flex items-center gap-1 text-xs">
@@ -1031,7 +1031,7 @@ function EarningsStrategiesTab() {
       {/* Strategies list */}
       <div className="space-y-2">
         <h2 className="text-sm font-semibold text-foreground flex items-center gap-2">
-          <BookOpen className="h-4 w-4 text-primary" />
+          <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
           5 Common Earnings Trading Strategies
         </h2>
 
@@ -1211,12 +1211,12 @@ export default function EarningsPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="shrink-0 border-b border-border px-4 py-4 flex items-center gap-3">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-          <Calendar className="h-4.5 w-4.5 text-primary" />
+      <div className="shrink-0 border-b border-border px-4 py-3 flex items-center gap-3">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+          <Calendar className="h-3.5 w-3.5 text-muted-foreground/50" />
         </div>
         <div>
-          <h1 className="text-base font-medium text-foreground">Earnings Calendar</h1>
+          <h1 className="text-sm font-medium text-foreground">Earnings Calendar</h1>
           <p className="text-[11px] text-muted-foreground">Calendar, analyst ratings, earnings history &amp; trading strategies</p>
         </div>
       </div>
@@ -1247,19 +1247,19 @@ export default function EarningsPage() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="calendar" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
+          <TabsContent value="calendar" className="flex-1 overflow-y-auto px-4 pt-5 pb-4 data-[state=inactive]:hidden">
             <CalendarTab />
           </TabsContent>
-          <TabsContent value="analysis" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
+          <TabsContent value="analysis" className="flex-1 overflow-y-auto px-4 pt-4 pb-6 data-[state=inactive]:hidden">
             <EarningsAnalysisTab />
           </TabsContent>
-          <TabsContent value="ratings" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
+          <TabsContent value="ratings" className="flex-1 overflow-y-auto px-4 pt-3 pb-4 data-[state=inactive]:hidden">
             <AnalystRatingsTab />
           </TabsContent>
-          <TabsContent value="strategies" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
+          <TabsContent value="strategies" className="flex-1 overflow-y-auto px-4 pt-5 pb-6 data-[state=inactive]:hidden">
             <EarningsStrategiesTab />
           </TabsContent>
-          <TabsContent value="deepdive" className="flex-1 overflow-y-auto px-4 py-4 data-[state=inactive]:hidden">
+          <TabsContent value="deepdive" className="flex-1 overflow-y-auto px-4 pt-4 pb-4 data-[state=inactive]:hidden">
             <EarningsDeepDive />
           </TabsContent>
         </Tabs>

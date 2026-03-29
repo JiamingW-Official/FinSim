@@ -485,7 +485,7 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
           </div>
           <div className="space-y-1.5">
             {winners.map((p, i) => (
-              <div key={p.symbol} className="flex items-center justify-between rounded-lg bg-emerald-500/10 px-3 py-1.5">
+              <div key={p.symbol} className="flex items-center justify-between rounded-lg bg-emerald-500/5 px-3 py-1.5">
                 <div className="flex items-center gap-2">
                   <Medal size={12} className={medalColors[i]} />
                   <span className="text-xs font-semibold text-foreground">{p.symbol}</span>
@@ -502,7 +502,7 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
           </div>
           <div className="space-y-1.5">
             {losers.map((p, i) => (
-              <div key={p.symbol} className="flex items-center justify-between rounded-lg bg-red-500/10 px-3 py-1.5">
+              <div key={p.symbol} className="flex items-center justify-between rounded-lg bg-red-500/5 px-3 py-1.5">
                 <div className="flex items-center gap-2">
                   <Medal size={12} className={medalColors[i]} />
                   <span className="text-xs font-semibold text-foreground">{p.symbol}</span>
@@ -920,7 +920,7 @@ function TradeSuggestions({
           className={cn(
             "rounded-md border p-3",
             t.priority === "tax-loss"
-              ? "border-emerald-500/30 bg-emerald-500/10"
+              ? "border-emerald-500/30 bg-emerald-500/5"
               : "border-border/40 bg-card"
           )}
         >
@@ -970,7 +970,7 @@ function TradeSuggestions({
       ))}
 
       {sorted.length === 0 && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-4 text-center">
+        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-4 text-center">
           <CheckCircle size={20} className="mx-auto mb-1.5 text-emerald-400" />
           <p className="text-sm font-semibold text-emerald-400">Portfolio is well balanced</p>
           <p className="mt-0.5 text-xs text-muted-foreground">No rebalancing needed at this time.</p>
@@ -1063,7 +1063,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
   const severityColor = (s: Alert["severity"]) =>
     s === "green" ? "text-emerald-400" : s === "yellow" ? "text-amber-400" : "text-red-400";
   const severityBg = (s: Alert["severity"]) =>
-    s === "green" ? "bg-emerald-500/10" : s === "yellow" ? "bg-amber-500/10" : "bg-red-500/10";
+    s === "green" ? "bg-emerald-500/5" : s === "yellow" ? "bg-amber-500/10" : "bg-red-500/5";
 
   return (
     <div className="space-y-2">

@@ -111,7 +111,7 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
               onClick={() => onSelectType(config)}
               className={cn(
                 "group relative overflow-hidden rounded-lg p-4 text-left cursor-pointer",
-                "hover:bg-muted/40 hover:-translate-y-0.5 transition-all duration-200",
+                "hover:bg-muted/20 transition-colors duration-150",
                 "border border-border/30",
               )}
             >

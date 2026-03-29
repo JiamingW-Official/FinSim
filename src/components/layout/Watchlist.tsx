@@ -85,13 +85,11 @@ export function Watchlist() {
                 <motion.button
                   type="button"
                   onClick={() => setTicker(stock.ticker)}
-                  whileHover={{ x: 2 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   className={cn(
                     "group flex w-full items-center justify-between px-3 py-2 text-left",
                     isActive
                       ? "bg-primary/5 border-l-2 border-primary"
-                      : "border-l-2 border-transparent hover:bg-accent/50",
+                      : "border-l-2 border-transparent hover:bg-muted/20 transition-colors duration-150",
                   )}
                 >
                   <div>

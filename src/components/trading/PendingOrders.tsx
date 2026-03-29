@@ -64,7 +64,7 @@ export function PendingOrders() {
               <tr
                 key={order.id}
                 className={cn(
-                  "border-b border-border/50 border-l-2 border-l-amber-500/40 transition-colors duration-150 hover:bg-accent/30",
+                  "border-b border-border/50 border-l-2 border-l-amber-500/40 transition-colors duration-150 hover:bg-muted/10",
                   isVeryNear && "bg-red-500/5",
                 )}
               >

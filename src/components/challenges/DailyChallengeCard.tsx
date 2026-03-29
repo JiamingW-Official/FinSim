@@ -40,7 +40,7 @@ export function DailyChallengeCard({
         "relative w-full rounded-md border-2 p-4 text-left transition-all",
         isComplete
           ? "border-emerald-500/30 bg-emerald-500/5"
-          : `border-border hover:border-primary/50 hover:bg-accent/30 ${config.glow}`,
+          : `border-border hover:border-primary/50 hover:bg-muted/20 ${config.glow}`,
         "cursor-pointer",
       )}
     >
@@ -61,7 +61,7 @@ export function DailyChallengeCard({
           className={cn(
             "flex h-10 w-10 items-center justify-center rounded-md text-lg font-bold shrink-0",
             isComplete
-              ? "bg-emerald-500/10 text-emerald-500"
+              ? "bg-emerald-500/5 text-emerald-500"
               : `${config.bg} ${config.text}`,
           )}
           initial={{ scale: 0 }}
@@ -106,7 +106,7 @@ export function DailyChallengeCard({
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
               className={cn(
                 "rounded-lg px-2 py-1 text-[11px] font-bold tabular-nums",
-                progress.finalPnL >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400",
+                progress.finalPnL >= 0 ? "bg-emerald-500/5 text-emerald-400" : "bg-red-500/5 text-red-400",
               )}
             >
               {progress.finalPnL >= 0 ? "+" : ""}{progress.finalPnL.toFixed(0)}

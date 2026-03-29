@@ -715,8 +715,8 @@ function PCRatioDashboard({ seed }: { seed: number }) {
           { label: "Index P/C",  value: latestIndex,  desc: "Institutional hedge" },
         ].map(({ label, value, desc }) => {
           const color =
-            value < 0.7  ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
-            : value > 1.2 ? "text-red-400 border-red-500/30 bg-red-500/10"
+            value < 0.7  ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/5"
+            : value > 1.2 ? "text-red-400 border-red-500/30 bg-red-500/5"
             : "text-amber-400 border-amber-500/30 bg-amber-500/10";
           const signal =
             value < 0.7  ? "Bullish Extreme"

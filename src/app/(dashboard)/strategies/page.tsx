@@ -678,7 +678,7 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
     <div className="rounded-md border border-border bg-card p-5 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <GitCompare className="h-4 w-4 text-primary" />
+          <GitCompare className="h-3.5 w-3.5 text-muted-foreground/50" />
           <span className="text-sm font-semibold text-foreground">Strategy Comparison</span>
         </div>
         <button onClick={onClose} className="text-muted-foreground hover:text-muted-foreground transition-colors">
@@ -826,7 +826,7 @@ export default function StrategiesPage() {
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-border/50 bg-black/30 px-6 py-6 border-l-4 border-l-primary">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
-          <BookMarked className="h-4 w-4 text-primary" />
+          <BookMarked className="h-3.5 w-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h1 className="text-sm font-medium text-foreground">Strategy Library</h1>

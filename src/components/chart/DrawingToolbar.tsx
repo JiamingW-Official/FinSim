@@ -162,7 +162,7 @@ export function DrawingToolbar() {
                 "flex h-6 w-6 items-center justify-center rounded transition-colors",
                 activeTool === tool
                   ? "bg-primary/20 text-primary ring-1 ring-primary/40"
-                  : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                  : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
               )}
             >
               {icon}
@@ -187,7 +187,7 @@ export function DrawingToolbar() {
             className={cn(
               "flex h-6 w-6 items-center justify-center rounded transition-colors",
               drawings.length > 0
-                ? "text-muted-foreground hover:bg-accent hover:text-foreground"
+                ? "text-muted-foreground hover:bg-muted/30 hover:text-foreground"
                 : "text-muted-foreground/30",
             )}
             disabled={drawings.length === 0}

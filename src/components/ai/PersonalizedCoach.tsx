@@ -718,7 +718,7 @@ function PersonalityCard({
         "w-full rounded-md border px-2 py-2 text-left transition-all",
         selected
           ? "border-primary/50 bg-primary/10"
-          : "border-border/40 bg-background/30 hover:bg-accent/20",
+          : "border-border/40 bg-background/30 hover:bg-muted/10",
       )}
     >
       <div className="flex items-center gap-2">
@@ -756,7 +756,7 @@ function SectionAccordion({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between px-2.5 py-2 text-left hover:bg-accent/10 transition-colors rounded-md"
+        className="flex w-full items-center justify-between px-2.5 py-2 text-left hover:bg-muted/10 transition-colors rounded-md"
       >
         <div className="flex items-center gap-1.5">
           <Icon className="h-3 w-3 text-primary/70 shrink-0" />
@@ -1046,7 +1046,7 @@ export function PersonalizedCoach() {
                     "rounded border px-1.5 py-0.5 text-[7.5px] leading-none transition-all whitespace-nowrap",
                     qaQuestion === q
                       ? "border-primary/50 bg-primary/15 text-primary font-bold"
-                      : "border-border/40 bg-background/20 text-muted-foreground hover:bg-accent/20 hover:text-foreground",
+                      : "border-border/40 bg-background/20 text-muted-foreground hover:bg-muted/10 hover:text-foreground",
                   )}
                 >
                   {q}

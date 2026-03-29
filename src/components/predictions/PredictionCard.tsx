@@ -114,7 +114,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
               setShowBetForm("yes");
               setBetProbability(market.initialProbability);
             }}
-            className="flex-1 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-3 py-1.5 text-xs font-medium text-emerald-400 transition-colors hover:bg-emerald-500/10"
+            className="flex-1 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-3 py-1.5 text-xs font-medium text-emerald-400 transition-colors hover:bg-emerald-500/5"
           >
             Yes {market.initialProbability}%
           </button>
@@ -123,7 +123,7 @@ export function PredictionCard({ market }: PredictionCardProps) {
               setShowBetForm("no");
               setBetProbability(100 - market.initialProbability);
             }}
-            className="flex-1 rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-1.5 text-xs font-medium text-red-400 transition-colors hover:bg-red-500/10"
+            className="flex-1 rounded-lg border border-red-500/30 bg-red-500/5 px-3 py-1.5 text-xs font-medium text-red-400 transition-colors hover:bg-red-500/5"
           >
             No {100 - market.initialProbability}%
           </button>
@@ -269,8 +269,8 @@ function ExistingBetBadge({
             className={cn(
               "rounded px-1.5 py-0.5 text-xs font-semibold",
               bet.position === "yes"
-                ? "bg-emerald-500/10 text-emerald-400"
-                : "bg-red-500/10 text-red-400",
+                ? "bg-emerald-500/5 text-emerald-400"
+                : "bg-red-500/5 text-red-400",
             )}
           >
             {bet.position.toUpperCase()}

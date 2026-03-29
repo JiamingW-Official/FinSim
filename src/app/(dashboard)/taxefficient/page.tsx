@@ -233,7 +233,7 @@ function AssetLocationTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <BarChart3 className="h-4 w-4 text-primary" />
+            <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
             Tax Efficiency Score by Asset Class
           </CardTitle>
         </CardHeader>
@@ -337,7 +337,7 @@ function AssetLocationTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Layers className="h-4 w-4 text-primary" />
+            <Layers className="h-3.5 w-3.5 text-muted-foreground/50" />
             3-Bucket Asset Location Framework
           </CardTitle>
         </CardHeader>
@@ -515,7 +515,7 @@ function TaxLossHarvestingTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Scissors className="h-4 w-4 text-primary" />
+            <Scissors className="h-3.5 w-3.5 text-muted-foreground/50" />
             TLH Opportunity Scanner
           </CardTitle>
         </CardHeader>
@@ -836,7 +836,7 @@ function RothConversionTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Calculator className="h-4 w-4 text-primary" />
+            <Calculator className="h-3.5 w-3.5 text-muted-foreground/50" />
             Tax Bracket Targeting (Fill to 22%/24%)
           </CardTitle>
         </CardHeader>
@@ -894,7 +894,7 @@ function RothConversionTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <RefreshCw className="h-4 w-4 text-primary" />
+            <RefreshCw className="h-3.5 w-3.5 text-muted-foreground/50" />
             5-Year Roth Conversion Ladder (Traditional → Roth)
           </CardTitle>
         </CardHeader>
@@ -968,7 +968,7 @@ function RothConversionTab() {
         <Card className="border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm flex items-center gap-2">
-              <Landmark className="h-4 w-4 text-primary" />
+              <Landmark className="h-3.5 w-3.5 text-muted-foreground/50" />
               SECURE Act 2.0 Key Rules
             </CardTitle>
           </CardHeader>
@@ -1086,7 +1086,7 @@ function CapitalGainsTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Calculator className="h-4 w-4 text-primary" />
+            <Calculator className="h-3.5 w-3.5 text-muted-foreground/50" />
             Short vs Long-Term Capital Gains Analysis
           </CardTitle>
         </CardHeader>
@@ -1138,7 +1138,7 @@ function CapitalGainsTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <TrendingUp className="h-4 w-4 text-primary" />
+            <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
             Tax Alpha: After-Tax vs Pre-Tax Return (15 Years)
           </CardTitle>
         </CardHeader>
@@ -1194,7 +1194,7 @@ function CapitalGainsTab() {
       <Card>
         <CardHeader className="pb-2">
           <CardTitle className="text-sm flex items-center gap-2">
-            <Gift className="h-4 w-4 text-primary" />
+            <Gift className="h-3.5 w-3.5 text-muted-foreground/50" />
             Advanced Capital Gains Strategies
           </CardTitle>
         </CardHeader>

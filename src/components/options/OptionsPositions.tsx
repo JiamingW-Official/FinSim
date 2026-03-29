@@ -51,7 +51,7 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
       {positions.map((pos) => (
         <motion.div
           key={pos.id}
-          className="flex items-center justify-between px-3 py-2 hover:bg-accent/20"
+          className="flex items-center justify-between px-3 py-2 hover:bg-muted/10 transition-colors duration-150"
           initial={{ opacity: 0, x: -8 }}
           animate={{ opacity: 1, x: 0 }}
         >

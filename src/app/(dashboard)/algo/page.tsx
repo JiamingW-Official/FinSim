@@ -987,7 +987,7 @@ export default function AlgoPage() {
       {/* HERO Header */}
       <div className="flex items-center gap-3 border-b border-border/50 border-l-4 border-l-primary bg-black/30 px-6 py-4 shrink-0">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
-          <Bot className="h-4 w-4 text-primary" />
+          <Bot className="h-3.5 w-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h1 className="text-lg font-semibold text-foreground">Algo Trading Lab</h1>

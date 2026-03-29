@@ -276,9 +276,9 @@ function Row({
 }) {
   const colorClass =
     colored === "red"
-      ? "text-red-500"
+      ? "text-red-500/80"
       : colored === "green"
-        ? "text-emerald-500"
+        ? "text-emerald-500/80"
         : colored === "amber"
           ? "text-amber-500"
           : muted
@@ -694,7 +694,7 @@ export function OrderEntry() {
                   </span>
                 </div>
               )}
-              <div className="flex items-start gap-1.5 rounded bg-red-500/10 px-2 py-1.5 text-xs text-red-500">
+              <div className="flex items-start gap-1.5 rounded bg-red-500/5 px-2 py-1.5 text-xs text-red-500/80">
                 <AlertTriangle className="mt-0.5 h-3 w-3 shrink-0" />
                 <span className="font-medium">Maximum loss is unlimited — price can rise indefinitely.</span>
               </div>
@@ -1023,7 +1023,7 @@ export function OrderEntry() {
                         className={cn(
                           "font-semibold tabular-nums",
                           rrRatio >= 2
-                            ? "text-emerald-500"
+                            ? "text-emerald-500/80"
                             : rrRatio >= 1
                               ? "text-amber-500"
                               : "text-red-500",

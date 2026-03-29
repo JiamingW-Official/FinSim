@@ -988,7 +988,7 @@ export default function NewsPage() {
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
       <div className="flex shrink-0 items-center gap-3 border-b border-border/50 border-l-4 border-l-primary px-6 py-6">
-        <Newspaper className="h-5 w-5 text-primary" />
+        <Newspaper className="h-3.5 w-3.5 text-muted-foreground/50" />
         <div>
           <h1 className="text-xl font-medium leading-none">Market News</h1>
           <p className="mt-0.5 text-xs text-muted-foreground">

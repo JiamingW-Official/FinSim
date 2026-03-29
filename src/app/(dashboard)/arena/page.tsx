@@ -152,7 +152,7 @@ export default function ArenaPage() {
             <Crosshair className="h-4.5 w-4.5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-base font-medium">Practice Arena</h1>
+            <h1 className="text-sm font-medium">Practice Arena</h1>
             <p className="text-[11px] text-muted-foreground">
               Test your skills in simulated competitive challenges
             </p>
@@ -167,7 +167,7 @@ export default function ArenaPage() {
               <>
                 <ArenaRankBadge rank={rank} size="sm" />
                 <div>
-                  <p className="text-lg font-medium tabular-nums">{elo} ELO</p>
+                  <p className="text-sm font-medium font-mono tabular-nums">{elo} ELO</p>
                   <p className="text-[11px] text-muted-foreground">{totalMatches} matches played</p>
                 </div>
               </>

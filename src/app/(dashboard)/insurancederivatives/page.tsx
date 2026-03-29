@@ -1075,7 +1075,7 @@ export default function InsuranceDerivativesPage() {
                 desc: "Max(0, 65°F – Avg daily temp). Energy demand proxy in winter months.",
                 color: "text-primary",
                 bg: "bg-primary/10 border-border",
-                icon: <Thermometer className="h-5 w-5 text-primary" />,
+                icon: <Thermometer className="h-3.5 w-3.5 text-muted-foreground/50" />,
               },
               {
                 label: "CDD Contract",

@@ -85,7 +85,7 @@ export function StrategyBuilder() {
                 "flex w-full items-center gap-2 rounded-lg border px-2 py-1.5 text-left transition-all",
                 isActive
                   ? "border-orange-400/40 bg-orange-500/10"
-                  : "border-border/50 bg-card/30 hover:bg-accent/30",
+                  : "border-border/50 bg-card/30 hover:bg-muted/20",
                 !currentChain && "cursor-not-allowed opacity-40",
               )}
               whileHover={currentChain ? { scale: 1.01 } : {}}

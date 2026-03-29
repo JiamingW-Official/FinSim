@@ -1317,7 +1317,7 @@ function HealthMedicareTab() {
           {/* HSA Triple Tax Advantage */}
           <div className="rounded-md border border-primary/20 bg-primary/5 p-4 space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-              <DollarSign className="h-4 w-4 text-primary" />
+              <DollarSign className="h-3.5 w-3.5 text-muted-foreground/50" />
               HSA Triple Tax Advantage ({fmt$(hsaContrib)}/yr contribution)
             </div>
             <div className="space-y-2">
@@ -1455,7 +1455,7 @@ export default function PersonalInsurancePage() {
         {/* Page Header */}
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-            <Shield className="h-5 w-5 text-primary" />
+            <Shield className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-medium text-foreground">Personal Insurance Planning</h1>

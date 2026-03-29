@@ -113,7 +113,7 @@ function SectorList({
   const color =
     variant === "overweight" ? "text-emerald-500" : "text-red-500";
   const bg =
-    variant === "overweight" ? "bg-emerald-500/10" : "bg-red-500/10";
+    variant === "overweight" ? "bg-emerald-500/5" : "bg-red-500/5";
 
   return (
     <div className="space-y-1.5">

@@ -66,7 +66,7 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
       </div>
       <button
         onClick={() => onRemove(index)}
-        className="rounded p-0.5 text-muted-foreground hover:bg-accent hover:text-foreground"
+        className="rounded p-0.5 text-muted-foreground hover:bg-muted/30 hover:text-foreground transition-colors"
       >
         <X className="h-3 w-3" />
       </button>

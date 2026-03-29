@@ -108,10 +108,10 @@ export function MarketBreadthPanel({ breadth }: MarketBreadthPanelProps) {
           className={cn(
             "text-xs font-medium px-2 py-0.5 rounded-full",
             breadth.advanceDeclineRatio >= 1.5
-              ? "bg-emerald-500/10 text-emerald-500"
+              ? "bg-emerald-500/5 text-emerald-500"
               : breadth.advanceDeclineRatio >= 0.8
                 ? "bg-yellow-500/10 text-yellow-500"
-                : "bg-red-500/10 text-red-500",
+                : "bg-red-500/5 text-red-500",
           )}
         >
           A/D: {breadth.advanceDeclineRatio.toFixed(2)}
@@ -168,7 +168,7 @@ export function MarketBreadthPanel({ breadth }: MarketBreadthPanelProps) {
 
       {/* Breadth Thrust */}
       {breadth.breadthThrust && (
-        <div className="px-3 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+        <div className="px-3 py-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
           <p className="text-xs font-medium text-emerald-500">Breadth Thrust Detected</p>
           <p className="text-xs text-emerald-400 mt-0.5">
             Rare bullish signal: advancing issues exceed 61.5% threshold

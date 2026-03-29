@@ -1488,7 +1488,7 @@ export default function AlgoMMPage() {
       >
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
-            <Activity className="h-5 w-5 text-primary" />
+            <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-semibold">Algorithmic Market Making</h1>

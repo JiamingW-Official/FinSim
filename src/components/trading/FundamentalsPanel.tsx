@@ -22,9 +22,9 @@ function pctColor(n: number): string {
 
 function ratingColor(r: string): string {
   if (r === "Strong Buy") return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
-  if (r === "Buy") return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
+  if (r === "Buy") return "bg-emerald-500/5 text-emerald-400 border-emerald-500/20";
   if (r === "Hold") return "bg-amber-500/10 text-amber-400 border-amber-500/20";
-  if (r === "Sell") return "bg-red-500/10 text-red-400 border-red-500/20";
+  if (r === "Sell") return "bg-red-500/5 text-red-400 border-red-500/20";
   if (r === "Strong Sell") return "bg-red-500/20 text-red-400 border-red-500/30";
   return "bg-muted/30 text-muted-foreground border-border/40";
 }

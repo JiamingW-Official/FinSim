@@ -101,7 +101,7 @@ export function StrategyRecommendationCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
       onClick={() => onSelect(rec)}
-      className="rounded-lg border border-border/50 bg-card p-2.5 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-accent/50 transition-colors"
+      className="rounded-lg border border-border/50 bg-card p-2.5 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-muted/20 transition-colors duration-150"
     >
       {/* Row 1: Name + Sentiment badge */}
       <div className="flex justify-between items-start gap-1">

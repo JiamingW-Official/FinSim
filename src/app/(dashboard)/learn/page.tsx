@@ -167,9 +167,6 @@ export default function LearnPage() {
       {/* Header — quiet zone, generous vertical space */}
       <div className="flex items-center justify-between border-b border-border bg-card px-5 py-4 shrink-0">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
-            <GraduationCap className="h-4 w-4 text-primary" />
-          </div>
           <div>
             <h1 className="text-sm font-medium">Trading Academy</h1>
             <p className="text-[11px] text-muted-foreground">
@@ -243,7 +240,7 @@ export default function LearnPage() {
                 <div className="rounded-md border-2 border-emerald-500/40 bg-card p-10 text-center">
                   <CheckCircle2 className="h-10 w-10 text-emerald-400 mx-auto mb-4" />
                   <p className="text-xl font-bold mb-2">All Lessons Complete</p>
-                  <p className="text-base text-muted-foreground">You have finished every lesson. Try a practice trade to reinforce your skills.</p>
+                  <p className="text-sm text-muted-foreground">You have finished every lesson. Try a practice trade to reinforce your skills.</p>
                 </div>
               )}
 
@@ -523,7 +520,6 @@ export default function LearnPage() {
                 </div>
                 <div className="rounded-md bg-muted/30 p-2.5">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <Zap className="h-4 w-4 text-primary" />
                     <span className="text-[11px] font-normal text-muted-foreground/70">XP Earned</span>
                   </div>
                   <p className="text-xl font-normal tabular-nums">{xp.toLocaleString()}</p>

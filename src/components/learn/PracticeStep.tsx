@@ -82,7 +82,7 @@ function LegacyPractice({
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="flex w-full items-center justify-center gap-2 rounded-md bg-muted py-3 text-sm font-medium text-muted-foreground transition-all hover:bg-accent active:scale-[0.98]"
+          className="flex w-full items-center justify-center gap-2 rounded-md bg-muted py-3 text-sm font-medium text-muted-foreground transition-colors duration-150 hover:bg-muted/60 active:scale-[0.98]"
         >
           <CheckCircle2 className="h-4 w-4" />
           I Did It!

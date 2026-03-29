@@ -497,7 +497,7 @@ export default function PairsPage() {
     <div className="flex flex-col h-full bg-background">
       {/* Header */}
       <div className="flex items-center gap-3 px-6 py-6 border-b border-border/50 border-l-4 border-l-primary shrink-0">
-        <GitCompare className="h-5 w-5 text-primary" />
+        <GitCompare className="h-3.5 w-3.5 text-muted-foreground/50" />
         <div>
           <h1 className="text-lg font-semibold">Pairs Trading</h1>
           <p className="text-xs text-muted-foreground">Statistical arbitrage via mean-reverting spreads</p>
@@ -825,7 +825,7 @@ export default function PairsPage() {
         {activeTab === "education" && (
           <div className="p-4 max-w-3xl mx-auto space-y-4">
             <div className="flex items-center gap-2 mb-2">
-              <BookOpen className="h-4 w-4 text-primary" />
+              <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
               <h2 className="text-base font-medium">Pairs Trading Fundamentals</h2>
             </div>
 

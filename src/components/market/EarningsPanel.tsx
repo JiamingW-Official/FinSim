@@ -119,8 +119,8 @@ function FactorBadge({
   factor: EarningsPrediction["factors"][number];
 }) {
   const colors = {
-    positive: "bg-emerald-500/10 text-emerald-500",
-    negative: "bg-red-500/10 text-red-500",
+    positive: "bg-emerald-500/5 text-emerald-500",
+    negative: "bg-red-500/5 text-red-500",
     neutral: "bg-muted text-muted-foreground",
   };
   return (

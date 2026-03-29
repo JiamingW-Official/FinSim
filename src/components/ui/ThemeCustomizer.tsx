@@ -54,7 +54,7 @@ function ToggleRow({
             "px-2.5 py-1 transition-colors duration-150",
             value === optionA
               ? "bg-primary/15 text-primary font-medium"
-              : "bg-card text-muted-foreground hover:bg-accent/40 hover:text-foreground",
+              : "bg-card text-muted-foreground hover:bg-muted/30 hover:text-foreground",
           )}
         >
           {optionA}
@@ -66,7 +66,7 @@ function ToggleRow({
             "px-2.5 py-1 border-l border-border/60 transition-colors duration-150",
             value === optionB
               ? "bg-primary/15 text-primary font-medium"
-              : "bg-card text-muted-foreground hover:bg-accent/40 hover:text-foreground",
+              : "bg-card text-muted-foreground hover:bg-muted/30 hover:text-foreground",
           )}
         >
           {optionB}
@@ -135,7 +135,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground/60 transition-colors hover:bg-accent/50 hover:text-foreground"
+                className="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground/60 transition-colors hover:bg-muted/30 hover:text-foreground"
                 aria-label="Close theme customizer"
               >
                 <X className="h-4 w-4" />
@@ -160,7 +160,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                           "flex flex-col items-center gap-1.5 rounded-lg p-2 transition-colors duration-150",
                           isActive
                             ? "bg-primary/10 ring-1 ring-primary/40"
-                            : "hover:bg-accent/40",
+                            : "hover:bg-muted/30",
                         )}
                       >
                         {/* Swatch circle */}
@@ -355,7 +355,7 @@ export function ThemeCustomizer({ open, onClose }: ThemeCustomizerProps) {
                     fontScale: 1.0,
                   });
                 }}
-                className="w-full rounded-md border border-border/50 bg-background/50 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
+                className="w-full rounded-md border border-border/50 bg-background/50 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
               >
                 Reset to defaults
               </button>
@@ -382,7 +382,7 @@ export function ThemeCustomizerTrigger({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="flex h-9 w-10 items-center justify-center rounded-md text-muted-foreground/50 transition-colors hover:bg-accent/50 hover:text-foreground"
+          className="flex h-9 w-10 items-center justify-center rounded-md text-muted-foreground/50 transition-colors hover:bg-muted/30 hover:text-foreground"
           aria-label="Customize theme"
         >
           <PaletteIcon />
@@ -391,7 +391,7 @@ export function ThemeCustomizerTrigger({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="flex h-8 w-full items-center gap-2.5 rounded-md px-2.5 text-muted-foreground/50 transition-colors hover:bg-accent/50 hover:text-foreground"
+          className="flex h-8 w-full items-center gap-2.5 rounded-md px-2.5 text-muted-foreground/50 transition-colors hover:bg-muted/30 hover:text-foreground"
           aria-label="Customize theme"
         >
           <PaletteIcon />

@@ -854,7 +854,7 @@ export default function IPOPage() {
       <div className="shrink-0 border-b border-border border-l-4 border-l-primary px-6 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
-            <Building2 className="h-4 w-4 text-primary" />
+            <Building2 className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-lg font-medium text-foreground">IPO Center</h1>
@@ -1067,7 +1067,7 @@ export default function IPOPage() {
               {/* IPO Grader */}
               <div className="rounded-md border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
                   <h2 className="font-medium text-foreground">IPO Grading Tool</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Rate a company's IPO quality</span>
                 </div>
@@ -1187,7 +1187,7 @@ export default function IPOPage() {
               {/* Sector first-day returns */}
               <div className="rounded-md border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <BarChart3 className="h-4 w-4 text-primary" />
+                  <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
                   <h2 className="font-medium text-foreground">Average First-Day Return by Sector</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Based on 204 IPOs (2019–2025)</span>
                 </div>
@@ -1245,7 +1245,7 @@ export default function IPOPage() {
               {/* Allocations */}
               <div className="rounded-md border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <DollarSign className="h-4 w-4 text-primary" />
+                  <DollarSign className="h-3.5 w-3.5 text-muted-foreground/50" />
                   <h2 className="font-medium text-foreground">Your IPO Allocations</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Simulated retail allocation</span>
                 </div>
@@ -1300,7 +1300,7 @@ export default function IPOPage() {
               {/* Flip Simulator */}
               <div className="rounded-md border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <TrendingUp className="h-4 w-4 text-primary" />
+                  <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
                   <h2 className="font-medium text-foreground">IPO Flip Simulator</h2>
                   <span className="ml-auto text-xs text-muted-foreground">Day 1 sell vs hold</span>
                 </div>
@@ -1329,7 +1329,7 @@ export default function IPOPage() {
               {/* Lock-up Countdown */}
               <div className="rounded-md border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <Lock className="h-4 w-4 text-primary" />
+                  <Lock className="h-3.5 w-3.5 text-muted-foreground/50" />
                   <h2 className="font-medium text-foreground">Lock-up Expiry Countdown</h2>
                 </div>
                 <div className="space-y-2">
@@ -1366,14 +1366,14 @@ export default function IPOPage() {
               {/* Education: How retail accesses IPOs */}
               <div className="rounded-md border border-border p-5">
                 <div className="flex items-center gap-2 mb-4">
-                  <BookOpen className="h-4 w-4 text-primary" />
+                  <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
                   <h2 className="font-medium text-foreground">How Retail Investors Access IPOs</h2>
                 </div>
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {[
                     {
                       title: "Broker IPO Programs",
-                      icon: <Users className="h-4 w-4 text-primary" />,
+                      icon: <Users className="h-3.5 w-3.5 text-muted-foreground/50" />,
                       desc: "Brokers like Fidelity, TD Ameritrade, and Schwab offer IPO access to eligible customers. Typically requires minimum account balance and active trading history.",
                     },
                     {
@@ -1383,7 +1383,7 @@ export default function IPOPage() {
                     },
                     {
                       title: "Direct Listings",
-                      icon: <TrendingUp className="h-4 w-4 text-primary" />,
+                      icon: <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />,
                       desc: "Companies like Spotify and Coinbase bypassed traditional IPO underwriting via direct listings. No lockup, no underwriter discount — shares trade immediately at market price.",
                     },
                     {

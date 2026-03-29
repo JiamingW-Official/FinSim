@@ -168,13 +168,8 @@ export default function LeaderboardPage() {
       {/* ===== HEADER — Hero ===== */}
       <div className="border-b border-border border-l-4 border-l-primary px-4 py-4">
         <div className="flex items-center gap-3">
-          <div
-            className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10"
-          >
-            <Trophy className="h-5 w-5 text-primary" />
-          </div>
           <div>
-            <h1 className="text-lg font-bold">Leaderboard</h1>
+            <h1 className="text-sm font-medium">Leaderboard</h1>
             <p className="text-[11px] text-muted-foreground">
               Compete with other traders
             </p>
@@ -190,7 +185,7 @@ export default function LeaderboardPage() {
           <div
             className="flex items-center gap-1.5 rounded-lg bg-primary/10 border border-border px-3 py-1.5"
           >
-            <span className="text-[11px] font-bold tabular-nums text-primary">
+            <span className="text-[11px] font-medium font-mono tabular-nums text-primary">
               Rank #{userRank?.rank ?? "-"}
             </span>
             <span className="text-xs text-muted-foreground">
@@ -304,7 +299,7 @@ export default function LeaderboardPage() {
               <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 mb-4">
                 <div className="flex items-center gap-2 mb-5">
                   <Crown className="h-5 w-5 text-amber-400" />
-                  <span className="text-base font-medium">Top 3 — {dimConfig.label}</span>
+                  <span className="text-sm font-medium">Top 3 — {dimConfig.label}</span>
                 </div>
 
                 <div className="flex items-end justify-center gap-3">
@@ -628,7 +623,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
         <div className="rounded-md border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Trophy className="h-4 w-4 text-primary" />
-            <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Global Rank</span>
+            <span className="text-[11px] font-medium text-muted-foreground">Global Rank</span>
           </div>
           <div className="text-2xl font-bold tabular-nums text-primary">#{rank}</div>
           <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
@@ -637,7 +632,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
         <div className="rounded-md border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Star className="h-4 w-4 text-amber-400" />
-            <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Percentile</span>
+            <span className="text-[11px] font-medium text-muted-foreground">Percentile</span>
           </div>
           <div className="text-lg font-medium tabular-nums text-amber-400">Top {Math.max(1, 100 - percentile)}%</div>
           <div className="mt-2 h-2 rounded-full bg-muted/30 overflow-hidden">

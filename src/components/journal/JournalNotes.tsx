@@ -336,7 +336,7 @@ export function JournalNotes() {
           <div className="flex items-center gap-2 justify-end">
             <button
               onClick={handleCancel}
-              className="flex items-center gap-1 rounded-md border border-border px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-accent/30 hover:text-foreground"
+              className="flex items-center gap-1 rounded-md border border-border px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
             >
               <X className="h-3 w-3" /> Cancel
             </button>
@@ -436,7 +436,7 @@ export function JournalNotes() {
                   {/* Delete button */}
                   <button
                     onClick={() => handleDelete(note.id)}
-                    className="shrink-0 rounded p-1 text-muted-foreground/40 transition-colors hover:bg-red-500/10 hover:text-red-400"
+                    className="shrink-0 rounded p-1 text-muted-foreground/40 transition-colors hover:bg-red-500/5 hover:text-red-400"
                     title="Delete note"
                   >
                     <Trash2 className="h-3.5 w-3.5" />

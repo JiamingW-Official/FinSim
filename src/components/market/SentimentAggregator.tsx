@@ -103,10 +103,10 @@ function generateVixTermData(seed: number): VixTermData {
 // ─── Helper functions ─────────────────────────────────────────────────────────
 
 function getFGLevel(v: number): { label: string; color: string; bg: string } {
-  if (v <= 20) return { label: "Extreme Fear", color: "text-red-500", bg: "bg-red-500/10" };
+  if (v <= 20) return { label: "Extreme Fear", color: "text-red-500", bg: "bg-red-500/5" };
   if (v <= 40) return { label: "Fear", color: "text-orange-500", bg: "bg-orange-500/10" };
   if (v <= 60) return { label: "Neutral", color: "text-yellow-500", bg: "bg-yellow-500/10" };
-  if (v <= 80) return { label: "Greed", color: "text-emerald-500", bg: "bg-emerald-500/10" };
+  if (v <= 80) return { label: "Greed", color: "text-emerald-500", bg: "bg-emerald-500/5" };
   return { label: "Extreme Greed", color: "text-green-500", bg: "bg-green-500/10" };
 }
 
@@ -482,7 +482,7 @@ function VixTermStructure({ data }: { data: VixTermData }) {
   const maxVal = Math.max(...bars.map((b) => b.value));
   const isBackwardation = data.vix9d > data.vix || data.vix > data.vix3m;
   const structureLabel = isBackwardation ? "Backwardation" : "Contango";
-  const structureColor = isBackwardation ? "text-red-500 bg-red-500/10" : "text-emerald-500 bg-emerald-500/10";
+  const structureColor = isBackwardation ? "text-red-500 bg-red-500/5" : "text-emerald-500 bg-emerald-500/5";
 
   return (
     <div className="rounded-lg border bg-card p-4 space-y-4">

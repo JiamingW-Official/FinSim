@@ -736,7 +736,7 @@ export default function ScreenerPage() {
       <div className="shrink-0 border-b border-border/50 px-6 py-6 border-l-4 border-l-primary">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Search className="h-5 w-5 text-primary" />
+            <Search className="h-3.5 w-3.5 text-muted-foreground/50" />
             <div>
               <h1 className="text-lg font-semibold">AI Screener</h1>
               <p className="text-xs text-muted-foreground">50 synthetic stocks · AI-scored · Seeded universe</p>
@@ -940,7 +940,7 @@ export default function ScreenerPage() {
 
             {/* Summary */}
             <div className="flex items-center gap-3 rounded-lg border border-primary/20 bg-primary/5 px-4 py-3">
-              <BarChart2 className="h-4 w-4 text-primary" />
+              <BarChart2 className="h-3.5 w-3.5 text-muted-foreground/50" />
               <span className="text-sm text-muted-foreground">
                 {criteria.filter((c) => c.enabled).length === 0
                   ? "No filters active — all 50 stocks will appear in results."
@@ -1144,7 +1144,7 @@ export default function ScreenerPage() {
             {/* Today's Top Picks */}
             <section>
               <div className="mb-4 flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-primary" />
+                <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
                 <h2 className="text-sm font-medium">Today's Top Picks</h2>
                 <span className="text-xs text-muted-foreground">· AI-curated · 2026-03-27</span>
               </div>
@@ -1214,7 +1214,7 @@ export default function ScreenerPage() {
             {/* Sector Leaders */}
             <section>
               <div className="mb-4 flex items-center gap-2">
-                <Layers className="h-4 w-4 text-primary" />
+                <Layers className="h-3.5 w-3.5 text-muted-foreground/50" />
                 <h2 className="text-sm font-medium">Sector Leaders</h2>
                 <span className="text-xs text-muted-foreground">· Best AI score per sector</span>
               </div>
@@ -1262,7 +1262,7 @@ export default function ScreenerPage() {
             {/* Hidden Gems */}
             <section>
               <div className="mb-4 flex items-center gap-2">
-                <Eye className="h-4 w-4 text-primary" />
+                <Eye className="h-3.5 w-3.5 text-muted-foreground/50" />
                 <h2 className="text-sm font-medium">Hidden Gems</h2>
                 <span className="text-xs text-muted-foreground">· Small/Mid-cap with strong fundamentals</span>
               </div>
@@ -1335,7 +1335,7 @@ export default function ScreenerPage() {
             {/* Your saved screens */}
             <section>
               <div className="mb-4 flex items-center gap-2">
-                <Bookmark className="h-4 w-4 text-primary" />
+                <Bookmark className="h-3.5 w-3.5 text-muted-foreground/50" />
                 <h2 className="text-sm font-medium">Your Saved Screens</h2>
               </div>
               {savedScreens.length === 0 ? (
@@ -1393,7 +1393,7 @@ export default function ScreenerPage() {
             {/* Compare screens */}
             <section>
               <div className="mb-4 flex items-center gap-2">
-                <BarChart2 className="h-4 w-4 text-primary" />
+                <BarChart2 className="h-3.5 w-3.5 text-muted-foreground/50" />
                 <h2 className="text-sm font-medium">Compare Screens</h2>
               </div>
               <div className="rounded-md border border-border bg-card p-4 space-y-4">
@@ -1505,7 +1505,7 @@ export default function ScreenerPage() {
             {/* Community screens */}
             <section>
               <div className="mb-4 flex items-center gap-2">
-                <Users className="h-4 w-4 text-primary" />
+                <Users className="h-3.5 w-3.5 text-muted-foreground/50" />
                 <h2 className="text-sm font-medium">Community Screens</h2>
                 <span className="text-xs text-muted-foreground">· Popular shared filters from top traders</span>
               </div>

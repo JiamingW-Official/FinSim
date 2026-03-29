@@ -518,7 +518,7 @@ function EquityFuturesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-semibold flex items-center gap-2">
-            <BarChart2 className="h-4 w-4 text-primary" /> Index Futures
+            <BarChart2 className="h-3.5 w-3.5 text-muted-foreground/50" /> Index Futures
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -604,7 +604,7 @@ function EquityFuturesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Activity className="h-4 w-4 text-primary" /> Single Stock Futures (SSF)
+            <Activity className="h-3.5 w-3.5 text-muted-foreground/50" /> Single Stock Futures (SSF)
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -808,7 +808,7 @@ function InterestRateFuturesTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Globe className="h-4 w-4 text-primary" /> International Rate Futures
+            <Globe className="h-3.5 w-3.5 text-muted-foreground/50" /> International Rate Futures
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -873,7 +873,7 @@ function CurrencyCryptoTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Globe className="h-4 w-4 text-primary" /> FX Futures (CME)
+            <Globe className="h-3.5 w-3.5 text-muted-foreground/50" /> FX Futures (CME)
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -1322,7 +1322,7 @@ function MarginOrderTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Calculator className="h-4 w-4 text-primary" /> Select Contract
+            <Calculator className="h-3.5 w-3.5 text-muted-foreground/50" /> Select Contract
           </CardTitle>
         </CardHeader>
         <CardContent className="px-4 pb-4">
@@ -1445,7 +1445,7 @@ function MarginOrderTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-2 pt-4 px-4">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Shield className="h-4 w-4 text-primary" /> Margin Account Simulator
+            <Shield className="h-3.5 w-3.5 text-muted-foreground/50" /> Margin Account Simulator
           </CardTitle>
         </CardHeader>
         <CardContent className="px-4 pb-4 flex flex-col gap-3">
@@ -1613,7 +1613,7 @@ export default function FuturesPage() {
         className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-col gap-1"
       >
         <div className="flex items-center gap-2">
-          <BarChart2 className="h-5 w-5 text-primary" />
+          <BarChart2 className="h-3.5 w-3.5 text-muted-foreground/50" />
           <h1 className="text-lg font-medium text-foreground">Futures & Financial Derivatives</h1>
           <Badge variant="outline" className="text-xs text-muted-foreground border-muted-foreground/30">SIMULATED</Badge>
         </div>

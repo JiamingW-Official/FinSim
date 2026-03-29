@@ -107,8 +107,8 @@ function SpreadChart({
 
 function SignalBadge({ signal }: { signal: PairAnalysis["signal"] }) {
   const config = {
-    long_spread: { text: "Long Spread", className: "bg-emerald-500/10 text-emerald-500" },
-    short_spread: { text: "Short Spread", className: "bg-red-500/10 text-red-500" },
+    long_spread: { text: "Long Spread", className: "bg-emerald-500/5 text-emerald-500" },
+    short_spread: { text: "Short Spread", className: "bg-red-500/5 text-red-500" },
     neutral: { text: "Neutral", className: "bg-muted text-muted-foreground" },
   };
   const c = config[signal];

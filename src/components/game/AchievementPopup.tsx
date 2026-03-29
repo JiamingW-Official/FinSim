@@ -66,8 +66,8 @@ export function AchievementPopup() {
             className="relative flex items-center gap-3 rounded-md border border-amber-500/30 bg-card px-4 py-3 shadow-sm cursor-pointer"
             onClick={dismissAchievement}
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/15">
-              <IconComponent className="h-5 w-5 text-amber-500" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/10">
+              <IconComponent className="h-5 w-5 text-amber-500/80" />
             </div>
             <div>
               <div className="flex items-center gap-1.5">

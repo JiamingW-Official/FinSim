@@ -1163,7 +1163,7 @@ export default function SectorsPage() {
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
       <div className="flex shrink-0 items-center gap-3 border-b border-border/40 px-6 py-6 border-l-4 border-l-primary">
-        <LayoutGrid className="h-5 w-5 text-primary" />
+        <LayoutGrid className="h-3.5 w-3.5 text-muted-foreground/50" />
         <div>
           <h1 className="text-lg font-bold leading-none">Sector Analysis</h1>
           <p className="mt-0.5 text-xs text-muted-foreground">11 GICS Sectors — Performance, Rotation, Factors & ETFs</p>

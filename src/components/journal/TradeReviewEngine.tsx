@@ -1233,7 +1233,7 @@ function EmotionalSection({
     <div className="space-y-4">
       {/* Warning */}
       {recentNegative.length >= 2 && (
-        <div className="flex items-start gap-2 rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-xs text-red-300">
+        <div className="flex items-start gap-2 rounded-lg border border-red-500/30 bg-red-500/5 p-3 text-xs text-red-300">
           <AlertTriangle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
           <span>
             <strong>Caution:</strong> {recentNegative.length} of your last 5 trades were logged under anxious or frustrated state.

@@ -130,7 +130,7 @@ function NotificationRow({
       onClick={handleClick}
       className={cn(
         "flex w-full items-start gap-2.5 border-l-2 px-3 py-2 text-left",
-        "transition-colors hover:bg-accent/20 focus-visible:outline-none focus-visible:bg-accent/20",
+        "transition-colors duration-150 hover:bg-muted/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/30",
         TYPE_ACCENT[n.type] ?? "border-l-muted",
         !n.read && "bg-primary/5",
       )}
@@ -204,7 +204,7 @@ export function NotificationCenter() {
       <button
         type="button"
         onClick={handleToggle}
-        className="relative rounded-md p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent cursor-pointer"
+        className="relative rounded-md p-1 text-muted-foreground transition-colors duration-150 hover:text-foreground hover:bg-muted/30 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/30"
         title="Notifications"
         aria-label={`Notifications${unreadCount > 0 ? `, ${unreadCount} unread` : ""}`}
       >

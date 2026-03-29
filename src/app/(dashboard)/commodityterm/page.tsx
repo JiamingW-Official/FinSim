@@ -655,7 +655,7 @@ function StorageCarryModel() {
       <Card className="bg-muted/30 border-border">
         <CardContent className="pt-4">
           <div className="flex items-center gap-2 mb-3">
-            <Warehouse className="h-4 w-4 text-primary" />
+            <Warehouse className="h-3.5 w-3.5 text-muted-foreground/50" />
             <span className="text-sm font-medium">Inventory Level Impact</span>
             <Badge className="ml-auto bg-primary/20 text-primary text-xs">
               {INVENTORY_LEVEL}% full

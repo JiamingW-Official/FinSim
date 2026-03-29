@@ -937,7 +937,7 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
   return (
     <div
       className={cn(
-        "shrink-0 w-40 rounded-md border p-3 flex flex-col gap-2 transition-all hover:scale-[1.02]",
+        "shrink-0 w-40 rounded-md border p-3 flex flex-col gap-2 transition-colors duration-150",
         RARITY_COLORS[rarity],
       )}
     >

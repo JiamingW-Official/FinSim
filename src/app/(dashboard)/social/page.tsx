@@ -1383,7 +1383,7 @@ export default function SocialPage() {
       <div className="shrink-0 border-b border-border/50 px-6 py-6 border-l-4 border-l-primary">
         <div className="flex items-center gap-3">
           <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-            <Users className="h-4 w-4 text-primary" />
+            <Users className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-base font-medium">Social Trading</h1>

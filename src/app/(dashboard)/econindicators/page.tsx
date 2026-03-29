@@ -830,7 +830,7 @@ export default function EconIndicatorsPage() {
                 <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-base flex items-center gap-2">
-                      <Activity className="h-4 w-4 text-primary" />
+                      <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
                       PMI Composite — Manufacturing &amp; Services
                     </CardTitle>
                     <div className="flex gap-1">
@@ -1052,7 +1052,7 @@ export default function EconIndicatorsPage() {
               <Card className="bg-card border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-base flex items-center gap-2">
-                    <Users className="h-4 w-4 text-primary" />
+                    <Users className="h-3.5 w-3.5 text-muted-foreground/50" />
                     Unemployment Rate — 24 Month Trend
                   </CardTitle>
                 </CardHeader>
@@ -1189,7 +1189,7 @@ export default function EconIndicatorsPage() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-base flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-primary" />
+              <Calendar className="h-3.5 w-3.5 text-muted-foreground/50" />
               Economic Calendar — Next Major Releases
             </CardTitle>
             <p className="text-xs text-muted-foreground">

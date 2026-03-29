@@ -530,7 +530,7 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
             "rounded-full px-3 py-1 text-xs font-medium transition-colors",
             catFilter === "All"
               ? "bg-primary text-primary-foreground"
-              : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+              : "border border-border/50 text-muted-foreground hover:bg-muted/20",
           )}
         >
           All
@@ -544,7 +544,7 @@ function TVLDashboard({ protocols }: { protocols: ProtocolTVL[] }) {
               "rounded-full px-3 py-1 text-xs font-medium border transition-colors",
               catFilter === cat
                 ? "text-primary-foreground border-transparent"
-                : "border-border/50 text-muted-foreground hover:bg-accent/50",
+                : "border-border/50 text-muted-foreground hover:bg-muted/20",
             )}
             style={catFilter === cat ? { background: CATEGORY_COLORS[cat] } : {}}
           >
@@ -985,7 +985,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
                 "rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
                 assetFilter === asset
                   ? "bg-primary text-primary-foreground"
-                  : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+                  : "border border-border/50 text-muted-foreground hover:bg-muted/20",
               )}
             >
               {asset}
@@ -1003,7 +1003,7 @@ function YieldAggregator({ yields }: { yields: YieldOpportunity[] }) {
                 "rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
                 sortBy === val
                   ? "bg-primary text-primary-foreground"
-                  : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+                  : "border border-border/50 text-muted-foreground hover:bg-muted/20",
               )}
             >
               {label}
@@ -1156,7 +1156,7 @@ export function DeFiAnalytics() {
               "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
               section === s.id
                 ? "bg-primary text-primary-foreground"
-                : "border border-border/50 text-muted-foreground hover:bg-accent/50",
+                : "border border-border/50 text-muted-foreground hover:bg-muted/20",
             )}
           >
             {s.icon}

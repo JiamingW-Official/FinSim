@@ -143,7 +143,7 @@ function TaxOverviewTab() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <Calculator className="h-4 w-4 text-primary" />
+            <Calculator className="h-3.5 w-3.5 text-muted-foreground/50" />
             Federal Income Tax Calculator (2024, Single Filer)
           </CardTitle>
         </CardHeader>
@@ -458,7 +458,7 @@ function TaxLossHarvestingTab() {
               className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-4"
             >
               <p className="text-sm font-medium mb-2 flex items-center gap-2">
-                <Repeat className="h-4 w-4 text-primary" />
+                <Repeat className="h-3.5 w-3.5 text-muted-foreground/50" />
                 Replacement Suggestions (Similar ETFs — Avoid Wash Sale)
               </p>
               <div className="space-y-1.5">
@@ -710,7 +710,7 @@ function AccountOptimizerTab() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <Repeat className="h-4 w-4 text-primary" />
+            <Repeat className="h-3.5 w-3.5 text-muted-foreground/50" />
             Roth Conversion Analyzer
           </CardTitle>
         </CardHeader>
@@ -1036,7 +1036,7 @@ function EstateGiftTab() {
       <Card>
         <CardHeader className="pb-3">
           <CardTitle className="flex items-center gap-2 text-base">
-            <Gift className="h-4 w-4 text-primary" />
+            <Gift className="h-3.5 w-3.5 text-muted-foreground/50" />
             Annual Gift Tax Strategy
           </CardTitle>
         </CardHeader>

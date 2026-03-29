@@ -775,7 +775,7 @@ function PatternCard({
     <button
       type="button"
       onClick={onClick}
-      className="group flex flex-col overflow-hidden rounded-lg border border-border/50 bg-card text-left transition-colors hover:border-primary/40 hover:bg-accent/20"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border/50 bg-card text-left transition-colors hover:border-primary/40 hover:bg-muted/10"
       style={{ width: 200, minHeight: 160 }}
     >
       {/* SVG thumb */}
@@ -1127,7 +1127,7 @@ function QuizSection() {
               onClick={() => handleAnswer(opt)}
               className={cn(
                 "rounded-lg border px-3 py-2.5 text-left text-xs font-medium transition-colors",
-                !revealed && "border-border/50 text-foreground hover:border-primary/40 hover:bg-accent/20",
+                !revealed && "border-border/50 text-foreground hover:border-primary/40 hover:bg-muted/10",
                 revealed && isCorrect && "border-emerald-400/60 bg-emerald-400/10 text-emerald-400",
                 revealed && isSelected && !isCorrect && "border-rose-400/60 bg-rose-400/10 text-rose-400",
                 revealed && !isSelected && !isCorrect && "border-border/30 text-muted-foreground",

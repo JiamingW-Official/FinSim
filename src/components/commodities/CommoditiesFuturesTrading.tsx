@@ -511,7 +511,7 @@ function ContractExplorer({
                 "px-2.5 py-1 rounded-md text-xs font-medium transition-colors border",
                 sectorFilter === s
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-accent/30"
+                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
               )}
             >
               {s === "all" ? "All" : SECTOR_LABELS[s as Sector]}
@@ -528,7 +528,7 @@ function ContractExplorer({
                 "px-2 py-0.5 rounded text-xs transition-colors border",
                 sortKey === k
                   ? "bg-primary/20 border-primary/40 text-primary"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-accent/30"
+                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
               )}
             >
               {k === "contango" ? "Contango %" : k === "volume" ? "Volume" : "Name"}
@@ -559,7 +559,7 @@ function ContractExplorer({
               return (
                 <tr
                   key={g.id}
-                  className="border-b border-border/20 hover:bg-accent/20 transition-colors"
+                  className="border-b border-border/20 hover:bg-muted/10 transition-colors"
                 >
                   <td className="py-2 px-3">
                     <div className="flex items-center gap-2">
@@ -1083,7 +1083,7 @@ function OrderEntrySimulator() {
                   "py-1.5 rounded-md text-xs font-medium border transition-colors",
                   tradeType === t
                     ? "bg-primary/20 border-primary/40 text-primary"
-                    : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-accent/30"
+                    : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
                 )}
               >
                 {t === "outright" ? "Outright" : "Calendar Spread"}
@@ -1102,7 +1102,7 @@ function OrderEntrySimulator() {
                 "py-1.5 rounded-md text-xs font-semibold border transition-colors",
                 direction === "long"
                   ? "bg-green-500/20 border-green-500/40 text-green-400"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-accent/30"
+                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
               )}
             >
               Long (Buy)
@@ -1113,7 +1113,7 @@ function OrderEntrySimulator() {
                 "py-1.5 rounded-md text-xs font-semibold border transition-colors",
                 direction === "short"
                   ? "bg-red-500/20 border-red-500/40 text-red-400"
-                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-accent/30"
+                  : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20"
               )}
             >
               Short (Sell)
@@ -1453,7 +1453,7 @@ export default function CommoditiesFuturesTrading() {
               "flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               section === id
                 ? "bg-primary/20 border-primary/40 text-primary"
-                : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-accent/30 hover:text-foreground"
+                : "bg-muted/30 border-border/40 text-muted-foreground hover:bg-muted/20 hover:text-foreground"
             )}
           >
             <Icon className="h-3.5 w-3.5" />

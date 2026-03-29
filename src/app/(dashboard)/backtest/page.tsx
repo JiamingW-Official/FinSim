@@ -259,7 +259,7 @@ export default function BacktestPage() {
       {/* Header — quiet zone */}
       <div className="flex items-center gap-3 border-b border-border bg-card/60 px-5 py-4">
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15">
-          <FlaskConical className="h-4 w-4 text-primary" />
+          <FlaskConical className="h-3.5 w-3.5 text-muted-foreground/50" />
         </div>
         <div>
           <h1 className="text-sm font-medium text-foreground">Strategy Backtester</h1>

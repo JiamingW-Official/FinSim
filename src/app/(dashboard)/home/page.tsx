@@ -455,7 +455,7 @@ export default function HomePage() {
         {/* ═══════════════════════════════════════════
             QUIET ZONE — visual rest between action & reference
         ═══════════════════════════════════════════ */}
-        <div className="my-12" />
+        <div className="my-10" />
 
         {/* ═══════════════════════════════════════════
             TIER 3 — REFERENCE: Market Intelligence (nearly invisible)

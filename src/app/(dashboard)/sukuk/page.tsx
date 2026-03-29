@@ -780,7 +780,7 @@ function ShariahTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Scale className="h-4 w-4 text-primary" />
+            <Scale className="h-3.5 w-3.5 text-muted-foreground/50" />
             <span className="font-medium text-foreground text-sm">Shariah Board Role</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
@@ -793,7 +793,7 @@ function ShariahTab() {
         </div>
         <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <BookOpen className="h-4 w-4 text-primary" />
+            <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
             <span className="font-medium text-foreground text-sm">AAOIFI Standards</span>
           </div>
           <ul className="space-y-1.5 text-xs text-muted-foreground">
@@ -1125,7 +1125,7 @@ function ComparisonTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <BarChart3 className="h-4 w-4 text-primary" />
+            <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
             <span className="text-sm font-medium text-foreground">Liquidity Differences</span>
           </div>
           <div className="space-y-2 text-xs text-muted-foreground">
@@ -1153,7 +1153,7 @@ function ComparisonTab() {
         </div>
         <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
-            <ArrowRightLeft className="h-4 w-4 text-primary" />
+            <ArrowRightLeft className="h-3.5 w-3.5 text-muted-foreground/50" />
             <span className="text-sm font-medium text-foreground">Crossover Investor Flow</span>
           </div>
           <div className="space-y-3 text-xs text-muted-foreground">

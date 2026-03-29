@@ -736,7 +736,7 @@ export default function YieldCurvePage() {
       >
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <Activity className="h-5 w-5 text-primary" />
+            <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
             <h1 className="text-xl font-bold tracking-tight">Yield Curve Strategies</h1>
           </div>
           <p className="text-muted-foreground text-sm">
@@ -826,7 +826,7 @@ export default function YieldCurvePage() {
               <Card className="lg:col-span-2 border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                    <Activity className="h-4 w-4 text-primary" />
+                    <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
                     US Treasury Yield Curve
                   </CardTitle>
                 </CardHeader>
@@ -1006,7 +1006,7 @@ export default function YieldCurvePage() {
                   <Card className="border-border">
                     <CardHeader className="pb-2">
                       <CardTitle className="text-sm font-medium flex items-center gap-2">
-                        <Target className="h-4 w-4 text-primary" />
+                        <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
                         P&L Profile (vs Spread Level)
                       </CardTitle>
                     </CardHeader>
@@ -1198,7 +1198,7 @@ export default function YieldCurvePage() {
               <Card className="border-border">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <BarChart3 className="h-4 w-4 text-primary" />
+                    <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
                     Macro Drivers
                   </CardTitle>
                 </CardHeader>
@@ -1237,7 +1237,7 @@ export default function YieldCurvePage() {
                 <Card className="border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium flex items-center gap-2">
-                      <Target className="h-4 w-4 text-primary" />
+                      <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
                       Signal Scorecard
                     </CardTitle>
                   </CardHeader>
@@ -1287,7 +1287,7 @@ export default function YieldCurvePage() {
                 <Card className="border-border">
                   <CardHeader className="pb-2">
                     <CardTitle className="text-sm font-medium flex items-center gap-2">
-                      <RefreshCw className="h-4 w-4 text-primary" />
+                      <RefreshCw className="h-3.5 w-3.5 text-muted-foreground/50" />
                       Key Risk Factors
                     </CardTitle>
                   </CardHeader>

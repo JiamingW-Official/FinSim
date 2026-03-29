@@ -87,7 +87,7 @@ export default function InsiderTradingPanel({ ticker }: InsiderTradingPanelProps
                   <span
                     className={cn(
                       "text-xs font-medium px-1.5 py-0.5 rounded",
-                      trade.type === "buy" ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"
+                      trade.type === "buy" ? "bg-green-500/10 text-green-500" : "bg-red-500/5 text-red-500"
                     )}
                   >
                     {trade.type.toUpperCase()}

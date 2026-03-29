@@ -34,7 +34,7 @@ export function LearningCard({
       <button
         type="button"
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-start gap-3 p-4 text-left transition-colors hover:bg-accent/30"
+        className="flex w-full items-start gap-3 p-4 text-left transition-colors duration-150 hover:bg-muted/20"
       >
         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
           <Icon className="h-4 w-4 text-primary" />

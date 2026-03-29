@@ -810,7 +810,7 @@ export function TradeReplay() {
                   "w-full text-left rounded-md px-2.5 py-2 transition-colors",
                   isSelected
                     ? "bg-primary/15 border border-primary/30"
-                    : "hover:bg-accent/50 border border-transparent",
+                    : "hover:bg-muted/20 border border-transparent",
                 )}
               >
                 <div className="flex items-center justify-between mb-0.5">

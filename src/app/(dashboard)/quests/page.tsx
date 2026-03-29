@@ -526,7 +526,7 @@ export default function QuestsPage() {
             <ScrollText className="h-4.5 w-4.5 text-primary" />
           </motion.div>
           <div>
-            <h1 className="text-base font-medium">Quest Board</h1>
+            <h1 className="text-sm font-medium">Quest Board</h1>
             <p className="text-[11px] text-muted-foreground">
               Complete quests across all game modes to earn XP and unlock rewards
             </p>

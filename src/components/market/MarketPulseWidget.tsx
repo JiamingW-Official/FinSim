@@ -227,8 +227,8 @@ function LiveTickerSection({ assets }: { assets: TickerAsset[] }) {
               key={asset.symbol}
               className={cn(
                 "flex items-center justify-between px-2 py-1 rounded transition-colors duration-300",
-                asset.flash === "up" && "bg-emerald-500/10",
-                asset.flash === "down" && "bg-red-500/10",
+                asset.flash === "up" && "bg-emerald-500/5",
+                asset.flash === "down" && "bg-red-500/5",
               )}
               layout
             >
@@ -725,7 +725,7 @@ function VolatilitySection({ seed }: { seed: number }) {
           <p className="text-xs text-muted-foreground">HV30</p>
           <p className="font-mono text-sm font-semibold">{data.hv30.toFixed(1)}</p>
         </div>
-        <div className={cn("rounded p-2", volRich ? "bg-red-500/10" : "bg-emerald-500/10")}>
+        <div className={cn("rounded p-2", volRich ? "bg-red-500/5" : "bg-emerald-500/5")}>
           <p className="text-xs text-muted-foreground">Vol</p>
           <p className={cn("font-mono text-sm font-semibold", volRich ? "text-red-400" : "text-emerald-400")}>
             {volRich ? "Rich" : "Cheap"}

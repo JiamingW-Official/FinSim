@@ -1392,7 +1392,7 @@ export default function ETFPage() {
     <div className="flex h-full flex-col overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-border/50 border-l-4 border-l-primary px-6 py-4">
-        <PieChart className="h-5 w-5 text-primary" />
+        <PieChart className="h-3.5 w-3.5 text-muted-foreground/50" />
         <div>
           <h1 className="text-lg font-medium leading-none">ETF Analysis</h1>
           <p className="mt-1 text-xs text-muted-foreground">

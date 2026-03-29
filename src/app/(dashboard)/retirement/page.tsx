@@ -489,7 +489,7 @@ function AccountsTab() {
         {/* Roth vs Traditional */}
         <Card className="p-4 space-y-3">
           <p className="text-sm font-medium flex items-center gap-2">
-            <BarChart3 className="h-4 w-4 text-primary" />
+            <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
             Roth vs. Traditional Break-Even
           </p>
           <div className="space-y-3">
@@ -739,7 +739,7 @@ function SocialSecurityTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <Card className="p-4 space-y-2">
           <p className="text-sm font-medium flex items-center gap-2">
-            <Shield className="h-4 w-4 text-primary" />
+            <Shield className="h-3.5 w-3.5 text-muted-foreground/50" />
             Spousal Benefits
           </p>
           <ul className="space-y-1 text-xs text-muted-foreground">
@@ -872,7 +872,7 @@ function InvestmentStrategyTab() {
       {/* Glide path */}
       <Card className="p-4 space-y-2">
         <p className="text-sm font-medium flex items-center gap-2">
-          <TrendingUp className="h-4 w-4 text-primary" />
+          <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
           Glide Path: Stock Allocation by Age
         </p>
         <div className="overflow-x-auto">
@@ -919,7 +919,7 @@ function InvestmentStrategyTab() {
       {/* Target date funds */}
       <Card className="p-4 space-y-3">
         <p className="text-sm font-medium flex items-center gap-2">
-          <PieChart className="h-4 w-4 text-primary" />
+          <PieChart className="h-3.5 w-3.5 text-muted-foreground/50" />
           Target Date Fund Comparison
         </p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -995,7 +995,7 @@ function InvestmentStrategyTab() {
       {/* Bucket strategy */}
       <Card className="p-4 space-y-3">
         <p className="text-sm font-medium flex items-center gap-2">
-          <Layers className="h-4 w-4 text-primary" />
+          <Layers className="h-3.5 w-3.5 text-muted-foreground/50" />
           Bucket Strategy
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -1102,7 +1102,7 @@ function HealthcareRMDsTab() {
       {/* Medicare parts */}
       <Card className="p-4 space-y-3">
         <p className="text-sm font-medium flex items-center gap-2">
-          <Shield className="h-4 w-4 text-primary" />
+          <Shield className="h-3.5 w-3.5 text-muted-foreground/50" />
           Medicare Parts Overview
         </p>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1135,7 +1135,7 @@ function HealthcareRMDsTab() {
       {/* RMD Calculator */}
       <Card className="p-4 space-y-3">
         <p className="text-sm font-medium flex items-center gap-2">
-          <Calculator className="h-4 w-4 text-primary" />
+          <Calculator className="h-3.5 w-3.5 text-muted-foreground/50" />
           RMD Calculator (IRS Uniform Lifetime Table)
         </p>
         <p className="text-xs text-muted-foreground">
@@ -1256,7 +1256,7 @@ export default function RetirementPage() {
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <h1 className="text-xl font-medium tracking-tight flex items-center gap-2">
-              <Target className="h-5 w-5 text-primary" />
+              <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
               Retirement Planning
             </h1>
             <p className="text-sm text-muted-foreground mt-0.5">

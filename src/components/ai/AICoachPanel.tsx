@@ -203,11 +203,11 @@ function SignalChips({
               "shrink-0 rounded border px-1.5 py-0.5 text-[10px] font-bold leading-none whitespace-nowrap transition-all",
               s.direction === "bullish"
                 ? selectedId === s.id
-                  ? "bg-emerald-500/30 text-emerald-300 border-emerald-400/60 ring-1 ring-emerald-400/40"
-                  : "bg-emerald-500/15 text-emerald-400 border-emerald-500/30 hover:bg-emerald-500/25"
+                  ? "bg-emerald-500/20 text-emerald-400/90 border-emerald-500/40 ring-1 ring-emerald-500/30"
+                  : "bg-emerald-500/10 text-emerald-400/80 border-emerald-500/25 hover:bg-emerald-500/15"
                 : selectedId === s.id
-                ? "bg-red-500/30 text-red-300 border-red-400/60 ring-1 ring-red-400/40"
-                : "bg-red-500/15 text-red-400 border-red-500/30 hover:bg-red-500/25",
+                ? "bg-red-500/20 text-red-400/90 border-red-500/40 ring-1 ring-red-500/30"
+                : "bg-red-500/10 text-red-400/80 border-red-500/25 hover:bg-red-500/15",
             )}
           >
             {s.direction === "bullish" ? "↑" : "↓"} {s.shortLabel}
@@ -228,8 +228,8 @@ function SignalChips({
               className={cn(
                 "rounded border px-2 py-1.5 text-[11px]",
                 selectedSig.direction === "bullish"
-                  ? "bg-emerald-500/10 border-emerald-500/25"
-                  : "bg-red-500/10 border-red-500/25",
+                  ? "bg-emerald-500/5 border-emerald-500/20"
+                  : "bg-red-500/5 border-red-500/20",
               )}
             >
               <div className="flex items-center justify-between mb-0.5">
@@ -304,23 +304,23 @@ function DivergenceAlert({ divergences }: { divergences: AnalysisResult["diverge
       className={cn(
         "flex items-center gap-1.5 rounded border px-2 py-1.5",
         isBull
-          ? "bg-emerald-500/10 border-emerald-500/30"
-          : "bg-red-500/10 border-red-500/30",
+          ? "bg-emerald-500/5 border-emerald-500/25"
+          : "bg-red-500/5 border-red-500/25",
       )}
     >
       <div
         className={cn(
           "w-0.5 h-5 rounded-full shrink-0 animate-pulse",
-          isBull ? "bg-emerald-500" : "bg-red-500",
+          isBull ? "bg-emerald-500/70" : "bg-red-500/70",
         )}
       />
       <Zap
-        className={cn("h-3 w-3 shrink-0", isBull ? "text-emerald-500" : "text-red-500")}
+        className={cn("h-3 w-3 shrink-0", isBull ? "text-emerald-500/80" : "text-red-500/80")}
       />
       <span
         className={cn(
           "text-[11px] font-bold leading-tight",
-          isBull ? "text-emerald-500" : "text-red-500",
+          isBull ? "text-emerald-500/80" : "text-red-500/80",
         )}
       >
         {d.description.length > 65 ? d.description.slice(0, 65) + "…" : d.description}
@@ -356,11 +356,11 @@ function ProfileCard({ profile }: { profile: AnalysisResult["traderProfile"] }) 
 
 function GradeBadge({ grade }: { grade: string }) {
   const cls =
-    grade === "A" ? "bg-emerald-500/15 text-emerald-500 border-emerald-500/30"
-    : grade === "B" ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
-    : grade === "C" ? "bg-amber-500/15 text-amber-500 border-amber-500/30"
-    : grade === "D" ? "bg-orange-500/15 text-orange-400 border-orange-500/30"
-    : "bg-red-500/15 text-red-500 border-red-500/30";
+    grade === "A" ? "bg-emerald-500/10 text-emerald-500/80 border-emerald-500/25"
+    : grade === "B" ? "bg-emerald-500/5 text-emerald-500/80 border-emerald-500/20"
+    : grade === "C" ? "bg-amber-500/10 text-amber-500/80 border-amber-500/25"
+    : grade === "D" ? "bg-orange-500/10 text-orange-400/80 border-orange-500/25"
+    : "bg-red-500/10 text-red-500/80 border-red-500/25";
 
   return (
     <div className={cn("rounded border px-3 py-2 text-center", cls)}>
@@ -406,11 +406,11 @@ function SmallBadge({ label, cls }: { label: string; cls: { bg: string; text: st
 }
 
 const REGIME_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
-  strong_bull: { bg: "bg-emerald-500/15", text: "text-emerald-500", border: "border-emerald-500/30" },
-  bull:        { bg: "bg-emerald-500/10", text: "text-emerald-500", border: "border-emerald-500/20" },
-  ranging:     { bg: "bg-amber-500/15",   text: "text-amber-500",   border: "border-amber-500/30" },
-  bear:        { bg: "bg-red-500/15",     text: "text-red-500",     border: "border-red-500/30" },
-  strong_bear: { bg: "bg-red-500/20",     text: "text-red-500",     border: "border-red-500/40" },
+  strong_bull: { bg: "bg-emerald-500/10", text: "text-emerald-500/80", border: "border-emerald-500/25" },
+  bull:        { bg: "bg-emerald-500/5",  text: "text-emerald-500/80", border: "border-emerald-500/20" },
+  ranging:     { bg: "bg-amber-500/10",   text: "text-amber-500/80",   border: "border-amber-500/25" },
+  bear:        { bg: "bg-red-500/10",     text: "text-red-500/80",     border: "border-red-500/25" },
+  strong_bear: { bg: "bg-red-500/15",     text: "text-red-500/80",     border: "border-red-500/30" },
 };
 
 const CONVICTION_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
@@ -574,10 +574,10 @@ function StrategyConfidenceMeter({ result, currentPrice }: { result: AnalysisRes
   const metCount = factors.filter((f) => f.met).length;
   const badgeColor =
     metCount >= 4
-      ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+      ? "bg-emerald-500/5 text-emerald-400/80 border-emerald-500/25"
       : metCount >= 3
-      ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
-      : "bg-red-500/15 text-red-400 border-red-500/30";
+      ? "bg-amber-500/5 text-amber-400/80 border-amber-500/25"
+      : "bg-red-500/5 text-red-400/80 border-red-500/25";
   const badgeLabel =
     metCount >= 4 ? "HIGH" : metCount >= 3 ? "MED" : "LOW";
 
@@ -625,10 +625,10 @@ function TradePlanCard({ plan, conviction }: { plan: TradePlan; conviction: stri
 
   const rrColor =
     rrRatio >= 2.0
-      ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+      ? "bg-emerald-500/5 text-emerald-400/80 border-emerald-500/25"
       : rrRatio >= 1.5
-      ? "bg-amber-500/15 text-amber-400 border-amber-500/30"
-      : "bg-red-500/15 text-red-400 border-red-500/30";
+      ? "bg-amber-500/5 text-amber-400/80 border-amber-500/25"
+      : "bg-red-500/5 text-red-400/80 border-red-500/25";
 
   // Position sizing variants (2% account risk default, 1% conservative, 3% aggressive)
   const ACCOUNT = 100_000;
@@ -1107,7 +1107,7 @@ export function AICoachPanel() {
         onClick={() => setExpanded((v) => !v)}
         className={cn(
           "flex w-full items-center justify-between px-3 transition-colors",
-          expanded ? "py-1.5 text-xs hover:bg-accent/20" : "py-1 text-[11px] hover:bg-accent/10 opacity-60 hover:opacity-100",
+          expanded ? "py-1.5 text-xs hover:bg-muted/10" : "py-1 text-[11px] hover:bg-muted/10 opacity-60 hover:opacity-100",
         )}
       >
         <div className="flex items-center gap-1.5 flex-wrap">
@@ -1386,7 +1386,7 @@ export function AICoachPanel() {
 
               {/* Error state */}
               {error && mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
-                <div className="flex items-start gap-1.5 text-xs text-red-400 rounded bg-red-500/10 border border-red-500/20 px-2 py-1.5">
+                <div className="flex items-start gap-1.5 text-xs text-red-500/80 rounded bg-red-500/5 border border-red-500/20 px-2 py-1.5">
                   <AlertCircle className="h-3 w-3 mt-0.5 shrink-0" />
                   <span>{error}</span>
                 </div>

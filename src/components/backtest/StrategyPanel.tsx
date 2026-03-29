@@ -42,7 +42,7 @@ const PRESET_ICONS: Record<BarGenPreset, React.ReactNode> = {
 
 const CATEGORY_COLORS: Record<string, string> = {
   momentum: "text-amber-400 bg-amber-500/10 border-amber-500/20",
-  trend: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+  trend: "text-emerald-400 bg-emerald-500/5 border-emerald-500/20",
   "mean-reversion": "text-muted-foreground bg-cyan-500/10 border-cyan-500/20",
   volatility: "text-rose-400 bg-rose-500/10 border-rose-500/20",
 };

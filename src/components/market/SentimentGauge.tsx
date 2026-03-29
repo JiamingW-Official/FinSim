@@ -144,10 +144,10 @@ export function SentimentGauge({ sentiment }: SentimentGaugeProps) {
         <span
           className={cn(
             "text-xs font-medium px-2 py-0.5 rounded-full",
-            sentiment.level === "extreme_fear" && "bg-red-500/10 text-red-500",
+            sentiment.level === "extreme_fear" && "bg-red-500/5 text-red-500",
             sentiment.level === "fear" && "bg-orange-500/10 text-orange-500",
             sentiment.level === "neutral" && "bg-yellow-500/10 text-yellow-500",
-            sentiment.level === "greed" && "bg-emerald-500/10 text-emerald-500",
+            sentiment.level === "greed" && "bg-emerald-500/5 text-emerald-500",
             sentiment.level === "extreme_greed" && "bg-green-500/10 text-green-500",
           )}
         >

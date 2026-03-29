@@ -411,7 +411,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
               animate={{ scale: 1 }}
               className={cn(
                 "flex items-center gap-0.5 rounded-full px-1.5 py-0.5",
-                playerAhead ? "bg-emerald-500/10" : "bg-red-500/10",
+                playerAhead ? "bg-emerald-500/5" : "bg-red-500/5",
               )}
             >
               <Flame className={cn("h-2.5 w-2.5", playerAhead ? "text-emerald-400" : "text-red-400")} />

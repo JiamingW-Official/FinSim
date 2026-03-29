@@ -159,9 +159,9 @@ function getDriftColor(deviation: number): string {
 
 function getDriftBg(deviation: number): string {
   const abs = Math.abs(deviation);
-  if (abs > 5) return "bg-red-500/10 text-red-400 border-red-500/20";
+  if (abs > 5) return "bg-red-500/5 text-red-400 border-red-500/20";
   if (abs > 2) return "bg-amber-500/10 text-amber-400 border-amber-500/20";
-  return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
+  return "bg-emerald-500/5 text-emerald-400 border-emerald-500/20";
 }
 
 function isHeldLessThanYear(openedAtTimestamp?: number): boolean {

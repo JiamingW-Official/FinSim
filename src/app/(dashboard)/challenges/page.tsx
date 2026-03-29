@@ -252,11 +252,6 @@ function WeeklyTab() {
         animate={{ opacity: 1, y: 0 }}
       >
         <div className="flex items-start gap-3 mb-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-            {heroChallenge.category === "Profit" && <Zap className="h-4 w-4 text-primary" />}
-            {heroChallenge.category === "Consistency" && <Flame className="h-4 w-4 text-primary" />}
-            {heroChallenge.category === "Diversification" && <Star className="h-4 w-4 text-primary" />}
-          </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 flex-wrap mb-1">
               <span className="text-sm font-medium">{heroChallenge.title}</span>
@@ -289,17 +284,12 @@ function WeeklyTab() {
       {rest.map((challenge, i) => (
         <motion.div
           key={challenge.id}
-          className="bg-transparent rounded-lg p-2.5 cursor-pointer hover:bg-muted/40 hover:-translate-y-0.5 transition-all duration-200"
+          className="bg-transparent rounded-lg p-2.5 cursor-pointer hover:bg-muted/20 transition-colors duration-150"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: (i + 1) * 0.08 }}
         >
           <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/10">
-              {challenge.category === "Profit" && <Zap className="h-3.5 w-3.5 text-primary" />}
-              {challenge.category === "Consistency" && <Flame className="h-3.5 w-3.5 text-primary" />}
-              {challenge.category === "Diversification" && <Star className="h-3.5 w-3.5 text-primary" />}
-            </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-medium truncate">{challenge.title}</span>
@@ -330,7 +320,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
   return (
     <motion.div
-      className="rounded-md border border-primary/20 bg-primary/5 overflow-hidden cursor-pointer hover:bg-primary/8 hover:-translate-y-0.5 transition-all duration-200"
+      className="rounded-md border border-primary/20 bg-primary/5 overflow-hidden cursor-pointer hover:bg-primary/8 transition-colors duration-150"
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -338,7 +328,6 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
       {/* Banner */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-primary/10">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-primary" />
           <span className="text-xs font-medium text-primary">Special Event</span>
           {event.isNew && (
             <span className="rounded-full bg-primary px-1.5 py-0.5 text-[11px] font-medium text-primary-foreground">NEW</span>
@@ -537,9 +526,6 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-3 min-w-0">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10">
-            <Target className="h-5 w-5 text-primary" />
-          </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-1">
               <span className="text-[11px] font-medium text-primary">Today&apos;s challenge</span>

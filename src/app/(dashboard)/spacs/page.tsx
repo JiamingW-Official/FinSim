@@ -795,7 +795,7 @@ function SpacArbCalculatorTab() {
       {/* Educational callout */}
       <div className="rounded-lg border border-border bg-primary/10 p-4">
         <div className="mb-2 flex items-center gap-2">
-          <BookOpen className="h-4 w-4 text-primary" />
+          <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
           <span className="text-sm font-medium text-primary">SPAC Arb Thesis</span>
         </div>
         <p className="text-xs leading-relaxed text-foreground/80">
@@ -1070,7 +1070,7 @@ export default function SPACsPage() {
       {/* Header */}
       <div className="shrink-0 border-b border-border/50 px-6 py-6 border-l-4 border-l-primary">
         <div className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-primary" />
+          <Zap className="h-3.5 w-3.5 text-muted-foreground/50" />
           <h1 className="text-lg font-medium text-foreground">SPACs &amp; Convertible Bonds</h1>
           <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
             Simulator

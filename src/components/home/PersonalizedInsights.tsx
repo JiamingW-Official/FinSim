@@ -73,7 +73,7 @@ export function PersonalizedInsights() {
             const Icon = ACTION_ICONS[action.type];
             return (
               <Link key={action.title} href={action.href}>
-                <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-2.5 transition-colors hover:bg-accent/30">
+                <div className="flex items-center gap-3 rounded-lg border border-border bg-card p-2.5 transition-colors duration-150 hover:bg-muted/20">
                   <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/8">
                     <Icon className="h-3.5 w-3.5 text-primary" />
                   </div>

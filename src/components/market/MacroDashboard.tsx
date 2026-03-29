@@ -113,9 +113,9 @@ function IndicatorCard({
 
   const trendBadgeClass =
     indicator.trend === "improving"
-      ? "bg-emerald-500/10 text-emerald-400"
+      ? "bg-emerald-500/5 text-emerald-400"
       : indicator.trend === "deteriorating"
-        ? "bg-red-500/10 text-red-400"
+        ? "bg-red-500/5 text-red-400"
         : "bg-muted/50 text-muted-foreground";
 
   const changeColor =

@@ -316,7 +316,7 @@ function PathCard({
         "flex items-start gap-3.5 rounded-md border px-4 py-4 text-left transition-colors",
         active
           ? "border-primary bg-primary/8 text-foreground"
-          : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-accent/30 hover:text-foreground"
+          : "border-border/40 bg-muted/10 text-muted-foreground hover:bg-muted/20 hover:text-foreground"
       )}
     >
       <div

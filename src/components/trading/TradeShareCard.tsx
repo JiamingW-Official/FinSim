@@ -128,7 +128,7 @@ function TradeResultCard({
           <span className="text-xs text-muted-foreground">{dateStr}</span>
           <button
             onClick={onClose}
-            className="rounded-md p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+            className="rounded-md p-1 text-muted-foreground hover:bg-muted/30 hover:text-foreground"
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -209,7 +209,7 @@ function TradeResultCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -249,7 +249,7 @@ function StreakShareCard({
         </div>
         <button
           onClick={onClose}
-          className="rounded-md p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+          className="rounded-md p-1 text-muted-foreground hover:bg-muted/30 hover:text-foreground"
         >
           <X className="h-3.5 w-3.5" />
         </button>
@@ -278,7 +278,7 @@ function StreakShareCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -320,7 +320,7 @@ function LevelUpShareCard({
         </div>
         <button
           onClick={onClose}
-          className="rounded-md p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+          className="rounded-md p-1 text-muted-foreground hover:bg-muted/30 hover:text-foreground"
         >
           <X className="h-3.5 w-3.5" />
         </button>
@@ -352,7 +352,7 @@ function LevelUpShareCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>
@@ -395,7 +395,7 @@ function PortfolioMilestoneCard({
         </div>
         <button
           onClick={onClose}
-          className="rounded-md p-1 text-muted-foreground hover:bg-accent hover:text-foreground"
+          className="rounded-md p-1 text-muted-foreground hover:bg-muted/30 hover:text-foreground"
         >
           <X className="h-3.5 w-3.5" />
         </button>
@@ -426,7 +426,7 @@ function PortfolioMilestoneCard({
         </button>
         <button
           onClick={onClose}
-          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-accent"
+          className="rounded-lg border border-border/40 px-3 py-2 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted/30"
         >
           Dismiss
         </button>

@@ -1069,7 +1069,7 @@ export default function AccountsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-lg font-semibold text-foreground flex items-center gap-2">
-              <Wallet className="h-5 w-5 text-primary" />
+              <Wallet className="h-3.5 w-3.5 text-muted-foreground/50" />
               Accounts
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">

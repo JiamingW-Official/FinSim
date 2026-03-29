@@ -569,7 +569,7 @@ function StrategyCard({ strategy, followed, copied, onFollow, onCopy }: {
           className={cn(
             "flex-1 py-1.5 rounded-lg text-[11px] font-medium border transition-colors",
             copied
-              ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
+              ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-400"
               : "border-border text-muted-foreground hover:border-emerald-500/40 hover:text-emerald-400 hover:bg-emerald-500/5",
           )}
         >
@@ -784,7 +784,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
             className={cn(
               "flex items-center gap-1 px-2 py-1 rounded text-xs font-medium border transition-colors",
               agreed
-                ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
+                ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-400"
                 : "border-border/50 text-muted-foreground hover:border-emerald-500/40 hover:text-emerald-400",
             )}
           >
@@ -1052,7 +1052,7 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
           className={cn(
             "flex items-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-medium border transition-colors",
             cloned
-              ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400"
+              ? "border-emerald-500/40 bg-emerald-500/5 text-emerald-400"
               : "border-border text-muted-foreground hover:border-primary/40 hover:text-primary hover:bg-primary/5",
           )}
         >
@@ -1094,7 +1094,7 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
               key={i}
               className={cn(
                 "flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-medium",
-                t.action === "Buy" ? "bg-emerald-500/10 text-emerald-400" : "bg-rose-500/10 text-rose-400",
+                t.action === "Buy" ? "bg-emerald-500/5 text-emerald-400" : "bg-rose-500/10 text-rose-400",
               )}
             >
               {t.action === "Buy" ? <ArrowUpRight className="h-3 w-3" /> : <ArrowDownRight className="h-3 w-3" />}

@@ -795,8 +795,8 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
             className={cn(
               "rounded-lg p-3 text-sm border",
               selected === quiz.correctLabel
-                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
-                : "bg-red-500/10 border-red-500/30 text-red-300"
+                ? "bg-emerald-500/5 border-emerald-500/30 text-emerald-300"
+                : "bg-red-500/5 border-red-500/30 text-red-300"
             )}
           >
             {selected === quiz.correctLabel

@@ -234,7 +234,7 @@ export default function JournalPageClient() {
         {/* Header */}
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-            <BookOpen className="h-4 w-4 text-primary" />
+            <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-base font-semibold tracking-tight">Trade Journal</h1>

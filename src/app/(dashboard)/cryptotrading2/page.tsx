@@ -744,7 +744,7 @@ export default function CryptoTrading2Page() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
-                icon: <ArrowUpDown className="h-4 w-4 text-primary" />,
+                icon: <ArrowUpDown className="h-3.5 w-3.5 text-muted-foreground/50" />,
                 title: "Spot vs Perpetuals",
                 body: "Spot markets settle immediately; perpetual futures never expire. Perps use a funding rate mechanism to keep mark price tethered to spot — longs pay shorts when perps trade at premium.",
               },
@@ -754,7 +754,7 @@ export default function CryptoTrading2Page() {
                 body: "Funding is paid every 8 hours (Binance) or 1 hour (Bybit). Positive funding = market is long-biased, longs pay 0.01–0.1%. Extreme sustained funding signals crowded trades and potential squeeze.",
               },
               {
-                icon: <Scale className="h-4 w-4 text-primary" />,
+                icon: <Scale className="h-3.5 w-3.5 text-muted-foreground/50" />,
                 title: "Basis Trade",
                 body: "Basis = Futures Price − Spot Price. Positive basis (contango) is common in bull markets. Traders capture basis by buying spot and shorting futures, earning the annualized premium as delta-neutral yield.",
               },
@@ -777,7 +777,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-foreground/[0.03] border-border/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="h-4 w-4 text-primary" />
+                <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
                 Perpetual Futures Markets
               </CardTitle>
             </CardHeader>
@@ -913,7 +913,7 @@ export default function CryptoTrading2Page() {
                 body: "Miners sell BTC to cover operational costs. High miner-to-exchange flows signal financial stress or distribution. Low miner outflows = miners are holding = confidence in price.",
               },
               {
-                icon: <Globe className="h-4 w-4 text-primary" />,
+                icon: <Globe className="h-3.5 w-3.5 text-muted-foreground/50" />,
                 title: "Whale Accumulation",
                 body: "Wallets with 1,000–10,000 BTC are tracked as whales. Increasing wallet count at these bands, especially near support levels, signals institutional accumulation.",
               },
@@ -936,7 +936,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-foreground/[0.03] border-border/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Activity className="h-4 w-4 text-primary" />
+                <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
                 On-Chain Signal Scorecard
               </CardTitle>
             </CardHeader>
@@ -1043,7 +1043,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-foreground/[0.03] border-border/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Scale className="h-4 w-4 text-primary" />
+                <Scale className="h-3.5 w-3.5 text-muted-foreground/50" />
                 Strategy Comparison
               </CardTitle>
             </CardHeader>
@@ -1201,7 +1201,7 @@ export default function CryptoTrading2Page() {
             <Card className="bg-foreground/[0.03] border-border/50">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm flex items-center gap-2">
-                  <Layers className="h-4 w-4 text-primary" />
+                  <Layers className="h-3.5 w-3.5 text-muted-foreground/50" />
                   Crypto Portfolio Construction
                 </CardTitle>
               </CardHeader>
@@ -1240,7 +1240,7 @@ export default function CryptoTrading2Page() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               {
-                icon: <RefreshCw className="h-4 w-4 text-primary" />,
+                icon: <RefreshCw className="h-3.5 w-3.5 text-muted-foreground/50" />,
                 title: "Perpetual Swaps Mechanism",
                 body: "Perpetuals have no expiry. Funding rate = clamp(premium_index + clamp(0.01% - premium_index, -0.05%, 0.05%)). Convergence force: if longs are paying 0.03%/8h, bears earn; crowd converges mark to index.",
               },
@@ -1250,7 +1250,7 @@ export default function CryptoTrading2Page() {
                 body: "Deribit dominates BTC/ETH options with 85%+ market share. Settlement in BTC/ETH (not USD). European-style, cash-settled at expiry UTC 8:00. Key use cases: covered calls, protective puts, volatility plays.",
               },
               {
-                icon: <TrendingUp className="h-4 w-4 text-primary" />,
+                icon: <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />,
                 title: "Volatility Term Structure",
                 body: "Crypto IV term structure typically slopes upward (contango) in calm markets — uncertainty grows with time. It inverts (backwardation) near major events (halvings, Fed decisions) or post-crash vol spikes.",
               },
@@ -1273,7 +1273,7 @@ export default function CryptoTrading2Page() {
           <Card className="bg-foreground/[0.03] border-border/50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <BarChart3 className="h-4 w-4 text-primary" />
+                <BarChart3 className="h-3.5 w-3.5 text-muted-foreground/50" />
                 BTC Volatility Surface — Implied Vol Heatmap
               </CardTitle>
             </CardHeader>

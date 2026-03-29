@@ -53,7 +53,7 @@ export function RankRow({ entry, dimConfig, index }: RankRowProps) {
         "flex items-center gap-3 rounded-md px-3 py-2.5 transition-colors",
         entry.isUser
           ? "rank-highlight"
-          : "hover:bg-accent/30",
+          : "hover:bg-muted/10",
       )}
     >
       {/* Rank */}

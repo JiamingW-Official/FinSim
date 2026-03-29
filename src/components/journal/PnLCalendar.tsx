@@ -110,7 +110,7 @@ export function PnLCalendar({ trades }: Props) {
       <div className="flex items-center justify-between">
         <button
           onClick={prevMonth}
-          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
+          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
         >
           <ChevronLeft className="h-3.5 w-3.5" />
         </button>
@@ -119,7 +119,7 @@ export function PnLCalendar({ trades }: Props) {
         </span>
         <button
           onClick={nextMonth}
-          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition-colors hover:bg-accent/40 hover:text-foreground"
+          className="flex h-7 w-7 items-center justify-center rounded-md border border-border/50 text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
         >
           <ChevronRight className="h-3.5 w-3.5" />
         </button>

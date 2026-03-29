@@ -50,7 +50,7 @@ export function MobileNav() {
                   "flex items-center justify-center rounded-lg py-2.5 text-xs font-medium transition-colors cursor-pointer",
                   pathname === item.href
                     ? "bg-accent text-foreground"
-                    : "text-muted-foreground hover:bg-accent/50 hover:text-foreground"
+                    : "text-muted-foreground hover:bg-muted/30 hover:text-foreground"
                 )}
               >
                 {item.label}

@@ -146,14 +146,14 @@ function ListDropdown({ onRename, onDuplicate, onDelete, canDelete, onClose }: L
     >
       <button
         onClick={() => { onRename(); onClose(); }}
-        className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-foreground hover:bg-accent/30 transition-colors"
+        className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-foreground hover:bg-muted/20 transition-colors"
       >
         <Pencil className="h-3 w-3 text-muted-foreground" />
         Rename
       </button>
       <button
         onClick={() => { onDuplicate(); onClose(); }}
-        className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-foreground hover:bg-accent/30 transition-colors"
+        className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-foreground hover:bg-muted/20 transition-colors"
       >
         <Copy className="h-3 w-3 text-muted-foreground" />
         Duplicate
@@ -161,7 +161,7 @@ function ListDropdown({ onRename, onDuplicate, onDelete, canDelete, onClose }: L
       {canDelete && (
         <button
           onClick={() => { onDelete(); onClose(); }}
-          className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-red-500 hover:bg-red-500/10 transition-colors"
+          className="flex w-full items-center gap-2 px-3 py-1.5 text-[11px] text-red-500 hover:bg-red-500/5 transition-colors"
         >
           <Trash2 className="h-3 w-3" />
           Delete
@@ -412,7 +412,7 @@ function WatchlistRow({
     <div className="group">
       <div
         className={cn(
-          "flex items-center gap-0.5 px-2 py-1.5 hover:bg-accent/20 transition-colors",
+          "flex items-center gap-0.5 px-2 py-1.5 hover:bg-muted/10 transition-colors",
           isActive && "bg-primary/5 border-l-2 border-primary",
           !isActive && "border-l-2 border-transparent",
         )}

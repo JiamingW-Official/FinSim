@@ -322,7 +322,7 @@ export function MiniTradePanel({
             </motion.button>
             <motion.button type="button" onClick={handleAdvance} disabled={atEnd || isPlaying}
               whileTap={{ scale: 0.85 }}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-muted/60 text-muted-foreground transition-all hover:bg-accent hover:text-foreground disabled:opacity-30 shrink-0">
+              className="flex h-8 w-8 items-center justify-center rounded-full bg-muted/60 text-muted-foreground transition-colors duration-150 hover:bg-muted/30 hover:text-foreground disabled:opacity-30 shrink-0">
               <SkipForward className="h-3.5 w-3.5" />
             </motion.button>
             <div className="flex-1" />

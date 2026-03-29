@@ -1167,7 +1167,7 @@ function PortfolioConstructionTab() {
         </div>
         <div className="rounded-md border border-border bg-card/40 p-4">
           <div className="flex items-center gap-2 mb-2">
-            <Activity className="h-4 w-4 text-primary" />
+            <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
             <h3 className="text-sm font-medium text-muted-foreground">Tail-Risk Parity</h3>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">

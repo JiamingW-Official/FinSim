@@ -1016,7 +1016,7 @@ function TrendAnalysisTab() {
         {/* ADX Gauge */}
         <Card className="p-4 bg-card border-border">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <Activity className="h-4 w-4 text-primary" />
+            <Activity className="h-3.5 w-3.5 text-muted-foreground/50" />
             ADX Trend Strength
           </h3>
           <ADXGauge value={adx} />
@@ -1426,7 +1426,7 @@ function VolumeAnalysisTab() {
         {/* Volume Profile */}
         <Card className="p-4 bg-card border-border md:col-span-1">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <BarChart2 className="h-4 w-4 text-primary" />
+            <BarChart2 className="h-3.5 w-3.5 text-muted-foreground/50" />
             Volume Profile
           </h3>
           <div className="space-y-1">
@@ -1811,7 +1811,7 @@ function SRTab() {
       {showFib && (
         <Card className="p-4 bg-card border-border">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-primary" />
+            <BookOpen className="h-3.5 w-3.5 text-muted-foreground/50" />
             Fibonacci Retracement Levels
           </h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -1861,7 +1861,7 @@ export default function TechAnalysisPage() {
         >
           <div className="flex items-start gap-3">
             <div className="p-2 rounded-lg bg-primary/10 border border-border">
-              <BarChart2 className="h-5 w-5 text-primary" />
+              <BarChart2 className="h-3.5 w-3.5 text-muted-foreground/50" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-foreground tracking-tight">Technical Analysis Masterclass</h1>

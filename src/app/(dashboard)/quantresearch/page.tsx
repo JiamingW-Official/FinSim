@@ -544,7 +544,7 @@ export default function QuantResearchPage() {
           <Card className="bg-card/60 border-border border-l-4 border-l-primary">
             <CardHeader className="pb-2 p-4">
               <CardTitle className="text-lg flex items-center gap-2">
-                <BarChart2 className="h-4 w-4 text-primary" />
+                <BarChart2 className="h-3.5 w-3.5 text-muted-foreground/50" />
                 Alpha Signal Library
               </CardTitle>
               <p className="text-xs text-muted-foreground">
@@ -621,7 +621,7 @@ export default function QuantResearchPage() {
           <Card className="bg-card/60 border-border">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-primary" />
+                <TrendingUp className="h-3.5 w-3.5 text-muted-foreground/50" />
                 Signal Combination Framework
               </CardTitle>
               <p className="text-xs text-muted-foreground">

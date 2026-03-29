@@ -59,7 +59,7 @@ function ImpactBadge({ impact }: { impact: "low" | "medium" | "high" }) {
         "text-xs font-medium px-1.5 py-0.5 rounded shrink-0",
         impact === "low" && "bg-muted text-muted-foreground",
         impact === "medium" && "bg-amber-500/10 text-amber-500",
-        impact === "high" && "bg-red-500/10 text-red-500"
+        impact === "high" && "bg-red-500/5 text-red-500"
       )}
     >
       {impact}

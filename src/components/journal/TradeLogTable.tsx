@@ -591,7 +591,7 @@ export function TradeLogTable({ rows }: Props) {
                         "border-b border-border/40 cursor-pointer transition-colors last:border-0",
                         isExpanded
                           ? "bg-accent/30"
-                          : "hover:bg-accent/20",
+                          : "hover:bg-muted/10",
                       )}
                     >
                       <td className="px-3 py-1.5 tabular-nums text-muted-foreground">
@@ -765,7 +765,7 @@ export function TradeLogTable({ rows }: Props) {
                                   e.stopPropagation();
                                   setExpandedId(null);
                                 }}
-                                className="flex items-center gap-1 rounded-md border border-border px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-accent/30 hover:text-foreground"
+                                className="flex items-center gap-1 rounded-md border border-border px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:bg-muted/30 hover:text-foreground"
                               >
                                 <X className="h-3 w-3" /> Cancel
                               </button>
@@ -849,7 +849,7 @@ function TagPicker({
                     "flex items-center justify-between rounded px-2 py-1 text-xs font-medium transition-colors text-left",
                     active
                       ? tagColorClass(tag) + " border"
-                      : "text-muted-foreground hover:bg-accent/30 hover:text-foreground",
+                      : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
                   )}
                 >
                   {tag}

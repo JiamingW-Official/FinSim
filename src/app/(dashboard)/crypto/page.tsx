@@ -488,7 +488,7 @@ function DominancePie({ rows }: { rows: CryptoRow[] }) {
           <div key={a.label} className="flex items-center gap-2 text-xs text-muted-foreground">
             <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ background: a.color }} />
             <span className="text-muted-foreground font-medium w-12">{a.label}</span>
-            <span className="tabular-nums font-semibold">{a.pct.toFixed(1)}%</span>
+            <span className="font-mono tabular-nums font-medium">{a.pct.toFixed(1)}%</span>
           </div>
         ))}
       </div>
@@ -575,7 +575,7 @@ function DonutChart({ slices }: { slices: { label: string; value: number; color:
           <div key={a.label} className="flex items-center gap-2 text-xs text-muted-foreground">
             <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ background: a.color }} />
             <span className="text-muted-foreground font-medium w-14 truncate">{a.label}</span>
-            <span className="tabular-nums font-semibold">{a.pct.toFixed(1)}%</span>
+            <span className="font-mono tabular-nums font-medium">{a.pct.toFixed(1)}%</span>
           </div>
         ))}
       </div>
@@ -649,13 +649,13 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
       {/* Charts row */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">
+          <div className="text-xs font-medium text-muted-foreground mb-3">
             Market Cap Dominance
           </div>
           <DominancePie rows={rows} />
         </div>
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">
+          <div className="text-xs font-medium text-muted-foreground mb-3">
             Fear &amp; Greed Index
           </div>
           <FearGreedGauge value={fearGreed} />
@@ -668,13 +668,13 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border/40 bg-muted/30">
-                <th className="py-2.5 px-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wide">#</th>
-                <th className="py-2.5 px-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wide">Asset</th>
-                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wide">Price</th>
-                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wide">24h</th>
-                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wide">7d</th>
-                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wide hidden md:table-cell">Market Cap</th>
-                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground uppercase tracking-wide hidden lg:table-cell">Volume 24h</th>
+                <th className="py-2.5 px-3 text-left text-xs font-medium text-muted-foreground">#</th>
+                <th className="py-2.5 px-3 text-left text-xs font-medium text-muted-foreground">Asset</th>
+                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground">Price</th>
+                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground">24h</th>
+                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground">7d</th>
+                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground hidden md:table-cell">Market Cap</th>
+                <th className="py-2.5 px-3 text-right text-xs font-medium text-muted-foreground hidden lg:table-cell">Volume 24h</th>
               </tr>
             </thead>
             <tbody>
@@ -710,7 +710,7 @@ function MarketsTab({ rows, seed }: { rows: CryptoRow[]; seed: number; }) {
       {/* ── Risk Metrics ── */}
       <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
         <div className="px-4 py-3 border-b border-border/40">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Crypto Risk Metrics</div>
+          <div className="text-xs font-medium text-muted-foreground">Crypto Risk Metrics</div>
           <div className="text-xs text-muted-foreground mt-0.5">30d realized volatility, max drawdown from ATH, Sharpe ratio</div>
         </div>
         <div className="overflow-x-auto">
@@ -848,7 +848,7 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
 
         {/* Order entry */}
         <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-3">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Spot Order</div>
+          <div className="text-xs font-medium text-muted-foreground">Spot Order</div>
           <div className="flex rounded-md border border-border/50 overflow-hidden">
             <button
               type="button"
@@ -908,7 +908,7 @@ function TradeTab({ rows, seed }: { rows: CryptoRow[]; seed: number }) {
       {/* Right: Positions */}
       <div className="lg:w-72 flex flex-col gap-3">
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">My Positions</div>
+          <div className="text-xs font-medium text-muted-foreground mb-3">My Positions</div>
           {positions.length === 0 ? (
             <div className="text-xs text-muted-foreground text-center py-6">No open positions</div>
           ) : (
@@ -977,7 +977,7 @@ function YieldFarmingSimulator() {
 
   return (
     <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-4">
-      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Yield Farming Simulator</div>
+      <div className="text-xs font-medium text-muted-foreground">Yield Farming Simulator</div>
 
       {/* Protocol selector */}
       <div className="flex flex-wrap gap-1.5">
@@ -1059,7 +1059,7 @@ function YieldFarmingSimulator() {
       {/* Compound effect */}
       {deposit > 0 && (
         <div className="rounded-md border border-border/40 p-3 text-xs text-muted-foreground flex flex-col gap-2">
-          <div className="font-medium text-muted-foreground uppercase tracking-wide text-xs">Auto-Compound Effect ({days} days)</div>
+          <div className="font-medium text-muted-foreground text-xs">Auto-Compound Effect ({days} days)</div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Simple (no compounding)</span>
             <span className="tabular-nums font-medium">${simpleReturn.toFixed(2)}</span>
@@ -1158,7 +1158,7 @@ function DeFiTab({ seed }: { seed: number }) {
 
       {/* Liquidity Pools */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">Liquidity Pools</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Liquidity Pools</div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -1207,7 +1207,7 @@ function DeFiTab({ seed }: { seed: number }) {
       {/* Add Liquidity flow */}
       {selectedPool && (
         <div className="rounded-lg border border-primary/30 bg-card p-4 flex flex-col gap-3">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <div className="text-xs font-medium text-muted-foreground">
             Add Liquidity — {selectedPool.pair}
           </div>
           <div className="flex items-center gap-2 rounded-md bg-amber-500/10 border border-amber-500/20 px-3 py-2">
@@ -1254,7 +1254,7 @@ function DeFiTab({ seed }: { seed: number }) {
       {/* My Positions */}
       {lpPositions.length > 0 && (
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">My Positions</div>
+          <div className="text-xs font-medium text-muted-foreground mb-3">My Positions</div>
           <div className="flex flex-col gap-2">
             {lpPositions.map((pos, i) => (
               <div key={i} className="rounded-md border border-border/40 p-2.5 text-xs text-muted-foreground grid grid-cols-2 gap-x-4 gap-y-1">
@@ -1275,7 +1275,7 @@ function DeFiTab({ seed }: { seed: number }) {
 
       {/* Staking Pools */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">Yield Farming / Staking</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Yield Farming / Staking</div>
         <div className="flex flex-col gap-2">
           {stakingPools.map((s) => (
             <div key={s.id} className="flex items-center justify-between rounded-md border border-border/30 px-3 py-2.5">
@@ -1293,7 +1293,7 @@ function DeFiTab({ seed }: { seed: number }) {
 
       {/* IL Calculator */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">Impermanent Loss Calculator</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Impermanent Loss Calculator</div>
         <div className="flex flex-col gap-3">
           <div>
             <label className="text-xs text-muted-foreground">Token B Price Change vs Token A (%)</label>
@@ -1351,7 +1351,7 @@ function OnChainTab({ seed }: { seed: number }) {
     <div className="flex flex-col gap-4">
       {/* Gas tracker */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">
+        <div className="text-xs font-medium text-muted-foreground mb-3">
           ETH Gas Tracker (Gwei)
         </div>
         <div className="grid grid-cols-3 gap-3">
@@ -1371,7 +1371,7 @@ function OnChainTab({ seed }: { seed: number }) {
 
       {/* Network stats */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">Network Stats</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Network Stats</div>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
           {[
             { label: "ETH TPS",      value: networkStats.ethTps.toFixed(1) },
@@ -1392,7 +1392,7 @@ function OnChainTab({ seed }: { seed: number }) {
       {/* Whale tracker */}
       <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
         <div className="px-4 py-3 border-b border-border/40">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Whale Tracker</div>
+          <div className="text-xs font-medium text-muted-foreground">Whale Tracker</div>
           <div className="text-xs text-muted-foreground mt-0.5">Large transactions (&gt; $500K)</div>
         </div>
         <div className="overflow-x-auto">
@@ -1524,7 +1524,7 @@ function EducationTab() {
       {/* How DeFi Works */}
       {activeSection === "howdefi" && (
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-4">
+          <div className="text-xs font-medium text-muted-foreground mb-4">
             How DeFi Works — Step by Step
           </div>
           <div className="flex flex-col gap-3">
@@ -1590,7 +1590,7 @@ function NftTab({ seed }: { seed: number }) {
       {/* Top collections table */}
       <div className="rounded-lg border border-border/50 bg-card overflow-hidden">
         <div className="px-4 py-3 border-b border-border/40">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Top NFT Collections</div>
+          <div className="text-xs font-medium text-muted-foreground">Top NFT Collections</div>
           <div className="text-xs text-muted-foreground mt-0.5">Floor price in ETH · 24h volume</div>
         </div>
         <div className="overflow-x-auto">
@@ -1634,7 +1634,7 @@ function NftTab({ seed }: { seed: number }) {
 
       {/* Floor price bar chart */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">Floor Price Comparison (ETH)</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">Floor Price Comparison (ETH)</div>
         <BarChart
           bars={collections.map((c) => ({ label: c.symbol, value: c.floorPrice }))}
           maxVal={maxFloor * 1.15}
@@ -1644,7 +1644,7 @@ function NftTab({ seed }: { seed: number }) {
 
       {/* NFT vs Stocks comparison */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">NFT vs Other Assets — Risk/Reward Profile</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">NFT vs Other Assets — Risk/Reward Profile</div>
         <div className="flex flex-col gap-2">
           {COMPARISON.map((a) => (
             <div key={a.asset} className="rounded-md border border-border/30 p-3 text-xs text-muted-foreground">
@@ -1664,7 +1664,7 @@ function NftTab({ seed }: { seed: number }) {
 
       {/* What determines NFT value */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">What Determines NFT Value?</div>
+        <div className="text-xs font-medium text-muted-foreground mb-3">What Determines NFT Value?</div>
         <div className="flex flex-col gap-2">
           {WHAT_DETERMINES_VALUE.map((w, i) => (
             <div key={w.title} className="flex gap-3 text-xs text-muted-foreground">
@@ -1811,12 +1811,12 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
       {/* Donut + Holdings */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="rounded-lg border border-border/50 bg-card p-4">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-3">Portfolio Weights</div>
+          <div className="text-xs font-medium text-muted-foreground mb-3">Portfolio Weights</div>
           {syncedPortfolio.length > 0 && <PortfolioDonut assets={syncedPortfolio} />}
         </div>
 
         <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-2">
-          <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">Holdings</div>
+          <div className="text-xs font-medium text-muted-foreground mb-1">Holdings</div>
           {syncedPortfolio.map((a) => {
             const val  = a.qty * a.currentPrice;
             const pnl  = (a.currentPrice - a.avgPrice) * a.qty;
@@ -1850,7 +1850,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
 
       {/* Add asset */}
       <div className="rounded-lg border border-border/50 bg-card p-4 flex flex-col gap-3">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Add Asset</div>
+        <div className="text-xs font-medium text-muted-foreground">Add Asset</div>
         <div className="flex gap-2 flex-wrap">
           <select
             value={addSymbol}
@@ -1880,7 +1880,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
       {/* Rebalancing suggestions */}
       {rebalanceSuggestions.length > 0 && (
         <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
-          <div className="text-xs font-medium text-amber-500 uppercase tracking-wide mb-2">Rebalancing Suggestions</div>
+          <div className="text-xs font-medium text-amber-500 mb-2">Rebalancing Suggestions</div>
           <div className="flex flex-col gap-1.5">
             {rebalanceSuggestions.map((s) => (
               <div key={s.symbol} className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -1900,7 +1900,7 @@ function CryptoPortfolioTab({ rows }: { rows: CryptoRow[] }) {
 
       {/* 24h P&L breakdown */}
       <div className="rounded-lg border border-border/50 bg-card p-4">
-        <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">24h P&amp;L Breakdown</div>
+        <div className="text-xs font-medium text-muted-foreground mb-2">24h P&amp;L Breakdown</div>
         <div className="flex flex-col gap-1.5">
           {syncedPortfolio.map((a) => {
             const row = rows.find((r) => r.symbol === a.symbol);
@@ -1965,8 +1965,8 @@ export default function CryptoPage() {
       {/* HERO Header */}
       <div className="shrink-0 border-b border-border/50 border-l-4 border-l-primary bg-background px-4 pt-4 pb-0">
         <div className="flex items-center gap-2 mb-3">
-          <Bitcoin className="h-5 w-5 text-primary" />
-          <h1 className="text-lg font-semibold">Crypto &amp; DeFi</h1>
+          <Bitcoin className="h-3.5 w-3.5 text-muted-foreground/50" />
+          <h1 className="text-sm font-medium">Crypto &amp; DeFi</h1>
         </div>
 
         {/* Tab bar */}

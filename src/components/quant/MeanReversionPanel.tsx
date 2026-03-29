@@ -30,11 +30,11 @@ function generatePrices(ticker: string, bars: number = 60): number[] {
 
 function SignalBadge({ signal }: { signal: MeanReversionSignal["signal"] }) {
   const config = {
-    strong_buy: { text: "Strong Buy", className: "bg-emerald-500/10 text-emerald-500" },
-    buy: { text: "Buy", className: "bg-emerald-500/10 text-emerald-500" },
+    strong_buy: { text: "Strong Buy", className: "bg-emerald-500/5 text-emerald-500" },
+    buy: { text: "Buy", className: "bg-emerald-500/5 text-emerald-500" },
     neutral: { text: "Neutral", className: "bg-muted text-muted-foreground" },
-    sell: { text: "Sell", className: "bg-red-500/10 text-red-500" },
-    strong_sell: { text: "Strong Sell", className: "bg-red-500/10 text-red-500" },
+    sell: { text: "Sell", className: "bg-red-500/5 text-red-500" },
+    strong_sell: { text: "Strong Sell", className: "bg-red-500/5 text-red-500" },
   };
   const c = config[signal];
   return (

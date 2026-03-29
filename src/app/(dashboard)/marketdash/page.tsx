@@ -445,7 +445,7 @@ export default function MarketDashPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <Globe className="h-5 w-5 text-primary" />
+            <Globe className="h-3.5 w-3.5 text-muted-foreground/50" />
             <h1 className="text-xl font-semibold tracking-tight">Market Dashboard</h1>
             <Badge
               className={cn(

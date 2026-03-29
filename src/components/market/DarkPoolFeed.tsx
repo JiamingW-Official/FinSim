@@ -34,7 +34,7 @@ function SignificanceBadge({
     routine: "bg-muted text-muted-foreground",
     notable: "bg-primary/10 text-primary",
     unusual: "bg-amber-500/10 text-amber-500",
-    massive: "bg-red-500/10 text-red-500",
+    massive: "bg-red-500/5 text-red-500",
   };
   return (
     <span className={cn("text-xs px-1.5 py-0.5 rounded font-medium", styles[significance])}>

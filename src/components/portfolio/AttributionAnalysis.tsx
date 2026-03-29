@@ -280,7 +280,7 @@ function PerformanceAttributionSection({ rows }: { rows: SectorRow[] }) {
           { label: "Allocation", value: totals.allocationEffect, color: "bg-primary/10 text-primary" },
           { label: "Selection", value: totals.selectionEffect, color: "bg-primary/10 text-primary" },
           { label: "Interaction", value: totals.interactionEffect, color: "bg-amber-500/10 text-amber-400" },
-          { label: "Total Active", value: totals.totalContribution, color: totals.totalContribution >= 0 ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400" },
+          { label: "Total Active", value: totals.totalContribution, color: totals.totalContribution >= 0 ? "bg-emerald-500/5 text-emerald-400" : "bg-red-500/5 text-red-400" },
         ].map((chip) => (
           <div key={chip.label} className={cn("rounded-md p-2 text-center", chip.color.split(" ")[0])}>
             <p className="text-[11px] text-muted-foreground mb-0.5">{chip.label}</p>
@@ -556,7 +556,7 @@ function RollingPerformanceSection({ points }: { points: RollingPoint[] }) {
 
       {/* Stat chips */}
       <div className="grid grid-cols-3 gap-2">
-        <div className="rounded-md bg-emerald-500/10 p-2">
+        <div className="rounded-md bg-emerald-500/5 p-2">
           <p className="text-[11px] text-muted-foreground">Consistency Score</p>
           <p className="text-xs font-bold text-emerald-400 tabular-nums">{alphaPositivePct.toFixed(0)}%</p>
           <p className="text-[11px] text-muted-foreground">rolling periods w/ positive alpha</p>
@@ -667,7 +667,7 @@ function RiskAttributionSection({ varPositions }: { varPositions: VaRPosition[] 
           <p className="text-xs font-bold text-primary tabular-nums">{pct(sumIndividualVaR, 3)}</p>
           <p className="text-[11px] text-muted-foreground">undiversified VaR</p>
         </div>
-        <div className="rounded-md bg-emerald-500/10 p-2">
+        <div className="rounded-md bg-emerald-500/5 p-2">
           <p className="text-[11px] text-muted-foreground">Diversification Benefit</p>
           <p className="text-xs font-bold text-emerald-400 tabular-nums">{divBenefitPct.toFixed(1)}%</p>
           <p className="text-[11px] text-muted-foreground">reduction from correlation</p>

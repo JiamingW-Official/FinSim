@@ -29,8 +29,8 @@ function formatPremium(value: number): string {
 
 function SentimentBadge({ sentiment }: { sentiment: OptionsFlowItem["sentiment"] }) {
   const styles = {
-    bullish: "bg-emerald-500/10 text-emerald-500",
-    bearish: "bg-red-500/10 text-red-500",
+    bullish: "bg-emerald-500/5 text-emerald-500",
+    bearish: "bg-red-500/5 text-red-500",
     neutral: "bg-muted text-muted-foreground",
   };
   return (

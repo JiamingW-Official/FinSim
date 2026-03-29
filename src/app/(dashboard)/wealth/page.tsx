@@ -786,7 +786,7 @@ function GoalsTab() {
         {/* Emergency Fund */}
         <div className="rounded-md border border-border bg-card p-4">
           <div className="mb-3 flex items-center gap-2">
-            <Shield className="h-4 w-4 text-primary" />
+            <Shield className="h-3.5 w-3.5 text-muted-foreground/50" />
             <h3 className="text-sm font-medium">Emergency Fund</h3>
           </div>
           <div className="mb-3 grid grid-cols-2 gap-3">
@@ -1523,7 +1523,7 @@ function RoadmapTab() {
       {/* Age-based milestones */}
       <div className="rounded-md border border-border bg-card p-4">
         <div className="mb-3 flex items-center gap-2">
-          <Target className="h-4 w-4 text-primary" />
+          <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
           <h3 className="text-sm font-medium">Fidelity Savings Benchmarks</h3>
           <Info className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
@@ -1646,7 +1646,7 @@ export default function WealthPage() {
         {/* Page header */}
         <div className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
-            <Landmark className="h-5 w-5 text-primary" />
+            <Landmark className="h-3.5 w-3.5 text-muted-foreground/50" />
           </div>
           <div>
             <h1 className="text-xl font-medium">Wealth Management</h1>

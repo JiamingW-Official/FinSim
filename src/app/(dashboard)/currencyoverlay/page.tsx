@@ -445,7 +445,7 @@ function SectionTitle({ icon: Icon, title, subtitle }: { icon: React.ElementType
   return (
     <div className="flex items-center gap-3 mb-4">
       <div className="p-2 rounded-lg bg-primary/10">
-        <Icon className="h-5 w-5 text-primary" />
+        <Icon className="h-3.5 w-3.5 text-muted-foreground/50" />
       </div>
       <div>
         <h2 className="text-base font-semibold text-foreground">{title}</h2>
@@ -1690,7 +1690,7 @@ export default function CurrencyOverlayPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-md bg-primary/10">
-                <Globe className="h-5 w-5 text-primary" />
+                <Globe className="h-3.5 w-3.5 text-muted-foreground/50" />
               </div>
               <div>
                 <h1 className="text-lg font-semibold">Currency Overlay</h1>

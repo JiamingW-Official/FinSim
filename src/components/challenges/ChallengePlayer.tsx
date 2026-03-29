@@ -142,7 +142,7 @@ export function ChallengePlayer({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent"
+            className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/30"
           >
             <X className="h-5 w-5" />
           </button>
@@ -172,7 +172,7 @@ export function ChallengePlayer({
               type="button"
               onClick={onClose}
               title="Close challenge"
-              className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent"
+              className="rounded-lg p-1 text-muted-foreground transition-colors hover:text-foreground hover:bg-muted/30"
             >
               <X className="h-5 w-5" />
             </button>
@@ -202,9 +202,9 @@ export function ChallengePlayer({
               className={cn(
                 "flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold",
                 totalPnl > 0
-                  ? "bg-emerald-500/10 text-emerald-400"
+                  ? "bg-emerald-500/5 text-emerald-400"
                   : totalPnl < 0
-                    ? "bg-red-500/10 text-red-400"
+                    ? "bg-red-500/5 text-red-400"
                     : "bg-muted/30 text-muted-foreground",
               )}
             >

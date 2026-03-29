@@ -176,7 +176,7 @@ function MarketRow({
   return (
     <button
       onClick={() => onSelect(market)}
-      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left cursor-pointer hover:bg-muted/40 hover:-translate-y-0.5 transition-all duration-200"
+      className="group flex w-full items-center gap-3 rounded px-2 py-2 text-left cursor-pointer hover:bg-muted/20 transition-colors duration-150"
     >
       {/* Category pill */}
       <span className={cn("shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium leading-none", CATEGORY_COLORS[market.category])}>
@@ -190,13 +190,13 @@ function MarketRow({
 
       {/* Bet indicator */}
       {bet && (
-        <span className={cn("shrink-0 rounded px-1 py-0.5 text-[10px] font-semibold uppercase leading-none", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+        <span className={cn("shrink-0 rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
           {bet.position}
         </span>
       )}
 
       {/* YES odds */}
-      <span className="shrink-0 w-10 text-right font-mono tabular-nums text-xs font-semibold text-emerald-500">
+      <span className="shrink-0 w-10 text-right font-mono tabular-nums text-xs font-medium text-emerald-500">
         {market.initialProbability}%
       </span>
 
@@ -208,7 +208,7 @@ function MarketRow({
       {/* Expiry */}
       <span className={cn(
         "shrink-0 w-8 text-right font-mono tabular-nums text-[11px]",
-        market.expiresInDays <= 3 ? "font-semibold text-amber-500" : "text-muted-foreground",
+        market.expiresInDays <= 3 ? "font-medium text-amber-500" : "text-muted-foreground",
       )}>
         {market.expiresInDays}d
       </span>
@@ -248,8 +248,8 @@ function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
   return (
     <div className="bg-transparent p-0">
       <div className="mb-1.5 flex items-center justify-between">
-        <span className="text-xs font-semibold text-muted-foreground">{title}</span>
-        <span className={cn("font-mono tabular-nums text-xs font-semibold", delta >= 0 ? "text-emerald-500" : "text-red-500")}>
+        <span className="text-xs font-medium text-muted-foreground">{title}</span>
+        <span className={cn("font-mono tabular-nums text-xs font-medium", delta >= 0 ? "text-emerald-500" : "text-red-500")}>
           {delta >= 0 ? "+" : ""}{delta.toFixed(0)}pp
         </span>
       </div>
@@ -357,11 +357,11 @@ function MarketDetailDrawer({
 
       {/* Stats row — inline text, no grid */}
       <div className="mb-6 flex items-center gap-3 text-xs px-1">
-        <span className="text-muted-foreground">YES <span className="font-mono tabular-nums font-semibold text-foreground">{market.initialProbability}%</span></span>
+        <span className="text-muted-foreground">YES <span className="font-mono tabular-nums font-medium text-foreground">{market.initialProbability}%</span></span>
         <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Vol <span className="font-mono tabular-nums font-semibold text-foreground">${(volume / 1000).toFixed(1)}K</span></span>
+        <span className="text-muted-foreground">Vol <span className="font-mono tabular-nums font-medium text-foreground">${(volume / 1000).toFixed(1)}K</span></span>
         <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Closes <span className="font-mono tabular-nums font-semibold text-foreground">{market.expiresInDays}d</span></span>
+        <span className="text-muted-foreground">Closes <span className="font-mono tabular-nums font-medium text-foreground">{market.expiresInDays}d</span></span>
       </div>
 
       {/* Order book */}
@@ -380,7 +380,7 @@ function MarketDetailDrawer({
             <button
               onClick={() => setOrderSide("yes")}
               className={cn(
-                "rounded-lg py-2 text-xs font-semibold transition-all duration-100 active:scale-95",
+                "rounded-lg py-2 text-xs font-medium transition-all duration-100 active:scale-95",
                 orderSide === "yes"
                   ? "bg-emerald-500/20 text-emerald-500 ring-1 ring-emerald-500/30"
                   : "bg-emerald-500/8 text-emerald-500/60 hover:bg-emerald-500/12",
@@ -391,7 +391,7 @@ function MarketDetailDrawer({
             <button
               onClick={() => setOrderSide("no")}
               className={cn(
-                "rounded-lg py-2 text-xs font-semibold transition-all duration-100 active:scale-95",
+                "rounded-lg py-2 text-xs font-medium transition-all duration-100 active:scale-95",
                 orderSide === "no"
                   ? "bg-red-500/20 text-red-500 ring-1 ring-red-500/30"
                   : "bg-red-500/8 text-red-500/60 hover:bg-red-500/12",
@@ -405,7 +405,7 @@ function MarketDetailDrawer({
           <div className="mb-3">
             <div className="mb-1 flex justify-between text-xs text-muted-foreground">
               <span>Stake</span>
-              <span className="font-semibold text-foreground">{betAmount} pts</span>
+              <span className="font-medium text-foreground">{betAmount} pts</span>
             </div>
             <input
               type="range"
@@ -425,7 +425,7 @@ function MarketDetailDrawer({
           <div className="mb-3">
             <div className="mb-1 flex justify-between text-xs text-muted-foreground">
               <span>My probability estimate</span>
-              <span className="font-semibold text-foreground">{betProbability}%</span>
+              <span className="font-medium text-foreground">{betProbability}%</span>
             </div>
             <input
               type="range"
@@ -443,17 +443,17 @@ function MarketDetailDrawer({
 
           {/* Payout calculation — inline */}
           <div className="mb-3 flex items-center gap-2.5 text-xs px-1 flex-wrap">
-            <span className="text-muted-foreground">Stake <span className="font-semibold text-foreground">{betAmount} pts</span></span>
+            <span className="text-muted-foreground">Stake <span className="font-medium text-foreground">{betAmount} pts</span></span>
             <span className="text-border/30">·</span>
-            <span className="text-muted-foreground">Payout <span className="font-semibold text-emerald-500">{expectedPayout} pts</span></span>
+            <span className="text-muted-foreground">Payout <span className="font-medium text-emerald-500">{expectedPayout} pts</span></span>
             <span className="text-border/30">·</span>
-            <span className="text-muted-foreground">Profit <span className="font-semibold text-emerald-500">+{expectedPayout - betAmount} pts</span></span>
+            <span className="text-muted-foreground">Profit <span className="font-medium text-emerald-500">+{expectedPayout - betAmount} pts</span></span>
           </div>
 
           <button
             onClick={handlePlaceBet}
             disabled={betAmount > insightPoints}
-            className="w-full rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-40"
+            className="w-full rounded-lg bg-primary px-3 py-2 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-40"
           >
             Place Bet — {betAmount} pts
           </button>
@@ -462,7 +462,7 @@ function MarketDetailDrawer({
         <div className="mb-4 rounded-lg border border-border bg-muted/20 px-3 py-3">
           <div className="mb-1 text-xs font-medium text-muted-foreground">Your Bet</div>
           <div className="flex items-center gap-2 text-[11px]">
-            <span className={cn("rounded px-1.5 py-0.5 font-semibold uppercase text-xs", existingBet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+            <span className={cn("rounded-sm px-1.5 py-0.5 font-medium text-[10px]", existingBet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
               {existingBet.position.toUpperCase()}
             </span>
             <span className="text-muted-foreground">{existingBet.amount} pts at {Math.round(existingBet.probability * 100)}%</span>
@@ -477,7 +477,7 @@ function MarketDetailDrawer({
           {recentTrades.map((trade, i) => (
             <div key={i} className="flex items-center justify-between py-1.5 text-[11px]">
               <div className="flex items-center gap-2">
-                <span className={cn("rounded px-1 py-0.5 text-[11px] font-semibold", trade.side === "YES" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+                <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", trade.side === "YES" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
                   {trade.side}
                 </span>
                 <span className="font-mono tabular-nums text-muted-foreground">{trade.price}%</span>
@@ -534,18 +534,18 @@ function MyBetsTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Summary stats — inline text */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs px-1">
-        <span className="text-muted-foreground">Staked <span className="font-mono tabular-nums font-semibold text-foreground">{totalStaked} pts</span></span>
+        <span className="text-muted-foreground">Staked <span className="font-mono tabular-nums font-medium text-foreground">{totalStaked} pts</span></span>
         <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Won <span className="font-mono tabular-nums font-semibold text-emerald-500">+{totalWon} pts</span></span>
+        <span className="text-muted-foreground">Won <span className="font-mono tabular-nums font-medium text-emerald-500">+{totalWon} pts</span></span>
         <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Lost <span className="font-mono tabular-nums font-semibold text-red-500">-{totalLost} pts</span></span>
+        <span className="text-muted-foreground">Lost <span className="font-mono tabular-nums font-medium text-red-500">-{totalLost} pts</span></span>
         <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">Net P&L <span className={cn("font-mono tabular-nums font-semibold", netPnl >= 0 ? "text-emerald-500" : "text-red-500")}>{netPnl >= 0 ? "+" : ""}{netPnl} pts</span></span>
+        <span className="text-muted-foreground">Net P&L <span className={cn("font-mono tabular-nums font-medium", netPnl >= 0 ? "text-emerald-500" : "text-red-500")}>{netPnl >= 0 ? "+" : ""}{netPnl} pts</span></span>
         <span className="text-border/30">·</span>
-        <span className="text-muted-foreground">ROI <span className={cn("font-mono tabular-nums font-semibold", roi >= 0 ? "text-emerald-500" : "text-red-500")}>{roi >= 0 ? "+" : ""}{roi.toFixed(1)}%</span></span>
+        <span className="text-muted-foreground">ROI <span className={cn("font-mono tabular-nums font-medium", roi >= 0 ? "text-emerald-500" : "text-red-500")}>{roi >= 0 ? "+" : ""}{roi.toFixed(1)}%</span></span>
       </div>
 
       {/* Accuracy tracker */}
@@ -583,7 +583,7 @@ function MyBetsTab() {
                         {(market?.question.length ?? 0) > 40 ? "…" : ""}
                       </td>
                       <td className="px-3 py-2 text-center">
-                        <span className={cn("rounded px-1.5 py-0.5 text-xs font-medium uppercase", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
+                        <span className={cn("rounded-sm px-1.5 py-0.5 text-[10px] font-medium", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
                           {bet.position.toUpperCase()}
                         </span>
                       </td>
@@ -623,7 +623,7 @@ function MyBetsTab() {
                   <span className="min-w-0 flex-1 truncate">
                     {market?.question.slice(0, 50) ?? bet.marketId}
                   </span>
-                  <span className="shrink-0 uppercase text-[10px]">{bet.position}</span>
+                  <span className="shrink-0 text-[10px] font-medium">{bet.position}</span>
                   <span className={cn("shrink-0 font-mono tabular-nums text-[10px]", pnl >= 0 ? "text-emerald-500/70" : "text-red-500/70")}>
                     {pnl >= 0 ? "+" : ""}{pnl}
                   </span>
@@ -736,7 +736,7 @@ function PredictorTips() {
             <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-medium text-primary">
               {i + 1}
             </span>
-            <span className="text-xs font-semibold text-foreground">{tip.title}</span>
+            <span className="text-xs font-medium text-foreground">{tip.title}</span>
           </div>
           <p className="text-[11px] leading-relaxed text-muted-foreground pl-7">{tip.body}</p>
         </div>
@@ -839,7 +839,7 @@ export function PredictionsPageClient() {
               </button>
             </TooltipTrigger>
             <TooltipContent side="bottom" align="end" className="max-w-72 text-xs leading-relaxed">
-              <p className="mb-1.5 font-semibold text-foreground">How Practice Markets Work</p>
+              <p className="mb-1.5 font-medium text-foreground">How Practice Markets Work</p>
               <ol className="list-decimal space-y-1 pl-3.5 text-muted-foreground">
                 <li>Browse markets and estimate the probability of each outcome.</li>
                 <li>Place a YES or NO bet using your Insight Points.</li>
@@ -850,7 +850,7 @@ export function PredictionsPageClient() {
           </Tooltip>
           <div className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1">
             <Coins className="h-3.5 w-3.5 text-amber-500" />
-            <span className="font-mono tabular-nums text-xs font-semibold text-foreground">
+            <span className="font-mono tabular-nums text-xs font-medium text-foreground">
               {insightPoints.toLocaleString()}
             </span>
           </div>
@@ -889,7 +889,7 @@ export function PredictionsPageClient() {
               <TooltipTrigger asChild>
                 <div className="flex cursor-help items-center gap-1.5 rounded bg-muted/50 px-2 py-1">
                   <span className="text-xs text-muted-foreground">Brier</span>
-                  <span className="font-mono tabular-nums text-xs font-semibold text-foreground">
+                  <span className="font-mono tabular-nums text-xs font-medium text-foreground">
                     {totalResolved > 0 ? brierScore.toFixed(3) : "--"}
                   </span>
                   <Info className="h-3 w-3 text-muted-foreground" />
@@ -982,7 +982,7 @@ export function PredictionsPageClient() {
                             {CATEGORY_LABELS[featuredMarket.category]}
                           </span>
                           {featuredMarket.expiresInDays <= 3 && (
-                            <span className="flex items-center gap-0.5 rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-semibold text-amber-500">
+                            <span className="flex items-center gap-0.5 rounded-sm bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-500">
                               <Clock className="h-3 w-3" />
                               Closing soon
                             </span>
@@ -990,7 +990,7 @@ export function PredictionsPageClient() {
                         </div>
 
                         {/* Large question */}
-                        <p className="mb-5 text-xl font-semibold leading-snug text-foreground sm:text-2xl">
+                        <p className="mb-5 text-lg font-medium leading-snug text-foreground sm:text-xl">
                           {featuredMarket.question}
                         </p>
 
@@ -1039,7 +1039,7 @@ export function PredictionsPageClient() {
                         {/* Sparkline + CTA */}
                         <div className="flex items-end justify-between">
                           <Sparkline data={getPriceHistory(featuredMarket)} width={120} height={32} />
-                          <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground transition-colors group-hover:bg-primary/90">
+                          <span className="inline-flex items-center gap-1.5 rounded-md bg-primary px-4 py-2 text-xs font-medium text-primary-foreground transition-colors group-hover:bg-primary/90">
                             Make Your Prediction
                             <ChevronRight className="h-3 w-3" />
                           </span>
@@ -1129,9 +1129,9 @@ export function PredictionsPageClient() {
 
           <div className="p-4">
             {toolTab === "kelly" && (
-              <div className="max-w-2xl space-y-4">
+              <div className="max-w-2xl space-y-3">
                 <div>
-                  <h2 className="text-sm font-semibold text-foreground">Kelly Criterion Calculator</h2>
+                  <h2 className="text-sm font-medium text-foreground">Kelly Criterion Calculator</h2>
                   <p className="mt-0.5 text-[11px] text-muted-foreground">
                     Compute the optimal bet size that maximizes long-run log-growth of wealth.
                   </p>
@@ -1141,7 +1141,7 @@ export function PredictionsPageClient() {
             )}
 
             {toolTab === "depth" && (
-              <div className="max-w-2xl space-y-4">
+              <div className="max-w-2xl space-y-5">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h2 className="text-sm font-medium text-foreground">Market Depth — Order Book</h2>
@@ -1166,7 +1166,7 @@ export function PredictionsPageClient() {
             )}
 
             {toolTab === "calibration" && (
-              <div className="max-w-2xl space-y-4">
+              <div className="max-w-2xl space-y-6">
                 <div>
                   <h2 className="text-sm font-medium text-foreground">Calibration Chart</h2>
                   <p className="mt-0.5 text-[11px] text-muted-foreground">
@@ -1175,7 +1175,7 @@ export function PredictionsPageClient() {
                 </div>
                 <CalibrationChartSection />
                 <div className="rounded-lg border border-border bg-muted/20 px-4 py-3 text-[11px] leading-relaxed text-muted-foreground">
-                  <span className="font-semibold text-foreground">Calibration</span> means your 70% confident predictions should resolve YES about 70% of the time. Points above the diagonal = overconfident. Points below = underconfident.
+                  <span className="font-medium text-foreground">Calibration</span> means your 70% confident predictions should resolve YES about 70% of the time. Points above the diagonal = overconfident. Points below = underconfident.
                 </div>
               </div>
             )}
@@ -1199,7 +1199,7 @@ function StatChip({ icon, label, value }: { icon: React.ReactNode; label: string
     <div className="flex items-center gap-1.5 rounded bg-muted/50 px-2 py-1">
       <span className="text-muted-foreground">{icon}</span>
       <span className="text-xs text-muted-foreground">{label}</span>
-      <span className="font-mono tabular-nums text-xs font-semibold text-foreground">{value}</span>
+      <span className="font-mono tabular-nums text-xs font-medium text-foreground">{value}</span>
     </div>
   );
 }

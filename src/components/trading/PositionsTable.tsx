@@ -180,10 +180,10 @@ export function PositionsTable() {
                   exit={{ opacity: 0, x: 8 }}
                   transition={{ delay: index * 0.05, duration: 0.2 }}
                   className={cn(
-                    "border-b border-border/50 hover:bg-accent/30 border-l-2",
+                    "border-b border-border/50 hover:bg-muted/10 border-l-2 transition-colors duration-150",
                     urgencyRowClass,
                     leftBorderClass,
-                    isExpanded && "bg-accent/20",
+                    isExpanded && "bg-muted/10",
                   )}
                 >
                   {/* Expand toggle */}

@@ -146,7 +146,7 @@ function TickerDropdown({
                 onClose();
                 onQueryChange("");
               }}
-              className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm transition-colors hover:bg-accent"
+              className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm transition-colors hover:bg-muted/30"
             >
               <span className="w-12 font-semibold text-foreground">
                 {stock.ticker}
@@ -260,7 +260,7 @@ function QuickActionsMenu() {
                 router.push(a.href);
                 setOpen(false);
               }}
-              className="flex w-full items-center px-3 py-1.5 text-left text-sm text-foreground transition-colors hover:bg-accent"
+              className="flex w-full items-center px-3 py-1.5 text-left text-sm text-foreground transition-colors hover:bg-muted/30"
             >
               {a.label}
             </button>
@@ -360,7 +360,7 @@ export function TopBar() {
           <button
             type="button"
             onClick={() => setTickerOpen((v) => !v)}
-            className="flex items-center gap-2 rounded-md px-1 py-0.5 text-sm hover:bg-accent/50 transition-colors"
+            className="flex items-center gap-2 rounded-md px-1 py-0.5 text-sm hover:bg-muted/30/50 transition-colors"
           >
             <span className="font-medium text-xs">{currentTicker}</span>
             <span className="hidden text-muted-foreground sm:inline">

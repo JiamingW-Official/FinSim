@@ -956,7 +956,6 @@ export default function CommunityPage() {
       {/* HERO header */}
       <div className="shrink-0 border-b border-border/50 border-l-4 border-l-primary px-6 py-4">
         <div className="flex items-center gap-2">
-          <Users className="h-5 w-5 text-primary" />
           <div>
             <h1 className="text-lg font-semibold text-foreground leading-none">Community</h1>
             <p className="text-xs text-muted-foreground/60 mt-0.5">

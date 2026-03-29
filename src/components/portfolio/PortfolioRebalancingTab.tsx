@@ -110,7 +110,7 @@ function TargetAllocationSetup({
           className={cn(
             "text-xs px-1.5 py-0.5 rounded font-medium",
             Math.abs(totalRaw - 100) < 0.5
-              ? "bg-emerald-500/10 text-emerald-500"
+              ? "bg-emerald-500/5 text-emerald-500"
               : "bg-amber-500/10 text-amber-500",
           )}
         >
@@ -302,13 +302,13 @@ function DriftBadge({ drift }: { drift: number }) {
   const abs = Math.abs(drift);
   if (abs < 1)
     return (
-      <span className="rounded px-1.5 py-0.5 text-[11px] font-semibold bg-emerald-500/10 text-emerald-500">
+      <span className="rounded px-1.5 py-0.5 text-[11px] font-semibold bg-emerald-500/5 text-emerald-500">
         On target
       </span>
     );
   if (drift > 0)
     return (
-      <span className="rounded px-1.5 py-0.5 text-[11px] font-semibold bg-red-500/10 text-red-500">
+      <span className="rounded px-1.5 py-0.5 text-[11px] font-semibold bg-red-500/5 text-red-500">
         +{drift.toFixed(1)}% over
       </span>
     );
@@ -427,7 +427,7 @@ function RebalancingOrders({
             className={cn(
               "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-[11px] font-medium transition-colors",
               executed
-                ? "bg-emerald-500/10 text-emerald-500 cursor-default"
+                ? "bg-emerald-500/5 text-emerald-500 cursor-default"
                 : "bg-primary text-primary-foreground hover:bg-primary/90",
             )}
           >
@@ -474,9 +474,9 @@ function RebalancingOrders({
                       className={cn(
                         "rounded px-1.5 py-0.5 text-[11px] font-semibold",
                         o.action === "Buy"
-                          ? "bg-emerald-500/10 text-emerald-500"
+                          ? "bg-emerald-500/5 text-emerald-500"
                           : o.action === "Sell"
-                            ? "bg-red-500/10 text-red-500"
+                            ? "bg-red-500/5 text-red-500"
                             : "bg-muted text-muted-foreground",
                       )}
                     >
@@ -621,7 +621,7 @@ function TaxLossHarvestingScanner({ positions }: { positions: PositionRow[] }) {
                     "shrink-0 rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
                     harvested.has(p.ticker)
                       ? "bg-muted text-muted-foreground cursor-default"
-                      : "bg-red-500/10 text-red-400 hover:bg-red-500/20",
+                      : "bg-red-500/5 text-red-400 hover:bg-red-500/20",
                   )}
                 >
                   {harvested.has(p.ticker) ? (
