@@ -34,7 +34,7 @@ function formatTime(ms: number): string {
 }
 
 const pnlFormat = (n: number) => `$${n >= 0 ? "+" : ""}${n.toFixed(2)}`;
-const xpFormat = (n: number) => `+${Math.round(n)} XP`;
+const xpFormat = (n: number) => `+${Math.round(n)} pts`;
 
 export function ChallengeResults({
   grade,

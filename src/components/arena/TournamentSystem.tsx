@@ -66,7 +66,7 @@ const TOURNAMENTS: TournamentDef[] = [
   {
     id: "weekly_blitz",
     name: "Weekly Blitz",
-    description: "7-day paper trading sprint. Highest returns win bonus XP.",
+    description: "7-day paper trading sprint. Highest returns win bonus points.",
     duration: "7 days",
     durationDays: 7,
     scoring: "Total Return %",
@@ -103,7 +103,7 @@ const TOURNAMENTS: TournamentDef[] = [
     durationDays: 7,
     scoring: "Risk-Adj. Return",
     entryCost: 100,
-    entryLabel: "100 XP",
+    entryLabel: "100 pts",
     prizes: [800, 500, 200],
     icon: <Target className="h-4 w-4" />,
     color: "text-primary",
@@ -119,7 +119,7 @@ const TOURNAMENTS: TournamentDef[] = [
     durationDays: 30,
     scoring: "ELO + Return",
     entryCost: 500,
-    entryLabel: "500 XP",
+    entryLabel: "500 pts",
     prizes: [2000, 1000, 500],
     icon: <Crown className="h-4 w-4" />,
     color: "text-amber-400",
@@ -408,7 +408,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                 </div>
                 {/* Prize pool */}
                 <div className="text-right shrink-0">
-                  <div className={cn("text-xs font-semibold", t.color)}>{t.prizes[0].toLocaleString()} XP</div>
+                  <div className={cn("text-xs font-semibold", t.color)}>{t.prizes[0].toLocaleString()} pts</div>
                   <div className="text-xs text-muted-foreground/70">1st prize</div>
                 </div>
               </div>
@@ -421,7 +421,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                   <div key={i} className="flex items-center gap-1">
                     <span className="text-xs">{medal}</span>
                     <span className={cn("text-xs font-semibold tabular-nums", t.color)}>
-                      {t.prizes[i].toLocaleString()} XP
+                      {t.prizes[i].toLocaleString()} pts
                     </span>
                   </div>
                 ))}
@@ -471,12 +471,12 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                     {canAfford ? (
                       <>
                         <Trophy className="h-3 w-3" />
-                        Join {t.entryCost > 0 ? `(${t.entryCost} XP)` : "Free"}
+                        Join {t.entryCost > 0 ? `(${t.entryCost} pts)` : "Free"}
                       </>
                     ) : (
                       <>
                         <Lock className="h-3 w-3" />
-                        Need {t.entryCost} XP
+                        Need {t.entryCost} pts
                       </>
                     )}
                   </button>
@@ -967,7 +967,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
     { label: "Tournaments Entered", value: joinedCount.toString() },
     { label: "ELO High", value: playerElo.toString() },
     { label: "Best Win Streak", value: "3" },
-    { label: "Total XP Earned", value: playerXP.toLocaleString() },
+    { label: "Total pts Earned", value: playerXP.toLocaleString() },
   ];
 
   const badges = generateBadges(joinedCount, playerElo);

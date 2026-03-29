@@ -794,7 +794,7 @@ function QuestDetailPanel({
           <div className="flex items-center gap-1 rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-1">
             <Zap className="h-3 w-3 text-amber-400" />
             <span className="text-[11px] font-semibold text-amber-400">
-              {node.xpReward} XP
+              {node.xpReward} pts
             </span>
           </div>
           {node.badgeReward && (
@@ -1338,7 +1338,7 @@ export function QuestTree() {
                         : node.description}
                     </text>
                     <text x={tx + 8} y={ty + 58} fontSize={8} fill="#f59e0b" fontWeight="700">
-                      +{node.xpReward} XP
+                      +{node.xpReward} pts
                     </text>
                   </g>
                 );
@@ -1467,7 +1467,7 @@ export function QuestTree() {
               {/* Season ends gradient banner */}
               <div className="px-4 py-2 bg-amber-500/10 border-b border-amber-500/10">
                 <p className="text-[11px] font-semibold text-amber-400">
-                  Season ends in {SEASONAL[0].endsInDays} days — complete challenges for bonus XP!
+                  Season ends in {SEASONAL[0].endsInDays} days — complete challenges for bonus points!
                 </p>
               </div>
 

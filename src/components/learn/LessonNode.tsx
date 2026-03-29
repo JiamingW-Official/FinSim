@@ -130,7 +130,7 @@ export function LessonNode({
       {/* XP badge */}
       {isUnlocked && !isCompleted && (
         <span className="text-xs font-semibold text-muted-foreground">
-          +{lesson.xpReward} XP
+          +{lesson.xpReward} pts
         </span>
       )}
 

@@ -104,7 +104,7 @@ export function ScenarioCard({
 
           <div className="flex items-center gap-2 mt-1">
             <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
-              +{scenario.xpReward} XP
+              +{scenario.xpReward} pts
             </span>
             {bestResult && (
               <span className={cn(

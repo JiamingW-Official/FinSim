@@ -1121,7 +1121,7 @@ function FinalScoreScreen({
           </div>
           <div className="text-center">
             <div className="text-lg font-medium text-primary">+{xpGained}</div>
-            <div className="text-xs text-muted-foreground">XP</div>
+            <div className="text-xs text-muted-foreground">pts</div>
           </div>
         </div>
         {pct >= 0.9 && (
@@ -1510,7 +1510,7 @@ function WeeklyLeagueTab() {
             <div key={p.rank} className="bg-muted/50 border border-border/40 rounded-lg p-2 text-center">
               <div className="text-xs font-medium text-muted-foreground">{p.rank}</div>
               <div className="text-sm font-medium text-primary">+{p.xp}</div>
-              <div className="text-xs text-muted-foreground">XP</div>
+              <div className="text-xs text-muted-foreground">pts</div>
             </div>
           ))}
         </div>

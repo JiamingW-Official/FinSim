@@ -745,7 +745,7 @@ function PatternQuizTab() {
         <div className="flex gap-3">
           <div className="text-center p-4 rounded-md bg-card border border-border">
             <p className="text-lg font-medium text-indigo-400">+{xpEarned}</p>
-            <p className="text-xs text-muted-foreground mt-1">XP Earned</p>
+            <p className="text-xs text-muted-foreground mt-1">Pts Earned</p>
           </div>
           <div className="text-center p-4 rounded-md bg-card border border-border">
             <p className="text-lg font-medium text-emerald-400">{score}</p>
@@ -785,7 +785,7 @@ function PatternQuizTab() {
         </div>
         <div className="flex items-center gap-2">
           <Star className="h-4 w-4 text-indigo-400" />
-          <span className="text-sm text-indigo-400 font-medium">+{xpEarned} XP</span>
+          <span className="text-sm text-indigo-400 font-medium">+{xpEarned} pts</span>
           <span className="text-xs text-muted-foreground ml-2">
             {currentQ + 1} / {quizPool.length}
           </span>

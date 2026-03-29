@@ -205,7 +205,7 @@ export function MonthlyChallenges() {
                       isClaimed ? "text-green-400" : "text-amber-400",
                     )}
                   >
-                    {challenge.xpReward.toLocaleString()} XP
+                    {challenge.xpReward.toLocaleString()} pts
                   </span>
                 </div>
               </div>
@@ -261,7 +261,7 @@ export function MonthlyChallenges() {
                   className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 py-2 text-sm font-semibold text-black shadow-sm transition-colors hover:bg-amber-400"
                 >
                   <Gift className="h-4 w-4" />
-                  Claim {challenge.xpReward.toLocaleString()} XP Reward
+                  Claim {challenge.xpReward.toLocaleString()} pts
                 </motion.button>
               )}
             </motion.div>

@@ -119,7 +119,7 @@ export function ChallengeBriefing({
           transition={{ delay: 0.4, type: "spring", stiffness: 400, damping: 15 }}
         >
           <Zap className="h-3 w-3" />
-          +{xpReward} XP
+          +{xpReward} pts
         </motion.span>
       </motion.div>
 

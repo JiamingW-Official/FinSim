@@ -93,7 +93,7 @@ function AchievementCard({
         <div className="flex items-center gap-1">
           <Zap className="h-2.5 w-2.5 text-amber-400/70" />
           <span className="text-[11px] font-semibold text-amber-400/70">
-            {xpReward} XP
+            {xpReward} pts
           </span>
         </div>
       )}

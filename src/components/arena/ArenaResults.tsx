@@ -265,7 +265,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           className="flex items-center gap-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 px-4 py-2"
         >
           <Star className="h-4 w-4 text-amber-400" />
-          <span className="text-sm font-semibold text-amber-400">+{result.xpEarned} XP</span>
+          <span className="text-sm font-semibold text-amber-400">+{result.xpEarned} pts</span>
         </motion.div>
       )}
 

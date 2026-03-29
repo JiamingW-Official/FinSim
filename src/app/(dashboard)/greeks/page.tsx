@@ -1289,7 +1289,7 @@ function GreeksQuiz() {
  </div>
  <div className="flex gap-2">
  <span className="px-3 py-1.5 rounded-full bg-muted/10 text-foreground text-sm font-medium">
- +{score * 15} XP earned
+ +{score * 15} pts earned
  </span>
  </div>
  <div className="w-full max-w-md space-y-2">

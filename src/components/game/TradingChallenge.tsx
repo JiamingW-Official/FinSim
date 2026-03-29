@@ -411,7 +411,7 @@ function LobbyScreen({
           <span className="ml-auto text-xs text-muted-foreground">Seed #{dailySeed}</span>
         </div>
         <p className="text-sm text-muted-foreground">
-          Today's unique scenario — resets at midnight. Earn 3× bonus XP!
+          Today's unique scenario — resets at midnight. Earn 3x bonus points!
         </p>
         <button
           onClick={() => onSelect({ ...CHALLENGE_CONFIGS[1], id: "bull_run" })}

@@ -135,7 +135,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
         <div className="grid grid-cols-3 gap-3 w-full max-w-xs">
           <SummaryStatBox label="Correct" value={`${sessionCorrect}/${ROUNDS}`} color="text-emerald-400" />
           <SummaryStatBox label="Accuracy" value={`${accuracy}%`} color={accuracy >= 70 ? "text-emerald-400" : "text-amber-400"} />
-          <SummaryStatBox label="XP Earned" value={`+${sessionXP}`} color="text-primary" />
+          <SummaryStatBox label="Pts Earned" value={`+${sessionXP}`} color="text-primary" />
         </div>
 
         {bestStreak >= 3 && (

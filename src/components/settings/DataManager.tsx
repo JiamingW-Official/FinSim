@@ -260,7 +260,7 @@ export function DataManager() {
         <div>
           <div className="text-sm font-medium">Reset All Progress</div>
           <div className="text-xs text-muted-foreground">
-            Clears XP, achievements, portfolio, and lesson history
+            Clears progress, achievements, portfolio, and lesson history
           </div>
         </div>
         <Button
@@ -279,7 +279,7 @@ export function DataManager() {
         onConfirm={handleResetAll}
         onCancel={() => setShowResetAll(false)}
         title="Reset All Progress"
-        description="This will permanently erase your XP, level, achievements, all trades, and lesson completions. This action cannot be undone. Consider exporting a backup first."
+        description="This will permanently erase your progress, level, achievements, all trades, and lesson completions. This action cannot be undone. Consider exporting a backup first."
         confirmLabel="Reset Everything"
       />
     </div>

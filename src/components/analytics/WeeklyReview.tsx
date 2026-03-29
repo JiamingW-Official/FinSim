@@ -231,7 +231,7 @@ function generateInsights(
   }
 
   if (lessonsThisWeek === 0) {
-    actionItems.push("Complete at least 2 lessons in the Learn section to earn XP and reinforce technical concepts.");
+    actionItems.push("Complete at least 2 lessons in the Learn section to reinforce technical concepts.");
   } else {
     actionItems.push(`Keep up the ${lessonsThisWeek}-lesson streak — aim for 3+ lessons next week to hit a learning milestone.`);
   }
@@ -525,7 +525,7 @@ export function WeeklyReview() {
           <div className="rounded-md border border-border/20 bg-card/60 p-2.5 text-center">
             <div className="flex items-center justify-center gap-1 mb-1">
               <Zap className="h-3 w-3 text-amber-400" />
-              <span className="text-xs text-muted-foreground">Total XP</span>
+              <span className="text-xs text-muted-foreground">Total pts</span>
             </div>
             <p className="text-sm font-semibold text-amber-400 tabular-nums">{xp.toLocaleString()}</p>
           </div>

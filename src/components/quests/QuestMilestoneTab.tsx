@@ -152,7 +152,7 @@ export function QuestMilestoneTab() {
                           <p className="text-xs text-muted-foreground mt-0.5">{quest.description}</p>
                           <div className="flex items-center gap-1 mt-1">
                             <Star className="h-2.5 w-2.5 text-amber-400" />
-                            <span className="text-xs font-semibold text-amber-400">+{quest.xpReward} XP</span>
+                            <span className="text-xs font-semibold text-amber-400">+{quest.xpReward} pts</span>
                           </div>
                           {isClaimed && (
                             <span className="text-[11px] text-emerald-400 mt-0.5 block">Claimed</span>

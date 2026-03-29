@@ -112,7 +112,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
         <div className="grid grid-cols-3 gap-3 w-full max-w-xs">
           <StatBox label="Reviewed" value={`${sessionTotal}`} color="text-primary" />
           <StatBox label="Accuracy" value={`${accuracy}%`} color={accuracy >= 80 ? "text-emerald-400" : "text-amber-400"} />
-          <StatBox label="XP Earned" value={`+${sessionXP}`} color="text-primary" />
+          <StatBox label="Pts Earned" value={`+${sessionXP}`} color="text-primary" />
         </div>
 
         {bestStreak >= 3 && (

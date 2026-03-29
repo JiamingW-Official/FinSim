@@ -997,7 +997,7 @@ function QuizSection() {
         <BookOpen className="h-10 w-10 text-primary/60" />
         <div>
           <h3 className="text-sm font-semibold text-foreground">Pattern Recognition Quiz</h3>
-          <p className="mt-1 text-xs text-muted-foreground">Test your ability to identify 10 chart patterns. Earn XP for correct answers.</p>
+          <p className="mt-1 text-xs text-muted-foreground">Test your ability to identify 10 chart patterns. Earn points for correct answers.</p>
         </div>
         <div className="flex gap-3">
           <button
@@ -1072,7 +1072,7 @@ function QuizSection() {
           <p className="text-2xl font-semibold text-foreground">{grade}</p>
           <p className="text-sm text-muted-foreground">{score} / 10 correct ({pct}%)</p>
           {xpEarned > 0 && (
-            <p className="mt-1 text-xs text-primary">+{xpEarned} XP earned</p>
+            <p className="mt-1 text-xs text-primary">+{xpEarned} pts earned</p>
           )}
         </div>
         <button

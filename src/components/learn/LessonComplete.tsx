@@ -53,7 +53,7 @@ const GRADE_CONFIG = {
   },
 } as const;
 
-const xpFormat = (n: number) => `+${Math.round(n)} XP`;
+const xpFormat = (n: number) => `+${Math.round(n)} pts`;
 
 // Floating celebration emojis for S/A grades
 const CELEBRATE_EMOJIS = ["🌟", "✨", "🎊", "🏆", "💎", "🚀", "⭐", "🎯"];

@@ -92,7 +92,7 @@ export function DailyChallengeCard({
               {config.label}
             </span>
             <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
-              +{definition.xpReward} XP
+              +{definition.xpReward} pts
             </span>
           </div>
         </div>

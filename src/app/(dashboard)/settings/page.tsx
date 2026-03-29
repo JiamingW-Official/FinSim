@@ -822,7 +822,7 @@ function AccountTab() {
         </div>
         <SettingRow
           label="Reset Game Progress"
-          description="Reset XP, level, and all achievements to zero"
+          description="Reset progress, level, and all achievements to zero"
         >
           <Button
             variant="outline"
@@ -861,7 +861,7 @@ function AccountTab() {
         }}
         onCancel={() => setResetTarget(null)}
         title="Reset Game Progress"
-        description="This will permanently reset your XP, level, and all achievements to zero. This action cannot be undone."
+        description="This will permanently reset your progress, level, and all achievements to zero. This action cannot be undone."
         confirmLabel="Reset Progress"
       />
     </div>
@@ -894,7 +894,7 @@ const APP_FEATURES: string[] = [
   "Prediction markets with live scoring and leaderboard",
   "Quant backtester with walk-forward validation",
   "Adaptive flashcard system with spaced repetition",
-  "XP, leveling, achievements, daily streaks, and seasonal rewards",
+  "Progress tracking, achievements, daily streaks, and seasonal rewards",
   "Institutional holdings, insider trading, and news sentiment panels",
   "Journal and trade replay for post-session review",
   "Import / export all data as JSON or CSV",

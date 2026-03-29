@@ -21,7 +21,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
   const def = ACHIEVEMENT_DEFS.find((d) => d.id === achievement.id);
   const xpReward = def?.xpReward ?? 0;
 
-  const shareText = `I just unlocked "${achievement.name}" in Alpha Deck! ${achievement.description}. +${xpReward} XP. Can you unlock it? alphadeck.app`;
+  const shareText = `I just unlocked "${achievement.name}" in Alpha Deck! ${achievement.description}. +${xpReward} pts. Can you unlock it? alphadeck.app`;
 
   const handleCopy = () => {
     navigator.clipboard
@@ -66,7 +66,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
         {xpReward > 0 && (
           <div className="flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1">
             <Star className="h-3.5 w-3.5 text-primary" />
-            <span className="text-xs font-semibold text-primary">+{xpReward} XP</span>
+            <span className="text-xs font-semibold text-primary">+{xpReward} pts</span>
           </div>
         )}
 
@@ -152,7 +152,7 @@ export function AchievementToastContent({ achievement, xpReward, toastId }: Achi
           </span>
           {xpReward > 0 && (
             <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[11px] font-semibold text-primary">
-              +{xpReward} XP
+              +{xpReward} pts
             </span>
           )}
         </div>

@@ -170,7 +170,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
           )}>
             <Star className={cn("h-3 w-3", isClaimed ? "text-emerald-400" : "text-amber-400")} />
             <span className={cn("text-xs font-semibold", isClaimed ? "text-emerald-400" : "text-amber-400")}>
-              {isClaimed ? "" : "+"}{quest.xpReward} XP
+              {isClaimed ? "" : "+"}{quest.xpReward} pts
             </span>
           </div>
 

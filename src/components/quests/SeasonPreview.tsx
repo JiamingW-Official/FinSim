@@ -64,7 +64,7 @@ export function SeasonPreview() {
             <h3 className="mt-0.5 text-sm font-semibold text-foreground">{season.name}</h3>
           </div>
           <div className="shrink-0 text-right">
-            <p className="text-xs text-muted-foreground">Season XP</p>
+            <p className="text-xs text-muted-foreground">Season pts</p>
             <p className="text-lg font-semibold tabular-nums text-foreground">{seasonXP.toLocaleString()}</p>
           </div>
         </div>
@@ -75,7 +75,7 @@ export function SeasonPreview() {
             <div className="flex items-center justify-between text-xs">
               <span className="text-muted-foreground">Tier {currentTier} → Tier {nextTierInfo.tierNumber}</span>
               <span className="font-semibold text-foreground/70">
-                {nextTierInfo.current.toLocaleString()} / {nextTierInfo.required.toLocaleString()} XP
+                {nextTierInfo.current.toLocaleString()} / {nextTierInfo.required.toLocaleString()} pts
               </span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-muted">
@@ -144,7 +144,7 @@ export function SeasonPreview() {
                       isUnlocked ? "text-foreground" : "text-muted-foreground",
                     )}
                   >
-                    {tier.xpRequired.toLocaleString()} Season XP
+                    {tier.xpRequired.toLocaleString()} Season pts
                   </span>
                   {isCurrent && !isClaimed && (
                     <span className="rounded px-1 py-0.5 text-[11px] font-semibold bg-primary/15 text-primary">
@@ -170,7 +170,7 @@ export function SeasonPreview() {
                 )}
               >
                 <span>{rewardIcon(tier.reward.type)}</span>
-                <span className="hidden sm:inline">{tier.reward.type === "xp" ? `+${tier.reward.value} XP` : String(tier.reward.value).slice(0, 14)}</span>
+                <span className="hidden sm:inline">{tier.reward.type === "xp" ? `+${tier.reward.value} pts` : String(tier.reward.value).slice(0, 14)}</span>
               </div>
 
               {/* Lock / claim */}
