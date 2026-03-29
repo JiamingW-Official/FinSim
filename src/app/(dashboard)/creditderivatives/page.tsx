@@ -1,1157 +1,1619 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Shield,
   TrendingUp,
-  TrendingDown,
-  AlertTriangle,
-  BarChart3,
   Activity,
   DollarSign,
-  Percent,
-  ChevronRight,
-  Info,
+  AlertTriangle,
+  BarChart2,
+  Layers,
+  Globe,
+  FileText,
+  RefreshCw,
+  ChevronDown,
+  ChevronUp,
+  ArrowRightLeft,
+  Target,
   Zap,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 
-// ── Seeded PRNG ─────────────────────────────────────────────────────────────
-let s = 760;
+// ── Seeded PRNG ────────────────────────────────────────────────────────────────
+let s = 961;
 const rand = () => {
   s = (s * 1103515245 + 12345) & 0x7fffffff;
   return s / 0x7fffffff;
 };
+const _vals = Array.from({ length: 3000 }, () => rand());
+let _vi = 0;
+const _sv = () => _vals[_vi++ % _vals.length];
+void _sv;
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-interface SpreadPoint {
-  t: number;
-  value: number;
+// ── Format helpers ─────────────────────────────────────────────────────────────
+const fmtBps = (n: number) => `${n}bps`;
+
+// ── CDS Mechanics SVG ──────────────────────────────────────────────────────────
+function CDSMechanicsSVG() {
+  return (
+    <svg viewBox="0 0 520 180" className="w-full h-44">
+      <defs>
+        <marker id="cdsMk1" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#6366f1" />
+        </marker>
+        <marker id="cdsMk2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" />
+        </marker>
+        <marker id="cdsMk3" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f87171" />
+        </marker>
+      </defs>
+
+      {/* Protection Buyer */}
+      <rect x="20" y="65" width="110" height="50" rx="7" fill="#18181b" stroke="#6366f1" strokeWidth="1.5" />
+      <text x="75" y="87" fill="#a5b4fc" fontSize="9.5" textAnchor="middle" fontWeight="bold">PROTECTION</text>
+      <text x="75" y="100" fill="#a5b4fc" fontSize="9.5" textAnchor="middle" fontWeight="bold">BUYER</text>
+      <text x="75" y="113" fill="#71717a" fontSize="8" textAnchor="middle">(Long credit risk)</text>
+
+      {/* Protection Seller */}
+      <rect x="390" y="65" width="110" height="50" rx="7" fill="#18181b" stroke="#f59e0b" strokeWidth="1.5" />
+      <text x="445" y="87" fill="#fcd34d" fontSize="9.5" textAnchor="middle" fontWeight="bold">PROTECTION</text>
+      <text x="445" y="100" fill="#fcd34d" fontSize="9.5" textAnchor="middle" fontWeight="bold">SELLER</text>
+      <text x="445" y="113" fill="#71717a" fontSize="8" textAnchor="middle">(Short credit risk)</text>
+
+      {/* Reference Entity */}
+      <rect x="205" y="130" width="110" height="40" rx="7" fill="#18181b" stroke="#f87171" strokeWidth="1.5" />
+      <text x="260" y="148" fill="#fca5a5" fontSize="9" textAnchor="middle" fontWeight="bold">REFERENCE</text>
+      <text x="260" y="161" fill="#fca5a5" fontSize="9" textAnchor="middle" fontWeight="bold">ENTITY</text>
+
+      {/* Premium flow: Buyer to Seller */}
+      <line x1="130" y1="82" x2="388" y2="82" stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#cdsMk1)" />
+      <text x="260" y="76" fill="#818cf8" fontSize="8.5" textAnchor="middle">Premium / CDS Spread (e.g. 100bps p.a.)</text>
+
+      {/* Contingent payment: Seller to Buyer */}
+      <line x1="388" y1="108" x2="130" y2="108" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#cdsMk2)" />
+      <text x="260" y="122" fill="#fcd34d" fontSize="8" textAnchor="middle">Contingent payment on Credit Event</text>
+
+      {/* Dashed lines to Reference Entity */}
+      <line x1="75" y1="115" x2="205" y2="140" stroke="#f87171" strokeWidth="1" strokeDasharray="4,3" markerEnd="url(#cdsMk3)" />
+      <line x1="445" y1="115" x2="315" y2="140" stroke="#f87171" strokeWidth="1" strokeDasharray="4,3" markerEnd="url(#cdsMk3)" />
+
+      <text x="260" y="18" fill="#a1a1aa" fontSize="10" textAnchor="middle" fontWeight="bold">Credit Default Swap — Cash Flow Structure</text>
+      <text x="260" y="32" fill="#52525b" fontSize="8" textAnchor="middle">Notional: $10M  |  Tenor: 5Y  |  Credit Events: Bankruptcy / Failure to Pay / Restructuring</text>
+    </svg>
+  );
 }
 
-interface ReferenceEntity {
+// ── CDS Curve Term Structure SVG ───────────────────────────────────────────────
+const CDS_CURVE_DATA = [
+  { tenor: "1Y", normal: 50, inverted: 280 },
+  { tenor: "2Y", normal: 75, inverted: 260 },
+  { tenor: "3Y", normal: 100, inverted: 240 },
+  { tenor: "5Y", normal: 140, inverted: 210 },
+  { tenor: "7Y", normal: 165, inverted: 190 },
+  { tenor: "10Y", normal: 185, inverted: 175 },
+];
+
+function CDSCurveSVG() {
+  const W = 480;
+  const H = 180;
+  const PAD = { l: 48, r: 60, t: 24, b: 36 };
+  const chartW = W - PAD.l - PAD.r;
+  const chartH = H - PAD.t - PAD.b;
+  const maxSpread = 320;
+  const n = CDS_CURVE_DATA.length;
+  const toX = (i: number) => PAD.l + (i / (n - 1)) * chartW;
+  const toY = (v: number) => PAD.t + chartH - (v / maxSpread) * chartH;
+
+  const normalPts = CDS_CURVE_DATA.map((d, i) => `${toX(i)},${toY(d.normal)}`).join(" ");
+  const invertedPts = CDS_CURVE_DATA.map((d, i) => `${toX(i)},${toY(d.inverted)}`).join(" ");
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-44">
+      {[0, 80, 160, 240, 320].map((v) => (
+        <line key={`gl-${v}`} x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+      ))}
+      {[0, 80, 160, 240, 320].map((v) => (
+        <text key={`gy-${v}`} x={PAD.l - 5} y={toY(v) + 4} fill="#71717a" fontSize="8.5" textAnchor="end">
+          {v}
+        </text>
+      ))}
+      <text
+        x={PAD.l - 28}
+        y={PAD.t + chartH / 2}
+        fill="#71717a"
+        fontSize="8"
+        textAnchor="middle"
+        transform={`rotate(-90, ${PAD.l - 28}, ${PAD.t + chartH / 2})`}
+      >
+        CDS Spread (bps)
+      </text>
+
+      <polyline points={normalPts} fill="none" stroke="#34d399" strokeWidth="2" strokeLinejoin="round" />
+      {CDS_CURVE_DATA.map((d, i) => (
+        <circle key={`nrm-${i}`} cx={toX(i)} cy={toY(d.normal)} r="3" fill="#34d399" />
+      ))}
+      <text x={toX(n - 1) + 5} y={toY(CDS_CURVE_DATA[n - 1].normal) + 4} fill="#34d399" fontSize="8">Normal</text>
+
+      <polyline points={invertedPts} fill="none" stroke="#f87171" strokeWidth="2" strokeLinejoin="round" strokeDasharray="5,3" />
+      {CDS_CURVE_DATA.map((d, i) => (
+        <circle key={`inv-${i}`} cx={toX(i)} cy={toY(d.inverted)} r="3" fill="#f87171" />
+      ))}
+      <text x={toX(n - 1) + 5} y={toY(CDS_CURVE_DATA[n - 1].inverted) + 4} fill="#f87171" fontSize="8">Distress</text>
+
+      {CDS_CURVE_DATA.map((d, i) => (
+        <text key={`xl-${i}`} x={toX(i)} y={H - 4} fill="#71717a" fontSize="8.5" textAnchor="middle">{d.tenor}</text>
+      ))}
+      <text x={W / 2} y={H - 20} fill="#52525b" fontSize="7.5" textAnchor="middle">Tenor</text>
+      <text x={W / 2} y={16} fill="#a1a1aa" fontSize="9.5" textAnchor="middle" fontWeight="bold">CDS Term Structure — Normal vs Distressed Curve</text>
+    </svg>
+  );
+}
+
+// ── Credit Events ─────────────────────────────────────────────────────────────
+interface CreditEvent {
   name: string;
-  ticker: string;
+  desc: string;
+  example: string;
+  borderColor: string;
+  textColor: string;
+}
+const CREDIT_EVENTS: CreditEvent[] = [
+  {
+    name: "Bankruptcy",
+    desc: "Filing for insolvency protection or inability to pay debts as they come due",
+    example: "Lehman Brothers 2008, Hertz 2020",
+    borderColor: "border-red-500",
+    textColor: "text-red-400",
+  },
+  {
+    name: "Failure to Pay",
+    desc: "Missed coupon or principal payment exceeding grace period on any obligation above threshold",
+    example: "Argentina 2001, 2020; Ecuador 2020",
+    borderColor: "border-orange-500",
+    textColor: "text-orange-400",
+  },
+  {
+    name: "Restructuring",
+    desc: "Material change in debt terms: maturity extension, coupon reduction, or principal haircut",
+    example: "Greece PSI 2012 (50% haircut), Zambia 2023",
+    borderColor: "border-amber-500",
+    textColor: "text-amber-400",
+  },
+  {
+    name: "Repudiation / Moratorium",
+    desc: "Government denies or rejects debt obligations (sovereign CDS only)",
+    example: "Russia 1998, Venezuela 2017",
+    borderColor: "border-purple-500",
+    textColor: "text-purple-400",
+  },
+  {
+    name: "Obligation Acceleration",
+    desc: "Early maturity triggered by default cross-acceleration clauses",
+    example: "Emerging market corporates",
+    borderColor: "border-blue-500",
+    textColor: "text-blue-400",
+  },
+];
+
+// ── Upfront Payment Table ─────────────────────────────────────────────────────
+interface UpfrontEntry {
+  scenario: string;
+  runningCoupon: string;
+  fairSpread: string;
+  upfront: string;
+  direction: string;
+}
+const UPFRONT_DATA: UpfrontEntry[] = [
+  { scenario: "IG — tight credit", runningCoupon: "100bps", fairSpread: "50bps", upfront: "+2.4% (receive)", direction: "Seller pays buyer upfront" },
+  { scenario: "IG — at coupon", runningCoupon: "100bps", fairSpread: "100bps", upfront: "0%", direction: "No upfront exchange" },
+  { scenario: "IG — wider spread", runningCoupon: "100bps", fairSpread: "150bps", upfront: "-2.3% (pay)", direction: "Buyer pays seller upfront" },
+  { scenario: "HY — tight credit", runningCoupon: "500bps", fairSpread: "300bps", upfront: "+8.5% (receive)", direction: "Seller pays buyer upfront" },
+  { scenario: "HY — distressed", runningCoupon: "500bps", fairSpread: "1200bps", upfront: "-26% (pay)", direction: "Buyer pays seller upfront" },
+];
+
+// ── Sovereign CDS data ────────────────────────────────────────────────────────
+interface SovereignCDS {
+  country: string;
+  spread5Y: number;
   rating: string;
-  industry: string;
-  spread: number; // current spread in bps
-  tenor: string;
-  notional: number;
-  color: string;
-  series: SpreadPoint[];
+  note: string;
+}
+const SOVEREIGN_CDS: SovereignCDS[] = [
+  { country: "Germany", spread5Y: 12, rating: "AAA", note: "Benchmark risk-free" },
+  { country: "United States", spread5Y: 28, rating: "AA+", note: "Downgrade 2023" },
+  { country: "Italy", spread5Y: 115, rating: "BBB", note: "Fiscal concerns" },
+  { country: "Brazil", spread5Y: 195, rating: "BB", note: "Commodity exposure" },
+  { country: "Turkey", spread5Y: 380, rating: "B+", note: "Currency pressure" },
+  { country: "Greece", spread5Y: 98, rating: "BB+", note: "Post-restructuring" },
+  { country: "Egypt", spread5Y: 620, rating: "B-", note: "FX crisis 2022-23" },
+  { country: "Argentina", spread5Y: 2100, rating: "SD", note: "Selective default" },
+];
+
+function SovereignBarChart() {
+  const W = 480;
+  const H = 180;
+  const PAD = { l: 72, r: 50, t: 24, b: 16 };
+  const chartW = W - PAD.l - PAD.r;
+  const chartH = H - PAD.t - PAD.b;
+  const maxSpread = 2200;
+  const n = SOVEREIGN_CDS.length;
+  const barH = (chartH / n) * 0.6;
+  const toX = (v: number) => PAD.l + (Math.min(v, maxSpread) / maxSpread) * chartW;
+  const toY = (i: number) => PAD.t + (i / n) * chartH + (chartH / n) * 0.2;
+  const barColor = (spread: number) =>
+    spread < 100 ? "#34d399" : spread < 300 ? "#f59e0b" : spread < 800 ? "#f97316" : "#f87171";
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-44">
+      <text x={W / 2} y={16} fill="#a1a1aa" fontSize="9.5" textAnchor="middle" fontWeight="bold">5Y Sovereign CDS Spreads (bps)</text>
+      {SOVEREIGN_CDS.map((d, i) => (
+        <g key={`sb-${i}`}>
+          <text x={PAD.l - 5} y={toY(i) + barH / 2 + 4} fill="#a1a1aa" fontSize="8.5" textAnchor="end">{d.country}</text>
+          <rect x={PAD.l} y={toY(i)} width={toX(d.spread5Y) - PAD.l} height={barH} rx="3" fill={barColor(d.spread5Y)} opacity="0.8" />
+          <text x={toX(d.spread5Y) + 4} y={toY(i) + barH / 2 + 4} fill={barColor(d.spread5Y)} fontSize="8">{fmtBps(d.spread5Y)}</text>
+        </g>
+      ))}
+    </svg>
+  );
 }
 
-interface CDSContract {
-  entity: string;
-  ticker: string;
-  tenor: string;
-  spread: number;
-  rating: string;
-  industry: string;
-  change: number;
-  annualPremium: number;
-}
-
+// ── CDX Index Data ─────────────────────────────────────────────────────────────
 interface CDXIndex {
   name: string;
-  series: number;
+  underlying: string;
+  names: number;
+  maturity: string;
   spread: number;
-  change: number;
-  constituents: number;
-  rating: string;
+  series: number;
+  region: string;
 }
-
-// ── Data Generation ───────────────────────────────────────────────────────────
-function generateSpreadSeries(
-  baseBps: number,
-  volatility: number,
-  n: number
-): SpreadPoint[] {
-  const points: SpreadPoint[] = [];
-  let current = baseBps;
-  for (let i = 0; i < n; i++) {
-    const shock = (rand() - 0.5) * volatility;
-    const meanReversion = (baseBps - current) * 0.05;
-    current = Math.max(10, current + shock + meanReversion);
-    points.push({ t: i, value: Math.round(current * 10) / 10 });
-  }
-  return points;
-}
-
-const ENTITIES: ReferenceEntity[] = (() => {
-  // Reset deterministic seed portion for entities
-  return [
-    {
-      name: "Apple Inc.",
-      ticker: "AAPL",
-      rating: "AA+",
-      industry: "Technology",
-      spread: 32,
-      tenor: "5Y",
-      notional: 10_000_000,
-      color: "#3b82f6",
-      series: generateSpreadSeries(32, 8, 200),
-    },
-    {
-      name: "Ford Motor Co.",
-      ticker: "F",
-      rating: "BB+",
-      industry: "Automotive",
-      spread: 245,
-      tenor: "5Y",
-      notional: 5_000_000,
-      color: "#f59e0b",
-      series: generateSpreadSeries(245, 35, 200),
-    },
-    {
-      name: "JPMorgan Chase",
-      ticker: "JPM",
-      rating: "A+",
-      industry: "Banking",
-      spread: 58,
-      tenor: "5Y",
-      notional: 20_000_000,
-      color: "#10b981",
-      series: generateSpreadSeries(58, 12, 200),
-    },
-    {
-      name: "Carnival Corp.",
-      ticker: "CCL",
-      rating: "BB-",
-      industry: "Leisure",
-      spread: 380,
-      tenor: "5Y",
-      notional: 3_000_000,
-      color: "#ef4444",
-      series: generateSpreadSeries(380, 55, 200),
-    },
-    {
-      name: "Microsoft Corp.",
-      ticker: "MSFT",
-      rating: "AAA",
-      industry: "Technology",
-      spread: 18,
-      tenor: "5Y",
-      notional: 15_000_000,
-      color: "#8b5cf6",
-      series: generateSpreadSeries(18, 5, 200),
-    },
-  ];
-})();
-
-const CDS_CONTRACTS: CDSContract[] = [
-  { entity: "Apple Inc.", ticker: "AAPL", tenor: "5Y", spread: 32, rating: "AA+", industry: "Technology", change: -1.5, annualPremium: 32_000 },
-  { entity: "Microsoft Corp.", ticker: "MSFT", tenor: "5Y", spread: 18, rating: "AAA", industry: "Technology", change: -0.8, annualPremium: 18_000 },
-  { entity: "JPMorgan Chase", ticker: "JPM", tenor: "5Y", spread: 58, rating: "A+", industry: "Banking", change: 2.1, annualPremium: 58_000 },
-  { entity: "Goldman Sachs", ticker: "GS", tenor: "5Y", spread: 72, rating: "A", industry: "Banking", change: 3.4, annualPremium: 72_000 },
-  { entity: "AT&T Inc.", ticker: "T", tenor: "5Y", spread: 128, rating: "BBB", industry: "Telecom", change: -4.2, annualPremium: 128_000 },
-  { entity: "Ford Motor Co.", ticker: "F", tenor: "5Y", spread: 245, rating: "BB+", industry: "Automotive", change: 11.5, annualPremium: 245_000 },
-  { entity: "Carnival Corp.", ticker: "CCL", tenor: "5Y", spread: 380, rating: "BB-", industry: "Leisure", change: 22.0, annualPremium: 380_000 },
-  { entity: "Delta Air Lines", ticker: "DAL", tenor: "5Y", spread: 295, rating: "BB", industry: "Airlines", change: 8.7, annualPremium: 295_000 },
-  { entity: "Macy's Inc.", ticker: "M", tenor: "5Y", spread: 430, rating: "B+", industry: "Retail", change: 18.3, annualPremium: 430_000 },
-  { entity: "Bausch Health", ticker: "BHC", tenor: "5Y", spread: 820, rating: "CCC+", industry: "Healthcare", change: 45.0, annualPremium: 820_000 },
-];
-
 const CDX_INDICES: CDXIndex[] = [
-  { name: "CDX.NA.IG", series: 41, spread: 68, change: 1.2, constituents: 125, rating: "IG" },
-  { name: "CDX.NA.HY", series: 41, spread: 345, change: 8.5, constituents: 100, rating: "HY" },
-  { name: "iTraxx Europe", series: 40, spread: 74, change: 1.8, constituents: 125, rating: "IG" },
-  { name: "iTraxx Xover", series: 40, spread: 298, change: 6.2, constituents: 75, rating: "HY" },
+  { name: "CDX.NA.IG", underlying: "US Inv-Grade Corporates", names: 125, maturity: "5Y", spread: 68, series: 41, region: "North America" },
+  { name: "CDX.NA.HY", underlying: "US High-Yield Corporates", names: 100, maturity: "5Y", spread: 385, series: 41, region: "North America" },
+  { name: "CDX.EM", underlying: "Emerging Market Sovereigns", names: 21, maturity: "5Y", spread: 205, series: 40, region: "Emerging Markets" },
+  { name: "iTraxx Europe", underlying: "European Inv-Grade", names: 125, maturity: "5Y", spread: 72, series: 40, region: "Europe" },
+  { name: "iTraxx Xover", underlying: "European Sub-IG/Crossover", names: 75, maturity: "5Y", spread: 320, series: 40, region: "Europe" },
+  { name: "iTraxx Japan", underlying: "Japanese Corporates", names: 50, maturity: "5Y", spread: 48, series: 40, region: "Asia" },
+  { name: "LCDX", underlying: "US Leveraged Loans", names: 100, maturity: "5Y", spread: 175, series: 13, region: "North America" },
+  { name: "CMBX.NA", underlying: "US CMBS Tranches", names: 25, maturity: "N/A", spread: 430, series: 17, region: "Structured Credit" },
 ];
 
-// ── SVG Helpers ───────────────────────────────────────────────────────────────
-function toSVGCoords(
-  points: SpreadPoint[],
-  width: number,
-  height: number,
-  padding: number
-): { x: number; y: number }[] {
-  if (points.length === 0) return [];
-  const minV = Math.min(...points.map((p) => p.value));
-  const maxV = Math.max(...points.map((p) => p.value));
-  const rangeV = maxV - minV || 1;
-  const w = width - padding * 2;
-  const h = height - padding * 2;
-  return points.map((p, i) => ({
-    x: padding + (i / (points.length - 1)) * w,
-    y: padding + h - ((p.value - minV) / rangeV) * h,
-  }));
+// ── Tranche data ──────────────────────────────────────────────────────────────
+interface Tranche {
+  name: string;
+  attachment: string;
+  detachment: string;
+  spread: string;
+  role: string;
+  correlation: string;
+  borderColor: string;
+  labelColor: string;
+}
+const TRANCHES: Tranche[] = [
+  { name: "Equity", attachment: "0%", detachment: "3%", spread: "~30% upfront + 500bps", role: "First loss — absorbs first 3% defaults", correlation: "Short correlation", borderColor: "border-red-500", labelColor: "text-red-400" },
+  { name: "Junior Mezz", attachment: "3%", detachment: "7%", spread: "~250bps", role: "Second loss — high spread compensation", correlation: "Short correlation", borderColor: "border-orange-500", labelColor: "text-orange-400" },
+  { name: "Senior Mezz", attachment: "7%", detachment: "10%", spread: "~100bps", role: "Mid capital structure exposure", correlation: "Long correlation", borderColor: "border-amber-500", labelColor: "text-amber-400" },
+  { name: "Senior", attachment: "10%", detachment: "15%", spread: "~40bps", role: "Near-safe protection", correlation: "Long correlation", borderColor: "border-blue-500", labelColor: "text-blue-400" },
+  { name: "Super Senior", attachment: "15%", detachment: "30%", spread: "~10bps", role: "Catastrophic scenario only", correlation: "Long correlation", borderColor: "border-indigo-500", labelColor: "text-indigo-400" },
+];
+
+function TrancheStackSVG() {
+  const W = 400;
+  const H = 200;
+  const colors = ["#f87171", "#f97316", "#f59e0b", "#60a5fa", "#818cf8"];
+  const labels = ["Equity 0-3%", "Jr Mezz 3-7%", "Sr Mezz 7-10%", "Senior 10-15%", "Super Sr 15-30%"];
+  const heights = [40, 36, 26, 26, 36];
+  const spreads = ["~30% + 500bps", "~250bps", "~100bps", "~40bps", "~10bps"];
+  let yPos = 20;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-48">
+      <text x={W / 2} y={14} fill="#a1a1aa" fontSize="9.5" textAnchor="middle" fontWeight="bold">CDX Tranche Capital Structure</text>
+      {labels.map((lbl, i) => {
+        const y = yPos;
+        yPos += heights[i] + 2;
+        return (
+          <g key={`tr-${i}`}>
+            <rect x={60} y={y} width={200} height={heights[i]} rx="3" fill={colors[i]} opacity="0.2" stroke={colors[i]} strokeWidth="1" />
+            <text x={165} y={y + heights[i] / 2 + 4} fill={colors[i]} fontSize="8.5" textAnchor="middle" fontWeight="bold">{lbl}</text>
+            <text x={270} y={y + heights[i] / 2 + 4} fill="#a1a1aa" fontSize="8">{spreads[i]}</text>
+          </g>
+        );
+      })}
+      <text x={60} y={185} fill="#52525b" fontSize="7.5">Senior (low loss) above</text>
+      <text x={60} y={195} fill="#52525b" fontSize="7.5">Junior (first loss) below</text>
+    </svg>
+  );
 }
 
-function pointsToPath(pts: { x: number; y: number }[]): string {
-  if (pts.length === 0) return "";
-  return pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+// ── Roll Mechanics SVG ────────────────────────────────────────────────────────
+function RollMechanicsSVG() {
+  const items = [
+    { label: "Series 40\n(Off-the-run)", color: "#52525b", x: 20 },
+    { label: "6-Month\nRoll Window", color: "#f59e0b", x: 165 },
+    { label: "Series 41\n(On-the-run)", color: "#34d399", x: 305 },
+  ];
+  return (
+    <svg viewBox="0 0 460 120" className="w-full h-28">
+      <defs>
+        <marker id="rollArrow" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" />
+        </marker>
+      </defs>
+      <text x={230} y={14} fill="#a1a1aa" fontSize="9.5" textAnchor="middle" fontWeight="bold">CDX Index Roll — Every 6 Months</text>
+      {items.map((it, i) => (
+        <g key={`rm-${i}`}>
+          <rect x={it.x} y={35} width={130} height={52} rx="6" fill="#18181b" stroke={it.color} strokeWidth="1.5" />
+          {it.label.split("\n").map((line, j) => (
+            <text key={`rmt-${i}-${j}`} x={it.x + 65} y={55 + j * 16} fill={it.color} fontSize="9" textAnchor="middle" fontWeight={j === 0 ? "bold" : "normal"}>{line}</text>
+          ))}
+        </g>
+      ))}
+      <line x1="150" y1="61" x2="163" y2="61" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#rollArrow)" />
+      <line x1="295" y1="61" x2="303" y2="61" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#rollArrow)" />
+      <text x={230} y={105} fill="#71717a" fontSize="8" textAnchor="middle">New reference entities added; defaulted names removed; basket rebalanced to equal weight</text>
+    </svg>
+  );
 }
 
-// ── Metric Card ───────────────────────────────────────────────────────────────
-function MetricCard({
-  icon: Icon,
-  label,
-  value,
-  sub,
-  color,
-  delay,
-}: {
-  icon: React.ComponentType<{ className?: string }>;
+// ── CLN Structure SVG ─────────────────────────────────────────────────────────
+function CLNStructureSVG() {
+  return (
+    <svg viewBox="0 0 540 190" className="w-full h-48">
+      <defs>
+        <marker id="clnMk1" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#6366f1" />
+        </marker>
+        <marker id="clnMk2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#34d399" />
+        </marker>
+        <marker id="clnMk3" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" />
+        </marker>
+        <marker id="clnMk4" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#f87171" />
+        </marker>
+      </defs>
+
+      <rect x="10" y="70" width="100" height="50" rx="6" fill="#18181b" stroke="#6366f1" strokeWidth="1.5" />
+      <text x="60" y="91" fill="#a5b4fc" fontSize="9" textAnchor="middle" fontWeight="bold">INVESTOR</text>
+      <text x="60" y="104" fill="#a5b4fc" fontSize="8" textAnchor="middle">Buys CLN</text>
+      <text x="60" y="114" fill="#71717a" fontSize="7.5" textAnchor="middle">(funded exposure)</text>
+
+      <rect x="185" y="60" width="110" height="70" rx="6" fill="#18181b" stroke="#8b5cf6" strokeWidth="1.5" />
+      <text x="240" y="81" fill="#c4b5fd" fontSize="9" textAnchor="middle" fontWeight="bold">CLN ISSUER</text>
+      <text x="240" y="94" fill="#c4b5fd" fontSize="8" textAnchor="middle">(Bank / SPV)</text>
+      <text x="240" y="108" fill="#71717a" fontSize="7.5" textAnchor="middle">Embeds CDS on</text>
+      <text x="240" y="118" fill="#71717a" fontSize="7.5" textAnchor="middle">Reference Entity</text>
+
+      <rect x="400" y="70" width="110" height="50" rx="6" fill="#18181b" stroke="#f87171" strokeWidth="1.5" />
+      <text x="455" y="91" fill="#fca5a5" fontSize="9" textAnchor="middle" fontWeight="bold">REFERENCE</text>
+      <text x="455" y="104" fill="#fca5a5" fontSize="9" textAnchor="middle" fontWeight="bold">ENTITY</text>
+
+      <line x1="110" y1="82" x2="183" y2="82" stroke="#6366f1" strokeWidth="1.5" markerEnd="url(#clnMk1)" />
+      <text x="147" y="76" fill="#818cf8" fontSize="7.5" textAnchor="middle">Principal $</text>
+
+      <line x1="183" y1="108" x2="110" y2="108" stroke="#34d399" strokeWidth="1.5" markerEnd="url(#clnMk2)" />
+      <text x="147" y="122" fill="#6ee7b7" fontSize="7.5" textAnchor="middle">LIBOR + spread</text>
+      <text x="147" y="132" fill="#6ee7b7" fontSize="7.5" textAnchor="middle">(or par if no event)</text>
+
+      <line x1="295" y1="82" x2="398" y2="82" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#clnMk3)" strokeDasharray="4,3" />
+      <text x="347" y="76" fill="#fcd34d" fontSize="7.5" textAnchor="middle">CDS premium</text>
+
+      <line x1="398" y1="108" x2="295" y2="108" stroke="#f87171" strokeWidth="1.5" markerEnd="url(#clnMk4)" strokeDasharray="4,3" />
+      <text x="347" y="122" fill="#fca5a5" fontSize="7.5" textAnchor="middle">Credit event</text>
+      <text x="347" y="132" fill="#fca5a5" fontSize="7.5" textAnchor="middle">payment</text>
+
+      <text x="270" y="16" fill="#a1a1aa" fontSize="10" textAnchor="middle" fontWeight="bold">Credit-Linked Note (CLN) Structure</text>
+      <text x="270" y="30" fill="#52525b" fontSize="7.5" textAnchor="middle">Funded instrument: investor provides principal which can be lost on credit event</text>
+      <text x="270" y="175" fill="#71717a" fontSize="7.5" textAnchor="middle">CLN = Bond + Embedded CDS | Investor bears credit risk of Reference Entity via funded structure</text>
+    </svg>
+  );
+}
+
+// ── TRS vs Repo rows ──────────────────────────────────────────────────────────
+interface TRSRow {
+  aspect: string;
+  trs: string;
+  repo: string;
+}
+const TRS_VS_REPO: TRSRow[] = [
+  { aspect: "Legal title transfer", trs: "No — referencing asset", repo: "Yes — sold and repurchased" },
+  { aspect: "Credit exposure", trs: "Buyer retains economic risk", repo: "Counterparty credit on collateral" },
+  { aspect: "Balance sheet impact", trs: "Off-balance (unfunded)", repo: "On-balance for seller" },
+  { aspect: "Regulatory capital", trs: "Lower (synthetic)", repo: "Higher (repo book)" },
+  { aspect: "Funding cost", trs: "SOFR + TRS spread", repo: "SOFR + haircut cost" },
+  { aspect: "Dividend / coupon", trs: "Passed through to TR receiver", repo: "Stays with seller" },
+  { aspect: "Use case", trs: "Synthetic long / leverage", repo: "Secured financing / short" },
+];
+
+// ── FTD Correlation SVG ───────────────────────────────────────────────────────
+function FTDCorrelationSVG() {
+  const W = 480;
+  const H = 160;
+  const PAD = { l: 50, r: 20, t: 28, b: 36 };
+  const chartW = W - PAD.l - PAD.r;
+  const chartH = H - PAD.t - PAD.b;
+  const corrs = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0];
+  const ftdSpreads = corrs.map((c) => 500 - 400 * c);
+  const maxSpread = 520;
+  const toX = (c: number) => PAD.l + c * chartW;
+  const toY = (v: number) => PAD.t + chartH - (v / maxSpread) * chartH;
+  const pts = corrs.map((c, i) => `${toX(c)},${toY(ftdSpreads[i])}`).join(" ");
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-40">
+      <text x={W / 2} y={18} fill="#a1a1aa" fontSize="9.5" textAnchor="middle" fontWeight="bold">FTD Basket Spread vs Correlation (5 names x 100bps each)</text>
+      {[0, 100, 200, 300, 400, 500].map((v) => (
+        <line key={`fg-${v}`} x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+      ))}
+      {[0, 100, 200, 300, 400, 500].map((v) => (
+        <text key={`fgy-${v}`} x={PAD.l - 5} y={toY(v) + 4} fill="#71717a" fontSize="8" textAnchor="end">{v}</text>
+      ))}
+      <polyline points={pts} fill="none" stroke="#f59e0b" strokeWidth="2.5" strokeLinejoin="round" />
+      {corrs.map((c, i) => (
+        <circle key={`fdc-${i}`} cx={toX(c)} cy={toY(ftdSpreads[i])} r="3" fill="#f59e0b" />
+      ))}
+      {[0, 0.25, 0.5, 0.75, 1.0].map((c) => (
+        <text key={`fxl-${c}`} x={toX(c)} y={H - 6} fill="#71717a" fontSize="8" textAnchor="middle">{c}</text>
+      ))}
+      <text x={W / 2} y={H - 20} fill="#52525b" fontSize="7.5" textAnchor="middle">Pairwise Correlation</text>
+      <text
+        x={PAD.l - 28}
+        y={PAD.t + chartH / 2}
+        fill="#71717a"
+        fontSize="8"
+        textAnchor="middle"
+        transform={`rotate(-90, ${PAD.l - 28}, ${PAD.t + chartH / 2})`}
+      >
+        FTD Spread (bps)
+      </text>
+      <text x={toX(0.1)} y={toY(480) - 8} fill="#f59e0b" fontSize="7.5">Low corr = high FTD risk</text>
+      <text x={toX(0.72)} y={toY(130) - 8} fill="#34d399" fontSize="7.5">High corr = lower risk</text>
+    </svg>
+  );
+}
+
+// ── Market stats ──────────────────────────────────────────────────────────────
+interface MarketStat {
   label: string;
   value: string;
   sub: string;
   color: string;
-  delay: number;
+}
+const MARKET_STATS: MarketStat[] = [
+  { label: "Global CDS Gross Notional", value: "$10.3T", sub: "DTCC TIW 2024 estimate", color: "text-indigo-400" },
+  { label: "Global CDS Net Notional", value: "$1.8T", sub: "~17% of gross (netting benefit)", color: "text-emerald-400" },
+  { label: "Cleared CDS (LCH/ICE)", value: "~75%", sub: "Post Dodd-Frank clearing mandate", color: "text-blue-400" },
+  { label: "Index vs Single Name", value: "60% / 40%", sub: "Index products dominate by volume", color: "text-amber-400" },
+  { label: "IG / HY Split", value: "70% / 30%", sub: "IG single-name more liquid", color: "text-purple-400" },
+  { label: "Avg Bid-Ask (IG CDX)", value: "0.25-0.5bps", sub: "Highly liquid benchmark index", color: "text-cyan-400" },
+];
+
+// ── XVA data ──────────────────────────────────────────────────────────────────
+interface XVARow {
+  xva: string;
+  fullName: string;
+  desc: string;
+  impact: string;
+}
+const XVA_DATA: XVARow[] = [
+  { xva: "CVA", fullName: "Credit Valuation Adjustment", desc: "Cost of counterparty default risk — reduces mark-to-market", impact: "-0.5% to -3% on uncollateralized swaps" },
+  { xva: "DVA", fullName: "Debit Valuation Adjustment", desc: "Own credit risk benefit — controversial accounting gain", impact: "Positive to bank when own CDS widens" },
+  { xva: "FVA", fullName: "Funding Valuation Adjustment", desc: "Cost of funding collateral posted to OTC derivatives", impact: "-0.1% to -0.5% depending on tenor" },
+  { xva: "MVA", fullName: "Margin Valuation Adjustment", desc: "Initial margin cost on cleared derivatives", impact: "Growing post-SIMM implementation" },
+  { xva: "KVA", fullName: "Capital Valuation Adjustment", desc: "Regulatory capital cost (SA-CCR framework)", impact: "Significant under Basel III/IV" },
+];
+
+// ── CDS Distress indicators ───────────────────────────────────────────────────
+interface DistressCase {
+  entity: string;
+  date: string;
+  cdsWidening: string;
+  leadTime: string;
+  outcome: string;
+}
+const DISTRESS_CASES: DistressCase[] = [
+  { entity: "Evergrande", date: "Aug-Sep 2021", cdsWidening: "200bps to 2000bps", leadTime: "3-4 weeks before headlines", outcome: "Default Dec 2021" },
+  { entity: "SVB Financial", date: "Mar 2023", cdsWidening: "80bps to 800bps+", leadTime: "48 hours before closure", outcome: "FDIC seizure Mar 10" },
+  { entity: "Credit Suisse", date: "Mar 2023", cdsWidening: "200bps to 1000bps", leadTime: "1 week ahead of rescue", outcome: "UBS acquisition" },
+  { entity: "Bed Bath & Beyond", date: "Q1 2023", cdsWidening: "Tripled in 2 weeks", leadTime: "6 weeks before filing", outcome: "Chapter 11 Apr 2023" },
+];
+
+// ── Basis trade ───────────────────────────────────────────────────────────────
+interface BasisEntry {
+  basis: string;
+  setup: string;
+  pnlSource: string;
+  risk: string;
+}
+const BASIS_DATA: BasisEntry[] = [
+  { basis: "Negative Basis", setup: "Buy CDS + Buy Bond (same reference)", pnlSource: "Earn bond yield > CDS cost; convergence profit", risk: "Carry cost; liquidity mismatch" },
+  { basis: "Positive Basis", setup: "Sell CDS + Short Bond (same reference)", pnlSource: "Collect CDS premium > cost to short bond", risk: "Short squeeze; repo scarcity" },
+  { basis: "Cash-CDS Spread", setup: "Monitor bond spread vs CDS spread", pnlSource: "Arbitrage when gap widens beyond funding cost", risk: "Model risk; basis can persist" },
+];
+
+// ── Collapsible section ───────────────────────────────────────────────────────
+function Collapsible({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
 }) {
+  const [open, setOpen] = useState(defaultOpen);
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay }}
-    >
-      <Card className="border-border bg-card">
-        <CardContent className="p-4 flex items-start gap-3">
-          <div className={`p-2 rounded-lg ${color}`}>
-            <Icon className="h-4 w-4 text-white" />
-          </div>
-          <div>
-            <p className="text-xs text-muted-foreground">{label}</p>
-            <p className="text-xl font-bold text-foreground">{value}</p>
-            <p className="text-xs text-muted-foreground mt-0.5">{sub}</p>
-          </div>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
-}
-
-// ── CDS Spread Chart ──────────────────────────────────────────────────────────
-function CDSSpreadChart({ entities }: { entities: ReferenceEntity[] }) {
-  const [activeEntity, setActiveEntity] = useState<string | null>(null);
-
-  const W = 680;
-  const H = 260;
-  const PAD = 40;
-
-  // Global min/max across all entities
-  const allValues = entities.flatMap((e) => e.series.map((p) => p.value));
-  const globalMin = Math.min(...allValues);
-  const globalMax = Math.max(...allValues);
-  const range = globalMax - globalMin || 1;
-
-  function toCoords(series: SpreadPoint[]): { x: number; y: number }[] {
-    const w = W - PAD * 2;
-    const h = H - PAD * 2;
-    return series.map((p, i) => ({
-      x: PAD + (i / (series.length - 1)) * w,
-      y: PAD + h - ((p.value - globalMin) / range) * h,
-    }));
-  }
-
-  // Y axis labels
-  const yLabels = 5;
-  const yTicks = Array.from({ length: yLabels }, (_, i) => {
-    const val = globalMin + (range / (yLabels - 1)) * i;
-    return { y: PAD + (H - PAD * 2) - ((val - globalMin) / range) * (H - PAD * 2), label: Math.round(val).toString() };
-  });
-
-  // X axis: every 40 bars
-  const xTicks = [0, 40, 80, 120, 160, 199].map((i) => ({
-    x: PAD + (i / 199) * (W - PAD * 2),
-    label: `T-${199 - i}`,
-  }));
-
-  return (
-    <div className="w-full">
-      <div className="flex flex-wrap gap-3 mb-3">
-        {entities.map((e) => (
-          <button
-            key={e.ticker}
-            onClick={() => setActiveEntity(activeEntity === e.ticker ? null : e.ticker)}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all border ${
-              activeEntity === null || activeEntity === e.ticker
-                ? "border-transparent opacity-100"
-                : "border-transparent opacity-30"
-            }`}
-            style={{ backgroundColor: `${e.color}20`, color: e.color, borderColor: `${e.color}40` }}
+    <div className="border border-zinc-800 rounded-lg overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900 hover:bg-zinc-800 transition-colors text-left"
+      >
+        <span className="text-zinc-100 text-sm font-semibold">{title}</span>
+        {open ? <ChevronUp className="w-4 h-4 text-zinc-400" /> : <ChevronDown className="w-4 h-4 text-zinc-400" />}
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="body"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
           >
-            <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: e.color }} />
-            {e.ticker}
-          </button>
-        ))}
-      </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
-        {/* Grid */}
-        {yTicks.map((t, i) => (
-          <line key={i} x1={PAD} y1={t.y} x2={W - PAD} y2={t.y} stroke="currentColor" strokeOpacity={0.08} strokeWidth={1} />
-        ))}
-        {/* Y labels */}
-        {yTicks.map((t, i) => (
-          <text key={i} x={PAD - 6} y={t.y + 4} textAnchor="end" fontSize={9} fill="currentColor" fillOpacity={0.45}>{t.label}</text>
-        ))}
-        <text x={PAD - 20} y={PAD - 12} textAnchor="middle" fontSize={9} fill="currentColor" fillOpacity={0.45} transform={`rotate(-90, ${PAD - 20}, ${H / 2})`}>bps</text>
-        {/* X labels */}
-        {xTicks.map((t, i) => (
-          <text key={i} x={t.x} y={H - 4} textAnchor="middle" fontSize={9} fill="currentColor" fillOpacity={0.45}>{t.label}</text>
-        ))}
-        {/* Lines */}
-        {entities.map((e) => {
-          const coords = toCoords(e.series);
-          const isActive = activeEntity === null || activeEntity === e.ticker;
-          return (
-            <path
-              key={e.ticker}
-              d={pointsToPath(coords)}
-              fill="none"
-              stroke={e.color}
-              strokeWidth={isActive ? 2 : 1}
-              opacity={isActive ? 0.9 : 0.2}
-              strokeLinejoin="round"
-              strokeLinecap="round"
-            />
-          );
-        })}
-        {/* Current value dots */}
-        {entities.map((e) => {
-          const coords = toCoords(e.series);
-          const last = coords[coords.length - 1];
-          const isActive = activeEntity === null || activeEntity === e.ticker;
-          return (
-            <circle
-              key={e.ticker}
-              cx={last.x}
-              cy={last.y}
-              r={4}
-              fill={e.color}
-              opacity={isActive ? 1 : 0.2}
-            />
-          );
-        })}
-      </svg>
-      <div className="flex justify-center gap-2 mt-2 flex-wrap">
-        {entities.map((e) => (
-          <span key={e.ticker} className="text-xs text-muted-foreground">
-            <span className="font-medium" style={{ color: e.color }}>{e.ticker}</span>: {e.series[e.series.length - 1].value.toFixed(1)} bps
-          </span>
-        ))}
-      </div>
+            <div className="px-4 pb-4 pt-2">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
-  );
-}
-
-// ── CDS Payoff Diagram ────────────────────────────────────────────────────────
-function CDSPayoffDiagram({ recoveryRate }: { recoveryRate: number }) {
-  const W = 460;
-  const H = 220;
-  const PAD = 44;
-
-  // Protection buyer payoff:
-  //   No default: -spread (premium paid)
-  //   Default:    (1 - recoveryRate) * notional - spread_total_paid
-  // Protection seller payoff: mirror
-  const notional = 1_000_000;
-  const spreadBps = 245;
-  const annualPremium = notional * (spreadBps / 10000);
-  const tenor = 5;
-  const totalPremiumPaid = annualPremium * tenor; // simplified
-
-  // Y range
-  const lossGivenDefault = notional * (1 - recoveryRate / 100);
-  const buyerPayoffDefault = lossGivenDefault - totalPremiumPaid;
-  const sellerPayoffDefault = -(lossGivenDefault - totalPremiumPaid);
-  const buyerPayoffNoDefault = -totalPremiumPaid;
-  const sellerPayoffNoDefault = totalPremiumPaid;
-
-  const allY = [buyerPayoffDefault, sellerPayoffDefault, buyerPayoffNoDefault, sellerPayoffNoDefault, 0];
-  const minY = Math.min(...allY);
-  const maxY = Math.max(...allY);
-  const rangeY = maxY - minY || 1;
-
-  function toY(val: number): number {
-    return PAD + (H - PAD * 2) - ((val - minY) / rangeY) * (H - PAD * 2);
-  }
-
-  // Scenarios: 0=No Default, 1=Default
-  const xNoDefault = PAD + (W - PAD * 2) * 0.2;
-  const xDefault = PAD + (W - PAD * 2) * 0.7;
-  const zeroY = toY(0);
-
-  function formatM(val: number) {
-    const abs = Math.abs(val);
-    const prefix = val < 0 ? "-" : "+";
-    if (abs >= 1_000_000) return `${prefix}$${(abs / 1_000_000).toFixed(2)}M`;
-    return `${prefix}$${(abs / 1_000).toFixed(0)}K`;
-  }
-
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto">
-      {/* Zero line */}
-      <line x1={PAD} y1={zeroY} x2={W - PAD} y2={zeroY} stroke="currentColor" strokeOpacity={0.25} strokeWidth={1} strokeDasharray="4,4" />
-      <text x={PAD - 6} y={zeroY + 4} textAnchor="end" fontSize={9} fill="currentColor" fillOpacity={0.45}>$0</text>
-
-      {/* Buyer bars */}
-      {[
-        { x: xNoDefault, val: buyerPayoffNoDefault, label: "No Default" },
-        { x: xDefault, val: buyerPayoffDefault, label: "Default" },
-      ].map(({ x, val, label }) => {
-        const barTop = val >= 0 ? toY(val) : zeroY;
-        const barH = Math.abs(toY(0) - toY(val));
-        return (
-          <g key={`buyer-${x}`}>
-            <rect
-              x={x - 22}
-              y={barTop}
-              width={20}
-              height={Math.max(barH, 2)}
-              fill={val >= 0 ? "#3b82f6" : "#ef4444"}
-              opacity={0.8}
-              rx={2}
-            />
-            <text x={x - 12} y={H - 8} textAnchor="middle" fontSize={9} fill="currentColor" fillOpacity={0.6}>{label}</text>
-            <text
-              x={x - 12}
-              y={val >= 0 ? barTop - 3 : barTop + barH + 11}
-              textAnchor="middle"
-              fontSize={9}
-              fill={val >= 0 ? "#3b82f6" : "#ef4444"}
-              fontWeight="600"
-            >
-              {formatM(val)}
-            </text>
-          </g>
-        );
-      })}
-
-      {/* Seller bars */}
-      {[
-        { x: xNoDefault, val: sellerPayoffNoDefault, label: "" },
-        { x: xDefault, val: sellerPayoffDefault, label: "" },
-      ].map(({ x, val }) => {
-        const barTop = val >= 0 ? toY(val) : zeroY;
-        const barH = Math.abs(toY(0) - toY(val));
-        return (
-          <g key={`seller-${x}`}>
-            <rect
-              x={x + 2}
-              y={barTop}
-              width={20}
-              height={Math.max(barH, 2)}
-              fill={val >= 0 ? "#10b981" : "#f59e0b"}
-              opacity={0.8}
-              rx={2}
-            />
-            <text
-              x={x + 12}
-              y={val >= 0 ? barTop - 3 : barTop + barH + 11}
-              textAnchor="middle"
-              fontSize={9}
-              fill={val >= 0 ? "#10b981" : "#f59e0b"}
-              fontWeight="600"
-            >
-              {formatM(val)}
-            </text>
-          </g>
-        );
-      })}
-
-      {/* Legend */}
-      <rect x={W - 130} y={12} width={10} height={10} fill="#3b82f6" rx={2} />
-      <text x={W - 116} y={21} fontSize={9} fill="currentColor" fillOpacity={0.7}>Protection Buyer</text>
-      <rect x={W - 130} y={28} width={10} height={10} fill="#10b981" rx={2} />
-      <text x={W - 116} y={37} fontSize={9} fill="currentColor" fillOpacity={0.7}>Protection Seller</text>
-
-      {/* Title */}
-      <text x={W / 2} y={14} textAnchor="middle" fontSize={11} fill="currentColor" fillOpacity={0.65} fontWeight="600">
-        CDS Payoff — {spreadBps} bps spread, {(recoveryRate).toFixed(0)}% recovery, $1M notional
-      </text>
-    </svg>
   );
 }
 
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function CreditDerivativesPage() {
-  const [recoveryRate, setRecoveryRate] = useState(40);
-  const [selectedEntity, setSelectedEntity] = useState<CDSContract | null>(null);
-
-  const notional = 10_000_000; // $10M reference notional
-  const spreadBps = 245; // Ford as reference
-  const lgd = useMemo(() => (1 - recoveryRate / 100) * notional, [recoveryRate, notional]);
-  const annualPremium = useMemo(() => notional * (spreadBps / 10_000), [notional, spreadBps]);
-  const impliedPD = useMemo(() => {
-    // Simplified: spread ~ PD * LGD => PD = spread / (LGD/notional * 10000)
-    return ((spreadBps / 10_000) / (1 - recoveryRate / 100)) * 100;
-  }, [recoveryRate, spreadBps]);
-
-  // Tenor curve data for CDX
-  const tenorCurve = useMemo(() => {
-    const tenors = [1, 2, 3, 5, 7, 10];
-    const base = 68;
-    return tenors.map((t, i) => ({
-      tenor: `${t}Y`,
-      ig: base + i * 6 + (rand() - 0.5) * 4,
-      hy: 250 + i * 28 + (rand() - 0.5) * 15,
-    }));
-  }, []);
-
-  const fadeUp = (delay: number) => ({
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, delay },
-  });
+  const [activeTab, setActiveTab] = useState("cds-fundamentals");
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-6 space-y-6">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 p-4 md:p-6">
       {/* Header */}
-      <motion.div {...fadeUp(0)} className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <Shield className="h-6 w-6 text-primary" />
-            <h1 className="text-2xl font-bold">Credit Derivatives &amp; CDS</h1>
+      <motion.div
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="mb-6"
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+            <Shield className="w-5 h-5 text-indigo-400" />
           </div>
-          <p className="text-sm text-muted-foreground">
-            Credit Default Swaps — pricing, payoffs, credit events, and market structure
-          </p>
+          <div>
+            <h1 className="text-xl font-bold text-zinc-100">Credit Derivatives</h1>
+            <p className="text-zinc-500 text-sm">CDS mechanics, CDX indices, credit-linked notes, TRS, and structured credit</p>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-xs">5Y Reference</Badge>
-          <Badge variant="secondary" className="text-xs bg-amber-500/10 text-amber-400 border-amber-500/20">
-            $26.8T Notional Outstanding
-          </Badge>
+        <div className="flex flex-wrap gap-2 mt-3">
+          {[
+            { label: "CDX.NA.IG S41", value: "68bps", color: "text-emerald-400" },
+            { label: "CDX.NA.HY S41", value: "385bps", color: "text-amber-400" },
+            { label: "iTraxx Europe", value: "72bps", color: "text-blue-400" },
+            { label: "iTraxx Xover", value: "320bps", color: "text-orange-400" },
+            { label: "CDS Market Notional", value: "$10.3T", color: "text-indigo-400" },
+          ].map((stat) => (
+            <div key={stat.label} className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full">
+              <span className="text-zinc-500 text-xs">{stat.label}</span>
+              <span className={cn("text-xs font-semibold", stat.color)}>{stat.value}</span>
+            </div>
+          ))}
         </div>
       </motion.div>
 
-      {/* Metrics Row */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <MetricCard
-          icon={Activity}
-          label="CDX IG Spread"
-          value="68 bps"
-          sub="+1.2 bps today"
-          color="bg-blue-500"
-          delay={0.05}
-        />
-        <MetricCard
-          icon={DollarSign}
-          label="Notional (Reference)"
-          value="$10.0M"
-          sub="Ford Motor 5Y"
-          color="bg-emerald-500"
-          delay={0.1}
-        />
-        <MetricCard
-          icon={Percent}
-          label="Recovery Rate"
-          value="40.0%"
-          sub="Senior unsecured avg."
-          color="bg-violet-500"
-          delay={0.15}
-        />
-        <MetricCard
-          icon={AlertTriangle}
-          label="Implied Default Prob."
-          value={`${impliedPD.toFixed(1)}%`}
-          sub={`Annual, at ${recoveryRate}% recovery`}
-          color="bg-rose-500"
-          delay={0.2}
-        />
-      </div>
-
       {/* Tabs */}
-      <motion.div {...fadeUp(0.25)}>
-        <Tabs defaultValue="spreads">
-          <TabsList className="grid grid-cols-4 w-full max-w-xl">
-            <TabsTrigger value="spreads">CDS Spreads</TabsTrigger>
-            <TabsTrigger value="payoff">Buyer / Seller</TabsTrigger>
-            <TabsTrigger value="events">Credit Events</TabsTrigger>
-            <TabsTrigger value="market">Market Data</TabsTrigger>
-          </TabsList>
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-6 bg-zinc-900 border border-zinc-800">
+          <TabsTrigger value="cds-fundamentals" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <Shield className="w-3.5 h-3.5 mr-1.5" />CDS Fundamentals
+          </TabsTrigger>
+          <TabsTrigger value="credit-indices" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <BarChart2 className="w-3.5 h-3.5 mr-1.5" />Credit Indices
+          </TabsTrigger>
+          <TabsTrigger value="cln-trs" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <Layers className="w-3.5 h-3.5 mr-1.5" />CLN &amp; TRS
+          </TabsTrigger>
+          <TabsTrigger value="market-regulation" className="text-xs data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+            <Globe className="w-3.5 h-3.5 mr-1.5" />Market &amp; Regulation
+          </TabsTrigger>
+        </TabsList>
 
-          {/* ── Tab 1: Spreads ── */}
-          <TabsContent value="spreads" className="mt-4 space-y-4">
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-primary" />
-                  CDS Spread History — 5 Reference Entities (200 Days)
-                </CardTitle>
-                <p className="text-xs text-muted-foreground">Click a ticker to isolate its series. Higher spread = higher credit risk premium.</p>
-              </CardHeader>
-              <CardContent>
-                <CDSSpreadChart entities={ENTITIES} />
-              </CardContent>
-            </Card>
+        {/* ── TAB 1: CDS Fundamentals ── */}
+        <TabsContent value="cds-fundamentals" className="data-[state=inactive]:hidden space-y-4">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
 
-            {/* Spread vs Rating Grid */}
-            <Card className="border-border bg-card">
+            <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <BarChart3 className="h-4 w-4 text-primary" />
-                  Current Spread vs. Credit Rating
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-indigo-400" />
+                  CDS Cash Flow Mechanics
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                {/* Horizontal bar chart */}
-                <div className="space-y-3">
-                  {ENTITIES.sort((a, b) => a.spread - b.spread).map((e) => {
-                    const maxSpread = 420;
-                    const pct = Math.min((e.spread / maxSpread) * 100, 100);
-                    const barColor =
-                      e.spread < 50
-                        ? "bg-emerald-500"
-                        : e.spread < 150
-                        ? "bg-blue-500"
-                        : e.spread < 300
-                        ? "bg-amber-500"
-                        : "bg-rose-500";
-                    return (
-                      <div key={e.ticker} className="flex items-center gap-3">
-                        <div className="w-12 text-right text-xs font-mono text-muted-foreground">{e.ticker}</div>
-                        <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
-                          <div
-                            className={`h-3 rounded-full ${barColor} transition-all`}
-                            style={{ width: `${pct}%` }}
-                          />
-                        </div>
-                        <div className="w-20 text-xs font-medium">{e.spread} bps</div>
-                        <Badge
-                          variant="outline"
-                          className={`text-xs w-12 text-center ${
-                            e.rating.startsWith("AA") || e.rating === "AAA"
-                              ? "border-emerald-500/30 text-emerald-400"
-                              : e.rating.startsWith("A")
-                              ? "border-blue-500/30 text-blue-400"
-                              : e.rating.startsWith("BB")
-                              ? "border-amber-500/30 text-amber-400"
-                              : "border-rose-500/30 text-rose-400"
-                          }`}
-                        >
-                          {e.rating}
-                        </Badge>
-                      </div>
-                    );
-                  })}
+                <CDSMechanicsSVG />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                    <p className="text-xs font-semibold text-indigo-300 mb-2">Protection Buyer (Long Protection / Short Credit)</p>
+                    <ul className="space-y-1">
+                      {[
+                        "Pays quarterly premium = notional x spread / 4",
+                        "Receives face value (or loss) on credit event",
+                        "Hedges credit risk on bond portfolio",
+                        "Can short credit without bond market access",
+                        "Premium obligation ceases after credit event",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2">
+                          <span className="text-indigo-400 mt-0.5">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                    <p className="text-xs font-semibold text-amber-300 mb-2">Protection Seller (Short Protection / Long Credit)</p>
+                    <ul className="space-y-1">
+                      {[
+                        "Receives quarterly premium — income stream",
+                        "Pays notional minus recovery on credit event",
+                        "Earns spread as compensation for credit risk",
+                        "Economic equivalent to writing an insurance policy",
+                        "Mark-to-market gain when spreads tighten",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2">
+                          <span className="text-amber-400 mt-0.5">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
 
-          {/* ── Tab 2: Payoff ── */}
-          <TabsContent value="payoff" className="mt-4 space-y-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {/* Payoff Diagram */}
-              <Card className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <BarChart3 className="h-4 w-4 text-primary" />
-                    CDS Payoff Diagram
-                  </CardTitle>
-                  <p className="text-xs text-muted-foreground">Ford Motor 5Y CDS, 245 bps, $1M notional</p>
-                </CardHeader>
-                <CardContent>
-                  <CDSPayoffDiagram recoveryRate={recoveryRate} />
-                  {/* Recovery slider */}
-                  <div className="mt-4">
-                    <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                      <span>Recovery Rate: <span className="font-medium text-foreground">{recoveryRate}%</span></span>
-                      <span>Loss Given Default: <span className="font-medium text-rose-400">${((1 - recoveryRate / 100) * 1_000_000 / 1000).toFixed(0)}K</span></span>
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-red-400" />
+                  ISDA Credit Events
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {CREDIT_EVENTS.map((ev) => (
+                    <div key={ev.name} className={cn("rounded-lg p-3 bg-zinc-950 border", ev.borderColor)}>
+                      <p className={cn("text-xs font-bold mb-1", ev.textColor)}>{ev.name}</p>
+                      <p className="text-xs text-zinc-400 mb-1">{ev.desc}</p>
+                      <p className="text-xs text-zinc-500 italic">e.g. {ev.example}</p>
                     </div>
-                    <input
-                      type="range"
-                      min={0}
-                      max={100}
-                      value={recoveryRate}
-                      onChange={(e) => setRecoveryRate(Number(e.target.value))}
-                      className="w-full accent-primary"
-                    />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-0.5">
-                      <span>0% (Full Loss)</span>
-                      <span>100% (No Loss)</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Mechanics explanation */}
-              <Card className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <Info className="h-4 w-4 text-primary" />
-                    CDS Mechanics
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {[
-                    {
-                      role: "Protection Buyer",
-                      color: "bg-blue-500/10 border-blue-500/30 text-blue-400",
-                      badge: "Hedger / Short Credit",
-                      points: [
-                        `Pays ${spreadBps} bps annually ($${(notional * spreadBps / 10_000).toLocaleString()}/yr on $${(notional / 1_000_000).toFixed(0)}M)`,
-                        "Receives par minus recovery on credit event",
-                        `Net payoff at default = $${((1 - recoveryRate / 100) * notional / 1_000_000).toFixed(2)}M – premiums paid`,
-                        "Effectively short the reference entity's credit",
-                      ],
-                    },
-                    {
-                      role: "Protection Seller",
-                      color: "bg-emerald-500/10 border-emerald-500/30 text-emerald-400",
-                      badge: "Yield Enhancer / Long Credit",
-                      points: [
-                        `Receives ${spreadBps} bps annually, premium income`,
-                        "Pays par minus recovery if credit event occurs",
-                        `Maximum loss = $${((1 - recoveryRate / 100) * notional / 1_000_000).toFixed(2)}M at ${recoveryRate}% recovery`,
-                        "Effectively long the reference entity's credit",
-                      ],
-                    },
-                  ].map((item) => (
-                    <div key={item.role} className={`rounded-lg border p-3 ${item.color}`}>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-semibold">{item.role}</span>
-                        <Badge variant="outline" className="text-xs">{item.badge}</Badge>
-                      </div>
+                  ))}
+                </div>
+                <div className="mt-4 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-zinc-300 mb-2">Settlement Mechanics: Physical vs Cash</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-xs font-medium text-blue-300 mb-1">Physical Settlement</p>
                       <ul className="space-y-1">
-                        {item.points.map((pt, i) => (
-                          <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
-                            <ChevronRight className="h-3 w-3 mt-0.5 shrink-0 opacity-60" />
-                            {pt}
+                        {[
+                          "Protection buyer delivers defaulted bond to seller",
+                          "Receives par (100%) in exchange",
+                          "Buyer must source deliverable obligations",
+                          "Multiple deliverable bonds creates cheapest-to-deliver option",
+                          "Risk of short squeeze in bond market",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2">
+                            <span className="text-blue-400">•</span>{t}
                           </li>
                         ))}
                       </ul>
                     </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          {/* ── Tab 3: Credit Events ── */}
-          <TabsContent value="events" className="mt-4 space-y-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {/* Credit Event Simulator */}
-              <Card className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <Zap className="h-4 w-4 text-amber-400" />
-                    Credit Event Simulator
-                  </CardTitle>
-                  <p className="text-xs text-muted-foreground">
-                    Simulate a default event on Ford Motor 5Y CDS
-                  </p>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { label: "Notional", value: `$${(notional / 1_000_000).toFixed(0)}M` },
-                      { label: "CDS Spread", value: `${spreadBps} bps` },
-                      { label: "Annual Premium", value: `$${annualPremium.toLocaleString()}` },
-                      { label: "Recovery Rate", value: `${recoveryRate}%` },
-                      { label: "Loss Given Default", value: `$${(lgd / 1_000_000).toFixed(2)}M`, highlight: true },
-                      { label: "Implied PD (annual)", value: `${impliedPD.toFixed(2)}%` },
-                    ].map((item) => (
-                      <div
-                        key={item.label}
-                        className={`rounded-lg p-3 ${item.highlight ? "bg-rose-500/10 border border-rose-500/20" : "bg-muted/40"}`}
-                      >
-                        <div className="text-xs text-muted-foreground">{item.label}</div>
-                        <div className={`text-sm font-bold ${item.highlight ? "text-rose-400" : "text-foreground"}`}>
-                          {item.value}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Recovery rate slider */}
-                  <div>
-                    <div className="flex justify-between text-xs text-muted-foreground mb-1.5">
-                      <span>Adjust Recovery Rate</span>
-                      <span className="font-medium text-foreground">{recoveryRate}%</span>
-                    </div>
-                    <input
-                      type="range"
-                      min={0}
-                      max={80}
-                      value={recoveryRate}
-                      onChange={(e) => setRecoveryRate(Number(e.target.value))}
-                      className="w-full accent-primary"
-                    />
-                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
-                      <span>0% — Wipeout</span>
-                      <span>40% — IG Average</span>
-                      <span>80% — Secured</span>
+                    <div>
+                      <p className="text-xs font-medium text-emerald-300 mb-1">Cash Settlement (Auction)</p>
+                      <ul className="space-y-1">
+                        {[
+                          "ISDA credit event auction determines recovery rate",
+                          "Dealers submit bid/offer on defaulted bonds",
+                          "Final price set by supply-demand in auction",
+                          "Seller pays: Notional x (1 - Recovery Rate)",
+                          "Lehman 2008 auction: 8.625 cents = 91.375% payout",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2">
+                            <span className="text-emerald-400">•</span>{t}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
+                </div>
+              </CardContent>
+            </Card>
 
-                  {/* LGD Bar */}
-                  <div>
-                    <div className="text-xs text-muted-foreground mb-1">Loss Given Default vs. Notional</div>
-                    <div className="h-4 bg-muted rounded-full overflow-hidden flex">
-                      <div
-                        className="h-full bg-emerald-500 transition-all"
-                        style={{ width: `${recoveryRate}%` }}
-                      />
-                      <div
-                        className="h-full bg-rose-500 transition-all"
-                        style={{ width: `${100 - recoveryRate}%` }}
-                      />
-                    </div>
-                    <div className="flex justify-between text-xs mt-1">
-                      <span className="text-emerald-400">Recovery: ${(notional * recoveryRate / 100 / 1_000_000).toFixed(2)}M</span>
-                      <span className="text-rose-400">LGD: ${(lgd / 1_000_000).toFixed(2)}M</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Credit Event Types */}
-              <Card className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <AlertTriangle className="h-4 w-4 text-rose-400" />
-                    ISDA Credit Event Types
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  {[
-                    {
-                      type: "Bankruptcy",
-                      desc: "Filing under Chapter 7/11, administration, or equivalent insolvency proceedings.",
-                      color: "text-rose-400",
-                      bg: "bg-rose-500/10 border-rose-500/20",
-                      freq: "Most common",
-                    },
-                    {
-                      type: "Failure to Pay",
-                      desc: "Obligor fails to make scheduled payment on debt obligations after grace period.",
-                      color: "text-amber-400",
-                      bg: "bg-amber-500/10 border-amber-500/20",
-                      freq: "Common",
-                    },
-                    {
-                      type: "Restructuring",
-                      desc: "Material change in debt terms (maturity extension, coupon reduction, principal haircut).",
-                      color: "text-orange-400",
-                      bg: "bg-orange-500/10 border-orange-500/20",
-                      freq: "Moderate",
-                    },
-                    {
-                      type: "Obligation Acceleration",
-                      desc: "Debt becomes due and payable before scheduled maturity due to default clause.",
-                      color: "text-yellow-400",
-                      bg: "bg-yellow-500/10 border-yellow-500/20",
-                      freq: "Less common",
-                    },
-                    {
-                      type: "Repudiation / Moratorium",
-                      desc: "Sovereign or obligor refuses to honor obligations (primarily sovereign CDS).",
-                      color: "text-violet-400",
-                      bg: "bg-violet-500/10 border-violet-500/20",
-                      freq: "Sovereign only",
-                    },
-                  ].map((item) => (
-                    <div key={item.type} className={`rounded-lg border p-3 ${item.bg}`}>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className={`text-sm font-semibold ${item.color}`}>{item.type}</span>
-                        <span className="text-xs text-muted-foreground">{item.freq}</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-
-          {/* ── Tab 4: Market Data ── */}
-          <TabsContent value="market" className="mt-4 space-y-4">
-            {/* CDS Contracts Table */}
-            <Card className="border-border bg-card">
+            <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <Activity className="h-4 w-4 text-primary" />
-                  CDS Market Snapshot — 10 Reference Entities
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <DollarSign className="w-4 h-4 text-emerald-400" />
+                  Post-Big Bang: Standardized Coupons &amp; Upfront Payments
                 </CardTitle>
-                <p className="text-xs text-muted-foreground">Click a row to view details. All contracts are 5Y senior unsecured.</p>
               </CardHeader>
-              <CardContent className="p-0">
+              <CardContent>
+                <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800 mb-4">
+                  <p className="text-xs text-zinc-400 mb-2">
+                    Since April 2009 (ISDA Big Bang protocol), CDS run with{" "}
+                    <span className="text-emerald-300 font-semibold">standardized running coupons</span>: 100bps for
+                    Investment Grade and 500bps for High Yield. The difference between the running coupon and the
+                    par-equivalent spread is exchanged as an{" "}
+                    <span className="text-amber-300 font-semibold">upfront payment</span> at trade inception.
+                  </p>
+                  <div className="flex gap-4">
+                    <div className="flex-1 bg-zinc-900 rounded p-2 text-center border border-indigo-800/40">
+                      <p className="text-xs text-zinc-500 mb-0.5">IG Running Coupon</p>
+                      <p className="text-lg font-bold text-indigo-300">100bps</p>
+                    </div>
+                    <div className="flex-1 bg-zinc-900 rounded p-2 text-center border border-amber-800/40">
+                      <p className="text-xs text-zinc-500 mb-0.5">HY Running Coupon</p>
+                      <p className="text-lg font-bold text-amber-300">500bps</p>
+                    </div>
+                    <div className="flex-1 bg-zinc-900 rounded p-2 text-center border border-emerald-800/40">
+                      <p className="text-xs text-zinc-500 mb-0.5">Benefit</p>
+                      <p className="text-sm font-bold text-emerald-300">Clearable</p>
+                      <p className="text-xs text-zinc-500">fungible</p>
+                    </div>
+                  </div>
+                </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-border bg-muted/30">
-                        {["Reference Entity", "Ticker", "Tenor", "Spread (bps)", "Δ bps", "Rating", "Industry", "Annual Premium"].map((h) => (
-                          <th key={h} className="text-left px-3 py-2 text-muted-foreground font-medium whitespace-nowrap">{h}</th>
+                      <tr className="border-b border-zinc-800">
+                        {["Scenario", "Running Coupon", "Fair Spread", "Upfront", "Direction"].map((h) => (
+                          <th key={h} className="text-left py-2 pr-4 text-zinc-500 font-medium">{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
-                      {CDS_CONTRACTS.map((c) => {
-                        const isSelected = selectedEntity?.ticker === c.ticker;
-                        return (
-                          <tr
-                            key={c.ticker}
-                            className={`border-b border-border cursor-pointer transition-colors ${
-                              isSelected ? "bg-primary/10" : "hover:bg-muted/30"
-                            }`}
-                            onClick={() => setSelectedEntity(isSelected ? null : c)}
-                          >
-                            <td className="px-3 py-2 font-medium">{c.entity}</td>
-                            <td className="px-3 py-2 font-mono text-primary">{c.ticker}</td>
-                            <td className="px-3 py-2 text-muted-foreground">{c.tenor}</td>
-                            <td className="px-3 py-2 font-mono font-semibold">{c.spread}</td>
-                            <td className={`px-3 py-2 font-mono ${c.change >= 0 ? "text-rose-400" : "text-emerald-400"}`}>
-                              {c.change >= 0 ? "+" : ""}{c.change.toFixed(1)}
-                            </td>
-                            <td className="px-3 py-2">
-                              <Badge
-                                variant="outline"
-                                className={`text-xs ${
-                                  c.rating.startsWith("AA") || c.rating === "AAA"
-                                    ? "border-emerald-500/30 text-emerald-400"
-                                    : c.rating.startsWith("A")
-                                    ? "border-blue-500/30 text-blue-400"
-                                    : c.rating.startsWith("BB")
-                                    ? "border-amber-500/30 text-amber-400"
-                                    : "border-rose-500/30 text-rose-400"
-                                }`}
-                              >
-                                {c.rating}
-                              </Badge>
-                            </td>
-                            <td className="px-3 py-2 text-muted-foreground">{c.industry}</td>
-                            <td className="px-3 py-2 font-mono">${c.annualPremium.toLocaleString()}</td>
-                          </tr>
-                        );
-                      })}
+                      {UPFRONT_DATA.map((row, i) => (
+                        <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                          <td className="py-2 pr-4 text-zinc-300">{row.scenario}</td>
+                          <td className="py-2 pr-4 text-zinc-400">{row.runningCoupon}</td>
+                          <td className="py-2 pr-4 text-zinc-400">{row.fairSpread}</td>
+                          <td className={cn(
+                            "py-2 pr-4 font-medium",
+                            row.upfront.includes("receive") ? "text-emerald-400" : row.upfront === "0%" ? "text-zinc-400" : "text-red-400"
+                          )}>
+                            {row.upfront}
+                          </td>
+                          <td className="py-2 text-zinc-500">{row.direction}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </CardContent>
             </Card>
 
-            {/* CDX Index Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              <Card className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <Layers className="h-4 w-4 text-primary" />
-                    CDX / iTraxx Indices
-                  </CardTitle>
-                  <p className="text-xs text-muted-foreground">Standardised CDS index products — portfolios of single-name CDS</p>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {CDX_INDICES.map((idx) => (
-                    <div key={idx.name} className="flex items-center justify-between rounded-lg bg-muted/30 p-3">
-                      <div>
-                        <div className="text-sm font-semibold">{idx.name}</div>
-                        <div className="text-xs text-muted-foreground">Series {idx.series} · {idx.constituents} names</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm font-mono font-bold">{idx.spread} bps</div>
-                        <div className={`text-xs font-mono ${idx.change >= 0 ? "text-rose-400" : "text-emerald-400"}`}>
-                          {idx.change >= 0 ? "+" : ""}{idx.change.toFixed(1)} bps
-                        </div>
-                      </div>
-                      <Badge
-                        variant="outline"
-                        className={`ml-3 text-xs ${
-                          idx.rating === "IG"
-                            ? "border-blue-500/30 text-blue-400"
-                            : "border-amber-500/30 text-amber-400"
-                        }`}
-                      >
-                        {idx.rating}
-                      </Badge>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-
-              {/* Tenor Curve */}
-              <Card className="border-border bg-card">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-primary" />
-                    CDX Spread Curve by Tenor
-                  </CardTitle>
-                  <p className="text-xs text-muted-foreground">IG vs. HY index spread across maturities</p>
-                </CardHeader>
-                <CardContent>
-                  {(() => {
-                    const W2 = 380;
-                    const H2 = 180;
-                    const P2 = 36;
-                    const igVals = tenorCurve.map((d) => d.ig);
-                    const hyVals = tenorCurve.map((d) => d.hy);
-                    const allV = [...igVals, ...hyVals];
-                    const minV = Math.min(...allV);
-                    const maxV = Math.max(...allV);
-                    const rangeV2 = maxV - minV || 1;
-
-                    function px(i: number): number {
-                      return P2 + (i / (tenorCurve.length - 1)) * (W2 - P2 * 2);
-                    }
-                    function py(val: number): number {
-                      return P2 + (H2 - P2 * 2) - ((val - minV) / rangeV2) * (H2 - P2 * 2);
-                    }
-
-                    const igPath = tenorCurve.map((d, i) => `${i === 0 ? "M" : "L"}${px(i).toFixed(1)},${py(d.ig).toFixed(1)}`).join(" ");
-                    const hyPath = tenorCurve.map((d, i) => `${i === 0 ? "M" : "L"}${px(i).toFixed(1)},${py(d.hy).toFixed(1)}`).join(" ");
-
-                    const yTick2 = [minV, (minV + maxV) / 2, maxV].map((v) => ({
-                      v,
-                      y: py(v),
-                    }));
-
-                    return (
-                      <svg viewBox={`0 0 ${W2} ${H2}`} className="w-full h-auto">
-                        {yTick2.map((t, i) => (
-                          <g key={i}>
-                            <line x1={P2} y1={t.y} x2={W2 - P2} y2={t.y} stroke="currentColor" strokeOpacity={0.08} strokeWidth={1} />
-                            <text x={P2 - 4} y={t.y + 4} textAnchor="end" fontSize={8} fill="currentColor" fillOpacity={0.4}>{Math.round(t.v)}</text>
-                          </g>
-                        ))}
-                        {tenorCurve.map((d, i) => (
-                          <text key={i} x={px(i)} y={H2 - 4} textAnchor="middle" fontSize={8} fill="currentColor" fillOpacity={0.45}>{d.tenor}</text>
-                        ))}
-                        <path d={igPath} fill="none" stroke="#3b82f6" strokeWidth={2} strokeLinejoin="round" />
-                        <path d={hyPath} fill="none" stroke="#f59e0b" strokeWidth={2} strokeLinejoin="round" />
-                        {tenorCurve.map((d, i) => (
-                          <g key={i}>
-                            <circle cx={px(i)} cy={py(d.ig)} r={3} fill="#3b82f6" />
-                            <circle cx={px(i)} cy={py(d.hy)} r={3} fill="#f59e0b" />
-                          </g>
-                        ))}
-                        <rect x={W2 - 80} y={10} width={8} height={8} rx={2} fill="#3b82f6" />
-                        <text x={W2 - 68} y={17} fontSize={8} fill="currentColor" fillOpacity={0.7}>CDX IG</text>
-                        <rect x={W2 - 80} y={24} width={8} height={8} rx={2} fill="#f59e0b" />
-                        <text x={W2 - 68} y={31} fontSize={8} fill="currentColor" fillOpacity={0.7}>CDX HY</text>
-                      </svg>
-                    );
-                  })()}
-                  <div className="mt-2 p-3 rounded-lg bg-muted/30 text-xs text-muted-foreground">
-                    <span className="font-medium text-foreground">Key insight:</span> Upward sloping CDS curve indicates increasing default risk over time.
-                    Inverted curves signal near-term stress (distressed situations).
-                    HY–IG spread differential widens during risk-off episodes.
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Index vs Single-Name comparison */}
-            <Card className="border-border bg-card">
+            <Card className="bg-zinc-900 border-zinc-800">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <TrendingDown className="h-4 w-4 text-primary" />
-                  CDX Index vs. Single-Name CDS Comparison
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-blue-400" />
+                  CDS Term Structure
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  {[
-                    {
-                      title: "CDX / iTraxx Index",
-                      color: "border-blue-500/30 bg-blue-500/5",
-                      badge: "Portfolio Product",
-                      points: [
-                        "Standardised basket of 100–125 reference entities",
-                        "Highly liquid — smaller bid/ask spreads",
-                        "Rolled to new series every 6 months (March/Sept)",
-                        "Used for macro credit hedging and expressing sector views",
-                        "Cannot target specific credits — portfolio diversification built in",
-                        "IG series: ~68 bps · HY series: ~345 bps",
-                      ],
-                    },
-                    {
-                      title: "Single-Name CDS",
-                      color: "border-emerald-500/30 bg-emerald-500/5",
-                      badge: "Bespoke Hedge",
-                      points: [
-                        "Reference one specific obligor (issuer)",
-                        "Less liquid — wider bid/ask, especially for non-benchmark names",
-                        "Custom tenor, notional, and restructuring clauses",
-                        "Ideal for precise idiosyncratic credit hedging",
-                        "Used by banks to hedge loan book concentrations",
-                        "Spreads range from 18 bps (MSFT) to 820+ bps (distressed)",
-                      ],
-                    },
-                  ].map((item) => (
-                    <div key={item.title} className={`rounded-lg border p-4 ${item.color}`}>
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="font-semibold">{item.title}</span>
-                        <Badge variant="outline" className="text-xs">{item.badge}</Badge>
+                <CDSCurveSVG />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-emerald-800/30">
+                    <p className="text-xs font-semibold text-emerald-300 mb-1">Normal (Upward Sloping)</p>
+                    <p className="text-xs text-zinc-400">Short-term CDS spreads below long-term — market views near-term credit as stable. Common in IG names. Longer tenors compensate for greater uncertainty.</p>
+                  </div>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-red-800/30">
+                    <p className="text-xs font-semibold text-red-300 mb-1">Inverted (Distress Signal)</p>
+                    <p className="text-xs text-zinc-400">Short-term spreads exceed long-term — market fears near-term default. Classic pre-default pattern seen in Argentina, FTX, and SVB prior to their respective failures.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-purple-400" />
+                  Sovereign CDS — ISDA 2014 Definitions
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <SovereignBarChart />
+                <div className="mt-4 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-purple-300 mb-2">Greece 2012 Restructuring — The CAC Trigger</p>
+                  <p className="text-xs text-zinc-400 mb-2">
+                    In March 2012, Greece restructuring triggered CDS credit events after ISDA ruled that collective action
+                    clauses (CACs) constituted a restructuring event. The CDS auction settled at 21.5 cents on the dollar
+                    (78.5% payout to protection buyers). This reinforced that sovereign CDS provide genuine default insurance.
+                  </p>
+                  <div className="grid grid-cols-3 gap-2 mt-2">
+                    {[
+                      { label: "Recovery Rate", value: "21.5%", color: "text-red-400" },
+                      { label: "Protection Payout", value: "78.5%", color: "text-emerald-400" },
+                      { label: "Net CDS Notional", value: "~$2.5B", color: "text-blue-400" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="text-center bg-zinc-900 rounded p-2 border border-zinc-700">
+                        <p className="text-xs text-zinc-500">{stat.label}</p>
+                        <p className={cn("text-sm font-bold", stat.color)}>{stat.value}</p>
                       </div>
-                      <ul className="space-y-1.5">
-                        {item.points.map((pt, i) => (
-                          <li key={i} className="text-xs text-muted-foreground flex items-start gap-1.5">
-                            <ChevronRight className="h-3 w-3 mt-0.5 shrink-0 opacity-50" />
-                            {pt}
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-3 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-cyan-300 mb-2">CDS as Pure Credit Signal vs Bonds</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-xs font-medium text-blue-300 mb-1">Bond Yield Spread Contamination</p>
+                      <ul className="space-y-1">
+                        {[
+                          "Interest rate duration risk embedded",
+                          "Liquidity premium varies by issue",
+                          "Funding / repo market conditions",
+                          "Supply-demand from issuance calendar",
+                          "Coupon and maturity-specific effects",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2">
+                            <span className="text-red-400">x</span>{t}
                           </li>
                         ))}
                       </ul>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-emerald-300 mb-1">CDS Spread Isolates Credit Risk</p>
+                      <ul className="space-y-1">
+                        {[
+                          "Pure credit default probability signal",
+                          "No interest rate / duration exposure",
+                          "Consistent term structure across entities",
+                          "Real-time market-implied default probability",
+                          "Leading indicator — often moves before bonds",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2">
+                            <span className="text-emerald-400">v</span>{t}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-cyan-400" />
+                  CDS Mark-to-Market P&amp;L
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800 mb-3">
+                  <p className="text-xs text-zinc-400 mb-3">
+                    Approximate P&amp;L for a CDS position (protection buyer) when spreads move:{" "}
+                    <span className="text-cyan-300 font-medium">DeltaPV approx -Duration x DeltaSpread x Notional</span>
+                  </p>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="border-b border-zinc-700">
+                          {["Entry Spread", "Current Spread", "Spread Delta", "DV01 (5Y, $10M)", "Approx P&L"].map((h) => (
+                            <th key={h} className="text-left py-2 pr-4 text-zinc-500">{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { entry: "150bps", current: "250bps", delta: "+100bps", dv01: "$4,750", pnl: "+$47,500", up: true },
+                          { entry: "150bps", current: "100bps", delta: "-50bps", dv01: "$4,750", pnl: "-$23,750", up: false },
+                          { entry: "300bps", current: "500bps", delta: "+200bps", dv01: "$4,400", pnl: "+$88,000", up: true },
+                          { entry: "500bps", current: "800bps", delta: "+300bps", dv01: "$3,800", pnl: "+$114,000", up: true },
+                        ].map((row, i) => (
+                          <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                            <td className="py-2 pr-4 text-zinc-300">{row.entry}</td>
+                            <td className="py-2 pr-4 text-zinc-300">{row.current}</td>
+                            <td className={cn("py-2 pr-4 font-medium", row.up ? "text-emerald-400" : "text-red-400")}>{row.delta}</td>
+                            <td className="py-2 pr-4 text-zinc-400">{row.dv01}</td>
+                            <td className={cn("py-2 font-bold", row.up ? "text-emerald-400" : "text-red-400")}>{row.pnl}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-xs text-zinc-500 mt-2">DV01 = dollar value of 1bp spread change; declines at higher spreads due to shorter risky duration.</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </TabsContent>
+
+        {/* ── TAB 2: Credit Indices ── */}
+        <TabsContent value="credit-indices" className="data-[state=inactive]:hidden space-y-4">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <BarChart2 className="w-4 h-4 text-blue-400" />
+                  Major Credit Indices
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 gap-2">
+                  {CDX_INDICES.map((idx) => (
+                    <div
+                      key={idx.name}
+                      className="flex items-center justify-between p-3 bg-zinc-950 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-colors"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Badge
+                          variant="outline"
+                          className={cn(
+                            "text-xs border font-mono",
+                            idx.spread > 300 ? "border-orange-500/50 text-orange-300" : "border-blue-500/50 text-blue-300"
+                          )}
+                        >
+                          {idx.name}
+                        </Badge>
+                        <div>
+                          <p className="text-xs text-zinc-300">{idx.underlying}</p>
+                          <p className="text-xs text-zinc-500">
+                            {idx.names} names · {idx.maturity} · Series {idx.series} · {idx.region}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className={cn(
+                          "text-sm font-bold",
+                          idx.spread > 300 ? "text-orange-400" : idx.spread > 150 ? "text-amber-400" : "text-emerald-400"
+                        )}>
+                          {idx.spread}bps
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
-          </TabsContent>
-        </Tabs>
-      </motion.div>
 
-      {/* Selected Entity Detail Panel */}
-      {selectedEntity && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Card className="border-primary/40 bg-card">
-            <CardHeader className="pb-2">
-              <div className="flex items-center justify-between">
-                <CardTitle className="text-base flex items-center gap-2">
-                  <Shield className="h-4 w-4 text-primary" />
-                  {selectedEntity.entity} — CDS Detail
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <RefreshCw className="w-4 h-4 text-amber-400" />
+                  Index Construction &amp; Roll Mechanics
                 </CardTitle>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 text-xs"
-                  onClick={() => setSelectedEntity(null)}
-                >
-                  Close
-                </Button>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              </CardHeader>
+              <CardContent>
+                <RollMechanicsSVG />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                    <p className="text-xs font-semibold text-zinc-200 mb-2">Construction Rules (CDX.NA.IG)</p>
+                    <div className="space-y-1">
+                      {[
+                        ["Constituents", "125 investment-grade North American corporate CDS"],
+                        ["Weighting", "Equal weight (0.8% per name)"],
+                        ["Eligibility", "Liquid single-name CDS market; IG rated"],
+                        ["Selection", "Dealer consortium vote + liquidity screen"],
+                        ["Maturity", "Standard: 5Y (also 1Y, 2Y, 3Y, 7Y, 10Y)"],
+                        ["Roll Date", "March 20 and September 20 each year"],
+                      ].map(([k, v]) => (
+                        <div key={k} className="flex justify-between text-xs">
+                          <span className="text-zinc-500">{k}</span>
+                          <span className="text-zinc-300 text-right ml-2 max-w-[60%]">{v}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                    <p className="text-xs font-semibold text-zinc-200 mb-2">On-the-Run vs Off-the-Run</p>
+                    <ul className="space-y-1.5">
+                      {[
+                        "On-the-run = most recent series; tightest bid/ask; highest volume",
+                        "Off-the-run = previous series; wider spreads; less liquid",
+                        "Roll creates basis: new series typically 2-5bps wide of old",
+                        "Dealers roll positions around roll date for continuity",
+                        "Series can persist in off-the-run form for years (bespoke hedges)",
+                        "CDS indenture survives default: defaulted names removed at next roll",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                          <span className="text-amber-400 mt-0.5">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Target className="w-4 h-4 text-purple-400" />
+                  CDX Options — Payer &amp; Receiver Swaptions
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-purple-800/30">
+                    <p className="text-xs font-bold text-purple-300 mb-2">Payer Swaption (Long Protection Option)</p>
+                    <ul className="space-y-1">
+                      {[
+                        "Right to buy protection (pay premium) at strike spread",
+                        "Profits if CDX spreads widen beyond strike",
+                        "Analogous to a put option on credit quality",
+                        "Used to hedge credit tail risk cheaply vs outright CDS",
+                        "Greek: delta to spread, positive convexity",
+                        "Typical strikes: 10-30bps OTM on CDX IG",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                          <span className="text-purple-400">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-cyan-800/30">
+                    <p className="text-xs font-bold text-cyan-300 mb-2">Receiver Swaption (Long No-Defaults Option)</p>
+                    <ul className="space-y-1">
+                      {[
+                        "Right to sell protection (receive premium) at strike spread",
+                        "Profits if CDX spreads tighten below strike",
+                        "Analogous to a call option on credit quality",
+                        "Income strategy: sell when credit volatility elevated",
+                        "Knockout feature: option dies on credit event",
+                        "Straddles used to trade credit spread volatility",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                          <span className="text-cyan-400">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-3 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-zinc-300 mb-2">Index vs Single-Name Basis &amp; Skew Trading</p>
+                  <p className="text-xs text-zinc-400 mb-2">
+                    The CDX index spread should theoretically equal the equal-weighted average of its constituent single-name
+                    CDS spreads. In practice a <span className="text-amber-300">basis</span> exists due to liquidity,
+                    supply/demand and correlation effects.
+                  </p>
+                  <div className="grid grid-cols-3 gap-2">
+                    {[
+                      { label: "Index Tighter Than Names", desc: "Liquidity premium: buy index / sell basket", color: "text-emerald-400" },
+                      { label: "Index Wider Than Names", desc: "Macro fear bid on index: sell index / buy basket", color: "text-red-400" },
+                      { label: "Skew Trade", desc: "Long equity tranche + short index = correlation bet", color: "text-blue-400" },
+                    ].map((item) => (
+                      <div key={item.label} className="bg-zinc-900 rounded p-2 border border-zinc-800">
+                        <p className={cn("text-xs font-semibold mb-1", item.color)}>{item.label}</p>
+                        <p className="text-xs text-zinc-400">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-orange-400" />
+                  CDX Tranche Trading &amp; Implied Correlation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <TrancheStackSVG />
+                  <div className="space-y-2">
+                    {TRANCHES.map((tr) => (
+                      <div key={tr.name} className={cn("rounded-lg p-2.5 bg-zinc-950 border", tr.borderColor)}>
+                        <div className="flex items-center justify-between mb-1">
+                          <span className={cn("text-xs font-bold", tr.labelColor)}>
+                            {tr.name} ({tr.attachment}–{tr.detachment})
+                          </span>
+                          <Badge variant="outline" className="text-xs text-zinc-400 border-zinc-700">{tr.correlation}</Badge>
+                        </div>
+                        <p className="text-xs text-zinc-400">{tr.role}</p>
+                        <p className="text-xs text-zinc-500 mt-0.5">{tr.spread}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-zinc-200 mb-2">Implied Correlation — Correlation Smile</p>
+                  <p className="text-xs text-zinc-400 mb-2">
+                    Like implied volatility in options, each tranche trades at a different{" "}
+                    <span className="text-amber-300">implied correlation</span> (the pairwise default correlation that makes
+                    the tranche model price equal market price). Equity tranches trade at low implied correlation; senior tranches
+                    at high implied correlation — creating a correlation smile. The{" "}
+                    <span className="text-blue-300">compound correlation</span> treats all names as correlated equally;{" "}
+                    <span className="text-purple-300">base correlation</span> (industry standard) decomposes using 0-K structure.
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="bg-zinc-900 rounded p-2 border border-zinc-800">
+                      <p className="text-xs font-medium text-red-300 mb-1">Equity Tranche Seller</p>
+                      <p className="text-xs text-zinc-400">Short correlation — profits when names default independently (low co-movement). High spread, high risk.</p>
+                    </div>
+                    <div className="bg-zinc-900 rounded p-2 border border-zinc-800">
+                      <p className="text-xs font-medium text-indigo-300 mb-1">Senior Tranche Seller</p>
+                      <p className="text-xs text-zinc-400">Long correlation — profits when all names move together but no catastrophic event. Low spread, tail risk.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </TabsContent>
+
+        {/* ── TAB 3: CLN & TRS ── */}
+        <TabsContent value="cln-trs" className="data-[state=inactive]:hidden space-y-4">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-violet-400" />
+                  Credit-Linked Note (CLN) Structure
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CLNStructureSVG />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-violet-800/30">
+                    <p className="text-xs font-semibold text-violet-300 mb-2">CLN = Bond + Embedded CDS</p>
+                    <ul className="space-y-1">
+                      {[
+                        "Investor buys a note (funded) — provides principal upfront",
+                        "Note pays enhanced coupon = LIBOR/SOFR + CDS spread",
+                        "On credit event: principal reduced by loss (1 - recovery)",
+                        "No credit event: investor redeems at par at maturity",
+                        "Issuer effectively transfers credit risk to bond investor",
+                        "CLN is tradeable in secondary market like any bond",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                          <span className="text-violet-400">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                    <p className="text-xs font-semibold text-zinc-200 mb-2">CLN Use Cases</p>
+                    <ul className="space-y-1">
+                      {[
+                        "Balance sheet optimization: bank removes credit from books",
+                        "Regulatory capital relief (risk transfer to investors)",
+                        "Investor accesses credit not available in bond market",
+                        "Yield enhancement for insurance/pension investors",
+                        "Synthetic exposure without actual loan/bond holdings",
+                        "Multi-name CLN on basket = simplified CDO structure",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                          <span className="text-emerald-400">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <ArrowRightLeft className="w-4 h-4 text-cyan-400" />
+                  Total Return Swap (TRS) on Credit
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-zinc-950 rounded-lg p-3 border border-cyan-800/30 mb-4">
+                  <p className="text-xs text-zinc-400 mb-3">
+                    In a TRS, the <span className="text-cyan-300 font-medium">TR Receiver</span> receives the total economic
+                    return of a reference bond (coupons + price appreciation/depreciation) and pays a floating rate
+                    (SOFR + spread) to the <span className="text-amber-300 font-medium">TR Payer</span>. The TR Payer holds
+                    the bond but transfers all economic exposure — a synthetic, off-balance-sheet long position.
+                  </p>
+                  <svg viewBox="0 0 480 120" className="w-full h-28">
+                    <defs>
+                      <marker id="trsMk1" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L6,3 L0,6 Z" fill="#06b6d4" />
+                      </marker>
+                      <marker id="trsMk2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+                        <path d="M0,0 L6,3 L0,6 Z" fill="#f59e0b" />
+                      </marker>
+                    </defs>
+                    <rect x="20" y="40" width="130" height="50" rx="6" fill="#18181b" stroke="#f59e0b" strokeWidth="1.5" />
+                    <text x="85" y="62" fill="#fcd34d" fontSize="9" textAnchor="middle" fontWeight="bold">TR PAYER</text>
+                    <text x="85" y="75" fill="#fcd34d" fontSize="8" textAnchor="middle">(Owns bond)</text>
+                    <text x="85" y="85" fill="#71717a" fontSize="7.5" textAnchor="middle">Bank / Broker-dealer</text>
+                    <rect x="330" y="40" width="130" height="50" rx="6" fill="#18181b" stroke="#06b6d4" strokeWidth="1.5" />
+                    <text x="395" y="62" fill="#67e8f9" fontSize="9" textAnchor="middle" fontWeight="bold">TR RECEIVER</text>
+                    <text x="395" y="75" fill="#67e8f9" fontSize="8" textAnchor="middle">(Synthetic long)</text>
+                    <text x="395" y="85" fill="#71717a" fontSize="7.5" textAnchor="middle">Hedge fund / Asset mgr</text>
+                    <line x1="150" y1="57" x2="328" y2="57" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#trsMk2)" />
+                    <text x="240" y="51" fill="#fcd34d" fontSize="8" textAnchor="middle">Total Return (coupon + P&amp;L)</text>
+                    <line x1="328" y1="73" x2="150" y2="73" stroke="#06b6d4" strokeWidth="1.5" markerEnd="url(#trsMk1)" />
+                    <text x="240" y="87" fill="#67e8f9" fontSize="8" textAnchor="middle">SOFR + TRS Spread</text>
+                    <text x="240" y="16" fill="#a1a1aa" fontSize="9.5" textAnchor="middle" fontWeight="bold">Total Return Swap on Credit Asset</text>
+                  </svg>
+                </div>
+                <div className="overflow-x-auto">
+                  <p className="text-xs font-semibold text-zinc-300 mb-2">TRS vs Repo — Financing Comparison</p>
+                  <table className="w-full text-xs">
+                    <thead>
+                      <tr className="border-b border-zinc-700">
+                        <th className="text-left py-2 pr-4 text-zinc-500">Aspect</th>
+                        <th className="text-left py-2 pr-4 text-cyan-400">TRS</th>
+                        <th className="text-left py-2 text-amber-400">Repo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {TRS_VS_REPO.map((row, i) => (
+                        <tr key={i} className="border-b border-zinc-800/50 hover:bg-zinc-800/30 transition-colors">
+                          <td className="py-2 pr-4 text-zinc-400">{row.aspect}</td>
+                          <td className="py-2 pr-4 text-zinc-300">{row.trs}</td>
+                          <td className="py-2 text-zinc-300">{row.repo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-orange-400" />
+                  Basket Credit Derivatives
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <FTDCorrelationSVG />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-amber-800/30">
+                    <p className="text-xs font-bold text-amber-300 mb-2">First-to-Default (FTD) Basket</p>
+                    <ul className="space-y-1">
+                      {[
+                        "Pays on the first credit event in a basket of N names",
+                        "Spread approx sum of individual CDS spreads (low correlation)",
+                        "Low correlation: names default independently = high FTD risk",
+                        "High correlation: names move together = lower FTD spread",
+                        "Investor earns diversified yield but has concentrated first-loss",
+                        "Correlation is the key risk driver — not individual spreads",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                          <span className="text-amber-400">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-zinc-950 rounded-lg p-3 border border-blue-800/30">
+                    <p className="text-xs font-bold text-blue-300 mb-2">Nth-to-Default &amp; Digital Default Swap</p>
+                    <ul className="space-y-1">
+                      {[
+                        "2nd-to-default: pays on second credit event in basket",
+                        "Nth-to-default: progressively safer; lower spread",
+                        "Full basket of NtD = CDO tranche decomposition",
+                        "Digital default swap: fixed payout (not par minus recovery)",
+                        "Digital useful for hedging specific binary credit event risk",
+                        "BTO (Bespoke Tranche Opportunity): custom basket + tranche",
+                      ].map((t, i) => (
+                        <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                          <span className="text-blue-400">•</span>{t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-3 bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-zinc-200 mb-2">Synthetic CDO — CDS Portfolio Approach</p>
+                  <p className="text-xs text-zinc-400 mb-2">
+                    A synthetic CDO uses a portfolio of CDS (rather than physical bonds) as the reference portfolio. Tranches
+                    are sold to investors who bear sequential credit losses. No funding needed at portfolio level — only the
+                    protection seller (tranche investor) funds their tranche.
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                    {[
+                      { label: "Reference Portfolio", value: "100-150 CDS", color: "text-zinc-300" },
+                      { label: "Total Notional", value: "$1-10B typical", color: "text-zinc-300" },
+                      { label: "Manager Role", value: "Static or managed", color: "text-zinc-300" },
+                      { label: "Key Risk", value: "Correlation + defaults", color: "text-red-400" },
+                    ].map((item) => (
+                      <div key={item.label} className="bg-zinc-900 rounded p-2 border border-zinc-800 text-center">
+                        <p className="text-xs text-zinc-500 mb-0.5">{item.label}</p>
+                        <p className={cn("text-xs font-semibold", item.color)}>{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </TabsContent>
+
+        {/* ── TAB 4: Market & Regulation ── */}
+        <TabsContent value="market-regulation" className="data-[state=inactive]:hidden space-y-4">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Globe className="w-4 h-4 text-emerald-400" />
+                  Global CDS Market Structure
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-4">
+                  {MARKET_STATS.map((stat) => (
+                    <div key={stat.label} className="bg-zinc-950 rounded-lg p-3 border border-zinc-800 text-center">
+                      <p className="text-xs text-zinc-500 mb-1">{stat.label}</p>
+                      <p className={cn("text-lg font-bold", stat.color)}>{stat.value}</p>
+                      <p className="text-xs text-zinc-600 mt-0.5">{stat.sub}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-zinc-200 mb-2">Gross vs Net Notional — Why Net Is What Matters</p>
+                  <p className="text-xs text-zinc-400">
+                    <span className="text-red-300">Gross notional</span> ($10.3T) counts every trade independently — the same
+                    reference entity appears in both buying and selling positions.{" "}
+                    <span className="text-emerald-300">Net notional</span> ($1.8T) offsets long vs short positions on the same
+                    reference entity, representing the true economic exposure. The ~83% reduction demonstrates the massive
+                    netting benefit of bilateral offsetting in the CDS market. Regulatory focus rightly targets net notional
+                    for systemic risk assessment.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-blue-400" />
+                  Post-Dodd Frank CDS Market Reform
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+                  {[
+                    {
+                      title: "SEF Trading",
+                      icon: <Activity className="w-4 h-4" />,
+                      borderColor: "border-blue-800/30",
+                      labelColor: "text-blue-400",
+                      desc: "Swap Execution Facility mandate: liquid CDS must be traded on SEF platforms (MarketAxess, Bloomberg SEF). Replaces bilateral phone trading with electronic order books for standardized instruments.",
+                    },
+                    {
+                      title: "Mandatory Clearing",
+                      icon: <Shield className="w-4 h-4" />,
+                      borderColor: "border-emerald-800/30",
+                      labelColor: "text-emerald-400",
+                      desc: "Standard CDS indices and single names must be centrally cleared through LCH.Clearnet or ICE Clear Credit. Eliminates bilateral counterparty credit risk; replaces with CCP as counterparty to both sides.",
+                    },
+                    {
+                      title: "Trade Reporting",
+                      icon: <BarChart2 className="w-4 h-4" />,
+                      borderColor: "border-purple-800/30",
+                      labelColor: "text-purple-400",
+                      desc: "All CDS trades reported to DTCC Trade Information Warehouse (TIW) and swap data repositories (SDR). Creates full audit trail; CFTC/SEC have position-level visibility for systemic risk monitoring.",
+                    },
+                  ].map((item) => (
+                    <div key={item.title} className={cn("bg-zinc-950 rounded-lg p-3 border", item.borderColor)}>
+                      <div className={cn("flex items-center gap-2 mb-2", item.labelColor)}>
+                        {item.icon}
+                        <p className="text-xs font-bold">{item.title}</p>
+                      </div>
+                      <p className="text-xs text-zinc-400">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-zinc-200 mb-2">ISDA Master Agreement &amp; CSA</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-xs font-medium text-zinc-300 mb-1">ISDA Master Agreement</p>
+                      <ul className="space-y-1">
+                        {[
+                          "Industry-standard governing framework for OTC derivatives",
+                          "Single agreement netting: all trades netted on default",
+                          "Events of default and termination events defined",
+                          "Governing law: NY or English law (1992 or 2002 ISDA)",
+                          "Credit support annex (CSA) attached for collateral",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                            <span className="text-blue-400">•</span>{t}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-zinc-300 mb-1">Credit Support Annex (CSA)</p>
+                      <ul className="space-y-1">
+                        {[
+                          "Daily variation margin on mark-to-market moves",
+                          "Initial margin: SIMM (Sensitivity IM) or schedule-based",
+                          "Eligible collateral: cash, govts, IG bonds (with haircuts)",
+                          "Threshold and minimum transfer amount negotiated bilaterally",
+                          "Two-way vs one-way CSA depending on counterparty rating",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                            <span className="text-emerald-400">•</span>{t}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <DollarSign className="w-4 h-4 text-amber-400" />
+                  XVA — Valuation Adjustments on CDS
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  {XVA_DATA.map((xva) => (
+                    <div key={xva.xva} className="flex items-start gap-3 p-3 bg-zinc-950 rounded-lg border border-zinc-800">
+                      <div className="min-w-[44px]">
+                        <Badge variant="outline" className="text-xs border-amber-500/50 text-amber-300 font-mono">{xva.xva}</Badge>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs font-semibold text-zinc-200 mb-0.5">{xva.fullName}</p>
+                        <p className="text-xs text-zinc-400">{xva.desc}</p>
+                        <p className="text-xs text-amber-400/80 mt-0.5">{xva.impact}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-red-400" />
+                  Sovereign CDS Controversy &amp; EU Naked Short Ban
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-zinc-950 rounded-lg p-3 border border-red-800/30 mb-3">
+                  <p className="text-xs text-zinc-400 mb-2">
+                    During the European sovereign debt crisis (2010-12), politicians argued that{" "}
+                    <span className="text-red-300">naked CDS</span> (buying protection without owning the underlying bond)
+                    allowed speculators to amplify sovereign funding costs. The EU imposed a{" "}
+                    <span className="text-amber-300">ban on naked sovereign CDS</span> (EU Short Selling Regulation, effective
+                    Nov 2012), restricting purchases to those with legitimate hedging needs.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <p className="text-xs font-medium text-red-300 mb-1">Arguments For the Ban</p>
+                      <ul className="space-y-1">
+                        {[
+                          "Naked CDS creates amplified selling pressure on sovereign bonds",
+                          "Speculators profit from government distress without economic stake",
+                          "Self-fulfilling crises: CDS widening raises funding costs",
+                          "Political economy: taxpayers bear costs, hedge funds earn profits",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                            <span className="text-red-400">•</span>{t}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-xs font-medium text-emerald-300 mb-1">Arguments Against (Market View)</p>
+                      <ul className="space-y-1">
+                        {[
+                          "Naked CDS provides liquidity and enables price discovery",
+                          "Restricting shorts increases mispricing and misallocation",
+                          "Evidence of CDS causing crises is weak empirically",
+                          "Ban reduced liquidity, widened bid-ask spreads significantly",
+                        ].map((t, i) => (
+                          <li key={i} className="text-xs text-zinc-400 flex gap-2 list-none">
+                            <span className="text-emerald-400">•</span>{t}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-900 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm text-zinc-100 flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-yellow-400" />
+                  CDS as Early Warning System
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 gap-3 mb-4">
+                  {DISTRESS_CASES.map((c) => (
+                    <div key={c.entity} className="flex items-start gap-3 p-3 bg-zinc-950 rounded-lg border border-zinc-800">
+                      <div className="min-w-[120px]">
+                        <p className="text-xs font-bold text-zinc-100">{c.entity}</p>
+                        <p className="text-xs text-zinc-500">{c.date}</p>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-red-400 font-medium mb-0.5">{c.cdsWidening}</p>
+                        <p className="text-xs text-amber-400/80">{c.leadTime}</p>
+                      </div>
+                      <Badge variant="outline" className="text-xs border-red-500/50 text-red-300 whitespace-nowrap">
+                        {c.outcome}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-zinc-950 rounded-lg p-3 border border-zinc-800">
+                  <p className="text-xs font-semibold text-zinc-200 mb-2">Basis Trade &amp; Short Squeeze Dynamics</p>
+                  <div className="space-y-2">
+                    {BASIS_DATA.map((b, i) => (
+                      <div key={i} className="flex items-start gap-3 p-2 bg-zinc-900 rounded border border-zinc-800">
+                        <div className="min-w-[120px]">
+                          <p className="text-xs font-bold text-blue-300">{b.basis}</p>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-xs text-zinc-300 font-medium mb-0.5">{b.setup}</p>
+                          <p className="text-xs text-zinc-400">
+                            <span className="text-emerald-400">P&L: </span>{b.pnlSource}
+                          </p>
+                          <p className="text-xs text-zinc-400">
+                            <span className="text-red-400">Risk: </span>{b.risk}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-3 bg-zinc-900 rounded-lg p-3 border border-amber-800/30">
+                    <p className="text-xs font-semibold text-amber-300 mb-1">CDS Short Squeeze Dynamics</p>
+                    <p className="text-xs text-zinc-400">
+                      When many investors seek protection simultaneously (e.g., on a rumored default), protection sellers
+                      may withdraw, causing spreads to gap dramatically. Unlike equity short squeezes, CDS squeezes are
+                      driven by <span className="text-amber-300">demand for protection</span> — not short covering. The
+                      non-linear relationship between spread and DV01 (duration shortens as spreads widen) means P&amp;L
+                      on short credit positions becomes{" "}
+                      <span className="text-emerald-300">super-linear</span> as names approach distressed territory.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Collapsible title="Key CDS Formulas &amp; Relationships" defaultOpen={false}>
+              <div className="space-y-3">
                 {[
-                  { label: "Spread", value: `${selectedEntity.spread} bps` },
-                  { label: "Annual Premium ($10M)", value: `$${(selectedEntity.annualPremium * 10).toLocaleString()}` },
-                  { label: "5Y Total Premium", value: `$${(selectedEntity.annualPremium * 10 * 5).toLocaleString()}` },
-                  { label: "Implied PD (40% Rec.)", value: `${((selectedEntity.spread / 10_000) / 0.6 * 100).toFixed(2)}%` },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-lg bg-muted/30 p-3">
-                    <div className="text-xs text-muted-foreground">{item.label}</div>
-                    <div className="text-sm font-bold text-foreground mt-0.5">{item.value}</div>
+                  { label: "CDS Premium (Quarterly)", formula: "P = Notional x Spread x (90/360)", desc: "Accrual convention: Actual/360 for USD CDS" },
+                  { label: "Upfront Payment", formula: "UF approx (FairSpread - RunningCoupon) x RPV01", desc: "RPV01 = Risky PV of 1bp annuity over CDS tenor" },
+                  { label: "CDS-Bond Basis", formula: "Basis = CDS Spread - (Bond Yield - Risk-Free)", desc: "Negative basis: CDS < bond spread = buy bond + CDS" },
+                  { label: "Implied Default Probability (1Y)", formula: "PD approx Spread / (1 - Recovery Rate)", desc: "e.g. 200bps spread, 40% recovery = ~3.3% annual PD" },
+                  { label: "Mark-to-Market (Approx)", formula: "DeltaPV approx -Duration_Risky x DeltaSpread x Notional", desc: "Duration_Risky shortens as spread widens (discounting effect)" },
+                  { label: "FTD Spread (Zero Correlation)", formula: "Spread_FTD approx Sum of Spread_i", desc: "Upper bound; actual FTD spread < sum due to positive correlation" },
+                ].map((f) => (
+                  <div key={f.label} className="bg-zinc-950 rounded p-3 border border-zinc-800">
+                    <p className="text-xs font-medium text-zinc-300 mb-1">{f.label}</p>
+                    <p className="text-sm font-mono text-indigo-300 mb-1">{f.formula}</p>
+                    <p className="text-xs text-zinc-500">{f.desc}</p>
                   </div>
                 ))}
               </div>
-              <div className="mt-3 p-3 rounded-lg bg-muted/30 text-xs text-muted-foreground">
-                <span className="font-medium text-foreground">Note:</span> Annual premium shown on $10M notional.
-                Implied PD uses simplified formula: PD ≈ spread / LGD. Actual pricing requires full survival probability curve calibration.
-                {selectedEntity.change > 10 && (
-                  <span className="ml-1 text-amber-400 font-medium">
-                    Spread widened significantly (+{selectedEntity.change.toFixed(1)} bps) — monitor for credit deterioration.
-                  </span>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      )}
+            </Collapsible>
+          </motion.div>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

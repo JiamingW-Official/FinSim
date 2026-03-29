@@ -130,6 +130,7 @@ import { UNIT_CREDIT_ANALYSIS_ADVANCED } from "./unit-credit-analysis-advanced";
 import { UNIT_SOVEREIGN_WEALTH_FUNDS } from "./unit-sovereign-wealth-funds";
 import { UNIT_PORTFOLIO_RISK_MANAGEMENT } from "./unit-portfolio-risk-management";
 import { UNIT_DERIVATIVES_MARKETS } from "./unit-derivatives-markets";
+import { UNIT_PRIVATE_EQUITY_FUNDAMENTALS } from "./unit-private-equity-fundamentals";
 
 export const UNITS: Unit[] = [
   UNIT_BASICS,
@@ -263,6 +264,7 @@ export const UNITS: Unit[] = [
   UNIT_SOVEREIGN_WEALTH_FUNDS,
   UNIT_PORTFOLIO_RISK_MANAGEMENT,
   UNIT_DERIVATIVES_MARKETS,
+  UNIT_PRIVATE_EQUITY_FUNDAMENTALS,
 ];
 
 export function getLessonById(lessonId: string): Lesson | undefined {
