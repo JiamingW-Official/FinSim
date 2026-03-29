@@ -558,7 +558,7 @@ function StrategyBuilderTab() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="bg-foreground/5 border border-border rounded-xl p-4 space-y-3"
+              className="bg-foreground/5 border border-border rounded-md p-4 space-y-3"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium text-muted-foreground">Leg {idx + 1}</span>
@@ -653,7 +653,7 @@ function StrategyBuilderTab() {
         </AnimatePresence>
 
         {legs.length === 0 && (
-          <div className="text-center py-10 text-muted-foreground text-sm border border-dashed border-border rounded-xl">
+          <div className="text-center py-10 text-muted-foreground text-sm border border-dashed border-border rounded-md">
             Click &ldquo;+ Add Leg&rdquo; to build a position
           </div>
         )}
@@ -661,7 +661,7 @@ function StrategyBuilderTab() {
 
       {/* Right: Payoff + Stats */}
       <div className="space-y-4">
-        <div className="bg-foreground/5 border border-border border-l-4 border-l-primary rounded-xl p-6">
+        <div className="bg-foreground/5 border border-border border-l-4 border-l-primary rounded-md p-6">
           <h3 className="text-lg font-semibold text-foreground mb-3">Payoff at Expiry</h3>
           {legs.length > 0 ? (
             <PayoffSVG legs={legs} spot={spot} />
@@ -674,19 +674,19 @@ function StrategyBuilderTab() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
             {/* Stats */}
             <div className="grid grid-cols-3 gap-2">
-              <div className="bg-foreground/5 rounded-xl p-3 text-center">
+              <div className="bg-foreground/5 rounded-md p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">Max Profit</div>
                 <div className="text-sm font-medium text-green-400">
                   {maxProfit >= 99999 ? "Unlimited" : `$${maxProfit.toFixed(0)}`}
                 </div>
               </div>
-              <div className="bg-foreground/5 rounded-xl p-3 text-center">
+              <div className="bg-foreground/5 rounded-md p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">Max Loss</div>
                 <div className="text-sm font-medium text-red-400">
                   {maxLoss <= -99999 ? "Unlimited" : `$${maxLoss.toFixed(0)}`}
                 </div>
               </div>
-              <div className="bg-foreground/5 rounded-xl p-3 text-center">
+              <div className="bg-foreground/5 rounded-md p-3 text-center">
                 <div className="text-xs text-muted-foreground uppercase">P&L Now</div>
                 <div className={`text-sm font-medium ${pnlAtSpot >= 0 ? "text-green-400" : "text-red-400"}`}>
                   ${pnlAtSpot.toFixed(0)}
@@ -695,7 +695,7 @@ function StrategyBuilderTab() {
             </div>
 
             {/* Breakevens */}
-            <div className="bg-foreground/5 rounded-xl p-3">
+            <div className="bg-foreground/5 rounded-md p-3">
               <div className="text-xs text-muted-foreground uppercase mb-1">Breakeven Points</div>
               {breakevens.length === 0 ? (
                 <span className="text-muted-foreground text-xs">No breakeven in price range</span>
@@ -754,7 +754,7 @@ function StrategyCard({ strategy }: { strategy: StrategyInfo }) {
   return (
     <motion.div
       layout
-      className="bg-foreground/5 border border-border rounded-xl overflow-hidden"
+      className="bg-foreground/5 border border-border rounded-md overflow-hidden"
     >
       <button
         onClick={() => setExpanded(!expanded)}
@@ -957,7 +957,7 @@ function RollCard({ scenario }: { scenario: RollScenario }) {
     : `-$${(Math.abs(scenario.creditDebit) * 100).toFixed(0)} debit`;
 
   return (
-    <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-4">
+    <div className="bg-foreground/5 border border-border rounded-md p-5 space-y-4">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h4 className="font-medium text-foreground text-sm">{scenario.title}</h4>
@@ -1005,7 +1005,7 @@ function RollingStrategiesTab() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-2">When to Roll a Position</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
           {[
@@ -1098,7 +1098,7 @@ function EarningsPlaysTab() {
   return (
     <div className="space-y-6">
       {/* IV Crush explainer */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-5 space-y-4">
         <h3 className="text-sm font-medium text-foreground">IV Crush Effect After Earnings</h3>
         <IVCrushViz ivBefore={60} ivAfter={28} />
         <p className="text-xs text-muted-foreground">
@@ -1121,7 +1121,7 @@ function EarningsPlaysTab() {
       </div>
 
       {/* Expected Move Calculator */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+      <div className="bg-foreground/5 border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Expected Move Calculator</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -1158,7 +1158,7 @@ function EarningsPlaysTab() {
       </div>
 
       {/* Historical reactions table */}
-      <div className="bg-foreground/5 border border-border rounded-xl overflow-hidden">
+      <div className="bg-foreground/5 border border-border rounded-md overflow-hidden">
         <div className="p-4 border-b border-border">
           <h3 className="text-sm font-medium text-foreground">Historical Earnings Reactions</h3>
           <p className="text-xs text-muted-foreground mt-1">Avg move, straddle cost as % of stock price, and typical beat/miss reactions</p>
@@ -1201,7 +1201,7 @@ function EarningsPlaysTab() {
       </div>
 
       {/* IV Rank Playbook */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+      <div className="bg-foreground/5 border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">IV Rank Playbook for Earnings</h3>
         <div className="grid grid-cols-3 gap-4">
           {[
@@ -1209,7 +1209,7 @@ function EarningsPlaysTab() {
             { range: "IV Rank 30-70", label: "Medium IV", color: "text-amber-400 bg-amber-500/10", strategies: ["Calendar Spread", "Jade Lizard"], reason: "Balanced approach — sell some IV while hedging with spreads" },
             { range: "IV Rank > 70", label: "High IV", color: "text-red-400 bg-red-500/10", strategies: ["Iron Condor", "Short Strangle"], reason: "IV crush will hurt longs — be a net seller, profit from vol collapse" },
           ].map((item) => (
-            <div key={item.range} className={`rounded-xl p-4 ${item.color}`}>
+            <div key={item.range} className={`rounded-md p-4 ${item.color}`}>
               <div className="text-xs font-medium uppercase mb-1">{item.range}</div>
               <div className="text-sm font-bold mb-2">{item.label}</div>
               <div className="text-xs font-medium mb-2">{item.strategies.join(" / ")}</div>
@@ -1303,7 +1303,7 @@ function PortfolioHedgingTab() {
   return (
     <div className="space-y-6">
       {/* Portfolio Beta Calculator */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+      <div className="bg-foreground/5 border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Portfolio Beta Calculator</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -1409,7 +1409,7 @@ function PortfolioHedgingTab() {
       </div>
 
       {/* Collar Construction */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+      <div className="bg-foreground/5 border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Zero-Cost Collar Construction</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-foreground/5 rounded-lg p-3 space-y-2 text-xs">
@@ -1435,7 +1435,7 @@ function PortfolioHedgingTab() {
       </div>
 
       {/* Put decay curve */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+      <div className="bg-foreground/5 border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Protective Put Theta Decay</h3>
         <svg width={tdW} height={tdH}>
           <path d={tdPath} fill="none" stroke="#f87171" strokeWidth={2} />
@@ -1454,7 +1454,7 @@ function PortfolioHedgingTab() {
       </div>
 
       {/* VIX calls as tail hedge */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-3">
+      <div className="bg-foreground/5 border border-border rounded-md p-5 space-y-3">
         <h3 className="text-sm font-medium text-foreground">VIX Calls as Tail Hedge</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
           {[
@@ -1530,7 +1530,7 @@ function ThetaDecayCurve() {
   const sy = (v: number) => pad.top + ch2 - (v / maxVal) * ch2;
 
   return (
-    <div className="bg-foreground/5 border border-border rounded-xl p-4">
+    <div className="bg-foreground/5 border border-border rounded-md p-4">
       <h4 className="text-sm font-medium text-foreground mb-3">Theta Decay Curve — ATM vs OTM</h4>
       <svg width={W2} height={H2}>
         {curves.map(({ label, K, color }) => {
@@ -1623,7 +1623,7 @@ function GammaScalpingSim() {
     simData.map((d, i) => `${i === 0 ? "M" : "L"} ${sx(d.day).toFixed(1)} ${sy2(d[key]).toFixed(1)}`).join(" ");
 
   return (
-    <div className="bg-foreground/5 border border-border rounded-xl p-4 space-y-3">
+    <div className="bg-foreground/5 border border-border rounded-md p-4 space-y-3">
       <div className="flex items-center justify-between">
         <h4 className="text-sm font-medium text-foreground">Gamma Scalping Simulation</h4>
         <div className="flex items-center gap-2 text-xs">
@@ -1696,7 +1696,7 @@ function GreekManagementTab() {
   return (
     <div className="space-y-6">
       {/* Risk Dashboard */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5">
+      <div className="bg-foreground/5 border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Portfolio Greeks Risk Dashboard</h3>
 
         <div className="overflow-x-auto mb-4">
@@ -1765,7 +1765,7 @@ function GreekManagementTab() {
       </div>
 
       {/* Delta neutral explainer */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-5 space-y-3">
+      <div className="bg-foreground/5 border border-border rounded-md p-5 space-y-3">
         <h3 className="text-sm font-medium text-foreground">Delta Neutral Strategies</h3>
         <div className="grid grid-cols-3 gap-3 text-xs">
           {[
@@ -1808,7 +1808,7 @@ function GreekManagementTab() {
       </div>
 
       {/* Vega Risk Chart */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <h4 className="text-sm font-medium text-foreground mb-3">Portfolio Vega Risk: P&L vs IV Change</h4>
         <svg width={vegaW} height={vegaH}>
           <line x1={vegaPad.left} y1={vegaZeroY} x2={vegaW - vegaPad.right} y2={vegaZeroY} stroke="#374151" strokeDasharray="3 3" strokeWidth={1} />
@@ -1871,7 +1871,7 @@ export default function OptionsStrategiesPage() {
         </motion.div>
 
         {/* Tab navigation */}
-        <div className="flex gap-1 flex-wrap mb-6 bg-foreground/5 rounded-xl p-1">
+        <div className="flex gap-1 flex-wrap mb-6 bg-foreground/5 rounded-md p-1">
           {TABS.map(({ id, label, icon: Icon }) => (
             <button
               key={id}

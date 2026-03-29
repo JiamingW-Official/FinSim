@@ -615,7 +615,7 @@ export default function CommoditySpreadsPage() {
       className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
     >
       {/* HERO Header */}
-      <div className="flex flex-col gap-1 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="flex flex-col gap-1 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-2">
           <ArrowUpDown className="w-6 h-6 text-indigo-400" />
           <h1 className="text-xl font-semibold text-foreground">

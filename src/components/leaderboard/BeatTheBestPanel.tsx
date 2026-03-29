@@ -137,7 +137,7 @@ export function BeatTheBestPanel({ top3 }: BeatTheBestPanelProps) {
   );
 
   return (
-    <div className="rounded-xl border border-border bg-card/50 p-4 space-y-3">
+    <div className="rounded-md border border-border bg-card/50 p-4 space-y-3">
       {/* Header */}
       <div className="flex items-center gap-2">
         <Swords className="h-4 w-4 text-amber-400 shrink-0" />

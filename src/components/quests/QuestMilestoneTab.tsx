@@ -48,7 +48,7 @@ export function QuestMilestoneTab() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: chainIdx * 0.06 }}
             className={cn(
-              "rounded-xl border p-4 transition-all",
+              "rounded-md border p-4 transition-all",
               isChainComplete
                 ? "border-emerald-500/20 bg-emerald-500/5"
                 : "border-border/50 bg-foreground/[0.02]",

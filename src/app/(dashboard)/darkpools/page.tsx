@@ -466,7 +466,7 @@ function DarkPoolLandscapeTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Donut chart */}
-        <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+        <div className="bg-muted/50 rounded-md p-4 border border-border/50">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Dark Pool Market Share
@@ -519,7 +519,7 @@ function DarkPoolLandscapeTab() {
         </div>
 
         {/* Rankings table */}
-        <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+        <div className="bg-muted/50 rounded-md p-4 border border-border/50">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             Top 10 Dark Pools by Volume
@@ -578,7 +578,7 @@ function DarkPoolLandscapeTab() {
             className="overflow-hidden"
           >
             <div
-              className="rounded-xl p-4 border"
+              className="rounded-md p-4 border"
               style={{ borderColor: selectedPool.color + "44", background: selectedPool.color + "11" }}
             >
               <div className="flex items-center gap-3 mb-3">
@@ -628,7 +628,7 @@ function DarkPoolLandscapeTab() {
       </AnimatePresence>
 
       {/* ATS vs Exchange comparison */}
-      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+      <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Scale className="w-4 h-4 text-muted-foreground" />
           US Equity Volume Distribution (ATS vs Lit Exchanges)
@@ -722,7 +722,7 @@ function WhyDarkPoolsTab() {
             whileTap={{ scale: 0.98 }}
             onClick={() => setActiveReason(i)}
             className={cn(
-              "rounded-xl p-3 text-left border transition-colors",
+              "rounded-md p-3 text-left border transition-colors",
               activeReason === i
                 ? "border-opacity-60 bg-opacity-20"
                 : "border-border/50 bg-muted/40 hover:bg-muted/40"
@@ -749,7 +749,7 @@ function WhyDarkPoolsTab() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.25 }}
-          className="rounded-xl p-5 border"
+          className="rounded-md p-5 border"
           style={{
             borderColor: reasons[activeReason].color + "44",
             background: reasons[activeReason].color + "0d",
@@ -791,7 +791,7 @@ function WhyDarkPoolsTab() {
       </AnimatePresence>
 
       {/* Price improvement table */}
-      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+      <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           Price Improvement Statistics by Pool
@@ -842,7 +842,7 @@ function WhyDarkPoolsTab() {
       </div>
 
       {/* Info leakage visual */}
-      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+      <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Info className="w-4 h-4 text-primary" />
           Information Leakage: Lit vs Dark Order Flow
@@ -953,7 +953,7 @@ function OrderTypesTab() {
           transition={{ duration: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+          <div className="bg-muted/50 rounded-md p-4 border border-border/50">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-medium text-foreground">{order.name}</h3>
               <Badge
@@ -991,7 +991,7 @@ function OrderTypesTab() {
               </div>
             </div>
           </div>
-          <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+          <div className="bg-muted/50 rounded-md p-4 border border-border/50">
             <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
               Best Use Case
             </h4>
@@ -1029,7 +1029,7 @@ function OrderTypesTab() {
       </AnimatePresence>
 
       {/* Order routing decision tree SVG */}
-      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+      <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Network className="w-4 h-4 text-primary" />
           Order Routing Decision Tree
@@ -1171,7 +1171,7 @@ function HFTInteractionTab() {
             key={c.title}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-xl p-4 border"
+            className="rounded-md p-4 border"
             style={{ borderColor: c.color + "44", background: c.color + "0d" }}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -1197,7 +1197,7 @@ function HFTInteractionTab() {
       </div>
 
       {/* Timeline */}
-      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+      <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Clock className="w-4 h-4 text-primary" />
           HFT & Dark Pool Regulatory Timeline — click an event to expand
@@ -1329,7 +1329,7 @@ function LitVsDarkTab() {
         ].map((c) => (
           <div
             key={c.title}
-            className="rounded-xl p-4 border"
+            className="rounded-md p-4 border"
             style={{ borderColor: c.color + "44", background: c.color + "0d" }}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -1342,7 +1342,7 @@ function LitVsDarkTab() {
       </div>
 
       {/* Toxicity metrics comparison */}
-      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+      <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-primary" />
           Lit vs Dark: Key Microstructure Metrics
@@ -1411,7 +1411,7 @@ function LitVsDarkTab() {
       </div>
 
       {/* Implementation shortfall breakdown SVG */}
-      <div className="bg-muted/50 rounded-xl p-4 border border-border/50">
+      <div className="bg-muted/50 rounded-md p-4 border border-border/50">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-amber-400" />
           Implementation Shortfall Decomposition
@@ -1513,7 +1513,7 @@ function LitVsDarkTab() {
         ].map((card) => (
           <div
             key={card.title}
-            className="rounded-xl p-4 border"
+            className="rounded-md p-4 border"
             style={{ borderColor: card.color + "44", background: card.color + "0d" }}
           >
             <div className="flex items-center gap-2 mb-3">
@@ -1547,7 +1547,7 @@ export default function DarkPoolsPage() {
           transition={{ duration: 0.4 }}
           className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start gap-4"
         >
-          <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center shrink-0">
+          <div className="w-12 h-12 rounded-md bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center shrink-0">
             <EyeOff className="w-6 h-6 text-indigo-400" />
           </div>
           <div>

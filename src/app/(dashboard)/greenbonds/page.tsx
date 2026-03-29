@@ -786,14 +786,14 @@ export default function GreenBondsPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* Header — Hero */}
+      <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-green-900/40 border border-green-800/50">
             <Leaf size={20} className="text-green-400" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-foreground">Green, Social & Sustainability Bonds</h1>
+            <h1 className="text-lg font-bold text-foreground">Green, Social & Sustainability Bonds</h1>
             <p className="text-xs text-muted-foreground">
               GSS frameworks · use of proceeds · second-party opinions · impact reporting · greenium
             </p>
@@ -801,7 +801,7 @@ export default function GreenBondsPage() {
         </div>
       </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8 space-y-4">
         <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="overview" className="text-xs data-[state=active]:bg-muted">
             Market Overview

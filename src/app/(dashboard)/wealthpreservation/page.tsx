@@ -886,7 +886,7 @@ export default function WealthPreservationPage() {
         >
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="rounded-xl p-2.5 bg-indigo-500/10">
+              <div className="rounded-md p-2.5 bg-indigo-500/10">
                 <Shield className="w-6 h-6 text-indigo-400" />
               </div>
               <h1 className="text-xl font-bold text-foreground">Wealth Preservation Strategies</h1>

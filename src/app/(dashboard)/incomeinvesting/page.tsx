@@ -314,7 +314,7 @@ function DividendUniverseTab() {
   return (
     <div className="space-y-4">
       {/* Filters */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="flex flex-wrap gap-3 items-center">
           <div className="flex gap-2">
             {(["all", "high-yield", "dividend-growth", "aristocrat"] as YieldFilter[]).map((f) => (
@@ -362,7 +362,7 @@ function DividendUniverseTab() {
       </div>
 
       {/* Table */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <div className="bg-card border border-border rounded-md overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -441,7 +441,7 @@ function DividendUniverseTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
-            className="bg-card border border-border rounded-xl p-5"
+            className="bg-card border border-border rounded-md p-5"
           >
             <div className="flex justify-between items-start mb-4">
               <div>
@@ -672,7 +672,7 @@ function DividendAnalysisTab() {
   return (
     <div className="space-y-5">
       {/* Safety Scores */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
           <Shield className="w-4 h-4 text-green-400" /> Dividend Safety Analysis
         </h3>
@@ -713,7 +713,7 @@ function DividendAnalysisTab() {
       </div>
 
       {/* Ex-Dividend Calendar */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Calendar className="w-4 h-4 text-primary" /> Ex-Dividend Calendar (Next 10)
         </h3>
@@ -721,7 +721,7 @@ function DividendAnalysisTab() {
       </div>
 
       {/* DRIP Simulator */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <RefreshCw className="w-4 h-4 text-primary" /> DRIP Simulator
         </h3>
@@ -753,7 +753,7 @@ function DividendAnalysisTab() {
       </div>
 
       {/* Dividend Trap Detector */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-yellow-400" /> Dividend Trap Detector
         </h3>
@@ -779,7 +779,7 @@ function DividendAnalysisTab() {
       </div>
 
       {/* Yield vs Growth */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-green-400" /> Yield vs Growth Tradeoff
         </h3>
@@ -860,7 +860,7 @@ function FixedIncomeTab() {
   return (
     <div className="space-y-5">
       {/* Bond Ladder Builder */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <Layers className="w-4 h-4 text-primary" /> Bond Ladder Builder — $100,000
         </h3>
@@ -873,7 +873,7 @@ function FixedIncomeTab() {
       </div>
 
       {/* CD Rates */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-green-400" /> CD Rates
         </h3>
@@ -889,7 +889,7 @@ function FixedIncomeTab() {
       </div>
 
       {/* Treasury Rates */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Shield className="w-4 h-4 text-yellow-400" /> Treasury Rates
         </h3>
@@ -918,7 +918,7 @@ function FixedIncomeTab() {
       </div>
 
       {/* I-Bond Mechanics */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Activity className="w-4 h-4 text-red-400" /> I-Bond Mechanics
         </h3>
@@ -939,7 +939,7 @@ function FixedIncomeTab() {
       </div>
 
       {/* Municipal Bonds */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-muted-foreground" /> Municipal Bond Tax-Equivalent Yield
         </h3>
@@ -968,7 +968,7 @@ function FixedIncomeTab() {
       </div>
 
       {/* High Yield Bonds */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-yellow-400" /> High Yield vs Investment Grade
         </h3>
@@ -999,7 +999,7 @@ function AltIncomeTab() {
   return (
     <div className="space-y-5">
       {/* REIT Types */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-primary" /> REIT Income: mREIT vs eREIT
         </h3>
@@ -1036,7 +1036,7 @@ function AltIncomeTab() {
       </div>
 
       {/* Alternative Income Cards */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">Alternative Income Sources</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {ALT_INCOME.map((item) => (
@@ -1073,7 +1073,7 @@ function AltIncomeTab() {
       </div>
 
       {/* Covered Calls Explainer */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Target className="w-4 h-4 text-primary" /> Options Income Strategies
         </h3>
@@ -1105,7 +1105,7 @@ function AltIncomeTab() {
 
       {/* Preferred Stocks + CEFs */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Star className="w-4 h-4 text-yellow-400" /> Preferred Stocks
           </h3>
@@ -1124,7 +1124,7 @@ function AltIncomeTab() {
             ))}
           </div>
         </div>
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-muted-foreground" /> Closed-End Funds (CEFs)
           </h3>
@@ -1223,12 +1223,12 @@ function IncomePortfolioTab() {
     <div className="space-y-5">
       {/* Blended Yield + Capital Needed */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-card border border-border rounded-xl p-4 text-center">
+        <div className="bg-card border border-border rounded-md p-4 text-center">
           <div className="text-muted-foreground text-xs mb-1">Blended Yield</div>
           <div className="text-2xl font-bold text-green-400">{blendedYield.toFixed(2)}%</div>
           <div className="text-muted-foreground text-xs">weighted average</div>
         </div>
-        <div className="bg-card border border-border rounded-xl p-4 text-center">
+        <div className="bg-card border border-border rounded-md p-4 text-center">
           <div className="text-muted-foreground text-xs mb-1">Target Monthly Income</div>
           <div className="flex items-center justify-center gap-2">
             <div className="text-2xl font-bold text-foreground">${targetMonthly.toLocaleString()}</div>
@@ -1237,7 +1237,7 @@ function IncomePortfolioTab() {
             <Slider min={500} max={20000} step={500} value={[targetMonthly]} onValueChange={([v]) => setTargetMonthly(v)} />
           </div>
         </div>
-        <div className="bg-card border border-border rounded-xl p-4 text-center">
+        <div className="bg-card border border-border rounded-md p-4 text-center">
           <div className="text-muted-foreground text-xs mb-1">Capital Needed</div>
           <div className="text-2xl font-bold text-primary">{formatCurrency(capitalNeeded)}</div>
           <div className="text-muted-foreground text-xs">at {blendedYield.toFixed(2)}% yield</div>
@@ -1245,7 +1245,7 @@ function IncomePortfolioTab() {
       </div>
 
       {/* Allocation sliders */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">Allocation Sliders</h3>
         <div className="flex gap-6">
           <div className="flex-1 space-y-4">
@@ -1277,7 +1277,7 @@ function IncomePortfolioTab() {
       </div>
 
       {/* Interest Rate Sensitivity */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Activity className="w-4 h-4 text-red-400" /> Interest Rate Sensitivity (+100bps shock)
         </h3>
@@ -1303,7 +1303,7 @@ function IncomePortfolioTab() {
       </div>
 
       {/* Tax Efficiency */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Percent className="w-4 h-4 text-yellow-400" /> Tax Efficiency by Income Type
         </h3>
@@ -1505,7 +1505,7 @@ function IncomeLadderingTab() {
   return (
     <div className="space-y-5">
       {/* Bucket Strategy */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Layers className="w-4 h-4 text-primary" /> Bucket Strategy
         </h3>
@@ -1527,7 +1527,7 @@ function IncomeLadderingTab() {
       </div>
 
       {/* Bond Ladder */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-green-400" /> Cash Flow Matching — Bond Maturity Schedule
         </h3>
@@ -1544,7 +1544,7 @@ function IncomeLadderingTab() {
       </div>
 
       {/* Reinvestment Risk */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-yellow-400" /> Reinvestment Risk
         </h3>
@@ -1602,7 +1602,7 @@ function IncomeLadderingTab() {
       </div>
 
       {/* 30-Year Sustainability */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Award className="w-4 h-4 text-green-400" /> Income Sustainability — Does the Portfolio Last?
         </h3>
@@ -1690,14 +1690,14 @@ export default function IncomeInvestingPage() {
       </motion.div>
 
       {/* Hero */}
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <h2 className="text-lg font-medium text-foreground mb-1">Income Strategy Suite</h2>
         <p className="text-sm text-muted-foreground">Dividend screening, yield analysis, fixed income tools, alternative income sources, and portfolio construction.</p>
       </div>
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-        <TabsList className="flex flex-wrap gap-1 h-auto bg-card border border-border p-1 rounded-xl mb-5">
+        <TabsList className="flex flex-wrap gap-1 h-auto bg-card border border-border p-1 rounded-md mb-5">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             return (

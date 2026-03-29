@@ -1690,14 +1690,14 @@ function CorporateHedgingTab() {
 export default function FXStructuredPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
+      {/* Header — Hero */}
+      <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-primary/10 rounded-lg border border-border">
             <Globe className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-xl font-semibold text-foreground">FX Structured Products</h1>
+            <h1 className="text-lg font-semibold text-foreground">FX Structured Products</h1>
             <p className="text-sm text-muted-foreground">
               Options strategies, accumulators, TARFs, dual currency deposits & corporate hedging
             </p>
@@ -1719,7 +1719,7 @@ export default function FXStructuredPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="options" className="space-y-4">
+      <Tabs defaultValue="options" className="mt-8 space-y-4">
         <TabsList className="bg-card border border-border h-auto flex-wrap gap-1 p-1">
           <TabsTrigger
             value="options"

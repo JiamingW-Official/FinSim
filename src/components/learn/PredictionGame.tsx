@@ -117,7 +117,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
         animate={{ opacity: 1, scale: 1 }}
       >
         <motion.div
-          className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/15 border border-emerald-500/30"
+          className="flex h-16 w-16 items-center justify-center rounded-md bg-emerald-500/15 border border-emerald-500/30"
           initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.1 }}
@@ -153,7 +153,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
         <button
           type="button"
           onClick={onClose}
-          className="mt-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-foreground transition-all hover:bg-primary/90 active:scale-95"
+          className="mt-2 rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-foreground transition-all hover:bg-primary/90 active:scale-95"
         >
           Done
         </button>
@@ -210,7 +210,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
       )}
 
       {/* Chart */}
-      <div className="relative h-48 rounded-xl border border-border bg-card/50 overflow-hidden">
+      <div className="relative h-48 rounded-md border border-border bg-card/50 overflow-hidden">
         <div className="flex items-end h-full px-2 py-3 gap-px">
           {visibleBars.map((bar, i) => {
             const isUp = bar.close >= bar.open;
@@ -300,7 +300,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
             >
               <motion.div
                 className={cn(
-                  "rounded-xl px-4 py-2 font-bold text-sm",
+                  "rounded-md px-4 py-2 font-bold text-sm",
                   result === "correct"
                     ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                     : "bg-rose-500/20 text-rose-400 border border-rose-500/30",
@@ -328,7 +328,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
             <button
               type="button"
               onClick={() => handlePredict("green")}
-              className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-3.5 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 py-3.5 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
             >
               <TrendingUp className="h-5 w-5" />
               Green (Up)
@@ -336,7 +336,7 @@ export function PredictionGame({ onClose }: PredictionGameProps) {
             <button
               type="button"
               onClick={() => handlePredict("red")}
-              className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 py-3.5 text-sm font-bold text-rose-400 transition-all hover:bg-rose-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-rose-500/30 bg-rose-500/10 py-3.5 text-sm font-bold text-rose-400 transition-all hover:bg-rose-500/20 active:scale-95"
             >
               <TrendingDown className="h-5 w-5" />
               Red (Down)

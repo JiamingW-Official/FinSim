@@ -214,7 +214,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
+    <div className="rounded-md border border-border bg-card p-4">
       {Icon && (
         <div className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
           <Icon className="h-4 w-4 text-muted-foreground" />
@@ -703,7 +703,7 @@ function RBFCalculator() {
         subtitle="Revenue-Based Financing payback under different growth scenarios"
       />
       <div className="grid grid-cols-3 gap-4">
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-md border border-border bg-card p-4">
           <p className="mb-2 text-xs text-muted-foreground">Funding Amount</p>
           <input
             type="range"
@@ -718,7 +718,7 @@ function RBFCalculator() {
             ${(funding / 1000).toFixed(0)}K
           </p>
         </div>
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-md border border-border bg-card p-4">
           <p className="mb-2 text-xs text-muted-foreground">
             Monthly Revenue (starting)
           </p>
@@ -735,7 +735,7 @@ function RBFCalculator() {
             ${(monthlyRev / 1000).toFixed(0)}K/mo
           </p>
         </div>
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-md border border-border bg-card p-4">
           <p className="mb-2 text-xs text-muted-foreground">Revenue Share %</p>
           <input
             type="range"
@@ -756,7 +756,7 @@ function RBFCalculator() {
         {scenarios.map((sc) => (
           <div
             key={sc.growthLabel}
-            className="rounded-xl border border-border bg-card p-4"
+            className="rounded-md border border-border bg-card p-4"
           >
             <div
               className="mb-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium"
@@ -892,7 +892,7 @@ function VentureDebtTab() {
           title="Standard Term Sheet Terms"
           subtitle="Typical venture debt structures"
         />
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-md border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/50">
@@ -1077,7 +1077,7 @@ function RBFTab() {
             <div
               key={item.name}
               className={cn(
-                "rounded-xl border p-4 space-y-3",
+                "rounded-md border p-4 space-y-3",
                 item.border,
                 item.bg
               )}
@@ -1280,7 +1280,7 @@ function GrowthEquityTab() {
           title="Top Growth Equity Firms"
           subtitle="Firms focused on late-stage minority growth investments"
         />
-        <div className="overflow-hidden rounded-xl border border-border">
+        <div className="overflow-hidden rounded-md border border-border">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border bg-muted/50">
@@ -1339,7 +1339,7 @@ function ComparisonTab() {
             title="Lender Comparison Table"
             subtitle="Key venture debt providers and their terms"
           />
-          <div className="overflow-hidden rounded-xl border border-border">
+          <div className="overflow-hidden rounded-md border border-border">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-border bg-muted/50">
@@ -1419,7 +1419,7 @@ function ComparisonTab() {
             return (
               <div
                 key={l.name}
-                className="rounded-xl border border-border bg-card p-4 space-y-3"
+                className="rounded-md border border-border bg-card p-4 space-y-3"
               >
                 <div>
                   <p className="text-xs font-medium text-foreground">

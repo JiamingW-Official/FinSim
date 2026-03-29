@@ -2338,8 +2338,8 @@ export default function QuizTournamentPage() {
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       <div className="max-w-2xl mx-auto space-y-5">
         {/* Header */}
-        <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-yellow-500/20 border border-yellow-500/30">
+        <div className="flex items-center gap-3 border-l-4 border-l-primary rounded-lg bg-card p-6">
+          <div className="p-2.5 rounded-md bg-yellow-500/20 border border-yellow-500/30">
             <Trophy className="h-6 w-6 text-yellow-400" />
           </div>
           <div>

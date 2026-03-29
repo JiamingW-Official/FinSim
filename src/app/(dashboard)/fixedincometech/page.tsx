@@ -261,7 +261,7 @@ function InfoCard({
   className?: string;
 }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-card p-4", className)}>
+    <div className={cn("rounded-md border border-border bg-card p-4", className)}>
       <h3 className="text-sm font-semibold text-foreground mb-3">{title}</h3>
       {children}
     </div>
@@ -1266,7 +1266,7 @@ export default function FixedIncomeTechPage() {
           className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2.5 rounded-xl bg-primary/10">
+            <div className="p-2.5 rounded-md bg-primary/10">
               <Activity className="w-6 h-6 text-primary" />
             </div>
             <div>

@@ -67,7 +67,7 @@ export function ChallengeResults({
 
       <motion.div
         className={cn(
-          "glass mx-4 flex w-full max-w-sm flex-col items-center gap-5 rounded-2xl border p-8",
+          "glass mx-4 flex w-full max-w-sm flex-col items-center gap-5 rounded-md border p-8",
           config.border,
           config.glow,
         )}
@@ -78,7 +78,7 @@ export function ChallengeResults({
         {/* Grade letter — big dramatic reveal */}
         <motion.div
           className={cn(
-            "flex h-24 w-24 items-center justify-center rounded-2xl border-2 text-5xl font-bold",
+            "flex h-24 w-24 items-center justify-center rounded-md border-2 text-5xl font-bold",
             config.border,
             config.bg,
             config.color,
@@ -111,7 +111,7 @@ export function ChallengeResults({
 
         {/* Stats — card style */}
         <motion.div
-          className="w-full space-y-1 rounded-xl border border-border/50 bg-card/50 p-3"
+          className="w-full space-y-1 rounded-md border border-border/50 bg-card/50 p-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
@@ -212,7 +212,7 @@ export function ChallengeResults({
           transition={{ delay: 1.0 }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+          className="w-full rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
         >
           Continue
         </motion.button>

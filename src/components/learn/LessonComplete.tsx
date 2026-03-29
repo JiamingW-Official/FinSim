@@ -115,7 +115,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
 
       <motion.div
         className={cn(
-          "glass mx-4 flex w-full max-w-sm flex-col items-center gap-5 rounded-2xl border p-8",
+          "glass mx-4 flex w-full max-w-sm flex-col items-center gap-5 rounded-md border p-8",
           config.border,
           config.glow,
         )}
@@ -126,7 +126,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
         {/* Grade letter with bounce */}
         <motion.div
           className={cn(
-            "relative flex h-24 w-24 items-center justify-center rounded-2xl border-2 text-5xl font-bold",
+            "relative flex h-24 w-24 items-center justify-center rounded-md border-2 text-5xl font-bold",
             config.border,
             config.bg,
             config.color,
@@ -224,7 +224,7 @@ export function LessonComplete({ breakdown, xpEarned, onContinue }: LessonComple
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           transition={{ delay: 0.9 }}
-          className="w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+          className="w-full rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
         >
           Continue 🚀
         </motion.button>

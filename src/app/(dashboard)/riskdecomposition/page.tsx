@@ -316,9 +316,9 @@ function RiskDecompositionTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Systematic vs Idiosyncratic */}
-        <Card className="bg-card border-border">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Systematic vs Idiosyncratic Risk</CardTitle>
+        <Card className="bg-card border-border border-l-4 border-l-primary">
+          <CardHeader className="p-6 pb-3">
+            <CardTitle className="text-lg font-medium text-muted-foreground">Systematic vs Idiosyncratic Risk</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="mb-4">

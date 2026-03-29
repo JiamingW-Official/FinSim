@@ -47,7 +47,7 @@ export function LessonNode({
       transition={{ delay, type: "spring", stiffness: 200, damping: 20 }}
       whileHover={isUnlocked ? { y: -2, transition: { duration: 0.15 } } : undefined}
       className={cn(
-        "group relative flex items-center gap-3 rounded-2xl border-2 p-3 text-left transition-all w-full max-w-[280px]",
+        "group relative flex items-center gap-3 rounded-md border-2 p-3 text-left transition-all w-full max-w-[280px]",
         isCompleted
           ? "border-[var(--unit-color)]/30 bg-[var(--unit-color)]/5"
           : isUnlocked
@@ -137,7 +137,7 @@ export function LessonNode({
       {/* Active glow ring */}
       {isUnlocked && !isCompleted && (
         <div
-          className="absolute -inset-0.5 rounded-2xl pointer-events-none"
+          className="absolute -inset-0.5 rounded-md pointer-events-none"
           style={{
             boxShadow: `0 0 8px ${unitColor}30, 0 0 20px ${unitColor}15`,
           }}

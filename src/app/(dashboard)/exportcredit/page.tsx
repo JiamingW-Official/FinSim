@@ -239,7 +239,7 @@ function ECAOverviewTab() {
       </div>
 
       {/* Bar chart */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-semibold text-foreground mb-4">Annual New Business Exposure (USD bn)</h3>
         <svg viewBox="0 0 700 260" className="w-full" aria-label="ECA exposure bar chart">
           {ECAS.map((eca, i) => {
@@ -283,7 +283,7 @@ function ECAOverviewTab() {
       </div>
 
       {/* Comparison table */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <div className="bg-card border border-border rounded-md overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -337,7 +337,7 @@ function ECAOverviewTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="bg-card border rounded-xl p-5"
+            className="bg-card border rounded-md p-5"
             style={{ borderColor: selected.color + "66" }}
           >
             <div className="flex items-center gap-3 mb-4">
@@ -364,7 +364,7 @@ function ECAOverviewTab() {
       </AnimatePresence>
 
       {/* Role in exports */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">How ECAs Support Exports</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
@@ -458,7 +458,7 @@ function OECDConsensusTab() {
       </div>
 
       {/* CIRR rates table */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">CIRR Rates by Currency (Indicative, % p.a.)</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -486,7 +486,7 @@ function OECDConsensusTab() {
       </div>
 
       {/* Sector maximum repayment terms */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Maximum Repayment Terms by Sector</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -521,7 +521,7 @@ function OECDConsensusTab() {
       </div>
 
       {/* Country risk heatmap */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Minimum Premium Rate (MPR) Heatmap</h3>
         <p className="text-xs text-muted-foreground mb-4">Annual premium % by country risk category (1 = lowest risk) and repayment horizon</p>
         <svg viewBox="0 0 560 300" className="w-full" aria-label="Country risk premium heatmap">
@@ -652,7 +652,7 @@ function ProductsTab() {
 function BuyerCreditFlow() {
   return (
     <div className="space-y-5">
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-2">Buyer Credit Structure</h3>
         <p className="text-xs text-muted-foreground mb-5">
           In a buyer credit arrangement, the ECA-backed bank lends directly to the foreign buyer, who uses the loan proceeds to pay the exporter upfront.
@@ -734,7 +734,7 @@ function BuyerCreditFlow() {
 function SupplierCreditFlow() {
   return (
     <div className="space-y-5">
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-2">Supplier Credit Structure</h3>
         <p className="text-xs text-muted-foreground mb-5">
           In a supplier credit, the exporter extends credit directly to the foreign buyer and later discounts (sells) the resulting receivables to a bank,
@@ -824,7 +824,7 @@ function PoliticalRiskPanel() {
 
   return (
     <div className="space-y-4">
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Political Risk Insurance Coverage Types</h3>
         <p className="text-xs text-muted-foreground mb-5">
           PRI is offered by ECAs (and multilaterals like MIGA) to protect foreign direct investment and trade receivables against sovereign / quasi-sovereign risks
@@ -893,7 +893,7 @@ function GuaranteesPanel() {
             color: "#10b981",
           },
         ].map((item) => (
-          <div key={item.title} className="bg-card border border-border rounded-xl p-4">
+          <div key={item.title} className="bg-card border border-border rounded-md p-4">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 rounded-full shrink-0" style={{ background: item.color }} />
               <span className="font-medium text-sm text-foreground">{item.title}</span>
@@ -912,7 +912,7 @@ function GuaranteesPanel() {
       </div>
 
       {/* Letter of credit confirmation */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-2">Letter of Credit Confirmation</h3>
         <p className="text-xs text-muted-foreground mb-3">
           When a foreign buyer's bank issues an LC but is located in a high-risk country, a confirming bank (backed by ECA) adds its irrevocable undertaking
@@ -963,7 +963,7 @@ function DealStructuringTab() {
       />
 
       {/* Pricing formula */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">ECA-Covered Loan Pricing Formula</h3>
         <div className="flex flex-wrap items-center gap-2 mb-5 text-sm">
           <div className="bg-primary/15 border border-border rounded-lg px-3 py-2 text-center">
@@ -1023,7 +1023,7 @@ function DealStructuringTab() {
       </div>
 
       {/* Content requirements */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Content Requirements</h3>
         <p className="text-xs text-muted-foreground mb-4">
           ECAs require a minimum percentage of the export contract value to originate from the ECA's home country.
@@ -1042,7 +1042,7 @@ function DealStructuringTab() {
       </div>
 
       {/* Deal timeline */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Typical Deal Timeline (Medium-Large Transaction)</h3>
         <div className="relative">
           {/* Vertical line */}
@@ -1067,7 +1067,7 @@ function DealStructuringTab() {
       </div>
 
       {/* E&S Standards */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Environmental & Social Standards</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
@@ -1104,7 +1104,7 @@ function DealStructuringTab() {
       </div>
 
       {/* Paris Club */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Debt Restructuring: Paris Club</h3>
         <p className="text-xs text-muted-foreground mb-4">
           When a sovereign borrower cannot service ECA-backed loans, the Paris Club (informal group of 22 creditor nations)
@@ -1122,7 +1122,7 @@ function DealStructuringTab() {
       </div>
 
       {/* Case study toggle */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <div className="bg-card border border-border rounded-md overflow-hidden">
         <button
           className="w-full flex items-center justify-between p-5 hover:bg-muted/20 transition-colors"
           onClick={() => setShowCaseStudy((v) => !v)}
@@ -1206,7 +1206,7 @@ export default function ExportCreditPage() {
           className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
+            <div className="p-2.5 rounded-md bg-primary/10 text-primary">
               <Globe size={24} />
             </div>
             <div>

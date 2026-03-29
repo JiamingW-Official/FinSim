@@ -876,10 +876,10 @@ export default function FXOptionsPage() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      {/* Header — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="text-xl font-bold text-foreground flex items-center gap-2">
             <BarChart2 className="text-sky-400" size={24} />
             FX Options
           </h1>
@@ -897,7 +897,7 @@ export default function FXOptionsPage() {
       </div>
 
       {/* Spot Rates Strip */}
-      <div>
+      <div className="mt-8">
         <h2 className="text-xs font-medium text-muted-foreground mb-3 flex items-center gap-1.5">
           <Activity size={12} /> Live Spot Rates
         </h2>

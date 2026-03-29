@@ -300,7 +300,7 @@ function StatCard({ label, value, sub, highlight }: {
     highlight === "neg" ? "text-rose-400" :
     "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -557,8 +557,8 @@ export default function GreenFinancePage() {
         </div>
       </div>
 
-      {/* Stats row */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      {/* Stats row — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard label="Green Bond Market" value="$2.8T" sub="Outstanding issuance 2025" highlight="pos" />
         <StatCard label="Avg Greenium" value={`${Math.abs(avgGreenium).toFixed(0)} bps`} sub="vs conventional peers" highlight="pos" />
         <StatCard label="Avg Green Yield" value={fmtYield(avgYield)} sub="Current portfolio avg" />
@@ -566,7 +566,7 @@ export default function GreenFinancePage() {
       </div>
 
       {/* Main Tabs */}
-      <Tabs defaultValue="bonds">
+      <Tabs defaultValue="bonds" className="mt-8">
         <TabsList className="bg-card border border-border flex flex-wrap gap-1 h-auto p-1">
           <TabsTrigger value="bonds" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-foreground text-xs">
             <BarChart2 size={12} className="mr-1" /> Bond Market

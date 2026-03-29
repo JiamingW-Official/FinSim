@@ -380,7 +380,7 @@ function IRSPricer() {
       </div>
 
       {/* Market shift / MtM */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>Mark-to-Market Sensitivity</SectionTitle>
         <div className="flex items-center gap-4">
           <span className="text-xs text-foreground/50 w-32">Rate shift (bps)</span>
@@ -422,7 +422,7 @@ function IRSPricer() {
       </div>
 
       {/* Cash Flow Schedule SVG */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>Cash Flow Schedule (PV, first {results.cashFlows.length} periods)</SectionTitle>
         <svg
           width="100%"
@@ -572,7 +572,7 @@ function SwapCurveBuilder() {
   return (
     <div className="space-y-6">
       {/* Curve SVG */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>SOFR OIS Curve + Implied Forwards</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
           {/* Grid lines */}
@@ -673,7 +673,7 @@ function SwapCurveBuilder() {
       </div>
 
       {/* Bootstrap table */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3 overflow-x-auto">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3 overflow-x-auto">
         <SectionTitle>Bootstrapped Discount Factors</SectionTitle>
         <table className="w-full text-sm">
           <thead>
@@ -708,7 +708,7 @@ function SwapCurveBuilder() {
       </div>
 
       {/* Basis spreads */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>Basis Swap Spreads (bps)</SectionTitle>
         <div className="grid grid-cols-2 gap-3">
           {basisSpreads.map((b, i) => (
@@ -869,7 +869,7 @@ function CDSPricer() {
       </div>
 
       {/* Survival Probability Curve */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-2">
         <SectionTitle>Survival Probability Curve</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
           {/* Grid */}
@@ -911,7 +911,7 @@ function CDSPricer() {
       </div>
 
       {/* P&L Slider */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>CDS P&amp;L — Spread Widening/Tightening</SectionTitle>
         <div className="flex items-center gap-4">
           <span className="text-xs text-foreground/50 w-36">Spread shift (bps)</span>
@@ -947,7 +947,7 @@ function CDSPricer() {
       </div>
 
       {/* CDX indices */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>CDX Index Snapshot</SectionTitle>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-lg p-3 space-y-1">
@@ -1117,7 +1117,7 @@ function TRSPage() {
       </div>
 
       {/* P&L scenarios chart */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>Leveraged P&amp;L by Asset Return Scenario</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
           <line x1={pad.l} y1={midY} x2={W - pad.r} y2={midY} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
@@ -1147,7 +1147,7 @@ function TRSPage() {
       </div>
 
       {/* Structure explanation */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>TRS Structure &amp; Regulatory Context</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-foreground/70">
           <div className="space-y-2">
@@ -1331,7 +1331,7 @@ function SwaptionsPage() {
       </div>
 
       {/* Vol surface heatmap */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3 overflow-x-auto">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3 overflow-x-auto">
         <SectionTitle>Implied Swaption Vol Surface (%)</SectionTitle>
         <svg
           width={SWAP_TENORS.length * cellW + 60}
@@ -1574,14 +1574,14 @@ function InflationSwapsPage() {
 
       {/* Inflation cap/floor */}
       <div className="grid grid-cols-2 gap-3">
-        <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
+        <div className="bg-foreground/5 rounded-md p-4 space-y-2">
           <div className="text-xs text-foreground/40 uppercase tracking-wide">Inflation Cap (≥{capStrike}% CPI)</div>
           <div className="text-xl font-medium text-amber-300">
             ${(results.capPV / 1000).toFixed(0)}K
           </div>
           <p className="text-xs text-foreground/50">Protects against CPI above {capStrike}% — e.g. pension paying real benefits</p>
         </div>
-        <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
+        <div className="bg-foreground/5 rounded-md p-4 space-y-2">
           <div className="text-xs text-foreground/40 uppercase tracking-wide">Inflation Floor (≤{floorStrike}% CPI)</div>
           <div className="text-xl font-medium text-sky-300">
             ${(results.floorPV / 1000).toFixed(0)}K
@@ -1591,7 +1591,7 @@ function InflationSwapsPage() {
       </div>
 
       {/* Inflation swap curve */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3">
         <SectionTitle>Market-Implied Inflation Expectations Curve</SectionTitle>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
           {[2.4, 2.6, 2.8, 3.0].map((r) => {
@@ -1633,7 +1633,7 @@ function InflationSwapsPage() {
       </div>
 
       {/* TIPS breakeven */}
-      <div className="bg-foreground/5 rounded-xl p-4 space-y-3 overflow-x-auto">
+      <div className="bg-foreground/5 rounded-md p-4 space-y-3 overflow-x-auto">
         <SectionTitle>TIPS Breakeven Inflation (nominal − TIPS yield)</SectionTitle>
         <table className="w-full text-sm">
           <thead>

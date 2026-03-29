@@ -295,7 +295,7 @@ function EvidenceTab() {
   return (
     <div className="space-y-6">
       {/* SPIVA Scorecard */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <BarChart2 className="w-4 h-4 text-primary" />
           <h3 className="font-semibold text-foreground">SPIVA Scorecard — The Long Game</h3>
@@ -304,7 +304,7 @@ function EvidenceTab() {
       </div>
 
       {/* EMH */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Info className="w-4 h-4 text-primary" />
           <h3 className="font-semibold text-foreground">Efficient Market Hypothesis</h3>
@@ -345,7 +345,7 @@ function EvidenceTab() {
       </div>
 
       {/* Why Active Managers Struggle */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <XCircle className="w-4 h-4 text-red-400" />
           <h3 className="font-medium text-foreground">Why Active Managers Struggle</h3>
@@ -366,7 +366,7 @@ function EvidenceTab() {
       </div>
 
       {/* Bright Spots */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <CheckCircle className="w-4 h-4 text-green-400" />
           <h3 className="font-medium text-foreground">Bright Spots for Active Management</h3>
@@ -472,7 +472,7 @@ function IndexMechanicsTab() {
   return (
     <div className="space-y-6">
       {/* Market Cap Weighting */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Scale className="w-4 h-4 text-primary" />
           <h3 className="font-medium text-foreground">Market Cap Weighting Mechanics</h3>
@@ -530,7 +530,7 @@ function IndexMechanicsTab() {
       </div>
 
       {/* ETF Creation/Redemption */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Zap className="w-4 h-4 text-yellow-400" />
           <h3 className="font-medium text-foreground">ETF Creation / Redemption Arbitrage</h3>
@@ -549,7 +549,7 @@ function IndexMechanicsTab() {
       </div>
 
       {/* Tracking Error Sources */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <BarChart2 className="w-4 h-4 text-primary" />
           <h3 className="font-medium text-foreground">Tracking Error Sources (basis points per year)</h3>
@@ -577,7 +577,7 @@ function IndexMechanicsTab() {
       </div>
 
       {/* Index Provider Concentration */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Layers className="w-4 h-4 text-amber-400" />
           <h3 className="font-medium text-foreground">Index Provider Concentration Risk</h3>
@@ -733,7 +733,7 @@ function FactorTab() {
   return (
     <div className="space-y-6">
       {/* Factor Overview */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-primary" />
           <h3 className="font-medium text-foreground">Factor Investing — The Middle Ground</h3>
@@ -747,7 +747,7 @@ function FactorTab() {
               key={f.name}
               onClick={() => setSelectedFactor(selectedFactor?.name === f.name ? null : f)}
               className={cn(
-                "p-3 rounded-xl border text-left transition-all",
+                "p-3 rounded-md border text-left transition-all",
                 selectedFactor?.name === f.name
                   ? "border-current bg-muted"
                   : "border-border bg-muted/50 hover:border-border"
@@ -770,7 +770,7 @@ function FactorTab() {
               className="overflow-hidden"
             >
               <div
-                className="mt-4 p-4 rounded-xl border"
+                className="mt-4 p-4 rounded-md border"
                 style={{ borderColor: selectedFactor.color + "44", backgroundColor: selectedFactor.color + "11" }}
               >
                 <p className="text-sm font-medium text-foreground mb-1">{selectedFactor.name} Factor</p>
@@ -795,7 +795,7 @@ function FactorTab() {
       </div>
 
       {/* Crowding vs Persistence */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           <h3 className="font-medium text-foreground">Factor Crowding vs Persistence</h3>
@@ -807,7 +807,7 @@ function FactorTab() {
       </div>
 
       {/* Factor Decay */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <TrendingDown className="w-4 h-4 text-red-400" />
           <h3 className="font-medium text-foreground">Factor Decay After Publication</h3>
@@ -819,7 +819,7 @@ function FactorTab() {
       </div>
 
       {/* Cost Comparison */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <DollarSign className="w-4 h-4 text-green-400" />
           <h3 className="font-medium text-foreground">Cost Spectrum: Passive → Active</h3>
@@ -845,7 +845,7 @@ function FactorTab() {
       </div>
 
       {/* Equal Weight vs Cap Weight */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Scale className="w-4 h-4 text-primary" />
           <h3 className="font-medium text-foreground">Equal Weight vs Cap Weight</h3>
@@ -1081,7 +1081,7 @@ function FeeImpactTab() {
   return (
     <div className="space-y-6">
       {/* Fee Drag Chart */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <TrendingDown className="w-4 h-4 text-red-400" />
           <h3 className="font-medium text-foreground">The Compound Fee Drag Over 40 Years</h3>
@@ -1092,7 +1092,7 @@ function FeeImpactTab() {
           {feeImpact.map((ft) => (
             <div
               key={ft.label}
-              className="p-3 rounded-xl border text-center"
+              className="p-3 rounded-md border text-center"
               style={{ borderColor: ft.color + "44", backgroundColor: ft.color + "11" }}
             >
               <p className="text-xs text-muted-foreground mb-1">{ft.example}</p>
@@ -1117,7 +1117,7 @@ function FeeImpactTab() {
       </div>
 
       {/* Tax Efficiency */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <DollarSign className="w-4 h-4 text-green-400" />
           <h3 className="font-medium text-foreground">Tax Efficiency Comparison</h3>
@@ -1155,7 +1155,7 @@ function FeeImpactTab() {
               notes: "Hold individual stocks. Harvest losses daily to offset gains elsewhere. Available at $250K+ minimums via Parametric, Aperio.",
             },
           ].map((item) => (
-            <div key={item.type} className={cn("p-4 rounded-xl border bg-card/50", item.color)}>
+            <div key={item.type} className={cn("p-4 rounded-md border bg-card/50", item.color)}>
               <div className="flex items-center justify-between mb-3">
                 <p className="font-medium text-foreground text-sm">{item.type}</p>
                 <span className={cn("text-xs font-medium", item.badgeColor)}>{item.badge}</span>
@@ -1181,7 +1181,7 @@ function FeeImpactTab() {
       </div>
 
       {/* When to Use Active */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Target className="w-4 h-4 text-amber-400" />
           <h3 className="font-medium text-foreground">When Active Management Makes Sense</h3>
@@ -1200,7 +1200,7 @@ function FeeImpactTab() {
       </div>
 
       {/* Core-Satellite Construction */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Layers className="w-4 h-4 text-primary" />
           <h3 className="font-medium text-foreground">Core-Satellite Portfolio Construction</h3>
@@ -1212,7 +1212,7 @@ function FeeImpactTab() {
       </div>
 
       {/* Behavioral Benefits */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-4">
           <CheckCircle className="w-4 h-4 text-green-400" />
           <h3 className="font-medium text-foreground">Behavioral Benefits of Passive Investing</h3>
@@ -1228,7 +1228,7 @@ function FeeImpactTab() {
           ))}
         </ul>
 
-        <div className="mt-4 p-4 rounded-xl bg-primary/10 border border-primary/20">
+        <div className="mt-4 p-4 rounded-md bg-primary/10 border border-primary/20">
           <p className="text-sm font-medium text-primary mb-1">The Verdict</p>
           <p className="text-sm text-muted-foreground">
             For most investors, a low-cost passive core (70–85%) combined with selective factor tilts (10–20%) and minimal active satellite positions (5–10%) delivers the best risk-adjusted, after-tax, long-term outcome. The key insight: <strong className="text-foreground">the cost of &quot;doing nothing&quot; is often lower than the cost of &quot;doing something.&quot;</strong>
@@ -1253,7 +1253,7 @@ export default function ActivePassivePage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-primary/15 border border-primary/30 flex items-center justify-center">
               <Scale className="w-5 h-5 text-primary" />
             </div>
             <div>
@@ -1263,14 +1263,14 @@ export default function ActivePassivePage() {
           </div>
 
           {/* Key stats strip — HERO */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4 border-l-4 border-l-primary rounded-md bg-card p-6">
             {[
               { label: "Active funds underperform (20Y)", value: "92%", color: "text-red-400", sub: "US Large Cap SPIVA" },
               { label: "Vanguard VOO expense ratio", value: "0.03%", color: "text-green-400", sub: "vs 1%+ active avg" },
               { label: "Factor premiums post-publish", value: "−58%", color: "text-amber-400", sub: "vs in-sample (McLean)" },
               { label: "Fee gap over 40 years", value: "$1.7M", color: "text-primary", sub: "$100K at 0.05% vs 2%" },
             ].map((stat) => (
-              <div key={stat.label} className="p-3 rounded-xl bg-muted/30 border border-border">
+              <div key={stat.label} className="p-3 rounded-md bg-muted/30 border border-border">
                 <p className={cn("text-xl font-medium", stat.color)}>{stat.value}</p>
                 <p className="text-xs text-muted-foreground mt-0.5 leading-tight">{stat.label}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>

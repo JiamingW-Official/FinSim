@@ -76,7 +76,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-muted/30 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-muted/30 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -305,7 +305,7 @@ function AssetClassesTab() {
         <SectionTitle>
           <Layers size={14} /> Infrastructure Taxonomy
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
+        <div className="rounded-md border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full max-w-2xl mx-auto" style={{ minWidth: 500 }}>
             {/* Title */}
             <text x={svgW / 2} y={22} textAnchor="middle" fill="#e2e8f0" fontSize={13} fontWeight={600}>
@@ -390,7 +390,7 @@ function AssetClassesTab() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className={cn(
-                "rounded-xl border p-3 text-left transition-colors",
+                "rounded-md border p-3 text-left transition-colors",
                 selectedSector === sec.name
                   ? "border-primary/60 bg-primary/15"
                   : "border-border bg-muted/30 hover:border-border"
@@ -420,7 +420,7 @@ function AssetClassesTab() {
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="mt-3 rounded-xl border border-border bg-foreground/5 p-4"
+              className="mt-3 rounded-md border border-border bg-foreground/5 p-4"
             >
               <div className="flex items-start gap-3">
                 <span className="text-2xl">{selected.icon}</span>
@@ -448,7 +448,7 @@ function AssetClassesTab() {
           <SectionTitle>
             <TrendingUp size={14} /> Global Infrastructure AUM 2015–2024
           </SectionTitle>
-          <div className="rounded-xl border border-border bg-muted/30 p-4">
+          <div className="rounded-md border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${aumW} ${aumH}`} className="w-full">
               {/* Grid */}
               {[400, 600, 800, 1000, 1200].map((v) => (
@@ -498,7 +498,7 @@ function AssetClassesTab() {
           <SectionTitle>
             <Activity size={14} /> Return vs Volatility Scatter
           </SectionTitle>
-          <div className="rounded-xl border border-border bg-muted/30 p-4">
+          <div className="rounded-md border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${scW} ${scH}`} className="w-full">
               {/* Grid */}
               {[5, 8, 11, 14, 17].map((v) => (
@@ -563,7 +563,7 @@ function AssetClassesTab() {
           {RISK_TIERS.map((tier) => (
             <div
               key={tier.tier}
-              className="rounded-xl border border-border bg-muted/30 p-4 flex flex-col md:flex-row md:items-center gap-3"
+              className="rounded-md border border-border bg-muted/30 p-4 flex flex-col md:flex-row md:items-center gap-3"
             >
               <div className="flex items-center gap-3 min-w-[160px]">
                 <div
@@ -678,7 +678,7 @@ function ProjectFinanceTab() {
         <SectionTitle>
           <Layers size={14} /> SPV / Project Finance Structure
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
+        <div className="rounded-md border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${spvW} ${spvH}`} className="w-full" style={{ minWidth: 480 }}>
             {/* Equity Sponsors */}
             <rect x={10} y={10} width={110} height={50} rx={8} fill="#6366f120" stroke="#6366f1" strokeWidth={1.5} />
@@ -744,7 +744,7 @@ function ProjectFinanceTab() {
         <SectionTitle>
           <Activity size={14} /> Construction vs Operations Phase Risk
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
+        <div className="rounded-md border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${phW} ${phH}`} className="w-full" style={{ minWidth: 400 }}>
             {/* Phase blocks */}
             <rect x={10} y={20} width={220} height={100} rx={8} fill="#f43f5e18" stroke="#f43f5e" strokeWidth={1.5} />
@@ -818,7 +818,7 @@ function ProjectFinanceTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-3 gap-3">
           {RESERVE_ACCOUNTS.map((ra) => (
-            <div key={ra.name} className="rounded-xl border border-border bg-muted/30 p-4">
+            <div key={ra.name} className="rounded-md border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Badge variant="outline" className="font-mono text-xs">{ra.name}</Badge>
                 <span className="text-xs text-muted-foreground">{ra.months}</span>
@@ -837,7 +837,7 @@ function ProjectFinanceTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-3 gap-3">
           {PPP_MODELS.map((m) => (
-            <div key={m.name} className="rounded-xl border border-border bg-muted/30 p-4">
+            <div key={m.name} className="rounded-md border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <Badge style={{ backgroundColor: m.color + "33", borderColor: m.color + "66", color: m.color }}>
                   {m.name}
@@ -1005,7 +1005,7 @@ function EnergyTransitionTab() {
         <SectionTitle>
           <Sun size={14} /> LCOE Convergence: Renewables vs. Conventional ($/MWh)
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-muted/30 p-4 overflow-x-auto">
+        <div className="rounded-md border border-border bg-muted/30 p-4 overflow-x-auto">
           <svg viewBox={`0 0 ${lcoeW} ${lcoeH}`} className="w-full" style={{ minWidth: 420 }}>
             {/* Grid */}
             {[0, 50, 100, 150, 200, 250, 300].map((v) => (
@@ -1078,7 +1078,7 @@ function EnergyTransitionTab() {
           <SectionTitle>
             <Zap size={14} /> Battery Storage Cost Curve ($/kWh)
           </SectionTitle>
-          <div className="rounded-xl border border-border bg-muted/30 p-4">
+          <div className="rounded-md border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${batW} ${batH}`} className="w-full">
               {[0, 200, 400, 600, 800, 1000].map((v) => (
                 <g key={v}>
@@ -1125,7 +1125,7 @@ function EnergyTransitionTab() {
           <SectionTitle>
             <Globe size={14} /> Annual Investment Opportunity Sizing ($B)
           </SectionTitle>
-          <div className="rounded-xl border border-border bg-muted/30 p-4">
+          <div className="rounded-md border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${oppW} ${oppH}`} className="w-full">
               {OPPORTUNITY_SIZING.map((item, i) => {
                 const barWidth = (item.value / 1000) * oppInnerW;
@@ -1158,7 +1158,7 @@ function EnergyTransitionTab() {
         </SectionTitle>
         <div className="grid md:grid-cols-2 gap-3">
           {POLICY_SUPPORT.map((policy) => (
-            <div key={policy.name} className="rounded-xl border border-border bg-muted/30 p-4">
+            <div key={policy.name} className="rounded-md border border-border bg-muted/30 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium text-foreground">{policy.name}</span>
                 <Badge
@@ -1298,7 +1298,7 @@ function InstitutionalTab() {
           {FUND_MANAGERS.map((fm) => (
             <div
               key={fm.name}
-              className="rounded-xl border border-border bg-muted/30 p-4 flex flex-col md:flex-row md:items-center gap-3"
+              className="rounded-md border border-border bg-muted/30 p-4 flex flex-col md:flex-row md:items-center gap-3"
             >
               <div
                 className="w-2 h-10 rounded flex-shrink-0 hidden md:block"
@@ -1327,7 +1327,7 @@ function InstitutionalTab() {
           <SectionTitle>
             <PiggyBank size={14} /> Pension Fund Infrastructure Allocations
           </SectionTitle>
-          <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-muted/30 p-4 space-y-3">
             {PENSION_ALLOC.map((pf) => {
               const currentW = (pf.allocation / 25) * 100;
               const targetW = (pf.target / 25) * 100;
@@ -1365,7 +1365,7 @@ function InstitutionalTab() {
           <SectionTitle>
             <TrendingDown size={14} /> J-Curve: Cumulative Capital Position
           </SectionTitle>
-          <div className="rounded-xl border border-border bg-muted/30 p-4">
+          <div className="rounded-md border border-border bg-muted/30 p-4">
             <svg viewBox={`0 0 ${jcW} ${jcH}`} className="w-full">
               {/* Grid */}
               {[-100, 0, 100, 200, 300, 400].map((v) => (
@@ -1452,7 +1452,7 @@ function InstitutionalTab() {
         <SectionTitle>
           <BarChart3 size={14} /> Infrastructure in 60/40 Portfolio Context
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-muted/30 p-4">
+        <div className="rounded-md border border-border bg-muted/30 p-4">
           <div className="flex flex-col md:flex-row gap-6 items-start">
             <div className="flex-shrink-0">
               <svg viewBox={`0 0 ${psW} ${psH}`} className="w-full" style={{ maxWidth: 400 }}>
@@ -1516,7 +1516,7 @@ function InstitutionalTab() {
         <SectionTitle>
           <Globe size={14} /> Listed vs Unlisted Infrastructure Comparison
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-muted/30 overflow-hidden">
+        <div className="rounded-md border border-border bg-muted/30 overflow-hidden">
           <div className="grid grid-cols-4 bg-foreground/10 text-xs font-medium text-muted-foreground px-4 py-2">
             <span>Attribute</span>
             <span className="text-center text-primary">Listed</span>
@@ -1599,7 +1599,7 @@ function InstitutionalTab() {
                 color: "#3b82f6",
               },
             ].map((fee) => (
-              <div key={fee.type} className="rounded-xl border border-border bg-muted/30 p-3">
+              <div key={fee.type} className="rounded-md border border-border bg-muted/30 p-3">
                 <div className="flex items-center gap-2 mb-2">
                   <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: fee.color }} />
                   <span className="text-sm font-medium text-foreground">{fee.type}</span>
@@ -1638,7 +1638,7 @@ export default function InfraInvestingPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/20 border border-border">
+          <div className="flex items-center justify-center w-10 h-10 rounded-md bg-primary/20 border border-border">
             <Building2 size={20} className="text-primary" />
           </div>
           <div>
@@ -1663,7 +1663,7 @@ export default function InfraInvestingPage() {
       </motion.div>
 
       {/* Hero */}
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <h2 className="text-lg font-medium text-foreground mb-1">Asset Classes &amp; Project Finance</h2>
         <p className="text-sm text-muted-foreground">Explore infrastructure asset classes, project finance structures, energy transition investments, and institutional allocation strategies.</p>
       </div>

@@ -23,7 +23,7 @@ export function SeasonProgress() {
     : 100;
 
   return (
-    <div className="rounded-xl border border-border bg-card p-3">
+    <div className="rounded-md border border-border bg-card p-3">
       {/* Header */}
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5">

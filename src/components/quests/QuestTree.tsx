@@ -733,7 +733,7 @@ function QuestDetailPanel({
       animate={{ x: 0, opacity: 1 }}
       exit={{ x: 72, opacity: 0 }}
       transition={{ type: "spring", stiffness: 320, damping: 28 }}
-      className="w-[300px] shrink-0 rounded-xl border border-border bg-card flex flex-col overflow-hidden"
+      className="w-[300px] shrink-0 rounded-md border border-border bg-card flex flex-col overflow-hidden"
     >
       {/* Header */}
       <div
@@ -937,7 +937,7 @@ function AchievementCard({ achievement }: { achievement: { id: string; name: str
   return (
     <div
       className={cn(
-        "shrink-0 w-40 rounded-xl border p-3 flex flex-col gap-2 transition-all hover:scale-[1.02]",
+        "shrink-0 w-40 rounded-md border p-3 flex flex-col gap-2 transition-all hover:scale-[1.02]",
         RARITY_COLORS[rarity],
       )}
     >
@@ -1116,7 +1116,7 @@ export function QuestTree() {
       {/* ── Main layout: SVG tree + detail panel side-by-side ── */}
       <div className="flex gap-4 items-start">
         {/* SVG Tree */}
-        <div className="flex-1 min-w-0 rounded-xl border border-border bg-card overflow-hidden">
+        <div className="flex-1 min-w-0 rounded-md border border-border bg-card overflow-hidden">
           <div className="px-4 pt-3 pb-2 border-b border-border">
             <p className="text-xs font-bold text-foreground">Quest Skill Tree</p>
             <p className="text-[11px] text-muted-foreground">
@@ -1361,7 +1361,7 @@ export function QuestTree() {
       </div>
 
       {/* ── Achievement Showcase ── */}
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="rounded-md border border-border bg-card overflow-hidden">
         <div className="px-4 pt-3 pb-2 border-b border-border flex items-center justify-between">
           <div>
             <p className="text-xs font-bold text-foreground">Achievement Showcase</p>
@@ -1424,7 +1424,7 @@ export function QuestTree() {
       </div>
 
       {/* ── Seasonal Challenges (collapsible) ── */}
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="rounded-md border border-border bg-card overflow-hidden">
         <button
           type="button"
           onClick={() => setSeasonExpanded((v) => !v)}

@@ -642,7 +642,7 @@ function ROICalculator() {
   const payback = netSavings > 0 ? (toolCost / savings * 12).toFixed(1) : "N/A";
 
   return (
-    <div className="bg-card rounded-xl border border-border p-5 space-y-4">
+    <div className="bg-card rounded-md border border-border p-5 space-y-4">
       <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
         <DollarSign className="w-4 h-4 text-green-400" />
         RegTech ROI Calculator
@@ -734,7 +734,7 @@ function AMLKYCTab() {
           { label: "KYC Onboarding (Auto)", value: "2 hrs", icon: <Zap className="w-4 h-4 text-green-400" />, color: "text-green-400" },
           { label: "False Positive Rate (rules)", value: "~92%", icon: <XCircle className="w-4 h-4 text-rose-400" />, color: "text-rose-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+          <div key={kpi.label} className="bg-card rounded-md border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
@@ -742,8 +742,8 @@ function AMLKYCTab() {
       </div>
 
       {/* Flow Diagram */}
-      <div className="bg-card rounded-xl border border-border p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
+      <div className="bg-card rounded-md border border-border p-6 border-l-4 border-l-primary">
+        <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
           <Network className="w-4 h-4 text-primary" />
           AML Transaction Monitoring Flow
         </h3>
@@ -751,7 +751,7 @@ function AMLKYCTab() {
       </div>
 
       {/* False Positive Chart */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <Filter className="w-4 h-4 text-primary" />
           False Positive Rate: Rule-Based vs ML (Year 1–10)
@@ -763,7 +763,7 @@ function AMLKYCTab() {
       </div>
 
       {/* KYC Comparison */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           KYC Onboarding Time Comparison
@@ -793,7 +793,7 @@ function AMLKYCTab() {
       </div>
 
       {/* Customer Risk Score Factors */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BarChart2 className="w-4 h-4 text-primary" />
           Customer Risk Scoring Model — 10 Factors
@@ -818,7 +818,7 @@ function AMLKYCTab() {
       </div>
 
       {/* AML Fines Table */}
-      <div className="bg-card rounded-xl border border-border p-5 overflow-x-auto">
+      <div className="bg-card rounded-md border border-border p-5 overflow-x-auto">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Top AML/Sanctions Fines in History
@@ -859,7 +859,7 @@ function RegulatoryReportingTab() {
           { label: "COREP Deadline", value: "T+15d", icon: <Clock className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
           { label: "MiFID II Reporting", value: "T+1d", icon: <Zap className="w-4 h-4 text-green-400" />, color: "text-green-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+          <div key={kpi.label} className="bg-card rounded-md border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
@@ -867,7 +867,7 @@ function RegulatoryReportingTab() {
       </div>
 
       {/* Reporting Timeline */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Clock className="w-4 h-4 text-primary" />
           Regulatory Reporting Timeline — COREP / FINREP / MiFID II / EMIR
@@ -876,7 +876,7 @@ function RegulatoryReportingTab() {
       </div>
 
       {/* Data Lineage Diagram */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Database className="w-4 h-4 text-primary" />
           Data Lineage for Regulatory Reporting
@@ -923,7 +923,7 @@ function RegulatoryReportingTab() {
       </div>
 
       {/* Rule Changes Chart */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-primary" />
           Global Regulatory Rule Changes per Year (2010–2024)
@@ -935,7 +935,7 @@ function RegulatoryReportingTab() {
       </div>
 
       {/* Compliance Cost Trend */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-rose-400" />
           Cost of Compliance as % of Revenue (2015–2024)
@@ -963,7 +963,7 @@ function SanctionsTab() {
           { label: "Adverse Media Sources", value: "100k+", icon: <Globe className="w-4 h-4 text-primary" />, color: "text-primary" },
           { label: "ML Screening FPR", value: "3%", icon: <CheckCircle className="w-4 h-4 text-green-400" />, color: "text-green-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+          <div key={kpi.label} className="bg-card rounded-md border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
@@ -971,7 +971,7 @@ function SanctionsTab() {
       </div>
 
       {/* Sanction List Sizes */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Globe className="w-4 h-4 text-primary" />
           Global Sanctions List Sizes
@@ -999,7 +999,7 @@ function SanctionsTab() {
       </div>
 
       {/* Name Matching Algorithms */}
-      <div className="bg-card rounded-xl border border-border overflow-hidden">
+      <div className="bg-card rounded-md border border-border overflow-hidden">
         <div className="p-5 border-b border-border">
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Search className="w-4 h-4 text-primary" />
@@ -1045,7 +1045,7 @@ function SanctionsTab() {
       </div>
 
       {/* Real-time vs Batch */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Zap className="w-4 h-4 text-primary" />
           Real-Time vs Batch Screening Comparison
@@ -1067,7 +1067,7 @@ function SanctionsTab() {
               cons: ["Higher infrastructure cost", "Latency must be <200ms", "Alert management overhead"],
             },
           ].map((item) => (
-            <div key={item.mode} className={`rounded-xl border ${item.color} bg-muted/50 p-4`}>
+            <div key={item.mode} className={`rounded-md border ${item.color} bg-muted/50 p-4`}>
               <div className="flex items-center gap-2 mb-3">
                 {item.icon}
                 <span className="text-sm font-medium text-foreground">{item.mode}</span>
@@ -1095,7 +1095,7 @@ function SanctionsTab() {
 
       {/* PEP + Adverse Media */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-card rounded-xl border border-border p-5">
+        <div className="bg-card rounded-md border border-border p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Users className="w-4 h-4 text-primary" />
             PEP Screening
@@ -1127,7 +1127,7 @@ function SanctionsTab() {
             ))}
           </div>
         </div>
-        <div className="bg-card rounded-xl border border-border p-5">
+        <div className="bg-card rounded-md border border-border p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Eye className="w-4 h-4 text-primary" />
             Adverse Media Monitoring
@@ -1174,7 +1174,7 @@ function MarketFutureTab() {
           { label: "AI/NLP Adoption in Regs", value: "41%", icon: <Cpu className="w-4 h-4 text-primary" />, color: "text-primary" },
           { label: "FCA Sandbox Firms Funded", value: "280+", icon: <Building2 className="w-4 h-4 text-amber-400" />, color: "text-amber-400" },
         ].map((kpi) => (
-          <div key={kpi.label} className="bg-card rounded-xl border border-border p-4">
+          <div key={kpi.label} className="bg-card rounded-md border border-border p-4">
             <div className="flex items-center gap-2 mb-1">{kpi.icon}<p className="text-xs text-muted-foreground">{kpi.label}</p></div>
             <p className={`text-xl font-medium ${kpi.color}`}>{kpi.value}</p>
           </div>
@@ -1182,7 +1182,7 @@ function MarketFutureTab() {
       </div>
 
       {/* Funding by Sector Donut */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-primary" />
           RegTech Funding by Sector
@@ -1191,7 +1191,7 @@ function MarketFutureTab() {
       </div>
 
       {/* Top Vendors */}
-      <div className="bg-card rounded-xl border border-border overflow-hidden">
+      <div className="bg-card rounded-md border border-border overflow-hidden">
         <div className="p-5 border-b border-border">
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
@@ -1231,7 +1231,7 @@ function MarketFutureTab() {
       </div>
 
       {/* AI/NLP in Regulatory Interpretation */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Cpu className="w-4 h-4 text-primary" />
           AI/NLP in Regulatory Interpretation
@@ -1257,7 +1257,7 @@ function MarketFutureTab() {
               adoption: 21,
             },
           ].map((item) => (
-            <div key={item.use} className="bg-muted/50 rounded-xl border border-border p-4">
+            <div key={item.use} className="bg-muted/50 rounded-md border border-border p-4">
               <div className="flex justify-between items-start mb-2">
                 <span className="text-sm font-medium text-foreground">{item.use}</span>
                 <Badge variant="outline" className={`text-xs shrink-0 ml-2 ${
@@ -1289,7 +1289,7 @@ function MarketFutureTab() {
       </div>
 
       {/* Regulatory Sandbox Participation */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-primary" />
           Regulatory Sandbox Participation
@@ -1315,7 +1315,7 @@ function MarketFutureTab() {
 
       {/* SupTech & Talent Gap */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="bg-card rounded-xl border border-border p-5">
+        <div className="bg-card rounded-md border border-border p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Eye className="w-4 h-4 text-primary" />
             SupTech (Supervisory Tech) Adoption
@@ -1345,7 +1345,7 @@ function MarketFutureTab() {
             ))}
           </div>
         </div>
-        <div className="bg-card rounded-xl border border-border p-5">
+        <div className="bg-card rounded-md border border-border p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Users className="w-4 h-4 text-amber-400" />
             Talent Gap Challenge
@@ -1393,7 +1393,7 @@ export default function RegtechPage() {
         transition={{ duration: 0.4 }}
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-primary/20 border border-primary/40 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-md bg-primary/20 border border-primary/40 flex items-center justify-center">
             <ShieldCheck className="w-5 h-5 text-primary" />
           </div>
           <div>

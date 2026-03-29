@@ -403,7 +403,7 @@ export default function DerivPricingLabPage() {
         transition={{ duration: 0.4 }}
         className="flex items-center gap-4"
       >
-        <div className="p-2.5 rounded-xl bg-primary/10 border border-border">
+        <div className="p-2.5 rounded-md bg-primary/10 border border-border">
           <FlaskConical className="w-6 h-6 text-primary" />
         </div>
         <div>

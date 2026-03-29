@@ -92,7 +92,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -269,7 +269,7 @@ function YieldDashboard() {
       </div>
 
       {/* TVL trend chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
           <SectionTitle>DeFi Ecosystem TVL — 12 Months</SectionTitle>
         </div>
@@ -383,7 +383,7 @@ function YieldDashboard() {
       </div>
 
       {/* Opportunities table */}
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border text-xs text-muted-foreground">
@@ -510,7 +510,7 @@ function LiquidityPoolSimulator() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Inputs */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-4">
           <SectionTitle>LP Configuration</SectionTitle>
           <div>
             <label className="text-xs text-muted-foreground mb-1 block">Token Pair</label>
@@ -597,7 +597,7 @@ function LiquidityPoolSimulator() {
         </div>
 
         {/* IL Formula Visualization */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>IL Formula: IL = 2√r/(1+r) - 1</SectionTitle>
           <svg viewBox={`0 0 ${ilCurveW} ${ilCurveH + 20}`} className="w-full h-36">
             {/* Zero line */}
@@ -638,7 +638,7 @@ function LiquidityPoolSimulator() {
       </div>
 
       {/* Scenario table */}
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-x-auto">
         <div className="p-4 border-b border-border">
           <SectionTitle>Price Change Scenarios — {pair.label} @ {fmtUSD(lpAmount, 0)} Deposit</SectionTitle>
         </div>
@@ -785,7 +785,7 @@ function StakingCalculator() {
             key={opt.symbol}
             onClick={() => { setSelectedAsset(i); setUseLiquidStaking(false); }}
             className={cn(
-              "p-3 rounded-xl border text-left transition-colors",
+              "p-3 rounded-md border text-left transition-colors",
               selectedAsset === i
                 ? "border-indigo-500 bg-indigo-500/20"
                 : "border-border bg-foreground/5 hover:border-border"
@@ -800,7 +800,7 @@ function StakingCalculator() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Config */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-4">
           <SectionTitle>Staking Configuration</SectionTitle>
           <div className="p-3 rounded-lg bg-foreground/5 border border-border">
             <p className="text-sm font-medium text-foreground">{asset.name} ({asset.symbol})</p>
@@ -882,7 +882,7 @@ function StakingCalculator() {
       </div>
 
       {/* Compound chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>Monthly vs Annual Compounding — {years} Year Projection</SectionTitle>
         <svg viewBox={`0 0 ${chartW} ${chartH + 20}`} className="w-full h-32">
           <defs>
@@ -899,7 +899,7 @@ function StakingCalculator() {
       </div>
 
       {/* Alternatives */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>Staking vs Alternatives ({fmtUSD(amount, 0)} Investment)</SectionTitle>
         <div className="space-y-2">
           {ALTERNATIVES.map((alt) => {
@@ -926,7 +926,7 @@ function StakingCalculator() {
       </div>
 
       {/* Slashing risk */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle><AlertTriangle size={14} className="text-amber-400" /> Slashing Risk Scenarios</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -1050,7 +1050,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Utilization rate model */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>Utilization Rate Model — {market.protocol} {market.asset}</SectionTitle>
         <svg viewBox={`0 0 ${utilizationCurveW} ${utilizationCurveH + 20}`} className="w-full h-32">
           {/* Kink line */}
@@ -1075,7 +1075,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Health factor calculator */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle><Calculator size={14} /> Health Factor Calculator</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-4">
@@ -1120,7 +1120,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Recursive lending */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle><RefreshCw size={14} /> Recursive Lending (Leverage Loop)</SectionTitle>
         <div className="space-y-3">
           <div>
@@ -1151,7 +1151,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Flash loans */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle><Zap size={14} className="text-yellow-400" /> Flash Loan Mechanics</SectionTitle>
         <p className="text-xs text-muted-foreground mb-3">
           Flash loans are uncollateralized loans that must be borrowed and repaid within a single transaction block. If repayment fails, the entire transaction reverts.
@@ -1173,7 +1173,7 @@ function LendingAnalyzer() {
       </div>
 
       {/* Protocol hacks */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle><AlertTriangle size={14} className="text-rose-400" /> Historical Protocol Hacks</SectionTitle>
         <div className="space-y-2">
           {PROTOCOL_HACKS.map((hack) => (
@@ -1320,7 +1320,7 @@ function YieldStrategyBuilder() {
             key={st.name}
             onClick={() => setSelected(i)}
             className={cn(
-              "p-3 rounded-xl border text-left transition-colors",
+              "p-3 rounded-md border text-left transition-colors",
               selected === i ? COLOR_MAP[st.color] : "border-border bg-foreground/5 hover:border-border"
             )}
           >
@@ -1341,7 +1341,7 @@ function YieldStrategyBuilder() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Strategy steps */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>{strategy.label} — Strategy Steps</SectionTitle>
           <p className="text-xs text-muted-foreground mb-4">{strategy.description}</p>
           <div className="space-y-3">
@@ -1376,7 +1376,7 @@ function YieldStrategyBuilder() {
         </div>
 
         {/* APY comparison bars */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>Strategy APY Comparison</SectionTitle>
           <svg viewBox={`0 0 ${chartW} ${chartH + 20}`} className="w-full h-28">
             {PRESET_STRATEGIES.map((st, i) => {
@@ -1535,7 +1535,7 @@ function ProtocolRankings() {
       </div>
 
       {/* TVL leaderboard */}
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-x-auto">
         <div className="p-4 border-b border-border">
           <SectionTitle>DeFi Protocol Leaderboard — Top 15 by TVL</SectionTitle>
         </div>
@@ -1625,7 +1625,7 @@ function ProtocolRankings() {
       </div>
 
       {/* Revenue by category */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>Revenue by Category (30 days)</SectionTitle>
         <div className="space-y-2">
           {cats.map(([cat, rev]) => (
@@ -1646,7 +1646,7 @@ function ProtocolRankings() {
       </div>
 
       {/* DeFi vs CeFi comparison */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>DeFi vs CeFi Rate Comparison</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -1721,7 +1721,7 @@ export default function DefiPage() {
         >
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-md bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
                 <Droplets size={20} className="text-indigo-400" />
               </div>
               <div>

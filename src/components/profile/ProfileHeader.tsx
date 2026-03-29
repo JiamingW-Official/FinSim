@@ -18,11 +18,11 @@ export function ProfileHeader() {
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-5">
+      <div className="relative overflow-hidden rounded-md border border-border bg-card p-5">
         <div className="flex items-center gap-4">
           {/* Avatar */}
           <motion.div
-            className="flex h-16 w-16 items-center justify-center rounded-2xl text-3xl"
+            className="flex h-16 w-16 items-center justify-center rounded-md text-3xl"
             style={{ backgroundColor: `${avatarColor}20` }}
             initial={{ scale: 0, rotate: -15 }}
             animate={{ scale: 1, rotate: 0 }}

@@ -738,9 +738,9 @@ function StatArbTab() {
       </div>
 
       {/* Z-Score chart */}
-      <Card className="bg-card border-border">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
+      <Card className="bg-card border-border border-l-4 border-l-primary">
+        <CardHeader className="pb-2 p-6">
+          <CardTitle className="text-lg text-muted-foreground flex items-center gap-2">
             <Shuffle className="w-4 h-4 text-primary" />
             Spread Z-Score — Entry &amp; Exit Signals
           </CardTitle>

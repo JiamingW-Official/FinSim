@@ -55,7 +55,7 @@ export function PlayerStatsCard() {
   return (
     <motion.div
       className={cn(
-        "card-hover-glow rounded-xl border p-4",
+        "card-hover-glow rounded-md border p-4",
         league === "alpha" || league === "diamond"
           ? "border-primary/20"
           : "border-border bg-card/50",
@@ -69,7 +69,7 @@ export function PlayerStatsCard() {
         {/* Avatar */}
         <motion.div
           className={cn(
-            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-bold text-primary-foreground bg-primary",
+            "flex h-12 w-12 shrink-0 items-center justify-center rounded-md text-xl font-bold text-primary-foreground bg-primary",
             (league === "alpha" || league === "diamond") && "rotating-border",
           )}
           initial={{ scale: 0, rotate: -15 }}

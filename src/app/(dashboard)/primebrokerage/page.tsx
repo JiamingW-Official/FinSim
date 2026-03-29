@@ -736,9 +736,9 @@ export default function PrimeBrokeragePage() {
               <motion.div key="lending" variants={tabVariants} initial="hidden" animate="visible" exit="exit" className="space-y-4 mt-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   {/* Lendable Inventory Table */}
-                  <Card className="bg-card border-border">
-                    <CardHeader className="pb-2">
-                      <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
+                  <Card className="bg-card border-border border-l-4 border-l-primary">
+                    <CardHeader className="pb-2 p-6">
+                      <CardTitle className="text-lg font-semibold text-foreground flex items-center gap-2">
                         <BarChart3 className="w-4 h-4 text-indigo-400" />
                         Lendable Inventory
                       </CardTitle>
@@ -979,7 +979,7 @@ export default function PrimeBrokeragePage() {
                           ],
                         },
                       ].map((panel) => (
-                        <div key={panel.title} className={cn("rounded-xl border p-4 space-y-2", panel.color)}>
+                        <div key={panel.title} className={cn("rounded-md border p-4 space-y-2", panel.color)}>
                           <div className="flex justify-between items-center">
                             <h3 className={cn("font-medium text-sm", panel.titleColor)}>{panel.title}</h3>
                             <span className={cn("text-xl font-medium", panel.titleColor)}>{panel.pct}</span>
@@ -1224,7 +1224,7 @@ export default function PrimeBrokeragePage() {
                         <div
                           key={cat.category}
                           className={cn(
-                            "rounded-xl border p-3 space-y-2",
+                            "rounded-md border p-3 space-y-2",
                             cat.passed ? "border-emerald-500/30 bg-emerald-500/5" : "border-amber-500/30 bg-amber-500/5"
                           )}
                         >

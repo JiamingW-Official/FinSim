@@ -479,7 +479,7 @@ function ScreenerTab() {
       </div>
 
       {/* Distribution charts */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-foreground/[0.03] rounded-xl border border-border/50">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4 bg-foreground/[0.03] rounded-md border border-border/50">
         <DistributionBar stocks={filtered.length > 0 ? filtered : ALL_STOCKS} field="pe" label="P/E Distribution" />
         <DistributionBar stocks={filtered.length > 0 ? filtered : ALL_STOCKS} field="revenueGrowth" label="Revenue Growth %" />
         <DistributionBar stocks={filtered.length > 0 ? filtered : ALL_STOCKS} field="roe" label="ROE %" />
@@ -487,7 +487,7 @@ function ScreenerTab() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-xl border border-border/50 bg-foreground/[0.02]">
+      <div className="overflow-x-auto rounded-md border border-border/50 bg-foreground/[0.02]">
         <table className="w-full text-sm">
           <thead className="border-b border-border/50">
             <tr>
@@ -617,7 +617,7 @@ function ValueScreenTab() {
             key={vs.id}
             onClick={() => setActiveScreen(vs.id)}
             className={cn(
-              "text-left p-4 rounded-xl border transition-all",
+              "text-left p-4 rounded-md border transition-all",
               activeScreen === vs.id
                 ? "bg-primary/20 border-primary/50"
                 : "bg-foreground/[0.03] border-border/50 hover:bg-muted/30"
@@ -754,7 +754,7 @@ function GrowthScreenTab() {
             key={gs.id}
             onClick={() => setActiveScreen(gs.id)}
             className={cn(
-              "text-left p-4 rounded-xl border transition-all",
+              "text-left p-4 rounded-md border transition-all",
               activeScreen === gs.id
                 ? colorMap[gs.color]
                 : "bg-foreground/[0.03] border-border/50 hover:bg-muted/30"
@@ -882,7 +882,7 @@ function QualityScreenTab() {
             key={qs.id}
             onClick={() => setActiveScreen(qs.id)}
             className={cn(
-              "text-left p-3 rounded-xl border transition-all",
+              "text-left p-3 rounded-md border transition-all",
               activeScreen === qs.id
                 ? "bg-emerald-600/20 border-emerald-500/50"
                 : "bg-foreground/[0.03] border-border/50 hover:bg-muted/30"
@@ -1203,7 +1203,7 @@ function CustomScreenTab() {
           </div>
 
           {/* Match progress bar */}
-          <div className="p-3 bg-foreground/[0.03] rounded-xl border border-border/50">
+          <div className="p-3 bg-foreground/[0.03] rounded-md border border-border/50">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-foreground/50">Filter match rate</span>
               <span className="text-xs font-mono text-foreground/70">{results.length}/25</span>

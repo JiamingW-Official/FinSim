@@ -432,7 +432,7 @@ export default function InsuranceLinkedPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.08 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6"
         >
           <MetricCard
             label="ILS Market Size"

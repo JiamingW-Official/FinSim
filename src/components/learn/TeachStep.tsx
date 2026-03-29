@@ -73,7 +73,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
       {/* Visual diagram */}
       {VisualComponent && (
         <motion.div
-          className="glass rounded-xl border border-border overflow-hidden"
+          className="glass rounded-md border border-border overflow-hidden"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.35, delay: 0.08 }}
@@ -91,7 +91,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
             return (
               <motion.div
                 key={bi}
-                className="rounded-xl border border-border/40 bg-muted/25 px-4 py-3.5"
+                className="rounded-md border border-border/40 bg-muted/25 px-4 py-3.5"
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.28, delay }}
@@ -117,7 +117,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
           return (
             <motion.div
               key={bi}
-              className="rounded-xl border border-border/40 bg-muted/25 px-4 py-3.5"
+              className="rounded-md border border-border/40 bg-muted/25 px-4 py-3.5"
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.28, delay }}
@@ -160,7 +160,7 @@ export function TeachStepComponent({ step, onContinue }: { step: TeachStepType; 
       <motion.button
         type="button"
         onClick={onContinue}
-        className="mt-1 w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+        className="mt-1 w-full rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.01 }}

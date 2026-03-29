@@ -233,7 +233,7 @@ function SectionCard({
   className?: string;
 }) {
   return (
-    <div className={cn("bg-muted/40 border border-border/50 rounded-xl p-4", className)}>
+    <div className={cn("bg-muted/40 border border-border/50 rounded-md p-4", className)}>
       <div className="flex items-center gap-2 mb-4">
         <Icon className="w-4 h-4 text-indigo-400" />
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -878,7 +878,7 @@ export default function CryptoMarketIntelligence() {
         {/* BTC + ETH side by side scorecards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* BTC scorecard */}
-          <div className="p-4 bg-amber-400/5 border border-amber-400/20 rounded-xl">
+          <div className="p-4 bg-amber-400/5 border border-amber-400/20 rounded-md">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">₿</span>
               <h4 className="text-sm font-semibold text-amber-300">Bitcoin Network Health</h4>
@@ -901,7 +901,7 @@ export default function CryptoMarketIntelligence() {
           </div>
 
           {/* ETH scorecard */}
-          <div className="p-4 bg-indigo-400/5 border border-indigo-400/20 rounded-xl">
+          <div className="p-4 bg-indigo-400/5 border border-indigo-400/20 rounded-md">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">Ξ</span>
               <h4 className="text-sm font-semibold text-indigo-300">Ethereum Network Health</h4>

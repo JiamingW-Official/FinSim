@@ -270,7 +270,7 @@ function BlackSwanTab() {
   return (
     <div className="space-y-6">
       {/* Taleb Definition Card */}
-      <div className="rounded-xl border border-red-900/40 bg-red-950/20 p-4">
+      <div className="rounded-md border border-red-900/40 bg-red-950/20 p-4">
         <div className="flex items-start gap-3">
           <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-red-400" />
           <div>
@@ -285,7 +285,7 @@ function BlackSwanTab() {
       {/* Historical Events Table */}
       <div>
         <h3 className="text-sm font-semibold text-muted-foreground mb-3">Historical Tail Events</h3>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-card/60">
@@ -335,7 +335,7 @@ function BlackSwanTab() {
       </div>
 
       {/* Fat Tail Distribution */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-semibold text-muted-foreground mb-1">Fat Tail vs Normal Distribution</h3>
         <p className="text-xs text-muted-foreground mb-3">Real returns have heavier tails — extreme events occur far more often than a Gaussian model predicts.</p>
         <FatTailSVG />
@@ -346,7 +346,7 @@ function BlackSwanTab() {
       </div>
 
       {/* Correlation Breakdown */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Correlation Breakdown in Crises</h3>
         <p className="text-xs text-muted-foreground mb-3">In calm markets, assets appear diversified. During crises, correlations converge toward +1 — diversification fails precisely when you need it most.</p>
         <CorrelationMatrixSVG />
@@ -557,7 +557,7 @@ function HedgingInstrumentsTab() {
   return (
     <div className="space-y-6">
       {/* OTM Put Payoff */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">OTM Put Option Payoff Profiles</h3>
         <p className="text-xs text-muted-foreground mb-3">Deeper OTM puts cost less but require a larger drawdown to become profitable. The breakeven = Strike − Premium.</p>
         <OTMPutPayoffSVG />
@@ -571,7 +571,7 @@ function HedgingInstrumentsTab() {
             <motion.div
               key={i}
               className={cn(
-                "rounded-xl border p-3 cursor-pointer transition-colors",
+                "rounded-md border p-3 cursor-pointer transition-colors",
                 selected === i ? "border-primary bg-muted/40" : "border-border bg-card/30 hover:border-border"
               )}
               onClick={() => setSelected(selected === i ? null : i)}
@@ -613,14 +613,14 @@ function HedgingInstrumentsTab() {
       </div>
 
       {/* CTA Crisis Alpha */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">CTA / Trend Following Crisis Alpha</h3>
         <p className="text-xs text-muted-foreground mb-3">Systematic trend followers systematically go short risk assets during sustained downtrends, generating positive returns when markets crash.</p>
         <CTACrisisAlphaSVG />
       </div>
 
       {/* Variance Swap explainer */}
-      <div className="rounded-xl border border-orange-900/30 bg-orange-950/10 p-4">
+      <div className="rounded-md border border-orange-900/30 bg-orange-950/10 p-4">
         <div className="flex items-start gap-2">
           <Info className="h-4 w-4 text-orange-400 mt-0.5 shrink-0" />
           <div>
@@ -862,7 +862,7 @@ function CostBenefitTab() {
   return (
     <div className="space-y-6">
       {/* Drag cost */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Compound Drag Cost of Continuous Hedging</h3>
         <p className="text-xs text-muted-foreground mb-3">Paying 1–3%/year in option premium or fund fees creates a compounding drag. Over 20 years at 8% base return, a 3% hedge cost reduces final wealth by ~35%.</p>
         <DragCostSVG />
@@ -882,7 +882,7 @@ function CostBenefitTab() {
       </div>
 
       {/* 2-year backtest simulation */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Crisis Payoff Simulation (2-Year Backtest, 3 Crash Scenarios)</h3>
         <p className="text-xs text-muted-foreground mb-3">Seed-903 PRNG backtest. Red markers = crash events. Hedged portfolio absorbs 65% of each crash at the cost of 2%/yr drag.</p>
         <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
@@ -923,7 +923,7 @@ function CostBenefitTab() {
       </div>
 
       {/* Optimal hedge ratio */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Optimal Hedge Ratio vs Cost Tradeoff</h3>
         <p className="text-xs text-muted-foreground mb-3">Expected utility (protection benefit minus drag cost) peaks at roughly 15–20% hedge allocation. Beyond this, marginal cost exceeds marginal benefit.</p>
         <HedgeRatioSVG />
@@ -957,7 +957,7 @@ function CostBenefitTab() {
             body: "Selling a lower-strike put against your long put reduces premium cost by 40–60%, sacrificing protection below the short strike. Ideal when the portfolio manager expects a moderate correction, not a catastrophic tail event.",
           },
         ].map((card) => (
-          <div key={card.title} className={cn("rounded-xl border p-3", card.color)}>
+          <div key={card.title} className={cn("rounded-md border p-3", card.color)}>
             <p className={cn("text-xs font-medium mb-1", card.titleColor)}>{card.title}</p>
             <p className="text-xs text-muted-foreground leading-relaxed">{card.body}</p>
           </div>
@@ -1153,7 +1153,7 @@ function PortfolioConstructionTab() {
     <div className="space-y-6">
       {/* Convexity */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div className="rounded-xl border border-border bg-card/40 p-4">
+        <div className="rounded-md border border-border bg-card/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Zap className="h-4 w-4 text-yellow-400" />
             <h3 className="text-sm font-medium text-muted-foreground">Convexity as a Feature</h3>
@@ -1165,7 +1165,7 @@ function PortfolioConstructionTab() {
             <span className="text-yellow-400 text-xs font-mono">Convexity = dΔ/dS = Gamma × S</span>
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-card/40 p-4">
+        <div className="rounded-md border border-border bg-card/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Activity className="h-4 w-4 text-primary" />
             <h3 className="text-sm font-medium text-muted-foreground">Tail-Risk Parity</h3>
@@ -1183,14 +1183,14 @@ function PortfolioConstructionTab() {
       </div>
 
       {/* Asset performance in tail scenarios */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Tail Hedge Asset Performance by Crisis</h3>
         <p className="text-xs text-muted-foreground mb-3">Long-duration bonds and vol overlays have been the most reliable tail hedges historically. Note: bonds failed in 2022 (rate-driven crash).</p>
         <TailAssetPerformanceSVG />
       </div>
 
       {/* Regime-based hedging */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-2">Regime-Based Hedging Rules</h3>
         <div className="space-y-2">
           {[
@@ -1230,7 +1230,7 @@ function PortfolioConstructionTab() {
       </div>
 
       {/* Stress Test Heatmap */}
-      <div className="rounded-xl border border-border bg-card/40 p-4">
+      <div className="rounded-md border border-border bg-card/40 p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Stress Test Dashboard</h3>
         <p className="text-xs text-muted-foreground mb-3">Portfolio P&L (%) across 5 crisis scenarios for 4 hedge overlays. Green = less negative / positive; Red = larger loss.</p>
         <div className="overflow-x-auto">
@@ -1248,7 +1248,7 @@ function PortfolioConstructionTab() {
       </div>
 
       {/* Liquidity Premium */}
-      <div className="rounded-xl border border-amber-900/30 bg-amber-950/10 p-4">
+      <div className="rounded-md border border-amber-900/30 bg-amber-950/10 p-4">
         <div className="flex items-start gap-2">
           <DollarSign className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
           <div>
@@ -1275,7 +1275,7 @@ export default function TailRiskPage() {
       <div className="mx-auto max-w-5xl px-4 py-6 space-y-6">
         {/* Header */}
         <div className="flex items-start gap-4 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
-          <div className="rounded-xl bg-red-950/40 border border-red-900/40 p-3">
+          <div className="rounded-md bg-red-950/40 border border-red-900/40 p-3">
             <Shield className="h-6 w-6 text-red-400" />
           </div>
           <div>
@@ -1294,7 +1294,7 @@ export default function TailRiskPage() {
             { label: "Optimal Hedge Cost", value: "1–2%/yr", sub: "Annual drag budget", color: "text-yellow-400", icon: DollarSign },
             { label: "Universa 2020 Return", value: "+3,600%", sub: "Tail fund payoff", color: "text-green-400", icon: Zap },
           ].map(({ label, value, sub, color, icon: Icon }) => (
-            <div key={label} className="rounded-xl border border-border bg-card/40 p-3">
+            <div key={label} className="rounded-md border border-border bg-card/40 p-3">
               <div className="flex items-center gap-2 mb-1">
                 <Icon className={cn("h-3.5 w-3.5", color)} />
                 <span className="text-xs text-muted-foreground">{label}</span>

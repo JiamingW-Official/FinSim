@@ -1276,7 +1276,7 @@ export default function AnalyticsPage() {
                         ? "bg-amber-500/10 border-amber-800/50"
                         : "bg-red-500/10 border-red-800/50";
                     return (
-                      <div key={item.label} className={cn("rounded-xl border p-3 text-center", bgColor)}>
+                      <div key={item.label} className={cn("rounded-md border p-3 text-center", bgColor)}>
                         <Icon className={cn("w-4 h-4 mx-auto mb-1.5", color)} />
                         <div className={cn("text-2xl font-bold tabular-nums", color)}>{item.score}</div>
                         <div className="text-xs font-medium text-foreground mt-0.5">{item.label}</div>

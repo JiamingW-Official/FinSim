@@ -292,7 +292,7 @@ function MechanicsTab() {
       </div>
 
       {/* Lifecycle SVG Timeline */}
-      <div className="bg-card rounded-xl border border-border p-6">
+      <div className="bg-card rounded-md border border-border p-6">
         <h3 className="text-sm font-medium text-muted-foreground mb-5">SPAC Lifecycle</h3>
         <div className="overflow-x-auto">
           <svg width="720" height="180" viewBox="0 0 720 180" className="w-full">
@@ -364,7 +364,7 @@ function MechanicsTab() {
       {/* Key Structure Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Trust Account */}
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <Lock className="w-4 h-4 text-emerald-400" />
             <span className="text-sm font-medium text-foreground">Trust Account</span>
@@ -389,7 +389,7 @@ function MechanicsTab() {
         </div>
 
         {/* Sponsor Promote */}
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <DollarSign className="w-4 h-4 text-amber-400" />
             <span className="text-sm font-medium text-foreground">Sponsor Promote (20%)</span>
@@ -409,7 +409,7 @@ function MechanicsTab() {
         </div>
 
         {/* Warrants */}
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-foreground">Warrants</span>
@@ -436,7 +436,7 @@ function MechanicsTab() {
       </div>
 
       {/* Redemption Rights Explainer */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-foreground">Redemption Rights — The NAV Floor</span>
@@ -494,7 +494,7 @@ function DealAnalysisTab() {
       </div>
 
       {/* SPAC vs IPO comparison table */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">SPAC vs. Traditional IPO</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -529,7 +529,7 @@ function DealAnalysisTab() {
       </div>
 
       {/* Deal list */}
-      <div className="bg-card rounded-xl border border-border">
+      <div className="bg-card rounded-md border border-border">
         <div className="px-5 py-4 border-b border-border">
           <h3 className="text-sm font-medium text-muted-foreground">Active SPAC Deals — Click to Analyze</h3>
         </div>
@@ -709,7 +709,7 @@ function WarrantValuationTab() {
       </div>
 
       {/* Interactive Warrant Pricer */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-5">Black-Scholes Warrant Pricer</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Controls */}
@@ -849,7 +849,7 @@ function WarrantValuationTab() {
 
       {/* Post-merger warrant behavior */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp className="w-4 h-4 text-emerald-400" />
             <span className="text-sm font-medium text-foreground">Warrant vs Common Trade</span>
@@ -883,7 +883,7 @@ function WarrantValuationTab() {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             <span className="text-sm font-medium text-foreground">Key Warrant Risks</span>
@@ -996,7 +996,7 @@ function HistoricalPerformanceTab() {
       </div>
 
       {/* Performance Chart */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium text-muted-foreground">SPAC Returns by Year — Pre-Merger vs. Post-Merger</h3>
           <div className="flex gap-4 text-xs text-muted-foreground">
@@ -1078,7 +1078,7 @@ function HistoricalPerformanceTab() {
           { label: "SPAC Peak Year", value: "2021", sub: "$162B raised in SPACs", color: "text-amber-400" },
           { label: "Beat Traditional IPO", value: "22%", sub: "% of de-SPACs that outperformed", color: "text-emerald-400" },
         ].map((item) => (
-          <div key={item.label} className="bg-card border border-border rounded-xl p-4">
+          <div key={item.label} className="bg-card border border-border rounded-md p-4">
             <div className={`text-xl font-medium ${item.color}`}>{item.value}</div>
             <div className="text-xs font-medium text-muted-foreground mt-0.5">{item.label}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{item.sub}</div>
@@ -1087,7 +1087,7 @@ function HistoricalPerformanceTab() {
       </div>
 
       {/* Sector Breakdown */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">SPAC Volume by Sector (2019–2025)</h3>
         <div className="flex flex-col md:flex-row gap-6 items-center">
           {/* Pie Chart */}
@@ -1140,7 +1140,7 @@ function HistoricalPerformanceTab() {
       </div>
 
       {/* Bubble / Bust narrative */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-3">
           <BarChart2 className="w-4 h-4 text-amber-400" />
           <span className="text-sm font-medium text-foreground">The SPAC Bubble & Bust Cycle (2020–2022)</span>
@@ -1273,7 +1273,7 @@ function InvestorStrategyTab() {
       </div>
 
       {/* Quick Strategy Comparison Table */}
-      <div className="bg-card rounded-xl border border-border p-5">
+      <div className="bg-card rounded-md border border-border p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">Strategy Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1331,7 +1331,7 @@ function InvestorStrategyTab() {
           return (
             <div
               key={i}
-              className={cn("bg-card border rounded-xl overflow-hidden", isOpen ? strat.borderColor : "border-border")}
+              className={cn("bg-card border rounded-md overflow-hidden", isOpen ? strat.borderColor : "border-border")}
             >
               <button
                 onClick={() => setActiveStrategy(isOpen ? null : i)}
@@ -1423,7 +1423,7 @@ function InvestorStrategyTab() {
       </div>
 
       {/* Bottom disclaimer */}
-      <div className="flex items-start gap-2.5 bg-card border border-border rounded-xl p-4 text-xs text-muted-foreground">
+      <div className="flex items-start gap-2.5 bg-card border border-border rounded-md p-4 text-xs text-muted-foreground">
         <Info className="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
         <span>
           All strategies carry risk. SPAC investing requires careful due diligence. Historical SPAC returns have been
@@ -1457,7 +1457,7 @@ export default function SpacInvestingPage() {
           className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
+            <div className="w-9 h-9 rounded-md bg-primary/15 flex items-center justify-center">
               <Building2 className="w-5 h-5 text-primary" />
             </div>
             <div>

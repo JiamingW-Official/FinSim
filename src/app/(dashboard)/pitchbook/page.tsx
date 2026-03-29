@@ -484,7 +484,7 @@ function PitchStructureTab() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setSelectedSection(section.id)}
-              className={`relative p-4 rounded-xl border text-left transition-all ${
+              className={`relative p-4 rounded-md border text-left transition-all ${
                 isActive
                   ? section.bg + " ring-1 ring-current"
                   : "bg-card border-border hover:border-border"
@@ -649,7 +649,7 @@ function ValuationSummaryTab() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => setSelectedMethod(i)}
-            className={`p-4 rounded-xl border text-left transition-all ${
+            className={`p-4 rounded-md border text-left transition-all ${
               selectedMethod === i
                 ? "border-muted-foreground bg-muted ring-1 ring-muted-foreground"
                 : "border-border bg-card hover:border-border"

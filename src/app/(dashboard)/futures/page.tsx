@@ -1610,11 +1610,11 @@ export default function FuturesPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="flex flex-col gap-1"
+        className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-col gap-1"
       >
         <div className="flex items-center gap-2">
           <BarChart2 className="h-5 w-5 text-primary" />
-          <h1 className="text-xl font-medium text-foreground">Futures & Financial Derivatives</h1>
+          <h1 className="text-lg font-medium text-foreground">Futures & Financial Derivatives</h1>
           <Badge variant="outline" className="text-xs text-muted-foreground border-muted-foreground/30">SIMULATED</Badge>
         </div>
         <p className="text-xs text-muted-foreground">
@@ -1623,7 +1623,7 @@ export default function FuturesPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="equity" className="w-full">
+      <Tabs defaultValue="equity" className="w-full mt-8">
         <TabsList className="flex w-full flex-wrap gap-0 rounded-lg border border-border bg-muted/30 p-1 h-auto">
           {[
             { value: "equity",   label: "Equity & Index",    icon: <TrendingUp   className="h-3.5 w-3.5" /> },

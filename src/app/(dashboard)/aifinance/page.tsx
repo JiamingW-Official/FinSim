@@ -56,7 +56,7 @@ function Card({
   return (
     <div
       className={cn(
-        "bg-card border border-border rounded-xl p-4",
+        "bg-card border border-border rounded-md p-4",
         className
       )}
     >
@@ -1287,7 +1287,7 @@ export default function AIFinancePage() {
       {/* Page header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-9 h-9 rounded-xl bg-primary/15 border border-border flex items-center justify-center">
+          <div className="w-9 h-9 rounded-md bg-primary/15 border border-border flex items-center justify-center">
             <Brain className="w-5 h-5 text-primary" />
           </div>
           <div>

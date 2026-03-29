@@ -1619,7 +1619,7 @@ export default function PensionFundsPage() {
         className="mb-6"
       >
         <div className="flex items-start gap-4">
-          <div className="p-3 rounded-xl bg-muted border border-border">
+          <div className="p-3 rounded-md bg-muted border border-border">
             <Shield className="w-7 h-7 text-primary" />
           </div>
           <div>

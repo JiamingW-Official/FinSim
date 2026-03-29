@@ -371,7 +371,7 @@ function InfoCard({ title, children, icon: Icon, accent = "#3b82f6" }: {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-xl border border-border/60 bg-muted/50 p-4"
+      className="rounded-md border border-border/60 bg-muted/50 p-4"
       style={{ borderLeftColor: accent, borderLeftWidth: 3 }}
     >
       {Icon && (
@@ -400,7 +400,7 @@ function ExchangeLandscapeTab() {
     <div className="space-y-6">
       {/* Market Share */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
             <BarChart3 size={15} className="text-primary" />
             US Equity Market Share (2024)
@@ -408,7 +408,7 @@ function ExchangeLandscapeTab() {
           <HorizontalBarChart data={US_EXCHANGES} height={280} />
         </div>
 
-        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <DollarSign size={15} className="text-primary" />
             Exchange Revenue Model
@@ -459,7 +459,7 @@ function ExchangeLandscapeTab() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="rounded-xl border border-border/60 bg-muted/50 p-4"
+            className="rounded-md border border-border/60 bg-muted/50 p-4"
             style={{ borderTopColor: t.color, borderTopWidth: 2 }}
           >
             <div className="flex items-center gap-2 mb-2">
@@ -473,7 +473,7 @@ function ExchangeLandscapeTab() {
       </div>
 
       {/* NYSE vs NASDAQ */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">NYSE vs NASDAQ: Structural Differences</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -507,7 +507,7 @@ function ExchangeLandscapeTab() {
       </div>
 
       {/* Global Exchanges */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Globe size={15} className="text-muted-foreground" />
           Global Exchanges by Market Cap
@@ -611,7 +611,7 @@ function OrderTypesTab() {
   return (
     <div className="space-y-6">
       {/* Order type grid */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <h3 className="text-sm font-medium text-foreground">15 Order Types</h3>
           <div className="flex gap-2">
@@ -654,7 +654,7 @@ function OrderTypesTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            className="rounded-xl border border-border bg-muted/50 p-5"
+            className="rounded-md border border-border bg-muted/50 p-5"
           >
             <div className="flex items-start justify-between mb-3">
               <div>
@@ -687,7 +687,7 @@ function OrderTypesTab() {
 
       {/* Order Book Mechanics */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-medium text-foreground mb-4">Order Book: Price-Time Priority</h3>
           <div className="space-y-1 text-xs mb-3">
             {/* Simplified order book visual */}
@@ -812,7 +812,7 @@ function PriceDiscoveryTab() {
       </div>
 
       {/* Opening auction */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Opening Auction Mechanics</h3>
         <p className="text-xs text-muted-foreground mb-4">NYSE/NASDAQ calculate an indicative match price in the minutes before 9:30 AM. Largest imbalance side triggers DMM facilitation.</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -884,7 +884,7 @@ function PriceDiscoveryTab() {
       </div>
 
       {/* Closing auction */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Closing Auction — Most Important Price of the Day</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-3 text-xs text-muted-foreground">
@@ -929,7 +929,7 @@ function PriceDiscoveryTab() {
             <li><span className="text-muted-foreground">Implied liquidity:</span> ETF can be more liquid than its underlying basket</li>
           </ul>
         </InfoCard>
-        <div className="rounded-xl border border-border/60 bg-muted/50 p-4">
+        <div className="rounded-md border border-border/60 bg-muted/50 p-4">
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle size={14} className="text-rose-400" />
             <span className="text-sm font-medium text-foreground">Circuit Breakers</span>
@@ -976,7 +976,7 @@ function FragmentationTab() {
     <div className="space-y-6">
       {/* Overview */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Network size={14} className="text-muted-foreground" />
             US Equity Fragmentation (2024)
@@ -988,7 +988,7 @@ function FragmentationTab() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+        <div className="rounded-md border border-border/60 bg-muted/50 p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <BarChart3 size={14} className="text-green-400" />
             Market Quality Metrics by Venue
@@ -1053,7 +1053,7 @@ function FragmentationTab() {
       </div>
 
       {/* Dark pools */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <EyeOff size={14} className="text-muted-foreground" />
           Dark Pools: Anatomy and Use Cases
@@ -1104,7 +1104,7 @@ function FragmentationTab() {
       </div>
 
       {/* Retail liquidity */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Retail Liquidity: Wholesalers vs Exchange Execution</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-card/40 rounded-lg p-4 text-xs">
@@ -1138,7 +1138,7 @@ function RegulationTab() {
   return (
     <div className="space-y-6">
       {/* Timeline */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BookOpen size={14} className="text-muted-foreground" />
           US Market Structure Regulatory Timeline
@@ -1221,7 +1221,7 @@ function RegulationTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.07 }}
-            className="rounded-xl border border-border/60 bg-muted/50 p-5"
+            className="rounded-md border border-border/60 bg-muted/50 p-5"
             style={{ borderTopColor: reg.accent, borderTopWidth: 2 }}
           >
             <div className="flex items-center gap-2 mb-4">
@@ -1241,7 +1241,7 @@ function RegulationTab() {
       </div>
 
       {/* Tick size pilot */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Tick Size Pilot (2016–2018) & Ongoing Debates</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div className="space-y-2">
@@ -1275,7 +1275,7 @@ function RegulationTab() {
       </div>
 
       {/* Key concepts summary */}
-      <div className="rounded-xl border border-border/60 bg-muted/50 p-5">
+      <div className="rounded-md border border-border/60 bg-muted/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Key Regulatory Concepts</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {[
@@ -1335,7 +1335,7 @@ export default function MarketStructurePage() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.08 }}
-        className="grid grid-cols-2 sm:grid-cols-4 gap-3 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6"
+        className="grid grid-cols-2 sm:grid-cols-4 gap-3 rounded-md border border-border bg-card border-l-4 border-l-primary p-6"
       >
         {[
           { label: "Daily US Equity Volume", value: "$420B+", sub: "avg notional traded", icon: Activity, color: "#3b82f6" },
@@ -1348,7 +1348,7 @@ export default function MarketStructurePage() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 + i * 0.04 }}
-            className="rounded-xl border border-border/60 bg-muted/50 p-4"
+            className="rounded-md border border-border/60 bg-muted/50 p-4"
           >
             <div className="flex items-center gap-2 mb-2">
               <stat.icon size={14} style={{ color: stat.color }} />

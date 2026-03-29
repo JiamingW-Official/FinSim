@@ -1455,7 +1455,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
 
   return (
     <motion.div
-      className="border border-border rounded-xl bg-card overflow-hidden"
+      className="border border-border rounded-md bg-card overflow-hidden"
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
     >
@@ -1805,7 +1805,7 @@ export default function CommoditiesPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 lg:p-6">
       {/* HERO Header */}
-      <div className="flex items-start justify-between mb-8 flex-wrap gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="flex items-start justify-between mb-8 flex-wrap gap-4 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>
           <h1 className="text-xl font-semibold text-foreground">Commodities Markets</h1>
           <p className="text-muted-foreground text-sm mt-1">

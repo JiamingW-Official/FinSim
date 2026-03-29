@@ -607,7 +607,7 @@ export default function DebtCapitalMarketsPage() {
                     {PRICING_STEPS.map((step, i) => (
                       <button
                         key={step.id}
-                        className={`text-left p-3 rounded-xl border transition-all duration-200 ${
+                        className={`text-left p-3 rounded-md border transition-all duration-200 ${
                           activeStep === i
                             ? `${step.bgColor} border-current`
                             : "bg-muted/20 border-border hover:border-border/80 hover:bg-muted/30"
@@ -634,7 +634,7 @@ export default function DebtCapitalMarketsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.2 }}
-                    className={`mt-4 p-4 rounded-xl border ${PRICING_STEPS[activeStep].bgColor} border-current`}
+                    className={`mt-4 p-4 rounded-md border ${PRICING_STEPS[activeStep].bgColor} border-current`}
                   >
                     <h3 className={`text-sm font-medium ${PRICING_STEPS[activeStep].color} mb-1`}>
                       {PRICING_STEPS[activeStep].label} — {PRICING_STEPS[activeStep].duration}
@@ -715,7 +715,7 @@ export default function DebtCapitalMarketsPage() {
                   {SYNDICATE_ROLES.map((role, i) => (
                     <button
                       key={role.role}
-                      className={`w-full text-left p-3 rounded-xl border transition-all duration-200 ${
+                      className={`w-full text-left p-3 rounded-md border transition-all duration-200 ${
                         activeRole === i ? `${role.bgColor}` : "bg-muted/20 border-border hover:bg-muted/30"
                       }`}
                       onClick={() => setActiveRole(activeRole === i ? null : i)}

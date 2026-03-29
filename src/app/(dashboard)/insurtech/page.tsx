@@ -674,7 +674,7 @@ function BusinessModelsTab() {
             whileTap={{ scale: 0.99 }}
             onClick={() => setSelected(selected === cat.id ? null : cat.id)}
             className={cn(
-              "text-left rounded-xl border p-4 transition-colors",
+              "text-left rounded-md border p-4 transition-colors",
               selected === cat.id
                 ? "border-primary/50 bg-primary/5"
                 : "border-border bg-card hover:border-border/80",
@@ -711,7 +711,7 @@ function BusinessModelsTab() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="rounded-xl border border-primary/20 bg-primary/5 p-4"
+            className="rounded-md border border-primary/20 bg-primary/5 p-4"
           >
             <h3 className={cn("text-sm font-semibold mb-1", selectedCategory.color)}>{selectedCategory.name} — Deep Dive</h3>
             <p className="text-[11px] text-muted-foreground leading-relaxed mb-3">{selectedCategory.description}</p>
@@ -725,21 +725,21 @@ function BusinessModelsTab() {
       </AnimatePresence>
 
       {/* Funding chart */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">Global InsurTech Funding 2018–2024 ($B)</h3>
         <p className="text-xs text-muted-foreground mb-3">2021 ZIRP boom drove record $15.8B; normalization since</p>
         <FundingBarChart />
       </div>
 
       {/* Value chain disruption map */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">Insurance Value Chain — Disruption Map</h3>
         <p className="text-xs text-muted-foreground mb-3">Purple = actively disrupted by InsurTech entrants</p>
         <ValueChainSVG />
       </div>
 
       {/* Comparison table */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-3">Incumbent vs. Challenger Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
@@ -799,7 +799,7 @@ function ParametricTab() {
   return (
     <div className="space-y-5">
       {/* How it works */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">How Parametric Insurance Works</h3>
         <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
           Payouts are based on a pre-agreed index or trigger (e.g., rainfall levels, wind speed, seismic magnitude)
@@ -810,7 +810,7 @@ function ParametricTab() {
       </div>
 
       {/* Weather trigger table */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-3">Weather Trigger Examples</h3>
         <div className="space-y-2">
           {WEATHER_TRIGGERS.map((wt) => (
@@ -840,7 +840,7 @@ function ParametricTab() {
       </div>
 
       {/* Basis risk explanation */}
-      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+      <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-4">
         <div className="flex gap-2.5">
           <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
           <div>
@@ -856,7 +856,7 @@ function ParametricTab() {
       </div>
 
       {/* Agricultural parametric simulator */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">Agricultural Parametric Simulator — Drought Coverage</h3>
         <p className="text-xs text-muted-foreground mb-4">
           Coverage: $500,000. Trigger: Drought Severity Index &gt; 40. Full payout at index &gt; 80.
@@ -927,7 +927,7 @@ function ParametricTab() {
       </div>
 
       {/* Cat bond connection */}
-      <div className="rounded-xl border border-border bg-primary/5 p-4">
+      <div className="rounded-md border border-border bg-primary/5 p-4">
         <div className="flex gap-2.5">
           <Shield className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <div>
@@ -974,7 +974,7 @@ function AIDataTab() {
   return (
     <div className="space-y-5">
       {/* ML inputs grid */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">ML Underwriting Model Inputs</h3>
         <p className="text-xs text-muted-foreground mb-4">
           Lift = incremental accuracy improvement over baseline actuarial model. Click a card to expand.
@@ -1020,7 +1020,7 @@ function AIDataTab() {
       </div>
 
       {/* Accuracy comparison */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">Underwriting Accuracy: ML vs. Traditional Actuarial</h3>
         <p className="text-xs text-muted-foreground mb-3">Gini coefficient on holdout test set (%)</p>
         <MLAccuracySVG />
@@ -1031,7 +1031,7 @@ function AIDataTab() {
       </div>
 
       {/* UBI pricing curve */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">Usage-Based Insurance (UBI) Pricing Curve</h3>
         <p className="text-xs text-muted-foreground mb-3">
           UBI (pay-per-mile) vs. traditional flat-rate auto premium — low-mileage drivers save significantly
@@ -1053,7 +1053,7 @@ function AIDataTab() {
       </div>
 
       {/* Fraud detection */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-3">Fraud Detection — ML vs. Traditional</h3>
         <div className="space-y-2">
           {FRAUD_METRICS.map((fm) => {
@@ -1102,7 +1102,7 @@ function AIDataTab() {
       </div>
 
       {/* Real-time pricing engine */}
-      <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4">
+      <div className="rounded-md border border-emerald-500/20 bg-emerald-500/5 p-4">
         <div className="flex gap-2.5">
           <Zap className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
           <div>
@@ -1125,7 +1125,7 @@ function MarketDynamicsTab() {
   return (
     <div className="space-y-5">
       {/* Quarterly funding line chart */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">Global InsurTech Funding — Quarterly ($B)</h3>
         <p className="text-xs text-muted-foreground mb-3">2020 Q1 through 2024 Q4 — from boom to reset</p>
         <QuarterlyFundingLineSVG />
@@ -1144,7 +1144,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Combined ratio */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-1">Combined Ratio Improvement 2021 → 2023</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Combined ratio &gt; 100 = underwriting loss. InsurTech carriers improving but still above break-even.
@@ -1161,7 +1161,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* M&A / partnership activity */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-3">Incumbent M&A & Partnership Activity</h3>
         <div className="space-y-2">
           {MA_ACTIVITY.map((deal) => (
@@ -1187,7 +1187,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Regulatory sandbox */}
-      <div className="rounded-xl border border-border bg-primary/5 p-4">
+      <div className="rounded-md border border-border bg-primary/5 p-4">
         <div className="flex gap-2.5">
           <CheckCircle className="h-4 w-4 text-primary shrink-0 mt-0.5" />
           <div>
@@ -1215,7 +1215,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Profitability challenge & path to sustainability */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-xs font-medium mb-3">Profitability Challenge — Path to Sustainability</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div className="space-y-2">
@@ -1257,7 +1257,7 @@ function MarketDynamicsTab() {
           { label: "Avg combined ratio", value: "112", sub: "InsurTech 2024", icon: <Activity className="h-4 w-4" />, color: "text-amber-400" },
           { label: "Blockchain claims", value: "4min", sub: "avg settlement time", icon: <Zap className="h-4 w-4" />, color: "text-emerald-400" },
         ].map((item) => (
-          <div key={item.label} className="rounded-xl border border-border bg-card p-4">
+          <div key={item.label} className="rounded-md border border-border bg-card p-4">
             <div className={cn("mb-2", item.color)}>{item.icon}</div>
             <div className={cn("text-xl font-medium font-mono tabular-nums", item.color)}>{item.value}</div>
             <div className="text-[11px] font-medium text-foreground mt-0.5">{item.label}</div>

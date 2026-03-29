@@ -120,7 +120,7 @@ function ExpandableCard({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="bg-foreground/5 border border-border rounded-xl overflow-hidden">
+    <div className="bg-foreground/5 border border-border rounded-md overflow-hidden">
       <button
         onClick={() => setOpen((v) => !v)}
         className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground hover:bg-muted/30 transition-colors"
@@ -512,7 +512,7 @@ function AbsMbsTab() {
       </div>
 
       {/* Securitization flow */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Securitization Process</SectionTitle>
         <SecuritizationFlowSVG />
         <p className="text-xs text-foreground/40 mt-2">
@@ -523,7 +523,7 @@ function AbsMbsTab() {
       </div>
 
       {/* Asset classes table */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>ABS / MBS Asset Classes</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -572,7 +572,7 @@ function AbsMbsTab() {
 
       {/* Tranche waterfall */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-foreground/5 border border-border rounded-xl p-4">
+        <div className="bg-foreground/5 border border-border rounded-md p-4">
           <SectionTitle>Tranche Waterfall</SectionTitle>
           <TranchWaterfallSVG />
           <p className="text-xs text-foreground/40 mt-2">
@@ -580,14 +580,14 @@ function AbsMbsTab() {
             OC = overcollateralization level; CE = credit enhancement.
           </p>
         </div>
-        <div className="bg-foreground/5 border border-border rounded-xl p-4">
+        <div className="bg-foreground/5 border border-border rounded-md p-4">
           <SectionTitle>Market Size by Type</SectionTitle>
           <ABSMarketPieSVG />
         </div>
       </div>
 
       {/* Credit Enhancements */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Credit Enhancement Mechanisms</SectionTitle>
         <div className="space-y-2">
           {enhancements.map((e, i) => (
@@ -847,7 +847,7 @@ function CmosTab() {
       </div>
 
       {/* CMO tranche types */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>CMO Tranche Types</SectionTitle>
         <div className="space-y-3">
           {trancheTypes.map((t, i) => (
@@ -865,7 +865,7 @@ function CmosTab() {
       </div>
 
       {/* PAC Band SVG */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>PAC Band Stability vs Support Tranche Variability</SectionTitle>
         <PACBandSVG />
         <p className="text-xs text-foreground/40 mt-2">
@@ -876,7 +876,7 @@ function CmosTab() {
       </div>
 
       {/* IO vs PO */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>IO vs PO: Inverse Price Behavior</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -909,7 +909,7 @@ function CmosTab() {
       </div>
 
       {/* CMBS conduit vs SASB */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>CMBS: Conduit vs Single-Asset Single-Borrower (SASB)</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1181,7 +1181,7 @@ function EquityNotesTab() {
       </div>
 
       {/* Principal-protected note mechanics */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Principal-Protected Note Mechanics</SectionTitle>
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 space-y-3 text-sm text-foreground/70">
@@ -1205,7 +1205,7 @@ function EquityNotesTab() {
       </div>
 
       {/* Autocallable payoff SVG */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Autocallable / Barrier Note Payoff Scenarios</SectionTitle>
         <AutocallablePayoffSVG />
         <div className="grid grid-cols-3 gap-3 mt-3">
@@ -1225,7 +1225,7 @@ function EquityNotesTab() {
       </div>
 
       {/* Note types */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Structured Note Types</SectionTitle>
         <div className="space-y-3">
           {noteTypes.map((n, i) => {
@@ -1254,7 +1254,7 @@ function EquityNotesTab() {
       </div>
 
       {/* Cost of structuring */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Cost of Structuring (Typical)</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1404,7 +1404,7 @@ function StructuredCreditTab() {
       </div>
 
       {/* CDO vs CLO */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>CDO vs CLO: Anatomy Comparison</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1464,7 +1464,7 @@ function StructuredCreditTab() {
       </div>
 
       {/* Correlation trading SVG */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Correlation Trading: Senior vs Equity Tranche Sensitivity</SectionTitle>
         <CorrelationTradingSVG />
         <p className="text-xs text-foreground/40 mt-2">
@@ -1475,7 +1475,7 @@ function StructuredCreditTab() {
       </div>
 
       {/* Credit Linked Notes */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Credit-Linked Notes vs Funded CDS</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -1502,7 +1502,7 @@ function StructuredCreditTab() {
       </div>
 
       {/* Post-crisis reforms */}
-      <div className="bg-foreground/5 border border-border rounded-xl p-4">
+      <div className="bg-foreground/5 border border-border rounded-md p-4">
         <SectionTitle>Post-Crisis Reforms & Market Structure</SectionTitle>
         <div className="space-y-3">
           {postCrisis.map((item, i) => (

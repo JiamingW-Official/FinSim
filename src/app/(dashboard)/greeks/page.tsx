@@ -316,7 +316,7 @@ function GreekCard({
   };
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-card p-4 flex flex-col gap-1">
       <div className="flex items-center justify-between">
         <span className="text-xs font-medium text-muted-foreground">
           {label}
@@ -756,7 +756,7 @@ function SecondOrderChart({
   const zeroY = yScale(0, minY - rangeY * 0.1, maxY + rangeY * 0.1);
 
   return (
-    <div className="rounded-xl border border-border bg-card p-3">
+    <div className="rounded-md border border-border bg-card p-3">
       <p className="text-xs font-semibold text-foreground mb-2">{label}</p>
       <svg width={W - 32} height={160} className="overflow-visible">
         <line
@@ -866,7 +866,7 @@ function GreeksExplorer() {
       {/* Left: Controls */}
       <div className="flex flex-col gap-4">
         {/* Option type toggle */}
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-md border border-border bg-card p-4">
           <p className="text-xs font-medium text-muted-foreground mb-3">Option Type</p>
           <div className="flex gap-2">
             <button
@@ -894,7 +894,7 @@ function GreeksExplorer() {
 
         {/* Sliders */}
         {sliders.map((s) => (
-          <div key={s.key} className="rounded-xl border border-border bg-card p-4">
+          <div key={s.key} className="rounded-md border border-border bg-card p-4">
             <div className="flex justify-between items-center mb-3">
               <p className="text-xs font-medium text-muted-foreground">{s.label}</p>
               <span className="text-sm font-mono font-semibold text-foreground">{s.fmt(s.value)}</span>
@@ -910,7 +910,7 @@ function GreeksExplorer() {
         ))}
 
         {/* BSM Formula display */}
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-md border border-border bg-card p-4">
           <p className="text-xs font-medium text-muted-foreground mb-3">Black-Scholes Formulas</p>
           <div className="font-mono text-xs space-y-1.5 text-foreground/80">
             <p className="text-[11px]">d₁ = [ln(S/K) + (r + σ²/2)T] / (σ√T)</p>
@@ -930,7 +930,7 @@ function GreeksExplorer() {
       {/* Right: Greeks output */}
       <div className="flex flex-col gap-4">
         {/* Price */}
-        <div className="rounded-xl border border-primary/30 bg-primary/5 p-4">
+        <div className="rounded-md border border-primary/30 bg-primary/5 p-4">
           <p className="text-xs font-medium text-muted-foreground mb-1">
             {params.isCall ? "Call" : "Put"} Price
           </p>
@@ -991,7 +991,7 @@ function GreeksExplorer() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
-              className="rounded-xl border border-border bg-card p-3"
+              className="rounded-md border border-border bg-card p-3"
             >
               <p className="text-xs font-medium text-muted-foreground mb-2">What Changed</p>
               <div className="flex flex-wrap gap-2">
@@ -1063,7 +1063,7 @@ function GreeksVisualized({ params }: { params: SliderParams }) {
             key={c.id}
             layout
             onClick={() => setExpanded(expanded === c.id ? null : c.id)}
-            className="rounded-xl border border-border bg-card p-4 cursor-pointer hover:border-primary/30 transition-colors"
+            className="rounded-md border border-border bg-card p-4 cursor-pointer hover:border-primary/30 transition-colors"
           >
             <div className="flex justify-between items-start mb-2">
               <div>
@@ -1168,7 +1168,7 @@ function SecondOrderGreeksTab({ params }: { params: SliderParams }) {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="flex items-center gap-2 mb-2">
           <TrendingUp className="size-4 text-primary" />
           <p className="text-sm font-medium text-foreground">Second-Order Greeks</p>
@@ -1182,7 +1182,7 @@ function SecondOrderGreeksTab({ params }: { params: SliderParams }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {explanations.map((g) => (
-          <div key={g.name} className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div key={g.name} className="rounded-md border border-border bg-card p-4 space-y-3">
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-sm font-medium text-foreground">{g.name}</p>
@@ -1340,7 +1340,7 @@ function GreeksQuiz() {
           key={flashIdx}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="rounded-xl border border-border bg-card p-6 cursor-pointer min-h-[200px] flex flex-col justify-between"
+          className="rounded-md border border-border bg-card p-6 cursor-pointer min-h-[200px] flex flex-col justify-between"
           onClick={() => setShowFlashAnswer(!showFlashAnswer)}
         >
           <div>
@@ -1438,7 +1438,7 @@ function GreeksQuiz() {
           exit={{ opacity: 0, x: -20 }}
           className="space-y-4"
         >
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <p className="text-xs text-muted-foreground mb-2">Scenario</p>
             <p className="text-sm text-foreground mb-4">{q.scenario}</p>
             <p className="text-sm font-medium text-foreground">{q.question}</p>
@@ -1447,7 +1447,7 @@ function GreeksQuiz() {
           <div className="grid grid-cols-1 gap-2">
             {q.choices.map((choice, i) => {
               let cls =
-                "w-full text-left p-3.5 rounded-xl border text-sm transition-all ";
+                "w-full text-left p-3.5 rounded-md border text-sm transition-all ";
               if (selected === null) {
                 cls += "border-border bg-card hover:border-primary/40 hover:bg-primary/5 text-foreground";
               } else if (i === q.correct) {
@@ -1470,7 +1470,7 @@ function GreeksQuiz() {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-xl border border-border bg-muted/50 p-4 space-y-2"
+              className="rounded-md border border-border bg-muted/50 p-4 space-y-2"
             >
               <div className="flex items-center gap-2">
                 {selected === q.correct ? (
@@ -1514,7 +1514,7 @@ export default function GreeksPage() {
   return (
     <div className="flex flex-col h-full">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-border">
+      <div className="px-6 py-4 border-b border-border border-l-4 border-l-primary">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-primary/10">
             <Calculator className="size-5 text-primary" />
@@ -1527,7 +1527,7 @@ export default function GreeksPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto mt-8">
         <Tabs defaultValue="explorer" className="h-full">
           <div className="px-6 pt-4">
             <TabsList className="w-full">

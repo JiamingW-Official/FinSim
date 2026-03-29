@@ -592,7 +592,7 @@ export default function CryptoStakingPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="border-l-4 border-l-primary rounded-xl bg-card p-6"
+        className="border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         <div className="flex items-start justify-between flex-wrap gap-3">
           <div>

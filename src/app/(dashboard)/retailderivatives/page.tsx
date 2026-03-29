@@ -324,8 +324,8 @@ function ExchangeTradedOptionsTab() {
       </div>
 
       {/* CBOE Overview */}
-      <div className="rounded-xl border border-border bg-muted/40 p-5">
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+      <div className="rounded-md border border-border bg-muted/40 p-6 border-l-4 border-l-primary">
+        <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
           <BookOpen size={15} className="text-primary" /> CBOE Product Overview
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -380,7 +380,7 @@ function ExchangeTradedOptionsTab() {
       </div>
 
       {/* Option Chain Table */}
-      <div className="rounded-xl border border-border bg-card/50">
+      <div className="rounded-md border border-border bg-card/50">
         <div className="p-4 border-b border-border flex items-center justify-between flex-wrap gap-3">
           <h3 className="text-sm font-semibold text-foreground">Sample Options Chain</h3>
           <div className="flex gap-1.5">
@@ -452,7 +452,7 @@ function ExchangeTradedOptionsTab() {
       </div>
 
       {/* Margin vs Cash-Secured */}
-      <div className="rounded-xl border border-border bg-muted/40">
+      <div className="rounded-md border border-border bg-muted/40">
         <button
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandMargin(!expandMargin)}
@@ -488,7 +488,7 @@ function ExchangeTradedOptionsTab() {
       </div>
 
       {/* Options vs Stock Comparison */}
-      <div className="rounded-xl border border-border bg-muted/40">
+      <div className="rounded-md border border-border bg-muted/40">
         <button
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandCompare(!expandCompare)}
@@ -588,7 +588,7 @@ function LeveragedETFsTab() {
   return (
     <div className="space-y-6">
       {/* Warning Banner */}
-      <div className="rounded-xl border border-red-500/40 bg-red-500/10 p-4 flex items-start gap-3">
+      <div className="rounded-md border border-red-500/40 bg-red-500/10 p-4 flex items-start gap-3">
         <AlertTriangle size={16} className="text-red-400 mt-0.5 flex-shrink-0" />
         <div className="text-sm">
           <p className="font-medium text-red-400 mb-1">Not Suitable for Long-Term Holding</p>
@@ -619,7 +619,7 @@ function LeveragedETFsTab() {
       </div>
 
       {/* Detail + Chart */}
-      <div className="rounded-xl border border-border bg-muted/40 p-5 space-y-4">
+      <div className="rounded-md border border-border bg-muted/40 p-5 space-y-4">
         <div className="flex items-start justify-between flex-wrap gap-3">
           <div>
             <h3 className="text-base font-medium text-foreground">{selected.name}</h3>
@@ -717,7 +717,7 @@ function LeveragedETFsTab() {
       </div>
 
       {/* Volatility Decay Math */}
-      <div className="rounded-xl border border-border bg-muted/40 p-5">
+      <div className="rounded-md border border-border bg-muted/40 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Zap size={15} className="text-amber-400" /> Volatility Decay (Beta Slippage) Mathematics
         </h3>
@@ -793,7 +793,7 @@ function StructuredNotesTab() {
             icon: <TrendingDown size={14} className="text-red-400" />,
           },
         ].map((c) => (
-          <div key={c.t} className={cn("rounded-xl border p-4", c.color)}>
+          <div key={c.t} className={cn("rounded-md border p-4", c.color)}>
             <div className="flex items-center gap-2 mb-2">
               {c.icon}
               <p className="font-medium text-foreground text-sm">{c.t}</p>
@@ -805,7 +805,7 @@ function StructuredNotesTab() {
       </div>
 
       {/* Filter + Table */}
-      <div className="rounded-xl border border-border bg-card/50">
+      <div className="rounded-md border border-border bg-card/50">
         <div className="p-4 border-b border-border flex flex-wrap gap-2">
           {(["All", "Principal-Protected", "Leveraged", "Reverse Convertible"] as const).map((f) => (
             <button
@@ -881,7 +881,7 @@ function StructuredNotesTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
-            className="rounded-xl border border-border bg-muted/60 p-5 space-y-4"
+            className="rounded-md border border-border bg-muted/60 p-5 space-y-4"
           >
             <h3 className="text-sm font-medium text-foreground">{selected.name}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -952,7 +952,7 @@ function WarrantsRightsTab() {
       </div>
 
       {/* Warrant Table */}
-      <div className="rounded-xl border border-border bg-card/50">
+      <div className="rounded-md border border-border bg-card/50">
         <div className="p-4 border-b border-border">
           <h3 className="text-sm font-medium text-foreground">Sample Warrant Universe</h3>
         </div>
@@ -999,7 +999,7 @@ function WarrantsRightsTab() {
       </div>
 
       {/* Dilution Impact Calculator */}
-      <div className="rounded-xl border border-border bg-muted/40 p-5">
+      <div className="rounded-md border border-border bg-muted/40 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <DollarSign size={15} className="text-emerald-400" /> Dilution Impact: How Warrants Affect Existing Shareholders
         </h3>
@@ -1038,7 +1038,7 @@ function WarrantsRightsTab() {
       </div>
 
       {/* Warrant vs Call Comparison */}
-      <div className="rounded-xl border border-border bg-muted/40">
+      <div className="rounded-md border border-border bg-muted/40">
         <button
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandDiff(!expandDiff)}
@@ -1098,7 +1098,7 @@ function RetailAlternativesTab() {
   return (
     <div className="space-y-6">
       {/* Info Banner */}
-      <div className="rounded-xl border border-border bg-primary/5 p-4 flex items-start gap-3">
+      <div className="rounded-md border border-border bg-primary/5 p-4 flex items-start gap-3">
         <Info size={16} className="text-primary mt-0.5 flex-shrink-0" />
         <div className="text-sm">
           <p className="font-medium text-primary mb-1">Democratization of Alternative Investments</p>
@@ -1127,7 +1127,7 @@ function RetailAlternativesTab() {
       </div>
 
       {/* Filter + Table */}
-      <div className="rounded-xl border border-border bg-card/50">
+      <div className="rounded-md border border-border bg-card/50">
         <div className="p-4 border-b border-border flex flex-wrap gap-2">
           {(["All", "Interval Fund", "Non-Traded REIT", "BDC", "Reg CF", "Reg A+"] as const).map((f) => (
             <button
@@ -1209,7 +1209,7 @@ function RetailAlternativesTab() {
       </div>
 
       {/* Accredited Investor Debate */}
-      <div className="rounded-xl border border-border bg-muted/40">
+      <div className="rounded-md border border-border bg-muted/40">
         <button
           className="w-full p-4 flex items-center justify-between text-left"
           onClick={() => setExpandDebate(!expandDebate)}
@@ -1277,7 +1277,7 @@ function RetailAlternativesTab() {
       </div>
 
       {/* Reg CF/A Crowdfunding Summary */}
-      <div className="rounded-xl border border-border bg-muted/40 p-5">
+      <div className="rounded-md border border-border bg-muted/40 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Users size={15} className="text-amber-400" /> Crowdfunding Limits (Reg CF vs Reg A+)
         </h3>

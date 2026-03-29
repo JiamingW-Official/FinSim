@@ -1760,7 +1760,7 @@ export default function BiotechPage() {
           </div>
 
           {/* HERO — Top KPIs */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4 border-l-4 border-l-primary rounded-md bg-card p-6">
             {[
               { label: "Companies Tracked", value: "15", sub: "Across all subsectors", color: "text-primary" },
               { label: "Upcoming Catalysts", value: "12", sub: "Next 12 months", color: "text-amber-400" },

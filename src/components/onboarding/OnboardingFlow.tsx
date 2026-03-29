@@ -121,7 +121,7 @@ export function OnboardingFlow() {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm">
       <div className="flex w-full max-w-md flex-col items-center px-4">
-        <div className="relative w-full overflow-hidden rounded-2xl border bg-card p-8 shadow-sm">
+        <div className="relative w-full overflow-hidden rounded-md border bg-card p-8 shadow-sm">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentStep}

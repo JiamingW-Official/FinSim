@@ -216,7 +216,7 @@ export default function LearnPage() {
             <>
               {/* === DOMINANT "Up Next" hero card — MASSIVE === */}
               {recommendedLesson ? (
-                <div className="rounded-xl border-2 border-primary/40 bg-card p-10">
+                <div className="rounded-md border-2 border-primary/40 bg-card p-10">
                   <div className="flex items-center gap-2 mb-5">
                     <div className="relative flex h-3.5 w-3.5 items-center justify-center">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-40" />
@@ -240,7 +240,7 @@ export default function LearnPage() {
                   </Link>
                 </div>
               ) : (
-                <div className="rounded-xl border-2 border-emerald-500/40 bg-card p-10 text-center">
+                <div className="rounded-md border-2 border-emerald-500/40 bg-card p-10 text-center">
                   <CheckCircle2 className="h-10 w-10 text-emerald-400 mx-auto mb-4" />
                   <p className="text-xl font-bold mb-2">All Lessons Complete</p>
                   <p className="text-base text-muted-foreground">You have finished every lesson. Try a practice trade to reinforce your skills.</p>
@@ -611,7 +611,7 @@ export default function LearnPage() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.88, opacity: 0, y: 20 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="w-full max-w-md rounded-xl border border-border bg-card shadow-sm overflow-hidden"
+              className="w-full max-w-md rounded-md border border-border bg-card shadow-sm overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {activeGame === "flashcards" ? (

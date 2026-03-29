@@ -744,7 +744,7 @@ export default function PensionManagementPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+          <div className="w-10 h-10 rounded-md bg-primary/20 border border-border flex items-center justify-center">
             <Building2 className="w-5 h-5 text-primary" />
           </div>
           <div>
@@ -1326,7 +1326,7 @@ export default function PensionManagementPage() {
                   Liquidity: "text-muted-foreground",
                 };
                 return (
-                  <div key={rf.name} className="bg-card border border-border rounded-xl p-3">
+                  <div key={rf.name} className="bg-card border border-border rounded-md p-3">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div>
                         <div className="text-sm font-medium text-foreground">{rf.name}</div>

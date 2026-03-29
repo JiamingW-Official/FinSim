@@ -61,7 +61,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-muted/30 p-4">
+    <div className="rounded-md border border-border bg-muted/30 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -249,7 +249,7 @@ function ValuationMethodsTab() {
           return (
             <div
               key={m.id}
-              className={cn("rounded-xl border p-4 cursor-pointer transition-colors", m.borderClass, m.bgClass)}
+              className={cn("rounded-md border p-4 cursor-pointer transition-colors", m.borderClass, m.bgClass)}
               onClick={() => setExpandedMethod(isOpen ? null : m.id)}
             >
               <div className="flex items-center justify-between">
@@ -294,7 +294,7 @@ function ValuationMethodsTab() {
       </div>
 
       {/* Growth vs Mature */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Growth Company vs. Mature Company Valuation" sub="Different metrics dominate depending on company stage" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border border-border bg-muted/30 p-4">
@@ -337,7 +337,7 @@ function ValuationMethodsTab() {
       </div>
 
       {/* Equity Bridge */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Pre-Money vs. Post-Money Equity Bridge"
           sub="How enterprise value translates to per-share IPO price"
@@ -373,7 +373,7 @@ function ValuationMethodsTab() {
       </div>
 
       {/* Dilution Table */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Fully Diluted Share Count — Option Pool Shuffle"
           sub="All share classes included to compute true per-share value (illustrative example)"
@@ -416,7 +416,7 @@ function ValuationMethodsTab() {
       </div>
 
       {/* IPO Discount Rationale */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="IPO Discount Rationale — Four Theories"
           sub="Why is the IPO price set below intrinsic value? Four competing explanations"
@@ -444,7 +444,7 @@ function ValuationMethodsTab() {
       </div>
 
       {/* Filing Process */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="SEC S-1 Registration & JOBS Act Confidential Filing" sub="IPO regulatory process overview" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -601,7 +601,7 @@ function BookbuildingTab() {
       </div>
 
       {/* Roadshow Timeline SVG */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="IPO Roadshow Timeline — 2-Week Global Marketing Tour"
           sub="Management presents to 60–100 institutional investors across major financial centers"
@@ -649,7 +649,7 @@ function BookbuildingTab() {
       </div>
 
       {/* Order types */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Investor Order Types & Price Discovery"
           sub="How underwriters build the book and discover the clearing price"
@@ -677,7 +677,7 @@ function BookbuildingTab() {
       </div>
 
       {/* Allocation priority */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="IPO Allocation Priority — Institutional vs. Retail"
           sub="Underwriters allocate strategically to maximize long-term investor relations"
@@ -707,7 +707,7 @@ function BookbuildingTab() {
       </div>
 
       {/* Greenshoe */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Greenshoe / Over-Allotment Option — Price Stabilization"
           sub="30-day option allowing underwriters to buy or issue up to 15% additional shares"
@@ -733,7 +733,7 @@ function BookbuildingTab() {
       </div>
 
       {/* Underwriter economics */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="IPO Underwriter Economics — The 7% Club" sub="Typical gross spread breakdown for US IPOs" />
         <div className="space-y-3">
           {[
@@ -759,7 +759,7 @@ function BookbuildingTab() {
       </div>
 
       {/* Exchange listing reqs */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="NYSE vs. NASDAQ Listing Requirements" sub="Minimum standards to list on US exchanges" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -793,7 +793,7 @@ function BookbuildingTab() {
       </div>
 
       {/* Dual-class */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Dual-Class Share Structures" sub="Founders retain voting control while selling economic interest" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -919,7 +919,7 @@ function UnderpricingTab() {
       </div>
 
       {/* First-day return distribution SVG */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="First-Day Return Distribution"
           sub="Frequency distribution of IPO first-day returns (stylized, 1980–2024 US data)"
@@ -967,7 +967,7 @@ function UnderpricingTab() {
       </div>
 
       {/* Theories accordion */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Four Theories of IPO Underpricing"
           sub="Academic literature documents $280B+ in systematic money left on table 1980–2024"
@@ -985,7 +985,7 @@ function UnderpricingTab() {
             return (
               <div
                 key={t.name}
-                className={cn("rounded-xl border p-4 cursor-pointer", colorMap[t.color])}
+                className={cn("rounded-md border p-4 cursor-pointer", colorMap[t.color])}
                 onClick={() => setActiveTheory(isOpen ? null : i)}
               >
                 <div className="flex items-center justify-between">
@@ -1021,7 +1021,7 @@ function UnderpricingTab() {
       </div>
 
       {/* Long-run underperformance */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Long-Run IPO Underperformance (Ritter Database)"
           sub="IPOs underperform comparable non-issuing firms by ~20% over 3 years post-listing"
@@ -1057,7 +1057,7 @@ function UnderpricingTab() {
       </div>
 
       {/* Institutional flipping */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Institutional Flipping vs. Retail Holding" sub="Asymmetric behavior between investor types on IPO day" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="rounded-lg border border-border bg-muted/30 p-4">
@@ -1092,7 +1092,7 @@ function UnderpricingTab() {
       </div>
 
       {/* Hot vs cold cycles */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Hot vs. Cold IPO Market Cycles"
           sub="IPO activity is highly cyclical; sector-specific underpricing varies significantly"
@@ -1196,7 +1196,7 @@ function PostIPOTab() {
       </div>
 
       {/* Lockup Timeline SVG */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Post-IPO Event Timeline — 180-Day Lockup Cliff"
           sub="Key milestones in the first year of trading"
@@ -1237,7 +1237,7 @@ function PostIPOTab() {
       </div>
 
       {/* Lockup waiver & short interest */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Lockup Mechanics, Waivers & Short Interest Buildup" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="rounded-lg border border-border/50 bg-foreground/[0.03] p-3">
@@ -1277,7 +1277,7 @@ function PostIPOTab() {
       </div>
 
       {/* Direct listing vs IPO vs SPAC comparison */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Traditional IPO vs. Direct Listing vs. SPAC — Comparison"
           sub="Three routes to public market liquidity; each with distinct trade-offs"
@@ -1307,7 +1307,7 @@ function PostIPOTab() {
       </div>
 
       {/* Google Dutch Auction */}
-      <div className="rounded-xl border border-amber-500/30 bg-amber-900/10 p-5">
+      <div className="rounded-md border border-amber-500/30 bg-amber-900/10 p-5">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-medium text-amber-300">{dutchAuctionLesson.title}</h3>
@@ -1323,7 +1323,7 @@ function PostIPOTab() {
       </div>
 
       {/* Analyst coverage */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Research Initiation & Analyst Target vs. IPO Price"
           sub="Quiet period ends Day 25; MiFID II unbundling has reduced sell-side initiation in Europe"
@@ -1372,7 +1372,7 @@ function PostIPOTab() {
       </div>
 
       {/* Secondary offering */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Secondary Offerings & Follow-On Mechanics" sub="Post-IPO capital raises and insider liquidity events" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -1447,7 +1447,7 @@ export default function IPOPricingPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-primary/20 border border-border flex items-center justify-center">
               <DollarSign className="w-5 h-5 text-primary" />
             </div>
             <div>
@@ -1478,7 +1478,7 @@ export default function IPOPricingPage() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">IPO Pricing Deep Dive</h2>
           <p className="text-sm text-muted-foreground">Valuation methods, bookbuilding mechanics, underpricing dynamics, and post-IPO lockup analysis.</p>
         </div>

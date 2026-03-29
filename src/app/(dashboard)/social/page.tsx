@@ -487,7 +487,7 @@ function LeaderboardTab() {
       </div>
 
       {/* Podium */}
-      <div className="bg-card border border-border/50 rounded-xl p-6">
+      <div className="bg-card border border-border/50 rounded-md p-6">
         <p className="text-xs font-semibold text-muted-foreground/60 mb-4 text-center">Top Performers</p>
         <div className="flex items-end justify-center gap-4">
           {top3[1] && <PodiumCard trader={top3[1]} place={2} />}
@@ -514,7 +514,7 @@ function LeaderboardTab() {
       )}
 
       {/* Table */}
-      <div className="rounded-xl border border-border/50 overflow-hidden">
+      <div className="rounded-md border border-border/50 overflow-hidden">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border/50 bg-muted/30">
@@ -586,7 +586,7 @@ function IdeaCard({
   return (
     <motion.div
       layout
-      className="rounded-xl border border-border/50 bg-card p-4 space-y-3 hover:border-border/80 transition-colors"
+      className="rounded-md border border-border/50 bg-card p-4 space-y-3 hover:border-border/80 transition-colors"
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
@@ -870,7 +870,7 @@ function TradeIdeasTab() {
       </div>
 
       {/* Trending section */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <Flame className="h-4 w-4 text-orange-400" />
           <h3 className="text-xs font-medium text-muted-foreground/80">Trending Ideas</h3>
@@ -927,7 +927,7 @@ function CopyTraderCard({
 }) {
   return (
     <div className={cn(
-      "rounded-xl border p-4 space-y-3 transition-colors",
+      "rounded-md border p-4 space-y-3 transition-colors",
       following ? "border-primary/30 bg-primary/3" : "border-border/50 bg-card hover:border-border/70",
     )}>
       <div className="flex items-start justify-between">
@@ -1042,7 +1042,7 @@ function CopyTradingTab() {
   return (
     <div className="space-y-4">
       {/* Auto-copy settings */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-4">
           <Settings2 className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-xs font-medium text-muted-foreground/80">Auto-Copy Settings</h3>
@@ -1220,7 +1220,7 @@ function CommunityStatsTab() {
   return (
     <div className="space-y-4">
       {/* Sentiment grid */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <BarChart2 className="h-4 w-4 text-muted-foreground" />
@@ -1269,7 +1269,7 @@ function CommunityStatsTab() {
       </div>
 
       {/* Regime vote */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <Zap className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-xs font-medium text-muted-foreground/80">Market Regime Vote</h3>
@@ -1285,7 +1285,7 @@ function CommunityStatsTab() {
                 key={r}
                 onClick={() => setRegimeVote(r === regimeVote ? null : r)}
                 className={cn(
-                  "rounded-xl border p-3 text-center transition-colors",
+                  "rounded-md border p-3 text-center transition-colors",
                   selected
                     ? r === "bull"
                       ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
@@ -1314,7 +1314,7 @@ function CommunityStatsTab() {
       </div>
 
       {/* Discussion bubble chart */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <MessageSquare className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-xs font-medium text-muted-foreground/80">Most Discussed This Week</h3>
@@ -1323,7 +1323,7 @@ function CommunityStatsTab() {
       </div>
 
       {/* Return distribution histogram */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-xs font-medium text-muted-foreground/80">Community P&L Distribution (This Month)</h3>
@@ -1337,7 +1337,7 @@ function CommunityStatsTab() {
       </div>
 
       {/* Challenges */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <Trophy className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-xs font-medium text-muted-foreground/80">Active Challenges</h3>

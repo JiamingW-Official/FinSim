@@ -536,7 +536,7 @@ export default function LongShortPage() {
       </div>
 
       {/* Summary Stats — Hero */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <StatChip label="Gross Exp." value={`${metrics.grossExposure.toFixed(0)}%`} />
         <StatChip label="Net Exp." value={`${metrics.netExposure > 0 ? "+" : ""}${metrics.netExposure.toFixed(0)}%`} variant={metrics.netExposure > 0 ? "green" : metrics.netExposure < -10 ? "red" : "default"} />
         <StatChip label="β-Adj Net" value={`${metrics.betaAdjustedNet > 0 ? "+" : ""}${metrics.betaAdjustedNet.toFixed(2)}`} variant={Math.abs(metrics.betaAdjustedNet) < 0.15 ? "green" : "amber"} />

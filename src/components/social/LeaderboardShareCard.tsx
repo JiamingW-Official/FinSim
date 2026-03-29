@@ -143,7 +143,7 @@ export function LeaderboardShareModal({ data, onClose }: LeaderboardShareModalPr
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
             onClick={(e) => e.stopPropagation()}
-            className="w-80 overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+            className="w-80 overflow-hidden rounded-md border border-border bg-card shadow-sm"
           >
             <LeaderboardShareCard data={data} onClose={onClose} />
           </motion.div>

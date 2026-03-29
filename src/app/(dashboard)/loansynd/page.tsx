@@ -153,7 +153,7 @@ function Pill({ children, color = "default" }: { children: React.ReactNode; colo
 // ── InfoCard ─────────────────────────────────────────────────────────────────
 function InfoCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="bg-foreground/5 rounded-xl border border-border p-4">
+    <div className="bg-foreground/5 rounded-md border border-border p-4">
       <p className="text-xs font-semibold text-foreground/40 mb-3">{title}</p>
       {children}
     </div>
@@ -164,7 +164,7 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
 function ExpandSection({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-foreground/5 rounded-xl border border-border">
+    <div className="bg-foreground/5 rounded-md border border-border">
       <button
         className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-foreground/80 hover:text-foreground"
         onClick={() => setOpen((v) => !v)}
@@ -489,7 +489,7 @@ export default function LoanSyndPage() {
       </div>
 
       {/* KPI strip — Hero */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         {[
           { label: "US LL Market Size", value: "$1.4T", sub: "Outstanding notional", icon: DollarSign, color: "text-indigo-400" },
           { label: "CLO Share of Demand", value: "65%", sub: "Primary market buyers", icon: Users, color: "text-muted-foreground" },
@@ -501,7 +501,7 @@ export default function LoanSyndPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.06 }}
-            className="bg-foreground/5 rounded-xl border border-border p-4"
+            className="bg-foreground/5 rounded-md border border-border p-4"
           >
             <div className="flex items-center gap-2 mb-1">
               <kpi.icon size={14} className={kpi.color} />
@@ -535,7 +535,7 @@ export default function LoanSyndPage() {
         {/* ── Tab 1: Loan Structure ──────────────────────────────────────────── */}
         <TabsContent value="structure" className="data-[state=inactive]:hidden space-y-5">
           {/* Deal terms table */}
-          <div className="bg-foreground/5 rounded-xl border border-border overflow-hidden">
+          <div className="bg-foreground/5 rounded-md border border-border overflow-hidden">
             <div className="px-4 py-3 border-b border-border flex items-center gap-2">
               <FileText size={14} className="text-indigo-400" />
               <span className="text-sm font-medium">Sample LBO Loan Transactions</span>
@@ -593,7 +593,7 @@ export default function LoanSyndPage() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="bg-indigo-500/10 border border-indigo-500/30 rounded-xl p-4 overflow-hidden"
+                className="bg-indigo-500/10 border border-indigo-500/30 rounded-md p-4 overflow-hidden"
               >
                 <p className="text-sm font-medium text-indigo-300 mb-2">{selectedLoan.company} — Deal Summary</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
@@ -885,7 +885,7 @@ export default function LoanSyndPage() {
           </div>
 
           {/* Covenant test gauges */}
-          <div className="bg-foreground/5 rounded-xl border border-border p-4">
+          <div className="bg-foreground/5 rounded-md border border-border p-4">
             <div className="flex items-center gap-2 mb-4">
               <Activity size={14} className="text-indigo-400" />
               <span className="text-sm font-medium">Leverage & Coverage Ratio Tests</span>
@@ -961,7 +961,7 @@ export default function LoanSyndPage() {
         {/* ── Tab 4: Secondary Market ────────────────────────────────────────── */}
         <TabsContent value="secondary" className="data-[state=inactive]:hidden space-y-5">
           {/* Price chart */}
-          <div className="bg-foreground/5 rounded-xl border border-border p-4">
+          <div className="bg-foreground/5 rounded-md border border-border p-4">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <BarChart3 size={14} className="text-indigo-400" />
@@ -1096,7 +1096,7 @@ export default function LoanSyndPage() {
           </div>
 
           {/* Key secondary market metrics */}
-          <div className="bg-foreground/5 rounded-xl border border-border p-4">
+          <div className="bg-foreground/5 rounded-md border border-border p-4">
             <div className="flex items-center gap-2 mb-4">
               <Scale size={14} className="text-amber-400" />
               <span className="text-sm font-medium">Secondary Market Key Metrics</span>

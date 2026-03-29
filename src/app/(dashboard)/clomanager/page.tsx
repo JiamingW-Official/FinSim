@@ -235,7 +235,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -326,7 +326,7 @@ function StructureTab() {
       </div>
 
       {/* Waterfall SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Capital Structure Waterfall" sub="Senior to junior priority of payments" />
         <div className="overflow-x-auto">
           <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="text-foreground">
@@ -385,7 +385,7 @@ function StructureTab() {
       </div>
 
       {/* Tranche detail table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Tranche Summary" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -433,7 +433,7 @@ function CoverageTab() {
 
   function TestGroup({ tests, title }: { tests: CoverageTest[]; title: string }) {
     return (
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title={title} />
         <div className="space-y-4">
           {tests.map((t) => {
@@ -484,7 +484,7 @@ function CoverageTab() {
       {/* Summary banner */}
       <div
         className={cn(
-          "rounded-xl border p-4 flex items-center gap-3",
+          "rounded-md border p-4 flex items-center gap-3",
           allPass
             ? "border-emerald-500/30 bg-emerald-900/20"
             : "border-rose-500/30 bg-rose-900/20"
@@ -513,7 +513,7 @@ function CoverageTab() {
       </div>
 
       {/* Glossary */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Test Mechanics" />
         <div className="grid gap-3 sm:grid-cols-2">
           {[
@@ -565,7 +565,7 @@ function PortfolioTab() {
       </div>
 
       {/* Loan table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Collateral Pool" sub="8 loan positions" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -607,7 +607,7 @@ function PortfolioTab() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         {/* Loan balance bars */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionHeading title="Position Size" sub="$M balance" />
           <div className="space-y-2">
             {[...LOANS].sort((a, b) => b.balance - a.balance).map((l) => (
@@ -626,7 +626,7 @@ function PortfolioTab() {
         </div>
 
         {/* Industry distribution */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionHeading title="Industry Concentration" sub="% of pool balance" />
           <div className="space-y-2">
             {indEntries.map(([ind, bal], idx) => (
@@ -691,7 +691,7 @@ function ReinvestmentTab() {
       </div>
 
       {/* Sliders */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-5">
         <SectionHeading title="Reinvestment Assumptions" sub="Adjust to see impact on returns" />
 
         <div>
@@ -753,7 +753,7 @@ function ReinvestmentTab() {
       </div>
 
       {/* Note repayment schedule table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Projected Cash Flow Schedule" sub="Simplified illustration" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -814,7 +814,7 @@ function DefaultScenariosTab() {
             key={sc.label}
             onClick={() => setSelectedScenario(idx)}
             className={cn(
-              "rounded-xl border p-4 text-left transition-all",
+              "rounded-md border p-4 text-left transition-all",
               selectedScenario === idx
                 ? "border-primary/60 bg-muted/40"
                 : "border-border bg-foreground/5 hover:bg-muted/50"
@@ -841,7 +841,7 @@ function DefaultScenariosTab() {
       </div>
 
       {/* Tranche impairment table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Tranche Impairment Analysis" sub={`Scenario: ${scen.label} (${scen.defaultRate}% default, ${scen.recovery}% recovery)`} />
         <div className="space-y-3">
           {TRANCHES.map((t) => {
@@ -877,7 +877,7 @@ function DefaultScenariosTab() {
       </div>
 
       {/* Scenario comparison */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Cross-Scenario Comparison" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -967,7 +967,7 @@ function EquityReturnsTab() {
       </div>
 
       {/* NAV chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Equity NAV Over Time" sub="Indexed to 100 at closing (20 quarters)" />
         <div className="overflow-x-auto">
           <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}>
@@ -1011,7 +1011,7 @@ function EquityReturnsTab() {
       </div>
 
       {/* IRR by scenario bars */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="IRR Waterfall by Scenario" sub="Equity tranche returns" />
         <div className="flex items-end gap-6 h-32 px-4">
           {irrData.map((d) => {
@@ -1034,7 +1034,7 @@ function EquityReturnsTab() {
       </div>
 
       {/* Fee structure breakdown */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Fee Structure" sub="CLO manager compensation" />
         <div className="grid gap-3 sm:grid-cols-3">
           {[
@@ -1092,7 +1092,7 @@ export default function CLOManagerPage() {
       {/* Content */}
       <div className="px-6 py-6">
         <Tabs defaultValue="structure">
-          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-card/60 border border-border p-1 rounded-xl">
+          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-card/60 border border-border p-1 rounded-md">
             {TABS.map(({ id, label, icon: Icon }) => (
               <TabsTrigger
                 key={id}

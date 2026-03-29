@@ -1083,20 +1083,20 @@ export default function GlobalMacroPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-md bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
             <Globe className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
-            <h1 className="text-xl font-medium text-foreground">Global Macro Trading</h1>
+            <h1 className="text-lg font-medium text-foreground">Global Macro Trading</h1>
             <p className="text-xs text-muted-foreground">Macro regime analysis · Trade ideas · Central banks · Economic indicators · Currency markets</p>
           </div>
         </div>
       </motion.div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="dashboard"   className="data-[state=active]:bg-muted text-xs">Macro Dashboard</TabsTrigger>
           <TabsTrigger value="trade-ideas" className="data-[state=active]:bg-muted text-xs">Trade Ideas</TabsTrigger>

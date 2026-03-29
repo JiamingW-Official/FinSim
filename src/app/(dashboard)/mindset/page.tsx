@@ -1439,7 +1439,7 @@ function ProcessOutcome() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               className={cn(
-                "rounded-xl border p-5 space-y-3",
+                "rounded-md border p-5 space-y-3",
                 q.bg,
                 q.border
               )}
@@ -2010,7 +2010,7 @@ export default function MindsetPage() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">Trading Psychology Toolkit</h2>
           <p className="text-sm text-muted-foreground">Bias assessment, decision frameworks, emotional intelligence, process vs outcome thinking, and mental models for better trading.</p>
         </div>

@@ -139,7 +139,7 @@ function ResultScreen({
 
       {/* Grade badge */}
       <div
-        className={`rounded-xl border px-6 py-3 ${gradeColors[grade] ?? ""}`}
+        className={`rounded-md border px-6 py-3 ${gradeColors[grade] ?? ""}`}
       >
         <div className="text-4xl font-bold">{grade}</div>
         <div className="text-sm mt-0.5 font-medium">{label}</div>

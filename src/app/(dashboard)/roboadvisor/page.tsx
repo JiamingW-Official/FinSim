@@ -210,8 +210,8 @@ function RoboLandscape() {
   return (
     <div className="space-y-6">
       {/* AUM Bar Chart */}
-      <Card className="p-5 bg-card border-border">
-        <h3 className="text-sm font-semibold text-muted-foreground mb-4">Assets Under Management (Billions)</h3>
+      <Card className="p-6 bg-card border-border border-l-4 border-l-primary">
+        <h3 className="text-lg font-semibold text-muted-foreground mb-4">Assets Under Management (Billions)</h3>
         <svg viewBox="0 0 620 200" className="w-full">
           {PROVIDERS.map((p, i) => {
             const barH = (p.aum / maxAUM) * 150;
@@ -926,7 +926,7 @@ function SmartFeatures() {
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="mt-5 p-4 bg-muted/60 rounded-xl border border-border"
+              className="mt-5 p-4 bg-muted/60 rounded-md border border-border"
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm font-medium text-foreground">Your Risk Profile</span>

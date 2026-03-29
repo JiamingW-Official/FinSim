@@ -78,7 +78,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -249,7 +249,7 @@ function PropertyAnalyzer() {
     <div className="space-y-6">
       {/* Inputs */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-6 space-y-4 border-l-4 border-l-primary">
           <SectionTitle><Calculator className="w-4 h-4" />Property Inputs</SectionTitle>
           {(
             [
@@ -308,7 +308,7 @@ function PropertyAnalyzer() {
             <StatCard label="DSCR" value={calc.dscr.toFixed(2) + "x"} highlight={calc.dscr >= 1.25 ? "pos" : calc.dscr >= 1.0 ? "neutral" : "neg"} sub="NOI / Debt Service" />
           </div>
 
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-2">
             <SectionTitle><DollarSign className="w-4 h-4" />Income Statement</SectionTitle>
             {[
               { label: "Gross Rent (annual)", val: calc.annualGross, sign: 1 },
@@ -326,7 +326,7 @@ function PropertyAnalyzer() {
             ))}
           </div>
 
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-1">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-1">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Loan Amount (80% LTV)</span>
               <span className="text-foreground">{fmtM(calc.loanAmount)}</span>
@@ -348,7 +348,7 @@ function PropertyAnalyzer() {
       </div>
 
       {/* Appreciation SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionTitle><TrendingUp className="w-4 h-4" />10-Year Appreciation & Equity Build-Up (4% annual growth)</SectionTitle>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" preserveAspectRatio="xMidYMid meet">
           {/* Grid lines */}
@@ -567,7 +567,7 @@ function MarketComparisons() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -632,7 +632,7 @@ function MarketComparisons() {
       </div>
 
       {/* Rent vs Buy */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionTitle><Calculator className="w-4 h-4" />Rent vs. Buy Calculator (10-Year Net Cost)</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           {[
@@ -761,7 +761,7 @@ function REITAnalysis() {
       </div>
 
       {/* REIT table */}
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -815,7 +815,7 @@ function REITAnalysis() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="rounded-xl border border-primary/30 bg-primary/10 p-5"
+            className="rounded-md border border-primary/30 bg-primary/10 p-5"
           >
             <div className="flex justify-between items-start mb-3">
               <div>
@@ -843,7 +843,7 @@ function REITAnalysis() {
       </AnimatePresence>
 
       {/* FFO bar chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionTitle><BarChart3 className="w-4 h-4" />FFO per Share by REIT</SectionTitle>
         <svg viewBox={`0 0 ${W3} ${H3}`} className="w-full" preserveAspectRatio="xMidYMid meet">
           {[0, 0.5, 1].map((t) => (
@@ -865,7 +865,7 @@ function REITAnalysis() {
 
       {/* Education: FFO vs Earnings */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><Info className="w-4 h-4" />Why FFO Instead of EPS?</SectionTitle>
           <p className="text-xs text-muted-foreground leading-relaxed">
             REITs own depreciating assets on paper — GAAP requires large depreciation charges that reduce net income, but real estate often <em>appreciates</em> in value.
@@ -877,7 +877,7 @@ function REITAnalysis() {
             <strong className="text-foreground">AFFO</strong> (Adjusted FFO) further subtracts recurring capex — the gold standard for dividend sustainability analysis.
           </p>
         </div>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><Building2 className="w-4 h-4" />REIT vs Direct Real Estate</SectionTitle>
           {[
             { factor: "Liquidity", reit: "High — stock exchange", direct: "Low — months to sell" },
@@ -954,7 +954,7 @@ function CommercialRE() {
             key={s.type}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2"
+            className="rounded-md border border-border bg-foreground/5 p-4 space-y-2"
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -988,7 +988,7 @@ function CommercialRE() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* DSCR Calculator */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Calculator className="w-4 h-4" />DSCR Calculator</SectionTitle>
           {[
             { key: "noi" as const, label: "Annual NOI ($)" },
@@ -1017,7 +1017,7 @@ function CommercialRE() {
         </div>
 
         {/* 5/25 Commercial Mortgage */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Building2 className="w-4 h-4" />Commercial Mortgage (5/25 Structure)</SectionTitle>
           {[
             { key: "loanAmount" as const, label: "Loan Amount ($)", step: 100000 },
@@ -1046,7 +1046,7 @@ function CommercialRE() {
       </div>
 
       {/* CRE Distress Panel */}
-      <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-5">
+      <div className="rounded-md border border-rose-500/30 bg-rose-500/10 p-5">
         <SectionTitle><AlertTriangle className="w-4 h-4 text-rose-400" /><span className="text-rose-400">Office Sector Distress — Post-COVID</span></SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -1150,7 +1150,7 @@ function DevelopmentTab() {
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Ground-up Development */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><Building2 className="w-4 h-4" />Ground-Up Development Costs</SectionTitle>
           {[
             { key: "landCost" as const, label: "Land Cost ($)" },
@@ -1204,7 +1204,7 @@ function DevelopmentTab() {
         </div>
 
         {/* BRRRR */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-5 space-y-4">
           <SectionTitle><RefreshCw className="w-4 h-4" />BRRRR Strategy</SectionTitle>
           <p className="text-xs text-muted-foreground">Buy → Rehab → Rent → Refinance → Repeat</p>
           {[
@@ -1244,7 +1244,7 @@ function DevelopmentTab() {
       </div>
 
       {/* Renovation ROI */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionTitle><TrendingUp className="w-4 h-4" />Renovation ROI — Which Improvements Add the Most Value</SectionTitle>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -1283,7 +1283,7 @@ function DevelopmentTab() {
       </div>
 
       {/* IRR Model */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionTitle><BarChart3 className="w-4 h-4" />Value-Add IRR Model</SectionTitle>
         <div className="grid grid-cols-6 gap-2 mb-3">
           {irrFlows.cashFlows.map((cf, i) => (
@@ -1391,7 +1391,7 @@ function PortfolioStrategy() {
       {/* Risk-return + allocation */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Risk-return scatter */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-5">
+        <div className="rounded-md border border-border bg-foreground/5 p-5">
           <SectionTitle><BarChart3 className="w-4 h-4" />Core → Opportunistic Risk/Return</SectionTitle>
           <svg viewBox={`0 0 ${W4} ${H4}`} className="w-full">
             {[0, 5, 10, 15, 20].map((r) => (
@@ -1428,7 +1428,7 @@ function PortfolioStrategy() {
         </div>
 
         {/* Sector allocation donut */}
-        <div className="rounded-xl border border-border bg-foreground/5 p-5">
+        <div className="rounded-md border border-border bg-foreground/5 p-5">
           <SectionTitle><Layers className="w-4 h-4" />Recommended Sector Allocation</SectionTitle>
           <div className="flex items-center gap-4">
             <svg viewBox="0 0 160 160" className="w-36 h-36 shrink-0">
@@ -1455,7 +1455,7 @@ function PortfolioStrategy() {
       </div>
 
       {/* Leverage effects */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5 space-y-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-5 space-y-4">
         <SectionTitle><Percent className="w-4 h-4" />Leverage Effects on Returns</SectionTitle>
         <div className="flex items-center gap-4 mb-2">
           <label className="text-xs text-muted-foreground w-24">LTV: {ltv}%</label>
@@ -1499,7 +1499,7 @@ function PortfolioStrategy() {
 
       {/* 1031 + Portfolio diversification */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><RefreshCw className="w-4 h-4" />1031 Exchange</SectionTitle>
           {[
             { rule: "45 Days", desc: "To identify replacement properties after closing" },
@@ -1515,7 +1515,7 @@ function PortfolioStrategy() {
             </div>
           ))}
         </div>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-2">
           <SectionTitle><MapPin className="w-4 h-4" />Geographic Diversification</SectionTitle>
           {[
             { pct: "1 Market", risk: "Extreme concentration risk — local recession wipes portfolio" },
@@ -1559,7 +1559,7 @@ export default function RealEstatePage() {
         <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} className="flex items-start justify-between flex-wrap gap-4">
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <div className="rounded-xl bg-primary/20 p-2.5">
+              <div className="rounded-md bg-primary/20 p-2.5">
                 <Home className="w-6 h-6 text-primary" />
               </div>
               <h1 className="text-2xl font-bold text-foreground">Real Estate Investment Analysis</h1>
@@ -1583,7 +1583,7 @@ export default function RealEstatePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="analyzer" className="space-y-6">
-          <TabsList className="flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-xl border border-border">
+          <TabsList className="flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-md border border-border">
             {TABS.map(({ id, label, icon }) => (
               <TabsTrigger
                 key={id}

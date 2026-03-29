@@ -49,7 +49,7 @@ export function AchievementShareCard({ achievement, onClose }: AchievementShareC
       {/* Body */}
       <div className="flex flex-col items-center gap-4 px-6 py-5">
         {/* Icon */}
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10">
+        <div className="flex h-16 w-16 items-center justify-center rounded-md border border-primary/30 bg-primary/10">
           <DynamicIcon name={achievement.icon} className="h-8 w-8 text-primary" />
         </div>
 
@@ -119,7 +119,7 @@ export function AchievementShareModal({ achievement, onClose }: AchievementShare
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
             onClick={(e) => e.stopPropagation()}
-            className="w-80 overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+            className="w-80 overflow-hidden rounded-md border border-border bg-card shadow-sm"
           >
             <AchievementShareCard achievement={achievement} onClose={onClose} />
           </motion.div>
@@ -142,7 +142,7 @@ interface AchievementToastProps {
 export function AchievementToastContent({ achievement, xpReward, toastId }: AchievementToastProps) {
   return (
     <div className="flex items-start gap-3 rounded-lg border border-border bg-card px-4 py-3 shadow-sm">
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-primary/10">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-primary/30 bg-primary/10">
         <DynamicIcon name={achievement.icon} className="h-4.5 w-4.5 text-primary" />
       </div>
       <div className="min-w-0 flex-1">

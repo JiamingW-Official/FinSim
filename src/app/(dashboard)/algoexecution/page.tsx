@@ -600,7 +600,7 @@ export default function AlgoExecutionPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6"
+        className="grid grid-cols-2 md:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         {metrics.map((m) => (
           <Card key={m.label} className={`border ${m.border} ${m.bg}`}>

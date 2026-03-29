@@ -1266,7 +1266,7 @@ export default function CarbonMarkets2Page() {
         className="max-w-5xl mx-auto space-y-6"
       >
         {/* HERO Header */}
-        <div className="border-l-4 border-l-primary rounded-xl bg-card p-6 space-y-1">
+        <div className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1">
           <div className="flex items-center gap-2">
             <Leaf className="text-emerald-400" size={22} />
             <h1 className="text-xl font-semibold text-foreground">Carbon Markets Deep Dive</h1>

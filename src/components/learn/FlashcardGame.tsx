@@ -96,7 +96,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
       >
         <motion.div
-          className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500/15 border border-amber-500/30"
+          className="flex h-16 w-16 items-center justify-center rounded-md bg-amber-500/15 border border-amber-500/30"
           initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.1 }}
@@ -130,7 +130,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
         <button
           type="button"
           onClick={onClose}
-          className="mt-2 rounded-xl bg-primary px-6 py-2.5 text-sm font-bold text-foreground transition-all hover:bg-primary/90 active:scale-95"
+          className="mt-2 rounded-md bg-primary px-6 py-2.5 text-sm font-bold text-foreground transition-all hover:bg-primary/90 active:scale-95"
         >
           Done
         </button>
@@ -208,7 +208,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             onClick={handleFlip}
           >
             {/* Front */}
-            <div className="card-flip-front rounded-2xl border border-border bg-card p-6 min-h-[220px] flex flex-col items-center justify-center gap-3">
+            <div className="card-flip-front rounded-md border border-border bg-card p-6 min-h-[220px] flex flex-col items-center justify-center gap-3">
               {cat && (
                 <span className={cn("text-[11px] font-bold", cat.color)}>
                   {cat.label}
@@ -230,7 +230,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             </div>
 
             {/* Back */}
-            <div className="card-flip-back rounded-2xl border border-primary/20 bg-card p-6 min-h-[220px] flex flex-col justify-center gap-3">
+            <div className="card-flip-back rounded-md border border-primary/20 bg-card p-6 min-h-[220px] flex flex-col justify-center gap-3">
               {cat && (
                 <span className={cn("text-[11px] font-bold", cat.color)}>
                   {cat.label}
@@ -262,7 +262,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             <button
               type="button"
               onClick={() => handleAnswer(false)}
-              className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 py-3 text-sm font-bold text-rose-400 transition-all hover:bg-rose-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-rose-500/30 bg-rose-500/10 py-3 text-sm font-bold text-rose-400 transition-all hover:bg-rose-500/20 active:scale-95"
             >
               <RotateCcw className="h-4 w-4" />
               Still Learning
@@ -270,7 +270,7 @@ export function FlashcardGame({ onClose }: FlashcardGameProps) {
             <button
               type="button"
               onClick={() => handleAnswer(true)}
-              className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-3 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
+              className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 py-3 text-sm font-bold text-emerald-400 transition-all hover:bg-emerald-500/20 active:scale-95"
             >
               <Check className="h-4 w-4" />
               Got It

@@ -835,7 +835,7 @@ export default function CommodityTermPage() {
     <div className="p-4 md:p-6 space-y-6 max-w-6xl mx-auto">
       {/* HERO Header */}
       <FadeIn>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
           <div>
             <h1 className="text-xl font-semibold text-foreground">
               Commodity Term Structure &amp; Roll Yield
@@ -885,7 +885,7 @@ export default function CommodityTermPage() {
 
       {/* Info callout */}
       <FadeIn delay={0.1}>
-        <div className="flex gap-3 p-3 rounded-xl border border-amber-500/30 bg-amber-500/5 text-xs text-muted-foreground">
+        <div className="flex gap-3 p-3 rounded-md border border-amber-500/30 bg-amber-500/5 text-xs text-muted-foreground">
           <Info className="h-4 w-4 text-amber-400 mt-0.5 shrink-0" />
           <span>
             <strong className="text-amber-400">Roll yield</strong> is the gain or loss from rolling an expiring futures contract into a later-dated one.

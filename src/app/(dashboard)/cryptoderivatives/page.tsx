@@ -639,7 +639,7 @@ export default function CryptoDerivativesPage() {
       className="p-6 space-y-6 max-w-7xl mx-auto"
     >
       {/* HERO Header */}
-      <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>
           <h1 className="text-xl font-semibold text-foreground tracking-tight flex items-center gap-2">
             <Activity className="w-6 h-6 text-primary" />

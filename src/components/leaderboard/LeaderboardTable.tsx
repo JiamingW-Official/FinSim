@@ -44,7 +44,7 @@ export function LeaderboardTable({ ranked, dimension }: LeaderboardTableProps) {
   }, [ranked, showAll, userRank]);
 
   return (
-    <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+    <div className="rounded-md border border-border bg-card/50 overflow-hidden">
       {/* Column header */}
       <div className="flex items-center gap-3 px-3 py-2 border-b border-border/50">
         <span className="w-7 text-center text-[11px] font-bold text-muted-foreground">#</span>

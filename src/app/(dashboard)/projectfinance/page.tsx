@@ -72,7 +72,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -431,7 +431,7 @@ function TabSPVStructure() {
           <Layers size={14} />
           SPV / ProjectCo Structure
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border border-l-4 border-l-primary bg-foreground/5 p-6">
           <SPVDiagram />
         </div>
       </div>
@@ -442,7 +442,7 @@ function TabSPVStructure() {
           <DollarSign size={14} />
           Capital Structure Waterfall
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
           <WaterfallBar label="Total CAPEX" value={sec.capex} maxValue={sec.capex} color="#71717a" />
           <WaterfallBar label="Senior Debt" value={debtAmt} maxValue={sec.capex} color="#34d399" />
           <WaterfallBar label="Equity (Sponsors)" value={equityAmt} maxValue={sec.capex} color="#a78bfa" />
@@ -462,7 +462,7 @@ function TabSPVStructure() {
           <FileText size={14} />
           Contractual Framework
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -776,7 +776,7 @@ function TabCashFlowModel() {
   return (
     <div className="space-y-6">
       {/* Slider controls */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-4">
         <SectionTitle>
           <Activity size={14} />
           Model Inputs
@@ -816,7 +816,7 @@ function TabCashFlowModel() {
           <BarChart3 size={14} />
           20-Year Cash Flow Projection
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <CashFlowWaterfallSVG data={cashFlows} />
         </div>
       </div>
@@ -827,7 +827,7 @@ function TabCashFlowModel() {
           <TrendingUp size={14} />
           DSCR Coverage by Year
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <DSCRBarChart data={cashFlows} />
         </div>
       </div>
@@ -838,7 +838,7 @@ function TabCashFlowModel() {
           <FileText size={14} />
           Annual Cash Flow Summary
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -1015,7 +1015,7 @@ function TabRiskAllocation() {
           {RISK_MATRIX.map((row, i) => (
             <motion.div
               key={row.category}
-              className="rounded-xl border border-border bg-foreground/5 overflow-hidden cursor-pointer"
+              className="rounded-md border border-border bg-foreground/5 overflow-hidden cursor-pointer"
               onClick={() => setExpanded(expanded === i ? null : i)}
             >
               <div className="flex items-center gap-3 px-4 py-3">
@@ -1082,7 +1082,7 @@ function TabRiskAllocation() {
         </SectionTitle>
         <div className="space-y-3">
           {POLITICAL_RISK_TOOLS.map((tool) => (
-            <div key={tool.org} className="rounded-xl border border-border bg-foreground/5 p-4">
+            <div key={tool.org} className="rounded-md border border-border bg-foreground/5 p-4">
               <div className="flex items-start justify-between mb-2">
                 <div>
                   <span className="text-sm font-semibold text-muted-foreground">{tool.org}</span>
@@ -1132,7 +1132,7 @@ function TabRiskAllocation() {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-xl border border-border bg-foreground/5 p-4"
+              className="rounded-md border border-border bg-foreground/5 p-4"
               style={{ borderTopColor: item.color, borderTopWidth: 2 }}
             >
               <h4 className="text-sm font-semibold mb-2" style={{ color: item.color }}>
@@ -1376,7 +1376,7 @@ function TabDealMetrics() {
           <Target size={14} />
           Key Project Finance Metrics
         </SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 justify-items-center">
             <div className="text-center">
               <GaugeSVG value={metrics.projectIRR} min={6} max={16} label="Project IRR" unit="%" color="#22d3ee" />
@@ -1417,7 +1417,7 @@ function TabDealMetrics() {
           <Percent size={14} />
           Typical Debt Tenor &amp; Pricing by Sector
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -1454,7 +1454,7 @@ function TabDealMetrics() {
           <StatCard label="Debt Tenor" value={`${metrics.debtTenor} yrs`} sub="Post-refi extension" />
           <StatCard label="Equity Uplift" value={fmtPct((metrics.refiGain / 600) * 100)} sub="IRR improvement" highlight="pos" />
         </div>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <RefinancingAnalysisSVG />
         </div>
       </div>
@@ -1465,7 +1465,7 @@ function TabDealMetrics() {
           <ArrowRight size={14} />
           PPP vs Merchant Project Comparison
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -1509,7 +1509,7 @@ export default function ProjectFinancePage() {
         className="space-y-1"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-cyan-500/15 border border-cyan-500/30">
+          <div className="p-2 rounded-md bg-cyan-500/15 border border-cyan-500/30">
             <Building2 size={22} className="text-muted-foreground" />
           </div>
           <div>

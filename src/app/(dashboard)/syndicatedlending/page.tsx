@@ -58,7 +58,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-muted/30 p-4">
+    <div className="rounded-md border border-border bg-muted/30 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -209,7 +209,7 @@ function DealStructureTab() {
       </div>
 
       {/* Anatomy SVG — borrower flow */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Syndicated Loan Anatomy"
           sub="How a large corporate loan is arranged and distributed"
@@ -276,7 +276,7 @@ function DealStructureTab() {
       </div>
 
       {/* Commitment tiers */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Commitment Amounts by Bank Tier" sub="Illustrative $500M facility" />
         <div className="space-y-3">
           {commitments.map((c) => (
@@ -295,7 +295,7 @@ function DealStructureTab() {
       </div>
 
       {/* Loan types */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Facility Types" sub="Common tranches within a syndicated credit agreement" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {loanTypes.map((lt) => (
@@ -308,7 +308,7 @@ function DealStructureTab() {
       </div>
 
       {/* Agent roles */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Agent Bank Roles" sub="Operational infrastructure of a syndicated facility" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {agentRoles.map((a) => {
@@ -334,7 +334,7 @@ function DealStructureTab() {
       </div>
 
       {/* IG vs Leveraged */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Investment Grade vs Leveraged Lending" sub="Key structural differences" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -359,7 +359,7 @@ function DealStructureTab() {
       </div>
 
       {/* Deal economics */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Typical Deal Economics" sub="Fee waterfall from borrower to syndicate" />
         <div className="space-y-2">
           {economics.map((e) => (
@@ -378,7 +378,7 @@ function DealStructureTab() {
       </div>
 
       {/* Cross-provisions */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Cross-Default, Cross-Acceleration & Intercreditor" sub="Contractual protection mechanisms" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {crossProv.map((cp) => (
@@ -480,7 +480,7 @@ function PricingMechanicsTab() {
       </div>
 
       {/* SOFR transition */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="SOFR Transition (Post-LIBOR)"
           sub="Secured Overnight Financing Rate replaced USD LIBOR on June 30, 2023"
@@ -502,7 +502,7 @@ function PricingMechanicsTab() {
       </div>
 
       {/* Spread chart */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Credit Spread by Rating — SOFR Margin (bps)"
           sub="Indicative ranges; investment grade (left) vs leveraged (right)"
@@ -599,7 +599,7 @@ function PricingMechanicsTab() {
       </div>
 
       {/* OID Mechanics */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="OID — Original Issue Discount"
           sub="Loan sold below par; discount increases lender's all-in yield"
@@ -628,7 +628,7 @@ function PricingMechanicsTab() {
       </div>
 
       {/* Margin ratchet */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Margin Ratchet"
           sub="Spread steps down as borrower deleverages — click a level"
@@ -676,7 +676,7 @@ function PricingMechanicsTab() {
       </div>
 
       {/* Financial maintenance covenants */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Financial Maintenance Covenants" sub="Quarterly tests — breach triggers event of default" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {covenants.map((c) => (
@@ -840,7 +840,7 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Timeline */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Syndication Process Timeline"
           sub="Click each step for detail"
@@ -883,7 +883,7 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Syndication types */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Syndication Structures" sub="Risk allocation between MLA and borrower" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {syndicationTypes.map((st) => (
@@ -899,7 +899,7 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Flex language */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Flex Language Mechanics" sub="Price discovery and market clearing tools" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {flexTypes.map((fl) => (
@@ -915,7 +915,7 @@ function SyndicationProcessTab() {
       </div>
 
       {/* Secondary market */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Secondary Loan Market" sub="Active trading market; largest in leveraged loans" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           {secondaryMarket.map((sm) => (
@@ -1050,7 +1050,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Volume bar chart */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Global Syndicated Loan Volume (2015–2024)"
           sub="$ Trillions; includes IG, leveraged, and investment grade revolvers"
@@ -1120,7 +1120,7 @@ function MarketDynamicsTab() {
       {/* Proceeds breakdown & sector side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Proceeds */}
-        <div className="rounded-xl border border-border bg-muted/30 p-5">
+        <div className="rounded-md border border-border bg-muted/30 p-5">
           <SectionHeading title="Use of Proceeds" sub="2024 mix" />
           <div className="space-y-2">
             {proceeds.map((p) => (
@@ -1139,7 +1139,7 @@ function MarketDynamicsTab() {
         </div>
 
         {/* Sectors */}
-        <div className="rounded-xl border border-border bg-muted/30 p-5">
+        <div className="rounded-md border border-border bg-muted/30 p-5">
           <SectionHeading title="Sector Concentration" sub="Share of leveraged loan volume" />
           <div className="space-y-2">
             {sectors.map((sec) => (
@@ -1159,7 +1159,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Covenant-lite evolution */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Covenant-Lite Evolution (2010–2024)"
           sub="% of leveraged loans with no financial maintenance covenants"
@@ -1202,7 +1202,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Institutional investor takeover */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Institutional Investor Takeover — Leveraged Loan Holders"
           sub="Non-bank institutional investors now dominate leveraged loan markets"
@@ -1229,7 +1229,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* ESG-linked loans */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="ESG-Linked Loan Mechanics"
           sub="Sustainability performance targets (SPTs) tied to margin"
@@ -1251,7 +1251,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Relationship vs transaction */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Relationship Banking vs Transaction Banking"
           sub="Fundamental tension in syndicated lending"

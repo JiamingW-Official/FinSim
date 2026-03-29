@@ -169,7 +169,7 @@ export default function LeaderboardPage() {
       <div className="border-b border-border border-l-4 border-l-primary px-4 py-4">
         <div className="flex items-center gap-3">
           <div
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
+            className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10"
           >
             <Trophy className="h-5 w-5 text-primary" />
           </div>
@@ -301,7 +301,7 @@ export default function LeaderboardPage() {
               </div>
 
               {/* HERO — Top 3 Podium */}
-              <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 mb-4">
+              <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 mb-4">
                 <div className="flex items-center gap-2 mb-5">
                   <Crown className="h-5 w-5 text-amber-400" />
                   <span className="text-base font-medium">Top 3 — {dimConfig.label}</span>
@@ -335,7 +335,7 @@ export default function LeaderboardPage() {
 
 
                   {/* League Distribution */}
-                  <div className="rounded-xl border border-border bg-card/50 p-3">
+                  <div className="rounded-md border border-border bg-card/50 p-3">
                     <div className="flex items-center gap-2 mb-2">
                       <Gem className="h-3.5 w-3.5 text-muted-foreground" />
                       <span className="text-xs font-medium">Leagues</span>
@@ -383,7 +383,7 @@ export default function LeaderboardPage() {
 
                   {/* Your Next Goal */}
                   <div
-                    className="rounded-xl border border-border bg-card/50 p-4"
+                    className="rounded-md border border-border bg-card/50 p-4"
                   >
                     <div className="flex items-center gap-2 mb-3">
                       <Medal className="h-4 w-4 text-primary" />
@@ -394,7 +394,7 @@ export default function LeaderboardPage() {
 
                   {/* Trading Tip */}
                   <div
-                    className="rounded-xl border border-primary/15 bg-primary/5 p-4"
+                    className="rounded-md border border-primary/15 bg-primary/5 p-4"
                   >
                     <div className="flex items-start gap-2">
                       <Lightbulb className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -470,7 +470,7 @@ function FriendsTab({ friends }: { friends: FriendEntry[] }) {
       </div>
 
       {/* Column headers */}
-      <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+      <div className="rounded-md border border-border bg-card/50 overflow-hidden">
         <div className="grid grid-cols-[2rem_1fr_5rem_4rem_4rem_5rem] gap-2 px-3 py-2 border-b border-border/50">
           <span className="text-[11px] font-medium text-muted-foreground text-center">#</span>
           <span className="text-[11px] font-medium text-muted-foreground">Player</span>
@@ -625,7 +625,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
     <div className="space-y-4">
       {/* Rank + Percentile */}
       <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-xl border border-border bg-card/50 p-4">
+        <div className="rounded-md border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Trophy className="h-4 w-4 text-primary" />
             <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Global Rank</span>
@@ -634,7 +634,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
           <p className="text-xs text-muted-foreground mt-0.5">out of {totalPlayers} players</p>
         </div>
 
-        <div className="rounded-xl border border-border bg-card/50 p-4">
+        <div className="rounded-md border border-border bg-card/50 p-4">
           <div className="flex items-center gap-2 mb-1">
             <Star className="h-4 w-4 text-amber-400" />
             <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">Percentile</span>
@@ -651,7 +651,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       </div>
 
       {/* Historical rank chart */}
-      <div className="rounded-xl border border-border bg-card/50 p-4">
+      <div className="rounded-md border border-border bg-card/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp className="h-4 w-4 text-primary" />
           <span className="text-sm font-medium">Rank History</span>
@@ -727,7 +727,7 @@ function YourStatsTab({ ranked, userRank }: { ranked: RankedEntry[]; userRank: R
       </div>
 
       {/* Comparison table */}
-      <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+      <div className="rounded-md border border-border bg-card/50 overflow-hidden">
         <div className="px-4 py-3 border-b border-border/50">
           <span className="text-sm font-medium">Performance Comparison</span>
         </div>
@@ -780,7 +780,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
   return (
     <div className="space-y-4">
       {/* Progress summary */}
-      <div className="rounded-xl border border-border bg-card/50 p-4">
+      <div className="rounded-md border border-border bg-card/50 p-4">
         <div className="flex items-center justify-between mb-3">
           <div>
             <span className="text-sm font-medium">Trophy Case</span>
@@ -807,7 +807,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
             {unlocked.map((a, i) => (
               <div
                 key={a.id}
-                className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3"
+                className="rounded-md border border-amber-500/20 bg-amber-500/5 p-3"
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <Trophy className="h-4 w-4 text-amber-400 shrink-0" />
@@ -833,7 +833,7 @@ function TrophyCaseTab({ achievements }: { achievements: { id: string; name: str
             {locked.map((a, i) => (
               <div
                 key={a.id}
-                className="rounded-xl border border-border bg-muted/5 p-3 opacity-50 grayscale"
+                className="rounded-md border border-border bg-muted/5 p-3 opacity-50 grayscale"
               >
                 <div className="flex items-center gap-2 mb-1.5">
                   <Lock className="h-4 w-4 text-muted-foreground shrink-0" />
@@ -878,7 +878,7 @@ function PodiumSlot({
 
       {/* Avatar */}
       <div className={cn(
-        "flex items-center justify-center rounded-xl font-medium text-foreground",
+        "flex items-center justify-center rounded-md font-medium text-foreground",
         sizes[place],
         entry.isUser ? "bg-primary" : color,
       )}>

@@ -97,7 +97,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
                 initial={{ scale: 0, rotate: -10 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", damping: 12, stiffness: 200 }}
-                className={`flex flex-col items-center gap-1.5 rounded-xl border p-5 ${config.bg} ${config.border}`}
+                className={`flex flex-col items-center gap-1.5 rounded-md border p-5 ${config.bg} ${config.border}`}
               >
                 <GradeIcon className={`h-10 w-10 ${config.color}`} />
                 <div className={`text-4xl font-bold ${config.color}`}>{grade}</div>

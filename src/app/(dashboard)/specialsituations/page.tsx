@@ -669,7 +669,7 @@ function StubCalculator() {
 
 
   return (
-    <div className="bg-card rounded-xl border border-border p-5 space-y-4">
+    <div className="bg-card rounded-md border border-border p-5 space-y-4">
       <div className="flex items-center gap-2 mb-2">
         <Calculator className="w-4 h-4 text-indigo-400" />
         <span className="text-sm font-semibold text-foreground">Implied Stub Value Calculator</span>
@@ -734,7 +734,7 @@ function EventCatalogTab() {
 
   return (
     <div className="space-y-4">
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-semibold text-foreground mb-1">8 Core Special Situations</h3>
         <p className="text-xs text-muted-foreground">
           Event-driven investing exploits mispricings caused by corporate actions. Each event type has distinct mechanics, holding periods, and risk profiles.
@@ -748,7 +748,7 @@ function EventCatalogTab() {
             whileHover={{ scale: 1.01 }}
             onClick={() => setSelected(selected === evt.id ? null : evt.id)}
             className={cn(
-              "bg-card border rounded-xl p-4 cursor-pointer transition-colors",
+              "bg-card border rounded-md p-4 cursor-pointer transition-colors",
               selected === evt.id ? "border-indigo-500/60" : "border-border hover:border-border"
             )}
           >
@@ -834,7 +834,7 @@ function ActivistTab() {
   return (
     <div className="space-y-5">
       {/* Campaign Phases */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Activist Campaign Phases</h3>
         <p className="text-xs text-muted-foreground mb-4">
           From initial 13D filing to resolution — each phase has distinct price dynamics and investor behavior.
@@ -859,7 +859,7 @@ function ActivistTab() {
       </div>
 
       {/* Top Activist Funds */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Top Activist Funds</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -897,7 +897,7 @@ function ActivistTab() {
       </div>
 
       {/* Success Rate by Demand Type */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Success Rate by Demand Type</h3>
         <div className="space-y-1">
           {DEMAND_TYPES.map((d) => (
@@ -912,7 +912,7 @@ function ActivistTab() {
       </div>
 
       {/* Short Activism Toggle */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <button
           onClick={() => setShowShort(!showShort)}
           className="flex items-center justify-between w-full"
@@ -978,7 +978,7 @@ function ActivistTab() {
       </div>
 
       {/* Target Selection Criteria */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Target Selection Criteria</h3>
         <div className="space-y-2">
           {targetCriteria.map(({ criterion, weight, detail }) => (
@@ -1046,7 +1046,7 @@ function PostReorgTab() {
   return (
     <div className="space-y-5">
       {/* Why Undervalued */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-2">Why Post-Reorg Equity Outperforms</h3>
         <p className="text-xs text-muted-foreground leading-relaxed mb-4">
           Studies show post-reorganization equities outperform the market by 40–60% over the first 3 years. The reasons are structural: creditors receive equity they didn&apos;t want, institutional investors can&apos;t hold below-investment-grade equity, and sell-side analysts don&apos;t cover companies without revenue from banking relationships.
@@ -1066,7 +1066,7 @@ function PostReorgTab() {
       </div>
 
       {/* Historical Returns Chart */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Historical Post-Reorg Equity Returns</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Median cumulative return vs. S&P 500, equal-weighted basket of 200 post-reorg equities (2000–2024)
@@ -1088,7 +1088,7 @@ function PostReorgTab() {
       </div>
 
       {/* Key Risks */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Key Risks in Post-Reorg Equity</h3>
         <div className="space-y-2">
           {riskFactors.map(({ risk, detail }) => (
@@ -1104,7 +1104,7 @@ function PostReorgTab() {
       </div>
 
       {/* Due Diligence Checklist */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Due Diligence Checklist</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {[
@@ -1164,7 +1164,7 @@ function StubTradesTab() {
   return (
     <div className="space-y-5">
       {/* Mechanics */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-2">Stub Trade Mechanics</h3>
         <p className="text-xs text-muted-foreground mb-4">
           A stub trade profits when a parent company trades at a discount to the market value of its publicly-listed subsidiary stake. The &quot;stub&quot; represents the residual value of the parent after subtracting its subsidiary holding.
@@ -1188,7 +1188,7 @@ function StubTradesTab() {
       <StubCalculator />
 
       {/* Stub Discount Historical */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Stub Discount / Premium Historical Pattern</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Simulated stub discount trajectory — starts at deep discount, converges toward fair value on catalyst
@@ -1209,7 +1209,7 @@ function StubTradesTab() {
       </div>
 
       {/* Famous Stub Trades */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Famous Stub Trades</h3>
         <div className="space-y-2">
           {FAMOUS_STUBS.map((stub, i) => (
@@ -1268,7 +1268,7 @@ function StubTradesTab() {
       </div>
 
       {/* Pair Trade Setup */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Pair Trade Setup & Sizing</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -1338,7 +1338,7 @@ export default function SpecialSituationsPage() {
             { label: "Activist Success Rate", value: "66%", sub: "Demand met", icon: <Target className="w-4 h-4 text-primary" /> },
             { label: "Stub Avg Entry Discount", value: "−38%", sub: "To fair value", icon: <DollarSign className="w-4 h-4 text-pink-400" /> },
           ].map(({ label, value, sub, icon }) => (
-            <div key={label} className="bg-card border border-border rounded-xl p-3">
+            <div key={label} className="bg-card border border-border rounded-md p-3">
               <div className="flex items-center gap-1.5 mb-1">
                 {icon}
                 <span className="text-xs text-muted-foreground">{label}</span>

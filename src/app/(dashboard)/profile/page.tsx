@@ -612,7 +612,7 @@ export default function ProfilePage() {
       <div className="mx-auto w-full max-w-3xl space-y-4 p-4 pb-16">
         {/* HERO — Player Stats/Level */}
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-          className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-3"
+          className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 space-y-3"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -1304,7 +1304,7 @@ export default function ProfilePage() {
                 <CardContent className="pt-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-primary/25">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/15 border border-primary/25">
                         <span className="text-sm font-medium text-primary">{level}</span>
                       </div>
                       <div>
@@ -1318,7 +1318,7 @@ export default function ProfilePage() {
                         <p className="text-xs font-medium text-right">Level {nextLevel}</p>
                         <p className="text-xs text-muted-foreground">{levelProgress.needed - levelProgress.current} XP needed</p>
                       </div>
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 border border-border">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/15 border border-border">
                         <span className="text-sm font-medium text-primary">{nextLevel}</span>
                       </div>
                     </div>

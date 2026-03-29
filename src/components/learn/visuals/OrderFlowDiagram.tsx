@@ -20,7 +20,7 @@ export function OrderFlowDiagram() {
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: i * 0.2 }}
-              className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl border-2 text-lg font-bold"
+              className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md border-2 text-lg font-bold"
               style={{ borderColor: step.color, color: step.color, background: `${step.color}15` }}
             >
               {i + 1}

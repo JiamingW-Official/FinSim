@@ -1050,7 +1050,7 @@ export default function MicrofinancepagePage() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">Microfinance Research Hub</h2>
           <p className="text-sm text-muted-foreground">Microloan models, MFI financial health analysis, impact evidence, and mobile money innovation.</p>
         </div>

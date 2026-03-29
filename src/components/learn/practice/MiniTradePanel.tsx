@@ -135,7 +135,7 @@ export function MiniTradePanel({
   const showIndicators = actionType === "indicator" || isFreeTradeMode;
 
   return (
-    <div className="glass-subtle rounded-xl border border-border/50 p-3 space-y-2.5">
+    <div className="glass-subtle rounded-md border border-border/50 p-3 space-y-2.5">
       {/* Price + Cash */}
       <div className="flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">

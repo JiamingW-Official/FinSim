@@ -624,7 +624,7 @@ function FactorModelsTab() {
           <button
             key={model.shortName}
             onClick={() => setSelected(model)}
-            className={`text-left rounded-xl border p-3 transition-all ${
+            className={`text-left rounded-md border p-3 transition-all ${
               selected.shortName === model.shortName
                 ? "border-opacity-100 bg-card/80"
                 : "border-border bg-card hover:border-border/60"
@@ -640,10 +640,10 @@ function FactorModelsTab() {
         ))}
       </div>
 
-      <Card className="bg-card border-border">
-        <CardHeader className="pb-2">
+      <Card className="bg-card border-border border-l-4 border-l-primary">
+        <CardHeader className="pb-2 p-6">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-base text-foreground">{selected.name}</CardTitle>
+            <CardTitle className="text-lg text-foreground">{selected.name}</CardTitle>
             <SectionBadge color={selected.color}>R² = {(selected.rSquared * 100).toFixed(0)}%</SectionBadge>
           </div>
           <p className="text-xs text-muted-foreground mt-1">{selected.description}</p>
@@ -774,7 +774,7 @@ function MomentumTab() {
           <button
             key={s.name}
             onClick={() => setSelected(i)}
-            className={`text-left rounded-xl border p-3 transition-all ${
+            className={`text-left rounded-md border p-3 transition-all ${
               selected === i ? "bg-card/80" : "border-border bg-card hover:border-border/60"
             }`}
             style={{ borderColor: selected === i ? s.color : undefined }}

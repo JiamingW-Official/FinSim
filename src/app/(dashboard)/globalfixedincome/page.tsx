@@ -209,7 +209,7 @@ function FadeCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className={cn("rounded-xl border border-border bg-foreground/5 p-4", className)}
+      className={cn("rounded-md border border-border bg-foreground/5 p-4", className)}
     >
       {children}
     </motion.div>
@@ -1198,14 +1198,14 @@ export default function GlobalFixedIncomePage() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-6"
+          className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
             <div className="rounded-lg bg-primary/15 p-2">
               <Globe size={20} className="text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Global Fixed Income</h1>
+              <h1 className="text-xl font-bold text-foreground">Global Fixed Income</h1>
               <p className="text-sm text-foreground/50">
                 Cross-border bond investing, sovereign &amp; corporate credit, EM bonds, FX hedging, and portfolio construction
               </p>
@@ -1217,7 +1217,7 @@ export default function GlobalFixedIncomePage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
           <TabsList className="mb-6 flex h-auto flex-wrap gap-1 bg-foreground/5 p-1">
             {tabs.map((tab) => (
               <TabsTrigger

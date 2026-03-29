@@ -42,7 +42,7 @@ export function SeasonBanner({ expanded, onToggle }: SeasonBannerProps) {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.005 }}
       whileTap={{ scale: 0.995 }}
-      className="w-full rounded-xl border border-border bg-card p-3 text-left transition-colors hover:bg-muted/50"
+      className="w-full rounded-md border border-border bg-card p-3 text-left transition-colors hover:bg-muted/50"
     >
       <div className="flex items-center gap-3">
         {/* Season icon */}

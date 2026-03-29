@@ -411,7 +411,7 @@ function RegulatoryTab() {
   return (
     <div className="space-y-6">
       {/* JOBS Act History */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
           <BookOpen className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-semibold text-foreground">JOBS Act 2012 — Legislative History</h3>
@@ -452,7 +452,7 @@ function RegulatoryTab() {
             <div
               key={fw.name}
               className={cn(
-                "rounded-xl border transition-colors",
+                "rounded-md border transition-colors",
                 colorBorder[fw.color],
                 colorBg[fw.color]
               )}
@@ -511,7 +511,7 @@ function RegulatoryTab() {
       </div>
 
       {/* Accredited vs Non-Accredited */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Shield className="w-4 h-4 text-green-400" />
           <h3 className="text-sm font-semibold text-foreground">Accredited vs Non-Accredited Investor Rules</h3>
@@ -561,7 +561,7 @@ function RegulatoryTab() {
       </div>
 
       {/* Blue Sky Laws */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Globe className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium text-foreground">State Blue Sky Laws</h3>
@@ -631,7 +631,7 @@ function PlatformTab() {
             whileHover={{ scale: 1.01 }}
             onClick={() => setSelectedPlatform(selectedPlatform?.name === platform.name ? null : platform)}
             className={cn(
-              "rounded-xl border p-4 cursor-pointer transition-colors",
+              "rounded-md border p-4 cursor-pointer transition-colors",
               selectedPlatform?.name === platform.name
                 ? "border-primary/60 bg-primary/10"
                 : "border-border bg-card/60 hover:border-border"
@@ -723,7 +723,7 @@ function PlatformTab() {
       </div>
 
       {/* Deal Flow SVG Bar Chart */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <BarChart2 className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium text-foreground">US Reg CF Market Growth</h3>
@@ -792,7 +792,7 @@ function PlatformTab() {
       </div>
 
       {/* Platform Fees Table */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
           <DollarSign className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-medium text-foreground">Platform Economics — Fee Comparison</h3>
@@ -840,7 +840,7 @@ function PlatformTab() {
       </div>
 
       {/* Due Diligence Comparison */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Star className="w-4 h-4 text-yellow-400" />
           <h3 className="text-sm font-medium text-foreground">Platform Due Diligence Quality</h3>
@@ -907,7 +907,7 @@ function DealAnalysisTab() {
   return (
     <div className="space-y-6">
       {/* Valuation Challenges */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-medium text-foreground">Startup Valuation Challenges</h3>
@@ -967,7 +967,7 @@ function DealAnalysisTab() {
       </div>
 
       {/* SAFE vs Convertible Note vs Equity */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Layers className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium text-foreground">SAFE vs Convertible Note vs Equity Round</h3>
@@ -1007,7 +1007,7 @@ function DealAnalysisTab() {
       </div>
 
       {/* SAFE Dilution Calculator */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Calculator className="w-4 h-4 text-green-400" />
           <h3 className="text-sm font-medium text-foreground">SAFE Dilution Calculator</h3>
@@ -1200,7 +1200,7 @@ function PortfolioTab() {
           { label: "TVPI / MOIC", value: `${moic.toFixed(2)}x`, color: moic >= 1 ? "text-green-400" : "text-red-400" },
           { label: "Active / Exited / WO", value: `${active.length} / ${exited.length} / ${writtenOff.length}`, color: "text-muted-foreground" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-card/60 p-4 text-center">
+          <div key={stat.label} className="rounded-md border border-border bg-card/60 p-4 text-center">
             <div className="text-xs text-muted-foreground mb-1">{stat.label}</div>
             <div className={cn("text-lg font-medium", stat.color)}>{stat.value}</div>
           </div>
@@ -1208,7 +1208,7 @@ function PortfolioTab() {
       </div>
 
       {/* Power Law Illustration */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-2">
           <TrendingUp className="w-4 h-4 text-green-400" />
           <h3 className="text-sm font-medium text-foreground">Power Law Returns — Why 30+ Deals Matter</h3>
@@ -1255,7 +1255,7 @@ function PortfolioTab() {
       {/* Sector Breakdown + Portfolio Tracker */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Sector bar */}
-        <div className="rounded-xl border border-border bg-card/60 p-4">
+        <div className="rounded-md border border-border bg-card/60 p-4">
           <div className="flex items-center gap-2 mb-3">
             <PieChart className="w-4 h-4 text-primary" />
             <h3 className="text-sm font-medium text-foreground">Portfolio by Sector</h3>
@@ -1282,7 +1282,7 @@ function PortfolioTab() {
         </div>
 
         {/* Success Rate */}
-        <div className="rounded-xl border border-border bg-card/60 p-4">
+        <div className="rounded-md border border-border bg-card/60 p-4">
           <div className="flex items-center gap-2 mb-3">
             <BarChart2 className="w-4 h-4 text-primary" />
             <h3 className="text-sm font-medium text-foreground">Success Rate by Stage / Sector</h3>
@@ -1317,7 +1317,7 @@ function PortfolioTab() {
       </div>
 
       {/* Secondary Market */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-medium text-foreground">Secondary Liquidity Options</h3>
@@ -1415,7 +1415,7 @@ function PortfolioTab() {
       </div>
 
       {/* Portfolio Table */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
           <BarChart2 className="w-4 h-4 text-green-400" />
           <h3 className="text-sm font-medium text-foreground">Simulated Portfolio (35 Deals)</h3>
@@ -1472,7 +1472,7 @@ function PortfolioTab() {
       </div>
 
       {/* Failure management */}
-      <div className="rounded-xl border border-border bg-card/60 p-5">
+      <div className="rounded-md border border-border bg-card/60 p-5">
         <div className="flex items-center gap-2 mb-3">
           <TrendingDown className="w-4 h-4 text-red-400" />
           <h3 className="text-sm font-medium text-foreground">Write-Off Management & Tax Strategy</h3>
@@ -1517,7 +1517,7 @@ export default function CrowdfundingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* HERO Header */}
-      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-border flex items-center justify-center">
             <Users className="w-4 h-4 text-primary" />

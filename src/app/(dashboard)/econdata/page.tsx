@@ -687,7 +687,7 @@ function SectionCard({ title, children, className }: { title: string; children: 
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className={cn("bg-foreground/[0.03] border border-border rounded-xl p-4", className)}
+      className={cn("bg-foreground/[0.03] border border-border rounded-md p-4", className)}
     >
       <h3 className="text-xs font-semibold text-muted-foreground mb-3">{title}</h3>
       {children}
@@ -1271,7 +1271,7 @@ function RegimeTracker({ data }: { data: ReturnType<typeof generateData> }) {
         <SectionCard title="Current Regime">
           <div className="flex flex-col items-center gap-3">
             <div
-              className="text-2xl font-bold px-4 py-2 rounded-xl"
+              className="text-2xl font-bold px-4 py-2 rounded-md"
               style={{ color: currentColor, backgroundColor: currentColor + "20", border: `1px solid ${currentColor}40` }}
             >
               {current.regime}
@@ -1385,7 +1385,7 @@ export default function EconDataPage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
-          <TabsList className="bg-foreground/[0.04] border border-border rounded-xl p-1 mb-6 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-foreground/[0.04] border border-border rounded-md p-1 mb-6 flex flex-wrap gap-1 h-auto">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (

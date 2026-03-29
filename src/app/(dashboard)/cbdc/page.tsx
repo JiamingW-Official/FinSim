@@ -88,7 +88,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -205,7 +205,7 @@ function PrivacySpectrumSVG() {
   ];
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Eye className="w-3.5 h-3.5" />
         Privacy Spectrum — Payment Methods
@@ -273,7 +273,7 @@ function DisintermediationRiskSVG() {
   const startX = 40;
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Building2 className="w-3.5 h-3.5" />
         Disintermediation Risk — Bank Deposits vs CBDC Holdings
@@ -342,7 +342,7 @@ function FundamentalsTab() {
       </div>
 
       {/* CBDC Type Comparison */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers className="w-3.5 h-3.5" />
           CBDC Types — Retail vs Wholesale vs Synthetic
@@ -381,7 +381,7 @@ function FundamentalsTab() {
 
       {/* Account-Based vs Token-Based */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-primary/5 p-4">
+        <div className="rounded-md border border-border bg-primary/5 p-4">
           <div className="flex items-center gap-2 mb-3">
             <Shield className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-primary">Account-Based CBDC</span>
@@ -394,7 +394,7 @@ function FundamentalsTab() {
             <li className="flex items-start gap-1.5"><XCircle className="w-3 h-3 text-rose-400 mt-0.5 shrink-0" />Excludes unbanked without digital ID infrastructure</li>
           </ul>
         </div>
-        <div className="rounded-xl border border-border bg-primary/5 p-4">
+        <div className="rounded-md border border-border bg-primary/5 p-4">
           <div className="flex items-center gap-2 mb-3">
             <Lock className="w-4 h-4 text-primary" />
             <span className="text-sm font-semibold text-primary">Token-Based CBDC</span>
@@ -416,7 +416,7 @@ function FundamentalsTab() {
       <DisintermediationRiskSVG />
 
       {/* Design Decisions Matrix */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <BarChart3 className="w-3.5 h-3.5" />
           Design Decisions Matrix
@@ -463,7 +463,7 @@ function FundamentalsTab() {
       </div>
 
       {/* Tiered Remuneration */}
-      <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-4">
+      <div className="rounded-md border border-amber-500/30 bg-amber-500/5 p-4">
         <SectionTitle>
           <Banknote className="w-3.5 h-3.5 text-amber-400" />
           Tiered Remuneration Structure
@@ -667,7 +667,7 @@ function WorldMapSVG({ selected, onSelect }: { selected: string | null; onSelect
   };
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <div className="flex items-center justify-between mb-3">
         <SectionTitle>
           <Globe className="w-3.5 h-3.5" />
@@ -783,7 +783,7 @@ function GlobalTrackerTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.2 }}
-            className="rounded-xl border border-border bg-primary/5 p-4"
+            className="rounded-md border border-border bg-primary/5 p-4"
           >
             <div className="flex items-start justify-between gap-2 mb-2">
               <div>
@@ -849,7 +849,7 @@ function GlobalTrackerTab() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97 }}
             className={cn(
-              "rounded-xl border p-3 cursor-pointer transition-colors",
+              "rounded-md border p-3 cursor-pointer transition-colors",
               selected === c.country
                 ? "border-primary/50 bg-primary/10"
                 : "border-border bg-foreground/5 hover:bg-muted/40"
@@ -889,7 +889,7 @@ function BankRunRiskSVG() {
   const H = 180;
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
         Bank Run Risk Simulation — Deposit Flight to CBDC
@@ -953,7 +953,7 @@ function FinancialInclusionSVG() {
   const labelW = 130;
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Users className="w-3.5 h-3.5" />
         Financial Inclusion — Unbanked Population &amp; CBDC Potential Impact (%)
@@ -1000,7 +1000,7 @@ function MonetaryPolicyTab() {
       </div>
 
       {/* Programmable Money */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Zap className="w-3.5 h-3.5" />
           Programmable Money — CBDC Features
@@ -1061,7 +1061,7 @@ function MonetaryPolicyTab() {
       <FinancialInclusionSVG />
 
       {/* Interest Rate Transmission */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Activity className="w-3.5 h-3.5" />
           Interest Rate Transmission — Traditional vs CBDC
@@ -1130,7 +1130,7 @@ function MonetaryPolicyTab() {
           },
         ].map((item) => (
           <div key={item.title} className={cn(
-            "rounded-xl border p-3",
+            "rounded-md border p-3",
             item.color === "rose" ? "border-rose-500/30 bg-rose-500/5" : "border-amber-500/30 bg-amber-500/5"
           )}>
             <div className="flex items-center justify-between mb-1">
@@ -1171,7 +1171,7 @@ function MBridgeFlowSVG() {
   ];
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Network className="w-3.5 h-3.5" />
         Project mBridge — Multi-CBDC Cross-Border Payment Platform
@@ -1262,7 +1262,7 @@ function CrossBorderTab() {
       <MBridgeFlowSVG />
 
       {/* Swift vs CBDC comparison */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <ArrowLeftRight className="w-3.5 h-3.5" />
           SWIFT vs CBDC Cross-Border Comparison
@@ -1301,7 +1301,7 @@ function CrossBorderTab() {
       </div>
 
       {/* BIS Projects */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe className="w-3.5 h-3.5" />
           BIS Innovation Hub — Key Cross-Border Projects
@@ -1377,7 +1377,7 @@ function CrossBorderTab() {
       </div>
 
       {/* Correspondent banking replacement */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <RefreshCw className="w-3.5 h-3.5" />
           Correspondent Banking Replacement — Payment Journey
@@ -1472,10 +1472,10 @@ export default function CBDCPage() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
+          className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
               <Banknote className="w-5 h-5 text-indigo-400" />
             </div>
             <div>

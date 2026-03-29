@@ -433,7 +433,7 @@ export default function ConvertibleBondsPage() {
       className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6"
     >
       {/* HERO Header */}
-      <div className="flex items-start justify-between flex-wrap gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="flex items-start justify-between flex-wrap gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>
           <h1 className="text-xl font-semibold tracking-tight text-foreground">Convertible Bonds</h1>
           <p className="text-sm text-foreground/50 mt-1">Hybrid instruments combining fixed-income safety with equity upside optionality</p>
@@ -693,7 +693,7 @@ export default function ConvertibleBondsPage() {
               { label: "Vega", value: selectedDerived.vega.toFixed(4), color: "text-emerald-400", sub: "Vol sensitivity" },
               { label: "Theta", value: selectedDerived.theta.toFixed(5), color: "text-rose-400", sub: "Time decay/day" },
             ].map((g) => (
-              <div key={g.label} className="rounded-xl border border-border bg-foreground/5 p-4 text-center">
+              <div key={g.label} className="rounded-md border border-border bg-foreground/5 p-4 text-center">
                 <div className="text-xs text-muted-foreground/60 mb-1">{g.label}</div>
                 <div className={cn("text-xl font-medium font-mono", g.color)}>{g.value}</div>
                 <div className="text-xs text-foreground/30 mt-1">{g.sub}</div>

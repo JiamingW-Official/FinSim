@@ -245,7 +245,7 @@ function RelativeValuationTab() {
       </div>
 
       {/* Multiples comparison */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-semibold text-muted-foreground mb-4">
           Valuation Multiples — {ticker}
         </h3>
@@ -296,7 +296,7 @@ function RelativeValuationTab() {
       </div>
 
       {/* Historical P/E chart */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">10-Year P/E Trend</h3>
         <svg width="100%" viewBox={`0 0 ${chartW} ${chartH}`} className="overflow-visible">
           {/* Recession shading 2020 */}
@@ -372,7 +372,7 @@ function RelativeValuationTab() {
 
       {/* PEG ratio + Multiple expansion */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-card p-5">
+        <div className="rounded-md border border-border bg-card p-5">
           <h3 className="text-sm font-medium text-muted-foreground mb-3">PEG Ratio Analysis</h3>
           <div className="flex items-center gap-3 mb-3">
             <span className="text-2xl font-bold font-mono">{fmt2(co.peg)}</span>
@@ -399,7 +399,7 @@ function RelativeValuationTab() {
             PEG &lt; 1.0 historically signals undervaluation relative to growth; &gt; 2.0 suggests premium pricing.
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-card p-5">
+        <div className="rounded-md border border-border bg-card p-5">
           <h3 className="text-sm font-medium text-muted-foreground mb-3">Multiple Expansion / Compression</h3>
           <div className="space-y-2">
             {expansionScenarios.map((sc) => (
@@ -554,7 +554,7 @@ function DCFTab() {
   return (
     <div className="space-y-6">
       {/* Inputs */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">DCF Model Inputs</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[
@@ -584,7 +584,7 @@ function DCFTab() {
       </div>
 
       {/* FCF Projection */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">FCF Projection ($B)</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs font-mono">
@@ -628,7 +628,7 @@ function DCFTab() {
 
       {/* Intrinsic Value + MoS gauge */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-card p-5">
+        <div className="rounded-md border border-border bg-card p-5">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">Intrinsic Value vs Market Price</h3>
           <div className="flex items-end gap-4 mb-4">
             <div>
@@ -664,7 +664,7 @@ function DCFTab() {
         </div>
 
         {/* Sensitivity table */}
-        <div className="rounded-xl border border-border bg-card p-5 overflow-x-auto">
+        <div className="rounded-md border border-border bg-card p-5 overflow-x-auto">
           <h3 className="text-sm font-medium text-muted-foreground mb-3">Sensitivity: WACC × Terminal Growth</h3>
           <table className="text-xs font-mono w-full">
             <thead>
@@ -700,7 +700,7 @@ function DCFTab() {
       </div>
 
       {/* Monte Carlo histogram */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-2">
           Monte Carlo DCF — 500 Simulations
         </h3>
@@ -818,7 +818,7 @@ function SOTPTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium text-muted-foreground">Sum of the Parts — Alphabet (GOOGL)</h3>
           <button
@@ -920,7 +920,7 @@ function SOTPTab() {
       </div>
 
       {/* Waterfall bar chart */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">SOTP Waterfall Chart ($B)</h3>
         <svg width="100%" viewBox={`0 0 ${chartW} ${chartH + 40}`}>
           {segments.map((seg, i) => {
@@ -1062,7 +1062,7 @@ function DDMTab() {
       </div>
 
       {/* Inputs */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-4">DDM Parameters</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
@@ -1097,7 +1097,7 @@ function DDMTab() {
           { label: "Two-Stage DDM", value: twoStageValue, formula: "5yr + terminal", desc: `g₁=${g1}% → g₂=${g2}%` },
           { label: "Market Price", value: price, formula: "Current", desc: `${twoStageValue > price ? "Undervalued" : "Overvalued"} by ${Math.abs((twoStageValue - price) / price * 100).toFixed(1)}%` },
         ].map((item) => (
-          <div key={item.label} className="rounded-xl border border-border bg-card p-5">
+          <div key={item.label} className="rounded-md border border-border bg-card p-5">
             <div className="text-xs text-muted-foreground mb-1">{item.label}</div>
             <div className="text-2xl font-bold font-mono mb-1">${item.value.toFixed(0)}</div>
             <div className="text-xs text-primary font-mono mb-0.5">{item.formula}</div>
@@ -1107,7 +1107,7 @@ function DDMTab() {
       </div>
 
       {/* Sustainability */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Dividend Sustainability Analysis — {ticker}</h3>
         <div className="grid grid-cols-3 gap-4 mb-3">
           {[
@@ -1130,7 +1130,7 @@ function DDMTab() {
       </div>
 
       {/* Sensitivity grid */}
-      <div className="rounded-xl border border-border bg-card p-5 overflow-x-auto">
+      <div className="rounded-md border border-border bg-card p-5 overflow-x-auto">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Gordon Growth Model — g vs r Sensitivity ($)</h3>
         <table className="text-xs font-mono w-full">
           <thead>
@@ -1275,7 +1275,7 @@ function RealOptionsTab() {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
         >
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <div className="flex items-start gap-3 mb-5">
               <opt.icon className={cn("w-5 h-5 mt-0.5", opt.color)} />
               <div>
@@ -1335,7 +1335,7 @@ function RealOptionsTab() {
       </AnimatePresence>
 
       {/* Sigma × Time sensitivity */}
-      <div className="rounded-xl border border-border bg-card p-5 overflow-x-auto">
+      <div className="rounded-md border border-border bg-card p-5 overflow-x-auto">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Option Value — Volatility × Time ($M)</h3>
         <table className="text-xs font-mono w-full">
           <thead>
@@ -1370,7 +1370,7 @@ function RealOptionsTab() {
       </div>
 
       {/* Pharma pipeline case study */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Case Study: Pharma Drug Pipeline as Option Portfolio</h3>
         <div className="space-y-2 mb-4">
           {DRUG_PIPELINE.map((d) => {
@@ -1512,7 +1512,7 @@ function SynthesisTab() {
   return (
     <div className="space-y-6">
       {/* Football field */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium text-muted-foreground">Football Field Chart — All Methods</h3>
           <div className={cn("px-3 py-1 rounded-md text-sm font-medium", grade.bg, grade.color)}>
@@ -1578,7 +1578,7 @@ function SynthesisTab() {
       </div>
 
       {/* Weight assignment */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Weight Assignment</h3>
         <div className="space-y-3">
           {ranges.map((r, i) => (
@@ -1605,7 +1605,7 @@ function SynthesisTab() {
 
       {/* Bull / Base / Bear scenarios + Risk/Reward */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-card p-5">
+        <div className="rounded-md border border-border bg-card p-5">
           <div className="flex gap-2 mb-4">
             {(["bull", "base", "bear"] as const).map((sc) => (
               <button
@@ -1655,7 +1655,7 @@ function SynthesisTab() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-border bg-card p-5">
+        <div className="rounded-md border border-border bg-card p-5">
           <h3 className="text-sm font-medium text-muted-foreground mb-4">Risk / Reward Asymmetry</h3>
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div>
@@ -1758,7 +1758,7 @@ export default function ValuationPage() {
           className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-xl bg-primary/10">
+            <div className="p-2 rounded-md bg-primary/10">
               <Scale className="w-5 h-5 text-primary" />
             </div>
             <div>
@@ -1771,7 +1771,7 @@ export default function ValuationPage() {
         </motion.div>
 
         <Tabs defaultValue="relative" className="mt-8">
-          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-secondary/40 p-1 rounded-xl">
+          <TabsList className="flex flex-wrap gap-1 h-auto mb-6 bg-secondary/40 p-1 rounded-md">
             {TABS.map((tab) => (
               <TabsTrigger
                 key={tab.id}

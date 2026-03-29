@@ -219,7 +219,7 @@ function BasicsTab() {
           title="Risk Transfer: Cedent to Reinsurer"
           subtitle="Reinsurance allows primary insurers to offload risk to specialist capital — stabilizing balance sheets and enabling more underwriting capacity."
         />
-        <div className="rounded-lg border border-border bg-muted/20 p-4">
+        <div className="rounded-lg border border-border bg-muted/20 p-6 border-l-4 border-l-primary">
           <RiskTransferSVG />
         </div>
       </div>

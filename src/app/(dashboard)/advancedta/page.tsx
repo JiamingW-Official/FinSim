@@ -896,7 +896,7 @@ export default function AdvancedTAPage() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-6">
       {/* HERO header */}
-      <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-primary/10">
             <Activity className="w-5 h-5 text-primary" />

@@ -473,9 +473,9 @@ export default function MarketDashPage() {
         {/* ═══════════════════════════════════════════════════════════════
             HERO — Market Overview
         ════════════════════════════════════════════════════════════════ */}
-        <section className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-5">
+        <section className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 space-y-5">
           {/* Ticker tape */}
-          <div className="relative overflow-hidden h-9 bg-background border border-border rounded-xl flex items-center">
+          <div className="relative overflow-hidden h-9 bg-background border border-border rounded-md flex items-center">
             <div className="flex gap-0 animate-[marquee_45s_linear_infinite] whitespace-nowrap">
               {[...stripData, ...stripData].map((item, i) => (
                 <span key={i} className="inline-flex items-center gap-1.5 px-4 text-xs">

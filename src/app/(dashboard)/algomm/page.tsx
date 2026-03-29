@@ -1484,7 +1484,7 @@ export default function AlgoMMPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25 }}
-        className="border-l-4 border-l-primary rounded-xl bg-card p-6 space-y-1"
+        className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1"
       >
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">

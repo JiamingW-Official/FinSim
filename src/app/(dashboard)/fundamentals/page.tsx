@@ -836,7 +836,7 @@ function QualityScreener() {
       </div>
 
       {/* Filters */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <Filter size={14} className="text-muted-foreground" />
           <span className="text-sm font-medium text-muted-foreground">Filters</span>
@@ -899,7 +899,7 @@ function QualityScreener() {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-xl border border-border">
+      <div className="overflow-x-auto rounded-md border border-border">
         <table className="w-full text-xs">
           <thead className="bg-card border-b border-border sticky top-0">
             <tr>
@@ -1049,7 +1049,7 @@ function IncomeStatementAnalyzer() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Revenue Trend */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-1">Revenue Trend ($B)</h3>
           <p className="text-xs text-muted-foreground mb-3">5-year top-line growth</p>
           <BarChart data={revData} height={180} color="#6366f1" formatVal={(v) => `$${v.toFixed(0)}`} />
@@ -1063,14 +1063,14 @@ function IncomeStatementAnalyzer() {
         </div>
 
         {/* Margin Trends */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-1">Margin Trends</h3>
           <p className="text-xs text-muted-foreground mb-3">Gross / Operating / Net (%)</p>
           <LineChart series={marginSeries} height={180} formatVal={(v) => `${v.toFixed(0)}%`} />
         </div>
 
         {/* EPS Growth */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-1">EPS Growth</h3>
           <p className="text-xs text-muted-foreground mb-3">GAAP vs Adjusted EPS</p>
           <LineChart series={epsSeries} height={180} formatVal={(v) => `$${v.toFixed(2)}`} />
@@ -1083,7 +1083,7 @@ function IncomeStatementAnalyzer() {
         </div>
 
         {/* Revenue Quality */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Revenue Quality</h3>
           <p className="text-xs text-muted-foreground mb-3">Recurring vs one-time revenue breakdown</p>
           <div className="flex items-center gap-4 mt-4">
@@ -1105,7 +1105,7 @@ function IncomeStatementAnalyzer() {
       </div>
 
       {/* Segment Analysis */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Segment Revenue Breakdown ($B)</h3>
         <p className="text-xs text-muted-foreground mb-3">Revenue by business segment — 5 years</p>
         <StackedBarChart data={segmentData} height={200} />
@@ -1160,7 +1160,7 @@ function BalanceSheetHealth() {
       </div>
 
       {/* Liquidity Gauges */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Liquidity Ratios</h3>
         <p className="text-xs text-muted-foreground mb-4">Current, Quick, Cash ratio — higher is stronger</p>
         <div className="flex gap-6 flex-wrap justify-center">
@@ -1181,7 +1181,7 @@ function BalanceSheetHealth() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Debt Maturity Schedule */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Debt Maturity Schedule ($B)</h3>
           <p className="text-xs text-muted-foreground mb-3">Principal maturities by year — refinancing risk</p>
           <BarChart data={debtMaturity} height={180} color="#f59e0b" formatVal={(v) => `$${v.toFixed(1)}`} />
@@ -1191,7 +1191,7 @@ function BalanceSheetHealth() {
         </div>
 
         {/* Net Debt / EBITDA */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Net Debt / EBITDA Trend</h3>
           <p className="text-xs text-muted-foreground mb-3">Leverage trajectory — lower is safer</p>
           <LineChart series={[{ label: "Net D/EBITDA", color: "#ec4899", data: netDebtEbitda }]} height={180} formatVal={(v) => v.toFixed(2)} />
@@ -1204,7 +1204,7 @@ function BalanceSheetHealth() {
       </div>
 
       {/* Working Capital */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Working Capital Efficiency</h3>
         <p className="text-xs text-muted-foreground mb-4">Cash Conversion Cycle — lower CCC = more efficient cash management</p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -1214,7 +1214,7 @@ function BalanceSheetHealth() {
             { label: "Days Payable Outstanding", value: dpo, unit: "days", desc: "Time to pay suppliers", good: "high" as const },
             { label: "Cash Conversion Cycle", value: ccc, unit: "days", desc: "DSO + DIO − DPO", good: "low" as const },
           ].map((m) => (
-            <div key={m.label} className="p-3 bg-muted rounded-xl">
+            <div key={m.label} className="p-3 bg-muted rounded-md">
               <p className="text-xs text-muted-foreground mb-1">{m.label}</p>
               <p className={cn("text-2xl font-bold", m.good === "low" ? (m.value < 40 ? "text-emerald-400" : m.value < 70 ? "text-amber-400" : "text-red-400") : (m.value > 45 ? "text-emerald-400" : m.value > 25 ? "text-amber-400" : "text-red-400"))}>
                 {m.value}
@@ -1227,7 +1227,7 @@ function BalanceSheetHealth() {
       </div>
 
       {/* Goodwill & Intangibles */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Goodwill & Intangibles Risk</h3>
         <p className="text-xs text-muted-foreground mb-4">High goodwill as % of assets signals M&A integration risk and potential impairment</p>
         <div className="flex items-center gap-6 flex-wrap">
@@ -1247,7 +1247,7 @@ function BalanceSheetHealth() {
               <div className={cn("h-full rounded-full", intangiblesPct > 40 ? "bg-red-500" : intangiblesPct > 20 ? "bg-amber-500" : "bg-emerald-500")} style={{ width: `${Math.min(intangiblesPct, 100)}%` }} />
             </div>
           </div>
-          <div className="p-3 bg-muted rounded-xl text-xs space-y-1">
+          <div className="p-3 bg-muted rounded-md text-xs space-y-1">
             <p className="text-muted-foreground font-medium">Goodwill: <span className="text-foreground">${latest.goodwill.toFixed(1)}B</span></p>
             <p className="text-muted-foreground font-medium">Intangibles: <span className="text-foreground">${latest.intangibles.toFixed(1)}B</span></p>
             <p className="text-muted-foreground font-medium">Total Assets: <span className="text-foreground">${latest.totalAssets.toFixed(1)}B</span></p>
@@ -1256,7 +1256,7 @@ function BalanceSheetHealth() {
       </div>
 
       {/* Share Count Trend */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Share Count Trend (Buybacks vs Dilution)</h3>
         <p className="text-xs text-muted-foreground mb-3">Declining share count = shareholder-friendly buybacks; rising = dilution risk</p>
         <LineChart
@@ -1332,7 +1332,7 @@ function CashFlowAnalysis() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* OCF vs Net Income */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Operating CF vs Net Income</h3>
           <p className="text-xs text-muted-foreground mb-3">Divergence signals earnings quality issues</p>
           <LineChart series={ocfVsNiSeries} height={180} formatVal={(v) => `$${v.toFixed(0)}`} />
@@ -1347,7 +1347,7 @@ function CashFlowAnalysis() {
         </div>
 
         {/* FCF Margin Trend */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">FCF Margin Trend</h3>
           <p className="text-xs text-muted-foreground mb-3">FCF / Revenue — expanding margin is bullish</p>
           <LineChart series={fcfMarginSeries} height={180} formatVal={(v) => `${v.toFixed(1)}%`} />
@@ -1362,7 +1362,7 @@ function CashFlowAnalysis() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* FCF Yield */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">FCF Yield vs Historical</h3>
           <p className="text-xs text-muted-foreground mb-3">FCF / Market Cap — higher = better value proposition</p>
           <div className="flex items-center gap-4 mt-2">
@@ -1393,7 +1393,7 @@ function CashFlowAnalysis() {
         </div>
 
         {/* Capital Allocation Pie */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Capital Allocation</h3>
           <p className="text-xs text-muted-foreground mb-3">How management deploys cash — {new Date().getFullYear()} most recent year</p>
           <div className="flex items-center gap-4">
@@ -1412,7 +1412,7 @@ function CashFlowAnalysis() {
       </div>
 
       {/* FCF Conversion & Reinvestment */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">FCF Conversion & Reinvestment Rate</h3>
         <p className="text-xs text-muted-foreground mb-4">FCF Conversion = FCF/Net Income (%); Reinvestment = CapEx/Operating CF (%)</p>
         <div className="grid grid-cols-5 gap-2">
@@ -1504,7 +1504,7 @@ function CompetitiveAnalysis() {
       </div>
 
       {/* Competitor comparison table */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">5-Company Comparison</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1546,7 +1546,7 @@ function CompetitiveAnalysis() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Moat Assessment */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Moat Assessment</h3>
           <p className="text-xs text-muted-foreground mb-4">Competitive advantages scored 0–3 each (12 max)</p>
           <div className="space-y-3">
@@ -1568,7 +1568,7 @@ function CompetitiveAnalysis() {
               );
             })}
           </div>
-          <div className="mt-4 p-3 bg-muted rounded-xl">
+          <div className="mt-4 p-3 bg-muted rounded-md">
             <div className="flex items-center justify-between">
               <span className="text-xs text-muted-foreground">Total Moat Score</span>
               <span className={cn("text-xl font-medium", totalMoat >= 9 ? "text-emerald-400" : totalMoat >= 6 ? "text-amber-400" : "text-red-400")}>{totalMoat}/12</span>
@@ -1580,7 +1580,7 @@ function CompetitiveAnalysis() {
         </div>
 
         {/* Historical Moat Stability */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Historical Margin Stability</h3>
           <p className="text-xs text-muted-foreground mb-3">Operating margin trend — expanding = moat strengthening</p>
           <LineChart
@@ -1598,7 +1598,7 @@ function CompetitiveAnalysis() {
       </div>
 
       {/* ESG Comparison */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">ESG Comparison vs Peers</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1688,19 +1688,19 @@ function EarningsQualityTab() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div className="bg-card border border-border rounded-xl p-3">
+        <div className="bg-card border border-border rounded-md p-3">
           <p className="text-xs text-muted-foreground">Avg Accruals Ratio</p>
           <p className={cn("text-xl font-medium mt-1", Math.abs(avgAccruals) < 0.03 ? "text-emerald-400" : Math.abs(avgAccruals) < 0.07 ? "text-amber-400" : "text-red-400")}>{avgAccruals}</p>
           <p className="text-xs text-muted-foreground mt-1">{Math.abs(avgAccruals) < 0.03 ? "High quality" : Math.abs(avgAccruals) < 0.07 ? "Moderate" : "Low quality"}</p>
         </div>
-        <div className="bg-card border border-border rounded-xl p-3">
+        <div className="bg-card border border-border rounded-md p-3">
           <p className="text-xs text-muted-foreground">Channel Stuffing Flags</p>
           <p className={cn("text-xl font-medium mt-1", channelStuffingFlags.filter((f) => f.flag).length === 0 ? "text-emerald-400" : "text-red-400")}>
             {channelStuffingFlags.filter((f) => f.flag).length}
           </p>
           <p className="text-xs text-muted-foreground mt-1">of {channelStuffingFlags.length} years</p>
         </div>
-        <div className="bg-card border border-border rounded-xl p-3">
+        <div className="bg-card border border-border rounded-md p-3">
           <p className="text-xs text-muted-foreground">Auditor Opinion</p>
           <div className="flex items-center gap-1.5 mt-1">
             {isClean ? <CheckCircle size={14} className="text-emerald-400" /> : <AlertTriangle size={14} className="text-red-400" />}
@@ -1708,7 +1708,7 @@ function EarningsQualityTab() {
           </div>
           <p className="text-xs text-muted-foreground mt-1">Same auditor {auditorYears}yr</p>
         </div>
-        <div className="bg-card border border-border rounded-xl p-3">
+        <div className="bg-card border border-border rounded-md p-3">
           <p className="text-xs text-muted-foreground">Related Party Risk</p>
           <div className="flex items-center gap-1.5 mt-1">
             {!hasRelatedParty ? <CheckCircle size={14} className="text-emerald-400" /> : <AlertTriangle size={14} className="text-amber-400" />}
@@ -1720,7 +1720,7 @@ function EarningsQualityTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Accruals Ratio Trend */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Accruals Ratio Trend</h3>
           <p className="text-xs text-muted-foreground mb-3">(Net Income − FCF) / Avg Assets — lower = higher quality earnings</p>
           <LineChart
@@ -1735,7 +1735,7 @@ function EarningsQualityTab() {
         </div>
 
         {/* AR & Revenue Growth */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-1">Revenue Recognition Red Flags</h3>
           <p className="text-xs text-muted-foreground mb-3">AR days growing faster than revenue = aggressive recognition risk</p>
           <LineChart
@@ -1754,12 +1754,12 @@ function EarningsQualityTab() {
       </div>
 
       {/* Channel Stuffing Signal */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Channel Stuffing Detection</h3>
         <p className="text-xs text-muted-foreground mb-4">Triggered when both AR and Inventory grow significantly faster than Revenue</p>
         <div className="grid grid-cols-4 gap-2">
           {channelStuffingFlags.map((yr) => (
-            <div key={yr.year} className={cn("p-3 rounded-xl border", yr.flag ? "border-red-700 bg-red-950/30" : "border-border bg-card")}>
+            <div key={yr.year} className={cn("p-3 rounded-md border", yr.flag ? "border-red-700 bg-red-950/30" : "border-border bg-card")}>
               <p className="text-xs text-muted-foreground mb-1">{yr.year}</p>
               <div className="space-y-1">
                 <div className="flex items-center gap-1.5">
@@ -1778,22 +1778,22 @@ function EarningsQualityTab() {
       </div>
 
       {/* Auditor Detail */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">Auditor Assessment</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-3 bg-muted rounded-xl">
+          <div className="p-3 bg-muted rounded-md">
             <p className="text-xs text-muted-foreground mb-1">Auditor Opinion</p>
             <div className="flex items-center gap-2">
               {isClean ? <CheckCircle size={16} className="text-emerald-400" /> : <AlertTriangle size={16} className="text-red-400" />}
               <span className={cn("text-sm font-medium", isClean ? "text-emerald-400" : "text-red-400")}>{auditorOpinion}</span>
             </div>
           </div>
-          <div className="p-3 bg-muted rounded-xl">
+          <div className="p-3 bg-muted rounded-md">
             <p className="text-xs text-muted-foreground mb-1">Auditor Tenure</p>
             <p className="text-xl font-medium text-foreground">{auditorYears} years</p>
             <p className="text-xs text-muted-foreground">{auditorYears > 10 ? "Long tenure — risk of familiarity bias" : "Reasonable tenure"}</p>
           </div>
-          <div className="p-3 bg-muted rounded-xl">
+          <div className="p-3 bg-muted rounded-md">
             <p className="text-xs text-muted-foreground mb-1">Deferred Revenue (latest)</p>
             <p className="text-xl font-medium text-foreground">${latest.deferredRevenue.toFixed(1)}B</p>
             <p className="text-xs text-muted-foreground">
@@ -1804,7 +1804,7 @@ function EarningsQualityTab() {
       </div>
 
       {/* Benford's Law */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1">Benford's Law — First Digit Analysis</h3>
         <p className="text-xs text-muted-foreground mb-4">
           Natural financial data follows Benford's distribution. Red bars (actual) diverging significantly from green (expected) can indicate data manipulation.
@@ -1831,19 +1831,19 @@ export default function FundamentalsPage() {
       <motion.div
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center">
             <BarChart2 size={16} className="text-foreground" />
           </div>
-          <h1 className="text-xl font-medium text-foreground">Fundamental Analysis</h1>
+          <h1 className="text-lg font-medium text-foreground">Fundamental Analysis</h1>
           <span className="text-xs bg-indigo-900/60 text-indigo-400 px-2 py-0.5 rounded-full border border-indigo-800">Pro</span>
         </div>
         <p className="text-sm text-muted-foreground ml-11">Deep-dive screening, income/balance sheet analysis, cash flow, competitive positioning, and earnings quality</p>
       </motion.div>
 
-      <Tabs defaultValue="screener">
+      <Tabs defaultValue="screener" className="mt-8">
         <TabsList className="bg-card border border-border mb-6 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="screener" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-foreground text-xs">
             <Search size={12} className="mr-1.5" />

@@ -700,7 +700,7 @@ export default function CryptoTrading2Page() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* HERO Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>
           <h1 className="text-xl font-semibold flex items-center gap-2">
             <Bitcoin className="h-6 w-6 text-amber-400" />
@@ -719,7 +719,7 @@ export default function CryptoTrading2Page() {
 
       {/* Main Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList className="bg-foreground/5 border border-border rounded-xl p-1 flex flex-wrap gap-1 h-auto">
+        <TabsList className="bg-foreground/5 border border-border rounded-md p-1 flex flex-wrap gap-1 h-auto">
           {[
             { value: "market-structure", label: "Market Structure", icon: <BarChart3 className="h-3.5 w-3.5" /> },
             { value: "onchain", label: "On-Chain Signals", icon: <Database className="h-3.5 w-3.5" /> },
@@ -1127,7 +1127,7 @@ export default function CryptoTrading2Page() {
               {cryptoRisks.map((risk) => (
                 <div
                   key={risk.name}
-                  className="bg-foreground/[0.03] rounded-xl p-4 border border-border/50 space-y-2"
+                  className="bg-foreground/[0.03] rounded-md p-4 border border-border/50 space-y-2"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>

@@ -1334,7 +1334,7 @@ export default function IndexInvestingPage() {
       </motion.div>
 
       {/* Quick stats — Hero */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         {[
           { label: "S&P 500 YTD", value: "+8.4%", color: "text-green-400", icon: <TrendingUp className="w-4 h-4" /> },
           { label: "Avg ETF Fee", value: "0.07%", color: "text-amber-400", icon: <DollarSign className="w-4 h-4" /> },

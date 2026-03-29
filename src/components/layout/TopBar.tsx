@@ -146,7 +146,7 @@ function TickerDropdown({
                 onClose();
                 onQueryChange("");
               }}
-              className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm hover:bg-accent"
+              className="flex w-full items-center gap-2 px-3 py-1.5 text-left text-sm transition-colors hover:bg-accent"
             >
               <span className="w-12 font-semibold text-foreground">
                 {stock.ticker}
@@ -260,7 +260,7 @@ function QuickActionsMenu() {
                 router.push(a.href);
                 setOpen(false);
               }}
-              className="flex w-full items-center px-3 py-1.5 text-left text-sm text-foreground hover:bg-accent"
+              className="flex w-full items-center px-3 py-1.5 text-left text-sm text-foreground transition-colors hover:bg-accent"
             >
               {a.label}
             </button>
@@ -347,14 +347,11 @@ export function TopBar() {
   const [tickerQuery, setTickerQuery] = useState("");
 
   return (
-    <div className="relative flex h-10 items-center justify-between px-4 border-b border-border/30 bg-background/80 backdrop-blur-sm">
+    <div className="relative flex h-9 items-center justify-between px-4 border-b border-border/20 bg-background/90 backdrop-blur-sm">
       {/* ── Left ── */}
       <div className="flex items-center gap-4">
         {/* Logo */}
-        <span className="inline-flex items-center gap-1 select-none">
-          <span className="text-sm font-bold tracking-tight text-primary/70">FS</span>
-          <span className="text-sm font-medium tracking-wide text-foreground/50">FinSim</span>
-        </span>
+        <span className="text-xs font-medium tracking-tight text-muted-foreground/50 select-none">FinSim</span>
 
         <div className="h-3.5 w-px bg-border/20" />
 
@@ -365,13 +362,13 @@ export function TopBar() {
             onClick={() => setTickerOpen((v) => !v)}
             className="flex items-center gap-2 rounded-md px-1 py-0.5 text-sm hover:bg-accent/50 transition-colors"
           >
-            <span className="font-semibold">{currentTicker}</span>
+            <span className="font-medium text-xs">{currentTicker}</span>
             <span className="hidden text-muted-foreground sm:inline">
               {stockInfo?.name ?? ""}
             </span>
             <span
               className={cn(
-                "font-semibold tabular-nums transition-colors duration-300",
+                "text-xs font-medium tabular-nums transition-colors duration-300",
                 priceFlash === "up" && "price-flash-up",
                 priceFlash === "down" && "price-flash-down",
               )}
@@ -445,7 +442,7 @@ export function TopBar() {
           <span className="text-xs text-muted-foreground">Portfolio</span>
           <span
             className={cn(
-              "font-semibold tabular-nums",
+              "text-xs font-medium tabular-nums",
               totalPnL >= 0 ? "text-emerald-500" : "text-red-500",
             )}
           >

@@ -1076,7 +1076,7 @@ export default function OptionsIncomePage() {
 
         {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-0">
-          <TabsList className="flex gap-1 p-1 bg-card border border-border rounded-xl h-auto w-full">
+          <TabsList className="flex gap-1 p-1 bg-card border border-border rounded-md h-auto w-full">
             {tabs.map((t) => (
               <TabsTrigger
                 key={t.id}

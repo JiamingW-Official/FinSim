@@ -106,7 +106,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
     <div className="flex flex-col gap-4">
       {step.type === "quiz-scenario" && (
         <motion.div
-          className="rounded-xl bg-amber-500/8 border border-amber-500/20 p-3.5"
+          className="rounded-md bg-amber-500/8 border border-amber-500/20 p-3.5"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -177,7 +177,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
                 x: { duration: 0.35 },
               }}
               className={cn(
-                "relative rounded-xl border-2 p-3.5 text-left text-sm font-medium transition-colors",
+                "relative rounded-md border-2 p-3.5 text-left text-sm font-medium transition-colors",
                 borderCls, bgCls, textCls,
                 !showResult && "hover:border-primary/40 hover:bg-accent/60 cursor-pointer",
                 showResult && "cursor-default",
@@ -231,7 +231,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
             className={cn(
-              "overflow-hidden rounded-xl border-l-4 p-3.5",
+              "overflow-hidden rounded-md border-l-4 p-3.5",
               isCorrect
                 ? "border-l-emerald-500 border-emerald-500/20 bg-emerald-500/5"
                 : "border-l-red-500 border-red-500/20 bg-red-500/5",
@@ -275,7 +275,7 @@ export function QuizStepComponent({ step, onCorrect, onWrong }: QuizStepProps) {
           whileTap={{ scale: 0.97 }}
           transition={{ delay: 0.15 }}
           className={cn(
-            "w-full rounded-xl py-3.5 text-sm font-bold transition-all",
+            "w-full rounded-md py-3.5 text-sm font-bold transition-all",
             isCorrect
               ? "bg-emerald-500 text-foreground hover:bg-emerald-400"
               : "bg-red-500 text-foreground hover:bg-red-400",

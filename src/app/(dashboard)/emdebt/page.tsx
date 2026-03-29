@@ -51,7 +51,7 @@ function StatChip({
   color?: string;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", color)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -68,7 +68,7 @@ function InfoCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-4">
+    <div className="rounded-md border border-border bg-card p-4">
       <p className="text-sm font-semibold text-foreground mb-3">{title}</p>
       <div className="text-xs space-y-1.5">{children}</div>
     </div>
@@ -1105,7 +1105,7 @@ function CrisisHistoryTab() {
         {CRISES.map((c) => (
           <div
             key={c.year}
-            className="rounded-xl border border-border bg-card overflow-hidden cursor-pointer"
+            className="rounded-md border border-border bg-card overflow-hidden cursor-pointer"
             onClick={() => setExpanded(expanded === c.year ? null : c.year)}
           >
             <div className="flex items-center gap-3 px-4 py-3">

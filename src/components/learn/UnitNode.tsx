@@ -88,7 +88,7 @@ export function UnitNode({
         onClick={() => isUnitUnlocked && setExpanded(!expanded)}
         disabled={!isUnitUnlocked}
         className={cn(
-          "group relative flex items-center gap-3 rounded-2xl border-2 p-4 transition-all overflow-hidden",
+          "group relative flex items-center gap-3 rounded-md border-2 p-4 transition-all overflow-hidden",
           isUnitUnlocked
             ? "cursor-pointer hover:bg-accent/50"
             : "cursor-not-allowed opacity-40",

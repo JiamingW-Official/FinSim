@@ -473,7 +473,7 @@ function FundingStagesTab() {
   return (
     <div className="space-y-6">
       {/* Funnel SVG */}
-      <div className="rounded-xl bg-card border border-border p-4">
+      <div className="rounded-md bg-card border border-border p-4">
         <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wide font-medium">
           Startup Funding Funnel — % Companies Reaching Each Stage
         </p>
@@ -565,7 +565,7 @@ function FundingStagesTab() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.2 }}
-          className="rounded-xl border bg-card p-5"
+          className="rounded-md border bg-card p-5"
           style={{ borderColor: selected.color + "55" }}
         >
           <div className="flex items-start justify-between mb-4">
@@ -748,7 +748,7 @@ function CapTableTab() {
   return (
     <div className="space-y-6">
       {/* Dilution waterfall */}
-      <div className="rounded-xl bg-card border border-border p-4">
+      <div className="rounded-md bg-card border border-border p-4">
         <p className="text-xs text-muted-foreground mb-3 uppercase tracking-wide font-medium">
           Ownership Dilution Waterfall
         </p>
@@ -791,7 +791,7 @@ function CapTableTab() {
       </div>
 
       {/* Cap table */}
-      <div className="rounded-xl bg-card border border-border overflow-hidden">
+      <div className="rounded-md bg-card border border-border overflow-hidden">
         <div className="flex items-center justify-between p-4 border-b border-border">
           <p className="text-sm font-medium text-foreground">Cap Table</p>
           <div className="flex items-center gap-2">
@@ -886,7 +886,7 @@ function CapTableTab() {
       </div>
 
       {/* Apply next round */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         {nextRound ? (
           <div className="flex items-center justify-between">
             <div>
@@ -959,7 +959,7 @@ function TermSheetTab() {
       </InfoBox>
 
       {/* Worked example box */}
-      <div className="rounded-xl bg-card border border-border p-4">
+      <div className="rounded-md bg-card border border-border p-4">
         <p className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Worked Example: Series A Term Sheet
@@ -1003,7 +1003,7 @@ function TermSheetTab() {
             <div
               key={item.term}
               className={cn(
-                "rounded-xl border transition-all overflow-hidden",
+                "rounded-md border transition-all overflow-hidden",
                 isOpen ? "border-indigo-500/50 bg-card" : "border-border bg-card"
               )}
             >
@@ -1094,7 +1094,7 @@ function ValuationTab() {
             key={m.name}
             onClick={() => setSelected(m)}
             className={cn(
-              "rounded-xl border p-3 text-left transition-all",
+              "rounded-md border p-3 text-left transition-all",
               selected.name === m.name
                 ? "text-foreground"
                 : "border-border bg-card text-muted-foreground hover:border-muted-foreground"
@@ -1120,7 +1120,7 @@ function ValuationTab() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.18 }}
-          className="rounded-xl border bg-card p-5"
+          className="rounded-md border bg-card p-5"
           style={{ borderColor: selected.color + "55" }}
         >
           <h3 className="text-base font-bold text-foreground mb-1">{selected.name}</h3>
@@ -1260,7 +1260,7 @@ function ValuationTab() {
       </AnimatePresence>
 
       {/* Sensitivity table */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <p className="text-sm font-medium text-foreground mb-3">
           VC Method Sensitivity Table — Pre-Money ($M)
         </p>
@@ -1361,7 +1361,7 @@ function EmployeeOptionsTab() {
           <div
             key={opt.name}
             className={cn(
-              "rounded-xl border p-4 transition-all cursor-pointer",
+              "rounded-md border p-4 transition-all cursor-pointer",
               (opt.name === "ISO") === isoMode
                 ? "border-indigo-500/60 bg-indigo-500/10"
                 : "border-border bg-card hover:border-muted-foreground"
@@ -1404,7 +1404,7 @@ function EmployeeOptionsTab() {
       </div>
 
       {/* Options calculator */}
-      <div className="rounded-xl bg-card border border-border p-5 space-y-4">
+      <div className="rounded-md bg-card border border-border p-5 space-y-4">
         <p className="text-sm font-medium text-foreground flex items-center gap-2">
           <Calculator className="w-4 h-4 text-indigo-400" />
           Option Value Calculator
@@ -1483,7 +1483,7 @@ function EmployeeOptionsTab() {
       </div>
 
       {/* Vesting schedule visualizer */}
-      <div className="rounded-xl bg-card border border-border p-4 space-y-4">
+      <div className="rounded-md bg-card border border-border p-4 space-y-4">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium text-foreground">Vesting Schedule Visualizer</p>
           <div className="flex gap-2">
@@ -1614,7 +1614,7 @@ export default function StartupFundingPage() {
         {/* Header */}
         <div className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
               <Briefcase className="w-5 h-5 text-indigo-400" />
             </div>
             <div>

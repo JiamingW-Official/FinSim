@@ -43,7 +43,7 @@ export function ScenarioCard({
       whileTap={isLocked ? undefined : { scale: 0.98 }}
       disabled={isLocked}
       className={cn(
-        "relative w-full rounded-xl border-2 p-4 text-left transition-all overflow-hidden",
+        "relative w-full rounded-md border-2 p-4 text-left transition-all overflow-hidden",
         isLocked
           ? "border-border/50 bg-muted/10 cursor-not-allowed"
           : gradeConfig
@@ -54,7 +54,7 @@ export function ScenarioCard({
       {/* Lock overlay */}
       {isLocked && (
         <motion.div
-          className="absolute inset-0 flex items-center justify-center rounded-xl bg-background/70 backdrop-blur-[3px] z-10"
+          className="absolute inset-0 flex items-center justify-center rounded-md bg-background/70 backdrop-blur-[3px] z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
@@ -122,7 +122,7 @@ export function ScenarioCard({
           {bestResult ? (
             <motion.div
               className={cn(
-                "flex h-11 w-11 items-center justify-center rounded-xl border-2 text-xl font-bold",
+                "flex h-11 w-11 items-center justify-center rounded-md border-2 text-xl font-bold",
                 gradeConfig?.border,
                 gradeConfig?.bg,
                 gradeConfig?.text,

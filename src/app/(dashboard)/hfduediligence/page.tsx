@@ -400,7 +400,7 @@ export default function HFDueDiligencePage() {
       </motion.div>
 
       {/* Key Metrics */}
-      <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         {KEY_METRICS.map((m) => (
           <MetricCard key={m.label} label={m.label} value={m.value} sub={m.sub} icon={m.icon} highlight={m.highlight} />
         ))}

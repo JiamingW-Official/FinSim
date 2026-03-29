@@ -1165,7 +1165,7 @@ export default function WealthPlatformPage() {
                 whileTap={{ scale: 0.99 }}
                 onClick={() => setSelectedClient(c.id)}
                 className={cn(
-                  "text-left p-4 rounded-xl border transition-all",
+                  "text-left p-4 rounded-md border transition-all",
                   selectedClient === c.id
                     ? "border-indigo-500 bg-indigo-500/10"
                     : "border-border bg-card hover:border-border"

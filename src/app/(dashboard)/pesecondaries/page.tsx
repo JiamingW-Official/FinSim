@@ -55,7 +55,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -196,7 +196,7 @@ function LPLedTab() {
       </div>
 
       {/* Discount Chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Discount to NAV (2018–2024)"
           sub="Discount (%) to reported NAV — crisis years see deeper discounts"
@@ -264,7 +264,7 @@ function LPLedTab() {
       </div>
 
       {/* Seller motivations */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Why LPs Sell" sub="Click to expand each motivation" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {sellerReasons.map((r, i) => (
@@ -308,7 +308,7 @@ function LPLedTab() {
       </div>
 
       {/* Pricing methodology */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Secondary Pricing Methodology" sub="How buyers value LP interests" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -354,7 +354,7 @@ function LPLedTab() {
       </div>
 
       {/* Bid-Ask by Vintage */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Bid-Ask Spread by Vintage Year"
           sub="% of NAV — wider spreads for older/uncertain vintages"
@@ -392,7 +392,7 @@ function LPLedTab() {
       </div>
 
       {/* Trade Types */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Portfolio vs Single Fund vs Stapled" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -447,7 +447,7 @@ function LPLedTab() {
       </div>
 
       {/* Top Buyers */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Top Secondary Buyers" sub="Leading institutional secondary market participants" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {buyers.map((b) => (
@@ -466,7 +466,7 @@ function LPLedTab() {
       </div>
 
       {/* Due Diligence */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Secondary Buyer Due Diligence Process" />
         <div className="space-y-3">
           {[
@@ -585,7 +585,7 @@ function GPLedTab() {
       </div>
 
       {/* CV Mechanics SVG Diagram */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Continuation Vehicle (CV) Mechanics"
           sub="How GP transfers best assets from maturing fund to new vehicle"
@@ -642,7 +642,7 @@ function GPLedTab() {
       </div>
 
       {/* GP-Led Market Growth */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="GP-Led Share of Secondary Market (2015–2023)"
           sub="GP-led transactions grew from ~12% to ~50% of total secondary volume"
@@ -697,7 +697,7 @@ function GPLedTab() {
       </div>
 
       {/* CV Types Comparison */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Single-Asset vs Multi-Asset Continuation Vehicles" />
         <div className="flex gap-2 mb-4">
           <button
@@ -804,7 +804,7 @@ function GPLedTab() {
       </div>
 
       {/* Preferred Equity */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Preferred Equity in GP-Led Context"
           sub="Hybrid solution for GPs needing partial liquidity"
@@ -850,7 +850,7 @@ function GPLedTab() {
       </div>
 
       {/* Secondary Advisors */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="GP-Led Secondary Advisors"
           sub="Investment banks managing GP-led auction processes"
@@ -959,7 +959,7 @@ function NAVFinancingTab() {
       </div>
 
       {/* Market Growth */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="NAV Financing Market Growth ($B Outstanding)"
           sub="Rapid expansion driven by rate environment and LP demand for liquidity"
@@ -999,7 +999,7 @@ function NAVFinancingTab() {
       </div>
 
       {/* Use Cases */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Loan Use Cases + Risks" sub="Click to expand risk details" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {useCases.map((u, i) => (
@@ -1035,7 +1035,7 @@ function NAVFinancingTab() {
       </div>
 
       {/* Structure Details */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Facility Structure vs Subscription Line" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1069,7 +1069,7 @@ function NAVFinancingTab() {
       </div>
 
       {/* Covenant Structure */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Loan Covenant Structure" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
@@ -1128,7 +1128,7 @@ function NAVFinancingTab() {
       </div>
 
       {/* Providers */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="NAV Loan Providers" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {providers.map((p) => (
@@ -1280,7 +1280,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Market Growth */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Volume Growth ($B, 2000–2024)"
           sub="26x growth in two decades; 2020 COVID dip quickly recovered"
@@ -1331,7 +1331,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Pricing Cycle */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Pricing Cycle (% of NAV)"
           sub="2021 peak premium, 2022–23 discount, 2024 recovery"
@@ -1401,7 +1401,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Bid-Ask by Asset Class */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Pricing by Asset Class (% of NAV)"
           sub="Infrastructure and private credit trade closest to NAV; VC widest discount"
@@ -1437,7 +1437,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* J-Curve Mitigation */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="J-Curve: Primary vs Secondary Fund Returns"
           sub="Secondaries skip early negative years — buying seasoned portfolios already past J-curve trough"
@@ -1497,7 +1497,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Fund Construction */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Secondary Fund Portfolio Construction" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -1555,7 +1555,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Liquidity Comparison */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading
           title="Secondary Market Liquidity vs Other Asset Classes"
           sub="Relative liquidity spectrum"
@@ -1584,7 +1584,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* LP Portfolio Management */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Using Secondaries for LP Portfolio Management" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -1675,7 +1675,7 @@ export default function PESecondariesPage() {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="rounded-xl border border-border border-l-4 border-l-primary bg-muted/30 p-6 mb-6"
+        className="rounded-md border border-border border-l-4 border-l-primary bg-muted/30 p-6 mb-6"
       >
         <div className="flex items-start gap-2">
           <Info className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
@@ -1692,7 +1692,7 @@ export default function PESecondariesPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="lpled">
-        <TabsList className="mb-6 flex flex-wrap gap-1 h-auto bg-card p-1 rounded-xl">
+        <TabsList className="mb-6 flex flex-wrap gap-1 h-auto bg-card p-1 rounded-md">
           {[
             { value: "lpled", label: "LP-Led Secondaries", icon: <DollarSign className="w-3.5 h-3.5" /> },
             { value: "gpled", label: "GP-Led Secondaries", icon: <Layers className="w-3.5 h-3.5" /> },

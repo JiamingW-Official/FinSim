@@ -330,7 +330,7 @@ function EventCard({ event, index }: { event: SpecialEvent; index: number }) {
 
   return (
     <motion.div
-      className="rounded-xl border border-primary/20 bg-primary/5 overflow-hidden cursor-pointer hover:bg-primary/8 hover:-translate-y-0.5 transition-all duration-200"
+      className="rounded-md border border-primary/20 bg-primary/5 overflow-hidden cursor-pointer hover:bg-primary/8 hover:-translate-y-0.5 transition-all duration-200"
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -538,7 +538,7 @@ function DailyHeroCard({ countdown }: { countdown: string }) {
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-3 min-w-0">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary/10">
             <Target className="h-5 w-5 text-primary" />
           </div>
           <div className="min-w-0">
@@ -653,7 +653,7 @@ export default function ChallengesPage() {
       <div className="border-b border-border px-4 py-4">
         <div className="flex items-center gap-3">
           <motion.div
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/10"
+            className="flex h-10 w-10 items-center justify-center rounded-md bg-rose-500/10"
             initial={{ scale: 0, rotate: -15 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}

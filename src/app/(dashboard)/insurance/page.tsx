@@ -1973,7 +1973,7 @@ export default function InsurancePage() {
         </div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">Insurance Industry Deep Dive</h2>
           <p className="text-sm text-muted-foreground">Fundamentals, life insurance, P&amp;C, reinsurance, InsurTech, and investment strategies across the $7T industry.</p>
         </div>

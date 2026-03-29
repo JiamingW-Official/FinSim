@@ -462,9 +462,9 @@ export default function RiskParityPage() {
           <TabsContent value="construction" className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               {/* Donut */}
-              <Card className="border-border">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm flex items-center gap-2">
+              <Card className="border-border border-l-4 border-l-primary">
+                <CardHeader className="p-6 pb-2">
+                  <CardTitle className="text-lg flex items-center gap-2">
                     <Target className="w-4 h-4 text-primary" />
                     Equal Risk Contribution
                   </CardTitle>

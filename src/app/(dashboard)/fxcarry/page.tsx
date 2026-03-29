@@ -649,8 +649,8 @@ export default function FXCarryPage() {
         </p>
       </motion.div>
 
-      {/* Key Metrics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* Key Metrics — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
         <MetricCard
           label="G10 Carry Index (1yr)"
           value={`+${g10CarryReturn}%`}
@@ -690,6 +690,7 @@ export default function FXCarryPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.25 }}
+        className="mt-8"
       >
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="mb-4 flex-wrap h-auto gap-1">

@@ -37,7 +37,7 @@ export function DailyChallengeCard({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "relative w-full rounded-xl border-2 p-4 text-left transition-all",
+        "relative w-full rounded-md border-2 p-4 text-left transition-all",
         isComplete
           ? "border-emerald-500/30 bg-emerald-500/5"
           : `border-border hover:border-primary/50 hover:bg-accent/30 ${config.glow}`,
@@ -59,7 +59,7 @@ export function DailyChallengeCard({
         {/* Number badge */}
         <motion.div
           className={cn(
-            "flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold shrink-0",
+            "flex h-10 w-10 items-center justify-center rounded-md text-lg font-bold shrink-0",
             isComplete
               ? "bg-emerald-500/10 text-emerald-500"
               : `${config.bg} ${config.text}`,

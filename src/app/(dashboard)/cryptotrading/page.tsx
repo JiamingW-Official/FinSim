@@ -565,7 +565,7 @@ function IndicatorCard({ ind }: { ind: IndicatorData }) {
 
   return (
     <div
-      className="bg-muted/60 border border-border/50 rounded-xl p-4 cursor-pointer hover:border-border transition-colors"
+      className="bg-muted/60 border border-border/50 rounded-md p-4 cursor-pointer hover:border-border transition-colors"
       onClick={() => setExpanded((e) => !e)}
     >
       <div className="flex items-start justify-between gap-3">
@@ -703,14 +703,14 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* S2F Historical Chart */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">S2F Model: BTC Price vs Model (2020–2026)</h3>
         <p className="text-xs text-muted-foreground mb-4">Actual BTC price (white) vs S2F model price (amber) — halvings drive supply shocks</p>
         <S2FChart rng={mulberry32(3333 + 7)} />
       </div>
 
       {/* Indicator Glossary */}
-      <div className="bg-muted/40 border border-border/30 rounded-xl p-4">
+      <div className="bg-muted/40 border border-border/30 rounded-md p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Important Caveats
@@ -748,7 +748,7 @@ export default function CryptoTradingPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Exchange Flows */}
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-4">
           <div className="flex items-center gap-2 mb-3">
             <ArrowDownRight className="w-4 h-4 text-emerald-400" />
             <h3 className="text-sm font-medium text-muted-foreground">Exchange Net Flows</h3>
@@ -771,7 +771,7 @@ export default function CryptoTradingPage() {
         </div>
 
         {/* HODLer Behavior */}
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-4">
           <div className="flex items-center gap-2 mb-3">
             <Shield className="w-4 h-4 text-indigo-400" />
             <h3 className="text-sm font-medium text-muted-foreground">HODLer Behavior</h3>
@@ -801,7 +801,7 @@ export default function CryptoTradingPage() {
         </div>
 
         {/* Mining Metrics */}
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-4">
           <div className="flex items-center gap-2 mb-3">
             <Cpu className="w-4 h-4 text-muted-foreground" />
             <h3 className="text-sm font-medium text-muted-foreground">Mining Metrics</h3>
@@ -819,7 +819,7 @@ export default function CryptoTradingPage() {
         </div>
 
         {/* Whale Activity */}
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-4">
           <div className="flex items-center gap-2 mb-3">
             <Zap className="w-4 h-4 text-amber-400" />
             <h3 className="text-sm font-medium text-muted-foreground">Whale Activity</h3>
@@ -842,7 +842,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* Stablecoin Supply Ratio */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-2">
           <DollarSign className="w-4 h-4 text-green-400" />
           <h3 className="text-sm font-medium text-muted-foreground">Stablecoin Supply Ratio (SSR)</h3>
@@ -891,7 +891,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* Perpetual Futures */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Perpetual Futures</h3>
         <p className="text-xs text-muted-foreground mb-3">Funding rate: positive = longs pay shorts (bullish sentiment), negative = shorts pay longs (bearish).</p>
         <div className="overflow-x-auto">
@@ -930,7 +930,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* Liquidation Heatmap */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Liquidation Heatmap</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Where leveraged positions are concentrated. Green = long liquidations, Red = short liquidations.
@@ -940,7 +940,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* Options Market */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">BTC Options — OI by Strike</h3>
         <p className="text-xs text-muted-foreground mb-1">
           Max Pain: <span className="font-mono text-amber-400">${fmtK(derivatives.maxPainStrike)}K</span>
@@ -954,7 +954,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* Basis Trade */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-medium text-muted-foreground">Cash &amp; Carry (Basis Trade)</h3>
           <span className={cn(
@@ -1002,7 +1002,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* DCA vs Lump Sum */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">DCA vs Lump Sum — 4-Year BTC Simulation</h3>
         <p className="text-xs text-muted-foreground mb-3">
           $500/month DCA (blue) vs $24,000 lump sum at start (amber). DCA reduces timing risk during volatile drawdowns.
@@ -1027,7 +1027,7 @@ export default function CryptoTradingPage() {
       {/* Portfolio Strategies */}
       <div className="space-y-4">
         {portfolioStrategies.map((strategy) => (
-          <div key={strategy.name} className="bg-muted/60 border border-border/50 rounded-xl p-4">
+          <div key={strategy.name} className="bg-muted/60 border border-border/50 rounded-md p-4">
             <div className="flex items-start justify-between gap-3">
               <div className="flex-1">
                 <h3 className="text-sm font-medium text-foreground">{strategy.name}</h3>
@@ -1064,7 +1064,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* Tax-Loss Harvesting */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-2">
           <BarChart2 className="w-4 h-4 text-amber-400" />
           <h3 className="text-sm font-medium text-muted-foreground">Tax-Loss Harvesting in Crypto</h3>
@@ -1111,7 +1111,7 @@ export default function CryptoTradingPage() {
       </div>
 
       {/* 5% BTC in Traditional Portfolio */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-4">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-4">
         <h3 className="text-sm font-medium text-muted-foreground mb-1">Adding 5% BTC to a 60/40 Portfolio</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Academic research suggests a small BTC allocation can improve risk-adjusted returns due to low correlation with traditional assets.
@@ -1160,8 +1160,8 @@ export default function CryptoTradingPage() {
     <div className="h-full overflow-y-auto bg-card">
       <div className="max-w-5xl mx-auto px-4 py-6">
         {/* HERO Header */}
-        <div className="flex items-center gap-3 mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
-          <div className="p-2.5 rounded-xl bg-amber-400/10 border border-amber-400/20">
+        <div className="flex items-center gap-3 mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
+          <div className="p-2.5 rounded-md bg-amber-400/10 border border-amber-400/20">
             <Bitcoin className="w-6 h-6 text-amber-400" />
           </div>
           <div>
@@ -1182,7 +1182,7 @@ export default function CryptoTradingPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="technical" className="mt-6">
-          <TabsList className="grid grid-cols-5 mb-6 bg-muted/60 border border-border/50 p-1 rounded-xl h-auto">
+          <TabsList className="grid grid-cols-5 mb-6 bg-muted/60 border border-border/50 p-1 rounded-md h-auto">
             <TabsTrigger value="technical" className="text-xs py-2 rounded-lg data-[state=active]:bg-muted data-[state=active]:text-foreground">
               <Activity className="w-3.5 h-3.5 mr-1.5" />
               Tech Analysis

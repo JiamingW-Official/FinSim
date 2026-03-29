@@ -174,7 +174,7 @@ function AdvancedOrderTicket({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.92, opacity: 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 25 }}
-        className="w-full max-w-xs rounded-xl border border-border/50 bg-background shadow-sm"
+        className="w-full max-w-xs rounded-md border border-border/50 bg-background shadow-sm"
       >
         {/* Header */}
         <div className="rounded-t-xl bg-amber-500/10 px-4 py-3">

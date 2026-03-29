@@ -187,7 +187,7 @@ function ABSStructureTab() {
   return (
     <div className="space-y-6">
       {/* Securitization SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-foreground">Securitization Structure</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${W} ${H}`} className="w-full max-w-2xl" style={{ minWidth: 480 }}>
@@ -224,7 +224,7 @@ function ABSStructureTab() {
       </div>
 
       {/* Tranches Table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-semibold text-foreground">Tranche Summary</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -272,7 +272,7 @@ function ABSStructureTab() {
       </div>
 
       {/* Waterfall Toggle */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <button
           className="flex w-full items-center justify-between text-sm font-medium text-foreground"
           onClick={() => setShowWaterfall(!showWaterfall)}
@@ -402,7 +402,7 @@ function PrepaymentModelsTab() {
   return (
     <div className="space-y-6">
       {/* PSA Speed Slider */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
           <p className="text-sm font-medium text-foreground">PSA Prepayment Speed</p>
           <Badge variant="outline" className="border-primary text-primary text-sm">
@@ -440,7 +440,7 @@ function PrepaymentModelsTab() {
       </div>
 
       {/* Prepayment Curve SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-2 text-sm font-medium text-foreground">CPR Curve (Months 1–360, {psaSpeed} PSA)</p>
         <div className="overflow-x-auto">
           <svg viewBox={`0 0 ${CURVE_W} ${CURVE_H + 20}`} className="w-full max-w-2xl" style={{ minWidth: 400 }}>
@@ -474,7 +474,7 @@ function PrepaymentModelsTab() {
       </div>
 
       {/* Scheduled vs Unscheduled Principal Bar Chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-2 text-sm font-medium text-foreground">Scheduled vs Unscheduled Principal (Months 1–120)</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded" style={{ background: "#3b82f6" }} /> Scheduled</span>
@@ -508,7 +508,7 @@ function PrepaymentModelsTab() {
       </div>
 
       {/* Prepayment Sensitivity Table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-medium text-foreground">Prepayment Sensitivity — Class A Senior</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -625,7 +625,7 @@ function PricingYieldTab() {
       </div>
 
       {/* Floating-rate DM calculator */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-medium text-foreground">Discount Margin Calculator (Floating-Rate ABS)</p>
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
@@ -668,7 +668,7 @@ function PricingYieldTab() {
       </div>
 
       {/* Yield Curve with ABS Spread */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-2 text-sm font-medium text-foreground">ABS Spread Over Treasuries</p>
         <div className="flex gap-4 mb-2 text-xs">
           <span className="flex items-center gap-1"><span className="inline-block w-4 h-0.5" style={{ background: "#64748b" }} /> Treasury</span>
@@ -703,7 +703,7 @@ function PricingYieldTab() {
 
       {/* Price/Yield Sensitivity + Duration */}
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <p className="mb-2 text-sm font-medium text-foreground">Price / Spread Sensitivity</p>
           <svg viewBox={`0 0 ${PY_W} ${PY_H + 10}`} className="w-full max-w-sm">
             <line x1={45} y1={20} x2={45} y2={PY_H - 25} stroke="#94a3b8" strokeWidth="1" />
@@ -789,7 +789,7 @@ function CreditEnhancementTab() {
       </div>
 
       {/* Stress Test SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <div className="flex items-center justify-between mb-3">
           <p className="text-sm font-medium text-foreground">Stress Test: Default Rate vs Attachment Points</p>
           <div className="flex items-center gap-2">
@@ -851,7 +851,7 @@ function CreditEnhancementTab() {
       </div>
 
       {/* Rating Agency Inputs */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-medium text-foreground">Rating Agency Key Assumptions (Auto ABS Example)</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {[
@@ -876,7 +876,7 @@ function CreditEnhancementTab() {
       </div>
 
       {/* Historical Loss Rates by Asset Class */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <p className="mb-3 text-sm font-medium text-foreground">Historical Loss Rates by Asset Class</p>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1008,7 +1008,7 @@ export default function ABSPricingPage() {
         </Tabs>
 
         {/* Footer info */}
-        <div className="mt-8 rounded-xl border border-border/50 bg-foreground/[0.03] p-4">
+        <div className="mt-8 rounded-md border border-border/50 bg-foreground/[0.03] p-4">
           <div className="flex items-start gap-2">
             <Info className="h-4 w-4 text-foreground/30 mt-0.5 shrink-0" />
             <p className="text-xs text-foreground/30">

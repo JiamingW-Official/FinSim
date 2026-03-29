@@ -82,7 +82,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -416,7 +416,7 @@ function SaasTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4" /> SaaS Company Metrics
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -483,7 +483,7 @@ function SaasTab() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
-            className="rounded-xl border border-primary/30 bg-primary/5 p-4"
+            className="rounded-md border border-primary/30 bg-primary/5 p-4"
           >
             <div className="flex items-center justify-between mb-4">
               <h4 className="font-medium text-foreground text-sm">
@@ -546,7 +546,7 @@ function SaasTab() {
           <SectionTitle>
             <Activity className="w-4 h-4 text-primary" /> 2021 Cohort Revenue (Indexed to 100)
           </SectionTitle>
-          <div className="rounded-xl bg-foreground/5 border border-border p-3">
+          <div className="rounded-md bg-foreground/5 border border-border p-3">
             <svg viewBox="0 0 360 180" className="w-full">
               {/* Grid */}
               {[0, 50, 100, 150, 200, 250].map((v) => {
@@ -667,7 +667,7 @@ function AiInfraTab() {
         <SectionTitle>
           <Zap className="w-4 h-4 text-yellow-400" /> AI Hyperscaler Comparison
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -720,7 +720,7 @@ function AiInfraTab() {
           <SectionTitle>
             <Cpu className="w-4 h-4 text-primary" /> AI Chip Market Share
           </SectionTitle>
-          <div className="rounded-xl bg-foreground/5 border border-border p-4">
+          <div className="rounded-md bg-foreground/5 border border-border p-4">
             {/* Donut */}
             <svg viewBox="0 0 200 200" className="w-40 h-40 mx-auto">
               {(() => {
@@ -764,7 +764,7 @@ function AiInfraTab() {
           <SectionTitle>
             <Cloud className="w-4 h-4 text-primary" /> Cloud Market Share (IaaS/PaaS)
           </SectionTitle>
-          <div className="rounded-xl bg-foreground/5 border border-border p-4">
+          <div className="rounded-md bg-foreground/5 border border-border p-4">
             <svg viewBox="0 0 200 200" className="w-40 h-40 mx-auto">
               {(() => {
                 let cumAngle = -90;
@@ -858,7 +858,7 @@ function AiInfraTab() {
             { name: "Salesforce", score: 60, status: "Agentforce platform. AI SKUs at 2-3x premium. Early traction but proving ROI.", color: "amber" },
           ].map((item) => (
             <div key={item.name} className={cn(
-              "rounded-xl border p-3",
+              "rounded-md border p-3",
               item.color === "emerald" ? "border-emerald-500/30 bg-emerald-500/5"
               : item.color === "blue" ? "border-primary/30 bg-primary/5"
               : "border-amber-500/30 bg-amber-500/5"
@@ -938,7 +938,7 @@ function SemiCycleTab() {
             <div
               key={phase.phase}
               className={cn(
-                "rounded-xl border p-3 flex flex-col gap-1",
+                "rounded-md border p-3 flex flex-col gap-1",
                 i === 4
                   ? "border-emerald-500/40 bg-emerald-500/10"
                   : i === 2
@@ -967,7 +967,7 @@ function SemiCycleTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4" /> Key Semiconductor Companies
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -1030,7 +1030,7 @@ function SemiCycleTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4 text-emerald-400" /> Book-to-Bill Ratio
         </SectionTitle>
-        <div className="rounded-xl bg-foreground/5 border border-border p-4">
+        <div className="rounded-md bg-foreground/5 border border-border p-4">
           <svg viewBox="0 0 520 180" className="w-full">
             {/* Reference line at 1.0 */}
             {(() => {
@@ -1148,7 +1148,7 @@ function MegaCapTab() {
         >
           {/* Left: metrics */}
           <div className="space-y-4">
-            <div className="rounded-xl border border-border bg-foreground/5 p-4">
+            <div className="rounded-md border border-border bg-foreground/5 p-4">
               <h4 className="font-medium text-foreground text-sm mb-3">{company.name} ({company.ticker})</h4>
               <div className="grid grid-cols-2 gap-2">
                 {[
@@ -1178,7 +1178,7 @@ function MegaCapTab() {
           <div className="space-y-4">
             <div>
               <SectionTitle>Revenue Mix</SectionTitle>
-              <div className="rounded-xl bg-foreground/5 border border-border p-4">
+              <div className="rounded-md bg-foreground/5 border border-border p-4">
                 <svg viewBox="0 0 200 200" className="w-36 h-36 mx-auto">
                   {(() => {
                     let cumAngle = -90;
@@ -1224,7 +1224,7 @@ function MegaCapTab() {
         <SectionTitle>
           <BarChart3 className="w-4 h-4" /> Valuation Comparison
         </SectionTitle>
-        <div className="overflow-x-auto rounded-xl border border-border">
+        <div className="overflow-x-auto rounded-md border border-border">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -1290,7 +1290,7 @@ function MegaCapTab() {
             <div
               key={item.company}
               className={cn(
-                "rounded-xl border p-3",
+                "rounded-md border p-3",
                 item.risk === "High" ? "border-rose-500/30 bg-rose-500/5"
                 : item.risk === "Medium" ? "border-amber-500/30 bg-amber-500/5"
                 : "border-muted-foreground/30 bg-foreground/5"
@@ -1387,7 +1387,7 @@ function FintechTab() {
       </div>
 
       {/* Company table */}
-      <div className="overflow-x-auto rounded-xl border border-border">
+      <div className="overflow-x-auto rounded-md border border-border">
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border bg-foreground/5">
@@ -1448,7 +1448,7 @@ function FintechTab() {
           <SectionTitle>
             <DollarSign className="w-4 h-4 text-primary" /> Payment Take Rates (% of GMV)
           </SectionTitle>
-          <div className="rounded-xl bg-foreground/5 border border-border p-4">
+          <div className="rounded-md bg-foreground/5 border border-border p-4">
             <div className="space-y-3">
               {PAYMENT_TAKE_RATES.map((p) => (
                 <div key={p.name} className="flex items-center gap-3">
@@ -1474,7 +1474,7 @@ function FintechTab() {
           <SectionTitle>
             <Globe className="w-4 h-4 text-orange-400" /> Social Media ARPU (Annual, USD)
           </SectionTitle>
-          <div className="rounded-xl bg-foreground/5 border border-border p-4">
+          <div className="rounded-md bg-foreground/5 border border-border p-4">
             <svg viewBox="0 0 300 160" className="w-full">
               {[
                 { name: "Meta US/CA", arpu: 233, color: "#3b82f6" },
@@ -1531,7 +1531,7 @@ export default function TechSectorPage() {
           className="flex items-center justify-between"
         >
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-primary/20 border border-primary/30 flex items-center justify-center">
               <Cpu className="w-5 h-5 text-primary" />
             </div>
             <div>
@@ -1561,7 +1561,7 @@ export default function TechSectorPage() {
             { label: "Cloud Growth", value: "+21%", sub: "IaaS/PaaS market", icon: <Cloud className="w-3.5 h-3.5 text-muted-foreground" /> },
             { label: "AI Capex 2025E", value: "$320B+", sub: "Hyperscaler spend", icon: <Zap className="w-3.5 h-3.5 text-yellow-400" /> },
           ].map((item) => (
-            <div key={item.label} className="rounded-xl border border-border bg-foreground/5 p-3 flex gap-2.5 items-start">
+            <div key={item.label} className="rounded-md border border-border bg-foreground/5 p-3 flex gap-2.5 items-start">
               <div className="mt-0.5">{item.icon}</div>
               <div>
                 <div className="text-xs text-muted-foreground">{item.label}</div>

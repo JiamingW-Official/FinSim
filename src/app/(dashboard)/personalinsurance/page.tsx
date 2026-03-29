@@ -306,7 +306,7 @@ function InsuranceNeedsTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sliders */}
-        <div className="rounded-xl border border-border border-l-4 border-l-primary bg-card p-6 space-y-5">
+        <div className="rounded-md border border-border border-l-4 border-l-primary bg-card p-6 space-y-5">
           <div className="text-lg font-medium text-foreground mb-1">Your Financial Profile</div>
           <SliderInput
             label="Annual Income"
@@ -354,7 +354,7 @@ function InsuranceNeedsTab() {
 
         {/* Results */}
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-5 space-y-4">
+          <div className="rounded-md border border-border bg-card p-5 space-y-4">
             <div className="text-sm font-medium text-foreground">Coverage Recommendations</div>
             <div className="grid grid-cols-1 gap-3">
               {[
@@ -418,7 +418,7 @@ function InsuranceNeedsTab() {
           </div>
 
           {/* Chart */}
-          <div className="rounded-xl border border-border bg-card p-4">
+          <div className="rounded-md border border-border bg-card p-4">
             <div className="text-xs font-medium text-muted-foreground mb-3">Coverage Gap Chart</div>
             <CoverageGapChart
               lifeCoverage={recommendations.lifeCoverage}
@@ -606,7 +606,7 @@ function LifeInsuranceTab() {
       />
 
       {/* Controls */}
-      <div className="rounded-xl border border-border bg-card p-5 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="rounded-md border border-border bg-card p-5 grid grid-cols-1 md:grid-cols-3 gap-5">
         <SliderInput
           label="Coverage Amount"
           value={coverageAmount}
@@ -648,7 +648,7 @@ function LifeInsuranceTab() {
       </div>
 
       {/* 30-year cost chart */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <div className="text-sm font-medium text-foreground mb-1">Cumulative 30-Year Premium Cost</div>
         <p className="text-xs text-muted-foreground mb-4">Total out-of-pocket premiums paid over 30 years (excludes any cash value return)</p>
         <LifeCostChart coverageAmount={coverageAmount} age={age} />
@@ -674,7 +674,7 @@ function LifeInsuranceTab() {
               key={p.name}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className={cn("rounded-xl border p-4 space-y-3", colorCls)}
+              className={cn("rounded-md border p-4 space-y-3", colorCls)}
             >
               <div className="flex items-center justify-between">
                 <div className="text-sm font-medium text-foreground">{p.name}</div>
@@ -789,7 +789,7 @@ function DisabilityTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Controls */}
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-5 space-y-5">
+          <div className="rounded-md border border-border bg-card p-5 space-y-5">
             <div className="text-sm font-medium text-foreground">Your Parameters</div>
             <SliderInput
               label="Monthly Gross Income"
@@ -881,7 +881,7 @@ function DisabilityTab() {
 
         {/* Results Panel */}
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-5 space-y-4">
+          <div className="rounded-md border border-border bg-card p-5 space-y-4">
             <div className="text-sm font-medium text-foreground">Coverage Summary</div>
             <div className="grid grid-cols-2 gap-3">
               <StatChip label="Monthly Benefit" value={`${fmt$(monthlyBenefit)}/mo`} color="green" />
@@ -1010,7 +1010,7 @@ function PropertyAutoTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-5 space-y-5">
+          <div className="rounded-md border border-border bg-card p-5 space-y-5">
             <div className="text-sm font-medium text-foreground">Your Coverage Parameters</div>
             <SliderInput
               label="Home Market Value"
@@ -1054,7 +1054,7 @@ function PropertyAutoTab() {
           </div>
 
           {/* ACV vs Replacement Cost */}
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-md border border-border bg-card p-4 space-y-3">
             <div className="text-sm font-medium text-foreground">ACV vs Replacement Cost</div>
             <div className="grid grid-cols-2 gap-3">
               <div className={cn("rounded-lg border p-3", !replacementCost ? "border-amber-500/30 bg-amber-500/5" : "border-border bg-muted/20")}>
@@ -1078,7 +1078,7 @@ function PropertyAutoTab() {
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-4">
+          <div className="rounded-md border border-border bg-card p-4">
             <CoverageLadderChart
               autoLiability={autoLiabilityLimit * 3}
               homeCoverage={300000}
@@ -1086,7 +1086,7 @@ function PropertyAutoTab() {
             />
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-4 space-y-3">
+          <div className="rounded-md border border-border bg-card p-4 space-y-3">
             <div className="text-sm font-medium text-foreground">Annual Premium Summary</div>
             <div className="space-y-2">
               {[
@@ -1110,7 +1110,7 @@ function PropertyAutoTab() {
       </div>
 
       {/* Auto Liability Limits Table */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <div className="text-sm font-medium text-foreground mb-3">Auto Liability Limit Comparison (Bodily Injury / Aggregate / Property)</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {autoLimits.map((limit) => {
@@ -1268,7 +1268,7 @@ function HealthMedicareTab() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Controls */}
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-5 space-y-5">
+          <div className="rounded-md border border-border bg-card p-5 space-y-5">
             <div className="text-sm font-medium text-foreground">Plan Comparison Parameters</div>
             <SliderInput
               label="HDHP Monthly Premium"
@@ -1315,7 +1315,7 @@ function HealthMedicareTab() {
           </div>
 
           {/* HSA Triple Tax Advantage */}
-          <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 space-y-3">
+          <div className="rounded-md border border-primary/20 bg-primary/5 p-4 space-y-3">
             <div className="flex items-center gap-2 text-sm font-medium text-foreground">
               <DollarSign className="h-4 w-4 text-primary" />
               HSA Triple Tax Advantage ({fmt$(hsaContrib)}/yr contribution)
@@ -1350,7 +1350,7 @@ function HealthMedicareTab() {
 
         {/* Results */}
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-card p-4">
+          <div className="rounded-md border border-border bg-card p-4">
             <div className="text-sm font-medium text-foreground mb-1">Cumulative Cost Comparison ({analysisYears} Years)</div>
             <p className="text-xs text-muted-foreground mb-3">HDHP includes HSA contribution tax savings (~{marginalRate}% federal)</p>
             <HealthCostChart
@@ -1372,7 +1372,7 @@ function HealthMedicareTab() {
       </div>
 
       {/* Medicare Parts */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <div className="text-sm font-medium text-foreground mb-4">Medicare Parts Explained</div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {[
@@ -1492,7 +1492,7 @@ export default function PersonalInsurancePage() {
               blue: "border-border bg-primary/5 text-primary",
             }[chip.color];
             return (
-              <div key={chip.label} className={cn("rounded-xl border p-3", cls)}>
+              <div key={chip.label} className={cn("rounded-md border p-3", cls)}>
                 <div className="flex items-center gap-1.5 mb-1">{chip.icon}<div className="text-xs text-muted-foreground">{chip.label}</div></div>
                 <div className="text-lg font-medium text-foreground">{chip.value}</div>
                 <div className="text-xs text-muted-foreground">{chip.sub}</div>
@@ -1503,7 +1503,7 @@ export default function PersonalInsurancePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="needs">
-          <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/40 p-1 rounded-xl">
+          <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/40 p-1 rounded-md">
             <TabsTrigger value="needs" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-background">
               <Calculator className="h-3.5 w-3.5" />Needs Calculator
             </TabsTrigger>

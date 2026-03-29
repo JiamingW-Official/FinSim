@@ -585,7 +585,7 @@ export default function CTASimulatorPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* HERO Header */}
-      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
             <Sigma className="w-5 h-5 text-emerald-400" />
@@ -603,7 +603,7 @@ export default function CTASimulatorPage() {
 
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="flex flex-wrap gap-1 h-auto bg-card/60 border border-border/40 p-1 mb-6 rounded-xl">
+        <TabsList className="flex flex-wrap gap-1 h-auto bg-card/60 border border-border/40 p-1 mb-6 rounded-md">
           {TABS.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}

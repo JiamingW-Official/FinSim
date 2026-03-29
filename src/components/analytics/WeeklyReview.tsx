@@ -367,7 +367,7 @@ export function WeeklyReview() {
           <div className="flex flex-col items-center">
             <div
               className={cn(
-                "flex h-12 w-12 items-center justify-center rounded-xl border-2 font-bold text-xl",
+                "flex h-12 w-12 items-center justify-center rounded-md border-2 font-bold text-xl",
                 grade === "A" ? "border-emerald-400/40 bg-emerald-400/10" :
                 grade === "B" ? "border-teal-400/40 bg-teal-400/10" :
                 grade === "C" ? "border-amber-400/40 bg-amber-400/10" :

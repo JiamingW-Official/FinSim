@@ -529,9 +529,9 @@ export default function RealAssets2Page() {
         <TabsContent value="timber" className="mt-4 space-y-4 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* NCREIF Timberland Returns */}
-            <Card className="bg-card border-border">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-muted-foreground flex items-center gap-2">
+            <Card className="bg-card border-border border-l-4 border-l-primary">
+              <CardHeader className="p-6 pb-2">
+                <CardTitle className="text-lg text-muted-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-emerald-400" />
                   NCREIF Timberland Index Annual Returns
                 </CardTitle>

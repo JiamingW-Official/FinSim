@@ -88,7 +88,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -318,7 +318,7 @@ function Tab1BNPLModel() {
       </div>
 
       {/* Pay-in-4 Mechanics SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <CreditCard size={14} />
           Pay-in-4 Flow Mechanics
@@ -328,7 +328,7 @@ function Tab1BNPLModel() {
 
       {/* Revenue Model */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <DollarSign size={14} />
             Revenue Streams
@@ -354,7 +354,7 @@ function Tab1BNPLModel() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <BarChart3 size={14} />
             Unit Economics — % of GMV
@@ -372,7 +372,7 @@ function Tab1BNPLModel() {
       </div>
 
       {/* Major Players Table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe size={14} />
           Major Players Comparison
@@ -604,7 +604,7 @@ function Tab2DigitalScoring() {
 
       {/* Traditional vs Alt Data Comparison */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Scale size={14} />
             Traditional Credit Scoring
@@ -633,7 +633,7 @@ function Tab2DigitalScoring() {
           </InfoBox>
         </div>
 
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Activity size={14} />
             Alternative Data Features
@@ -660,7 +660,7 @@ function Tab2DigitalScoring() {
       </div>
 
       {/* ML Pipeline */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Zap size={14} />
           Real-Time ML Decisioning Pipeline
@@ -680,7 +680,7 @@ function Tab2DigitalScoring() {
       </div>
 
       {/* Approval/Default Curves */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <BarChart3 size={14} />
           ML vs Traditional: Approval Rate &amp; Default Rate by Credit Score
@@ -692,7 +692,7 @@ function Tab2DigitalScoring() {
       </div>
 
       {/* Thin File Problem */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <AlertTriangle size={14} />
           The Thin-File Problem — 45M Unscoreable Americans
@@ -893,7 +893,7 @@ function Tab3EmbeddedFinance() {
       </div>
 
       {/* Architecture SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers size={14} />
           Embedded Lending Architecture
@@ -910,7 +910,7 @@ function Tab3EmbeddedFinance() {
       </div>
 
       {/* Case Studies */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Building2 size={14} />
           Platform Lending Case Studies
@@ -942,7 +942,7 @@ function Tab3EmbeddedFinance() {
 
       {/* Cross-sell Economics */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <DollarSign size={14} />
             Cross-Sell Economics
@@ -968,7 +968,7 @@ function Tab3EmbeddedFinance() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <TrendingUp size={14} />
             Embedded Finance Market Growth 2020–2028
@@ -1201,7 +1201,7 @@ function Tab4RiskRegulation() {
       </div>
 
       {/* Debt Stacking SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers size={14} />
           Consumer Debt Stacking Problem
@@ -1222,7 +1222,7 @@ function Tab4RiskRegulation() {
 
       {/* Default Rate Comparison */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <BarChart3 size={14} />
             Default Rate: BNPL vs Other Products
@@ -1230,7 +1230,7 @@ function Tab4RiskRegulation() {
           <DefaultRateComparisonSVG />
         </div>
 
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Lock size={14} />
             CFPB Regulatory Developments
@@ -1278,7 +1278,7 @@ function Tab4RiskRegulation() {
       </div>
 
       {/* Credit Quality Distribution */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Users size={14} />
           Credit Quality: BNPL Users vs Prime Borrowers
@@ -1290,7 +1290,7 @@ function Tab4RiskRegulation() {
       </div>
 
       {/* Debt Spiral Mechanics */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <AlertTriangle size={14} />
           Debt Spiral Mechanics
@@ -1344,9 +1344,9 @@ export default function BNPLLendingPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6">
         {/* HERO Header */}
-        <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+        <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+            <div className="w-9 h-9 rounded-md bg-primary/20 border border-border flex items-center justify-center">
               <CreditCard size={18} className="text-primary" />
             </div>
             <div>

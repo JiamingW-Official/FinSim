@@ -105,7 +105,7 @@ export function ObjectiveTracker({
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="overflow-hidden"
           >
-            <div className="flex items-center justify-between rounded-xl bg-profit/10 border border-profit/20 px-3 py-2">
+            <div className="flex items-center justify-between rounded-md bg-profit/10 border border-profit/20 px-3 py-2">
               <div className="flex items-center gap-2">
                 <motion.div
                   initial={{ rotate: -30, scale: 0 }}
@@ -141,7 +141,7 @@ export function ObjectiveTracker({
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
             className="overflow-hidden"
           >
-            <div className="flex items-center justify-between rounded-xl bg-amber-500/10 border border-amber-500/20 px-3 py-2">
+            <div className="flex items-center justify-between rounded-md bg-amber-500/10 border border-amber-500/20 px-3 py-2">
               <div className="flex flex-col gap-0.5">
                 <span className="text-xs font-semibold text-amber-400">
                   All candles revealed

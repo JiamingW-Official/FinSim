@@ -1088,7 +1088,7 @@ export default function AccountsPage() {
       </div>
 
       {/* HERO — Aggregate Portfolio */}
-      <div className="shrink-0 mx-6 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="shrink-0 mx-6 mt-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           <div>
             <p className="text-xs text-muted-foreground mb-1">Total Portfolio</p>

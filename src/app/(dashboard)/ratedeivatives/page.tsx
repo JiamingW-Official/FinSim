@@ -322,7 +322,7 @@ function MetricCard({
   icon?: React.ElementType;
 }) {
   return (
-    <div className="bg-muted/60 border border-border/50 rounded-xl p-4 flex flex-col gap-1">
+    <div className="bg-muted/60 border border-border/50 rounded-md p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5 text-muted-foreground text-xs font-medium uppercase tracking-wide">
         {Icon && <Icon className="w-3 h-3" />}
         {label}
@@ -1269,7 +1269,7 @@ export default function RateDerivativesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-md bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
             <Activity className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
@@ -1317,9 +1317,9 @@ export default function RateDerivativesPage() {
         <TabsContent value="swaps" className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Builder panel */}
-            <Card className="bg-card border-border lg:col-span-1">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-base flex items-center gap-2">
+            <Card className="bg-card border-border border-l-4 border-l-primary lg:col-span-1">
+              <CardHeader className="pb-3 p-6">
+                <CardTitle className="text-lg flex items-center gap-2">
                   <Calculator className="w-4 h-4 text-indigo-400" />
                   IRS Builder
                 </CardTitle>

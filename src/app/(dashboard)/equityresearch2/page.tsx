@@ -590,7 +590,7 @@ function ResearchProcessTab() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            "rounded-xl border p-5 space-y-4",
+            "rounded-md border p-5 space-y-4",
             colorMap[active.color]
           )}
         >
@@ -726,7 +726,7 @@ function FinancialModelTab() {
   return (
     <div className="space-y-6">
       {/* 3-Statement Model Flow SVG */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           3-Statement Model — Integration Flow
         </div>
@@ -874,7 +874,7 @@ function FinancialModelTab() {
       </div>
 
       {/* Revenue Build */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Revenue Build — Volume × Price × Mix
         </div>
@@ -924,7 +924,7 @@ function FinancialModelTab() {
       </div>
 
       {/* FCF Bridge Waterfall SVG */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           FCF Bridge — EBITDA to Free Cash Flow ($M)
         </div>
@@ -986,7 +986,7 @@ function FinancialModelTab() {
       </div>
 
       {/* Scenario Analysis */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Scenario Analysis — Bear / Base / Bull
         </div>
@@ -1049,7 +1049,7 @@ function FinancialModelTab() {
       </div>
 
       {/* Sensitivity Table */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           DCF Sensitivity — WACC vs. Terminal Growth Rate (Price, $)
         </div>
@@ -1124,7 +1124,7 @@ function ValuationFrameworkTab() {
   return (
     <div className="space-y-6">
       {/* Method weight visualization */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Multi-Method Valuation — Weights & Implied Prices
         </div>
@@ -1219,7 +1219,7 @@ function ValuationFrameworkTab() {
       </div>
 
       {/* Peer Group Table */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Peer Group Comparison
         </div>
@@ -1331,7 +1331,7 @@ function ValuationFrameworkTab() {
       </div>
 
       {/* Premium/Discount Justification */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Premium / Discount Justification Matrix
         </div>
@@ -1448,7 +1448,7 @@ function BuyVsSellSideTab() {
   return (
     <div className="space-y-6">
       {/* Comparison table */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Buy-Side vs. Sell-Side — 9 Dimensions
         </div>
@@ -1496,7 +1496,7 @@ function BuyVsSellSideTab() {
       </div>
 
       {/* Research Budget Trend SVG */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-1">
           Global Research Budget Trends ($B) — MiFID II Impact
         </div>
@@ -1606,7 +1606,7 @@ function BuyVsSellSideTab() {
       </div>
 
       {/* Analyst Career Paths */}
-      <div className="rounded-xl border border-border bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border bg-foreground/[0.03] p-5">
         <div className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-4">
           Analyst Career Paths
         </div>
@@ -1694,7 +1694,7 @@ function BuyVsSellSideTab() {
 
       {/* Conflicts of Interest & Consensus vs Variant */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-amber-500/25 bg-amber-500/5 p-5">
+        <div className="rounded-md border border-amber-500/25 bg-amber-500/5 p-5">
           <div className="flex items-center gap-2 mb-3">
             <AlertTriangle className="w-4 h-4 text-amber-400" />
             <span className="text-sm font-medium text-amber-400">
@@ -1730,7 +1730,7 @@ function BuyVsSellSideTab() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-border bg-primary/5 p-5">
+        <div className="rounded-md border border-border bg-primary/5 p-5">
           <div className="flex items-center gap-2 mb-3">
             <Eye className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">

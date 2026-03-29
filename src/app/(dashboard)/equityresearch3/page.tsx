@@ -660,7 +660,7 @@ function SOTPTab() {
 
       {/* Donut + Segment table */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-muted border border-border rounded-xl p-4">
+        <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
             <PieChart className="w-4 h-4 text-primary" />
             Asset Value Composition
@@ -690,7 +690,7 @@ function SOTPTab() {
         </div>
 
         {/* Waterfall */}
-        <div className="bg-muted border border-border rounded-xl p-4">
+        <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-semibold text-foreground mb-2 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Waterfall Bridge to Equity
@@ -705,7 +705,7 @@ function SOTPTab() {
         {SOTP_SEGMENTS.map((seg, i) => (
           <motion.div
             key={i}
-            className="bg-muted border border-border rounded-xl overflow-hidden cursor-pointer"
+            className="bg-muted border border-border rounded-md overflow-hidden cursor-pointer"
             onClick={() => setExpandedSeg(expandedSeg === i ? null : i)}
           >
             <div className="flex items-center gap-3 p-3">
@@ -755,7 +755,7 @@ function SOTPTab() {
       </div>
 
       {/* Holding Company Discount */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400" />
           Conglomerate Discount — Causes & Unlocking Value
@@ -812,7 +812,7 @@ function SOTPTab() {
       </div>
 
       {/* Net-Net & Graham */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
           <DollarSign className="w-4 h-4 text-green-400" />
           Graham Net-Net & Asset-Heavy Liquidation Value
@@ -900,7 +900,7 @@ function PrimaryResearchTab() {
     <div className="space-y-6">
       {/* Info advantage pyramid */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-muted border border-border rounded-xl p-4 flex flex-col items-center">
+        <div className="bg-muted border border-border rounded-md p-4 flex flex-col items-center">
           <InfoPyramidSVG />
           <p className="text-xs text-muted-foreground text-center mt-2">
             Bottom layers are crowded. Alpha lives in primary research.
@@ -908,7 +908,7 @@ function PrimaryResearchTab() {
         </div>
 
         {/* Channel framework */}
-        <div className="bg-muted border border-border rounded-xl p-4">
+        <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Network className="w-4 h-4 text-primary" />
             Channel Check Framework
@@ -957,7 +957,7 @@ function PrimaryResearchTab() {
       </div>
 
       {/* Expert networks */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
           Expert Network Landscape
@@ -981,7 +981,7 @@ function PrimaryResearchTab() {
       </div>
 
       {/* Scuttlebutt */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <Search className="w-4 h-4 text-emerald-400" />
           Scuttlebutt Investing — Phil Fisher Method
@@ -1003,7 +1003,7 @@ function PrimaryResearchTab() {
       </div>
 
       {/* Alt Data */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Zap className="w-4 h-4 text-muted-foreground" />
           Alternative Data Sources
@@ -1052,7 +1052,7 @@ function ForensicTab() {
   return (
     <div className="space-y-6">
       {/* Intro */}
-      <div className="bg-amber-950/20 border border-amber-800/40 rounded-xl p-4">
+      <div className="bg-amber-950/20 border border-amber-800/40 rounded-md p-4">
         <div className="flex gap-3 items-start">
           <Microscope className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
           <div>
@@ -1067,7 +1067,7 @@ function ForensicTab() {
       {/* Flags checklist */}
       <div className="space-y-3">
         {FORENSIC_FLAGS.map((cat, i) => (
-          <div key={i} className="bg-muted border border-border rounded-xl overflow-hidden">
+          <div key={i} className="bg-muted border border-border rounded-md overflow-hidden">
             <button
               className="w-full flex items-center gap-3 p-3 hover:bg-muted text-left"
               onClick={() => setExpandedCategory(expandedCategory === i ? null : i)}
@@ -1122,7 +1122,7 @@ function ForensicTab() {
       </div>
 
       {/* Beneish M-Score */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-red-400" />
           Beneish M-Score — Earnings Manipulation Detection
@@ -1155,7 +1155,7 @@ function ForensicTab() {
 
       {/* Altman Z & Zmijewski */}
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="bg-muted border border-border rounded-xl p-4">
+        <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-orange-400" />
             Altman Z-Score
@@ -1183,7 +1183,7 @@ function ForensicTab() {
           </div>
         </div>
 
-        <div className="bg-muted border border-border rounded-xl p-4">
+        <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Short Seller Report Anatomy
@@ -1234,7 +1234,7 @@ function ThesisTab() {
   return (
     <div className="space-y-6">
       {/* Thesis steps */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Target className="w-4 h-4 text-primary" />
           Differentiated Thesis Construction Framework
@@ -1263,7 +1263,7 @@ function ThesisTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="bg-card rounded-xl p-4 border border-border"
+            className="bg-card rounded-md p-4 border border-border"
           >
             <div className="flex items-center gap-2 mb-2">
               <span className="text-xs font-mono text-muted-foreground">{THESIS_STEPS[activeStep].step}</span>
@@ -1279,7 +1279,7 @@ function ThesisTab() {
       </div>
 
       {/* Variant perception */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
           <Lightbulb className="w-4 h-4 text-yellow-400" />
           Variant Perception — Howard Marks Framework
@@ -1314,7 +1314,7 @@ function ThesisTab() {
       </div>
 
       {/* TAM / SAM / SOM */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <TrendingUp className="w-4 h-4 text-emerald-400" />
           TAM / SAM / SOM Market Sizing
@@ -1348,7 +1348,7 @@ function ThesisTab() {
 
       {/* Moat radar */}
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-muted border border-border rounded-xl p-4 flex flex-col items-center">
+        <div className="bg-muted border border-border rounded-md p-4 flex flex-col items-center">
           <h3 className="text-sm font-medium text-foreground mb-3 w-full flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Economic Moat Durability
@@ -1356,7 +1356,7 @@ function ThesisTab() {
           <MoatRadarSVG moats={MOAT_TYPES} />
         </div>
 
-        <div className="bg-muted border border-border rounded-xl p-4">
+        <div className="bg-muted border border-border rounded-md p-4">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             Moat Classification
@@ -1403,7 +1403,7 @@ function ThesisTab() {
       </div>
 
       {/* Idea generation */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <BookOpen className="w-4 h-4 text-muted-foreground" />
           Idea Generation Sources
@@ -1422,7 +1422,7 @@ function ThesisTab() {
       </div>
 
       {/* Position sizing */}
-      <div className="bg-muted border border-border rounded-xl p-4">
+      <div className="bg-muted border border-border rounded-md p-4">
         <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
           <Activity className="w-4 h-4 text-rose-400" />
           Position Sizing & When to Sell
@@ -1497,7 +1497,7 @@ export default function EquityResearch3Page() {
 
         {/* Tabs */}
         <Tabs defaultValue="sotp" className="w-full mt-8">
-          <TabsList className="grid grid-cols-4 w-full bg-muted border border-border rounded-xl p-1 h-auto">
+          <TabsList className="grid grid-cols-4 w-full bg-muted border border-border rounded-md p-1 h-auto">
             {[
               { value: "sotp", label: "SOTP & Conglomerates", icon: <PieChart className="w-3.5 h-3.5" /> },
               { value: "primary", label: "Primary Research", icon: <Search className="w-3.5 h-3.5" /> },

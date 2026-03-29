@@ -1155,7 +1155,7 @@ export default function PaymentsPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center">
               <CreditCard className="w-5 h-5 text-indigo-400" />
             </div>
             <div>

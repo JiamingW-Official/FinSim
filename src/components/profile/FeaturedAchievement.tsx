@@ -16,7 +16,7 @@ export function FeaturedAchievement() {
   const featured = achievements.find((a) => a.id === featuredId);
 
   return (
-    <div className="card-hover-glow rounded-xl border border-amber-500/20 bg-amber-500/5 p-3">
+    <div className="card-hover-glow rounded-md border border-amber-500/20 bg-amber-500/5 p-3">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-bold text-amber-300">
           <Star className="h-3.5 w-3.5" />
@@ -35,7 +35,7 @@ export function FeaturedAchievement() {
       {/* Featured display */}
       {featured ? (
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/15">
+          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-amber-500/15">
             <Trophy className="h-5 w-5 text-amber-400" />
           </div>
           <div>

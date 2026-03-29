@@ -447,7 +447,7 @@ function MarketOverviewTab() {
       </div>
 
       {/* Issuance Chart */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Annual Issuance vs Outstanding ($B)</div>
         <IssuanceChart />
         <p className="text-xs text-muted-foreground mt-2">
@@ -457,7 +457,7 @@ function MarketOverviewTab() {
       </div>
 
       {/* Perils breakdown */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Peril Exposure Breakdown</div>
         <div className="flex gap-6 items-start">
           <PerilPieChart />
@@ -627,7 +627,7 @@ function CatBondMechanicsTab() {
       />
 
       {/* SPV Structure */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">SPV Deal Structure</div>
         <SPVDiagram />
         <div className="grid grid-cols-3 gap-3 mt-4 text-xs text-muted-foreground">
@@ -647,7 +647,7 @@ function CatBondMechanicsTab() {
       </div>
 
       {/* Trigger types */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Trigger Types</div>
         <div className="flex gap-2 flex-wrap mb-4">
           {triggers.map((t) => (
@@ -695,7 +695,7 @@ function CatBondMechanicsTab() {
       </div>
 
       {/* Attachment / Exhaustion for selected bond */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-1">Attachment & Exhaustion Points</div>
         <p className="text-xs text-muted-foreground mb-3">
           The attachment point defines when losses start affecting investors; the exhaustion point is where 100% of principal is lost.
@@ -818,7 +818,7 @@ function PricingReturnsTab() {
       </div>
 
       {/* Bond-level pricing table */}
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="rounded-md border border-border bg-card overflow-hidden">
         <div className="text-sm font-medium text-foreground p-4 pb-2">Current Cat Bond Universe — Pricing Matrix</div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -864,7 +864,7 @@ function PricingReturnsTab() {
       </div>
 
       {/* Historical returns chart */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Annual Returns: Cat Bonds vs Corp Bonds vs Equities</div>
         <ReturnComparisonChart />
         <p className="text-xs text-muted-foreground mt-2">
@@ -874,7 +874,7 @@ function PricingReturnsTab() {
       </div>
 
       {/* Pricing formula */}
-      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+      <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-4">
         <div className="text-xs font-medium uppercase tracking-wide text-amber-400 mb-2">Pricing Framework</div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-muted-foreground">
           <div>
@@ -985,7 +985,7 @@ function PerilAnalysisTab() {
       />
 
       {/* Peril event table */}
-      <div className="rounded-xl border border-border bg-card overflow-hidden">
+      <div className="rounded-md border border-border bg-card overflow-hidden">
         <div className="text-sm font-medium text-foreground p-4 pb-2">Industry Loss Scenarios by Return Period</div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1014,7 +1014,7 @@ function PerilAnalysisTab() {
       </div>
 
       {/* Exceedance probability chart */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Exceedance Probability Curve (EP Curve)</div>
         <ExceedanceCurveChart />
         <p className="text-xs text-muted-foreground mt-2">
@@ -1047,7 +1047,7 @@ function PerilAnalysisTab() {
       </div>
 
       {/* Diversification insight */}
-      <div className="rounded-xl border border-green-500/20 bg-green-500/5 p-4">
+      <div className="rounded-md border border-green-500/20 bg-green-500/5 p-4">
         <div className="flex items-center gap-2 mb-2">
           <Globe size={14} className="text-green-400" />
           <span className="text-xs font-medium uppercase tracking-wide text-green-400">Peril Diversification</span>
@@ -1239,7 +1239,7 @@ function PortfolioConstructionTab() {
       />
 
       {/* Correlation matrix */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Asset Correlation Matrix</div>
         <div className="flex gap-6 items-start">
           <CorrMatrixHeatmap />
@@ -1262,7 +1262,7 @@ function PortfolioConstructionTab() {
       </div>
 
       {/* Interactive allocation slider */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Portfolio Optimizer — Cat Bond Allocation</div>
         <div className="mb-4">
           <div className="flex justify-between text-xs text-muted-foreground mb-1.5">
@@ -1318,7 +1318,7 @@ function PortfolioConstructionTab() {
       </div>
 
       {/* Efficient frontier */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <div className="text-sm font-medium text-foreground mb-3">Efficient Frontier: With vs Without Cat Bonds</div>
         <PortfolioEfficiencyChart />
         <p className="text-xs text-muted-foreground mt-2">
@@ -1395,7 +1395,7 @@ export default function CatBondsPage() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, delay: 0.08 }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-2 border-l-4 border-l-primary rounded-xl bg-card p-6"
+          className="grid grid-cols-2 md:grid-cols-5 gap-2 border-l-4 border-l-primary rounded-md bg-card p-6"
         >
           <StatChip label="Perils Covered" value="7 Major" color="blue" />
           <StatChip label="Avg Spread" value="~590 bps" color="purple" />

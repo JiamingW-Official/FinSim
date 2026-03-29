@@ -424,7 +424,7 @@ function StrategiesTab() {
               const Icon = step.icon;
               return (
                 <div key={i} className="flex items-center gap-2">
-                  <div className={`border rounded-xl p-3 text-center min-w-[80px] ${step.color}`}>
+                  <div className={`border rounded-md p-3 text-center min-w-[80px] ${step.color}`}>
                     <Icon className="w-5 h-5 mx-auto mb-1" />
                     <p className="text-xs font-medium whitespace-pre-line leading-tight">{step.label}</p>
                   </div>
@@ -958,7 +958,7 @@ export default function DeFiYieldPage() {
           className="flex flex-col gap-1"
         >
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-primary/10">
+            <div className="p-2 rounded-md bg-primary/10">
               <Droplets className="w-6 h-6 text-primary" />
             </div>
             <div>

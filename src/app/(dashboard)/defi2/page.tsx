@@ -85,7 +85,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -349,7 +349,7 @@ function LiquidityTab() {
       {/* Concentrated Liquidity */}
       <div>
         <SectionTitle><Layers size={14} className="text-primary" />Uniswap V3 Concentrated Liquidity</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-4">
             V3 allows LPs to provide liquidity within custom price ranges (ticks). Capital concentrates at the current price, achieving up to <span className="text-primary font-medium">4000x capital efficiency</span> vs V2. Positions become NFTs representing unique tick ranges.
           </p>
@@ -360,7 +360,7 @@ function LiquidityTab() {
         </div>
 
         {/* Capital efficiency comparison */}
-        <div className="mt-4 rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="mt-4 rounded-md border border-border bg-foreground/5 p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">Capital Efficiency vs V2 Baseline</div>
           <div className="space-y-2">
             {efficiencyData.map((d, i) => (
@@ -388,7 +388,7 @@ function LiquidityTab() {
       {/* CLMM vs AMM Comparison */}
       <div>
         <SectionTitle><BarChart3 size={14} className="text-primary" />CLMM vs Classic AMM Comparison</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
+        <div className="rounded-md border border-border bg-foreground/5 overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -415,7 +415,7 @@ function LiquidityTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Droplets size={14} className="text-muted-foreground" />Curve Stableswap Invariant</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Curve blends the constant-product formula (x·y=k) with constant-sum (x+y=k) via amplification parameter A. Near the price peg, behavior is nearly constant-sum (minimal slippage). Far from peg, it reverts to constant-product to prevent drain.
             </p>
@@ -431,7 +431,7 @@ function LiquidityTab() {
         </div>
         <div>
           <SectionTitle><Layers size={14} className="text-emerald-400" />Balancer Weighted Pools</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Balancer generalizes AMMs to N assets with arbitrary weights. A pool can be 80% ETH / 20% DAI, functioning as an auto-rebalancing index. Managed Pools allow dynamic weight changes (used for liquidity bootstrapping launches).
             </p>
@@ -455,7 +455,7 @@ function LiquidityTab() {
       {/* veTokenomics */}
       <div>
         <SectionTitle><Lock size={14} className="text-primary" />veTokenomics (Vote-Escrowed Model)</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-4">
             Pioneered by Curve (veCRV), veTokenomics aligns long-term holders with protocol governance. Tokens locked longer receive more voting power and higher yield boosts — creating supply sink mechanics and reducing mercenary farming.
           </p>
@@ -480,7 +480,7 @@ function LiquidityTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Coins size={14} className="text-amber-400" />Protocol-Owned Liquidity (POL)</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Olympus DAO introduced <span className="text-amber-300">bonding</span>: users sell LP tokens to the protocol at a discount for vested OHM. Protocol accumulates its own liquidity permanently — removing dependence on mercenary LPs. The model failed due to hyperinflation (7000% APY) — but POL as a concept remains influential.
             </p>
@@ -684,7 +684,7 @@ function RWATab() {
       {/* Pipeline */}
       <div>
         <SectionTitle><ArrowRight size={14} className="text-indigo-400" />RWA Tokenization Pipeline</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <RWAPipelineSVG />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
             <InfoBox variant="blue">
@@ -702,7 +702,7 @@ function RWATab() {
       {/* Growth chart */}
       <div>
         <SectionTitle><TrendingUp size={14} className="text-indigo-400" />RWA Market Growth</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <RWAGrowthChart />
         </div>
       </div>
@@ -710,7 +710,7 @@ function RWATab() {
       {/* Protocol table */}
       <div>
         <SectionTitle><Building2 size={14} className="text-emerald-400" />Major RWA Protocols</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+        <div className="rounded-md border border-border bg-foreground/5 overflow-x-auto">
           <table className="w-full min-w-[580px]">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -752,7 +752,7 @@ function RWATab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><DollarSign size={14} className="text-emerald-400" />On-Chain Treasury Yield Capture</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Protocols like USDM (Mountain Protocol) and stUSDT (Justin Sun) hold short-dated US Treasury bills and rebate yield to token holders. Unlike Tether/USDC which capture yield entirely, these pass-through products let DeFi users earn risk-free rates on-chain.
             </p>
@@ -779,7 +779,7 @@ function RWATab() {
         </div>
         <div>
           <SectionTitle><Shield size={14} className="text-amber-400" />Regulatory & Risk Considerations</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-2">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-2">
             {[
               { title: "Securities Laws", desc: "Most tokenized assets qualify as securities under Howey Test. Require broker-dealer license or Reg D/S exemption.", color: "rose" },
               { title: "SPV Legal Risk", desc: "Token value depends on courts upholding SPV ownership claims in borrower jurisdiction — tested in Maple default cases.", color: "amber" },
@@ -957,7 +957,7 @@ function IntentTab() {
       {/* Intent paradigm */}
       <div>
         <SectionTitle><Zap size={14} className="text-emerald-400" />Intent vs Transaction Paradigm</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <IntentParadigmSVG />
           <InfoBox variant="emerald">
             Intents separate <span className="font-medium">what</span> the user wants (outcome) from <span className="font-medium">how</span> it is achieved (execution path). Specialized solvers/fillers compete to provide best execution, capturing a small profit while giving users better prices than they could achieve independently.
@@ -968,7 +968,7 @@ function IntentTab() {
       {/* CoW Protocol */}
       <div>
         <SectionTitle><RefreshCw size={14} className="text-primary" />CoW Protocol: Batch Auction Architecture</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <CowBatchSVG />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
             <InfoBox variant="blue">
@@ -990,7 +990,7 @@ function IntentTab() {
       {/* Intent protocols table */}
       <div>
         <SectionTitle><BarChart3 size={14} className="text-indigo-400" />Intent-Based Protocol Comparison</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+        <div className="rounded-md border border-border bg-foreground/5 overflow-x-auto">
           <table className="w-full min-w-[540px]">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -1028,7 +1028,7 @@ function IntentTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Cpu size={14} className="text-amber-400" />Account Abstraction (ERC-4337)</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <AA4337SVG />
             <div className="mt-3 space-y-2">
               {[
@@ -1047,7 +1047,7 @@ function IntentTab() {
         </div>
         <div>
           <SectionTitle><Network size={14} className="text-primary" />Cross-Chain Bridge Security Taxonomy</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground mb-2">Over $2.8B lost to bridge hacks 2021–2024. Security models differ fundamentally:</p>
             {[
               {
@@ -1103,7 +1103,7 @@ function IntentTab() {
       {/* Order Flow Auctions */}
       <div>
         <SectionTitle><DollarSign size={14} className="text-emerald-400" />Order Flow Auctions (OFA) Economics</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-3">
             OFAs create markets for order flow — wallets (MetaMask, Rabby) sell exclusive right to fill user trades to market makers via auction. Market makers bid for flow and return <span className="text-emerald-300">price improvement</span> to users rather than extracting MEV.
           </p>
@@ -1293,7 +1293,7 @@ function RestakingTab() {
       {/* EigenLayer mechanics */}
       <div>
         <SectionTitle><Layers size={14} className="text-primary" />EigenLayer Restaking Architecture</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <RestakingSVG />
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-3">
             <InfoBox variant="blue">
@@ -1311,7 +1311,7 @@ function RestakingTab() {
       {/* Yield composition */}
       <div>
         <SectionTitle><Percent size={14} className="text-emerald-400" />Restaking Yield Composition</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <p className="text-xs text-muted-foreground mb-3">Estimated breakdown of total LRT yield (~9.5% gross APY for diversified restaking)</p>
           <YieldCompositionBar />
           <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-2">
@@ -1334,7 +1334,7 @@ function RestakingTab() {
       {/* LRT table */}
       <div>
         <SectionTitle><Coins size={14} className="text-primary" />Liquid Restaking Tokens (LRTs)</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 overflow-x-auto">
+        <div className="rounded-md border border-border bg-foreground/5 overflow-x-auto">
           <table className="w-full min-w-[540px]">
             <thead>
               <tr className="border-b border-border bg-foreground/5">
@@ -1379,7 +1379,7 @@ function RestakingTab() {
           {institutionalBarriers.map((barrier, i) => (
             <motion.div
               key={barrier.title}
-              className="rounded-xl border border-border bg-foreground/5 cursor-pointer"
+              className="rounded-md border border-border bg-foreground/5 cursor-pointer"
               onClick={() => setExpandedInst(expandedInst === i ? null : i)}
             >
               <div className="flex items-center justify-between p-3">
@@ -1419,7 +1419,7 @@ function RestakingTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <SectionTitle><Lock size={14} className="text-primary" />Permissioned DeFi Pools</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground">
               Permissioned pools offer DeFi yield mechanics within a KYC/AML framework — bridging institutional compliance with on-chain efficiency.
             </p>
@@ -1463,7 +1463,7 @@ function RestakingTab() {
         </div>
         <div>
           <SectionTitle><Shield size={14} className="text-emerald-400" />DeFi Insurance Protocols</SectionTitle>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+          <div className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
             <p className="text-xs text-muted-foreground mb-2">
               On-chain insurance provides partial coverage for smart contract exploits, oracle failures, and stablecoin depegs. Coverage is limited relative to total DeFi TVL.
             </p>
@@ -1532,7 +1532,7 @@ export default function DeFi2Page() {
         className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="rounded-xl bg-indigo-500/15 border border-indigo-500/30 p-2.5">
+          <div className="rounded-md bg-indigo-500/15 border border-indigo-500/30 p-2.5">
             <GitBranch size={22} className="text-indigo-400" />
           </div>
           <div>

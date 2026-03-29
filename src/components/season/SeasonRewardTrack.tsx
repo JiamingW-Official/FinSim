@@ -73,7 +73,7 @@ export function SeasonRewardTrack() {
                   whileHover={isAvailable ? { scale: 1.1 } : {}}
                   whileTap={isAvailable ? { scale: 0.95 } : {}}
                   className={cn(
-                    "season-tier-unlock relative flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl border-2 transition-all",
+                    "season-tier-unlock relative flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-md border-2 transition-all",
                     isClaimed
                       ? "border-primary/50 bg-primary/10 text-primary"
                       : isAvailable

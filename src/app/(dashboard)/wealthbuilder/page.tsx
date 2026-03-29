@@ -289,23 +289,23 @@ function WealthAccumulationTab() {
         {/* Results */}
         <Card className="lg:col-span-2 p-5 bg-card border-border space-y-4">
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-muted rounded-xl p-4 text-center">
+            <div className="bg-muted rounded-md p-4 text-center">
               <div className="text-xs text-muted-foreground mb-1">Future Value</div>
               <div className="text-xl font-bold text-green-400">{fmtK(inflFV)}</div>
               {inflationAdj && <div className="text-xs text-muted-foreground mt-1">real dollars</div>}
             </div>
-            <div className="bg-muted rounded-xl p-4 text-center">
+            <div className="bg-muted rounded-md p-4 text-center">
               <div className="text-xs text-muted-foreground mb-1">Total Contributions</div>
               <div className="text-xl font-bold text-primary">{fmtK(totalContribs)}</div>
             </div>
-            <div className="bg-muted rounded-xl p-4 text-center">
+            <div className="bg-muted rounded-md p-4 text-center">
               <div className="text-xs text-muted-foreground mb-1">Market Growth</div>
               <div className="text-xl font-medium text-emerald-400">{fmtK(growthAmount)}</div>
             </div>
           </div>
 
           {/* Stacked Area Chart */}
-          <div className="bg-muted/60 rounded-xl p-3">
+          <div className="bg-muted/60 rounded-md p-3">
             <div className="flex gap-4 text-xs mb-2">
               <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-primary/70" /> Contributions</span>
               <span className="flex items-center gap-1"><span className="inline-block w-3 h-2 rounded bg-emerald-500/70" /> Growth</span>
@@ -1004,7 +1004,7 @@ function TaxOptimizationTab() {
         <h3 className="text-sm font-medium text-muted-foreground mb-3">Asset Location Strategy</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {ACCOUNT_TYPES.map((acct) => (
-            <div key={acct.type} className="bg-muted rounded-xl p-4 space-y-3">
+            <div key={acct.type} className="bg-muted rounded-md p-4 space-y-3">
               <div className="text-sm font-medium" style={{ color: acct.color }}>{acct.type}</div>
               <div>
                 <div className="text-xs text-green-400 mb-1 font-medium">Best for:</div>
@@ -1234,7 +1234,7 @@ function RiskInsuranceTab() {
             { label: "Medium Deductible ($1,500)", premium: 1800, savings: 600, note: "Sweet spot for most homeowners" },
             { label: "High Deductible ($5,000)", premium: 1200, savings: 1200, note: "Best if you have emergency fund, insure catastrophe only" },
           ].map((opt, i) => (
-            <div key={i} className={cn("bg-muted rounded-xl p-4 border", i === 1 ? "border-border" : "border-border")}>
+            <div key={i} className={cn("bg-muted rounded-md p-4 border", i === 1 ? "border-border" : "border-border")}>
               {i === 1 && <Badge className="bg-muted/70 text-primary border-border text-xs mb-2">Recommended</Badge>}
               <div className="text-sm font-medium text-foreground">{opt.label}</div>
               <div className="text-lg font-medium text-foreground mt-1">{fmt(opt.premium)}/yr</div>
@@ -1406,12 +1406,12 @@ function FIRoadmapTab() {
 
         <Card className="lg:col-span-2 p-5 bg-card border-border space-y-4">
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-muted rounded-xl p-4 text-center">
+            <div className="bg-muted rounded-md p-4 text-center">
               <div className="text-xs text-muted-foreground">FI Number (25×)</div>
               <div className="text-2xl font-bold text-green-400">{fmtK(fiNumber)}</div>
               <div className="text-xs text-muted-foreground mt-1">{fmt(annualExpenses)}/yr × 25</div>
             </div>
-            <div className="bg-muted rounded-xl p-4 text-center">
+            <div className="bg-muted rounded-md p-4 text-center">
               <div className="text-xs text-muted-foreground">Years to FI</div>
               <div className="text-2xl font-bold text-primary">{yearsToFI}</div>
               <div className="text-xs text-muted-foreground mt-1">at {fmtPct(annualSavingsRate)} savings rate</div>
@@ -1476,12 +1476,12 @@ function FIRoadmapTab() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-muted rounded-xl p-3 text-center">
+            <div className="bg-muted rounded-md p-3 text-center">
               <div className="text-xs text-muted-foreground">Standard FIRE</div>
               <div className="text-lg font-medium text-primary">{fmtK(fiNumber)}</div>
               <div className="text-xs text-muted-foreground">{yearsToFI} years</div>
             </div>
-            <div className="bg-muted rounded-xl p-3 text-center">
+            <div className="bg-muted rounded-md p-3 text-center">
               <div className="text-xs text-muted-foreground">Barista FIRE</div>
               <div className="text-lg font-medium text-green-400">{fmtK(fiBaristaNumber)}</div>
               <div className="text-xs text-muted-foreground">{yearsToBarista} years</div>
@@ -1501,12 +1501,12 @@ function FIRoadmapTab() {
             Working one extra year after reaching FI adds capital but costs you irreplaceable time.
           </p>
           <div className="grid grid-cols-2 gap-3">
-            <div className="bg-muted rounded-xl p-3 text-center">
+            <div className="bg-muted rounded-md p-3 text-center">
               <div className="text-xs text-muted-foreground">Current Withdrawal</div>
               <div className="text-lg font-medium text-green-400">{fmt(oneMoreYear.standardWithdrawal)}/yr</div>
               <div className="text-xs text-muted-foreground">4% of {fmtK(fiNumber)}</div>
             </div>
-            <div className="bg-muted rounded-xl p-3 text-center">
+            <div className="bg-muted rounded-md p-3 text-center">
               <div className="text-xs text-muted-foreground">After 1 More Year</div>
               <div className="text-lg font-medium text-yellow-400">{fmt(oneMoreYear.extraWithdrawal)}/yr</div>
               <div className="text-xs text-muted-foreground">+{fmt(oneMoreYear.diff)}/yr gain</div>
@@ -1561,7 +1561,7 @@ export default function WealthBuilderPage() {
         <div className="max-w-screen-2xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
+              <div className="w-9 h-9 rounded-md bg-emerald-600 flex items-center justify-center">
                 <TrendingUp size={18} className="text-foreground" />
               </div>
               <div>

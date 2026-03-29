@@ -163,7 +163,7 @@ function DeltaHedgingTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
           <ArrowUpDown className="w-5 h-5 text-primary" />
           Delta Hedging Fundamentals
@@ -194,7 +194,7 @@ function DeltaHedgingTab() {
       </div>
 
       {/* Stock path + hedge adjustment SVG */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-foreground font-medium">Stock Path with Hedge Rebalances</h3>
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
@@ -266,7 +266,7 @@ function DeltaHedgingTab() {
       </div>
 
       {/* Transaction cost vs hedge frequency */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Transaction Cost vs Hedge Frequency Tradeoff</h3>
         <svg viewBox="0 0 560 160" className="w-full" style={{ height: 160 }}>
           {[0, 0.25, 0.5, 0.75, 1].map((t) => (
@@ -294,7 +294,7 @@ function DeltaHedgingTab() {
       </div>
 
       {/* Gamma vs Theta daily grid */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Gamma vs Theta Daily P&amp;L Grid ($ per 100-share lot)</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -378,7 +378,7 @@ function GammaPnLTab() {
   return (
     <div className="space-y-6">
       {/* Key concept */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
           <Zap className="w-5 h-5 text-emerald-400" />
           Gamma P&amp;L Decomposition
@@ -429,7 +429,7 @@ function GammaPnLTab() {
       </div>
 
       {/* Gamma scalping simulation */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-foreground font-medium">Gamma Scalping Simulation (ATM Call, 30 DTE)</h3>
           <div className={`text-sm font-mono font-semibold px-3 py-1 rounded-full ${simulation.finalPnL >= 0 ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>
@@ -498,7 +498,7 @@ function GammaPnLTab() {
       </div>
 
       {/* P&L scatter: delta adjustment vs P&L */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">P&amp;L vs Hedge Adjustment Size (|ΔS|)</h3>
         <svg viewBox="0 0 560 160" className="w-full" style={{ height: 160 }}>
           <line x1={40} x2={530} y1={80} y2={80} stroke="#ffffff20" />
@@ -562,7 +562,7 @@ function VolArbitrageTab() {
   return (
     <div className="space-y-6">
       {/* Strategy selector */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-primary" />
           Volatility Arbitrage Strategies
@@ -617,7 +617,7 @@ function VolArbitrageTab() {
       </div>
 
       {/* IV vs RV chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-foreground font-medium">2-Year Implied Vol vs Realized Vol</h3>
           <div className="text-xs text-muted-foreground bg-amber-500/10 border border-amber-500/20 rounded px-2 py-1">
@@ -665,7 +665,7 @@ function VolArbitrageTab() {
       </div>
 
       {/* Vol Surface */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Vol Surface — Implied Vol by Strike &amp; Expiry</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -705,7 +705,7 @@ function VolArbitrageTab() {
       </div>
 
       {/* Vanna/Charm effects */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-3">Vanna &amp; Charm Effects Near Expiry</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
           <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-lg p-3">
@@ -749,7 +749,7 @@ function MMRiskTab() {
   return (
     <div className="space-y-6">
       {/* Book overview */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-4 flex items-center gap-2">
           <Shield className="w-5 h-5 text-primary" />
           Market Maker Book Management
@@ -771,7 +771,7 @@ function MMRiskTab() {
       </div>
 
       {/* Risk limits */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Risk Limits Dashboard</h3>
         <div className="space-y-3">
           {Object.values(riskLimits).map((rl) => {
@@ -806,7 +806,7 @@ function MMRiskTab() {
       </div>
 
       {/* Daily P&L breakdown chart */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Daily Greeks P&amp;L Breakdown (20 days)</h3>
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
           {[0, 0.25, 0.5, 0.75, 1].map((t) => (
@@ -861,7 +861,7 @@ function MMRiskTab() {
       </div>
 
       {/* Gap risk and pin risk */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Pin Risk at Expiry</h3>
         <svg viewBox="0 0 560 140" className="w-full" style={{ height: 140 }}>
           {/* Probability distribution */}
@@ -899,7 +899,7 @@ function MMRiskTab() {
       </div>
 
       {/* Stress scenarios */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-foreground font-medium mb-4">Stress Scenarios — P&amp;L Impact ($)</h3>
         <div className="space-y-2">
           {stressScenarios.map((sc) => (
@@ -946,7 +946,7 @@ function MMRiskTab() {
 
       {/* Key risk concepts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <div className="flex items-center gap-2 mb-2">
             <AlertTriangle className="w-4 h-4 text-red-400" />
             <span className="text-foreground text-sm font-medium">Gap Risk</span>
@@ -955,7 +955,7 @@ function MMRiskTab() {
             Overnight price gaps bypass continuous hedging — the delta hedge becomes stale. Short gamma books suffer most. Managed via position limits on earnings/events and overnight gamma exposure caps.
           </p>
         </div>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
             <span className="text-foreground text-sm font-medium">Best Practices</span>
@@ -982,14 +982,14 @@ export default function GammaScalpingPage() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="mb-8"
+          className="mb-8 border-l-4 border-l-primary rounded-lg bg-card p-6"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
               <Activity className="w-5 h-5 text-emerald-400" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Gamma Scalping &amp; Dynamic Hedging</h1>
+              <h1 className="text-xl font-bold text-foreground">Gamma Scalping &amp; Dynamic Hedging</h1>
               <p className="text-muted-foreground text-sm">How market makers profit from realized vs implied volatility through continuous delta hedging</p>
             </div>
           </div>
@@ -1001,8 +1001,8 @@ export default function GammaScalpingPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="delta" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-6 bg-foreground/5 border border-border rounded-xl p-1 h-auto gap-1">
+        <Tabs defaultValue="delta" className="w-full mt-8">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-6 bg-foreground/5 border border-border rounded-md p-1 h-auto gap-1">
             {[
               { value: "delta", label: "Delta Hedging", icon: ArrowUpDown },
               { value: "gamma", label: "Gamma P&L", icon: Zap },

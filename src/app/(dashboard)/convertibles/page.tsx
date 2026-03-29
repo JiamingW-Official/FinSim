@@ -244,7 +244,7 @@ function ConvertibleMechanicsTab() {
       </div>
 
       {/* Payoff SVG */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-sm font-semibold text-foreground mb-3">Convertible Bond Payoff Profile</div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
           {/* Grid */}
@@ -338,7 +338,7 @@ function ConvertibleMechanicsTab() {
             body: `The embedded call option is worth $${metrics.optionValue.toFixed(0)} using Black-Scholes with ${params.volatility}% vol and ${params.yearsToMaturity}yr tenor. Total fair value = Bond Floor + Option = $${metrics.theoreticalValue.toFixed(0)}, implying ${metrics.premium > 0 ? "a premium of" : "a discount of"} ${Math.abs(metrics.premium).toFixed(1)}% to par.`,
           },
         ].map((card) => (
-          <div key={card.title} className="bg-card border border-border rounded-xl p-4">
+          <div key={card.title} className="bg-card border border-border rounded-md p-4">
             <div className="flex items-center gap-2 mb-2 text-sm font-semibold text-foreground">
               {card.icon}{card.title}
             </div>
@@ -422,7 +422,7 @@ function GreeksSensitivityTab() {
       </div>
 
       {/* Delta chart */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-sm font-semibold text-foreground mb-1">Greeks vs. Stock Price</div>
         <div className="text-xs text-muted-foreground mb-3">Conv. Price = ${BASE_CONV_PRICE} | Vol = {vol}% | Tenor = {tenor}yr</div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
@@ -503,7 +503,7 @@ function GreeksSensitivityTab() {
             body: "Sensitivity to interest rates. The bond floor falls when rates rise (negative duration), while the embedded call value decreases (negative rho). Net rho of a convertible is typically negative — they underperform in rising-rate environments.",
           },
         ].map((g) => (
-          <div key={g.greek} className="bg-card border border-border rounded-xl p-4">
+          <div key={g.greek} className="bg-card border border-border rounded-md p-4">
             <div className={cn("text-sm font-medium mb-2", g.color)}>{g.greek}</div>
             <p className="text-xs text-muted-foreground leading-relaxed">{g.body}</p>
           </div>
@@ -553,7 +553,7 @@ function MarketOverviewTab() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Sector donut */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <div className="text-sm font-medium text-foreground mb-3">Market by Sector</div>
           <svg viewBox="0 0 300 160" className="w-full">
             {slices.map((sl) => (
@@ -571,7 +571,7 @@ function MarketOverviewTab() {
         </div>
 
         {/* Issuance bar chart */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <div className="text-sm font-medium text-foreground mb-1">Global Issuance ($B)</div>
           <div className="text-xs text-muted-foreground mb-2">Annual convertible issuance 2018–2025</div>
           <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
@@ -603,7 +603,7 @@ function MarketOverviewTab() {
       </div>
 
       {/* Top issuers table */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <div className="bg-card border border-border rounded-md overflow-hidden">
         <div className="px-4 py-3 border-b border-border">
           <div className="text-sm font-medium text-foreground">Top Convertible Issuers</div>
         </div>
@@ -660,7 +660,7 @@ function MarketOverviewTab() {
             body: "Asia Pacific now accounts for ~30% of global issuance, with Japan, China, and South Korea driving growth. Mandatory convertibles and exchangeable bonds are more common in this region.",
           },
         ].map((c) => (
-          <div key={c.title} className="bg-card border border-border rounded-xl p-4">
+          <div key={c.title} className="bg-card border border-border rounded-md p-4">
             <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-2">
               {c.icon}{c.title}
             </div>
@@ -756,7 +756,7 @@ function InvestmentStrategiesTab() {
               key={st.name}
               onClick={() => setSelected(i)}
               className={cn(
-                "rounded-xl border p-3 text-left transition-all",
+                "rounded-md border p-3 text-left transition-all",
                 selected === i ? `${cc.border} ${cc.bg}` : "border-border bg-card hover:border-border",
               )}
             >
@@ -778,7 +778,7 @@ function InvestmentStrategiesTab() {
           transition={{ duration: 0.2 }}
           className="space-y-4"
         >
-          <div className={cn("rounded-xl border p-5", colorClasses[s.color].border, colorClasses[s.color].bg)}>
+          <div className={cn("rounded-md border p-5", colorClasses[s.color].border, colorClasses[s.color].bg)}>
             <div className={cn("flex items-center gap-2 text-base font-bold mb-2", colorClasses[s.color].text)}>
               {s.icon} {s.name}
             </div>
@@ -790,7 +790,7 @@ function InvestmentStrategiesTab() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <div className="text-xs font-medium text-green-400 mb-3 flex items-center gap-1.5">
                 <TrendingUp size={13} /> Advantages
               </div>
@@ -802,7 +802,7 @@ function InvestmentStrategiesTab() {
                 ))}
               </ul>
             </div>
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <div className="text-xs font-medium text-red-400 mb-3 flex items-center gap-1.5">
                 <TrendingDown size={13} /> Risks & Drawbacks
               </div>
@@ -819,7 +819,7 @@ function InvestmentStrategiesTab() {
       </AnimatePresence>
 
       {/* Comparative table */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
+      <div className="bg-card border border-border rounded-md overflow-hidden">
         <div className="px-4 py-3 border-b border-border text-sm font-medium text-foreground">
           Strategy Comparison
         </div>
@@ -924,7 +924,7 @@ function RiskAnalysisTab() {
   return (
     <div className="space-y-6">
       {/* Risk matrix SVG */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-sm font-medium text-foreground mb-1">Risk Matrix</div>
         <div className="text-xs text-muted-foreground mb-3">Bubble size = severity × likelihood</div>
         <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full">
@@ -983,7 +983,7 @@ function RiskAnalysisTab() {
             key={rk.name}
             whileHover={{ scale: 1.01 }}
             className={cn(
-              "bg-card border rounded-xl p-4 transition-colors cursor-pointer",
+              "bg-card border rounded-md p-4 transition-colors cursor-pointer",
               hovered === rk.name ? "border-border" : "border-border",
             )}
             onMouseEnter={() => setHovered(rk.name)}
@@ -1028,7 +1028,7 @@ function RiskAnalysisTab() {
       </div>
 
       {/* Risk summary */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-3">
           <BookOpen size={15} className="text-indigo-400" /> Risk Management Framework
         </div>
@@ -1058,7 +1058,7 @@ export default function ConvertiblesPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* HERO Header */}
-        <div className="flex items-center justify-between border-l-4 border-l-primary rounded-xl bg-card p-6">
+        <div className="flex items-center justify-between border-l-4 border-l-primary rounded-md bg-card p-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Layers size={22} className="text-indigo-400" />

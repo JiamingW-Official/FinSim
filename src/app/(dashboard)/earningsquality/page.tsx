@@ -646,7 +646,7 @@ function AccrualTab() {
       <AnimatePresence mode="wait">
         {view === "balance" ? (
           <motion.div key="balance" initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 8 }} transition={{ duration: 0.2 }}>
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-4">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5 space-y-4">
               <h3 className="text-sm font-medium text-foreground">Balance Sheet Accruals (Sloan, 1996)</h3>
               <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground space-y-1">
                 <div>ΔOperating Assets = ΔTotal Assets − ΔCash − ΔShort-term Investments</div>
@@ -671,7 +671,7 @@ function AccrualTab() {
           </motion.div>
         ) : (
           <motion.div key="cf" initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: 0.2 }}>
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-4">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5 space-y-4">
               <h3 className="text-sm font-medium text-foreground">Cash Flow Accruals (Dechow et al., 1998)</h3>
               <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground space-y-1">
                 <div>CF-Accruals = Net Income − Operating Cash Flow − Investing Cash Flow</div>
@@ -688,7 +688,7 @@ function AccrualTab() {
       </AnimatePresence>
 
       {/* Decile return chart */}
-      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5">
         <h3 className="mb-1 text-sm font-medium text-foreground">Historical Decile Returns by Accrual Level</h3>
         <p className="mb-4 text-xs text-muted-foreground">D1 = lowest accruals (highest quality). D10 = highest accruals. Annual return spread ~15pp.</p>
         <div className="flex justify-center">
@@ -771,7 +771,7 @@ function PiotroskiTab() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {/* F-Score summary */}
-        <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 flex flex-col items-center justify-center gap-2">
+        <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5 flex flex-col items-center justify-center gap-2">
           <RadarChart company={company} />
           <div className={cn("text-2xl font-bold tabular-nums", fscoreColor)}>{company.fscore}</div>
           <div className="text-xs text-muted-foreground">{company.ticker} F-Score (out of 9)</div>
@@ -783,7 +783,7 @@ function PiotroskiTab() {
         {/* Factor breakdown */}
         <div className="col-span-2 space-y-4">
           {factorGroups.map(group => (
-            <div key={group.group} className="rounded-xl border border-border/50 bg-foreground/[0.03] p-4">
+            <div key={group.group} className="rounded-md border border-border/50 bg-foreground/[0.03] p-4">
               <h3 className={cn("mb-3 text-xs font-medium uppercase tracking-wide", group.color)}>{group.group}</h3>
               <div className="space-y-2">
                 {group.factors.map(factor => (
@@ -852,7 +852,7 @@ function BeneishTab() {
       </div>
 
       {/* M-Score formula */}
-      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5">
         <h3 className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">M-Score Formula</h3>
         <div className="rounded-lg bg-card p-4 font-mono text-xs text-muted-foreground leading-relaxed">
           <span className="text-indigo-400">M-Score</span> = −4.84 + 0.92(DSRI) + 0.528(GMI) + 0.404(AQI) + 0.892(SGI)<br />
@@ -880,7 +880,7 @@ function BeneishTab() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* Variable bars */}
-        <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-3">
+        <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5 space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-medium text-foreground">{company.name}</h3>
             <RiskBadge risk={company.risk} />
@@ -895,7 +895,7 @@ function BeneishTab() {
         </div>
 
         {/* Variable descriptions */}
-        <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5 space-y-3">
+        <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5 space-y-3">
           <h3 className="text-sm font-medium text-foreground">Variable Interpretation</h3>
           <div className="space-y-2.5">
             {variables.map(v => (
@@ -912,7 +912,7 @@ function BeneishTab() {
       </div>
 
       {/* Enron case study */}
-      <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-5 space-y-3">
+      <div className="rounded-md border border-red-500/20 bg-red-500/5 p-5 space-y-3">
         <div className="flex items-center gap-2">
           <ShieldAlert size={16} className="text-red-400" />
           <h3 className="text-sm font-medium text-red-400">Case Study: Enron Corp (2001)</h3>
@@ -994,7 +994,7 @@ function CashFlowTab() {
       </div>
 
       {/* OCF/NI Distribution */}
-      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5">
         <h3 className="mb-3 text-sm font-medium text-foreground">OCF/NI Distribution Across Sample</h3>
         <svg viewBox={`0 0 ${W} ${H + 20}`} className="w-full max-w-md">
           {ocfValues.map((v, i) => {
@@ -1021,7 +1021,7 @@ function CashFlowTab() {
       </div>
 
       {/* Divergence alert table */}
-      <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-5">
+      <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-5">
         <div className="mb-3 flex items-center justify-between">
           <h3 className="text-sm font-medium text-foreground">FCF vs Earnings Yield Divergence Table</h3>
           <div className="flex items-center gap-1 text-xs text-amber-400">

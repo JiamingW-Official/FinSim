@@ -691,7 +691,7 @@ export default function CryptoExchangePage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4">
       {/* HERO Header */}
-      <div className="flex items-center justify-between mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="flex items-center justify-between mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center">
             <Activity className="w-4 h-4 text-amber-400" />
@@ -740,7 +740,7 @@ export default function CryptoExchangePage() {
             {/* Left: Pair selector + Chart */}
             <div className="xl:col-span-2 space-y-4">
               {/* Pair selector */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <div className="flex items-center gap-2 flex-wrap mb-4">
                   {PAIRS.map((pair) => (
                     <button
@@ -778,7 +778,7 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Candlestick chart */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-sm font-medium text-muted-foreground">Price Chart (30 bars)</span>
                   <div className="flex gap-1">
@@ -793,7 +793,7 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Recent Trades */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Recent Trades</h3>
                 <div className="grid grid-cols-3 text-xs text-muted-foreground mb-2 px-1">
                   <span>Price (USDT)</span>
@@ -824,7 +824,7 @@ export default function CryptoExchangePage() {
             {/* Right: Order Book + Order Form */}
             <div className="space-y-4">
               {/* Order Book */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Order Book</h3>
                 <div className="grid grid-cols-3 text-xs text-muted-foreground mb-2">
                   <span>Price</span>
@@ -866,7 +866,7 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Trade Form */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Place Order</h3>
                 {/* Order type */}
                 <div className="flex gap-1 mb-3">
@@ -968,7 +968,7 @@ export default function CryptoExchangePage() {
             {/* Main perp panel */}
             <div className="xl:col-span-2 space-y-4">
               {/* Perp pair selector + stats */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <div className="flex items-center gap-3 mb-4">
                   {PERP_PAIRS.map((pair) => (
                     <button
@@ -1017,7 +1017,7 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Funding rate history */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Funding Rate History (24h)</h3>
                 <div className="flex items-center gap-4 text-xs text-muted-foreground mb-2">
                   <span className="flex items-center gap-1"><span className="w-2 h-2 bg-green-500 rounded-sm inline-block" /> Shorts pay</span>
@@ -1031,7 +1031,7 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Open Interest trend */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Open Interest Trend (30 periods)</h3>
                 <OpenInterestLine data={openInterest} />
                 <div className="flex justify-between mt-1 text-xs text-muted-foreground">
@@ -1044,7 +1044,7 @@ export default function CryptoExchangePage() {
             {/* Right: Long/Short gauge + Leverage form */}
             <div className="space-y-4">
               {/* Long/Short ratio */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Long / Short Ratio</h3>
                 <div className="flex justify-center mb-2">
                   <LongShortGauge longPct={longPct} />
@@ -1062,7 +1062,7 @@ export default function CryptoExchangePage() {
               </div>
 
               {/* Leverage selector */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-muted-foreground mb-3">Leverage & Margin</h3>
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-2">
@@ -1153,7 +1153,7 @@ export default function CryptoExchangePage() {
         {/* ── Tab 3: Market Overview ──────────────────────────────────────────── */}
         <TabsContent value="market" className="data-[state=inactive]:hidden space-y-4">
           {/* Sector performance */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3">Sector Performance (24h)</h3>
             <div className="flex flex-wrap gap-2">
               {sectorPerf.map(({ sector, avg }) => (
@@ -1174,7 +1174,7 @@ export default function CryptoExchangePage() {
           </div>
 
           {/* Top 20 table */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3">Top 20 by Market Cap</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
@@ -1222,7 +1222,7 @@ export default function CryptoExchangePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Top Gainers */}
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-green-400 mb-3 flex items-center gap-2">
                 <ArrowUpRight className="w-4 h-4" /> Top Gainers (24h)
               </h3>
@@ -1243,7 +1243,7 @@ export default function CryptoExchangePage() {
             </div>
 
             {/* Top Losers */}
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-red-400 mb-3 flex items-center gap-2">
                 <ArrowDownRight className="w-4 h-4" /> Top Losers (24h)
               </h3>
@@ -1264,7 +1264,7 @@ export default function CryptoExchangePage() {
             </div>
 
             {/* Volume leaders */}
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                 <BarChart2 className="w-4 h-4" /> Volume Leaders (24h)
               </h3>
@@ -1288,7 +1288,7 @@ export default function CryptoExchangePage() {
           </div>
 
           {/* New listings */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
               <Zap className="w-4 h-4 text-amber-400" /> New Listings
             </h3>
@@ -1315,13 +1315,13 @@ export default function CryptoExchangePage() {
         <TabsContent value="defi" className="data-[state=inactive]:hidden space-y-4">
           {/* DEX Volume */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-muted-foreground mb-3">DEX Volume (24h)</h3>
               <DexBarChart labels={dexLabels} values={dexVolumes} />
             </div>
 
             {/* Protocol Revenue */}
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-muted-foreground mb-3">Protocol Revenue (7d fees)</h3>
               <div className="space-y-3">
                 {protocolRevenue.map((p, i) => {
@@ -1343,7 +1343,7 @@ export default function CryptoExchangePage() {
           </div>
 
           {/* Top Pools */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3">Top Liquidity Pools</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
@@ -1379,7 +1379,7 @@ export default function CryptoExchangePage() {
 
           {/* Yield opportunities + Bridge Volume */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-muted-foreground mb-3">Yield Opportunities (Risk-Adjusted)</h3>
               <div className="space-y-2">
                 {[
@@ -1415,7 +1415,7 @@ export default function CryptoExchangePage() {
             </div>
 
             {/* Bridge volume */}
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
                 <GitMerge className="w-4 h-4" /> Bridge Volume (24h)
               </h3>
@@ -1452,12 +1452,12 @@ export default function CryptoExchangePage() {
         <TabsContent value="portfolio" className="data-[state=inactive]:hidden space-y-4">
           {/* Summary cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <div className="text-xs text-muted-foreground mb-1">Total Value</div>
               <div className="text-xl font-medium text-foreground font-mono">${totalPortfolioValue.toFixed(2)}</div>
               <div className="text-xs text-muted-foreground mt-1">Starting: $10,000.00</div>
             </div>
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <div className="text-xs text-muted-foreground mb-1">Total P&L</div>
               <div className={cn("text-xl font-medium font-mono", totalPnl >= 0 ? "text-green-400" : "text-red-400")}>
                 {totalPnl >= 0 ? "+" : ""}${totalPnl.toFixed(2)}
@@ -1466,12 +1466,12 @@ export default function CryptoExchangePage() {
                 {totalPnlPct >= 0 ? "+" : ""}{totalPnlPct.toFixed(2)}%
               </div>
             </div>
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <div className="text-xs text-muted-foreground mb-1">USDT Balance</div>
               <div className="text-xl font-medium text-foreground font-mono">${wallet.usdt.toFixed(2)}</div>
               <div className="text-xs text-muted-foreground mt-1">Available</div>
             </div>
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <div className="text-xs text-muted-foreground mb-1">Total Fees Paid</div>
               <div className="text-xl font-medium text-foreground font-mono">
                 ${(feesPaid.exchange + feesPaid.gas + feesPaid.bridge).toFixed(2)}
@@ -1481,13 +1481,13 @@ export default function CryptoExchangePage() {
           </div>
 
           {/* P&L equity curve */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3">30-Day Equity Curve</h3>
             <EquityCurveSVG data={equityCurve} />
           </div>
 
           {/* Holdings */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h3 className="text-sm font-medium text-muted-foreground mb-3 flex items-center gap-2">
               <PieChart className="w-4 h-4" /> Holdings
             </h3>
@@ -1552,7 +1552,7 @@ export default function CryptoExchangePage() {
 
           {/* Fees breakdown + Trade history */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-muted-foreground mb-3">Fees Paid (All-Time)</h3>
               <div className="space-y-3">
                 {[
@@ -1580,7 +1580,7 @@ export default function CryptoExchangePage() {
               </div>
             </div>
 
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-muted-foreground mb-3">Trade History (Last 20)</h3>
               <div className="overflow-y-auto max-h-64 space-y-1">
                 {tradeHistory.map((trade) => (

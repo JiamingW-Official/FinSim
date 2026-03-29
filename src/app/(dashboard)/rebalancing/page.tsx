@@ -493,9 +493,9 @@ export default function RebalancingPage() {
           <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Donut charts */}
-              <Card className="bg-muted/50 border-border">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm text-muted-foreground">Current vs Target Allocation</CardTitle>
+              <Card className="bg-muted/50 border-border border-l-4 border-l-primary">
+                <CardHeader className="p-6 pb-2">
+                  <CardTitle className="text-lg text-muted-foreground">Current vs Target Allocation</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex justify-around items-center py-2">

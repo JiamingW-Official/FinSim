@@ -141,7 +141,7 @@ function SectionCard({ title, icon, children, className }: {
   className?: string;
 }) {
   return (
-    <div className={cn("bg-card border border-border rounded-xl p-5", className)}>
+    <div className={cn("bg-card border border-border rounded-md p-5", className)}>
       <div className="flex items-center gap-2 mb-4">
         <span className="text-primary">{icon}</span>
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -421,7 +421,7 @@ function FrameworksTab() {
             key={fw.id}
             onClick={() => setSelected(selected === fw.id ? null : fw.id)}
             className={cn(
-              "text-left p-4 rounded-xl border transition-all",
+              "text-left p-4 rounded-md border transition-all",
               selected === fw.id
                 ? "border-primary bg-primary/10"
                 : "border-border bg-card hover:border-muted-foreground"
@@ -447,7 +447,7 @@ function FrameworksTab() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
           >
-            <div className="bg-card border rounded-xl p-5 overflow-hidden" style={{ borderColor: selectedFw.color + "60" }}>
+            <div className="bg-card border rounded-md p-5 overflow-hidden" style={{ borderColor: selectedFw.color + "60" }}>
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-2xl">{selectedFw.flag}</span>
                 <div>
@@ -831,7 +831,7 @@ export default function CoveredBondsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* HERO Header */}
-      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 bg-primary/10 border border-border rounded-lg">
             <Shield size={20} className="text-primary" />

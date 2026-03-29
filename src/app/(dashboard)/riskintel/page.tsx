@@ -896,8 +896,8 @@ export default function RiskIntelPage() {
             className="space-y-6"
           >
             {/* Overall score banner */}
-            <Card className="bg-card border-border">
-              <CardContent className="p-5">
+            <Card className="bg-card border-border border-l-4 border-l-primary">
+              <CardContent className="p-6">
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <div className="relative">
                     <ArcGauge
@@ -1756,7 +1756,7 @@ export default function RiskIntelPage() {
                   </div>
 
                   {/* Impact summary */}
-                  <div className="flex flex-col justify-center items-center bg-muted/50 rounded-xl p-6 space-y-4">
+                  <div className="flex flex-col justify-center items-center bg-muted/50 rounded-md p-6 space-y-4">
                     <div className="text-center">
                       <div className="text-muted-foreground text-sm mb-2">Estimated Portfolio Impact</div>
                       <div
@@ -1874,7 +1874,7 @@ export default function RiskIntelPage() {
                   </div>
 
                   {/* Kelly result */}
-                  <div className="bg-muted rounded-xl p-4 text-center space-y-3">
+                  <div className="bg-muted rounded-md p-4 text-center space-y-3">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <div className="text-xs text-muted-foreground mb-1">Full Kelly</div>
@@ -2116,7 +2116,7 @@ export default function RiskIntelPage() {
 
                   {/* Impact display */}
                   <div className="space-y-3">
-                    <div className="bg-muted/60 rounded-xl p-4 space-y-3">
+                    <div className="bg-muted/60 rounded-md p-4 space-y-3">
                       <div className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
                         Portfolio Impact of Adding {newWeight[0]}% {newTicker}
                       </div>

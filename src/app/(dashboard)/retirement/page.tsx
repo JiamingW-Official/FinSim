@@ -251,7 +251,7 @@ function ReadinessTab() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
       {/* Score + summary */}
       <div className="lg:col-span-1 space-y-4">
-        <Card className="p-4 flex flex-col items-center gap-2">
+        <Card className="p-6 flex flex-col items-center gap-2 border-l-4 border-l-primary">
           <RetirementScore score={calc.score} />
           <div className="w-full space-y-2 text-sm">
             <div className="flex justify-between">

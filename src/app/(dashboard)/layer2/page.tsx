@@ -1289,7 +1289,7 @@ export default function Layer2Page() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">Layer 2 Scaling &amp; Infrastructure</h2>
           <p className="text-sm text-muted-foreground">Rollup technology, L2 token economics, developer ecosystem analysis, and investment thesis for Ethereum scaling solutions.</p>
         </div>

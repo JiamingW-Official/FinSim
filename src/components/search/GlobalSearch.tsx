@@ -359,7 +359,7 @@ function GlobalSearchModal({ open, onClose }: { open: boolean; onClose: () => vo
             transition={{ duration: 0.18, ease: [0.32, 0.72, 0, 1] }}
             className={cn(
               "fixed left-1/2 top-[12%] z-50 w-full max-w-[600px] -translate-x-1/2",
-              "rounded-xl border border-border/60 bg-card shadow-sm overflow-hidden",
+              "rounded-md border border-border/60 bg-card shadow-sm overflow-hidden",
             )}
             onKeyDown={handleKeyDown}
           >

@@ -209,7 +209,7 @@ export function ScenarioSimulator() {
             <motion.button
               key={s.id}
               onClick={() => handleSelectScenario(s)}
-              className="flex items-center gap-3 rounded-xl border border-border bg-card/50 p-4 text-left transition-all hover:border-primary/30 hover:bg-card"
+              className="flex items-center gap-3 rounded-md border border-border bg-card/50 p-4 text-left transition-all hover:border-primary/30 hover:bg-card"
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
             >
@@ -362,7 +362,7 @@ export function ScenarioSimulator() {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="rounded-xl border border-primary/20 bg-primary/5 p-4">
+            <div className="rounded-md border border-primary/20 bg-primary/5 p-4">
               <div className="flex items-center gap-2 mb-2">
                 <AlertTriangle className="h-4 w-4 text-primary" />
                 <span className="text-xs font-bold text-primary">Key Lesson</span>

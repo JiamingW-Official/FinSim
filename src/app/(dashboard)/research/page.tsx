@@ -703,19 +703,19 @@ function ResearchDashboard() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: idx * 0.05 }}
         >
-          <Card className="bg-card/70 border-border overflow-hidden">
+          <Card className={cn("bg-card/70 border-border overflow-hidden", idx === 0 && "border-l-4 border-l-primary")}>
             <button
               className="w-full text-left"
               onClick={() => toggle(theme.id)}
             >
-              <CardHeader className="py-3 px-4">
+              <CardHeader className={cn("py-3 px-4", idx === 0 && "p-6")}>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-indigo-950/60 border border-indigo-800/50 flex items-center justify-center text-indigo-400 shrink-0">
                     {theme.icon}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <CardTitle className="text-sm text-foreground">{theme.title}</CardTitle>
+                      <CardTitle className={cn("text-sm text-foreground", idx === 0 && "text-lg")}>{theme.title}</CardTitle>
                       <Badge variant="outline" className={cn("text-xs px-2 py-0", convictionColor(theme.conviction))}>
                         {theme.conviction} Conviction
                       </Badge>
@@ -1236,7 +1236,7 @@ function ThematicResearch() {
             <button className="w-full text-left" onClick={() => toggle(note.id)}>
               <CardHeader className="py-4 px-5">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-muted border border-border flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 rounded-md bg-muted border border-border flex items-center justify-center shrink-0">
                     {note.icon}
                   </div>
                   <div className="flex-1">
@@ -1534,7 +1534,7 @@ export default function ResearchPage() {
           animate={{ opacity: 1, y: 0 }}
           className="flex items-start gap-4"
         >
-          <div className="w-10 h-10 rounded-xl bg-indigo-950/60 border border-indigo-800/50 flex items-center justify-center shrink-0 mt-0.5">
+          <div className="w-10 h-10 rounded-md bg-indigo-950/60 border border-indigo-800/50 flex items-center justify-center shrink-0 mt-0.5">
             <BookOpen className="w-5 h-5 text-indigo-400" />
           </div>
           <div>

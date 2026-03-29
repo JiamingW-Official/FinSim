@@ -214,7 +214,7 @@ function StatChip({
 
 function SectionCard({ title, children, icon: Icon }: { title: string; children: React.ReactNode; icon?: React.ElementType }) {
   return (
-    <div className="rounded-xl border border-border/50 bg-foreground/[0.03] p-4">
+    <div className="rounded-md border border-border/50 bg-foreground/[0.03] p-4">
       {title && (
         <div className="flex items-center gap-2 mb-4">
           {Icon && <Icon className="w-4 h-4 text-primary" />}
@@ -1256,7 +1256,7 @@ export default function InflationLinkedPage() {
           </div>
 
           {/* Key stats row — Hero */}
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-5 mt-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
             <StatChip label="10Y TIPS Yield" value="+2.18%" color="green" />
             <StatChip label="10Y Breakeven" value="2.35%" color="amber" />
             <StatChip label="5y5y Fwd Inflation" value="2.48%" color="amber" />

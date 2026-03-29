@@ -1291,7 +1291,7 @@ export default function OptionsFlowAnalytics() {
   const seed = 51 + tick;
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-card text-foreground">
+    <div className="flex h-full flex-col overflow-hidden rounded-md border border-border/60 bg-card text-foreground">
       {/* Header */}
       <div className="flex shrink-0 items-center justify-between border-b border-border/50 px-4 py-2">
         <div className="flex items-center gap-2">

@@ -749,7 +749,7 @@ export default function MLStocksPage() {
       </motion.div>
 
       {/* Hero */}
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <h2 className="text-lg font-medium text-foreground mb-1">ML Stock Selection Engine</h2>
         <p className="text-sm text-muted-foreground">Factor models, feature engineering, model architectures, backtesting framework, and live signal generation.</p>
       </div>

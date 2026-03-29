@@ -425,7 +425,7 @@ function CalendarTab() {
     <div className="space-y-8">
       {/* HERO — Next Earnings Event */}
       {upcoming.length > 0 && (
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 space-y-3">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 space-y-3">
           <h2 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Clock className="h-4 w-4 text-primary" />
             Next Earnings Event

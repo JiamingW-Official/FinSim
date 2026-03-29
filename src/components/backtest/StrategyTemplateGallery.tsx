@@ -55,7 +55,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
         initial={{ scale: 0.95, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.95, y: 20 }}
-        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-border/50 bg-card/95"
+        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-md border border-border/50 bg-card/95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -82,7 +82,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   key={template.id}
                   onClick={() => setSelected(template)}
                   whileHover={{ x: 2 }}
-                  className={`flex w-full items-start gap-3 rounded-xl border p-3 text-left transition-all ${
+                  className={`flex w-full items-start gap-3 rounded-md border p-3 text-left transition-all ${
                     isSelected
                       ? "border-primary/40 bg-primary/10"
                       : "border-border/50 bg-muted/20 hover:border-border hover:bg-muted/40"
@@ -210,7 +210,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   {/* Use Strategy Button */}
                   <button
                     onClick={() => handleUseStrategy(selected)}
-                    className="w-full rounded-xl bg-primary py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:bg-primary"
+                    className="w-full rounded-md bg-primary py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:bg-primary"
                   >
                     Use This Strategy
                   </button>

@@ -1510,7 +1510,7 @@ export default function CorrelationsPage() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
-        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
+        className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">

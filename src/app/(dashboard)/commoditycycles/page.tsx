@@ -993,7 +993,7 @@ export default function CommodityCyclesPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
+        className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-amber-500/15">

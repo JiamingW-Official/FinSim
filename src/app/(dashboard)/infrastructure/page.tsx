@@ -712,7 +712,7 @@ export default function InfrastructurePage() {
       </motion.div>
 
       {/* ── Key Metrics — Hero ── */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <MetricCard
           icon={<DollarSign size={18} />}
           label="Global Infra AUM"

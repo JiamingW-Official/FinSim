@@ -524,7 +524,7 @@ function LettersOfCreditTab() {
     <div className="space-y-6">
       <div>
         <SectionTitle>LC Structure &amp; Parties</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <LCStructureSVG />
           <p className="text-xs text-foreground/40 mt-2 text-center">
             Five-party LC structure — banks intermediate between importer and
@@ -562,21 +562,21 @@ function LettersOfCreditTab() {
 
       <div>
         <SectionTitle>Risk Spectrum: LC vs Open Account</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <LCRiskSpectrumSVG />
         </div>
       </div>
 
       <div>
         <SectionTitle>LC Lifecycle Timeline</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <LCTimelineSVG />
         </div>
       </div>
 
       <div>
         <SectionTitle>Standby LC vs Commercial LC</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Attribute</span>
             <span>Commercial LC</span>
@@ -619,7 +619,7 @@ function LettersOfCreditTab() {
 
       <div>
         <SectionTitle>Document Discrepancy Breakdown</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4 space-y-2">
+        <div className="bg-foreground/5 rounded-md p-4 space-y-2">
           <p className="text-xs text-foreground/50 mb-3">
             ICC studies show over 70% of first LC presentations are rejected due
             to discrepancies
@@ -644,7 +644,7 @@ function LettersOfCreditTab() {
       </div>
 
       {sections.map((sec) => (
-        <div key={sec.id} className="bg-foreground/5 rounded-xl overflow-hidden">
+        <div key={sec.id} className="bg-foreground/5 rounded-md overflow-hidden">
           <button
             className="w-full flex items-center justify-between p-4 text-left hover:bg-muted/30 transition-colors"
             onClick={() =>
@@ -1081,7 +1081,7 @@ function SupplyChainFinanceTab() {
         <SectionTitle>
           Reverse Factoring / Approved Payables Finance
         </SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <ReverseFactoringSVG />
           <p className="text-xs text-foreground/40 mt-2 text-center">
             Buyer-led SCF: Buyer approves invoices → Bank extends early payment
@@ -1119,7 +1119,7 @@ function SupplyChainFinanceTab() {
 
       <div>
         <SectionTitle>SCF Market Growth ($B Outstanding)</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <svg viewBox="0 0 540 120" className="w-full" style={{ height: 110 }}>
             {scfMarketData.map((d, i) => {
               const bw = 60;
@@ -1165,14 +1165,14 @@ function SupplyChainFinanceTab() {
 
       <div>
         <SectionTitle>Working Capital Impact: CCC Analysis</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <WorkingCapitalSVG />
         </div>
       </div>
 
       <div>
         <SectionTitle>Dynamic Discounting vs SCF Comparison</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>Dynamic Discounting</span>
@@ -1217,7 +1217,7 @@ function SupplyChainFinanceTab() {
 
       <div>
         <SectionTitle>ESG-Linked Supply Chain Finance</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+        <div className="bg-foreground/5 rounded-md p-4 space-y-3">
           {esgLinked.map((e) => (
             <div key={e.metric} className="flex gap-3 items-start">
               <div className="w-2 h-2 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
@@ -1235,7 +1235,7 @@ function SupplyChainFinanceTab() {
 
       <div>
         <SectionTitle>Key SCF Platform Providers</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl divide-y divide-white/5">
+        <div className="bg-foreground/5 rounded-md divide-y divide-white/5">
           {providers.map((p) => (
             <div
               key={p.name}
@@ -1263,7 +1263,7 @@ function SupplyChainFinanceTab() {
 
       <div>
         <SectionTitle>Receivables Purchase Comparison</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>Factoring</span>
@@ -1577,14 +1577,14 @@ function DocumentaryCollectionsTab() {
     <div className="space-y-6">
       <div>
         <SectionTitle>Documentary Collection Flow</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <DocCollectionFlowSVG />
         </div>
       </div>
 
       <div>
         <SectionTitle>D/P vs D/A Collections</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>D/P (Documents Against Payment)</span>
@@ -1628,7 +1628,7 @@ function DocumentaryCollectionsTab() {
 
       <div>
         <SectionTitle>INCOTERMS 2020 — 11 Terms</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl overflow-hidden">
+        <div className="bg-foreground/5 rounded-md overflow-hidden">
           <div className="grid grid-cols-6 gap-1 px-3 py-2 text-xs text-foreground/40 uppercase tracking-wide border-b border-border/50">
             <span>Code</span>
             <span>Name</span>
@@ -1706,7 +1706,7 @@ function DocumentaryCollectionsTab() {
 
       <div>
         <SectionTitle>Trade Credit Insurance Market Share</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <svg viewBox="0 0 560 75" className="w-full" style={{ height: 65 }}>
             {(() => {
               let cumulative = 0;
@@ -1766,7 +1766,7 @@ function DocumentaryCollectionsTab() {
       <div>
         <SectionTitle>Political Risk vs Commercial Risk</SectionTitle>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4">
+          <div className="bg-red-500/10 border border-red-500/20 rounded-md p-4">
             <div className="flex items-center gap-2 mb-3">
               <Globe className="w-4 h-4 text-red-400" />
               <span className="text-sm font-medium text-red-300">
@@ -1781,7 +1781,7 @@ function DocumentaryCollectionsTab() {
               <li>• Covered by ECAs and specialist underwriters</li>
             </ul>
           </div>
-          <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
+          <div className="bg-amber-500/10 border border-amber-500/20 rounded-md p-4">
             <div className="flex items-center gap-2 mb-3">
               <Building2 className="w-4 h-4 text-amber-400" />
               <span className="text-sm font-medium text-amber-300">
@@ -1801,7 +1801,7 @@ function DocumentaryCollectionsTab() {
 
       <div>
         <SectionTitle>Export Credit Agencies (ECAs)</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl divide-y divide-white/5">
+        <div className="bg-foreground/5 rounded-md divide-y divide-white/5">
           {ecas.map((e) => (
             <div key={e.name} className="px-4 py-3">
               <div className="flex items-center justify-between mb-1 flex-wrap gap-1">
@@ -1818,7 +1818,7 @@ function DocumentaryCollectionsTab() {
 
       <div>
         <SectionTitle>Single Buyer vs Whole Turnover Policies</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <div className="grid grid-cols-3 gap-2 mb-2 text-xs text-foreground/40 uppercase tracking-wide">
             <span>Feature</span>
             <span>Single Buyer Policy</span>
@@ -1964,7 +1964,7 @@ function BlockchainCard({
     sky: "text-sky-400 bg-sky-400/10 border-sky-400/20",
   };
   return (
-    <div className="bg-foreground/5 rounded-xl p-4">
+    <div className="bg-foreground/5 rounded-md p-4">
       <div className="flex items-start justify-between mb-2">
         <div>
           <div className="font-medium text-sm text-foreground">{name}</div>
@@ -2092,7 +2092,7 @@ function FintechDigitalTab() {
     <div className="space-y-6">
       <div>
         <SectionTitle>Trade Finance Gap by Region</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <TradeFinanceGapSVG />
         </div>
       </div>
@@ -2128,7 +2128,7 @@ function FintechDigitalTab() {
         <SectionTitle>Traditional Trade Finance Pain Points</SectionTitle>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {painPoints.map((p) => (
-            <div key={p.issue} className="bg-foreground/5 rounded-xl p-3 flex gap-3">
+            <div key={p.issue} className="bg-foreground/5 rounded-md p-3 flex gap-3">
               <span className="text-xl leading-none mt-0.5">{p.icon}</span>
               <div>
                 <div className="text-sm font-medium text-foreground">
@@ -2177,7 +2177,7 @@ function FintechDigitalTab() {
 
       <div>
         <SectionTitle>Electronic Bills of Lading (e-BoL) Providers</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl overflow-hidden">
+        <div className="bg-foreground/5 rounded-md overflow-hidden">
           <div className="grid grid-cols-5 gap-2 px-4 py-2 text-xs text-foreground/40 uppercase tracking-wide border-b border-border/50">
             <span>Platform</span>
             <span>Founded</span>
@@ -2224,7 +2224,7 @@ function FintechDigitalTab() {
         <SectionTitle>
           AI-Powered KYC/AML for Correspondent Banking
         </SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+        <div className="bg-foreground/5 rounded-md p-4 space-y-3">
           <p className="text-xs text-foreground/55">
             Correspondent banking de-risking has reduced access to trade finance
             in developing markets. AI platforms address compliance cost barriers:
@@ -2273,7 +2273,7 @@ function FintechDigitalTab() {
         <SectionTitle>
           Geopolitical Fragmentation &amp; Trade Flows
         </SectionTitle>
-        <div className="bg-foreground/5 rounded-xl divide-y divide-white/5">
+        <div className="bg-foreground/5 rounded-md divide-y divide-white/5">
           {geopoliticalTrends.map((t) => {
             const colorMap: Record<string, string> = {
               emerald: "text-emerald-400",
@@ -2318,7 +2318,7 @@ function FintechDigitalTab() {
 
       <div>
         <SectionTitle>Embedded Trade Finance in ERP Systems</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4">
+        <div className="bg-foreground/5 rounded-md p-4">
           <p className="text-xs text-foreground/55 mb-3">
             Modern trade finance is moving inside ERP platforms (SAP, Oracle,
             Microsoft Dynamics) and B2B commerce networks:
@@ -2359,7 +2359,7 @@ function FintechDigitalTab() {
 
       <div>
         <SectionTitle>Digital Trade Corridor Initiatives</SectionTitle>
-        <div className="bg-foreground/5 rounded-xl p-4 space-y-3">
+        <div className="bg-foreground/5 rounded-md p-4 space-y-3">
           {[
             {
               name: "Singapore–UK Digital Economy Agreement",
@@ -2470,7 +2470,7 @@ export default function TradeFinancePage() {
 
         {/* Tabs */}
         <Tabs defaultValue="lc">
-          <TabsList className="flex flex-wrap h-auto gap-1 bg-foreground/5 p-1 rounded-xl mb-6">
+          <TabsList className="flex flex-wrap h-auto gap-1 bg-foreground/5 p-1 rounded-md mb-6">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (

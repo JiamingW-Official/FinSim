@@ -591,7 +591,7 @@ function FamousShortCard({ short }: { short: FamousShort }) {
   return (
     <motion.div
       layout
-      className={`rounded-xl border p-4 cursor-pointer transition-colors hover:bg-muted/30 ${colorMap[short.color] ?? colorMap.amber}`}
+      className={`rounded-md border p-4 cursor-pointer transition-colors hover:bg-muted/30 ${colorMap[short.color] ?? colorMap.amber}`}
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start justify-between gap-3">
@@ -691,7 +691,7 @@ function EMHCard({ form, idx }: { form: EMHForm; idx: number }) {
 // ── Stat chip ─────────────────────────────────────────────────────────────────
 function StatChip({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 px-4 py-3 text-center">
+    <div className="rounded-md border border-border bg-foreground/5 px-4 py-3 text-center">
       <div className="text-lg font-bold text-foreground">{value}</div>
       <div className="text-xs text-muted-foreground">{label}</div>
       {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
@@ -809,7 +809,7 @@ export default function ShortSellingPage() {
                         bg: "bg-green-500/5",
                       },
                     ].map((item) => (
-                      <div key={item.step} className={`rounded-xl border ${item.color} ${item.bg} p-4`}>
+                      <div key={item.step} className={`rounded-md border ${item.color} ${item.bg} p-4`}>
                         <div className={`text-2xl font-bold mb-1 ${item.color.split(" ")[1]}`}>{item.step}</div>
                         <div className={`font-medium text-sm mb-1.5 ${item.color.split(" ")[1]}`}>{item.title}</div>
                         <p className="text-xs text-muted-foreground">{item.desc}</p>
@@ -1093,7 +1093,7 @@ export default function ShortSellingPage() {
           <TabsContent value="risk" className="data-[state=inactive]:hidden">
             <div className="space-y-6">
               {/* Unlimited upside warning */}
-              <div className="rounded-xl border border-red-500/30 bg-red-500/8 p-5 flex gap-4">
+              <div className="rounded-md border border-red-500/30 bg-red-500/8 p-5 flex gap-4">
                 <AlertTriangle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                 <div>
                   <p className="font-medium text-red-300 mb-1">The Fundamental Asymmetry</p>
@@ -1229,7 +1229,7 @@ export default function ShortSellingPage() {
                       const bgMap: Record<string, string> = { red: "bg-red-500/5", amber: "bg-amber-500/5", indigo: "bg-indigo-500/5" };
                       const titleMap: Record<string, string> = { red: "text-red-300", amber: "text-amber-300", indigo: "text-indigo-300" };
                       return (
-                        <div key={c.challenge} className={`rounded-xl border ${borderMap[c.color]} ${bgMap[c.color]} p-4`}>
+                        <div key={c.challenge} className={`rounded-md border ${borderMap[c.color]} ${bgMap[c.color]} p-4`}>
                           <p className={`font-medium text-sm mb-2 ${titleMap[c.color]}`}>{c.challenge}</p>
                           <p className="text-xs text-muted-foreground mb-3">{c.desc}</p>
                           <div className="rounded bg-foreground/5 p-2">
@@ -1308,7 +1308,7 @@ export default function ShortSellingPage() {
           <TabsContent value="emh" className="data-[state=inactive]:hidden">
             <div className="space-y-6">
               {/* EMH overview */}
-              <div className="rounded-xl border border-indigo-500/30 bg-indigo-500/5 p-5">
+              <div className="rounded-md border border-indigo-500/30 bg-indigo-500/5 p-5">
                 <div className="flex items-start gap-3">
                   <Scale className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
                   <div>
@@ -1419,7 +1419,7 @@ export default function ShortSellingPage() {
                         positive: false,
                       },
                     ].map((item) => (
-                      <div key={item.title} className="rounded-xl border border-border bg-foreground/5 p-4">
+                      <div key={item.title} className="rounded-md border border-border bg-foreground/5 p-4">
                         <p className="text-sm font-medium text-foreground mb-2">{item.title}</p>
                         <p className="text-xs text-muted-foreground mb-3">{item.desc}</p>
                         <div className={`rounded-lg p-2.5 ${item.positive ? "bg-green-500/10 border border-green-500/20" : "bg-red-500/10 border border-red-500/20"}`}>
@@ -1433,7 +1433,7 @@ export default function ShortSellingPage() {
               </Card>
 
               {/* Academic consensus summary */}
-              <div className="rounded-xl border border-border/50 bg-card/50 p-5">
+              <div className="rounded-md border border-border/50 bg-card/50 p-5">
                 <p className="text-sm font-medium text-muted-foreground mb-3">Academic Consensus</p>
                 <div className="space-y-2">
                   {[

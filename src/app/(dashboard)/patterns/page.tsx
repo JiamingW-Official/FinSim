@@ -539,7 +539,7 @@ function PatternLibraryTab() {
               key={pattern.id}
               layout
               className={cn(
-                "rounded-xl border bg-card/60 overflow-hidden cursor-pointer transition-colors",
+                "rounded-md border bg-card/60 overflow-hidden cursor-pointer transition-colors",
                 isExpanded
                   ? "border-indigo-500/50 col-span-1"
                   : "border-border hover:border-border"
@@ -743,15 +743,15 @@ function PatternQuizTab() {
           </p>
         </div>
         <div className="flex gap-6">
-          <div className="text-center p-4 rounded-xl bg-card border border-border">
+          <div className="text-center p-4 rounded-md bg-card border border-border">
             <p className="text-2xl font-bold text-indigo-400">+{xpEarned}</p>
             <p className="text-xs text-muted-foreground mt-1">XP Earned</p>
           </div>
-          <div className="text-center p-4 rounded-xl bg-card border border-border">
+          <div className="text-center p-4 rounded-md bg-card border border-border">
             <p className="text-2xl font-bold text-emerald-400">{score}</p>
             <p className="text-xs text-muted-foreground mt-1">Correct</p>
           </div>
-          <div className="text-center p-4 rounded-xl bg-card border border-border">
+          <div className="text-center p-4 rounded-md bg-card border border-border">
             <p className="text-2xl font-bold text-amber-400">{total - score}</p>
             <p className="text-xs text-muted-foreground mt-1">Missed</p>
           </div>
@@ -814,7 +814,7 @@ function PatternQuizTab() {
             <p className="text-sm text-muted-foreground mb-4">What chart pattern is shown below?</p>
 
             {/* Chart illustration */}
-            <div className="flex justify-center py-4 border border-border rounded-xl bg-background/50 mb-6">
+            <div className="flex justify-center py-4 border border-border rounded-md bg-background/50 mb-6">
               <svg viewBox="0 0 200 90" width="300" height="135" className="overflow-visible">
                 {[20, 40, 60, 80].map((y) => (
                   <line key={y} x1="0" y1={y} x2="200" y2={y} stroke="#ffffff08" strokeWidth="0.5" />

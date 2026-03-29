@@ -352,7 +352,7 @@ function StatCard({ label, value, sub, color = "text-indigo-400" }: {
   label: string; value: string; sub?: string; color?: string;
 }) {
   return (
-    <div className="bg-muted/50 rounded-xl p-3 border border-border/40">
+    <div className="bg-muted/50 rounded-md p-3 border border-border/40">
       <div className={cn("text-xl font-bold", color)}>{value}</div>
       <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
       {sub && <div className="text-xs text-muted-foreground mt-0.5">{sub}</div>}
@@ -416,7 +416,7 @@ function PortfoliosTab() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
-            <div className="bg-muted/50 rounded-xl p-4 border border-indigo-500/20">
+            <div className="bg-muted/50 rounded-md p-4 border border-indigo-500/20">
               <div className="text-xs font-medium text-indigo-400 mb-2">Underwriting Income</div>
               <div className="text-xs text-muted-foreground space-y-1">
                 <div className="flex justify-between"><span>Premiums collected</span><span className="text-emerald-400">$100</span></div>
@@ -426,7 +426,7 @@ function PortfoliosTab() {
               </div>
               <div className="text-xs text-muted-foreground mt-2">Combined ratio = 90% (profitable)</div>
             </div>
-            <div className="bg-muted/50 rounded-xl p-4 border border-emerald-500/20">
+            <div className="bg-muted/50 rounded-md p-4 border border-emerald-500/20">
               <div className="text-xs font-medium text-emerald-400 mb-2">Investment Income</div>
               <div className="text-xs text-muted-foreground space-y-1">
                 <div className="flex justify-between"><span>Float (reserve pool)</span><span className="text-muted-foreground">$500</span></div>
@@ -550,7 +550,7 @@ function AnnuitiesTab() {
               { name: "GLWB", full: "Guaranteed Lifetime Withdrawal Benefit", desc: "Like GMWB but extends for life. If account depletes, insurer continues payments. Annual step-up provisions ratchet the benefit base higher. Cost: 0.75–1.5%/yr." },
               { name: "GMAB", full: "Guaranteed Minimum Accumulation Benefit", desc: "Guarantees account value equals or exceeds a specified amount (e.g., original premium) at a specific future date. Protects against poor market performance over a defined term." },
             ].map((b) => (
-              <div key={b.name} className="bg-muted/50 rounded-xl p-3 border border-border">
+              <div key={b.name} className="bg-muted/50 rounded-md p-3 border border-border">
                 <div className="text-xs font-bold text-primary">{b.name}</div>
                 <div className="text-xs text-muted-foreground mt-0.5 mb-2">{b.full}</div>
                 <div className="text-xs text-muted-foreground">{b.desc}</div>
@@ -660,14 +660,14 @@ function SettlementsILSTab() {
           </svg>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
-            <div className="bg-muted/50 rounded-xl p-3 border border-border/30">
+            <div className="bg-muted/50 rounded-md p-3 border border-border/30">
               <div className="text-xs font-medium text-indigo-400 mb-2">Pricing Formula</div>
               <div className="font-mono text-xs text-foreground bg-card/60 p-2 rounded">
                 Value ≈ Face × P(death&lt;n) / (1+r)^LE
               </div>
               <div className="text-xs text-muted-foreground mt-2">Where LE = life expectancy (years), r = discount rate (10–15%), P(death&lt;n) = actuarial probability from mortality tables. Typical purchase price: 15–35% of face value.</div>
             </div>
-            <div className="bg-muted/50 rounded-xl p-3 border border-border/30">
+            <div className="bg-muted/50 rounded-md p-3 border border-border/30">
               <div className="text-xs font-medium text-amber-400 mb-2">Key Risks</div>
               <div className="space-y-1">
                 {[
@@ -705,7 +705,7 @@ function SettlementsILSTab() {
               { name: "Sidecars", desc: "Quota-share arrangements where outside capital participates in a reinsurer's book. Rapid deployment post-catastrophe when reinsurance prices spike. Typical 1-3yr life.", color: "text-indigo-400" },
               { name: "Collateralized Re", desc: "Private, fully collateralized reinsurance contract. Higher returns (8–15%) but less liquid than cat bonds. Forms largest segment of ILS market.", color: "text-primary" },
             ].map((t) => (
-              <div key={t.name} className="bg-muted/50 rounded-xl p-3 border border-border/30">
+              <div key={t.name} className="bg-muted/50 rounded-md p-3 border border-border/30">
                 <div className={cn("text-xs font-medium mb-1", t.color)}>{t.name}</div>
                 <div className="text-xs text-muted-foreground">{t.desc}</div>
               </div>
@@ -726,7 +726,7 @@ function SettlementsILSTab() {
               { type: "Buyout", desc: "Full transfer of pension liabilities and assets to insurer. Members become direct policyholders of the insurer. Pension fund extinguished. Typical cost: 102–110% of liability value.", badge: "Full" },
               { type: "Longevity Swap", desc: "Pension fund pays fixed payments; insurer pays actual pension costs. Pension retains investment risk, transfers only longevity risk. Most capital-efficient PRT structure.", badge: "Risk only" },
             ].map((p, i) => (
-              <div key={i} className="bg-muted/50 rounded-xl p-3 border border-border/30">
+              <div key={i} className="bg-muted/50 rounded-md p-3 border border-border/30">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs font-medium text-foreground">{p.type}</span>
                   <Badge variant="outline" className="border-indigo-500/30 text-indigo-400 text-xs">{p.badge}</Badge>
@@ -883,7 +883,7 @@ export default function InsuranceInvestingPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
               <Shield className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
@@ -907,7 +907,7 @@ export default function InsuranceInvestingPage() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">Insurance Investment Analysis</h2>
           <p className="text-sm text-muted-foreground">Explore insurer portfolios, annuity products, life settlements, ILS instruments, and insurance stock fundamentals.</p>
         </div>

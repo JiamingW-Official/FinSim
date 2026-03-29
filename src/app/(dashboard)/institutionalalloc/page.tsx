@@ -801,7 +801,7 @@ export default function InstitutionalAllocPage() {
       </motion.div>
 
       {/* Hero */}
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <h2 className="text-lg font-medium text-foreground mb-1">Institutional Allocation Framework</h2>
         <p className="text-sm text-muted-foreground">Compare endowment, pension, and sovereign wealth allocation models across Yale, Harvard, and Norway frameworks.</p>
       </div>
@@ -841,7 +841,7 @@ export default function InstitutionalAllocPage() {
                 <button
                   key={m.shortName}
                   onClick={() => setActiveModel(m.shortName)}
-                  className={`rounded-xl border p-3 text-left transition-all ${activeModel === m.shortName ? "border-primary bg-primary/10" : "border-border bg-card/60 hover:border-border"}`}
+                  className={`rounded-md border p-3 text-left transition-all ${activeModel === m.shortName ? "border-primary bg-primary/10" : "border-border bg-card/60 hover:border-border"}`}
                 >
                   <div className="text-xs text-muted-foreground mb-1 truncate">{m.name}</div>
                   <div className="text-lg font-bold" style={{ color: m.color }}>

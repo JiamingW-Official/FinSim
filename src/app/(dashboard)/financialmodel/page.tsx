@@ -1026,7 +1026,7 @@ export default function FinancialModelPage() {
                   { key: "operatingMargin" as const, label: "Operating Margin", min: 0, max: 60 },
                   { key: "taxRate" as const, label: "Tax Rate", min: 0, max: 40 },
                 ].map(({ key, label, min, max }) => (
-                  <div key={key} className="bg-foreground/[0.03] border border-border/50 rounded-xl p-3">
+                  <div key={key} className="bg-foreground/[0.03] border border-border/50 rounded-md p-3">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5">{label} (Forecast)</p>
                     <EditableCell
                       value={isAssumptions[key]}
@@ -1039,7 +1039,7 @@ export default function FinancialModelPage() {
               </div>
 
               {/* IS Table */}
-              <div className="overflow-x-auto rounded-xl border border-border/50 bg-card">
+              <div className="overflow-x-auto rounded-md border border-border/50 bg-card">
                 <table className="w-full text-xs border-collapse">
                   <thead>
                     <tr className="bg-foreground/[0.04] border-b border-border">
@@ -1096,14 +1096,14 @@ export default function FinancialModelPage() {
 
               {/* Mini charts */}
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <p className="text-xs text-muted-foreground mb-3 font-medium">Revenue Trend ($B)</p>
                   <MiniBarChart
                     data={isRows.map((r) => ({ label: String(r.year).slice(2), value: r.revenue }))}
                     color="#3b82f6"
                   />
                 </div>
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <p className="text-xs text-muted-foreground mb-3 font-medium">EPS Trend ($)</p>
                   <MiniBarChart
                     data={isRows.map((r) => ({ label: String(r.year).slice(2), value: r.eps }))}
@@ -1142,7 +1142,7 @@ export default function FinancialModelPage() {
 
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {/* Assets */}
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Assets</SectionHeading>
                   <table className="w-full text-xs">
                     <tbody>
@@ -1165,7 +1165,7 @@ export default function FinancialModelPage() {
                 </div>
 
                 {/* Liabilities */}
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Liabilities</SectionHeading>
                   <table className="w-full text-xs">
                     <tbody>
@@ -1203,7 +1203,7 @@ export default function FinancialModelPage() {
 
                 {/* Ratios & Days */}
                 <div className="space-y-4">
-                  <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                  <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                     <SectionHeading>Working Capital Days</SectionHeading>
                     {[
                       { label: "Days Sales Outstanding (DSO)", value: bsData.dso.toFixed(1) + " days" },
@@ -1217,7 +1217,7 @@ export default function FinancialModelPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                  <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                     <SectionHeading>Key Ratios</SectionHeading>
                     {[
                       { label: "Current Ratio", value: bsData.currentRatio.toFixed(2) + "x", good: bsData.currentRatio >= 1.5 },
@@ -1241,7 +1241,7 @@ export default function FinancialModelPage() {
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
                 {/* CF statement */}
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Cash Flow Statement (LTM, $B)</SectionHeading>
                   <table className="w-full text-xs">
                     <tbody>
@@ -1286,7 +1286,7 @@ export default function FinancialModelPage() {
 
                 {/* FCF metrics */}
                 <div className="space-y-4">
-                  <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                  <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                     <SectionHeading>Free Cash Flow</SectionHeading>
                     <div className="flex flex-col gap-3 mt-2">
                       {[
@@ -1303,7 +1303,7 @@ export default function FinancialModelPage() {
                       ))}
                     </div>
                   </div>
-                  <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                  <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                     <SectionHeading>FCF Trend ($B)</SectionHeading>
                     <MiniBarChart
                       data={isRows.map((r, i) => ({
@@ -1330,7 +1330,7 @@ export default function FinancialModelPage() {
                   { label: "Projection Years", value: projYears, setter: setProjYears, min: 3, max: 10, step: 1, suffix: "yrs" },
                   { label: "Exit EV/EBITDA", value: exitMultiple, setter: setExitMultiple, min: 8, max: 40, step: 0.5, suffix: "x" },
                 ].map(({ label, value, setter, min, max, step, suffix }) => (
-                  <div key={label} className="bg-foreground/[0.03] border border-border/50 rounded-xl p-3">
+                  <div key={label} className="bg-foreground/[0.03] border border-border/50 rounded-md p-3">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1.5">{label}</p>
                     <div className="flex flex-col gap-1.5">
                       <EditableCell
@@ -1356,7 +1356,7 @@ export default function FinancialModelPage() {
               </div>
 
               {/* DCF table */}
-              <div className="overflow-x-auto rounded-xl border border-border/50 bg-card mb-6">
+              <div className="overflow-x-auto rounded-md border border-border/50 bg-card mb-6">
                 <table className="w-full text-xs border-collapse">
                   <thead>
                     <tr className="bg-foreground/[0.04] border-b border-border">
@@ -1385,7 +1385,7 @@ export default function FinancialModelPage() {
 
               {/* DCF summary */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Gordon Growth Model</SectionHeading>
                   {[
                     { label: "PV of FCFs", value: fmt(dcfData.pvSum) },
@@ -1401,7 +1401,7 @@ export default function FinancialModelPage() {
                     </div>
                   ))}
                 </div>
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>EV/EBITDA Exit Multiple</SectionHeading>
                   {[
                     { label: "PV of FCFs", value: fmt(dcfData.pvSum) },
@@ -1417,7 +1417,7 @@ export default function FinancialModelPage() {
                     </div>
                   ))}
                 </div>
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Margin of Safety</SectionHeading>
                   <div className="flex flex-col gap-3 mt-2">
                     <div className="flex justify-between">
@@ -1447,7 +1447,7 @@ export default function FinancialModelPage() {
               </div>
 
               {/* Football field chart */}
-              <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+              <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                 <p className="text-xs font-medium text-muted-foreground mb-4">Football Field — Implied Price Ranges</p>
                 <div className="overflow-x-auto">
                   <FootballFieldChart rows={footballRows} currentPrice={companyData.currentPrice} width={540} />
@@ -1460,7 +1460,7 @@ export default function FinancialModelPage() {
           <TabsContent value="comps" className="flex-1 overflow-y-auto p-6 data-[state=inactive]:hidden">
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
               {/* Comps table */}
-              <div className="overflow-x-auto rounded-xl border border-border/50 bg-card mb-6">
+              <div className="overflow-x-auto rounded-md border border-border/50 bg-card mb-6">
                 <table className="w-full text-xs border-collapse">
                   <thead>
                     <tr className="bg-foreground/[0.04] border-b border-border">
@@ -1510,7 +1510,7 @@ export default function FinancialModelPage() {
 
               {/* Implied valuation */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <SectionHeading>Implied Share Price — {company}</SectionHeading>
                   <table className="w-full text-xs mt-1">
                     <thead>
@@ -1544,7 +1544,7 @@ export default function FinancialModelPage() {
                     </tbody>
                   </table>
                 </div>
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <p className="text-xs font-medium text-muted-foreground mb-3">Comps Football Field</p>
                   <div className="overflow-x-auto">
                     <FootballFieldChart rows={compsFootballRows} currentPrice={companyData.currentPrice} width={380} />
@@ -1568,7 +1568,7 @@ export default function FinancialModelPage() {
                   const c = colors[sc.scenario];
                   const upside = (sc.impliedPrice / companyData.currentPrice - 1) * 100;
                   return (
-                    <div key={sc.scenario} className={cn("rounded-xl border p-4", c.bg, c.border)}>
+                    <div key={sc.scenario} className={cn("rounded-md border p-4", c.bg, c.border)}>
                       <div className="flex items-center justify-between mb-3">
                         <span className={cn("text-sm font-medium capitalize", c.text)}>{sc.scenario} Case</span>
                         <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", c.badge)}>2026E</span>
@@ -1595,7 +1595,7 @@ export default function FinancialModelPage() {
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
                 {/* Tornado chart */}
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <p className="text-xs font-medium text-muted-foreground mb-1">Tornado Chart — Sensitivity of DCF Value</p>
                   <p className="text-xs text-muted-foreground mb-3">Each bar shows impact of ±1 standard deviation change</p>
                   <div className="overflow-x-auto">
@@ -1604,7 +1604,7 @@ export default function FinancialModelPage() {
                 </div>
 
                 {/* Monte Carlo */}
-                <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+                <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                   <p className="text-xs font-medium text-muted-foreground mb-1">Monte Carlo — 500 Simulations</p>
                   <p className="text-xs text-muted-foreground mb-3">Random variation on WACC ±2%, growth ±10%, margins ±5%</p>
                   <div className="overflow-x-auto">
@@ -1633,7 +1633,7 @@ export default function FinancialModelPage() {
               </div>
 
               {/* Break-even analysis */}
-              <div className="bg-foreground/[0.03] border border-border/50 rounded-xl p-4">
+              <div className="bg-foreground/[0.03] border border-border/50 rounded-md p-4">
                 <p className="text-xs font-medium text-muted-foreground mb-1">Break-Even Analysis</p>
                 <p className="text-xs text-muted-foreground mb-3">Revenue growth rate required for stock to be fairly valued (DCF = Current Price)</p>
                 <div className="flex items-center gap-4 flex-wrap">

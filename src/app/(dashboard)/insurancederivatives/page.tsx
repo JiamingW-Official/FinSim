@@ -475,7 +475,7 @@ export default function InsuranceDerivativesPage() {
       </div>
 
       {/* Hero */}
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <h2 className="text-lg font-medium text-foreground mb-1">ILS &amp; CAT Bond Analytics</h2>
         <p className="text-sm text-muted-foreground">Catastrophe bond market overview, risk modeling, ILS vs reinsurance, trigger types, portfolio construction, and weather derivatives.</p>
       </div>

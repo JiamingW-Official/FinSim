@@ -1094,7 +1094,7 @@ export default function StructuredNotesPage() {
                     )
                   }
                   className={cn(
-                    "bg-card border rounded-xl p-4 cursor-pointer transition-all",
+                    "bg-card border rounded-md p-4 cursor-pointer transition-all",
                     selectedProduct === product.id
                       ? "border-muted-foreground ring-1 ring-muted-foreground/40"
                       : "border-border hover:border-border"
@@ -1265,7 +1265,7 @@ export default function StructuredNotesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <div className="space-y-5">
-              <div className="bg-card border border-border rounded-xl p-4 space-y-5">
+              <div className="bg-card border border-border rounded-md p-4 space-y-5">
                 <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-primary" />
                   Payoff Parameters
@@ -1335,7 +1335,7 @@ export default function StructuredNotesPage() {
               </div>
 
               {/* Key metrics */}
-              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+              <div className="bg-card border border-border rounded-md p-4 space-y-3">
                 <h3 className="text-sm font-medium text-foreground">
                   Payoff Summary
                 </h3>
@@ -1398,7 +1398,7 @@ export default function StructuredNotesPage() {
 
             {/* Payoff diagram */}
             <div className="lg:col-span-2 space-y-4">
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-primary" />
                   Payoff Diagram — Underlying vs Note Return
@@ -1419,7 +1419,7 @@ export default function StructuredNotesPage() {
               </div>
 
               {/* Scenarios */}
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                   <Activity className="w-4 h-4 text-primary" />
                   Scenario Analysis
@@ -1439,7 +1439,7 @@ export default function StructuredNotesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
             <div className="space-y-4">
-              <div className="bg-card border border-border rounded-xl p-4 space-y-5">
+              <div className="bg-card border border-border rounded-md p-4 space-y-5">
                 <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
                   <DollarSign className="w-4 h-4 text-emerald-400" />
                   Pricing Inputs
@@ -1506,7 +1506,7 @@ export default function StructuredNotesPage() {
               </div>
 
               {/* Fair value vs offer */}
-              <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+              <div className="bg-card border border-border rounded-md p-4 space-y-3">
                 <h3 className="text-sm font-medium text-foreground">
                   Valuation Summary
                 </h3>
@@ -1580,7 +1580,7 @@ export default function StructuredNotesPage() {
 
             {/* Waterfall chart + secondary market */}
             <div className="lg:col-span-2 space-y-4">
-              <div className="bg-card border border-border rounded-xl p-4">
+              <div className="bg-card border border-border rounded-md p-4">
                 <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-emerald-400" />
                   Component Decomposition — % of Face Value
@@ -1603,7 +1603,7 @@ export default function StructuredNotesPage() {
 
               {/* Secondary market + liquidity */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-card border border-border rounded-xl p-4">
+                <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                     <Activity className="w-4 h-4 text-amber-400" />
                     Secondary Market Dynamics
@@ -1633,7 +1633,7 @@ export default function StructuredNotesPage() {
                   </div>
                 </div>
 
-                <div className="bg-card border border-border rounded-xl p-4">
+                <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                     <Lock className="w-4 h-4 text-primary" />
                     Issuer Credit Impact
@@ -1678,7 +1678,7 @@ export default function StructuredNotesPage() {
         <TabsContent value="risk" className="data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Risk factors */}
-            <div className="bg-card border border-border rounded-xl p-4 space-y-4">
+            <div className="bg-card border border-border rounded-md p-4 space-y-4">
               <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
                 Risk Factor Scores (click to expand)
@@ -1695,7 +1695,7 @@ export default function StructuredNotesPage() {
             </div>
 
             {/* Suitability matrix */}
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
                 <Shield className="w-4 h-4 text-emerald-400" />
                 Investor Suitability Matrix
@@ -1807,7 +1807,7 @@ export default function StructuredNotesPage() {
             </div>
 
             {/* Scenario table */}
-            <div className="lg:col-span-2 bg-card border border-border rounded-xl p-4">
+            <div className="lg:col-span-2 bg-card border border-border rounded-md p-4">
               <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-primary" />
                 Full Scenario Table — Current Payoff Parameters

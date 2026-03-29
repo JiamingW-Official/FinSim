@@ -967,7 +967,7 @@ export default function ReplayPage() {
       {/* ── Left Panel: Chart (~70%) ─────────────────────────────────────────── */}
       <div className="flex flex-1 flex-col overflow-hidden border-r border-border">
         {/* Config bar */}
-        <div className="flex flex-wrap items-center gap-2 border-b border-border bg-card px-4 py-2">
+        <div className="flex flex-wrap items-center gap-2 border-b border-border bg-card px-4 py-2 border-l-4 border-l-primary">
           {/* Ticker select */}
           <select
             value={ticker}

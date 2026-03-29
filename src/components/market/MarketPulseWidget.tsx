@@ -922,7 +922,7 @@ export default function MarketPulseWidget() {
   });
 
   return (
-    <div className="bg-card border border-border rounded-xl overflow-hidden flex flex-col"
+    <div className="bg-card border border-border rounded-md overflow-hidden flex flex-col"
       style={{ fontFamily: "'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace" }}>
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-muted">

@@ -57,7 +57,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-muted/30 p-4">
+    <div className="rounded-md border border-border bg-muted/30 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -189,7 +189,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Financing gap */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Middle Market Financing Gap — Bank Retreat Post-GFC"
           sub="Banks' share of middle market lending vs private credit (2007–2023)"
@@ -216,7 +216,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Leverage bars */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="EBITDA Leverage Multiples by Tranche Type"
           sub="Typical range for sponsor-backed middle market deals"
@@ -246,7 +246,7 @@ function DirectLendingTab() {
       </div>
 
       {/* BDC vs Private Fund */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="BDC vs. Private Credit Fund Structure" sub="Key structural differences for investors" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -271,7 +271,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Unitranche vs 1L/2L */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Unitranche vs. First Lien / Second Lien Split" sub="Structural trade-offs in deal architecture" />
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -296,7 +296,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Lender-friendly terms */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Lender-Friendly Terms & Protections" sub="Common provisions in private credit documentation" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {lenderTerms.map((item) => (
@@ -309,7 +309,7 @@ function DirectLendingTab() {
       </div>
 
       {/* Top lenders */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Leading Direct Lenders" sub="Top platforms by AUM (approximate, 2024)" />
         <div className="space-y-3">
           {lenders.map((l, i) => (
@@ -387,7 +387,7 @@ function MezzanineTab() {
       </div>
 
       {/* Capital structure */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Mezzanine Position in Capital Structure" sub="Click a layer to see details" />
         <div className="flex gap-6 flex-col md:flex-row">
           <div className="flex-1">
@@ -419,7 +419,7 @@ function MezzanineTab() {
                 initial={{ opacity: 0, x: 24 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 24 }}
-                className="flex-1 rounded-xl border border-border bg-muted/30 p-4 self-start"
+                className="flex-1 rounded-md border border-border bg-muted/30 p-4 self-start"
               >
                 <p className="text-xs text-muted-foreground mb-1">Selected Layer</p>
                 <p className="text-base font-bold" style={{ color: capitalLayers[selected].color }}>
@@ -438,7 +438,7 @@ function MezzanineTab() {
       </div>
 
       {/* PIK vs cash pay */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="PIK vs. Cash Pay Mechanics" sub="How payment-in-kind accrual works" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -464,7 +464,7 @@ function MezzanineTab() {
       </div>
 
       {/* IRR targets */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="IRR Targets by Private Credit Strategy" sub="Gross IRR before fees (typical market 2024)" />
         <div className="space-y-3">
           {irrTargets.map((t) => {
@@ -487,7 +487,7 @@ function MezzanineTab() {
       </div>
 
       {/* Special situations */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Special Situations Categories" sub="8 sub-strategies with typical return outcomes" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {specialSit.map((s) => (
@@ -550,7 +550,7 @@ function DistressedTab() {
       </div>
 
       {/* Distressed cycle */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Distressed Debt Market Cycle" sub="Six phases from normal credit to post-reorganization emergence" />
         <svg viewBox={`0 0 ${CW} 110`} className="w-full" style={{ maxHeight: 130 }}>
           <text x={CW / 2} y={16} textAnchor="middle" fontSize={9} fill="#71717a">
@@ -578,7 +578,7 @@ function DistressedTab() {
       </div>
 
       {/* Definitions */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Stressed vs. Distressed vs. Default" sub="Market pricing thresholds" />
         <div className="grid grid-cols-3 gap-4">
           {definitions.map((d) => (
@@ -592,7 +592,7 @@ function DistressedTab() {
       </div>
 
       {/* Fulcrum security */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Fulcrum Security Identification" sub="The tranche that converts to equity in the plan of reorganization" />
         <div className="flex gap-6 flex-col md:flex-row items-start">
           <svg viewBox="0 0 320 120" className="w-full md:w-72 shrink-0" style={{ maxHeight: 130 }}>
@@ -619,7 +619,7 @@ function DistressedTab() {
       </div>
 
       {/* DIP financing */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Chapter 11 DIP Financing" sub="Debtor-in-Possession financing — highest priority, highest yield" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
@@ -637,7 +637,7 @@ function DistressedTab() {
       </div>
 
       {/* Opportunistic credit */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Opportunistic Credit Strategies" sub="Fallen angels, rating migrations, secondary purchases, and more" />
         <div className="space-y-3">
           {opCredit.map((s) => (
@@ -730,7 +730,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Market share area chart */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading
           title="Private Credit vs. Syndicated Loan Market Share"
           sub="Middle market sponsor-backed lending share shift (2010→2024)"
@@ -755,7 +755,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Yield comparison */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Yield Premium: Private vs. Public Credit" sub="Approximate all-in yields (2024 market)" />
         <div className="space-y-3">
           {yieldComparison.map((y) => (
@@ -776,7 +776,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Default rates */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Default Rate Comparison" sub="Private credit historically lower defaults than public HY" />
         <div className="space-y-3">
           {defaultRates.map((d) => (
@@ -797,7 +797,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Institutional allocations */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Institutional Portfolio Allocations to Private Credit" sub="Current vs. target allocations (2024 survey data)" />
         <div className="space-y-4">
           {allocations.map((a) => (
@@ -828,7 +828,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Key risks */}
-      <div className="rounded-xl border border-border bg-muted/30 p-5">
+      <div className="rounded-md border border-border bg-muted/30 p-5">
         <SectionHeading title="Key Risks in Private Credit" sub="Concentration, illiquidity, valuation opacity, and documentation creep" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {risks.map((risk) => (
@@ -850,7 +850,7 @@ function MarketDynamicsTab() {
 
       {/* Regulatory tailwinds + vintage */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-muted/30 p-5">
+        <div className="rounded-md border border-border bg-muted/30 p-5">
           <SectionHeading title="Regulatory Tailwinds" sub="Why banks retreat, private credit expands" />
           <div className="space-y-2 text-xs text-muted-foreground">
             {[
@@ -866,7 +866,7 @@ function MarketDynamicsTab() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-muted/30 p-5">
+        <div className="rounded-md border border-border bg-muted/30 p-5">
           <SectionHeading title="Vintage Year Diversification" sub="Why spreading deployment across cycles matters" />
           <div className="space-y-2 text-xs text-muted-foreground">
             {[
@@ -905,9 +905,9 @@ export default function PrivateCreditPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <div className="border-b border-border bg-card/60 backdrop-blur px-6 py-5">
+      <div className="border-b border-border border-l-4 border-l-primary bg-card/60 backdrop-blur px-6 py-6">
         <div className="max-w-6xl mx-auto flex items-start gap-4">
-          <div className="rounded-xl bg-primary/20 p-2.5 border border-border">
+          <div className="rounded-md bg-primary/20 p-2.5 border border-border">
             <Briefcase className="w-5 h-5 text-primary" />
           </div>
           <div>

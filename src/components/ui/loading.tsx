@@ -21,7 +21,7 @@ function Skeleton({ className, style }: { className?: string; style?: React.CSSP
 // ---------------------------------------------------------------------------
 export function SkeletonCard({ className }: { className?: string }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-card p-4", className)}>
+    <div className={cn("rounded-md border border-border bg-card p-4", className)}>
       <div className="flex items-center gap-3 mb-4">
         <Skeleton className="h-8 w-8 rounded-full" />
         <div className="flex flex-col gap-2 flex-1">
@@ -44,7 +44,7 @@ export function SkeletonCard({ className }: { className?: string }) {
 // ---------------------------------------------------------------------------
 export function SkeletonTable({ rows = 5, className }: { rows?: number; className?: string }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-card overflow-hidden", className)}>
+    <div className={cn("rounded-md border border-border bg-card overflow-hidden", className)}>
       {/* Header row */}
       <div className="flex items-center gap-4 border-b border-border bg-muted/20 px-4 py-3">
         <Skeleton className="h-3 w-16" />
@@ -78,7 +78,7 @@ export function SkeletonTable({ rows = 5, className }: { rows?: number; classNam
 // ---------------------------------------------------------------------------
 export function SkeletonChart({ className }: { className?: string }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-card p-4", className)}>
+    <div className={cn("rounded-md border border-border bg-card p-4", className)}>
       {/* Toolbar row */}
       <div className="flex items-center gap-2 mb-4">
         <Skeleton className="h-7 w-24 rounded-md" />

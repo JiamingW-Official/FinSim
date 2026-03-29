@@ -246,7 +246,7 @@ export default function JournalPageClient() {
 
         {/* Performance header strip — Hero */}
         {rows.length > 0 && (
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
             <StatChip
               label="Win Rate"
               value={`${analytics.winRate.toFixed(1)}%`}

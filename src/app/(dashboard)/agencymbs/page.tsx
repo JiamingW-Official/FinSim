@@ -415,7 +415,7 @@ function SectionCard({ title, icon, children, className }: {
   className?: string;
 }) {
   return (
-    <div className={cn("bg-card border border-border rounded-xl p-5", className)}>
+    <div className={cn("bg-card border border-border rounded-md p-5", className)}>
       <div className="flex items-center gap-2 mb-4">
         <span className="text-primary">{icon}</span>
         <h3 className="font-semibold text-foreground text-sm">{title}</h3>
@@ -473,7 +473,7 @@ function AgencyMarketTab() {
               key={ag.name}
               onClick={() => setSelectedAgency(ag)}
               className={cn(
-                "rounded-xl border p-4 text-left transition-all",
+                "rounded-md border p-4 text-left transition-all",
                 selectedAgency.name === ag.name
                   ? "border-primary/60 bg-primary/8"
                   : "border-border bg-muted/50 hover:border-border"
@@ -514,7 +514,7 @@ function AgencyMarketTab() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="bg-muted/60 rounded-xl p-4 border border-border"
+            className="bg-muted/60 rounded-md p-4 border border-border"
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-3 h-3 rounded-full" style={{ backgroundColor: selectedAgency.color }} />
@@ -1085,7 +1085,7 @@ function CMOStructuresTab() {
               <div
                 key={tranche.name}
                 className={cn(
-                  "border rounded-xl overflow-hidden transition-all",
+                  "border rounded-md overflow-hidden transition-all",
                   isOpen ? "border-border" : "border-border"
                 )}
               >
@@ -1563,7 +1563,7 @@ function ConvexityRiskTab() {
       <SectionCard title="OAS vs Z-Spread: Prepayment-Adjusted Spread" icon={<Info size={16} />}>
         <div className="grid grid-cols-2 gap-6">
           <div className="space-y-3 text-sm text-muted-foreground">
-            <div className="bg-muted rounded-xl p-4 border border-border">
+            <div className="bg-muted rounded-md p-4 border border-border">
               <div className="font-medium text-primary mb-2">Z-Spread</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 The constant spread over the <strong className="text-primary">spot rate curve</strong> that
@@ -1571,7 +1571,7 @@ function ConvexityRiskTab() {
                 prepayment option — overstates value for callable/prepayable instruments.
               </p>
             </div>
-            <div className="bg-muted rounded-xl p-4 border border-border">
+            <div className="bg-muted rounded-md p-4 border border-border">
               <div className="font-medium text-emerald-300 mb-2">OAS (Option-Adjusted Spread)</div>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 The spread after removing the value of the embedded prepayment option via Monte Carlo
@@ -1672,7 +1672,7 @@ function ConvexityRiskTab() {
       <SectionCard title="Hedging Agency MBS: Instruments & Ratios" icon={<Shield size={16} />}>
         <div className="space-y-3">
           {HEDGE_ROWS.map((row) => (
-            <div key={row.instrument} className="bg-muted/60 rounded-xl p-4 border border-border">
+            <div key={row.instrument} className="bg-muted/60 rounded-md p-4 border border-border">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <div className="font-medium text-foreground text-sm mb-1">{row.instrument}</div>
@@ -1724,7 +1724,7 @@ export default function AgencyMBSPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-9 h-9 rounded-xl bg-primary/15 border border-border flex items-center justify-center">
+          <div className="w-9 h-9 rounded-md bg-primary/15 border border-border flex items-center justify-center">
             <Building2 size={18} className="text-primary" />
           </div>
           <div>
@@ -1743,7 +1743,7 @@ export default function AgencyMBSPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="agency" className="w-full">
-        <TabsList className="bg-card border border-border mb-6 flex gap-1 p-1 rounded-xl h-auto flex-wrap">
+        <TabsList className="bg-card border border-border mb-6 flex gap-1 p-1 rounded-md h-auto flex-wrap">
           {[
             { value: "agency", label: "Agency Market", icon: <Building2 size={13} /> },
             { value: "prepayment", label: "Prepayment Analysis", icon: <TrendingDown size={13} /> },

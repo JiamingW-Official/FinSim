@@ -695,7 +695,7 @@ export default function IBDealsPage() {
         </p>
       </motion.div>
 
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6 mb-8">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6 mb-8">
         <h2 className="text-lg font-medium text-foreground mb-1">Deal Simulator Suite</h2>
         <p className="text-sm text-muted-foreground">Track live M&amp;A deals, structure transactions, run fairness opinions, regulatory reviews, LBO models, and league tables.</p>
       </div>
@@ -723,7 +723,7 @@ export default function IBDealsPage() {
         {/* ── Tab 1: Live Deal Tracker ────────────────────────────────────────── */}
         <TabsContent value="tracker" className="data-[state=inactive]:hidden space-y-6">
           {/* Filters */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <div className="flex flex-wrap gap-4 items-center">
               <div className="flex flex-col gap-1">
                 <span className="text-xs text-muted-foreground">Deal Type</span>
@@ -789,7 +789,7 @@ export default function IBDealsPage() {
           </div>
 
           {/* Deals table */}
-          <div className="bg-card border border-border rounded-xl overflow-hidden">
+          <div className="bg-card border border-border rounded-md overflow-hidden">
             <div className="p-4 border-b border-border">
               <h2 className="font-semibold text-sm flex items-center gap-2">
                 <Activity size={14} className="text-primary" />
@@ -853,7 +853,7 @@ export default function IBDealsPage() {
           </div>
 
           {/* Deal timelines */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-semibold text-sm mb-4 flex items-center gap-2">
               <BarChart3 size={14} className="text-primary" />
               Deal Timeline: Announce → Regulatory → Close
@@ -897,7 +897,7 @@ export default function IBDealsPage() {
 
           {/* YTD bar chart + cross-border */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h2 className="font-medium text-sm mb-4 flex items-center gap-2">
                 <DollarSign size={14} className="text-emerald-400" />
                 Global M&A Volume YTD ($B)
@@ -930,7 +930,7 @@ export default function IBDealsPage() {
               </svg>
             </div>
 
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
                 <Globe size={14} className="text-primary" />
                 Cross-Border Deal Origins
@@ -974,7 +974,7 @@ export default function IBDealsPage() {
         <TabsContent value="structure" className="data-[state=inactive]:hidden space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
-            <div className="bg-card border border-border rounded-xl p-4 space-y-4">
+            <div className="bg-card border border-border rounded-md p-4 space-y-4">
               <h2 className="font-medium text-sm flex items-center gap-2">
                 <Target size={14} className="text-primary" />
                 Deal Builder
@@ -1084,7 +1084,7 @@ export default function IBDealsPage() {
                     { label: "P/E (offer)", value: `${fmt(dealCalcs.impliedPE)}×`, color: "text-muted-foreground" },
                     { label: "New Shares Issued", value: `${fmt(dealCalcs.newSharesIssued, 0)}M`, color: "text-muted-foreground" },
                   ].map((m) => (
-                    <div key={m.label} className="bg-card border border-border rounded-xl p-3">
+                    <div key={m.label} className="bg-card border border-border rounded-md p-3">
                       <div className="text-xs text-muted-foreground mb-1">{m.label}</div>
                       <div className={cn("text-lg font-bold", m.color)}>{m.value}</div>
                     </div>
@@ -1092,7 +1092,7 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Accretion/Dilution */}
-                <div className="bg-card border border-border rounded-xl p-4">
+                <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     {dealCalcs.accretive ? (
                       <TrendingUp size={14} className="text-emerald-400" />
@@ -1137,7 +1137,7 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Financing structure */}
-                <div className="bg-card border border-border rounded-xl p-4">
+                <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <DollarSign size={14} className="text-primary" />
                     Financing Structure
@@ -1186,7 +1186,7 @@ export default function IBDealsPage() {
         {/* ── Tab 3: Fairness Opinion ─────────────────────────────────────────── */}
         <TabsContent value="fairness" className="data-[state=inactive]:hidden space-y-6">
           {/* Comps */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <Scale size={14} className="text-primary" />
               Comparable Company Analysis
@@ -1238,7 +1238,7 @@ export default function IBDealsPage() {
           </div>
 
           {/* Precedents */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <FileText size={14} className="text-primary" />
               Precedent Transaction Analysis
@@ -1271,7 +1271,7 @@ export default function IBDealsPage() {
 
           {/* Football Field SVG */}
           {valuationRanges && (
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h2 className="font-medium text-sm mb-4 flex items-center gap-2">
                 <BarChart3 size={14} className="text-emerald-400" />
                 Football Field — Implied Valuation Range ($B EV)
@@ -1387,7 +1387,7 @@ export default function IBDealsPage() {
         {/* ── Tab 4: Regulatory Review ────────────────────────────────────────── */}
         <TabsContent value="regulatory" className="data-[state=inactive]:hidden space-y-6">
           {/* Timeline */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-4 flex items-center gap-2">
               <Shield size={14} className="text-amber-400" />
               Regulatory Review Timeline
@@ -1428,7 +1428,7 @@ export default function IBDealsPage() {
 
           {/* HHI Calculator */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
                 <Percent size={14} className="text-red-400" />
                 HHI Calculator (Herfindahl-Hirschman Index)
@@ -1496,7 +1496,7 @@ export default function IBDealsPage() {
             </div>
 
             {/* Remedies */}
-            <div className="bg-card border border-border rounded-xl p-4">
+            <div className="bg-card border border-border rounded-md p-4">
               <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
                 <Scale size={14} className="text-primary" />
                 Potential Remedies
@@ -1528,7 +1528,7 @@ export default function IBDealsPage() {
           </div>
 
           {/* Historical outcomes */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <FileText size={14} className="text-primary" />
               Historical Regulatory Outcomes
@@ -1570,7 +1570,7 @@ export default function IBDealsPage() {
         <TabsContent value="lbo" className="data-[state=inactive]:hidden space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* LBO controls */}
-            <div className="bg-card border border-border rounded-xl p-4 space-y-4">
+            <div className="bg-card border border-border rounded-md p-4 space-y-4">
               <h2 className="font-medium text-sm flex items-center gap-2">
                 <Building2 size={14} className="text-orange-400" />
                 LBO Model Inputs
@@ -1657,7 +1657,7 @@ export default function IBDealsPage() {
                     { label: "Equity Contribution", value: fmtB(lboCalcs.equityContribution), color: "text-emerald-400" },
                     { label: "Annual FCF", value: fmtB(lboCalcs.fcf), color: "text-amber-400" },
                   ].map((m) => (
-                    <div key={m.label} className="bg-card border border-border rounded-xl p-3">
+                    <div key={m.label} className="bg-card border border-border rounded-md p-3">
                       <div className="text-xs text-muted-foreground mb-1">{m.label}</div>
                       <div className={cn("text-lg font-medium", m.color)}>{m.value}</div>
                     </div>
@@ -1665,7 +1665,7 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Exit scenarios table */}
-                <div className="bg-card border border-border rounded-xl p-4">
+                <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <TrendingUp size={14} className="text-emerald-400" />
                     Returns at Different Exit Scenarios
@@ -1703,7 +1703,7 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Debt schedule SVG */}
-                <div className="bg-card border border-border rounded-xl p-4">
+                <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <BarChart3 size={14} className="text-primary" />
                     Debt Paydown Schedule ($B)
@@ -1737,7 +1737,7 @@ export default function IBDealsPage() {
                 </div>
 
                 {/* Returns waterfall */}
-                <div className="bg-card border border-border rounded-xl p-4">
+                <div className="bg-card border border-border rounded-md p-4">
                   <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
                     <Award size={14} className="text-amber-400" />
                     Sponsor Returns Waterfall (Base Case)
@@ -1814,7 +1814,7 @@ export default function IBDealsPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="bg-card border border-border rounded-xl overflow-hidden"
+              className="bg-card border border-border rounded-md overflow-hidden"
             >
               <div className="p-4 border-b border-border flex items-center gap-2">
                 <Award size={14} className="text-amber-400" />
@@ -1883,7 +1883,7 @@ export default function IBDealsPage() {
           </AnimatePresence>
 
           {/* Fee wallet */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <DollarSign size={14} className="text-emerald-400" />
               Investment Bank Fee Wallet Estimator
@@ -1905,7 +1905,7 @@ export default function IBDealsPage() {
           </div>
 
           {/* IB compensation */}
-          <div className="bg-card border border-border rounded-xl p-4">
+          <div className="bg-card border border-border rounded-md p-4">
             <h2 className="font-medium text-sm mb-3 flex items-center gap-2">
               <Users size={14} className="text-primary" />
               IB Analyst / Associate Compensation (Top Banks, 2025)

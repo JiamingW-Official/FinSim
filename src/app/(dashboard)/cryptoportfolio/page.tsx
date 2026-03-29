@@ -355,7 +355,7 @@ function StatCard({
   icon?: React.ElementType;
 }) {
   return (
-    <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-1">
+    <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-1">
       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
         {Icon && <Icon className="w-3.5 h-3.5" />}
         {label}
@@ -590,7 +590,7 @@ export default function CryptoPortfolioPage() {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6"
+        className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         <div>
           <h1 className="text-xl font-semibold flex items-center gap-2">
@@ -693,7 +693,7 @@ export default function CryptoPortfolioPage() {
 
           {/* Cost basis methods + Heat score */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
               <h3 className="font-semibold text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Cost Basis Method — Tax Impact</h3>
               <div className="flex gap-2">
                 {(["FIFO","HIFO","SPECIFIC"] as const).map(m => (
@@ -725,7 +725,7 @@ export default function CryptoPortfolioPage() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
               <h3 className="font-semibold text-sm flex items-center gap-2"><Activity className="w-4 h-4 text-orange-400" />Portfolio Heat Score</h3>
               <div className="flex items-center gap-4">
                 <div className="relative w-20 h-20">
@@ -766,7 +766,7 @@ export default function CryptoPortfolioPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* BTC Dominance Gauge */}
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><Bitcoin className="w-4 h-4 text-orange-400" />Bitcoin Dominance</h3>
               <div className="flex justify-center">
                 <BitcoinDominanceGauge pct={52} />
@@ -786,7 +786,7 @@ export default function CryptoPortfolioPage() {
             </div>
 
             {/* Altcoin Season Index */}
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm">Altcoin Season Index (24m)</h3>
               <LineChartSVG data={marketData.altcoinIndex} color="#8b5cf6" fill height={110} label="0 = BTC Season  →  100 = Alt Season" />
               <div className="flex gap-2 text-xs">
@@ -807,7 +807,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* BTC/ETH Ratio */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><TrendingUp className="w-4 h-4 text-primary" />BTC/ETH Ratio — 24 Months</h3>
             <p className="text-xs text-muted-foreground">Higher ratio = BTC outperforming ETH. Watch for reversal signals when ETH leads innovation cycles.</p>
             <LineChartSVG data={marketData.btcEthRatio} color="#3b82f6" fill height={100} />
@@ -819,7 +819,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Global Market Cap */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><BarChart2 className="w-4 h-4 text-emerald-400" />Global Crypto Market Cap — 36 Months ($B)</h3>
             <AreaChartSVG
               series={[{ data: marketData.globalMcap36, color: "#10b981", label: "Market Cap" }]}
@@ -829,7 +829,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Correlation Matrix */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2">
               <Layers className="w-4 h-4 text-red-400" />
               Correlation Matrix — Cluster Risk
@@ -883,7 +883,7 @@ export default function CryptoPortfolioPage() {
               { label: "Whale Addresses (>100 BTC)", data: onChainData.whaleCountSeries, color: "#8b5cf6",
                 info: "Increasing whale count = accumulation by large holders. Declining count = whales distributing to retail." },
             ].map(chart => (
-              <div key={chart.label} className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-2">
+              <div key={chart.label} className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-2">
                 <h3 className="font-medium text-sm">{chart.label}</h3>
                 <LineChartSVG data={chart.data} color={chart.color} fill height={90} />
                 <p className="text-xs text-muted-foreground">{chart.info}</p>
@@ -902,7 +902,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Yield table */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><Layers className="w-4 h-4 text-yellow-400" />12 Live Yield Opportunities</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border-collapse">
@@ -944,7 +944,7 @@ export default function CryptoPortfolioPage() {
           {/* Yield comparison + IL calculator */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {/* DeFi vs TradFi comparison */}
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><BarChart2 className="w-4 h-4 text-primary" />DeFi vs Traditional Finance Yields</h3>
               <div className="space-y-2.5">
                 {[
@@ -975,7 +975,7 @@ export default function CryptoPortfolioPage() {
             </div>
 
             {/* IL Calculator */}
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><AlertTriangle className="w-4 h-4 text-orange-400" />Impermanent Loss Calculator</h3>
               <p className="text-xs text-muted-foreground">Model the IL for a 50/50 LP position when one token's price changes vs entry.</p>
               <ILCalculator />
@@ -983,7 +983,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* DeFi TVL trend */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><Activity className="w-4 h-4 text-emerald-400" />Total DeFi TVL — 12 Months ($B)</h3>
             <LineChartSVG data={defiTVLSeries} color="#10b981" fill height={100} />
             <div className="flex gap-6 text-xs text-muted-foreground">
@@ -993,7 +993,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Risk framework */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><Shield className="w-4 h-4 text-red-400" />DeFi Risk Framework</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
@@ -1001,7 +1001,7 @@ export default function CryptoPortfolioPage() {
                 { title: "Liquidity Risk", icon: "💧", items: ["Low TVL = price impact", "Protocol insolvency", "Liquidity provider exit", "Market depth issues"], color: "border-orange-500/30 bg-orange-500/5" },
                 { title: "Impermanent Loss", icon: "📉", items: ["Price divergence loss", "Magnified in volatile pairs", "Offset by trading fees", "Calculate before entering LP"], color: "border-yellow-500/30 bg-yellow-500/5" },
               ].map(r => (
-                <div key={r.title} className={cn("rounded-xl border p-3 space-y-2", r.color)}>
+                <div key={r.title} className={cn("rounded-md border p-3 space-y-2", r.color)}>
                   <div className="font-medium text-sm">{r.icon} {r.title}</div>
                   <ul className="space-y-1">
                     {r.items.map(item => (
@@ -1026,7 +1026,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* BTC Drawdown Analysis */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><TrendingDown className="w-4 h-4 text-red-400" />BTC Historical Drawdowns — Bubble Size = Severity</h3>
             <DrawdownBubbleChart />
             <div className="grid grid-cols-3 gap-2 text-xs">
@@ -1046,7 +1046,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Cross-asset correlation */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><Layers className="w-4 h-4 text-primary" />Crypto vs Traditional Assets — Different Regimes</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border-collapse">
@@ -1082,7 +1082,7 @@ export default function CryptoPortfolioPage() {
 
           {/* Position sizing + Stop loss */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><DollarSign className="w-4 h-4 text-yellow-400" />Kelly Criterion — Crypto Position Sizing</h3>
               <div className="space-y-3 text-sm">
                 <div className="grid grid-cols-2 gap-2 text-xs">
@@ -1107,7 +1107,7 @@ export default function CryptoPortfolioPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+            <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2"><Shield className="w-4 h-4 text-primary" />Stop Loss Strategy — High Volatility Assets</h3>
               <div className="space-y-2.5 text-xs">
                 {[
@@ -1130,7 +1130,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Black Swan scenarios */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><AlertTriangle className="w-4 h-4 text-orange-400" />Black Swan Scenarios — Portfolio Impact</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {[
@@ -1143,7 +1143,7 @@ export default function CryptoPortfolioPage() {
               ].map(sc => {
                 const portfolioImpact = (portfolioData.totalValue * sc.impact) / 100;
                 return (
-                  <div key={sc.event} className={cn("rounded-xl border p-3 space-y-2", sc.color)}>
+                  <div key={sc.event} className={cn("rounded-md border p-3 space-y-2", sc.color)}>
                     <div className="flex justify-between items-start">
                       <div className="font-medium text-sm leading-tight">{sc.event}</div>
                       <span className="text-xs text-muted-foreground shrink-0 ml-2">{sc.year}</span>
@@ -1170,7 +1170,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Cost basis tracker */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-4">
             <h3 className="font-medium text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Cost Basis Methods — Tax Comparison</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
@@ -1178,7 +1178,7 @@ export default function CryptoPortfolioPage() {
                 { method: "HIFO", icon: "📉", gains: portfolioData.hifoTotal, tax: portfolioData.hifoTotal * 0.28, desc: "Highest Cost First. Minimizes current-year taxable gains. Must track each lot individually. Allowed by IRS via Specific ID.", badge: "Tax Optimal" },
                 { method: "Specific ID", icon: "🎯", gains: portfolioData.specificTotal, tax: portfolioData.specificTotal * 0.28, desc: "Choose exactly which lot to sell. Maximum control. Good for harvesting losses or qualifying for LTCG rates.", badge: "Most Flexible" },
               ].map(m => (
-                <div key={m.method} className="rounded-xl border border-border/50 bg-foreground/5 p-4 space-y-3">
+                <div key={m.method} className="rounded-md border border-border/50 bg-foreground/5 p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-lg">{m.icon}</span>
                     <span className="text-xs px-2 py-0.5 rounded-full bg-primary/40 text-primary">{m.badge}</span>
@@ -1196,7 +1196,7 @@ export default function CryptoPortfolioPage() {
 
           {/* Wash sale + LTCG */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-3">
+            <div className="rounded-md border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2 text-emerald-400"><Info className="w-4 h-4" />Wash Sale Rules — Crypto Opportunity</h3>
               <div className="space-y-2 text-sm">
                 <div className="rounded-lg bg-emerald-500/10 border border-emerald-500/20 p-3">
@@ -1228,7 +1228,7 @@ export default function CryptoPortfolioPage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-border bg-primary/5 p-4 space-y-3">
+            <div className="rounded-md border border-border bg-primary/5 p-4 space-y-3">
               <h3 className="font-medium text-sm flex items-center gap-2 text-primary"><Shield className="w-4 h-4" />Long vs Short Term Capital Gains</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs border-collapse">
@@ -1263,7 +1263,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* DeFi Tax complexity */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><AlertTriangle className="w-4 h-4 text-yellow-400" />DeFi Tax Complexity — Each Action is a Taxable Event</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {[
@@ -1298,7 +1298,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Form 8949 Preview */}
-          <div className="rounded-xl border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
+          <div className="rounded-md border border-border/50 bg-foreground/[0.04] p-4 space-y-3">
             <h3 className="font-medium text-sm flex items-center gap-2"><FileText className="w-4 h-4 text-primary" />Form 8949 Preview — Simplified Gain/Loss Report</h3>
             <p className="text-xs text-muted-foreground mb-2">Simplified illustration. Consult a tax professional or crypto tax software (Koinly, TaxBit, CoinTracker) for actual filing.</p>
             <div className="overflow-x-auto">
@@ -1354,7 +1354,7 @@ export default function CryptoPortfolioPage() {
           </div>
 
           {/* Mining / Staking income */}
-          <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/5 p-4 space-y-3">
+          <div className="rounded-md border border-yellow-500/30 bg-yellow-500/5 p-4 space-y-3">
             <h3 className="font-medium text-sm text-yellow-400 flex items-center gap-2"><Zap className="w-4 h-4" />Mining & Staking Income — Taxed as Ordinary Income</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div className="space-y-2">

@@ -330,7 +330,7 @@ function SpinoffMechanicsTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-semibold text-foreground mb-1">Corporate Restructuring Methods</h2>
         <p className="text-sm text-foreground/50">
           Companies separate business units through three primary mechanisms, each with distinct tax, legal, and financial implications.
@@ -342,7 +342,7 @@ function SpinoffMechanicsTab() {
         {txTypes.map((tx) => (
           <div
             key={tx.id}
-            className={cn("rounded-xl border bg-foreground/5 overflow-hidden", tx.borderColor)}
+            className={cn("rounded-md border bg-foreground/5 overflow-hidden", tx.borderColor)}
           >
             <button
               className="w-full flex items-center justify-between px-5 py-4 text-left"
@@ -424,7 +424,7 @@ function SpinoffMechanicsTab() {
       </div>
 
       {/* Section 355 Requirements */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-medium text-foreground mb-1 flex items-center gap-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           IRC Section 355 — Tax-Free Spinoff Requirements
@@ -446,7 +446,7 @@ function SpinoffMechanicsTab() {
       </div>
 
       {/* Why Companies Spin Off */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Why Companies Spin Off Units</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {spinoffReasons.map((r, i) => (
@@ -560,7 +560,7 @@ function ShareholderDistributionSVG() {
     { label: "When-Issued", sub: "Trading Begins", x: 430 },
   ];
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-5">
+    <div className="rounded-md border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
         <Info className="w-4 h-4 text-primary" />
         Shareholder Distribution Timeline
@@ -614,7 +614,7 @@ function SOTPTab() {
 
   return (
     <div className="space-y-5">
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-1">Sum-of-Parts (SOTP) Calculator</h2>
         <p className="text-sm text-foreground/50">
           Value each business unit independently using EV/EBITDA multiples. Compare to conglomerate market cap.
@@ -628,7 +628,7 @@ function SOTPTab() {
           const ev = ebitda * seg.evMultiple;
           const revShare = (seg.revenue / totalRev) * 100;
           return (
-            <div key={i} className="rounded-xl border border-border bg-foreground/5 p-4 space-y-3">
+            <div key={i} className="rounded-md border border-border bg-foreground/5 p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: colors[i] }} />
@@ -690,7 +690,7 @@ function SOTPTab() {
       </div>
 
       {/* Corp Adjustments */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <h3 className="text-xs font-medium text-foreground/60 uppercase tracking-wide mb-3">Corporate Adjustments</h3>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -775,7 +775,7 @@ function SOTPSummaryChart({
   const labelW = 130;
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-5">
+    <div className="rounded-md border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-medium text-foreground mb-3">Segment EV Breakdown</h3>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
         {sotp.map((seg, i) => {
@@ -833,7 +833,7 @@ function HoldingCoDiscountSVG({ totalSotpEV, conglomerateDiscountEV, netDebt, so
   const mktW = Math.max(20, (marketCapAssumed / sotpEquity) * navW) | 0;
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-5">
+    <div className="rounded-md border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-medium text-foreground mb-1">NAV vs Market Cap — Holding Company Analysis</h3>
       <p className="text-xs text-foreground/40 mb-3">Conglomerates typically trade at 10–20% discount to intrinsic NAV.</p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
@@ -883,29 +883,29 @@ function HistoricalPerformanceTab() {
 
   return (
     <div className="space-y-5">
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-1">Famous Spinoff Performance</h2>
         <p className="text-sm text-foreground/50">1-year and 3-year returns post-spinoff vs S&P 500. Data reflects historical records.</p>
       </div>
 
       {/* Summary chips */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-center">
+        <div className="rounded-md border border-emerald-500/30 bg-emerald-500/10 p-4 text-center">
           <div className="text-xs text-emerald-400 mb-1">Avg SpinCo 1Y Return</div>
           <div className="text-2xl font-bold text-emerald-400">+{avgSpinoff1Y.toFixed(1)}%</div>
         </div>
-        <div className="rounded-xl border border-border bg-primary/10 p-4 text-center">
+        <div className="rounded-md border border-border bg-primary/10 p-4 text-center">
           <div className="text-xs text-primary mb-1">Avg Parent 1Y Return</div>
           <div className="text-2xl font-bold text-primary">+{avgParent1Y.toFixed(1)}%</div>
         </div>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 text-center">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 text-center">
           <div className="text-xs text-foreground/40 mb-1">Avg S&P 500 1Y</div>
           <div className="text-2xl font-bold text-foreground">+{avgSP1Y.toFixed(1)}%</div>
         </div>
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -993,7 +993,7 @@ function PerformanceScatter({ data }: { data: SpinoffRecord[] }) {
   const ticks = [-30, -10, 10, 30, 50, 70, 90, 120, 150];
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-5">
+    <div className="rounded-md border border-border bg-foreground/5 p-5">
       <h3 className="text-sm font-medium text-foreground mb-1">Parent vs SpinCo 1Y Returns (Scatter)</h3>
       <p className="text-xs text-foreground/40 mb-3">Points above diagonal = SpinCo outperformed parent.</p>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
@@ -1098,7 +1098,7 @@ function InvestingStrategyTab() {
 
   return (
     <div className="space-y-5">
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h2 className="text-lg font-medium text-foreground mb-1">Spinoff Investing Strategy</h2>
         <p className="text-sm text-foreground/50">Spinoffs have historically outperformed broad market indices. Here is why and how to capitalize.</p>
       </div>
@@ -1107,7 +1107,7 @@ function InvestingStrategyTab() {
       <SpinoffIndexChart data={chartData} outperformance={outperformance} />
 
       {/* Why Outperform */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Why Spinoffs Outperform</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {whyOutperform.map((item, i) => (
@@ -1123,7 +1123,7 @@ function InvestingStrategyTab() {
       </div>
 
       {/* Timing Strategies */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">When to Buy</h3>
         <div className="space-y-3">
           {timingStrategies.map((strat, i) => {
@@ -1172,7 +1172,7 @@ function InvestingStrategyTab() {
       </div>
 
       {/* Risks */}
-      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-5">
+      <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-5">
         <h3 className="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">
           <AlertTriangle className="w-4 h-4" />
           Key Spinoff Investment Risks
@@ -1221,7 +1221,7 @@ function SpinoffIndexChart({ data, outperformance }: { data: ChartPoint[]; outpe
   const yTicks = [100, 150, 200, 250, 300, 350];
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-5">
+    <div className="rounded-md border border-border bg-foreground/5 p-5">
       <div className="flex items-start justify-between mb-3">
         <div>
           <h3 className="text-sm font-medium text-foreground">Spinoff Index vs S&P 500 (10 Years)</h3>
@@ -1281,7 +1281,7 @@ export default function SpinoffsPage() {
         {/* Header */}
         <div className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+            <div className="w-9 h-9 rounded-md bg-primary/20 border border-border flex items-center justify-center">
               <Scissors className="w-5 h-5 text-primary" />
             </div>
             <div>
@@ -1293,7 +1293,7 @@ export default function SpinoffsPage() {
 
         {/* Tabs */}
         <Tabs defaultValue="mechanics" className="mt-8 space-y-5">
-          <TabsList className="bg-foreground/5 border border-border p-1 rounded-xl h-auto flex flex-wrap gap-1">
+          <TabsList className="bg-foreground/5 border border-border p-1 rounded-md h-auto flex flex-wrap gap-1">
             <TabsTrigger value="mechanics" className="rounded-lg text-xs px-4 py-2 data-[state=active]:bg-foreground/10 data-[state=active]:text-foreground text-foreground/50">
               Spinoff Mechanics
             </TabsTrigger>

@@ -1384,7 +1384,7 @@ export default function YieldCurvePage() {
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
           onClick={() => setShowInfo(null)}
         >
-          <div className="bg-card border border-border rounded-xl p-4 max-w-sm mx-4">
+          <div className="bg-card border border-border rounded-md p-4 max-w-sm mx-4">
             <p className="text-sm text-muted-foreground">{showInfo}</p>
           </div>
         </div>

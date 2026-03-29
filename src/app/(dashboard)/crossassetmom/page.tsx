@@ -1002,7 +1002,7 @@ export default function CrossAssetMomPage() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35 }}
-        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
+        className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
           <div className="p-2 rounded-lg bg-indigo-900/40 border border-indigo-700/40">

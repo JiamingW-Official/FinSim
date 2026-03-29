@@ -210,7 +210,7 @@ function QuotingTab() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-card border border-border border-l-4 border-l-primary rounded-xl p-6">
+      <div className="bg-card border border-border border-l-4 border-l-primary rounded-md p-6">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
             <ArrowUpDown className="text-primary" size={16} />
@@ -224,7 +224,7 @@ function QuotingTab() {
       </div>
 
       {/* Spread Components */}
-      <div className="mt-8 bg-card border border-border rounded-xl p-5">
+      <div className="mt-8 bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-semibold text-foreground mb-4">Spread Component Waterfall</h3>
         <div className="space-y-3">
           {spreadComponents.map((c, i) => (
@@ -255,7 +255,7 @@ function QuotingTab() {
       </div>
 
       {/* Live Chain SVG */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-medium text-foreground">Live Options Chain — SPY (Spot: ${spot})</h3>
           <div className="flex items-center gap-2">
@@ -397,7 +397,7 @@ function QuotingTab() {
 
       {/* Spread Determinants */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4">Spread Determinants</h3>
           <div className="space-y-2">
             {determinants.map((d) => (
@@ -418,7 +418,7 @@ function QuotingTab() {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4">Minimum Tick Sizes (US Options)</h3>
           <table className="w-full text-xs">
             <thead>
@@ -446,7 +446,7 @@ function QuotingTab() {
       </div>
 
       {/* Quote Stuffing Protection */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="text-primary" size={16} />
           <h3 className="text-sm font-medium text-foreground">Quote Stuffing Protection & Market Rules</h3>
@@ -573,7 +573,7 @@ function InventoryTab() {
   return (
     <div className="space-y-6">
       {/* Greeks Dashboard */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Greeks Inventory Dashboard</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
           {[
@@ -582,7 +582,7 @@ function InventoryTab() {
             { label: "Net Vega", value: fmt2(last.vega), unit: "ν", color: "text-primary", bgColor: "bg-primary/10 border-border" },
             { label: "Net Theta", value: fmt2(last.theta), unit: "Θ", color: "text-emerald-400", bgColor: "bg-emerald-500/10 border-emerald-800" },
           ].map((g) => (
-            <div key={g.label} className={cn("rounded-xl border p-3", g.bgColor)}>
+            <div key={g.label} className={cn("rounded-md border p-3", g.bgColor)}>
               <div className="text-xs text-muted-foreground mb-1">{g.label}</div>
               <div className={cn("text-xl font-bold font-mono", g.color)}>
                 {g.value}
@@ -651,7 +651,7 @@ function InventoryTab() {
 
       {/* Dynamic Hedging */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <RefreshCw className="text-primary" size={15} />
             <h3 className="text-sm font-medium text-foreground">Dynamic Hedging Frequency</h3>
@@ -678,7 +678,7 @@ function InventoryTab() {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <Lock className="text-rose-400" size={15} />
             <h3 className="text-sm font-medium text-foreground">Position &amp; Risk Limits</h3>
@@ -702,7 +702,7 @@ function InventoryTab() {
       </div>
 
       {/* Correlation Heatmap */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Cross-Asset Correlation Heatmap</h3>
         <p className="text-xs text-muted-foreground mb-4">
           MMs with positions across multiple underlyings can use correlation to net exposures. High correlation between
@@ -759,7 +759,7 @@ function InventoryTab() {
       </div>
 
       {/* Pin Risk */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-3">
           <Target className="text-amber-400" size={15} />
           <h3 className="text-sm font-medium text-foreground">Pin Risk Management Near Expiry</h3>
@@ -912,7 +912,7 @@ function AdverseSelectionTab() {
   return (
     <div className="space-y-6">
       {/* VPIN Section */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-lg bg-rose-500/20 flex items-center justify-center">
             <Gauge className="text-rose-400" size={16} />
@@ -984,7 +984,7 @@ function AdverseSelectionTab() {
       </div>
 
       {/* Order Flow Intelligence */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Options Order Flow Intelligence</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
@@ -1012,7 +1012,7 @@ function AdverseSelectionTab() {
 
       {/* Block Trades */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <Layers className="text-primary" size={15} />
             <h3 className="text-sm font-medium text-foreground">Block Trade Mechanics</h3>
@@ -1041,7 +1041,7 @@ function AdverseSelectionTab() {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <div className="flex items-center gap-2 mb-3">
             <Eye className="text-primary" size={15} />
             <h3 className="text-sm font-medium text-foreground">Dark Pool Interplay</h3>
@@ -1069,14 +1069,14 @@ function AdverseSelectionTab() {
       </div>
 
       {/* Information Asymmetry */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-4">
           <AlertTriangle className="text-amber-400" size={15} />
           <h3 className="text-sm font-medium text-foreground">Information Asymmetry Examples</h3>
         </div>
         <div className="space-y-3">
           {informationExamples.map((ex) => (
-            <div key={ex.scenario} className="p-4 bg-muted/50 rounded-xl border border-border/50">
+            <div key={ex.scenario} className="p-4 bg-muted/50 rounded-md border border-border/50">
               <div className="text-sm font-medium text-foreground mb-2">{ex.scenario}</div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 <div>
@@ -1098,7 +1098,7 @@ function AdverseSelectionTab() {
       </div>
 
       {/* Trading Halts */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-3">
           <Clock className="text-rose-400" size={15} />
           <h3 className="text-sm font-medium text-foreground">Trading Halt Triggers</h3>
@@ -1189,14 +1189,14 @@ function EconomicsTab() {
   return (
     <div className="space-y-6">
       {/* Profitability Model */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center">
             <DollarSign className="text-emerald-400" size={16} />
           </div>
           <h3 className="text-sm font-medium text-foreground">MM Profitability Model</h3>
         </div>
-        <div className="p-4 bg-muted/50 rounded-xl font-mono text-xs mb-5">
+        <div className="p-4 bg-muted/50 rounded-md font-mono text-xs mb-5">
           <div className="text-muted-foreground mb-2">// Annual P&amp;L formula</div>
           <div className="text-emerald-400">Net P&amp;L =</div>
           <div className="text-muted-foreground ml-4">+ Spread Income (bid-ask × volume)</div>
@@ -1253,7 +1253,7 @@ function EconomicsTab() {
       </div>
 
       {/* Market Share */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Options MM Market Share (US)</h3>
         <div className="space-y-3">
           {marketPlayers.map((p) => (
@@ -1276,7 +1276,7 @@ function EconomicsTab() {
 
       {/* PFOF vs Maker-Taker */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-3">Payment for Order Flow (PFOF)</h3>
           <p className="text-xs text-muted-foreground mb-4 leading-relaxed">
             MMs pay brokers for retail order flow because retail is typically uninformed (low VPIN). This &quot;payment&quot;
@@ -1304,7 +1304,7 @@ function EconomicsTab() {
           </table>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-5">
+        <div className="bg-card border border-border rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-3">Maker-Taker vs PFOF Comparison</h3>
           <div className="space-y-3 text-xs">
             {[
@@ -1347,7 +1347,7 @@ function EconomicsTab() {
       </div>
 
       {/* Latency Arms Race SVG */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="text-amber-400" size={15} />
           <h3 className="text-sm font-medium text-foreground">Latency Arms Race</h3>
@@ -1394,7 +1394,7 @@ function EconomicsTab() {
       </div>
 
       {/* 2020 Vol Spike Case Study */}
-      <div className="bg-card border border-border rounded-xl p-5">
+      <div className="bg-card border border-border rounded-md p-5">
         <div className="flex items-center gap-2 mb-4">
           <AlertTriangle className="text-rose-400" size={15} />
           <h3 className="text-sm font-medium text-foreground">Case Study: March 2020 Vol Spike</h3>
@@ -1481,7 +1481,7 @@ export default function OptionsMmPage() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-md bg-primary/20 flex items-center justify-center">
               <Activity className="text-primary" size={20} />
             </div>
             <div>

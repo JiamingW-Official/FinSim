@@ -69,7 +69,7 @@ function StatCard({
       ? "text-amber-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <div className="flex items-center gap-1.5">
         {icon && <span className="text-muted-foreground">{icon}</span>}
         <span className="text-xs text-muted-foreground">{label}</span>
@@ -151,7 +151,7 @@ function WalletHierarchySVG() {
   const barSpacing = 40;
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Layers size={14} /> Hot / Warm / Cold Wallet Hierarchy
       </SectionTitle>
@@ -241,7 +241,7 @@ function TransactionApprovalSVG() {
   const startX = 20;
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <Activity size={14} /> Transaction Approval Workflow
       </SectionTitle>
@@ -380,7 +380,7 @@ function Tab1CustodyArchitecture() {
       <WalletHierarchySVG />
 
       {/* Key Management Methods */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Key size={14} /> Key Management Methods
         </SectionTitle>
@@ -429,7 +429,7 @@ function Tab1CustodyArchitecture() {
       </div>
 
       {/* MPC vs Multi-sig comparison */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <GitBranch size={14} /> MPC vs Multi-Sig Comparison
         </SectionTitle>
@@ -480,7 +480,7 @@ function Tab1CustodyArchitecture() {
       <TransactionApprovalSVG />
 
       {/* Air-Gap Security */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <EyeOff size={14} /> Air-Gap Security Measures
         </SectionTitle>
@@ -495,7 +495,7 @@ function Tab1CustodyArchitecture() {
       </div>
 
       {/* Key Derivation */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Key size={14} /> Address Generation & Key Derivation (BIP32/44/39)
         </SectionTitle>
@@ -627,7 +627,7 @@ function Tab2InstitutionalSolutions() {
       </div>
 
       {/* Custodians table */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Building2 size={14} /> Major Institutional Custodians
         </SectionTitle>
@@ -689,7 +689,7 @@ function Tab2InstitutionalSolutions() {
       </div>
 
       {/* Segregated vs Omnibus */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Layers size={14} /> Segregated vs Omnibus Account Structures
         </SectionTitle>
@@ -737,7 +737,7 @@ function Tab2InstitutionalSolutions() {
 
       {/* Staking from Custody + DeFi Integration */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Zap size={14} /> Staking from Custody
           </SectionTitle>
@@ -759,7 +759,7 @@ function Tab2InstitutionalSolutions() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Globe size={14} /> DeFi Integration via Custody
           </SectionTitle>
@@ -781,7 +781,7 @@ function Tab2InstitutionalSolutions() {
       </div>
 
       {/* Prime Brokerage */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Activity size={14} /> Prime Brokerage Services for Crypto
         </SectionTitle>
@@ -905,7 +905,7 @@ function Tab3RegulatoryFramework() {
       </div>
 
       {/* Regulatory Timeline */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Clock size={14} /> US Regulatory Evolution Timeline
         </SectionTitle>
@@ -964,7 +964,7 @@ function Tab3RegulatoryFramework() {
       </div>
 
       {/* State-by-State */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe size={14} /> State-by-State Regulatory Landscape
         </SectionTitle>
@@ -994,7 +994,7 @@ function Tab3RegulatoryFramework() {
       </div>
 
       {/* EU MiCA */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Globe size={14} /> EU MiCA — Crypto Asset Service Provider (CASP) Authorization
         </SectionTitle>
@@ -1083,7 +1083,7 @@ function HacksTimelineSVG() {
   const totalLoss = HACK_EVENTS.reduce((acc, e) => acc + e.loss, 0);
 
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <SectionTitle>
         <TrendingDown size={14} /> Historical Exchange & Protocol Hacks (2014–2024)
       </SectionTitle>
@@ -1196,7 +1196,7 @@ function Tab4SecurityInsurance() {
       <HacksTimelineSVG />
 
       {/* Insurance Coverage Types */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Shield size={14} /> Insurance Market for Crypto Custody
         </SectionTitle>
@@ -1220,7 +1220,7 @@ function Tab4SecurityInsurance() {
       </div>
 
       {/* SOC 2 Type II */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <FileText size={14} /> SOC 2 Type II Audits — Trust Service Criteria
         </SectionTitle>
@@ -1243,7 +1243,7 @@ function Tab4SecurityInsurance() {
 
       {/* Penetration Testing + BCP/DR */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Cpu size={14} /> Penetration Testing Requirements
           </SectionTitle>
@@ -1266,7 +1266,7 @@ function Tab4SecurityInsurance() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <RefreshCw size={14} /> Business Continuity & Disaster Recovery
           </SectionTitle>
@@ -1312,7 +1312,7 @@ export default function DigitalCustodyPage() {
         className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="p-2 rounded-xl bg-indigo-500/20 border border-indigo-500/30">
+          <div className="p-2 rounded-md bg-indigo-500/20 border border-indigo-500/30">
             <Lock size={20} className="text-indigo-400" />
           </div>
           <div>

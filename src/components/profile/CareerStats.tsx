@@ -60,7 +60,7 @@ export function CareerStats() {
       {CARDS.map((card) => (
         <div
           key={card.label}
-          className="card-hover-glow rounded-xl border border-border bg-card/50 p-3"
+          className="card-hover-glow rounded-md border border-border bg-card/50 p-3"
         >
           <div className="mb-1 flex items-center gap-1 text-xs font-medium text-muted-foreground">
             {card.icon}

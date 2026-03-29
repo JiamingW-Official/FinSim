@@ -541,9 +541,9 @@ export default function QuantResearchPage() {
 
         {/* ── Tab 1: Alpha Signal Library ── */}
         <TabsContent value="signals" className="data-[state=inactive]:hidden mt-4 space-y-4">
-          <Card className="bg-card/60 border-border">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base flex items-center gap-2">
+          <Card className="bg-card/60 border-border border-l-4 border-l-primary">
+            <CardHeader className="pb-2 p-6">
+              <CardTitle className="text-lg flex items-center gap-2">
                 <BarChart2 className="h-4 w-4 text-primary" />
                 Alpha Signal Library
               </CardTitle>

@@ -229,7 +229,7 @@ function LoanStructureTab() {
       </div>
 
       {/* Definition */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <div className="flex items-center gap-2 mb-3">
           <Info className="w-4 h-4 text-primary" />
           <span className="text-sm font-semibold text-foreground">What is a Leveraged Loan?</span>
@@ -244,7 +244,7 @@ function LoanStructureTab() {
       </div>
 
       {/* Term Loan types table */}
-      <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+      <div className="rounded-md border border-border bg-card/50 overflow-hidden">
         <div className="px-5 py-3 border-b border-border">
           <h3 className="text-sm font-semibold text-foreground">Facility Type Comparison</h3>
         </div>
@@ -278,7 +278,7 @@ function LoanStructureTab() {
       </div>
 
       {/* Capital structure SVG */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Typical LBO Capital Structure</h3>
         <svg viewBox="0 0 480 220" className="w-full max-w-lg mx-auto">
           {/* First lien */}
@@ -311,7 +311,7 @@ function LoanStructureTab() {
       </div>
 
       {/* LIBOR to SOFR transition */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">LIBOR → SOFR Transition Timeline</h3>
         <div className="relative">
           <div className="absolute top-4 left-0 right-0 h-0.5 bg-muted" />
@@ -344,7 +344,7 @@ function LoanStructureTab() {
 
       {/* Covenant types */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-amber-800/50 bg-amber-900/10 p-4">
+        <div className="rounded-md border border-amber-800/50 bg-amber-900/10 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Shield className="w-4 h-4 text-amber-400" />
             <span className="text-sm font-medium text-amber-300">Maintenance Covenants</span>
@@ -357,7 +357,7 @@ function LoanStructureTab() {
             <li>• Equity cure right: sponsor can inject equity to cure breach</li>
           </ul>
         </div>
-        <div className="rounded-xl border border-border bg-muted/30 p-4">
+        <div className="rounded-md border border-border bg-muted/30 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Activity className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">Incurrence Covenants (Cov-Lite)</span>
@@ -373,7 +373,7 @@ function LoanStructureTab() {
       </div>
 
       {/* Key doc terms */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Key Documentation Terms</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
@@ -443,7 +443,7 @@ function SyndicationTab() {
       </div>
 
       {/* Role SVG */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Key Participants & Roles</h3>
         <svg viewBox="0 0 500 130" className="w-full">
           {/* Boxes */}
@@ -480,7 +480,7 @@ function SyndicationTab() {
       </div>
 
       {/* Syndication timeline */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Syndication Timeline</h3>
         <div className="space-y-2">
           {[
@@ -508,7 +508,7 @@ function SyndicationTab() {
       </div>
 
       {/* Flex mechanics */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Flex Language Mechanics</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
@@ -528,7 +528,7 @@ function SyndicationTab() {
       </div>
 
       {/* Investor pie chart */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Investor Base Composition</h3>
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <svg viewBox="0 0 160 160" className="w-40 h-40 flex-shrink-0">
@@ -600,7 +600,7 @@ function CLOStructureTab() {
       </div>
 
       {/* CLO anatomy SVG */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">CLO Anatomy</h3>
         <svg viewBox="0 0 500 240" className="w-full">
           {/* Asset side */}
@@ -638,7 +638,7 @@ function CLOStructureTab() {
       </div>
 
       {/* Tranche stack detail */}
-      <div className="rounded-xl border border-border bg-card/50 overflow-hidden">
+      <div className="rounded-md border border-border bg-card/50 overflow-hidden">
         <div className="px-5 py-3 border-b border-border">
           <h3 className="text-sm font-medium text-foreground">Tranche Stack Detail</h3>
         </div>
@@ -673,7 +673,7 @@ function CLOStructureTab() {
 
       {/* OC / IC tests */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-muted/30 p-4">
+        <div className="rounded-md border border-border bg-muted/30 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Shield className="w-4 h-4 text-primary" />
             <span className="text-sm font-medium text-primary">OC (Overcollateralization) Test</span>
@@ -682,7 +682,7 @@ function CLOStructureTab() {
           <p className="text-xs text-muted-foreground mb-2">Example Class A OC: $500M assets / $310M Class A = 161% (min. trigger ~120%)</p>
           <p className="text-xs text-muted-foreground">Breach: cash diverted from equity to pay down notes sequentially until test cured. Effectively de-levers the CLO structure.</p>
         </div>
-        <div className="rounded-xl border border-green-800/50 bg-green-900/10 p-4">
+        <div className="rounded-md border border-green-800/50 bg-green-900/10 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Percent className="w-4 h-4 text-green-400" />
             <span className="text-sm font-medium text-green-300">IC (Interest Coverage) Test</span>
@@ -694,7 +694,7 @@ function CLOStructureTab() {
       </div>
 
       {/* CLO evolution */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">CLO Generation Evolution</h3>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
@@ -816,7 +816,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Market size evolution */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">US Leveraged Loan Market Size ($T)</h3>
         <p className="text-xs text-muted-foreground mb-3">Outstanding volume 2000–2024</p>
         <svg viewBox={`0 0 ${marketW} ${marketH}`} className="w-full">
@@ -847,7 +847,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Cov-lite trend */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Cov-Lite Percentage of New Issuance</h3>
         <p className="text-xs text-muted-foreground mb-3">Rise of covenant-lite: 2012–2024</p>
         <svg viewBox={`0 0 ${clW} ${clH}`} className="w-full">
@@ -874,7 +874,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Default rate chart */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Leveraged Loan Default Rate (%)</h3>
         <p className="text-xs text-muted-foreground mb-3">1998–2024 with recession peaks</p>
         <svg viewBox={`0 0 ${drW} ${drH}`} className="w-full">
@@ -909,7 +909,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Recovery rate bar chart */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Recovery Rate by Lien Priority (historical avg.)</h3>
         <div className="space-y-3">
           {recoveryData.map((bar, i) => (
@@ -934,7 +934,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Loan vs HY spread */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-1">Leveraged Loan vs HY Bond Spread (bps)</h3>
         <p className="text-xs text-muted-foreground mb-3">Relative value comparison 2018–2024</p>
         <svg viewBox={`0 0 ${spW} ${spH}`} className="w-full">
@@ -958,7 +958,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Technical bid drivers */}
-      <div className="rounded-xl border border-border bg-card/50 p-5">
+      <div className="rounded-md border border-border bg-card/50 p-5">
         <h3 className="text-sm font-medium text-foreground mb-3">Technical Bid Drivers & Market Indicators</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
@@ -999,7 +999,7 @@ function MarketDynamicsTab() {
       </div>
 
       {/* Key risk factors */}
-      <div className="rounded-xl border border-red-900/40 bg-red-950/10 p-5">
+      <div className="rounded-md border border-red-900/40 bg-red-950/10 p-5">
         <div className="flex items-center gap-2 mb-3">
           <AlertTriangle className="w-4 h-4 text-red-400" />
           <h3 className="text-sm font-medium text-red-300">Key Credit Risk Factors</h3>
@@ -1068,7 +1068,7 @@ export default function LeveragedLoansPage() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">Leveraged Loan &amp; CLO Analytics</h2>
           <p className="text-sm text-muted-foreground">Loan structure, syndication mechanics, CLO waterfall analysis, and credit market dynamics.</p>
         </div>

@@ -547,9 +547,9 @@ export default function CurrencyMarketsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* HERO Header */}
-      <div className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-md bg-primary/20 flex items-center justify-center">
             <Globe className="w-5 h-5 text-primary" />
           </div>
           <div>

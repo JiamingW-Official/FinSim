@@ -276,7 +276,7 @@ function Tab101() {
       {sections.map((sec) => (
         <motion.div
           key={sec.id}
-          className="bg-card border border-border rounded-xl overflow-hidden"
+          className="bg-card border border-border rounded-md overflow-hidden"
           layout
         >
           <button
@@ -366,7 +366,7 @@ function TabSpread() {
     <div className="space-y-4">
       {/* Controls */}
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+        <div className="bg-card border border-border rounded-md p-4 space-y-3">
           <div className="text-xs font-medium text-muted-foreground">Market Parameters</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
@@ -426,7 +426,7 @@ function TabSpread() {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+        <div className="bg-card border border-border rounded-md p-4 space-y-3">
           <div className="text-xs font-medium text-muted-foreground">Optimal Quotes</div>
           <div className="space-y-2">
             {[
@@ -477,7 +477,7 @@ function TabSpread() {
       </div>
 
       {/* Info panel */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Key Insight</div>
         <div className="grid grid-cols-3 gap-3 text-xs text-muted-foreground">
           <div className="bg-muted rounded p-3">
@@ -580,7 +580,7 @@ function TabInventory() {
             color: "text-amber-400",
           },
         ].map((m) => (
-          <div key={m.label} className="bg-card border border-border rounded-xl p-3">
+          <div key={m.label} className="bg-card border border-border rounded-md p-3">
             <div className="text-muted-foreground text-xs">{m.label}</div>
             <div className={cn("font-mono font-medium text-lg", m.color)}>
               {typeof m.val === "number" ? m.val + m.suffix : m.val}
@@ -590,7 +590,7 @@ function TabInventory() {
       </div>
 
       {/* Inventory Chart */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Inventory Position</div>
         <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
           {/* Grid lines */}
@@ -636,7 +636,7 @@ function TabInventory() {
       </div>
 
       {/* P&L Chart */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Cumulative P&L</div>
         <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
           {[0, 0.5, 1].map((frac) => {
@@ -694,7 +694,7 @@ function TabInventory() {
       </div>
 
       {/* Quote skewing info */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Quote Skewing Logic</div>
         <div className="grid grid-cols-3 gap-3 text-xs">
           <div className="bg-muted rounded p-3">
@@ -774,7 +774,7 @@ function TabAMM() {
   return (
     <div className="space-y-4">
       {/* Comparison table */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">AMM vs CLOB Comparison</div>
         <div className="space-y-1">
           <div className="grid grid-cols-3 gap-2 text-xs font-medium text-muted-foreground pb-1 border-b border-border">
@@ -813,7 +813,7 @@ function TabAMM() {
 
       {/* IL Calculator */}
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+        <div className="bg-card border border-border rounded-md p-4 space-y-3">
           <div className="text-xs font-medium text-muted-foreground">Impermanent Loss Calculator</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
@@ -869,7 +869,7 @@ function TabAMM() {
         </div>
 
         {/* IL Curve SVG */}
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">IL Curve (x×y=k)</div>
           <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
             {[0, 0.1, 0.2, 0.3].map((v) => {
@@ -1006,7 +1006,7 @@ function TabHFT() {
     <div className="space-y-4">
       {/* Latency edge calculator */}
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-card border border-border rounded-xl p-4 space-y-3">
+        <div className="bg-card border border-border rounded-md p-4 space-y-3">
           <div className="text-xs font-medium text-muted-foreground">Latency Edge Calculator</div>
           <div>
             <div className="flex justify-between text-xs mb-1">
@@ -1049,7 +1049,7 @@ function TabHFT() {
           </div>
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-4">
+        <div className="bg-card border border-border rounded-md p-4">
           <div className="text-xs font-medium text-muted-foreground mb-3">Latency Comparison</div>
           <svg width="100%" height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
             {[
@@ -1080,7 +1080,7 @@ function TabHFT() {
       </div>
 
       {/* Order types */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">HFT Order Types</div>
         <div className="grid grid-cols-2 gap-3">
           {orderTypes.map((ot) => (
@@ -1096,7 +1096,7 @@ function TabHFT() {
       </div>
 
       {/* HFT vs Stat Arb */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Market Making vs Statistical Arbitrage</div>
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-muted rounded-lg p-3">
@@ -1123,7 +1123,7 @@ function TabHFT() {
       </div>
 
       {/* Regulatory landscape */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">Regulatory Landscape</div>
         <div className="space-y-2">
           {regulatoryRules.map((r) => (
@@ -1143,7 +1143,7 @@ function TabHFT() {
       </div>
 
       {/* Market impact */}
-      <div className="bg-card border border-border rounded-xl p-4">
+      <div className="bg-card border border-border rounded-md p-4">
         <div className="text-xs font-medium text-muted-foreground mb-3">HFT Market Impact: Debate</div>
         <div className="grid grid-cols-2 gap-3 text-xs">
           <div>
@@ -1222,7 +1222,7 @@ export default function MarketMakingPage() {
           </div>
 
           {/* Key metrics strip — Hero */}
-          <div className="grid grid-cols-5 gap-2 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <div className="grid grid-cols-5 gap-2 mt-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
             {[
               { label: "Citadel MM Volume", val: "~25%", sub: "US equities", color: "text-primary" },
               { label: "Typical Spread", val: "1–5 bps", sub: "liquid stocks", color: "text-amber-400" },

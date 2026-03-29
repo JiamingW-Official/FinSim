@@ -286,7 +286,7 @@ export function ReportCard() {
     <div className="space-y-4">
       {/* Row: Overall Grade + Performance Grade */}
       <div className="grid grid-cols-2 gap-2">
-        <div className={cn("flex items-center justify-between rounded-xl border p-3", GRADE_BG[overallGrade])}>
+        <div className={cn("flex items-center justify-between rounded-md border p-3", GRADE_BG[overallGrade])}>
           <div>
             <p className="text-xs font-bold text-muted-foreground">
               Overall Grade
@@ -300,7 +300,7 @@ export function ReportCard() {
           </span>
         </div>
 
-        <div className={cn("flex items-center justify-between rounded-xl border p-3", GRADE_BG[performanceGrade])}>
+        <div className={cn("flex items-center justify-between rounded-md border p-3", GRADE_BG[performanceGrade])}>
           <div>
             <p className="text-xs font-bold text-muted-foreground">
               Performance Grade
@@ -317,7 +317,7 @@ export function ReportCard() {
 
       {/* Trading DNA */}
       {tradingDNA.length > 0 && (
-        <div className="rounded-xl border border-border bg-card/50 p-3 space-y-2">
+        <div className="rounded-md border border-border bg-card/50 p-3 space-y-2">
           <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
             <Brain className="h-3.5 w-3.5 text-primary" />
             Trading DNA
@@ -340,7 +340,7 @@ export function ReportCard() {
         {metrics.map((m) => (
           <div
             key={m.label}
-            className="rounded-xl border border-border bg-card/50 p-3 space-y-2"
+            className="rounded-md border border-border bg-card/50 p-3 space-y-2"
           >
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-bold">{m.label}</span>
@@ -366,7 +366,7 @@ export function ReportCard() {
 
       {/* Improvement Areas */}
       {improvementAreas.length > 0 && (
-        <div className="rounded-xl border border-border bg-card/50 p-3 space-y-2">
+        <div className="rounded-md border border-border bg-card/50 p-3 space-y-2">
           <div className="flex items-center gap-1.5 text-xs font-bold text-muted-foreground">
             <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
             Improvement Areas

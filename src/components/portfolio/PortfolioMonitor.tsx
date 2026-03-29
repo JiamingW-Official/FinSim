@@ -369,7 +369,7 @@ function SectionCard({
   className?: string;
 }) {
   return (
-    <div className={cn("rounded-xl border border-border/40 bg-card p-4", className)}>
+    <div className={cn("rounded-md border border-border/40 bg-card p-4", className)}>
       <div className="mb-3 flex items-center gap-2">
         <span className="text-primary">{icon}</span>
         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -918,7 +918,7 @@ function TradeSuggestions({
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.06 }}
           className={cn(
-            "rounded-xl border p-3",
+            "rounded-md border p-3",
             t.priority === "tax-loss"
               ? "border-emerald-500/30 bg-emerald-500/10"
               : "border-border/40 bg-card"
@@ -1068,7 +1068,7 @@ function AlertsNotifications({ positions }: { positions: (Position & { weight: n
   return (
     <div className="space-y-2">
       {groups.map((g) => (
-        <div key={g.key} className="rounded-xl border border-border/40 overflow-hidden">
+        <div key={g.key} className="rounded-md border border-border/40 overflow-hidden">
           <button
             onClick={() => setExpanded(expanded === g.key ? null : g.key)}
             className="flex w-full items-center justify-between bg-card px-4 py-2.5 text-left hover:bg-muted/30 transition-colors"

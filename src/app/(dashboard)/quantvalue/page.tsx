@@ -356,8 +356,8 @@ function DeepValueScreen() {
       </div>
 
       {/* SVG Distribution */}
-      <div className="bg-card border border-border rounded-lg p-4">
-        <p className="text-xs text-muted-foreground mb-3">P/B Ratio Distribution</p>
+      <div className="bg-card border border-border border-l-4 border-l-primary rounded-lg p-6">
+        <p className="text-lg text-muted-foreground mb-3">P/B Ratio Distribution</p>
         <svg width="100%" height="80" viewBox="0 0 420 80" preserveAspectRatio="none">
           {bins.map((count, i) => {
             const barH = maxBin > 0 ? (count / maxBin) * 60 : 0;

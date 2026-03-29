@@ -205,7 +205,7 @@ function MultiAlertModal({ item, price, onClose }: MultiAlertModalProps) {
     <div className="border border-border/40 rounded-md bg-background p-3 space-y-3 mx-2 mb-1">
       <div className="flex items-center justify-between">
         <span className="text-xs font-medium text-foreground">Alerts — {item.ticker}</span>
-        <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
+        <button onClick={onClose} className="text-muted-foreground transition-colors hover:text-foreground">
           <X className="h-3.5 w-3.5" />
         </button>
       </div>
@@ -423,7 +423,7 @@ function WatchlistRow({
             type="button"
             onClick={() => onMoveUp(index)}
             disabled={index === 0}
-            className="p-0.5 text-muted-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
+            className="p-0.5 text-muted-foreground/60 transition-colors hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
             title="Move up"
           >
             <ChevronUp className="h-2.5 w-2.5" />
@@ -432,7 +432,7 @@ function WatchlistRow({
             type="button"
             onClick={() => onMoveDown(index)}
             disabled={index === total - 1}
-            className="p-0.5 text-muted-foreground/60 hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
+            className="p-0.5 text-muted-foreground/60 transition-colors hover:text-foreground disabled:opacity-20 disabled:cursor-not-allowed"
             title="Move down"
           >
             <ChevronDown className="h-2.5 w-2.5" />

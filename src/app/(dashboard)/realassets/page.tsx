@@ -535,9 +535,9 @@ function InfrastructureTab() {
       </div>
 
       {/* Yield Comparison Bar Chart */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-sm font-medium flex items-center gap-2">
+      <Card className="border-l-4 border-l-primary">
+        <CardHeader className="p-6">
+          <CardTitle className="text-lg font-medium flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             Yield vs Total Return by Infrastructure Sector
           </CardTitle>

@@ -467,7 +467,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="rounded-xl border border-border/50 bg-card p-6 text-center shadow-sm">
+              className="rounded-md border border-border/50 bg-card p-6 text-center shadow-sm">
               <X className="mx-auto mb-3 h-8 w-8 text-red-400" />
               <h3 className="text-sm font-bold text-foreground">Quit Match?</h3>
               <p className="mt-1 text-xs text-muted-foreground">Your progress will be lost.</p>

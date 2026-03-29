@@ -645,7 +645,7 @@ function CashLiquidityTab() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Layers className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-semibold">Cash Pooling Structures</h3>
@@ -671,7 +671,7 @@ function CashLiquidityTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <DollarSign className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Cash Investment Policy Spectrum</h3>
@@ -720,7 +720,7 @@ function CashLiquidityTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <RefreshCw className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Cash Conversion Cycle (CCC)</h3>
@@ -743,7 +743,7 @@ function CashLiquidityTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Activity className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Treasury Technology Stack</h3>
@@ -790,7 +790,7 @@ function FXRiskTab() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Globe className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Three Types of FX Exposure</h3>
@@ -841,7 +841,7 @@ function FXRiskTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Enterprise FX Exposure Dashboard</h3>
@@ -897,7 +897,7 @@ function FXRiskTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Shield className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Hedge Accounting — IFRS 9 / ASC 815</h3>
@@ -905,7 +905,7 @@ function FXRiskTab() {
         <HedgeAccountingDiagram />
       </div>
 
-      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
+      <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-4">
         <div className="flex items-start gap-2">
           <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
           <div className="text-xs">
@@ -966,7 +966,7 @@ function DebtMarketsTab() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Building2 className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Investment Grade Bond Issuance Process</h3>
@@ -1000,7 +1000,7 @@ function DebtMarketsTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Clock className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Debt Maturity Profile — Managing Refinancing Risk</h3>
@@ -1023,7 +1023,7 @@ function DebtMarketsTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Layers className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">IG Corporate vs LBO Debt Structure</h3>
@@ -1084,7 +1084,7 @@ function CapitalAllocationTab() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Capital Allocation Waterfall</h3>
@@ -1104,7 +1104,7 @@ function CapitalAllocationTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Percent className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">WACC Calculation &amp; Hurdle Rate</h3>
@@ -1126,7 +1126,7 @@ function CapitalAllocationTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Share Buyback Mechanics</h3>
@@ -1171,7 +1171,7 @@ function CapitalAllocationTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/40 bg-card/60 p-4">
+      <div className="rounded-md border border-border/40 bg-card/60 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Building2 className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Big Tech Capital Allocation Comparison</h3>
@@ -1229,7 +1229,7 @@ function CapitalAllocationTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border/30 bg-card/50 p-4">
+      <div className="rounded-md border border-border/30 bg-card/50 p-4">
         <div className="flex items-center gap-2 mb-2">
           <Info className="w-4 h-4 text-primary" />
           <h3 className="text-sm font-medium">Dividend vs Buyback Signaling Theory</h3>
@@ -1289,7 +1289,7 @@ export default function CorpTreasuryPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-l-4 border-l-primary rounded-xl bg-card p-6">
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-l-4 border-l-primary rounded-md bg-card p-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Building2 className="w-5 h-5 text-primary" />

@@ -60,7 +60,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 function Card({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={cn("rounded-xl border border-border bg-foreground/5 p-4", className)}>
+    <div className={cn("rounded-md border border-border bg-foreground/5 p-4", className)}>
       {children}
     </div>
   );

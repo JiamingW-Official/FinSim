@@ -1220,7 +1220,7 @@ export default function HFStrategiesPage() {
 
         {/* Fund overview bar */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
-          <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-6 bg-card/40 rounded-xl border border-border/60 border-l-4 border-l-primary">
+          <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 p-6 bg-card/40 rounded-md border border-border/60 border-l-4 border-l-primary">
             {[
               { label: "Strategy", value: "Multi-Strat", icon: <Layers className="w-3.5 h-3.5" /> },
               { label: "Gross Leverage", value: "1.8×", icon: <BarChart3 className="w-3.5 h-3.5" /> },

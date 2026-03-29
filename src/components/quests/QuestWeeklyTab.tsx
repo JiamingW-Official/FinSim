@@ -79,7 +79,7 @@ export function QuestWeeklyTab() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="flex items-center gap-3 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3"
+          className="flex items-center gap-3 rounded-md border border-emerald-500/20 bg-emerald-500/5 px-4 py-3"
         >
           <CheckCircle2 className="h-5 w-5 text-emerald-400" />
           <div>

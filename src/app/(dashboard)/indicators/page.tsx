@@ -614,7 +614,7 @@ function StatChip({
   up?: boolean;
 }) {
   return (
-    <div className="bg-card border border-border/50 rounded-xl p-4 flex flex-col gap-1">
+    <div className="bg-card border border-border/50 rounded-md p-4 flex flex-col gap-1">
       <p className="text-xs text-muted-foreground">{label}</p>
       <p className="text-xl font-bold text-foreground">{value}</p>
       {chg !== undefined && (
@@ -633,7 +633,7 @@ function SectionCard({ title, children, className }: { title: string; children: 
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
-      className={cn("bg-card/60 border border-border/50 rounded-2xl p-5", className)}
+      className={cn("bg-card/60 border border-border/50 rounded-md p-5", className)}
     >
       <h3 className="text-sm font-semibold text-muted-foreground mb-4">{title}</h3>
       {children}
@@ -671,7 +671,7 @@ function GdpTab() {
     <div className="space-y-5">
       {/* GDP Nowcast widget */}
       <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-3 sm:col-span-1 bg-card border border-border rounded-2xl p-5">
+        <div className="col-span-3 sm:col-span-1 bg-card border border-border rounded-md p-5">
           <p className="text-xs text-indigo-400 font-medium mb-1">GDP Nowcast — Q1 2026</p>
           <p className="text-2xl font-bold text-indigo-300">2.4%</p>
           <p className="text-xs text-muted-foreground mt-1">Annualized real growth rate</p>
@@ -815,7 +815,7 @@ function GdpTab() {
       <SectionCard title="Leading Indicators for GDP">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {LEADING_INDICATORS.map(li => (
-            <div key={li.name} className="bg-muted/60 border border-border/50 rounded-xl p-3.5">
+            <div key={li.name} className="bg-muted/60 border border-border/50 rounded-md p-3.5">
               <div className="flex justify-between items-start mb-1">
                 <span className="text-sm font-semibold text-foreground">{li.name}</span>
                 <Badge className={cn("text-xs",
@@ -844,7 +844,7 @@ function InflationTab() {
       <SectionCard title="Inflation Gauges — Current Reading vs Fed 2% Target">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {INFLATION_GAUGES.map(g => (
-            <div key={g.label} className="flex flex-col items-center bg-muted/40 rounded-xl py-4">
+            <div key={g.label} className="flex flex-col items-center bg-muted/40 rounded-md py-4">
               <ArcGauge value={g.value} min={0} max={10} color={g.color} label={g.label} unit="%" target={g.target} />
               <div className="flex items-center gap-1.5 mt-1">
                 <TrendArrow value={g.value} prev={g.prev} />
@@ -926,7 +926,7 @@ function InflationTab() {
         <SectionCard title="Inflation Expectations (TIPS Breakevens)">
           <div className="space-y-4">
             {[{ label: "5-Year Breakeven", val: BREAKEVEN_5Y }, { label: "10-Year Breakeven", val: BREAKEVEN_10Y }].map(b => (
-              <div key={b.label} className="bg-muted/50 rounded-xl p-3.5">
+              <div key={b.label} className="bg-muted/50 rounded-md p-3.5">
                 <div className="flex justify-between items-baseline mb-2">
                   <span className="text-sm text-muted-foreground">{b.label}</span>
                   <span className="text-xl font-medium text-indigo-300">{b.val}%</span>
@@ -944,7 +944,7 @@ function InflationTab() {
         </SectionCard>
 
         <SectionCard title="Real Interest Rate">
-          <div className="bg-muted/50 rounded-xl p-4 mb-3">
+          <div className="bg-muted/50 rounded-md p-4 mb-3">
             <p className="text-xs text-muted-foreground mb-2 font-mono">Real Rate = Nominal Rate − Inflation Expectation</p>
             <div className="flex items-center gap-3 text-sm">
               <div className="text-center">
@@ -1032,7 +1032,7 @@ function LaborTab() {
         </SectionCard>
 
         <SectionCard title="Sahm Rule — Recession Early Warning">
-          <div className={cn("rounded-xl p-4 mb-3 border", sahmTriggered
+          <div className={cn("rounded-md p-4 mb-3 border", sahmTriggered
             ? "bg-red-500/10 border-red-500/30"
             : "bg-emerald-500/10 border-emerald-500/30")}>
             <div className="flex items-center gap-2 mb-1">
@@ -1059,7 +1059,7 @@ function LaborTab() {
           {JOLTS_DATA.map(j => {
             const up = j.series[j.series.length - 1] > j.series[0];
             return (
-              <div key={j.label} className="bg-muted/60 border border-border/50 rounded-xl p-3">
+              <div key={j.label} className="bg-muted/60 border border-border/50 rounded-md p-3">
                 <p className="text-xs text-muted-foreground mb-1">{j.label}</p>
                 <p className="text-lg font-medium text-foreground">{j.value}{j.unit}</p>
                 <div className="mt-2">
@@ -1150,7 +1150,7 @@ function HousingTab() {
             { label: "Historical Average",    val: "~28%",     neutral: true },
             { label: "Affordability Index",   val: "64.2",     warn: true    },
           ].map(({ label, val, warn, neutral }) => (
-            <div key={label} className={cn("rounded-xl p-3.5 border",
+            <div key={label} className={cn("rounded-md p-3.5 border",
               warn ? "bg-red-500/10 border-red-500/20" : "bg-muted/50 border-border/50")}>
               <p className="text-xs text-muted-foreground">{label}</p>
               <p className={cn("text-xl font-medium mt-1", warn ? "text-red-300" : "text-foreground")}>{val}</p>
@@ -1322,7 +1322,7 @@ function GlobalTab() {
               </div>
             ))}
           </div>
-          <div className="bg-muted/50 rounded-xl p-4">
+          <div className="bg-muted/50 rounded-md p-4">
             <p className="text-xs text-muted-foreground mb-3">Cross-Border Equity Flows (12M cumulative)</p>
             {[
               { label: "Foreign → US Equities",   val: "+$312B", pos: true  },
@@ -1343,7 +1343,7 @@ function GlobalTab() {
       <SectionCard title="Synchronized Global Business Cycle — Regional Status">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {CYCLE_REGIONS.map(r => (
-            <div key={r.region} className="bg-muted/50 rounded-xl p-3 border border-border/50">
+            <div key={r.region} className="bg-muted/50 rounded-md p-3 border border-border/50">
               <Globe className="w-4 h-4 mb-2" style={{ color: r.color }} />
               <p className="text-sm font-medium text-foreground">{r.region}</p>
               <Badge className="mt-1.5 text-xs" style={{
@@ -1416,7 +1416,7 @@ export default function EconomicIndicatorsPage() {
           </div>
 
           {/* Key macro summary bar — Hero */}
-          <div className="flex flex-wrap gap-4 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+          <div className="flex flex-wrap gap-4 mt-4 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
             {[
               { label: "GDP Growth",   val: "2.4%",  color: "text-emerald-400" },
               { label: "CPI",         val: "3.2%",  color: "text-amber-400"   },
@@ -1437,7 +1437,7 @@ export default function EconomicIndicatorsPage() {
       {/* Tabs */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Tabs value={activeTab} onValueChange={v => setActiveTab(v as TabId)}>
-          <TabsList className="bg-card/80 border border-border/50 rounded-xl p-1 mb-6 flex flex-wrap gap-1 h-auto">
+          <TabsList className="bg-card/80 border border-border/50 rounded-md p-1 mb-6 flex flex-wrap gap-1 h-auto">
             {TABS.map(({ id, label, icon: Icon }) => (
               <TabsTrigger
                 key={id}

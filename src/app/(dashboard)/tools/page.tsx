@@ -2205,7 +2205,7 @@ export default function ToolsPage() {
 
       {/* HERO — Featured Tool (Digital Twin) when active */}
       {activeTab === "twin" && (
-        <div className="shrink-0 mx-6 mt-4 rounded-xl border border-border bg-card border-l-4 border-l-primary px-6 py-4">
+        <div className="shrink-0 mx-6 mt-4 rounded-md border border-border bg-card border-l-4 border-l-primary px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-bold text-foreground">Digital Twin</p>

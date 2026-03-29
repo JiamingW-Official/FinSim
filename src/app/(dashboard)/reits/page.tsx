@@ -254,9 +254,9 @@ function REITUniverseTab() {
       </div>
 
       {/* Table */}
-      <Card className="bg-card/60 border-border/50">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium flex items-center gap-2">
+      <Card className="bg-card/60 border-border/50 border-l-4 border-l-primary">
+        <CardHeader className="p-6 pb-2">
+          <CardTitle className="text-lg font-medium flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             REIT Universe — 8 REITs across 8 Sectors
           </CardTitle>

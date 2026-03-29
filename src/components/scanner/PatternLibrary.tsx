@@ -1029,7 +1029,7 @@ function QuizSection() {
           <p className="text-xs text-muted-foreground">{flashIdx + 1} / {PATTERNS.length}</p>
           <button type="button" onClick={() => setMode("idle")} className="text-[11px] text-muted-foreground hover:text-foreground">Exit</button>
         </div>
-        <div className="flex w-full max-w-sm flex-col overflow-hidden rounded-xl border border-border/50 bg-card">
+        <div className="flex w-full max-w-sm flex-col overflow-hidden rounded-md border border-border/50 bg-card">
           <div className="flex h-40 items-center justify-center border-b border-border/30 bg-muted/20">
             <div style={{ width: 120, height: 90 }} className="text-foreground">{p.miniSvg}</div>
           </div>
@@ -1107,7 +1107,7 @@ function QuizSection() {
 
       {/* Pattern display */}
       <div className="flex justify-center">
-        <div className="flex items-center justify-center overflow-hidden rounded-xl border border-border/40 bg-muted/20"
+        <div className="flex items-center justify-center overflow-hidden rounded-md border border-border/40 bg-muted/20"
           style={{ width: 200, height: 150 }}>
           <div style={{ width: 140, height: 105 }} className="text-foreground">{q.pattern.miniSvg}</div>
         </div>

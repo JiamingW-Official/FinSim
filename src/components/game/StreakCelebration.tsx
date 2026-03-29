@@ -118,7 +118,7 @@ export function StreakCelebration() {
           >
             <motion.div
               className={cn(
-                "flex flex-col items-center gap-2 rounded-2xl border p-5 shadow-sm backdrop-blur-sm",
+                "flex flex-col items-center gap-2 rounded-md border p-5 shadow-sm backdrop-blur-sm",
                 config.bg,
                 config.border,
                 isLarge && "min-w-[240px]",
@@ -132,7 +132,7 @@ export function StreakCelebration() {
                 animate={{ rotate: 0, scale: 1 }}
                 transition={{ type: "spring", stiffness: 500, damping: 15, delay: 0.1 }}
                 className={cn(
-                  "flex items-center justify-center rounded-xl",
+                  "flex items-center justify-center rounded-md",
                   isLarge ? "h-14 w-14" : "h-10 w-10",
                   config.bg,
                 )}

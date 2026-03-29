@@ -1037,7 +1037,7 @@ export default function MultiStrategyPage() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <h2 className="text-lg font-medium text-foreground mb-1">Multi-Strategy Architecture</h2>
           <p className="text-sm text-muted-foreground">Pod structure, strategy allocation, centralized risk management, and fund economics of the Millennium/Citadel model.</p>
         </div>

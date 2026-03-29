@@ -244,7 +244,7 @@ function ActiveDuel({ mode, opponent, matchSeed, onComplete }: ActiveDuelProps) 
           animate={isUrgent ? { scale: [1, 1.06, 1] } : {}}
           transition={isUrgent ? { duration: 0.6, repeat: Infinity } : {}}
           className={cn(
-            "flex items-center gap-2 rounded-xl px-5 py-2 font-mono text-2xl font-bold tabular-nums",
+            "flex items-center gap-2 rounded-md px-5 py-2 font-mono text-2xl font-bold tabular-nums",
             isUrgent ? "bg-red-500/15 text-red-400" : "bg-muted/20 text-foreground",
           )}
         >

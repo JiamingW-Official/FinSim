@@ -1634,7 +1634,7 @@ export default function FixedIncomePage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
         <TabsList className="flex flex-wrap h-auto gap-1 bg-card/60 border border-border rounded-lg p-1 mb-5">
           {[
             { value: "universe", label: "Bond Universe", icon: Globe },

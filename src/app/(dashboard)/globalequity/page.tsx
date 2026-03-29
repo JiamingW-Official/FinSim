@@ -1278,8 +1278,8 @@ export default function GlobalEquityPage() {
         </div>
       </div>
 
-      {/* Key stat chips */}
-      <div className="flex flex-wrap gap-2">
+      {/* Key stat chips — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-wrap gap-2">
         {[
           { label: "Global Mkt Cap", val: "$108T", icon: Globe },
           { label: "US Dominance", val: "43.7%", icon: TrendingUp },
@@ -1296,7 +1296,7 @@ export default function GlobalEquityPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs defaultValue="overview" className="space-y-4">
+      <Tabs defaultValue="overview" className="mt-8 space-y-4">
         <TabsList className="bg-card border border-border">
           <TabsTrigger value="overview"   className="data-[state=active]:bg-muted text-xs">Market Overview</TabsTrigger>
           <TabsTrigger value="valuation"  className="data-[state=active]:bg-muted text-xs">Valuation</TabsTrigger>

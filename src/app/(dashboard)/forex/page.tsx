@@ -1568,7 +1568,7 @@ export default function ForexPage() {
       </motion.div>
 
       {/* Tabs */}
-      <Tabs defaultValue="pairs">
+      <Tabs defaultValue="pairs" className="mt-8">
         <TabsList className="flex flex-wrap h-auto gap-1 bg-muted/60 p-1">
           <TabsTrigger value="pairs" className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted">
             <Globe className="w-3.5 h-3.5" /> Major Pairs

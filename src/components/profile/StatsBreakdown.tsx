@@ -166,7 +166,7 @@ export function StatsBreakdown() {
         <p className="mb-1.5 text-xs font-bold text-muted-foreground">
           P&L Distribution
         </p>
-        <div className="rounded-xl border border-border bg-card/50 p-3">
+        <div className="rounded-md border border-border bg-card/50 p-3">
           <PnLHistogram />
         </div>
       </div>

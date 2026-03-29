@@ -875,7 +875,7 @@ function ResearchProcessTab() {
       </div>
 
       {/* Flowchart */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <p className="text-xs text-muted-foreground mb-3 font-medium">Process Flowchart</p>
         <ProcessFlowchart />
       </div>
@@ -886,7 +886,7 @@ function ResearchProcessTab() {
           <button
             key={step.id}
             onClick={() => setActiveStep(activeStep === step.id ? null : step.id)}
-            className="text-left rounded-xl bg-muted/50 border border-border/50 p-4 hover:border-muted-foreground/60 transition-colors"
+            className="text-left rounded-md bg-muted/50 border border-border/50 p-4 hover:border-muted-foreground/60 transition-colors"
           >
             <div className="flex items-center gap-3 mb-1">
               <div
@@ -921,7 +921,7 @@ function ResearchProcessTab() {
       </div>
 
       {/* Checklist */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <p className="text-xs text-muted-foreground mb-3 font-medium">Thesis Validation Checklist</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {[
@@ -950,7 +950,7 @@ function FinancialModelingTab() {
   return (
     <div className="space-y-6">
       {/* 3-Statement Linkage */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Layers size={15} className="text-indigo-400" />
           <p className="text-sm font-medium text-foreground">3-Statement Model Linkage</p>
@@ -963,7 +963,7 @@ function FinancialModelingTab() {
       </div>
 
       {/* Key Driver Assumptions */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Activity size={15} className="text-muted-foreground" />
           <p className="text-sm font-medium text-foreground">Key Driver Assumptions — {TICKER}</p>
@@ -1008,7 +1008,7 @@ function FinancialModelingTab() {
       </div>
 
       {/* Tornado Chart */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <BarChart3 size={15} className="text-primary" />
           <p className="text-sm font-medium text-foreground">Sensitivity Analysis — Tornado Chart</p>
@@ -1047,7 +1047,7 @@ function ValuationTab() {
   return (
     <div className="space-y-6">
       {/* DCF Sensitivity Matrix */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Calculator size={15} className="text-primary" />
           <p className="text-sm font-medium text-foreground">DCF Sensitivity — WACC vs Terminal Growth ($/share)</p>
@@ -1060,7 +1060,7 @@ function ValuationTab() {
       </div>
 
       {/* P/E Relative Valuation */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Scale size={15} className="text-muted-foreground" />
           <p className="text-sm font-medium text-foreground">P/E Relative Valuation Context</p>
@@ -1087,7 +1087,7 @@ function ValuationTab() {
       </div>
 
       {/* EV/EBITDA Comps Table */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Layers size={15} className="text-emerald-400" />
@@ -1281,7 +1281,7 @@ function ReportStructureTab() {
         {sections.map((sec, i) => (
           <div
             key={`sec-${i}`}
-            className="rounded-xl bg-muted/50 border border-border/50 overflow-hidden"
+            className="rounded-md bg-muted/50 border border-border/50 overflow-hidden"
           >
             <button
               className="w-full flex items-center gap-3 p-4 text-left hover:bg-muted/20 transition-colors"
@@ -1325,7 +1325,7 @@ function ReportStructureTab() {
 
       {/* Bull/Bear Summary for NVDA */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-4">
+        <div className="rounded-md bg-emerald-500/10 border border-emerald-500/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingUp size={15} className="text-emerald-400" />
             <p className="text-sm font-medium text-emerald-300">NVDA Bull Case — $1,250 PT</p>
@@ -1345,7 +1345,7 @@ function ReportStructureTab() {
             ))}
           </ul>
         </div>
-        <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4">
+        <div className="rounded-md bg-red-500/10 border border-red-500/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <TrendingDown size={15} className="text-red-400" />
             <p className="text-sm font-medium text-red-300">NVDA Bear Case — $600 PT</p>
@@ -1368,7 +1368,7 @@ function ReportStructureTab() {
       </div>
 
       {/* Catalyst Calendar */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Clock size={15} className="text-amber-400" />
           <p className="text-sm font-medium text-foreground">Catalyst Calendar — {TICKER}</p>
@@ -1448,7 +1448,7 @@ function AnalystRatingsTab() {
           { label: "Low Target", value: `$${lowPT}`, sub: "RBC Capital", color: "text-red-400" },
           { label: "Coverage", value: `${ANALYST_RATINGS.length}`, sub: "sell-side analysts", color: "text-muted-foreground" },
         ].map((stat, i) => (
-          <div key={`stat-${i}`} className="rounded-xl bg-muted/50 border border-border/50 p-3 text-center">
+          <div key={`stat-${i}`} className="rounded-md bg-muted/50 border border-border/50 p-3 text-center">
             <p className="text-xs text-muted-foreground mb-1">{stat.label}</p>
             <p className={cn("text-xl font-medium", stat.color)}>{stat.value}</p>
             <p className="text-xs text-muted-foreground mt-0.5">{stat.sub}</p>
@@ -1457,12 +1457,12 @@ function AnalystRatingsTab() {
       </div>
 
       {/* Rating distribution */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <RatingDistributionChart ratings={ANALYST_RATINGS} />
       </div>
 
       {/* Individual ratings table */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Star size={15} className="text-amber-400" />
           <p className="text-sm font-medium text-foreground">Individual Analyst Ratings</p>
@@ -1526,7 +1526,7 @@ function AnalystRatingsTab() {
       </div>
 
       {/* Price Target Accuracy chart */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Target size={15} className="text-rose-400" />
           <p className="text-sm font-medium text-foreground">12-Month Price Target Accuracy by Firm</p>
@@ -1535,7 +1535,7 @@ function AnalystRatingsTab() {
       </div>
 
       {/* Earnings Revision Momentum */}
-      <div className="rounded-xl bg-muted/50 border border-border/50 p-4">
+      <div className="rounded-md bg-muted/50 border border-border/50 p-4">
         <div className="flex items-center gap-2 mb-3">
           <TrendingUp size={15} className="text-emerald-400" />
           <p className="text-sm font-medium text-foreground">EPS Estimate Revision Momentum</p>

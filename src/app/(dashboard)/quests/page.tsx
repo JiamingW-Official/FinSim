@@ -518,7 +518,7 @@ export default function QuestsPage() {
       <div className="border-b border-border px-4 py-5">
         <div className="flex items-center gap-3">
           <motion.div
-            className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10"
+            className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 15 }}

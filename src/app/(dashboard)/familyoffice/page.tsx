@@ -271,7 +271,7 @@ function FoStructureTab() {
           <button
             key={fo.id}
             onClick={() => setSelected(fo.id)}
-            className={`rounded-xl border p-4 text-left transition-all ${
+            className={`rounded-md border p-4 text-left transition-all ${
               selected === fo.id
                 ? "border-foreground/30 bg-foreground/10"
                 : "border-border bg-foreground/5 hover:bg-muted/40"
@@ -629,7 +629,7 @@ function EstateTab() {
           return (
             <div
               key={tool.name}
-              className="rounded-xl border border-border bg-foreground/5 overflow-hidden"
+              className="rounded-md border border-border bg-foreground/5 overflow-hidden"
             >
               <button
                 className="flex w-full items-center justify-between px-4 py-3 text-left"
@@ -1242,7 +1242,7 @@ export default function FamilyOfficePage() {
       {/* Header — Hero */}
       <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
         <div className="flex items-center gap-3 mb-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/20">
+          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-indigo-500/20">
             <Building2 className="h-5 w-5 text-indigo-400" />
           </div>
           <div>
@@ -1277,7 +1277,7 @@ export default function FamilyOfficePage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure" className="mt-8">
-        <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-xl">
+        <TabsList className="mb-4 flex flex-wrap gap-1 h-auto bg-foreground/5 p-1 rounded-md">
           {tabs.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}

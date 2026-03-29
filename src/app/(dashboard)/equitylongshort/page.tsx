@@ -1277,7 +1277,7 @@ export default function EquityLongShortPage() {
         className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-9 h-9 rounded-xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-md bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
             <Scale className="w-5 h-5 text-indigo-400" />
           </div>
           <div>

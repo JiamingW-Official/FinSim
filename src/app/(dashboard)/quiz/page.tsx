@@ -297,7 +297,7 @@ function QuickQuizTab() {
     return (
       <div className="flex flex-col items-center gap-6 py-8 max-w-xl mx-auto">
         <div className="text-center">
-          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 mb-3">
+          <div className="inline-flex h-14 w-14 items-center justify-center rounded-md bg-primary/10 mb-3">
             <Brain className="h-7 w-7 text-primary" />
           </div>
           <h2 className="text-xl font-bold">Quick Quiz</h2>
@@ -330,7 +330,7 @@ function QuickQuizTab() {
           </div>
 
           {/* Timer toggle */}
-          <div className="flex items-center justify-between rounded-xl border border-border/50 bg-muted/30 px-4 py-3">
+          <div className="flex items-center justify-between rounded-md border border-border/50 bg-muted/30 px-4 py-3">
             <div className="flex items-center gap-2">
               <Timer className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm font-medium">30-second timer</span>
@@ -425,7 +425,7 @@ function QuickQuizTab() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2 rounded-xl bg-primary/10 px-5 py-3">
+        <div className="flex items-center gap-2 rounded-md bg-primary/10 px-5 py-3">
           <Zap className="h-4 w-4 text-primary" />
           <span className="text-sm font-semibold text-primary">+{xp} XP earned</span>
         </div>
@@ -556,7 +556,7 @@ function QuickQuizTab() {
                   key={idx}
                   disabled={revealed}
                   onClick={() => !revealed && handleReveal(idx)}
-                  className={`w-full text-left rounded-xl border px-4 py-3 text-sm font-medium transition-all ${
+                  className={`w-full text-left rounded-md border px-4 py-3 text-sm font-medium transition-all ${
                     variant === "correct"
                       ? "border-emerald-500 bg-emerald-500/10 text-emerald-300"
                       : variant === "wrong"
@@ -582,7 +582,7 @@ function QuickQuizTab() {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`rounded-xl border px-4 py-3 text-sm ${
+              className={`rounded-md border px-4 py-3 text-sm ${
                 isCorrect
                   ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-200"
                   : "border-rose-500/20 bg-rose-500/5 text-rose-200"
@@ -690,15 +690,15 @@ function FlashcardsTab() {
     <div className="flex flex-col gap-4 max-w-xl mx-auto py-4">
       {/* Stats row */}
       <div className="flex gap-3">
-        <div className="flex-1 rounded-xl border border-border/50 bg-muted/20 px-3 py-2 text-center">
+        <div className="flex-1 rounded-md border border-border/50 bg-muted/20 px-3 py-2 text-center">
           <div className="text-lg font-medium text-primary">{masteredCount}</div>
           <div className="text-xs text-muted-foreground">Mastered</div>
         </div>
-        <div className="flex-1 rounded-xl border border-border/50 bg-muted/20 px-3 py-2 text-center">
+        <div className="flex-1 rounded-md border border-border/50 bg-muted/20 px-3 py-2 text-center">
           <div className="text-lg font-medium text-amber-400">{dueCount}</div>
           <div className="text-xs text-muted-foreground">Due Today</div>
         </div>
-        <div className="flex-1 rounded-xl border border-border/50 bg-muted/20 px-3 py-2 text-center">
+        <div className="flex-1 rounded-md border border-border/50 bg-muted/20 px-3 py-2 text-center">
           <div className="text-lg font-medium">{FLASHCARDS.length}</div>
           <div className="text-xs text-muted-foreground">Total</div>
         </div>
@@ -753,7 +753,7 @@ function FlashcardsTab() {
             {/* Front */}
             <div
               style={{ backfaceVisibility: "hidden" }}
-              className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-border/60 bg-card px-6 py-8 text-center shadow-sm"
+              className="absolute inset-0 flex flex-col items-center justify-center rounded-md border border-border/60 bg-card px-6 py-8 text-center shadow-sm"
             >
               <span className="mb-3 text-xs font-medium text-muted-foreground">
                 {card.category}
@@ -768,7 +768,7 @@ function FlashcardsTab() {
             {/* Back */}
             <div
               style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-              className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl border border-primary/30 bg-primary/5 px-6 py-8 text-center shadow-sm"
+              className="absolute inset-0 flex flex-col items-center justify-center rounded-md border border-primary/30 bg-primary/5 px-6 py-8 text-center shadow-sm"
             >
               <p className="text-sm leading-relaxed text-foreground/90 whitespace-pre-line">
                 {card.back}
@@ -790,7 +790,7 @@ function FlashcardsTab() {
           </motion.div>
         </div>
       ) : (
-        <div className="rounded-2xl border border-border/40 bg-muted/20 p-12 text-center">
+        <div className="rounded-md border border-border/40 bg-muted/20 p-12 text-center">
           <p className="text-muted-foreground text-sm">No cards in this category.</p>
         </div>
       )}
@@ -804,14 +804,14 @@ function FlashcardsTab() {
         >
           <button
             onClick={handleReviewAgain}
-            className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-rose-500/30 bg-rose-500/10 py-3 text-sm font-medium text-rose-400 hover:bg-rose-500/20 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 rounded-md border border-rose-500/30 bg-rose-500/10 py-3 text-sm font-medium text-rose-400 hover:bg-rose-500/20 transition-colors"
           >
             <ThumbsDown className="h-4 w-4" />
             Review Again
           </button>
           <button
             onClick={handleKnow}
-            className="flex-1 flex items-center justify-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 py-3 text-sm font-medium text-emerald-400 hover:bg-emerald-500/20 transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 rounded-md border border-emerald-500/30 bg-emerald-500/10 py-3 text-sm font-medium text-emerald-400 hover:bg-emerald-500/20 transition-colors"
           >
             <ThumbsUp className="h-4 w-4" />
             Know It
@@ -911,7 +911,7 @@ function DailyChallengeTab() {
   return (
     <div className="flex flex-col gap-5 max-w-xl mx-auto py-4">
       {/* Header */}
-      <div className="rounded-2xl border border-border/50 bg-muted/20 px-5 py-4">
+      <div className="rounded-md border border-border/50 bg-muted/20 px-5 py-4">
         <div className="flex items-center justify-between mb-3">
           <div>
             <div className="flex items-center gap-2">
@@ -922,7 +922,7 @@ function DailyChallengeTab() {
               Today: {categoryLabel}
             </p>
           </div>
-          <div className="flex items-center gap-1.5 rounded-xl bg-amber-500/10 border border-amber-500/20 px-3 py-1.5">
+          <div className="flex items-center gap-1.5 rounded-md bg-amber-500/10 border border-amber-500/20 px-3 py-1.5">
             <Flame className="h-4 w-4 text-amber-400" />
             <span className="text-sm font-medium text-amber-400">
               {currentStreak}
@@ -987,7 +987,7 @@ function DailyChallengeTab() {
                   key={idx}
                   disabled={revealed}
                   onClick={() => handleAnswer(idx)}
-                  className={`w-full text-left rounded-xl border px-4 py-3 text-sm font-medium transition-all ${cls}`}
+                  className={`w-full text-left rounded-md border px-4 py-3 text-sm font-medium transition-all ${cls}`}
                 >
                   <span className="mr-2 font-mono text-xs opacity-60">
                     {["A", "B", "C", "D"][idx]}.
@@ -1002,7 +1002,7 @@ function DailyChallengeTab() {
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`rounded-xl border px-4 py-3 text-sm ${
+              className={`rounded-md border px-4 py-3 text-sm ${
                 selected === dailyQuestion.correctIndex
                   ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-200"
                   : "border-rose-500/20 bg-rose-500/5 text-rose-200"
@@ -1015,7 +1015,7 @@ function DailyChallengeTab() {
           )}
         </div>
       ) : (
-        <div className="rounded-xl border border-border/40 bg-muted/20 p-8 text-center">
+        <div className="rounded-md border border-border/40 bg-muted/20 p-8 text-center">
           <p className="text-muted-foreground text-sm">
             No challenge available for today&apos;s topic. Check back after completing some lessons!
           </p>
@@ -1023,7 +1023,7 @@ function DailyChallengeTab() {
       )}
 
       {/* Leaderboard */}
-      <div className="rounded-2xl border border-border/50 bg-muted/10 px-4 py-4">
+      <div className="rounded-md border border-border/50 bg-muted/10 px-4 py-4">
         <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
           <Trophy className="h-4 w-4 text-amber-400" />
           Streak Leaderboard
@@ -1133,19 +1133,19 @@ function MyStatsTab() {
     <div className="flex flex-col gap-5 max-w-xl mx-auto py-4">
       {/* Summary stats */}
       <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3">
+        <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
           <div className="text-2xl font-bold text-primary">{overallAccuracy}%</div>
           <div className="text-xs text-muted-foreground mt-0.5">Overall Accuracy</div>
         </div>
-        <div className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3">
+        <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
           <div className="text-2xl font-bold text-amber-400">{totalQuizXP}</div>
           <div className="text-xs text-muted-foreground mt-0.5">Total Quiz XP</div>
         </div>
-        <div className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3">
+        <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
           <div className="text-2xl font-bold text-emerald-400">{dueCardIds.length}</div>
           <div className="text-xs text-muted-foreground mt-0.5">Cards Due Today</div>
         </div>
-        <div className="rounded-xl border border-border/50 bg-muted/20 px-4 py-3">
+        <div className="rounded-md border border-border/50 bg-muted/20 px-4 py-3">
           <div className="text-2xl font-bold">{currentStreak}</div>
           <div className="text-xs text-muted-foreground mt-0.5">Daily Streak</div>
         </div>
@@ -1153,7 +1153,7 @@ function MyStatsTab() {
 
       {/* Accuracy by topic (SVG bar chart) */}
       {chartTopics.length > 0 && (
-        <div className="rounded-2xl border border-border/50 bg-muted/10 px-4 py-4">
+        <div className="rounded-md border border-border/50 bg-muted/10 px-4 py-4">
           <h3 className="text-sm font-medium mb-4 flex items-center gap-2">
             <BarChart2 className="h-4 w-4 text-primary" />
             Accuracy by Topic
@@ -1231,7 +1231,7 @@ function MyStatsTab() {
 
       {/* Weakest topics */}
       {weakestTopics.length > 0 && (
-        <div className="rounded-2xl border border-rose-500/20 bg-rose-500/5 px-4 py-4">
+        <div className="rounded-md border border-rose-500/20 bg-rose-500/5 px-4 py-4">
           <h3 className="text-sm font-medium mb-3 flex items-center gap-2 text-rose-400">
             <Target className="h-4 w-4" />
             Needs Work
@@ -1261,7 +1261,7 @@ function MyStatsTab() {
 
       {/* Recent quiz sessions */}
       {quizSessions.length > 0 && (
-        <div className="rounded-2xl border border-border/50 bg-muted/10 px-4 py-4">
+        <div className="rounded-md border border-border/50 bg-muted/10 px-4 py-4">
           <h3 className="text-sm font-medium mb-3 flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-primary" />
             Recent Quizzes
@@ -1300,7 +1300,7 @@ function MyStatsTab() {
       )}
 
       {quizSessions.length === 0 && overallTotal === 0 && (
-        <div className="rounded-xl border border-border/40 bg-muted/10 p-8 text-center">
+        <div className="rounded-md border border-border/40 bg-muted/10 p-8 text-center">
           <Brain className="h-8 w-8 text-muted-foreground/40 mx-auto mb-2" />
           <p className="text-sm text-muted-foreground">
             Complete a quiz to see your stats here.
@@ -1319,13 +1319,13 @@ export default function QuizPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Page header */}
-      <div className="shrink-0 border-b border-border/50 px-6 py-4">
+      <div className="shrink-0 border-b border-border/50 border-l-4 border-l-primary px-6 py-6">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
+          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10">
             <Brain className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h1 className="text-base font-medium leading-tight">Quiz &amp; Flashcards</h1>
+            <h1 className="text-lg font-medium leading-tight">Quiz &amp; Flashcards</h1>
             <p className="text-xs text-muted-foreground">
               Test your knowledge, master concepts, build streaks
             </p>

@@ -345,9 +345,9 @@ export function TournamentTab() {
   return (
     <div className="space-y-5 pb-4">
       {/* ELO Badge + History */}
-      <div className="rounded-xl border border-border/30 bg-muted/10 p-4">
+      <div className="rounded-md border border-border/30 bg-muted/10 p-4">
         <div className="flex items-center gap-4">
-          <div className={cn("rounded-xl border px-4 py-2 text-center", TIER_BG[tier])}>
+          <div className={cn("rounded-md border px-4 py-2 text-center", TIER_BG[tier])}>
             <div className={cn("text-2xl font-bold tabular-nums", TIER_COLORS[tier])}>
               {eloRating}
             </div>

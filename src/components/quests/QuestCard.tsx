@@ -69,7 +69,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
       whileHover={!isClaimed ? { scale: 1.01, y: -1 } : {}}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
-        "relative rounded-xl border p-3 transition-all",
+        "relative rounded-md border p-3 transition-all",
         isClaimed
           ? "border-emerald-500/20 bg-emerald-500/5"
           : isComplete

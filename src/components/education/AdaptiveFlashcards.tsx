@@ -342,7 +342,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
               onClick={handleFlip}
             >
               {/* Front */}
-              <div className="card-flip-front min-h-[220px] rounded-xl border border-border/40 bg-card p-5 flex flex-col items-center justify-center gap-3">
+              <div className="card-flip-front min-h-[220px] rounded-md border border-border/40 bg-card p-5 flex flex-col items-center justify-center gap-3">
                 <div className="flex w-full items-center justify-between">
                   {cat && (
                     <span
@@ -387,7 +387,7 @@ export function AdaptiveFlashcards({ onSessionStats }: AdaptiveFlashcardsProps) 
               </div>
 
               {/* Back */}
-              <div className="card-flip-back min-h-[220px] rounded-xl border border-primary/20 bg-card p-5 flex flex-col justify-center gap-3">
+              <div className="card-flip-back min-h-[220px] rounded-md border border-primary/20 bg-card p-5 flex flex-col justify-center gap-3">
                 {cat && (
                   <span
                     className={cn(

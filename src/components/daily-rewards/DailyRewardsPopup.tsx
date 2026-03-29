@@ -104,7 +104,7 @@ export function DailyRewardsPopup() {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 16 }}
             transition={{ type: "spring", stiffness: 320, damping: 22 }}
-            className="relative w-[420px] overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm"
+            className="relative w-[420px] overflow-hidden rounded-md border border-border/60 bg-card shadow-sm"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -127,7 +127,7 @@ export function DailyRewardsPopup() {
             )}>
               {/* Animated icon */}
               <motion.div
-                className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border/40"
+                className="flex h-16 w-16 items-center justify-center rounded-md border border-border/40"
                 initial={{ scale: 0, rotate: -20 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.1 }}
@@ -169,7 +169,7 @@ export function DailyRewardsPopup() {
                     <motion.div
                       key={i}
                       className={cn(
-                        "relative flex flex-col items-center gap-1 rounded-xl border py-2.5 px-1 transition-all",
+                        "relative flex flex-col items-center gap-1 rounded-md border py-2.5 px-1 transition-all",
                         isClaimed
                           ? "border-emerald-500/40 bg-emerald-500/8"
                           : isCurrent
@@ -230,7 +230,7 @@ export function DailyRewardsPopup() {
                       {isCurrent && !claimed && (
                         <motion.div
                           className={cn(
-                            "absolute inset-0 rounded-xl border-2",
+                            "absolute inset-0 rounded-md border-2",
                             isLastDay ? "border-amber-400/40" : "border-primary/30",
                           )}
                           animate={{ opacity: [0.3, 0.8, 0.3] }}
@@ -252,7 +252,7 @@ export function DailyRewardsPopup() {
               {!claimed && canClaim && (
                 <motion.div
                   className={cn(
-                    "flex items-center justify-between rounded-xl border px-4 py-3",
+                    "flex items-center justify-between rounded-md border px-4 py-3",
                     isDay7
                       ? "border-amber-400/30 bg-amber-500/8"
                       : "border-primary/20 bg-primary/5",
@@ -284,7 +284,7 @@ export function DailyRewardsPopup() {
               >
                 {claimed ? (
                   <motion.div
-                    className="flex items-center justify-center gap-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/12 px-5 py-3"
+                    className="flex items-center justify-center gap-2.5 rounded-md border border-emerald-500/30 bg-emerald-500/12 px-5 py-3"
                     initial={{ scale: 0.85 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 14 }}
@@ -302,7 +302,7 @@ export function DailyRewardsPopup() {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.96 }}
                     className={cn(
-                      "w-full rounded-xl py-3 text-sm font-bold text-primary-foreground transition-all",
+                      "w-full rounded-md py-3 text-sm font-bold text-primary-foreground transition-all",
                       isDay7
                         ? "bg-amber-500 hover:bg-amber-400"
                         : "bg-primary hover:brightness-110",
@@ -311,7 +311,7 @@ export function DailyRewardsPopup() {
                     {isDay7 ? "Claim Day 7 Bonus!" : `Claim Day ${dayIndex + 1} Reward`}
                   </motion.button>
                 ) : (
-                  <div className="flex items-center justify-center gap-2 rounded-xl border border-border/30 bg-muted/10 px-5 py-3">
+                  <div className="flex items-center justify-center gap-2 rounded-md border border-border/30 bg-muted/10 px-5 py-3">
                     <Check className="h-4 w-4 text-emerald-400" />
                     <span className="text-sm font-bold text-muted-foreground">Today's reward claimed!</span>
                   </div>

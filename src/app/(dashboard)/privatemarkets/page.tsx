@@ -816,7 +816,7 @@ function IRRCalculator() {
   }, [investment, cashFlowsText]);
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5">
+    <div className="rounded-md border border-border bg-card p-5">
       <h3 className="text-sm font-medium text-foreground mb-4">IRR Calculator</h3>
       <div className="grid grid-cols-1 gap-3 mb-4">
         <div>
@@ -875,7 +875,7 @@ function PEFundTable() {
     Distressed: "text-amber-400",
   };
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
+    <div className="overflow-x-auto rounded-md border border-border">
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border bg-muted/30">
@@ -1082,7 +1082,7 @@ function VCEconomics() {
   const gpTotal = mgmtFee + gpCarry;
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5">
+    <div className="rounded-md border border-border bg-card p-5">
       <h3 className="text-sm font-medium text-foreground mb-4">VC Fund Economics (2%/20%)</h3>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
@@ -1412,7 +1412,7 @@ function InfraAssets() {
   };
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
+    <div className="overflow-x-auto rounded-md border border-border">
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border bg-muted/30">
@@ -1549,7 +1549,7 @@ function RiskReturnBubbleSVG() {
 
 function HFStrategyTable() {
   return (
-    <div className="overflow-x-auto rounded-xl border border-border">
+    <div className="overflow-x-auto rounded-md border border-border">
       <table className="w-full text-xs">
         <thead>
           <tr className="border-b border-border bg-muted/30">
@@ -1626,7 +1626,7 @@ function FeeBreakevenCalc() {
   };
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5">
+    <div className="rounded-md border border-border bg-card p-5">
       <h3 className="text-sm font-medium text-foreground mb-4">Fee Structure Comparison</h3>
       <div className="mb-4">
         <label className="block text-xs text-muted-foreground mb-1">
@@ -1808,7 +1808,7 @@ function PortfolioOptimizer() {
   return (
     <div className="space-y-6">
       {/* Slider */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-medium text-foreground">Alternatives Allocation</h3>
           <span className="text-lg font-medium text-primary">{altPct}%</span>
@@ -1876,13 +1876,13 @@ function PortfolioOptimizer() {
       </div>
 
       {/* Efficient Frontier */}
-      <div className="rounded-xl border border-border bg-card p-4">
+      <div className="rounded-md border border-border bg-card p-4">
         <h3 className="text-sm font-medium text-foreground mb-3">Efficient Frontier</h3>
         <EfficientFrontierSVG altWeight={altPct / 50} />
       </div>
 
       {/* Liquidity premiums */}
-      <div className="rounded-xl border border-border bg-card p-5">
+      <div className="rounded-md border border-border bg-card p-5">
         <h3 className="text-sm font-medium text-foreground mb-4">Illiquidity Premium</h3>
         <p className="text-xs text-muted-foreground mb-3">
           Estimated additional annualized return for accepting lock-up periods vs. liquid alternatives.
@@ -1955,7 +1955,7 @@ function DDAccordion() {
       </div>
 
       {DD_CATEGORIES.map((cat, i) => (
-        <div key={cat.category} className="rounded-xl border border-border overflow-hidden">
+        <div key={cat.category} className="rounded-md border border-border overflow-hidden">
           <button
             className="w-full flex items-center justify-between px-4 py-3 hover:bg-muted/20 transition-colors text-left"
             onClick={() => setOpenIdx(openIdx === i ? null : i)}
@@ -2019,7 +2019,7 @@ function FundDocChecklist() {
   const receivedReq = required.filter((d) => d.received).length;
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5">
+    <div className="rounded-md border border-border bg-card p-5">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-medium text-foreground">Fund Documents Checklist</h3>
         <Badge
@@ -2086,7 +2086,7 @@ function GPLPAlignment() {
   ];
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5">
+    <div className="rounded-md border border-border bg-card p-5">
       <h3 className="text-sm font-medium text-foreground mb-4">GP/LP Alignment Metrics</h3>
       <div className="grid grid-cols-2 gap-2">
         {metrics.map((m) => (
@@ -2132,7 +2132,7 @@ export default function PrivateMarketsPage() {
         className="mb-6"
       >
         <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 rounded-xl bg-primary/10">
+          <div className="p-2 rounded-md bg-primary/10">
             <Layers className="w-5 h-5 text-primary" />
           </div>
           <div>
@@ -2156,7 +2156,7 @@ export default function PrivateMarketsPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="pe">
-        <TabsList className="flex flex-wrap gap-1 h-auto bg-muted/30 p-1 rounded-xl mb-6">
+        <TabsList className="flex flex-wrap gap-1 h-auto bg-muted/30 p-1 rounded-md mb-6">
           {tabs.map((t) => (
             <TabsTrigger
               key={t.value}
@@ -2177,8 +2177,8 @@ export default function PrivateMarketsPage() {
           />
 
           {/* J-Curve */}
-          <div className="rounded-xl border border-border bg-card p-5">
-            <h3 className="text-sm font-medium text-foreground mb-1">J-Curve: Fund Value Over Time</h3>
+          <div className="rounded-md border border-border border-l-4 border-l-primary bg-card p-6">
+            <h3 className="text-lg font-medium text-foreground mb-1">J-Curve: Fund Value Over Time</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Capital is called during years 1-4 (negative NAV vs. committed), then value creation drives returns in years 5-10.
             </p>
@@ -2194,10 +2194,12 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* IRR Calculator */}
-          <IRRCalculator />
+          <div className="mt-8">
+            <IRRCalculator />
+          </div>
 
           {/* PE Fund Universe */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">PE Fund Universe</h3>
             <div className="flex flex-wrap gap-3 mb-4">
               <StatChip label="TVPI" value="Invested capital multiple" color="default" />
@@ -2208,7 +2210,7 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* Vintage Heatmap */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">
               Vintage Year IRR Heatmap
             </h3>
@@ -2219,7 +2221,7 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* Capital Calls Timeline */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">Capital Calls & Distribution Timeline</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Typical drawdown schedule for a 7-year PE fund. Early quarters are dominated by capital calls; later quarters shift to distributions.
@@ -2245,7 +2247,7 @@ export default function PrivateMarketsPage() {
           />
 
           {/* Power Law */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">Power Law Distribution</h3>
             <p className="text-xs text-muted-foreground mb-4">
               In a typical 20-company portfolio: 10 fail (0x), 5 return capital or less, 4 return 2-5x, and 1 drives most of the fund&apos;s value at 10x+.
@@ -2259,7 +2261,7 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* Stage Breakdown */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">Funding Stage Breakdown</h3>
             <VCStages />
           </div>
@@ -2268,7 +2270,7 @@ export default function PrivateMarketsPage() {
           <VCEconomics />
 
           {/* Top Sectors */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">Top VC Sectors (2025 YTD)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-xs">
@@ -2309,13 +2311,13 @@ export default function PrivateMarketsPage() {
           />
 
           {/* Infrastructure Assets */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">Infrastructure Asset Classes</h3>
             <InfraAssets />
           </div>
 
           {/* Radar Chart */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">Asset Class Comparison</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Relative scores (0–1) across yield, inflation linkage, stability, liquidity, and growth potential.
@@ -2324,7 +2326,7 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* CLO Waterfall */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">CLO Capital Structure</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Collateralized Loan Obligation: senior tranches absorb losses last, equity tranche takes first loss but earns residual upside.
@@ -2369,7 +2371,7 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* CPI vs Infra scatter */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">Inflation Linkage</h3>
             <p className="text-xs text-muted-foreground mb-4">
               Many infrastructure contracts have explicit CPI escalators — revenues grow with inflation, protecting real returns.
@@ -2400,7 +2402,7 @@ export default function PrivateMarketsPage() {
           />
 
           {/* Bubble Chart */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">Risk-Return Bubble Chart</h3>
             <p className="text-xs text-muted-foreground mb-3">
               Bubble size = strategy AUM. X-axis = volatility, Y-axis = annualized return.
@@ -2409,7 +2411,7 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* Strategy Table */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">Strategy Performance Metrics</h3>
             <HFStrategyTable />
           </div>
@@ -2418,7 +2420,7 @@ export default function PrivateMarketsPage() {
           <FeeBreakevenCalc />
 
           {/* Correlation Matrix */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-1">
               S&amp;P 500 Correlation by Strategy
             </h3>
@@ -2483,7 +2485,7 @@ export default function PrivateMarketsPage() {
           />
 
           {/* DD Accordion */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">Investment Checklist</h3>
             <DDAccordion />
           </div>
@@ -2494,7 +2496,7 @@ export default function PrivateMarketsPage() {
           </div>
 
           {/* Glossary */}
-          <div className="rounded-xl border border-border bg-card p-5">
+          <div className="rounded-md border border-border bg-card p-5">
             <h3 className="text-sm font-medium text-foreground mb-4">Key Private Markets Terms</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {[

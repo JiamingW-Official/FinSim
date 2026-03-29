@@ -136,7 +136,7 @@ export function MonthlyChallenges() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.08 }}
               className={cn(
-                "rounded-xl border p-4 transition-all",
+                "rounded-md border p-4 transition-all",
                 isClaimed
                   ? "border-green-500/20 bg-green-500/5"
                   : isComplete
@@ -149,7 +149,7 @@ export function MonthlyChallenges() {
                 {/* Icon */}
                 <div
                   className={cn(
-                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border",
+                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-md border",
                     isClaimed
                       ? "border-green-500/30 bg-green-500/10 text-green-400"
                       : isComplete

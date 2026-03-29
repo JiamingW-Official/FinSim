@@ -702,7 +702,7 @@ function ShariahTab() {
           return (
             <motion.div
               key={p.arabic}
-              className="rounded-xl border border-border bg-muted/50 overflow-hidden"
+              className="rounded-md border border-border bg-muted/50 overflow-hidden"
               layout
             >
               <button
@@ -745,7 +745,7 @@ function ShariahTab() {
       {/* Halal vs Haram sector table */}
       <div>
         <h3 className="text-base font-semibold text-foreground mb-3">Halal vs. Haram Sector Screening</h3>
-        <div className="rounded-xl border border-border overflow-hidden">
+        <div className="rounded-md border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-muted text-muted-foreground text-xs uppercase tracking-wide">
@@ -778,7 +778,7 @@ function ShariahTab() {
 
       {/* AAOIFI + Shariah Board */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <Scale className="h-4 w-4 text-primary" />
             <span className="font-medium text-foreground text-sm">Shariah Board Role</span>
@@ -791,7 +791,7 @@ function ShariahTab() {
             <li>• Typically 3–7 scholars; internationally recognized</li>
           </ul>
         </div>
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-2">
             <BookOpen className="h-4 w-4 text-primary" />
             <span className="font-medium text-foreground text-sm">AAOIFI Standards</span>
@@ -851,7 +851,7 @@ function StructuresTab() {
           className="space-y-4"
         >
           {/* Header */}
-          <div className="rounded-xl border p-4 bg-muted/40" style={{ borderColor: structure.color + "40" }}>
+          <div className="rounded-md border p-4 bg-muted/40" style={{ borderColor: structure.color + "40" }}>
             <div className="flex items-start justify-between mb-2">
               <div>
                 <h3 className="font-bold text-foreground text-base">{structure.name}</h3>
@@ -865,7 +865,7 @@ function StructuresTab() {
           </div>
 
           {/* Flow Diagram */}
-          <div className="rounded-xl border border-border bg-card/50 p-4">
+          <div className="rounded-md border border-border bg-card/50 p-4">
             <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Transaction Flow</p>
             <FlowDiagram structure={structure} />
             <div className="mt-2 bg-muted/50 rounded-lg p-3">
@@ -875,7 +875,7 @@ function StructuresTab() {
 
           {/* Pros / Cons */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="rounded-xl border border-emerald-800/40 bg-emerald-900/10 p-4">
+            <div className="rounded-md border border-emerald-800/40 bg-emerald-900/10 p-4">
               <p className="text-xs text-emerald-400 uppercase tracking-wide font-medium mb-2">Advantages</p>
               <ul className="space-y-1.5">
                 {structure.pros.map((pro) => (
@@ -886,7 +886,7 @@ function StructuresTab() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-xl border border-red-800/40 bg-red-900/10 p-4">
+            <div className="rounded-md border border-red-800/40 bg-red-900/10 p-4">
               <p className="text-xs text-red-400 uppercase tracking-wide font-medium mb-2">Limitations</p>
               <ul className="space-y-1.5">
                 {structure.cons.map((con) => (
@@ -903,11 +903,11 @@ function StructuresTab() {
 
       {/* Donut + sovereign vs corporate comparison */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <p className="text-xs text-muted-foreground uppercase tracking-wide mb-2">Market Issuance by Structure</p>
           <DonutChart structures={SUKUK_STRUCTURES} />
         </div>
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Sovereign vs. Corporate Sukuk</p>
           <div className="space-y-3 text-sm">
             {[
@@ -949,7 +949,7 @@ function MarketTab() {
           { label: "Avg Tenor", value: "7.4 yrs", sub: "Global weighted avg", color: "text-primary" },
           { label: "ESG / Green Sukuk", value: "$38B", sub: "4.7% of total", color: "text-amber-400" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-muted/40 p-3 text-center">
+          <div key={stat.label} className="rounded-md border border-border bg-muted/40 p-3 text-center">
             <div className={cn("text-xl font-bold", stat.color)}>{stat.value}</div>
             <div className="text-xs text-muted-foreground mt-0.5">{stat.label}</div>
             <div className="text-xs text-muted-foreground">{stat.sub}</div>
@@ -958,13 +958,13 @@ function MarketTab() {
       </div>
 
       {/* Bar chart */}
-      <div className="rounded-xl border border-border bg-muted/40 p-4">
+      <div className="rounded-md border border-border bg-muted/40 p-4">
         <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Global Sukuk Issuance 2015–2024 (USD Billion)</p>
         <IssuanceBarChart />
       </div>
 
       {/* Country table */}
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-md border border-border overflow-hidden">
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-muted text-muted-foreground text-xs uppercase tracking-wide">
@@ -1003,7 +1003,7 @@ function MarketTab() {
 
       {/* Currency + maturity + rating breakdown */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Currency Breakdown</p>
           <div className="space-y-2">
             {[
@@ -1023,7 +1023,7 @@ function MarketTab() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Maturity Profile</p>
           <div className="space-y-2">
             {[
@@ -1043,7 +1043,7 @@ function MarketTab() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <p className="text-xs text-muted-foreground uppercase tracking-wide mb-3">Rating Distribution</p>
           <div className="space-y-2">
             {[
@@ -1079,7 +1079,7 @@ function ComparisonTab() {
       </div>
 
       {/* Comparison table */}
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-md border border-border overflow-hidden">
         <table className="w-full text-xs">
           <thead>
             <tr className="bg-muted text-muted-foreground text-xs uppercase tracking-wide">
@@ -1115,7 +1115,7 @@ function ComparisonTab() {
       </div>
 
       {/* Yield spread chart */}
-      <div className="rounded-xl border border-border bg-muted/40 p-4">
+      <div className="rounded-md border border-border bg-muted/40 p-4">
         <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Yield & Spread History (2015–2024)</p>
         <p className="text-xs text-muted-foreground mb-3">Sukuk traditionally trade at a modest spread to equivalent-rated conventional bonds due to lower liquidity and smaller investor base</p>
         <YieldSpreadChart />
@@ -1123,7 +1123,7 @@ function ComparisonTab() {
 
       {/* Liquidity + crossover investors */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <BarChart3 className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-foreground">Liquidity Differences</span>
@@ -1151,7 +1151,7 @@ function ComparisonTab() {
             </div>
           </div>
         </div>
-        <div className="rounded-xl border border-border bg-muted/40 p-4">
+        <div className="rounded-md border border-border bg-muted/40 p-4">
           <div className="flex items-center gap-2 mb-3">
             <ArrowRightLeft className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-foreground">Crossover Investor Flow</span>
@@ -1174,7 +1174,7 @@ function ComparisonTab() {
       </div>
 
       {/* Info card */}
-      <div className="rounded-xl border border-border bg-muted/30 p-4 flex gap-3">
+      <div className="rounded-md border border-border bg-muted/30 p-4 flex gap-3">
         <Info className="h-4 w-4 text-primary shrink-0 mt-0.5" />
         <div className="text-xs text-muted-foreground">
           <span className="text-primary font-medium">Key insight: </span>
@@ -1199,7 +1199,7 @@ export default function SukukPage() {
           className="mb-8 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 rounded-xl bg-emerald-900/30 border border-emerald-700/40">
+            <div className="p-2 rounded-md bg-emerald-900/30 border border-emerald-700/40">
               <Landmark className="h-6 w-6 text-emerald-400" />
             </div>
             <div>

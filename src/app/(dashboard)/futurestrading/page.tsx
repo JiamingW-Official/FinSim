@@ -1550,13 +1550,13 @@ export default function FuturesTradingPage() {
     <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
-        <motion.div variants={fadeUp} initial="hidden" animate="visible" className="space-y-1">
+        <motion.div variants={fadeUp} initial="hidden" animate="visible" className="border-l-4 border-l-primary rounded-lg bg-card p-6 space-y-1">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
               <BarChart2 className="w-5 h-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Futures Trading</h1>
+              <h1 className="text-xl font-bold text-foreground">Futures Trading</h1>
               <p className="text-sm text-muted-foreground">Commodities, financials, hedging &amp; speculation</p>
             </div>
           </div>
@@ -1584,7 +1584,7 @@ export default function FuturesTradingPage() {
         </motion.div>
 
         {/* Tabs */}
-        <Tabs defaultValue="basics" className="space-y-4">
+        <Tabs defaultValue="basics" className="mt-8 space-y-4">
           <TabsList className="flex flex-wrap gap-1 h-auto bg-muted/40 p-1 rounded-lg">
             <TabsTrigger value="basics" className="text-xs">Futures Basics</TabsTrigger>
             <TabsTrigger value="contango" className="text-xs">Contango &amp; Backwardation</TabsTrigger>

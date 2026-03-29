@@ -354,7 +354,7 @@ function SectionHeader({
   return (
     <div className="flex items-start gap-4 mb-6">
       <div
-        className="p-3 rounded-xl shrink-0"
+        className="p-3 rounded-md shrink-0"
         style={{ background: `${accentColor}18`, color: accentColor }}
       >
         {icon}
@@ -1359,13 +1359,13 @@ export default function LifeStagesPage() {
         </div>
 
         {/* Stage overview strip — Hero */}
-        <div className="grid grid-cols-5 gap-2 rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="grid grid-cols-5 gap-2 rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           {TABS.map((t, i) => (
             <button
               key={t.value}
               onClick={() => setTab(t.value)}
               className={cn(
-                "flex flex-col items-center gap-1 p-3 rounded-xl border transition-all text-center",
+                "flex flex-col items-center gap-1 p-3 rounded-md border transition-all text-center",
                 tab === t.value
                   ? "border-primary/60 bg-primary/10 text-primary"
                   : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"

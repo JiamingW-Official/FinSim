@@ -86,7 +86,7 @@ export function ChallengeBriefing({
     <div className="flex flex-col items-center gap-6 py-8 px-4 max-w-md mx-auto">
       {/* Mission icon */}
       <motion.div
-        className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 border border-primary/20"
+        className="flex h-16 w-16 items-center justify-center rounded-md bg-primary/10 border border-primary/20"
         initial={{ scale: 0, rotate: -20 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -125,7 +125,7 @@ export function ChallengeBriefing({
 
       {/* Description — narrative box */}
       <motion.div
-        className="w-full rounded-xl border border-border/50 bg-card/50 p-4"
+        className="w-full rounded-md border border-border/50 bg-card/50 p-4"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
@@ -140,7 +140,7 @@ export function ChallengeBriefing({
 
       {/* Objectives — checklist style */}
       <motion.div
-        className="w-full rounded-xl border border-border/50 bg-card p-4"
+        className="w-full rounded-md border border-border/50 bg-card p-4"
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.45 }}
@@ -186,11 +186,11 @@ export function ChallengeBriefing({
         transition={{ delay: 0.6 }}
         whileHover={{ scale: 1.03 }}
         whileTap={{ scale: 0.97 }}
-        className="relative w-full max-w-xs rounded-xl bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
+        className="relative w-full max-w-xs rounded-md bg-primary py-3.5 text-sm font-bold text-primary-foreground transition-all hover:brightness-110"
       >
         {/* Pulse ring */}
         <motion.span
-          className="absolute inset-0 rounded-xl border-2 border-primary"
+          className="absolute inset-0 rounded-md border-2 border-primary"
           animate={{ scale: [1, 1.08], opacity: [0.5, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeOut" }}
         />

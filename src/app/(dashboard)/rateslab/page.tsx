@@ -190,7 +190,7 @@ function Card({
 }) {
   return (
     <div
-      className={`bg-card border border-border rounded-xl p-4 ${className}`}
+      className={`bg-card border border-border rounded-md p-4 ${className}`}
     >
       {children}
     </div>
@@ -292,8 +292,8 @@ function SwapPricerTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-4">
       {/* Controls */}
-      <Card className="space-y-4">
-        <h3 className="text-sm font-semibold text-foreground/80 flex items-center gap-2">
+      <Card className="space-y-4 border-l-4 border-l-primary p-6">
+        <h3 className="text-lg font-semibold text-foreground/80 flex items-center gap-2">
           <ArrowLeftRight className="w-4 h-4 text-primary" />
           IRS Parameters
         </h3>

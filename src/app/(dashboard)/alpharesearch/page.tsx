@@ -470,7 +470,7 @@ export default function AlphaResearchPage() {
         </motion.div>
 
         {/* HERO — Key Metrics */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-xl bg-card p-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 border-l-4 border-l-primary rounded-md bg-card p-6">
           <MetricCard icon={Activity}    label="Avg IC (Mean)"          value={avgIC}       sub="Portfolio IC average"         color="#6366f1" delay={0.05} />
           <MetricCard icon={Target}      label="Avg IR"                 value={avgIR}       sub="Information Ratio avg"        color="#22c55e" delay={0.10} />
           <MetricCard icon={Clock}       label="Decay Half-Life"        value={`${avgHL}d`} sub="Days until IC halves"         color="#f59e0b" delay={0.15} />

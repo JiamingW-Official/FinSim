@@ -2160,14 +2160,14 @@ export default function GlobalBondsPage() {
   return (
     <div className="flex flex-col h-full bg-card text-foreground overflow-y-auto">
       {/* Header */}
-      <div className="px-6 pt-6 pb-4 border-b border-border shrink-0">
+      <div className="px-6 pt-6 pb-4 border-b border-border border-l-4 border-l-primary shrink-0">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2.5 mb-1">
               <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
                 <Globe className="w-4 h-4 text-primary" />
               </div>
-              <h1 className="text-xl font-medium text-foreground">
+              <h1 className="text-lg font-medium text-foreground">
                 Global Bond Markets
               </h1>
             </div>
@@ -2191,7 +2191,7 @@ export default function GlobalBondsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex-1 px-6 py-5">
+      <div className="flex-1 px-6 py-5 mt-8">
         <Tabs
           value={activeTab}
           onValueChange={setActiveTab}

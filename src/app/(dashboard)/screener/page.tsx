@@ -1150,7 +1150,7 @@ export default function ScreenerPage() {
               </div>
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
                 {TOP_PICKS.map((pick) => (
-                  <div key={pick.ticker} className="rounded-xl border border-border bg-card p-4 space-y-3">
+                  <div key={pick.ticker} className="rounded-md border border-border bg-card p-4 space-y-3">
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="flex items-center gap-2">
@@ -1218,7 +1218,7 @@ export default function ScreenerPage() {
                 <h2 className="text-sm font-medium">Sector Leaders</h2>
                 <span className="text-xs text-muted-foreground">· Best AI score per sector</span>
               </div>
-              <div className="rounded-xl border border-border overflow-hidden">
+              <div className="rounded-md border border-border overflow-hidden">
                 <table className="w-full text-xs">
                   <thead className="bg-muted/30 border-b border-border">
                     <tr>
@@ -1268,7 +1268,7 @@ export default function ScreenerPage() {
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 {hiddenGems.map((s) => (
-                  <div key={s.ticker} className="rounded-xl border border-border bg-card p-3 space-y-2">
+                  <div key={s.ticker} className="rounded-md border border-border bg-card p-3 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="font-mono font-medium text-primary">{s.ticker}</span>
                       <span className="text-xs rounded-full bg-primary/10 text-primary px-2 py-0.5 font-medium">{marketCapLabel(s.marketCapB)}</span>
@@ -1302,7 +1302,7 @@ export default function ScreenerPage() {
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 {contrarian.map((s) => (
-                  <div key={s.ticker} className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 space-y-2">
+                  <div key={s.ticker} className="rounded-md border border-amber-500/20 bg-amber-500/5 p-3 space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="font-mono font-medium text-amber-400">{s.ticker}</span>
                       <span className="text-xs text-amber-400/70">Insider +</span>
@@ -1343,7 +1343,7 @@ export default function ScreenerPage() {
               ) : (
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {savedScreens.map((screen) => (
-                    <div key={screen.id} className="rounded-xl border border-border bg-card p-4 space-y-3">
+                    <div key={screen.id} className="rounded-md border border-border bg-card p-4 space-y-3">
                       <div className="flex items-start justify-between">
                         <div>
                           <p className="font-medium text-sm">{screen.name}</p>
@@ -1396,7 +1396,7 @@ export default function ScreenerPage() {
                 <BarChart2 className="h-4 w-4 text-primary" />
                 <h2 className="text-sm font-medium">Compare Screens</h2>
               </div>
-              <div className="rounded-xl border border-border bg-card p-4 space-y-4">
+              <div className="rounded-md border border-border bg-card p-4 space-y-4">
                 <div className="flex items-center gap-3">
                   <select
                     value={compareA}
@@ -1482,7 +1482,7 @@ export default function ScreenerPage() {
                   const ret = ((rng2() - 0.35) * 30).toFixed(1);
                   const isPos = parseFloat(ret) >= 0;
                   return (
-                    <div key={screen.id} className="rounded-xl border border-border bg-card p-4">
+                    <div key={screen.id} className="rounded-md border border-border bg-card p-4">
                       <p className="text-xs font-medium mb-1">{screen.name}</p>
                       <p className="text-xs text-muted-foreground mb-3">Top 5 from last month's run</p>
                       <div className="flex items-end gap-2">
@@ -1513,7 +1513,7 @@ export default function ScreenerPage() {
                 {COMMUNITY_SCREENS.map((cs) => (
                   <div
                     key={cs.name}
-                    className="flex items-center gap-4 rounded-xl border border-border bg-card px-4 py-3"
+                    className="flex items-center gap-4 rounded-md border border-border bg-card px-4 py-3"
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">
@@ -1543,7 +1543,7 @@ export default function ScreenerPage() {
       {/* Save dialog */}
       {saveDialogOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="rounded-xl border border-border bg-card p-6 shadow-sm w-80 space-y-4">
+          <div className="rounded-md border border-border bg-card p-6 shadow-sm w-80 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-medium">Save Screen</h3>
               <button type="button" onClick={() => setSaveDialogOpen(false)} className="rounded-md p-1 hover:bg-accent">

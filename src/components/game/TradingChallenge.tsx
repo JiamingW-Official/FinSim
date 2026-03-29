@@ -403,7 +403,7 @@ function LobbyScreen({
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-amber-500/40 bg-amber-500/10 p-4"
+        className="rounded-md border border-amber-500/40 bg-amber-500/10 p-4"
       >
         <div className="flex items-center gap-2 mb-2">
           <Flame className="h-4 w-4 text-amber-400" />
@@ -430,7 +430,7 @@ function LobbyScreen({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="group cursor-pointer rounded-xl border border-border bg-card/60 p-4 hover:border-border hover:bg-muted/60 transition-all"
+            className="group cursor-pointer rounded-md border border-border bg-card/60 p-4 hover:border-border hover:bg-muted/60 transition-all"
             onClick={() => onSelect(cfg)}
           >
             <div className="flex items-start justify-between mb-2">
@@ -598,7 +598,7 @@ function RapidFireScreen({
       </div>
 
       {/* Chart */}
-      <div className="rounded-xl border border-border bg-card/60 p-4">
+      <div className="rounded-md border border-border bg-card/60 p-4">
         <PriceLineChart bars={bars} revealed={currentBar} width={340} height={100} />
         <div className="mt-2 flex items-center justify-between text-sm">
           <span className="text-muted-foreground">Price: <span className="font-mono text-foreground">${currentPrice.toFixed(2)}</span></span>
@@ -636,7 +636,7 @@ function RapidFireScreen({
             key={action}
             whileTap={{ scale: 0.95 }}
             onClick={() => handleAction(action)}
-            className={cn("rounded-xl py-4 font-bold text-lg transition-colors relative", color)}
+            className={cn("rounded-md py-4 font-bold text-lg transition-colors relative", color)}
           >
             {label}
             <span className="absolute bottom-1.5 right-2 text-xs opacity-50 font-normal">[{key}]</span>
@@ -750,7 +750,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
       </div>
 
       {/* Chart */}
-      <div className="rounded-xl border border-border bg-card/60 p-4 flex justify-center">
+      <div className="rounded-md border border-border bg-card/60 p-4 flex justify-center">
         <MiniCandleChart bars={quiz.bars} width={220} height={100} />
       </div>
 
@@ -809,7 +809,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
       {isAnswered && (
         <button
           onClick={handleNext}
-          className="w-full rounded-xl bg-muted hover:bg-muted py-2.5 text-sm font-semibold text-foreground transition-colors"
+          className="w-full rounded-md bg-muted hover:bg-muted py-2.5 text-sm font-semibold text-foreground transition-colors"
         >
           {index + 1 >= quizzes.length ? "See Results" : "Next Pattern"}
         </button>
@@ -955,7 +955,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
           <button
             disabled={!playerStrategy}
             onClick={handleStart}
-            className="w-full rounded-xl bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground/70 py-2.5 text-sm font-bold text-foreground transition-colors"
+            className="w-full rounded-md bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground/70 py-2.5 text-sm font-bold text-foreground transition-colors"
           >
             Battle!
           </button>
@@ -980,7 +980,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
           ))}
           <button
             onClick={() => onFinish(score)}
-            className="w-full rounded-xl bg-amber-500 hover:bg-amber-400 py-2.5 text-sm font-bold text-black transition-colors"
+            className="w-full rounded-md bg-amber-500 hover:bg-amber-400 py-2.5 text-sm font-bold text-black transition-colors"
           >
             Submit Score
           </button>
@@ -1026,7 +1026,7 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
 
       {/* Player rank */}
       {playerEntry && playerEntry.score > 0 && (
-        <div className="rounded-xl border border-amber-500/40 bg-amber-500/10 p-3 flex items-center gap-3">
+        <div className="rounded-md border border-amber-500/40 bg-amber-500/10 p-3 flex items-center gap-3">
           <Crown className="h-5 w-5 text-amber-400" />
           <div>
             <p className="text-sm font-bold text-amber-400">Your Rank: #{playerEntry.rank}</p>
@@ -1111,24 +1111,24 @@ function ResultsSummary({
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-xl border border-border bg-card p-3">
+        <div className="rounded-md border border-border bg-card p-3">
           <p className="text-xs text-muted-foreground mb-1">Return</p>
           <p className={cn("text-xl font-bold font-mono", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {returnPct >= 0 ? "+" : ""}{returnPct.toFixed(2)}%
           </p>
         </div>
-        <div className="rounded-xl border border-border bg-card p-3">
+        <div className="rounded-md border border-border bg-card p-3">
           <p className="text-xs text-muted-foreground mb-1">Score</p>
           <p className="text-xl font-bold text-foreground">{score.toLocaleString()}</p>
         </div>
         {speedBonus !== undefined && (
-          <div className="rounded-xl border border-border bg-card p-3">
+          <div className="rounded-md border border-border bg-card p-3">
             <p className="text-xs text-muted-foreground mb-1">Speed Bonus</p>
             <p className="text-xl font-bold text-amber-400">{speedBonus.toFixed(2)}×</p>
           </div>
         )}
         {extra && (
-          <div className={cn("rounded-xl border border-border bg-card p-3", speedBonus !== undefined ? "" : "col-span-2")}>
+          <div className={cn("rounded-md border border-border bg-card p-3", speedBonus !== undefined ? "" : "col-span-2")}>
             <p className="text-xs text-muted-foreground mb-1">Result</p>
             <p className="text-sm font-semibold text-muted-foreground">{extra}</p>
           </div>
@@ -1137,7 +1137,7 @@ function ResultsSummary({
 
       <button
         onClick={onFinish}
-        className="w-full rounded-xl bg-amber-500 hover:bg-amber-400 py-3 text-sm font-bold text-black transition-colors"
+        className="w-full rounded-md bg-amber-500 hover:bg-amber-400 py-3 text-sm font-bold text-black transition-colors"
       >
         Submit to Leaderboard
       </button>
@@ -1181,7 +1181,7 @@ export default function TradingChallenge() {
       <div className="mx-auto max-w-xl px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
-          <div className="rounded-xl bg-amber-500/20 p-2">
+          <div className="rounded-md bg-amber-500/20 p-2">
             <Trophy className="h-6 w-6 text-amber-400" />
           </div>
           <div>

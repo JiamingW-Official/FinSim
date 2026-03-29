@@ -972,7 +972,7 @@ export default function PaymentSystemsPage() {
         transition={{ duration: 0.4 }}
         className="flex items-start gap-4"
       >
-        <div className="p-3 rounded-xl bg-primary/10 border border-border">
+        <div className="p-3 rounded-md bg-primary/10 border border-border">
           <Network className="w-7 h-7 text-primary" />
         </div>
         <div>

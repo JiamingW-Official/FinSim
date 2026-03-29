@@ -391,7 +391,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -541,7 +541,7 @@ function ProxyVoteSimulator() {
         const voted = votes[res.id];
         return (
           <div key={res.id} className={cn(
-            "rounded-xl border p-4 transition-colors",
+            "rounded-md border p-4 transition-colors",
             voted ? "border-border bg-foreground/5" : "border-border bg-foreground/[0.02]"
           )}>
             <div className="flex items-start justify-between gap-3 mb-2">
@@ -590,7 +590,7 @@ function ProxyVoteSimulator() {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="rounded-xl border border-border bg-foreground/5 p-4"
+          className="rounded-md border border-border bg-foreground/5 p-4"
         >
           <p className="text-xs text-muted-foreground mb-2 font-semibold">Your Ballot Summary ({total}/{PROXY_RESOLUTIONS.length} voted)</p>
           <div className="flex gap-4">
@@ -670,7 +670,7 @@ export default function CorpGovernancePage() {
         className="max-w-6xl mx-auto space-y-6"
       >
         {/* HERO Header */}
-        <div className="border-l-4 border-l-primary rounded-xl bg-card p-6">
+        <div className="border-l-4 border-l-primary rounded-md bg-card p-6">
           <div className="flex items-center gap-2 mb-1">
             <Building2 className="w-5 h-5 text-indigo-400" />
             <h1 className="text-xl font-semibold text-foreground">Corporate Governance & Shareholder Activism</h1>
@@ -703,11 +703,11 @@ export default function CorpGovernancePage() {
           <TabsContent value="board" className={cn("mt-4", "data-[state=inactive]:hidden")}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-border bg-foreground/5 p-4">
+                <div className="rounded-md border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-medium text-foreground mb-3">Governance Score by Company</h3>
                   <BoardBarChart companies={BOARD_COMPANIES} />
                 </div>
-                <div className="rounded-xl border border-border bg-foreground/5 p-4">
+                <div className="rounded-md border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-medium text-foreground mb-3">Company Detail</h3>
                   <div className="flex flex-wrap gap-1.5 mb-3">
                     {BOARD_COMPANIES.map((c) => (
@@ -748,7 +748,7 @@ export default function CorpGovernancePage() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-xl border border-border bg-foreground/5 p-4 overflow-x-auto">
+              <div className="rounded-md border border-border bg-foreground/5 p-4 overflow-x-auto">
                 <h3 className="text-sm font-medium text-foreground mb-3">Full Comparison Table</h3>
                 <table className="w-full text-xs min-w-[580px]">
                   <thead>
@@ -792,7 +792,7 @@ export default function CorpGovernancePage() {
                 <StatCard label="Win Rate (activists)" value="60%" sub="of tracked campaigns" highlight="pos" />
               </div>
               {ACTIVIST_CAMPAIGNS.map((c) => (
-                <div key={c.fund + c.target} className="rounded-xl border border-border bg-foreground/5 p-4">
+                <div key={c.fund + c.target} className="rounded-md border border-border bg-foreground/5 p-4">
                   <div className="flex items-start justify-between gap-3 mb-2">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
@@ -824,7 +824,7 @@ export default function CorpGovernancePage() {
           {/* ── Proxy Vote ── */}
           <TabsContent value="proxy" className={cn("mt-4", "data-[state=inactive]:hidden")}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-3 mb-4">
+              <div className="rounded-md border border-indigo-500/20 bg-indigo-500/5 p-3 mb-4">
                 <p className="text-xs text-indigo-300">
                   Cast your votes on the upcoming annual meeting proxy ballot. Compare your decisions with ISS proxy advisory recommendations.
                 </p>
@@ -838,7 +838,7 @@ export default function CorpGovernancePage() {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 {ESG_SCORES.map((e) => (
-                  <div key={e.ticker} className="rounded-xl border border-border bg-foreground/5 p-4">
+                  <div key={e.ticker} className="rounded-md border border-border bg-foreground/5 p-4">
                     <div className="flex items-center justify-between mb-2">
                       <div>
                         <p className="text-xs font-medium text-foreground">{e.company}</p>
@@ -869,7 +869,7 @@ export default function CorpGovernancePage() {
                   </div>
                 ))}
               </div>
-              <div className="rounded-xl border border-border bg-foreground/5 p-4">
+              <div className="rounded-md border border-border bg-foreground/5 p-4">
                 <h3 className="text-sm font-medium text-foreground mb-3">Score Interpretation</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                   <div className="flex items-start gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500 mt-0.5 flex-shrink-0" /><div><p className="text-emerald-400 font-medium">80–100: Strong Governance</p><p className="text-muted-foreground mt-0.5">Majority independent board, pay tied to performance, robust shareholder rights, full disclosure</p></div></div>
@@ -883,13 +883,13 @@ export default function CorpGovernancePage() {
           {/* ── Takeover Defenses ── */}
           <TabsContent value="defense" className={cn("mt-4", "data-[state=inactive]:hidden")}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-              <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-3 mb-2">
+              <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-3 mb-2">
                 <p className="text-xs text-amber-300">
                   Takeover defenses protect companies from hostile acquisitions but can also entrench management. Governance experts weigh each mechanism differently.
                 </p>
               </div>
               {TAKEOVER_DEFENSES.map((def) => (
-                <div key={def.name} className="rounded-xl border border-border bg-foreground/5 overflow-hidden">
+                <div key={def.name} className="rounded-md border border-border bg-foreground/5 overflow-hidden">
                   <button
                     className="w-full flex items-center justify-between p-4 text-left"
                     onClick={() => setExpandedDefense(expandedDefense === def.name ? null : def.name)}
@@ -944,7 +944,7 @@ export default function CorpGovernancePage() {
           <TabsContent value="ownership" className={cn("mt-4", "data-[state=inactive]:hidden")}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div className="rounded-xl border border-border bg-foreground/5 p-4">
+                <div className="rounded-md border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-medium text-foreground mb-4">Ownership Breakdown — Vertex Financial (VTXF)</h3>
                   <OwnershipDonut data={SHAREHOLDERS} />
                   <div className="mt-4 grid grid-cols-2 gap-3 text-xs">
@@ -974,7 +974,7 @@ export default function CorpGovernancePage() {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-xl border border-border bg-foreground/5 p-4">
+                <div className="rounded-md border border-border bg-foreground/5 p-4">
                   <h3 className="text-sm font-medium text-foreground mb-3">Top Shareholders</h3>
                   <div className="space-y-2">
                     {SHAREHOLDERS.sort((a, b) => b.pct - a.pct).map((sh, i) => (
@@ -1000,7 +1000,7 @@ export default function CorpGovernancePage() {
                   </div>
                 </div>
               </div>
-              <div className="rounded-xl border border-border bg-foreground/5 p-4">
+              <div className="rounded-md border border-border bg-foreground/5 p-4">
                 <h3 className="text-sm font-medium text-foreground mb-3">Voting Power Dynamics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
                   <div className="space-y-1.5">

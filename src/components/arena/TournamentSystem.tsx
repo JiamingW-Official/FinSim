@@ -381,7 +381,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               className={cn(
-                "rounded-xl border p-4 transition-all",
+                "rounded-md border p-4 transition-all",
                 joined
                   ? `${t.borderColor} ${t.bgColor}`
                   : "border-border/30 bg-muted/10 hover:bg-muted/15",
@@ -562,13 +562,13 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
       </div>
 
       {/* Podium */}
-      <div className="rounded-xl border border-border/30 bg-muted/10 p-4">
+      <div className="rounded-md border border-border/30 bg-muted/10 p-4">
         <div className="text-xs font-bold text-muted-foreground mb-3">Top Traders</div>
         <Podium entries={entries} />
       </div>
 
       {/* Time progress */}
-      <div className="rounded-xl border border-border/30 bg-muted/10 px-4 py-3">
+      <div className="rounded-md border border-border/30 bg-muted/10 px-4 py-3">
         <TimeBar daysRemaining={daysLeft} totalDays={def.durationDays} />
       </div>
 
@@ -592,7 +592,7 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
       </div>
 
       {/* Full table */}
-      <div className="rounded-xl border border-border/30 overflow-hidden">
+      <div className="rounded-md border border-border/30 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-[11px]">
             <thead>
@@ -744,7 +744,7 @@ function H2HSection({ playerElo }: H2HProps) {
       </div>
 
       {/* Matchmaking */}
-      <div className="rounded-xl border border-border/30 bg-muted/10 p-4 space-y-3">
+      <div className="rounded-md border border-border/30 bg-muted/10 p-4 space-y-3">
         <div className="text-xs font-bold text-muted-foreground">Find a Match</div>
         <p className="text-[11px] text-muted-foreground">
           24-hour paper trading duel — whoever has higher return % wins. ELO-based matchmaking finds opponents near your rating.
@@ -789,7 +789,7 @@ function H2HSection({ playerElo }: H2HProps) {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="rounded-xl border border-teal-500/25 bg-teal-500/5 p-4 space-y-3"
+            className="rounded-md border border-teal-500/25 bg-teal-500/5 p-4 space-y-3"
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-emerald-400">Active Match · 24h Duel</span>
@@ -828,7 +828,7 @@ function H2HSection({ playerElo }: H2HProps) {
       {/* Match history */}
       <div>
         <div className="text-xs font-bold text-muted-foreground mb-2">Recent Matches (Last 10)</div>
-        <div className="rounded-xl border border-border/30 overflow-hidden">
+        <div className="rounded-md border border-border/30 overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
               <tr className="border-b border-border/30 bg-muted/15">
@@ -975,7 +975,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
   return (
     <div className="space-y-5">
       {/* Monthly Awards */}
-      <div className="rounded-xl border border-yellow-400/20 bg-yellow-400/5 p-4">
+      <div className="rounded-md border border-yellow-400/20 bg-yellow-400/5 p-4">
         <div className="flex items-center gap-2 mb-3">
           <Star className="h-4 w-4 text-yellow-400" />
           <span className="text-xs font-bold text-yellow-400">Monthly Awards — March 2026</span>
@@ -1005,7 +1005,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
             <Medal className="h-3.5 w-3.5 text-yellow-500" />
             {board.title}
           </div>
-          <div className="rounded-xl border border-border/30 overflow-hidden">
+          <div className="rounded-md border border-border/30 overflow-hidden">
             {board.entries.map((e) => (
               <div
                 key={e.name + e.rank}
@@ -1186,7 +1186,7 @@ export function TournamentSystem() {
     <div className="space-y-4">
       {/* Sub-tab bar (hidden when viewing leaderboard) */}
       {activeSection !== "leaderboard" && (
-        <div className="flex rounded-xl border border-border/30 bg-muted/10 overflow-hidden">
+        <div className="flex rounded-md border border-border/30 bg-muted/10 overflow-hidden">
           {SECTION_TABS.map((tab) => (
             <button
               key={tab.id}

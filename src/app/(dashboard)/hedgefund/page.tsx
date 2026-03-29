@@ -600,7 +600,7 @@ function StrategyExplorer() {
             whileTap={{ scale: 0.98 }}
             onClick={() => setSelected(st.id === selected ? null : st.id)}
             className={cn(
-              "text-left rounded-xl border p-3 transition-colors",
+              "text-left rounded-md border p-3 transition-colors",
               selected === st.id
                 ? "border-transparent bg-foreground/10"
                 : "border-border/50 bg-foreground/[0.03] hover:bg-muted/30"
@@ -642,7 +642,7 @@ function StrategyExplorer() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
-            className="rounded-xl border border-border bg-foreground/[0.04] p-5"
+            className="rounded-md border border-border bg-foreground/[0.04] p-5"
           >
             <div className="flex flex-wrap items-start gap-4 mb-4">
               <div className="flex-1 min-w-0">
@@ -1554,7 +1554,7 @@ function CTASimulator() {
                 </button>
               ))}
             </div>
-            <div className="rounded-xl bg-foreground/5 p-5 flex items-center justify-center">
+            <div className="rounded-md bg-foreground/5 p-5 flex items-center justify-center">
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary mb-1">
                   {paramSharpe[trendPeriod].toFixed(2)}
@@ -1797,7 +1797,7 @@ function FundEconomics() {
             <CardTitle className="text-sm text-muted-foreground">Fund Economics — Break-Even &amp; Scale</CardTitle>
           </CardHeader>
           <CardContent className="pt-0 space-y-4">
-            <div className="rounded-xl bg-indigo-400/8 border border-indigo-400/20 p-4">
+            <div className="rounded-md bg-indigo-400/8 border border-indigo-400/20 p-4">
               <p className="text-xs text-muted-foreground mb-1">Break-Even AUM (cover $3.5M fixed costs)</p>
               <p className="text-2xl font-bold text-indigo-400">${breakEvenAUM.toFixed(0)}M</p>
               <p className="text-xs text-muted-foreground mt-1">At 2% mgmt fee — minimum viable fund size</p>
@@ -1863,7 +1863,7 @@ export default function HedgeFundPage() {
           transition={{ duration: 0.4 }}
           className="flex items-center gap-3"
         >
-          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-500/30">
+          <div className="flex items-center justify-center w-10 h-10 rounded-md bg-indigo-500/20 border border-indigo-500/30">
             <Building2 className="w-5 h-5 text-indigo-400" />
           </div>
           <div>
@@ -1879,7 +1879,7 @@ export default function HedgeFundPage() {
         </motion.div>
 
         {/* Hero */}
-        <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+        <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
           <div className="flex items-center gap-3 mb-2">
             <Layers className="w-5 h-5 text-primary" />
             <h2 className="text-lg font-medium text-foreground">Strategy Explorer &amp; Simulators</h2>
@@ -1932,7 +1932,7 @@ export default function HedgeFundPage() {
         </Tabs>
 
         {/* Footer note */}
-        <div className="flex items-start gap-2 rounded-xl bg-foreground/[0.03] border border-border/50 p-4">
+        <div className="flex items-start gap-2 rounded-md bg-foreground/[0.03] border border-border/50 p-4">
           <Info className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-0.5" />
           <p className="text-xs text-muted-foreground">
             All data is simulated for educational purposes. Hedge fund strategies carry significant risks

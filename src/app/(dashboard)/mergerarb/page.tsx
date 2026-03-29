@@ -838,23 +838,23 @@ function ArbitrageCalculator() {
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <div className="bg-muted/60 rounded-xl p-3 text-center">
+          <div className="bg-muted/60 rounded-md p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Gross P&amp;L</div>
             <div className={cn("text-xl font-medium font-mono", grossPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
               {grossPnL >= 0 ? "+" : ""}${grossPnL.toFixed(0)}
             </div>
           </div>
-          <div className="bg-muted/60 rounded-xl p-3 text-center">
+          <div className="bg-muted/60 rounded-md p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Ann. Return</div>
             <div className="text-xl font-medium font-mono text-primary">{annualizedReturn.toFixed(1)}%</div>
           </div>
-          <div className="bg-muted/60 rounded-xl p-3 text-center">
+          <div className="bg-muted/60 rounded-md p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Expected Value</div>
             <div className={cn("text-xl font-medium font-mono", expectedValue >= 0 ? "text-foreground" : "text-red-400")}>
               {expectedValue >= 0 ? "+" : ""}${expectedValue.toFixed(0)}
             </div>
           </div>
-          <div className="bg-muted/60 rounded-xl p-3 text-center">
+          <div className="bg-muted/60 rounded-md p-3 text-center">
             <div className="text-xs text-muted-foreground mb-1">Reward / Risk</div>
             <div className={cn("text-xl font-medium font-mono", rrRatio >= 1 ? "text-emerald-400" : "text-amber-400")}>
               {rrRatio.toFixed(2)}x
@@ -977,7 +977,7 @@ export default function MergerArbPage() {
       </div>
 
       {/* Summary stats — Hero */}
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <SummaryStats deals={DEALS} />
       </div>
 

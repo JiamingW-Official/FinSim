@@ -796,7 +796,7 @@ export default function CapitalStructurePage() {
       className="p-4 sm:p-6 space-y-5 max-w-5xl mx-auto"
     >
       {/* HERO Header */}
-      <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <div className="flex items-start justify-between gap-4 flex-wrap border-l-4 border-l-primary rounded-md bg-card p-6">
         <div>
           <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
             <Layers className="w-6 h-6 text-primary" />

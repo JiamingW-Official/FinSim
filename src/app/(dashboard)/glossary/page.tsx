@@ -896,14 +896,14 @@ export default function GlossaryPage() {
   return (
     <div className="flex flex-col h-full min-h-0">
       {/* Header */}
-      <div className="border-b border-border/50 px-4 py-3 shrink-0">
-        <h1 className="text-base font-medium">Education Hub</h1>
+      <div className="border-b border-border/50 border-l-4 border-l-primary px-4 py-3 shrink-0">
+        <h1 className="text-lg font-medium">Education Hub</h1>
         <p className="text-xs text-muted-foreground mt-0.5">
           Reference library — glossary, indicators, patterns, wisdom, and economics
         </p>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto">
+      <div className="flex-1 min-h-0 overflow-y-auto mt-8">
         <div className="p-4">
           <Tabs defaultValue="dictionary" className="flex flex-col gap-4">
             {/* Tab bar */}

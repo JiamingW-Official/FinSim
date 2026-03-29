@@ -202,7 +202,7 @@ function StatCard({
       : "text-foreground";
 
   return (
-    <div className="rounded-xl border border-border bg-card p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-card p-4 flex flex-col gap-1">
       <div className="flex items-center gap-2 text-muted-foreground text-xs">
         {Icon && <Icon className="w-3.5 h-3.5" />}
         {label}

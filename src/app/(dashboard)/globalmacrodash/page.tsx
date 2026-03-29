@@ -1044,12 +1044,12 @@ export default function GlobalMacroDashPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-5">
-      {/* Page header */}
-      <div className="flex items-start justify-between flex-wrap gap-3">
+      {/* Page header — Hero */}
+      <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between flex-wrap gap-3">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Globe className="w-6 h-6 text-primary" />
-            <h1 className="text-xl font-medium text-foreground">Global Macro Dashboard</h1>
+            <h1 className="text-lg font-medium text-foreground">Global Macro Dashboard</h1>
           </div>
           <p className="text-sm text-muted-foreground">
             Cross-asset correlations · Central bank policy · Macro regimes · Positioning intelligence
@@ -1065,7 +1065,7 @@ export default function GlobalMacroDashPage() {
       </div>
 
       {/* Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-8">
         <TabsList className="bg-card/70 border border-border h-auto p-1 flex flex-wrap gap-1">
           {tabs.map((t) => (
             <TabsTrigger

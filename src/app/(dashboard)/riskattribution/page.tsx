@@ -243,7 +243,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4">
+    <div className="rounded-md border border-border bg-foreground/5 p-4">
       <p className="text-xs text-muted-foreground mb-1">{label}</p>
       <p className={cn("text-xl font-bold", valClass)}>{value}</p>
       {sub && <p className="text-xs text-muted-foreground mt-1">{sub}</p>}
@@ -292,7 +292,7 @@ function BHBTab() {
         <StatCard label="Total Active Return" value={pct(totalActive)} highlight={totalActive >= 0 ? "pos" : "neg"} sub="Portfolio vs benchmark" />
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-6 border-l-4 border-l-primary">
         <SectionHeading title="Active Return by Sector" sub="Stacked bars: allocation (indigo) + selection (cyan) + interaction (amber)" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {/* grid */}
@@ -337,7 +337,7 @@ function BHBTab() {
         </svg>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border">
@@ -364,7 +364,7 @@ function BHBTab() {
         </table>
       </div>
 
-      <div className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4 flex gap-3">
+      <div className="rounded-md border border-indigo-500/20 bg-indigo-500/5 p-4 flex gap-3">
         <Info className="w-4 h-4 text-indigo-400 mt-0.5 shrink-0" />
         <p className="text-xs text-muted-foreground">
           <span className="text-indigo-300 font-semibold">Brinson-Hood-Beebower</span> (1986) decomposes active return into three sources.
@@ -420,7 +420,7 @@ function FactorTab() {
         ))}
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Factor Contribution Waterfall" sub="Cumulative return decomposition by risk factor" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {yticks.map((tick) => {
@@ -489,7 +489,7 @@ function FactorTab() {
         </svg>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border">
@@ -573,7 +573,7 @@ function ActiveShareTab() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-border bg-foreground/5 p-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5">
         <SectionHeading title="Conviction Level Simulator" sub="Drag the slider to adjust portfolio concentration" />
         <div className="flex items-center gap-4 mb-6">
           <span className="text-xs text-muted-foreground w-20">Conviction</span>
@@ -592,7 +592,7 @@ function ActiveShareTab() {
           <StatCard label="Active Share" value={`${activeShare.toFixed(1)}%`} sub="Deviation from benchmark" />
           <StatCard label="Tracking Error" value={`${trackingError.toFixed(2)}%`} sub="Annualised volatility of alpha" />
           <StatCard label="Information Ratio" value={irVal(conviction)} sub="Alpha per unit of TE" highlight="neutral" />
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <p className="text-xs text-muted-foreground mb-1">Classification</p>
             <p className={cn("text-base font-medium", zoneColor)}>{zone}</p>
             {activeShare < 60 && (
@@ -653,7 +653,7 @@ function ActiveShareTab() {
         <p className="text-xs text-muted-foreground text-center mt-1">TE (x-axis) vs Active Share (y-axis)</p>
       </div>
 
-      <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 flex gap-3">
+      <div className="rounded-md border border-amber-500/20 bg-amber-500/5 p-4 flex gap-3">
         <AlertTriangle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
         <p className="text-xs text-muted-foreground">
           <span className="text-amber-300 font-semibold">Closet indexers</span> charge active fees while holding a portfolio nearly identical to the benchmark (Active Share &lt;60%). Academic research (Cremers &amp; Petajisto 2009) shows truly active funds with AS &gt;80% significantly outperform. A high IR above 0.5 indicates skill; below 0.3 suggests random returns may explain performance.
@@ -704,7 +704,7 @@ function RiskContribTab() {
         />
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Risk Contribution by Position" sub="Sorted by % contribution to total portfolio risk" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {[0, 0.05, 0.1, 0.15, 0.2, 0.25].map((tick) => {
@@ -736,7 +736,7 @@ function RiskContribTab() {
         </svg>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border">
@@ -792,7 +792,7 @@ function ScenarioTab() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Macro Scenario Impact" sub="Estimated portfolio vs benchmark response to stress scenarios" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           <line x1={padL + zero} y1={padT} x2={padL + zero} y2={chartH - padB} stroke="#ffffff40" strokeWidth={1} />
@@ -840,7 +840,7 @@ function ScenarioTab() {
         {SCENARIOS.map((sc) => {
           const excess = sc.portfolioImpact - sc.benchmarkImpact;
           return (
-            <div key={sc.name} className="rounded-xl border border-border bg-foreground/5 p-4">
+            <div key={sc.name} className="rounded-md border border-border bg-foreground/5 p-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-semibold text-foreground">{sc.name}</p>
@@ -929,7 +929,7 @@ function HistoryTab() {
         />
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionHeading title="Cumulative Attribution — 12 Months" sub="Alpha (white) · Allocation (indigo) · Selection (cyan)" />
         <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full">
           {Array.from({ length: yticks }, (_, i) => {
@@ -995,7 +995,7 @@ function HistoryTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 overflow-auto">
+      <div className="rounded-md border border-border bg-foreground/5 overflow-auto">
         <table className="w-full text-xs">
           <thead>
             <tr className="border-b border-border">
@@ -1046,7 +1046,7 @@ export default function RiskAttributionPage() {
     >
       {/* Header */}
       <div className="flex items-start gap-4">
-        <div className="rounded-xl bg-indigo-500/20 border border-indigo-500/30 p-3">
+        <div className="rounded-md bg-indigo-500/20 border border-indigo-500/30 p-3">
           <BarChart3 className="w-6 h-6 text-indigo-400" />
         </div>
         <div>
@@ -1087,7 +1087,7 @@ export default function RiskAttributionPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="bhb">
-        <TabsList className="grid grid-cols-3 md:grid-cols-6 h-auto gap-1 bg-foreground/5 p-1 rounded-xl border border-border">
+        <TabsList className="grid grid-cols-3 md:grid-cols-6 h-auto gap-1 bg-foreground/5 p-1 rounded-md border border-border">
           {TABS.map(({ id, label, icon: Icon }) => (
             <TabsTrigger
               key={id}

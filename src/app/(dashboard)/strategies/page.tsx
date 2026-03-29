@@ -456,7 +456,7 @@ function StrategyCard({
       : "text-amber-400";
 
   return (
-    <div className="flex flex-col rounded-xl border border-border/50 bg-foreground/[0.025] p-4 gap-3 hover:border-border transition-colors">
+    <div className="flex flex-col rounded-md border border-border/50 bg-foreground/[0.025] p-4 gap-3 hover:border-border transition-colors">
       {/* Header */}
       <div className="flex items-start justify-between gap-2">
         <div className="flex-1 min-w-0">
@@ -675,7 +675,7 @@ function ComparePanel({ a, b, onClose }: { a: StoredStrategy; b: StoredStrategy;
   const numericB = (s: string) => parseFloat(s.replace(/[^0-9.-]/g, ""));
 
   return (
-    <div className="rounded-xl border border-border bg-card p-5 space-y-4">
+    <div className="rounded-md border border-border bg-card p-5 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <GitCompare className="h-4 w-4 text-primary" />
@@ -952,7 +952,7 @@ export default function StrategiesPage() {
 
                 {/* Strategy list */}
                 {savedStrategies.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-border py-20 text-center">
+                  <div className="flex flex-col items-center justify-center rounded-md border border-dashed border-border py-20 text-center">
                     <Layers className="h-10 w-10 text-muted-foreground/50 mb-3" />
                     <p className="text-sm font-medium text-muted-foreground">No strategies saved yet</p>
                     <p className="text-xs text-muted-foreground mt-1 max-w-xs">

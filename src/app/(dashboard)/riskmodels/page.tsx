@@ -750,7 +750,7 @@ export default function RiskModelsPage() {
     <div className="p-6 space-y-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="flex items-start gap-4">
-        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+        <div className="p-3 rounded-md bg-red-500/10 border border-red-500/20">
           <ShieldAlert className="w-7 h-7 text-red-400" />
         </div>
         <div>
@@ -835,9 +835,9 @@ export default function RiskModelsPage() {
           </div>
 
           {/* Historical VaR chart */}
-          <Card className="bg-card border-border">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+          <Card className="bg-card border-border border-l-4 border-l-primary">
+            <CardHeader className="p-6 pb-2">
+              <CardTitle className="text-lg font-medium text-muted-foreground flex items-center gap-2">
                 <BarChart2 className="w-4 h-4 text-indigo-400" />
                 Historical Simulation VaR — 500-Day P&L Distribution
               </CardTitle>

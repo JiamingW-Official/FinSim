@@ -248,7 +248,7 @@ export function MiniChart({ bars, revealedCount, trades, activeIndicators, curre
   const visibleTrades = trades.filter((t) => t.barIndex >= windowStart && t.barIndex < windowStart + visible.length);
 
   return (
-    <div className="glass rounded-xl border border-border overflow-hidden">
+    <div className="glass rounded-md border border-border overflow-hidden">
       <svg width="100%" viewBox={`0 0 ${CHART_W} ${CHART_H}`} preserveAspectRatio="xMidYMid meet" className="block">
         {/* Grid */}
         {[0.25, 0.5, 0.75].map((f) => {

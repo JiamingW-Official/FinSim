@@ -23,7 +23,7 @@ export function ScenariosTab({ onSelectScenario }: ScenariosTabProps) {
     <div className="flex flex-col gap-2">
       {/* Info banner */}
       <motion.div
-        className="flex items-start gap-2.5 rounded-xl border border-amber-500/15 bg-amber-500/5 px-3.5 py-2.5"
+        className="flex items-start gap-2.5 rounded-md border border-amber-500/15 bg-amber-500/5 px-3.5 py-2.5"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}

@@ -892,7 +892,7 @@ function TopTradersTab() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 20 }}
               transition={{ duration: 0.2 }}
-              className="w-full max-w-sm rounded-xl border border-border bg-card p-4 shadow-sm space-y-4"
+              className="w-full max-w-sm rounded-md border border-border bg-card p-4 shadow-sm space-y-4"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal header */}

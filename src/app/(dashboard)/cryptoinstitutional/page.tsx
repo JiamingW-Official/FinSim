@@ -1703,7 +1703,7 @@ export default function CryptoInstitutionalPage() {
   return (
     <div className="p-6 space-y-6 max-w-5xl mx-auto">
       {/* HERO Header */}
-      <div className="border-l-4 border-l-primary rounded-xl bg-card p-6 space-y-1">
+      <div className="border-l-4 border-l-primary rounded-md bg-card p-6 space-y-1">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-indigo-500/15 rounded-lg border border-indigo-500/25">
             <Bitcoin className="w-6 h-6 text-indigo-400" />

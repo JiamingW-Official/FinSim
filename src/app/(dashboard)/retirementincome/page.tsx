@@ -1882,10 +1882,10 @@ export default function RetirementIncomePage() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="px-6 pt-6 pb-4 border-b border-border shrink-0"
+        className="px-6 pt-6 pb-4 border-b border-border shrink-0 border-l-4 border-l-primary"
       >
         <div className="flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-primary/10">
+          <div className="p-2.5 rounded-md bg-primary/10">
             <DollarSign className="w-6 h-6 text-primary" />
           </div>
           <div>
@@ -1916,7 +1916,7 @@ export default function RetirementIncomePage() {
         className="flex-1 min-h-0 overflow-y-auto px-6 py-4"
       >
         <Tabs defaultValue="withdrawal" className="w-full">
-          <TabsList className="w-full mb-6 grid grid-cols-4 h-auto gap-1 bg-muted/30 p-1 rounded-xl">
+          <TabsList className="w-full mb-6 grid grid-cols-4 h-auto gap-1 bg-muted/30 p-1 rounded-md">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (

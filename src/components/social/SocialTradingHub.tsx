@@ -501,7 +501,7 @@ function StrategyCard({ strategy, followed, copied, onFollow, onCopy }: {
 }) {
   return (
     <div className={cn(
-      "rounded-xl border p-4 space-y-3 transition-all",
+      "rounded-md border p-4 space-y-3 transition-all",
       followed ? "border-primary/30 bg-primary/3" : "border-border/50 bg-card hover:border-border/70",
     )}>
       {/* Header */}
@@ -686,7 +686,7 @@ function IdeaCard({ idea, agreed, disagreed, onAgree, onDisagree }: {
   const rr = Math.abs((idea.target - idea.entry) / (idea.entry - idea.stop));
 
   return (
-    <div className="rounded-xl border border-border/50 bg-card p-4 space-y-3 hover:border-border/70 transition-colors">
+    <div className="rounded-md border border-border/50 bg-card p-4 space-y-3 hover:border-border/70 transition-colors">
       {/* Author row */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -960,7 +960,7 @@ function LeaderboardRankingsSection() {
       </div>
 
       {/* Table */}
-      <div className="bg-card border border-border/50 rounded-xl overflow-hidden">
+      <div className="bg-card border border-border/50 rounded-md overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
@@ -1031,7 +1031,7 @@ function TopTraderCard({ trader }: { trader: TopTrader }) {
   const [cloned, setCloned] = useState(false);
 
   return (
-    <div className="rounded-xl border border-border/50 bg-card p-4 space-y-4">
+    <div className="rounded-md border border-border/50 bg-card p-4 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
@@ -1210,7 +1210,7 @@ function DiscussionSection() {
   return (
     <div className="space-y-4">
       {/* Top mentions widget */}
-      <div className="bg-card border border-border/50 rounded-xl p-4">
+      <div className="bg-card border border-border/50 rounded-md p-4">
         <div className="flex items-center gap-2 mb-3">
           <Flame className="h-4 w-4 text-orange-400" />
           <h3 className="text-xs font-semibold text-muted-foreground/80">Today&apos;s Hot Mentions</h3>
@@ -1235,7 +1235,7 @@ function DiscussionSection() {
             key={t.id}
             onClick={() => setActiveThread(i)}
             className={cn(
-              "w-full text-left px-4 py-3 rounded-xl border transition-colors",
+              "w-full text-left px-4 py-3 rounded-md border transition-colors",
               activeThread === i
                 ? "border-primary/30 bg-primary/5"
                 : "border-border/50 bg-card hover:border-border/70",
@@ -1257,7 +1257,7 @@ function DiscussionSection() {
 
       {/* Active thread messages */}
       {thread && (
-        <div className="bg-card border border-border/50 rounded-xl p-4 space-y-4">
+        <div className="bg-card border border-border/50 rounded-md p-4 space-y-4">
           <h3 className="text-sm font-semibold border-b border-border/30 pb-3">{thread.topic}</h3>
           <div className="space-y-4">
             {thread.messages.map((msg) => (
@@ -1321,7 +1321,7 @@ export default function SocialTradingHub() {
   return (
     <div className="space-y-5">
       {/* Section Nav */}
-      <div className="flex items-center gap-1 bg-muted/40 rounded-xl p-1 flex-wrap">
+      <div className="flex items-center gap-1 bg-muted/40 rounded-md p-1 flex-wrap">
         {HUB_SECTIONS.map((s) => (
           <button
             key={s.key}

@@ -451,7 +451,7 @@ export default function MomentumBuilderPage() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-card border-l-4 border-l-primary p-6">
+      <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
         <h2 className="text-lg font-medium text-foreground mb-1">Momentum Strategy Lab</h2>
         <p className="text-sm text-muted-foreground">Quantitative momentum construction, signal analysis, backtesting, decay dynamics, and crash behavior.</p>
       </div>

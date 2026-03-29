@@ -207,7 +207,7 @@ export default function StrategyPanel({
       {/* Template Gallery Button */}
       <button
         onClick={onOpenTemplates}
-        className="flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-semibold text-orange-300 transition-all hover:border-primary/50 hover:bg-primary/15"
+        className="flex items-center justify-center gap-2 rounded-md border border-primary/30 bg-primary/10 px-4 py-2.5 text-xs font-semibold text-orange-300 transition-all hover:border-primary/50 hover:bg-primary/15"
       >
         <BookOpen className="h-4 w-4" />
         Browse Strategy Templates
@@ -588,7 +588,7 @@ export default function StrategyPanel({
       <button
         onClick={handleRun}
         disabled={isRunning || entryRules.length === 0}
-        className="mt-auto flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:bg-orange-500 disabled:opacity-40"
+        className="mt-auto flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-bold text-foreground shadow-sm transition-all hover:bg-orange-500 disabled:opacity-40"
       >
         <FlaskConical className="h-4 w-4" />
         {isRunning ? "Running..." : monteCarloRuns > 0 ? `Run Backtest + ${monteCarloRuns} MC` : "Run Backtest"}

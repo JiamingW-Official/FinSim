@@ -52,7 +52,7 @@ export function DailyTab({ onSelectChallenge }: DailyTabProps) {
       {/* All complete celebration */}
       {allDone && (
         <motion.div
-          className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3"
+          className="flex items-center gap-2.5 rounded-md border border-emerald-500/20 bg-emerald-500/5 px-4 py-3"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}

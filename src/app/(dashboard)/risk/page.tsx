@@ -500,9 +500,9 @@ function OverviewTab() {
       </div>
 
       {/* VaR */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-semibold">Value at Risk (VaR) — 1 Day Parametric</CardTitle>
+      <Card className="border-l-4 border-l-primary">
+        <CardHeader className="p-6 pb-2">
+          <CardTitle className="text-lg font-semibold">Value at Risk (VaR) — 1 Day Parametric</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="grid grid-cols-2 gap-3">

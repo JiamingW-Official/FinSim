@@ -56,7 +56,7 @@ export function SeasonPreview() {
       <motion.div
         initial={{ opacity: 0, y: -6 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-border bg-card p-4"
+        className="rounded-md border border-border bg-card p-4"
       >
         <div className="flex items-start justify-between gap-3">
           <div>

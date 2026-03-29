@@ -78,7 +78,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -250,7 +250,7 @@ function IndustryOverview() {
       {/* Buyout volume bar chart */}
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> Global Buyout Volume ($B) & Avg Entry Multiple</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border border-l-4 border-l-primary bg-foreground/5 p-6">
           <svg viewBox="0 0 700 200" className="w-full" preserveAspectRatio="none">
             {/* Grid lines */}
             {[0, 0.25, 0.5, 0.75, 1].map((t) => (
@@ -329,7 +329,7 @@ function IndustryOverview() {
       {/* Vintage year heatmap */}
       <div>
         <SectionTitle><TrendingUp className="w-4 h-4" /> Vintage Year IRR Heatmap</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <div className="flex flex-wrap gap-2">
             {VINTAGE_DATA.map((v) => (
               <div key={v.year} className="flex flex-col items-center gap-1">
@@ -371,7 +371,7 @@ function IndustryOverview() {
         <SectionTitle><Layers className="w-4 h-4" /> Strategy Comparison: Buyout PE vs VC vs Growth Equity</SectionTitle>
         <div className="space-y-3">
           {STRATEGY_COMPARISON.map((s) => (
-            <div key={s.name} className="rounded-xl border border-border bg-foreground/5 p-4">
+            <div key={s.name} className="rounded-md border border-border bg-foreground/5 p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-semibold text-foreground">{s.name}</span>
                 <div className="flex gap-2">
@@ -584,7 +584,7 @@ function LBOModeling() {
       {/* LBO Inputs */}
       <div>
         <SectionTitle><Calculator className="w-4 h-4" /> LBO Model Inputs</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="rounded-md border border-border bg-foreground/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
           <SliderInput
             label="Entry Multiple (EV/EBITDA)"
             value={entryMult}
@@ -654,7 +654,7 @@ function LBOModeling() {
         </div>
 
         {/* Equity bridge */}
-        <div className="mt-4 rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="mt-4 rounded-md border border-border bg-foreground/5 p-4">
           <p className="text-xs font-medium text-muted-foreground mb-3">Equity Bridge</p>
           <svg viewBox="0 0 600 120" className="w-full">
             {[
@@ -716,7 +716,7 @@ function LBOModeling() {
       {/* IRR sensitivity table */}
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> IRR Sensitivity: Entry Multiple × Exit Multiple</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4 overflow-x-auto">
+        <div className="rounded-md border border-border bg-foreground/5 p-4 overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
               <tr className="text-muted-foreground">
@@ -818,7 +818,7 @@ function ValueCreation() {
       {/* Value creation waterfall */}
       <div>
         <SectionTitle><BarChart3 className="w-4 h-4" /> Sources of Return — Equity Value Waterfall</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <svg viewBox="0 0 600 200" className="w-full">
             {/* Entry equity base */}
             <rect x={20} y={60} width={80} height={120} rx={4} fill="#6366f1" opacity={0.8} />
@@ -913,7 +913,7 @@ function ValueCreation() {
               color: "text-amber-400",
             },
           ].map((section) => (
-            <div key={section.title} className="rounded-xl border border-border bg-foreground/5 p-4">
+            <div key={section.title} className="rounded-md border border-border bg-foreground/5 p-4">
               <p className={cn("text-sm font-medium mb-3", section.color)}>{section.title}</p>
               <ul className="space-y-2">
                 {section.items.map((item) => (
@@ -933,7 +933,7 @@ function ValueCreation() {
         <SectionTitle><Building2 className="w-4 h-4" /> Buy &amp; Build Strategy — Bolt-On Acquisitions</SectionTitle>
         <div className="space-y-3">
           {BOLT_ONS.map((bo) => (
-            <div key={bo.name} className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col md:flex-row md:items-center gap-3">
+            <div key={bo.name} className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col md:flex-row md:items-center gap-3">
               <div className="flex-1">
                 <p className="text-sm font-medium text-foreground">{bo.name}</p>
                 <p className="text-xs text-muted-foreground mt-0.5">Acquired Year {bo.year}</p>
@@ -967,15 +967,15 @@ function ValueCreation() {
       <div>
         <SectionTitle><Users className="w-4 h-4" /> Management Incentive Plan (MIP)</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <p className="text-sm font-medium text-amber-400 mb-2">Sweet Equity</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Management co-invests at same entry price but receives disproportionate upside above hurdle. Typical pool: 15–20% of equity. Vesting: 20% per year over 5 years.</p>
           </div>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <p className="text-sm font-medium text-primary mb-2">IRR Hurdles</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Management equity kicks in above 8% preferred return. Accelerated participation above 20% IRR. Full vesting on change-of-control event regardless of time served.</p>
           </div>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <p className="text-sm font-medium text-emerald-400 mb-2">Annual Bonus</p>
             <p className="text-xs text-muted-foreground leading-relaxed">Cash bonus tied to EBITDA, revenue, and cash conversion targets. Typically 30–100% of base salary. Clawback if restatement within 3 years.</p>
           </div>
@@ -990,7 +990,7 @@ function ValueCreation() {
             <div
               key={opt.route}
               className={cn(
-                "rounded-xl border p-4",
+                "rounded-md border p-4",
                 opt.highlight
                   ? "border-emerald-500/40 bg-emerald-500/10"
                   : "border-border bg-foreground/5"
@@ -1076,7 +1076,7 @@ function FundEconomics() {
   return (
     <div className="space-y-8">
       {/* Controls */}
-      <div className="rounded-xl border border-border bg-foreground/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="rounded-md border border-border bg-foreground/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-5">
         <SliderInput
           label="Fund Size (Committed Capital $M)"
           value={committedCapital}
@@ -1109,7 +1109,7 @@ function FundEconomics() {
       <div>
         <SectionTitle><DollarSign className="w-4 h-4" /> Management Fee Structure</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <p className="text-sm font-medium text-foreground mb-2">Commitment Period (Years 1–5)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               2.0% × <strong className="text-primary">${committedCapital}M committed capital</strong> ={" "}
@@ -1117,7 +1117,7 @@ function FundEconomics() {
               Fee base is full committed capital regardless of deployment pace.
             </p>
           </div>
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <p className="text-sm font-medium text-foreground mb-2">Harvest Period (Years 6–10)</p>
             <p className="text-xs text-muted-foreground leading-relaxed">
               Fee step-down to 1.5% × <strong className="text-primary">invested capital</strong>.
@@ -1131,7 +1131,7 @@ function FundEconomics() {
       <div>
         <SectionTitle><Layers className="w-4 h-4" /> Distribution Waterfall Structures</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
+          <div className="rounded-md border border-amber-500/30 bg-amber-500/10 p-4">
             <p className="text-sm font-medium text-amber-300 mb-2">European (Whole-Fund)</p>
             <ol className="space-y-2 text-xs text-muted-foreground">
               <li className="flex gap-2"><span className="text-amber-400 font-medium">1.</span> Return 100% of invested capital to LPs</li>
@@ -1142,7 +1142,7 @@ function FundEconomics() {
             </ol>
             <p className="text-xs text-muted-foreground mt-2 italic">LP-friendly: GP only gets carry after full fund returns hurdle</p>
           </div>
-          <div className="rounded-xl border border-border bg-primary/10 p-4">
+          <div className="rounded-md border border-border bg-primary/10 p-4">
             <p className="text-sm font-medium text-primary mb-2">American (Deal-by-Deal)</p>
             <ol className="space-y-2 text-xs text-muted-foreground">
               <li className="flex gap-2"><span className="text-primary font-medium">1.</span> Return invested capital for <em>that specific deal</em></li>
@@ -1271,7 +1271,7 @@ function DealSourcing() {
       {/* Deal funnel */}
       <div>
         <SectionTitle><Search className="w-4 h-4" /> Deal Conversion Funnel</SectionTitle>
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <div className="space-y-2">
             {DEAL_FUNNEL.map((stage) => (
               <div key={stage.stage} className="flex items-center gap-3">
@@ -1299,7 +1299,7 @@ function DealSourcing() {
         <SectionTitle><Briefcase className="w-4 h-4" /> Deal Sourcing Channels</SectionTitle>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {SOURCING_CHANNELS.map((ch) => (
-            <div key={ch.channel} className="rounded-xl border border-border bg-foreground/5 p-4">
+            <div key={ch.channel} className="rounded-md border border-border bg-foreground/5 p-4">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm font-medium text-foreground">{ch.channel}</p>
                 <Badge className="text-xs" style={{ backgroundColor: ch.color + "33", color: ch.color, borderColor: ch.color + "55" }}>
@@ -1349,7 +1349,7 @@ function DealSourcing() {
                 <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-medium text-foreground z-10">
                   {i + 1}
                 </div>
-                <div className="rounded-xl border border-border bg-foreground/5 p-3 flex-1">
+                <div className="rounded-md border border-border bg-foreground/5 p-3 flex-1">
                   <div className="flex items-center justify-between mb-1">
                     <p className="text-sm font-medium text-foreground">{step.step}</p>
                     <Badge className="bg-muted text-muted-foreground text-xs border-border">{step.days}</Badge>
@@ -1412,7 +1412,7 @@ function DealSourcing() {
               color: "text-amber-400",
             },
           ].map((section) => (
-            <div key={section.title} className="rounded-xl border border-border bg-foreground/5 p-4">
+            <div key={section.title} className="rounded-md border border-border bg-foreground/5 p-4">
               <p className={cn("text-sm font-medium mb-3 flex items-center gap-2", section.color)}>
                 <section.icon className="w-4 h-4" />
                 {section.title}
@@ -1475,7 +1475,7 @@ function DealSourcing() {
               ],
             },
           ].map((phase) => (
-            <div key={phase.phase} className={cn("rounded-xl border p-4", phase.color)}>
+            <div key={phase.phase} className={cn("rounded-md border p-4", phase.color)}>
               <div className="mb-3">
                 <Badge className="bg-muted text-muted-foreground text-xs border-border mb-1">{phase.phase}</Badge>
                 <p className={cn("text-sm font-medium", phase.titleColor)}>{phase.title}</p>
@@ -1512,7 +1512,7 @@ export default function PrivateEquityPage() {
           className="flex flex-col gap-1"
         >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-primary/20 border border-border flex items-center justify-center">
+            <div className="w-9 h-9 rounded-md bg-primary/20 border border-border flex items-center justify-center">
               <Briefcase className="w-5 h-5 text-primary" />
             </div>
             <div>

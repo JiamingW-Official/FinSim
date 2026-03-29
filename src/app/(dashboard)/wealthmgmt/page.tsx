@@ -58,7 +58,7 @@ function StatCard({
       ? "text-rose-400"
       : "text-foreground";
   return (
-    <div className="rounded-xl border border-border bg-foreground/5 p-4 flex flex-col gap-1">
+    <div className="rounded-md border border-border bg-foreground/5 p-4 flex flex-col gap-1">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className={cn("text-xl font-bold", valClass)}>{value}</span>
       {sub && <span className="text-xs text-muted-foreground">{sub}</span>}
@@ -281,7 +281,7 @@ function ClientSegmentationTab() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <Layers size={14} /> Wealth Pyramid
           </SectionTitle>
@@ -322,14 +322,14 @@ function ClientSegmentationTab() {
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <SectionTitle>
               <Globe size={14} /> Global HNWI Wealth by Region
             </SectionTitle>
             <RegionalHNWIChart />
           </div>
 
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <SectionTitle>
               <Target size={14} /> Client Goals Taxonomy
             </SectionTitle>
@@ -369,7 +369,7 @@ function ClientSegmentationTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <AlertTriangle size={14} /> Behavioral Finance in Wealth Management
         </SectionTitle>
@@ -634,7 +634,7 @@ function FinancialPlanningTab() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <CheckCircle size={14} /> CFP® 6-Step Financial Planning Process
           </SectionTitle>
@@ -658,7 +658,7 @@ function FinancialPlanningTab() {
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <SectionTitle>
               <BarChart3 size={14} /> Monte Carlo Retirement Simulation
             </SectionTitle>
@@ -680,7 +680,7 @@ function FinancialPlanningTab() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <SectionTitle>
               <DollarSign size={14} /> Tax Alpha Sources (annual bps)
             </SectionTitle>
@@ -940,7 +940,7 @@ function AssetAllocationTab() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <PieChart size={14} /> Model Portfolio by Risk Profile
           </SectionTitle>
@@ -1001,7 +1001,7 @@ function AssetAllocationTab() {
         </div>
 
         <div className="space-y-4">
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <SectionTitle>
               <TrendingUp size={14} /> Lifecycle Glide Path (Age vs Allocation)
             </SectionTitle>
@@ -1012,7 +1012,7 @@ function AssetAllocationTab() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <SectionTitle>
               <BarChart3 size={14} /> Factor Tilts
             </SectionTitle>
@@ -1031,7 +1031,7 @@ function AssetAllocationTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Calculator size={14} /> Rebalancing Strategies
         </SectionTitle>
@@ -1254,7 +1254,7 @@ function FeeModelsTab() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="rounded-xl border border-border bg-foreground/5 p-4">
+        <div className="rounded-md border border-border bg-foreground/5 p-4">
           <SectionTitle>
             <BarChart3 size={14} /> AUM Fee Schedule by Wealth Tier
           </SectionTitle>
@@ -1267,7 +1267,7 @@ function FeeModelsTab() {
         </div>
 
         <div className="space-y-3">
-          <div className="rounded-xl border border-border bg-foreground/5 p-4">
+          <div className="rounded-md border border-border bg-foreground/5 p-4">
             <SectionTitle>
               <Shield size={14} /> Fee Model Comparison
             </SectionTitle>
@@ -1311,7 +1311,7 @@ function FeeModelsTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Star size={14} /> Robo-Advisor Platform Comparison
         </SectionTitle>
@@ -1347,7 +1347,7 @@ function FeeModelsTab() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-border bg-foreground/5 p-4">
+      <div className="rounded-md border border-border bg-foreground/5 p-4">
         <SectionTitle>
           <Building2 size={14} /> Family Office Structures
         </SectionTitle>
@@ -1431,7 +1431,7 @@ export default function WealthMgmtPage() {
           className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
         >
           <div className="flex items-center gap-3 mb-1">
-            <div className="rounded-xl bg-amber-500/15 p-2.5">
+            <div className="rounded-md bg-amber-500/15 p-2.5">
               <Briefcase size={22} className="text-amber-400" />
             </div>
             <div>

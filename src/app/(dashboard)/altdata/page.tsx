@@ -1171,7 +1171,7 @@ export default function AltDataPage() {
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className="border-l-4 border-l-primary rounded-xl bg-card p-6"
+          className="border-l-4 border-l-primary rounded-md bg-card p-6"
         >
           <div className="flex items-start gap-3">
             <div className="p-2 rounded-lg bg-indigo-500/20">

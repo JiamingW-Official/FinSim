@@ -595,9 +595,9 @@ export default function QuantRiskPage() {
         <TabsContent value="var" className="space-y-4 data-[state=inactive]:hidden">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Controls */}
-            <Card className="border-border bg-card">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <Card className="border-border bg-card border-l-4 border-l-primary">
+              <CardHeader className="pb-2 p-6">
+                <CardTitle className="text-lg font-semibold flex items-center gap-2">
                   <Layers className="w-4 h-4 text-indigo-500" />
                   Parameters
                 </CardTitle>

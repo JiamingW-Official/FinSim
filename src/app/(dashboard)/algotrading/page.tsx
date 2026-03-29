@@ -508,7 +508,7 @@ export default function AlgoTradingPage() {
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
       {/* HERO Header */}
       <motion.div {...fadeUp}>
-        <div className="border-l-4 border-l-primary rounded-xl bg-card p-6">
+        <div className="border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
             <Zap className="w-5 h-5 text-indigo-400" />

@@ -1463,14 +1463,14 @@ export default function GeopoliticsPage() {
       <motion.div
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6"
+        className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="p-2 rounded-lg bg-red-900/30 border border-red-800/50">
             <Globe className="w-5 h-5 text-red-400" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Geopolitics & Financial Markets</h1>
+            <h1 className="text-xl font-bold text-foreground">Geopolitics & Financial Markets</h1>
             <p className="text-sm text-muted-foreground">
               How geopolitical events move markets — sanctions, trade wars, currency weaponization, and risk premiums
             </p>
@@ -1478,7 +1478,7 @@ export default function GeopoliticsPage() {
         </div>
       </motion.div>
 
-      <Tabs defaultValue="events">
+      <Tabs defaultValue="events" className="mt-8">
         <TabsList className="bg-card border border-border mb-4 flex-wrap h-auto gap-1 p-1">
           <TabsTrigger value="events" className="text-xs data-[state=active]:bg-muted">
             <ShieldAlert className="w-3.5 h-3.5 mr-1.5" />Event Impact

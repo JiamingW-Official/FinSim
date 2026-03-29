@@ -511,7 +511,7 @@ function LBOWaterfallChart() {
 
 function InfoCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="rounded-xl border border-border bg-muted/50 p-4">
+    <div className="rounded-md border border-border bg-muted/50 p-4">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-primary">{icon}</span>
         <span className="text-sm font-semibold text-foreground">{title}</span>
@@ -1012,7 +1012,7 @@ function SecondaryOfferingsTab() {
             purple: "text-primary",
           };
           return (
-            <div key={ot.name} className={cn("rounded-xl border bg-muted/50 p-4", borderMap[cardColor])}>
+            <div key={ot.name} className={cn("rounded-md border bg-muted/50 p-4", borderMap[cardColor])}>
               <div className="flex items-center gap-2 mb-2">
                 <span className={iconColorMap[cardColor]}>{ot.icon}</span>
                 <span className="text-sm font-medium text-foreground">{ot.name}</span>
@@ -1319,7 +1319,7 @@ export default function CapitalMarketsPage() {
         initial={{ opacity: 0, y: -12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6"
+        className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6"
       >
         <div className="flex items-center gap-3 mb-1">
           <div className="w-8 h-8 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">

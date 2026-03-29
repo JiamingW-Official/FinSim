@@ -151,7 +151,7 @@ function MetricCard({ label, value, sub, icon: Icon, trend }: {
 }) {
   const trendColor = trend === "up" ? "text-green-400" : trend === "down" ? "text-red-400" : "text-muted-foreground";
   return (
-    <div className="bg-muted/60 border border-border/50 rounded-xl p-4 flex flex-col gap-2">
+    <div className="bg-muted/60 border border-border/50 rounded-md p-4 flex flex-col gap-2">
       <div className="flex items-center gap-2 text-muted-foreground text-xs">
         <Icon className="w-3.5 h-3.5" />
         <span>{label}</span>
@@ -180,7 +180,7 @@ function StructureTab() {
     <div className="space-y-6">
       {/* Conduit vs SASB */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-muted/60 border border-border rounded-xl p-5 space-y-3">
+        <div className="bg-muted/60 border border-border rounded-md p-5 space-y-3">
           <div className="flex items-center gap-2">
             <Layers className="w-4 h-4 text-primary" />
             <span className="font-semibold text-primary text-sm">Conduit CMBS</span>
@@ -197,7 +197,7 @@ function StructureTab() {
             ))}
           </ul>
         </div>
-        <div className="bg-muted/60 border border-border rounded-xl p-5 space-y-3">
+        <div className="bg-muted/60 border border-border rounded-md p-5 space-y-3">
           <div className="flex items-center gap-2">
             <Building2 className="w-4 h-4 text-primary" />
             <span className="font-semibold text-primary text-sm">Single-Asset / Single-Borrower (SASB)</span>
@@ -217,7 +217,7 @@ function StructureTab() {
       </div>
 
       {/* Trust Flow Diagram */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-5">
         <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
           <ArrowRight className="w-4 h-4 text-primary" />
           CMBS Trust Structure
@@ -264,7 +264,7 @@ function StructureTab() {
 
       {/* Capital Stack */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <Layers className="w-4 h-4 text-amber-400" />
             Capital Stack (8 Tranches)
@@ -287,7 +287,7 @@ function StructureTab() {
               const t = TRANCHES.find((x) => x.name === expanded);
               if (!t) return null;
               return (
-                <motion.div key={expanded} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-card/80 border rounded-xl p-4 space-y-2" style={{ borderColor: t.color + "66" }}>
+                <motion.div key={expanded} initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-card/80 border rounded-md p-4 space-y-2" style={{ borderColor: t.color + "66" }}>
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-sm" style={{ color: t.color }}>{t.name} — {t.rating}</span>
                     <button onClick={() => setExpanded(null)} className="text-muted-foreground hover:text-muted-foreground text-xs">✕</button>
@@ -308,7 +308,7 @@ function StructureTab() {
             })()}
           </AnimatePresence>
 
-          <div className="bg-muted/60 border border-border/50 rounded-xl p-4 space-y-3">
+          <div className="bg-muted/60 border border-border/50 rounded-md p-4 space-y-3">
             <h4 className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Servicer Roles</h4>
             {[
               { role: "Master Servicer", desc: "Collects P&I from all performing loans; advances scheduled payments to certificate holders when borrowers are current.", color: "text-primary" },
@@ -369,7 +369,7 @@ function LoanAnalysisTab() {
   return (
     <div className="space-y-6">
       {/* Loans table */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl overflow-hidden">
+      <div className="bg-muted/60 border border-border/50 rounded-md overflow-hidden">
         <div className="px-5 py-3 border-b border-border/50 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-primary" />
           <span className="text-sm font-medium text-foreground">Sample Loan Pool (8 Loans)</span>
@@ -423,7 +423,7 @@ function LoanAnalysisTab() {
       {/* Scatter + NOI stress */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* DSCR vs LTV Scatter */}
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-primary" />
             DSCR vs LTV Scatter
@@ -473,7 +473,7 @@ function LoanAnalysisTab() {
         </div>
 
         {/* NOI Stress Test */}
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-5 space-y-4">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-5 space-y-4">
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Activity className="w-4 h-4 text-amber-400" />
             NOI Stress Testing — Occupancy
@@ -517,7 +517,7 @@ function LoanAnalysisTab() {
       </div>
 
       {/* Property Sector Heatmap */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Building2 className="w-4 h-4 text-green-400" />
           Property Sector Heatmap
@@ -533,7 +533,7 @@ function LoanAnalysisTab() {
             const trendColor =
               sector.trend === "bullish" ? "text-green-400" : sector.trend === "neutral" ? "text-amber-400" : "text-red-400";
             return (
-              <div key={sector.name} className={cn("border rounded-xl p-4 space-y-2", heatColor)}>
+              <div key={sector.name} className={cn("border rounded-md p-4 space-y-2", heatColor)}>
                 <div className="font-medium text-sm text-foreground">{sector.name}</div>
                 <div className="text-xs text-muted-foreground">Weight: <span className="text-foreground font-medium">{sector.weight}%</span></div>
                 <div className={cn("text-xs font-medium", trendColor)}>
@@ -591,7 +591,7 @@ function PerformanceTab() {
       </div>
 
       {/* Delinquency bar chart */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <BarChart3 className="w-4 h-4 text-red-400" />
           12-Month Delinquency Rate (30+ Days)
@@ -631,7 +631,7 @@ function PerformanceTab() {
 
       {/* Vintage loss rates + Prepayment speeds */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <TrendingDown className="w-4 h-4 text-red-400" />
             Realized Loss Rate by Vintage
@@ -655,7 +655,7 @@ function PerformanceTab() {
           <p className="text-xs text-muted-foreground mt-3">2020 vintage elevated due to pandemic hotel/retail stress.</p>
         </div>
 
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-primary" />
             Prepayment Speeds by Property Type (CPR%)
@@ -739,7 +739,7 @@ function TradingTab() {
       </div>
 
       {/* CMBX Spread Chart */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+      <div className="bg-muted/60 border border-border/50 rounded-md p-5">
         <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
           <Activity className="w-4 h-4 text-primary" />
           CMBX Index Spreads — 12 Month (IG vs HY)
@@ -777,7 +777,7 @@ function TradingTab() {
 
       {/* Bid/Ask liquidity table + Extension risk */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-5">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-5">
           <h3 className="text-sm font-medium text-foreground mb-4 flex items-center gap-2">
             <DollarSign className="w-4 h-4 text-green-400" />
             Bid/Ask Liquidity by Tranche
@@ -807,7 +807,7 @@ function TradingTab() {
           <p className="text-xs text-muted-foreground mt-3">Wider bid/ask in mezzanine tranches reflects reduced dealer appetite for credit risk.</p>
         </div>
 
-        <div className="bg-muted/60 border border-border/50 rounded-xl p-5 space-y-4">
+        <div className="bg-muted/60 border border-border/50 rounded-md p-5 space-y-4">
           <h3 className="text-sm font-medium text-foreground flex items-center gap-2">
             <Clock className="w-4 h-4 text-orange-400" />
             Extension Risk Analysis — Office Sector
@@ -838,7 +838,7 @@ function TradingTab() {
       </div>
 
       {/* Trading desk workflow */}
-      <div className="bg-muted/60 border border-border/50 rounded-xl overflow-hidden">
+      <div className="bg-muted/60 border border-border/50 rounded-md overflow-hidden">
         <button
           onClick={() => setShowWorkflow(!showWorkflow)}
           className="w-full flex items-center justify-between px-5 py-4 text-sm font-medium text-foreground hover:bg-muted/30 transition-colors"
@@ -865,7 +865,7 @@ function TradingTab() {
                   { step: "3. Execution", items: ["Submit BWIC (Bid Wanted in Comp)", "Negotiate bilateral with dealer", "Confirm settlement T+3 (DTC/FAST)", "Book trade in OMS (Aladdin/SS&C)"], color: "border-amber-500/30 text-amber-300" },
                   { step: "4. Post-Trade", items: ["Update position risk systems", "Monitor servicer advances", "Watch delinquency triggers", "Report to PM & risk committee"], color: "border-border text-primary" },
                 ].map((phase) => (
-                  <div key={phase.step} className={cn("border rounded-xl p-4 space-y-2", phase.color.split(" ")[0])}>
+                  <div key={phase.step} className={cn("border rounded-md p-4 space-y-2", phase.color.split(" ")[0])}>
                     <div className={cn("text-xs font-medium", phase.color.split(" ")[1])}>{phase.step}</div>
                     <ul className="space-y-1">
                       {phase.items.map((item) => (
@@ -891,9 +891,9 @@ export default function CMBSPage() {
   return (
     <div className="min-h-screen bg-background text-foreground p-4 md:p-6 lg:p-8">
       {/* HERO Header */}
-      <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-8 border-l-4 border-l-primary rounded-xl bg-card p-6">
+      <motion.div initial={{ opacity: 0, y: -16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
         <div className="flex items-start gap-4">
-          <div className="p-3 rounded-xl bg-primary/15 border border-border">
+          <div className="p-3 rounded-md bg-primary/15 border border-border">
             <Building2 className="w-6 h-6 text-primary" />
           </div>
           <div>
@@ -913,7 +913,7 @@ export default function CMBSPage() {
 
       {/* Tabs */}
       <Tabs defaultValue="structure">
-        <TabsList className="grid grid-cols-2 sm:grid-cols-4 bg-muted/60 border border-border/50 rounded-xl p-1 mb-6 h-auto gap-1">
+        <TabsList className="grid grid-cols-2 sm:grid-cols-4 bg-muted/60 border border-border/50 rounded-md p-1 mb-6 h-auto gap-1">
           {[
             { value: "structure", label: "CMBS Structure", icon: Layers },
             { value: "loans", label: "Loan Analysis", icon: Building2 },
