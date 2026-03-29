@@ -232,7 +232,7 @@ function IntradayChart({ points, currentSlot }: IntradayChartProps) {
   const hourLabels = ["9:30", "11", "12", "1pm", "2", "3", "4"];
 
   return (
-    <svg width="100%" viewBox={`0 0 ${W} ${H + 16}`} preserveAspectRatio="none">
+    <svg width="100%" height={H + 16} viewBox={`0 0 ${W} ${H + 16}`} preserveAspectRatio="xMidYMid meet">
       {/* Zero line */}
       <line
         x1={padX}
@@ -449,7 +449,7 @@ export function LivePnLDashboard() {
   // ─────────────────────────────────────────────────────────────────────────────
 
   return (
-    <div className="rounded-lg border border-border/20 bg-card p-4 space-y-5">
+    <div className="rounded-lg border border-border/20 bg-card p-3 space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
@@ -765,7 +765,9 @@ export function LivePnLDashboard() {
             </span>
           </div>
         </div>
-        <IntradayChart points={intradayPoints} currentSlot={currentSlot} />
+        <div className="h-[88px]">
+          <IntradayChart points={intradayPoints} currentSlot={currentSlot} />
+        </div>
       </div>
     </div>
   );
