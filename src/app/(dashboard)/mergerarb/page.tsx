@@ -7,1272 +7,1174 @@ import {
   AlertTriangle,
   CheckCircle2,
   Clock,
+  ChevronDown,
+  ChevronRight,
   Calculator,
   BarChart2,
   Shield,
-  Layers,
   DollarSign,
-  Info,
-  ChevronRight,
-  Target,
+  Percent,
   Activity,
+  Info,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Progress } from "@/components/ui/progress";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-// ── Seeded PRNG (seed 811) ────────────────────────────────────────────────────
-let s = 811;
+// ── Seeded PRNG ───────────────────────────────────────────────────────────────
+
+let s = 972;
 const rand = () => {
   s = (s * 1103515245 + 12345) & 0x7fffffff;
   return s / 0x7fffffff;
 };
 
+function randBetween(min: number, max: number): number {
+  return min + rand() * (max - min);
+}
+
+function randInt(min: number, max: number): number {
+  return Math.floor(randBetween(min, max + 1));
+}
+
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type DealType = "Cash" | "Stock" | "Mixed";
-type RegulatoryRisk = "Low" | "Medium" | "High";
-type DealStatus = "Pending" | "Approved" | "At Risk";
+type DealStatus = "Pending" | "Announced" | "Voted" | "Regulatory";
 
 interface Deal {
   id: string;
   acquirer: string;
+  acquirerTicker: string;
   target: string;
+  targetTicker: string;
   dealPrice: number;
   currentPrice: number;
+  spread: number;
   spreadPct: number;
+  impliedProbability: number;
+  closeDate: string;
+  dealSize: number;
+  status: DealStatus;
+  dealType: "Cash" | "Stock" | "Mixed";
   annualizedReturn: number;
   daysToClose: number;
-  dealType: DealType;
-  closeDate: string;
-  regulatoryRisk: RegulatoryRisk;
-  status: DealStatus;
-  dealSize: number; // $ billions
-  breakProbability: number; // 0-1
-  sector: string;
-  description: string;
 }
 
-interface PortfolioPosition {
-  dealId: string;
-  weight: number; // 0-1
-  entrySpread: number;
-  currentSpread: number;
-  pnl: number; // $ thousands
-  daysHeld: number;
+interface SpreadBreakdown {
+  dealRiskPremium: number;
+  timeValue: number;
+  financingCost: number;
+  total: number;
 }
 
-// ── Generate Deals with PRNG ──────────────────────────────────────────────────
+interface PortfolioPoint {
+  month: string;
+  arbReturn: number;
+  sp500Return: number;
+}
 
-const DEAL_DATA: Array<{
-  acquirer: string;
-  target: string;
-  dealType: DealType;
-  sector: string;
-  description: string;
-}> = [
-  {
-    acquirer: "SkyTech Corp",
-    target: "DataStream Inc",
-    dealType: "Cash",
-    sector: "Technology",
-    description: "All-cash acquisition to expand cloud infrastructure",
-  },
-  {
-    acquirer: "MedGiant Holdings",
-    target: "BioSync Labs",
-    dealType: "Cash",
-    sector: "Healthcare",
-    description: "Strategic buyout to acquire oncology pipeline",
-  },
-  {
-    acquirer: "NorthStar Energy",
-    target: "GreenPower Co",
-    dealType: "Stock",
-    sector: "Energy",
-    description: "All-stock merger to combine renewable portfolios",
-  },
-  {
-    acquirer: "FinCore Bank",
-    target: "CreditPlus Corp",
-    dealType: "Mixed",
-    sector: "Financials",
-    description: "Cash-and-stock deal pending Fed approval",
-  },
-  {
-    acquirer: "GlobalRetail Inc",
-    target: "ShopDirect Ltd",
-    dealType: "Cash",
-    sector: "Consumer",
-    description: "Premium cash offer for e-commerce platform",
-  },
-  {
-    acquirer: "AeroSpace Systems",
-    target: "OrbitalTech",
-    dealType: "Mixed",
-    sector: "Defense",
-    description: "Mixed consideration deal, DOJ review ongoing",
-  },
+interface CalcState {
+  entryPrice: number;
+  dealPrice: number;
+  shares: number;
+  leverage: number;
+  daysToClose: number;
+  breakProbability: number;
+  breakPrice: number;
+}
+
+// ── Data Generation ───────────────────────────────────────────────────────────
+
+const ACQUIRERS = [
+  { name: "Microsoft Corp", ticker: "MSFT" },
+  { name: "Alphabet Inc", ticker: "GOOGL" },
+  { name: "Amazon.com Inc", ticker: "AMZN" },
+  { name: "Berkshire Hathaway", ticker: "BRK.B" },
+  { name: "JPMorgan Chase", ticker: "JPM" },
+  { name: "Pfizer Inc", ticker: "PFE" },
 ];
 
-const CLOSE_MONTHS = [2, 3, 4, 5, 6, 8];
-const REGULATORY_RISKS: RegulatoryRisk[] = ["Low", "Medium", "High", "Medium", "Low", "High"];
-const STATUSES: DealStatus[] = ["Pending", "Approved", "Pending", "At Risk", "Approved", "Pending"];
+const TARGETS = [
+  { name: "Activision Blizzard", ticker: "ATVI" },
+  { name: "Pioneer Natural Res", ticker: "PXD" },
+  { name: "iRobot Corp", ticker: "IRBT" },
+  { name: "Albertsons Cos", ticker: "ACI" },
+  { name: "Horizon Therapeutics", ticker: "HZNP" },
+  { name: "Seagen Inc", ticker: "SGEN" },
+];
+
+const STATUSES: DealStatus[] = ["Pending", "Announced", "Voted", "Regulatory"];
+const DEAL_TYPES: Array<"Cash" | "Stock" | "Mixed"> = ["Cash", "Stock", "Mixed"];
+const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function generateDeals(): Deal[] {
-  return DEAL_DATA.map((d, i) => {
-    const dealPrice = 20 + Math.floor(rand() * 180);
-    const spreadBps = 50 + Math.floor(rand() * 350); // 0.5% - 4%
-    const spreadPct = spreadBps / 100;
-    const currentPrice = +(dealPrice / (1 + spreadPct / 100)).toFixed(2);
-    const daysToClose = CLOSE_MONTHS[i] * 30 + Math.floor(rand() * 15);
-    const annualizedReturn = +((spreadPct * 365) / daysToClose).toFixed(1);
-    const dealSize = +(1 + rand() * 49).toFixed(1);
-    const breakProb = REGULATORY_RISKS[i] === "High"
-      ? 0.1 + rand() * 0.15
-      : REGULATORY_RISKS[i] === "Medium"
-      ? 0.04 + rand() * 0.06
-      : 0.01 + rand() * 0.03;
-
-    const now = new Date(2026, 2, 28); // March 28, 2026
-    const closeDate = new Date(now.getTime() + daysToClose * 86400000);
-    const closeDateStr = closeDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  return ACQUIRERS.map((acq, i) => {
+    const tgt = TARGETS[i];
+    const dealPrice = Math.round(randBetween(40, 320) * 100) / 100;
+    const spreadPct = randBetween(1.5, 8.5);
+    const currentPrice = Math.round(dealPrice * (1 - spreadPct / 100) * 100) / 100;
+    const spread = Math.round((dealPrice - currentPrice) * 100) / 100;
+    const impliedProbability = Math.round(randBetween(55, 97));
+    const daysToClose = randInt(30, 280);
+    const annualizedReturn = Math.round(((spread / currentPrice) * (365 / daysToClose)) * 10000) / 100;
+    const closeMonthIdx = randInt(0, 11);
+    const closeYear = daysToClose > 180 ? 2027 : 2026;
 
     return {
       id: `deal-${i}`,
-      acquirer: d.acquirer,
-      target: d.target,
+      acquirer: acq.name,
+      acquirerTicker: acq.ticker,
+      target: tgt.name,
+      targetTicker: tgt.ticker,
       dealPrice,
       currentPrice,
-      spreadPct: +spreadPct.toFixed(2),
+      spread,
+      spreadPct: Math.round(spreadPct * 100) / 100,
+      impliedProbability,
+      closeDate: `${MONTH_NAMES[closeMonthIdx]} ${closeYear}`,
+      dealSize: Math.round(randBetween(2, 75) * 10) / 10,
+      status: STATUSES[randInt(0, 3)],
+      dealType: DEAL_TYPES[randInt(0, 2)],
       annualizedReturn,
       daysToClose,
-      dealType: d.dealType,
-      closeDate: closeDateStr,
-      regulatoryRisk: REGULATORY_RISKS[i],
-      status: STATUSES[i],
-      dealSize,
-      breakProbability: +breakProb.toFixed(4),
-      sector: d.sector,
-      description: d.description,
     };
   });
 }
 
-// Generate spread history (90 days) for a deal
-function generateSpreadHistory(deal: Deal): Array<{ day: number; spread: number }> {
-  let localS = deal.id.charCodeAt(5) * 1000 + 811;
-  const localRand = () => {
-    localS = (localS * 1103515245 + 12345) & 0x7fffffff;
-    return localS / 0x7fffffff;
+function getSpreadBreakdown(deal: Deal): SpreadBreakdown {
+  // Deterministic per-deal breakdown using deal-specific local seed
+  let ls = Math.round(deal.spreadPct * 1000 + deal.daysToClose * 7 + 972);
+  const lr = () => {
+    ls = (ls * 1103515245 + 12345) & 0x7fffffff;
+    return ls / 0x7fffffff;
   };
-  const history: Array<{ day: number; spread: number }> = [];
-  let spread = deal.spreadPct * 1.5;
-  for (let i = 0; i < 90; i++) {
-    spread = Math.max(0.1, spread + (localRand() - 0.52) * 0.15);
-    history.push({ day: i, spread: +spread.toFixed(3) });
-  }
-  // Force last point to current spread
-  history[89].spread = deal.spreadPct;
-  return history;
+  const total = deal.spreadPct;
+  const financingCost = Math.round((0.3 + lr() * 0.6) * 100) / 100;
+  const timeValue = Math.round((0.2 + lr() * 0.6) * 100) / 100;
+  const raw = total - financingCost - timeValue;
+  const dealRiskPremium = Math.round(Math.max(0.1, raw) * 100) / 100;
+  return { dealRiskPremium, timeValue, financingCost, total };
 }
 
-// ── Static Data ───────────────────────────────────────────────────────────────
+function generatePortfolioHistory(): PortfolioPoint[] {
+  const histMonths = ["Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
+  let arbCum = 0;
+  let sp500Cum = 0;
+  return histMonths.map((month) => {
+    arbCum += randBetween(-0.5, 1.8);
+    sp500Cum += randBetween(-3.5, 4.5);
+    return {
+      month,
+      arbReturn: Math.round(arbCum * 100) / 100,
+      sp500Return: Math.round(sp500Cum * 100) / 100,
+    };
+  });
+}
 
 const DEALS = generateDeals();
+const PORTFOLIO_HISTORY = generatePortfolioHistory();
 
-const PORTFOLIO_POSITIONS: PortfolioPosition[] = DEALS.slice(0, 5).map((deal, i) => {
-  const weights = [0.25, 0.20, 0.20, 0.15, 0.20];
-  const entrySpread = +(deal.spreadPct * (1 + (rand() - 0.5) * 0.3)).toFixed(2);
-  const daysHeld = 10 + Math.floor(rand() * 40);
-  const pnlDirection = deal.status === "Approved" ? 1 : deal.status === "At Risk" ? -1 : (rand() > 0.4 ? 1 : -1);
-  const pnlMag = +(rand() * 45 + 5).toFixed(1);
-  return {
-    dealId: deal.id,
-    weight: weights[i],
-    entrySpread,
-    currentSpread: deal.spreadPct,
-    pnl: +(pnlMag * pnlDirection),
-    daysHeld,
-  };
-});
-
-// Correlation matrix (5x5 — symmetric, diagonal = 1)
-function generateCorrelation(): number[][] {
-  const matrix: number[][] = Array.from({ length: 5 }, () => Array(5).fill(0));
-  for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 5; j++) {
-      if (i === j) {
-        matrix[i][j] = 1;
-      } else if (i < j) {
-        matrix[i][j] = +(-0.1 + rand() * 0.5).toFixed(2);
-      } else {
-        matrix[i][j] = matrix[j][i];
-      }
-    }
-  }
-  return matrix;
-}
-
-const CORRELATION_MATRIX = generateCorrelation();
-
-// ── Helper components ─────────────────────────────────────────────────────────
-
-function RegulatoryBadge({ risk }: { risk: RegulatoryRisk }) {
-  const colors = {
-    Low: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-    Medium: "bg-amber-500/15 text-amber-400 border-amber-500/30",
-    High: "bg-red-500/15 text-red-400 border-red-500/30",
-  };
-  return (
-    <span className={cn("px-2 py-0.5 rounded-full text-xs font-medium border", colors[risk])}>
-      {risk}
-    </span>
-  );
-}
+// ── Helper Components ─────────────────────────────────────────────────────────
 
 function StatusBadge({ status }: { status: DealStatus }) {
-  const colors = {
-    Pending: "bg-blue-500/15 text-blue-400 border-blue-500/30",
-    Approved: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
-    "At Risk": "bg-red-500/15 text-red-400 border-red-500/30",
+  const config: Record<DealStatus, { variant: "default" | "secondary" | "destructive" | "outline" }> = {
+    Pending: { variant: "secondary" },
+    Announced: { variant: "default" },
+    Voted: { variant: "outline" },
+    Regulatory: { variant: "destructive" },
   };
+  return <Badge variant={config[status].variant}>{status}</Badge>;
+}
+
+function ProbabilityBar({ value }: { value: number }) {
+  const color = value >= 80 ? "bg-emerald-500" : value >= 65 ? "bg-amber-500" : "bg-red-500";
   return (
-    <span className={cn("px-2 py-0.5 rounded-full text-xs font-medium border", colors[status])}>
-      {status}
-    </span>
+    <div className="flex items-center gap-2">
+      <div className="h-1.5 flex-1 rounded-full bg-white/10">
+        <div className={cn("h-full rounded-full", color)} style={{ width: `${value}%` }} />
+      </div>
+      <span className="text-xs tabular-nums text-zinc-300 w-8 text-right">{value}%</span>
+    </div>
   );
 }
 
-function DealTypeBadge({ type }: { type: DealType }) {
-  const colors = {
-    Cash: "bg-violet-500/15 text-violet-400 border-violet-500/30",
-    Stock: "bg-sky-500/15 text-sky-400 border-sky-500/30",
-    Mixed: "bg-orange-500/15 text-orange-400 border-orange-500/30",
-  };
-  return (
-    <span className={cn("px-2 py-0.5 rounded-full text-xs font-medium border", colors[type])}>
-      {type}
-    </span>
-  );
-}
+// ── Deal Dashboard ────────────────────────────────────────────────────────────
 
-// ── Spread History SVG Chart ──────────────────────────────────────────────────
-
-function SpreadHistoryChart({ deal }: { deal: Deal }) {
-  const history = useMemo(() => generateSpreadHistory(deal), [deal]);
-
-  const W = 520;
-  const H = 160;
-  const PAD = { top: 16, right: 24, bottom: 32, left: 48 };
-  const chartW = W - PAD.left - PAD.right;
-  const chartH = H - PAD.top - PAD.bottom;
-
-  const spreads = history.map((h) => h.spread);
-  const minS = Math.min(...spreads) * 0.9;
-  const maxS = Math.max(...spreads) * 1.1;
-
-  const xScale = (day: number) => PAD.left + (day / 89) * chartW;
-  const yScale = (v: number) => PAD.top + chartH - ((v - minS) / (maxS - minS)) * chartH;
-
-  const linePath = history
-    .map((h, i) => `${i === 0 ? "M" : "L"} ${xScale(h.day).toFixed(1)} ${yScale(h.spread).toFixed(1)}`)
-    .join(" ");
-
-  const areaPath =
-    linePath +
-    ` L ${xScale(89).toFixed(1)} ${(PAD.top + chartH).toFixed(1)} L ${xScale(0).toFixed(1)} ${(PAD.top + chartH).toFixed(1)} Z`;
-
-  // Y-axis ticks
-  const yTicks = [minS, (minS + maxS) / 2, maxS].map((v) => ({ v: +v.toFixed(2), y: yScale(v) }));
-  // X-axis ticks
-  const xTicks = [0, 30, 60, 89].map((d) => ({ d, x: xScale(d), label: d === 89 ? "Now" : `-${89 - d}d` }));
-
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
-      <defs>
-        <linearGradient id="spreadGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#6366f1" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#6366f1" stopOpacity="0.02" />
-        </linearGradient>
-      </defs>
-      {/* Grid lines */}
-      {yTicks.map((t, i) => (
-        <line
-          key={i}
-          x1={PAD.left}
-          y1={t.y}
-          x2={PAD.left + chartW}
-          y2={t.y}
-          stroke="currentColor"
-          strokeOpacity="0.1"
-          strokeWidth="1"
-        />
-      ))}
-      {/* Area */}
-      <path d={areaPath} fill="url(#spreadGrad)" />
-      {/* Line */}
-      <path d={linePath} fill="none" stroke="#6366f1" strokeWidth="1.5" strokeLinejoin="round" />
-      {/* Y-axis labels */}
-      {yTicks.map((t, i) => (
-        <text
-          key={i}
-          x={PAD.left - 6}
-          y={t.y + 4}
-          textAnchor="end"
-          fontSize="10"
-          fill="currentColor"
-          opacity="0.5"
-        >
-          {t.v.toFixed(2)}%
-        </text>
-      ))}
-      {/* X-axis labels */}
-      {xTicks.map((t, i) => (
-        <text
-          key={i}
-          x={t.x}
-          y={H - 6}
-          textAnchor="middle"
-          fontSize="10"
-          fill="currentColor"
-          opacity="0.5"
-        >
-          {t.label}
-        </text>
-      ))}
-      {/* Current spread marker */}
-      <circle cx={xScale(89)} cy={yScale(deal.spreadPct)} r="4" fill="#6366f1" />
-      <line
-        x1={xScale(89)}
-        y1={PAD.top}
-        x2={xScale(89)}
-        y2={PAD.top + chartH}
-        stroke="#6366f1"
-        strokeWidth="1"
-        strokeDasharray="3,3"
-        strokeOpacity="0.5"
-      />
-    </svg>
-  );
-}
-
-// ── Scenario Tree SVG ─────────────────────────────────────────────────────────
-
-function ScenarioTree({
-  deal,
-  breakProb,
+function DealDashboard({
+  deals,
+  selectedId,
+  onSelect,
 }: {
-  deal: Deal;
-  breakProb: number;
+  deals: Deal[];
+  selectedId: string | null;
+  onSelect: (id: string) => void;
 }) {
-  const closeProb = 1 - breakProb;
-  const revisedProb = breakProb * 0.4; // subset — revised terms
-  const trueBreakProb = breakProb * 0.6;
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b border-white/10 text-zinc-400 text-xs uppercase tracking-wide">
+            <th className="text-left py-3 px-3 font-medium">Target</th>
+            <th className="text-left py-3 px-3 font-medium">Acquirer</th>
+            <th className="text-right py-3 px-3 font-medium">Deal $</th>
+            <th className="text-right py-3 px-3 font-medium">Current $</th>
+            <th className="text-right py-3 px-3 font-medium">Spread</th>
+            <th className="text-right py-3 px-3 font-medium">Ann. Return</th>
+            <th className="py-3 px-3 font-medium">Prob.</th>
+            <th className="text-left py-3 px-3 font-medium">Close</th>
+            <th className="text-left py-3 px-3 font-medium">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {deals.map((deal) => (
+            <tr
+              key={deal.id}
+              onClick={() => onSelect(deal.id)}
+              className={cn(
+                "border-b border-white/5 cursor-pointer transition-colors hover:bg-white/5",
+                selectedId === deal.id && "bg-blue-500/10 hover:bg-blue-500/15"
+              )}
+            >
+              <td className="py-3 px-3">
+                <div className="font-medium text-white">{deal.target}</div>
+                <div className="text-xs text-zinc-400">{deal.targetTicker}</div>
+              </td>
+              <td className="py-3 px-3">
+                <div className="text-zinc-300">{deal.acquirer}</div>
+                <div className="text-xs text-zinc-500">{deal.dealType}</div>
+              </td>
+              <td className="py-3 px-3 text-right font-mono text-white">${deal.dealPrice.toFixed(2)}</td>
+              <td className="py-3 px-3 text-right font-mono text-zinc-300">${deal.currentPrice.toFixed(2)}</td>
+              <td className="py-3 px-3 text-right">
+                <span className="text-emerald-400 font-mono">+{deal.spreadPct}%</span>
+              </td>
+              <td className="py-3 px-3 text-right">
+                <span
+                  className={cn(
+                    "font-mono font-medium",
+                    deal.annualizedReturn > 10
+                      ? "text-emerald-400"
+                      : deal.annualizedReturn > 5
+                      ? "text-amber-400"
+                      : "text-zinc-300"
+                  )}
+                >
+                  {deal.annualizedReturn.toFixed(1)}%
+                </span>
+              </td>
+              <td className="py-3 px-3 min-w-[120px]">
+                <ProbabilityBar value={deal.impliedProbability} />
+              </td>
+              <td className="py-3 px-3 text-zinc-400 text-xs whitespace-nowrap">{deal.closeDate}</td>
+              <td className="py-3 px-3">
+                <StatusBadge status={deal.status} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
-  const closeReturn = deal.spreadPct;
-  const breakReturn = -((deal.dealPrice - deal.currentPrice) / deal.currentPrice) * 100 * 0.6; // typically falls 60% of premium
-  const revisedReturn = deal.spreadPct * 0.4;
+// ── Spread Decomposition ──────────────────────────────────────────────────────
 
-  const ev =
-    closeProb * closeReturn +
-    trueBreakProb * breakReturn +
-    revisedProb * revisedReturn;
+function SpreadDecomposition({ deal }: { deal: Deal }) {
+  const breakdown = useMemo(() => getSpreadBreakdown(deal), [deal]);
 
-  const W = 400;
-  const H = 160;
-
-  const rootX = 60;
-  const rootY = H / 2;
-  const midX = 190;
-  const rightX = 340;
-
-  const branches = [
-    { x: midX, y: 30, label: "Closes", prob: closeProb, ret: closeReturn, color: "#10b981" },
-    { x: midX, y: rootY, label: "Revised", prob: revisedProb, ret: revisedReturn, color: "#f59e0b" },
-    { x: midX, y: H - 30, label: "Breaks", prob: trueBreakProb, ret: breakReturn, color: "#ef4444" },
+  const bars: Array<{ label: string; value: number; color: string; desc: string }> = [
+    {
+      label: "Deal Risk Premium",
+      value: breakdown.dealRiskPremium,
+      color: "bg-blue-500",
+      desc: "Compensation for the risk the deal fails to close",
+    },
+    {
+      label: "Time Value",
+      value: breakdown.timeValue,
+      color: "bg-violet-500",
+      desc: "Opportunity cost of capital locked until close date",
+    },
+    {
+      label: "Financing Cost",
+      value: breakdown.financingCost,
+      color: "bg-amber-500",
+      desc: "Cost of borrowing or margin to fund the position",
+    },
   ];
 
   return (
-    <div className="space-y-3">
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: H }}>
-        {/* Root node */}
-        <circle cx={rootX} cy={rootY} r="22" fill="#1e1e2e" stroke="#4f46e5" strokeWidth="2" />
-        <text x={rootX} y={rootY - 5} textAnchor="middle" fontSize="9" fill="#a5b4fc">
-          Current
-        </text>
-        <text x={rootX} y={rootY + 7} textAnchor="middle" fontSize="9" fill="#a5b4fc">
-          Position
-        </text>
-
-        {branches.map((b, i) => (
-          <g key={i}>
-            {/* Lines */}
-            <line
-              x1={rootX + 22}
-              y1={rootY}
-              x2={b.x - 22}
-              y2={b.y}
-              stroke={b.color}
-              strokeWidth="1.5"
-              strokeOpacity="0.6"
-            />
-            {/* Mid node */}
-            <circle cx={b.x} cy={b.y} r="22" fill="#1e1e2e" stroke={b.color} strokeWidth="1.5" />
-            <text x={b.x} y={b.y - 6} textAnchor="middle" fontSize="9" fill={b.color}>
-              {b.label}
-            </text>
-            <text x={b.x} y={b.y + 5} textAnchor="middle" fontSize="9" fill={b.color}>
-              {(b.prob * 100).toFixed(0)}%
-            </text>
-            {/* Right: return */}
-            <line
-              x1={b.x + 22}
-              y1={b.y}
-              x2={rightX - 4}
-              y2={b.y}
-              stroke={b.color}
-              strokeWidth="1"
-              strokeOpacity="0.4"
-              strokeDasharray="3,2"
-            />
-            <text x={rightX} y={b.y + 4} textAnchor="middle" fontSize="10" fill={b.color} fontWeight="600">
-              {b.ret > 0 ? "+" : ""}
-              {b.ret.toFixed(1)}%
-            </text>
-          </g>
-        ))}
-      </svg>
-      <div className="flex items-center justify-between px-2 py-2 rounded-lg bg-muted/30 border border-border">
-        <span className="text-sm text-muted-foreground">Expected Value (EV)</span>
-        <span className={cn("text-lg font-bold", ev >= 0 ? "text-emerald-400" : "text-red-400")}>
-          {ev >= 0 ? "+" : ""}
-          {ev.toFixed(2)}%
-        </span>
-      </div>
-    </div>
-  );
-}
-
-// ── Correlation Heatmap SVG ───────────────────────────────────────────────────
-
-function CorrelationHeatmap({ matrix, labels }: { matrix: number[][]; labels: string[] }) {
-  const N = matrix.length;
-  const CELL = 52;
-  const LABEL_W = 80;
-  const LABEL_H = 60;
-  const W = LABEL_W + N * CELL;
-  const H = LABEL_H + N * CELL;
-
-  const colorForCorr = (v: number): string => {
-    if (v >= 0.8) return "#6366f1";
-    if (v >= 0.5) return "#818cf8";
-    if (v >= 0.2) return "#a5b4fc";
-    if (v >= 0) return "#c7d2fe";
-    if (v >= -0.2) return "#fca5a5";
-    if (v >= -0.5) return "#f87171";
-    return "#ef4444";
-  };
-
-  return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 320 }}>
-      {/* Column labels */}
-      {labels.map((label, j) => (
-        <text
-          key={j}
-          x={LABEL_W + j * CELL + CELL / 2}
-          y={LABEL_H - 8}
-          textAnchor="middle"
-          fontSize="10"
-          fill="currentColor"
-          opacity="0.7"
-        >
-          {label}
-        </text>
-      ))}
-      {/* Row labels */}
-      {labels.map((label, i) => (
-        <text
-          key={i}
-          x={LABEL_W - 6}
-          y={LABEL_H + i * CELL + CELL / 2 + 4}
-          textAnchor="end"
-          fontSize="10"
-          fill="currentColor"
-          opacity="0.7"
-        >
-          {label}
-        </text>
-      ))}
-      {/* Cells */}
-      {matrix.map((row, i) =>
-        row.map((val, j) => {
-          const x = LABEL_W + j * CELL;
-          const y = LABEL_H + i * CELL;
-          const bg = colorForCorr(val);
-          return (
-            <g key={`${i}-${j}`}>
-              <rect
-                x={x + 2}
-                y={y + 2}
-                width={CELL - 4}
-                height={CELL - 4}
-                rx="4"
-                fill={bg}
-                opacity={i === j ? 1 : 0.75}
-              />
-              <text
-                x={x + CELL / 2}
-                y={y + CELL / 2 + 4}
-                textAnchor="middle"
-                fontSize="11"
-                fontWeight="600"
-                fill={val > 0.3 || i === j ? "#fff" : "#1e1e2e"}
-              >
-                {val.toFixed(2)}
-              </text>
-            </g>
-          );
-        })
-      )}
-    </svg>
-  );
-}
-
-// ── Tab: Deal Monitor ─────────────────────────────────────────────────────────
-
-function DealMonitor({
-  deals,
-  selectedDealId,
-  onSelectDeal,
-}: {
-  deals: Deal[];
-  selectedDealId: string | null;
-  onSelectDeal: (id: string) => void;
-}) {
-  return (
-    <div className="space-y-4">
-      {/* Summary chips */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {[
-          { label: "Active Deals", value: deals.length, icon: Layers, color: "text-violet-400" },
-          {
-            label: "Avg Spread",
-            value: `${(deals.reduce((a, d) => a + d.spreadPct, 0) / deals.length).toFixed(2)}%`,
-            icon: Activity,
-            color: "text-sky-400",
-          },
-          {
-            label: "Avg Ann. Return",
-            value: `${(deals.reduce((a, d) => a + d.annualizedReturn, 0) / deals.length).toFixed(1)}%`,
-            icon: TrendingUp,
-            color: "text-emerald-400",
-          },
-          {
-            label: "Total Deal Size",
-            value: `$${deals.reduce((a, d) => a + d.dealSize, 0).toFixed(0)}B`,
-            icon: DollarSign,
-            color: "text-amber-400",
-          },
-        ].map((item) => (
-          <Card key={item.label} className="border-border bg-card">
-            <CardContent className="p-4 flex items-center gap-3">
-              <item.icon className={cn("w-5 h-5 flex-shrink-0", item.color)} />
-              <div>
-                <p className="text-xs text-muted-foreground">{item.label}</p>
-                <p className={cn("text-lg font-bold", item.color)}>{item.value}</p>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Deals table */}
-      <Card className="border-border bg-card">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <Layers className="w-4 h-4" />
-            Live M&amp;A Deal Monitor
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border text-xs text-muted-foreground">
-                  <th className="px-4 py-2 text-left">Acquirer → Target</th>
-                  <th className="px-4 py-2 text-right">Deal Price</th>
-                  <th className="px-4 py-2 text-right">Current</th>
-                  <th className="px-4 py-2 text-right">Spread</th>
-                  <th className="px-4 py-2 text-right">Ann. Return</th>
-                  <th className="px-4 py-2 text-center">Type</th>
-                  <th className="px-4 py-2 text-center">Close</th>
-                  <th className="px-4 py-2 text-center">Reg. Risk</th>
-                  <th className="px-4 py-2 text-center">Status</th>
-                  <th className="px-4 py-2 text-center"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {deals.map((deal) => (
-                  <tr
-                    key={deal.id}
-                    className={cn(
-                      "border-b border-border/50 hover:bg-muted/20 cursor-pointer transition-colors",
-                      selectedDealId === deal.id && "bg-violet-500/10"
-                    )}
-                    onClick={() => onSelectDeal(deal.id)}
-                  >
-                    <td className="px-4 py-3">
-                      <div>
-                        <p className="font-medium text-foreground">{deal.acquirer}</p>
-                        <p className="text-xs text-muted-foreground">→ {deal.target}</p>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-right font-mono">${deal.dealPrice.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-right font-mono">${deal.currentPrice.toFixed(2)}</td>
-                    <td className="px-4 py-3 text-right">
-                      <span className="text-emerald-400 font-semibold">{deal.spreadPct.toFixed(2)}%</span>
-                    </td>
-                    <td className="px-4 py-3 text-right">
-                      <span className="text-sky-400 font-semibold">{deal.annualizedReturn.toFixed(1)}%</span>
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <DealTypeBadge type={deal.dealType} />
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <div className="flex flex-col items-center">
-                        <span className="text-xs font-medium">{deal.closeDate}</span>
-                        <span className="text-xs text-muted-foreground">{deal.daysToClose}d</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <RegulatoryBadge risk={deal.regulatoryRisk} />
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <StatusBadge status={deal.status} />
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <ChevronRight className="w-4 h-4 text-muted-foreground mx-auto" />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Selected deal detail */}
-      <AnimatePresence>
-        {selectedDealId && (() => {
-          const deal = deals.find((d) => d.id === selectedDealId);
-          if (!deal) return null;
-          return (
-            <motion.div
-              key={selectedDealId}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 12 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Card className="border-border bg-card border-violet-500/30">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-medium flex items-center gap-2">
-                    <Info className="w-4 h-4 text-violet-400" />
-                    {deal.acquirer} / {deal.target} — Deal Detail
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="grid md:grid-cols-3 gap-4 text-sm">
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground text-xs uppercase tracking-wide">Transaction</p>
-                    <p>{deal.description}</p>
-                    <p className="text-xs text-muted-foreground">Sector: {deal.sector} · Size: ${deal.dealSize}B</p>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground text-xs uppercase tracking-wide">Economics</p>
-                    <div className="grid grid-cols-2 gap-1 text-xs">
-                      <span className="text-muted-foreground">Gross Spread</span>
-                      <span className="text-right font-medium">{deal.spreadPct.toFixed(2)}%</span>
-                      <span className="text-muted-foreground">Ann. Return</span>
-                      <span className="text-right font-medium text-sky-400">{deal.annualizedReturn.toFixed(1)}%</span>
-                      <span className="text-muted-foreground">Days to Close</span>
-                      <span className="text-right font-medium">{deal.daysToClose}</span>
-                      <span className="text-muted-foreground">Break Prob.</span>
-                      <span className="text-right font-medium text-red-400">{(deal.breakProbability * 100).toFixed(1)}%</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-muted-foreground text-xs uppercase tracking-wide">Risk</p>
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs">
-                        <span className="text-muted-foreground">Regulatory</span>
-                        <RegulatoryBadge risk={deal.regulatoryRisk} />
-                      </div>
-                      <div className="flex justify-between text-xs mt-1">
-                        <span className="text-muted-foreground">Status</span>
-                        <StatusBadge status={deal.status} />
-                      </div>
-                      <div className="flex justify-between text-xs mt-1">
-                        <span className="text-muted-foreground">Deal Type</span>
-                        <DealTypeBadge type={deal.dealType} />
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          );
-        })()}
-      </AnimatePresence>
-    </div>
-  );
-}
-
-// ── Tab: Spread Analysis ──────────────────────────────────────────────────────
-
-function SpreadAnalysis({ deals }: { deals: Deal[] }) {
-  const [activeDealIndex, setActiveDealIndex] = useState(0);
-  const deal = deals[activeDealIndex];
-
-  const progressToClose = Math.max(0, Math.min(100, ((180 - deal.daysToClose) / 180) * 100));
-
-  return (
-    <div className="space-y-4">
-      {/* Deal selector pills */}
-      <div className="flex flex-wrap gap-2">
-        {deals.map((d, i) => (
-          <button
-            key={d.id}
-            onClick={() => setActiveDealIndex(i)}
-            className={cn(
-              "px-3 py-1.5 rounded-full text-xs font-medium border transition-colors",
-              activeDealIndex === i
-                ? "bg-violet-500/20 border-violet-500/50 text-violet-300"
-                : "border-border text-muted-foreground hover:border-border/80 hover:text-foreground"
-            )}
-          >
-            {d.target}
-          </button>
-        ))}
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Spread chart */}
-        <Card className="border-border bg-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Activity className="w-4 h-4 text-violet-400" />
-              90-Day Spread History — {deal.target}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <SpreadHistoryChart deal={deal} />
-          </CardContent>
-        </Card>
-
-        {/* Metrics */}
-        <div className="space-y-3">
-          <Card className="border-border bg-card">
-            <CardContent className="p-4 space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Current Spread</span>
-                <span className="text-2xl font-bold text-emerald-400">{deal.spreadPct.toFixed(2)}%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Annualized Return</span>
-                <span className="text-xl font-bold text-sky-400">{deal.annualizedReturn.toFixed(1)}%</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Days to Close</span>
-                <span className="font-semibold">{deal.daysToClose} days</span>
-              </div>
-              <div>
-                <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                  <span>Progress to Close</span>
-                  <span>{progressToClose.toFixed(0)}%</span>
-                </div>
-                <Progress value={progressToClose} className="h-2" />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Ann. return formula breakdown */}
-          <Card className="border-border bg-card">
-            <CardHeader className="pb-1">
-              <CardTitle className="text-xs text-muted-foreground flex items-center gap-1">
-                <Calculator className="w-3.5 h-3.5" />
-                Annualized Return Formula
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-3 space-y-1 text-xs font-mono">
-              <p className="text-muted-foreground">
-                Spread = (${deal.dealPrice.toFixed(2)} - ${deal.currentPrice.toFixed(2)}) / ${deal.currentPrice.toFixed(2)}
-              </p>
-              <p className="text-foreground">= {deal.spreadPct.toFixed(4)}%</p>
-              <p className="text-muted-foreground mt-1">
-                Ann. = Spread × (365 / {deal.daysToClose})
-              </p>
-              <p className="text-sky-400 font-bold">= {deal.annualizedReturn.toFixed(2)}%</p>
-            </CardContent>
-          </Card>
-
-          {/* Countdown */}
-          <Card className="border-border bg-card">
-            <CardContent className="p-4 flex items-center gap-3">
-              <Clock className="w-5 h-5 text-amber-400 flex-shrink-0" />
-              <div>
-                <p className="text-xs text-muted-foreground">Expected Close</p>
-                <p className="font-semibold">{deal.closeDate}</p>
-              </div>
-              <div className="ml-auto text-right">
-                <p className="text-xs text-muted-foreground">Countdown</p>
-                <p className="font-bold text-amber-400">{deal.daysToClose}d remaining</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Tab: Risk Model ───────────────────────────────────────────────────────────
-
-function RiskModel({ deals }: { deals: Deal[] }) {
-  const [activeDealIndex, setActiveDealIndex] = useState(0);
-  const [breakProbPct, setBreakProbPct] = useState<number>(
-    Math.round(deals[0].breakProbability * 1000) / 10
-  );
-
-  const deal = deals[activeDealIndex];
-
-  // Update slider when deal changes
-  const handleDealChange = (i: number) => {
-    setActiveDealIndex(i);
-    setBreakProbPct(Math.round(deals[i].breakProbability * 1000) / 10);
-  };
-
-  const breakProb = breakProbPct / 100;
-  const closeProb = 1 - breakProb;
-
-  // Kelly criterion: f* = (p*b - q) / b where b = R/R ratio
-  const winReturn = deal.spreadPct / 100;
-  const lossReturn = Math.abs(
-    ((deal.dealPrice - deal.currentPrice) / deal.currentPrice) * 0.6
-  );
-  const kellyFraction = Math.max(
-    0,
-    (closeProb * winReturn - breakProb * lossReturn) / winReturn
-  );
-  const halfKelly = kellyFraction * 0.5;
-
-  const ev =
-    closeProb * deal.spreadPct +
-    breakProb * 0.4 * (deal.spreadPct * 0.4) +
-    breakProb * 0.6 * (-(deal.dealPrice - deal.currentPrice) / deal.currentPrice) * 100 * 0.6;
-
-  return (
-    <div className="space-y-4">
-      {/* Deal pills */}
-      <div className="flex flex-wrap gap-2">
-        {deals.map((d, i) => (
-          <button
-            key={d.id}
-            onClick={() => handleDealChange(i)}
-            className={cn(
-              "px-3 py-1.5 rounded-full text-xs font-medium border transition-colors",
-              activeDealIndex === i
-                ? "bg-violet-500/20 border-violet-500/50 text-violet-300"
-                : "border-border text-muted-foreground hover:border-border/80 hover:text-foreground"
-            )}
-          >
-            {d.target}
-          </button>
-        ))}
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Break probability slider + EV */}
-        <div className="space-y-3">
-          <Card className="border-border bg-card">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Shield className="w-4 h-4 text-red-400" />
-                Deal Break Probability
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">Break Probability</span>
-                <span className="text-2xl font-bold text-red-400">{breakProbPct.toFixed(1)}%</span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={30}
-                step={0.5}
-                value={breakProbPct}
-                onChange={(e) => setBreakProbPct(Number(e.target.value))}
-                className="w-full accent-violet-500"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>0% (Certain Close)</span>
-                <span>30% (High Risk)</span>
-              </div>
-              {/* Risk bands */}
-              <div className="space-y-1 text-xs">
-                {[
-                  { label: "Safe", range: "0–3%", color: "bg-emerald-500" },
-                  { label: "Normal", range: "3–8%", color: "bg-amber-500" },
-                  { label: "Elevated", range: "8–15%", color: "bg-orange-500" },
-                  { label: "High Risk", range: "15–30%", color: "bg-red-500" },
-                ].map((band) => (
-                  <div key={band.label} className="flex items-center gap-2">
-                    <span className={cn("w-2 h-2 rounded-full flex-shrink-0", band.color)} />
-                    <span className="text-muted-foreground">{band.label}</span>
-                    <span className="ml-auto text-muted-foreground">{band.range}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Expected Value */}
-          <Card className="border-border bg-card">
-            <CardContent className="p-4 space-y-2">
-              <p className="text-xs text-muted-foreground uppercase tracking-wide">Expected Value</p>
-              <div className={cn("text-3xl font-bold", ev >= 0 ? "text-emerald-400" : "text-red-400")}>
-                {ev >= 0 ? "+" : ""}
-                {ev.toFixed(2)}%
-              </div>
-              <p className="text-xs text-muted-foreground">
-                Close ({closeProb.toFixed(0)}%) × {deal.spreadPct.toFixed(2)}% + Break ({(breakProb * 100).toFixed(0)}%) × loss
-              </p>
-            </CardContent>
-          </Card>
-
-          {/* Kelly Criterion */}
-          <Card className="border-border bg-card">
-            <CardHeader className="pb-1">
-              <CardTitle className="text-sm font-medium flex items-center gap-2">
-                <Calculator className="w-4 h-4 text-amber-400" />
-                Kelly Criterion Sizing
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Full Kelly</span>
-                <span className="font-bold text-amber-400">{(kellyFraction * 100).toFixed(1)}%</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Half Kelly (recommended)</span>
-                <span className="font-bold text-emerald-400">{(halfKelly * 100).toFixed(1)}%</span>
-              </div>
-              <Progress value={halfKelly * 100} className="h-2 mt-1" />
-              <p className="text-xs text-muted-foreground">
-                W/L ratio: {(winReturn / lossReturn).toFixed(2)}x · Half Kelly caps downside risk
-              </p>
-            </CardContent>
-          </Card>
+    <Card className="bg-zinc-900 border-white/10">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <BarChart2 className="w-4 h-4 text-blue-400" />
+          Spread Decomposition — {deal.targetTicker}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="text-3xl font-bold text-white tabular-nums">
+          +{breakdown.total.toFixed(2)}%
+          <span className="text-sm font-normal text-zinc-400 ml-2">total spread</span>
         </div>
 
-        {/* Scenario tree */}
-        <Card className="border-border bg-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Target className="w-4 h-4 text-sky-400" />
-              Scenario Outcome Tree — {deal.target}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ScenarioTree deal={deal} breakProb={breakProb} />
-            <div className="mt-4 space-y-2 text-xs text-muted-foreground border-t border-border pt-3">
-              <div className="flex items-start gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
-                <p>
-                  <strong className="text-emerald-400">Closes:</strong> Earn full spread ({deal.spreadPct.toFixed(2)}%) at deal close
-                </p>
-              </div>
-              <div className="flex items-start gap-2">
-                <AlertTriangle className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
-                <p>
-                  <strong className="text-amber-400">Revised:</strong> Lower consideration or extended timeline
-                </p>
-              </div>
-              <div className="flex items-start gap-2">
-                <TrendingDown className="w-3.5 h-3.5 text-red-400 flex-shrink-0 mt-0.5" />
-                <p>
-                  <strong className="text-red-400">Breaks:</strong> Target typically falls 60% of premium
-                </p>
-              </div>
+        {bars.map((bar) => (
+          <div key={bar.label} className="space-y-1.5">
+            <div className="flex justify-between text-xs">
+              <span className="text-zinc-300">{bar.label}</span>
+              <span className="text-white font-mono">{bar.value.toFixed(2)}%</span>
             </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+            <div className="h-2 rounded-full bg-white/10">
+              <div
+                className={cn("h-full rounded-full", bar.color)}
+                style={{ width: `${Math.min(100, (bar.value / breakdown.total) * 100)}%` }}
+              />
+            </div>
+            <div className="text-xs text-zinc-500">{bar.desc}</div>
+          </div>
+        ))}
+
+        <div className="pt-2 border-t border-white/10 grid grid-cols-2 gap-3 text-sm">
+          <div>
+            <div className="text-zinc-500 text-xs">Days to Close</div>
+            <div className="text-white font-mono">{deal.daysToClose}d</div>
+          </div>
+          <div>
+            <div className="text-zinc-500 text-xs">Ann. Return</div>
+            <div className="text-emerald-400 font-mono">{deal.annualizedReturn.toFixed(1)}%</div>
+          </div>
+          <div>
+            <div className="text-zinc-500 text-xs">Deal Size</div>
+            <div className="text-white font-mono">${deal.dealSize}B</div>
+          </div>
+          <div>
+            <div className="text-zinc-500 text-xs">Structure</div>
+            <div className="text-zinc-300">{deal.dealType}</div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
-// ── Tab: Portfolio ─────────────────────────────────────────────────────────────
+// ── Deal Risk Matrix SVG ──────────────────────────────────────────────────────
 
-function Portfolio({ deals, positions }: { deals: Deal[]; positions: PortfolioPosition[] }) {
-  const totalPnl = positions.reduce((a, p) => a + p.pnl, 0);
-  const weightedAnnReturn = positions.reduce((acc, pos) => {
-    const deal = deals.find((d) => d.id === pos.dealId);
-    return deal ? acc + pos.weight * deal.annualizedReturn : acc;
-  }, 0);
+function DealRiskMatrix({ deals }: { deals: Deal[] }) {
+  const W = 480;
+  const H = 320;
+  const PAD = { top: 20, right: 20, bottom: 50, left: 55 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
 
-  const labels = positions.map((p) => {
-    const deal = deals.find((d) => d.id === p.dealId);
-    return deal ? deal.target.split(" ")[0] : p.dealId;
+  const minX = 50;
+  const maxX = 100;
+  const minY = 0;
+  const rawMaxY = Math.max(...deals.map((d) => d.annualizedReturn));
+  const maxY = rawMaxY + 5;
+  const minSize = 4;
+  const maxSize = 24;
+  const minDeal = Math.min(...deals.map((d) => d.dealSize));
+  const maxDeal = Math.max(...deals.map((d) => d.dealSize));
+
+  function toX(prob: number): number {
+    return PAD.left + ((prob - minX) / (maxX - minX)) * plotW;
+  }
+  function toY(ret: number): number {
+    return PAD.top + plotH - ((ret - minY) / (maxY - minY)) * plotH;
+  }
+  function toR(size: number): number {
+    if (maxDeal === minDeal) return (minSize + maxSize) / 2;
+    return minSize + ((size - minDeal) / (maxDeal - minDeal)) * (maxSize - minSize);
+  }
+
+  const xTicks = [55, 65, 75, 85, 95];
+  const yTicks = [0, 5, 10, 15, 20, 25].filter((t) => t <= maxY + 2);
+  const BUBBLE_COLORS = ["#3b82f6", "#8b5cf6", "#10b981", "#f59e0b", "#ef4444", "#06b6d4"];
+
+  return (
+    <Card className="bg-zinc-900 border-white/10">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <Activity className="w-4 h-4 text-violet-400" />
+          Deal Risk Matrix
+          <span className="text-xs text-zinc-500 font-normal ml-1">(bubble size = deal size $B)</span>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 280 }}>
+          {yTicks.map((t) => (
+            <line
+              key={`gy-${t}`}
+              x1={PAD.left}
+              y1={toY(t)}
+              x2={PAD.left + plotW}
+              y2={toY(t)}
+              stroke="rgba(255,255,255,0.06)"
+              strokeWidth={1}
+            />
+          ))}
+          {xTicks.map((t) => (
+            <line
+              key={`gx-${t}`}
+              x1={toX(t)}
+              y1={PAD.top}
+              x2={toX(t)}
+              y2={PAD.top + plotH}
+              stroke="rgba(255,255,255,0.06)"
+              strokeWidth={1}
+            />
+          ))}
+          <line
+            x1={PAD.left}
+            y1={PAD.top}
+            x2={PAD.left}
+            y2={PAD.top + plotH}
+            stroke="rgba(255,255,255,0.2)"
+            strokeWidth={1}
+          />
+          <line
+            x1={PAD.left}
+            y1={PAD.top + plotH}
+            x2={PAD.left + plotW}
+            y2={PAD.top + plotH}
+            stroke="rgba(255,255,255,0.2)"
+            strokeWidth={1}
+          />
+          {yTicks.map((t) => (
+            <text key={`yt-${t}`} x={PAD.left - 8} y={toY(t) + 4} textAnchor="end" fill="#71717a" fontSize={10}>
+              {t}%
+            </text>
+          ))}
+          {xTicks.map((t) => (
+            <text key={`xt-${t}`} x={toX(t)} y={PAD.top + plotH + 16} textAnchor="middle" fill="#71717a" fontSize={10}>
+              {t}%
+            </text>
+          ))}
+          <text x={PAD.left + plotW / 2} y={H - 4} textAnchor="middle" fill="#a1a1aa" fontSize={11}>
+            Probability of Completion
+          </text>
+          <text
+            x={14}
+            y={PAD.top + plotH / 2}
+            textAnchor="middle"
+            fill="#a1a1aa"
+            fontSize={11}
+            transform={`rotate(-90, 14, ${PAD.top + plotH / 2})`}
+          >
+            Ann. Return (%)
+          </text>
+          {deals.map((deal, i) => {
+            const cx = toX(deal.impliedProbability);
+            const cy = toY(deal.annualizedReturn);
+            const r = toR(deal.dealSize);
+            const color = BUBBLE_COLORS[i % BUBBLE_COLORS.length];
+            return (
+              <g key={deal.id}>
+                <circle cx={cx} cy={cy} r={r + 4} fill={color} opacity={0.12} />
+                <circle cx={cx} cy={cy} r={r} fill={color} opacity={0.85} />
+                <text x={cx} y={cy - r - 4} textAnchor="middle" fill="#e4e4e7" fontSize={9}>
+                  {deal.targetTicker}
+                </text>
+              </g>
+            );
+          })}
+        </svg>
+      </CardContent>
+    </Card>
+  );
+}
+
+// ── Historical Performance SVG ────────────────────────────────────────────────
+
+function HistoricalPerformance({ history }: { history: PortfolioPoint[] }) {
+  const W = 560;
+  const H = 280;
+  const PAD = { top: 20, right: 20, bottom: 44, left: 55 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+
+  const allVals = history.flatMap((p) => [p.arbReturn, p.sp500Return]);
+  const minY = Math.min(...allVals) - 2;
+  const maxY = Math.max(...allVals) + 2;
+  const n = history.length;
+
+  function toX(i: number): number {
+    return PAD.left + (i / (n - 1)) * plotW;
+  }
+  function toY(v: number): number {
+    return PAD.top + plotH - ((v - minY) / (maxY - minY)) * plotH;
+  }
+  function makePath(vals: number[]): string {
+    return vals.map((v, i) => `${i === 0 ? "M" : "L"}${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
+  }
+
+  const yTicks = [-10, -5, 0, 5, 10, 15, 20].filter((t) => t >= minY && t <= maxY);
+  const arbPath = makePath(history.map((p) => p.arbReturn));
+  const spPath = makePath(history.map((p) => p.sp500Return));
+  const lastArb = history[history.length - 1].arbReturn;
+  const lastSp = history[history.length - 1].sp500Return;
+
+  return (
+    <Card className="bg-zinc-900 border-white/10">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <TrendingUp className="w-4 h-4 text-emerald-400" />
+          Historical Performance — Last 12 Months
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex gap-4 mb-3">
+          <div className="flex items-center gap-2 text-xs text-zinc-400">
+            <div className="w-5 h-0.5 bg-emerald-500 rounded" />
+            Merger Arb Portfolio
+          </div>
+          <div className="flex items-center gap-2 text-xs text-zinc-400">
+            <div className="w-5 h-0.5 bg-blue-400 rounded" />
+            S&amp;P 500
+          </div>
+        </div>
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 240 }}>
+          {yTicks.map((t) => (
+            <line
+              key={`gy-${t}`}
+              x1={PAD.left}
+              y1={toY(t)}
+              x2={PAD.left + plotW}
+              y2={toY(t)}
+              stroke={t === 0 ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"}
+              strokeWidth={t === 0 ? 1.5 : 1}
+            />
+          ))}
+          {yTicks.map((t) => (
+            <text key={`yt-${t}`} x={PAD.left - 8} y={toY(t) + 4} textAnchor="end" fill="#71717a" fontSize={10}>
+              {t}%
+            </text>
+          ))}
+          {history.map((p, i) =>
+            i % 2 === 0 ? (
+              <text key={`xt-${i}`} x={toX(i)} y={PAD.top + plotH + 16} textAnchor="middle" fill="#71717a" fontSize={10}>
+                {p.month}
+              </text>
+            ) : null
+          )}
+          <path
+            d={`${spPath} L${toX(n - 1).toFixed(1)},${toY(minY).toFixed(1)} L${toX(0).toFixed(1)},${toY(minY).toFixed(1)} Z`}
+            fill="#3b82f6"
+            opacity={0.05}
+          />
+          <path
+            d={`${arbPath} L${toX(n - 1).toFixed(1)},${toY(minY).toFixed(1)} L${toX(0).toFixed(1)},${toY(minY).toFixed(1)} Z`}
+            fill="#10b981"
+            opacity={0.07}
+          />
+          <path d={spPath} fill="none" stroke="#3b82f6" strokeWidth={1.5} opacity={0.7} />
+          <path d={arbPath} fill="none" stroke="#10b981" strokeWidth={2} />
+          {history.map((p, i) => (
+            <circle key={`dot-${i}`} cx={toX(i)} cy={toY(p.arbReturn)} r={3} fill="#10b981" />
+          ))}
+        </svg>
+        <div className="grid grid-cols-3 gap-4 mt-3 pt-3 border-t border-white/10 text-center">
+          <div>
+            <div className="text-xs text-zinc-500">Arb YTD Return</div>
+            <div className="text-emerald-400 font-mono font-bold">
+              {lastArb > 0 ? "+" : ""}{lastArb.toFixed(1)}%
+            </div>
+          </div>
+          <div>
+            <div className="text-xs text-zinc-500">S&amp;P 500 YTD</div>
+            <div className={cn("font-mono font-bold", lastSp >= 0 ? "text-blue-400" : "text-red-400")}>
+              {lastSp > 0 ? "+" : ""}{lastSp.toFixed(1)}%
+            </div>
+          </div>
+          <div>
+            <div className="text-xs text-zinc-500">Sharpe Ratio</div>
+            <div className="text-white font-mono font-bold">1.42</div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+// ── Risk Factors Panel ────────────────────────────────────────────────────────
+
+interface RiskFactorData {
+  id: string;
+  label: string;
+  description: string;
+  severity: "Low" | "Medium" | "High";
+}
+
+const RISK_FACTORS: RiskFactorData[] = [
+  {
+    id: "regulatory",
+    label: "Regulatory Risk",
+    severity: "High",
+    description:
+      "Government agencies (FTC, DOJ, EU Commission) may block deals on antitrust grounds. Large tech and healthcare mergers face heightened scrutiny. In 2023, ~8% of announced deals were blocked or abandoned due to regulatory opposition.",
+  },
+  {
+    id: "antitrust",
+    label: "Antitrust / Competition",
+    severity: "High",
+    description:
+      "Horizontal mergers between direct competitors face the highest scrutiny. Regulators assess market concentration via the Herfindahl–Hirschman Index (HHI). A post-merger HHI above 2500 with a delta of 200+ triggers detailed review.",
+  },
+  {
+    id: "financing",
+    label: "Financing Risk",
+    severity: "Medium",
+    description:
+      "Leveraged buyouts and large cash deals rely on debt financing. Rising rates or credit market stress can cause acquirers to invoke Material Adverse Change (MAC) clauses. Commitment letters typically expire after 12–18 months.",
+  },
+  {
+    id: "shareholder",
+    label: "Shareholder Vote Risk",
+    severity: "Medium",
+    description:
+      "Both boards must approve; target shareholders vote on the deal. Activist investors may oppose, demanding a higher premium. Proxy advisory firms (ISS, Glass Lewis) carry significant influence over institutional votes.",
+  },
+  {
+    id: "market",
+    label: "Market / Break Risk",
+    severity: "Medium",
+    description:
+      "A deal break causes the target stock to fall 20–40% to pre-announcement levels. Historically ~5% of announced M&A deals break. Break risk is the primary driver of the spread and the arb return.",
+  },
+  {
+    id: "timeline",
+    label: "Timeline Extension",
+    severity: "Low",
+    description:
+      "Deals frequently take longer than announced due to regulatory review, data room issues, or integration planning delays. Extended timelines reduce annualized returns. Arb desks monitor SEC filings for amendment notices.",
+  },
+];
+
+const SEVERITY_CONFIG: Record<"Low" | "Medium" | "High", { bg: string; text: string }> = {
+  High: { bg: "bg-red-500/15", text: "text-red-400" },
+  Medium: { bg: "bg-amber-500/15", text: "text-amber-400" },
+  Low: { bg: "bg-emerald-500/15", text: "text-emerald-400" },
+};
+
+function RiskFactorsPanel() {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  return (
+    <Card className="bg-zinc-900 border-white/10">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <Shield className="w-4 h-4 text-amber-400" />
+          Risk Factors
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        {RISK_FACTORS.map((rf) => {
+          const isOpen = openId === rf.id;
+          const sc = SEVERITY_CONFIG[rf.severity];
+          return (
+            <div key={rf.id} className="rounded-lg border border-white/8 overflow-hidden">
+              <button
+                onClick={() => setOpenId(isOpen ? null : rf.id)}
+                className="w-full flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  {rf.severity === "High" ? (
+                    <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0" />
+                  ) : rf.severity === "Medium" ? (
+                    <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                  ) : (
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                  )}
+                  <span className="text-sm text-zinc-200">{rf.label}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className={cn("text-xs px-2 py-0.5 rounded-full font-medium", sc.bg, sc.text)}>
+                    {rf.severity}
+                  </span>
+                  {isOpen ? (
+                    <ChevronDown className="w-4 h-4 text-zinc-500" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-zinc-500" />
+                  )}
+                </div>
+              </button>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="px-4 pb-3"
+                >
+                  <p className="text-sm text-zinc-400 leading-relaxed">{rf.description}</p>
+                </motion.div>
+              )}
+            </div>
+          );
+        })}
+      </CardContent>
+    </Card>
+  );
+}
+
+// ── Arbitrage Calculator ──────────────────────────────────────────────────────
+
+function ArbitrageCalculator() {
+  const [calc, setCalc] = useState<CalcState>({
+    entryPrice: 95.5,
+    dealPrice: 100.0,
+    shares: 1000,
+    leverage: 1.0,
+    daysToClose: 90,
+    breakProbability: 10,
+    breakPrice: 72.0,
   });
 
-  // Simulated drawdown history (30 bars)
-  const drawdownData: Array<{ x: number; dd: number }> = [];
-  let cumPnl = 0;
-  let peak = 0;
-  for (let i = 0; i < 30; i++) {
-    const dailyPnl = (Math.random() - 0.45) * 0.15;
-    cumPnl += dailyPnl;
-    peak = Math.max(peak, cumPnl);
-    drawdownData.push({ x: i, dd: cumPnl - peak });
+  function update(key: keyof CalcState, value: string): void {
+    const num = parseFloat(value);
+    if (!isNaN(num)) setCalc((prev) => ({ ...prev, [key]: num }));
   }
-  const maxDD = Math.min(...drawdownData.map((d) => d.dd));
 
-  const DDW = 400;
-  const DDH = 100;
-  const ddPad = { top: 10, right: 16, bottom: 24, left: 40 };
-  const ddChartW = DDW - ddPad.left - ddPad.right;
-  const ddChartH = DDH - ddPad.top - ddPad.bottom;
-  const ddMin = Math.min(maxDD * 1.2, -0.01);
-  const xS = (i: number) => ddPad.left + (i / 29) * ddChartW;
-  const yS = (v: number) => ddPad.top + ((v - 0) / (ddMin - 0)) * ddChartH;
-  const ddPath = drawdownData
-    .map((d, i) => `${i === 0 ? "M" : "L"} ${xS(d.x).toFixed(1)} ${yS(d.dd).toFixed(1)}`)
-    .join(" ");
-  const ddArea =
-    ddPath +
-    ` L ${xS(29).toFixed(1)} ${(ddPad.top).toFixed(1)} L ${xS(0).toFixed(1)} ${(ddPad.top).toFixed(1)} Z`;
+  const spreadPerShare = calc.dealPrice - calc.entryPrice;
+  const capitalDeployed = calc.entryPrice * calc.shares * calc.leverage;
+  const grossPnL = spreadPerShare * calc.shares * calc.leverage;
+  const spreadPct = (spreadPerShare / calc.entryPrice) * 100;
+  const annualizedReturn = spreadPct * (365 / calc.daysToClose);
+  const breakLoss = (calc.breakPrice - calc.entryPrice) * calc.shares * calc.leverage;
+  const probSuccess = (100 - calc.breakProbability) / 100;
+  const probBreak = calc.breakProbability / 100;
+  const expectedValue = probSuccess * grossPnL + probBreak * breakLoss;
+  const rrRatio = Math.abs(grossPnL) / Math.max(0.01, Math.abs(breakLoss));
+
+  const inputClass =
+    "w-full bg-zinc-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-blue-500/50 transition-colors";
+  const labelClass = "text-xs text-zinc-400 mb-1 block";
 
   return (
-    <div className="space-y-4">
-      {/* Portfolio summary */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {[
-          {
-            label: "Portfolio P&L",
-            value: `${totalPnl >= 0 ? "+" : ""}$${totalPnl.toFixed(1)}K`,
-            color: totalPnl >= 0 ? "text-emerald-400" : "text-red-400",
-            icon: DollarSign,
-          },
-          {
-            label: "Wtd Ann. Return",
-            value: `${weightedAnnReturn.toFixed(1)}%`,
-            color: "text-sky-400",
-            icon: TrendingUp,
-          },
-          {
-            label: "Max Drawdown",
-            value: `${(maxDD * 100).toFixed(2)}%`,
-            color: "text-red-400",
-            icon: TrendingDown,
-          },
-          {
-            label: "# Positions",
-            value: positions.length.toString(),
-            color: "text-violet-400",
-            icon: Layers,
-          },
-        ].map((item) => (
-          <Card key={item.label} className="border-border bg-card">
-            <CardContent className="p-4 flex items-center gap-3">
-              <item.icon className={cn("w-5 h-5 flex-shrink-0", item.color)} />
-              <div>
-                <p className="text-xs text-muted-foreground">{item.label}</p>
-                <p className={cn("text-lg font-bold", item.color)}>{item.value}</p>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-        {/* Position table */}
-        <Card className="border-border bg-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <BarChart2 className="w-4 h-4 text-violet-400" />
-              Portfolio Positions
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-0">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="border-b border-border text-muted-foreground">
-                  <th className="px-3 py-2 text-left">Target</th>
-                  <th className="px-3 py-2 text-right">Weight</th>
-                  <th className="px-3 py-2 text-right">Entry Spd</th>
-                  <th className="px-3 py-2 text-right">Curr Spd</th>
-                  <th className="px-3 py-2 text-right">P&L</th>
-                  <th className="px-3 py-2 text-right">Days</th>
-                </tr>
-              </thead>
-              <tbody>
-                {positions.map((pos) => {
-                  const deal = deals.find((d) => d.id === pos.dealId);
-                  if (!deal) return null;
-                  const spreadChange = pos.entrySpread - pos.currentSpread;
-                  return (
-                    <tr key={pos.dealId} className="border-b border-border/40 hover:bg-muted/10">
-                      <td className="px-3 py-2 font-medium">{deal.target}</td>
-                      <td className="px-3 py-2 text-right">{(pos.weight * 100).toFixed(0)}%</td>
-                      <td className="px-3 py-2 text-right">{pos.entrySpread.toFixed(2)}%</td>
-                      <td className="px-3 py-2 text-right">{pos.currentSpread.toFixed(2)}%</td>
-                      <td className={cn("px-3 py-2 text-right font-semibold", pos.pnl >= 0 ? "text-emerald-400" : "text-red-400")}>
-                        {pos.pnl >= 0 ? "+" : ""}${pos.pnl.toFixed(1)}K
-                      </td>
-                      <td className="px-3 py-2 text-right text-muted-foreground">{pos.daysHeld}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </CardContent>
-        </Card>
-
-        {/* Correlation heatmap */}
-        <Card className="border-border bg-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Layers className="w-4 h-4 text-sky-400" />
-              Position Correlation Matrix
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CorrelationHeatmap matrix={CORRELATION_MATRIX} labels={labels} />
-            <p className="text-xs text-muted-foreground mt-2">
-              Low cross-position correlations support portfolio diversification. Higher correlations indicate correlated deal risk (e.g. sector-wide regulatory action).
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Drawdown chart */}
-      <Card className="border-border bg-card">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <TrendingDown className="w-4 h-4 text-red-400" />
-            Portfolio Drawdown (30-Day Simulated)
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <svg viewBox={`0 0 ${DDW} ${DDH}`} className="w-full" style={{ height: DDH }}>
-            <defs>
-              <linearGradient id="ddGrad" x1="0" y1="1" x2="0" y2="0">
-                <stop offset="0%" stopColor="#ef4444" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#ef4444" stopOpacity="0.05" />
-              </linearGradient>
-            </defs>
-            <line
-              x1={ddPad.left}
-              y1={ddPad.top}
-              x2={ddPad.left + ddChartW}
-              y2={ddPad.top}
-              stroke="currentColor"
-              strokeOpacity="0.15"
-              strokeWidth="1"
-              strokeDasharray="3,3"
+    <Card className="bg-zinc-900 border-white/10">
+      <CardHeader className="pb-3">
+        <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+          <Calculator className="w-4 h-4 text-blue-400" />
+          Arbitrage Calculator
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          <div>
+            <label className={labelClass}>Entry Price ($)</label>
+            <input
+              type="number"
+              value={calc.entryPrice}
+              onChange={(e) => update("entryPrice", e.target.value)}
+              className={inputClass}
+              step={0.01}
             />
-            <path d={ddArea} fill="url(#ddGrad)" />
-            <path d={ddPath} fill="none" stroke="#ef4444" strokeWidth="1.5" strokeLinejoin="round" />
-            <text x={ddPad.left - 4} y={ddPad.top + 4} textAnchor="end" fontSize="9" fill="currentColor" opacity="0.5">0%</text>
-            <text x={ddPad.left - 4} y={ddPad.top + ddChartH} textAnchor="end" fontSize="9" fill="currentColor" opacity="0.5">
-              {(maxDD * 100).toFixed(1)}%
-            </text>
-            <text x={ddPad.left} y={DDH - 4} textAnchor="middle" fontSize="9" fill="currentColor" opacity="0.5">Day 1</text>
-            <text x={ddPad.left + ddChartW} y={DDH - 4} textAnchor="middle" fontSize="9" fill="currentColor" opacity="0.5">Day 30</text>
-          </svg>
-        </CardContent>
-      </Card>
+          </div>
+          <div>
+            <label className={labelClass}>Deal Price ($)</label>
+            <input
+              type="number"
+              value={calc.dealPrice}
+              onChange={(e) => update("dealPrice", e.target.value)}
+              className={inputClass}
+              step={0.01}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Shares</label>
+            <input
+              type="number"
+              value={calc.shares}
+              onChange={(e) => update("shares", e.target.value)}
+              className={inputClass}
+              step={100}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Leverage (x)</label>
+            <input
+              type="number"
+              value={calc.leverage}
+              onChange={(e) => update("leverage", e.target.value)}
+              className={inputClass}
+              step={0.1}
+              min={1}
+              max={5}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Days to Close</label>
+            <input
+              type="number"
+              value={calc.daysToClose}
+              onChange={(e) => update("daysToClose", e.target.value)}
+              className={inputClass}
+              step={1}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Break Probability (%)</label>
+            <input
+              type="number"
+              value={calc.breakProbability}
+              onChange={(e) => update("breakProbability", e.target.value)}
+              className={inputClass}
+              step={1}
+              min={0}
+              max={100}
+            />
+          </div>
+          <div>
+            <label className={labelClass}>Break-Down Price ($)</label>
+            <input
+              type="number"
+              value={calc.breakPrice}
+              onChange={(e) => update("breakPrice", e.target.value)}
+              className={inputClass}
+              step={0.5}
+            />
+          </div>
+        </div>
+
+        <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-zinc-500 mb-1">Gross P&amp;L</div>
+            <div className={cn("text-xl font-bold font-mono", grossPnL >= 0 ? "text-emerald-400" : "text-red-400")}>
+              {grossPnL >= 0 ? "+" : ""}${grossPnL.toFixed(0)}
+            </div>
+          </div>
+          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-zinc-500 mb-1">Ann. Return</div>
+            <div className="text-xl font-bold font-mono text-blue-400">{annualizedReturn.toFixed(1)}%</div>
+          </div>
+          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-zinc-500 mb-1">Expected Value</div>
+            <div className={cn("text-xl font-bold font-mono", expectedValue >= 0 ? "text-white" : "text-red-400")}>
+              {expectedValue >= 0 ? "+" : ""}${expectedValue.toFixed(0)}
+            </div>
+          </div>
+          <div className="bg-zinc-800/60 rounded-xl p-3 text-center">
+            <div className="text-xs text-zinc-500 mb-1">Reward / Risk</div>
+            <div className={cn("text-xl font-bold font-mono", rrRatio >= 1 ? "text-emerald-400" : "text-amber-400")}>
+              {rrRatio.toFixed(2)}x
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 grid grid-cols-3 gap-3 text-center text-sm border-t border-white/10 pt-4">
+          <div>
+            <div className="text-xs text-zinc-500">Capital Deployed</div>
+            <div className="text-zinc-300 font-mono">${capitalDeployed.toLocaleString()}</div>
+          </div>
+          <div>
+            <div className="text-xs text-zinc-500">Spread</div>
+            <div className="text-emerald-400 font-mono">
+              ${spreadPerShare.toFixed(2)} ({spreadPct.toFixed(2)}%)
+            </div>
+          </div>
+          <div>
+            <div className="text-xs text-zinc-500">Max Break Loss</div>
+            <div className="text-red-400 font-mono">${breakLoss.toFixed(0)}</div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+// ── Summary Stats Bar ─────────────────────────────────────────────────────────
+
+function SummaryStats({ deals }: { deals: Deal[] }) {
+  const avgSpread = deals.reduce((a, d) => a + d.spreadPct, 0) / deals.length;
+  const avgProb = deals.reduce((a, d) => a + d.impliedProbability, 0) / deals.length;
+  const totalSize = deals.reduce((a, d) => a + d.dealSize, 0);
+  const avgAnn = deals.reduce((a, d) => a + d.annualizedReturn, 0) / deals.length;
+
+  const stats: Array<{ label: string; value: string; icon: React.ReactNode; color: string }> = [
+    {
+      label: "Active Deals",
+      value: String(deals.length),
+      icon: <Activity className="w-4 h-4" />,
+      color: "text-blue-400",
+    },
+    {
+      label: "Avg Spread",
+      value: `${avgSpread.toFixed(2)}%`,
+      icon: <Percent className="w-4 h-4" />,
+      color: "text-emerald-400",
+    },
+    {
+      label: "Avg Probability",
+      value: `${avgProb.toFixed(0)}%`,
+      icon: <CheckCircle2 className="w-4 h-4" />,
+      color: "text-violet-400",
+    },
+    {
+      label: "Total Deal Value",
+      value: `$${totalSize.toFixed(0)}B`,
+      icon: <DollarSign className="w-4 h-4" />,
+      color: "text-amber-400",
+    },
+    {
+      label: "Avg Ann. Return",
+      value: `${avgAnn.toFixed(1)}%`,
+      icon: <TrendingUp className="w-4 h-4" />,
+      color: "text-emerald-400",
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      {stats.map((stat) => (
+        <Card key={stat.label} className="bg-zinc-900 border-white/10">
+          <CardContent className="pt-4 pb-3">
+            <div className={cn("mb-1", stat.color)}>{stat.icon}</div>
+            <div className={cn("text-xl font-bold font-mono", stat.color)}>{stat.value}</div>
+            <div className="text-xs text-zinc-500 mt-0.5">{stat.label}</div>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
+// ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function MergerArbPage() {
-  const [selectedDealId, setSelectedDealId] = useState<string | null>(null);
+  const [selectedDealId, setSelectedDealId] = useState<string | null>(DEALS[0].id);
+
+  const selectedDeal = useMemo(
+    () => DEALS.find((d) => d.id === selectedDealId) ?? DEALS[0],
+    [selectedDealId]
+  );
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-6 space-y-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="min-h-screen bg-zinc-950 text-white p-4 md:p-6 space-y-6"
+    >
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight">Merger Arbitrage Simulator</h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Deal spread analysis · Risk/reward · Probability estimation · Portfolio construction
+          <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+            <TrendingDown className="w-6 h-6 text-blue-400" />
+            Merger Arbitrage
+          </h1>
+          <p className="text-sm text-zinc-400 mt-0.5">
+            Exploit acquisition spreads — earn returns by positioning in announced M&amp;A deals
           </p>
         </div>
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <Badge variant="outline" className="text-emerald-400 border-emerald-500/30 bg-emerald-500/10 text-xs">
-            6 Live Deals
-          </Badge>
-          <Badge variant="outline" className="text-violet-400 border-violet-500/30 bg-violet-500/10 text-xs">
-            Event-Driven
-          </Badge>
-        </div>
+        <Badge
+          variant="outline"
+          className="text-xs border-emerald-500/40 text-emerald-400 self-start sm:self-auto"
+        >
+          <Clock className="w-3 h-3 mr-1" />
+          Live Data Simulation
+        </Badge>
       </div>
 
-      {/* Tabs */}
-      <Tabs defaultValue="monitor" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-flex">
-          <TabsTrigger value="monitor" className="flex items-center gap-1.5 text-xs md:text-sm">
-            <Layers className="w-3.5 h-3.5" />
-            Deal Monitor
+      {/* Summary stats */}
+      <SummaryStats deals={DEALS} />
+
+      {/* Main tabs */}
+      <Tabs defaultValue="dashboard">
+        <TabsList className="bg-zinc-900 border border-white/10">
+          <TabsTrigger value="dashboard" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+            Deal Dashboard
           </TabsTrigger>
-          <TabsTrigger value="spread" className="flex items-center gap-1.5 text-xs md:text-sm">
-            <Activity className="w-3.5 h-3.5" />
-            Spread Analysis
+          <TabsTrigger value="analysis" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+            Analysis
           </TabsTrigger>
-          <TabsTrigger value="risk" className="flex items-center gap-1.5 text-xs md:text-sm">
-            <Shield className="w-3.5 h-3.5" />
-            Risk Model
+          <TabsTrigger value="risk" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+            Risk Factors
           </TabsTrigger>
-          <TabsTrigger value="portfolio" className="flex items-center gap-1.5 text-xs md:text-sm">
-            <BarChart2 className="w-3.5 h-3.5" />
-            Portfolio
+          <TabsTrigger value="calculator" className="data-[state=active]:bg-zinc-700 text-xs sm:text-sm">
+            Calculator
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="monitor" className="data-[state=inactive]:hidden">
-          <DealMonitor
-            deals={DEALS}
-            selectedDealId={selectedDealId}
-            onSelectDeal={(id) => setSelectedDealId((prev) => (prev === id ? null : id))}
-          />
+        {/* Tab: Dashboard */}
+        <TabsContent value="dashboard" className="data-[state=inactive]:hidden mt-4 space-y-4">
+          <Card className="bg-zinc-900 border-white/10">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <Activity className="w-4 h-4 text-blue-400" />
+                Active Deals
+                <span className="text-xs text-zinc-500 font-normal ml-1">
+                  — click a row to analyze spread
+                </span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <DealDashboard
+                deals={DEALS}
+                selectedId={selectedDealId}
+                onSelect={setSelectedDealId}
+              />
+            </CardContent>
+          </Card>
+
+          {selectedDeal && (
+            <motion.div
+              key={selectedDeal.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <SpreadDecomposition deal={selectedDeal} />
+            </motion.div>
+          )}
         </TabsContent>
 
-        <TabsContent value="spread" className="data-[state=inactive]:hidden">
-          <SpreadAnalysis deals={DEALS} />
+        {/* Tab: Analysis */}
+        <TabsContent value="analysis" className="data-[state=inactive]:hidden mt-4 space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <DealRiskMatrix deals={DEALS} />
+            <HistoricalPerformance history={PORTFOLIO_HISTORY} />
+          </div>
+
+          <Card className="bg-zinc-900 border-white/10">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <BarChart2 className="w-4 h-4 text-violet-400" />
+                Deal Metrics Summary
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="text-zinc-400 border-b border-white/10 text-left">
+                      <th className="py-2 pr-4 font-medium">Target</th>
+                      <th className="py-2 pr-4 font-medium text-right">Spread</th>
+                      <th className="py-2 pr-4 font-medium text-right">Ann. Ret.</th>
+                      <th className="py-2 pr-4 font-medium text-right">Impl. Prob.</th>
+                      <th className="py-2 pr-4 font-medium text-right">Deal Size</th>
+                      <th className="py-2 pr-4 font-medium text-right">Days Left</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {DEALS.map((d) => (
+                      <tr key={d.id} className="border-b border-white/5">
+                        <td className="py-2 pr-4 text-white font-medium">{d.targetTicker}</td>
+                        <td className="py-2 pr-4 text-right text-emerald-400 font-mono">
+                          +{d.spreadPct}%
+                        </td>
+                        <td className="py-2 pr-4 text-right font-mono text-blue-400">
+                          {d.annualizedReturn.toFixed(1)}%
+                        </td>
+                        <td className="py-2 pr-4 text-right font-mono text-zinc-300">
+                          {d.impliedProbability}%
+                        </td>
+                        <td className="py-2 pr-4 text-right font-mono text-zinc-300">
+                          ${d.dealSize}B
+                        </td>
+                        <td className="py-2 pr-4 text-right font-mono text-zinc-400">
+                          {d.daysToClose}d
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
-        <TabsContent value="risk" className="data-[state=inactive]:hidden">
-          <RiskModel deals={DEALS} />
+        {/* Tab: Risk Factors */}
+        <TabsContent value="risk" className="data-[state=inactive]:hidden mt-4 space-y-4">
+          <RiskFactorsPanel />
+
+          <Card className="bg-zinc-900 border-white/10">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-zinc-300 flex items-center gap-2">
+                <Info className="w-4 h-4 text-blue-400" />
+                Merger Arbitrage Education
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 text-sm text-zinc-400 leading-relaxed">
+              <div>
+                <div className="text-white font-medium mb-1">What is Merger Arbitrage?</div>
+                <p>
+                  Merger arbitrage (risk arbitrage) is an event-driven strategy that profits from the
+                  spread between a target company&apos;s current trading price and the announced acquisition
+                  price. When a deal is announced, the target stock trades at a discount to the deal price
+                  — the &quot;spread&quot; — representing the market&apos;s assessment of completion risk.
+                </p>
+              </div>
+              <div>
+                <div className="text-white font-medium mb-1">The Spread Formula</div>
+                <p>
+                  <span className="text-emerald-400 font-mono">
+                    Spread = Deal Price - Current Price
+                  </span>
+                  . Annualized return is computed as{" "}
+                  <span className="text-blue-400 font-mono">
+                    (Spread / Current Price) * (365 / Days to Close)
+                  </span>
+                  . A wider spread signals higher market-perceived risk.
+                </p>
+              </div>
+              <div>
+                <div className="text-white font-medium mb-1">Implied Probability</div>
+                <p>
+                  Assuming a deal closes at deal price or breaks to a pre-announcement level, implied
+                  probability is back-solved:{" "}
+                  <span className="text-violet-400 font-mono">
+                    P = (Current - Break) / (Deal - Break)
+                  </span>
+                  .
+                </p>
+              </div>
+              <div>
+                <div className="text-white font-medium mb-1">Portfolio Construction</div>
+                <p>
+                  Arb desks diversify across 15–25 deals simultaneously to reduce single-deal break risk.
+                  Position sizing is driven by conviction (spread width, regulatory clarity) and
+                  correlation between deals in the same sector — regulatory waves can affect multiple
+                  deals simultaneously.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
-        <TabsContent value="portfolio" className="data-[state=inactive]:hidden">
-          <Portfolio deals={DEALS} positions={PORTFOLIO_POSITIONS} />
+        {/* Tab: Calculator */}
+        <TabsContent value="calculator" className="data-[state=inactive]:hidden mt-4">
+          <ArbitrageCalculator />
         </TabsContent>
       </Tabs>
-    </div>
+
+      {/* Quick-select deal buttons */}
+      <Card className="bg-zinc-900 border-white/10">
+        <CardContent className="pt-4">
+          <div className="text-xs text-zinc-500 mb-3">Quick Select Deal for Spread Analysis:</div>
+          <div className="flex flex-wrap gap-2">
+            {DEALS.map((deal) => (
+              <Button
+                key={deal.id}
+                variant={selectedDealId === deal.id ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedDealId(deal.id)}
+                className="text-xs"
+              >
+                {deal.targetTicker}
+                <span
+                  className={cn(
+                    "ml-1.5 text-xs",
+                    selectedDealId === deal.id ? "text-white/80" : "text-emerald-400"
+                  )}
+                >
+                  +{deal.spreadPct}%
+                </span>
+              </Button>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
   );
 }
