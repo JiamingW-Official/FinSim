@@ -1,1385 +1,1275 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Activity,
   TrendingUp,
   TrendingDown,
-  BarChart3,
-  Zap,
-  Shield,
+  BarChart2,
   AlertTriangle,
-  ArrowUpDown,
   Layers,
   Target,
-  RefreshCw,
+  Zap,
+  Shield,
+  DollarSign,
+  ChevronDown,
+  ChevronUp,
   Info,
-  ChevronRight,
-  Sigma,
-  GitBranch,
 } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 
-// ── Seeded PRNG ───────────────────────────────────────────────────────────────
-let s = 815;
+// ── Seeded PRNG ────────────────────────────────────────────────────────────────
+let s = 953;
 const rand = () => {
   s = (s * 1103515245 + 12345) & 0x7fffffff;
   return s / 0x7fffffff;
 };
-function resetSeed() {
-  s = 815;
-}
+const _vals = Array.from({ length: 3000 }, () => rand());
+let _vi = 0;
+const sv = () => _vals[_vi++ % _vals.length];
 
-// ── Interfaces ────────────────────────────────────────────────────────────────
-interface VixFuturesPoint {
-  label: string;
-  value: number;
-  daysToExp: number;
-}
-
-interface EtfData {
-  name: string;
-  ticker: string;
-  nav: number;
-  dailyPnl: number;
-  ytdPnl: number;
-  rollCost: number;
-  leverage: number;
-  color: string;
-}
-
-interface VarianceSwapData {
-  strike: number;
-  realizedVar: number;
-  impliedVar: number;
-  dailyPnl: number[];
-  vega: number;
-  vanna: number;
-  volga: number;
-}
-
-interface VolSurfaceCell {
-  strike: number;
-  expiry: string;
+// ── Vol Surface Data ───────────────────────────────────────────────────────────
+interface SurfacePoint {
+  moneyness: number;
+  expiry: number;
   iv: number;
-  strikeLabel: string;
 }
 
-interface DispersionStock {
-  ticker: string;
-  impliedVol: number;
-  realizedVol: number;
-  weight: number;
-  contribution: number;
-}
+const MONEYNESS = [0.80, 0.85, 0.90, 0.95, 1.00, 1.05, 1.10, 1.15, 1.20];
+const EXPIRIES = [1, 2, 3, 6, 9, 12];
 
-interface DispersionData {
-  indexVol: number;
-  weightedStockVol: number;
-  impliedCorr: number;
-  tradePnl: number[];
-  stocks: DispersionStock[];
-}
-
-// ── Data generators ───────────────────────────────────────────────────────────
-function generateVixTermStructure(): VixFuturesPoint[] {
-  resetSeed();
-  const spot = 14 + rand() * 6; // 14–20
-  const labels = ["Spot", "M1", "M2", "M3", "M4", "M5", "M6"];
-  const days = [0, 30, 60, 90, 120, 150, 180];
-  // Mostly contango with slight noise
-  return labels.map((label, i) => ({
-    label,
-    value: +(spot + i * (0.8 + rand() * 0.6) + (rand() - 0.5) * 0.4).toFixed(2),
-    daysToExp: days[i],
-  }));
-}
-
-function generateEtfData(): EtfData[] {
-  resetSeed();
-  rand(); rand(); rand(); rand(); rand(); rand(); rand(); // consume some
-  return [
-    {
-      name: "iPath VIX ST Futures",
-      ticker: "VXX",
-      nav: +(20 + rand() * 5).toFixed(2),
-      dailyPnl: +((rand() - 0.5) * 4).toFixed(2),
-      ytdPnl: +(-30 - rand() * 20).toFixed(1),
-      rollCost: +(3 + rand() * 2).toFixed(2),
-      leverage: 1,
-      color: "#f87171",
-    },
-    {
-      name: "Ultra VIX Short-Term",
-      ticker: "UVXY",
-      nav: +(8 + rand() * 3).toFixed(2),
-      dailyPnl: +((rand() - 0.4) * 8).toFixed(2),
-      ytdPnl: +(-55 - rand() * 20).toFixed(1),
-      rollCost: +(6 + rand() * 2).toFixed(2),
-      leverage: 1.5,
-      color: "#fb923c",
-    },
-    {
-      name: "Short VIX ST Futures",
-      ticker: "SVXY",
-      nav: +(55 + rand() * 10).toFixed(2),
-      dailyPnl: +((rand() - 0.6) * 4).toFixed(2),
-      ytdPnl: +(18 + rand() * 15).toFixed(1),
-      rollCost: +(-3 - rand() * 2).toFixed(2),
-      leverage: -0.5,
-      color: "#4ade80",
-    },
-  ];
-}
-
-function generateVarianceSwap(): VarianceSwapData {
-  const iv = 18 + rand() * 6;
-  const realizedVol = 14 + rand() * 8;
-  const pnls: number[] = [];
-  let cumRv = 0;
-  for (let i = 0; i < 20; i++) {
-    const dailyRet = (rand() - 0.5) * 0.03;
-    cumRv += dailyRet * dailyRet * 252;
-    const dayFrac = (i + 1) / 252;
-    const pnl = ((cumRv / (i + 1)) - iv * iv / 100) * dayFrac * 1_000_000 * 0.01;
-    pnls.push(+pnl.toFixed(0));
+function buildSurface(): SurfacePoint[] {
+  const points: SurfacePoint[] = [];
+  for (const m of MONEYNESS) {
+    for (const exp of EXPIRIES) {
+      const atmVol = 18 + Math.sqrt(exp) * 1.2;
+      const skew = m < 1.0 ? (1.0 - m) * 28 : (m - 1.0) * 10;
+      const noise = (sv() - 0.5) * 1.5;
+      points.push({ moneyness: m, expiry: exp, iv: Math.max(10, atmVol + skew + noise) });
+    }
   }
-  return {
-    strike: +iv.toFixed(2),
-    realizedVar: +(realizedVol * realizedVol).toFixed(2),
-    impliedVar: +(iv * iv).toFixed(2),
-    dailyPnl: pnls,
-    vega: +(50000 + rand() * 20000).toFixed(0),
-    vanna: +((rand() - 0.5) * 8000).toFixed(0),
-    volga: +(2000 + rand() * 3000).toFixed(0),
-  };
+  return points;
 }
 
-function generateVolSurface(): VolSurfaceCell[] {
-  const expiries = ["7D", "14D", "1M", "2M", "3M"];
-  const strikePcts = [80, 90, 100, 110, 120];
-  const atmIv = 18 + rand() * 4;
-  const cells: VolSurfaceCell[] = [];
-  for (const expiry of expiries) {
-    for (const sp of strikePcts) {
-      const skewEffect = (100 - sp) * 0.15 + (rand() - 0.5) * 0.5;
-      const termEffect = expiry === "7D" ? 3 : expiry === "14D" ? 1.5 : expiry === "1M" ? 0 : -0.5;
-      const iv = Math.max(10, atmIv + skewEffect + termEffect + (rand() - 0.5) * 1.5);
-      cells.push({
-        strike: sp,
-        expiry,
-        iv: +iv.toFixed(2),
-        strikeLabel: sp === 100 ? "ATM" : sp < 100 ? `${sp}%` : `${sp}%`,
+const SURFACE_DATA = buildSurface();
+
+// ── Isometric Vol Surface SVG ──────────────────────────────────────────────────
+function VolSurfaceSVG() {
+  const W = 520;
+  const H = 260;
+  const isoX = (mx: number, ey: number) => {
+    const nx = (mx - 0.80) / 0.40;
+    const ny = (ey - 1) / 11;
+    return 60 + nx * 180 - ny * 80;
+  };
+  const isoY = (mx: number, ey: number, iv: number) => {
+    const nx = (mx - 0.80) / 0.40;
+    const ny = (ey - 1) / 11;
+    const nz = (iv - 10) / 45;
+    return 220 + nx * 60 + ny * 60 - nz * 120;
+  };
+
+  const ivAt = (m: number, e: number): number => {
+    const pt = SURFACE_DATA.find((p) => p.moneyness === m && p.expiry === e);
+    return pt ? pt.iv : 20;
+  };
+
+  const colorForIV = (iv: number): string => {
+    const t = Math.min(1, Math.max(0, (iv - 12) / 35));
+    if (t < 0.5) {
+      const u = t * 2;
+      const r = Math.round(99 + u * (139 - 99));
+      const g = Math.round(102 + u * (92 - 102));
+      const b = Math.round(241 + u * (246 - 241));
+      return `rgb(${r},${g},${b})`;
+    } else {
+      const u = (t - 0.5) * 2;
+      const r = Math.round(139 + u * (239 - 139));
+      const g = Math.round(92 + u * (68 - 92));
+      const b = Math.round(246 + u * (68 - 246));
+      return `rgb(${r},${g},${b})`;
+    }
+  };
+
+  const quads: { key: string; pts: string; fill: string }[] = [];
+  for (let ei = 0; ei < EXPIRIES.length - 1; ei++) {
+    for (let mi = 0; mi < MONEYNESS.length - 1; mi++) {
+      const m0 = MONEYNESS[mi]; const m1 = MONEYNESS[mi + 1];
+      const e0 = EXPIRIES[ei]; const e1 = EXPIRIES[ei + 1];
+      const iv00 = ivAt(m0, e0); const iv10 = ivAt(m1, e0);
+      const iv01 = ivAt(m0, e1); const iv11 = ivAt(m1, e1);
+      const avgIV = (iv00 + iv10 + iv01 + iv11) / 4;
+      const p00 = `${isoX(m0, e0)},${isoY(m0, e0, iv00)}`;
+      const p10 = `${isoX(m1, e0)},${isoY(m1, e0, iv10)}`;
+      const p11 = `${isoX(m1, e1)},${isoY(m1, e1, iv11)}`;
+      const p01 = `${isoX(m0, e1)},${isoY(m0, e1, iv01)}`;
+      quads.push({
+        key: `q-${ei}-${mi}`,
+        pts: `${p00} ${p10} ${p11} ${p01}`,
+        fill: colorForIV(avgIV),
       });
     }
   }
-  return cells;
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-64">
+      {quads.map((q) => (
+        <polygon key={q.key} points={q.pts} fill={q.fill} fillOpacity="0.82" stroke="#0f0f14" strokeWidth="0.7" />
+      ))}
+      <text x="58" y="240" fill="#71717a" fontSize="9" textAnchor="middle">0.80</text>
+      <text x="238" y="240" fill="#71717a" fontSize="9" textAnchor="middle">1.00</text>
+      <text x="248" y="250" fill="#a1a1aa" fontSize="9" textAnchor="middle">Moneyness (K/S)</text>
+      <text x="30" y="180" fill="#71717a" fontSize="9" textAnchor="middle">12m</text>
+      <text x="30" y="220" fill="#71717a" fontSize="9" textAnchor="middle">1m</text>
+      <text x="18" y="200" fill="#a1a1aa" fontSize="8" textAnchor="middle" transform="rotate(-90,18,200)">Expiry</text>
+      <text x="460" y="110" fill="#6366f1" fontSize="9" textAnchor="middle">High IV</text>
+      <text x="460" y="200" fill="#3b82f6" fontSize="9" textAnchor="middle">Low IV</text>
+      <text x="260" y="16" fill="#a1a1aa" fontSize="10" textAnchor="middle" fontWeight="bold">Implied Volatility Surface</text>
+    </svg>
+  );
 }
 
-function generateDispersionData(): DispersionData {
-  const stocks: DispersionStock[] = [
-    { ticker: "AAPL", weight: 0.07, impliedVol: 0, realizedVol: 0, contribution: 0 },
-    { ticker: "MSFT", weight: 0.065, impliedVol: 0, realizedVol: 0, contribution: 0 },
-    { ticker: "NVDA", weight: 0.055, impliedVol: 0, realizedVol: 0, contribution: 0 },
-    { ticker: "AMZN", weight: 0.05, impliedVol: 0, realizedVol: 0, contribution: 0 },
-    { ticker: "META", weight: 0.04, impliedVol: 0, realizedVol: 0, contribution: 0 },
-  ];
-  for (const st of stocks) {
-    st.impliedVol = +(22 + rand() * 18).toFixed(1);
-    st.realizedVol = +(16 + rand() * 14).toFixed(1);
-    st.contribution = +(st.weight * st.impliedVol).toFixed(2);
-  }
-  const weightedStockVol = +stocks.reduce((a, s) => a + s.weight * s.impliedVol, 0).toFixed(2);
-  const indexVol = +(weightedStockVol * (0.55 + rand() * 0.15)).toFixed(2);
-  const impliedCorr = +Math.pow(indexVol / weightedStockVol, 2).toFixed(4);
-
-  const pnls: number[] = [];
-  let cum = 0;
-  for (let i = 0; i < 20; i++) {
-    const dailyMove = (rand() - 0.45) * 800;
-    cum += dailyMove;
-    pnls.push(+cum.toFixed(0));
-  }
-  return { indexVol, weightedStockVol, impliedCorr, tradePnl: pnls, stocks };
-}
-
-// ── SVG helpers ───────────────────────────────────────────────────────────────
-function polylinePoints(
-  data: number[],
-  w: number,
-  h: number,
-  pad = 10
-): string {
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-  const range = max - min || 1;
-  return data
-    .map((v, i) => {
-      const x = pad + (i / (data.length - 1)) * (w - pad * 2);
-      const y = h - pad - ((v - min) / range) * (h - pad * 2);
-      return `${x.toFixed(1)},${y.toFixed(1)}`;
-    })
-    .join(" ");
-}
-
-function areaPoints(
-  data: number[],
-  w: number,
-  h: number,
-  pad = 10
-): string {
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-  const range = max - min || 1;
-  const pts = data.map((v, i) => {
-    const x = pad + (i / (data.length - 1)) * (w - pad * 2);
-    const y = h - pad - ((v - min) / range) * (h - pad * 2);
-    return `${x.toFixed(1)},${y.toFixed(1)}`;
-  });
-  const first = `${pad},${h - pad}`;
-  const last = `${w - pad},${h - pad}`;
-  return `${first} ${pts.join(" ")} ${last}`;
-}
-
-// ── Stat chip ─────────────────────────────────────────────────────────────────
-function StatChip({
-  label,
-  value,
-  positive,
-}: {
+// ── Term Structure Chart ───────────────────────────────────────────────────────
+interface TermStructureShape {
   label: string;
-  value: string;
-  positive?: boolean;
-}) {
-  const color =
-    positive === undefined
-      ? "text-slate-300"
-      : positive
-      ? "text-emerald-400"
-      : "text-red-400";
-  return (
-    <div className="flex flex-col items-center gap-0.5 bg-slate-800 rounded-lg px-3 py-2 min-w-[80px]">
-      <span className="text-[10px] text-slate-500 uppercase tracking-wide leading-none">
-        {label}
-      </span>
-      <span className={`text-sm font-semibold ${color}`}>{value}</span>
-    </div>
-  );
+  color: string;
+  ivs: number[];
+  description: string;
 }
 
-// ── Tab: VIX Products ─────────────────────────────────────────────────────────
-function VixProductsTab() {
-  const termStructure = useMemo(generateVixTermStructure, []);
-  const etfs = useMemo(generateEtfData, []);
-  const [position, setPosition] = useState<"long" | "short">("short");
-  const [contracts, setContracts] = useState([5]);
+const TERM_EXPS = [1, 2, 3, 6, 9, 12];
+const TERM_SHAPES: TermStructureShape[] = [
+  { label: "Contango", color: "#34d399", ivs: [14, 15.5, 17, 19, 20.5, 22], description: "Normal market: near-term vol < long-term vol. Time uncertainty premium." },
+  { label: "Backwardation", color: "#f87171", ivs: [32, 28, 24, 20, 18, 17], description: "Crisis/event: near-term vol spike. Elevated near-dated uncertainty." },
+  { label: "Humped", color: "#f59e0b", ivs: [18, 22, 25, 21, 19, 18], description: "Earnings or macro event in mid-term; vol peaks around event date." },
+];
 
-  const isContango =
-    termStructure[termStructure.length - 1].value > termStructure[0].value;
-  const rollYield = +(
-    ((termStructure[1].value - termStructure[0].value) / termStructure[0].value) *
-    100
-  ).toFixed(2);
-
-  // P&L estimate based on roll yield and position
-  const notional = contracts[0] * 1000 * termStructure[0].value;
-  const dailyRollPnl = +((notional * rollYield) / 100 / 30).toFixed(0);
-  const adjPnl = position === "short" ? -dailyRollPnl : dailyRollPnl;
-
-  // SVG dimensions for term structure
-  const W = 380;
-  const H = 140;
-  const values = termStructure.map((p) => p.value);
-  const minV = Math.min(...values) - 1;
-  const maxV = Math.max(...values) + 1;
-  const scaleY = (v: number) =>
-    H - 20 - ((v - minV) / (maxV - minV)) * (H - 40);
-  const scaleX = (i: number) => 30 + (i / (termStructure.length - 1)) * (W - 50);
-
-  const linePts = termStructure
-    .map((p, i) => `${scaleX(i).toFixed(1)},${scaleY(p.value).toFixed(1)}`)
-    .join(" ");
-
-  const areaPts = [
-    `30,${H - 20}`,
-    ...termStructure.map((p, i) => `${scaleX(i).toFixed(1)},${scaleY(p.value).toFixed(1)}`),
-    `${W - 20},${H - 20}`,
-  ].join(" ");
+function TermStructureSVG() {
+  const W = 480; const H = 180;
+  const PAD = { l: 36, r: 16, t: 20, b: 32 };
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+  const minIV = 10; const maxIV = 36;
+  const toX = (i: number) => PAD.l + (i / (TERM_EXPS.length - 1)) * cW;
+  const toY = (iv: number) => PAD.t + cH - ((iv - minIV) / (maxIV - minIV)) * cH;
 
   return (
-    <div className="space-y-4">
-      {/* Header stats */}
-      <div className="flex flex-wrap gap-2">
-        <StatChip label="VIX Spot" value={`${termStructure[0].value}`} />
-        <StatChip
-          label="Structure"
-          value={isContango ? "Contango" : "Backwardation"}
-          positive={!isContango}
-        />
-        <StatChip
-          label="Roll Yield/Mo"
-          value={`${rollYield > 0 ? "+" : ""}${rollYield}%`}
-          positive={rollYield < 0}
-        />
-        <StatChip
-          label="M1 Premium"
-          value={`${(termStructure[1].value - termStructure[0].value).toFixed(2)}`}
-          positive={termStructure[1].value < termStructure[0].value}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Term Structure Chart */}
-        <Card className="bg-slate-900 border-slate-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <Activity className="w-4 h-4 text-purple-400" />
-              VIX Futures Term Structure
-              <Badge
-                variant="outline"
-                className={
-                  isContango
-                    ? "border-amber-500/50 text-amber-400 text-[10px]"
-                    : "border-emerald-500/50 text-emerald-400 text-[10px]"
-                }
-              >
-                {isContango ? "Contango" : "Backwardation"}
-              </Badge>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
-              {/* Grid lines */}
-              {[minV + 1, minV + (maxV - minV) / 2, maxV - 1].map((v, i) => (
-                <line
-                  key={i}
-                  x1={30}
-                  y1={scaleY(v)}
-                  x2={W - 10}
-                  y2={scaleY(v)}
-                  stroke="#334155"
-                  strokeWidth={0.5}
-                  strokeDasharray="4,4"
-                />
-              ))}
-              {/* Area fill */}
-              <polygon
-                points={areaPts}
-                fill={isContango ? "rgba(251,146,60,0.08)" : "rgba(74,222,128,0.08)"}
-              />
-              {/* Line */}
-              <polyline
-                points={linePts}
-                fill="none"
-                stroke={isContango ? "#fb923c" : "#4ade80"}
-                strokeWidth={2}
-              />
-              {/* Points */}
-              {termStructure.map((p, i) => (
-                <g key={i}>
-                  <circle
-                    cx={scaleX(i)}
-                    cy={scaleY(p.value)}
-                    r={4}
-                    fill={isContango ? "#fb923c" : "#4ade80"}
-                  />
-                  <text
-                    x={scaleX(i)}
-                    y={H - 5}
-                    textAnchor="middle"
-                    fill="#94a3b8"
-                    fontSize={9}
-                  >
-                    {p.label}
-                  </text>
-                  <text
-                    x={scaleX(i)}
-                    y={scaleY(p.value) - 7}
-                    textAnchor="middle"
-                    fill="#e2e8f0"
-                    fontSize={9}
-                    fontWeight={600}
-                  >
-                    {p.value}
-                  </text>
-                </g>
-              ))}
-              {/* Y axis labels */}
-              <text x={0} y={scaleY(minV + 1) + 4} fill="#64748b" fontSize={8}>
-                {(minV + 1).toFixed(0)}
-              </text>
-              <text x={0} y={scaleY(maxV - 1) + 4} fill="#64748b" fontSize={8}>
-                {(maxV - 1).toFixed(0)}
-              </text>
-            </svg>
-          </CardContent>
-        </Card>
-
-        {/* P&L Simulator */}
-        <Card className="bg-slate-900 border-slate-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <Target className="w-4 h-4 text-blue-400" />
-              Position Simulator
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex gap-2">
-              {(["long", "short"] as const).map((side) => (
-                <Button
-                  key={side}
-                  size="sm"
-                  variant={position === side ? "default" : "outline"}
-                  onClick={() => setPosition(side)}
-                  className={
-                    position === side
-                      ? side === "long"
-                        ? "bg-emerald-600 hover:bg-emerald-700 text-white"
-                        : "bg-red-600 hover:bg-red-700 text-white"
-                      : "border-slate-600 text-slate-400"
-                  }
-                >
-                  {side === "long" ? (
-                    <TrendingUp className="w-3 h-3 mr-1" />
-                  ) : (
-                    <TrendingDown className="w-3 h-3 mr-1" />
-                  )}
-                  {side.charAt(0).toUpperCase() + side.slice(1)} Vol
-                </Button>
-              ))}
-            </div>
-            <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-2">
-                <span>Contracts (VIX futures)</span>
-                <span className="text-white font-semibold">{contracts[0]}</span>
-              </div>
-              <Slider
-                value={contracts}
-                onValueChange={setContracts}
-                min={1}
-                max={20}
-                step={1}
-                className="w-full"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-slate-800 rounded p-2">
-                <div className="text-slate-500">Notional</div>
-                <div className="text-white font-semibold">
-                  ${(notional / 1000).toFixed(0)}K
-                </div>
-              </div>
-              <div className="bg-slate-800 rounded p-2">
-                <div className="text-slate-500">Daily Roll P&L</div>
-                <div
-                  className={
-                    adjPnl > 0 ? "text-emerald-400 font-semibold" : "text-red-400 font-semibold"
-                  }
-                >
-                  {adjPnl > 0 ? "+" : ""}${adjPnl.toLocaleString()}
-                </div>
-              </div>
-              <div className="bg-slate-800 rounded p-2 col-span-2">
-                <div className="text-slate-500 mb-1">Monthly Roll P&L Est.</div>
-                <div
-                  className={
-                    adjPnl * 30 > 0
-                      ? "text-emerald-400 font-semibold text-base"
-                      : "text-red-400 font-semibold text-base"
-                  }
-                >
-                  {adjPnl * 30 > 0 ? "+" : ""}${(adjPnl * 30).toLocaleString()}
-                </div>
-              </div>
-            </div>
-            <p className="text-[10px] text-slate-500">
-              {position === "short"
-                ? "Short vol collects roll yield in contango. Risk: VIX spike."
-                : "Long vol pays roll cost but profits from volatility spikes."}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* VIX ETF Comparison */}
-      <Card className="bg-slate-900 border-slate-700">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <BarChart3 className="w-4 h-4 text-indigo-400" />
-            VIX ETP Comparison
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="text-slate-500 border-b border-slate-700">
-                  <th className="text-left pb-2">Product</th>
-                  <th className="text-right pb-2">NAV</th>
-                  <th className="text-right pb-2">Daily P&L</th>
-                  <th className="text-right pb-2">YTD</th>
-                  <th className="text-right pb-2">Roll Cost/Mo</th>
-                  <th className="text-right pb-2">Leverage</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800">
-                {etfs.map((etf) => (
-                  <tr key={etf.ticker}>
-                    <td className="py-2">
-                      <span
-                        className="font-semibold"
-                        style={{ color: etf.color }}
-                      >
-                        {etf.ticker}
-                      </span>
-                      <span className="text-slate-500 ml-1">
-                        {etf.name}
-                      </span>
-                    </td>
-                    <td className="py-2 text-right text-slate-300">
-                      ${etf.nav}
-                    </td>
-                    <td
-                      className={`py-2 text-right font-semibold ${
-                        etf.dailyPnl >= 0 ? "text-emerald-400" : "text-red-400"
-                      }`}
-                    >
-                      {etf.dailyPnl >= 0 ? "+" : ""}
-                      {etf.dailyPnl}%
-                    </td>
-                    <td
-                      className={`py-2 text-right font-semibold ${
-                        etf.ytdPnl >= 0 ? "text-emerald-400" : "text-red-400"
-                      }`}
-                    >
-                      {etf.ytdPnl >= 0 ? "+" : ""}
-                      {etf.ytdPnl}%
-                    </td>
-                    <td
-                      className={`py-2 text-right ${
-                        etf.rollCost < 0 ? "text-emerald-400" : "text-red-400"
-                      }`}
-                    >
-                      {etf.rollCost > 0 ? "-" : "+"}
-                      {Math.abs(etf.rollCost)}%
-                    </td>
-                    <td className="py-2 text-right text-slate-300">
-                      {etf.leverage > 0 ? `${etf.leverage}x` : `${etf.leverage}x`}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="mt-3 p-2 bg-slate-800/60 rounded text-[10px] text-slate-400 flex items-start gap-1.5">
-            <Info className="w-3 h-3 mt-0.5 shrink-0 text-blue-400" />
-            VXX and UVXY experience structural decay from rolling short-dated futures. SVXY profits
-            from this roll yield but carries significant gap-up risk.
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-}
-
-// ── Tab: Variance Swaps ───────────────────────────────────────────────────────
-function VarianceSwapsTab() {
-  const data = useMemo(generateVarianceSwap, []);
-  const [notionalMult, setNotionalMult] = useState([1]);
-
-  const notional = 100_000 * notionalMult[0];
-  const vegaNotional = (notional / (2 * data.strike)).toFixed(0);
-  const currentPnl = data.dailyPnl[data.dailyPnl.length - 1];
-  const scaledPnl = +(currentPnl * notionalMult[0]).toFixed(0);
-
-  const rvVol = Math.sqrt(data.realizedVar).toFixed(2);
-  const ivVol = Math.sqrt(data.impliedVar).toFixed(2);
-  const varSpread = +(data.realizedVar - data.impliedVar).toFixed(2);
-
-  const W = 500;
-  const H = 100;
-  const pnlPts = polylinePoints(data.dailyPnl, W, H, 8);
-  const areaPts2 = areaPoints(data.dailyPnl, W, H, 8);
-  const isProfit = currentPnl > 0;
-
-  // Zero line
-  const minP = Math.min(...data.dailyPnl);
-  const maxP = Math.max(...data.dailyPnl);
-  const rangeP = maxP - minP || 1;
-  const zeroY = H - 8 - ((0 - minP) / rangeP) * (H - 16);
-
-  return (
-    <div className="space-y-4">
-      {/* Stats row */}
-      <div className="flex flex-wrap gap-2">
-        <StatChip label="Var Strike" value={`σ² = ${data.impliedVar}`} />
-        <StatChip label="Realized Vol" value={`${rvVol}%`} positive={+rvVol < data.strike} />
-        <StatChip label="Implied Vol" value={`${ivVol}%`} />
-        <StatChip
-          label="Var Spread"
-          value={`${varSpread > 0 ? "+" : ""}${varSpread}`}
-          positive={varSpread < 0}
-        />
-        <StatChip
-          label="Cum. P&L"
-          value={`$${scaledPnl.toLocaleString()}`}
-          positive={scaledPnl > 0}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Realized vs Implied variance */}
-        <Card className="bg-slate-900 border-slate-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <Sigma className="w-4 h-4 text-violet-400" />
-              Realized vs Implied Variance
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-slate-400">Realized Variance (σ²_R)</span>
-                  <span className="text-emerald-400 font-semibold">{data.realizedVar}</span>
-                </div>
-                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-emerald-500 rounded-full"
-                    style={{
-                      width: `${Math.min(100, (data.realizedVar / (data.impliedVar * 1.5)) * 100)}%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between text-xs mb-1">
-                  <span className="text-slate-400">Implied Variance (σ²_I)</span>
-                  <span className="text-violet-400 font-semibold">{data.impliedVar}</span>
-                </div>
-                <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-violet-500 rounded-full"
-                    style={{
-                      width: `${Math.min(100, (data.impliedVar / (data.impliedVar * 1.5)) * 100)}%`,
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="pt-1 border-t border-slate-700">
-                <div className="flex justify-between text-xs">
-                  <span className="text-slate-400">Variance Premium</span>
-                  <span
-                    className={
-                      data.impliedVar > data.realizedVar
-                        ? "text-amber-400 font-semibold"
-                        : "text-red-400 font-semibold"
-                    }
-                  >
-                    {data.impliedVar > data.realizedVar ? "Overpriced" : "Underpriced"} by{" "}
-                    {Math.abs(varSpread).toFixed(2)} var units
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-2 pt-1 text-xs">
-                <div className="bg-slate-800 rounded p-2">
-                  <div className="text-slate-500 text-[10px]">Vega ($)</div>
-                  <div className="text-blue-400 font-semibold">
-                    ${(data.vega / 1000).toFixed(1)}K
-                  </div>
-                </div>
-                <div className="bg-slate-800 rounded p-2">
-                  <div className="text-slate-500 text-[10px]">Vanna ($)</div>
-                  <div
-                    className={
-                      data.vanna >= 0 ? "text-emerald-400 font-semibold" : "text-red-400 font-semibold"
-                    }
-                  >
-                    {data.vanna >= 0 ? "+" : ""}${(data.vanna / 1000).toFixed(1)}K
-                  </div>
-                </div>
-                <div className="bg-slate-800 rounded p-2">
-                  <div className="text-slate-500 text-[10px]">Volga ($)</div>
-                  <div className="text-purple-400 font-semibold">
-                    ${(data.volga / 1000).toFixed(1)}K
-                  </div>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Notional / P&L scaler */}
-        <Card className="bg-slate-900 border-slate-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <ArrowUpDown className="w-4 h-4 text-cyan-400" />
-              Variance Notional & P&L
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <div className="flex justify-between text-xs text-slate-400 mb-2">
-                <span>Variance Notional Multiplier</span>
-                <span className="text-white font-semibold">{notionalMult[0]}x</span>
-              </div>
-              <Slider
-                value={notionalMult}
-                onValueChange={setNotionalMult}
-                min={1}
-                max={10}
-                step={1}
-                className="w-full"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-slate-800 rounded p-2">
-                <div className="text-slate-500">Var Notional</div>
-                <div className="text-white font-semibold">
-                  ${(notional / 1000).toFixed(0)}K
-                </div>
-              </div>
-              <div className="bg-slate-800 rounded p-2">
-                <div className="text-slate-500">Vega Notional</div>
-                <div className="text-blue-400 font-semibold">
-                  ${(+vegaNotional / 1000).toFixed(1)}K
-                </div>
-              </div>
-            </div>
-            <div className="bg-slate-800 rounded p-3">
-              <div className="text-xs text-slate-500 mb-1">Daily Accrual Formula</div>
-              <div className="text-[11px] text-slate-300 font-mono">
-                P&L = N × (σ²_R - σ²_I) × (t/T)
-              </div>
-              <div className="text-[10px] text-slate-500 mt-1">
-                N = var notional · σ²_R = ann. realized · σ²_I = strike²
-              </div>
-            </div>
-            <div className="flex items-center justify-between p-2 bg-slate-800/60 rounded">
-              <span className="text-xs text-slate-400">Cumulative P&L</span>
-              <span
-                className={`text-sm font-bold ${
-                  scaledPnl > 0 ? "text-emerald-400" : "text-red-400"
-                }`}
-              >
-                {scaledPnl > 0 ? "+" : ""}${scaledPnl.toLocaleString()}
-              </span>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Daily P&L chart */}
-      <Card className="bg-slate-900 border-slate-700">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-emerald-400" />
-            Daily Cumulative P&L — Short Variance Swap
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
-            {/* Zero line */}
-            {zeroY > 8 && zeroY < H - 8 && (
-              <line
-                x1={8}
-                y1={zeroY}
-                x2={W - 8}
-                y2={zeroY}
-                stroke="#475569"
-                strokeWidth={1}
-                strokeDasharray="4,3"
-              />
-            )}
-            {/* Area */}
-            <polygon
-              points={areaPts2}
-              fill={isProfit ? "rgba(74,222,128,0.08)" : "rgba(248,113,113,0.08)"}
-            />
-            {/* Line */}
-            <polyline
-              points={pnlPts}
-              fill="none"
-              stroke={isProfit ? "#4ade80" : "#f87171"}
-              strokeWidth={2}
-            />
-            {/* Day labels */}
-            {[0, 4, 9, 14, 19].map((i) => (
-              <text
-                key={i}
-                x={8 + (i / 19) * (W - 16)}
-                y={H - 1}
-                textAnchor="middle"
-                fill="#64748b"
-                fontSize={8}
-              >
-                D{i + 1}
-              </text>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-44">
+      {[10, 15, 20, 25, 30, 35].map((v) => (
+        <g key={`tsg-${v}`}>
+          <line x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+          <text x={PAD.l - 4} y={toY(v) + 3} fill="#71717a" fontSize="8" textAnchor="end">{v}%</text>
+        </g>
+      ))}
+      {TERM_EXPS.map((e, i) => (
+        <text key={`tsx-${i}`} x={toX(i)} y={H - 6} fill="#71717a" fontSize="8" textAnchor="middle">{e}m</text>
+      ))}
+      {TERM_SHAPES.map((shape) => {
+        const pts = shape.ivs.map((iv, i) => `${toX(i)},${toY(iv)}`).join(" ");
+        return (
+          <g key={shape.label}>
+            <polyline points={pts} fill="none" stroke={shape.color} strokeWidth="2" strokeLinejoin="round" />
+            {shape.ivs.map((iv, i) => (
+              <circle key={`c-${shape.label}-${i}`} cx={toX(i)} cy={toY(iv)} r="3" fill={shape.color} />
             ))}
-          </svg>
-        </CardContent>
-      </Card>
+          </g>
+        );
+      })}
+      {TERM_SHAPES.map((shape, i) => (
+        <g key={`leg-${i}`}>
+          <line x1={W - PAD.r - 80} y1={PAD.t + 12 + i * 16} x2={W - PAD.r - 60} y2={PAD.t + 12 + i * 16} stroke={shape.color} strokeWidth="2" />
+          <text x={W - PAD.r - 56} y={PAD.t + 16 + i * 16} fill={shape.color} fontSize="8">{shape.label}</text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+// ── Skew Chart ─────────────────────────────────────────────────────────────────
+function SkewSVG() {
+  const W = 480; const H = 160;
+  const PAD = { l: 36, r: 16, t: 16, b: 28 };
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+  const strikes = [0.80, 0.85, 0.90, 0.95, 1.00, 1.05, 1.10, 1.15, 1.20];
+  const normalSkew = [32, 28, 24, 20, 17, 16, 16.5, 17, 18];
+  const postCrashSkew = [45, 40, 34, 27, 20, 17, 16, 16.5, 17.5];
+  const symmetricSkew = [18, 17.5, 17, 17, 17, 17, 17.5, 18, 19];
+  const minIV = 12; const maxIV = 50;
+  const toX = (i: number) => PAD.l + (i / (strikes.length - 1)) * cW;
+  const toY = (iv: number) => PAD.t + cH - ((iv - minIV) / (maxIV - minIV)) * cH;
+  const toPts = (ivs: number[]) => ivs.map((iv, i) => `${toX(i)},${toY(iv)}`).join(" ");
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-40">
+      {[15, 25, 35, 45].map((v) => (
+        <g key={`sg-${v}`}>
+          <line x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+          <text x={PAD.l - 4} y={toY(v) + 3} fill="#71717a" fontSize="8" textAnchor="end">{v}%</text>
+        </g>
+      ))}
+      {strikes.map((k, i) => (
+        <text key={`kx-${i}`} x={toX(i)} y={H - 5} fill="#71717a" fontSize="8" textAnchor="middle">{k.toFixed(2)}</text>
+      ))}
+      <polyline points={toPts(normalSkew)} fill="none" stroke="#6366f1" strokeWidth="2" strokeLinejoin="round" />
+      <polyline points={toPts(postCrashSkew)} fill="none" stroke="#f87171" strokeWidth="2" strokeLinejoin="round" strokeDasharray="5,3" />
+      <polyline points={toPts(symmetricSkew)} fill="none" stroke="#34d399" strokeWidth="2" strokeLinejoin="round" strokeDasharray="2,3" />
+      <line x1={toX(4)} y1={PAD.t} x2={toX(4)} y2={H - PAD.b} stroke="#71717a" strokeWidth="1" strokeDasharray="3,3" />
+      <text x={toX(4)} y={PAD.t + 8} fill="#71717a" fontSize="8" textAnchor="middle">ATM</text>
+      <line x1={W - 110} y1={PAD.t + 10} x2={W - 90} y2={PAD.t + 10} stroke="#6366f1" strokeWidth="2" />
+      <text x={W - 86} y={PAD.t + 14} fill="#a5b4fc" fontSize="8">Normal skew</text>
+      <line x1={W - 110} y1={PAD.t + 24} x2={W - 90} y2={PAD.t + 24} stroke="#f87171" strokeWidth="2" strokeDasharray="5,3" />
+      <text x={W - 86} y={PAD.t + 28} fill="#fca5a5" fontSize="8">Post-crisis</text>
+      <line x1={W - 110} y1={PAD.t + 38} x2={W - 90} y2={PAD.t + 38} stroke="#34d399" strokeWidth="2" strokeDasharray="2,3" />
+      <text x={W - 86} y={PAD.t + 42} fill="#6ee7b7" fontSize="8">FX smile</text>
+    </svg>
+  );
+}
+
+// ── Local Vol vs Stochastic Vol diagram ────────────────────────────────────────
+function LocalVsStochVolSVG() {
+  return (
+    <svg viewBox="0 0 480 130" className="w-full h-32">
+      <rect x="10" y="30" width="200" height="70" rx="8" fill="#1e1e2e" stroke="#6366f1" strokeWidth="1.5" />
+      <text x="110" y="50" fill="#a5b4fc" fontSize="10" textAnchor="middle" fontWeight="bold">Local Volatility</text>
+      <text x="110" y="65" fill="#71717a" fontSize="8" textAnchor="middle">{"σ(S,t) — deterministic function"}</text>
+      <text x="110" y="78" fill="#71717a" fontSize="8" textAnchor="middle">of spot and time</text>
+      <text x="110" y="91" fill="#71717a" fontSize="8" textAnchor="middle">Dupire formula: fits surface exactly</text>
+      <rect x="270" y="30" width="200" height="70" rx="8" fill="#1e1e2e" stroke="#34d399" strokeWidth="1.5" />
+      <text x="370" y="50" fill="#6ee7b7" fontSize="10" textAnchor="middle" fontWeight="bold">Stochastic Volatility</text>
+      <text x="370" y="65" fill="#71717a" fontSize="8" textAnchor="middle">{"vol-of-vol (ν), mean reversion (κ)"}</text>
+      <text x="370" y="78" fill="#71717a" fontSize="8" textAnchor="middle">{"correlation (ρ) — random vol process"}</text>
+      <text x="370" y="91" fill="#71717a" fontSize="8" textAnchor="middle">Heston / SABR — realistic dynamics</text>
+      <text x="240" y="70" fill="#f59e0b" fontSize="14" textAnchor="middle" fontWeight="bold">vs</text>
+      <text x="110" y="115" fill="#4ade80" fontSize="7.5" textAnchor="middle">{"✓ Simple   ✗ Unrealistic dynamics"}</text>
+      <text x="370" y="115" fill="#4ade80" fontSize="7.5" textAnchor="middle">{"✓ Rich dynamics   ✗ More params"}</text>
+    </svg>
+  );
+}
+
+// ── Arbitrage conditions ────────────────────────────────────────────────────────
+interface ArbCondition {
+  name: string;
+  condition: string;
+  violation: string;
+  color: string;
+}
+const ARB_CONDITIONS: ArbCondition[] = [
+  { name: "No Calendar Spread Arb", condition: "Total variance must increase with expiry", violation: "Vol surface slopes down in time → free calendar spread", color: "#6366f1" },
+  { name: "No Butterfly Arb", condition: "Local vol density must be non-negative", violation: "Vol smile too steep → negative transition density", color: "#34d399" },
+  { name: "Call/Put Parity", condition: "C - P = Se^{-qT} - Ke^{-rT}", violation: "Mismatch implies riskless arbitrage across strikes", color: "#f59e0b" },
+  { name: "No Static Arb", condition: "Convexity: ∂²C/∂K² ≥ 0 for all K", violation: "Butterfly spread has negative value", color: "#f87171" },
+];
+
+// ── Expandable section ─────────────────────────────────────────────────────────
+interface ExpandableSectionProps {
+  title: string;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+  accent?: string;
+}
+function ExpandableSection({ title, children, defaultOpen = false, accent = "#6366f1" }: ExpandableSectionProps) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="border border-zinc-800 rounded-lg overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-4 py-3 bg-zinc-900/50 hover:bg-zinc-900 transition-colors"
+      >
+        <span className="text-sm font-semibold text-zinc-200">{title}</span>
+        {open ? <ChevronUp className="w-4 h-4 text-zinc-400" /> : <ChevronDown className="w-4 h-4 text-zinc-400" />}
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            className="overflow-hidden"
+            style={{ borderTop: `1px solid ${accent}22` }}
+          >
+            <div className="p-4">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-// ── Tab: Vol Surface ──────────────────────────────────────────────────────────
-function VolSurfaceTab() {
-  const cells = useMemo(generateVolSurface, []);
-  const [hoveredCell, setHoveredCell] = useState<VolSurfaceCell | null>(null);
+// ── Info pill ──────────────────────────────────────────────────────────────────
+function InfoPill({ label, value, sub, color = "text-zinc-200" }: { label: string; value: string; sub?: string; color?: string }) {
+  return (
+    <div className="flex flex-col items-center bg-zinc-900 border border-zinc-800 rounded-lg px-3 py-2 min-w-[90px]">
+      <span className="text-[10px] text-zinc-500 uppercase tracking-wide">{label}</span>
+      <span className={cn("text-sm font-bold", color)}>{value}</span>
+      {sub && <span className="text-[10px] text-zinc-500">{sub}</span>}
+    </div>
+  );
+}
 
-  const expiries = ["7D", "14D", "1M", "2M", "3M"];
-  const strikePcts = [80, 90, 100, 110, 120];
-  const strikeLbls = ["80%", "90%", "ATM", "110%", "120%"];
-
-  const allIvs = cells.map((c) => c.iv);
-  const minIv = Math.min(...allIvs);
-  const maxIv = Math.max(...allIvs);
-
-  function ivToColor(iv: number): string {
-    const t = (iv - minIv) / (maxIv - minIv);
-    // Blue (low) → green → yellow → red (high)
-    if (t < 0.33) {
-      const u = t / 0.33;
-      const r = Math.round(59 + u * (74 - 59));
-      const g = Math.round(130 + u * (222 - 130));
-      const b = Math.round(246 - u * (246 - 128));
-      return `rgb(${r},${g},${b})`;
-    } else if (t < 0.66) {
-      const u = (t - 0.33) / 0.33;
-      const r = Math.round(74 + u * (250 - 74));
-      const g = Math.round(222 - u * (222 - 204));
-      const b = Math.round(128 - u * 128);
-      return `rgb(${r},${g},${b})`;
-    } else {
-      const u = (t - 0.66) / 0.34;
-      const r = Math.round(250 + u * 5);
-      const g = Math.round(204 - u * 91);
-      const b = Math.round(0);
-      return `rgb(${r},${g},${b})`;
-    }
-  }
-
-  const getCell = (exp: string, strike: number) =>
-    cells.find((c) => c.expiry === exp && c.strike === strike);
-
-  // Skew metric: 25D put IV - 25D call IV (approx 90% - 110%)
-  const skewByExpiry = expiries.map((exp) => {
-    const put25d = getCell(exp, 90)?.iv ?? 0;
-    const call25d = getCell(exp, 110)?.iv ?? 0;
-    return { exp, skew: +(put25d - call25d).toFixed(2) };
+// ── Gamma scalp P&L chart ──────────────────────────────────────────────────────
+function GammaScalpPnLSVG() {
+  const W = 480; const H = 160;
+  const PAD = { l: 36, r: 16, t: 16, b: 28 };
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+  const days = Array.from({ length: 30 }, (_, i) => i);
+  const realizedIV = 22;
+  const impliedIV = 18;
+  const gamma = 0.04;
+  const dt = 1 / 252;
+  const S = 100;
+  const dailyPnL = 0.5 * gamma * S * S * ((realizedIV / 100) ** 2 - (impliedIV / 100) ** 2) * dt;
+  let cumpnl = 0;
+  const pnlSeries = days.map(() => {
+    const noise = (sv() - 0.5) * dailyPnL * 6;
+    cumpnl += dailyPnL * 252 + noise;
+    return cumpnl;
   });
-
-  const atmIvs = expiries.map((exp) => getCell(exp, 100)?.iv ?? 0);
-  const termSlope = +((atmIvs[4] - atmIvs[0]) / 4).toFixed(2);
-  const volOfVol = +(
-    (Math.max(...atmIvs) - Math.min(...atmIvs)) / ((atmIvs.reduce((a, b) => a + b) / atmIvs.length))
-  * 100).toFixed(1);
-
+  const minP = Math.min(0, ...pnlSeries) - 10;
+  const maxP = Math.max(...pnlSeries) + 10;
+  const toX = (i: number) => PAD.l + (i / (days.length - 1)) * cW;
+  const toY = (v: number) => PAD.t + cH - ((v - minP) / (maxP - minP)) * cH;
+  const zeroY = toY(0);
+  const pts = pnlSeries.map((v, i) => `${toX(i)},${toY(v)}`).join(" ");
+  const area = [`${toX(0)},${zeroY}`, ...pnlSeries.map((v, i) => `${toX(i)},${toY(v)}`), `${toX(days.length - 1)},${zeroY}`].join(" ");
   return (
-    <div className="space-y-4">
-      {/* Metrics */}
-      <div className="flex flex-wrap gap-2">
-        <StatChip label="ATM IV (1M)" value={`${atmIvs[2].toFixed(2)}%`} />
-        <StatChip
-          label="Skew (1M)"
-          value={`+${skewByExpiry[2].skew.toFixed(2)} pts`}
-          positive={false}
-        />
-        <StatChip
-          label="Term Slope"
-          value={`${termSlope > 0 ? "+" : ""}${termSlope}/exp`}
-          positive={termSlope < 0}
-        />
-        <StatChip label="Vol of Vol" value={`${volOfVol}%`} />
-      </div>
-
-      {/* Heatmap */}
-      <Card className="bg-slate-900 border-slate-700">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Layers className="w-4 h-4 text-pink-400" />
-            Implied Volatility Surface — 5×5 Grid
-            {hoveredCell && (
-              <Badge variant="outline" className="border-pink-500/50 text-pink-300 text-[10px] ml-auto">
-                {hoveredCell.strikeLabel} {hoveredCell.expiry}: {hoveredCell.iv}%
-              </Badge>
-            )}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs border-collapse">
-              <thead>
-                <tr>
-                  <th className="text-left text-slate-500 pb-2 pr-3 text-[10px] w-12">
-                    Strike ↓ / Expiry →
-                  </th>
-                  {expiries.map((exp) => (
-                    <th
-                      key={exp}
-                      className="text-center text-slate-400 pb-2 px-2 font-medium text-[10px]"
-                    >
-                      {exp}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {strikePcts.map((sp, si) => (
-                  <tr key={sp}>
-                    <td className="py-1 pr-3 text-slate-400 text-[10px] font-medium">
-                      {strikeLbls[si]}
-                    </td>
-                    {expiries.map((exp) => {
-                      const cell = getCell(exp, sp);
-                      const bg = cell ? ivToColor(cell.iv) : "#1e293b";
-                      const isHovered =
-                        hoveredCell?.expiry === exp && hoveredCell?.strike === sp;
-                      return (
-                        <td
-                          key={exp}
-                          className="py-1 px-2 text-center cursor-pointer transition-transform"
-                          onMouseEnter={() => cell && setHoveredCell(cell)}
-                          onMouseLeave={() => setHoveredCell(null)}
-                        >
-                          <div
-                            className={`rounded px-2 py-1 font-semibold text-xs select-none ${
-                              isHovered ? "ring-2 ring-white" : ""
-                            }`}
-                            style={{
-                              background: bg,
-                              color: "#0f172a",
-                            }}
-                          >
-                            {cell?.iv.toFixed(1)}
-                          </div>
-                        </td>
-                      );
-                    })}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Color scale legend */}
-          <div className="mt-3 flex items-center gap-2">
-            <span className="text-[10px] text-slate-500">Low IV</span>
-            <div
-              className="flex-1 h-2 rounded"
-              style={{
-                background:
-                  "linear-gradient(to right, rgb(59,130,246), rgb(74,222,128), rgb(250,204,0), rgb(255,113,0))",
-              }}
-            />
-            <span className="text-[10px] text-slate-500">High IV</span>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Skew by expiry */}
-      <Card className="bg-slate-900 border-slate-700">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <GitBranch className="w-4 h-4 text-cyan-400" />
-            Skew by Expiry (25Δ Put IV − 25Δ Call IV)
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <svg width="100%" viewBox="0 0 500 80" className="overflow-visible">
-            {skewByExpiry.map((d, i) => {
-              const x = 40 + (i / (skewByExpiry.length - 1)) * 420;
-              const maxSkew = Math.max(...skewByExpiry.map((s) => s.skew));
-              const barH = (d.skew / maxSkew) * 50;
-              return (
-                <g key={d.exp}>
-                  <rect
-                    x={x - 20}
-                    y={60 - barH}
-                    width={40}
-                    height={barH}
-                    fill="#a78bfa"
-                    opacity={0.8}
-                    rx={3}
-                  />
-                  <text x={x} y={75} textAnchor="middle" fill="#94a3b8" fontSize={9}>
-                    {d.exp}
-                  </text>
-                  <text
-                    x={x}
-                    y={60 - barH - 3}
-                    textAnchor="middle"
-                    fill="#e2e8f0"
-                    fontSize={8}
-                    fontWeight={600}
-                  >
-                    {d.skew}
-                  </text>
-                </g>
-              );
-            })}
-            <line x1={20} y1={60} x2={480} y2={60} stroke="#334155" strokeWidth={1} />
-          </svg>
-          <p className="text-[10px] text-slate-500 mt-1">
-            Positive skew = puts more expensive than calls (typical equity market behavior — fear premium on downside)
-          </p>
-        </CardContent>
-      </Card>
-    </div>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-40">
+      <defs>
+        <linearGradient id="gspGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#34d399" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#34d399" stopOpacity="0.02" />
+        </linearGradient>
+      </defs>
+      <line x1={PAD.l} x2={W - PAD.r} y1={zeroY} y2={zeroY} stroke="#52525b" strokeWidth="1" strokeDasharray="4,3" />
+      {[minP, (minP + maxP) / 2, maxP].map((v) => (
+        <g key={`gsg-${v.toFixed(0)}`}>
+          <line x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+          <text x={PAD.l - 4} y={toY(v) + 3} fill="#71717a" fontSize="8" textAnchor="end">{v.toFixed(0)}</text>
+        </g>
+      ))}
+      {[0, 10, 20, 29].map((d) => (
+        <text key={`gsx-${d}`} x={toX(d)} y={H - 5} fill="#71717a" fontSize="8" textAnchor="middle">D{d + 1}</text>
+      ))}
+      <polygon points={area} fill="url(#gspGrad)" />
+      <polyline points={pts} fill="none" stroke="#34d399" strokeWidth="2" strokeLinejoin="round" />
+      <text x={PAD.l + 8} y={PAD.t + 10} fill="#a1a1aa" fontSize="8.5">Gamma Scalp P&amp;L (Realized {realizedIV}% vs Implied {impliedIV}%)</text>
+    </svg>
   );
 }
 
-// ── Tab: Dispersion ───────────────────────────────────────────────────────────
-function DispersionTab() {
-  const data = useMemo(generateDispersionData, []);
-  const [tradeOn, setTradeOn] = useState(false);
+// ── Long Vol strategies table ──────────────────────────────────────────────────
+interface LongVolStrategy {
+  name: string;
+  structure: string;
+  outlook: string;
+  risk: string;
+  reward: string;
+  theta: string;
+  gamma: string;
+}
+const LONG_VOL_STRATEGIES: LongVolStrategy[] = [
+  { name: "Long Straddle", structure: "Buy ATM call + put", outlook: "Large move either direction", risk: "Theta decay, no move", reward: "Unlimited both ways", theta: "Negative", gamma: "High positive" },
+  { name: "Long Strangle", structure: "Buy OTM call + OTM put", outlook: "Very large move", risk: "Cheaper but wider BEs", reward: "Unlimited both ways", theta: "Negative", gamma: "Positive" },
+  { name: "Long Calendar", structure: "Sell near / Buy far term", outlook: "Low near-term vol, higher long-term", risk: "Near-term vol spike", reward: "Vol contango capture", theta: "Slightly positive", gamma: "Near-term short" },
+  { name: "1x2x1 Butterfly", structure: "Buy 1 center, sell 2 wings (inv)", outlook: "ATM vol rich vs wing vol", risk: "Large gap move", reward: "Wings rally more than center", theta: "Positive at center", gamma: "Short at center" },
+  { name: "Variance Swap (L)", structure: "Pay fixed vol, receive realized", outlook: "Realized > Implied vol", risk: "Realized < implied", reward: "Pure vol, no delta hedge", theta: "N/A (OTC)", gamma: "Constant dollar gamma" },
+  { name: "Long UVXY", structure: "1.5x leveraged VIX futures ETP", outlook: "Vol spike imminent", risk: "Extreme contango decay", reward: "Explosive VIX spike", theta: "Very negative (roll)", gamma: "N/A (ETP)" },
+];
 
-  const corrPct = (data.impliedCorr * 100).toFixed(1);
-  const volSpread = +(data.weightedStockVol - data.indexVol).toFixed(2);
-  const latestPnl = data.tradePnl[data.tradePnl.length - 1];
-
-  const W = 500;
-  const H = 90;
-  const pnlPts = polylinePoints(data.tradePnl, W, H, 8);
-  const areaPts3 = areaPoints(data.tradePnl, W, H, 8);
-
+// ── Straddle breakeven display ─────────────────────────────────────────────────
+function BreakevenDisplay() {
+  const S = 100; const callPremium = 3.2; const putPremium = 3.0;
+  const totalPremium = callPremium + putPremium;
+  const upBreakeven = S + totalPremium;
+  const downBreakeven = S - totalPremium;
+  const W = 480; const H = 120;
+  const PAD = { l: 36, r: 36, t: 20, b: 24 };
+  const cW = W - PAD.l - PAD.r;
+  const minS = 85; const maxS = 115;
+  const toX = (price: number) => PAD.l + ((price - minS) / (maxS - minS)) * cW;
+  const pnl = (price: number) => Math.max(Math.abs(price - S) - totalPremium, -totalPremium);
+  const pnlMin = -totalPremium; const pnlMax = 10;
+  const cH = H - PAD.t - PAD.b;
+  const toY = (p: number) => PAD.t + cH - ((p - pnlMin) / (pnlMax - pnlMin)) * cH;
+  const zeroY = toY(0);
+  const pts = Array.from({ length: 60 }, (_, i) => {
+    const price = minS + (i / 59) * (maxS - minS);
+    return `${toX(price)},${toY(pnl(price))}`;
+  }).join(" ");
   return (
-    <div className="space-y-4">
-      {/* Stats */}
-      <div className="flex flex-wrap gap-2">
-        <StatChip label="Index IV" value={`${data.indexVol}%`} />
-        <StatChip label="Wtd Stock IV" value={`${data.weightedStockVol}%`} />
-        <StatChip
-          label="Vol Spread"
-          value={`+${volSpread.toFixed(2)}%`}
-          positive={true}
-        />
-        <StatChip label="Implied Corr" value={`${corrPct}%`} positive={+corrPct < 50} />
-        <StatChip
-          label="Trade P&L"
-          value={`$${latestPnl.toLocaleString()}`}
-          positive={latestPnl > 0}
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Single stock vol table */}
-        <Card className="bg-slate-900 border-slate-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <BarChart3 className="w-4 h-4 text-orange-400" />
-              Component Volatilities
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="text-slate-500 border-b border-slate-700">
-                  <th className="text-left pb-2">Stock</th>
-                  <th className="text-right pb-2">Weight</th>
-                  <th className="text-right pb-2">Imp. Vol</th>
-                  <th className="text-right pb-2">Rlz. Vol</th>
-                  <th className="text-right pb-2">Contribution</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-800">
-                {data.stocks.map((st) => (
-                  <tr key={st.ticker}>
-                    <td className="py-2 font-semibold text-blue-400">{st.ticker}</td>
-                    <td className="py-2 text-right text-slate-400">
-                      {(st.weight * 100).toFixed(1)}%
-                    </td>
-                    <td className="py-2 text-right text-amber-400 font-medium">
-                      {st.impliedVol}%
-                    </td>
-                    <td className="py-2 text-right text-slate-300">{st.realizedVol}%</td>
-                    <td className="py-2 text-right text-purple-400 font-medium">
-                      {st.contribution.toFixed(2)}
-                    </td>
-                  </tr>
-                ))}
-                <tr className="border-t border-slate-600">
-                  <td className="py-2 font-semibold text-slate-300" colSpan={2}>
-                    Weighted Total
-                  </td>
-                  <td className="py-2 text-right text-amber-400 font-bold">
-                    {data.weightedStockVol}%
-                  </td>
-                  <td className="py-2" />
-                  <td className="py-2 text-right text-purple-400 font-bold">
-                    {data.stocks.reduce((a, s) => a + s.contribution, 0).toFixed(2)}
-                  </td>
-                </tr>
-                <tr>
-                  <td className="py-2 text-slate-500 text-[10px]" colSpan={2}>
-                    Index (SPX)
-                  </td>
-                  <td className="py-2 text-right text-blue-400 font-bold">
-                    {data.indexVol}%
-                  </td>
-                  <td colSpan={2} />
-                </tr>
-              </tbody>
-            </table>
-          </CardContent>
-        </Card>
-
-        {/* Trade setup */}
-        <Card className="bg-slate-900 border-slate-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-              <Target className="w-4 h-4 text-emerald-400" />
-              Dispersion Trade Setup
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="p-3 bg-slate-800 rounded-lg space-y-2 text-xs">
-              <div className="text-slate-400 font-medium mb-2">
-                Trade: Buy Single-Stock Vol, Sell Index Vol
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Long 5 stocks (weighted)</span>
-                <span className="text-emerald-400">+{data.weightedStockVol}% IV</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500">Short SPX index vol</span>
-                <span className="text-red-400">-{data.indexVol}% IV</span>
-              </div>
-              <div className="border-t border-slate-700 pt-2 flex justify-between font-semibold">
-                <span className="text-slate-300">Vol Spread (edge)</span>
-                <span className="text-amber-400">+{volSpread.toFixed(2)}%</span>
-              </div>
-            </div>
-
-            <div className="p-3 bg-slate-800 rounded-lg text-xs space-y-2">
-              <div className="text-slate-400 font-medium">Implied Correlation</div>
-              <div className="text-2xl font-bold text-blue-400">{corrPct}%</div>
-              <div className="text-[10px] text-slate-500">
-                ρ_impl = (σ_index / Σ w_i·σ_i)²
-              </div>
-              <div className="h-1.5 bg-slate-700 rounded-full overflow-hidden mt-1">
-                <div
-                  className="h-full bg-blue-500 rounded-full"
-                  style={{ width: `${corrPct}%` }}
-                />
-              </div>
-            </div>
-
-            <Button
-              className={`w-full text-xs ${
-                tradeOn
-                  ? "bg-red-600 hover:bg-red-700"
-                  : "bg-emerald-600 hover:bg-emerald-700"
-              } text-white`}
-              onClick={() => setTradeOn((v) => !v)}
-            >
-              {tradeOn ? (
-                <>
-                  <Shield className="w-3 h-3 mr-1" />
-                  Close Dispersion Trade
-                </>
-              ) : (
-                <>
-                  <Zap className="w-3 h-3 mr-1" />
-                  Enter Dispersion Trade
-                </>
-              )}
-            </Button>
-
-            {tradeOn && (
-              <motion.div
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="p-2 bg-emerald-900/30 border border-emerald-500/30 rounded text-[10px] text-emerald-300"
-              >
-                Trade active. P&L accrues as stock correlations diverge from index implied.
-                Max profit when stocks move independently.
-              </motion.div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Historical payout chart */}
-      <Card className="bg-slate-900 border-slate-700">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-sm text-slate-300 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-teal-400" />
-            Dispersion Trade Historical P&L (20-day sim)
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
-            {/* Zero line */}
-            {(() => {
-              const minP = Math.min(...data.tradePnl);
-              const maxP = Math.max(...data.tradePnl);
-              const rangeP = maxP - minP || 1;
-              const zy = H - 8 - ((0 - minP) / rangeP) * (H - 16);
-              return zy > 8 && zy < H - 8 ? (
-                <line
-                  x1={8}
-                  y1={zy}
-                  x2={W - 8}
-                  y2={zy}
-                  stroke="#475569"
-                  strokeWidth={1}
-                  strokeDasharray="3,3"
-                />
-              ) : null;
-            })()}
-            <polygon
-              points={areaPts3}
-              fill={latestPnl > 0 ? "rgba(45,212,191,0.08)" : "rgba(248,113,113,0.08)"}
-            />
-            <polyline
-              points={pnlPts}
-              fill="none"
-              stroke={latestPnl > 0 ? "#2dd4bf" : "#f87171"}
-              strokeWidth={2}
-            />
-            {[0, 4, 9, 14, 19].map((i) => (
-              <text
-                key={i}
-                x={8 + (i / 19) * (W - 16)}
-                y={H - 1}
-                textAnchor="middle"
-                fill="#64748b"
-                fontSize={8}
-              >
-                D{i + 1}
-              </text>
-            ))}
-          </svg>
-          <div className="mt-2 p-2 bg-slate-800/60 rounded text-[10px] text-slate-400 flex items-start gap-1.5">
-            <Info className="w-3 h-3 mt-0.5 shrink-0 text-teal-400" />
-            Dispersion trades profit when realized correlation is lower than implied correlation.
-            Risk: correlation spikes during market stress events.
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-32">
+      <defs>
+        <linearGradient id="beLoss" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#f87171" stopOpacity="0.02" />
+          <stop offset="100%" stopColor="#f87171" stopOpacity="0.35" />
+        </linearGradient>
+      </defs>
+      <line x1={PAD.l} x2={W - PAD.r} y1={zeroY} y2={zeroY} stroke="#52525b" strokeWidth="1" strokeDasharray="4,3" />
+      <rect x={toX(downBreakeven)} y={zeroY} width={toX(upBreakeven) - toX(downBreakeven)} height={toY(-totalPremium) - zeroY} fill="url(#beLoss)" />
+      <polyline points={pts} fill="none" stroke="#6366f1" strokeWidth="2.5" strokeLinejoin="round" />
+      <line x1={toX(upBreakeven)} y1={PAD.t} x2={toX(upBreakeven)} y2={H - PAD.b} stroke="#34d399" strokeWidth="1" strokeDasharray="3,3" />
+      <line x1={toX(downBreakeven)} y1={PAD.t} x2={toX(downBreakeven)} y2={H - PAD.b} stroke="#34d399" strokeWidth="1" strokeDasharray="3,3" />
+      <text x={toX(upBreakeven)} y={PAD.t + 8} fill="#34d399" fontSize="8" textAnchor="middle">BE {upBreakeven.toFixed(1)}</text>
+      <text x={toX(downBreakeven)} y={PAD.t + 8} fill="#34d399" fontSize="8" textAnchor="middle">BE {downBreakeven.toFixed(1)}</text>
+      <circle cx={toX(S)} cy={toY(0)} r="3" fill="#f59e0b" />
+      <text x={toX(S)} y={H - 6} fill="#f59e0b" fontSize="8" textAnchor="middle">S={S}</text>
+      <text x={PAD.l - 4} y={toY(0) + 3} fill="#71717a" fontSize="8" textAnchor="end">0</text>
+      <text x={PAD.l - 4} y={toY(-totalPremium) + 3} fill="#f87171" fontSize="8" textAnchor="end">-{totalPremium.toFixed(1)}</text>
+    </svg>
   );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
+// ── Short vol strategies ───────────────────────────────────────────────────────
+interface ShortVolStrategy {
+  name: string;
+  structure: string;
+  maxGain: string;
+  maxLoss: string;
+  idealEnv: string;
+  risk: string;
+}
+const SHORT_VOL_STRATEGIES: ShortVolStrategy[] = [
+  { name: "Covered Call", structure: "Long stock + Sell call", maxGain: "Premium + (K-S)", maxLoss: "S - premium", idealEnv: "Flat to mild rally", risk: "Capped upside, full downside" },
+  { name: "Cash-Secured Put", structure: "Sell put + hold cash", maxGain: "Premium received", maxLoss: "K - premium", idealEnv: "Flat to mild dip", risk: "Assignment at elevated K" },
+  { name: "Iron Condor", structure: "Sell call spread + put spread", maxGain: "Net premium", maxLoss: "Wing width - premium", idealEnv: "Low vol, rangebound", risk: "Gap through short strikes" },
+  { name: "Credit Spread", structure: "Sell near OTM, Buy far OTM", maxGain: "Net credit", maxLoss: "Width - credit", idealEnv: "Directional + IV contraction", risk: "Spread widens to max loss" },
+  { name: "Short SVXY", structure: "Short 0.5× inverse VIX ETF", maxGain: "ETF decline", maxLoss: "Unlimited (short)", idealEnv: "Rising VIX / vol spike", risk: "Decay on short side" },
+  { name: "VRP Harvest", structure: "Sell 1m var swap / delta hedge", maxGain: "IV - RV spread ~2-3 vols", maxLoss: "Spike: RV >> IV", idealEnv: "IV persistently > RV", risk: "Black swan / tail events" },
+];
+
+// ── VRP bar chart ──────────────────────────────────────────────────────────────
+function VRPBarChart() {
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const vrp = [2.1, -8.4, 3.2, 2.8, 1.9, 2.5, 3.1, -4.2, 2.7, 1.8, 3.0, 2.4];
+  const W = 480; const H = 140;
+  const PAD = { l: 36, r: 12, t: 16, b: 28 };
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+  const barW = (cW / months.length) * 0.7;
+  const barGap = cW / months.length;
+  const minV = -10; const maxV = 5;
+  const zeroY = PAD.t + cH - ((0 - minV) / (maxV - minV)) * cH;
+  const toX = (i: number) => PAD.l + i * barGap + (barGap - barW) / 2;
+  const toY = (v: number) => PAD.t + cH - ((v - minV) / (maxV - minV)) * cH;
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-36">
+      {[-8, -4, 0, 3].map((v) => (
+        <g key={`vg-${v}`}>
+          <line x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+          <text x={PAD.l - 4} y={toY(v) + 3} fill="#71717a" fontSize="8" textAnchor="end">{v > 0 ? `+${v}` : v}</text>
+        </g>
+      ))}
+      <line x1={PAD.l} x2={W - PAD.r} y1={zeroY} y2={zeroY} stroke="#52525b" strokeWidth="1.5" />
+      {vrp.map((v, i) => {
+        const barColor = v >= 0 ? "#34d399" : "#f87171";
+        const barY = v >= 0 ? toY(v) : zeroY;
+        const barH = Math.abs(toY(v) - zeroY);
+        return (
+          <g key={`vrb-${i}`}>
+            <rect x={toX(i)} y={barY} width={barW} height={barH} fill={barColor} fillOpacity="0.75" rx="2" />
+            <text x={toX(i) + barW / 2} y={H - 6} fill="#71717a" fontSize="7.5" textAnchor="middle">{months[i]}</text>
+          </g>
+        );
+      })}
+      <text x={PAD.l + 8} y={PAD.t + 10} fill="#a1a1aa" fontSize="8.5">Vol Risk Premium (IV − Realized Vol)</text>
+    </svg>
+  );
+}
+
+// ── Feb 2018 VIX spike timeline ────────────────────────────────────────────────
+function VixSpikeSVG() {
+  const events = [
+    { label: "Jan 26\nSPX ATH", x: 60, y: 60, color: "#34d399" },
+    { label: "Feb 2\nJobs data\nVIX +30%", x: 140, y: 78, color: "#f59e0b" },
+    { label: "Feb 5\nVIX 37→50\nAftermarket", x: 230, y: 44, color: "#f87171" },
+    { label: "Feb 6\nXIV implosion\n-90%", x: 320, y: 28, color: "#ef4444" },
+    { label: "Feb 9\nVIX peaks ~50\nSPX -10%", x: 410, y: 48, color: "#f87171" },
+  ];
+  return (
+    <svg viewBox="0 0 480 130" className="w-full h-32">
+      <line x1="40" y1="100" x2="440" y2="100" stroke="#27272a" strokeWidth="2" />
+      {events.map((ev, i) => (
+        <g key={`vix-ev-${i}`}>
+          <circle cx={ev.x} cy="100" r="5" fill={ev.color} />
+          <line x1={ev.x} y1={ev.y + 22} x2={ev.x} y2="95" stroke={ev.color} strokeWidth="1" strokeDasharray="3,2" />
+          <rect x={ev.x - 38} y={ev.y - 4} width="76" height={ev.label.split("\n").length * 13 + 4} rx="4" fill="#1c1c28" stroke={ev.color} strokeWidth="1" />
+          {ev.label.split("\n").map((line, j) => (
+            <text key={`evl-${i}-${j}`} x={ev.x} y={ev.y + j * 13 + 7} fill={ev.color} fontSize="7.5" textAnchor="middle">{line}</text>
+          ))}
+        </g>
+      ))}
+      <text x="240" y="120" fill="#71717a" fontSize="8.5" textAnchor="middle">February 2018: VIX Spike + XIV/SVXY Implosion</text>
+    </svg>
+  );
+}
+
+// ── Dispersion trade diagram ───────────────────────────────────────────────────
+function DispersionSVG() {
+  return (
+    <svg viewBox="0 0 480 160" className="w-full h-40">
+      <defs>
+        <marker id="dspA2" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#34d399" />
+        </marker>
+      </defs>
+      <rect x="10" y="55" width="110" height="50" rx="7" fill="#1e1e2e" stroke="#f87171" strokeWidth="1.5" />
+      <text x="65" y="75" fill="#fca5a5" fontSize="10" textAnchor="middle" fontWeight="bold">INDEX</text>
+      <text x="65" y="90" fill="#f87171" fontSize="8.5" textAnchor="middle">Short Vol</text>
+      <text x="65" y="101" fill="#71717a" fontSize="8" textAnchor="middle">Sell index variance</text>
+      <text x="148" y="74" fill="#f59e0b" fontSize="8" textAnchor="middle">DISPERSION</text>
+      <text x="148" y="86" fill="#71717a" fontSize="7.5" textAnchor="middle">corr. risk premium</text>
+      <rect x="180" y="20" width="90" height="36" rx="6" fill="#1e1e2e" stroke="#34d399" strokeWidth="1.5" />
+      <text x="225" y="35" fill="#6ee7b7" fontSize="9" textAnchor="middle" fontWeight="bold">Stock A</text>
+      <text x="225" y="47" fill="#34d399" fontSize="8" textAnchor="middle">Long Vol</text>
+      <rect x="180" y="62" width="90" height="36" rx="6" fill="#1e1e2e" stroke="#34d399" strokeWidth="1.5" />
+      <text x="225" y="77" fill="#6ee7b7" fontSize="9" textAnchor="middle" fontWeight="bold">Stock B</text>
+      <text x="225" y="89" fill="#34d399" fontSize="8" textAnchor="middle">Long Vol</text>
+      <rect x="180" y="104" width="90" height="36" rx="6" fill="#1e1e2e" stroke="#34d399" strokeWidth="1.5" />
+      <text x="225" y="119" fill="#6ee7b7" fontSize="9" textAnchor="middle" fontWeight="bold">Stock C</text>
+      <text x="225" y="131" fill="#34d399" fontSize="8" textAnchor="middle">Long Vol</text>
+      <line x1="120" y1="70" x2="180" y2="38" stroke="#34d399" strokeWidth="1" markerEnd="url(#dspA2)" />
+      <line x1="120" y1="80" x2="180" y2="80" stroke="#34d399" strokeWidth="1" markerEnd="url(#dspA2)" />
+      <line x1="120" y1="90" x2="180" y2="122" stroke="#34d399" strokeWidth="1" markerEnd="url(#dspA2)" />
+      <rect x="310" y="40" width="160" height="80" rx="7" fill="#0f1220" stroke="#6366f1" strokeWidth="1" />
+      <text x="390" y="58" fill="#a5b4fc" fontSize="9" textAnchor="middle" fontWeight="bold">P&amp;L DRIVERS</text>
+      <text x="320" y="73" fill="#6ee7b7" fontSize="8">+ Stock vols &gt; index vol</text>
+      <text x="320" y="86" fill="#6ee7b7" fontSize="8">+ Realized corr drops</text>
+      <text x="320" y="99" fill="#f87171" fontSize="8">− Index vol spikes alone</text>
+      <text x="320" y="112" fill="#f87171" fontSize="8">− Correlation crisis</text>
+    </svg>
+  );
+}
+
+// ── Implied correlation chart ──────────────────────────────────────────────────
+function ImpliedCorrSVG() {
+  const W = 480; const H = 160;
+  const PAD = { l: 36, r: 16, t: 20, b: 28 };
+  const cW = W - PAD.l - PAD.r;
+  const cH = H - PAD.t - PAD.b;
+  const months = 24;
+  const impliedCorr: number[] = [];
+  const realizedCorr: number[] = [];
+  let baseCorr = 0.45;
+  for (let i = 0; i < months; i++) {
+    const shock = i === 15 ? 0.35 : 0;
+    baseCorr = Math.max(0.2, Math.min(0.85, baseCorr + (sv() - 0.52) * 0.06 + shock));
+    impliedCorr.push(Math.min(0.92, baseCorr + 0.08 + sv() * 0.04));
+    realizedCorr.push(Math.max(0.1, baseCorr - 0.04 + (sv() - 0.5) * 0.06));
+  }
+  const minC = 0.1; const maxC = 0.95;
+  const toX = (i: number) => PAD.l + (i / (months - 1)) * cW;
+  const toY = (c: number) => PAD.t + cH - ((c - minC) / (maxC - minC)) * cH;
+  const iPts = impliedCorr.map((c, i) => `${toX(i)},${toY(c)}`).join(" ");
+  const rPts = realizedCorr.map((c, i) => `${toX(i)},${toY(c)}`).join(" ");
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-40">
+      {[0.2, 0.4, 0.6, 0.8].map((v) => (
+        <g key={`icg-${v}`}>
+          <line x1={PAD.l} x2={W - PAD.r} y1={toY(v)} y2={toY(v)} stroke="#27272a" strokeWidth="1" />
+          <text x={PAD.l - 4} y={toY(v) + 3} fill="#71717a" fontSize="8" textAnchor="end">{v.toFixed(1)}</text>
+        </g>
+      ))}
+      {[0, 6, 12, 18, 23].map((m) => (
+        <text key={`icx-${m}`} x={toX(m)} y={H - 6} fill="#71717a" fontSize="8" textAnchor="middle">M{m + 1}</text>
+      ))}
+      <polyline points={iPts} fill="none" stroke="#6366f1" strokeWidth="2" strokeLinejoin="round" />
+      <polyline points={rPts} fill="none" stroke="#34d399" strokeWidth="2" strokeLinejoin="round" strokeDasharray="5,3" />
+      <line x1={toX(15)} y1={PAD.t} x2={toX(15)} y2={H - PAD.b} stroke="#f87171" strokeWidth="1" strokeDasharray="3,3" />
+      <text x={toX(15)} y={PAD.t + 8} fill="#f87171" fontSize="8" textAnchor="middle">Crisis</text>
+      <line x1={PAD.l + 10} y1={PAD.t + 10} x2={PAD.l + 30} y2={PAD.t + 10} stroke="#6366f1" strokeWidth="2" />
+      <text x={PAD.l + 34} y={PAD.t + 14} fill="#a5b4fc" fontSize="8">Implied corr</text>
+      <line x1={PAD.l + 100} y1={PAD.t + 10} x2={PAD.l + 120} y2={PAD.t + 10} stroke="#34d399" strokeWidth="2" strokeDasharray="5,3" />
+      <text x={PAD.l + 124} y={PAD.t + 14} fill="#6ee7b7" fontSize="8">Realized corr</text>
+    </svg>
+  );
+}
+
+// ── Dispersion P&L decomposition ───────────────────────────────────────────────
+interface DispersionPnL {
+  driver: string;
+  value: number;
+  sign: "pos" | "neg";
+}
+const DISPERSION_PNL: DispersionPnL[] = [
+  { driver: "Index vol short (theta collected)", value: 4.2, sign: "pos" },
+  { driver: "Single-stock vol long (theta paid)", value: -3.1, sign: "neg" },
+  { driver: "Realized correlation drop", value: 6.8, sign: "pos" },
+  { driver: "Idiosyncratic stock moves", value: 2.3, sign: "pos" },
+  { driver: "Delta hedging slippage", value: -0.9, sign: "neg" },
+  { driver: "Transaction costs & financing", value: -0.7, sign: "neg" },
+  { driver: "Net P&L (vol pts)", value: 8.6, sign: "pos" },
+];
+
+// ── Main Page ──────────────────────────────────────────────────────────────────
 export default function VolTradingPage() {
-  return (
-    <div className="min-h-screen bg-slate-950 text-white p-4 md:p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-1">
-          <div className="p-2 bg-violet-500/20 rounded-lg">
-            <Activity className="w-5 h-5 text-violet-400" />
-          </div>
-          <h1 className="text-2xl font-bold text-white">Volatility Trading</h1>
-          <Badge variant="outline" className="border-violet-500/40 text-violet-300 text-[10px]">
-            Professional
-          </Badge>
-        </div>
-        <p className="text-sm text-slate-400 ml-14">
-          VIX products, variance swaps, vol surface analysis, and dispersion trading strategies.
-        </p>
-      </div>
+  const [activeTab, setActiveTab] = useState("surface");
+  const [expandedSabrParam, setExpandedSabrParam] = useState<string | null>(null);
 
-      <Tabs defaultValue="vix" className="space-y-4">
-        <TabsList className="bg-slate-900 border border-slate-700 h-auto flex-wrap gap-1 p-1">
-          <TabsTrigger
-            value="vix"
-            className="text-xs data-[state=active]:bg-violet-600 data-[state=active]:text-white"
-          >
-            <Activity className="w-3 h-3 mr-1" />
-            VIX Products
-          </TabsTrigger>
-          <TabsTrigger
-            value="variance"
-            className="text-xs data-[state=active]:bg-violet-600 data-[state=active]:text-white"
-          >
-            <Sigma className="w-3 h-3 mr-1" />
-            Variance Swaps
-          </TabsTrigger>
-          <TabsTrigger
-            value="surface"
-            className="text-xs data-[state=active]:bg-violet-600 data-[state=active]:text-white"
-          >
-            <Layers className="w-3 h-3 mr-1" />
-            Vol Surface
-          </TabsTrigger>
-          <TabsTrigger
-            value="dispersion"
-            className="text-xs data-[state=active]:bg-violet-600 data-[state=active]:text-white"
-          >
-            <GitBranch className="w-3 h-3 mr-1" />
-            Dispersion
-          </TabsTrigger>
+  const sabrParams = [
+    { param: "α (alpha)", meaning: "ATM volatility level", effect: "Shifts entire surface up/down uniformly", color: "#6366f1" },
+    { param: "β (beta)", meaning: "Backbone shape (0=normal, 1=log-normal)", effect: "Controls slope of ATM vol vs spot", color: "#34d399" },
+    { param: "ρ (rho)", meaning: "Spot-vol correlation", effect: "Generates skew; negative ρ creates put skew", color: "#f59e0b" },
+    { param: "ν (nu)", meaning: "Vol-of-vol", effect: "Curvature and smile convexity", color: "#f87171" },
+  ];
+
+  return (
+    <div className="space-y-6 p-6">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        className="flex flex-col gap-1"
+      >
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-lg bg-violet-500/10 border border-violet-500/20">
+            <Activity className="w-6 h-6 text-violet-400" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-zinc-100">Volatility Trading</h1>
+            <p className="text-sm text-zinc-500">
+              Vol surface dynamics, long/short vol strategies, and dispersion trading
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-1">
+          {[
+            { label: "VIX", value: "18.4", sub: "spot", color: "text-violet-400" },
+            { label: "VIX1M", value: "19.1", sub: "1-month", color: "text-blue-400" },
+            { label: "VIX3M", value: "20.8", sub: "3-month", color: "text-cyan-400" },
+            { label: "VVIX", value: "94.2", sub: "vol-of-vol", color: "text-amber-400" },
+            { label: "IV-RV", value: "+2.3", sub: "VRP", color: "text-emerald-400" },
+            { label: "Imp Corr", value: "0.54", sub: "index", color: "text-pink-400" },
+          ].map((m) => (
+            <InfoPill key={m.label} label={m.label} value={m.value} sub={m.sub} color={m.color} />
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Tabs */}
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <TabsList className="bg-zinc-900 border border-zinc-800 w-full justify-start flex-wrap h-auto gap-1 p-1">
+          {[
+            { value: "surface", label: "Volatility Surface", icon: <Layers className="w-3.5 h-3.5" /> },
+            { value: "longvol", label: "Long Vol Strategies", icon: <TrendingUp className="w-3.5 h-3.5" /> },
+            { value: "shortvol", label: "Short Vol Strategies", icon: <TrendingDown className="w-3.5 h-3.5" /> },
+            { value: "dispersion", label: "Dispersion & Correlation", icon: <BarChart2 className="w-3.5 h-3.5" /> },
+          ].map((tab) => (
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-violet-600/30 data-[state=active]:text-violet-200"
+            >
+              {tab.icon}
+              {tab.label}
+            </TabsTrigger>
+          ))}
         </TabsList>
 
-        <AnimatePresence mode="wait">
-          <TabsContent value="vix" className="data-[state=inactive]:hidden mt-0">
-            <motion.div
-              key="vix"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
-              <VixProductsTab />
-            </motion.div>
-          </TabsContent>
+        {/* ── TAB 1: Volatility Surface ───────────────────────────────────────────── */}
+        <TabsContent value="surface" className="mt-4 space-y-5 data-[state=inactive]:hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-violet-400" />
+                  Implied Volatility Surface (Isometric)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <VolSurfaceSVG />
+                <p className="text-xs text-zinc-500 mt-2">
+                  The vol surface maps implied volatility across strike (moneyness) and expiry. Put skew from
+                  investor hedging demand elevates OTM put IVs. Term structure shows contango in calm markets.
+                </p>
+              </CardContent>
+            </Card>
 
-          <TabsContent value="variance" className="data-[state=inactive]:hidden mt-0">
-            <motion.div
-              key="variance"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
-              <VarianceSwapsTab />
-            </motion.div>
-          </TabsContent>
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  Term Structure Shapes
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <TermStructureSVG />
+                <div className="space-y-2 mt-3">
+                  {TERM_SHAPES.map((shape) => (
+                    <div key={shape.label} className="flex items-start gap-2">
+                      <div className="w-2 h-2 rounded-full mt-1 flex-shrink-0" style={{ background: shape.color }} />
+                      <div>
+                        <span className="text-xs font-semibold" style={{ color: shape.color }}>{shape.label}: </span>
+                        <span className="text-xs text-zinc-400">{shape.description}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-          <TabsContent value="surface" className="data-[state=inactive]:hidden mt-0">
-            <motion.div
-              key="surface"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
-              <VolSurfaceTab />
-            </motion.div>
-          </TabsContent>
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <Target className="w-4 h-4 text-blue-400" />
+                Volatility Skew Dynamics
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <SkewSVG />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4 text-xs">
+                <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                  <p className="font-semibold text-violet-300 mb-1">Put Skew Origin</p>
+                  <p className="text-zinc-400">Institutional investors systematically buy OTM puts for portfolio insurance, creating persistent demand that inflates put IV vs call IV — a structural risk premium.</p>
+                </div>
+                <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                  <p className="font-semibold text-blue-300 mb-1">Sticky Strike vs Sticky Delta</p>
+                  <p className="text-zinc-400">Sticky strike: same absolute strike keeps its IV as spot moves. Sticky delta: vol follows the delta (25Δ put always has same IV). Equity tends sticky strike; FX tends sticky delta.</p>
+                </div>
+                <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                  <p className="font-semibold text-cyan-300 mb-1">Post-Earnings Surface</p>
+                  <p className="text-zinc-400">Near-dated vol collapses dramatically post-earnings (vol crush). Far-dated vol barely moves. The surface flattens in the front end as event uncertainty resolves.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-          <TabsContent value="dispersion" className="data-[state=inactive]:hidden mt-0">
-            <motion.div
-              key="dispersion"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2 }}
-            >
-              <DispersionTab />
-            </motion.div>
-          </TabsContent>
-        </AnimatePresence>
+          {/* SABR Model */}
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-amber-400" />
+                SABR Model Parameters
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-xs text-zinc-400 mb-4">
+                SABR (Stochastic Alpha Beta Rho) is the industry-standard model for interest rate and FX options. It produces a closed-form IV approximation as a function of strike, making surface calibration tractable.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {sabrParams.map((p) => (
+                  <button
+                    key={p.param}
+                    onClick={() => setExpandedSabrParam(expandedSabrParam === p.param ? null : p.param)}
+                    className="text-left bg-zinc-900 border border-zinc-800 rounded-lg p-3 hover:border-zinc-600 transition-colors"
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm font-bold" style={{ color: p.color }}>{p.param}</span>
+                      {expandedSabrParam === p.param ? <ChevronUp className="w-3 h-3 text-zinc-500" /> : <ChevronDown className="w-3 h-3 text-zinc-500" />}
+                    </div>
+                    <p className="text-xs text-zinc-300">{p.meaning}</p>
+                    <AnimatePresence>
+                      {expandedSabrParam === p.param && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="text-xs text-zinc-500 mt-2 overflow-hidden"
+                        >
+                          {p.effect}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SVI + Arbitrage + Local vs Stoch */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <ExpandableSection title="SVI Parameterization" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <p>
+                  <span className="font-semibold text-zinc-200">SVI (Stochastic Volatility Inspired)</span> parameterizes the smile as:
+                </p>
+                <div className="bg-zinc-900 rounded p-3 font-mono text-zinc-300 text-[11px]">
+                  w(k) = a + b [rho(k-m) + sqrt((k-m)^2 + sigma^2)]
+                </div>
+                <p>where k = log(K/F), w is total variance, and {"(a, b, rho, m, sigma)"} are 5 free parameters. SVI automatically satisfies the no-butterfly-arbitrage condition when calibrated correctly.</p>
+                <p className="text-zinc-500">Key property: SVI is asymptotically linear in log-moneyness, consistent with Roger Lee moment formula bounding IV growth at large strikes.</p>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="Vol Surface Arbitrage Conditions" defaultOpen>
+              <div className="space-y-3">
+                {ARB_CONDITIONS.map((c) => (
+                  <div key={c.name} className="border-l-2 pl-3" style={{ borderColor: c.color }}>
+                    <p className="text-xs font-semibold" style={{ color: c.color }}>{c.name}</p>
+                    <p className="text-xs text-zinc-400">{c.condition}</p>
+                    <p className="text-xs text-zinc-500 mt-0.5">Violation: {c.violation}</p>
+                  </div>
+                ))}
+              </div>
+            </ExpandableSection>
+          </div>
+
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <Info className="w-4 h-4 text-cyan-400" />
+                Local Vol vs Stochastic Vol
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <LocalVsStochVolSVG />
+              <p className="text-xs text-zinc-500 mt-3">
+                Vanna-volga pricing (popular in FX) adds Greeks-based corrections to Black-Scholes using market prices of the 25-delta strangle and risk reversal, capturing smile effects analytically without full stochastic model calibration.
+              </p>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* ── TAB 2: Long Vol Strategies ───────────────────────────────────────────── */}
+        <TabsContent value="longvol" className="mt-4 space-y-5 data-[state=inactive]:hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-emerald-400" />
+                  Long Straddle: Payoff at Expiry
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <BreakevenDisplay />
+                <div className="grid grid-cols-2 gap-3 mt-3 text-xs">
+                  <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                    <p className="font-semibold text-emerald-300 mb-1">Breakeven Formula</p>
+                    <p className="text-zinc-400">Upside BE = Strike + Total Premium</p>
+                    <p className="text-zinc-400">Downside BE = Strike − Total Premium</p>
+                    <p className="text-zinc-500 mt-1">ATM S=100, Call=3.2, Put=3.0 → BEs: 93.8 / 106.2</p>
+                  </div>
+                  <div className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                    <p className="font-semibold text-violet-300 mb-1">Pay Theta, Own Gamma</p>
+                    <p className="text-zinc-400">Long straddle: negative theta (time decay enemy) but long gamma (big moves profit). Profitability depends on realized vol exceeding implied vol over the holding period.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-blue-400" />
+                  Gamma Scalping P&L Simulation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <GammaScalpPnLSVG />
+                <div className="space-y-2 mt-3 text-xs text-zinc-400">
+                  <p>
+                    <span className="font-semibold text-zinc-200">Gamma scalping condition: </span>
+                    Daily P&L approx 0.5 x Gamma x S^2 x (sigma_realized^2 - sigma_implied^2) x dt. Positive when realized exceeds implied.
+                  </p>
+                  <p>
+                    The trader delta-hedges periodically (e.g., hourly), collecting P&L from realized moves. The straddle breaks even when sigma_realized equals sigma_implied over option life.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <Layers className="w-4 h-4 text-violet-400" />
+                Long Vol Strategy Reference
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="border-b border-zinc-800">
+                      {["Strategy", "Structure", "Market Outlook", "Max Risk", "Max Reward", "Theta", "Gamma"].map((h) => (
+                        <th key={h} className="text-left py-2 px-2 text-zinc-500 font-medium">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {LONG_VOL_STRATEGIES.map((st, i) => (
+                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-zinc-950" : "bg-zinc-900/30")}>
+                        <td className="py-2 px-2 font-semibold text-violet-300">{st.name}</td>
+                        <td className="py-2 px-2 text-zinc-400">{st.structure}</td>
+                        <td className="py-2 px-2 text-zinc-300">{st.outlook}</td>
+                        <td className="py-2 px-2 text-red-400">{st.risk}</td>
+                        <td className="py-2 px-2 text-emerald-400">{st.reward}</td>
+                        <td className="py-2 px-2 text-amber-400">{st.theta}</td>
+                        <td className="py-2 px-2 text-blue-400">{st.gamma}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <ExpandableSection title="Variance Swap: Pure Vol Exposure" defaultOpen>
+              <div className="space-y-3 text-xs text-zinc-400">
+                <p>A variance swap pays <span className="text-zinc-200 font-semibold">(sigma_realized^2 - K_var) x Notional</span> at expiry. Unlike options, it has no delta and no need for dynamic hedging.</p>
+                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-zinc-300">Key mechanics:</p>
+                  <p>Fair strike K_var is replicated via a log-contract (infinite strip of OTM options)</p>
+                  <p>Vega notional = Variance notional x 2 x K_var</p>
+                  <p>Convexity: long var swap benefits from very large vol moves (sigma^2 is convex in sigma)</p>
+                  <p>Variance has linear payoff in realized variance, unlike straddle which is linear in |sigma|</p>
+                </div>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="UVXY Mechanics & Decay" defaultOpen>
+              <div className="space-y-3 text-xs text-zinc-400">
+                <p>UVXY targets 1.5x daily return of the S&P 500 short-term VIX futures index (blend of 1st and 2nd month futures).</p>
+                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-zinc-300">Why UVXY decays chronically:</p>
+                  <p>Contango roll cost: rolling near-term futures into higher-priced later contracts</p>
+                  <p>Average roll cost: 5-7% per month in normal contango markets</p>
+                  <p>Leverage decay: daily rebalancing causes compounding drag</p>
+                  <p>Long-run expected return strongly negative outside VIX spikes</p>
+                </div>
+                <p className="text-amber-400 font-medium">VVIX (vol of VIX) signals when vol-of-vol is elevated — better timing for long UVXY entries.</p>
+              </div>
+            </ExpandableSection>
+          </div>
+        </TabsContent>
+
+        {/* ── TAB 3: Short Vol Strategies ──────────────────────────────────────────── */}
+        <TabsContent value="shortvol" className="mt-4 space-y-5 data-[state=inactive]:hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <DollarSign className="w-4 h-4 text-emerald-400" />
+                  Volatility Risk Premium (Historical)
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <VRPBarChart />
+                <p className="text-xs text-zinc-500 mt-2">
+                  Historically implied vol exceeds realized vol by 2-3 vol points on average, creating a persistent risk premium for option sellers. February spike shows the key exception.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-red-400" />
+                  February 2018: XIV/SVXY Implosion
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <VixSpikeSVG />
+                <div className="mt-3 space-y-2 text-xs text-zinc-400">
+                  <p>
+                    <span className="font-semibold text-red-300">What happened: </span>
+                    VIX spiked from ~14 to ~50 in a single afternoon. XIV (inverse VIX ETP) was designed to reset daily — a 90%+ VIX move triggered the acceleration clause, terminating the product.
+                  </p>
+                  <p>
+                    <span className="font-semibold text-amber-300">Lesson: </span>
+                    Short vol strategies carry embedded tail risk. Position sizing, stop-losses, and stress scenario analysis are mandatory — not optional — risk management tools.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <Shield className="w-4 h-4 text-red-400" />
+                Short Vol Strategy Reference
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="border-b border-zinc-800">
+                      {["Strategy", "Structure", "Max Gain", "Max Loss", "Ideal Environment", "Key Risk"].map((h) => (
+                        <th key={h} className="text-left py-2 px-2 text-zinc-500 font-medium">{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {SHORT_VOL_STRATEGIES.map((st, i) => (
+                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-zinc-950" : "bg-zinc-900/30")}>
+                        <td className="py-2 px-2 font-semibold text-red-300">{st.name}</td>
+                        <td className="py-2 px-2 text-zinc-400">{st.structure}</td>
+                        <td className="py-2 px-2 text-emerald-400">{st.maxGain}</td>
+                        <td className="py-2 px-2 text-red-400">{st.maxLoss}</td>
+                        <td className="py-2 px-2 text-zinc-300">{st.idealEnv}</td>
+                        <td className="py-2 px-2 text-amber-400">{st.risk}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <ExpandableSection title="Iron Condor Mechanics" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <p>Iron condor = bear call spread + bull put spread. Collects premium from both wings. Profitable if underlying stays within the short strikes at expiry.</p>
+                <div className="bg-zinc-900 rounded p-3 space-y-1">
+                  <p className="font-semibold text-zinc-300">P&L formula:</p>
+                  <p>Max gain = net premium collected</p>
+                  <p>Max loss = wing width minus premium</p>
+                  <p>Break-evens = short strikes plus/minus net premium</p>
+                </div>
+                <p className="text-zinc-500">Best entered at 30-45 DTE; closed at 50% profit target to avoid accelerating gamma risk near expiry.</p>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="VIX Futures Roll Yield" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <p>Short VIX futures captures roll yield when VIX futures trade above spot VIX (contango). As time passes, futures converge down to spot — the short position profits from this convergence.</p>
+                <div className="bg-zinc-900 rounded p-3 space-y-1">
+                  <p className="font-semibold text-zinc-300">Annualized roll yield approx:</p>
+                  <p className="font-mono text-[10px]">(VIX_futures - VIX_spot) / VIX_spot x 252/DTE</p>
+                </div>
+                <p className="text-amber-400 font-medium">Risk: VIX spot can spike above futures during stress, destroying the trade instantly with unlimited theoretical loss.</p>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="Normalized VRP Selling" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <p>VRP (Vol Risk Premium) = Implied Vol minus Expected Realized Vol. Normalized VRP = (IV - HV20) / HV20.</p>
+                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-zinc-300">Signal thresholds:</p>
+                  <p className="text-emerald-400">nVRP &gt; 0.15: sell premium (IV expensive)</p>
+                  <p className="text-red-400">nVRP &lt; -0.05: avoid or go long vol</p>
+                  <p className="text-zinc-400">IV Rank &gt; 50: premium selling regime</p>
+                </div>
+              </div>
+            </ExpandableSection>
+          </div>
+        </TabsContent>
+
+        {/* ── TAB 4: Dispersion & Correlation ─────────────────────────────────────── */}
+        <TabsContent value="dispersion" className="mt-4 space-y-5 data-[state=inactive]:hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <BarChart2 className="w-4 h-4 text-violet-400" />
+                  Dispersion Trade Structure
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <DispersionSVG />
+                <p className="text-xs text-zinc-500 mt-2">
+                  Dispersion trades short index volatility and long individual stock volatility. The edge comes from the correlation risk premium — implied correlation exceeds realized correlation historically.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-zinc-950 border-zinc-800">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-blue-400" />
+                  Implied vs Realized Correlation
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ImpliedCorrSVG />
+                <p className="text-xs text-zinc-500 mt-2">
+                  Implied correlation (derived from index vs component vols) persistently exceeds realized correlation except during crises, creating a systematic risk premium harvestable via dispersion.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <Target className="w-4 h-4 text-amber-400" />
+                Implied Correlation Formula
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-zinc-900/60 rounded-lg p-4 border border-zinc-800">
+                <div className="font-mono text-zinc-300 text-sm mb-2">
+                  rho_implied = (sigma_index^2 - sum_i(wi^2 * sigmai^2)) / (2 * sum_ij(wi * wj * sigmai * sigmaj))
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs mt-3">
+                  {[
+                    { sym: "sigma_index", def: "Index implied vol (from ATM straddle)", color: "text-violet-300" },
+                    { sym: "wi", def: "Component weight in index", color: "text-blue-300" },
+                    { sym: "sigmai", def: "Component i implied vol", color: "text-emerald-300" },
+                    { sym: "rho_implied", def: "Market-implied average pairwise correlation", color: "text-amber-300" },
+                  ].map((item) => (
+                    <div key={item.sym} className="bg-zinc-950 rounded p-2 border border-zinc-800">
+                      <code className={cn("font-mono font-bold text-sm", item.color)}>{item.sym}</code>
+                      <p className="text-zinc-500 mt-1">{item.def}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <DollarSign className="w-4 h-4 text-emerald-400" />
+                Dispersion P&L Decomposition (Illustrative, vol pts)
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2">
+                {DISPERSION_PNL.map((item, i) => {
+                  const isLast = i === DISPERSION_PNL.length - 1;
+                  const color = item.sign === "pos" ? "text-emerald-400" : "text-red-400";
+                  const barColor = item.sign === "pos" ? "bg-emerald-500" : "bg-red-500";
+                  const maxAbs = 8.6;
+                  const barW = Math.abs(item.value) / maxAbs * 60;
+                  return (
+                    <div key={item.driver} className={cn("flex items-center gap-3", isLast && "border-t border-zinc-700 pt-2 mt-1")}>
+                      <div className="flex-1 text-xs text-zinc-400">{item.driver}</div>
+                      <div className="w-16 flex items-center">
+                        <div className={cn("h-2 rounded", barColor)} style={{ width: `${barW}%` }} />
+                      </div>
+                      <div className={cn("text-xs font-bold w-12 text-right", color, isLast && "text-sm")}>
+                        {item.value > 0 ? "+" : ""}{item.value.toFixed(1)}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <ExpandableSection title="Variance Dispersion vs Vega Dispersion" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-zinc-900 rounded p-3">
+                    <p className="font-semibold text-violet-300 mb-1">Variance Dispersion</p>
+                    <p>Use variance swaps on index and components. Pure volatility exposure, no delta hedging needed. Payoff scales with realized variance (sigma^2), rewarding large moves convexly.</p>
+                  </div>
+                  <div className="bg-zinc-900 rounded p-3">
+                    <p className="font-semibold text-cyan-300 mb-1">Vega Dispersion</p>
+                    <p>Use options (ATM straddles) on index and components. Requires continuous delta hedging. Payoff linear in vol. More gamma exposure, path-dependent P&L.</p>
+                  </div>
+                </div>
+                <p className="text-zinc-500">Variance dispersion is cleaner theoretically; vega dispersion is more accessible in practice for options books.</p>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="Correlation Regimes & Crisis Behavior" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <p>In normal regimes, average pairwise stock correlations are 0.3-0.5. During crises, correlations spike to 0.7-0.9 as macro factors dominate all individual names.</p>
+                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-zinc-300">Dispersion trade crisis P&L:</p>
+                  <p className="text-red-400">Index vol spikes — short index vega hurts badly</p>
+                  <p className="text-red-400">Correlation spike — individual stocks move together</p>
+                  <p className="text-zinc-500">Long individual vol gains, but insufficient to offset</p>
+                  <p className="text-zinc-500 mt-1">Crisis is the primary scenario where dispersion trades lose money. Size accordingly.</p>
+                </div>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="Sector vs Full Index Dispersion" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <p>Dispersion can be implemented at sector level (e.g., XLK vs mega-cap tech) or full index level (SPX vs S&P 500 components).</p>
+                <div className="bg-zinc-900 rounded p-3 space-y-1.5">
+                  <p className="font-semibold text-zinc-300">Sector advantages:</p>
+                  <p>Higher intra-sector correlation tracking, fewer legs (10-30 vs 500 stocks), sector events drive larger divergence</p>
+                  <p className="font-semibold text-zinc-300 mt-2">Full index advantages:</p>
+                  <p>Deeper liquidity on SPX options, more diversified correlation exposure across the market</p>
+                </div>
+              </div>
+            </ExpandableSection>
+
+            <ExpandableSection title="Cross-Asset Vol Correlation" defaultOpen>
+              <div className="space-y-2 text-xs text-zinc-400">
+                <p>Volatility regimes are correlated across asset classes but not perfectly, creating cross-asset vol trading opportunities.</p>
+                <div className="space-y-1.5 bg-zinc-900 rounded p-3">
+                  {[
+                    { pair: "Equity vol (VIX) vs FX vol (EURUSD)", corr: "+0.55", note: "Risk-off drives both up" },
+                    { pair: "Equity vol (VIX) vs Rates vol (MOVE)", corr: "+0.42", note: "Fed uncertainty spills over" },
+                    { pair: "Equity vol vs Credit spreads", corr: "+0.72", note: "Very tight in stress" },
+                    { pair: "EM FX vol vs DM equity vol", corr: "+0.63", note: "Dollar strength / EM outflows" },
+                  ].map((item) => (
+                    <div key={item.pair} className="flex items-center justify-between gap-2">
+                      <span className="text-zinc-400 flex-1 text-[11px]">{item.pair}</span>
+                      <Badge className="bg-violet-900/40 text-violet-300 border-violet-700 text-[10px]">{item.corr}</Badge>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ExpandableSection>
+          </div>
+
+          <Card className="bg-zinc-950 border-zinc-800">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+                <Layers className="w-4 h-4 text-cyan-400" />
+                Practical Implementation
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                {[
+                  {
+                    title: "Via Variance Swaps",
+                    color: "text-violet-300",
+                    points: [
+                      "OTC instruments, ISDA documentation required",
+                      "Sell variance swap on index (pay K_var, receive realized variance)",
+                      "Buy variance swaps on major components (vega-weighted)",
+                      "No delta hedging needed — pure vol exposure",
+                      "Typical tenor: 1m, 3m, 6m rolls",
+                    ],
+                  },
+                  {
+                    title: "Via Options Books",
+                    color: "text-blue-300",
+                    points: [
+                      "Sell ATM straddle on index (SPX/SPY)",
+                      "Buy ATM straddles on components (delta-hedged)",
+                      "Maintain dollar vega neutrality across book",
+                      "Continuous delta hedging required — labor intensive",
+                      "Execution via exchange-listed options",
+                    ],
+                  },
+                  {
+                    title: "Risk Management",
+                    color: "text-emerald-300",
+                    points: [
+                      "Monitor realized vs implied correlation daily",
+                      "Pre-define stop-loss at 2x expected monthly P&L",
+                      "Stress test for correlation = 0.9 scenario",
+                      "Limit gross vega per single name to 5% of book",
+                      "Reduce position before major macro events",
+                    ],
+                  },
+                ].map((section) => (
+                  <div key={section.title} className="bg-zinc-900 rounded-lg p-3 border border-zinc-800">
+                    <p className={cn("font-semibold mb-2", section.color)}>{section.title}</p>
+                    <ul className="space-y-1">
+                      {section.points.map((pt, i) => (
+                        <li key={i} className="text-zinc-400 flex items-start gap-1.5">
+                          <span className="text-zinc-600 mt-0.5">•</span>
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
       </Tabs>
     </div>
   );

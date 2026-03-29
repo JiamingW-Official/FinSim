@@ -1,342 +1,351 @@
-import type { Unit } from "./types";
+import { Unit } from "./types";
 
 export const UNIT_FIXED_INCOME_ADVANCED: Unit = {
   id: "fixed-income-advanced",
-  title: "Advanced Fixed Income",
+  title: "Fixed Income Advanced",
   description:
-    "Master duration, convexity, MBS, credit derivatives, and fixed income portfolio management",
-  icon: "🏦",
-  color: "from-blue-500 to-indigo-600",
+    "Master yield curve dynamics, duration and convexity, credit spread analysis, and fixed income derivatives for professional bond portfolio management",
+  icon: "BarChart3",
+  color: "#B45309",
   lessons: [
-    // ─── Lesson 1: Duration & Convexity Mastery ───────────────────────────────
+    // ─── Lesson 1: Yield Curve Analysis ───────────────────────────────────────────
     {
-      id: "fia-1",
-      title: "📐 Duration & Convexity Mastery",
+      id: "fixed-income-advanced-1",
+      title: "Yield Curve Analysis",
       description:
-        "Modified duration, dollar duration (DV01), convexity, and the second-order price approximation",
-      icon: "Ruler",
+        "Yield curve shapes, economic signals, theories of the term structure, butterfly trades, yield curve control, and inflation breakeven frameworks",
+      icon: "BarChart3",
+      xpReward: 80,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "Yield Curve Shapes & Economic Signals",
+          content:
+            "The yield curve plots interest rates (yields) across different maturities for the same issuer (typically government bonds). Its shape encodes market expectations about growth, inflation, and monetary policy.\n\n**Four primary shapes**:\n\n**Normal (upward-sloping)**: Short-term yields < long-term yields. The baseline state — reflects expectations of economic growth and modest inflation. Investors demand a term premium for lending longer.\n\n**Inverted (downward-sloping)**: Short-term yields > long-term yields. The recession predictor — reflects expectations that the central bank will cut rates in the future (because of an anticipated downturn). The **2s10s spread** (10-year minus 2-year Treasury yield) is the most-watched inversion metric.\n\n**Flat**: Short and long-term yields are similar. A transition state, often seen as the economy approaches a turning point — either a peak before inversion or a trough before re-steepening.\n\n**Humped (bell-shaped)**: Medium-term yields are highest; short and long yields are lower. Relatively rare, often seen when the market expects rates to rise then fall.\n\n**The 2s10s inversion as a recession predictor**:\n- Every US recession since 1955 has been preceded by a 2s10s inversion\n- The inversion typically leads the recession by **6–24 months** (variable lead time)\n- The 2022–2023 inversion was the deepest since the 1980s\n- False positives exist (mid-1960s) — it is a probabilistic signal, not a guarantee",
+          highlight: [
+            "yield curve",
+            "2s10s spread",
+            "inverted",
+            "normal",
+            "flat",
+            "humped",
+            "recession predictor",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Term Structure Theories",
+          content:
+            "Three main theories explain why the yield curve takes different shapes:\n\n**Expectations Theory (Pure)**:\n- Long-term yields are simply the geometric average of expected future short-term rates\n- A 2-year yield = average of today's 1-year rate + expected 1-year rate one year from now\n- Implication: an upward-sloping curve means the market expects rates to rise; inverted curve means expected rate cuts\n- Weakness: does not explain why long-term yields are almost always above short-term yields — the 'term premium' is missing\n\n**Liquidity Premium Theory**:\n- Extends expectations theory by adding a term premium that rises with maturity\n- Investors demand extra compensation for price risk, liquidity risk, and uncertainty over future rates\n- Explains why normal curves slope upward even when rates are not expected to rise\n- The term premium is not directly observable; the NY Fed estimates it via models (ACM model)\n\n**Market Segmentation Theory**:\n- Different maturity segments are governed by distinct supply and demand from different investor types\n- Banks and money market funds prefer short maturities; pension funds and insurers prefer long maturities\n- Yields in each segment are determined independently by their respective buyers and sellers\n- Explains 'humped' curves where specific maturity segments face excess supply\n\n**Preferred Habitat (hybrid)**:\n- Investors have preferred maturities but will venture out for sufficient yield premium\n- Combines segmentation with the ability of yield differentials to attract cross-segment flows",
+          highlight: [
+            "expectations theory",
+            "liquidity premium",
+            "market segmentation",
+            "term premium",
+            "preferred habitat",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Butterfly Trades, Yield Curve Control & Spread Measures",
+          content:
+            "**Butterfly trade — a non-directional yield curve bet**:\nA butterfly trade expresses a view on the curve's shape: the 'wings' (short and long ends) vs the 'belly' (medium term).\n\n- **Long butterfly** (long wings / short belly): Buy 2s and 10s, sell 5s. Profits if 5-year yields rise relative to the wings — the curve humps up in the middle.\n- **Short butterfly** (short wings / long belly): Sell 2s and 10s, buy 5s. Profits if the belly richens relative to the wings.\n- Butterfly trades are duration-neutral: a parallel rate shift generates zero P&L.\n\n**Yield Curve Control (YCC) — Bank of Japan case study**:\n- The BOJ introduced YCC in September 2016, pegging the 10-year JGB yield near 0%\n- The central bank commits to buying unlimited bonds to defend the target level\n- Effect: compresses term premium, flattens curve, forces investors offshore to seek yield\n- In 2022–2023, defending the cap required massive bond purchases — the BOJ owned 50%+ of the JGB market\n- YCC was eventually abandoned in 2024 as inflation returned to Japan\n\n**Key spread measures**:\n- **Swap spread** = Swap rate (fixed leg of interest rate swap) − Treasury yield (same maturity). Reflects bank credit risk and supply/demand for swaps. Negative swap spreads (swap rate < Treasury) occurred in the US post-2010.\n- **OIS spread** (Overnight Indexed Swap spread) = interbank rate − OIS rate. Tracks interbank credit and liquidity stress. The OIS spread spiked to 365bps in October 2008 — a real-time measure of the financial crisis.\n- **Breakeven inflation rate** = Nominal Treasury yield − TIPS real yield. Represents market-implied expected inflation over the maturity horizon.\n- **Real yield framework**: The 10-year TIPS yield is the 'real yield' — the return above inflation. Negative real yields have historically been very stimulative and bullish for risk assets and gold.",
+          highlight: [
+            "butterfly trade",
+            "long wings short belly",
+            "yield curve control",
+            "BOJ",
+            "swap spread",
+            "OIS spread",
+            "breakeven inflation",
+            "real yield",
+            "TIPS",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "The 2-year Treasury yield is 5.2% and the 10-year Treasury yield is 4.4%. A strategist says the 2s10s inversion suggests elevated recession probability with a 6–24 month lead time. Which term structure theory BEST explains why an inverted curve predicts recession?",
+          options: [
+            "Expectations theory — an inverted curve implies the market expects the Fed to cut rates sharply in the future due to anticipated economic weakness",
+            "Liquidity premium theory — shorter maturity bonds command a larger term premium than longer bonds during a crisis",
+            "Market segmentation theory — pension funds are selling long-duration bonds and buying short-duration Treasuries",
+            "Preferred habitat theory — banks are shifting from short to long maturities, mechanically pushing short yields above long yields",
+          ],
+          correctIndex: 0,
+          explanation:
+            "Expectations theory provides the most direct explanation: if short-term yields exceed long-term yields, the market is implying that future short-term rates will be lower than current short-term rates. Investors will only lend short-term at 5.2% if they expect rates will fall (to an average below 4.4% over 10 years). Future rate cuts happen when the Fed responds to economic weakness or recession. This chain of logic — inverted curve → expected rate cuts → expected recession — is the core of the expectations-theory-based recession forecast. Liquidity premium theory actually predicts an upward-sloping curve by adding term premium, making it less suited to explain inversions.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "The breakeven inflation rate derived from TIPS is calculated as the nominal Treasury yield minus the TIPS real yield, and a higher breakeven rate indicates that bond markets expect higher future inflation.",
+          correct: true,
+          explanation:
+            "True. The breakeven inflation rate = Nominal Treasury yield − TIPS real yield. For example, if the 10-year nominal Treasury yields 4.5% and the 10-year TIPS yields 2.0%, the breakeven inflation rate is 2.5% — meaning bond markets expect average annual inflation of 2.5% over the next 10 years. If actual inflation exceeds the breakeven, TIPS investors outperform nominal bond investors; if actual inflation falls short, nominal bond investors outperform. The breakeven is a real-time market-based measure of inflation expectations closely watched by the Federal Reserve.",
+          difficulty: 1,
+        },
+      ],
+    },
+
+    // ─── Lesson 2: Duration & Convexity ───────────────────────────────────────────
+    {
+      id: "fixed-income-advanced-2",
+      title: "Duration & Convexity",
+      description:
+        "Modified duration, convexity adjustments, callable bond negative convexity, DV01, portfolio duration management, key rate durations, and immunization",
+      icon: "BarChart3",
+      xpReward: 85,
+      difficulty: "advanced",
+      steps: [
+        {
+          type: "teach",
+          title: "Modified Duration & Price Approximation",
+          content:
+            "**Duration** measures a bond's price sensitivity to interest rate changes. It is the most fundamental risk metric in fixed income.\n\n**Modified Duration (MD) formula**:\nMD = Macaulay Duration / (1 + y/m)\n\nWhere:\n- **Macaulay Duration** = weighted average time to receive cash flows (in years)\n- **y** = yield to maturity\n- **m** = coupon payment frequency per year\n\n**Price approximation using Modified Duration**:\n\n**ΔP/P ≈ −MD × Δy**\n\nOr equivalently: ΔP ≈ −MD × P × Δy\n\n**Example**: A bond with price $100, modified duration of 7 years, and yields rise 50bps (0.005):\nΔP ≈ −7 × $100 × 0.005 = −$3.50\nThe bond falls approximately $3.50 to ~$96.50\n\n**Key intuitions**:\n- A zero-coupon bond's duration equals its maturity (all cash flow at the end)\n- A coupon-paying bond's duration is less than its maturity (earlier coupons pull duration in)\n- Higher coupon → lower duration (more weight on near-term cash flows)\n- Higher yield → lower duration (cash flows discounted more heavily)\n- Duration is additive for portfolios: Portfolio Duration = Σ(wi × MDi)",
+          highlight: [
+            "modified duration",
+            "Macaulay duration",
+            "price approximation",
+            "yield sensitivity",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Convexity, Callable Bonds & Dollar Duration",
+          content:
+            "**Convexity — the second-order correction**:\nThe duration approximation is linear, but bond price/yield relationships are curved (convex). Convexity captures this curvature:\n\n**ΔP/P ≈ −MD × Δy + ½ × Convexity × (Δy)²**\n\nFor a standard bullet bond:\n- Price/yield curve bows outward — **positive convexity**\n- Positive convexity means the bond gains more than the linear approximation when yields fall, and loses less when yields rise\n- Higher convexity is always better (all else equal) — investors pay a premium for it\n\n**Callable bonds — negative convexity**:\n- An issuer who can call (redeem) a bond when rates fall introduces an embedded short option\n- When rates fall below the coupon rate, the issuer will call and refinance cheaper → the bond's price appreciation is **capped** near the call price\n- This creates **negative convexity** — as yields fall, duration shortens, capping upside\n- MBS (Mortgage-Backed Securities) exhibit extreme negative convexity due to homeowner prepayment — prepayments accelerate when rates fall, shortening the bond's effective life\n\n**Dollar Duration and DV01**:\n- **Dollar Duration** = MD × Price × 0.01 — the dollar change in bond price for a 1% (100bps) parallel shift in yields\n- **DV01** (Dollar Value of a Basis Point) = MD × Price × 0.0001 — dollar change for a 1bp shift\n- DV01 is the primary risk measure used by bond traders and risk managers\n- Example: DV01 of $10,000 means a 1bp rate rise costs the position $10,000",
+          highlight: [
+            "convexity",
+            "positive convexity",
+            "negative convexity",
+            "callable bond",
+            "MBS",
+            "prepayment",
+            "dollar duration",
+            "DV01",
+          ],
+        },
+        {
+          type: "teach",
+          title: "Portfolio Duration Management, Key Rate Durations & Immunization",
+          content:
+            "**Portfolio duration management with futures overlay**:\nPortfolio managers use Treasury futures to adjust portfolio duration without buying/selling bonds:\n- **Target Duration higher**: Buy Treasury futures (positive DV01 exposure)\n- **Target Duration lower**: Sell Treasury futures (negative DV01 exposure)\n- Number of contracts = (Target DV01 − Current DV01) / (DV01 per futures contract)\n- Futures overlay is fast, liquid, and doesn't require liquidating existing holdings\n\n**Key Rate Durations (KRDs) — for non-parallel shifts**:\n- Standard duration assumes a **parallel shift** (all maturities move equally)\n- In reality, curves twist, steepen, and flatten (non-parallel shifts)\n- **Key rate durations** measure sensitivity to a 1bp move at each maturity node (2y, 5y, 10y, 30y) while keeping others constant\n- Example: A barbell portfolio (long 2s and 30s) has high KRDs at both ends but low KRD in the belly\n- KRDs sum to the total modified duration\n\n**Effective Duration for MBS**:\n- For bonds with embedded options: effective duration = (P− − P+) / (2 × P0 × Δy)\n- This measures actual price change in a rate shock scenario (not just cash flow weighted)\n- Also called **option-adjusted duration**\n\n**Duration Matching for Liability-Driven Investing (LDI)**:\n- Pension funds and insurers have long-term liabilities (promises to pay future benefits)\n- **Immunization condition**: Assets duration = Liabilities duration AND Assets PV = Liabilities PV\n- When both conditions are met, small parallel rate changes do not affect the surplus\n- Full immunization also requires assets convexity ≥ liabilities convexity\n- Pension funds use long-duration Treasury strips and corporate bonds for LDI strategies",
+          highlight: [
+            "futures overlay",
+            "key rate durations",
+            "parallel shift",
+            "non-parallel shift",
+            "effective duration",
+            "liability-driven investing",
+            "immunization",
+            "LDI",
+          ],
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "A bond portfolio has a modified duration of 8 and a total market value of $50 million. The portfolio manager wants to reduce modified duration to 5 using Treasury futures. Each Treasury futures contract has a DV01 of $900. How many futures contracts must be SOLD to achieve the target duration?",
+          options: [
+            "Sell approximately 167 contracts — (8−5) × $50M × 0.0001 / $900",
+            "Buy approximately 167 contracts — duration reduction requires buying futures",
+            "Sell approximately 444 contracts — based on the full duration of 8",
+            "Sell approximately 56 contracts — using only the target duration of 5",
+          ],
+          correctIndex: 0,
+          explanation:
+            "To reduce duration via a futures overlay: DV01 of portfolio = 8 × $50,000,000 × 0.0001 = $40,000. Target DV01 = 5 × $50,000,000 × 0.0001 = $25,000. Reduction needed = $15,000. Contracts to sell = $15,000 / $900 ≈ 16.7, so sell approximately 17 contracts. Scaling to the formula in Answer A: (8−5) × $50M × 0.0001 / $900 = 3 × 5,000 / 900 ≈ 16.7 → ~17 contracts. The direction must be SELL (short) futures to reduce portfolio duration — selling futures creates a short rate position that offsets the portfolio's long rate exposure. Buying futures would increase duration, not reduce it.",
+          difficulty: 3,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "Mortgage-backed securities (MBS) exhibit negative convexity because when interest rates fall, homeowners refinance their mortgages at lower rates, which accelerates principal repayment and shortens the effective duration of the MBS just when investors would prefer it to lengthen.",
+          correct: true,
+          explanation:
+            "True. This is the defining characteristic of MBS and callable bonds — negative convexity caused by embedded prepayment/call options. When rates fall, homeowners rationally refinance (the borrower exercises their implicit call option), returning principal to MBS investors early. Shorter effective duration means the MBS doesn't appreciate as much as a comparable non-callable bond would. Conversely, when rates rise, prepayments slow and the MBS extends in duration (extension risk), meaning it falls in price more than a non-callable bond. This asymmetry — capped upside, extended downside — is negative convexity, and investors demand a spread premium (OAS) to hold it.",
+          difficulty: 2,
+        },
+      ],
+    },
+
+    // ─── Lesson 3: Credit Spread Analysis ────────────────────────────────────────
+    {
+      id: "fixed-income-advanced-3",
+      title: "Credit Spread Analysis",
+      description:
+        "Spread components, OAS vs Z-spread, spread duration, high yield dynamics, fallen angels, rising stars, CDS-bond basis, and credit carry strategies",
+      icon: "BarChart3",
       xpReward: 90,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "Macaulay & Modified Duration",
+          title: "Spread Components & Spread Hierarchy",
           content:
-            "**Duration** measures a bond's price sensitivity to interest rate changes. Two versions matter most in practice.\n\n**Macaulay Duration (D_mac):**\nThe weighted-average time to receive a bond's cash flows, where weights are the present value of each cash flow as a fraction of total bond price.\n- A 5-year zero-coupon bond has D_mac = 5 years exactly.\n- A 5-year coupon bond has D_mac < 5 years — earlier coupons pull the weighted average forward.\n- Coupon bonds always have Macaulay duration less than their maturity.\n\n**Modified Duration (D_mod):**\nConverts Macaulay duration into a direct price-sensitivity measure:\n\n`D_mod = D_mac / (1 + y/m)`\n\nwhere **y** = yield to maturity and **m** = compounding periods per year (1 for annual, 2 for semi-annual).\n\n**Interpretation:** A modified duration of 7.5 means a **1% (100bps) increase in yield reduces bond price by approximately 7.5%**.\n\n**Example:**\n- 10-year Treasury, semi-annual coupons, yield = 4%, D_mac = 8.1\n- D_mod = 8.1 / (1 + 0.04/2) = 8.1 / 1.02 = **7.94**\n- If yield rises 50bps: ΔP/P ≈ −7.94 × 0.005 = −3.97%\n\n**Key drivers of duration:**\n- Longer maturity → higher duration\n- Lower coupon → higher duration (more weight on distant par payment)\n- Lower yield → higher duration (distant cash flows are discounted less heavily)",
-          highlight: ["Macaulay Duration", "Modified Duration", "D_mod", "D_mac", "price sensitivity", "yield"],
+            "A corporate bond yield = risk-free rate + credit spread. Breaking down that credit spread reveals its components:\n\n**Investment Grade (IG) spread components**:\n1. **Benchmark risk-free rate**: Government bond yield of equivalent maturity (on-the-run Treasury)\n2. **Liquidity premium**: Compensation for bid-ask spread, market depth, and time to sell. IG corporate bonds are less liquid than Treasuries — investors demand ~10–30bps extra\n3. **Credit premium**: Compensation for the risk of issuer default and expected loss (probability of default × loss given default)\n\nTotal Spread = Liquidity Premium + Credit Premium\n\n**Spread measure hierarchy** — from least to most option-adjusted:\n\n**I-spread** (Interpolated spread): Bond yield minus the interpolated swap rate. Simple but ignores the bond's cash flow timing.\n\n**G-spread** (Government spread): Bond yield minus the government benchmark yield at a matching maturity. Most intuitive; used for cross-market comparisons.\n\n**Z-spread** (Zero-volatility spread): The constant spread added to the entire zero-coupon Treasury curve that makes the PV of cash flows equal to the bond's market price. More accurate than G-spread for non-bullet bonds.\n\n**OAS** (Option-Adjusted Spread): Z-spread after removing the value of any embedded options (call, put, conversion). This is the 'pure' credit spread — the compensation for credit risk alone. For a bullet bond, OAS = Z-spread. For a callable bond, OAS < Z-spread (the call option has positive value to the issuer, reducing the investor's effective compensation).",
+          highlight: [
+            "credit spread",
+            "liquidity premium",
+            "credit premium",
+            "G-spread",
+            "Z-spread",
+            "OAS",
+            "I-spread",
+            "option-adjusted spread",
+          ],
         },
         {
           type: "teach",
-          title: "Dollar Duration (DV01) & Duration Hedging",
+          title: "Spread Duration, High Yield Dynamics & The BBB Cliff",
           content:
-            "**Dollar Duration** (also called DV01 or PVBP) translates percentage duration into dollar terms — essential for position sizing and hedging.\n\n**DV01 Formula:**\n`DV01 = Price × D_mod × 0.0001`\n\nDV01 = dollar change in bond value for a **1 basis point (0.01%) move in yield**.\n\n**Example:**\n- Bond: $1,000,000 face, price = 98 → market value = $980,000\n- Modified duration = 7.5\n- DV01 = $980,000 × 7.5 × 0.0001 = **$735**\n- Every 1bp yield change = $735 gain or loss in portfolio value.\n\n**Practical uses:**\n- **Position sizing**: if max loss tolerance is $50,000 on a 100bp move, max DV01 = $500.\n- **Hedging**: to hedge a bond portfolio with DV01 = $50,000, short Treasury futures with matching DV01.\n- **Relative value**: compare DV01-weighted returns to equalize duration exposure across bonds.\n\n**Duration Hedging via Futures:**\n`Number of contracts = (Target DV01 − Current DV01) / DV01 per futures contract`\n\nExample: Portfolio DV01 = $200,000, Treasury futures DV01 = $80 per contract. To reduce DV01 to $100,000: short (200,000 − 100,000) / 80 = **1,250 contracts**.",
-          highlight: ["DV01", "dollar duration", "PVBP", "hedging", "basis point", "futures", "position sizing"],
+            "**Spread duration vs Interest Rate (IR) duration**:\n- **IR Duration**: Sensitivity to a parallel shift in the risk-free rate curve\n- **Spread Duration**: Sensitivity to a change in the credit spread (risk-free rate unchanged)\n- For IG bonds: spread duration ≈ IR duration (both move together for small spread moves)\n- For floating rate bonds: IR duration ≈ 0, but spread duration can be large (the coupon resets with rates, but spread risk remains)\n- Portfolio managers separate these two risk buckets: rate risk (managed with Treasuries/swaps) and credit risk (managed with credit exposure or CDS)\n\n**High yield spread vs equity volatility**:\n- High yield (HY) bond spreads and the VIX (equity volatility index) are highly correlated — both reflect risk-off sentiment\n- In crises: HY spreads widen dramatically (>1000bps in 2008, >900bps in 2020), mirroring equity selloffs\n- This correlation makes HY bonds behave more like equity — **HY beta to equities ≈ 0.5–0.7**\n\n**Credit spread compression in low-rate environments**:\n- When risk-free rates are near zero, investors 'reach for yield' by moving into lower-quality bonds\n- This demand compresses spreads — HY spreads fell below 400bps in 2021, near historical tights\n- Tight spreads = rich valuations = poor forward returns\n\n**The BBB cliff — fallen angel dynamics**:\n- **BBB** is the lowest investment grade rating (Moody's: Baa); a downgrade to **BB** means the bond becomes high yield ('junk')\n- Institutional mandates (pension funds, IG-only funds) force selling of fallen angels immediately upon downgrade\n- This creates a mechanical forced-sell event that can overshoot intrinsic value\n- **Rising stars** (opposite): HY bonds upgraded to IG — forced buying by IG funds creates a price tailwind\n- Credit investors hunt rising stars before the upgrade to capture the spread compression",
+          highlight: [
+            "spread duration",
+            "IR duration",
+            "high yield",
+            "VIX correlation",
+            "BBB cliff",
+            "fallen angel",
+            "rising star",
+            "spread compression",
+          ],
         },
         {
           type: "teach",
-          title: "Convexity: The Second-Order Effect",
+          title: "CDS-Bond Basis & Credit Carry Strategies",
           content:
-            "Duration is a linear approximation. **Convexity** captures the curvature in the price-yield relationship — the second-order correction.\n\n**Price Approximation (including convexity):**\n`ΔP/P ≈ −D_mod × Δy + 0.5 × Convexity × (Δy)²`\n\nConvexity is always **positive** for plain vanilla (option-free) bonds. Positive convexity benefits the holder:\n- When yields fall, price rises **more** than duration alone predicts.\n- When yields rise, price falls **less** than duration alone predicts.\n- The bond outperforms its duration estimate in both directions — this is the convexity advantage.\n\n**Example — 10-year bond, D_mod = 7.5, Convexity = 80:**\nFor a 100bp (1%) yield increase:\n- Duration contribution: −7.5 × 0.01 = −7.50%\n- Convexity contribution: +0.5 × 80 × (0.01)² = +0.40%\n- **Net price change: −7.10%** (better than −7.50% from duration alone)\n\n**Convexity increases with:**\n- Longer maturity (more curvature over time)\n- Lower coupon (zero-coupon bonds have the highest convexity per unit of duration)\n- Lower yield level\n\n**Negative convexity** occurs in callable bonds and MBS:\n- When yields fall, the issuer calls the bond (or prepayments accelerate in MBS).\n- The bondholder's upside is capped → price-yield curve bends inward.\n- Negative convexity means the bond underperforms its duration estimate on the downside of rates.",
-          highlight: ["convexity", "positive convexity", "negative convexity", "price approximation", "curvature", "callable bond", "duration"],
+            "**CDS (Credit Default Swap) basics**:\n- A CDS is an insurance contract on a bond issuer's default: the protection buyer pays a periodic spread (in bps per year), the protection seller pays face value if default occurs\n- **CDS spread** for a given issuer reflects the market's assessment of default risk for that credit\n\n**CDS-Bond Basis**:\n- Theoretically: CDS spread ≈ Z-spread (bond spread)\n- In practice, the **basis = CDS spread − bond Z-spread** deviates due to:\n  - Cheapest-to-deliver (CTD) option in CDS: seller can deliver cheapest bond on default\n  - Repo/funding costs: holding a physical bond requires financing\n  - Bond liquidity premium embedded in Z-spread\n- **Negative basis trade**: When CDS spread < bond spread (basis is negative), buy the bond AND buy CDS protection. You earn the net spread with minimal credit risk — a classic arbitrage-like relative value trade.\n- The CDS-bond basis blew out massively in 2008 as funding markets froze and bond spreads spiked far above CDS spreads\n\n**Credit Carry Strategy — Roll-down + Carry**:\n- **Carry**: Earn the bond's spread above risk-free rate (the credit premium) over time\n- **Roll-down**: As time passes, a 5-year bond becomes a 4-year bond. If the credit spread curve is upward-sloping, rolling down the curve generates additional return as the bond's yield compresses\n- Combined: Total return ≈ Risk-free yield + Carry (spread) + Roll-down return\n- Credit carry strategies work well in stable or tightening spread environments; lose money in spread widening (risk-off) events\n- Sharpe ratios are often high in calm periods but exhibit sudden drawdowns — 'picking up nickels in front of a steamroller'",
+          highlight: [
+            "CDS",
+            "CDS-bond basis",
+            "negative basis trade",
+            "protection buyer",
+            "protection seller",
+            "carry",
+            "roll-down",
+            "credit carry strategy",
+          ],
         },
         {
           type: "quiz-mc",
           question:
-            "A bond has modified duration of 6.0 and convexity of 60. If yields rise by 150bps (1.5%), what is the approximate price change?",
+            "An investment grade corporate bond has a Z-spread of 180bps and an OAS of 120bps. What does the 60bps difference between Z-spread and OAS most likely represent?",
           options: [
-            "−9.00% duration effect + 0.68% convexity effect = −8.32%",
-            "−9.00% with no convexity adjustment since convexity only helps when yields fall",
-            "−6.00% because duration is always the exact price change for any yield move",
-            "+0.68% because positive convexity always generates positive returns",
+            "The value of the embedded call option — the bond is callable and the issuer's option has a 60bps cost to the investor",
+            "The liquidity premium — 60bps of the spread compensates for the bond's illiquidity relative to Treasuries",
+            "The credit premium — 120bps goes to default risk and 60bps goes to duration risk",
+            "A pricing error — Z-spread and OAS should always be identical for investment grade bonds",
           ],
           correctIndex: 0,
           explanation:
-            "Duration contribution: −6.0 × 0.015 = −9.00%. Convexity contribution: +0.5 × 60 × (0.015)² = +0.5 × 60 × 0.000225 = +0.68%. Net: −9.00% + 0.68% = −8.32%. Positive convexity benefits holders in both yield directions — it reduces losses when yields rise and amplifies gains when yields fall. The convexity effect becomes larger for larger yield moves (it grows with (Δy)²).",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "A 30-year mortgage (MBS) typically has negative convexity, while a 30-year Treasury has positive convexity, even though both have similar maturities.",
-          correct: true,
-          explanation:
-            "True. The 30-year Treasury is an option-free bond — it exhibits standard positive convexity. A 30-year mortgage is prepayable, meaning homeowners can refinance when rates fall. When rates decline, prepayments accelerate and the MBS 'shortens' in duration, capping price appreciation. This creates negative convexity: the MBS underperforms its duration estimate when rates fall, unlike the Treasury which benefits from positive curvature in both directions.",
+            "OAS = Z-spread minus the value of any embedded options. If the OAS (60bps less than Z-spread) is the 'option-free' credit spread, then the 60bps difference represents the cost of the embedded call option that the investor is effectively shorting. The issuer holds the right to call the bond at par when rates fall — this option has value to the issuer (and is a liability to the investor). The Z-spread includes this option cost; the OAS strips it out to give the pure credit compensation. For bullet (non-callable) IG bonds, Z-spread and OAS are indeed nearly identical. For IG callable bonds (common in corporate debt), this wedge is material.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "A portfolio manager holds $10M face value of a 10-year corporate bond (price = 105, D_mod = 7.8, convexity = 75). The Fed signals a potential 50bp rate hike. The manager wants to quantify the total expected price impact.",
+            "A hedge fund manager notices that Ford Motor Company bonds (rated BB+, high yield) are trading at a Z-spread of 350bps, while CDS protection on Ford costs only 290bps per year. The fund has access to repo financing for the bonds at a cost of 50bps above the risk-free rate.",
           question:
-            "Using the full price approximation, what is the expected change in portfolio market value?",
+            "This scenario describes which credit strategy, and what is the approximate net locked-in spread if the trade is executed?",
           options: [
-            "Duration effect: −$409,500; Convexity adjustment: +$9,844; Net loss: ~$399,656",
-            "Duration effect: −$780,000; Convexity has no impact on corporate bonds",
-            "Duration effect: −$390,000; Convexity doubles the loss to −$780,000",
-            "No calculation needed — DV01 is sufficient for all yield move sizes",
+            "A negative basis trade — buy Ford bonds, buy CDS protection; approximate net spread ≈ 10bps (350bps bond spread minus 290bps CDS cost minus ~50bps funding cost)",
+            "A long-short credit trade — buy Ford bonds, short Ford equity; capturing the credit-equity convergence premium",
+            "A rising star trade — Ford is likely to be upgraded to investment grade, generating spread compression profit",
+            "A carry trade — simply hold Ford bonds and earn the 350bps spread as income without hedging",
           ],
           correctIndex: 0,
           explanation:
-            "Market value = $10M × 1.05 = $10,500,000. Duration effect: −7.8 × 0.005 × $10,500,000 = −$409,500. Convexity effect: +0.5 × 75 × (0.005)² × $10,500,000 = +0.5 × 75 × 0.000025 × $10,500,000 = +$9,844. Net expected loss: ~$399,656. Positive convexity reduces the loss by ~$9,844 — a meaningful benefit that grows larger for bigger rate moves.",
+            "This is a classic negative basis trade: CDS spread (290bps) < Bond Z-spread (350bps), so the basis is −60bps. By buying the bond and simultaneously buying CDS protection, the investor earns the bond spread (350bps) and pays the CDS premium (290bps), netting 60bps. However, subtract funding cost (repo at 50bps above risk-free rate). Net spread ≈ 60bps − 50bps = ~10bps. While slim, this is nearly credit-risk-free exposure — the CDS eliminates default risk while the investor earns the residual basis. In practice, traders also face CTD option risk and mark-to-market volatility in the basis. The negative basis blew out to favorable levels during the 2008 crisis, creating large opportunities for well-funded arbitrageurs.",
           difficulty: 3,
         },
       ],
     },
 
-    // ─── Lesson 2: Mortgage-Backed Securities & Prepayment ───────────────────
+    // ─── Lesson 4: Fixed Income Derivatives ──────────────────────────────────────
     {
-      id: "fia-2",
-      title: "🏠 MBS & Prepayment Risk",
+      id: "fixed-income-advanced-4",
+      title: "Fixed Income Derivatives",
       description:
-        "Pass-throughs, CMO tranches, PSA prepayment model, OAS, negative convexity, and IO/PO strips",
-      icon: "Home",
+        "Interest rate swap pricing, swaptions, caps/floors/collars, bond futures CTD, CMS swaps, asset swaps, inflation swaps, credit index options, and total return swaps",
+      icon: "BarChart3",
       xpReward: 95,
       difficulty: "advanced",
       steps: [
         {
           type: "teach",
-          title: "MBS Structure: Pass-Throughs and CMOs",
+          title: "Interest Rate Swaps, Swaptions & Cap/Floor/Collar",
           content:
-            "**Mortgage-Backed Securities (MBS)** pool thousands of individual mortgage loans and sell claims on the cash flows to investors.\n\n**Agency Pass-Through Securities:**\n- Issued by Fannie Mae (FNMA), Freddie Mac (FHLMC), or Ginnie Mae (GNMA).\n- All principal and interest payments from the pool \"pass through\" to investors, minus a servicing fee (~25bps).\n- Investors receive their pro-rata share of prepayments when homeowners sell, refinance, or prepay.\n- Credit risk is backstopped by agency guarantees — the dominant risk is **prepayment risk**.\n\n**Collateralized Mortgage Obligations (CMOs):**\nCMOs repackage pass-through cash flows into **tranches** with different prepayment and maturity profiles:\n\n**Sequential Pay (plain CMO):**\n- Tranche A receives all principal first until paid off; then Tranche B; then C.\n- A tranche is short average life; Z tranche (accrual) is long average life.\n\n**PAC (Planned Amortization Class):**\n- PAC tranches have stable, predictable cash flows within a prepayment band (e.g., 100–300% PSA).\n- Companion/support tranches absorb prepayment variability above or below the band.\n- PACs are prized by liability-sensitive investors (insurance companies, pensions).\n\n**TAC (Targeted Amortization Class):**\n- Protects against prepayment extension only (unlike PAC which protects both ways).\n- Less expensive than PACs; single-sided protection.\n\n**IO and PO Strips:**\n- **IO (Interest Only)**: Receives only the interest portion. If prepayments accelerate, the outstanding balance shrinks faster → IO value falls sharply.\n- **PO (Principal Only)**: Receives only principal. Discounted to par at purchase; benefits from faster prepayments (principal returned sooner).",
-          highlight: ["pass-through", "CMO", "PAC", "TAC", "companion tranche", "sequential pay", "IO strip", "PO strip", "prepayment risk"],
+            "**Interest Rate Swap (IRS) fundamentals**:\nAn IRS is a bilateral agreement to exchange fixed cash flows for floating cash flows (typically SOFR or EURIBOR) on a notional amount.\n\n**Par swap rate pricing**:\nThe fixed rate is set so that the NPV of both legs is equal at inception — i.e., the swap is 'fair value' with zero upfront cost.\n\nPar Swap Rate = the fixed rate that sets NPV to zero\n\nCalculation: The fixed leg PV equals the floating leg PV when:\nc = (1 − DFn) / Σ(τi × DFi)\n\nWhere c = par swap rate, DFi = discount factor, τi = accrual period fraction.\n\nUses: Corporates convert fixed-rate debt to floating (receive fixed, pay floating); investors add duration (pay fixed, receive floating)\n\n**Swaptions (options on swaps)**:\n- **Payer swaption**: Right to enter a swap paying fixed (long rate volatility, benefits from rate rises)\n- **Receiver swaption**: Right to enter a swap receiving fixed (benefits from rate declines)\n- Payoff: Payer swaption payoff = max(market swap rate − strike swap rate, 0) × annuity\n- Used by mortgage servicers (to hedge prepayment risk), corporates (to cap future borrowing costs), and rates traders\n\n**Interest Rate Cap, Floor & Collar**:\n- **Cap**: Series of call options on SOFR (each called a 'caplet') — pays out when floating rates exceed the cap strike. Protects floating rate borrowers against rate rises.\n- **Floor**: Series of put options on SOFR — pays out when floating rates fall below floor strike. Guarantees minimum return for floating rate investors.\n- **Collar**: Simultaneously buy a cap and sell a floor (or vice versa) — limits rate exposure in both directions. A zero-cost collar is structured so the floor premium received equals the cap premium paid.",
+          highlight: [
+            "interest rate swap",
+            "par swap rate",
+            "fixed leg",
+            "floating leg",
+            "payer swaption",
+            "receiver swaption",
+            "cap",
+            "floor",
+            "collar",
+          ],
         },
         {
           type: "teach",
-          title: "PSA Prepayment Model & WAL",
+          title: "Bond Futures: CTD, Conversion Factor & CMS Swaps",
           content:
-            "**The PSA (Public Securities Association) Prepayment Model** is the industry benchmark for expressing and comparing mortgage prepayment speeds.\n\n**PSA Convention:**\n- At **100% PSA**: CPR (Conditional Prepayment Rate) ramps from 0.2%/month in month 1, increasing by 0.2%/month until month 30, then holds at 6% CPR annually (0.5%/month).\n- **150% PSA**: All speeds at 1.5× the 100% PSA schedule.\n- **50% PSA**: Prepayments are slower — only 0.5× the standard speeds.\n- **300% PSA**: Very fast prepayments — common in a sharp refinancing wave.\n\n**What drives prepayments?**\n- **Refinancing incentive**: When current rates fall significantly below the mortgage coupon rate, homeowners refinance — the S-curve shape of refinancing vs. rate incentive.\n- **Housing turnover**: Home sales generate prepayments (portability provisions typically require loan payoff).\n- **Defaults/liquidations**: Delinquent loans that go to foreclosure and sale.\n- **Burnout**: After a sustained refi wave, remaining borrowers are \"burned out\" — they didn't refi and are less likely to do so even if rates stay low.\n\n**Weighted Average Life (WAL):**\nWAL measures when principal is expected to be returned on average:\n`WAL = Σ(t × Principal Payment_t) / Total Principal`\n\n- At 100% PSA, a 30-year FNMA pass-through has WAL ≈ 7–10 years.\n- At 300% PSA (fast refi), WAL may shorten to 3–5 years.\n- WAL is more useful than stated maturity for comparing MBS with different prepayment profiles.",
-          highlight: ["PSA model", "100% PSA", "CPR", "WAL", "weighted average life", "refinancing", "burnout", "prepayment speed"],
+            "**Bond Futures & Cheapest-to-Deliver (CTD)**:\nA Treasury bond futures contract does not specify a single deliverable bond — sellers can deliver any qualifying bond from a 'delivery basket' of eligible Treasuries.\n\n**Conversion Factor (CF)**:\n- Each deliverable bond has a conversion factor that adjusts for its different coupon and maturity relative to the theoretical 6% coupon standard\n- Invoice price received by the short = Futures price × CF + Accrued interest\n- A higher-coupon bond has a CF > 1; a lower-coupon bond has CF < 1\n\n**Cheapest-to-Deliver (CTD)**:\n- The short position (seller) selects the bond that is cheapest to deliver — maximizing their profit\n- CTD = the bond with the lowest net cost: (Market price − Futures price × CF)\n- The futures price is primarily determined by the CTD bond's yield\n- When CTD switches between bonds (due to yield curve moves), the futures price can gap — 'CTD switch risk'\n\n**CMS (Constant Maturity Swap)**:\n- In a standard swap, the floating leg resets to a short-term rate (SOFR, typically overnight)\n- In a CMS, the floating leg resets to a longer-term swap rate (e.g., the 10-year swap rate, 'CMS10')\n- Used by investors who want exposure to long-term rate movements without the duration of a long-term bond\n- CMS spread trade: Pay CMS2 (2-year swap rate), receive CMS10 (10-year swap rate) — a yield curve steepener with minimal duration\n- Asset swaps convert a fixed-coupon bond into a synthetic floating rate instrument; the investor pays the bond's fixed coupon in a swap and receives SOFR + asset swap spread",
+          highlight: [
+            "bond futures",
+            "cheapest-to-deliver",
+            "conversion factor",
+            "CTD",
+            "CMS",
+            "constant maturity swap",
+            "delivery basket",
+            "asset swap",
+          ],
         },
         {
           type: "teach",
-          title: "OAS, Negative Convexity, and IO/PO Dynamics",
+          title: "Inflation Swaps, Credit Index Options & Total Return Swaps",
           content:
-            "**Option-Adjusted Spread (OAS) in MBS:**\nMBS contain an embedded prepayment option held by homeowners. Standard yield/spread measures do not account for this.\n\n`OAS = Z-spread − option cost`\n\n- The option cost represents the value the homeowner's prepayment option takes from the investor.\n- OAS allows apples-to-apples comparison between callable bonds, MBS, and non-callable bonds.\n- **Higher option cost = lower OAS** for the same nominal yield.\n\n**OAS analysis requires Monte Carlo simulation** over hundreds of interest rate paths to model prepayments under each scenario, then find the single spread that prices the security correctly.\n\n**Negative Convexity in MBS:**\nWhen interest rates fall:\n1. Homeowners rush to refinance → prepayments accelerate.\n2. The MBS shortens in duration unexpectedly — the investor receives principal back when rates are lowest (worst time for reinvestment).\n3. Price appreciation is capped relative to a comparable Treasury → the MBS exhibits negative convexity.\n\nThis is why MBS typically trade at wider OAS than corporate bonds of comparable credit quality — the negative convexity requires additional compensation.\n\n**IO/PO Strip Dynamics:**\n- **IO strip**: Receives only interest cash flows. Principal balance drives interest payments; faster prepayments destroy the IO's income stream. IO gains value when rates rise (slower prepays preserve the cash flow). IO has **negative duration** — it appreciates when rates rise.\n- **PO strip**: Receives only principal, purchased at a discount. Faster prepayments = quicker return of a discounted security to par → PO benefits from falling rates. PO has very high positive duration.\n- Together, IO + PO = the full pass-through. Separately, they are powerful hedging instruments.",
-          highlight: ["OAS", "option-adjusted spread", "negative convexity", "IO strip", "PO strip", "negative duration", "Monte Carlo", "prepayment option"],
+            "**Inflation Swaps**:\n- Exchange of fixed payments for payments linked to a price index (CPI)\n- **Zero-coupon inflation swap**: One payment at maturity. Fixed leg pays (1 + fixed rate)^T × notional; floating leg pays notional × CPI_T/CPI_0. The fixed rate struck equals the market's breakeven inflation expectation.\n- **Year-on-year inflation swap**: Annual payments based on annual CPI change — more complex, more liquid in Europe\n- Used by pension funds (who have CPI-linked liabilities) to hedge inflation risk without buying TIPS\n\n**Credit Index Options (CDX Swaptions)**:\n- **CDX** (North American Credit Default Swap Index) and **iTraxx** (European equivalent) are indices of CDS on a basket of corporate names\n- **CDX swaption**: The right to enter into a CDX position at a specified spread level\n- Payer CDX swaption: Right to buy CDS protection (pay the spread) on the index — profits from credit widening\n- Used for macro credit hedges and to position on tail credit events with defined risk\n\n**Total Return Swap (TRS) on bond indices**:\n- The TRS payer transfers total return of the underlying bond or index (coupon + price change) to the receiver\n- The receiver pays a floating rate (SOFR + spread) to the payer\n- **Synthetic bond index exposure**: An investor gains broad bond market exposure without owning bonds — useful for accessing illiquid markets or achieving leverage\n- Banks use TRS to fund bond positions off-balance sheet; hedge funds use TRS to gain leveraged bond exposure\n- TRS on bond indices allows rapid rebalancing and tactical allocation without trading the underlying securities",
+          highlight: [
+            "inflation swap",
+            "zero-coupon inflation swap",
+            "year-on-year inflation swap",
+            "CDX",
+            "iTraxx",
+            "CDX swaption",
+            "total return swap",
+            "TRS",
+          ],
         },
         {
           type: "quiz-mc",
           question:
-            "A portfolio manager owns $5M of a FNMA pass-through MBS. Interest rates drop sharply by 200bps. What is the most likely outcome?",
+            "A corporate treasurer wants to issue a floating rate bond but is concerned that interest rates will rise, increasing future coupon payments. Which fixed income derivative structure BEST caps the company's interest rate exposure while still allowing it to benefit if rates fall?",
           options: [
-            "Prepayments accelerate, WAL shortens, duration contracts unexpectedly, and price appreciation is less than a comparable Treasury (negative convexity)",
-            "Prepayments slow down as homeowners lock in their existing low-rate mortgages, extending duration",
-            "The MBS behaves identically to a Treasury because Fannie Mae guarantees all cash flows",
-            "The IO strip component gains value because lower rates generate larger interest payments",
+            "Buy an interest rate cap — pay an upfront premium for a series of caplets that pay out if SOFR exceeds the cap strike, limiting the maximum coupon rate",
+            "Enter a receiver swaption — receive a fixed rate if exercised, converting floating exposure to fixed",
+            "Sell an interest rate floor — receive premium but give up the benefit if rates fall below the floor strike",
+            "Enter a pay-fixed interest rate swap — immediately convert all floating exposure to fixed at current swap rates",
           ],
           correctIndex: 0,
           explanation:
-            "When rates drop sharply, homeowners have strong incentive to refinance their mortgages at the new lower rates, accelerating prepayments. This shortens the MBS's WAL and duration precisely when the investor would prefer longer duration (to benefit from the rate decline). The price appreciation is capped relative to a duration-equivalent Treasury — this is the negative convexity penalty. IO strips lose value in this scenario (not gain) because faster prepayments reduce the outstanding balance and therefore the interest cash flows.",
-          difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "An insurance company's ALM desk is building a fixed income portfolio. They need stable, predictable cash flows for liability matching and are concerned about reinvestment risk from volatile prepayments. They are evaluating: (A) a 30-year FNMA pass-through at 100% PSA, (B) a PAC CMO tranche with 100–250% PSA band, (C) an IO strip from an agency pool, (D) a 10-year Treasury.",
-          question:
-            "Which security best meets the insurance company's need for predictable cash flows with minimal prepayment variability?",
-          options: [
-            "PAC CMO tranche — designed to provide stable cash flows within its prepayment band, absorbing variability into companion tranches",
-            "IO strip — negative duration makes it the best hedge against unexpected rate changes",
-            "30-year pass-through — agency guarantee eliminates all investment risk",
-            "10-year Treasury — zero prepayment risk but mismatches long-duration insurance liabilities",
-          ],
-          correctIndex: 0,
-          explanation:
-            "PAC (Planned Amortization Class) tranches are specifically designed for investors requiring cash flow stability. Within the 100–250% PSA band, the PAC tranche receives its scheduled principal regardless of actual prepayment speeds — the companion tranches absorb the variability. This predictability is ideal for liability matching. The plain pass-through exposes the investor to the full range of prepayment volatility. The IO strip has unusual (negative duration) behavior. The Treasury, while predictable, may not match liability duration profiles.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 3: Credit Derivatives & CDS ──────────────────────────────────
-    {
-      id: "fia-3",
-      title: "⚡ Credit Derivatives & CDS",
-      description:
-        "CDS mechanics, basis trading, CDX indexes, total return swaps, and CLO structures",
-      icon: "Zap",
-      xpReward: 100,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Credit Default Swap (CDS) Mechanics",
-          content:
-            "A **Credit Default Swap (CDS)** is an insurance-like derivative contract on the credit risk of a reference entity (company, sovereign, or structured product).\n\n**CDS Structure:**\n- **Protection Buyer**: Pays a periodic premium (the \"spread\" in basis points per annum) to the seller.\n- **Protection Seller**: Receives the spread; pays a large lump sum upon a credit event.\n- **Reference Entity**: The company or sovereign whose default triggers settlement.\n- **Notional**: The face value of debt being \"insured\" — typically $10M standard contracts.\n- **Tenor**: Most liquid CDS trade at 5-year maturity.\n\n**Credit Events (ISDA definition):**\n- Bankruptcy\n- Failure to pay (missed coupon or principal)\n- Restructuring (in some contracts — CDS can be \"restructuring-included\" or \"ex-restructuring\")\n- Obligation acceleration\n\n**Settlement:**\n- **Physical settlement**: Buyer delivers defaulted bonds; seller pays par value.\n- **Cash settlement**: Seller pays par minus post-default market price (recovery rate).\n- Example: Bond trades at 35 cents post-default → CDS pays 65 cents per dollar of notional.\n\n**CDS spread vs. bond spread:**\n`Basis = CDS spread − (bond yield spread over risk-free rate)`\n\n- **Positive basis**: CDS spread > bond spread → CDS is \"expensive\" vs. cash bonds.\n- **Negative basis**: CDS spread < bond spread → cash bonds appear cheap; negative basis trades buy the bond and buy CDS protection, locking in a risk-free spread.\n- Basis can diverge due to funding costs, repo, liquidity differences, and structural factors.",
-          highlight: ["CDS", "credit default swap", "protection buyer", "protection seller", "credit event", "basis", "CDS spread", "recovery rate", "settlement"],
-        },
-        {
-          type: "teach",
-          title: "CDX Indexes, Total Return Swaps & CLOs",
-          content:
-            "**CDX Credit Indexes:**\nCDX indexes allow trading credit risk on a basket of reference entities, providing liquid market access to broad credit exposure.\n\n- **CDX.NA.IG**: 125 North American investment-grade names. Most liquid IG credit derivative.\n- **CDX.NA.HY**: 100 North American high-yield names. Trades on price (not spread) convention.\n- **CDX.EM**: Emerging market sovereigns and corporates.\n- New series launched every 6 months (Series 40, 41...) with updated constituents.\n- CDX allows single-trade expression of macro credit views without trading 100+ individual bonds.\n\n**Total Return Swap (TRS):**\n- **TRS receiver**: Receives all economic returns of a bond (coupons + price appreciation) without owning it.\n- **TRS payer**: Pays the bond's total return; receives a floating rate (SOFR + spread).\n- Used by hedge funds for leveraged long credit exposure with minimal capital outlay.\n- Also used for short selling bonds (TRS payer) that are difficult to borrow in the repo market.\n\n**CLO (Collateralized Loan Obligation) Structure:**\nCLOs pool leveraged loans (typically 100–250 loans) and issue tranches with different risk/return profiles:\n\n- **Senior AAA tranche** (~65% of capital): lowest risk, lowest spread, first payment priority.\n- **AA, A, BBB, BB tranches**: progressively higher risk and spread.\n- **Equity/first-loss tranche** (~10%): absorbs first losses; receives residual cash flows; potentially high returns in benign credit environments.\n\n**CLO Structural Tests:**\n- **OC (Overcollateralization) test**: Asset pool value / tranche par value must exceed threshold; failing triggers diversion of cash flows to pay down senior notes.\n- **IC (Interest Coverage) test**: Interest income / interest owed to rated tranches must exceed threshold.\n- These tests protect senior tranche holders if the loan pool deteriorates.",
-          highlight: ["CDX", "CDX.NA.IG", "CDX.NA.HY", "total return swap", "TRS", "CLO", "AAA tranche", "equity tranche", "OC test", "IC test"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "An investor fears a specific high-yield company will default but cannot short the bonds in the cash market. What is the most direct way to express this bearish credit view?",
-          options: [
-            "Buy CDS protection — pay the spread and receive par minus recovery upon default",
-            "Sell CDS protection — receive the spread income as compensation for taking default risk",
-            "Buy CDX.NA.IG protection — the index covers the HY company through its IG subsidiary",
-            "Enter a total return swap as the TRS receiver to gain long credit exposure",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Buying CDS protection is a synthetic short on the reference entity's credit. The protection buyer pays the CDS spread and profits if the company defaults (receiving par minus recovery). This is analogous to buying insurance on the debt. Selling protection would be a bullish credit bet (receiving spread, losing on default). The TRS receiver gains long exposure — the opposite of a bearish view.",
+            "An interest rate cap is exactly designed for this situation: the company pays an upfront premium for protection against rates rising above the cap strike, while retaining full benefit if rates remain below the strike (lower coupon payments). The cap effectively creates a ceiling on the company's floating rate coupon. A pay-fixed swap (option D) would fully convert to fixed — protecting against rate rises but losing all upside if rates fall. A receiver swaption (option B) gives the right to receive fixed — which is the opposite of what the company needs (they're paying floating, not receiving it). Selling a floor (option C) earns premium but creates liability if rates fall — the company would be penalized when rates are low, which is the wrong direction.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "In a CLO, the equity tranche (first-loss piece) has the highest expected return but also absorbs the first credit losses from the underlying loan pool before any other tranche is impaired.",
+            "In a bond futures contract, the 'cheapest-to-deliver' (CTD) bond is the bond in the delivery basket that minimizes the short position's (seller's) net delivery cost, calculated as the bond's market price minus the futures price multiplied by the bond's conversion factor.",
           correct: true,
           explanation:
-            "True. The CLO equity tranche sits at the bottom of the capital structure and absorbs losses before any rated tranche is affected — this is the first-loss position. In return for bearing this concentrated risk, equity holders receive the residual cash flows after all senior obligations are paid, which can be very high in a benign credit environment. CLO equity managers often target 15–20%+ IRRs when structures perform well, compensating for the risk of being wiped out if loan defaults exceed expected levels.",
+            "True. The CTD is determined by finding the bond with the lowest net delivery cost: Market Price − (Futures Price × Conversion Factor). The short futures position has a quality option — they choose which bond to deliver. Rational sellers will always deliver the cheapest bond, maximizing their economic gain or minimizing their cost. When the yield curve changes, the CTD can switch from one bond to another, which creates 'CTD switch risk' for futures pricers. The futures price is anchored to the CTD bond's implied repo rate and fair value, so changes in CTD status affect futures pricing. Understanding CTD is essential for any fixed income derivatives desk managing Treasury futures positions.",
           difficulty: 2,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "A credit hedge fund manager observes that a large retailer's 5-year CDS spread is 350bps, while its 5-year senior unsecured bonds trade at a spread of 280bps over Treasuries. The manager sees an opportunity in the basis relationship.",
-          question:
-            "The basis is +70bps (CDS − bond spread). What trade would exploit this dislocation if the manager expects the basis to converge?",
-          options: [
-            "Sell CDS protection (receive 350bps) and buy the cash bond (pay 280bps spread), locking in a +70bp riskless spread as the basis converges",
-            "Buy CDS protection (pay 350bps) and short the bond (receive 280bps spread), expressing a bearish credit view",
-            "Buy the CDX.HY index because individual name basis trades require sovereign approval",
-            "Enter a total return swap as receiver on the cash bond only, ignoring the CDS market",
-          ],
-          correctIndex: 0,
-          explanation:
-            "A positive basis (CDS spread > bond spread) means CDS protection is expensive relative to the cash bond. The convergence trade sells the expensive CDS protection (receive 350bps) while buying the cheap cash bond (effectively paying 280bps of credit risk). If the basis narrows from +70bps toward zero, the trade profits. The combination is a form of capital structure arbitrage — the two instruments reference the same credit risk but are mispriced relative to each other.",
-          difficulty: 3,
-        },
-      ],
-    },
-
-    // ─── Lesson 4: Fixed Income Portfolio Management ──────────────────────────
-    {
-      id: "fia-4",
-      title: "📊 Fixed Income Portfolio Management",
-      description:
-        "LDI, key rate durations, barbell vs. bullet, carry and roll-down, and factor models",
-      icon: "BarChart2",
-      xpReward: 90,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Liability-Driven Investing (LDI) & Duration Matching",
-          content:
-            "**Liability-Driven Investing (LDI)** is a framework where the fixed income portfolio is constructed to match or hedge specific future cash flow obligations — primarily used by pension funds and insurance companies.\n\n**The Core Problem:**\nA defined-benefit pension fund has a stream of future benefit payments (liabilities). If interest rates fall, the present value of those liabilities **rises**. If the asset portfolio does not also rise in value, the fund's funded status deteriorates.\n\n**Duration Matching:**\n- Match the **duration of assets to the duration of liabilities**.\n- A pension fund with 15-year liability duration should hold bonds with average duration ≈ 15 years.\n- Result: When rates move, asset and liability values change by similar amounts → funded status is protected.\n\n**LDI Implementation:**\n- **Physical bonds**: Long-duration corporate and Treasury bonds (20–30 year maturities).\n- **Overlay strategies**: Interest rate swaps and Treasury futures to adjust duration without changing physical holdings.\n- **Liability benchmark**: Custom index tracking the firm's specific liability cash flow profile.\n\n**Immunization:**\nThe classical academic approach — match both duration and convexity of assets to liabilities to achieve near-perfect hedging of parallel yield curve shifts.\n\n**Key Risk in LDI:** Spread duration — if assets are primarily corporate bonds and liabilities are discounted at a Treasury rate, credit spread widening hurts assets but not liabilities, creating funded status deterioration.",
-          highlight: ["LDI", "liability-driven investing", "duration matching", "pension fund", "immunization", "overlay strategy", "interest rate swap", "funded status"],
-        },
-        {
-          type: "teach",
-          title: "Key Rate Durations & Yield Curve Positioning",
-          content:
-            "**Modified duration** captures parallel yield curve shift risk. **Key rate durations (KRDs)** decompose interest rate exposure across specific points on the yield curve.\n\n**Key Rate Duration:**\nThe price sensitivity to a 1% change at a specific maturity point while all other rates are held constant.\n- KRD 2yr, 5yr, 10yr, 20yr, 30yr — common key rate tenors.\n- Sum of all KRDs ≈ total modified duration.\n\n**Why KRDs Matter:**\n- Yield curves do not only shift in parallel — they twist, steepen, flatten, and butterfly.\n- A portfolio can have the same total duration as its benchmark but different KRD exposures.\n- A **steepening curve** (long rates rising relative to short) hurts a portfolio overweight long KRDs.\n- A **flattening curve** benefits long-duration overweights if driven by long-end yield declines.\n\n**Portfolio Strategies by Curve Positioning:**\n\n**Bullet Strategy:**\n- Concentrate holdings around one maturity segment (e.g., all 7–10 year bonds).\n- Maximizes sensitivity to a single point; benefits from parallel shifts, vulnerable to twists.\n\n**Barbell Strategy:**\n- Concentrate at two extremes (e.g., 2-year and 30-year bonds) while avoiding the middle.\n- Matching duration to a bullet but with higher convexity — benefits if the curve steepens or flattens.\n- Outperforms bullet if curve steepens; underperforms if curve flattens.\n\n**Ladder Strategy:**\n- Equal allocation across many maturities (e.g., 1yr through 10yr, 10% each).\n- Smooth reinvestment risk, steady maturity rolldown, balanced exposure across the curve.\n- Conservative, predictable — popular with retail investors and bank treasuries.",
-          highlight: ["key rate duration", "KRD", "parallel shift", "steepening", "flattening", "barbell", "bullet", "ladder", "yield curve", "twist"],
-        },
-        {
-          type: "teach",
-          title: "Carry, Roll-Down, and Fixed Income Factor Models",
-          content:
-            "**Carry** is the income earned by holding a bond position, net of financing costs:\n`Carry = Coupon Income − Financing Cost (repo rate)`\n\nA bond financed in the repo market generates positive carry if its coupon exceeds the repo rate.\n\n**Roll-Down Return:**\nIn a normal (upward-sloping) yield curve, a bond's yield decreases as it \"rolls down\" the curve with the passage of time.\n- A 5-year bond today will be a 4-year bond in one year.\n- If the yield curve is steep, the 4-year yield is lower than the 5-year yield → capital appreciation.\n- **Roll-down** = price appreciation from moving to a lower-yield point on a static curve.\n\n**Total Horizon Return:**\n`Total Return = Coupon + Roll-Down + Duration Effect (from yield change) + Convexity`\n\nRoll-down is most valuable on the steep portion of the yield curve (typically 2–5 year range in a normal curve).\n\n**Fixed Income Factor Model:**\nSystematic factor exposure explains most fixed income returns:\n\n- **Duration (Level)**: Sensitivity to parallel shifts in the yield curve. The dominant risk factor.\n- **Curve (Slope/Twist)**: Exposure to steepening/flattening. Long barbell vs. bullet; 2s10s spread.\n- **Convexity**: Second-order rate sensitivity; long convexity positions benefit from rate volatility.\n- **Credit Spread**: Compensation for default and liquidity risk; the main driver in corporate bonds.\n- **Liquidity Premium**: Compensation for holding less-liquid bonds (off-the-run Treasuries, small issues).\n- **Currency**: For unhedged international holdings — FX return adds/subtracts from bond returns.",
-          highlight: ["carry", "roll-down", "repo rate", "total return", "factor model", "duration factor", "curve factor", "credit spread factor", "liquidity premium"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "An asset manager runs a fixed income fund with a 10-year modified duration benchmark. She believes the yield curve will steepen significantly (2yr rates fall, 30yr rates rise). Which portfolio structure best positions for this view?",
-          options: [
-            "Barbell — concentrate in 2yr and 30yr bonds to profit from the 2yr rally while managing the 30yr exposure via short futures",
-            "Bullet — concentrate all holdings in 10yr bonds to maintain exactly benchmark duration",
-            "Ladder — equal weight across all maturities to neutralize curve exposure entirely",
-            "Extend duration to 20yr — steepening always benefits longer-duration portfolios",
-          ],
-          correctIndex: 0,
-          explanation:
-            "A barbell strategy (2yr + 30yr) is the classic curve steepener position. The 2yr bonds benefit from falling short rates (price appreciation), while the 30yr exposure can be hedged with short Treasury futures if desired. A pure bullet at 10yr provides no differentiated curve exposure. A ladder neutralizes the curve view. Extending duration to 20yr would actually hurt if long-end rates rise in a steepening scenario.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Roll-down return is greatest in a flat yield curve environment because bonds at all maturities have similar yields.",
-          correct: false,
-          explanation:
-            "False. Roll-down return is greatest when the yield curve is steep. In a steep curve, a bond that rolls from a higher-yield maturity to a lower-yield maturity gains significant capital appreciation as its yield falls with time. In a flat curve, there is minimal yield difference between maturities, so rolling down the curve generates little price appreciation. Practitioners often seek the steepest portion of the curve (frequently 2–5 years) to maximize roll-down returns.",
-          difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 5: International Fixed Income & Rates ─────────────────────────
-    {
-      id: "fia-5",
-      title: "🌍 International Fixed Income",
-      description:
-        "Currency hedging, covered interest parity, emerging market debt, negative yields, and global rate cycles",
-      icon: "Globe",
-      xpReward: 95,
-      difficulty: "advanced",
-      steps: [
-        {
-          type: "teach",
-          title: "Currency Hedging & Covered Interest Parity",
-          content:
-            "Investing in foreign bonds introduces **currency risk** — gains in the bond can be wiped out by FX moves. Hedging this risk is central to international fixed income management.\n\n**Covered Interest Rate Parity (CIP):**\nThe fundamental no-arbitrage relationship between spot exchange rates, forward exchange rates, and interest rate differentials:\n\n`F/S = (1 + r_d) / (1 + r_f)`\n\nWhere **F** = forward rate, **S** = spot rate, **r_d** = domestic rate, **r_f** = foreign rate.\n\n**Intuition:** If German Bunds yield 2% and US Treasuries yield 5%, the USD should depreciate relative to EUR in the forward market by approximately 3% per year — otherwise arbitrage would exist.\n\n**Hedged Return Formula:**\nFor a US investor buying a foreign bond (e.g., German Bund):\n`Hedged return ≈ Foreign bond yield + (USD SOFR − EUR EURIBOR)`\n\nThis is the **currency hedge return**: the foreign yield plus the cross-currency basis and rate differential.\n\n**Hedging Mechanics — FX Forward:**\n1. Buy EUR/USD spot to purchase German bonds.\n2. Simultaneously sell EUR forward (at known exchange rate) to lock in USD proceeds.\n3. Net result: Earn German Bund yield plus/minus the forward premium/discount (≈ rate differential).\n\n**Cross-Currency Basis:**\nIn practice, CIP deviates from theory due to supply/demand imbalances in FX swap markets. A negative USD basis means hedging into USD is cheaper than theory predicts — post-2008 phenomenon driven by dollar funding scarcity.",
-          highlight: ["currency hedging", "covered interest parity", "CIP", "FX forward", "cross-currency basis", "hedged return", "SOFR", "EURIBOR"],
-        },
-        {
-          type: "teach",
-          title: "Emerging Market Debt: Local vs. Hard Currency",
-          content:
-            "Emerging market debt (EMD) offers higher yields than developed market bonds but with distinct risk profiles depending on currency denomination.\n\n**Hard Currency EMD (USD or EUR denominated):**\n- Bonds issued by EM sovereigns or corporates in USD or EUR.\n- No currency risk for USD investors — principal and interest in dollars.\n- Risk: credit/default risk of the EM sovereign or corporate.\n- Key index: **JP Morgan EMBI Global** (sovereign) and **CEMBI** (corporate).\n- Spread over US Treasuries compensates for default risk; historically ~300–500bps for IG EM.\n\n**Local Currency EMD:**\n- Bonds issued in the domestic currency (Brazilian Real, Indian Rupee, Turkish Lira, etc.).\n- Higher nominal yields — but investors bear full **FX risk**.\n- Key index: **JP Morgan GBI-EM Global Diversified**.\n- FX volatility can easily overwhelm bond returns — Turkish Lira bonds yielded 15% but the Lira fell 30% in some years, producing a USD-denominated loss.\n\n**Brady Bonds (Historical):**\n- Created in 1989–1994 Brady Plan to restructure Latin American sovereign debt.\n- Collateralized by US Treasury zero-coupon bonds, providing partial principal protection.\n- Pioneered the modern EM debt market. Most Brady bonds were exchanged for standard sovereign bonds by 2000s.\n\n**Key EM-Specific Risks:**\n- Political risk and policy uncertainty (capital controls, debt moratoriums)\n- Dollarization mismatch: government revenues in local currency, debt in USD\n- IMF program conditionality — restructuring may be required before IMF assistance",
-          highlight: ["EMD", "hard currency", "local currency", "EMBI", "GBI-EM", "Brady bonds", "political risk", "FX risk", "currency mismatch"],
-        },
-        {
-          type: "teach",
-          title: "Negative Yielding Debt & Global Rate Cycles",
-          content:
-            "**Negative Yielding Bonds — The 2020 Phenomenon:**\nAt peak in August 2020, over **$18 trillion** of global bonds traded with negative yields — primarily Japanese government bonds (JGBs) and European sovereigns (German Bunds, Swiss bonds).\n\n**Why would anyone buy a bond with a negative yield?**\n1. **Monetary policy**: The ECB and Bank of Japan set policy rates below zero (-0.5% ECB, -0.1% BOJ). Negative-yielding bonds can still offer positive carry relative to the central bank deposit rate.\n2. **Capital appreciation expectation**: Investors expected yields to fall further negative — price appreciation would compensate.\n3. **Currency appreciation**: International investors who expect the EUR or JPY to appreciate can earn a positive USD-equivalent return on negative-yield bonds.\n4. **Regulatory requirements**: European banks, insurers, and pension funds must hold certain amounts of high-quality liquid assets — even at negative yields.\n5. **Safe haven**: During financial stress, investors accept negative yields for capital safety.\n\n**Global Rate Cycle Leadership:**\n- **Federal Reserve** is typically the global cycle leader — US rate moves propagate to other central banks via capital flows and currency effects.\n- **ECB**: More conservative; tends to lag the Fed by 12–24 months in rate cycle turns. Structural mandate for price stability over employment.\n- **Bank of Japan (BOJ)**: Uniquely accommodative; maintained yield curve control (YCC) through 2024, pegging 10-year JGB yields near zero while other central banks hiked aggressively.\n- **EM central banks**: Often preemptively hike before the Fed (Brazil, Chile, South Korea) to defend currencies and control inflation.",
-          highlight: ["negative yield", "JGB", "Bund", "yield curve control", "YCC", "ECB", "Bank of Japan", "Fed", "global rate cycle", "capital flows"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "A US investor buys a German Bund yielding 2.8% and fully hedges the EUR/USD currency risk back to USD. The 1-year USD SOFR rate is 5.2% and EUR EURIBOR is 3.7%. What is the approximate USD-hedged return on the Bund position?",
-          options: [
-            "2.8% + (5.2% − 3.7%) = 2.8% + 1.5% = ~4.3%",
-            "2.8% only — currency hedging eliminates all FX-related return enhancement",
-            "2.8% − 5.2% = −2.4% — the investor loses the US rate differential by hedging",
-            "3.7% — the hedged return equals the foreign rate, not the bond yield",
-          ],
-          correctIndex: 0,
-          explanation:
-            "The hedged return formula is: Foreign bond yield + (Domestic rate − Foreign rate). The currency hedge converts the German Bund's EUR return into USD, adding the interest rate differential. Here: 2.8% + (5.2% − 3.7%) = 2.8% + 1.5% = approximately 4.3%. This is significantly more attractive than buying the Bund unhedged (2.8%) and competitive with comparable US corporate bonds. This cross-market dynamic explains why foreign investors buy US Treasuries and why covered interest parity drives international capital flows.",
-          difficulty: 3,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "An EM sovereign fund manager is evaluating two bonds from Brazil: (A) a 10-year USD-denominated Brazil bond yielding 7.5% (spread of 280bps over Treasuries), and (B) a 10-year BRL local currency bond yielding 12.8%. The manager's base case is for BRL to depreciate 4% per year vs. USD. Annual USD inflation is 2.5%.",
-          question:
-            "Which bond likely offers better risk-adjusted USD returns under the manager's base case?",
-          options: [
-            "USD hard currency bond — 7.5% yield with no currency risk; local bond's 12.8% minus 4% annual BRL depreciation ≈ 8.8% but with high FX volatility",
-            "Local currency bond — 12.8% is always superior to 7.5% regardless of currency assumptions",
-            "Neither — EM bonds are unsuitable for institutional portfolios due to political risk",
-            "Local currency bond — a 4% annual depreciation is too small to matter for a 10-year horizon",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Under the base case of 4% annual BRL depreciation, the local bond's USD-equivalent return is approximately 12.8% − 4% = 8.8% (simplified). This appears higher than the 7.5% hard currency bond, but comes with significant currency volatility risk — BRL can move 20–30% in a single year. The USD bond provides a known, predictable 7.5% return with no FX risk. For risk-adjusted comparison, the Sharpe ratio of the USD bond is typically higher given the volatility differential. Institutional managers often blend both instruments: hard currency for risk-managed core exposure, local currency for higher-return satellite positions.",
-          difficulty: 3,
         },
       ],
     },

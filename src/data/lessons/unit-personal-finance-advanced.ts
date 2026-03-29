@@ -1,374 +1,311 @@
-import type { Unit } from "./types";
+import { Unit } from "./types";
 
 export const UNIT_PERSONAL_FINANCE_ADVANCED: Unit = {
   id: "personal-finance-advanced",
-  title: "Personal Finance Mastery",
+  title: "Personal Finance Advanced",
   description:
-    "Master budgeting systems, debt management, credit optimization, tax-advantaged accounts, and financial independence",
+    "Master tax-advantaged accounts, insurance strategies, estate planning, and advanced wealth-building techniques used by high-net-worth individuals.",
   icon: "Wallet",
-  color: "#10b981",
+  color: "#059669",
   lessons: [
-    // ─── Lesson 1: Cash Flow Architecture ────────────────────────────────────────
     {
-      id: "pf-advanced-1",
-      title: "💰 Cash Flow Architecture",
+      id: "pfa-tax-advantaged-accounts",
+      title: "Tax-Advantaged Accounts",
       description:
-        "Zero-based budgeting, 50/30/20 rule, pay-yourself-first, emergency funds, and your personal income statement",
-      icon: "Wallet",
-      xpReward: 75,
-      difficulty: "beginner",
+        "Deep dive into 401(k), Roth IRA, HSA, 529, and mega backdoor Roth strategies for maximizing tax efficiency across your financial life.",
+      icon: "PiggyBank",
+      xpReward: 90,
+      difficulty: "advanced",
+      duration: 18,
       steps: [
         {
           type: "teach",
-          title: "📋 Zero-Based Budgeting",
+          title: "401(k) vs Roth 401(k): Pre-Tax vs Post-Tax",
           content:
-            "**Zero-based budgeting (ZBB)** means every dollar of income is assigned a specific purpose before the month begins — so income minus all allocations equals zero. You are not spending every dollar; you are *planning* every dollar.\n\n**How it works:**\n1. List your total monthly take-home income\n2. List every planned expense, savings contribution, and debt payment\n3. Allocate until you reach zero remaining\n4. Any category with unspent dollars gets reassigned (to savings, debt, or investment)\n\n**Why it outperforms casual budgeting:**\n- Forces intentionality — every category requires a conscious decision\n- Eliminates \"mystery spending\" — you know exactly where money went\n- Makes it impossible to accidentally overspend across categories without noticing\n\n**Tools:** YNAB (You Need a Budget) is purpose-built for ZBB. A simple spreadsheet works equally well.\n\n**Key rule:** Budget before the month starts, not after. Looking backward is accounting; ZBB is proactive planning.",
-          highlight: ["zero-based budgeting", "every dollar", "allocations equals zero", "intentionality"],
+            "Traditional 401(k): contributions reduce taxable income today (pre-tax), but withdrawals in retirement are taxed as ordinary income. Required Minimum Distributions (RMDs) begin at age 73.\n\nRoth 401(k): contributions are made with after-tax dollars — no upfront deduction — but qualified withdrawals in retirement are 100% tax-free. Starting in 2024, SECURE 2.0 eliminated RMDs on Roth 401(k)s during the owner's lifetime.\n\nRule of thumb: choose Traditional when your current tax rate is higher than your expected retirement rate; choose Roth when the reverse is true or when you want tax diversification.",
         },
         {
           type: "teach",
-          title: "⚖️ The 50/30/20 Rule",
+          title: "IRA Contribution Limits & Income Phaseouts",
           content:
-            "The **50/30/20 rule** offers a simpler framework for allocating after-tax income:\n\n**50% — Needs (non-negotiable expenses):**\n- Rent/mortgage, utilities, groceries, minimum debt payments, insurance premiums, transportation to work\n- If needs exceed 50%, you may be housing-burdened or car-burdened — a structural problem\n\n**30% — Wants (lifestyle choices):**\n- Dining out, streaming subscriptions, vacations, entertainment, gym (if discretionary), clothing beyond basics\n- Wants are not bad — they fund quality of life. But they are the adjustment lever when budgets are tight\n\n**20% — Savings and extra debt repayment:**\n- Emergency fund, retirement contributions, investing, paying extra on debt above minimums\n\n**Categorization gray areas:**\n- Internet: Need (if required for work) or Want?\n- Gym membership: Want for most people\n- Car payment on luxury vehicle: Want (a used car satisfies transportation need)\n\nThe 50/30/20 rule is a *guideline*, not a law. High cost-of-living cities may require 60% on needs; aggressive savers may push savings to 40%.",
-          highlight: ["50/30/20", "needs", "wants", "savings", "non-negotiable", "lifestyle"],
+            "2024 IRA contribution limit: $7,000/year ($8,000 if age 50+).\n\nRoth IRA income phaseout (2024): single filers phase out between $146,000–$161,000 MAGI; married filing jointly $230,000–$240,000. Above the ceiling, direct Roth IRA contributions are prohibited.\n\nTraditional IRA deductibility phaseout applies when you or your spouse have a workplace retirement plan. High earners can still contribute to a non-deductible Traditional IRA — setting up the backdoor Roth strategy.\n\nKey insight: always verify current-year IRS limits, as they adjust annually for inflation.",
         },
         {
           type: "teach",
-          title: "🤖 Pay-Yourself-First & Emergency Fund",
+          title: "Backdoor Roth & Mega Backdoor Roth",
           content:
-            "**Pay-yourself-first** flips the traditional budgeting sequence:\n- Traditional: Income → Expenses → Save whatever is left (often: nothing)\n- Pay-yourself-first: Income → Automatic savings → Spend the rest\n\nBy automating transfers to savings/investment accounts on payday, savings are no longer dependent on willpower. You simply adjust lifestyle to whatever remains.\n\n**Implementation:**\n- Set up automatic transfer to savings account the day after each paycheck\n- Automate 401(k) contributions directly from payroll\n- Treat savings like a non-negotiable bill\n\n**Emergency Fund — the financial foundation:**\n- Target: **3–6 months of essential expenses** (not income — expenses)\n- Conservative (single income, variable employment): 6 months\n- Stable employment, dual income: 3 months is adequate\n\n**Where to keep your emergency fund:**\n- **High-Yield Savings Account (HYSA):** 4–5% APY, FDIC insured, same-day/next-day access — best default choice\n- **Money Market Account (MMA):** Similar yield, sometimes comes with check-writing — viable alternative\n- NOT in stocks: a 30% market drop during a job loss would compound the crisis\n- NOT in CDs with penalties: you need liquidity when emergencies strike",
-          highlight: ["pay-yourself-first", "automate", "3–6 months", "HYSA", "money market", "FDIC", "liquidity"],
+            "Backdoor Roth IRA: high earners contribute to a non-deductible Traditional IRA, then immediately convert to Roth (no tax owed if no pre-tax IRA balance exists). Watch the 'pro-rata rule' — if you hold other Traditional IRA funds, the conversion is partially taxable.\n\nMega Backdoor Roth: certain 401(k) plans allow after-tax contributions above the employee deferral limit (2024 total 401(k) limit: $69,000). These after-tax contributions can then be converted to Roth via an in-service withdrawal or rolled over to a Roth IRA at separation. This can add up to ~$43,500 of additional Roth space annually — a massive wealth-building lever for high earners.\n\nRequires plan support for after-tax contributions AND in-service distributions.",
         },
         {
           type: "teach",
-          title: "📊 Personal Cash Flow Statement",
+          title: "HSA Triple Tax Advantage & 529 Plans",
           content:
-            "A **personal cash flow statement** is your financial income statement — it answers: where does my money come from and where does it go?\n\n**Structure:**\n```\nTotal Monthly Income:          $6,000\n\nFixed Expenses:\n  Rent                         $1,500\n  Car payment                    $350\n  Insurance (auto + renters)     $180\n  Subscriptions                   $80\n                                ──────\n  Total fixed:                 $2,110\n\nVariable Expenses:\n  Groceries                      $400\n  Dining out                     $300\n  Gas/transport                  $150\n  Utilities                      $120\n  Entertainment                  $200\n                                ──────\n  Total variable:              $1,170\n\nSavings/Investments:           $1,000\n  (401k + Roth IRA contribution)\n\nTotal outflows:                $4,280\nNet cash flow (savings rate):  $1,720\n```\n\n**Savings rate** = Net cash flow ÷ Gross income\nIn this example: $1,720 ÷ $6,000 = **28.7%**\n\nSavings rate is the single most important lever in personal finance — it determines both how fast wealth accumulates and (inversely) how much income you need in retirement.",
-          highlight: ["cash flow statement", "fixed expenses", "variable expenses", "savings rate", "net cash flow"],
+            "HSA (Health Savings Account): requires enrollment in a High-Deductible Health Plan (HDHP). Contributions are pre-tax, growth is tax-free, and withdrawals for qualified medical expenses are tax-free — a triple tax advantage unmatched by any other account.\n\nAfter age 65, HSA funds can be withdrawn for any purpose (taxed as ordinary income, like a Traditional IRA) — making the HSA a stealth retirement account.\n\n529 College Savings Plan: contributions grow tax-free; withdrawals for qualified education expenses are tax-free. Many states offer deductions for in-state plan contributions. 'Superfunding' allows 5 years of gift tax annual exclusion contributions at once ($90,000 per beneficiary in 2024). SECURE 2.0: unused 529 funds can now be rolled to a Roth IRA (up to $35,000 lifetime, subject to 15-year holding rule).",
         },
         {
           type: "quiz-mc",
           question:
-            "Under zero-based budgeting, what does it mean for income minus allocations to equal zero?",
+            "Which account type offers a 'triple tax advantage' — pre-tax contributions, tax-free growth, AND tax-free qualified withdrawals?",
           options: [
-            "Every dollar of income has been intentionally assigned a purpose — spending, saving, or investing",
-            "You must spend every dollar you earn each month with nothing left over",
-            "Your expenses must exactly equal your income, leaving no room for savings",
-            "You should have zero dollars in your bank account at month end",
+            "Traditional 401(k)",
+            "Health Savings Account (HSA)",
+            "529 College Savings Plan",
+            "Roth IRA",
           ],
-          correctIndex: 0,
+          correctIndex: 1,
           explanation:
-            "Zero-based budgeting means every dollar is *assigned* a job — but savings and investments count as assignments. Income minus (expenses + savings + investments) = 0. The goal is intentional allocation, not literally spending everything. Surplus dollars get consciously redirected to goals rather than evaporating into unknown spending.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Alex earns $5,500/month after tax. Monthly expenses: rent $1,400, car payment $300, insurance $150, groceries $350, dining $250, utilities $100, entertainment $200, subscriptions $60. Alex contributes $500/month to a Roth IRA.",
-          question: "What is Alex's savings rate (as a percentage of take-home income)?",
-          options: [
-            "9.1% — only the $500 Roth IRA contribution counts",
-            "16.4% — $500 IRA plus the $400 unallocated remainder",
-            "9.1% — ($500 / $5,500)",
-            "16.4% — ($500 + $400 unallocated) / $5,500",
-          ],
-          correctIndex: 3,
-          explanation:
-            "Total expenses: $1,400 + $300 + $150 + $350 + $250 + $100 + $200 + $60 = $2,810. Plus $500 Roth IRA = $3,310 total outflows. Net remaining = $5,500 − $3,310 = $2,190... wait, let me recount: $2,810 + $500 = $3,310; $5,500 − $3,310 = $2,190? Actually expenses sum: 1400+300+150+350+250+100+200+60 = 2810. Unallocated = 5500−2810−500 = $2,190 is unaccounted — but under ZBB that should also be assigned. The question intends: savings = $500 Roth + $400 net leftover = $900; savings rate = $900/$5,500 = 16.4%. The $500 IRA + $400 unallocated remainder = $900 total saved.",
+            "The HSA is the only account with all three tax benefits simultaneously: contributions reduce taxable income, growth is tax-deferred, and withdrawals for qualified medical expenses are tax-free. The Roth IRA has no deduction on contributions, and the Traditional 401(k) taxes withdrawals.",
           difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 2: Debt Elimination Strategies ───────────────────────────────────
-    {
-      id: "pf-advanced-2",
-      title: "⚔️ Debt Elimination Strategies",
-      description:
-        "Avalanche vs snowball methods, debt consolidation, refinancing, and understanding your debt-to-income ratio",
-      icon: "TrendingDown",
-      xpReward: 80,
-      difficulty: "beginner",
-      steps: [
-        {
-          type: "teach",
-          title: "🧮 Avalanche vs Snowball Methods",
-          content:
-            "Two battle-tested frameworks for eliminating multiple debts:\n\n**Debt Avalanche (mathematically optimal):**\n- List all debts. Pay minimums on all.\n- Direct every extra dollar to the **highest-interest-rate** debt first\n- Once that is paid off, roll that payment to the next-highest-rate debt\n- **Result:** Minimizes total interest paid over time\n- **Example:** 22% credit card before 6% student loan\n\n**Debt Snowball (psychologically powerful):**\n- List all debts. Pay minimums on all.\n- Direct every extra dollar to the **smallest balance** first, regardless of rate\n- Knock out small debts quickly → build momentum and confidence\n- **Result:** More motivating for people who struggle with consistency; costs slightly more in interest\n- **Example:** $800 medical bill before $8,000 credit card (even if credit card rate is higher)\n\n**Which to choose?**\n- If you are disciplined and motivated by math → Avalanche\n- If you need quick wins to stay on track → Snowball\n- Research shows the Snowball method leads to better debt payoff completion rates for many people — the psychological benefit is real\n\n**Hybrid approach:** Clear 1–2 small balances first for quick wins, then switch to Avalanche for remaining high-rate debt.",
-          highlight: ["debt avalanche", "debt snowball", "highest interest rate", "smallest balance", "momentum"],
-        },
-        {
-          type: "teach",
-          title: "🔄 Debt Consolidation",
-          content:
-            "**Debt consolidation** combines multiple debts into a single loan — ideally at a lower interest rate, simpler payment schedule, and fixed payoff timeline.\n\n**Personal loan consolidation (most common for CC debt):**\n- Take a personal loan at 10–15% to pay off credit cards at 22–28%\n- One fixed monthly payment replaces multiple minimum payments\n- **Break-even analysis:** Calculate total interest under current path vs consolidated loan\n\n**Balance transfer credit card:**\n- Transfer CC balances to a card with a **0% introductory APR** (typically 12–21 months)\n- Fee: usually 3–5% of transferred balance\n- Critical: Pay the balance in full before the intro period ends, or the deferred interest hits at 25%+\n\n**Risks of consolidation:**\n1. **Behavioral risk:** Freed-up credit card limits get run up again → double the debt\n2. Secured vs unsecured: Don't use home equity (HELOC) to pay unsecured credit card debt — you've turned dischargeable debt into debt secured by your home\n3. Longer terms: A lower rate with a much longer term may cost more total interest\n\n**Consolidation makes sense when:** rate is meaningfully lower, term is reasonable, and you cut up (or freeze) the paid-off cards.",
-          highlight: ["debt consolidation", "personal loan", "balance transfer", "0% APR", "break-even", "behavioral risk"],
-        },
-        {
-          type: "teach",
-          title: "🎓 Refinancing & Debt-to-Income Ratio",
-          content:
-            "**Student Loan Refinancing:**\nPrivate refinancing replaces your existing student loans (federal or private) with a new private loan at a lower rate.\n\n**Potential benefits:**\n- Lower interest rate (especially if your credit has improved)\n- Lower monthly payment or faster payoff\n\n**Critical tradeoffs — refinancing federal loans into private:**\n- Lose **income-driven repayment (IDR)** plans\n- Lose **Public Service Loan Forgiveness (PSLF)** eligibility\n- Lose forbearance protections (like pandemic-era payment pauses)\n- Lose access to federal deferment/discharge programs\n\n**Rule of thumb:** Only refinance federal loans if you work in the private sector, have stable income, and the rate savings are substantial.\n\n**Debt-to-Income Ratio (DTI):**\nLenders use DTI to assess credit risk:\n\nDTI = Monthly debt payments ÷ Gross monthly income\n\n**Lender thresholds:**\n- **Front-end DTI** (housing costs only): Lenders want < **28%**\n- **Back-end DTI** (all debts): Lenders want < **36%** (some allow up to 43% for qualified mortgages)\n\n**Example:** Gross income $6,000/month, mortgage $1,200, car $300, student loan $200, CC minimums $100:\n- Front-end: $1,200/$6,000 = 20% ✓\n- Back-end: $1,800/$6,000 = 30% ✓",
-          highlight: ["refinancing", "federal protections", "PSLF", "income-driven repayment", "DTI", "28%", "36%"],
-        },
-        {
-          type: "quiz-mc",
-          question:
-            "You have four debts: Credit card A at 24% ($3,000), Credit card B at 18% ($800), Car loan at 7% ($12,000), Student loan at 5% ($25,000). Using the debt avalanche method, which debt do you attack first?",
-          options: [
-            "Credit card A (24% — highest interest rate)",
-            "Credit card B (smallest balance at $800)",
-            "Student loan (largest balance at $25,000)",
-            "Car loan (secured debt should be prioritized)",
-          ],
-          correctIndex: 0,
-          explanation:
-            "The debt avalanche targets the highest interest rate first, regardless of balance size. Credit card A at 24% costs you the most per dollar owed, so eliminating it first minimizes total interest paid. Credit card B ($800) would be targeted first by the snowball method, but that prioritizes psychological wins over mathematical efficiency.",
-          difficulty: 1,
         },
         {
           type: "quiz-tf",
           statement:
-            "Refinancing federal student loans into a private loan is always beneficial if the new interest rate is lower.",
-          correct: false,
+            "SECURE 2.0 (2024) eliminated Required Minimum Distributions (RMDs) for Roth 401(k) accounts during the owner's lifetime.",
+          correct: true,
           explanation:
-            "False. Refinancing federal loans into private loans permanently eliminates federal protections: income-driven repayment plans, Public Service Loan Forgiveness eligibility, and pandemic/hardship forbearance options. For borrowers pursuing PSLF or in variable-income careers, these protections may be worth more than the interest savings from a lower rate. Always model the full cost-benefit before refinancing federal loans.",
+            "Correct. Before SECURE 2.0, Roth 401(k)s were subject to RMDs just like Traditional 401(k)s. The law change now aligns Roth 401(k)s with Roth IRAs, which have never had lifetime RMDs. This makes Roth 401(k)s significantly more attractive for estate planning.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "Jordan has four debts: Medical bill $400 at 0% interest; Credit card $2,200 at 22%; Personal loan $5,000 at 11%; Car loan $8,500 at 6%. Jordan has $300/month extra beyond minimums.",
-          question: "Which debt should Jordan attack first under the avalanche method, and which first under the snowball method?",
-          options: [
-            "Avalanche: credit card (22%); Snowball: medical bill ($400)",
-            "Avalanche: car loan (largest balance); Snowball: medical bill ($400)",
-            "Avalanche: credit card (22%); Snowball: personal loan ($5,000 — middle balance)",
-            "Both methods target the credit card first since it has the highest rate and second-smallest balance",
-          ],
-          correctIndex: 0,
-          explanation:
-            "Avalanche orders by interest rate descending: Credit card 22% → Personal loan 11% → Car loan 6% → Medical bill 0%. The credit card attacks first. Snowball orders by balance ascending: Medical bill $400 → Credit card $2,200 → Personal loan $5,000 → Car loan $8,500. The medical bill goes first for the quick win. In this case the avalanche is clearly better — the 22% credit card costs far more than the 0% medical bill and should be eliminated quickly.",
-          difficulty: 2,
-        },
-      ],
-    },
-
-    // ─── Lesson 3: Credit Score Optimization ─────────────────────────────────────
-    {
-      id: "pf-advanced-3",
-      title: "📊 Credit Score Optimization",
-      description:
-        "FICO components, utilization hacks, authorized users, hard vs soft inquiries, and credit monitoring",
-      icon: "BarChart2",
-      xpReward: 80,
-      difficulty: "intermediate",
-      steps: [
-        {
-          type: "teach",
-          title: "🔢 FICO Score Components",
-          content:
-            "Your **FICO credit score** (300–850) is calculated from five factors:\n\n**1. Payment History — 35% (most important)**\n- Have you paid every bill on time?\n- A single 30-day late payment can drop a score by 60–100 points\n- Late payments stay on your report for 7 years, but impact fades over time\n\n**2. Credit Utilization — 30%**\n- Amount owed ÷ Total credit limit across all revolving accounts\n- Lower is better. Experts recommend < 30%; < 10% for maximum score benefit\n\n**3. Length of Credit History — 15%**\n- Average age of all open accounts plus age of oldest account\n- Closing old cards shortens average age and hurts this factor\n\n**4. Credit Mix — 10%**\n- Variety of account types: credit cards, auto loan, mortgage, student loan\n- Having only one type is slightly penalized\n\n**5. New Credit — 10%**\n- Number of recent hard inquiries and newly opened accounts\n- Opening many accounts in a short period signals financial stress\n\n**Score ranges:**\n- 800–850: Exceptional — best rates available\n- 740–799: Very Good\n- 670–739: Good\n- 580–669: Fair — higher rates, harder approvals\n- Below 580: Poor",
-          highlight: ["payment history", "35%", "utilization", "30%", "credit history", "15%", "FICO", "800–850"],
-        },
-        {
-          type: "teach",
-          title: "⚡ Utilization Hack & Authorized User Strategy",
-          content:
-            "**Credit Utilization Hack — the fastest legal score booster:**\n\nUtilization is measured at the **statement closing date**, not the due date. Most people think carrying a zero balance requires paying before the due date — but if you pay before the statement closes, you report 0% utilization.\n\n**Implementation:**\n1. Pay your credit card balance in full a few days before statement closing\n2. Let the statement close with a low or zero balance\n3. Pay the statement balance by the due date (to avoid interest)\n\nKeeping reported utilization below **10%** can add 20–50+ points over cards with higher reported balances — even if you pay in full every month.\n\n**Authorized User Strategy:**\nBeing added as an authorized user on someone else's credit card causes that card's history to appear on your credit report:\n- If the card is old with a low utilization and perfect payment history, your score benefits significantly\n- **Best use case:** A parent adds an adult child to a 15-year-old card with 3% utilization → child's average account age and history improve immediately\n- The primary cardholder's behavior affects you: if they miss a payment, it can hurt your score too\n- You don't need to use the card — simply being listed is sufficient",
-          highlight: ["utilization hack", "statement closing date", "10%", "authorized user", "account age", "0% utilization"],
-        },
-        {
-          type: "teach",
-          title: "🔍 Hard vs Soft Inquiries & Credit Monitoring",
-          content:
-            "**Hard Inquiries (hard pulls):**\n- Triggered when you apply for new credit: credit card, auto loan, mortgage, personal loan\n- Lender requests your full credit report to make a lending decision\n- **Impact:** Typically reduces score by 5–10 points\n- Duration: Stays on report for 2 years; impact on score fades after 12 months\n- **Rate-shopping exception:** Multiple mortgage or auto loan hard pulls within a 14–45-day window are treated as a single inquiry by FICO — shop aggressively within this window\n\n**Soft Inquiries (soft pulls):**\n- Checking your own credit score, employer background checks, pre-approved offers\n- **Zero impact on your score** — lenders cannot see soft inquiries\n- Always check your own score freely without fear\n\n**Credit Monitoring:**\n- **Free options:**\n  - AnnualCreditReport.com: Full reports from all three bureaus (Equifax, Experian, TransUnion) free weekly per federal law\n  - Credit Karma / Experian app: Free score monitoring (uses VantageScore, not FICO)\n  - Many credit cards now provide free FICO scores on statements\n- **What to monitor:** New accounts you didn't open (identity theft), address changes, unfamiliar hard inquiries\n- **Credit freeze:** Free at all three bureaus — locks your file so no one can open new credit in your name. Temporarily unfreeze when you apply for credit.",
-          highlight: ["hard inquiry", "5–10 points", "soft inquiry", "rate-shopping", "AnnualCreditReport.com", "credit freeze"],
-        },
-        {
-          type: "quiz-mc",
+            "Priya earns $250,000/year and wants to maximize Roth savings. Her employer's 401(k) plan allows after-tax contributions and in-service withdrawals. She has already maxed her $23,000 employee Roth 401(k) deferral.",
           question:
-            "Which action will most improve the credit score of someone currently at 620?",
+            "What strategy allows Priya to contribute the most additional after-tax money to a Roth account?",
           options: [
-            "Set up autopay to ensure every future payment is on time, and pay down credit card balances to below 10% utilization",
-            "Open three new credit cards to increase total available credit",
-            "Close all old credit card accounts to simplify the credit profile",
-            "Apply for a mortgage to add a different credit type to the mix",
+            "Contribute directly to a Roth IRA (she is under the income limit)",
+            "Use the mega backdoor Roth via after-tax 401(k) contributions + in-service Roth conversion",
+            "Open a taxable brokerage account and invest in municipal bonds",
+            "Contribute to a traditional IRA and leave it non-deductible",
           ],
-          correctIndex: 0,
+          correctIndex: 1,
           explanation:
-            "At 620, the most impactful improvements address the two biggest FICO factors: payment history (35%) and utilization (30%). Autopay prevents future late payments, and reducing utilization below 10% can yield significant score gains quickly. Opening new cards adds hard inquiries and lowers average account age; closing old cards shortens credit history — both worsen the score. A mortgage application would be a hard inquiry that further damages a 620 score.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-tf",
-          statement:
-            "Checking your own credit score on Credit Karma will lower your FICO score because it creates a hard inquiry.",
-          correct: false,
-          explanation:
-            "False. Checking your own credit score creates a soft inquiry, which has zero impact on your score. Only hard inquiries — triggered when a lender pulls your credit for a lending decision — can temporarily lower your score. You should check your own credit frequently to monitor for errors and identity theft without any concern about score impact.",
-          difficulty: 1,
-        },
-        {
-          type: "quiz-scenario",
-          scenario:
-            "Priya has two credit cards. Card A: $8,000 limit, $4,000 balance (50% utilization). Card B: $2,000 limit, $0 balance (0% utilization). She has $1,000 to apply toward credit card debt. Total utilization = $4,000/$10,000 = 40%.",
-          question: "To maximize her credit score improvement, how should Priya use the $1,000?",
-          options: [
-            "Pay $1,000 on Card A to bring total utilization from 40% to 30%",
-            "Request a credit limit increase on Card B to $5,000 — no payment needed",
-            "Pay $1,000 on Card A; also request a credit limit increase to reduce utilization further",
-            "Split evenly: $500 on each card",
-          ],
-          correctIndex: 2,
-          explanation:
-            "Paying $1,000 on Card A reduces the balance to $3,000. Total utilization becomes $3,000/$10,000 = 30%. But requesting a credit limit increase on Card B (e.g., to $4,000) changes total limit to $14,000, dropping utilization further to $3,000/$14,000 = 21.4%. Combining both actions maximizes the utilization reduction. Utilization targets: below 30% is good; below 10% is ideal — so the more you can reduce, the better.",
+            "Priya's income ($250,000) exceeds the Roth IRA phaseout ceiling, so direct Roth IRA contributions are prohibited. The mega backdoor Roth allows her to contribute up to ~$46,000 in after-tax 401(k) dollars (total 401(k) limit minus her $23,000 deferral) and convert to Roth — far more than any other option.",
           difficulty: 3,
         },
       ],
     },
-
-    // ─── Lesson 4: Tax-Advantaged Account Mastery ────────────────────────────────
     {
-      id: "pf-advanced-4",
-      title: "🏦 Tax-Advantaged Account Mastery",
+      id: "pfa-insurance-risk-management",
+      title: "Insurance & Risk Management",
       description:
-        "401(k), IRA, HSA, 529 accounts — limits, phase-outs, backdoor strategies, and optimal contribution order",
-      icon: "PiggyBank",
-      xpReward: 90,
-      difficulty: "intermediate",
+        "Learn when to use term vs whole life, how to value your human capital, and how umbrella and disability policies protect your wealth.",
+      icon: "Shield",
+      xpReward: 85,
+      difficulty: "advanced",
+      duration: 16,
       steps: [
         {
           type: "teach",
-          title: "🏢 401(k): Traditional vs Roth",
+          title: "Life Insurance: Term vs Whole vs Universal",
           content:
-            "The **401(k)** is an employer-sponsored retirement account — the most accessible tax-advantaged account for most workers.\n\n**2024 contribution limits:**\n- Employee contribution: **$23,000/year** ($30,500 if age 50+ with catch-up)\n- Total limit including employer match: $69,000/year\n\n**Traditional 401(k):**\n- Contributions are **pre-tax** — reduces your taxable income today\n- Investments grow **tax-deferred**\n- Withdrawals in retirement taxed as **ordinary income**\n- Best when: your tax rate is higher today than it will be in retirement\n\n**Roth 401(k):**\n- Contributions are **after-tax** — no immediate tax break\n- Investments grow **tax-free**\n- Withdrawals in retirement are **completely tax-free**\n- Best when: your tax rate is lower today than expected in retirement (younger workers, early career)\n\n**Employer match — the guaranteed 100% return:**\n- If your employer matches 50 cents per dollar up to 6% of salary, that's an immediate 50% return\n- **Always contribute at least enough to capture the full employer match** — it is free compensation\n- Vesting schedule: employer match may vest over 1–6 years; leaving before vesting forfeits unvested match",
-          highlight: ["401(k)", "$23,000", "traditional", "Roth", "pre-tax", "tax-free", "employer match", "vesting"],
+            "Term life insurance: pure death benefit for a fixed period (10/20/30 years). Low cost — the right choice for most people during their working years when dependents and debt exist. No cash value.\n\nWhole life insurance: permanent coverage with a guaranteed cash value component growing at a fixed rate. Premiums are 5–15x higher than equivalent term. Appropriate for high-net-worth individuals needing permanent estate liquidity or a tax-advantaged cash accumulation vehicle.\n\nUniversal life (UL): flexible premiums and death benefit, with a cash value component tied to declared interest rates or (for VUL) investment subaccounts. More complex; policy can lapse if underfunded.\n\nThe 'buy term and invest the difference' approach outperforms whole life for most middle-class households.",
         },
         {
           type: "teach",
-          title: "📋 IRA: Traditional, Roth & Backdoor",
+          title: "Human Capital & Disability Insurance",
           content:
-            "The **Individual Retirement Account (IRA)** is a personal retirement account independent of your employer.\n\n**2024 contribution limit:** $7,000/year ($8,000 if age 50+)\n\n**Traditional IRA — deductibility phase-outs:**\n- If you have a workplace retirement plan AND your MAGI exceeds thresholds, the deduction phases out:\n  - Single: phase-out $77,000–$87,000 MAGI\n  - Married filing jointly: phase-out $123,000–$143,000 MAGI\n- Above the phase-out: contributions are **non-deductible** (after-tax basis with no immediate benefit)\n\n**Roth IRA — income limits:**\n- Direct Roth IRA contributions phase out at:\n  - Single: $146,000–$161,000 MAGI\n  - Married filing jointly: $230,000–$240,000 MAGI\n- Above $161K single / $240K MFJ: **cannot contribute directly** to Roth IRA\n\n**Backdoor Roth IRA (for high earners):**\n1. Make a **non-deductible Traditional IRA contribution** ($7,000) — no income limit\n2. **Convert** the Traditional IRA balance to a Roth IRA\n3. If done correctly (no other pre-tax IRA balances, due to pro-rata rule), conversion is tax-free\n4. Money now grows and withdraws tax-free like a regular Roth\n\n**Pro-rata rule trap:** If you have other pre-tax IRA money, the conversion is partially taxable based on the ratio of pre-tax to total IRA balances.",
-          highlight: ["IRA", "$7,000", "Roth IRA", "phase-out", "backdoor Roth", "non-deductible", "pro-rata rule", "$161,000"],
+            "Human capital is the present value of your future earnings — for a 30-year-old earning $100,000/year, it may exceed $2 million. Insurance replaces this capital if you die or become unable to work.\n\nDisability insurance is often more important than life insurance: you're 3x more likely to be disabled than to die during your working years.\n\n'Own-occupation' definition: you qualify for benefits if you cannot perform the specific duties of your own job — crucial for physicians, surgeons, and specialists. 'Any-occupation' definition is far more restrictive — benefits only if you cannot do any job at all.\n\nTarget coverage: 60–70% of gross income. Group coverage through employers often converts to any-occupation after 2 years.",
         },
         {
           type: "teach",
-          title: "🏥 HSA: Triple Tax Advantage & 529 Plans",
+          title: "Umbrella Liability, Long-Term Care & Self-Insurance",
           content:
-            "**Health Savings Account (HSA) — the best tax-advantaged account if eligible:**\n\nEligibility: Must be enrolled in a **High Deductible Health Plan (HDHP)**\n\n**Triple tax advantage — unmatched by any other account:**\n1. **Contributions are tax-deductible** (reduce taxable income, like Traditional 401k)\n2. **Growth is tax-free** (like Roth)\n3. **Withdrawals for qualified medical expenses are tax-free** (better than Traditional)\n\n**2024 limits:** $4,150 individual / $8,300 family\n\n**Power move:** Pay medical expenses out of pocket today, keep receipts, invest HSA in index funds, withdraw for those old expenses decades later — tax-free growth for years.\n\nAfter age 65: withdrawals for any reason taxed as ordinary income (like Traditional IRA) — it becomes a second IRA.\n\n**529 Education Savings Plan:**\n- Contributions after-tax (no federal deduction; 30+ states offer state deductions)\n- Growth and withdrawals for **qualified education expenses** are tax-free\n- **Superfunding:** Contribute 5 years of gift tax exclusions upfront ($18,000/year × 5 = $90,000) in one year — no gift tax\n- Unused funds: Can roll over up to $35,000 to a Roth IRA (new 2024 rule, subject to conditions) or change beneficiary to another family member\n\n**Optimal contribution priority order:**\n1. 401(k) — up to employer match (free money)\n2. HSA — max out if eligible (triple tax advantage)\n3. Roth IRA — max out ($7,000)\n4. 401(k) — max out remaining ($23,000 total)\n5. 529 — if education savings needed\n6. Taxable brokerage — after tax-advantaged accounts exhausted",
-          highlight: ["HSA", "triple tax advantage", "HDHP", "$4,150", "tax-free", "529", "superfunding", "contribution order"],
+            "Umbrella liability policy: provides $1M–$5M of additional liability coverage above your auto and homeowners policies. Cost is remarkably cheap — typically $200–$300/year for $1M of coverage. Essential for anyone with significant assets or income at risk from lawsuits.\n\nTriggered by: auto accidents where you are at fault, injuries on your property, libel/slander claims, rental property incidents.\n\nLong-term care insurance: covers nursing home, assisted living, or in-home care costs (median nursing home cost: $100,000+/year). Key features: elimination period (90-day is standard before benefits begin), inflation rider (3–5% compound is important), and benefit period (3–5 years covers most needs). Hybrid life/LTC products provide a death benefit if LTC is never needed.\n\nSelf-insurance threshold: once net worth exceeds $2–3M, some individuals self-insure for certain risks rather than paying premiums — treating the portfolio itself as the backstop.",
         },
         {
           type: "quiz-mc",
           question:
-            "A single filer with MAGI of $150,000 wants to maximize tax-advantaged savings. Which accounts can they contribute to directly?",
+            "A surgeon wants disability insurance that pays benefits if she cannot perform surgery, even if she could work as a general practitioner. Which policy definition does she need?",
           options: [
-            "401(k) and HSA (if on HDHP) — but NOT Roth IRA directly; would need backdoor Roth",
-            "401(k), Roth IRA, and HSA — all three are available at $150K MAGI",
-            "Only 401(k) — all other accounts phase out at $150K",
-            "401(k) and Traditional IRA with full deduction — Roth and HSA are unavailable",
+            "Any-occupation definition",
+            "Own-occupation definition",
+            "Modified own-occupation definition",
+            "Residual disability definition",
           ],
-          correctIndex: 0,
+          correctIndex: 1,
           explanation:
-            "At $150,000 MAGI single: (1) 401(k): no income limit, fully available; (2) Roth IRA: phases out $146K–$161K — at $150K they are in the phase-out range, so only a partial direct contribution is allowed; for simplicity the backdoor Roth is often used above $146K; (3) HSA: available if enrolled in an HDHP (no income limit); (4) Traditional IRA deductibility: phases out $77K–$87K if covered by workplace plan — at $150K the deduction is eliminated. Answer A best captures that 401(k) and HSA are clean options while Roth IRA requires the backdoor strategy at this income level.",
+            "Own-occupation definition is essential for specialized professionals. It pays benefits when you cannot perform the specific duties of your current occupation — even if you can work in another capacity. Any-occupation would deny her benefits because she could technically work as a doctor in a non-surgical role.",
           difficulty: 2,
         },
         {
           type: "quiz-tf",
           statement:
-            "An HSA account must be used to pay medical expenses in the same year the contribution is made.",
-          correct: false,
+            "An umbrella liability policy typically provides $1M+ of additional liability coverage for approximately $200–$300 per year, making it one of the highest-value insurance products available.",
+          correct: true,
           explanation:
-            "False. There is no 'use-it-or-lose-it' rule for HSAs (unlike FSAs). HSA funds roll over indefinitely with no expiration. A powerful strategy is to invest HSA funds in index funds, pay current medical bills out of pocket, save receipts, and withdraw the equivalent amounts years later — allowing tax-free compounding for potentially decades before reimbursement.",
-          difficulty: 2,
+            "Correct. Umbrella policies are widely considered to be extremely cost-effective. For $200–$300/year, they extend your liability protection by millions of dollars above auto and homeowners limits. Anyone with significant assets — a home, savings, or high income — should strongly consider one.",
+          difficulty: 1,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "Marcus is 28, earns $85,000/year, has a HDHP health plan, and his employer matches 401(k) contributions 100% up to 4% of salary. He has $1,000/month to allocate to savings after living expenses.",
-          question: "What is the optimal order for Marcus to allocate his $1,000/month?",
+            "Marcus is 35 with two young children, a mortgage, and $200,000 in savings. He needs life insurance. A term policy (20-year, $1M) costs $600/year. A whole life policy with similar death benefit costs $9,000/year.",
+          question:
+            "What is the primary financial argument for Marcus choosing term life insurance?",
           options: [
-            "First $283/month to 401(k) for full employer match, then $345 to HSA max, then remainder to Roth IRA",
-            "All $1,000 to Roth IRA first (lowest priority is 401k since he is young)",
-            "Split evenly: $333 to 401k, $333 to Roth IRA, $334 to taxable brokerage",
-            "All $1,000 to 401(k) pre-tax since he needs to reduce his taxable income",
+            "Whole life insurance never builds cash value",
+            "Term premiums are lower, freeing $8,400/year to invest, which likely outgrows whole life cash value",
+            "Term policies pay out more at death than whole life",
+            "Whole life policies expire before his children are grown",
           ],
-          correctIndex: 0,
+          correctIndex: 1,
           explanation:
-            "Optimal order: (1) Capture the full employer match — 4% of $85K = $3,400/year, so $283/month. This is a 100% instant return. (2) Max HSA — $4,150/year = ~$346/month for the triple tax advantage. (3) Apply remaining to Roth IRA (young with lower current tax rate makes Roth ideal). This captures the employer match first, uses the superior HSA triple advantage second, then fills Roth IRA. Never leave employer match on the table.",
+            "The 'buy term and invest the difference' argument: by saving $8,400/year ($9,000 - $600) and investing it at market returns over 20 years, Marcus would likely accumulate significantly more than the cash value inside the whole life policy. Whole life is appropriate for specific estate planning needs, not general income replacement.",
           difficulty: 2,
         },
       ],
     },
-
-    // ─── Lesson 5: Financial Independence Math ───────────────────────────────────
     {
-      id: "pf-advanced-5",
-      title: "🎯 Financial Independence Math",
+      id: "pfa-estate-planning",
+      title: "Estate Planning Essentials",
       description:
-        "FI number, savings rate to years, sequence of returns risk, safe withdrawal rates, and FIRE variants",
-      icon: "Target",
-      xpReward: 95,
+        "Navigate wills, trusts, beneficiary designations, gift tax strategies, and advanced techniques for multigenerational wealth transfer.",
+      icon: "FileText",
+      xpReward: 85,
       difficulty: "advanced",
+      duration: 17,
       steps: [
         {
           type: "teach",
-          title: "🔢 The FI Number & 4% Rule",
+          title: "Wills, Trusts & Probate Avoidance",
           content:
-            "**Financial Independence (FI)** means your investment portfolio generates enough passive income to cover your living expenses indefinitely — you no longer need to work for money.\n\n**The FI Number:**\nFI Number = Annual Expenses × 25\n\nThis comes from the **4% Safe Withdrawal Rate** (SWR) — from the landmark Trinity Study (1998, updated multiple times). It found that withdrawing 4% of a portfolio annually, with inflation adjustments, had a 95%+ success rate over 30-year retirement periods using historical market data.\n\n**Math:**\nIf you withdraw 4% and need expenses covered:\nExpenses = Portfolio × 4%\nPortfolio = Expenses / 0.04 = Expenses × 25\n\n**Examples:**\n- Annual expenses $40,000 → FI Number = $1,000,000\n- Annual expenses $60,000 → FI Number = $1,500,000\n- Annual expenses $100,000 → FI Number = $2,500,000\n\n**Asset allocation assumption:** The Trinity Study used a 50–75% stock allocation. A 100% bond portfolio would fail under the 4% rule due to lower expected returns.\n\n**The rule's limitations:**\n- Based on US market historical returns — may not hold globally\n- 30-year horizon; early retirees may need 40–50-year portfolios\n- Does not account for variable spending, part-time income, or Social Security",
-          highlight: ["FI number", "annual expenses × 25", "4% rule", "Trinity Study", "safe withdrawal rate", "30 years"],
+            "A will directs asset distribution at death but must go through probate — a public, potentially lengthy court process that can take months and cost 3–8% of the estate.\n\nA revocable living trust holds assets during your lifetime (you retain control), then distributes them at death without probate. Assets must be 'funded' into the trust during your lifetime or they fall back into your estate and probate.\n\nKey trust advantages: privacy (trusts are not public record), speed (assets distributed in days vs months), and multi-state property (avoids ancillary probate in each state where you own real estate).\n\nA 'pour-over will' captures any assets not funded into the trust at death, directing them in.",
         },
         {
           type: "teach",
-          title: "📈 Savings Rate → Years to FI",
+          title: "Beneficiary Designations & Powers of Attorney",
           content:
-            "Your **savings rate** determines how quickly you reach FI — it simultaneously reduces how much you need (lower lifestyle = smaller FI number) and increases how fast you accumulate.\n\n**Years to FI from a $0 starting point (assuming 7% real return):**\n\n| Savings Rate | Years to FI |\n|:------------:|:-----------:|\n| 10%          | ~40 years   |\n| 20%          | ~32 years   |\n| 30%          | ~25 years   |\n| 40%          | ~20 years   |\n| 50%          | ~17 years   |\n| 60%          | ~13 years   |\n| 75%          | ~7 years    |\n| 90%          | ~3 years    |\n\n**Why the curve is nonlinear:**\n- At 50% savings rate, you spend 50% of income and save 50%\n- Your FI number equals 25× your spending (25× 50% = 12.5× income)\n- But you're saving 50% per year of that income — so progress accelerates\n\n**Compounding accelerator:** At higher savings rates, you're simultaneously growing the portfolio faster AND reducing the target number — creating a powerful double-effect.\n\n**Practical insight:** Going from a 10% to 20% savings rate (doubling savings) cuts your working years by 8. Going from 40% to 50% cuts working years by 3. The earlier years of savings compound the longest.",
-          highlight: ["savings rate", "years to FI", "10%→40 years", "50%→17 years", "75%→7 years", "7% real return"],
+            "Beneficiary designations on retirement accounts (401k, IRA), life insurance, and POD/TOD bank accounts transfer assets OUTSIDE of probate — and they supersede your will entirely. A forgotten ex-spouse listed as beneficiary will receive the assets even if your will says otherwise.\n\nReview beneficiaries after every major life event: marriage, divorce, birth, death.\n\nPowers of Attorney:\n- Financial POA: authorizes someone to manage financial affairs if incapacitated\n- Healthcare POA / Healthcare Proxy: authorizes medical decisions\n- Durable POA: remains valid even after incapacity (non-durable POA terminates at incapacity)\n\nWithout a POA, family members may need to petition the court for guardianship — a costly and public process.",
         },
         {
           type: "teach",
-          title: "⚠️ Sequence of Returns Risk",
+          title: "Estate & Gift Tax Strategies",
           content:
-            "**Sequence of returns risk** is the danger that the *order* of investment returns — not just the average return — can permanently impair a retirement portfolio.\n\n**The problem:**\n- Two portfolios with identical average returns over 30 years\n- Portfolio A: strong early returns, weak late returns\n- Portfolio B: weak early returns, strong late returns\n- During accumulation: final values are identical\n- **During withdrawals: Portfolio B fails** — poor returns early deplete the portfolio faster while withdrawals continue, leaving less capital to recover during good years\n\n**Example:**\nA 50% portfolio drop in year 1 of retirement, combined with 4% withdrawals, can cut the sustainable withdrawal rate dramatically. The market eventually recovers, but you've been selling shares at the bottom to fund living expenses.\n\n**Mitigation strategies:**\n1. **Bond tent / rising equity glidepath:** Hold more bonds in early retirement, gradually shifting back to stocks as sequence risk passes (first 5–10 years)\n2. **Cash buffer:** Keep 1–2 years of expenses in cash — don't sell stocks during downturns\n3. **Flexible spending:** Reduce withdrawals by 10–20% during market downturns\n4. **Part-time income:** Even small income in early retirement dramatically reduces portfolio withdrawal pressure\n5. **Delay retirement** during extended bear markets if possible",
-          highlight: ["sequence of returns risk", "order of returns", "withdrawals", "bond tent", "cash buffer", "flexible spending"],
+            "2024 federal estate tax exemption: $13.61 million per person ($27.22M for married couples with portability election). Estates below this threshold owe no federal estate tax. The exemption is scheduled to sunset to ~$7M in 2026 without Congressional action.\n\nGift tax annual exclusion: $18,000 per recipient in 2024. You can gift this amount to any number of people per year without affecting your lifetime exemption.\n\n529 superfunding: gift 5 years' worth of annual exclusion ($90,000) to a 529 at once, removing it from your estate immediately.\n\nAdvanced techniques:\n- GRAT (Grantor Retained Annuity Trust): transfer asset appreciation to heirs with minimal gift tax\n- IDGT (Intentionally Defective Grantor Trust): sell assets to trust; grantor pays trust's income taxes (additional tax-free gift)\n- Step-up in cost basis: assets held until death receive a new cost basis at fair market value, eliminating embedded capital gains",
         },
         {
           type: "teach",
-          title: "🔥 FIRE Variants & the SWR Debate",
+          title: "Charitable Strategies & Dynasty Trusts",
           content:
-            "**Safe Withdrawal Rate (SWR) debate:**\nThe original 4% rule was based on historical US returns and 30-year horizons. Modern challenges:\n- **Lower expected returns** in today's high-valuation environment\n- **Longer retirements** — retiring at 40 means a 50+ year portfolio\n- Bill Bengen (originator) now suggests 4.7% is historically sustainable\n- Many conservative planners recommend **3.5% SWR** for early retirees → FI Number = expenses × 28.6\n\n**FIRE Variants (Financial Independence, Retire Early):**\n\n**Lean FIRE:**\n- Annual expenses ~$25,000–$40,000 (extremely frugal lifestyle)\n- FI Number: $625K–$1M\n- Requires minimal spending, often geographic arbitrage (low-cost areas or countries)\n\n**Fat FIRE:**\n- Annual expenses $100,000+\n- FI Number: $2.5M–$5M+\n- Maintains a wealthy retirement lifestyle without financial compromise\n\n**Barista FIRE:**\n- Partially retired — work part-time (e.g., coffee shop) for income + health benefits\n- Smaller portfolio needed because part-time income covers some expenses\n- Portfolio may only need to cover $20K–$30K/year; part-time covers the rest\n\n**Coast FIRE:**\n- You have enough invested today that — without any additional contributions — compounding will grow it to your FI number by traditional retirement age (65)\n- Once \"Coast FI,\" you only need to cover current living expenses from earned income\n- Example: $350K at age 35, growing at 7% for 30 years = $2.67M by 65\n- No more saving required — just earn enough to live on",
-          highlight: ["FIRE", "Lean FIRE", "Fat FIRE", "Barista FIRE", "Coast FIRE", "3.5%", "4% rule", "SWR debate"],
+            "Donor-Advised Fund (DAF): contribute appreciated assets (stock, real estate) to the DAF, take an immediate charitable deduction, then recommend grants to charities over time. Eliminates capital gains on the donated assets.\n\nQualified Charitable Distribution (QCD): IRA owners 70.5+ can donate up to $105,000/year (2024) directly from an IRA to charity. Counts toward RMD, excluded from gross income — more tax-efficient than deducting a cash donation.\n\nCharitable Remainder Trust (CRT): transfer assets to a trust that pays you income for life; remainder passes to charity. Deduction + income stream + capital gains deferral.\n\nDynasty Trust: designed to last for multiple generations (or in perpetuity in some states), allowing wealth to compound sheltered from estate taxes at each generation. Requires careful state law selection (no rule-against-perpetuities states preferred).",
         },
         {
           type: "quiz-mc",
           question:
-            "If your annual expenses are $60,000, what is your FI number using the 4% rule, and approximately how many years will it take to reach it if you save $30,000/year starting from $0 (assuming 7% real annual return)?",
+            "Which document takes legal precedence over a will for distributing an IRA account at death?",
           options: [
-            "FI number $1,500,000; approximately 20–22 years",
-            "FI number $1,200,000; approximately 15 years",
-            "FI number $1,500,000; approximately 30 years — savings rate is 50% so about 17 years is wrong",
-            "FI number $600,000; approximately 10 years since you're saving half your expenses",
+            "The will",
+            "The living trust",
+            "The beneficiary designation on file with the IRA custodian",
+            "The durable power of attorney",
           ],
-          correctIndex: 0,
+          correctIndex: 2,
           explanation:
-            "FI number = $60,000 × 25 = $1,500,000. You're saving $30,000/year — a 50% savings rate relative to expenses (assuming income = $60,000 spending + $30,000 saving = $90,000; savings rate = 33%). With a 7% real return and $30K/year contributions, compound growth reaches ~$1.5M in approximately 20–22 years. At a true 50% savings rate from $0 the table shows ~17 years — slight variation due to the income/expense ratio assumption. Answer A is the most accurate available choice.",
+            "Beneficiary designations on retirement accounts, life insurance, and transfer-on-death accounts pass assets directly to named beneficiaries outside of probate — and they supersede the will entirely. This is why reviewing and updating beneficiary designations after every major life event is critical.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "The federal estate tax exemption for 2024 is approximately $13.6 million per person, meaning most Americans will not owe federal estate tax.",
+          correct: true,
+          explanation:
+            "Correct. At $13.61 million per person ($27.22M for married couples using portability), the vast majority of American estates fall below the exemption threshold. However, this exemption is scheduled to sunset to roughly half that amount in 2026 if Congress does not act, making planning relevant for high-net-worth individuals.",
+          difficulty: 1,
+        },
+        {
+          type: "quiz-scenario",
+          scenario:
+            "Elena, age 72, holds $500,000 in a Traditional IRA and is charitably inclined. She wants to donate $20,000 to her university this year and minimize her tax bill. Her RMD for the year is $18,000.",
+          question:
+            "Which strategy is most tax-efficient for Elena's charitable gift?",
+          options: [
+            "Take the RMD, donate from checking account, and claim an itemized deduction",
+            "Use a Qualified Charitable Distribution (QCD) directly from her IRA to the university",
+            "Contribute to a Roth IRA and then donate",
+            "Sell IRA assets, pay tax, then donate the proceeds",
+          ],
+          correctIndex: 1,
+          explanation:
+            "A QCD transfers money directly from the IRA to the charity tax-free, counts toward her $18,000 RMD, and is excluded from her gross income entirely — no deduction needed. This is more efficient than taking taxable IRA distributions and then donating, especially since fewer taxpayers itemize deductions after the higher standard deduction.",
+          difficulty: 3,
+        },
+      ],
+    },
+    {
+      id: "pfa-advanced-wealth-building",
+      title: "Advanced Wealth Building",
+      description:
+        "Master mortgage payoff decisions, tax-loss harvesting, asset location, direct indexing, NUA, I-bonds, and DAF bunching strategies.",
+      icon: "TrendingUp",
+      xpReward: 75,
+      difficulty: "advanced",
+      duration: 20,
+      steps: [
+        {
+          type: "teach",
+          title: "Mortgage Payoff vs Invest & Real Estate Leverage",
+          content:
+            "The core question: is your mortgage's after-tax cost higher or lower than the expected after-tax return on investments?\n\nAfter-tax mortgage cost = mortgage rate x (1 - marginal tax rate), but only if you itemize deductions. At a 7% rate with a 24% marginal rate: after-tax cost is approximately 5.3%. If your investment portfolio is expected to return 7–8% long-term, the math favors investing.\n\nHowever, paying off the mortgage provides a guaranteed return equal to the rate — no market risk. Behavioral factors matter: some people sleep better debt-free.\n\nRule of thumb: pay off mortgage early if (a) it's a high rate, (b) you're near retirement and want lower fixed expenses, or (c) you've already maxed all tax-advantaged accounts.\n\nReal estate leverage — BRRRR strategy: Buy, Rehab, Rent, Refinance, Repeat. Uses borrowed capital to acquire rental properties, recycle equity via cash-out refinance, and scale a portfolio with limited out-of-pocket capital.",
+        },
+        {
+          type: "teach",
+          title: "Tax-Loss Harvesting & Direct Indexing",
+          content:
+            "Tax-loss harvesting (TLH): sell a security at a loss to realize a capital loss, then immediately buy a similar (but not 'substantially identical') security to maintain market exposure. The realized loss offsets capital gains or up to $3,000 of ordinary income per year. Excess losses carry forward indefinitely.\n\nWash-sale rule: you cannot repurchase the same or substantially identical security within 30 days before or after the sale (60-day window total) or the loss is disallowed. Solution: buy a similar ETF in the interim (e.g., sell Vanguard S&P 500 ETF, buy iShares S&P 500 ETF).\n\nDirect indexing: instead of buying an ETF, you own the individual stocks in an index (typically via separately managed accounts, minimum ~$100K). This enables customized TLH at the individual stock level — harvesting losses within the index even when the overall index is up — generating significantly more tax alpha.",
+        },
+        {
+          type: "teach",
+          title: "Asset Location Optimization & NUA",
+          content:
+            "Asset location asks: which account type is the most tax-efficient home for each asset class?\n\nOptimal framework:\n- Tax-deferred accounts (Traditional IRA/401k): hold bonds, REITs, and high-dividend stocks — assets generating ordinary income taxed at high rates\n- Roth accounts: hold highest expected-return assets (small-cap growth, international equities) — gains grow permanently tax-free\n- Taxable brokerage: hold tax-efficient assets (broad index ETFs with low turnover, buy-and-hold positions eligible for long-term capital gains rates, municipal bonds for high earners)\n\nNet Unrealized Appreciation (NUA): if you hold highly appreciated employer stock in your 401(k), you may be able to take an in-kind lump sum distribution, pay ordinary income tax only on the cost basis, and then pay only long-term capital gains rates on the appreciation — potentially a significant tax saving vs rolling to an IRA.",
+        },
+        {
+          type: "teach",
+          title: "I-Bonds, EE Bonds, HELOC & DAF Bunching",
+          content:
+            "I-Bonds: U.S. Treasury savings bonds with a composite rate = fixed rate + inflation adjustment (CPI-based). Principal is guaranteed; inflation-adjusted returns are exempt from state/local tax. Purchase limit: $10,000/person/year electronically. Must hold at least 1 year; penalty = 3 months' interest if redeemed before 5 years. Excellent for emergency funds or conservative savings when inflation is high.\n\nEE Bonds: guaranteed to double in 20 years (3.5% effective annual return if held to maturity). Federal tax-deferred; can be tax-free if used for education.\n\nHELOC as emergency fund alternative: rather than keeping 6 months of expenses in low-yield savings, some high-income earners establish a Home Equity Line of Credit as a backstop, keeping less cash on hand and investing the difference. Carries risk if home values fall or credit is revoked.\n\nDAF charitable bunching: instead of donating $10,000/year, 'bunch' 5 years of donations ($50,000) into one year to a Donor-Advised Fund, taking a large itemized deduction that year while distributing grants to charities each subsequent year.",
+        },
+        {
+          type: "quiz-mc",
+          question:
+            "An investor sells an S&P 500 index fund at a loss for tax-loss harvesting purposes. To avoid the wash-sale rule while maintaining market exposure, which is the best immediate replacement purchase?",
+          options: [
+            "Repurchase the same S&P 500 fund after 30 days",
+            "Buy a different S&P 500 ETF from another fund family immediately",
+            "Buy a Treasury bond ETF",
+            "Hold cash for 31 days",
+          ],
+          correctIndex: 1,
+          explanation:
+            "The wash-sale rule disallows the loss if you repurchase the same or 'substantially identical' security within 30 days. Buying a different fund tracking the same index (e.g., iShares vs Vanguard S&P 500) is generally considered acceptable since they are different securities, allowing you to maintain market exposure while capturing the tax loss.",
+          difficulty: 2,
+        },
+        {
+          type: "quiz-tf",
+          statement:
+            "In an optimally located portfolio, Roth accounts should hold the assets expected to have the highest long-term return, because all growth inside a Roth is permanently tax-free.",
+          correct: true,
+          explanation:
+            "Correct. Asset location strategy places highest expected-return assets (e.g., small-cap equities, international stocks) in Roth accounts where they grow tax-free forever. Bond interest — taxed as ordinary income — is better sheltered in tax-deferred accounts. Low-turnover index funds can be held tax-efficiently in taxable brokerage accounts.",
           difficulty: 2,
         },
         {
           type: "quiz-scenario",
           scenario:
-            "Mei is 32 with $200,000 already invested. She needs $2,000,000 to reach FI (her annual expenses are $80,000). She currently saves $40,000/year. She is worried about retiring right before a major market crash.",
-          question: "Which FIRE variant describes her situation if she stops contributing at $200,000 now and just lets it compound, and what risk does she most need to mitigate?",
+            "David holds $300,000 of his employer's stock inside his 401(k), with a cost basis of $50,000 (the stock was purchased at much lower prices). He is retiring and considering his options.",
+          question:
+            "What is the potential advantage of the Net Unrealized Appreciation (NUA) strategy?",
           options: [
-            "Coast FIRE — she checks if $200K compounds to $2M by her target retirement age; sequence of returns risk is her main concern in early retirement",
-            "Lean FIRE — she reduces expenses to $25K so her FI number drops to $625K",
-            "Barista FIRE — she should take a part-time job to reduce sequence risk",
-            "Fat FIRE — $2M FI number qualifies as Fat FIRE territory",
+            "Roll the employer stock to a Traditional IRA to defer all taxes indefinitely",
+            "Take an in-kind distribution — pay ordinary income tax only on the $50,000 basis, then pay long-term capital gains rates on the $250,000 appreciation",
+            "Sell the stock inside the 401(k) and roll cash to a Roth IRA",
+            "Leave the stock in the 401(k) to avoid all taxes until RMDs",
           ],
-          correctIndex: 0,
+          correctIndex: 1,
           explanation:
-            "Coast FIRE asks: does my current balance, left to compound without new contributions, reach my FI number by retirement age? $200,000 growing at 7% for 30 years = $200,000 × (1.07)^30 ≈ $1.52M — not quite $2M, so Mei has not yet hit Coast FI. She needs to check her specific timeline. Her primary risk once she does retire is sequence of returns risk — retiring into a bear market could deplete her $2M portfolio before markets recover, especially in early retirement years when the portfolio is most vulnerable to large withdrawals during downturns.",
+            "The NUA strategy allows David to take an in-kind lump-sum distribution of the employer stock. He pays ordinary income tax on only the $50,000 cost basis immediately, and then long-term capital gains rates (0/15/20%) on the $250,000 of NUA when he sells — potentially far less than if he rolled to an IRA and paid ordinary income tax on the full $300,000 upon withdrawal.",
           difficulty: 3,
         },
       ],
