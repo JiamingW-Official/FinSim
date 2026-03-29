@@ -540,7 +540,7 @@ function FundingStagesTab() {
               "rounded-lg border p-2 text-center transition-all text-xs font-medium",
               selected.name === stage.name
                 ? "border-transparent text-white"
-                : "border-border bg-card text-muted-foreground hover:border-zinc-500"
+                : "border-border bg-card text-muted-foreground hover:border-muted-foreground"
             )}
             style={
               selected.name === stage.name
@@ -800,7 +800,7 @@ function CapTableTab() {
             </span>
             <button
               onClick={resetCap}
-              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-white px-2 py-1 rounded border border-border hover:border-zinc-500 transition-colors"
+              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-white px-2 py-1 rounded border border-border hover:border-muted-foreground transition-colors"
             >
               <RefreshCw className="w-3 h-3" /> Reset
             </button>
@@ -1097,7 +1097,7 @@ function ValuationTab() {
               "rounded-xl border p-3 text-left transition-all",
               selected.name === m.name
                 ? "text-white"
-                : "border-border bg-card text-muted-foreground hover:border-zinc-500"
+                : "border-border bg-card text-muted-foreground hover:border-muted-foreground"
             )}
             style={
               selected.name === m.name
@@ -1364,7 +1364,7 @@ function EmployeeOptionsTab() {
               "rounded-xl border p-4 transition-all cursor-pointer",
               (opt.name === "ISO") === isoMode
                 ? "border-indigo-500/60 bg-indigo-500/10"
-                : "border-border bg-card hover:border-zinc-500"
+                : "border-border bg-card hover:border-muted-foreground"
             )}
             onClick={() => setIsoMode(opt.name === "ISO")}
           >
@@ -1495,7 +1495,7 @@ function EmployeeOptionsTab() {
                   "text-xs px-2 py-1 rounded border transition-colors",
                   vestingIdx === i
                     ? "border-indigo-500 bg-indigo-500/20 text-indigo-300"
-                    : "border-border text-muted-foreground hover:border-zinc-500"
+                    : "border-border text-muted-foreground hover:border-muted-foreground"
                 )}
               >
                 {sch.label}

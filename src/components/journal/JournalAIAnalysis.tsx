@@ -32,7 +32,7 @@ const EMOTION_CONFIG: Record<
   { emoji: string; label: string; color: string; bgColor: string }
 > = {
   anxious:    { emoji: "😰", label: "Anxious",    color: "text-primary",   bgColor: "bg-primary/15 border-border" },
-  neutral:    { emoji: "😐", label: "Neutral",    color: "text-slate-400",  bgColor: "bg-slate-500/15 border-slate-500/30" },
+  neutral:    { emoji: "😐", label: "Neutral",    color: "text-muted-foreground",  bgColor: "bg-muted-foreground/15 border-muted-foreground/30" },
   confident:  { emoji: "😊", label: "Confident",  color: "text-green-400",  bgColor: "bg-green-500/15 border-green-500/30" },
   greedy:     { emoji: "🤑", label: "Greedy",     color: "text-amber-400",  bgColor: "bg-amber-500/15 border-amber-500/30" },
   frustrated: { emoji: "😤", label: "Frustrated", color: "text-red-400",    bgColor: "bg-red-500/15 border-red-500/30" },

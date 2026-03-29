@@ -1845,7 +1845,7 @@ export default function IBDealsPage() {
                             <td className="px-4 py-2 text-center">
                               <span className={cn("w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mx-auto",
                                 i === 0 ? "bg-amber-500/20 text-amber-400" :
-                                i === 1 ? "bg-zinc-400/20 text-muted-foreground" :
+                                i === 1 ? "bg-muted-foreground/20 text-muted-foreground" :
                                 i === 2 ? "bg-orange-600/20 text-orange-400" :
                                 "bg-muted text-muted-foreground"
                               )}>

@@ -159,7 +159,7 @@ function TypeBadge({ type }: { type: string }) {
     vault: "bg-orange-500/20 text-orange-300 border-orange-500/30",
   };
   return (
-    <Badge className={cn("text-xs", map[type] ?? "bg-zinc-500/20 text-muted-foreground")}>
+    <Badge className={cn("text-xs", map[type] ?? "bg-muted-foreground/20 text-muted-foreground")}>
       {type.toUpperCase()}
     </Badge>
   );

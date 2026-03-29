@@ -39,7 +39,7 @@ const GRADE_CONFIG = {
   S: { color: "text-amber-400", bg: "bg-amber-400/10", border: "border-amber-400/30", glow: "", icon: Trophy, label: "Outstanding!" },
   A: { color: "text-emerald-400", bg: "bg-emerald-400/10", border: "border-emerald-400/30", glow: "", icon: Star, label: "Excellent!" },
   B: { color: "text-primary", bg: "bg-primary/10", border: "border-primary/30", glow: "", icon: ThumbsUp, label: "Good job!" },
-  C: { color: "text-zinc-400", bg: "bg-zinc-400/10", border: "border-zinc-400/30", glow: "", icon: Dumbbell, label: "Keep trying!" },
+  C: { color: "text-muted-foreground", bg: "bg-muted/50", border: "border-border", glow: "", icon: Dumbbell, label: "Keep trying!" },
 } as const;
 
 type Tab = "overview" | "analytics" | "montecarlo" | "trades" | "compare";
@@ -77,7 +77,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             className={`flex flex-1 items-center justify-center gap-1 py-2.5 text-xs font-medium transition-all ${
               tab === t.id
                 ? "border-b-2 border-primary text-primary"
-                : "text-zinc-500 hover:text-zinc-300"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             {t.icon}
@@ -99,7 +99,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             >
               <GradeIcon className={`h-8 w-8 ${config.color}`} />
               <div className={`text-3xl font-bold ${config.color}`}>{grade}</div>
-              <div className="text-xs text-zinc-400">{config.label}</div>
+              <div className="text-xs text-muted-foreground">{config.label}</div>
               <div className="mt-1 rounded-full bg-primary/20 px-3 py-1 text-xs font-semibold text-primary">
                 +{xpEarned} XP
               </div>
@@ -119,7 +119,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
 
             {/* Enhanced Metrics */}
             <div>
-              <h3 className="mb-2 text-xs font-semibold text-zinc-500">Deep Metrics</h3>
+              <h3 className="mb-2 text-xs font-semibold text-muted-foreground">Deep Metrics</h3>
               <div className="grid grid-cols-2 gap-2">
                 <MetricCard
                   icon={<BarChart3 className="h-3.5 w-3.5" />}
@@ -168,18 +168,18 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
 
             {/* Equity Curve */}
             <div className="space-y-1">
-              <h3 className="text-xs font-semibold text-zinc-500">Equity Curve</h3>
+              <h3 className="text-xs font-semibold text-muted-foreground">Equity Curve</h3>
               <MiniEquityCurve equityCurve={equityCurve} startingCapital={result.config.startingCapital} />
             </div>
 
             {/* Annual Returns */}
             <div className="space-y-1">
-              <h3 className="text-xs font-semibold text-zinc-500">Annual Returns vs SPY</h3>
+              <h3 className="text-xs font-semibold text-muted-foreground">Annual Returns vs SPY</h3>
               <AnnualReturnsChart result={result} />
             </div>
 
             {/* Disclaimer */}
-            <p className="text-center text-[10px] text-zinc-600">
+            <p className="text-center text-[10px] text-muted-foreground/70">
               Backtested on simulated data &mdash; past performance is not indicative of future results
             </p>
           </div>
@@ -190,13 +190,13 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
             <AnalyticsPanel result={result} />
             <div className="space-y-4 px-4 pb-4">
               <div>
-                <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+                <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
                   Trade Return Distribution
                 </h3>
                 <TradeDistributionChart trades={result.trades} />
               </div>
               <div>
-                <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+                <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
                   Risk-Adjusted Scatter
                 </h3>
                 <RiskReturnScatter baseConfig={result.config} />
@@ -211,19 +211,19 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
 
         {tab === "trades" && (
           <div className="space-y-1 p-4">
-            <h3 className="text-xs font-semibold text-zinc-500">
+            <h3 className="text-xs font-semibold text-muted-foreground">
               All Trades ({trades.length})
             </h3>
             <div className="space-y-1">
               {trades.map((t) => (
                 <div key={t.id} className="rounded-lg border border-border/40 bg-card/40 px-3 py-2 text-xs">
                   <div className="flex items-center justify-between">
-                    <span className="text-zinc-300">Bar {t.entryBar} → {t.exitBar}</span>
+                    <span className="text-foreground">Bar {t.entryBar} → {t.exitBar}</span>
                     <span className={`font-mono font-semibold ${t.pnl >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                       {t.pnl >= 0 ? "+" : ""}${t.pnl.toFixed(2)}
                     </span>
                   </div>
-                  <div className="mt-1 flex items-center gap-3 text-xs text-zinc-500">
+                  <div className="mt-1 flex items-center gap-3 text-xs text-muted-foreground">
                     <span>{t.exitReason}</span>
                     <span>{t.holdingBars} bars</span>
                     <span>${t.entryPrice.toFixed(2)} → ${t.exitPrice.toFixed(2)}</span>
@@ -231,12 +231,12 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
                   <div className="mt-1 flex items-center gap-3 text-xs">
                     <span className="text-rose-400/70">MAE -{t.mae.toFixed(1)}%</span>
                     <span className="text-emerald-400/70">MFE +{t.mfe.toFixed(1)}%</span>
-                    <span className="text-zinc-600">Fee ${t.commission.toFixed(2)}</span>
+                    <span className="text-muted-foreground/70">Fee ${t.commission.toFixed(2)}</span>
                   </div>
                 </div>
               ))}
               {trades.length === 0 && (
-                <div className="py-4 text-center text-xs text-zinc-600">No trades executed</div>
+                <div className="py-4 text-center text-xs text-muted-foreground/70">No trades executed</div>
               )}
             </div>
           </div>
@@ -245,8 +245,8 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
         {tab === "compare" && (
           <div className="space-y-4 p-4">
             <div>
-              <h3 className="mb-0.5 text-xs font-semibold text-zinc-200">Strategy Comparison</h3>
-              <p className="mb-3 text-xs text-zinc-500">RSI-7 / RSI-14 / RSI-21 on identical market data</p>
+              <h3 className="mb-0.5 text-xs font-semibold text-foreground">Strategy Comparison</h3>
+              <p className="mb-3 text-xs text-muted-foreground">RSI-7 / RSI-14 / RSI-21 on identical market data</p>
               <StrategyComparison baseConfig={result.config} />
             </div>
           </div>
@@ -258,7 +258,7 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
         <button onClick={onSave} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 py-2 text-xs font-medium text-primary transition-colors hover:bg-primary/20">
           <Save className="h-3.5 w-3.5" /> Save
         </button>
-        <button onClick={onRerun} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 py-2 text-xs font-medium text-zinc-300 transition-colors hover:bg-white/10">
+        <button onClick={onRerun} className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-border bg-muted/50 py-2 text-xs font-medium text-foreground transition-colors hover:bg-muted">
           <RefreshCw className="h-3.5 w-3.5" /> Rerun
         </button>
       </div>
@@ -289,14 +289,14 @@ function computeAvgLossDuration(trades: { pnl: number; holdingBars: number }[]):
 function MetricCard({ icon, label, value, sub, positive }: { icon: React.ReactNode; label: string; value: string; sub?: string; positive?: boolean }) {
   return (
     <div className="rounded-lg border border-border/40 bg-card/40 px-3 py-2">
-      <div className="flex items-center gap-1.5 text-zinc-500">
+      <div className="flex items-center gap-1.5 text-muted-foreground">
         {icon}
         <span className="text-xs">{label}</span>
       </div>
-      <div className={`mt-0.5 text-sm font-bold ${positive === undefined ? "text-zinc-200" : positive ? "text-emerald-400" : "text-rose-400"}`}>
+      <div className={`mt-0.5 text-sm font-bold ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
-      {sub && <div className="text-xs text-zinc-500">{sub}</div>}
+      {sub && <div className="text-xs text-muted-foreground">{sub}</div>}
     </div>
   );
 }

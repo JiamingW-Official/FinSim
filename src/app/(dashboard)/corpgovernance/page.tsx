@@ -362,7 +362,7 @@ const scoreBg = (v: number) =>
 const statusColor: Record<ActivistCampaign["status"], string> = {
   Ongoing: "bg-primary/20 text-primary",
   Settled: "bg-emerald-500/20 text-emerald-400",
-  Withdrawn: "bg-zinc-500/20 text-muted-foreground",
+  Withdrawn: "bg-muted-foreground/20 text-muted-foreground",
   Won: "bg-primary/20 text-primary",
 };
 
@@ -574,7 +574,7 @@ function ProxyVoteSimulator() {
                           ? "bg-emerald-500 border-emerald-500 text-white"
                           : v === "Against"
                           ? "bg-rose-500 border-rose-500 text-white"
-                          : "bg-zinc-500 border-zinc-500 text-white"
+                          : "bg-muted-foreground border-muted-foreground text-white"
                         : "border-white/10 text-muted-foreground hover:border-white/30 hover:text-white"
                     )}
                   >

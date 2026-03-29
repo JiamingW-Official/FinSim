@@ -484,7 +484,7 @@ function ExchangeLandscapeTab() {
                 <th className="text-left py-2 text-primary font-medium">NASDAQ</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-700/40">
+            <tbody className="divide-y divide-border/40">
               {[
                 ["Model", "Hybrid (floor + electronic)", "Fully electronic"],
                 ["Market Makers", "Designated Market Makers (DMMs)", "Market Makers (MMs) — no designation"],
@@ -518,11 +518,11 @@ function ExchangeLandscapeTab() {
               key={i}
               whileHover={{ scale: 1.02 }}
               onClick={() => setSelectedGlobal(selectedGlobal?.abbr === ex.abbr ? null : ex)}
-              className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-primary bg-muted/40" : "border-border hover:border-slate-600 bg-card/40")}
+              className={cn("rounded-lg border p-3 cursor-pointer transition-colors", selectedGlobal?.abbr === ex.abbr ? "border-primary bg-muted/40" : "border-border hover:border-border bg-card/40")}
             >
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold text-foreground">{ex.abbr}</span>
-                <Badge variant="outline" className="text-xs px-1.5 py-0 border-slate-600 text-muted-foreground">{ex.country}</Badge>
+                <Badge variant="outline" className="text-xs px-1.5 py-0 border-border text-muted-foreground">{ex.country}</Badge>
               </div>
               <div className="text-lg font-bold" style={{ color: ex.color }}>{ex.marketCap}</div>
               <div className="text-xs text-muted-foreground mt-1">{ex.hours}</div>
@@ -619,7 +619,7 @@ function OrderTypesTab() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-primary border-primary text-white" : "border-border text-muted-foreground hover:border-slate-500")}
+                className={cn("text-xs px-3 py-1 rounded-md border transition-colors", filter === f ? "bg-primary border-primary text-white" : "border-border text-muted-foreground hover:border-muted-foreground")}
               >
                 {f}
               </button>
@@ -636,7 +636,7 @@ function OrderTypesTab() {
               onClick={() => setSelected(selected?.abbr === o.abbr ? null : o)}
               className={cn(
                 "rounded-lg border p-2.5 text-left transition-colors",
-                selected?.abbr === o.abbr ? "border-primary bg-muted/40" : "border-border hover:border-slate-600 bg-card/40"
+                selected?.abbr === o.abbr ? "border-primary bg-muted/40" : "border-border hover:border-border bg-card/40"
               )}
             >
               <div className="text-xs font-bold text-foreground mb-0.5">{o.abbr}</div>

@@ -448,7 +448,7 @@ function roleColor(role: SyndicationRole): string {
 function statusColor(status: DealStatus): string {
   if (status === "Active") return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
   if (status === "Pricing") return "bg-amber-500/20 text-amber-400 border-amber-500/30";
-  if (status === "Closed") return "bg-zinc-600/40 text-muted-foreground border-border/30";
+  if (status === "Closed") return "bg-muted/40 text-muted-foreground border-border/30";
   return "bg-red-500/20 text-red-400 border-red-500/30";
 }
 
@@ -838,7 +838,7 @@ function PricingGridTab() {
                   </div>
                   <div className="flex-1 h-5 bg-muted rounded overflow-hidden">
                     <div
-                      className={`h-full rounded transition-all ${isActive ? "bg-primary" : "bg-zinc-600"}`}
+                      className={`h-full rounded transition-all ${isActive ? "bg-primary" : "bg-muted"}`}
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
@@ -1100,7 +1100,7 @@ function CovenantTab() {
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
-                        className="border-t border-border grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-zinc-800"
+                        className="border-t border-border grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border"
                       >
                         <div className="p-4 bg-red-500/5">
                           <p className="text-xs font-semibold text-red-400 mb-1">Cov-Lite</p>
@@ -1184,7 +1184,7 @@ function LeagueTableTab() {
                       <div className="flex items-center gap-2">
                         <div className="flex-1 h-3 bg-muted rounded overflow-hidden max-w-[120px]">
                           <div
-                            className={`h-full rounded ${entry.rank <= 2 ? "bg-primary" : "bg-zinc-600"}`}
+                            className={`h-full rounded ${entry.rank <= 2 ? "bg-primary" : "bg-muted"}`}
                             style={{ width: `${(entry.volumeB / maxVol) * 100}%` }}
                           />
                         </div>

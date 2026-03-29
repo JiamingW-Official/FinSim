@@ -1274,7 +1274,7 @@ export default function PerformancePage() {
                     <span className="font-semibold ml-auto">{stats.losses}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-gray-500 inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-muted-foreground inline-block" />
                     <span className="text-muted-foreground">Breakeven</span>
                     <span className="font-semibold ml-auto">{stats.breakevens}</span>
                   </div>

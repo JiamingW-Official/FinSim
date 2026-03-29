@@ -134,7 +134,7 @@ export const FLASHCARDS: FlashcardItem[] = [...glossaryCards, ...indicatorCards,
 
 export const CATEGORY_LABELS: Record<string, { label: string; color: string }> = {
   basics: { label: "Basics", color: "text-primary" },
-  orders: { label: "Orders", color: "text-emerald-400" },
+  orders: { label: "Orders", color: "text-primary" },
   indicators: { label: "Indicators", color: "text-amber-400" },
   risk: { label: "Risk", color: "text-rose-400" },
   fundamental: { label: "Fundamental", color: "text-primary" },

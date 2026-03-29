@@ -980,7 +980,7 @@ function MLFinanceTab() {
                 className={`px-3 py-1 rounded text-xs border transition-colors ${
                   activeModel.name === m.name
                     ? "border-primary bg-primary/10 text-primary"
-                    : "border-border text-muted-foreground hover:border-slate-600"
+                    : "border-border text-muted-foreground hover:border-border"
                 }`}
               >
                 {m.name}
@@ -1136,7 +1136,7 @@ function MLFinanceTab() {
               { step: "Champion/Challenger", color: "bg-emerald-500/20 text-emerald-300" },
               { step: "Drift Detection", color: "bg-amber-500/20 text-amber-300" },
               { step: "Scheduled Retrain", color: "bg-rose-500/20 text-rose-300" },
-              { step: "Shadow Mode", color: "bg-slate-500/20 text-muted-foreground" },
+              { step: "Shadow Mode", color: "bg-muted-foreground/20 text-muted-foreground" },
             ].map(({ step, color }, i) => (
               <div key={step} className="flex items-center gap-1">
                 <span className={`px-2 py-0.5 rounded text-xs font-medium ${color}`}>{step}</span>
@@ -1445,7 +1445,7 @@ function ExecutionTab() {
               { component: "Delay Cost", bps: 3.1, pct: 18, color: "bg-amber-500", desc: "Price drift between decision and order submission" },
               { component: "Market Impact", bps: 8.4, pct: 49, color: "bg-rose-500", desc: "Price move caused by own order flow" },
               { component: "Timing Risk", bps: 3.8, pct: 22, color: "bg-primary", desc: "Opportunity cost of phased execution" },
-              { component: "Commissions", bps: 1.9, pct: 11, color: "bg-slate-500", desc: "Explicit brokerage fees" },
+              { component: "Commissions", bps: 1.9, pct: 11, color: "bg-muted-foreground", desc: "Explicit brokerage fees" },
             ].map(({ component, bps, pct, color, desc }) => (
               <div key={component}>
                 <div className="flex items-center justify-between mb-1 text-xs">

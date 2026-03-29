@@ -114,7 +114,7 @@ const AVATAR_COLORS = [
   "bg-rose-500", "bg-cyan-500", "bg-orange-500", "bg-pink-500",
   "bg-teal-500", "bg-indigo-500", "bg-lime-500", "bg-fuchsia-500",
   "bg-sky-500", "bg-red-500", "bg-green-500", "bg-primary",
-  "bg-yellow-500", "bg-slate-500", "bg-zinc-500", "bg-neutral-500",
+  "bg-yellow-500", "bg-muted-foreground", "bg-muted-foreground", "bg-muted-foreground",
 ];
 
 const USERNAMES = [
@@ -390,7 +390,7 @@ function PodiumCard({ trader, place }: { trader: Trader; place: 1 | 2 | 3 }) {
   const labels = { 1: "1st", 2: "2nd", 3: "3rd" };
   const colors = {
     1: "border-yellow-400/60 bg-yellow-400/10",
-    2: "border-slate-400/60 bg-slate-400/10",
+    2: "border-muted-foreground/60 bg-muted-foreground/10",
     3: "border-amber-600/60 bg-amber-600/10",
   };
   const crownColors = { 1: "text-yellow-400", 2: "text-muted-foreground", 3: "text-amber-600" };

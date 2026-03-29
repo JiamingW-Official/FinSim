@@ -518,9 +518,9 @@ export const ECONOMIC_CATEGORY_COLORS: Record<
   EconomicEvent["category"],
   string
 > = {
-  inflation: "text-red-400 bg-red-400/10",
+  inflation: "text-destructive bg-destructive/10",
   employment: "text-primary bg-primary/10",
-  gdp: "text-emerald-400 bg-emerald-400/10",
+  gdp: "text-primary bg-primary/10",
   fed: "text-primary bg-primary/10",
   housing: "text-amber-400 bg-amber-400/10",
   manufacturing: "text-muted-foreground bg-muted/30",

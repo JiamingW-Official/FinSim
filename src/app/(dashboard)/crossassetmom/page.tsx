@@ -1320,7 +1320,7 @@ export default function CrossAssetMomPage() {
                       className={`text-left rounded-lg p-3 border transition-all ${
                         selectedModel === m.shortName
                           ? "border-indigo-500 bg-indigo-900/20"
-                          : "border-border/50 bg-muted/60 hover:border-slate-600"
+                          : "border-border/50 bg-muted/60 hover:border-border"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">

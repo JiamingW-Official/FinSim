@@ -565,7 +565,7 @@ export default function QuantResearchPage() {
                     <th className="py-2 font-medium text-center">Add</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-zinc-800/50">
+                <tbody className="divide-y divide-border/50">
                   {ALPHA_SIGNALS.map((sig) => (
                     <tr key={sig.id} className="group hover:bg-muted/30 transition-colors">
                       <td className="py-2 pr-3 font-medium text-foreground">{sig.name}</td>
@@ -669,7 +669,7 @@ export default function QuantResearchPage() {
                         "px-2.5 py-1 rounded-full text-xs border transition-colors",
                         isSelected(sig)
                           ? "bg-primary/20 border-primary/50 text-primary"
-                          : "bg-muted/50 border-border text-muted-foreground hover:border-zinc-500 hover:text-foreground"
+                          : "bg-muted/50 border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground"
                       )}
                     >
                       {isSelected(sig) && <CheckCircle className="h-3 w-3 inline mr-1" />}

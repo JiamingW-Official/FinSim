@@ -503,7 +503,7 @@ function LoanAnalysisTab() {
                     className={cn("h-1.5 rounded-full transition-all duration-300", loan.stressedDSCR >= 1.25 ? "bg-green-500" : loan.stressedDSCR >= 1.0 ? "bg-amber-500" : "bg-red-500")}
                     style={{ width: `${Math.min(100, (loan.stressedDSCR / 2.0) * 100)}%` }}
                   />
-                  <div className="absolute top-0 left-[62.5%] h-full w-px bg-slate-400 opacity-50" />
+                  <div className="absolute top-0 left-[62.5%] h-full w-px bg-muted-foreground opacity-50" />
                 </div>
                 <span className={cn("font-semibold w-10 text-right", loan.stressedDSCR >= 1.25 ? "text-green-400" : loan.stressedDSCR >= 1.0 ? "text-amber-400" : "text-red-400")}>
                   {loan.stressedDSCR.toFixed(2)}x

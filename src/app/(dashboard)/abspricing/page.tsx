@@ -255,7 +255,7 @@ function ABSStructureTab() {
                         t.rating === "AA" ? "border-primary text-primary" :
                         t.rating === "A" ? "border-amber-500 text-amber-400" :
                         t.rating === "BBB" ? "border-red-500 text-red-400" :
-                        "border-gray-500 text-muted-foreground"
+                        "border-muted-foreground text-muted-foreground"
                       )}
                     >{t.rating}</Badge>
                   </td>

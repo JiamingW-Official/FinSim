@@ -567,7 +567,7 @@ function IPOProcessTab() {
                   "relative z-10 w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all",
                   selectedStage?.id === stage.id
                     ? "bg-primary border-primary text-white"
-                    : "bg-muted border-slate-600 text-muted-foreground group-hover:border-primary group-hover:text-primary"
+                    : "bg-muted border-border text-muted-foreground group-hover:border-primary group-hover:text-primary"
                 )}>
                   {stage.icon}
                 </div>
@@ -840,7 +840,7 @@ function SPACTab() {
                     <th className="text-center py-1.5 text-primary">Traditional IPO</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800">
+                <tbody className="divide-y divide-border">
                   {[
                     ["Timeline", "3–6 months", "6–12 months"],
                     ["Price Certainty", "Negotiated", "Market-driven"],
@@ -1105,7 +1105,7 @@ function DCMTab() {
                     <th className="text-center py-1.5 text-amber-400">HY Bond</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800">
+                <tbody className="divide-y divide-border">
                   {[
                     ["Rate", "Floating (SOFR+)", "Fixed coupon"],
                     ["Prepayment", "Freely prepayable", "Call protection (NCL)"],

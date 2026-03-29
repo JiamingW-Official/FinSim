@@ -168,17 +168,17 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
     <div className="space-y-4">
       {/* Controls */}
       <div className="rounded-lg border border-white/5 bg-white/[0.02] p-4 space-y-3">
-        <h3 className="text-xs font-semibold text-zinc-500">
+        <h3 className="text-xs font-semibold text-muted-foreground">
           Grid Search Parameters
         </h3>
 
         {/* Strategy selector */}
         <div className="flex items-center gap-3">
-          <span className="w-24 text-xs text-zinc-400">Strategy</span>
+          <span className="w-24 text-xs text-muted-foreground">Strategy</span>
           <select
             value={selectedStrategyIdx}
             onChange={(e) => setSelectedStrategyIdx(parseInt(e.target.value, 10))}
-            className="flex-1 appearance-none rounded-md border border-white/10 bg-zinc-900 px-2 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 appearance-none rounded-md border border-white/10 bg-card px-2 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
           >
             {savedStrategies.length === 0 ? (
               <option value={0}>Demo Strategy (no saved strategies)</option>
@@ -192,34 +192,34 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
 
         {/* Param 1 */}
         <div className="flex items-center gap-3">
-          <span className="w-24 text-xs text-zinc-400">Parameter 1</span>
+          <span className="w-24 text-xs text-muted-foreground">Parameter 1</span>
           <select
             value={param1}
             onChange={(e) => setParam1(e.target.value as ParamKey)}
-            className="flex-1 appearance-none rounded-md border border-white/10 bg-zinc-900 px-2 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 appearance-none rounded-md border border-white/10 bg-card px-2 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
           >
             {(Object.keys(PARAM_CONFIGS) as ParamKey[]).map((k) => (
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
             ))}
           </select>
-          <span className="text-xs text-zinc-600">
+          <span className="text-xs text-muted-foreground/70">
             {PARAM_CONFIGS[param1].min}–{PARAM_CONFIGS[param1].max}, step {PARAM_CONFIGS[param1].step}
           </span>
         </div>
 
         {/* Param 2 */}
         <div className="flex items-center gap-3">
-          <span className="w-24 text-xs text-zinc-400">Parameter 2</span>
+          <span className="w-24 text-xs text-muted-foreground">Parameter 2</span>
           <select
             value={param2}
             onChange={(e) => setParam2(e.target.value as ParamKey)}
-            className="flex-1 appearance-none rounded-md border border-white/10 bg-zinc-900 px-2 py-1.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 appearance-none rounded-md border border-white/10 bg-card px-2 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
           >
             {(Object.keys(PARAM_CONFIGS) as ParamKey[]).filter((k) => k !== param1).map((k) => (
               <option key={k} value={k}>{PARAM_CONFIGS[k].label}</option>
             ))}
           </select>
-          <span className="text-xs text-zinc-600">
+          <span className="text-xs text-muted-foreground/70">
             {PARAM_CONFIGS[param2].min}–{PARAM_CONFIGS[param2].max}, step {PARAM_CONFIGS[param2].step}
           </span>
         </div>
@@ -250,16 +250,16 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
             <div className="rounded-lg border border-border bg-primary/5 px-4 py-2.5">
               <div className="text-xs text-primary font-semibold">Best Parameters Found</div>
               <div className="mt-1 flex gap-4 text-xs">
-                <span className="text-zinc-300">
+                <span className="text-muted-foreground">
                   {PARAM_CONFIGS[param1].label}: <span className="font-bold text-primary">{bestCell.p1}</span>
                 </span>
-                <span className="text-zinc-300">
+                <span className="text-muted-foreground">
                   {PARAM_CONFIGS[param2].label}: <span className="font-bold text-primary">{bestCell.p2}</span>
                 </span>
-                <span className="text-zinc-300">
+                <span className="text-muted-foreground">
                   Sharpe: <span className="font-bold text-emerald-400">{bestCell.sharpe.toFixed(2)}</span>
                 </span>
-                <span className="text-zinc-300">
+                <span className="text-muted-foreground">
                   Return: <span className={`font-bold ${bestCell.totalReturn >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                     {bestCell.totalReturn >= 0 ? "+" : ""}{bestCell.totalReturn.toFixed(1)}%
                   </span>
@@ -270,7 +270,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
 
           {/* Heatmap grid */}
           <div>
-            <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+            <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
               Sharpe Ratio Heatmap
             </h3>
             <SharpeHeatmap
@@ -285,7 +285,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
           </div>
 
           {/* Color scale legend */}
-          <div className="flex items-center gap-2 text-[11px] text-zinc-500">
+          <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
             <span>Low Sharpe</span>
             <div className="flex h-3 flex-1 rounded overflow-hidden">
               {Array.from({ length: 20 }, (_, i) => {
@@ -306,7 +306,7 @@ export default function OptimizationPanel({ savedStrategies }: Props) {
       )}
 
       {!hasRun && (
-        <div className="flex h-32 items-center justify-center rounded-lg border border-white/5 bg-white/[0.01] text-sm text-zinc-600">
+        <div className="flex h-32 items-center justify-center rounded-lg border border-white/5 bg-white/[0.01] text-sm text-muted-foreground/70">
           Configure parameters and run the grid search to see the heatmap
         </div>
       )}

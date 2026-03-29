@@ -757,13 +757,13 @@ function L2TokenEconomics() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-center">
-                    {t.governance ? <CheckCircle size={14} className="mx-auto text-emerald-400" /> : <span className="text-neutral-600">—</span>}
+                    {t.governance ? <CheckCircle size={14} className="mx-auto text-emerald-400" /> : <span className="text-muted-foreground/70">—</span>}
                   </td>
                   <td className="px-4 py-3 text-center">
-                    {t.feePayment ? <CheckCircle size={14} className="mx-auto text-emerald-400" /> : <span className="text-neutral-600">—</span>}
+                    {t.feePayment ? <CheckCircle size={14} className="mx-auto text-emerald-400" /> : <span className="text-muted-foreground/70">—</span>}
                   </td>
                   <td className="px-4 py-3 text-center">
-                    {t.sequencerStaking ? <CheckCircle size={14} className="mx-auto text-emerald-400" /> : <span className="text-neutral-600">—</span>}
+                    {t.sequencerStaking ? <CheckCircle size={14} className="mx-auto text-emerald-400" /> : <span className="text-muted-foreground/70">—</span>}
                   </td>
                   <td className="px-4 py-3 text-right font-mono text-muted-foreground">{t.circSupply.toLocaleString()}M</td>
                   <td className="px-4 py-3 text-right font-mono text-muted-foreground">${t.fdv.toFixed(1)}B</td>
@@ -942,7 +942,7 @@ function DeveloperEcosystem() {
                       {f[k] ? (
                         <CheckCircle size={13} className="mx-auto text-emerald-400" />
                       ) : (
-                        <span className="text-neutral-700 text-xs">—</span>
+                        <span className="text-muted-foreground/50 text-xs">—</span>
                       )}
                     </td>
                   ))}
@@ -1255,7 +1255,7 @@ export default function Layer2Page() {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-5xl mx-auto px-4 py-8">
         {/* Header */}
         <motion.div
@@ -1295,7 +1295,7 @@ export default function Layer2Page() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-muted-foreground"
+                className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
               >
                 {tab.icon}
                 {tab.label}

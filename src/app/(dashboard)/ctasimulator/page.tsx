@@ -788,7 +788,7 @@ export default function CTASimulatorPage() {
                               <td className="py-1.5 px-2">
                                 <div className="flex items-center gap-1.5">
                                   <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden w-16">
-                                    <div className={`h-full rounded-full ${sig.signal === "long" ? "bg-emerald-500" : sig.signal === "short" ? "bg-red-500" : "bg-slate-500"}`}
+                                    <div className={`h-full rounded-full ${sig.signal === "long" ? "bg-emerald-500" : sig.signal === "short" ? "bg-red-500" : "bg-muted-foreground"}`}
                                       style={{ width: `${sig.strength}%` }} />
                                   </div>
                                   <span className="text-muted-foreground w-8">{sig.strength}%</span>
@@ -818,7 +818,7 @@ export default function CTASimulatorPage() {
                       <p className="font-medium text-red-400 mb-1">Short Signal (Bearish)</p>
                       <p>MA(20) &lt; MA(60) × 0.99 — fast MA is 1%+ below slow MA. Enter short futures position. Stop-loss at 2× ATR. Daily rebalance of position size to maintain vol target.</p>
                     </div>
-                    <div className="p-3 rounded-lg bg-muted/30 border border-slate-600/30">
+                    <div className="p-3 rounded-lg bg-muted/30 border border-border/30">
                       <p className="font-medium text-muted-foreground mb-1">Flat (No Signal)</p>
                       <p>MA(20) within ±1% band of MA(60). Market in consolidation or regime transition. Position reduced to zero or held at minimal size to avoid whipsaw losses in choppy periods.</p>
                     </div>

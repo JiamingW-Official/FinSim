@@ -543,7 +543,7 @@ function NetWorthTab() {
                     "px-2 py-0.5 rounded text-xs border transition-colors",
                     ageBracket === bracket
                       ? "bg-primary border-primary text-white"
-                      : "bg-muted border-border text-muted-foreground hover:border-gray-600"
+                      : "bg-muted border-border text-muted-foreground hover:border-border"
                   )}
                 >
                   {bracket}
@@ -611,7 +611,7 @@ interface PassiveStream {
 function PassiveIncomeGaugeBar({ value, max, color }: { value: number; max: number; color: string }) {
   const pct = Math.min((value / max) * 100, 100);
   return (
-    <div className="relative h-2 bg-gray-700 rounded-full overflow-hidden">
+    <div className="relative h-2 bg-muted rounded-full overflow-hidden">
       <div className="absolute inset-y-0 left-0 rounded-full transition-all duration-300" style={{ width: `${pct}%`, background: color }} />
     </div>
   );
@@ -1423,7 +1423,7 @@ function FIRoadmapTab() {
               <span>Progress to FI</span>
               <span>{fmtK(currentSavings)} / {fmtK(fiNumber)}</span>
             </div>
-            <div className="relative h-4 bg-gray-700 rounded-full overflow-hidden">
+            <div className="relative h-4 bg-muted rounded-full overflow-hidden">
               <div className="absolute inset-y-0 left-0 bg-primary rounded-full transition-all duration-500"
                 style={{ width: `${progressPct}%` }} />
               <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-white">
@@ -1442,7 +1442,7 @@ function FIRoadmapTab() {
                     <span style={{ color: m.color }} className="font-medium">{m.label}</span>
                     <span className="text-muted-foreground">{fmtK(m.target)}</span>
                   </div>
-                  <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+                  <div className="h-2 bg-muted rounded-full overflow-hidden">
                     <div className="h-full rounded-full transition-all duration-300" style={{ width: `${m.pct}%`, background: m.color }} />
                   </div>
                 </div>
@@ -1587,7 +1587,7 @@ export default function WealthBuilderPage() {
               <TabsTrigger
                 key={tab.id}
                 value={tab.id}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-gray-700 data-[state=active]:text-white"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>

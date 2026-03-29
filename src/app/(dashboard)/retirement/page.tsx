@@ -952,7 +952,7 @@ function InvestmentStrategyTab() {
         <div className="flex gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-primary" />Stocks</span>
           <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-amber-500" />Bonds</span>
-          <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-gray-500" />Cash</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-2.5 h-2.5 rounded-sm bg-muted-foreground" />Cash</span>
         </div>
       </Card>
 

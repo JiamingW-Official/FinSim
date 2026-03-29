@@ -66,7 +66,7 @@ const MAP_NODES: MapNode[] = [
 ];
 
 const TIER_COLORS: Record<string, string> = {
-  start:        "border-zinc-600 bg-zinc-800 text-zinc-400",
+  start:        "border-border bg-muted text-muted-foreground",
   beginner:     "border-green-500/60 bg-green-500/10 text-green-400",
   intermediate: "border-cyan-500/60 bg-cyan-500/10 text-muted-foreground",
   advanced:     "border-primary/60 bg-primary/10 text-primary",
@@ -74,7 +74,7 @@ const TIER_COLORS: Record<string, string> = {
 };
 
 const TIER_LINE_COLORS: Record<string, string> = {
-  start:        "bg-zinc-700",
+  start:        "bg-muted",
   beginner:     "bg-green-500/40",
   intermediate: "bg-cyan-500/40",
   advanced:     "bg-primary/40",
@@ -118,9 +118,9 @@ export function QuestMap() {
           <Milestone className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
           <div>
             <p className="text-xs font-bold text-muted-foreground">Next milestone</p>
-            <p className="text-[11px] text-zinc-400 mt-0.5">{activeNode.nextHint}</p>
-            <p className="text-xs text-zinc-600 mt-0.5">
-              {nextNode.sublabel} to reach <span className="text-zinc-400 font-semibold">{nextNode.label}</span>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{activeNode.nextHint}</p>
+            <p className="text-xs text-muted-foreground/70 mt-0.5">
+              {nextNode.sublabel} to reach <span className="text-muted-foreground font-semibold">{nextNode.label}</span>
             </p>
           </div>
         </motion.div>
@@ -141,7 +141,7 @@ export function QuestMap() {
                   <motion.div
                     className={cn(
                       "h-0.5 w-12",
-                      unlocked ? TIER_LINE_COLORS[node.tier] : "bg-zinc-800",
+                      unlocked ? TIER_LINE_COLORS[node.tier] : "bg-muted",
                     )}
                     initial={{ scaleX: 0, originX: 0 }}
                     animate={{ scaleX: 1 }}
@@ -174,7 +174,7 @@ export function QuestMap() {
                         "flex h-12 w-12 items-center justify-center rounded-full border-2 transition-all",
                         unlocked
                           ? TIER_COLORS[node.tier]
-                          : "border-zinc-800 bg-zinc-900 text-zinc-700",
+                          : "border-border bg-card text-muted-foreground/50",
                       )}
                     >
                       {!unlocked ? (
@@ -199,14 +199,14 @@ export function QuestMap() {
                         "text-xs font-bold leading-tight",
                         unlocked
                           ? isCurrent
-                            ? "text-zinc-200"
-                            : "text-zinc-400"
-                          : "text-zinc-700",
+                            ? "text-foreground"
+                            : "text-muted-foreground"
+                          : "text-muted-foreground/50",
                       )}
                     >
                       {node.label}
                     </span>
-                    <span className="text-[11px] text-zinc-700 leading-tight">
+                    <span className="text-[11px] text-muted-foreground/50 leading-tight">
                       {node.sublabel}
                     </span>
                   </motion.div>
@@ -224,11 +224,11 @@ export function QuestMap() {
         transition={{ delay: 0.5 }}
         className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2.5"
       >
-        <span className="text-xs text-zinc-500">Total quests completed</span>
+        <span className="text-xs text-muted-foreground">Total quests completed</span>
         <div className="flex items-center gap-2">
-          <span className="text-sm font-bold tabular-nums text-zinc-200">{totalCompleted}</span>
+          <span className="text-sm font-bold tabular-nums text-foreground">{totalCompleted}</span>
           {nextNode && (
-            <span className="text-xs text-zinc-600">
+            <span className="text-xs text-muted-foreground/70">
               / {nextNode.requiredQuests} for {nextNode.label}
             </span>
           )}

@@ -1160,7 +1160,7 @@ export default function PensionManagementPage() {
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
                     selectedScenario.name === sc.name
                       ? "border-primary bg-primary/20 text-primary"
-                      : "border-border bg-muted text-muted-foreground hover:border-slate-600"
+                      : "border-border bg-muted text-muted-foreground hover:border-border"
                   }`}
                 >
                   {sc.name}

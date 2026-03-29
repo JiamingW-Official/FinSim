@@ -70,7 +70,7 @@ export function QuestMilestoneTab() {
                   <motion.div
                     className={cn(
                       "h-full rounded-full",
-                      isChainComplete ? "bg-emerald-500" : "bg-zinc-600",
+                      isChainComplete ? "bg-emerald-500" : "bg-muted",
                     )}
                     initial={{ width: 0 }}
                     animate={{ width: `${(claimedCount / chainQuests.length) * 100}%` }}
@@ -80,7 +80,7 @@ export function QuestMilestoneTab() {
               </div>
               <span className={cn(
                 "text-xs font-bold tabular-nums",
-                isChainComplete ? "text-emerald-400" : "text-zinc-600",
+                isChainComplete ? "text-emerald-400" : "text-muted-foreground/70",
               )}>
                 {claimedCount}/{chainQuests.length}
               </span>
@@ -106,7 +106,7 @@ export function QuestMilestoneTab() {
                             ? "bg-emerald-500/50"
                             : isComplete
                               ? "bg-primary/30"
-                              : "bg-zinc-800",
+                              : "bg-muted",
                         )}
                         initial={{ scaleX: 0 }}
                         animate={{ scaleX: 1 }}
@@ -132,8 +132,8 @@ export function QuestMilestoneTab() {
                             : isComplete
                               ? "border-primary bg-primary/20 text-primary"
                               : isLocked
-                                ? "border-zinc-800 bg-zinc-900 text-zinc-700 cursor-not-allowed"
-                                : "border-zinc-700 bg-zinc-900 text-zinc-500",
+                                ? "border-border bg-card text-muted-foreground/50 cursor-not-allowed"
+                                : "border-border bg-card text-muted-foreground",
                         )}
                       >
                         {isClaimed ? (
@@ -147,9 +147,9 @@ export function QuestMilestoneTab() {
 
                       {/* Tooltip */}
                       <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-10 pointer-events-none">
-                        <div className="rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 shadow-xl whitespace-nowrap">
-                          <p className="text-xs font-bold text-zinc-200">{quest.name}</p>
-                          <p className="text-xs text-zinc-500 mt-0.5">{quest.description}</p>
+                        <div className="rounded-lg border border-white/10 bg-card px-3 py-2 shadow-xl whitespace-nowrap">
+                          <p className="text-xs font-bold text-foreground">{quest.name}</p>
+                          <p className="text-xs text-muted-foreground mt-0.5">{quest.description}</p>
                           <div className="flex items-center gap-1 mt-1">
                             <Star className="h-2.5 w-2.5 text-amber-400" />
                             <span className="text-xs font-bold text-amber-400">+{quest.xpReward} XP</span>

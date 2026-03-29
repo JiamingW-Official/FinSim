@@ -35,7 +35,7 @@ interface Props {
 export default function WalkForwardPanel({ result, isRunning }: Props) {
   if (isRunning) {
     return (
-      <div className="flex h-40 items-center justify-center text-sm text-zinc-500">
+      <div className="flex h-40 items-center justify-center text-sm text-muted-foreground">
         Running walk-forward analysis...
       </div>
     );
@@ -44,8 +44,8 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
   if (!result) {
     return (
       <div className="flex h-40 flex-col items-center justify-center gap-2 text-center">
-        <p className="text-sm text-zinc-500">Run a backtest with Walk-Forward enabled</p>
-        <p className="text-xs text-zinc-600">Configure via the Strategy panel and enable Monte Carlo / Walk-Forward</p>
+        <p className="text-sm text-muted-foreground">Run a backtest with Walk-Forward enabled</p>
+        <p className="text-xs text-muted-foreground/70">Configure via the Strategy panel and enable Monte Carlo / Walk-Forward</p>
       </div>
     );
   }
@@ -86,11 +86,11 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
 
       {/* Timeline visualization */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           IS / OOS Timeline
         </h3>
         <TimelineBar folds={folds} totalBars={totalBars} />
-        <div className="mt-2 flex items-center gap-4 text-[11px] text-zinc-500">
+        <div className="mt-2 flex items-center gap-4 text-[11px] text-muted-foreground">
           <span className="flex items-center gap-1">
             <span className="inline-block h-2.5 w-5 rounded-sm bg-primary/60" /> In-Sample
           </span>
@@ -102,20 +102,20 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
 
       {/* Fold detail table */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Fold Performance
         </h3>
         <div className="overflow-x-auto rounded-lg border border-white/5">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/5 bg-white/[0.02]">
-                <th className="px-3 py-2 text-left text-zinc-500 font-medium">Fold</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">IS Sharpe</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">OOS Sharpe</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">IS Return</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">OOS Return</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">Degradation</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">Efficiency</th>
+                <th className="px-3 py-2 text-left text-muted-foreground font-medium">Fold</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">IS Sharpe</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">OOS Sharpe</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">IS Return</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">OOS Return</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">Degradation</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">Efficiency</th>
               </tr>
             </thead>
             <tbody>
@@ -123,7 +123,7 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
                 const goodEfficiency = fold.efficiencyRatio >= 0.5;
                 return (
                   <tr key={fold.foldIndex} className="border-b border-white/5 hover:bg-white/[0.02]">
-                    <td className="px-3 py-2 font-medium text-zinc-300">Fold {fold.foldIndex + 1}</td>
+                    <td className="px-3 py-2 font-medium text-muted-foreground">Fold {fold.foldIndex + 1}</td>
                     <td className={`px-3 py-2 text-right font-mono ${fold.inSampleSharpe > 0 ? "text-emerald-400" : "text-rose-400"}`}>
                       {fold.inSampleSharpe.toFixed(2)}
                     </td>
@@ -158,11 +158,11 @@ export default function WalkForwardPanel({ result, isRunning }: Props) {
 
       {/* Efficiency bar chart (pure SVG) */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Fold Efficiency Scores
         </h3>
         <EfficiencyBarChart folds={folds} />
-        <div className="mt-1 text-[11px] text-zinc-600">
+        <div className="mt-1 text-[11px] text-muted-foreground/70">
           Dashed line = 0.5 efficiency threshold (overfitting warning)
         </div>
       </div>
@@ -268,8 +268,8 @@ function EfficiencyBarChart({ folds }: { folds: WalkForwardFold[] }) {
 function MetricChip({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
   return (
     <div className="rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2">
-      <div className="text-[11px] text-zinc-600">{label}</div>
-      <div className={`mt-0.5 text-sm font-bold ${positive === undefined ? "text-zinc-200" : positive ? "text-emerald-400" : "text-rose-400"}`}>
+      <div className="text-[11px] text-muted-foreground/70">{label}</div>
+      <div className={`mt-0.5 text-sm font-bold ${positive === undefined ? "text-foreground" : positive ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
     </div>

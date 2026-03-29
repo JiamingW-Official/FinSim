@@ -796,7 +796,7 @@ function StockAnalysisTab() {
                       <Badge variant="outline" className={cn("text-xs",
                         stock.rating === "Buy" ? "border-emerald-500/40 text-emerald-400" :
                         stock.rating === "Watch" ? "border-amber-500/40 text-amber-400" :
-                        "border-zinc-500/40 text-muted-foreground"
+                        "border-muted-foreground/40 text-muted-foreground"
                       )}>{stock.rating}</Badge>
                     </td>
                   </tr>

@@ -1085,7 +1085,7 @@ export default function CleantechPage() {
                         ].map((r) => (
                           <div key={r.route} className="flex items-center gap-2 mb-1">
                             <span className="text-muted-foreground w-36 shrink-0">{r.route}</span>
-                            <div className="flex-1 bg-gray-700 rounded-full h-2.5">
+                            <div className="flex-1 bg-muted rounded-full h-2.5">
                               <div
                                 className="h-full rounded-full"
                                 style={{ width: `${(r.cost / 5) * 100}%`, backgroundColor: r.color }}

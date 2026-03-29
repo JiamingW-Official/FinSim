@@ -1038,7 +1038,7 @@ function CrossAssetSignals() {
                           )}
                         </div>
                         {/* Center line */}
-                        <div className="w-px h-5 bg-slate-600" />
+                        <div className="w-px h-5 bg-muted" />
                         {/* Positive side */}
                         <div className="flex-1">
                           {pos && (
@@ -1105,8 +1105,8 @@ function TradeIdeas() {
           >
             <Card
               className={cn(
-                "bg-card/60 border-border/50 cursor-pointer transition-all hover:border-slate-600/70",
-                isOpen && "border-slate-600/80"
+                "bg-card/60 border-border/50 cursor-pointer transition-all hover:border-border/70",
+                isOpen && "border-border/80"
               )}
               onClick={() => setExpanded(isOpen ? null : idea.id)}
             >

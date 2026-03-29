@@ -32,7 +32,7 @@ function getEloTier(elo: number): EloTier {
 
 const TIER_COLORS: Record<EloTier, string> = {
   Bronze:   "text-amber-600",
-  Silver:   "text-zinc-400",
+  Silver:   "text-muted-foreground",
   Gold:     "text-yellow-400",
   Platinum: "text-muted-foreground",
   Diamond:  "text-primary",
@@ -40,7 +40,7 @@ const TIER_COLORS: Record<EloTier, string> = {
 
 const TIER_BG: Record<EloTier, string> = {
   Bronze:   "bg-amber-600/15 border-amber-600/30",
-  Silver:   "bg-zinc-400/10 border-zinc-400/20",
+  Silver:   "bg-muted-foreground/10 border-muted-foreground/20",
   Gold:     "bg-yellow-400/10 border-yellow-400/25",
   Platinum: "bg-cyan-300/10 border-cyan-300/25",
   Diamond:  "bg-primary/10 border-border",
@@ -216,7 +216,7 @@ function MatchCard({ match }: { match: BracketMatch }) {
   return (
     <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] overflow-hidden text-[11px]">
       {[match.playerA, match.playerB].map((p, idx) => {
-        if (!p) return <div key={idx} className="px-2.5 py-1.5 text-zinc-700">TBD</div>;
+        if (!p) return <div key={idx} className="px-2.5 py-1.5 text-muted-foreground/50">TBD</div>;
         const isWinner = match.winner?.id === p.id;
         const tier = getEloTier(p.elo);
         return (
@@ -232,7 +232,7 @@ function MatchCard({ match }: { match: BracketMatch }) {
             {isWinner && match.winner !== null && (
               <Star className="h-2.5 w-2.5 text-yellow-400 shrink-0" />
             )}
-            <span className={cn("font-bold truncate flex-1", p.isPlayer ? "text-emerald-300" : "text-zinc-300")}>
+            <span className={cn("font-bold truncate flex-1", p.isPlayer ? "text-emerald-300" : "text-muted-foreground")}>
               {p.name}
             </span>
             <span className={cn("tabular-nums shrink-0 font-mono", TIER_COLORS[tier])}>
@@ -356,7 +356,7 @@ export function TournamentTab() {
             </div>
           </div>
           <div className="flex-1 min-w-0">
-            <div className="text-[11px] text-zinc-500 mb-1.5">ELO History (last 10)</div>
+            <div className="text-[11px] text-muted-foreground mb-1.5">ELO History (last 10)</div>
             <EloHistoryChart history={eloHistory} />
           </div>
         </div>
@@ -376,7 +376,7 @@ export function TournamentTab() {
         <button
           type="button"
           onClick={handleReset}
-          className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-bold text-zinc-300 transition-colors hover:bg-white/10"
+          className="w-full flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/10"
         >
           New Tournament
         </button>
@@ -400,7 +400,7 @@ export function TournamentTab() {
                   "rounded-lg border px-4 py-3 text-center text-sm font-bold",
                   bracket.final.winner?.isPlayer
                     ? "border-yellow-400/30 bg-yellow-400/10 text-yellow-400"
-                    : "border-white/10 bg-white/5 text-zinc-400",
+                    : "border-white/10 bg-white/5 text-muted-foreground",
                 )}
               >
                 {bracket.final.winner?.isPlayer
@@ -418,7 +418,7 @@ export function TournamentTab() {
 
               return (
                 <div key={round}>
-                  <div className="text-[11px] font-bold text-zinc-500 mb-2">
+                  <div className="text-[11px] font-bold text-muted-foreground mb-2">
                     {round}
                   </div>
                   <div className={cn(
@@ -442,7 +442,7 @@ export function TournamentTab() {
               const prob = winProb(eloRating, opp.elo);
               return (
                 <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
-                  <div className="text-[11px] text-zinc-500 mb-2">Win probability vs QF opponent</div>
+                  <div className="text-[11px] text-muted-foreground mb-2">Win probability vs QF opponent</div>
                   <div className="flex items-center gap-3">
                     <div className="flex-1 h-2 rounded-full bg-white/[0.04] overflow-hidden">
                       <div
@@ -453,7 +453,7 @@ export function TournamentTab() {
                     <span className={cn("text-xs font-bold tabular-nums w-10 text-right", prob >= 0.5 ? "text-emerald-400" : "text-red-400")}>
                       {(prob * 100).toFixed(0)}%
                     </span>
-                    <span className="text-xs text-zinc-600">vs {opp.name} ({opp.elo})</span>
+                    <span className="text-xs text-muted-foreground/70">vs {opp.name} ({opp.elo})</span>
                   </div>
                 </div>
               );
@@ -465,8 +465,8 @@ export function TournamentTab() {
       {/* Upcoming Schedule */}
       <div>
         <div className="flex items-center gap-1.5 mb-2.5">
-          <Calendar className="h-3.5 w-3.5 text-zinc-500" />
-          <span className="text-xs font-bold text-zinc-400">Upcoming Tournaments</span>
+          <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+          <span className="text-xs font-bold text-muted-foreground">Upcoming Tournaments</span>
         </div>
         <div className="space-y-2">
           {UPCOMING.map((ev) => {
@@ -482,10 +482,10 @@ export function TournamentTab() {
                 )}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-zinc-200">{ev.name}</span>
-                  <span className="text-xs text-zinc-500">{ev.date}</span>
+                  <span className="text-xs font-bold text-foreground">{ev.name}</span>
+                  <span className="text-xs text-muted-foreground">{ev.date}</span>
                 </div>
-                <div className="flex items-center gap-3 text-xs text-zinc-500">
+                <div className="flex items-center gap-3 text-xs text-muted-foreground">
                   <span className="flex items-center gap-0.5">
                     <Users className="h-2.5 w-2.5" /> Lv.{ev.minLevel}+
                   </span>
@@ -506,15 +506,15 @@ export function TournamentTab() {
       {/* Past Results */}
       <div>
         <div className="flex items-center gap-1.5 mb-2.5">
-          <Trophy className="h-3.5 w-3.5 text-zinc-500" />
-          <span className="text-xs font-bold text-zinc-400">Past Results</span>
+          <Trophy className="h-3.5 w-3.5 text-muted-foreground" />
+          <span className="text-xs font-bold text-muted-foreground">Past Results</span>
         </div>
         <div className="rounded-lg border border-white/[0.06] overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
               <tr className="border-b border-white/[0.04] bg-white/[0.02]">
                 {["Tournament", "Place", "Prize", "ELO"].map((h) => (
-                  <th key={h} className="px-3 py-2 text-left font-bold text-zinc-500">{h}</th>
+                  <th key={h} className="px-3 py-2 text-left font-bold text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -524,8 +524,8 @@ export function TournamentTab() {
                   key={i}
                   className={cn("border-b border-white/[0.03] last:border-0", i % 2 === 0 ? "bg-transparent" : "bg-white/[0.01]")}
                 >
-                  <td className="px-3 py-2 text-zinc-300 truncate max-w-[100px]">{r.name}</td>
-                  <td className="px-3 py-2 font-bold text-zinc-200">{placementLabel(r.placement)}</td>
+                  <td className="px-3 py-2 text-muted-foreground truncate max-w-[100px]">{r.name}</td>
+                  <td className="px-3 py-2 font-bold text-foreground">{placementLabel(r.placement)}</td>
                   <td className="px-3 py-2 text-emerald-400 font-bold tabular-nums">
                     +{r.prize.toLocaleString()}
                   </td>

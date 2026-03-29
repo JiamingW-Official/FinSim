@@ -119,7 +119,7 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
 
       {/* Bar chart of post-earnings moves */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Post-Earnings Day Moves
         </h3>
         <PostMoveChart rows={data} />
@@ -127,20 +127,20 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
 
       {/* Full table */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Earnings History
         </h3>
         <div className="overflow-x-auto rounded-lg border border-white/5">
           <table className="w-full text-xs">
             <thead>
               <tr className="border-b border-white/5 bg-white/[0.02]">
-                <th className="px-3 py-2 text-left text-zinc-500 font-medium">Date</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">Est. EPS</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">Actual EPS</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">Surprise</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">Pre-Drift (5d)</th>
-                <th className="px-3 py-2 text-right text-zinc-500 font-medium">Post-Day Move</th>
-                <th className="px-3 py-2 text-center text-zinc-500 font-medium">Pattern</th>
+                <th className="px-3 py-2 text-left text-muted-foreground font-medium">Date</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">Est. EPS</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">Actual EPS</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">Surprise</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">Pre-Drift (5d)</th>
+                <th className="px-3 py-2 text-right text-muted-foreground font-medium">Post-Day Move</th>
+                <th className="px-3 py-2 text-center text-muted-foreground font-medium">Pattern</th>
               </tr>
             </thead>
             <tbody>
@@ -151,8 +151,8 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
                     row.buyRumorSellNews ? "bg-amber-500/5" : ""
                   }`}
                 >
-                  <td className="px-3 py-2 font-mono text-zinc-400">{row.date}</td>
-                  <td className="px-3 py-2 text-right font-mono text-zinc-300">${row.expectedEps.toFixed(2)}</td>
+                  <td className="px-3 py-2 font-mono text-muted-foreground">{row.date}</td>
+                  <td className="px-3 py-2 text-right font-mono text-muted-foreground">${row.expectedEps.toFixed(2)}</td>
                   <td className={`px-3 py-2 text-right font-mono font-semibold ${
                     row.actualEps >= row.expectedEps ? "text-emerald-400" : "text-rose-400"
                   }`}>
@@ -179,7 +179,7 @@ export default function EarningsAnalysis({ ticker }: EarningsAnalysisProps) {
                         BRSN
                       </span>
                     ) : (
-                      <span className="text-zinc-700">—</span>
+                      <span className="text-muted-foreground/50">—</span>
                     )}
                   </td>
                 </tr>
@@ -201,13 +201,13 @@ function SummaryChip({ label, value, positive, neutral }: {
   neutral?: boolean;
 }) {
   const color = neutral
-    ? "text-zinc-300"
+    ? "text-muted-foreground"
     : positive
     ? "text-emerald-400"
     : "text-rose-400";
   return (
     <div className="rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2">
-      <div className="text-[11px] text-zinc-600">{label}</div>
+      <div className="text-[11px] text-muted-foreground/70">{label}</div>
       <div className={`mt-0.5 text-xs font-bold ${color}`}>{value}</div>
     </div>
   );

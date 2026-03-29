@@ -898,7 +898,7 @@ function FedWatch({ data }: { data: ReturnType<typeof generateData> }) {
                   <td className="pr-2 w-40">
                     <div className="flex h-3 rounded-full overflow-hidden gap-px">
                       <div className="bg-red-500/60" style={{ width: `${m.hikePct}%` }} />
-                      <div className="bg-gray-600/60" style={{ width: `${m.holdPct}%` }} />
+                      <div className="bg-muted/60" style={{ width: `${m.holdPct}%` }} />
                       <div className="bg-emerald-500/60" style={{ width: `${m.cutPct}%` }} />
                     </div>
                   </td>

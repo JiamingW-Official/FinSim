@@ -713,7 +713,7 @@ function ShariahTab() {
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-white">{p.arabic}</span>
-                    <span className="text-xs text-muted-foreground bg-gray-700 px-2 py-0.5 rounded-full">{p.english}</span>
+                    <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{p.english}</span>
                   </div>
                 </div>
                 {isOpen ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
@@ -832,7 +832,7 @@ function StructuresTab() {
               "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
               selected === s.id
                 ? "text-white border-transparent"
-                : "bg-muted text-muted-foreground border-gray-600 hover:border-gray-500"
+                : "bg-muted text-muted-foreground border-border hover:border-muted-foreground"
             )}
             style={selected === s.id ? { backgroundColor: s.color, borderColor: s.color } : {}}
           >
@@ -986,7 +986,7 @@ function MarketTab() {
                 <td className="px-3 py-2.5 text-right text-primary font-medium">{c.outstanding}</td>
                 <td className="px-3 py-2.5 text-right">
                   <div className="flex items-center justify-end gap-2">
-                    <div className="w-16 bg-gray-700 rounded-full h-1.5">
+                    <div className="w-16 bg-muted rounded-full h-1.5">
                       <div className="bg-primary h-1.5 rounded-full" style={{ width: `${c.share * 2.5}%` }} />
                     </div>
                     <span className="text-muted-foreground text-xs w-10 text-right">{c.share}%</span>
@@ -1011,11 +1011,11 @@ function MarketTab() {
               { label: "MYR", pct: 28, color: "bg-emerald-500" },
               { label: "SAR", pct: 15, color: "bg-amber-500" },
               { label: "IDR", pct: 8, color: "bg-primary" },
-              { label: "Other", pct: 7, color: "bg-gray-500" },
+              { label: "Other", pct: 7, color: "bg-muted-foreground" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
                 <span className="text-xs text-muted-foreground w-8">{item.label}</span>
-                <div className="flex-1 bg-gray-700 rounded-full h-2">
+                <div className="flex-1 bg-muted rounded-full h-2">
                   <div className={cn("h-2 rounded-full", item.color)} style={{ width: `${item.pct}%` }} />
                 </div>
                 <span className="text-xs text-muted-foreground w-8 text-right">{item.pct}%</span>
@@ -1035,7 +1035,7 @@ function MarketTab() {
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
                 <span className="text-xs text-muted-foreground w-10">{item.label}</span>
-                <div className="flex-1 bg-gray-700 rounded-full h-2">
+                <div className="flex-1 bg-muted rounded-full h-2">
                   <div className={cn("h-2 rounded-full", item.color)} style={{ width: `${item.pct * 3}%` }} />
                 </div>
                 <span className="text-xs text-muted-foreground w-8 text-right">{item.pct}%</span>
@@ -1051,11 +1051,11 @@ function MarketTab() {
               { label: "A+–A-", pct: 34, color: "bg-green-500" },
               { label: "BBB+–BBB-", pct: 26, color: "bg-yellow-500" },
               { label: "BB–B", pct: 14, color: "bg-orange-500" },
-              { label: "NR", pct: 8, color: "bg-gray-500" },
+              { label: "NR", pct: 8, color: "bg-muted-foreground" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
                 <span className="text-xs text-muted-foreground w-12">{item.label}</span>
-                <div className="flex-1 bg-gray-700 rounded-full h-2">
+                <div className="flex-1 bg-muted rounded-full h-2">
                   <div className={cn("h-2 rounded-full", item.color)} style={{ width: `${item.pct * 2.8}%` }} />
                 </div>
                 <span className="text-xs text-muted-foreground w-8 text-right">{item.pct}%</span>

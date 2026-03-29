@@ -940,7 +940,7 @@ export default function AlgoTradingPage() {
                         <th className="text-right text-muted-foreground font-normal py-2 pl-4">Status</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/50">
+                    <tbody className="divide-y divide-border/50">
                       {EXEC_METRICS.map((row) => (
                         <tr key={row.metric} className="hover:bg-muted/20">
                           <td className="py-2.5 pr-4 text-muted-foreground font-medium">{row.metric}</td>

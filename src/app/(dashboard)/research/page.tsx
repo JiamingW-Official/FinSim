@@ -673,7 +673,7 @@ function CorrBar({ value }: { value: number }) {
           backgroundColor: color,
         }}
       />
-      <div className="absolute top-0 left-1/2 w-px h-3 bg-slate-600" />
+      <div className="absolute top-0 left-1/2 w-px h-3 bg-muted" />
     </div>
   );
 }
@@ -972,7 +972,7 @@ function ValuationMonitor() {
                   <p className="text-xs text-muted-foreground mb-2 font-medium">{c.label}</p>
                   <div className="relative h-4 bg-muted rounded-full">
                     <div
-                      className="absolute top-0 h-4 bg-slate-600 rounded-full"
+                      className="absolute top-0 h-4 bg-muted rounded-full"
                       style={{ width: `${avgPct}%`, opacity: 0.4 }}
                     />
                     <motion.div

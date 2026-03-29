@@ -87,7 +87,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
         >
           {result.playerWon ? "VICTORY!" : "DEFEAT"}
         </motion.span>
-        <span className="text-xs text-zinc-600 flex items-center gap-1">
+        <span className="text-xs text-muted-foreground/70 flex items-center gap-1">
           <Clock className="h-3 w-3" />
           Completed in {timeStr}
         </span>
@@ -106,17 +106,17 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <span className="text-xs text-zinc-500">You</span>
+          <span className="text-xs text-muted-foreground">You</span>
           <span className={cn(
             "text-4xl font-bold tabular-nums",
-            result.playerWon ? "text-emerald-400" : "text-zinc-300",
+            result.playerWon ? "text-emerald-400" : "text-muted-foreground",
           )}>
             {playerScoreAnim}
           </span>
         </motion.div>
 
         <motion.span
-          className="text-2xl font-bold text-zinc-700"
+          className="text-2xl font-bold text-muted-foreground/50"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.35, type: "spring" }}
@@ -130,10 +130,10 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <span className="text-xs text-zinc-500">{result.opponentName}</span>
+          <span className="text-xs text-muted-foreground">{result.opponentName}</span>
           <span className={cn(
             "text-4xl font-bold tabular-nums",
-            !result.playerWon ? "text-red-400" : "text-zinc-500",
+            !result.playerWon ? "text-red-400" : "text-muted-foreground",
           )}>
             {oppScoreAnim}
           </span>
@@ -155,8 +155,8 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
             transition={{ delay: 0.5 + i * 0.08 }}
             className="flex items-center gap-2.5 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2"
           >
-            <span className="text-zinc-500">{cat.icon}</span>
-            <span className="text-[11px] text-zinc-400 w-14">{cat.label}</span>
+            <span className="text-muted-foreground">{cat.icon}</span>
+            <span className="text-[11px] text-muted-foreground w-14">{cat.label}</span>
             <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
               <motion.div
                 className={cn("h-full rounded-full", cat.color)}
@@ -165,7 +165,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
                 transition={{ delay: 0.7 + i * 0.1, duration: 0.6, ease: "easeOut" }}
               />
             </div>
-            <span className="text-xs font-bold tabular-nums text-zinc-400 w-8 text-right">
+            <span className="text-xs font-bold tabular-nums text-muted-foreground w-8 text-right">
               {Math.round(cat.value)}
             </span>
           </motion.div>
@@ -191,19 +191,19 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           icon={<Target className="h-3.5 w-3.5" />}
           label="Trades"
           value={`${result.playerTradesCount}`}
-          valueColor="text-zinc-200"
+          valueColor="text-foreground"
         />
         <StatRow
           icon={<Shield className="h-3.5 w-3.5" />}
           label="Max DD"
           value={`${result.playerMaxDrawdown.toFixed(1)}%`}
-          valueColor={result.playerMaxDrawdown < 5 ? "text-emerald-400" : "text-zinc-200"}
+          valueColor={result.playerMaxDrawdown < 5 ? "text-emerald-400" : "text-foreground"}
         />
         <StatRow
           icon={<Zap className="h-3.5 w-3.5" />}
           label="Win Rate"
           value={`${result.playerWinRate.toFixed(0)}%`}
-          valueColor={result.playerWinRate >= 50 ? "text-emerald-400" : "text-zinc-200"}
+          valueColor={result.playerWinRate >= 50 ? "text-emerald-400" : "text-foreground"}
         />
       </motion.div>
 
@@ -215,8 +215,8 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
         className="flex flex-col items-center gap-2"
       >
         <div className="flex items-center gap-3">
-          <span className="text-sm text-zinc-500">ELO</span>
-          <span className="text-lg font-bold tabular-nums text-zinc-400">{result.eloBefore}</span>
+          <span className="text-sm text-muted-foreground">ELO</span>
+          <span className="text-lg font-bold tabular-nums text-muted-foreground">{result.eloBefore}</span>
           <motion.span
             initial={{ x: -10, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -230,7 +230,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
             {result.eloChange >= 0 ? "+" : ""}{result.eloChange}
           </motion.span>
           <motion.span
-            className="text-lg font-bold tabular-nums text-zinc-200"
+            className="text-lg font-bold tabular-nums text-foreground"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1 }}
@@ -291,7 +291,7 @@ export function ArenaResults({ result, onPlayAgain, onBackToLobby }: ArenaResult
           onClick={onBackToLobby}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="rounded-lg border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-bold text-zinc-300 transition-colors hover:bg-white/10"
+          className="rounded-lg border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/10"
         >
           Back to Lobby
         </motion.button>
@@ -317,11 +317,11 @@ function StatRow({
 }) {
   return (
     <div className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.02] px-3 py-1.5">
-      <span className="text-zinc-500">{icon}</span>
-      <span className="text-[11px] text-zinc-400 flex-1">{label}</span>
+      <span className="text-muted-foreground">{icon}</span>
+      <span className="text-[11px] text-muted-foreground flex-1">{label}</span>
       <span className={cn("text-xs font-bold tabular-nums", valueColor)}>{value}</span>
       {opponent && (
-        <span className={cn("text-xs tabular-nums", opponentColor ?? "text-zinc-600")}>
+        <span className={cn("text-xs tabular-nums", opponentColor ?? "text-muted-foreground/70")}>
           vs {opponent}
         </span>
       )}

@@ -294,7 +294,7 @@ function RegimeCard({ indicator }: { indicator: typeof REGIME_INDICATORS[0] }) {
             style={{ width: `${pct}%`, backgroundColor: indicator.color }}
           />
           <div
-            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-zinc-900"
+            className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 border-border"
             style={{ left: `calc(${pct}% - 6px)`, backgroundColor: indicator.color }}
           />
         </div>
@@ -975,7 +975,7 @@ function PppChart() {
                   />
                 )}
               </div>
-              <div className="w-1 h-5 bg-zinc-600 rounded-full shrink-0" />
+              <div className="w-1 h-5 bg-muted rounded-full shrink-0" />
               <div className="flex items-center justify-start" style={{ width: barMaxW }}>
                 {overvalued && (
                   <div
@@ -1235,7 +1235,7 @@ export default function GlobalMacroPage() {
                             <div className="font-semibold text-sm text-white">{bank.name}</div>
                             <div className="text-xs text-muted-foreground">
                               Rate: <span className="text-foreground font-mono">{bank.rate.toFixed(2)}%</span>
-                              <span className="mx-2 text-zinc-700">|</span>
+                              <span className="mx-2 text-muted-foreground/50">|</span>
                               Next: <span className="text-muted-foreground">{bank.nextMeeting}</span>
                             </div>
                           </div>

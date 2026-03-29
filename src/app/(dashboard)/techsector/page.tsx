@@ -529,7 +529,7 @@ function SaasTab() {
                 <span className="font-mono text-xs font-bold text-white w-12">{c.ticker}</span>
                 <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
                   <div
-                    className={cn("h-full rounded-full", c.nrr >= 120 ? "bg-emerald-500" : c.nrr >= 110 ? "bg-primary" : "bg-zinc-500")}
+                    className={cn("h-full rounded-full", c.nrr >= 120 ? "bg-emerald-500" : c.nrr >= 110 ? "bg-primary" : "bg-muted-foreground")}
                     style={{ width: `${Math.min(100, ((c.nrr - 100) / 35) * 100)}%` }}
                   />
                 </div>
@@ -950,7 +950,7 @@ function SemiCycleTab() {
                 <div
                   className={cn(
                     "w-2 h-2 rounded-full",
-                    i === 4 ? "bg-emerald-500" : i === 2 ? "bg-rose-500" : i === 3 ? "bg-primary" : "bg-zinc-500"
+                    i === 4 ? "bg-emerald-500" : i === 2 ? "bg-rose-500" : i === 3 ? "bg-primary" : "bg-muted-foreground"
                   )}
                 />
                 <span className="text-xs font-bold text-white">{phase.phase}</span>
@@ -1293,7 +1293,7 @@ function MegaCapTab() {
                 "rounded-xl border p-3",
                 item.risk === "High" ? "border-rose-500/30 bg-rose-500/5"
                 : item.risk === "Medium" ? "border-amber-500/30 bg-amber-500/5"
-                : "border-zinc-500/30 bg-white/5"
+                : "border-muted-foreground/30 bg-white/5"
               )}
             >
               <div className="flex items-center justify-between mb-1.5">
@@ -1304,7 +1304,7 @@ function MegaCapTab() {
                     "text-xs",
                     item.risk === "High" ? "text-rose-300 border-rose-500/40"
                     : item.risk === "Medium" ? "text-amber-300 border-amber-500/40"
-                    : "text-muted-foreground border-zinc-500/40"
+                    : "text-muted-foreground border-muted-foreground/40"
                   )}
                 >
                   {item.risk} Risk
@@ -1414,7 +1414,7 @@ function FintechTab() {
                     <span className="text-muted-foreground ml-1.5">{c.name}</span>
                   </td>
                   <td className="px-3 py-2.5">
-                    <span className={cn("text-xs px-1.5 py-0.5 rounded border", CATEGORY_COLORS[c.category] ?? "bg-zinc-500/20 text-muted-foreground border-zinc-500/30")}>
+                    <span className={cn("text-xs px-1.5 py-0.5 rounded border", CATEGORY_COLORS[c.category] ?? "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30")}>
                       {c.category}
                     </span>
                   </td>

@@ -486,7 +486,7 @@ function DebtOverviewTab() {
                     "w-full p-3 rounded-lg border text-left transition-all",
                     method === m
                       ? "border-primary bg-primary/10"
-                      : "border-border bg-muted/50 hover:border-neutral-600"
+                      : "border-border bg-muted/50 hover:border-border"
                   )}
                 >
                   <div className="flex items-center gap-2 mb-1">
@@ -1559,7 +1559,7 @@ export default function DebtManagementPage() {
   void NOISE;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

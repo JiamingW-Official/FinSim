@@ -269,7 +269,7 @@ function QuotingTab() {
                     "px-2 py-1 text-xs rounded border transition-colors",
                     tick === t
                       ? "bg-primary/20 border-primary text-primary"
-                      : "border-border text-muted-foreground hover:border-zinc-500"
+                      : "border-border text-muted-foreground hover:border-muted-foreground"
                   )}
                 >
                   ${t.toFixed(2)}
@@ -1163,7 +1163,7 @@ function EconomicsTab() {
     { name: "Virtu Financial", share: 0.15, specialty: "Multi-asset HFT", color: "bg-emerald-500" },
     { name: "IMC Trading", share: 0.12, specialty: "Options & ETFs, European roots", color: "bg-amber-500" },
     { name: "Wolverine Trading", share: 0.08, specialty: "Options, complex spreads", color: "bg-rose-500" },
-    { name: "Other / Regional", share: 0.19, specialty: "Exchange specialists, boutiques", color: "bg-zinc-600" },
+    { name: "Other / Regional", share: 0.19, specialty: "Exchange specialists, boutiques", color: "bg-muted" },
   ];
 
   const pfofData = [
@@ -1419,7 +1419,7 @@ function EconomicsTab() {
                         ? "bg-rose-500"
                         : e.type === "warning"
                         ? "bg-amber-500"
-                        : "bg-zinc-500"
+                        : "bg-muted-foreground"
                     )}
                   />
                   <div>
@@ -1485,7 +1485,7 @@ export default function OptionsMmPage() {
               <Activity className="text-primary" size={20} />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-zinc-50">Options Market Making</h1>
+              <h1 className="text-2xl font-bold text-foreground">Options Market Making</h1>
               <p className="text-sm text-muted-foreground">
                 How market makers quote, manage inventory, detect adverse selection, and generate profits
               </p>

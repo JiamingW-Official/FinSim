@@ -1291,7 +1291,7 @@ function CustomScreenTab() {
 // ── Page ───────────────────────────────────────────────────────────────────────
 export default function StockScreenerPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white p-6">
+    <div className="min-h-screen bg-background text-white p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

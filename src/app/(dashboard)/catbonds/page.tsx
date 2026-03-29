@@ -1305,7 +1305,7 @@ function PortfolioConstructionTab() {
                       ? "bg-primary"
                       : a.asset === "Corp Bonds HY"
                       ? "bg-primary"
-                      : "bg-gray-500"
+                      : "bg-muted-foreground"
                   )}
                   style={{ width: `${(a.weight / 25) * 100}%` }}
                 />

@@ -93,9 +93,9 @@ export interface ArenaRankInfo {
 
 export const ARENA_RANKS: Record<ArenaRank, ArenaRankInfo> = {
   bronze:   { rank: "bronze",   label: "Bronze",   emoji: "🥉", color: "text-orange-400",  bgColor: "bg-orange-500/10",  borderColor: "border-orange-500/30",  minElo: 0 },
-  silver:   { rank: "silver",   label: "Silver",   emoji: "🥈", color: "text-gray-300",    bgColor: "bg-gray-400/10",    borderColor: "border-gray-400/30",    minElo: 800 },
+  silver:   { rank: "silver",   label: "Silver",   emoji: "🥈", color: "text-muted-foreground",    bgColor: "bg-muted-foreground/10",    borderColor: "border-muted-foreground/30",    minElo: 800 },
   gold:     { rank: "gold",     label: "Gold",     emoji: "🥇", color: "text-amber-400",   bgColor: "bg-amber-500/10",   borderColor: "border-amber-500/30",   minElo: 1200 },
-  platinum: { rank: "platinum", label: "Platinum", emoji: "💠", color: "text-emerald-400",    bgColor: "bg-emerald-500/10",    borderColor: "border-emerald-500/30",    minElo: 1600 },
+  platinum: { rank: "platinum", label: "Platinum", emoji: "💠", color: "text-primary",    bgColor: "bg-primary/10",    borderColor: "border-primary/30",    minElo: 1600 },
   diamond:  { rank: "diamond",  label: "Diamond",  emoji: "💎", color: "text-muted-foreground",    bgColor: "bg-muted/30",    borderColor: "border-border",    minElo: 2000 },
   master:   { rank: "master",   label: "Master",   emoji: "👑", color: "text-primary",  bgColor: "bg-primary/10",  borderColor: "border-border",  minElo: 2500 },
 };

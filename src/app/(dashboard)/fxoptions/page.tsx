@@ -892,7 +892,7 @@ export default function FXOptionsPage() {
             <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse" />
             London / NY Session
           </Badge>
-          <Badge variant="outline" className="border-slate-600 text-muted-foreground text-xs">
+          <Badge variant="outline" className="border-border text-muted-foreground text-xs">
             <RefreshCw size={10} className="mr-1" />
             Simulated
           </Badge>

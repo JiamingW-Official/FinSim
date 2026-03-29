@@ -412,7 +412,7 @@ function PortfolioSnapshot({ positions }: { positions: (Position & { marketValue
   const winners = sorted.slice(0, 3);
   const losers = sorted.slice(-3).reverse();
 
-  const medalColors = ["text-yellow-400", "text-slate-300", "text-amber-600"];
+  const medalColors = ["text-yellow-400", "text-muted-foreground", "text-amber-600"];
 
   return (
     <div className="space-y-4">
@@ -815,7 +815,7 @@ function PerformanceAttribution() {
   );
 }
 
-const medalColors = ["text-yellow-400", "text-slate-300", "text-amber-600"];
+const medalColors = ["text-yellow-400", "text-muted-foreground", "text-amber-600"];
 
 // ─── Section 5: Trade Suggestions ────────────────────────────────────────────
 

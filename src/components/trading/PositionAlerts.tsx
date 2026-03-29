@@ -79,7 +79,7 @@ export function PositionAlerts() {
                 : `${pos.ticker} up ${pct.toFixed(1)}% — building momentum. Hold with a trailing stop`;
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
                   <span className="text-base shrink-0">
                     {threshold >= 15 ? "💎" : threshold >= 10 ? "🚀" : "🎯"}
                   </span>
@@ -87,7 +87,7 @@ export function PositionAlerts() {
                     <div className="font-bold text-emerald-400 leading-tight">
                       Profit +{threshold}%
                     </div>
-                    <div className="text-zinc-400 leading-tight mt-0.5">{msg}</div>
+                    <div className="text-muted-foreground leading-tight mt-0.5">{msg}</div>
                   </div>
                 </div>
               ),
@@ -112,13 +112,13 @@ export function PositionAlerts() {
                 : `${pos.ticker} down ${pct.toFixed(1)}% — drawdown building. Keep your stop in place`;
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-red-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
                   <span className="text-base shrink-0">{absT >= 5 ? "🛑" : "⚠️"}</span>
                   <div className="min-w-0">
                     <div className="font-bold text-red-400 leading-tight">
                       Loss Alert {threshold}%
                     </div>
-                    <div className="text-zinc-400 leading-tight mt-0.5">{msg}</div>
+                    <div className="text-muted-foreground leading-tight mt-0.5">{msg}</div>
                   </div>
                 </div>
               ),
@@ -145,11 +145,11 @@ export function PositionAlerts() {
             alertedAtrStop.current.add(key);
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
                   <span className="text-base shrink-0">⚡</span>
                   <div className="min-w-0">
                     <div className="font-bold text-amber-400 leading-tight">ATR Stop Proximity</div>
-                    <div className="text-zinc-400 leading-tight mt-0.5">
+                    <div className="text-muted-foreground leading-tight mt-0.5">
                       {pos.ticker} within {distToPct.toFixed(2)}% of ATR trailing stop ${atrStop.toFixed(2)} — prepare to exit
                     </div>
                   </div>
@@ -172,11 +172,11 @@ export function PositionAlerts() {
             alertedTimeExit.current.add(key);
             toast.custom(
               () => (
-                <div className="flex items-center gap-2 rounded-lg border border-border bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64">
+                <div className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
                   <span className="text-base shrink-0">⏱️</span>
                   <div className="min-w-0">
                     <div className="font-bold text-primary leading-tight">Long-Held Position</div>
-                    <div className="text-zinc-400 leading-tight mt-0.5">
+                    <div className="text-muted-foreground leading-tight mt-0.5">
                       {pos.ticker} held {barsHeld} bars — re-evaluate thesis. Is momentum still supportive?
                     </div>
                   </div>

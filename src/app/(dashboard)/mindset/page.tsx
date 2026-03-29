@@ -971,7 +971,7 @@ function BiasAssessment() {
                         "text-left p-3 rounded-lg border text-xs transition-all",
                         selected
                           ? "border-indigo-500 bg-indigo-900/30 text-indigo-200"
-                          : "border-border bg-muted/40 text-muted-foreground hover:border-gray-600 hover:text-muted-foreground"
+                          : "border-border bg-muted/40 text-muted-foreground hover:border-border hover:text-muted-foreground"
                       )}
                     >
                       <span className="font-medium text-muted-foreground mr-2">
@@ -1008,7 +1008,7 @@ function BiasAssessment() {
                   ? "bg-indigo-500"
                   : answers[QUIZ_QUESTIONS[i].id]
                   ? "bg-green-600"
-                  : "bg-gray-700"
+                  : "bg-muted"
               )}
             />
           ))}
@@ -1079,7 +1079,7 @@ function DecisionFramework() {
                       "w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-all",
                       checked
                         ? "border-green-800/60 bg-green-950/30"
-                        : "border-border/50 bg-muted/20 hover:border-gray-600/50"
+                        : "border-border/50 bg-muted/20 hover:border-border/50"
                     )}
                   >
                     {checked ? (
@@ -1147,7 +1147,7 @@ function DecisionFramework() {
                     setThesisFields((prev) => ({ ...prev, [key]: e.target.value }))
                   }
                   placeholder={label}
-                  className="w-full bg-muted border border-border rounded-md px-3 py-1.5 text-xs text-foreground placeholder-gray-600 focus:outline-none focus:border-indigo-500"
+                  className="w-full bg-muted border border-border rounded-md px-3 py-1.5 text-xs text-foreground placeholder-muted-foreground focus:outline-none focus:border-indigo-500"
                 />
               </div>
             ))}
@@ -1299,7 +1299,7 @@ function EmotionalIntelligence() {
                     "px-2 py-1 rounded text-xs transition-all border",
                     i === cycleIndex
                       ? "border-transparent text-white"
-                      : "border-border text-muted-foreground hover:border-gray-600"
+                      : "border-border text-muted-foreground hover:border-border"
                   )}
                   style={i === cycleIndex ? { backgroundColor: phase.color + "40", borderColor: phase.color } : {}}
                 >
@@ -1929,7 +1929,7 @@ function PerformanceReview() {
                   "text-left p-3 rounded-lg border transition-all",
                   selectedFocus === ai
                     ? "border-indigo-600 bg-indigo-950/40"
-                    : "border-border bg-muted/20 hover:border-gray-600"
+                    : "border-border bg-muted/20 hover:border-border"
                 )}
               >
                 <div className="flex items-center gap-2 mb-1">
@@ -1963,7 +1963,7 @@ function PerformanceReview() {
                           "w-full flex items-start gap-3 p-3 rounded-lg border text-left transition-all",
                           done
                             ? "border-green-800/40 bg-green-950/20"
-                            : "border-border/40 bg-muted/20 hover:border-gray-600/40"
+                            : "border-border/40 bg-muted/20 hover:border-border/40"
                         )}
                       >
                         {done ? (

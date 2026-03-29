@@ -60,7 +60,7 @@ export default function AnnualReturnsChart({ result }: Props) {
   const data = computeAnnualReturns(result);
 
   if (data.length === 0) {
-    return <div className="py-4 text-center text-xs text-zinc-600">No annual data available</div>;
+    return <div className="py-4 text-center text-xs text-muted-foreground/70">No annual data available</div>;
   }
 
   const allValues = data.flatMap((d) => [d.strategy, d.spy]);
@@ -181,7 +181,7 @@ export default function AnnualReturnsChart({ result }: Props) {
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 px-1 text-[11px] text-zinc-500">
+      <div className="flex items-center gap-4 px-1 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-1">
           <span className="inline-block h-2.5 w-2.5 rounded-sm bg-emerald-500/70" />Strategy
         </span>
@@ -201,14 +201,14 @@ export default function AnnualReturnsChart({ result }: Props) {
         <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-3 py-2">
           <div className="text-[11px] text-amber-500/70">Best Year</div>
           <div className="text-sm font-bold text-amber-400">{bestYear.year}</div>
-          <div className="text-xs text-zinc-400">
+          <div className="text-xs text-muted-foreground">
             +{bestYear.strategy.toFixed(1)}% vs SPY {bestYear.spy > 0 ? "+" : ""}{bestYear.spy.toFixed(1)}%
           </div>
         </div>
         <div className="rounded-lg border border-rose-500/20 bg-rose-500/5 px-3 py-2">
           <div className="text-[11px] text-rose-500/70">Worst Year</div>
           <div className="text-sm font-bold text-rose-400">{worstYear.year}</div>
-          <div className="text-xs text-zinc-400">
+          <div className="text-xs text-muted-foreground">
             {worstYear.strategy.toFixed(1)}% vs SPY {worstYear.spy > 0 ? "+" : ""}{worstYear.spy.toFixed(1)}%
           </div>
         </div>

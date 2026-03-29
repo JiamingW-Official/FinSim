@@ -1257,7 +1257,7 @@ export default function AlgoPage() {
                         <span className="inline-block h-1.5 w-4 rounded bg-primary" /> Strategy
                       </div>
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <span className="inline-block h-1.5 w-4 rounded bg-zinc-600" /> Capital floor
+                        <span className="inline-block h-1.5 w-4 rounded bg-muted" /> Capital floor
                       </div>
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                         <span className="inline-block h-2 w-2 rounded-full bg-green-500" /> Buy

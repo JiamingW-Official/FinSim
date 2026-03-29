@@ -320,7 +320,7 @@ function Podium({ entries }: PodiumProps) {
             <span
               className={cn(
                 "text-xs font-bold truncate w-full text-center",
-                p.entry?.isPlayer ? "text-emerald-300" : "text-zinc-300",
+                p.entry?.isPlayer ? "text-emerald-300" : "text-muted-foreground",
               )}
             >
               {p.entry?.name ?? "—"}
@@ -341,7 +341,7 @@ function TimeBar({ daysRemaining, totalDays }: { daysRemaining: number; totalDay
   const pct = (daysRemaining / totalDays) * 100;
   return (
     <div className="flex items-center gap-2">
-      <Clock className="h-3 w-3 text-zinc-500 shrink-0" />
+      <Clock className="h-3 w-3 text-muted-foreground shrink-0" />
       <div className="flex-1 h-1.5 rounded-full bg-white/[0.05] overflow-hidden">
         <motion.div
           className="h-full rounded-full bg-teal-500"
@@ -350,7 +350,7 @@ function TimeBar({ daysRemaining, totalDays }: { daysRemaining: number; totalDay
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
       </div>
-      <span className="text-xs tabular-nums text-zinc-500 shrink-0">{daysRemaining}d left</span>
+      <span className="text-xs tabular-nums text-muted-foreground shrink-0">{daysRemaining}d left</span>
     </div>
   );
 }
@@ -367,7 +367,7 @@ interface TournamentLobbyProps {
 function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: TournamentLobbyProps) {
   return (
     <div className="space-y-4">
-      <div className="text-xs font-bold text-zinc-400">Active Tournaments</div>
+      <div className="text-xs font-bold text-muted-foreground">Active Tournaments</div>
       <div className="grid gap-3">
         {TOURNAMENTS.map((t) => {
           const joined = joinedIds.has(t.id);
@@ -395,7 +395,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5">
-                      <span className="text-sm font-bold text-zinc-100">{t.name}</span>
+                      <span className="text-sm font-bold text-foreground">{t.name}</span>
                       {t.inviteOnly && (
                         <Lock className="h-3 w-3 text-amber-400" />
                       )}
@@ -403,17 +403,17 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                         <CheckCircle className="h-3.5 w-3.5 text-emerald-400" />
                       )}
                     </div>
-                    <span className="text-xs text-zinc-500">{t.duration} · {t.scoring}</span>
+                    <span className="text-xs text-muted-foreground">{t.duration} · {t.scoring}</span>
                   </div>
                 </div>
                 {/* Prize pool */}
                 <div className="text-right shrink-0">
                   <div className={cn("text-xs font-bold", t.color)}>{t.prizes[0].toLocaleString()} XP</div>
-                  <div className="text-xs text-zinc-600">1st prize</div>
+                  <div className="text-xs text-muted-foreground/70">1st prize</div>
                 </div>
               </div>
 
-              <p className="text-[11px] text-zinc-500 mb-3">{t.description}</p>
+              <p className="text-[11px] text-muted-foreground mb-3">{t.description}</p>
 
               {/* Prize breakdown */}
               <div className="flex items-center gap-3 mb-3">
@@ -428,7 +428,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
               </div>
 
               {/* Stats row */}
-              <div className="flex items-center gap-4 mb-3 text-xs text-zinc-500">
+              <div className="flex items-center gap-4 mb-3 text-xs text-muted-foreground">
                 <span className="flex items-center gap-1">
                   <Users className="h-2.5 w-2.5" />
                   {participants.toLocaleString()} traders
@@ -465,7 +465,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                       "flex-1 flex items-center justify-center gap-1.5 rounded-lg py-2 text-xs font-bold transition-all",
                       canAfford
                         ? `${t.bgColor} ${t.color} border ${t.borderColor} hover:opacity-80 active:scale-95`
-                        : "border border-white/5 bg-white/[0.02] text-zinc-600 cursor-not-allowed",
+                        : "border border-white/5 bg-white/[0.02] text-muted-foreground/70 cursor-not-allowed",
                     )}
                   >
                     {canAfford ? (
@@ -490,7 +490,7 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
       {/* My Tournaments */}
       {joinedIds.size > 0 && (
         <div>
-          <div className="text-xs font-bold text-zinc-400 mb-2">My Tournaments</div>
+          <div className="text-xs font-bold text-muted-foreground mb-2">My Tournaments</div>
           <div className="space-y-2">
             {[...joinedIds].map((id) => {
               const def = TOURNAMENTS.find((t) => t.id === id)!;
@@ -506,8 +506,8 @@ function TournamentLobby({ joinedIds, onJoin, onViewLeaderboard, playerXP }: Tou
                 >
                   <span className={def.color}>{def.icon}</span>
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold text-zinc-200 truncate">{def.name}</div>
-                    <div className="text-xs text-zinc-500">{daysLeft}d remaining · Active</div>
+                    <div className="text-xs font-bold text-foreground truncate">{def.name}</div>
+                    <div className="text-xs text-muted-foreground">{daysLeft}d remaining · Active</div>
                   </div>
                   <button
                     type="button"
@@ -551,19 +551,19 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
         <button
           type="button"
           onClick={onBack}
-          className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors"
+          className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors"
         >
           ← Back
         </button>
         <div className={cn("flex items-center gap-1.5 ml-1", def.color)}>
           {def.icon}
-          <span className="text-sm font-bold text-zinc-100">{def.name}</span>
+          <span className="text-sm font-bold text-foreground">{def.name}</span>
         </div>
       </div>
 
       {/* Podium */}
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-        <div className="text-xs font-bold text-zinc-500 mb-3">Top Traders</div>
+        <div className="text-xs font-bold text-muted-foreground mb-3">Top Traders</div>
         <Podium entries={entries} />
       </div>
 
@@ -579,8 +579,8 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
       )}>
         <div className={cn("text-2xl font-bold tabular-nums", def.color)}>#{playerEntry.rank}</div>
         <div>
-          <div className="text-xs font-bold text-zinc-100">Your Ranking</div>
-          <div className="text-xs text-zinc-500">
+          <div className="text-xs font-bold text-foreground">Your Ranking</div>
+          <div className="text-xs text-muted-foreground">
             {playerEntry.returnPct >= 0 ? "+" : ""}{playerEntry.returnPct.toFixed(1)}% return ·{" "}
             Sharpe {playerEntry.sharpe.toFixed(2)} ·{" "}
             {(playerEntry.winRate * 100).toFixed(0)}% win rate
@@ -597,13 +597,13 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
           <table className="w-full text-[11px]">
             <thead>
               <tr className="border-b border-white/[0.06] bg-white/[0.03]">
-                <th className="px-3 py-2 text-left font-bold text-zinc-500 w-10">Rank</th>
-                <th className="px-3 py-2 text-left font-bold text-zinc-500">Trader</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">Return</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">Sharpe</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">Win%</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">Trades</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">ELO</th>
+                <th className="px-3 py-2 text-left font-bold text-muted-foreground w-10">Rank</th>
+                <th className="px-3 py-2 text-left font-bold text-muted-foreground">Trader</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Return</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Sharpe</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Win%</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Trades</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">ELO</th>
               </tr>
             </thead>
             <tbody>
@@ -624,9 +624,9 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
                         <span className={cn(
                           "font-bold tabular-nums",
                           e.rank === 1 ? "text-yellow-400"
-                          : e.rank === 2 ? "text-zinc-400"
+                          : e.rank === 2 ? "text-muted-foreground"
                           : e.rank === 3 ? "text-amber-600"
-                          : "text-zinc-500",
+                          : "text-muted-foreground",
                         )}>
                           {e.rank}
                         </span>
@@ -638,16 +638,16 @@ function LeaderboardSection({ tournamentId, playerElo, playerXP, onBack }: Leade
                       </div>
                     </td>
                     <td className="px-3 py-2">
-                      <span className={cn("font-bold", e.isPlayer ? "text-emerald-300" : "text-zinc-200")}>
+                      <span className={cn("font-bold", e.isPlayer ? "text-emerald-300" : "text-foreground")}>
                         {e.isPlayer ? "You" : e.name}
                       </span>
                     </td>
                     <td className={cn("px-3 py-2 text-right font-bold tabular-nums", e.returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
                       {e.returnPct >= 0 ? "+" : ""}{e.returnPct.toFixed(1)}%
                     </td>
-                    <td className="px-3 py-2 text-right tabular-nums text-zinc-400">{e.sharpe.toFixed(2)}</td>
-                    <td className="px-3 py-2 text-right tabular-nums text-zinc-400">{(e.winRate * 100).toFixed(0)}%</td>
-                    <td className="px-3 py-2 text-right tabular-nums text-zinc-500">{e.trades}</td>
+                    <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{e.sharpe.toFixed(2)}</td>
+                    <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{(e.winRate * 100).toFixed(0)}%</td>
+                    <td className="px-3 py-2 text-right tabular-nums text-muted-foreground">{e.trades}</td>
                     <td className="px-3 py-2 text-right">
                       <EloChangeBadge change={e.eloChange} small />
                     </td>
@@ -732,21 +732,21 @@ function H2HSection({ playerElo }: H2HProps) {
       {/* Stats banner */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { label: "Your ELO", value: playerElo.toLocaleString(), color: "text-zinc-100" },
+          { label: "Your ELO", value: playerElo.toLocaleString(), color: "text-foreground" },
           { label: "W/L", value: `${winCount}/${lossCount}`, color: "text-emerald-400" },
           { label: "Win Rate", value: `${Math.round((winCount / Math.max(1, matchHistory.length)) * 100)}%`, color: "text-primary" },
         ].map((s) => (
           <div key={s.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3 text-center">
             <div className={cn("text-sm font-bold tabular-nums", s.color)}>{s.value}</div>
-            <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
+            <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
           </div>
         ))}
       </div>
 
       {/* Matchmaking */}
       <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 space-y-3">
-        <div className="text-xs font-bold text-zinc-300">Find a Match</div>
-        <p className="text-[11px] text-zinc-500">
+        <div className="text-xs font-bold text-muted-foreground">Find a Match</div>
+        <p className="text-[11px] text-muted-foreground">
           24-hour paper trading duel — whoever has higher return % wins. ELO-based matchmaking finds opponents near your rating.
         </p>
         <button
@@ -761,13 +761,13 @@ function H2HSection({ playerElo }: H2HProps) {
         {/* Challenge by name */}
         <div className="flex gap-2">
           <div className="relative flex-1">
-            <Search className="absolute left-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-zinc-600" />
+            <Search className="absolute left-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-muted-foreground/70" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Challenge by username..."
-              className="w-full rounded-lg border border-white/[0.06] bg-white/[0.02] py-2 pl-8 pr-3 text-xs text-zinc-300 placeholder:text-zinc-700 focus:outline-none focus:border-teal-500/40"
+              className="w-full rounded-lg border border-white/[0.06] bg-white/[0.02] py-2 pl-8 pr-3 text-xs text-muted-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-teal-500/40"
               onKeyDown={(e) => { if (e.key === "Enter") handleChallengeUser(); }}
             />
           </div>
@@ -775,7 +775,7 @@ function H2HSection({ playerElo }: H2HProps) {
             type="button"
             onClick={handleChallengeUser}
             disabled={!searchQuery.trim()}
-            className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-xs font-bold text-zinc-400 transition-colors hover:bg-white/[0.06] disabled:opacity-40"
+            className="rounded-lg border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-xs font-bold text-muted-foreground transition-colors hover:bg-white/[0.06] disabled:opacity-40"
           >
             Challenge
           </button>
@@ -793,7 +793,7 @@ function H2HSection({ playerElo }: H2HProps) {
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-emerald-400">Active Match · 24h Duel</span>
-              <span className="text-xs text-zinc-500">vs {currentMatch.opponent} ({currentMatch.opponentElo} ELO)</span>
+              <span className="text-xs text-muted-foreground">vs {currentMatch.opponent} ({currentMatch.opponentElo} ELO)</span>
             </div>
 
             {/* Live P&L bar */}
@@ -801,13 +801,13 @@ function H2HSection({ playerElo }: H2HProps) {
 
             <div className="grid grid-cols-2 gap-2 text-center">
               <div className="rounded-lg bg-white/[0.03] px-3 py-2">
-                <div className="text-xs text-zinc-500">Your Return</div>
+                <div className="text-xs text-muted-foreground">Your Return</div>
                 <div className={cn("text-sm font-bold tabular-nums", currentMatch.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                   {currentMatch.yourReturn >= 0 ? "+" : ""}{currentMatch.yourReturn.toFixed(2)}%
                 </div>
               </div>
               <div className="rounded-lg bg-white/[0.03] px-3 py-2">
-                <div className="text-xs text-zinc-500">{currentMatch.opponent}</div>
+                <div className="text-xs text-muted-foreground">{currentMatch.opponent}</div>
                 <div className={cn("text-sm font-bold tabular-nums", currentMatch.oppReturn >= 0 ? "text-red-400" : "text-emerald-400")}>
                   {currentMatch.oppReturn >= 0 ? "+" : ""}{currentMatch.oppReturn.toFixed(2)}%
                 </div>
@@ -817,7 +817,7 @@ function H2HSection({ playerElo }: H2HProps) {
             <button
               type="button"
               onClick={() => setCurrentMatch(null)}
-              className="w-full text-xs text-zinc-600 hover:text-zinc-400 transition-colors py-1"
+              className="w-full text-xs text-muted-foreground/70 hover:text-muted-foreground transition-colors py-1"
             >
               Close
             </button>
@@ -827,16 +827,16 @@ function H2HSection({ playerElo }: H2HProps) {
 
       {/* Match history */}
       <div>
-        <div className="text-xs font-bold text-zinc-400 mb-2">Recent Matches (Last 10)</div>
+        <div className="text-xs font-bold text-muted-foreground mb-2">Recent Matches (Last 10)</div>
         <div className="rounded-xl border border-white/[0.06] overflow-hidden">
           <table className="w-full text-[11px]">
             <thead>
               <tr className="border-b border-white/[0.06] bg-white/[0.03]">
-                <th className="px-3 py-2 text-left font-bold text-zinc-500">Opponent</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">Your %</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">Opp %</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">Result</th>
-                <th className="px-3 py-2 text-right font-bold text-zinc-500">ELO</th>
+                <th className="px-3 py-2 text-left font-bold text-muted-foreground">Opponent</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Your %</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Opp %</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">Result</th>
+                <th className="px-3 py-2 text-right font-bold text-muted-foreground">ELO</th>
               </tr>
             </thead>
             <tbody>
@@ -844,14 +844,14 @@ function H2HSection({ playerElo }: H2HProps) {
                 <tr key={m.id} className="border-b border-white/[0.03] last:border-0 hover:bg-white/[0.02]">
                   <td className="px-3 py-2">
                     <div className="flex flex-col">
-                      <span className="text-zinc-200 font-medium">{m.opponent}</span>
-                      <span className="text-[11px] text-zinc-600">{m.date} · {m.opponentElo} ELO</span>
+                      <span className="text-foreground font-medium">{m.opponent}</span>
+                      <span className="text-[11px] text-muted-foreground/70">{m.date} · {m.opponentElo} ELO</span>
                     </div>
                   </td>
                   <td className={cn("px-3 py-2 text-right tabular-nums font-bold", m.yourReturn >= 0 ? "text-emerald-400" : "text-red-400")}>
                     {m.yourReturn >= 0 ? "+" : ""}{m.yourReturn.toFixed(1)}%
                   </td>
-                  <td className={cn("px-3 py-2 text-right tabular-nums", m.oppReturn >= 0 ? "text-zinc-400" : "text-zinc-500")}>
+                  <td className={cn("px-3 py-2 text-right tabular-nums", m.oppReturn >= 0 ? "text-muted-foreground" : "text-muted-foreground")}>
                     {m.oppReturn >= 0 ? "+" : ""}{m.oppReturn.toFixed(1)}%
                   </td>
                   <td className="px-3 py-2 text-right">
@@ -882,7 +882,7 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[11px] font-bold text-zinc-500 w-5 text-right">YOU</span>
+      <span className="text-[11px] font-bold text-muted-foreground w-5 text-right">YOU</span>
       <div className="flex-1 relative h-4 rounded-full bg-white/[0.04] overflow-hidden flex">
         <div className="w-1/2 flex justify-end">
           <motion.div
@@ -894,18 +894,18 @@ function LivePnlBar({ yourReturn, oppReturn }: { yourReturn: number; oppReturn: 
         <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/20 z-10" />
         <div className="w-1/2 flex justify-start">
           <motion.div
-            className={cn("h-full rounded-r-full", oppReturn >= 0 ? "bg-red-500/40" : "bg-zinc-500/30")}
+            className={cn("h-full rounded-r-full", oppReturn >= 0 ? "bg-red-500/40" : "bg-muted-foreground/30")}
             animate={{ width: `${oppPct}%` }}
             transition={{ duration: 0.5 }}
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className={cn("text-[8px] font-bold tabular-nums", youLeading ? "text-emerald-400" : "text-zinc-500")}>
+          <span className={cn("text-[8px] font-bold tabular-nums", youLeading ? "text-emerald-400" : "text-muted-foreground")}>
             {(yourReturn - oppReturn) >= 0 ? "+" : ""}{(yourReturn - oppReturn).toFixed(1)}%
           </span>
         </div>
       </div>
-      <span className="text-[11px] font-bold text-zinc-500 w-5">OPP</span>
+      <span className="text-[11px] font-bold text-muted-foreground w-5">OPP</span>
     </div>
   );
 }
@@ -986,9 +986,9 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
             { label: "Most Consistent", winner: "QuantKing", detail: "Sharpe 4.21 over 30d" },
           ].map((award) => (
             <div key={award.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
-              <div className="text-xs font-bold text-zinc-500 mb-1">{award.label}</div>
-              <div className="text-xs font-bold text-zinc-100">{award.winner}</div>
-              <div className="text-[11px] text-zinc-600 mt-0.5">{award.detail}</div>
+              <div className="text-xs font-bold text-muted-foreground mb-1">{award.label}</div>
+              <div className="text-xs font-bold text-foreground">{award.winner}</div>
+              <div className="text-[11px] text-muted-foreground/70 mt-0.5">{award.detail}</div>
             </div>
           ))}
         </div>
@@ -1001,7 +1001,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
         { title: "Most Tournament Wins", entries: mostWins, unit: "wins" },
       ].map((board) => (
         <div key={board.title}>
-          <div className="text-xs font-bold text-zinc-400 mb-2 flex items-center gap-1.5">
+          <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
             <Medal className="h-3.5 w-3.5 text-yellow-500" />
             {board.title}
           </div>
@@ -1017,16 +1017,16 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
                 <span className={cn(
                   "w-5 text-center text-xs font-bold tabular-nums",
                   e.rank === 1 ? "text-yellow-400"
-                  : e.rank === 2 ? "text-zinc-400"
+                  : e.rank === 2 ? "text-muted-foreground"
                   : e.rank === 3 ? "text-amber-600"
-                  : "text-zinc-600",
+                  : "text-muted-foreground/70",
                 )}>
                   {e.rank}
                 </span>
-                <span className={cn("flex-1 text-xs font-medium", e.isPlayer ? "text-emerald-300" : "text-zinc-200")}>
+                <span className={cn("flex-1 text-xs font-medium", e.isPlayer ? "text-emerald-300" : "text-foreground")}>
                   {e.name}
                 </span>
-                <span className={cn("text-xs font-bold tabular-nums", e.isPlayer ? "text-emerald-400" : "text-zinc-400")}>
+                <span className={cn("text-xs font-bold tabular-nums", e.isPlayer ? "text-emerald-400" : "text-muted-foreground")}>
                   {e.value}
                 </span>
               </div>
@@ -1037,15 +1037,15 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
 
       {/* Career stats */}
       <div>
-        <div className="text-xs font-bold text-zinc-400 mb-2 flex items-center gap-1.5">
+        <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
           <Award className="h-3.5 w-3.5 text-primary" />
           Your Career Stats
         </div>
         <div className="grid grid-cols-2 gap-2">
           {careerStats.map((s) => (
             <div key={s.label} className="rounded-lg border border-white/[0.06] bg-white/[0.02] p-3">
-              <div className="text-sm font-bold tabular-nums text-zinc-100">{s.value}</div>
-              <div className="text-xs text-zinc-500 mt-0.5">{s.label}</div>
+              <div className="text-sm font-bold tabular-nums text-foreground">{s.value}</div>
+              <div className="text-xs text-muted-foreground mt-0.5">{s.label}</div>
             </div>
           ))}
         </div>
@@ -1053,7 +1053,7 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
 
       {/* Badges */}
       <div>
-        <div className="text-xs font-bold text-zinc-400 mb-2 flex items-center gap-1.5">
+        <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
           <Trophy className="h-3.5 w-3.5 text-amber-400" />
           Tournament Badges
         </div>
@@ -1069,13 +1069,13 @@ function HallOfFameSection({ playerElo, playerXP, joinedCount }: HallOfFameProps
               )}
             >
               <div className="flex items-center gap-2 mb-1">
-                <span className={badge.earned ? badge.color : "text-zinc-600"}>{badge.icon}</span>
-                <span className={cn("text-xs font-bold", badge.earned ? "text-zinc-100" : "text-zinc-600")}>
+                <span className={badge.earned ? badge.color : "text-muted-foreground/70"}>{badge.icon}</span>
+                <span className={cn("text-xs font-bold", badge.earned ? "text-foreground" : "text-muted-foreground/70")}>
                   {badge.name}
                 </span>
                 {badge.earned && <CheckCircle className="h-3 w-3 text-emerald-400 ml-auto" />}
               </div>
-              <p className="text-xs text-zinc-500">{badge.description}</p>
+              <p className="text-xs text-muted-foreground">{badge.description}</p>
             </div>
           ))}
         </div>
@@ -1196,7 +1196,7 @@ export function TournamentSystem() {
                 "flex flex-1 items-center justify-center gap-1.5 py-2.5 text-xs font-bold transition-colors",
                 activeSection === tab.id
                   ? "bg-teal-500/15 text-emerald-400"
-                  : "text-zinc-500 hover:text-zinc-300",
+                  : "text-muted-foreground hover:text-muted-foreground",
               )}
             >
               {tab.icon}

@@ -1274,7 +1274,7 @@ function MarketFutureTab() {
                   <span>Industry adoption</span>
                   <span>{item.adoption}%</span>
                 </div>
-                <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: `${item.adoption}%` }}

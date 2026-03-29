@@ -417,7 +417,7 @@ function signalColor(s: TrendMarket["signal"]) {
   return {
     strong_long: "text-emerald-400 bg-emerald-400/10",
     long: "text-green-400 bg-green-400/10",
-    neutral: "text-muted-foreground bg-zinc-400/10",
+    neutral: "text-muted-foreground bg-muted-foreground/10",
     short: "text-orange-400 bg-orange-400/10",
     strong_short: "text-red-400 bg-red-400/10",
   }[s];
@@ -1173,7 +1173,7 @@ function GlobalMacroSimulator() {
                         "text-xs px-1.5 py-0 h-5",
                         cb.trend === "cutting" && "bg-emerald-400/15 text-emerald-400",
                         cb.trend === "hiking" && "bg-red-400/15 text-red-400",
-                        cb.trend === "holding" && "bg-zinc-400/15 text-muted-foreground"
+                        cb.trend === "holding" && "bg-muted-foreground/15 text-muted-foreground"
                       )}
                     >
                       {cb.stance}

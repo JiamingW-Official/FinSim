@@ -921,7 +921,7 @@ function PrimaryResearchTab() {
                   "rounded-lg p-2.5 cursor-pointer border transition-colors",
                   activeLevel === i
                     ? "border-primary bg-muted/40"
-                    : "border-border bg-card hover:border-gray-600"
+                    : "border-border bg-card hover:border-border"
                 )}
                 onClick={() => setActiveLevel(activeLevel === i ? null : i)}
               >
@@ -1014,7 +1014,7 @@ function PrimaryResearchTab() {
               key={i}
               className={cn(
                 "bg-card rounded-lg p-3 border cursor-pointer transition-colors",
-                activeMethod === i ? "border-cyan-600" : "border-border hover:border-gray-600"
+                activeMethod === i ? "border-cyan-600" : "border-border hover:border-border"
               )}
               onClick={() => setActiveMethod(i)}
             >
@@ -1047,7 +1047,7 @@ function ForensicTab() {
     "text-muted-foreground bg-card border-border";
 
   const severityDot = (s: "high" | "medium" | "low") =>
-    s === "high" ? "bg-red-500" : s === "medium" ? "bg-amber-500" : "bg-gray-500";
+    s === "high" ? "bg-red-500" : s === "medium" ? "bg-amber-500" : "bg-muted-foreground";
 
   return (
     <div className="space-y-6">
@@ -1069,7 +1069,7 @@ function ForensicTab() {
         {FORENSIC_FLAGS.map((cat, i) => (
           <div key={i} className="bg-muted border border-border rounded-xl overflow-hidden">
             <button
-              className="w-full flex items-center gap-3 p-3 hover:bg-gray-750 text-left"
+              className="w-full flex items-center gap-3 p-3 hover:bg-muted text-left"
               onClick={() => setExpandedCategory(expandedCategory === i ? null : i)}
             >
               <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
@@ -1248,7 +1248,7 @@ function ThesisTab() {
               onClick={() => setActiveStep(i)}
               className={cn(
                 "text-xs px-2.5 py-1 rounded-lg font-semibold transition-colors",
-                activeStep === i ? "bg-primary text-white" : "bg-gray-700 text-muted-foreground hover:bg-gray-600"
+                activeStep === i ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {step.step}
@@ -1367,7 +1367,7 @@ function ThesisTab() {
                 key={i}
                 className={cn(
                   "rounded-lg p-2.5 cursor-pointer border transition-colors",
-                  activeMoat === i ? "border-primary bg-muted/30" : "border-border bg-card hover:border-gray-600"
+                  activeMoat === i ? "border-primary bg-muted/30" : "border-border bg-card hover:border-border"
                 )}
                 onClick={() => setActiveMoat(activeMoat === i ? null : i)}
               >
@@ -1390,7 +1390,7 @@ function ThesisTab() {
                       <p className="text-xs text-muted-foreground mb-1.5">{moat.description}</p>
                       <div className="flex flex-wrap gap-1.5">
                         {moat.examples.map((ex, j) => (
-                          <span key={j} className="text-xs bg-muted border border-gray-600 px-1.5 py-0.5 rounded text-muted-foreground">{ex}</span>
+                          <span key={j} className="text-xs bg-muted border border-border px-1.5 py-0.5 rounded text-muted-foreground">{ex}</span>
                         ))}
                       </div>
                     </motion.div>
@@ -1507,7 +1507,7 @@ export default function EquityResearch3Page() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-lg"
+                className="flex items-center gap-1.5 text-xs py-2 data-[state=active]:bg-muted data-[state=active]:text-white rounded-lg"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>

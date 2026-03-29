@@ -1096,7 +1096,7 @@ export default function StructuredNotesPage() {
                   className={cn(
                     "bg-card border rounded-xl p-4 cursor-pointer transition-all",
                     selectedProduct === product.id
-                      ? "border-slate-500 ring-1 ring-slate-500/40"
+                      ? "border-muted-foreground ring-1 ring-muted-foreground/40"
                       : "border-border hover:border-border"
                   )}
                 >
@@ -1735,7 +1735,7 @@ export default function StructuredNotesPage() {
                                 ✓
                               </span>
                             ) : (
-                              <span className="text-slate-700 text-base">
+                              <span className="text-muted-foreground/50 text-base">
                                 ✗
                               </span>
                             )}

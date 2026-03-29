@@ -866,7 +866,7 @@ function GreekCard({ label, value, sub, color }: GreekCardProps) {
     amber: "text-amber-300 border-amber-500/20 bg-amber-500/5",
     emerald: "text-emerald-300 border-emerald-500/20 bg-emerald-500/5",
     rose: "text-rose-300 border-rose-500/20 bg-rose-500/5",
-    slate: "text-muted-foreground border-slate-500/20 bg-slate-500/5",
+    slate: "text-muted-foreground border-muted-foreground/20 bg-muted-foreground/5",
   };
   const cls = colorMap[color] ?? colorMap.slate;
   return (

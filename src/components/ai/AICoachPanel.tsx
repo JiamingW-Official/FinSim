@@ -1022,9 +1022,9 @@ export function AICoachPanel() {
     const msg = messages[revealedCount % messages.length];
     toast.custom(
       () => (
-        <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-zinc-900 px-3 py-1.5 shadow text-xs max-w-56">
+        <div className="flex items-center gap-2 rounded-lg border border-border/40 bg-card px-3 py-1.5 shadow text-xs max-w-56">
           <span className="shrink-0">📊</span>
-          <span className="text-zinc-400">{msg}</span>
+          <span className="text-muted-foreground">{msg}</span>
         </div>
       ),
       { duration: 2500, position: "bottom-right" },

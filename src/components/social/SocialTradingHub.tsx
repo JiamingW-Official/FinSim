@@ -385,7 +385,7 @@ function BadgePill({ tier }: { tier: BadgeTier }) {
   const cls = tier === "Gold"
     ? "bg-yellow-400/15 text-yellow-400 border-yellow-400/30"
     : tier === "Silver"
-    ? "bg-slate-400/15 text-slate-300 border-slate-400/30"
+    ? "bg-muted-foreground/15 text-muted-foreground border-muted-foreground/30"
     : "bg-amber-700/15 text-amber-600 border-amber-700/30";
   return (
     <span className={cn("inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border text-[11px] font-bold uppercase", cls)}>
@@ -408,7 +408,7 @@ function RiskBadge({ level }: { level: RiskLevel }) {
 
 function RankIcon({ rank }: { rank: number }) {
   if (rank === 1) return <Crown className="h-4 w-4 text-yellow-400" />;
-  if (rank === 2) return <Medal className="h-4 w-4 text-slate-400" />;
+  if (rank === 2) return <Medal className="h-4 w-4 text-muted-foreground" />;
   if (rank === 3) return <Medal className="h-4 w-4 text-amber-600" />;
   return <span className="text-xs font-mono text-muted-foreground/60 w-5 text-center">{rank}</span>;
 }
@@ -1218,7 +1218,7 @@ function DiscussionSection() {
         <div className="flex items-center gap-3">
           {topMentions.map(([ticker, count], i) => (
             <div key={ticker} className="flex items-center gap-2 bg-muted/50 rounded-lg px-3 py-2">
-              <span className={cn("text-xs font-bold", i === 0 ? "text-amber-400" : i === 1 ? "text-slate-300" : "text-amber-600")}>
+              <span className={cn("text-xs font-bold", i === 0 ? "text-amber-400" : i === 1 ? "text-muted-foreground" : "text-amber-600")}>
                 #{i + 1}
               </span>
               <span className="text-sm font-bold">{ticker}</span>

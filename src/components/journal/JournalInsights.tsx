@@ -1062,7 +1062,7 @@ function HabitTracking({ rows, rng }: { rows: TradeRow[]; rng: () => number }) {
           {calendarDays.map((day, i) => {
             let fill = "bg-muted/15";
             if (day.hasTrade) {
-              if (day.score === null) fill = "bg-slate-500/30";
+              if (day.score === null) fill = "bg-muted-foreground/30";
               else if (day.score >= 75) fill = "bg-green-500/60";
               else if (day.score >= 50) fill = "bg-amber-500/60";
               else fill = "bg-red-500/50";

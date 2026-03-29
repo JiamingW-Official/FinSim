@@ -596,7 +596,7 @@ function BusinessCycleClock() {
               "rounded-lg border p-3 text-left transition-all",
               activePhase === p.phase
                 ? "border-opacity-70 bg-opacity-10"
-                : "border-border bg-card hover:border-slate-500",
+                : "border-border bg-card hover:border-muted-foreground",
             )}
             style={activePhase === p.phase ? {
               borderColor: p.color,
@@ -865,8 +865,8 @@ function RotationSignals() {
             <motion.div key={sig.id} layout>
               <Card
                 className={cn(
-                  "bg-card border-border/50 cursor-pointer transition-all hover:border-slate-500",
-                  isOpen && "border-slate-500",
+                  "bg-card border-border/50 cursor-pointer transition-all hover:border-muted-foreground",
+                  isOpen && "border-muted-foreground",
                 )}
                 onClick={() => setExpanded(isOpen ? null : sig.id)}
               >
@@ -1193,7 +1193,7 @@ function ETFImplementation() {
               "px-3 py-1 rounded text-xs font-medium border transition-all",
               selectedPhase === ph
                 ? "text-white"
-                : "border-border text-muted-foreground hover:border-slate-500 hover:text-foreground bg-transparent",
+                : "border-border text-muted-foreground hover:border-muted-foreground hover:text-foreground bg-transparent",
             )}
             style={selectedPhase === ph ? {
               backgroundColor: `${phaseColors[ph]}25`,

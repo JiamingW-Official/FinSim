@@ -289,7 +289,7 @@ function generateConvertibleBonds(): ConvertibleBond[] {
 
 function StatusBadge({ status }: { status: SpacStatus }) {
   const cfg = {
-    "Pre-deal": "bg-slate-500/20 text-muted-foreground border-slate-500/30",
+    "Pre-deal": "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30",
     "Announced": "bg-primary/20 text-primary border-border",
     "Voting": "bg-amber-500/20 text-amber-400 border-amber-500/30",
     "Completed": "bg-green-500/20 text-green-400 border-green-500/30",
@@ -316,7 +316,7 @@ function DeltaBadge({ delta }: { delta: number }) {
     delta >= 0.7 ? "bg-green-500/20 text-green-400 border-green-500/30" :
     delta >= 0.4 ? "bg-primary/20 text-primary border-border" :
     delta >= 0.2 ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
-    "bg-slate-500/20 text-muted-foreground border-slate-500/30";
+    "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30";
   return (
     <span className={cn("inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold tabular-nums", color)}>
       Δ {delta.toFixed(2)}
@@ -457,7 +457,7 @@ function BondDetailPanel({ bond, onClose }: { bond: ConvertibleBond; onClose: ()
       {/* Status */}
       <div className={cn(
         "mb-3 rounded-lg border p-3",
-        inTheMoney ? "border-green-500/30 bg-green-500/10" : "border-slate-500/20 bg-slate-500/5",
+        inTheMoney ? "border-green-500/30 bg-green-500/10" : "border-muted-foreground/20 bg-muted-foreground/5",
       )}>
         <div className="flex items-center gap-2">
           {inTheMoney

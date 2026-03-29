@@ -651,7 +651,7 @@ function BusinessModelsTab() {
 
   const disruptionBadge = (level: InsurtechCategory["disruptionLevel"]) => {
     const styles: Record<InsurtechCategory["disruptionLevel"], string> = {
-      low: "bg-slate-500/20 text-muted-foreground",
+      low: "bg-muted-foreground/20 text-muted-foreground",
       medium: "bg-amber-500/20 text-amber-400",
       high: "bg-primary/20 text-primary",
       extreme: "bg-primary/20 text-primary",
@@ -769,7 +769,7 @@ function BusinessModelsTab() {
                       <span className="text-[11px] rounded-full bg-primary/20 text-primary px-2 py-0.5 font-semibold">Incumbent</span>
                     )}
                     {row.winner === "tie" && (
-                      <span className="text-[11px] rounded-full bg-slate-500/20 text-muted-foreground px-2 py-0.5 font-semibold">Tie</span>
+                      <span className="text-[11px] rounded-full bg-muted-foreground/20 text-muted-foreground px-2 py-0.5 font-semibold">Tie</span>
                     )}
                   </td>
                 </tr>
@@ -891,7 +891,7 @@ function ParametricTab() {
               <span
                 className={cn(
                   "text-[11px] rounded-full px-2 py-0.5 font-semibold",
-                  isTriggered ? "bg-emerald-500/20 text-emerald-400" : "bg-slate-500/20 text-muted-foreground",
+                  isTriggered ? "bg-emerald-500/20 text-emerald-400" : "bg-muted-foreground/20 text-muted-foreground",
                 )}
               >
                 {isTriggered ? "TRIGGERED" : "NOT TRIGGERED"}
@@ -1066,7 +1066,7 @@ function AIDataTab() {
                 <div className="flex items-center gap-2 min-w-[160px]">
                   <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                     <div
-                      className="h-full rounded-full bg-slate-500"
+                      className="h-full rounded-full bg-muted-foreground"
                       style={{ width: `${(fm.traditional / maxVal) * 100}%` }}
                     />
                   </div>
@@ -1091,7 +1091,7 @@ function AIDataTab() {
         </div>
         <div className="flex gap-4 mt-3">
           <div className="flex items-center gap-1.5">
-            <div className="h-1.5 w-5 rounded-full bg-slate-500" />
+            <div className="h-1.5 w-5 rounded-full bg-muted-foreground" />
             <span className="text-[11px] text-muted-foreground">Traditional</span>
           </div>
           <div className="flex items-center gap-1.5">

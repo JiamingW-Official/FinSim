@@ -867,7 +867,7 @@ function PortfolioBuilderTab({
                 onClick={() => setAllocationMode(m)}
                 className={cn(
                   "px-3 py-1 rounded text-xs font-medium transition-colors capitalize",
-                  allocationMode === m ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-slate-600"
+                  allocationMode === m ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
                 {m}
@@ -1217,7 +1217,7 @@ function CreditAnalysisTab() {
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-white">Credit Scorecard</h3>
           <select
-            className="bg-muted border border-slate-600 text-muted-foreground text-xs rounded px-2 py-1"
+            className="bg-muted border border-border text-muted-foreground text-xs rounded px-2 py-1"
             value={selectedBond3?.id ?? ""}
             onChange={(e) => setSelectedBond3(BONDS.find((b) => b.id === e.target.value) ?? null)}
           >
@@ -1251,7 +1251,7 @@ function CreditAnalysisTab() {
               <div className="w-36 text-xs text-muted-foreground truncate">{rv.bond.name}</div>
               <div className="w-12 text-xs text-right text-muted-foreground">{rv.bond.spreadBps}bps</div>
               <div className="flex-1 h-4 bg-muted rounded overflow-hidden relative">
-                <div className="absolute top-0 bottom-0 w-px bg-slate-500" style={{ left: "50%" }} />
+                <div className="absolute top-0 bottom-0 w-px bg-muted-foreground" style={{ left: "50%" }} />
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: `${Math.min(Math.abs(rv.vsMedian) / 50 * 50, 50)}%` }}
@@ -1388,7 +1388,7 @@ function TaxExemptTab() {
                   onClick={() => setMarginalRate(r)}
                   className={cn(
                     "flex-1 py-1 rounded text-xs font-medium transition-colors",
-                    marginalRate === r ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-slate-600"
+                    marginalRate === r ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
                   )}
                 >
                   {r}%
@@ -1494,7 +1494,7 @@ function TaxExemptTab() {
                 layout
                 className={cn(
                   "rounded-lg border p-3 cursor-pointer transition-colors",
-                  isSelected ? "border-primary/50 bg-primary/5" : "border-border hover:border-slate-600 hover:bg-muted/30"
+                  isSelected ? "border-primary/50 bg-primary/5" : "border-border hover:border-border hover:bg-muted/30"
                 )}
                 onClick={() => setSelectedMuni(isSelected ? null : b)}
               >

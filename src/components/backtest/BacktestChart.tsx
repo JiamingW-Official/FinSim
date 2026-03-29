@@ -181,14 +181,14 @@ export default function BacktestChart({ bars, trades, isRunning, isPreview, onRe
       {/* Preview banner + regenerate */}
       {isPreview && bars.length > 0 && !isRunning && (
         <div className="absolute left-3 top-3 z-10 flex items-center gap-2">
-          <div className="rounded-lg border border-white/10 bg-zinc-900/90 px-3 py-1.5 text-[11px] text-zinc-400 shadow-lg backdrop-blur">
+          <div className="rounded-lg border border-border bg-card/90 px-3 py-1.5 text-[11px] text-muted-foreground shadow-lg backdrop-blur">
             Preview — {bars.length} bars
           </div>
           {onRegenerate && (
             <button
               onClick={onRegenerate}
               title="Regenerate bars"
-              className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/90 text-zinc-400 shadow-lg backdrop-blur transition-colors hover:bg-primary/20 hover:text-primary"
+              className="flex h-7 w-7 items-center justify-center rounded-lg border border-border bg-card/90 text-muted-foreground shadow-lg backdrop-blur transition-colors hover:bg-primary/20 hover:text-primary"
             >
               <RefreshCw className="h-3.5 w-3.5" />
             </button>
@@ -197,7 +197,7 @@ export default function BacktestChart({ bars, trades, isRunning, isPreview, onRe
       )}
 
       {bars.length === 0 && !isRunning && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-zinc-600">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-muted-foreground/70">
           <svg className="h-16 w-16 opacity-30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
             <path d="M3 3v18h18" />
             <path d="M7 16l4-8 4 4 4-6" />

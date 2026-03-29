@@ -280,7 +280,7 @@ export function PayoffDiagram({ legs, spotPrice }: PayoffDiagramProps) {
             <span className="text-muted-foreground">At Expiry</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="h-0.5 w-3 border-t border-dashed border-gray-500" />
+            <div className="h-0.5 w-3 border-t border-dashed border-border" />
             <span className="text-muted-foreground">Current</span>
           </div>
           <span className="text-muted-foreground">

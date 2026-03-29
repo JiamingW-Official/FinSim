@@ -54,22 +54,22 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
 
           <div className="flex-1">
             <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold tabular-nums text-zinc-100">{elo}</span>
-              <span className="text-xs text-zinc-500">ELO</span>
+              <span className="text-2xl font-bold tabular-nums text-foreground">{elo}</span>
+              <span className="text-xs text-muted-foreground">ELO</span>
             </div>
             {totalMatches === 0 && (
-              <p className="text-xs text-zinc-600 mt-0.5">Play your first match to start ranking!</p>
+              <p className="text-xs text-muted-foreground/70 mt-0.5">Play your first match to start ranking!</p>
             )}
           </div>
 
           <div className="flex items-center gap-4 text-xs">
             <div className="text-center">
-              <div className="font-bold tabular-nums text-zinc-200">{totalWins}/{totalMatches}</div>
-              <div className="text-zinc-600">W/L</div>
+              <div className="font-bold tabular-nums text-foreground">{totalWins}/{totalMatches}</div>
+              <div className="text-muted-foreground/70">W/L</div>
             </div>
             <div className="text-center">
-              <div className="font-bold tabular-nums text-zinc-200">{winRate}%</div>
-              <div className="text-zinc-600">Win Rate</div>
+              <div className="font-bold tabular-nums text-foreground">{winRate}%</div>
+              <div className="text-muted-foreground/70">Win Rate</div>
             </div>
             {currentStreak > 0 && (
               <motion.div
@@ -82,13 +82,13 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
                   <Flame className="h-3 w-3" />
                   {currentStreak}
                 </div>
-                <div className="text-zinc-600">Streak</div>
+                <div className="text-muted-foreground/70">Streak</div>
               </motion.div>
             )}
             {bestStreak > 0 && currentStreak === 0 && (
               <div className="text-center">
-                <div className="font-bold tabular-nums text-zinc-400">{bestStreak}</div>
-                <div className="text-zinc-600">Best</div>
+                <div className="font-bold tabular-nums text-muted-foreground">{bestStreak}</div>
+                <div className="text-muted-foreground/70">Best</div>
               </div>
             )}
           </div>
@@ -125,20 +125,20 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
                 </div>
                 <div>
                   <h3 className={cn("text-sm font-bold", config.color)}>{config.name}</h3>
-                  <span className="text-xs text-zinc-600">{config.timeLimitSeconds}s</span>
+                  <span className="text-xs text-muted-foreground/70">{config.timeLimitSeconds}s</span>
                 </div>
               </div>
 
-              <p className="text-xs text-zinc-500 mb-3">{config.description}</p>
+              <p className="text-xs text-muted-foreground mb-3">{config.description}</p>
 
               {/* Scoring weights mini-bar */}
               <div className="space-y-1">
                 {Object.entries(config.scoringWeights).map(([key, weight]) => (
                   <div key={key} className="flex items-center gap-2">
-                    <span className="text-[11px] w-12 text-zinc-600 capitalize">{key === "riskControl" ? "Risk" : key}</span>
+                    <span className="text-[11px] w-12 text-muted-foreground/70 capitalize">{key === "riskControl" ? "Risk" : key}</span>
                     <div className="flex-1 h-1 rounded-full bg-white/5">
                       <motion.div
-                        className={cn("h-full rounded-full", WEIGHT_COLORS[key] ?? "bg-zinc-600")}
+                        className={cn("h-full rounded-full", WEIGHT_COLORS[key] ?? "bg-muted")}
                         initial={{ width: 0 }}
                         animate={{ width: `${weight * 100}%` }}
                         transition={{ duration: 0.4, delay: i * 0.05 + 0.2 }}
@@ -150,9 +150,9 @@ export function ArenaLobby({ onSelectType }: ArenaLobbyProps) {
 
               {/* Stats if played */}
               {stats && stats.matches > 0 && (
-                <div className="mt-3 pt-2 border-t border-white/5 flex items-center gap-3 text-xs text-zinc-500">
+                <div className="mt-3 pt-2 border-t border-white/5 flex items-center gap-3 text-xs text-muted-foreground">
                   <span>{stats.wins}/{stats.matches} W</span>
-                  <span className="text-zinc-600">|</span>
+                  <span className="text-muted-foreground/70">|</span>
                   <span>Best: {stats.bestScore}</span>
                 </div>
               )}
@@ -187,7 +187,7 @@ function RecentMatches() {
       animate={{ opacity: 1 }}
       className="rounded-xl border border-white/5 bg-white/[0.02] p-4"
     >
-      <h3 className="text-xs font-bold text-zinc-400 mb-3 flex items-center gap-1.5">
+      <h3 className="text-xs font-bold text-muted-foreground mb-3 flex items-center gap-1.5">
         <Trophy className="h-3 w-3" />
         Recent Matches
       </h3>
@@ -207,8 +207,8 @@ function RecentMatches() {
             )}>
               {m.playerWon ? "W" : "L"}
             </span>
-            <span className="text-zinc-400 flex-1 truncate">vs {m.opponentName}</span>
-            <span className="text-zinc-600 tabular-nums">{m.playerScore} - {m.opponentScore}</span>
+            <span className="text-muted-foreground flex-1 truncate">vs {m.opponentName}</span>
+            <span className="text-muted-foreground/70 tabular-nums">{m.playerScore} - {m.opponentScore}</span>
             <span className={cn("tabular-nums font-bold", m.eloChange >= 0 ? "text-emerald-400" : "text-red-400")}>
               {m.eloChange >= 0 ? "+" : ""}{m.eloChange}
             </span>

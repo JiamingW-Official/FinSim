@@ -1290,7 +1290,7 @@ export default function WealthPlatformPage() {
                       ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
                       : goal.priority === "medium"
                       ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
-                      : "text-muted-foreground border-slate-600/30 bg-muted/10";
+                      : "text-muted-foreground border-border/30 bg-muted/10";
                   return (
                     <div
                       key={goal.name}
@@ -1482,7 +1482,7 @@ export default function WealthPlatformPage() {
                     >
                       <div className="flex items-center gap-2">
                         <div className={cn("w-4 h-4 rounded border flex items-center justify-center flex-shrink-0",
-                          selected ? "bg-indigo-600 border-indigo-500" : "border-slate-600"
+                          selected ? "bg-indigo-600 border-indigo-500" : "border-border"
                         )}>
                           {selected && <CheckCircle className="w-3 h-3 text-white" />}
                         </div>
@@ -1667,7 +1667,7 @@ export default function WealthPlatformPage() {
                         <th className="text-right pb-2 font-medium">Contrib</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/50">
+                    <tbody className="divide-y divide-border/50">
                       {HOLDINGS.map((h) => (
                         <tr key={h.ticker} className="hover:bg-muted/30 transition-colors">
                           <td className="py-1.5">

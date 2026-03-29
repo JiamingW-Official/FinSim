@@ -677,7 +677,7 @@ function CandlestickMasteryTab() {
               filter === f
                 ? f === "bullish" ? "bg-green-500/20 border-green-500 text-green-400"
                   : f === "bearish" ? "bg-red-500/20 border-red-500 text-red-400"
-                  : f === "neutral" ? "bg-gray-500/20 border-gray-500 text-muted-foreground"
+                  : f === "neutral" ? "bg-muted-foreground/20 border-muted-foreground text-muted-foreground"
                   : "bg-primary/20 border-primary text-primary"
                 : "text-muted-foreground"
             )}
@@ -703,7 +703,7 @@ function CandlestickMasteryTab() {
                 "p-3 cursor-pointer border transition-all bg-card",
                 selectedPattern === pattern.id
                   ? "border-primary bg-primary/5"
-                  : "border-border hover:border-gray-600"
+                  : "border-border hover:border-border"
               )}
               onClick={() => setSelectedPattern(selectedPattern === pattern.id ? null : pattern.id)}
             >
@@ -719,7 +719,7 @@ function CandlestickMasteryTab() {
                         "text-xs h-4 px-1",
                         pattern.sentiment === "bullish" ? "bg-green-500/20 text-green-400 border-green-500/30"
                         : pattern.sentiment === "bearish" ? "bg-red-500/20 text-red-400 border-red-500/30"
-                        : "bg-gray-500/20 text-muted-foreground border-gray-500/30"
+                        : "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30"
                       )}
                     >
                       {pattern.sentiment}
@@ -1778,7 +1778,7 @@ function SRTab() {
                     "text-[11px] h-4 px-1",
                     lvl.strength === "strong" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
                     : lvl.strength === "medium" ? "bg-primary/20 text-primary border-border"
-                    : "bg-gray-500/20 text-muted-foreground border-gray-500/30"
+                    : "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30"
                   )}
                 >
                   {lvl.strength} ({lvl.touches})

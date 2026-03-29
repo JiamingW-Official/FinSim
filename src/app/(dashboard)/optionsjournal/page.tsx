@@ -252,7 +252,7 @@ function TradeLogTab() {
 
   const SortIcon = ({ field }: { field: SortField }) => {
     if (sortField !== field)
-      return <ArrowUpDown className="w-3 h-3 ml-1 text-neutral-600 inline" />;
+      return <ArrowUpDown className="w-3 h-3 ml-1 text-muted-foreground/70 inline" />;
     return sortDir === "asc" ? (
       <ArrowUp className="w-3 h-3 ml-1 text-primary inline" />
     ) : (
@@ -272,7 +272,7 @@ function TradeLogTab() {
             className={`px-3 py-1 text-xs rounded-full border transition-colors ${
               filterOutcome === o
                 ? "bg-primary text-white border-primary"
-                : "border-border text-muted-foreground hover:border-neutral-500"
+                : "border-border text-muted-foreground hover:border-muted-foreground"
             }`}
           >
             {o === "all" ? "All" : o.charAt(0).toUpperCase() + o.slice(1)}
@@ -286,7 +286,7 @@ function TradeLogTab() {
             className={`px-3 py-1 text-xs rounded-full border transition-colors ${
               filterStrategy === s
                 ? "bg-primary text-white border-primary"
-                : "border-border text-muted-foreground hover:border-neutral-500"
+                : "border-border text-muted-foreground hover:border-muted-foreground"
             }`}
           >
             {s === "all" ? "All" : s}
@@ -1249,7 +1249,7 @@ export default function OptionsJournalPage() {
   const winRate = Math.round((wins / TRADES.length) * 1000) / 10;
 
   return (
-    <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-neutral-950">
+    <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-background">
       {/* Header */}
       <div className="border-b border-border px-6 py-4 flex-shrink-0">
         <div className="flex items-center justify-between flex-wrap gap-3">
@@ -1291,35 +1291,35 @@ export default function OptionsJournalPage() {
           <TabsList className="flex-shrink-0 mx-6 mt-4 bg-card border border-border w-fit h-auto flex-wrap gap-1 p-1 rounded-lg">
             <TabsTrigger
               value="tradelog"
-              className="text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
             >
               <BookOpen className="w-3.5 h-3.5 mr-1.5" />
               Trade Log
             </TabsTrigger>
             <TabsTrigger
               value="performance"
-              className="text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
             >
               <TrendingUp className="w-3.5 h-3.5 mr-1.5" />
               Performance
             </TabsTrigger>
             <TabsTrigger
               value="strategies"
-              className="text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
             >
               <PieChart className="w-3.5 h-3.5 mr-1.5" />
               Strategy Breakdown
             </TabsTrigger>
             <TabsTrigger
               value="greeks"
-              className="text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
             >
               <BarChart2 className="w-3.5 h-3.5 mr-1.5" />
               Greek P&L
             </TabsTrigger>
             <TabsTrigger
               value="improvements"
-              className="text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white"
+              className="text-xs data-[state=active]:bg-muted data-[state=active]:text-white"
             >
               <Lightbulb className="w-3.5 h-3.5 mr-1.5" />
               Improvement Areas

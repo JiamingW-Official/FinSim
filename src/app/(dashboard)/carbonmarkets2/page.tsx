@@ -618,7 +618,7 @@ function VoluntaryTab() {
                 key={ct.abbr}
                 whileHover={{ scale: 1.02 }}
                 onClick={() => setSelected(selected === ct.abbr ? null : ct.abbr)}
-                className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === ct.abbr ? "border-primary bg-muted" : "border-border bg-zinc-850 hover:border-border"}`}
+                className={`cursor-pointer rounded-lg p-3 border transition-colors ${selected === ct.abbr ? "border-primary bg-muted" : "border-border bg-muted hover:border-border"}`}
                 style={{ background: selected === ct.abbr ? undefined : "#18181b" }}
               >
                 <div className="flex items-center justify-between mb-2">
@@ -697,7 +697,7 @@ function VoluntaryTab() {
                   <th className="text-center py-2 text-yellow-400">Gold Standard</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-800/50">
+              <tbody className="divide-y divide-border/50">
                 {[
                   { dim: "Market Share", vcs: "~70% of VCM", gs: "~15% of VCM" },
                   { dim: "Focus", vcs: "Scale & breadth", gs: "SDG co-benefits" },

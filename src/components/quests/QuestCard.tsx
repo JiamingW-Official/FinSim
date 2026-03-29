@@ -86,7 +86,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               ? "bg-emerald-500/15 text-emerald-400"
               : isComplete
                 ? "bg-primary/15 text-primary"
-                : "bg-white/5 text-zinc-500",
+                : "bg-white/5 text-muted-foreground",
           )}
           animate={isComplete && !isClaimed ? { scale: [1, 1.1, 1] } : {}}
           transition={{ duration: 1.5, repeat: Infinity, type: "tween" }}
@@ -100,7 +100,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
             <h3
               className={cn(
                 "text-sm font-bold truncate",
-                isClaimed ? "text-emerald-300" : "text-zinc-100",
+                isClaimed ? "text-emerald-300" : "text-foreground",
               )}
             >
               {quest.name}
@@ -117,7 +117,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
             )}
           </div>
 
-          <p className="mt-0.5 text-xs text-zinc-500 line-clamp-2">{quest.description}</p>
+          <p className="mt-0.5 text-xs text-muted-foreground line-clamp-2">{quest.description}</p>
 
           {/* Condition progress labels */}
           <div className="mt-1.5 space-y-0.5">
@@ -126,7 +126,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
                 <motion.div
                   className={cn(
                     "h-1.5 w-1.5 rounded-full shrink-0",
-                    progress?.conditions[i] ? "bg-emerald-400" : "bg-zinc-700",
+                    progress?.conditions[i] ? "bg-emerald-400" : "bg-muted",
                   )}
                   animate={progress?.conditions[i] ? { scale: [1, 1.3, 1] } : {}}
                   transition={{ duration: 0.3, type: "tween" }}
@@ -136,7 +136,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
                     "text-[11px] truncate",
                     progress?.conditions[i]
                       ? "text-emerald-400/80 line-through"
-                      : "text-zinc-500",
+                      : "text-muted-foreground",
                   )}
                 >
                   {c.label}
@@ -151,7 +151,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               <motion.div
                 className={cn(
                   "h-full rounded-full",
-                  isComplete ? "bg-primary" : "bg-zinc-600",
+                  isComplete ? "bg-primary" : "bg-muted",
                 )}
                 initial={{ width: 0 }}
                 animate={{ width: `${progressPercent}%` }}
@@ -200,7 +200,7 @@ export function QuestCard({ quest, progress, onClaim }: QuestCardProps) {
               whileHover={{ scale: 1.05, x: 2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => router.push(quest.route!)}
-              className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-zinc-400 transition-all hover:bg-white/10 hover:text-zinc-200"
+              className="flex items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-bold text-muted-foreground transition-all hover:bg-white/10 hover:text-foreground"
             >
               {routeLabel}
               <ArrowRight className="h-3 w-3" />

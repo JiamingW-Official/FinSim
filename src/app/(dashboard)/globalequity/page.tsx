@@ -546,7 +546,7 @@ function ValuationTab() {
               "px-3 py-1 text-xs font-medium rounded-md border transition-colors",
               filterType === f
                 ? "bg-primary border-primary text-white"
-                : "border-border text-muted-foreground hover:border-zinc-500"
+                : "border-border text-muted-foreground hover:border-muted-foreground"
             )}
           >
             {f === "all" ? "All Markets" : f === "DM" ? "Developed" : "Emerging"}
@@ -740,7 +740,7 @@ function CountryDeepDivesTab() {
               "flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border transition-all",
               selectedCountry === c.code
                 ? "bg-primary/20 border-primary text-primary"
-                : "border-border text-muted-foreground hover:border-zinc-500"
+                : "border-border text-muted-foreground hover:border-muted-foreground"
             )}
           >
             <span>{c.flag}</span>

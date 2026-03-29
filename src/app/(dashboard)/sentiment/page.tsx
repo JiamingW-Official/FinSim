@@ -1803,7 +1803,7 @@ export default function SentimentPage() {
                       {q.agree > 15 ? `${q.agree}%` : ""}
                     </div>
                     <div
-                      className="bg-slate-600 flex items-center justify-center text-[8px] text-white"
+                      className="bg-muted flex items-center justify-center text-[8px] text-white"
                       style={{ width: `${q.neutral}%` }}
                     >
                       {q.neutral > 10 ? `${q.neutral}%` : ""}
@@ -1823,7 +1823,7 @@ export default function SentimentPage() {
                   Agree
                 </span>
                 <span className="flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-sm bg-slate-600 inline-block" />
+                  <span className="w-2 h-2 rounded-sm bg-muted inline-block" />
                   Neutral
                 </span>
                 <span className="flex items-center gap-1">

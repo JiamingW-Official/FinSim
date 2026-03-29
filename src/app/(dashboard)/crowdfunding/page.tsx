@@ -352,7 +352,7 @@ function BadgeChip({
     orange: "bg-orange-500/20 text-orange-300 border-orange-500/30",
     green: "bg-green-500/20 text-green-300 border-green-500/30",
     red: "bg-red-500/20 text-red-300 border-red-500/30",
-    zinc: "bg-zinc-500/20 text-muted-foreground border-zinc-500/30",
+    zinc: "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30",
   };
   return (
     <span className={cn("px-2 py-0.5 rounded text-xs font-medium border", colorMap[color])}>

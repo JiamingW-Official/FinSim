@@ -898,7 +898,7 @@ function AIResearchTab() {
                       {has ? (
                         <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" />
                       ) : (
-                        <XCircle className="w-4 h-4 text-zinc-700 mx-auto" />
+                        <XCircle className="w-4 h-4 text-muted-foreground/50 mx-auto" />
                       )}
                     </td>
                   ))}

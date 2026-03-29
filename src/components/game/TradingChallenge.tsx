@@ -388,7 +388,7 @@ function LobbyScreen({
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-bold text-white">Trading Challenges</h2>
-          <p className="text-sm text-zinc-400">Test your skills across 5 challenge modes</p>
+          <p className="text-sm text-muted-foreground">Test your skills across 5 challenge modes</p>
         </div>
         <button
           onClick={onShowLeaderboard}
@@ -408,9 +408,9 @@ function LobbyScreen({
         <div className="flex items-center gap-2 mb-2">
           <Flame className="h-4 w-4 text-amber-400" />
           <span className="text-sm font-semibold text-amber-400">Daily Challenge</span>
-          <span className="ml-auto text-xs text-zinc-500">Seed #{dailySeed}</span>
+          <span className="ml-auto text-xs text-muted-foreground">Seed #{dailySeed}</span>
         </div>
-        <p className="text-sm text-zinc-300">
+        <p className="text-sm text-muted-foreground">
           Today's unique scenario — resets at midnight. Earn 3× bonus XP!
         </p>
         <button
@@ -430,12 +430,12 @@ function LobbyScreen({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="group cursor-pointer rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 hover:border-zinc-600 hover:bg-zinc-800/60 transition-all"
+            className="group cursor-pointer rounded-xl border border-border bg-card/60 p-4 hover:border-border hover:bg-muted/60 transition-all"
             onClick={() => onSelect(cfg)}
           >
             <div className="flex items-start justify-between mb-2">
               <div className="flex items-center gap-2">
-                <div className="rounded-lg bg-zinc-800 p-2 text-zinc-300 group-hover:bg-zinc-700 transition-colors">
+                <div className="rounded-lg bg-muted p-2 text-muted-foreground group-hover:bg-muted transition-colors">
                   {cfg.icon}
                 </div>
                 <div>
@@ -445,10 +445,10 @@ function LobbyScreen({
                   </span>
                 </div>
               </div>
-              <ChevronRight className="h-4 w-4 text-zinc-600 group-hover:text-zinc-400 mt-1 transition-colors" />
+              <ChevronRight className="h-4 w-4 text-muted-foreground/70 group-hover:text-muted-foreground mt-1 transition-colors" />
             </div>
-            <p className="text-xs text-zinc-500 mb-3 leading-relaxed">{cfg.description}</p>
-            <div className="flex items-center justify-between text-xs text-zinc-500">
+            <p className="text-xs text-muted-foreground mb-3 leading-relaxed">{cfg.description}</p>
+            <div className="flex items-center justify-between text-xs text-muted-foreground">
               <div className="flex items-center gap-1">
                 <Timer className="h-3 w-3" />
                 {cfg.timeLimitSec}s
@@ -582,14 +582,14 @@ function RapidFireScreen({
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-base font-bold text-white">{challenge.name}</h3>
-          <p className="text-xs text-zinc-500">Bar {currentBar + 1} / {bars.length}</p>
+          <p className="text-xs text-muted-foreground">Bar {currentBar + 1} / {bars.length}</p>
         </div>
         <motion.div
           animate={{ scale: urgency ? [1, 1.05, 1] : 1 }}
           transition={{ repeat: urgency ? Infinity : 0, duration: 0.5 }}
           className={cn(
             "flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm font-bold",
-            urgency ? "bg-red-500/20 text-red-400 border border-red-500/40" : "bg-zinc-800 text-zinc-300"
+            urgency ? "bg-red-500/20 text-red-400 border border-red-500/40" : "bg-muted text-muted-foreground"
           )}
         >
           <Clock className="h-4 w-4" />
@@ -598,10 +598,10 @@ function RapidFireScreen({
       </div>
 
       {/* Chart */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
+      <div className="rounded-xl border border-border bg-card/60 p-4">
         <PriceLineChart bars={bars} revealed={currentBar} width={340} height={100} />
         <div className="mt-2 flex items-center justify-between text-sm">
-          <span className="text-zinc-400">Price: <span className="font-mono text-white">${currentPrice.toFixed(2)}</span></span>
+          <span className="text-muted-foreground">Price: <span className="font-mono text-white">${currentPrice.toFixed(2)}</span></span>
           <span className={cn("font-mono font-bold", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {returnPct >= 0 ? "+" : ""}{returnPct.toFixed(2)}%
           </span>
@@ -610,26 +610,26 @@ function RapidFireScreen({
 
       {/* Position status */}
       <div className="flex items-center gap-2 text-xs">
-        <span className="text-zinc-500">Position:</span>
+        <span className="text-muted-foreground">Position:</span>
         <span className={cn(
           "rounded px-2 py-0.5 font-semibold",
           position === "long" ? "bg-emerald-500/20 text-emerald-400" :
           position === "short" ? "bg-red-500/20 text-red-400" :
-          "bg-zinc-800 text-zinc-400"
+          "bg-muted text-muted-foreground"
         )}>
           {position === "none" ? "FLAT" : position === "long" ? "LONG" : "SHORT"}
         </span>
         {position !== "none" && (
-          <span className="text-zinc-500">@ ${entryPrice.toFixed(2)}</span>
+          <span className="text-muted-foreground">@ ${entryPrice.toFixed(2)}</span>
         )}
-        <span className="ml-auto text-zinc-500">Capital: <span className="font-mono text-white">${capital.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></span>
+        <span className="ml-auto text-muted-foreground">Capital: <span className="font-mono text-white">${capital.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></span>
       </div>
 
       {/* Action Buttons */}
       <div className="grid grid-cols-3 gap-3">
         {([
           { action: "buy", label: "BUY", key: "B", color: "bg-emerald-600 hover:bg-emerald-500 text-white" },
-          { action: "hold", label: "HOLD", key: "H", color: "bg-zinc-700 hover:bg-zinc-600 text-white" },
+          { action: "hold", label: "HOLD", key: "H", color: "bg-muted hover:bg-muted text-white" },
           { action: "sell", label: "SELL", key: "S", color: "bg-red-600 hover:bg-red-500 text-white" },
         ] as const).map(({ action, label, key, color }) => (
           <motion.button
@@ -644,7 +644,7 @@ function RapidFireScreen({
         ))}
       </div>
 
-      <p className="text-center text-xs text-zinc-600">Keyboard: B = Buy / H = Hold / S = Sell</p>
+      <p className="text-center text-xs text-muted-foreground/70">Keyboard: B = Buy / H = Hold / S = Sell</p>
     </div>
   );
 }
@@ -718,7 +718,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-base font-bold text-white">Pattern Recognition</h3>
-          <p className="text-xs text-zinc-500">Question {index + 1} / {quizzes.length}</p>
+          <p className="text-xs text-muted-foreground">Question {index + 1} / {quizzes.length}</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 text-amber-400 text-sm">
@@ -730,7 +730,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
             transition={{ repeat: timeLeft <= 2 ? Infinity : 0, duration: 0.4 }}
             className={cn(
               "rounded-lg px-3 py-1.5 text-sm font-bold",
-              timeLeft <= 2 ? "bg-red-500/20 text-red-400" : "bg-zinc-800 text-zinc-300"
+              timeLeft <= 2 ? "bg-red-500/20 text-red-400" : "bg-muted text-muted-foreground"
             )}
           >
             {timeLeft}s
@@ -744,17 +744,17 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
           <div key={i} className={cn(
             "h-1.5 flex-1 rounded-full",
             i < results.length ? (results[i] ? "bg-emerald-500" : "bg-red-500") :
-            i === index ? "bg-zinc-500" : "bg-zinc-800"
+            i === index ? "bg-muted-foreground" : "bg-muted"
           )} />
         ))}
       </div>
 
       {/* Chart */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4 flex justify-center">
+      <div className="rounded-xl border border-border bg-card/60 p-4 flex justify-center">
         <MiniCandleChart bars={quiz.bars} width={220} height={100} />
       </div>
 
-      <p className="text-center text-sm text-zinc-400">What pattern is this?</p>
+      <p className="text-center text-sm text-muted-foreground">What pattern is this?</p>
 
       {/* Answer buttons */}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -770,12 +770,12 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
               className={cn(
                 "rounded-lg py-2.5 text-sm font-semibold transition-colors border",
                 !isAnswered
-                  ? "border-zinc-700 bg-zinc-800 text-zinc-300 hover:bg-zinc-700 hover:text-white"
+                  ? "border-border bg-muted text-muted-foreground hover:bg-muted hover:text-white"
                   : isCorrect
                   ? "border-emerald-500 bg-emerald-500/20 text-emerald-400"
                   : isSelected
                   ? "border-red-500 bg-red-500/20 text-red-400"
-                  : "border-zinc-800 bg-zinc-900 text-zinc-600"
+                  : "border-border bg-card text-muted-foreground/70"
               )}
             >
               {isAnswered && isCorrect && <CheckCircle className="h-3.5 w-3.5 inline mr-1" />}
@@ -809,7 +809,7 @@ function PatternQuizScreen({ onFinish }: { onFinish: (score: number) => void }) 
       {isAnswered && (
         <button
           onClick={handleNext}
-          className="w-full rounded-xl bg-zinc-700 hover:bg-zinc-600 py-2.5 text-sm font-semibold text-white transition-colors"
+          className="w-full rounded-xl bg-muted hover:bg-muted py-2.5 text-sm font-semibold text-white transition-colors"
         >
           {index + 1 >= quizzes.length ? "See Results" : "Next Pattern"}
         </button>
@@ -881,12 +881,12 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
       <div className="flex items-center justify-between">
         <div>
           <h3 className="text-base font-bold text-white">Strategy Battle</h3>
-          <p className="text-xs text-zinc-500">30-bar simulation across strategies</p>
+          <p className="text-xs text-muted-foreground">30-bar simulation across strategies</p>
         </div>
         {done && (
           <button
             onClick={handleReplay}
-            className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white rounded-lg bg-zinc-800 hover:bg-zinc-700 px-3 py-1.5 transition-colors"
+            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-white rounded-lg bg-muted hover:bg-muted px-3 py-1.5 transition-colors"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Replay
@@ -897,11 +897,11 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
       {/* Progress bar */}
       {running && (
         <div className="space-y-1">
-          <div className="flex justify-between text-xs text-zinc-500">
+          <div className="flex justify-between text-xs text-muted-foreground">
             <span>Simulating...</span>
             <span>Bar {bar}/30</span>
           </div>
-          <div className="h-2 rounded-full bg-zinc-800">
+          <div className="h-2 rounded-full bg-muted">
             <motion.div
               className="h-2 rounded-full bg-primary"
               animate={{ width: `${(bar / 30) * 100}%` }}
@@ -912,16 +912,16 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
 
       {/* Bot cards */}
       <div className="space-y-2">
-        <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">Competitors</p>
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Competitors</p>
         {BOT_CONFIGS.map((bot) => (
-          <div key={bot.id} className="flex items-center gap-3 rounded-lg bg-zinc-900 border border-zinc-800 p-3">
+          <div key={bot.id} className="flex items-center gap-3 rounded-lg bg-card border border-border p-3">
             <div className="h-8 w-8 rounded-full flex items-center justify-center font-bold text-xs"
               style={{ backgroundColor: bot.color + "22", color: bot.color }}>
               {bot.name[0]}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-white truncate">{bot.name}</p>
-              <p className="text-xs text-zinc-500 truncate">{bot.strategy}</p>
+              <p className="text-xs text-muted-foreground truncate">{bot.strategy}</p>
             </div>
             {done && (
               <span className={cn("text-sm font-mono font-bold", botReturns[bot.id] >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -935,7 +935,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
       {/* Strategy selector */}
       {!running && !done && (
         <div className="space-y-2">
-          <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">Choose Your Strategy</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Choose Your Strategy</p>
           <div className="grid grid-cols-3 gap-2">
             {BOT_CONFIGS.map((bot) => (
               <button
@@ -945,7 +945,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
                   "rounded-lg border p-2.5 text-xs font-semibold transition-all",
                   playerStrategy === bot.id
                     ? "border-white/40 bg-white/10 text-white"
-                    : "border-zinc-800 bg-zinc-900 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200"
+                    : "border-border bg-card text-muted-foreground hover:border-border hover:text-foreground"
                 )}
               >
                 {bot.name.split(" ")[1]}
@@ -955,7 +955,7 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
           <button
             disabled={!playerStrategy}
             onClick={handleStart}
-            className="w-full rounded-xl bg-primary hover:bg-primary disabled:bg-zinc-800 disabled:text-zinc-600 py-2.5 text-sm font-bold text-white transition-colors"
+            className="w-full rounded-xl bg-primary hover:bg-primary disabled:bg-muted disabled:text-muted-foreground/70 py-2.5 text-sm font-bold text-white transition-colors"
           >
             Battle!
           </button>
@@ -965,14 +965,14 @@ function StrategyBattleScreen({ onFinish }: { onFinish: (score: number) => void 
       {/* Final leaderboard */}
       {done && (
         <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-2">
-          <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wide">Final Results</p>
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Final Results</p>
           {allResults.map((r, i) => (
             <div key={r.name} className={cn(
               "flex items-center gap-3 rounded-lg border p-3",
-              r.isPlayer ? "border-amber-500/40 bg-amber-500/10" : "border-zinc-800 bg-zinc-900"
+              r.isPlayer ? "border-amber-500/40 bg-amber-500/10" : "border-border bg-card"
             )}>
-              <span className="text-xs font-bold text-zinc-500 w-4">#{i + 1}</span>
-              <span className={cn("flex-1 text-sm font-semibold", r.isPlayer ? "text-amber-400" : "text-zinc-300")}>{r.name}</span>
+              <span className="text-xs font-bold text-muted-foreground w-4">#{i + 1}</span>
+              <span className={cn("flex-1 text-sm font-semibold", r.isPlayer ? "text-amber-400" : "text-muted-foreground")}>{r.name}</span>
               <span className={cn("font-mono font-bold text-sm", r.ret >= 0 ? "text-emerald-400" : "text-red-400")}>
                 {r.ret >= 0 ? "+" : ""}{r.ret.toFixed(1)}%
               </span>
@@ -1008,7 +1008,7 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h3 className="text-base font-bold text-white">Leaderboard</h3>
-        <button onClick={onBack} className="text-xs text-zinc-500 hover:text-zinc-300 transition-colors">
+        <button onClick={onBack} className="text-xs text-muted-foreground hover:text-muted-foreground transition-colors">
           Back
         </button>
       </div>
@@ -1016,10 +1016,10 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
       {/* Achievement Badges */}
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
         {ACHIEVEMENTS.map((a) => (
-          <div key={a.id} className="rounded-lg border border-zinc-800 bg-zinc-900 p-2.5 text-center">
+          <div key={a.id} className="rounded-lg border border-border bg-card p-2.5 text-center">
             <div className={cn("flex justify-center mb-1", a.color)}>{a.icon}</div>
-            <p className="text-xs font-semibold text-zinc-300 leading-tight">{a.label}</p>
-            <p className="text-xs text-zinc-600 mt-0.5 leading-tight">{a.desc}</p>
+            <p className="text-xs font-semibold text-muted-foreground leading-tight">{a.label}</p>
+            <p className="text-xs text-muted-foreground/70 mt-0.5 leading-tight">{a.desc}</p>
           </div>
         ))}
       </div>
@@ -1030,7 +1030,7 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
           <Crown className="h-5 w-5 text-amber-400" />
           <div>
             <p className="text-sm font-bold text-amber-400">Your Rank: #{playerEntry.rank}</p>
-            <p className="text-xs text-zinc-400">Score: {playerEntry.score.toLocaleString()}</p>
+            <p className="text-xs text-muted-foreground">Score: {playerEntry.score.toLocaleString()}</p>
           </div>
         </div>
       )}
@@ -1045,13 +1045,13 @@ function LeaderboardScreen({ playerScore, onBack }: { playerScore: number; onBac
             transition={{ delay: e.rank * 0.03 }}
             className={cn(
               "flex items-center gap-3 rounded-lg border px-3 py-2",
-              e.name === "You" ? "border-amber-500/40 bg-amber-500/10" : "border-zinc-800 bg-zinc-900"
+              e.name === "You" ? "border-amber-500/40 bg-amber-500/10" : "border-border bg-card"
             )}
           >
-            <span className="text-xs font-bold w-5 text-zinc-500">
+            <span className="text-xs font-bold w-5 text-muted-foreground">
               {e.rank === 1 ? "🥇" : e.rank === 2 ? "🥈" : e.rank === 3 ? "🥉" : `#${e.rank}`}
             </span>
-            <span className={cn("flex-1 text-sm font-semibold", e.name === "You" ? "text-amber-400" : "text-zinc-300")}>
+            <span className={cn("flex-1 text-sm font-semibold", e.name === "You" ? "text-amber-400" : "text-muted-foreground")}>
               {e.name}
             </span>
             <span className="font-mono text-sm font-bold text-white">{e.score.toLocaleString()}</span>
@@ -1111,26 +1111,26 @@ function ResultsSummary({
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3">
-          <p className="text-xs text-zinc-500 mb-1">Return</p>
+        <div className="rounded-xl border border-border bg-card p-3">
+          <p className="text-xs text-muted-foreground mb-1">Return</p>
           <p className={cn("text-xl font-bold font-mono", returnPct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {returnPct >= 0 ? "+" : ""}{returnPct.toFixed(2)}%
           </p>
         </div>
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3">
-          <p className="text-xs text-zinc-500 mb-1">Score</p>
+        <div className="rounded-xl border border-border bg-card p-3">
+          <p className="text-xs text-muted-foreground mb-1">Score</p>
           <p className="text-xl font-bold text-white">{score.toLocaleString()}</p>
         </div>
         {speedBonus !== undefined && (
-          <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-3">
-            <p className="text-xs text-zinc-500 mb-1">Speed Bonus</p>
+          <div className="rounded-xl border border-border bg-card p-3">
+            <p className="text-xs text-muted-foreground mb-1">Speed Bonus</p>
             <p className="text-xl font-bold text-amber-400">{speedBonus.toFixed(2)}×</p>
           </div>
         )}
         {extra && (
-          <div className={cn("rounded-xl border border-zinc-800 bg-zinc-900 p-3", speedBonus !== undefined ? "" : "col-span-2")}>
-            <p className="text-xs text-zinc-500 mb-1">Result</p>
-            <p className="text-sm font-semibold text-zinc-300">{extra}</p>
+          <div className={cn("rounded-xl border border-border bg-card p-3", speedBonus !== undefined ? "" : "col-span-2")}>
+            <p className="text-xs text-muted-foreground mb-1">Result</p>
+            <p className="text-sm font-semibold text-muted-foreground">{extra}</p>
           </div>
         )}
       </div>
@@ -1177,7 +1177,7 @@ export default function TradingChallenge() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="mx-auto max-w-xl px-4 py-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-6">
@@ -1186,12 +1186,12 @@ export default function TradingChallenge() {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">Trading Challenge</h1>
-            <p className="text-sm text-zinc-500">Arena — Compete &amp; Improve</p>
+            <p className="text-sm text-muted-foreground">Arena — Compete &amp; Improve</p>
           </div>
           {screen !== "lobby" && (
             <button
               onClick={() => setScreen("lobby")}
-              className="ml-auto text-xs text-zinc-500 hover:text-zinc-300 bg-zinc-800 hover:bg-zinc-700 rounded-lg px-3 py-1.5 transition-colors"
+              className="ml-auto text-xs text-muted-foreground hover:text-muted-foreground bg-muted hover:bg-muted rounded-lg px-3 py-1.5 transition-colors"
             >
               Exit
             </button>

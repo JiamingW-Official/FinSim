@@ -953,7 +953,7 @@ export default function StrategiesPage() {
                 {/* Strategy list */}
                 {savedStrategies.length === 0 ? (
                   <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-white/10 py-20 text-center">
-                    <Layers className="h-10 w-10 text-zinc-700 mb-3" />
+                    <Layers className="h-10 w-10 text-muted-foreground/50 mb-3" />
                     <p className="text-sm font-medium text-muted-foreground">No strategies saved yet</p>
                     <p className="text-xs text-muted-foreground mt-1 max-w-xs">
                       Clone a pre-built strategy from the Library or build your own in the Builder tab

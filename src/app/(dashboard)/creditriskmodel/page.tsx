@@ -1182,7 +1182,7 @@ export default function CreditRiskModelPage() {
                         className={`px-2 py-0.5 rounded text-xs transition-all border ${
                           animStep === i
                             ? "bg-primary border-primary text-white"
-                            : "bg-muted border-border text-muted-foreground hover:border-zinc-500"
+                            : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
                         }`}
                       >
                         {step.label}
@@ -1438,7 +1438,7 @@ export default function CreditRiskModelPage() {
                         <th className="text-right pb-2 font-medium">Wt%</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-zinc-800/60">
+                    <tbody className="divide-y divide-border/60">
                       {PORTFOLIO_LOANS.map((loan) => (
                         <motion.tr
                           key={loan.id}

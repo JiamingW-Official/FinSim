@@ -375,7 +375,7 @@ function HeatmapGrid({
               style={{ background: bg, minHeight: 44 }}
             >
               <span className={`text-xs font-bold ${textDark ? "text-gray-800" : "text-white"}`}>{cell.country}</span>
-              <span className={`text-[11px] ${textDark ? "text-gray-700" : "text-white/90"}`}>{cell.label}</span>
+              <span className={`text-[11px] ${textDark ? "text-muted-foreground/50" : "text-white/90"}`}>{cell.label}</span>
             </div>
           );
         })}

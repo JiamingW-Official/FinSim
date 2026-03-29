@@ -1023,7 +1023,7 @@ export default function NeobanksPage() {
                               </div>
                               <Badge
                                 variant="outline"
-                                className={`text-xs flex-shrink-0 ${isNeo ? "border-indigo-500/40 text-indigo-400" : "border-slate-600 text-muted-foreground"}`}
+                                className={`text-xs flex-shrink-0 ${isNeo ? "border-indigo-500/40 text-indigo-400" : "border-border text-muted-foreground"}`}
                               >
                                 {isNeo ? "Neo" : "Trad"}
                               </Badge>

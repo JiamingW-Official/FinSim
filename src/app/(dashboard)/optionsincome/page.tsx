@@ -948,7 +948,7 @@ function StrategyComparisonTab() {
                   </td>
                   <td className="px-4 py-2.5 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <div className="w-16 h-1.5 rounded-full bg-neutral-700 overflow-hidden">
+                      <div className="w-16 h-1.5 rounded-full bg-muted overflow-hidden">
                         <div className="h-full bg-green-500 rounded-full" style={{ width: `${Math.min(s.pop, 100)}%` }} />
                       </div>
                       <span className="font-mono text-muted-foreground">{s.pop.toFixed(0)}%</span>
@@ -1059,7 +1059,7 @@ export default function OptionsIncomePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="space-y-1">

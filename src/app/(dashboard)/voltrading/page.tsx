@@ -894,7 +894,7 @@ export default function VolTradingPage() {
                   </thead>
                   <tbody>
                     {LONG_VOL_STRATEGIES.map((st, i) => (
-                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
+                      <tr key={st.name} className={cn("border-b border-border", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
                         <td className="py-2 px-2 font-semibold text-primary">{st.name}</td>
                         <td className="py-2 px-2 text-muted-foreground">{st.structure}</td>
                         <td className="py-2 px-2 text-muted-foreground">{st.outlook}</td>
@@ -1000,7 +1000,7 @@ export default function VolTradingPage() {
                   </thead>
                   <tbody>
                     {SHORT_VOL_STRATEGIES.map((st, i) => (
-                      <tr key={st.name} className={cn("border-b border-zinc-900", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
+                      <tr key={st.name} className={cn("border-b border-border", i % 2 === 0 ? "bg-background" : "bg-card/30")}>
                         <td className="py-2 px-2 font-semibold text-red-300">{st.name}</td>
                         <td className="py-2 px-2 text-muted-foreground">{st.structure}</td>
                         <td className="py-2 px-2 text-emerald-400">{st.maxGain}</td>

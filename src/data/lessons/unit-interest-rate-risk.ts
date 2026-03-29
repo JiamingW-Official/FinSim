@@ -6,7 +6,7 @@ export const UNIT_INTEREST_RATE_RISK: Unit = {
   description:
     "Master yield curve dynamics, duration hedging, Fed policy, rate derivatives, bank ALM, and credit spread risk",
   icon: "📈",
-  color: "from-cyan-500 to-blue-600",
+  color: "#0ea5e9",
   lessons: [
     // ─── Lesson 1: Yield Curve Basics ─────────────────────────────────────────
     {

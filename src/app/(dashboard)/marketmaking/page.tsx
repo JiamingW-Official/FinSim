@@ -842,7 +842,7 @@ function TabAMM() {
                     "flex-1 text-xs py-1 rounded border transition-colors",
                     feeTier === ft
                       ? "border-amber-500 text-amber-400 bg-amber-500/10"
-                      : "border-border text-muted-foreground hover:border-zinc-500"
+                      : "border-border text-muted-foreground hover:border-muted-foreground"
                   )}
                 >
                   {ft}%

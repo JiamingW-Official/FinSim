@@ -670,7 +670,7 @@ export default function OnchainPage() {
                           <th className="text-right py-2 text-xs text-muted-foreground font-medium">Leader</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800/50">
+                      <tbody className="divide-y divide-border/50">
                         {[
                           {
                             metric: "Hash Rate / Stake",
@@ -818,7 +818,7 @@ export default function OnchainPage() {
                           <th className="text-right py-2 text-xs text-muted-foreground font-medium">Status</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800/50">
+                      <tbody className="divide-y divide-border/50">
                         {WHALE_WALLETS.map((w) => (
                           <tr key={w.address} className="hover:bg-muted/30 transition-colors">
                             <td className="py-2 text-xs font-mono text-muted-foreground">{w.address}</td>
@@ -923,7 +923,7 @@ export default function OnchainPage() {
                           <th className="text-right py-2 text-xs text-muted-foreground font-medium">Share</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800/50">
+                      <tbody className="divide-y divide-border/50">
                         {TVL_DATA.map((row, i) => {
                           const totalTVL = TVL_DATA.reduce((a, b) => a + b.tvl, 0);
                           const share = (row.tvl / totalTVL) * 100;

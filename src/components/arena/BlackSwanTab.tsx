@@ -342,15 +342,15 @@ function ScenarioCard({ scenario, onSelect }: { scenario: BlackSwanScenario; onS
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <div>
-          <div className="text-sm font-bold text-zinc-200">{scenario.name}</div>
-          <div className="text-xs text-zinc-500 mt-0.5">{scenario.subtitle}</div>
+          <div className="text-sm font-bold text-foreground">{scenario.name}</div>
+          <div className="text-xs text-muted-foreground mt-0.5">{scenario.subtitle}</div>
         </div>
-        <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-bold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-zinc-400 bg-zinc-800 border-zinc-700")}>
+        <span className={cn("rounded-full border px-2 py-0.5 text-[11px] font-bold shrink-0 mt-0.5", severityColor[scenario.severity] ?? "text-muted-foreground bg-muted border-border")}>
           {scenario.severity}
         </span>
       </div>
 
-      <div className="flex items-center gap-3 mt-3 text-xs text-zinc-500">
+      <div className="flex items-center gap-3 mt-3 text-xs text-muted-foreground">
         <span className="text-red-400 font-bold">-{scenario.drop}%</span>
         <span>{scenario.bars} bars</span>
         <span>{scenario.events.length} key events</span>
@@ -471,13 +471,13 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <div className="text-sm font-bold text-zinc-200">{scenario.name}</div>
-          <div className="text-xs text-zinc-500">Bar {revealedBars} / {scenario.bars}</div>
+          <div className="text-sm font-bold text-foreground">{scenario.name}</div>
+          <div className="text-xs text-muted-foreground">Bar {revealedBars} / {scenario.bars}</div>
         </div>
         <button
           type="button"
           onClick={onBack}
-          className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors"
+          className="text-xs text-muted-foreground/70 hover:text-muted-foreground transition-colors"
         >
           Exit scenario
         </button>
@@ -486,8 +486,8 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
       {/* Portfolio value */}
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
-          <div className="text-[11px] text-zinc-600 mb-1">Portfolio</div>
-          <div className="text-sm font-bold tabular-nums text-zinc-200">
+          <div className="text-[11px] text-muted-foreground/70 mb-1">Portfolio</div>
+          <div className="text-sm font-bold tabular-nums text-foreground">
             ${Math.round(portfolio).toLocaleString()}
           </div>
           <div className={cn("text-xs font-bold tabular-nums", pnlPct >= 0 ? "text-emerald-400" : "text-red-400")}>
@@ -495,16 +495,16 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           </div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
-          <div className="text-[11px] text-zinc-600 mb-1">Market</div>
+          <div className="text-[11px] text-muted-foreground/70 mb-1">Market</div>
           <div className={cn("text-sm font-bold tabular-nums", pricePct >= 0 ? "text-emerald-400" : "text-red-400")}>
             {pricePct >= 0 ? "+" : ""}{pricePct.toFixed(1)}%
           </div>
-          <div className="text-[11px] text-zinc-600">{scenario.drop}% max drop</div>
+          <div className="text-[11px] text-muted-foreground/70">{scenario.drop}% max drop</div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-2.5">
-          <div className="text-[11px] text-zinc-600 mb-1">Exposure</div>
-          <div className="text-sm font-bold tabular-nums text-zinc-200">{100 - soldPct}%</div>
-          <div className={cn("text-[11px] font-bold", hedged ? "text-amber-400" : "text-zinc-600")}>
+          <div className="text-[11px] text-muted-foreground/70 mb-1">Exposure</div>
+          <div className="text-sm font-bold tabular-nums text-foreground">{100 - soldPct}%</div>
+          <div className={cn("text-[11px] font-bold", hedged ? "text-amber-400" : "text-muted-foreground/70")}>
             {hedged ? "Hedged" : "Unhedged"}
           </div>
         </div>
@@ -525,7 +525,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
               <AlertTriangle className="h-3 w-3 text-amber-400 shrink-0 mt-0.5" />
               <div>
                 <span className="text-xs font-bold text-amber-400">{currentEvent.label}: </span>
-                <span className="text-xs text-zinc-400">{currentEvent.detail}</span>
+                <span className="text-xs text-muted-foreground">{currentEvent.detail}</span>
               </div>
             </motion.div>
           )}
@@ -566,7 +566,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
               onClick={() => setSpeed(s)}
               className={cn(
                 "rounded px-2 py-1 text-xs font-bold transition-colors",
-                speed === s ? "bg-white/10 text-zinc-200" : "text-zinc-600 hover:text-zinc-400",
+                speed === s ? "bg-white/10 text-foreground" : "text-muted-foreground/70 hover:text-muted-foreground",
               )}
             >
               {s === 5 ? <FastForward className="h-3 w-3" /> : `${s}x`}
@@ -578,7 +578,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
           type="button"
           onClick={doAdvance}
           disabled={isComplete || isPlaying}
-          className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs text-zinc-500 hover:text-zinc-300 disabled:opacity-40 transition-colors"
+          className="rounded-lg border border-white/5 bg-white/[0.02] px-3 py-2 text-xs text-muted-foreground hover:text-muted-foreground disabled:opacity-40 transition-colors"
         >
           Step
         </button>
@@ -603,7 +603,7 @@ function ActiveScenario({ scenario, bars, onComplete, onBack }: ActiveScenarioPr
             "flex items-center justify-center gap-1.5 rounded-lg border py-2.5 text-xs font-bold transition-colors",
             hedged
               ? "border-amber-500/40 bg-amber-500/15 text-amber-400 hover:bg-amber-500/25"
-              : "border-white/10 bg-white/5 text-zinc-300 hover:bg-white/10",
+              : "border-white/10 bg-white/5 text-muted-foreground hover:bg-white/10",
           )}
         >
           <Shield className="h-3.5 w-3.5" />
@@ -658,17 +658,17 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
           {grade}
         </motion.div>
         <div className={cn("text-sm font-bold", color)}>{label}</div>
-        <div className="text-xs text-zinc-500">{scenario.name}</div>
+        <div className="text-xs text-muted-foreground">{scenario.name}</div>
       </div>
 
       {/* Result chips */}
       <div className="grid grid-cols-2 gap-2">
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-center">
-          <div className="text-xs text-zinc-600 mb-1">Final Portfolio</div>
-          <div className="text-sm font-bold tabular-nums text-zinc-200">${Math.round(finalPortfolio).toLocaleString()}</div>
+          <div className="text-xs text-muted-foreground/70 mb-1">Final Portfolio</div>
+          <div className="text-sm font-bold tabular-nums text-foreground">${Math.round(finalPortfolio).toLocaleString()}</div>
         </div>
         <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3 text-center">
-          <div className="text-xs text-zinc-600 mb-1">Loss</div>
+          <div className="text-xs text-muted-foreground/70 mb-1">Loss</div>
           <div className={cn("text-sm font-bold tabular-nums", lossPct < 20 ? "text-emerald-400" : "text-red-400")}>
             -{lossPct.toFixed(1)}%
           </div>
@@ -688,7 +688,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
           <div className={cn("text-xs font-bold", passed ? "text-emerald-400" : "text-red-400")}>
             {gold ? "Gold rank achieved!" : passed ? "Passed — loss below 20%" : "Failed — loss exceeded 20%"}
           </div>
-          <div className="text-xs text-zinc-500 mt-0.5">
+          <div className="text-xs text-muted-foreground mt-0.5">
             {gold ? "Elite risk management." : passed ? "Strong discipline under pressure." : "Next time: sell early, hedge sooner."}
           </div>
         </div>
@@ -696,11 +696,11 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
 
       {/* What actually happened */}
       <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
-        <div className="text-xs font-bold text-zinc-300 mb-2 flex items-center gap-1.5">
+        <div className="text-xs font-bold text-muted-foreground mb-2 flex items-center gap-1.5">
           <BookOpen className="h-3.5 w-3.5 text-emerald-400" />
           What Actually Happened
         </div>
-        <p className="text-[11px] text-zinc-400 leading-relaxed">{scenario.whatHappened}</p>
+        <p className="text-[11px] text-muted-foreground leading-relaxed">{scenario.whatHappened}</p>
       </div>
 
       {/* Lessons */}
@@ -708,13 +708,13 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
         <button
           type="button"
           onClick={() => setShowLessons((v) => !v)}
-          className="w-full flex items-center justify-between px-3 py-2.5 text-xs font-bold text-zinc-300 hover:bg-white/5 transition-colors"
+          className="w-full flex items-center justify-between px-3 py-2.5 text-xs font-bold text-muted-foreground hover:bg-white/5 transition-colors"
         >
           <span className="flex items-center gap-1.5">
             <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
             Lessons Learned
           </span>
-          {showLessons ? <ChevronDown className="h-3.5 w-3.5 text-zinc-500" /> : <ChevronRight className="h-3.5 w-3.5 text-zinc-500" />}
+          {showLessons ? <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" /> : <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />}
         </button>
         <AnimatePresence>
           {showLessons && (
@@ -726,7 +726,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
             >
               <div className="px-3 pb-3 space-y-1.5">
                 {scenario.lessons.map((lesson, i) => (
-                  <div key={i} className="flex items-start gap-2 text-[11px] text-zinc-400">
+                  <div key={i} className="flex items-start gap-2 text-[11px] text-muted-foreground">
                     <span className="text-emerald-500 mt-0.5 shrink-0">-</span>
                     {lesson}
                   </div>
@@ -749,7 +749,7 @@ function ScenarioResults({ scenario, finalPortfolio, onPlayAgain, onBack }: Scen
         <button
           type="button"
           onClick={onBack}
-          className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-bold text-zinc-300 transition-colors hover:bg-white/10"
+          className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 py-2.5 text-sm font-bold text-muted-foreground transition-colors hover:bg-white/10"
         >
           Scenarios
         </button>
@@ -804,12 +804,12 @@ export function BlackSwanTab() {
                 <AlertTriangle className="h-3.5 w-3.5" />
                 Black Swan Mode
               </div>
-              <div className="text-[11px] text-zinc-400 leading-relaxed">
+              <div className="text-[11px] text-muted-foreground leading-relaxed">
                 Survive extreme historical market crashes. Start with $100K — lose less than 20% to pass, less than 10% for gold rank. Bars advance automatically at 10x speed.
               </div>
             </div>
 
-            <div className="text-xs font-bold text-zinc-400 mb-2">Choose a Scenario</div>
+            <div className="text-xs font-bold text-muted-foreground mb-2">Choose a Scenario</div>
 
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {SCENARIOS.map((s) => (

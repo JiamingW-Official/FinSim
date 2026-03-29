@@ -1652,7 +1652,7 @@ function GammaScalpingSim() {
       <div className="flex gap-4 text-xs">
         <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-primary inline-block" /> Total P&L</span>
         <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-red-400 inline-block" /> Hedge P&L</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-gray-500 inline-block border-dashed" /> Option P&L</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-muted-foreground inline-block border-dashed" /> Option P&L</span>
       </div>
       <p className="text-xs text-muted-foreground">
         Long gamma positions profit from large moves. Delta hedging more frequently captures more gamma scalping profit but increases transaction costs.

@@ -67,13 +67,13 @@ export function AlphaBotAlerts() {
             : `Testing resistance ${level.label} at $${level.price.toFixed(2)} — volume will confirm breakout or rejection`;
           toast.custom(
             () => (
-              <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64">
+              <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-card px-3 py-2 shadow-lg text-[11px] max-w-64">
                 <span className="text-base shrink-0">{isSupport ? "🛡️" : "⚡"}</span>
                 <div className="min-w-0">
                   <div className="font-bold text-amber-400 leading-tight">
                     {isSupport ? "Support Zone" : "Resistance Zone"}
                   </div>
-                  <div className="text-zinc-400 leading-tight mt-0.5">{msg}</div>
+                  <div className="text-muted-foreground leading-tight mt-0.5">{msg}</div>
                 </div>
               </div>
             ),
@@ -104,12 +104,12 @@ export function AlphaBotAlerts() {
         toast.custom(
           () => (
             <div
-              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64`}
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
             >
               <span className="text-base shrink-0">{emoji}</span>
               <div className="min-w-0">
                 <div className={`font-bold ${dirColor} leading-tight`}>{pattern.name}</div>
-                <div className="text-zinc-400 leading-tight mt-0.5">
+                <div className="text-muted-foreground leading-tight mt-0.5">
                   {pattern.description.length > 70
                     ? pattern.description.slice(0, 70) + "…"
                     : pattern.description}
@@ -161,7 +161,7 @@ export function AlphaBotAlerts() {
           toast.custom(
             () => (
               <div
-                className={`flex items-center gap-2 rounded-lg border ${isProfit ? "border-emerald-500/30" : "border-red-500/30"} bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64`}
+                className={`flex items-center gap-2 rounded-lg border ${isProfit ? "border-emerald-500/30" : "border-red-500/30"} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
               >
                 <span className="text-base shrink-0">{isProfit ? "🎯" : "⚠️"}</span>
                 <div className="min-w-0">
@@ -170,7 +170,7 @@ export function AlphaBotAlerts() {
                   >
                     {isProfit ? "Profit Milestone" : "Drawdown Alert"}
                   </div>
-                  <div className="text-zinc-400 leading-tight mt-0.5">{msg}</div>
+                  <div className="text-muted-foreground leading-tight mt-0.5">{msg}</div>
                 </div>
               </div>
             ),
@@ -231,12 +231,12 @@ export function AlphaBotAlerts() {
         toast.custom(
           () => (
             <div
-              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64`}
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
             >
               <span className="text-base shrink-0">{isBull ? "🔥" : "❄️"}</span>
               <div className="min-w-0">
                 <div className={`font-bold ${textColor} leading-tight`}>Setup Forming</div>
-                <div className="text-zinc-400 leading-tight mt-0.5">
+                <div className="text-muted-foreground leading-tight mt-0.5">
                   {dominantCount} {dominantDir} signals aligning — high-probability {isBull ? "long" : "short"} setup developing
                 </div>
               </div>
@@ -273,12 +273,12 @@ export function AlphaBotAlerts() {
         toast.custom(
           () => (
             <div
-              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-zinc-900 px-3 py-2 shadow-lg text-[11px] max-w-64`}
+              className={`flex items-center gap-2 rounded-lg border ${borderColor} bg-card px-3 py-2 shadow-lg text-[11px] max-w-64`}
             >
               <span className="text-base shrink-0">📊</span>
               <div className="min-w-0">
                 <div className={`font-bold ${textColor} leading-tight`}>Volume Surge</div>
-                <div className="text-zinc-400 leading-tight mt-0.5">
+                <div className="text-muted-foreground leading-tight mt-0.5">
                   {ratio.toFixed(1)}× avg volume — {isBullCandle ? "strong buying" : "heavy selling"} pressure. Breakout or breakdown likely
                 </div>
               </div>

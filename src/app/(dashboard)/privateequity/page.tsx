@@ -1346,7 +1346,7 @@ function DealSourcing() {
                 transition={{ delay: i * 0.06 }}
                 className="relative flex gap-4 pl-14"
               >
-                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-zinc-900 flex items-center justify-center text-xs font-bold text-white z-10">
+                <div className="absolute left-3 top-2 w-6 h-6 rounded-full bg-primary border-2 border-border flex items-center justify-center text-xs font-bold text-white z-10">
                   {i + 1}
                 </div>
                 <div className="rounded-xl border border-white/10 bg-white/5 p-3 flex-1">

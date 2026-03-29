@@ -248,7 +248,7 @@ function FxPairRow({ pair }: { pair: FxPair }) {
       <td className="py-3 px-4 font-mono text-muted-foreground text-xs text-right">{pair.bid}</td>
       <td className="py-3 px-4 font-mono text-muted-foreground text-xs text-right">{pair.ask}</td>
       <td className="py-3 px-4 text-right">
-        <Badge variant="outline" className="font-mono text-xs border-slate-600 text-muted-foreground">
+        <Badge variant="outline" className="font-mono text-xs border-border text-muted-foreground">
           {pair.spread}
         </Badge>
       </td>
@@ -1233,7 +1233,7 @@ export default function CurrencyMarketsPage() {
                     <div className="text-muted-foreground text-xs font-semibold mb-2">{section.title}</div>
                     {section.items.map((item) => (
                       <div key={item} className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
-                        <div className="w-1 h-1 rounded-full bg-slate-600 flex-shrink-0" />
+                        <div className="w-1 h-1 rounded-full bg-muted flex-shrink-0" />
                         {item}
                       </div>
                     ))}

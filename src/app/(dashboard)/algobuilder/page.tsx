@@ -479,7 +479,7 @@ function EquityCurveSVG({ equity, spy, drawdown }: { equity: number[]; spy: numb
       </svg>
       <div className="flex gap-4 text-[11px] text-muted-foreground mt-1">
         <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-emerald-400 inline-block" /> Strategy</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-gray-500 inline-block border-dashed border-b" /> SPY Benchmark</span>
+        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-muted-foreground inline-block border-dashed border-b" /> SPY Benchmark</span>
       </div>
     </div>
   );
@@ -1741,7 +1741,7 @@ export default function AlgoBuilderPage() {
                           <span className="w-16 text-muted-foreground">Market</span>
                           <div className="flex-1 h-1.5 rounded bg-muted overflow-hidden">
                             <div
-                              className="h-full rounded bg-gray-500"
+                              className="h-full rounded bg-muted-foreground"
                               style={{ width: `${Math.min(100, Math.abs(st.mktRet) / 55 * 100)}%` }}
                             />
                           </div>

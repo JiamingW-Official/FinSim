@@ -422,7 +422,7 @@ function PortfolioStructureTab() {
             ].map((rb) => (
               <div key={rb.label} className="bg-muted/60 rounded-lg p-3 flex flex-col gap-2">
                 <span className="text-xs text-muted-foreground uppercase tracking-wide">{rb.label}</span>
-                <div className="h-2 bg-neutral-700 rounded-full">
+                <div className="h-2 bg-muted rounded-full">
                   <div className={`h-full rounded-full ${rb.color}`} style={{ width: `${rb.pct}%` }} />
                 </div>
                 <span className="text-sm font-bold text-foreground">{rb.pct}%</span>
@@ -491,7 +491,7 @@ function ShortSellingTab() {
                     {item.step}
                   </div>
                   {idx < 5 && (
-                    <div className="w-0.5 h-3 bg-neutral-700" />
+                    <div className="w-0.5 h-3 bg-muted" />
                   )}
                 </div>
                 <div className="bg-muted/50 rounded-lg px-3 py-2 flex-1 min-w-[160px] max-w-[220px] mb-2">
@@ -589,8 +589,8 @@ function ShortSellingTab() {
                 className={cn(
                   "px-3 py-1.5 rounded-full text-xs font-medium border transition-all",
                   squeezeStep === i
-                    ? "bg-neutral-700 border-neutral-400 text-foreground"
-                    : "bg-muted/50 border-border text-muted-foreground hover:border-neutral-500"
+                    ? "bg-muted border-muted-foreground text-foreground"
+                    : "bg-muted/50 border-border text-muted-foreground hover:border-muted-foreground"
                 )}
               >
                 {st.label}
@@ -1268,7 +1268,7 @@ export default function EquityLongShortPage() {
   const [activeTab, setActiveTab] = useState("portfolio");
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground p-4 md:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 md:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -16 }}
@@ -1318,7 +1318,7 @@ export default function EquityLongShortPage() {
               key={value}
               value={value}
               className={cn(
-                "text-xs px-3 py-1.5 rounded-md transition-all data-[state=active]:bg-neutral-700 data-[state=active]:text-foreground",
+                "text-xs px-3 py-1.5 rounded-md transition-all data-[state=active]:bg-muted data-[state=active]:text-foreground",
                 "text-muted-foreground hover:text-foreground"
               )}
             >

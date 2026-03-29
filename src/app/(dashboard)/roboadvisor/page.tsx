@@ -281,10 +281,10 @@ function RoboLandscape() {
                 <td className="text-right text-muted-foreground">{fmtB(p.aum)}</td>
                 <td className="text-right text-muted-foreground">{p.fee === 0 ? <Badge variant="secondary" className="text-xs">Free</Badge> : fmtPct(p.fee)}</td>
                 <td className="text-right text-muted-foreground">{p.min === 0 ? "$0" : fmtDollars(p.min)}</td>
-                <td className="text-center">{p.taxLoss ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-neutral-600">—</span>}</td>
-                <td className="text-center">{p.directIndex ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-neutral-600">—</span>}</td>
-                <td className="text-center">{p.humanAccess ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-neutral-600">—</span>}</td>
-                <td className="text-center">{p.esg ? <Leaf className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-neutral-600">—</span>}</td>
+                <td className="text-center">{p.taxLoss ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-muted-foreground/70">—</span>}</td>
+                <td className="text-center">{p.directIndex ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-muted-foreground/70">—</span>}</td>
+                <td className="text-center">{p.humanAccess ? <CheckCircle className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-muted-foreground/70">—</span>}</td>
+                <td className="text-center">{p.esg ? <Leaf className="w-4 h-4 text-emerald-400 mx-auto" /> : <span className="text-muted-foreground/70">—</span>}</td>
                 <td className="text-right">
                   <span className="text-amber-400 font-semibold">{p.rating}</span>
                 </td>
@@ -292,7 +292,7 @@ function RoboLandscape() {
             ))}
           </tbody>
         </table>
-        <p className="text-xs text-neutral-600 mt-3">TLH = Tax-Loss Harvesting · DI = Direct Indexing · Human = Human Advisor Access</p>
+        <p className="text-xs text-muted-foreground/70 mt-3">TLH = Tax-Loss Harvesting · DI = Direct Indexing · Human = Human Advisor Access</p>
       </Card>
 
       {/* Selected Provider Detail */}
@@ -447,7 +447,7 @@ function PortfolioConstruction() {
           step={1}
           className="mb-2"
         />
-        <div className="flex justify-between text-xs text-neutral-600">
+        <div className="flex justify-between text-xs text-muted-foreground/70">
           <span>Conservative (0%)</span>
           <span>Moderate (50%)</span>
           <span>Aggressive (100%)</span>
@@ -532,7 +532,7 @@ function PortfolioConstruction() {
               Your Portfolio
             </text>
           </svg>
-          <p className="text-xs text-neutral-600 mt-1">Blue dots = sub-optimal. Orange dot = your current allocation.</p>
+          <p className="text-xs text-muted-foreground/70 mt-1">Blue dots = sub-optimal. Orange dot = your current allocation.</p>
         </Card>
 
         {/* Allocation Pie */}
@@ -902,7 +902,7 @@ function SmartFeatures() {
                       "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
                       answers[qi] === oi
                         ? "bg-primary border-primary text-white"
-                        : "bg-muted border-border text-muted-foreground hover:border-neutral-600"
+                        : "bg-muted border-border text-muted-foreground hover:border-border"
                     )}
                   >
                     {opt}
@@ -932,7 +932,7 @@ function SmartFeatures() {
                 <span className="text-sm font-semibold text-foreground">Your Risk Profile</span>
                 <span className={cn("text-sm font-bold", riskLabel.color)}>{riskLabel.label}</span>
               </div>
-              <div className="w-full bg-neutral-700 rounded-full h-2 mb-2">
+              <div className="w-full bg-muted rounded-full h-2 mb-2">
                 <motion.div
                   className="h-2 rounded-full bg-primary"
                   initial={{ width: 0 }}
@@ -1033,7 +1033,7 @@ function AIAndFuture() {
         <h3 className="text-sm font-semibold text-muted-foreground mb-5">Robo-Advisor Adoption Timeline</h3>
         <div className="relative">
           {/* Spine */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-neutral-700" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-muted" />
           <div className="space-y-5">
             {TIMELINE.map((ev) => (
               <motion.div
@@ -1047,10 +1047,10 @@ function AIAndFuture() {
                   className={cn(
                     "w-12 h-12 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 border-2 relative z-10",
                     ev.status === "past"
-                      ? "bg-muted border-neutral-600 text-muted-foreground"
+                      ? "bg-muted border-border text-muted-foreground"
                       : ev.status === "current"
                       ? "bg-primary border-primary text-white"
-                      : "bg-card border-dashed border-neutral-600 text-neutral-600"
+                      : "bg-card border-dashed border-border text-muted-foreground/70"
                   )}
                 >
                   {ev.year}
@@ -1064,7 +1064,7 @@ function AIAndFuture() {
                           ? "text-muted-foreground"
                           : ev.status === "current"
                           ? "text-primary"
-                          : "text-neutral-600"
+                          : "text-muted-foreground/70"
                       )}
                     >
                       {ev.title}
@@ -1073,7 +1073,7 @@ function AIAndFuture() {
                       <Badge className="text-xs bg-primary/20 text-primary border-border">Now</Badge>
                     )}
                     {ev.status === "future" && (
-                      <Badge variant="outline" className="text-xs border-border text-neutral-600">Projected</Badge>
+                      <Badge variant="outline" className="text-xs border-border text-muted-foreground/70">Projected</Badge>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{ev.desc}</p>
@@ -1121,7 +1121,7 @@ export default function RoboAdvisorPage() {
   const [tab, setTab] = useState("landscape");
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

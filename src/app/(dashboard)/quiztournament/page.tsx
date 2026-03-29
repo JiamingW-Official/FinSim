@@ -678,7 +678,7 @@ const TIER_COLOR: Record<LeagueTier, string> = {
 };
 const TIER_BG: Record<LeagueTier, string> = {
   Bronze: "bg-amber-700/20 border-amber-700/40",
-  Silver: "bg-slate-400/20 border-slate-400/40",
+  Silver: "bg-muted-foreground/20 border-muted-foreground/40",
   Gold: "bg-yellow-500/20 border-yellow-500/40",
   Platinum: "bg-cyan-400/20 border-cyan-400/40",
   Diamond: "bg-primary/20 border-border",
@@ -970,7 +970,7 @@ function QuestionCard({
       {/* Options */}
       <div className="grid gap-2">
         {question.options.map((opt, idx) => {
-          let variantClass = "bg-card/60 border-border/50 hover:border-slate-500 hover:bg-muted/60";
+          let variantClass = "bg-card/60 border-border/50 hover:border-muted-foreground hover:bg-muted/60";
           if (answered) {
             if (idx === question.correctIndex) {
               variantClass = "bg-green-500/20 border-green-500/60";
@@ -993,7 +993,7 @@ function QuestionCard({
                 variantClass
               )}
             >
-              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-muted border border-slate-600 text-xs flex items-center justify-center font-bold text-muted-foreground">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-muted border border-border text-xs flex items-center justify-center font-bold text-muted-foreground">
                 {optionLetters[idx]}
               </span>
               <span className="text-sm text-foreground">{opt}</span>
@@ -1151,7 +1151,7 @@ function FinalScoreScreen({
         ))}
       </div>
 
-      <Button onClick={onRestart} className="w-full bg-muted hover:bg-slate-600 text-white">
+      <Button onClick={onRestart} className="w-full bg-muted hover:bg-muted text-white">
         <BarChart2 className="h-4 w-4 mr-2" />
         Play Again
       </Button>
@@ -1445,7 +1445,7 @@ function WeeklyLeagueTab() {
       <div className="flex items-center gap-2 flex-wrap">
         <button
           onClick={() => setSelectedTier("all")}
-          className={cn("text-xs px-2 py-1 rounded border transition-colors", selectedTier === "all" ? "bg-slate-600 border-slate-500 text-white" : "border-border text-muted-foreground hover:border-slate-600")}
+          className={cn("text-xs px-2 py-1 rounded border transition-colors", selectedTier === "all" ? "bg-muted border-muted-foreground text-white" : "border-border text-muted-foreground hover:border-border")}
         >
           All
         </button>
@@ -1453,7 +1453,7 @@ function WeeklyLeagueTab() {
           <button
             key={tier}
             onClick={() => setSelectedTier(tier)}
-            className={cn("text-xs px-2 py-1 rounded border transition-colors", selectedTier === tier ? TIER_BG[tier] + " " + TIER_COLOR[tier] : "border-border text-muted-foreground hover:border-slate-600")}
+            className={cn("text-xs px-2 py-1 rounded border transition-colors", selectedTier === tier ? TIER_BG[tier] + " " + TIER_COLOR[tier] : "border-border text-muted-foreground hover:border-border")}
           >
             {tier}
           </button>
@@ -1638,7 +1638,7 @@ function SpeedRoundTab() {
               onClick={() => setMode(m)}
               className={cn(
                 "px-4 py-2 rounded-lg border text-sm font-medium transition-all",
-                mode === m ? "bg-yellow-500/20 border-yellow-500/40 text-yellow-400" : "border-border text-muted-foreground hover:border-slate-600"
+                mode === m ? "bg-yellow-500/20 border-yellow-500/40 text-yellow-400" : "border-border text-muted-foreground hover:border-border"
               )}
             >
               {m === "normal" ? "Normal" : "Survival (3 lives)"}
@@ -1649,7 +1649,7 @@ function SpeedRoundTab() {
           <div className="text-xs text-muted-foreground font-semibold uppercase mb-2">Multiplier Ladder</div>
           <div className="flex gap-2">
             {[1, 2, 3, 5].map((m) => (
-              <div key={m} className="flex-1 text-center p-2 rounded bg-muted/50 border border-slate-600/40">
+              <div key={m} className="flex-1 text-center p-2 rounded bg-muted/50 border border-border/40">
                 <div className="text-sm font-bold text-yellow-400">{m}×</div>
                 <div className="text-xs text-muted-foreground">{m === 1 ? "Start" : m === 2 ? "2-in-a-row" : m === 3 ? "4-in-a-row" : "8+"}</div>
               </div>
@@ -1758,7 +1758,7 @@ function SpeedRoundTab() {
           {mode === "survival" && (
             <div className="flex gap-0.5">
               {Array.from({ length: MAX_LIVES }).map((_, i) => (
-                <span key={i} className={cn("text-base", i < lives ? "text-red-500" : "text-slate-700")}>
+                <span key={i} className={cn("text-base", i < lives ? "text-red-500" : "text-muted-foreground/50")}>
                   ♥
                 </span>
               ))}
@@ -1795,7 +1795,7 @@ function SpeedRoundTab() {
                 onClick={() => handleSpeedAnswer(idx)}
                 className="w-full text-left p-3 rounded-lg border border-border/50 bg-card/60 hover:border-yellow-500/50 hover:bg-yellow-500/5 transition-all text-sm text-foreground flex items-center gap-2"
               >
-                <span className="w-5 h-5 rounded bg-muted border border-slate-600 text-xs flex items-center justify-center font-bold text-muted-foreground flex-shrink-0">
+                <span className="w-5 h-5 rounded bg-muted border border-border text-xs flex items-center justify-center font-bold text-muted-foreground flex-shrink-0">
                   {["A", "B", "C", "D"][idx]}
                 </span>
                 {opt}
@@ -1950,7 +1950,7 @@ function BossChallengesTab() {
             <Button
               onClick={() => startBoss(activeBoss)}
               variant="outline"
-              className="flex-1 border-slate-600 text-muted-foreground"
+              className="flex-1 border-border text-muted-foreground"
             >
               Try Again
             </Button>
@@ -2039,7 +2039,7 @@ function BossChallengesTab() {
             boss.unlocked
               ? defeatedBosses.has(boss.id)
                 ? "bg-green-500/10 border-green-500/30"
-                : "bg-card/70 border-border/50 hover:border-slate-600/70 cursor-pointer"
+                : "bg-card/70 border-border/50 hover:border-border/70 cursor-pointer"
               : "bg-card/30 border-border/40 opacity-50"
           )}>
             <div className="flex items-center gap-3">
@@ -2169,7 +2169,7 @@ function QuestionBuilderTab() {
           onChange={(e) => setFormData((f) => ({ ...f, question: e.target.value }))}
           placeholder="Enter your question..."
           rows={2}
-          className="w-full bg-muted/60 border border-border/60 rounded-lg px-3 py-2 text-sm text-foreground placeholder-slate-600 focus:outline-none focus:border-primary/50 resize-none"
+          className="w-full bg-muted/60 border border-border/60 rounded-lg px-3 py-2 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary/50 resize-none"
         />
 
         <div className="grid grid-cols-2 gap-2">
@@ -2183,14 +2183,14 @@ function QuestionBuilderTab() {
                 onChange={(e) => setFormData((f) => ({ ...f, [key]: e.target.value }))}
                 placeholder={`Option ${["A", "B", "C", "D"][idx]}`}
                 className={cn(
-                  "w-full pl-7 pr-2 py-2 bg-muted/60 border rounded-lg text-xs text-foreground placeholder-slate-600 focus:outline-none",
+                  "w-full pl-7 pr-2 py-2 bg-muted/60 border rounded-lg text-xs text-foreground placeholder-muted-foreground focus:outline-none",
                   formData.correctIndex === idx ? "border-green-500/50" : "border-border/60 focus:border-primary/40"
                 )}
               />
               <button
                 onClick={() => setFormData((f) => ({ ...f, correctIndex: idx }))}
                 className={cn("absolute right-2 top-2.5 w-4 h-4 rounded-full border flex items-center justify-center",
-                  formData.correctIndex === idx ? "bg-green-500 border-green-500" : "border-slate-600"
+                  formData.correctIndex === idx ? "bg-green-500 border-green-500" : "border-border"
                 )}
               >
                 {formData.correctIndex === idx && <CheckCircle2 className="h-2.5 w-2.5 text-white" />}
@@ -2204,7 +2204,7 @@ function QuestionBuilderTab() {
           onChange={(e) => setFormData((f) => ({ ...f, explanation: e.target.value }))}
           placeholder="Explanation (shown after answering)..."
           rows={2}
-          className="w-full bg-muted/60 border border-border/60 rounded-lg px-3 py-2 text-xs text-foreground placeholder-slate-600 focus:outline-none focus:border-primary/50 resize-none"
+          className="w-full bg-muted/60 border border-border/60 rounded-lg px-3 py-2 text-xs text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary/50 resize-none"
         />
 
         <div className="flex gap-2 flex-wrap">
@@ -2236,7 +2236,7 @@ function QuestionBuilderTab() {
             size="sm"
             variant="outline"
             onClick={handleCopy}
-            className="ml-auto border-slate-600 text-muted-foreground text-xs"
+            className="ml-auto border-border text-muted-foreground text-xs"
           >
             <Share2 className="h-3 w-3 mr-1" />
             {copied ? "Copied!" : "Copy"}

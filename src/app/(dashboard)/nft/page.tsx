@@ -763,7 +763,7 @@ function MarketOverview() {
                       <span className="text-muted-foreground mt-0.5 block">{c.listedPct}%</span>
                     </td>
                     <td className="px-3 py-2">
-                      <Badge variant="outline" className="text-xs border-slate-600 text-muted-foreground">
+                      <Badge variant="outline" className="text-xs border-border text-muted-foreground">
                         {c.blockchain}
                       </Badge>
                     </td>
@@ -926,7 +926,7 @@ function PricingModels() {
                       ) : tp.floorMultiplier > 4 ? (
                         <Badge variant="outline" className="border-green-500/40 text-green-400 text-xs">Strong Premium</Badge>
                       ) : (
-                        <Badge variant="outline" className="border-slate-600 text-muted-foreground text-xs">Normal</Badge>
+                        <Badge variant="outline" className="border-border text-muted-foreground text-xs">Normal</Badge>
                       )}
                     </td>
                   </tr>
@@ -1261,7 +1261,7 @@ function InvestmentFramework() {
           onClick={() => setSelectedCategory(null)}
           className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
             selectedCategory === null
-              ? "bg-slate-600 text-foreground"
+              ? "bg-muted text-foreground"
               : "bg-muted/60 text-muted-foreground hover:bg-muted/60"
           }`}
         >
@@ -1273,7 +1273,7 @@ function InvestmentFramework() {
             onClick={() => setSelectedCategory(selectedCategory === cat ? null : cat)}
             className={`px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
               selectedCategory === cat
-                ? "bg-slate-600 text-foreground"
+                ? "bg-muted text-foreground"
                 : "bg-muted/60 text-muted-foreground hover:bg-muted/60"
             }`}
           >
@@ -1308,7 +1308,7 @@ function InvestmentFramework() {
                     </td>
                     <td className="px-3 py-3 font-medium text-foreground">{c.criterion}</td>
                     <td className="px-3 py-3">
-                      <Badge variant="outline" className="border-slate-600 text-muted-foreground font-bold">
+                      <Badge variant="outline" className="border-border text-muted-foreground font-bold">
                         {c.weight}%
                       </Badge>
                     </td>
@@ -1384,7 +1384,7 @@ export default function NFTPage() {
               <span className="text-xs text-muted-foreground">NFT Market Cap</span>
             </div>
             <span className="text-xl font-bold text-primary">{fmtUSD(totalMcap)}</span>
-            <Badge variant="outline" className="text-xs border-slate-600 text-muted-foreground">
+            <Badge variant="outline" className="text-xs border-border text-muted-foreground">
               Ethereum + Solana
             </Badge>
           </div>

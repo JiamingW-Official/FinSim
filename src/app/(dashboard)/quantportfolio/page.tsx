@@ -770,7 +770,7 @@ export default function QuantPortfolioPage() {
                           className={`w-full text-left px-3 py-2 rounded border text-xs transition-colors ${
                             covMethod === m.key
                               ? "bg-muted border-indigo-500/50 text-foreground"
-                              : "bg-card border-border text-muted-foreground hover:border-slate-600"
+                              : "bg-card border-border text-muted-foreground hover:border-border"
                           }`}
                         >
                           <span className="font-medium block">{m.label}</span>
@@ -901,7 +901,7 @@ export default function QuantPortfolioPage() {
                       className={`w-full text-left px-3 py-2.5 rounded border text-xs transition-colors ${
                         selectedView === view.id
                           ? "bg-indigo-600/20 border-indigo-500/50"
-                          : "bg-muted border-border hover:border-slate-600"
+                          : "bg-muted border-border hover:border-border"
                       }`}
                     >
                       <div className="flex items-center justify-between mb-1">
@@ -1225,7 +1225,7 @@ export default function QuantPortfolioPage() {
                     <div key={t.name} className="px-3 py-2 rounded bg-muted border border-border text-xs">
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-medium text-foreground">{t.name}</span>
-                        <Badge variant="outline" className="text-xs border-slate-600 text-muted-foreground">{t.period}</Badge>
+                        <Badge variant="outline" className="text-xs border-border text-muted-foreground">{t.period}</Badge>
                       </div>
                       <div className="grid grid-cols-2 gap-1 text-xs">
                         <span className="text-green-400">+ {t.pro}</span>

@@ -1170,7 +1170,7 @@ export default function TransitionFinancePage() {
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                       selectedDisclosure === i
                         ? "bg-emerald-600 border-emerald-500 text-white"
-                        : "bg-muted border-border text-muted-foreground hover:border-gray-600"
+                        : "bg-muted border-border text-muted-foreground hover:border-border"
                     }`}
                   >
                     {f.name}
@@ -1282,7 +1282,7 @@ export default function TransitionFinancePage() {
                     className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors ${
                       selectedMarket === i
                         ? "bg-emerald-600 border-emerald-500 text-white"
-                        : "bg-muted border-border text-muted-foreground hover:border-gray-600"
+                        : "bg-muted border-border text-muted-foreground hover:border-border"
                     }`}
                   >
                     {m.name}
@@ -1329,7 +1329,7 @@ export default function TransitionFinancePage() {
                     <div className="text-xs text-muted-foreground mb-1">{row.region}</div>
                     <div className="flex items-center gap-2">
                       {[
-                        { label: "SDS Base", val: row.sdsBase, color: "bg-gray-500" },
+                        { label: "SDS Base", val: row.sdsBase, color: "bg-muted-foreground" },
                         { label: "IEA 450ppm", val: row.iea450, color: "bg-primary" },
                         { label: "Net Zero 2050", val: row.ieanetzero, color: "bg-emerald-500" },
                       ].map((sc) => (

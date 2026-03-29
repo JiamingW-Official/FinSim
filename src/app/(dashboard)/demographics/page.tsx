@@ -144,7 +144,7 @@ const SECTOR_IMPACTS: SectorImpact[] = [
     impact: "neutral",
     rationale: "Older consumers shift spend toward necessities but total consumption growth slows as population ages.",
     examples: ["PG", "KO", "WMT"],
-    tailwindBg: "bg-zinc-500/20 border-zinc-500/40",
+    tailwindBg: "bg-muted-foreground/20 border-muted-foreground/40",
     score: 0,
   },
   {
@@ -152,7 +152,7 @@ const SECTOR_IMPACTS: SectorImpact[] = [
     impact: "neutral",
     rationale: "Mixed: elder-care tech (telehealth, wearables) grows; consumer electronics face headwinds as young cohorts shrink.",
     examples: ["AAPL", "GOOGL", "MSFT"],
-    tailwindBg: "bg-zinc-500/20 border-zinc-500/40",
+    tailwindBg: "bg-muted-foreground/20 border-muted-foreground/40",
     score: 0,
   },
   {
@@ -759,7 +759,7 @@ const IMPACT_LABEL: Record<string, string> = {
 const IMPACT_DOT: Record<string, string> = {
   strong_positive: "bg-emerald-500",
   positive: "bg-green-500",
-  neutral: "bg-zinc-500",
+  neutral: "bg-muted-foreground",
   negative: "bg-red-400",
   strong_negative: "bg-rose-600",
 };

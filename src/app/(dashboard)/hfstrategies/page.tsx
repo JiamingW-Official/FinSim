@@ -613,7 +613,7 @@ function GlobalMacroTab() {
           {themes.map((t) => (
             <div
               key={t.id}
-              className={`rounded-lg border p-3 cursor-pointer transition-all ${activeTheme === t.id ? "border-slate-500 bg-muted/70" : "border-border/60 bg-muted/20 hover:border-border"}`}
+              className={`rounded-lg border p-3 cursor-pointer transition-all ${activeTheme === t.id ? "border-muted-foreground bg-muted/70" : "border-border/60 bg-muted/20 hover:border-border"}`}
               onClick={() => setActiveTheme(activeTheme === t.id ? null : t.id)}
             >
               <div className="flex items-start justify-between gap-2">
@@ -628,7 +628,7 @@ function GlobalMacroTab() {
                       <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.position === "long" ? "border-green-700 text-green-400" : "border-red-700 text-red-400"}`}>
                         {t.position.toUpperCase()}
                       </Badge>
-                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.conviction === "high" ? "border-border text-primary" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-slate-600 text-muted-foreground"}`}>
+                      <Badge variant="outline" className={`text-xs py-0 px-1.5 ${t.conviction === "high" ? "border-border text-primary" : t.conviction === "medium" ? "border-amber-700 text-amber-400" : "border-border text-muted-foreground"}`}>
                         {t.conviction}
                       </Badge>
                     </div>
@@ -757,7 +757,7 @@ function EventDrivenTab() {
                           </td>
                           <td className="py-2 pr-3 text-primary font-medium">{d.annualizedReturn.toFixed(1)}%</td>
                           <td className="py-2 pr-3">
-                            <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-muted-foreground">{d.dealType}</Badge>
+                            <Badge variant="outline" className="text-xs py-0 px-1.5 border-border text-muted-foreground">{d.dealType}</Badge>
                           </td>
                           <td className="py-2">
                             <Badge variant="outline" className={`text-xs py-0 px-1.5 ${statusColors[d.status]}`}>{d.status.replace("_", " ")}</Badge>
@@ -837,7 +837,7 @@ function EventDrivenTab() {
                         <div className="text-sm font-medium text-foreground">{ss.name}</div>
                         <div className="flex items-center gap-2 mt-1">
                           <Badge variant="outline" className="text-xs py-0 px-1.5 border-border text-primary">{ss.type}</Badge>
-                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-slate-600 text-muted-foreground">{ss.stage}</Badge>
+                          <Badge variant="outline" className="text-xs py-0 px-1.5 border-border text-muted-foreground">{ss.stage}</Badge>
                         </div>
                         <p className="text-xs text-muted-foreground mt-1.5">{ss.catalyst}</p>
                       </div>

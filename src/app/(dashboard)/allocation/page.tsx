@@ -256,7 +256,7 @@ function AssetClassOverview() {
                   "px-2 py-1 rounded text-xs capitalize transition-colors",
                   selectedCategory === cat
                     ? "bg-indigo-600 text-white"
-                    : "bg-muted text-muted-foreground hover:bg-neutral-700"
+                    : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
                 {cat}
@@ -312,7 +312,7 @@ function AssetClassOverview() {
                   </td>
                   <td className="py-2 px-2">
                     <div className="flex items-center gap-1">
-                      <div className="flex-1 bg-neutral-700 rounded-full h-1.5 overflow-hidden">
+                      <div className="flex-1 bg-muted rounded-full h-1.5 overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{ width: `${Math.min(asset.sharpe / 1.2 * 100, 100)}%`, background: asset.color }}
@@ -553,7 +553,7 @@ function PortfolioBuilder() {
               "text-xs border-border",
               activePreset === p.name
                 ? "bg-indigo-600 border-indigo-500 text-white hover:bg-indigo-700"
-                : "bg-muted text-muted-foreground hover:bg-neutral-700"
+                : "bg-muted text-muted-foreground hover:bg-muted"
             )}
           >
             {p.name}
@@ -563,7 +563,7 @@ function PortfolioBuilder() {
           size="sm"
           variant="outline"
           onClick={normalize}
-          className="text-xs border-border bg-muted text-muted-foreground hover:bg-neutral-700 ml-auto"
+          className="text-xs border-border bg-muted text-muted-foreground hover:bg-muted ml-auto"
         >
           <RefreshCw className="w-3 h-3 mr-1" />
           Normalize to 100%
@@ -1374,7 +1374,7 @@ function LifecyclePlanning() {
                 onClick={() => setRiskTolerance(i)}
                 className={cn(
                   "px-3 py-1.5 rounded text-xs transition-colors",
-                  riskTolerance === i ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-neutral-700"
+                  riskTolerance === i ? "bg-indigo-600 text-white" : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
                 {label}
@@ -1633,7 +1633,7 @@ export default function AllocationPage() {
   const [sharedWeights, setSharedWeights] = useState<number[]>(PRESETS[0].weights.map(w => w));
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         {/* Header */}
         <motion.div

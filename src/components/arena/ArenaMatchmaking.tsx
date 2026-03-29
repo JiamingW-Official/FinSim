@@ -90,9 +90,9 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
             </div>
 
             <div className="text-center">
-              <p className="text-lg font-bold text-zinc-200">Finding Opponent...</p>
-              <p className="text-xs text-zinc-500 mt-1">Searching near {elo} ELO</p>
-              <p className="text-xs text-zinc-600 mt-0.5">{config.name} · {config.timeLimitSeconds}s</p>
+              <p className="text-lg font-bold text-foreground">Finding Opponent...</p>
+              <p className="text-xs text-muted-foreground mt-1">Searching near {elo} ELO</p>
+              <p className="text-xs text-muted-foreground/70 mt-0.5">{config.name} · {config.timeLimitSeconds}s</p>
             </div>
 
             <motion.button
@@ -100,11 +100,11 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
               onClick={onCancel}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs text-zinc-400 transition-colors hover:bg-white/10 hover:text-zinc-200"
+              className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground"
             >
               <X className="h-3 w-3" />
               Cancel
-              <span className="text-[11px] text-zinc-600 ml-1">(Esc)</span>
+              <span className="text-[11px] text-muted-foreground/70 ml-1">(Esc)</span>
             </motion.button>
           </motion.div>
         )}
@@ -117,8 +117,8 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
             className="flex flex-col items-center gap-4"
           >
             <X className="h-12 w-12 text-red-400" />
-            <p className="text-sm font-bold text-zinc-200">No Opponent Found</p>
-            <p className="text-xs text-zinc-500">Try again in a moment.</p>
+            <p className="text-sm font-bold text-foreground">No Opponent Found</p>
+            <p className="text-xs text-muted-foreground">Try again in a moment.</p>
             <motion.button
               type="button"
               onClick={onCancel}
@@ -158,9 +158,9 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
                 <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-cyan-500/30 bg-cyan-500/10 text-2xl">
                   🎮
                 </div>
-                <span className="text-sm font-bold text-zinc-200">You</span>
+                <span className="text-sm font-bold text-foreground">You</span>
                 <ArenaRankBadge rank={rank} size="sm" />
-                <span className="text-xs text-zinc-500 tabular-nums">{elo} ELO</span>
+                <span className="text-xs text-muted-foreground tabular-nums">{elo} ELO</span>
               </motion.div>
 
               {/* VS */}
@@ -183,14 +183,14 @@ export function ArenaMatchmaking({ config, onMatchReady, onCancel }: ArenaMatchm
                 <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-red-500/30 bg-red-500/10 text-2xl">
                   🤖
                 </div>
-                <span className="text-sm font-bold text-zinc-200">{opponent.name}</span>
+                <span className="text-sm font-bold text-foreground">{opponent.name}</span>
                 <ArenaRankBadge rank={opponent.rank} size="sm" />
-                <span className="text-xs text-zinc-500 tabular-nums">{opponent.elo} ELO</span>
+                <span className="text-xs text-muted-foreground tabular-nums">{opponent.elo} ELO</span>
               </motion.div>
             </div>
 
             <motion.p
-              className="text-xs text-zinc-600"
+              className="text-xs text-muted-foreground/70"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}

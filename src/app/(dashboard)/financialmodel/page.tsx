@@ -967,7 +967,7 @@ export default function FinancialModelPage() {
                         ? "bg-emerald-600 text-white"
                         : sc === "bear"
                         ? "bg-red-600 text-white"
-                        : "bg-zinc-600 text-white"
+                        : "bg-muted text-white"
                       : "text-muted-foreground hover:text-white"
                   )}
                 >

@@ -1014,7 +1014,7 @@ function RiskAnalysisTab() {
               <div className="flex-1">
                 <div className="text-xs text-muted-foreground mb-1">Likelihood</div>
                 <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full rounded-full bg-zinc-400 transition-all" style={{ width: `${rk.likelihood * 10}%` }} />
+                  <div className="h-full rounded-full bg-muted-foreground transition-all" style={{ width: `${rk.likelihood * 10}%` }} />
                 </div>
               </div>
             </div>

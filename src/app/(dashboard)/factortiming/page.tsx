@@ -268,7 +268,7 @@ function weightBadge(w: Weight) {
     return <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 text-xs">Overweight</Badge>;
   if (w === "underweight")
     return <Badge className="bg-red-500/20 text-red-400 border-red-500/30 text-xs">Underweight</Badge>;
-  return <Badge className="bg-zinc-500/20 text-muted-foreground border-border text-xs">Neutral</Badge>;
+  return <Badge className="bg-muted-foreground/20 text-muted-foreground border-border text-xs">Neutral</Badge>;
 }
 
 function signalBadge(sig: "buy" | "hold" | "sell") {
@@ -276,7 +276,7 @@ function signalBadge(sig: "buy" | "hold" | "sell") {
     return <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 text-xs">Buy</Badge>;
   if (sig === "sell")
     return <Badge className="bg-red-500/20 text-red-400 border-red-500/30 text-xs">Sell</Badge>;
-  return <Badge className="bg-zinc-500/20 text-muted-foreground border-border text-xs">Hold</Badge>;
+  return <Badge className="bg-muted-foreground/20 text-muted-foreground border-border text-xs">Hold</Badge>;
 }
 
 function corrColor(v: number) {
@@ -623,7 +623,7 @@ function FactorDashboard() {
               "text-left p-3 rounded-lg border transition-all",
               selected === f.name
                 ? "border-primary/60 bg-primary/10"
-                : "border-border bg-card hover:border-zinc-500"
+                : "border-border bg-card hover:border-muted-foreground"
             )}
           >
             <div className="flex items-center justify-between mb-1">

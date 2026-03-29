@@ -476,7 +476,7 @@ function AgencyMarketTab() {
                 "rounded-xl border p-4 text-left transition-all",
                 selectedAgency.name === ag.name
                   ? "border-primary/60 bg-primary/8"
-                  : "border-border bg-muted/50 hover:border-neutral-600"
+                  : "border-border bg-muted/50 hover:border-border"
               )}
             >
               <div className="flex items-start justify-between mb-2">
@@ -495,7 +495,7 @@ function AgencyMarketTab() {
               <div className="text-xs text-muted-foreground mb-1">{ag.type}</div>
               <div className="text-xs text-muted-foreground mb-3">Est. {ag.founded}</div>
               {/* Market share bar */}
-              <div className="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+              <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all"
                   style={{ width: `${(ag.marketShare / 45) * 100}%`, backgroundColor: ag.color }}
@@ -529,7 +529,7 @@ function AgencyMarketTab() {
                 <div className="text-xs text-muted-foreground mb-1">Loan Types</div>
                 <div className="flex flex-wrap gap-1">
                   {selectedAgency.loanTypes.map((lt) => (
-                    <span key={lt} className="text-xs bg-neutral-700 text-muted-foreground px-2 py-0.5 rounded">
+                    <span key={lt} className="text-xs bg-muted text-muted-foreground px-2 py-0.5 rounded">
                       {lt}
                     </span>
                   ))}
@@ -557,7 +557,7 @@ function AgencyMarketTab() {
             ))}
             {/* Other */}
             <div
-              className="bg-neutral-600"
+              className="bg-muted"
               style={{ width: `${((100 - totalMarket) / 100) * 100}%` }}
               title="Bank portfolio / Private label: ~23%"
             />
@@ -570,7 +570,7 @@ function AgencyMarketTab() {
               </div>
             ))}
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <span className="w-2 h-2 rounded-full bg-neutral-600" />
+              <span className="w-2 h-2 rounded-full bg-muted" />
               Other ~{100 - totalMarket}%
             </div>
           </div>
@@ -720,7 +720,7 @@ function AgencyMarketTab() {
                           "text-xs px-2 py-0.5 rounded border",
                           special
                             ? "bg-emerald-500/15 text-emerald-300 border-emerald-500/25"
-                            : "bg-neutral-700 text-muted-foreground border-neutral-600"
+                            : "bg-muted text-muted-foreground border-border"
                         )}
                       >
                         {special ? "Yes" : "No"}
@@ -1086,7 +1086,7 @@ function CMOStructuresTab() {
                 key={tranche.name}
                 className={cn(
                   "border rounded-xl overflow-hidden transition-all",
-                  isOpen ? "border-neutral-600" : "border-border"
+                  isOpen ? "border-border" : "border-border"
                 )}
               >
                 <button
@@ -1593,7 +1593,7 @@ function ConvexityRiskTab() {
                     </div>
                     <div className="flex gap-1 items-center mb-1">
                       <div className="text-xs text-muted-foreground w-20 shrink-0">Z-Spread</div>
-                      <div className="flex-1 bg-neutral-700 rounded-full h-3 overflow-hidden">
+                      <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
                         <div
                           className="h-full rounded-full"
                           style={{ width: `${Math.min(100, (sc.zSpread / 160) * 100)}%`, backgroundColor: sc.color }}
@@ -1603,7 +1603,7 @@ function ConvexityRiskTab() {
                     </div>
                     <div className="flex gap-1 items-center">
                       <div className="text-xs text-muted-foreground w-20 shrink-0">OAS</div>
-                      <div className="flex-1 bg-neutral-700 rounded-full h-3 overflow-hidden">
+                      <div className="flex-1 bg-muted rounded-full h-3 overflow-hidden">
                         <div
                           className="h-full rounded-full bg-emerald-500"
                           style={{ width: `${Math.min(100, (sc.oas / 160) * 100)}%` }}
@@ -1689,7 +1689,7 @@ function ConvexityRiskTab() {
                 </div>
                 <div className="shrink-0 text-right">
                   <div className="text-xs text-muted-foreground mb-1">Typical Ratio</div>
-                  <div className="text-xs font-mono bg-neutral-700 text-foreground px-2.5 py-1 rounded-lg whitespace-nowrap">
+                  <div className="text-xs font-mono bg-muted text-foreground px-2.5 py-1 rounded-lg whitespace-nowrap">
                     {row.typicalRatio}
                   </div>
                   <div className="text-xs text-muted-foreground mt-1 max-w-32">{row.bestFor}</div>
@@ -1720,7 +1720,7 @@ function ConvexityRiskTab() {
 
 export default function AgencyMBSPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">

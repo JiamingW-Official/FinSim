@@ -187,7 +187,7 @@ function SpreadPieChart() {
           <div key={seg.label} className="flex items-center gap-1.5">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: seg.color }} />
             <span className="text-xs text-muted-foreground">{seg.label}</span>
-            <Badge variant="outline" className="text-xs px-1 py-0 border-slate-600 text-muted-foreground">{seg.value}%</Badge>
+            <Badge variant="outline" className="text-xs px-1 py-0 border-border text-muted-foreground">{seg.value}%</Badge>
           </div>
         ))}
       </div>
@@ -791,14 +791,14 @@ export default function MicrostructureDepthPage() {
                   {toxicFlowRows.map((row) => (
                     <div
                       key={row.symbol}
-                      className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/30 cursor-pointer hover:border-slate-600/50 transition-colors"
+                      className="flex items-center gap-2 p-2 rounded-lg bg-muted/40 border border-border/30 cursor-pointer hover:border-border/50 transition-colors"
                       onClick={() => setSelectedSymbol(spreadSymbols.indexOf(row.symbol))}
                     >
                       <span className="text-xs font-mono font-semibold text-foreground w-12 shrink-0">{row.symbol}</span>
                       <div className="flex-1">
                         <div className="flex gap-0.5 h-3">
                           <div className="rounded-l bg-red-500 opacity-80" style={{ width: `${row.toxicPct}%` }} title="Toxic" />
-                          <div className="rounded-r bg-slate-600 opacity-60" style={{ width: `${row.normalPct}%` }} title="Normal" />
+                          <div className="rounded-r bg-muted opacity-60" style={{ width: `${row.normalPct}%` }} title="Normal" />
                         </div>
                       </div>
                       <span className="text-xs text-muted-foreground w-10 text-right">{row.toxicPct}%</span>

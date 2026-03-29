@@ -122,7 +122,7 @@ function rarityForAchievement(id: string): Rarity {
 }
 
 const RARITY_COLORS: Record<Rarity, string> = {
-  Common: "text-zinc-400 border-zinc-600 bg-zinc-800",
+  Common: "text-muted-foreground border-border bg-muted",
   Rare: "text-primary border-primary bg-muted/50",
   Epic: "text-primary border-primary bg-muted/50",
   Legendary: "text-amber-400 border-amber-500 bg-amber-900/30",
@@ -750,12 +750,12 @@ function QuestDetailPanel({
                 : node.status === "in_progress"
                   ? "bg-amber-500/10"
                   : node.status === "locked"
-                    ? "bg-zinc-800"
-                    : "bg-zinc-800",
+                    ? "bg-muted"
+                    : "bg-muted",
             )}
           >
             {node.status === "locked" ? (
-              <Lock className="h-4 w-4 text-zinc-600" />
+              <Lock className="h-4 w-4 text-muted-foreground/70" />
             ) : node.status === "complete" ? (
               <Check className="h-4 w-4 text-emerald-400" />
             ) : (
@@ -817,8 +817,8 @@ function QuestDetailPanel({
                 : node.status === "in_progress"
                   ? "text-amber-400 border-amber-500/30 bg-amber-500/10"
                   : node.status === "locked"
-                    ? "text-zinc-500 border-zinc-700 bg-zinc-800"
-                    : "text-zinc-300 border-zinc-600 bg-zinc-800",
+                    ? "text-muted-foreground border-border bg-muted"
+                    : "text-muted-foreground border-border bg-muted",
             )}
           >
             {node.status === "complete"
@@ -879,7 +879,7 @@ function QuestDetailPanel({
                   {pn.status === "complete" ? (
                     <Check className="h-3 w-3 text-emerald-400 shrink-0" />
                   ) : (
-                    <Lock className="h-3 w-3 text-zinc-600 shrink-0" />
+                    <Lock className="h-3 w-3 text-muted-foreground/70 shrink-0" />
                   )}
                   <span className="text-[11px] text-muted-foreground">
                     {pn.label}

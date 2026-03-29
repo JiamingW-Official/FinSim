@@ -1457,7 +1457,7 @@ function SectorsTab() {
                             ? "border-red-500 text-red-400 text-xs"
                             : row.trend === "loosening"
                             ? "border-emerald-500 text-emerald-400 text-xs"
-                            : "border-zinc-500 text-muted-foreground text-xs"
+                            : "border-muted-foreground text-muted-foreground text-xs"
                         }
                       >
                         {row.trend}

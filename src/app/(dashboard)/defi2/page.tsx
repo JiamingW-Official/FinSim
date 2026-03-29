@@ -1450,7 +1450,7 @@ function RestakingTab() {
                   <span className="text-xs font-semibold text-foreground">{pool.name}</span>
                   <Badge className={cn("text-xs",
                     pool.status === "Active" ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30" :
-                    pool.status === "Paused" ? "bg-zinc-500/20 text-muted-foreground border-zinc-500/30" :
+                    pool.status === "Paused" ? "bg-muted-foreground/20 text-muted-foreground border-muted-foreground/30" :
                     "bg-primary/20 text-primary border-border"
                   )}>
                     {pool.status}

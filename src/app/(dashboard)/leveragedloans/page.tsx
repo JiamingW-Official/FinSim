@@ -317,13 +317,13 @@ function LoanStructureTab() {
           <div className="absolute top-4 left-0 right-0 h-0.5 bg-muted" />
           <div className="flex justify-between relative z-10">
             {[
-              { year: "2017", event: "FCA announces LIBOR end", color: "bg-zinc-600" },
+              { year: "2017", event: "FCA announces LIBOR end", color: "bg-muted" },
               { year: "2021", event: "CME SOFR futures launch", color: "bg-primary" },
               { year: "Jun 2023", event: "USD LIBOR cessation", color: "bg-amber-600" },
               { year: "2024", event: "Market fully SOFR-based", color: "bg-green-600" },
             ].map((pt, i) => (
               <div key={i} className="flex flex-col items-center max-w-[90px]">
-                <div className={cn("w-3 h-3 rounded-full border-2 border-zinc-900", pt.color)} />
+                <div className={cn("w-3 h-3 rounded-full border-2 border-border", pt.color)} />
                 <div className="text-xs text-muted-foreground mt-1 font-medium text-center">{pt.year}</div>
                 <div className="text-xs text-muted-foreground text-center mt-0.5 leading-tight">{pt.event}</div>
               </div>

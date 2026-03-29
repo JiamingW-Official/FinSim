@@ -88,7 +88,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
   if (!baseConfig || points.length === 0) {
     return (
       <div className="flex items-center justify-center py-10 text-center">
-        <div className="text-xs text-zinc-500">Run a backtest first to see the risk-return scatter.</div>
+        <div className="text-xs text-muted-foreground">Run a backtest first to see the risk-return scatter.</div>
       </div>
     );
   }
@@ -242,7 +242,7 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap items-center gap-3 px-1 text-[11px] text-zinc-500">
+      <div className="flex flex-wrap items-center gap-3 px-1 text-[11px] text-muted-foreground">
         <span className="flex items-center gap-1">
           <span className="inline-block h-2.5 w-2.5 rounded-full bg-emerald-500/70" />High Sharpe
         </span>
@@ -255,20 +255,20 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
         <span className="flex items-center gap-1">
           <span className="inline-block h-0.5 w-5 border-t border-dashed border-primary/60" />Efficient frontier
         </span>
-        <span className="text-zinc-600">Bubble size = Sharpe ratio</span>
+        <span className="text-muted-foreground/70">Bubble size = Sharpe ratio</span>
       </div>
 
       {/* Top Sharpe table */}
       <div>
-        <h4 className="mb-1 text-xs font-semibold text-zinc-500">Top Strategies by Sharpe</h4>
+        <h4 className="mb-1 text-xs font-semibold text-muted-foreground">Top Strategies by Sharpe</h4>
         <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20">
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/5">
-                <th className="py-1.5 pl-3 text-left text-[11px] font-medium text-zinc-600">Strategy</th>
-                <th className="py-1.5 text-center text-[11px] font-medium text-zinc-600">Vol %</th>
-                <th className="py-1.5 text-center text-[11px] font-medium text-zinc-600">Return %</th>
-                <th className="py-1.5 pr-3 text-center text-[11px] font-medium text-zinc-600">Sharpe</th>
+                <th className="py-1.5 pl-3 text-left text-[11px] font-medium text-muted-foreground/70">Strategy</th>
+                <th className="py-1.5 text-center text-[11px] font-medium text-muted-foreground/70">Vol %</th>
+                <th className="py-1.5 text-center text-[11px] font-medium text-muted-foreground/70">Return %</th>
+                <th className="py-1.5 pr-3 text-center text-[11px] font-medium text-muted-foreground/70">Sharpe</th>
               </tr>
             </thead>
             <tbody>
@@ -277,8 +277,8 @@ export default function RiskReturnScatter({ baseConfig }: Props) {
                 .slice(0, 4)
                 .map((p, i) => (
                   <tr key={i} className={`border-b border-white/5 ${i === 0 ? "bg-emerald-500/5" : ""}`}>
-                    <td className="py-1.5 pl-3 text-xs text-zinc-300">{p.label}</td>
-                    <td className="py-1.5 text-center font-mono text-xs text-zinc-400">{p.volatility.toFixed(1)}</td>
+                    <td className="py-1.5 pl-3 text-xs text-muted-foreground">{p.label}</td>
+                    <td className="py-1.5 text-center font-mono text-xs text-muted-foreground">{p.volatility.toFixed(1)}</td>
                     <td className={`py-1.5 text-center font-mono text-xs font-semibold ${p.returnPct >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
                       {p.returnPct > 0 ? "+" : ""}{p.returnPct.toFixed(1)}
                     </td>

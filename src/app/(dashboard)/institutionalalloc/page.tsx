@@ -1014,7 +1014,7 @@ export default function InstitutionalAllocPage() {
                       spending collapses after market crashes precisely when budget needs are highest.
                     </p>
                     <div className="mt-2 text-xs text-muted-foreground">
-                      <span className="font-mono bg-gray-700 px-1 rounded">Spending = 5% × AUM(t)</span>
+                      <span className="font-mono bg-muted px-1 rounded">Spending = 5% × AUM(t)</span>
                     </div>
                   </div>
                   <div className="bg-muted/60 rounded-lg p-3">
@@ -1024,7 +1024,7 @@ export default function InstitutionalAllocPage() {
                       budget stability while still adjusting to portfolio growth over time.
                     </p>
                     <div className="mt-2 text-xs text-muted-foreground">
-                      <span className="font-mono bg-gray-700 px-1 rounded">S(t) = 0.7×S(t-1) + 0.3×(5%×AUM(t))</span>
+                      <span className="font-mono bg-muted px-1 rounded">S(t) = 0.7×S(t-1) + 0.3×(5%×AUM(t))</span>
                     </div>
                   </div>
                 </div>
@@ -1286,7 +1286,7 @@ export default function InstitutionalAllocPage() {
                 <button
                   key={swf.name}
                   onClick={() => setActiveSWF(swf.name)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${activeSWF === swf.name ? "text-white border-primary bg-primary/20" : "text-muted-foreground border-border hover:border-gray-600"}`}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${activeSWF === swf.name ? "text-white border-primary bg-primary/20" : "text-muted-foreground border-border hover:border-border"}`}
                 >
                   {swf.name}
                 </button>

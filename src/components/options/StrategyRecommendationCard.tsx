@@ -13,7 +13,7 @@ interface StrategyRecommendationCardProps {
 const SENTIMENT_STYLES = {
   bullish: "bg-emerald-500/10 text-emerald-400",
   bearish: "bg-red-500/10 text-red-400",
-  neutral: "bg-gray-500/10 text-gray-400",
+  neutral: "bg-muted-foreground/10 text-muted-foreground",
   volatile: "bg-orange-500/10 text-orange-400",
 } as const;
 
@@ -109,7 +109,7 @@ export function StrategyRecommendationCard({
         <span
           className={cn(
             "text-[11px] font-semibold px-1.5 py-0.5 rounded shrink-0",
-            SENTIMENT_STYLES[preset.sentiment] ?? "bg-gray-500/10 text-gray-400",
+            SENTIMENT_STYLES[preset.sentiment] ?? "bg-muted-foreground/10 text-muted-foreground",
           )}
         >
           {preset.sentiment.charAt(0).toUpperCase() + preset.sentiment.slice(1)}

@@ -651,7 +651,7 @@ function ValuationSummaryTab() {
             onClick={() => setSelectedMethod(i)}
             className={`p-4 rounded-xl border text-left transition-all ${
               selectedMethod === i
-                ? "border-zinc-500 bg-muted ring-1 ring-zinc-500"
+                ? "border-muted-foreground bg-muted ring-1 ring-muted-foreground"
                 : "border-border bg-card hover:border-border"
             }`}
           >

@@ -690,7 +690,7 @@ function DistressedScreener() {
             key={i}
             className={`rounded-lg border cursor-pointer transition-all ${
               isSelected
-                ? "bg-muted/40 border-zinc-500/50"
+                ? "bg-muted/40 border-muted-foreground/50"
                 : "bg-muted/40 border-border/30 hover:border-border/50"
             }`}
             onClick={() => setSelected(isSelected ? null : i)}
@@ -872,7 +872,7 @@ export default function CapitalStructurePage() {
                 key={v}
                 onClick={() => setEv(v)}
                 className={`px-2 py-0.5 rounded transition-colors ${
-                  Math.abs(ev - v) < 50 ? "bg-zinc-600 text-foreground" : "hover:text-foreground"
+                  Math.abs(ev - v) < 50 ? "bg-muted text-foreground" : "hover:text-foreground"
                 }`}
               >
                 ${v}M

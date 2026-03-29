@@ -1010,7 +1010,7 @@ export default function BehavioralLabPage() {
 
               {exp1Choice && !exp1Revealed && (
                 <Button
-                  className="w-full bg-muted hover:bg-zinc-600"
+                  className="w-full bg-muted hover:bg-muted"
                   onClick={() => setExp1Revealed(true)}
                 >
                   Reveal Analysis

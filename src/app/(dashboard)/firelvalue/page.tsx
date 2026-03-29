@@ -587,7 +587,7 @@ function YieldCurveTab() {
                       "text-left px-3 py-1.5 rounded text-xs border transition-colors",
                       shortLeg === i
                         ? "bg-red-900/40 border-red-700 text-red-300"
-                        : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
+                        : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
                     )}
                   >
                     {p.tenor} — {p.yield.toFixed(3)}%
@@ -606,7 +606,7 @@ function YieldCurveTab() {
                       "text-left px-3 py-1.5 rounded text-xs border transition-colors",
                       longLeg === i
                         ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
-                        : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
+                        : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
                     )}
                   >
                     {p.tenor} — {p.yield.toFixed(3)}%
@@ -1190,7 +1190,7 @@ function ButterflyTab() {
                     "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
                     wing1Idx === i
                       ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
-                      : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
+                      : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
                   )}
                 >
                   {p.tenor} {p.yield.toFixed(3)}%
@@ -1209,7 +1209,7 @@ function ButterflyTab() {
                     "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
                     bellyIdx === i
                       ? "bg-red-900/40 border-red-700 text-red-300"
-                      : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
+                      : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
                   )}
                 >
                   {p.tenor} {p.yield.toFixed(3)}%
@@ -1228,7 +1228,7 @@ function ButterflyTab() {
                     "w-full text-left px-2 py-1.5 rounded text-xs border mb-1 transition-colors",
                     wing2Idx === i
                       ? "bg-emerald-900/40 border-emerald-700 text-emerald-300"
-                      : "bg-muted border-border text-muted-foreground hover:border-zinc-500",
+                      : "bg-muted border-border text-muted-foreground hover:border-muted-foreground",
                   )}
                 >
                   {p.tenor} {p.yield.toFixed(3)}%

@@ -462,7 +462,7 @@ function corrColor(v: number): string {
   if (v > 0.5) return "bg-emerald-500";
   if (v > 0.2) return "bg-emerald-400/60";
   if (v > 0) return "bg-emerald-400/30";
-  if (v > -0.2) return "bg-slate-500/40";
+  if (v > -0.2) return "bg-muted-foreground/40";
   return "bg-rose-400/60";
 }
 

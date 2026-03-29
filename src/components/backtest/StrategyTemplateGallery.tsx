@@ -55,16 +55,16 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
         initial={{ scale: 0.95, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.95, y: 20 }}
-        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/95"
+        className="relative max-h-[85vh] w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-card/95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/5 px-6 py-4">
           <div>
-            <h2 className="text-lg font-bold text-zinc-100">Strategy Templates</h2>
-            <p className="text-xs text-zinc-500">Select a proven strategy to learn about and test</p>
+            <h2 className="text-lg font-bold text-foreground">Strategy Templates</h2>
+            <p className="text-xs text-muted-foreground">Select a proven strategy to learn about and test</p>
           </div>
-          <button onClick={onClose} className="rounded-lg p-2 text-zinc-500 transition-colors hover:bg-white/5 hover:text-zinc-300">
+          <button onClick={onClose} className="rounded-lg p-2 text-muted-foreground transition-colors hover:bg-white/5 hover:text-muted-foreground">
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -89,14 +89,14 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                   }`}
                 >
                   <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${catInfo?.bgColor ?? "bg-white/10"}`}>
-                    <Icon className={`h-5 w-5 ${catInfo?.color ?? "text-zinc-400"}`} />
+                    <Icon className={`h-5 w-5 ${catInfo?.color ?? "text-muted-foreground"}`} />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
-                      <span className="text-sm font-semibold text-zinc-200">{template.name}</span>
-                      <ChevronRight className={`h-3 w-3 text-zinc-600 transition-transform ${isSelected ? "rotate-90" : ""}`} />
+                      <span className="text-sm font-semibold text-foreground">{template.name}</span>
+                      <ChevronRight className={`h-3 w-3 text-muted-foreground/70 transition-transform ${isSelected ? "rotate-90" : ""}`} />
                     </div>
-                    <div className="text-[11px] text-zinc-500">{template.subtitle}</div>
+                    <div className="text-[11px] text-muted-foreground">{template.subtitle}</div>
                     <div className="mt-1.5 flex items-center gap-2">
                       <span className={`rounded border px-1.5 py-0.5 text-[11px] font-medium ${catInfo?.color ?? ""} border-current/20`}>
                         {catInfo?.label ?? template.category}
@@ -105,7 +105,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                         {Array.from({ length: 5 }).map((_, i) => (
                           <Star
                             key={i}
-                            className={`h-2.5 w-2.5 ${i < template.difficulty ? DIFFICULTY_COLORS[template.difficulty] : "text-zinc-700"}`}
+                            className={`h-2.5 w-2.5 ${i < template.difficulty ? DIFFICULTY_COLORS[template.difficulty] : "text-muted-foreground/50"}`}
                             fill={i < template.difficulty ? "currentColor" : "none"}
                           />
                         ))}
@@ -133,7 +133,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                 >
                   {/* Theory */}
                   <Section icon={<BookOpen className="h-4 w-4 text-primary" />} title="Theory & Background">
-                    <div className="space-y-2 text-[13px] leading-relaxed text-zinc-400">
+                    <div className="space-y-2 text-[13px] leading-relaxed text-muted-foreground">
                       {selected.theory.split("\n\n").map((p, i) => (
                         <p key={i}>{p}</p>
                       ))}
@@ -153,8 +153,8 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                             {signal.type}
                           </span>
                           <div>
-                            <div className="text-xs font-medium text-zinc-200">{signal.label}</div>
-                            <div className="text-[11px] text-zinc-500">{signal.description}</div>
+                            <div className="text-xs font-medium text-foreground">{signal.label}</div>
+                            <div className="text-[11px] text-muted-foreground">{signal.description}</div>
                           </div>
                         </div>
                       ))}
@@ -166,7 +166,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                     <Section icon={<Lightbulb className="h-4 w-4 text-amber-400" />} title="Strengths">
                       <ul className="space-y-1">
                         {selected.strengths.map((s, i) => (
-                          <li key={i} className="flex items-start gap-1.5 text-[11px] text-zinc-400">
+                          <li key={i} className="flex items-start gap-1.5 text-[11px] text-muted-foreground">
                             <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-emerald-400" />
                             {s}
                           </li>
@@ -176,7 +176,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                     <Section icon={<AlertTriangle className="h-4 w-4 text-rose-400" />} title="Weaknesses">
                       <ul className="space-y-1">
                         {selected.weaknesses.map((w, i) => (
-                          <li key={i} className="flex items-start gap-1.5 text-[11px] text-zinc-400">
+                          <li key={i} className="flex items-start gap-1.5 text-[11px] text-muted-foreground">
                             <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-rose-400" />
                             {w}
                           </li>
@@ -191,12 +191,12 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                       {selected.keyParameters.map((param, i) => (
                         <div key={i} className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-[11px] font-medium text-zinc-300">{param.name}</span>
+                            <span className="text-[11px] font-medium text-muted-foreground">{param.name}</span>
                             <span className="rounded bg-primary/20 px-1.5 py-0.5 text-xs font-mono font-semibold text-primary">
                               {param.default}
                             </span>
                           </div>
-                          <div className="mt-0.5 text-xs text-zinc-600">{param.description}</div>
+                          <div className="mt-0.5 text-xs text-muted-foreground/70">{param.description}</div>
                         </div>
                       ))}
                     </div>
@@ -204,7 +204,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
 
                   {/* History */}
                   <Section icon={<History className="h-4 w-4 text-primary" />} title="Historical Context">
-                    <p className="text-[12px] leading-relaxed text-zinc-500 italic">{selected.history}</p>
+                    <p className="text-[12px] leading-relaxed text-muted-foreground italic">{selected.history}</p>
                   </Section>
 
                   {/* Use Strategy Button */}
@@ -219,7 +219,7 @@ export default function StrategyTemplateGallery({ onSelect, onClose }: StrategyT
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="flex h-full flex-col items-center justify-center gap-3 text-zinc-600"
+                  className="flex h-full flex-col items-center justify-center gap-3 text-muted-foreground/70"
                 >
                   <BookOpen className="h-12 w-12 opacity-30" />
                   <span className="text-sm">Select a strategy to learn about it</span>
@@ -238,7 +238,7 @@ function Section({ icon, title, children }: { icon: React.ReactNode; title: stri
     <div>
       <div className="mb-2 flex items-center gap-2">
         {icon}
-        <h3 className="text-xs font-bold text-zinc-400">{title}</h3>
+        <h3 className="text-xs font-bold text-muted-foreground">{title}</h3>
       </div>
       {children}
     </div>

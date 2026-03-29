@@ -890,7 +890,7 @@ function QualityScreener() {
             <Download size={12} />
             Export to Watchlist
           </button>
-          <button onClick={handleSave} className="flex items-center gap-1.5 px-3 py-1.5 bg-muted border border-border hover:border-slate-600 rounded-lg text-xs text-muted-foreground transition-colors">
+          <button onClick={handleSave} className="flex items-center gap-1.5 px-3 py-1.5 bg-muted border border-border hover:border-border rounded-lg text-xs text-muted-foreground transition-colors">
             <Bookmark size={12} />
             Save Screen
           </button>

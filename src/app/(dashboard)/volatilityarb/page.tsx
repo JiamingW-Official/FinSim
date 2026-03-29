@@ -532,7 +532,7 @@ export default function VolatilityArbPage() {
                                     ? "text-red-400 border-red-400/40 text-xs"
                                     : row.opportunity === "Cheap"
                                     ? "text-green-400 border-green-400/40 text-xs"
-                                    : "text-muted-foreground border-slate-400/40 text-xs"
+                                    : "text-muted-foreground border-muted-foreground/40 text-xs"
                                 }
                               >
                                 {row.opportunity === "Rich"
@@ -967,7 +967,7 @@ export default function VolatilityArbPage() {
                                 className={
                                   row.action !== "Fair"
                                     ? "text-amber-400 border-amber-400/40 text-xs"
-                                    : "text-muted-foreground border-slate-400/40 text-xs"
+                                    : "text-muted-foreground border-muted-foreground/40 text-xs"
                                 }
                               >
                                 {row.action}
@@ -1025,7 +1025,7 @@ export default function VolatilityArbPage() {
                                     ? "text-green-400 border-green-400/40 text-xs"
                                     : row.skew === "Put Skew"
                                     ? "text-red-400 border-red-400/40 text-xs"
-                                    : "text-muted-foreground border-slate-400/40 text-xs"
+                                    : "text-muted-foreground border-muted-foreground/40 text-xs"
                                 }
                               >
                                 {row.skew}

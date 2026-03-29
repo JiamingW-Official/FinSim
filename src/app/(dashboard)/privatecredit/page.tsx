@@ -811,7 +811,7 @@ function MarketDynamicsTab() {
                 </div>
               </div>
               <div className="relative h-5 rounded bg-white/5">
-                <div className="absolute h-full rounded bg-zinc-600" style={{ width: `${(a.current / 20) * 100}%`, opacity: 0.6 }} />
+                <div className="absolute h-full rounded bg-muted" style={{ width: `${(a.current / 20) * 100}%`, opacity: 0.6 }} />
                 <div className="absolute h-1 top-2 rounded bg-emerald-400" style={{ width: `${(a.target / 20) * 100}%`, opacity: 0.8 }} />
               </div>
             </div>
@@ -819,7 +819,7 @@ function MarketDynamicsTab() {
         </div>
         <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
           <span className="flex items-center gap-1">
-            <span className="inline-block w-3 h-2 rounded bg-zinc-600 opacity-60" /> Current
+            <span className="inline-block w-3 h-2 rounded bg-muted opacity-60" /> Current
           </span>
           <span className="flex items-center gap-1">
             <span className="inline-block w-3 h-1 rounded bg-emerald-400 opacity-80" /> Target

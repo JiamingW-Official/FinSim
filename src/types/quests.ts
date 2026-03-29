@@ -119,7 +119,7 @@ export interface MilestoneChain {
 }
 
 export const MILESTONE_CHAINS: MilestoneChain[] = [
-  { id: "trading", name: "Trading Path", icon: "BarChart3", color: "text-emerald-400" },
+  { id: "trading", name: "Trading Path", icon: "BarChart3", color: "text-primary" },
   { id: "learning", name: "Scholar Path", icon: "GraduationCap", color: "text-amber-400" },
   { id: "challenge", name: "Challenger Path", icon: "Swords", color: "text-rose-400" },
   { id: "backtest", name: "Quant Path", icon: "FlaskConical", color: "text-primary" },

@@ -535,8 +535,8 @@ function DarkPoolLandscapeTab() {
                 className={cn(
                   "flex items-center gap-2 rounded-lg px-3 py-2 cursor-pointer transition-colors",
                   selected === pool.name
-                    ? "bg-neutral-700/70 border border-neutral-600"
-                    : "hover:bg-neutral-700/40 border border-transparent"
+                    ? "bg-muted/70 border border-border"
+                    : "hover:bg-muted/40 border border-transparent"
                 )}
                 onClick={() => setSelected(selected === pool.name ? null : pool.name)}
               >
@@ -557,7 +557,7 @@ function DarkPoolLandscapeTab() {
                 </div>
                 <Badge
                   variant="outline"
-                  className="text-[11px] px-1.5 py-0 border-neutral-600 text-muted-foreground shrink-0"
+                  className="text-[11px] px-1.5 py-0 border-border text-muted-foreground shrink-0"
                 >
                   {pool.type === "Broker-Dealer" ? "BD" : pool.type === "Exchange-Owned" ? "EX" : "IND"}
                 </Badge>
@@ -637,7 +637,7 @@ function DarkPoolLandscapeTab() {
           {comparisons.map((c) => (
             <div key={c.label} className="flex items-center gap-3">
               <div className="w-32 text-xs text-muted-foreground shrink-0">{c.label}</div>
-              <div className="flex-1 bg-neutral-700/40 rounded-full h-5 relative overflow-hidden">
+              <div className="flex-1 bg-muted/40 rounded-full h-5 relative overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
                   style={{ background: c.color }}
@@ -725,7 +725,7 @@ function WhyDarkPoolsTab() {
               "rounded-xl p-3 text-left border transition-colors",
               activeReason === i
                 ? "border-opacity-60 bg-opacity-20"
-                : "border-border/50 bg-muted/40 hover:bg-neutral-700/40"
+                : "border-border/50 bg-muted/40 hover:bg-muted/40"
             )}
             style={
               activeReason === i
@@ -807,7 +807,7 @@ function WhyDarkPoolsTab() {
                 <th className="text-right pb-2 font-medium">Quality</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-700/30">
+            <tbody className="divide-y divide-border/30">
               {PRICE_IMPROVEMENT_DATA.map((row) => {
                 const quality =
                   row.improvementBps > 1.8 ? "Excellent" : row.improvementBps > 1.3 ? "Good" : "Fair";
@@ -818,7 +818,7 @@ function WhyDarkPoolsTab() {
                     ? "text-primary"
                     : "text-amber-400";
                 return (
-                  <tr key={row.pool} className="hover:bg-neutral-700/20">
+                  <tr key={row.pool} className="hover:bg-muted/20">
                     <td className="py-2 text-white font-medium">{row.pool}</td>
                     <td className="py-2 text-right tabular-nums text-emerald-400 font-semibold">
                       +{row.improvementBps.toFixed(1)}
@@ -935,7 +935,7 @@ function OrderTypesTab() {
               "px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors",
               selected === o.name
                 ? "bg-primary/30 border-primary/60 text-primary"
-                : "bg-muted/60 border-border/50 text-muted-foreground hover:text-white hover:border-neutral-600"
+                : "bg-muted/60 border-border/50 text-muted-foreground hover:text-white hover:border-border"
             )}
           >
             {o.abbr} — {o.name.split(" ")[0]}
@@ -958,7 +958,7 @@ function OrderTypesTab() {
               <h3 className="font-semibold text-white">{order.name}</h3>
               <Badge
                 variant="outline"
-                className="text-xs font-bold border-neutral-600 text-muted-foreground"
+                className="text-xs font-bold border-border text-muted-foreground"
               >
                 {order.abbr}
               </Badge>
@@ -999,7 +999,7 @@ function OrderTypesTab() {
             <div className="bg-card/60 rounded-lg p-3 border border-border/30">
               <div className="text-xs text-muted-foreground mb-1">Fill probability range</div>
               <div className="flex items-center gap-2">
-                <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
+                <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
                   {(() => {
                     const parts = order.fillProbability.replace("%", "").split("–");
                     const lo = parseInt(parts[0]) / 100;
@@ -1251,7 +1251,7 @@ function HFTInteractionTab() {
                 "rounded-lg px-3 py-2.5 cursor-pointer border transition-colors",
                 activeEvent === i
                   ? "border-opacity-50"
-                  : "border-border/30 bg-card/30 hover:bg-neutral-700/20"
+                  : "border-border/30 bg-card/30 hover:bg-muted/20"
               )}
               style={
                 activeEvent === i
@@ -1271,7 +1271,7 @@ function HFTInteractionTab() {
                 <span className="text-xs font-semibold text-white">{ev.title}</span>
                 <Badge
                   variant="outline"
-                  className="ml-auto text-[11px] px-1.5 py-0 border-neutral-600"
+                  className="ml-auto text-[11px] px-1.5 py-0 border-border"
                   style={{ color: ev.color, borderColor: ev.color + "44" }}
                 >
                   {typeLabel[ev.type]}
@@ -1371,7 +1371,7 @@ function LitVsDarkTab() {
                     <span className={cn("tabular-nums", litBetter ? "text-emerald-400" : "text-muted-foreground")}>
                       Lit: {m.lit}{m.unit}
                     </span>
-                    <span className="text-neutral-600">·</span>
+                    <span className="text-muted-foreground/70">·</span>
                     <span className={cn("tabular-nums", darkBetter ? "text-emerald-400" : "text-muted-foreground")}>
                       Dark: {m.dark}{m.unit}
                     </span>
@@ -1380,7 +1380,7 @@ function LitVsDarkTab() {
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-muted-foreground w-6">Lit</span>
-                    <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
+                    <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
                       <motion.div
                         className="h-full rounded-full bg-primary/70"
                         initial={{ width: 0 }}
@@ -1391,7 +1391,7 @@ function LitVsDarkTab() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-xs text-muted-foreground w-6">Dark</span>
-                    <div className="flex-1 bg-neutral-700/40 rounded-full h-3 overflow-hidden">
+                    <div className="flex-1 bg-muted/40 rounded-full h-3 overflow-hidden">
                       <motion.div
                         className="h-full rounded-full bg-primary/70"
                         initial={{ width: 0 }}
@@ -1538,7 +1538,7 @@ function LitVsDarkTab() {
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function DarkPoolsPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
+    <div className="min-h-screen bg-background text-white">
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         {/* Page header */}
         <motion.div
@@ -1573,7 +1573,7 @@ export default function DarkPoolsPage() {
               <TabsTrigger
                 key={tab.value}
                 value={tab.value}
-                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-neutral-700 data-[state=active]:text-white text-muted-foreground px-3 py-1.5 rounded-md"
+                className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground px-3 py-1.5 rounded-md"
               >
                 {tab.icon}
                 <span className="hidden sm:inline">{tab.label}</span>
@@ -1599,7 +1599,7 @@ export default function DarkPoolsPage() {
         </Tabs>
 
         {/* Footer disclaimer */}
-        <div className="text-xs text-neutral-600 border-t border-border pt-4">
+        <div className="text-xs text-muted-foreground/70 border-t border-border pt-4">
           Educational simulation only. Dark pool volume figures, price improvement statistics, and regulatory details are illustrative approximations based on publicly available research.
         </div>
       </div>

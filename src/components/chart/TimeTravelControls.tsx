@@ -183,7 +183,7 @@ export function TimeTravelControls() {
           </>
         )}
         {atEnd && (
-          <span className="rounded bg-[#ef4444]/10 px-1.5 py-0.5 text-[11px] font-bold text-[#ef4444]">
+          <span className="rounded bg-destructive/10 px-1.5 py-0.5 text-[11px] font-bold text-destructive">
             END
           </span>
         )}

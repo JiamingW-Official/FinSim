@@ -998,7 +998,7 @@ function ScanSimulatorTab() {
                   "px-2.5 py-1 rounded text-xs border transition-colors",
                   filterCat === cat
                     ? "bg-indigo-600 border-indigo-500 text-white"
-                    : "bg-muted border-border text-muted-foreground hover:border-zinc-500"
+                    : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
                 )}
               >
                 {cat}
@@ -1010,7 +1010,7 @@ function ScanSimulatorTab() {
                 "px-2.5 py-1 rounded text-xs border transition-colors",
                 filterConfirmed
                   ? "bg-emerald-700 border-emerald-600 text-white"
-                  : "bg-muted border-border text-muted-foreground hover:border-zinc-500"
+                  : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
               )}
             >
               Confirmed Only
@@ -1206,7 +1206,7 @@ function PatternStatsTab() {
                   ? "bg-emerald-700 border-emerald-600 text-white"
                   : cond === "Bear Market"
                   ? "bg-red-700 border-red-600 text-white"
-                  : "bg-zinc-600 border-zinc-500 text-white"
+                  : "bg-muted border-muted-foreground text-white"
                 : "bg-card border-border text-muted-foreground hover:border-border"
             )}
           >

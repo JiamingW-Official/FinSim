@@ -268,7 +268,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
               "arena-timer flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-lg font-bold tabular-nums",
               isUrgent ? "bg-red-500/20 text-red-400"
                 : isWarning ? "bg-amber-500/10 text-amber-400"
-                : "bg-white/5 text-zinc-200",
+                : "bg-white/5 text-foreground",
             )}
           >
             <Clock className={cn("h-4 w-4", isCritical && "animate-ping")} />
@@ -292,7 +292,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             >
               {totalPnl >= 0 ? "+" : ""}${totalPnl.toFixed(2)}
             </motion.div>
-            <div className="text-xs text-zinc-600 tabular-nums">{pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(2)}%</div>
+            <div className="text-xs text-muted-foreground/70 tabular-nums">{pnlPct >= 0 ? "+" : ""}{pnlPct.toFixed(2)}%</div>
           </div>
 
           {/* Position badge */}
@@ -307,20 +307,20 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
                 </span>
               </>
             ) : (
-              <><Minus className="h-3 w-3 text-zinc-600" /><span className="text-xs text-zinc-600">FLAT</span></>
+              <><Minus className="h-3 w-3 text-muted-foreground/70" /><span className="text-xs text-muted-foreground/70">FLAT</span></>
             )}
           </div>
 
           {/* Trades count */}
           <div className="rounded-lg border border-white/5 bg-white/[0.02] px-2 py-1 text-center">
-            <div className="text-xs font-bold tabular-nums text-zinc-300">{sim.trades.length}</div>
-            <div className="text-[11px] text-zinc-600">trades</div>
+            <div className="text-xs font-bold tabular-nums text-muted-foreground">{sim.trades.length}</div>
+            <div className="text-[11px] text-muted-foreground/70">trades</div>
           </div>
 
           {/* Finish */}
           <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
             onClick={handleFinish} disabled={isFinished}
-            className="flex items-center gap-1 rounded-lg bg-white/5 px-3 py-1.5 text-xs font-bold text-zinc-400 transition-colors hover:bg-white/10 hover:text-zinc-200 disabled:opacity-50">
+            className="flex items-center gap-1 rounded-lg bg-white/5 px-3 py-1.5 text-xs font-bold text-muted-foreground transition-colors hover:bg-white/10 hover:text-foreground disabled:opacity-50">
             <Flag className="h-3 w-3" />
             Finish
           </motion.button>
@@ -329,7 +329,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
         {/* Row 2: P&L Comparison Bar + Opponent */}
         <div className="flex items-center gap-2 px-3 py-1 border-t border-white/[0.03]">
           {/* Player label */}
-          <span className="text-[11px] font-bold text-zinc-500 w-8">YOU</span>
+          <span className="text-[11px] font-bold text-muted-foreground w-8">YOU</span>
 
           {/* P&L comparison bar */}
           <div className="flex-1 flex items-center h-4 rounded-full bg-white/[0.03] overflow-hidden relative">
@@ -364,7 +364,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
             <div className="absolute inset-0 flex items-center justify-center">
               <span className={cn(
                 "text-[8px] font-bold tabular-nums px-1 rounded",
-                playerAhead ? "text-emerald-400" : pnlDiff === 0 ? "text-zinc-500" : "text-red-400",
+                playerAhead ? "text-emerald-400" : pnlDiff === 0 ? "text-muted-foreground" : "text-red-400",
               )}>
                 {pnlDiff >= 0 ? "+" : ""}{pnlDiff.toFixed(0)}
               </span>
@@ -374,7 +374,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           {/* Opponent info */}
           <div className="flex items-center gap-1.5">
             <ArenaRankBadge rank={opponent.rank} size="xs" showLabel={false} />
-            <span className="text-[11px] font-bold text-zinc-500">{opponent.name}</span>
+            <span className="text-[11px] font-bold text-muted-foreground">{opponent.name}</span>
           </div>
 
           {/* Opponent P&L */}
@@ -386,8 +386,8 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           <div className="flex items-center gap-0.5">
             {oppState.positionDir === "long" && <ArrowUpRight className="h-2.5 w-2.5 text-emerald-400/40" />}
             {oppState.positionDir === "short" && <ArrowDownRight className="h-2.5 w-2.5 text-red-400/40" />}
-            {oppState.positionDir === "flat" && <Minus className="h-2.5 w-2.5 text-zinc-700" />}
-            <span className="text-[8px] text-zinc-600 tabular-nums">{oppState.tradeCount}t</span>
+            {oppState.positionDir === "flat" && <Minus className="h-2.5 w-2.5 text-muted-foreground/50" />}
+            <span className="text-[8px] text-muted-foreground/70 tabular-nums">{oppState.tradeCount}t</span>
           </div>
 
           {/* Opponent activity ticker */}
@@ -398,7 +398,7 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
               animate={{ opacity: 0.5, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.2 }}
-              className="text-[8px] text-zinc-600 italic min-w-[60px]"
+              className="text-[8px] text-muted-foreground/70 italic min-w-[60px]"
             >
               {oppState.lastAction}
             </motion.span>
@@ -467,13 +467,13 @@ export function ArenaPlayer({ config, opponent, onFinish, onCancel }: ArenaPlaye
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="rounded-xl border border-white/10 bg-zinc-900 p-6 text-center shadow-2xl">
+              className="rounded-xl border border-white/10 bg-card p-6 text-center shadow-2xl">
               <X className="mx-auto mb-3 h-8 w-8 text-red-400" />
-              <h3 className="text-sm font-bold text-zinc-100">Quit Match?</h3>
-              <p className="mt-1 text-xs text-zinc-500">Your progress will be lost.</p>
+              <h3 className="text-sm font-bold text-foreground">Quit Match?</h3>
+              <p className="mt-1 text-xs text-muted-foreground">Your progress will be lost.</p>
               <div className="mt-4 flex items-center gap-3">
                 <button type="button" onClick={() => setShowQuitConfirm(false)}
-                  className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-zinc-300 transition-colors hover:bg-white/10">
+                  className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-muted-foreground transition-colors hover:bg-white/10">
                   Continue
                 </button>
                 <button type="button" onClick={onCancel}

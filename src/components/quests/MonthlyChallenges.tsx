@@ -111,13 +111,13 @@ export function MonthlyChallenges() {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2.5"
       >
-        <div className="flex items-center gap-2 text-xs text-zinc-500">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <CalendarDays className="h-3.5 w-3.5" />
           <span className="truncate max-w-[180px]">{season.name}</span>
         </div>
         <div className="flex items-center gap-1.5 shrink-0">
-          <span className="text-[11px] font-bold tabular-nums text-zinc-300">{daysRemaining}d</span>
-          <span className="text-xs text-zinc-600">remaining</span>
+          <span className="text-[11px] font-bold tabular-nums text-muted-foreground">{daysRemaining}d</span>
+          <span className="text-xs text-muted-foreground/70">remaining</span>
         </div>
       </motion.div>
 
@@ -154,7 +154,7 @@ export function MonthlyChallenges() {
                       ? "border-green-500/30 bg-green-500/10 text-green-400"
                       : isComplete
                         ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
-                        : "border-white/5 bg-white/[0.03] text-zinc-500",
+                        : "border-white/5 bg-white/[0.03] text-muted-foreground",
                   )}
                 >
                   {isClaimed ? <Check className="h-5 w-5" /> : (ICON_MAP[challenge.icon] ?? <Star className="h-5 w-5" />)}
@@ -166,7 +166,7 @@ export function MonthlyChallenges() {
                     <h3
                       className={cn(
                         "text-sm font-bold",
-                        isClaimed ? "text-green-300" : "text-zinc-100",
+                        isClaimed ? "text-green-300" : "text-foreground",
                       )}
                     >
                       {challenge.title}
@@ -186,7 +186,7 @@ export function MonthlyChallenges() {
                       <span className="text-xs font-bold text-green-400 shrink-0">CLAIMED</span>
                     )}
                   </div>
-                  <p className="mt-1 text-[11px] leading-relaxed text-zinc-500 line-clamp-2">
+                  <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground line-clamp-2">
                     {challenge.description}
                   </p>
                 </div>
@@ -213,7 +213,7 @@ export function MonthlyChallenges() {
               {/* Progress */}
               <div className="mt-3 space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] text-zinc-500">
+                  <span className="text-[11px] text-muted-foreground">
                     {progress.toFixed(challenge.metric === "monthlyReturnPct" ? 1 : 0)}
                     {challenge.metric === "monthlyReturnPct" ? "%" : ""}
                     {" / "}
@@ -224,7 +224,7 @@ export function MonthlyChallenges() {
                   <span
                     className={cn(
                       "text-[11px] font-bold tabular-nums",
-                      isComplete ? "text-amber-400" : "text-zinc-600",
+                      isComplete ? "text-amber-400" : "text-muted-foreground/70",
                     )}
                   >
                     {Math.round(pct)}%
@@ -240,7 +240,7 @@ export function MonthlyChallenges() {
                         ? "bg-green-500"
                         : isComplete
                           ? "bg-amber-400"
-                          : "bg-zinc-700",
+                          : "bg-muted",
                     )}
                     initial={{ width: 0 }}
                     animate={{ width: `${pct}%` }}

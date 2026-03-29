@@ -1130,7 +1130,7 @@ function FactorBacktester() {
                 <span className="text-muted-foreground">Your Portfolio</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="inline-block w-6 h-0.5 border-t border-dashed border-slate-500" />
+                <span className="inline-block w-6 h-0.5 border-t border-dashed border-muted-foreground" />
                 <span className="text-muted-foreground">Market Cap (Benchmark)</span>
               </div>
             </div>

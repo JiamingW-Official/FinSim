@@ -28,9 +28,9 @@ export const LEAGUES: Record<LeagueTier, LeagueInfo> = {
     tier: "silver",
     label: "Silver",
     emoji: "🥈",
-    color: "text-gray-300",
-    bgColor: "bg-gray-400/10",
-    borderColor: "border-gray-400/30",
+    color: "text-muted-foreground",
+    bgColor: "bg-muted-foreground/10",
+    borderColor: "border-muted-foreground/30",
     badgeClass: "badge-premium",
   },
   gold: {

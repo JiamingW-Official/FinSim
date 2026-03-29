@@ -396,7 +396,7 @@ function TailHistogram({
           x2={W - pad.r}
           y1={pad.t + gH - f * gH}
           y2={pad.t + gH - f * gH}
-          stroke="#1f2937"
+          stroke="currentColor" className="text-border"
           strokeWidth={1}
         />
       ))}
@@ -409,12 +409,12 @@ function TailHistogram({
         const isTailLoss = b.midpoint < svar99;
         const isModLoss = b.midpoint < svar95 && b.midpoint >= svar99;
         const fill = isTailLoss
-          ? "#ef4444"
+          ? "var(--chart-2)"
           : isModLoss
-          ? "#f97316"
+          ? "var(--chart-4)"
           : b.midpoint < 0
-          ? "#6b7280"
-          : "#22c55e";
+          ? "var(--muted-foreground)"
+          : "var(--chart-1)";
         return (
           <rect
             key={i}
@@ -435,11 +435,11 @@ function TailHistogram({
         x2={toX(svar95)}
         y1={pad.t}
         y2={H - pad.b}
-        stroke="#f97316"
+        stroke="var(--chart-4)"
         strokeWidth={1.5}
         strokeDasharray="4,3"
       />
-      <text x={toX(svar95) + 3} y={pad.t + 10} fill="#f97316" fontSize={9}>
+      <text x={toX(svar95) + 3} y={pad.t + 10} fill="var(--chart-4)" fontSize={9}>
         SVaR95
       </text>
 
@@ -449,23 +449,23 @@ function TailHistogram({
         x2={toX(svar99)}
         y1={pad.t}
         y2={H - pad.b}
-        stroke="#ef4444"
+        stroke="var(--chart-2)"
         strokeWidth={1.5}
         strokeDasharray="4,3"
       />
-      <text x={toX(svar99) - 32} y={pad.t + 10} fill="#ef4444" fontSize={9}>
+      <text x={toX(svar99) - 32} y={pad.t + 10} fill="var(--chart-2)" fontSize={9}>
         SVaR99
       </text>
 
       {/* Axes */}
-      <line x1={pad.l} x2={W - pad.r} y1={H - pad.b} y2={H - pad.b} stroke="#374151" strokeWidth={1} />
-      <line x1={pad.l} x2={pad.l} y1={pad.t} y2={H - pad.b} stroke="#374151" strokeWidth={1} />
+      <line x1={pad.l} x2={W - pad.r} y1={H - pad.b} y2={H - pad.b} stroke="currentColor" className="text-muted-foreground/40" strokeWidth={1} />
+      <line x1={pad.l} x2={pad.l} y1={pad.t} y2={H - pad.b} stroke="currentColor" className="text-muted-foreground/40" strokeWidth={1} />
 
       {/* X ticks */}
       {xTicks.map((t) => (
         <g key={t}>
-          <line x1={toX(t)} x2={toX(t)} y1={H - pad.b} y2={H - pad.b + 4} stroke="#6b7280" strokeWidth={1} />
-          <text x={toX(t)} y={H - pad.b + 14} textAnchor="middle" fill="#6b7280" fontSize={9}>
+          <line x1={toX(t)} x2={toX(t)} y1={H - pad.b} y2={H - pad.b + 4} stroke="currentColor" className="text-muted-foreground" strokeWidth={1} />
+          <text x={toX(t)} y={H - pad.b + 14} textAnchor="middle" fill="currentColor" className="text-muted-foreground" fontSize={9}>
             {t > 0 ? `+${t}` : t}%
           </text>
         </g>
@@ -476,7 +476,7 @@ function TailHistogram({
         x={10}
         y={pad.t + gH / 2}
         textAnchor="middle"
-        fill="#6b7280"
+        fill="currentColor" className="text-muted-foreground"
         fontSize={9}
         transform={`rotate(-90, 10, ${pad.t + gH / 2})`}
       >
@@ -505,19 +505,19 @@ function TornadoChart({ factors }: { factors: SensitivityFactor[] }) {
 
   const ASSETS = ["equity", "bonds", "gold", "credit"] as const;
   const COLORS: Record<string, string> = {
-    equity: "#6366f1",
-    bonds: "#22c55e",
-    gold: "#f59e0b",
-    credit: "#f97316",
+    equity: "var(--chart-3)",
+    bonds: "var(--chart-1)",
+    gold: "var(--chart-4)",
+    credit: "var(--chart-5)",
   };
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} className="w-full">
       {/* Center line */}
-      <line x1={midX} x2={midX} y1={pad.t} y2={H - pad.b} stroke="#374151" strokeWidth={1} />
+      <line x1={midX} x2={midX} y1={pad.t} y2={H - pad.b} stroke="currentColor" className="text-muted-foreground/40" strokeWidth={1} />
 
       {/* Zero label */}
-      <text x={midX} y={H - pad.b + 14} textAnchor="middle" fill="#6b7280" fontSize={9}>
+      <text x={midX} y={H - pad.b + 14} textAnchor="middle" fill="currentColor" className="text-muted-foreground" fontSize={9}>
         0%
       </text>
 
@@ -529,10 +529,10 @@ function TornadoChart({ factors }: { factors: SensitivityFactor[] }) {
             x2={toX(t)}
             y1={pad.t}
             y2={H - pad.b}
-            stroke="#1f2937"
+            stroke="currentColor" className="text-border"
             strokeWidth={1}
           />
-          <text x={toX(t)} y={H - pad.b + 14} textAnchor="middle" fill="#6b7280" fontSize={8}>
+          <text x={toX(t)} y={H - pad.b + 14} textAnchor="middle" fill="currentColor" className="text-muted-foreground" fontSize={8}>
             {t > 0 ? `+${t}` : t}%
           </text>
         </g>
@@ -546,10 +546,10 @@ function TornadoChart({ factors }: { factors: SensitivityFactor[] }) {
         return (
           <g key={f.factor}>
             {/* Factor label */}
-            <text x={pad.l - 6} y={cy + 4} textAnchor="end" fill="#d1d5db" fontSize={10}>
+            <text x={pad.l - 6} y={cy + 4} textAnchor="end" fill="currentColor" className="text-foreground" fontSize={10}>
               {f.factor}
             </text>
-            <text x={pad.l - 6} y={cy + 14} textAnchor="end" fill="#6b7280" fontSize={8}>
+            <text x={pad.l - 6} y={cy + 14} textAnchor="end" fill="currentColor" className="text-muted-foreground" fontSize={8}>
               {f.shock}
             </text>
 
@@ -580,7 +580,7 @@ function TornadoChart({ factors }: { factors: SensitivityFactor[] }) {
               x={toX(f.equity) + (f.equity < 0 ? -3 : 3)}
               y={cy + 4}
               textAnchor={f.equity < 0 ? "end" : "start"}
-              fill="#a5b4fc"
+              fill="currentColor" className="text-primary"
               fontSize={8}
             >
               {f.equity > 0 ? "+" : ""}
@@ -594,7 +594,7 @@ function TornadoChart({ factors }: { factors: SensitivityFactor[] }) {
       {ASSETS.map((a, i) => (
         <g key={a} transform={`translate(${W - pad.r + 4}, ${pad.t + i * 18})`}>
           <rect width={8} height={8} fill={COLORS[a]} rx={1} />
-          <text x={11} y={8} fill="#9ca3af" fontSize={8}>
+          <text x={11} y={8} fill="currentColor" className="text-muted-foreground" fontSize={8}>
             {a.charAt(0).toUpperCase() + a.slice(1)}
           </text>
         </g>
@@ -761,7 +761,7 @@ function ScenarioBuilderTab() {
             key={key}
             variant="outline"
             size="sm"
-            className="h-7 text-xs border-border hover:border-gray-500"
+            className="h-7 text-xs border-border hover:border-muted-foreground"
             onClick={() => setParams(presets[key])}
           >
             {label}
@@ -770,7 +770,7 @@ function ScenarioBuilderTab() {
         <Button
           variant="outline"
           size="sm"
-          className="h-7 text-xs border-border hover:border-gray-500 ml-auto"
+          className="h-7 text-xs border-border hover:border-muted-foreground ml-auto"
           onClick={() => setParams(defaultParams)}
         >
           <RefreshCw className="w-3 h-3 mr-1" />
@@ -783,7 +783,7 @@ function ScenarioBuilderTab() {
         <Card className="bg-card border-border">
           <CardHeader className="pb-3">
             <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
-              <Activity className="w-4 h-4 text-indigo-400" />
+              <Activity className="w-4 h-4 text-primary" />
               Macro Parameters
             </CardTitle>
           </CardHeader>
@@ -846,7 +846,7 @@ function ScenarioBuilderTab() {
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between">
               <CardTitle className="text-sm font-semibold text-foreground flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 text-indigo-400" />
+                <BarChart3 className="w-4 h-4 text-primary" />
                 12-Month Return Estimates
               </CardTitle>
               <div className="flex gap-1">
@@ -859,9 +859,9 @@ function ScenarioBuilderTab() {
                         ? sc === "bull"
                           ? "bg-emerald-600 text-white"
                           : sc === "base"
-                          ? "bg-indigo-600 text-white"
-                          : "bg-red-700 text-white"
-                        : "bg-muted text-muted-foreground hover:bg-gray-700"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-red-600 text-white"
+                        : "bg-muted text-muted-foreground hover:bg-muted/80"
                     }`}
                   >
                     {sc.charAt(0).toUpperCase() + sc.slice(1)}
@@ -938,7 +938,7 @@ function ScenarioBuilderTab() {
       <Card className="bg-card border-border">
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-semibold text-foreground">
-            Three-Scenario Return Matrix
+            Three-Scenario Return Matrix (Simulated)
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -948,7 +948,7 @@ function ScenarioBuilderTab() {
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground font-medium pr-4">Asset</th>
                   <th className="text-right py-2 text-emerald-400 font-medium px-3">Bull</th>
-                  <th className="text-right py-2 text-indigo-400 font-medium px-3">Base</th>
+                  <th className="text-right py-2 text-primary font-medium px-3">Base</th>
                   <th className="text-right py-2 text-red-400 font-medium px-3">Bear</th>
                   <th className="text-right py-2 text-muted-foreground font-medium pl-3">Range</th>
                 </tr>
@@ -1001,9 +1001,10 @@ function HistoricalStressTab() {
 
   return (
     <div className="space-y-4">
-      <p className="text-xs text-muted-foreground">
-        Simulated $100k portfolio (60% equities / 20% bonds / 10% real estate / 10% commodities)
-        stress-tested against 8 historical crises.
+      <p className="text-xs text-muted-foreground leading-relaxed">
+        Simulated $100K portfolio (60% equities / 20% bonds / 10% real estate / 10% commodities)
+        stress-tested against 8 historical crises. Returns are approximate peak-to-trough moves
+        for educational illustration.
       </p>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
@@ -1019,7 +1020,7 @@ function HistoricalStressTab() {
                 key={hs.name}
                 className={`w-full text-left p-3 rounded-lg border transition-all ${
                   isSelected
-                    ? "border-indigo-600 bg-indigo-950/40"
+                    ? "border-primary bg-primary/10"
                     : "border-border bg-card hover:border-border"
                 }`}
                 onClick={() => setSelected(isSelected ? null : hs)}
@@ -1104,7 +1105,7 @@ function HistoricalStressTab() {
                       key={hs.name}
                       className={`border-b border-border/50 cursor-pointer transition-colors ${
                         selected?.name === hs.name
-                          ? "bg-indigo-950/30"
+                          ? "bg-primary/10"
                           : "hover:bg-muted/30"
                       }`}
                       onClick={() => setSelected(selected?.name === hs.name ? null : hs)}
@@ -1171,7 +1172,7 @@ function TailRiskTab() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <label className="text-xs text-muted-foreground">
-            Credit Spreads (bps): <span className="text-indigo-400 font-mono">{creditSpreads}</span>
+            Credit Spreads (bps): <span className="text-primary font-mono">{creditSpreads}</span>
           </label>
           <Slider
             min={50}
@@ -1183,7 +1184,7 @@ function TailRiskTab() {
         </div>
         <div className="space-y-2">
           <label className="text-xs text-muted-foreground">
-            Fed Funds Rate: <span className="text-indigo-400 font-mono">{fedFundsRate}%</span>
+            Fed Funds Rate: <span className="text-primary font-mono">{fedFundsRate}%</span>
           </label>
           <Slider
             min={0}
@@ -1331,7 +1332,7 @@ function MacroSensitivityTab() {
                 <tr className="border-b border-border">
                   <th className="text-left py-2 text-muted-foreground">Factor</th>
                   <th className="text-left py-2 text-muted-foreground">Shock</th>
-                  <th className="text-right py-2 text-indigo-400 px-3">Equity</th>
+                  <th className="text-right py-2 text-primary px-3">Equity</th>
                   <th className="text-right py-2 text-emerald-400 px-3">Bonds</th>
                   <th className="text-right py-2 text-yellow-400 px-3">Gold</th>
                   <th className="text-right py-2 text-orange-400 px-3">Credit</th>
@@ -1412,7 +1413,7 @@ function MacroSensitivityTab() {
                 <span className="w-16 text-muted-foreground font-mono">Dur {row.duration}y</span>
                 <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-indigo-500 rounded-full"
+                    className="h-full bg-primary rounded-full"
                     style={{ width: `${(row.duration / 20) * 100}%` }}
                   />
                 </div>
@@ -1638,13 +1639,13 @@ function ReverseStressTab() {
                 x2={40 + (x / 100) * 440}
                 y1={10}
                 y2={100}
-                stroke="#1f2937"
+                stroke="currentColor" className="text-border"
                 strokeWidth={1}
               />
             ))}
 
             {/* X axis */}
-            <line x1={40} x2={480} y1={100} y2={100} stroke="#374151" strokeWidth={1} />
+            <line x1={40} x2={480} y1={100} y2={100} stroke="currentColor" className="text-muted-foreground/40" strokeWidth={1} />
 
             {/* Loss bars */}
             {[
@@ -1659,25 +1660,25 @@ function ReverseStressTab() {
               const recW = Math.min((row.recovery / 400) * 200, 200);
               return (
                 <g key={row.label}>
-                  <text x={36} y={y + 8} textAnchor="end" fill="#9ca3af" fontSize={9}>
+                  <text x={36} y={y + 8} textAnchor="end" fill="currentColor" className="text-muted-foreground" fontSize={9}>
                     {row.label}
                   </text>
                   {/* Loss bar */}
-                  <rect x={40} y={y} width={lossW} height={10} fill="#ef4444" fillOpacity={0.7} rx={2} />
+                  <rect x={40} y={y} width={lossW} height={10} fill="var(--chart-2)" fillOpacity={0.7} rx={2} />
                   {/* Recovery bar */}
                   <rect
                     x={40 + lossW}
                     y={y}
                     width={recW}
                     height={10}
-                    fill="#f59e0b"
+                    fill="var(--chart-4)"
                     fillOpacity={0.5}
                     rx={2}
                   />
                   <text
                     x={40 + lossW + recW + 4}
                     y={y + 8}
-                    fill="#6b7280"
+                    fill="currentColor" className="text-muted-foreground"
                     fontSize={8}
                   >
                     {row.recLabel} recovery
@@ -1687,12 +1688,12 @@ function ReverseStressTab() {
             })}
 
             {/* Legend */}
-            <rect x={40} y={104} width={10} height={8} fill="#ef4444" fillOpacity={0.7} rx={1} />
-            <text x={54} y={111} fill="#6b7280" fontSize={8}>
+            <rect x={40} y={104} width={10} height={8} fill="var(--chart-2)" fillOpacity={0.7} rx={1} />
+            <text x={54} y={111} fill="currentColor" className="text-muted-foreground" fontSize={8}>
               Initial loss
             </text>
-            <rect x={120} y={104} width={10} height={8} fill="#f59e0b" fillOpacity={0.5} rx={1} />
-            <text x={134} y={111} fill="#6b7280" fontSize={8}>
+            <rect x={120} y={104} width={10} height={8} fill="var(--chart-4)" fillOpacity={0.5} rx={1} />
+            <text x={134} y={111} fill="currentColor" className="text-muted-foreground" fontSize={8}>
               Recovery time (scaled)
             </text>
           </svg>
@@ -1708,23 +1709,24 @@ function ReverseStressTab() {
 
 export default function ScenarioAnalysisPage() {
   return (
-    <div className="flex flex-col h-full bg-background text-white">
+    <div className="flex flex-col h-full bg-background text-foreground">
       {/* Header */}
-      <div className="flex-shrink-0 border-b border-border px-6 py-4">
+      <div className="flex-shrink-0 border-b border-border px-6 py-5">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
-              <Activity className="w-5 h-5 text-indigo-400" />
+              <Activity className="w-5 h-5 text-primary" />
               Scenario Analysis
             </h1>
-            <p className="text-xs text-muted-foreground mt-0.5">
-              Macro scenario modeling, portfolio stress testing, and forward-looking risk assessment
+            <p className="text-sm text-muted-foreground mt-1 max-w-xl leading-relaxed">
+              Model macro regimes, stress-test portfolios against historical crises, and assess tail risks.
+              All projections use simplified factor models for educational purposes.
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="border-indigo-700 text-indigo-400 text-xs">
-              <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full mr-1.5 inline-block animate-pulse" />
-              Live Parameters
+            <Badge variant="outline" className="border-primary/50 text-primary text-xs">
+              <span className="w-1.5 h-1.5 bg-primary rounded-full mr-1.5 inline-block animate-pulse" />
+              Simulated
             </Badge>
           </div>
         </div>
@@ -1735,23 +1737,23 @@ export default function ScenarioAnalysisPage() {
         <Tabs defaultValue="builder" className="h-full flex flex-col">
           <div className="flex-shrink-0 px-6 pt-3 border-b border-border">
             <TabsList className="bg-card border border-border h-8">
-              <TabsTrigger value="builder" className="text-xs h-6 data-[state=active]:bg-indigo-600">
+              <TabsTrigger value="builder" className="text-xs h-6 data-[state=active]:bg-primary">
                 <TrendingUp className="w-3 h-3 mr-1" />
                 Scenario Builder
               </TabsTrigger>
-              <TabsTrigger value="stress" className="text-xs h-6 data-[state=active]:bg-indigo-600">
+              <TabsTrigger value="stress" className="text-xs h-6 data-[state=active]:bg-primary">
                 <AlertTriangle className="w-3 h-3 mr-1" />
                 Historical Stress
               </TabsTrigger>
-              <TabsTrigger value="tail" className="text-xs h-6 data-[state=active]:bg-indigo-600">
+              <TabsTrigger value="tail" className="text-xs h-6 data-[state=active]:bg-primary">
                 <BarChart3 className="w-3 h-3 mr-1" />
                 Tail Risk
               </TabsTrigger>
-              <TabsTrigger value="sensitivity" className="text-xs h-6 data-[state=active]:bg-indigo-600">
+              <TabsTrigger value="sensitivity" className="text-xs h-6 data-[state=active]:bg-primary">
                 <Zap className="w-3 h-3 mr-1" />
                 Macro Sensitivity
               </TabsTrigger>
-              <TabsTrigger value="reverse" className="text-xs h-6 data-[state=active]:bg-indigo-600">
+              <TabsTrigger value="reverse" className="text-xs h-6 data-[state=active]:bg-primary">
                 <TrendingDown className="w-3 h-3 mr-1" />
                 Reverse Stress
               </TabsTrigger>

@@ -536,7 +536,7 @@ function ScreenerTab() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search ticker or name…"
-            className="w-full rounded border border-white/10 bg-white/5 py-1.5 pl-7 pr-3 text-xs text-muted-foreground placeholder-zinc-600 outline-none focus:border-white/20"
+            className="w-full rounded border border-white/10 bg-white/5 py-1.5 pl-7 pr-3 text-xs text-muted-foreground placeholder-muted-foreground outline-none focus:border-white/20"
           />
         </div>
         <div className="flex items-center gap-1">
@@ -696,7 +696,7 @@ function AccrualTab() {
         </div>
         <div className="mt-3 flex gap-4 justify-center text-xs">
           <div className="flex items-center gap-1.5"><div className="h-2.5 w-2.5 rounded-sm bg-emerald-400 opacity-85" /><span className="text-muted-foreground">Low accrual (quality)</span></div>
-          <div className="flex items-center gap-1.5"><div className="h-2.5 w-2.5 rounded-sm bg-zinc-500" /><span className="text-muted-foreground">Mid deciles</span></div>
+          <div className="flex items-center gap-1.5"><div className="h-2.5 w-2.5 rounded-sm bg-muted-foreground" /><span className="text-muted-foreground">Mid deciles</span></div>
           <div className="flex items-center gap-1.5"><div className="h-2.5 w-2.5 rounded-sm bg-red-400 opacity-85" /><span className="text-muted-foreground">High accrual (risk)</span></div>
         </div>
       </div>

@@ -533,7 +533,7 @@ function DealAnalysisTab() {
         <div className="px-5 py-4 border-b border-border">
           <h3 className="text-sm font-medium text-muted-foreground">Active SPAC Deals — Click to Analyze</h3>
         </div>
-        <div className="divide-y divide-zinc-800">
+        <div className="divide-y divide-border">
           {deals.map((deal) => {
             const disc = deal.currentPrice - deal.trustPerShare;
             const discPct = (disc / deal.trustPerShare) * 100;

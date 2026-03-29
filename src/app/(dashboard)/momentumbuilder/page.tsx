@@ -823,7 +823,7 @@ export default function MomentumBuilderPage() {
               <EquityCurveSVG curveStrategy={curveStrategy} curveSP500={curveSP500} />
               <div className="flex gap-4 mt-2 text-xs text-muted-foreground justify-end">
                 <span className="flex items-center gap-1"><span className="w-4 border-t-2 border-green-500 inline-block" />Strategy</span>
-                <span className="flex items-center gap-1"><span className="w-4 border-t border-dashed border-gray-500 inline-block" />S&P 500</span>
+                <span className="flex items-center gap-1"><span className="w-4 border-t border-dashed border-muted-foreground inline-block" />S&P 500</span>
               </div>
             </CardContent>
           </Card>
@@ -1059,7 +1059,7 @@ export default function MomentumBuilderPage() {
                   <CrashComparisonSVG events={CRASH_EVENTS} />
                   <div className="flex gap-3 mt-1 text-xs">
                     <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-500 inline-block" />Momentum</span>
-                    <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-gray-500 inline-block" />S&P 500</span>
+                    <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-muted-foreground inline-block" />S&P 500</span>
                     <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-green-500 inline-block" />+Vol Target</span>
                   </div>
                 </CardContent>

@@ -342,7 +342,7 @@ function RiskDecompositionTab() {
               </div>
               <div className="w-full bg-muted rounded-full h-4 overflow-hidden">
                 <motion.div
-                  className="h-full bg-zinc-600 rounded-full"
+                  className="h-full bg-muted rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${IDIOSYNCRATIC_RISK}%` }}
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}

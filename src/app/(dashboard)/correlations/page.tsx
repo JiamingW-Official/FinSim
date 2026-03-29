@@ -638,7 +638,7 @@ function CorrelationMatrixTab() {
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                className="mt-4 p-3 bg-muted/60 border border-slate-600 rounded-lg flex items-center gap-4"
+                className="mt-4 p-3 bg-muted/60 border border-border rounded-lg flex items-center gap-4"
               >
                 <div className="flex items-center gap-2">
                   <div
@@ -787,7 +787,7 @@ function RollingCorrelationsTab() {
                 onClick={() => setSelectedPair(i)}
                 className={selectedPair === i
                   ? "bg-primary text-white border-primary text-xs"
-                  : "border-slate-600 text-muted-foreground text-xs hover:bg-muted"
+                  : "border-border text-muted-foreground text-xs hover:bg-muted"
                 }
               >
                 {p.aLabel.split(" ")[0]} / {p.bLabel.split(" ")[0]}
@@ -948,7 +948,7 @@ function CrisisCorrelationsTab() {
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all border ${
               selectedCrisis === e.id
                 ? "text-white border-transparent"
-                : "border-slate-600 text-muted-foreground bg-muted/50 hover:border-slate-500"
+                : "border-border text-muted-foreground bg-muted/50 hover:border-muted-foreground"
             }`}
             style={selectedCrisis === e.id ? { background: e.color, borderColor: e.color } : {}}
           >
@@ -1058,7 +1058,7 @@ function CrisisCorrelationsTab() {
                 <Button
                   size="sm"
                   variant="outline"
-                  className="border-slate-600 text-muted-foreground text-xs hover:bg-muted"
+                  className="border-border text-muted-foreground text-xs hover:bg-muted"
                   onClick={() => setShowMatrix(!showMatrix)}
                 >
                   {showMatrix ? <ChevronUp size={12} className="mr-1" /> : <ChevronDown size={12} className="mr-1" />}
@@ -1337,7 +1337,7 @@ function OptimalPairsTab() {
             onClick={() => setSortBy(s.key)}
             className={sortBy === s.key
               ? "bg-primary text-white border-primary text-xs"
-              : "border-slate-600 text-muted-foreground text-xs hover:bg-muted"
+              : "border-border text-muted-foreground text-xs hover:bg-muted"
             }
           >
             {s.label}
@@ -1355,7 +1355,7 @@ function OptimalPairsTab() {
               layout
               transition={{ duration: 0.2 }}
             >
-              <Card className="bg-muted/50 border-border hover:border-slate-600 transition-colors">
+              <Card className="bg-muted/50 border-border hover:border-border transition-colors">
                 <CardContent className="pt-0 pb-0">
                   <button
                     className="w-full text-left py-4"
@@ -1504,7 +1504,7 @@ function OptimalPairsTab() {
 
 export default function CorrelationsPage() {
   return (
-    <div className="min-h-screen bg-background text-slate-50 p-6">
+    <div className="min-h-screen bg-background text-foreground p-6">
       {/* Page header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}

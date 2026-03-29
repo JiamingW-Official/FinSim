@@ -846,7 +846,7 @@ function CurrencyCrisesTab() {
                   "rounded-lg p-3 border text-left transition-colors",
                   selectedCase === i
                     ? "border-indigo-500 bg-indigo-950/40"
-                    : "border-border bg-muted/50 hover:border-zinc-500"
+                    : "border-border bg-muted/50 hover:border-muted-foreground"
                 )}
               >
                 <div className="flex items-center justify-between mb-1">
@@ -1497,7 +1497,7 @@ function CrisisInvestingTab() {
                     "w-full rounded-lg p-3 border text-left transition-colors",
                     selectedTheme === i
                       ? "border-indigo-500 bg-indigo-950/30"
-                      : "border-border bg-muted/50 hover:border-zinc-500"
+                      : "border-border bg-muted/50 hover:border-muted-foreground"
                   )}
                 >
                   <div className="flex items-center justify-between">

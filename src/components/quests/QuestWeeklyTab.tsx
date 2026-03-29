@@ -65,11 +65,11 @@ export function QuestWeeklyTab() {
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] px-4 py-2.5"
       >
-        <div className="flex items-center gap-2 text-xs text-zinc-500">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <Clock className="h-3.5 w-3.5" />
           <span>Resets Monday</span>
         </div>
-        <span className="text-sm font-bold font-mono tabular-nums text-zinc-300">
+        <span className="text-sm font-bold font-mono tabular-nums text-muted-foreground">
           {countdown}
         </span>
       </motion.div>
@@ -97,9 +97,9 @@ export function QuestWeeklyTab() {
             animate={{ opacity: 1 }}
             className="flex flex-col items-center gap-2 py-12 text-center"
           >
-            <CalendarDays className="h-8 w-8 text-zinc-700" />
-            <p className="text-sm text-zinc-500">No weekly quests available</p>
-            <p className="text-xs text-zinc-600">Check back on Monday!</p>
+            <CalendarDays className="h-8 w-8 text-muted-foreground/50" />
+            <p className="text-sm text-muted-foreground">No weekly quests available</p>
+            <p className="text-xs text-muted-foreground/70">Check back on Monday!</p>
           </motion.div>
         ) : (
           quests.map((quest, i) => (

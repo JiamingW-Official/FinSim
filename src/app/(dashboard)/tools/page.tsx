@@ -175,7 +175,7 @@ function WealthChart({ base, p10, p50, p90, timeHorizon }: WealthChartProps) {
 
       {/* Monte Carlo band */}
       {bandPath && (
-        <path d={bandPath} fill="rgba(20,184,166,0.08)" />
+        <path d={bandPath} fill="color-mix(in srgb, var(--chart-1) 8%, transparent)" />
       )}
 
       {/* P10 */}
@@ -183,7 +183,7 @@ function WealthChart({ base, p10, p50, p90, timeHorizon }: WealthChartProps) {
         <path
           d={linePath(p10)}
           fill="none"
-          stroke="rgb(20,184,166)"
+          stroke="var(--chart-1)"
           strokeWidth={1}
           strokeDasharray="4,3"
           opacity={0.5}
@@ -194,7 +194,7 @@ function WealthChart({ base, p10, p50, p90, timeHorizon }: WealthChartProps) {
         <path
           d={linePath(p90)}
           fill="none"
-          stroke="rgb(20,184,166)"
+          stroke="var(--chart-1)"
           strokeWidth={1}
           strokeDasharray="4,3"
           opacity={0.5}
@@ -205,7 +205,7 @@ function WealthChart({ base, p10, p50, p90, timeHorizon }: WealthChartProps) {
         <path
           d={linePath(p50)}
           fill="none"
-          stroke="rgb(20,184,166)"
+          stroke="var(--chart-1)"
           strokeWidth={1.5}
           opacity={0.7}
         />
@@ -214,7 +214,7 @@ function WealthChart({ base, p10, p50, p90, timeHorizon }: WealthChartProps) {
       <path
         d={linePath(base)}
         fill="none"
-        stroke="rgb(14,165,233)"
+        stroke="var(--chart-3)"
         strokeWidth={2.5}
       />
 
@@ -252,9 +252,9 @@ function WealthChart({ base, p10, p50, p90, timeHorizon }: WealthChartProps) {
       })}
 
       {/* Legend */}
-      <line x1={pad.l} y1={H - 6} x2={pad.l + 20} y2={H - 6} stroke="rgb(14,165,233)" strokeWidth={2.5} />
+      <line x1={pad.l} y1={H - 6} x2={pad.l + 20} y2={H - 6} stroke="var(--chart-3)" strokeWidth={2.5} />
       <text x={pad.l + 24} y={H - 3} fontSize={8} fill="currentColor" className="text-muted-foreground">Base</text>
-      <line x1={pad.l + 60} y1={H - 6} x2={pad.l + 80} y2={H - 6} stroke="rgb(20,184,166)" strokeWidth={1.5} strokeDasharray="4,3" opacity={0.7} />
+      <line x1={pad.l + 60} y1={H - 6} x2={pad.l + 80} y2={H - 6} stroke="var(--chart-1)" strokeWidth={1.5} strokeDasharray="4,3" opacity={0.7} />
       <text x={pad.l + 84} y={H - 3} fontSize={8} fill="currentColor" className="text-muted-foreground">P10/50/90</text>
     </svg>
   );
@@ -434,8 +434,8 @@ function DigitalTwinTab() {
       {/* Wealth Chart */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium">Projected Wealth Curve</CardTitle>
-          <p className="text-xs text-muted-foreground">Blue = base case. Teal dashed = Monte Carlo P10/P50/P90 (100 simulations, ±3% return variance)</p>
+          <CardTitle className="text-sm font-medium">Projected Wealth Curve (Simulated)</CardTitle>
+          <p className="text-xs text-muted-foreground">Blue = base case. Teal dashed = Monte Carlo P10/P50/P90 (100 simulations, +/-3% return variance). For illustration only.</p>
         </CardHeader>
         <CardContent>
           <WealthChart
@@ -540,11 +540,11 @@ function CompoundBarChart({ yearlyData }: CompoundBarChartProps) {
         return (
           <g key={d.year}>
             {/* Principal */}
-            <rect x={x} y={yBase - totalH} width={w} height={ph} fill="rgb(14,165,233)" opacity={0.85} />
+            <rect x={x} y={yBase - totalH} width={w} height={ph} fill="var(--chart-3)" opacity={0.85} />
             {/* Contributions */}
-            <rect x={x} y={yBase - totalH + ph} width={w} height={ch} fill="rgb(99,102,241)" opacity={0.85} />
+            <rect x={x} y={yBase - totalH + ph} width={w} height={ch} fill="var(--chart-5)" opacity={0.85} />
             {/* Interest */}
-            <rect x={x} y={yBase - ih} width={w} height={ih} fill="rgb(20,184,166)" opacity={0.85} />
+            <rect x={x} y={yBase - ih} width={w} height={ih} fill="var(--chart-1)" opacity={0.85} />
             {/* X label */}
             <text
               x={x + w / 2}
@@ -576,11 +576,11 @@ function CompoundBarChart({ yearlyData }: CompoundBarChartProps) {
       ))}
 
       {/* Legend */}
-      <rect x={pad.l} y={H - 6} width={10} height={6} fill="rgb(14,165,233)" opacity={0.85} />
+      <rect x={pad.l} y={H - 6} width={10} height={6} fill="var(--chart-3)" opacity={0.85} />
       <text x={pad.l + 13} y={H - 1} fontSize={8} fill="currentColor" className="text-muted-foreground">Principal</text>
-      <rect x={pad.l + 65} y={H - 6} width={10} height={6} fill="rgb(99,102,241)" opacity={0.85} />
+      <rect x={pad.l + 65} y={H - 6} width={10} height={6} fill="var(--chart-5)" opacity={0.85} />
       <text x={pad.l + 78} y={H - 1} fontSize={8} fill="currentColor" className="text-muted-foreground">Contributions</text>
-      <rect x={pad.l + 150} y={H - 6} width={10} height={6} fill="rgb(20,184,166)" opacity={0.85} />
+      <rect x={pad.l + 150} y={H - 6} width={10} height={6} fill="var(--chart-1)" opacity={0.85} />
       <text x={pad.l + 163} y={H - 1} fontSize={8} fill="currentColor" className="text-muted-foreground">Interest</text>
     </svg>
   );
@@ -696,8 +696,8 @@ function CompoundCalculatorTab() {
       {/* Chart */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium">Growth Breakdown by Year</CardTitle>
-          <p className="text-xs text-muted-foreground">Stacked: principal, contributions, interest earned</p>
+          <CardTitle className="text-sm font-medium">Growth Breakdown by Year (Simulated)</CardTitle>
+          <p className="text-xs text-muted-foreground">Stacked: principal, contributions, compound interest earned. Assumes constant annual return.</p>
         </CardHeader>
         <CardContent>
           <CompoundBarChart yearlyData={result.yearlyData} />
@@ -831,8 +831,8 @@ function CompareChart({ base, scenario, timeHorizon, scenarioLabel }: CompareCha
         />
       ))}
 
-      <path d={linePath(base)} fill="none" stroke="rgb(14,165,233)" strokeWidth={2} />
-      <path d={linePath(scenario)} fill="none" stroke="rgb(249,115,22)" strokeWidth={2} strokeDasharray="5,3" />
+      <path d={linePath(base)} fill="none" stroke="var(--chart-3)" strokeWidth={2} />
+      <path d={linePath(scenario)} fill="none" stroke="var(--chart-2)" strokeWidth={2} strokeDasharray="5,3" />
 
       {yTickVals.map((v, i) => (
         <text
@@ -866,9 +866,9 @@ function CompareChart({ base, scenario, timeHorizon, scenarioLabel }: CompareCha
       })}
 
       {/* Legend */}
-      <line x1={pad.l} y1={H - 6} x2={pad.l + 20} y2={H - 6} stroke="rgb(14,165,233)" strokeWidth={2} />
+      <line x1={pad.l} y1={H - 6} x2={pad.l + 20} y2={H - 6} stroke="var(--chart-3)" strokeWidth={2} />
       <text x={pad.l + 24} y={H - 3} fontSize={8} fill="currentColor" className="text-muted-foreground">Base Case</text>
-      <line x1={pad.l + 80} y1={H - 6} x2={pad.l + 100} y2={H - 6} stroke="rgb(249,115,22)" strokeWidth={2} strokeDasharray="5,3" />
+      <line x1={pad.l + 80} y1={H - 6} x2={pad.l + 100} y2={H - 6} stroke="var(--chart-2)" strokeWidth={2} strokeDasharray="5,3" />
       <text x={pad.l + 104} y={H - 3} fontSize={8} fill="currentColor" className="text-muted-foreground">{scenarioLabel}</text>
     </svg>
   );
@@ -1030,9 +1030,9 @@ function ScenarioSimulatorTab() {
       {/* Comparison chart */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium">Wealth Comparison</CardTitle>
+          <CardTitle className="text-sm font-medium">Wealth Comparison (Simulated)</CardTitle>
           <p className="text-xs text-muted-foreground">
-            {activeScenario ? `Blue = base case, Orange = ${activeScenario.label}` : "Select a scenario to compare"}
+            {activeScenario ? `Blue = base case, Orange = ${activeScenario.label}. Simplified model for educational purposes.` : "Select a scenario to compare"}
           </p>
         </CardHeader>
         <CardContent>
@@ -1460,9 +1460,9 @@ function LoanChart({ base, extra, loanAmount }: LoanChartProps) {
         />
       ))}
 
-      <path d={linePath(base)} fill="none" stroke="rgb(14,165,233)" strokeWidth={2} />
+      <path d={linePath(base)} fill="none" stroke="var(--chart-3)" strokeWidth={2} />
       {extra.length > 0 && (
-        <path d={linePath(extra)} fill="none" stroke="rgb(20,184,166)" strokeWidth={2} strokeDasharray="5,3" />
+        <path d={linePath(extra)} fill="none" stroke="var(--chart-1)" strokeWidth={2} strokeDasharray="5,3" />
       )}
 
       {yTickVals.map((v, i) => (
@@ -1497,9 +1497,9 @@ function LoanChart({ base, extra, loanAmount }: LoanChartProps) {
         );
       })}
 
-      <line x1={pad.l} y1={H - 6} x2={pad.l + 20} y2={H - 6} stroke="rgb(14,165,233)" strokeWidth={2} />
+      <line x1={pad.l} y1={H - 6} x2={pad.l + 20} y2={H - 6} stroke="var(--chart-3)" strokeWidth={2} />
       <text x={pad.l + 24} y={H - 3} fontSize={8} fill="currentColor" className="text-muted-foreground">Base</text>
-      <line x1={pad.l + 60} y1={H - 6} x2={pad.l + 80} y2={H - 6} stroke="rgb(20,184,166)" strokeWidth={2} strokeDasharray="5,3" />
+      <line x1={pad.l + 60} y1={H - 6} x2={pad.l + 80} y2={H - 6} stroke="var(--chart-1)" strokeWidth={2} strokeDasharray="5,3" />
       <text x={pad.l + 84} y={H - 3} fontSize={8} fill="currentColor" className="text-muted-foreground">With Extra Payment</text>
     </svg>
   );
@@ -1623,8 +1623,8 @@ function LoanCalculatorTab() {
       {/* Balance chart */}
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-sm font-medium">Remaining Balance Over Time</CardTitle>
-          <p className="text-xs text-muted-foreground">Blue = standard payments, Teal dashed = with extra payment</p>
+          <CardTitle className="text-sm font-medium">Remaining Balance Over Time (Simulated)</CardTitle>
+          <p className="text-xs text-muted-foreground">Blue = standard payments, Teal dashed = with extra payment. Assumes fixed rate.</p>
         </CardHeader>
         <CardContent>
           <LoanChart
@@ -1890,8 +1890,8 @@ function MacroRadarChart({ current, avg }: { current: number[]; avg: number[] })
       {/* Historical average outline */}
       <path
         d={buildPath(avg)}
-        fill="rgba(148,163,184,0.08)"
-        stroke="rgb(148,163,184)"
+        fill="color-mix(in srgb, var(--muted-foreground) 8%, transparent)"
+        stroke="var(--muted-foreground)"
         strokeWidth={1}
         strokeDasharray="4,3"
       />
@@ -1899,8 +1899,8 @@ function MacroRadarChart({ current, avg }: { current: number[]; avg: number[] })
       {/* Current scenario fill */}
       <path
         d={buildPath(current)}
-        fill="rgba(14,165,233,0.12)"
-        stroke="rgb(14,165,233)"
+        fill="color-mix(in srgb, var(--chart-3) 12%, transparent)"
+        stroke="var(--chart-3)"
         strokeWidth={1.5}
       />
 
@@ -2106,9 +2106,9 @@ function MacroSimulatorTab() {
       {/* Portfolio Stress Test */}
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="text-sm font-medium">Portfolio Stress Test</CardTitle>
+          <CardTitle className="text-sm font-medium">Portfolio Stress Test (Simulated)</CardTitle>
           <p className="text-xs text-muted-foreground">
-            Simulated $100K balanced portfolio — sector-by-sector estimated P&L under current macro scenario
+            Simulated $100K balanced portfolio -- sector-by-sector estimated P&L under current macro scenario. Simplified linear factor model.
           </p>
         </CardHeader>
         <CardContent>
@@ -2190,13 +2190,16 @@ export default function ToolsPage() {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-3 px-6 pt-5 pb-4 border-b border-border/50 shrink-0">
+      <div className="flex items-center gap-3 px-6 pt-5 pb-5 border-b border-border/50 shrink-0">
         <div>
           <h1 className="text-base font-semibold leading-tight">Financial Tools</h1>
-          <p className="text-xs text-muted-foreground">Personal finance simulators and calculators</p>
+          <p className="text-sm text-muted-foreground mt-1 max-w-xl leading-relaxed">
+            Interactive calculators for wealth planning, taxes, and macro analysis.
+            All projections are simulated for educational purposes.
+          </p>
         </div>
-        <Badge variant="secondary" className="ml-auto text-xs">
-          6 Tools
+        <Badge variant="secondary" className="ml-auto text-xs shrink-0">
+          Simulated
         </Badge>
       </div>
 

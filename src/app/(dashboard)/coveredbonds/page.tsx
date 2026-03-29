@@ -424,7 +424,7 @@ function FrameworksTab() {
               "text-left p-4 rounded-xl border transition-all",
               selected === fw.id
                 ? "border-primary bg-primary/10"
-                : "border-border bg-card hover:border-neutral-500"
+                : "border-border bg-card hover:border-muted-foreground"
             )}
           >
             <div className="text-2xl mb-2">{fw.flag}</div>
@@ -779,7 +779,7 @@ function ABSComparisonTab() {
                   <span className="text-amber-400 font-mono">RW {row.rw}</span>
                   <span className={cn(
                     "px-1.5 py-0.5 rounded",
-                    row.lcr === "Level 1B" ? "bg-green-500/10 text-green-400" : "bg-neutral-700 text-muted-foreground"
+                    row.lcr === "Level 1B" ? "bg-green-500/10 text-green-400" : "bg-muted text-muted-foreground"
                   )}>{row.lcr}</span>
                 </div>
               </div>
@@ -829,7 +829,7 @@ export default function CoveredBondsPage() {
   ] as const;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white p-4 md:p-6">
+    <div className="min-h-screen bg-background text-white p-4 md:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-2">

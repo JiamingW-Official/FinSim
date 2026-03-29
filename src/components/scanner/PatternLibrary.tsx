@@ -264,9 +264,9 @@ const DetailHeadAndShoulders = () => (
     <line x1="295" y1="185" x2="295" y2="220" stroke="currentColor" strokeWidth="2" className="text-rose-400" />
     <polygon points="295,230 289,215 301,215" fill="currentColor" className="text-rose-400" />
     {/* Labels */}
-    <text x="60" y="143" fontSize="9" fill="currentColor" textAnchor="middle" className="text-muted-foreground fill-zinc-400">L. Shoulder</text>
-    <text x="150" y="72" fontSize="9" fill="currentColor" textAnchor="middle" className="text-muted-foreground fill-zinc-400">Head</text>
-    <text x="240" y="128" fontSize="9" fill="currentColor" textAnchor="middle" className="text-muted-foreground fill-zinc-400">R. Shoulder</text>
+    <text x="60" y="143" fontSize="9" fill="currentColor" textAnchor="middle" className="text-muted-foreground fill-muted-foreground">L. Shoulder</text>
+    <text x="150" y="72" fontSize="9" fill="currentColor" textAnchor="middle" className="text-muted-foreground fill-muted-foreground">Head</text>
+    <text x="240" y="128" fontSize="9" fill="currentColor" textAnchor="middle" className="text-muted-foreground fill-muted-foreground">R. Shoulder</text>
     <text x="340" y="180" fontSize="9" fill="currentColor" className="fill-rose-400">Neckline</text>
     <text x="310" y="240" fontSize="9" fill="currentColor" className="fill-rose-400">Breakout</text>
     {/* Target */}
@@ -283,8 +283,8 @@ const DetailDoubleTop = () => (
       strokeDasharray="6,4" className="text-rose-400" />
     <line x1="320" y1="200" x2="320" y2="235" stroke="currentColor" strokeWidth="2" className="text-rose-400" />
     <polygon points="320,242 314,228 326,228" fill="currentColor" className="text-rose-400" />
-    <text x="80" y="82" fontSize="10" fill="currentColor" textAnchor="middle" className="fill-zinc-400">Peak 1</text>
-    <text x="240" y="82" fontSize="10" fill="currentColor" textAnchor="middle" className="fill-zinc-400">Peak 2</text>
+    <text x="80" y="82" fontSize="10" fill="currentColor" textAnchor="middle" className="fill-muted-foreground">Peak 1</text>
+    <text x="240" y="82" fontSize="10" fill="currentColor" textAnchor="middle" className="fill-muted-foreground">Peak 2</text>
     <text x="360" y="195" fontSize="9" fill="currentColor" className="fill-rose-400">Support</text>
     <text x="335" y="242" fontSize="9" fill="currentColor" className="fill-rose-400">Break</text>
   </svg>
@@ -303,10 +303,10 @@ const DetailCupHandle = () => (
     {/* Rim line */}
     <line x1="20" y1="60" x2="360" y2="60" stroke="currentColor" strokeWidth="1"
       strokeDasharray="4,3" className="text-muted-foreground" />
-    <text x="155" y="240" fontSize="10" fill="currentColor" textAnchor="middle" className="fill-zinc-400">Cup Bottom</text>
-    <text x="20" y="52" fontSize="9" fill="currentColor" className="fill-zinc-400">Left rim</text>
-    <text x="270" y="52" fontSize="9" fill="currentColor" className="fill-zinc-400">Right rim</text>
-    <text x="320" y="115" fontSize="9" fill="currentColor" className="fill-zinc-400">Handle</text>
+    <text x="155" y="240" fontSize="10" fill="currentColor" textAnchor="middle" className="fill-muted-foreground">Cup Bottom</text>
+    <text x="20" y="52" fontSize="9" fill="currentColor" className="fill-muted-foreground">Left rim</text>
+    <text x="270" y="52" fontSize="9" fill="currentColor" className="fill-muted-foreground">Right rim</text>
+    <text x="320" y="115" fontSize="9" fill="currentColor" className="fill-muted-foreground">Handle</text>
     <text x="370" y="25" fontSize="9" fill="currentColor" className="fill-emerald-400">Breakout</text>
   </svg>
 );
@@ -326,8 +326,8 @@ const DetailBullFlag = () => (
     <polygon points="340,22 333,38 347,36" fill="currentColor" className="text-emerald-400" />
     {/* Target */}
     <line x1="340" y1="30" x2="390" y2="30" stroke="currentColor" strokeWidth="1" strokeDasharray="3,2" className="text-amber-400" />
-    <text x="55" y="250" fontSize="9" fill="currentColor" className="fill-zinc-400">Pole</text>
-    <text x="130" y="72" fontSize="9" fill="currentColor" className="fill-zinc-400">Flag</text>
+    <text x="55" y="250" fontSize="9" fill="currentColor" className="fill-muted-foreground">Pole</text>
+    <text x="130" y="72" fontSize="9" fill="currentColor" className="fill-muted-foreground">Flag</text>
     <text x="270" y="22" fontSize="9" fill="currentColor" className="fill-emerald-400">Breakout</text>
     <text x="355" y="26" fontSize="9" fill="currentColor" className="fill-amber-400">Target</text>
   </svg>
@@ -341,10 +341,10 @@ const DetailSymTriangle = () => (
       fill="none" stroke="currentColor" strokeWidth="2" className="text-primary" />
     <line x1="245" y1="128" x2="350" y2="60" stroke="currentColor" strokeWidth="2" className="text-emerald-400" />
     <polygon points="355,56 341,66 349,72" fill="currentColor" className="text-emerald-400" />
-    <text x="20" y="32" fontSize="9" fill="currentColor" className="fill-zinc-400">Resistance line</text>
-    <text x="20" y="228" fontSize="9" fill="currentColor" className="fill-zinc-400">Support line</text>
+    <text x="20" y="32" fontSize="9" fill="currentColor" className="fill-muted-foreground">Resistance line</text>
+    <text x="20" y="228" fontSize="9" fill="currentColor" className="fill-muted-foreground">Support line</text>
     <text x="320" y="52" fontSize="9" fill="currentColor" className="fill-emerald-400">Breakout</text>
-    <text x="250" y="118" fontSize="9" fill="currentColor" className="fill-zinc-400">Apex</text>
+    <text x="250" y="118" fontSize="9" fill="currentColor" className="fill-muted-foreground">Apex</text>
   </svg>
 );
 

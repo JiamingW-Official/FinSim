@@ -303,7 +303,7 @@ function corrColor(v: number): string {
   if (v <= -0.7) return "bg-rose-500/80";
   if (v <= -0.4) return "bg-rose-500/40";
   if (v <= -0.1) return "bg-rose-500/20";
-  return "bg-zinc-600/40";
+  return "bg-muted/40";
 }
 
 // ── SVG helpers ────────────────────────────────────────────────────────────────
@@ -761,7 +761,7 @@ function CarryTradeTab() {
                     initial={{ width: 0 }}
                     animate={{ width: `${(rate / 12) * 100}%` }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className={cn("h-full rounded", rate >= 5 ? "bg-emerald-500" : rate >= 3 ? "bg-amber-500" : "bg-zinc-500")}
+                    className={cn("h-full rounded", rate >= 5 ? "bg-emerald-500" : rate >= 3 ? "bg-amber-500" : "bg-muted-foreground")}
                   />
                 </div>
                 <span className="text-xs font-semibold text-foreground w-12 text-right">{rate.toFixed(2)}%</span>
@@ -1402,7 +1402,7 @@ function RiskManagementTab() {
             <div className="flex gap-3 mt-3 text-xs flex-wrap">
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-emerald-500/80" /><span className="text-muted-foreground">Strong +</span></div>
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-emerald-500/40" /><span className="text-muted-foreground">Moderate +</span></div>
-              <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-zinc-600/40" /><span className="text-muted-foreground">Neutral</span></div>
+              <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-muted/40" /><span className="text-muted-foreground">Neutral</span></div>
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-rose-500/40" /><span className="text-muted-foreground">Moderate −</span></div>
               <div className="flex items-center gap-1"><div className="w-3 h-3 rounded bg-rose-500/80" /><span className="text-muted-foreground">Strong −</span></div>
             </div>

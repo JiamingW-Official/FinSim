@@ -906,7 +906,7 @@ function PodiumSlot({
         "w-16 rounded-t-lg",
         heights[place],
         place === 1 ? "bg-amber-500/15 border border-amber-500/30" :
-        place === 2 ? "bg-gray-400/10 border border-gray-400/30" :
+        place === 2 ? "bg-muted-foreground/10 border border-muted-foreground/30" :
                       "bg-orange-400/10 border border-orange-400/30",
       )} />
     </div>

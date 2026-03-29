@@ -375,7 +375,7 @@ function GuidanceBadge({ g }: { g: GuidanceLabel }) {
   const map: Record<GuidanceLabel, { label: string; cls: string }> = {
     hawkish: { label: "Hawkish", cls: "bg-red-900/60 text-red-300 border-red-700" },
     dovish: { label: "Dovish", cls: "bg-green-900/60 text-green-300 border-green-700" },
-    neutral: { label: "Neutral", cls: "bg-muted text-muted-foreground border-gray-600" },
+    neutral: { label: "Neutral", cls: "bg-muted text-muted-foreground border-border" },
   };
   const { label, cls } = map[g];
   return (
@@ -613,7 +613,7 @@ function CentralBanksTab() {
                 <th className="pb-2">12m History</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-800/60">
+            <tbody className="divide-y divide-border/60">
               {CENTRAL_BANKS.map((cb, i) => (
                 <tr key={i} className="hover:bg-muted/30 transition-colors">
                   <td className="py-3 pr-3">
@@ -871,7 +871,7 @@ function PositioningTab() {
                 <th className="pb-2">Sentiment</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-800/50">
+            <tbody className="divide-y divide-border/50">
               {POSITIONING.map((p, i) => {
                 const nlPos = p.netLong >= 0;
                 return (
@@ -1011,7 +1011,7 @@ function PositioningTab() {
                 <div key={i} className="bg-muted/50 rounded-lg p-3">
                   <p className="text-xs font-semibold text-foreground mb-1">{t.trade}</p>
                   <div className="flex items-center gap-2 mb-1">
-                    <div className="flex-1 h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                    <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
                         className="h-full rounded-full"
                         style={{ width: `${t.crowding}%`, background: riskColor }}
@@ -1071,7 +1071,7 @@ export default function GlobalMacroDashPage() {
             <TabsTrigger
               key={t.value}
               value={t.value}
-              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-gray-700 data-[state=active]:text-white text-muted-foreground"
+              className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-white text-muted-foreground"
             >
               {t.icon}
               {t.label}

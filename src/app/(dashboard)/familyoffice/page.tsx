@@ -788,7 +788,7 @@ function PhilanthropyTab() {
                 <div className="flex items-center gap-2 mb-2">
                   <Heart className="h-3.5 w-3.5 text-pink-400" />
                   <span className="text-sm font-semibold text-foreground">{v.name}</span>
-                  <Badge className="ml-auto text-xs border border-slate-600 bg-muted/50 text-muted-foreground">
+                  <Badge className="ml-auto text-xs border border-border bg-muted/50 text-muted-foreground">
                     Setup: {v.setup}
                   </Badge>
                 </div>

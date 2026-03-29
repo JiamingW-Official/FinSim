@@ -722,7 +722,7 @@ export default function ShortSellingPage() {
       ? { label: "High Conviction", color: "text-red-400", bg: "bg-red-500/20 border-red-500/30" }
       : thesisScore >= 35
       ? { label: "Moderate", color: "text-amber-400", bg: "bg-amber-500/20 border-amber-500/30" }
-      : { label: "Weak / Pass", color: "text-muted-foreground", bg: "bg-zinc-500/20 border-zinc-500/30" };
+      : { label: "Weak / Pass", color: "text-muted-foreground", bg: "bg-muted-foreground/20 border-muted-foreground/30" };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -988,7 +988,7 @@ export default function ShortSellingPage() {
                       <ul className="space-y-1.5">
                         {section.items.map((item) => (
                           <li key={item} className="flex items-start gap-2 text-xs text-muted-foreground">
-                            <div className="w-1 h-1 rounded-full bg-zinc-600 mt-1.5 shrink-0" />
+                            <div className="w-1 h-1 rounded-full bg-muted mt-1.5 shrink-0" />
                             {item}
                           </li>
                         ))}

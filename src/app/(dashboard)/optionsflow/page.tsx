@@ -398,7 +398,7 @@ function SentimentBadge({ sentiment }: { sentiment: "bullish" | "bearish" | "neu
       </Badge>
     );
   return (
-    <Badge className="bg-zinc-500/15 text-muted-foreground border-zinc-500/30 text-xs">
+    <Badge className="bg-muted-foreground/15 text-muted-foreground border-muted-foreground/30 text-xs">
       Neutral
     </Badge>
   );
@@ -418,7 +418,7 @@ function AggressionBadge({ level }: { level: "high" | "medium" | "low" }) {
       </Badge>
     );
   return (
-    <Badge className="bg-zinc-500/15 text-muted-foreground border-zinc-500/30 text-xs">
+    <Badge className="bg-muted-foreground/15 text-muted-foreground border-muted-foreground/30 text-xs">
       Low
     </Badge>
   );
@@ -721,7 +721,7 @@ export default function OptionsFlowPage() {
                                     ? "bg-emerald-500/15 text-emerald-400"
                                     : print.notation === "below bid"
                                     ? "bg-red-500/15 text-red-400"
-                                    : "bg-zinc-500/15 text-muted-foreground"
+                                    : "bg-muted-foreground/15 text-muted-foreground"
                                 }`}
                               >
                                 {print.notation}
@@ -800,7 +800,7 @@ export default function OptionsFlowPage() {
                         label: "Low Aggression",
                         desc: "Spread across exchanges slowly. Weaker conviction.",
                         color: "text-muted-foreground",
-                        border: "border-zinc-500/30",
+                        border: "border-muted-foreground/30",
                       },
                     ].map((item) => (
                       <div key={item.label} className={`p-2 rounded border ${item.border} bg-background/40`}>
@@ -938,7 +938,7 @@ export default function OptionsFlowPage() {
                       Bearish put flow dominant
                     </span>
                     <span className="flex items-center gap-1.5">
-                      <span className="w-3 h-3 rounded bg-zinc-500/40 border border-zinc-500/50" />
+                      <span className="w-3 h-3 rounded bg-muted-foreground/40 border border-muted-foreground/50" />
                       Neutral / mixed
                     </span>
                   </div>

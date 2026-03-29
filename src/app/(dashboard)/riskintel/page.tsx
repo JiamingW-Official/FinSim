@@ -1247,7 +1247,7 @@ export default function RiskIntelPage() {
                                   key={j}
                                   onClick={() => !isDiag && setSelectedCell(isSelected ? null : { i, j })}
                                   className={`w-9 h-9 text-center font-mono rounded-sm transition-all cursor-pointer ${
-                                    isSelected ? "ring-2 ring-white ring-offset-1 ring-offset-slate-900" : ""
+                                    isSelected ? "ring-2 ring-white ring-offset-1 ring-offset-background" : ""
                                   } ${isDiag ? "cursor-default" : "hover:opacity-80"}`}
                                   style={{ backgroundColor: corrColor(v) }}
                                   title={`${row.ticker} / ${POSITIONS[j].ticker}: ${v.toFixed(2)}`}
@@ -1503,7 +1503,7 @@ export default function RiskIntelPage() {
                         <th className="text-right pb-2 font-medium">Recovery</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/50">
+                    <tbody className="divide-y divide-border/50">
                       {[
                         { period: "Worst DD",     peak: "Aug 2025", trough: "Nov 2025", dd: "-18.4%", dur: "70d",  rec: "82d" },
                         { period: "Bear period 2",peak: "May 2025", trough: "Jul 2025", dd: "-14.2%", dur: "80d",  rec: "95d" },
@@ -2003,7 +2003,7 @@ export default function RiskIntelPage() {
                           <div className="relative h-2 bg-muted rounded-full overflow-hidden">
                             {/* Target line */}
                             <div
-                              className="absolute top-0 h-full w-0.5 bg-slate-500 z-10"
+                              className="absolute top-0 h-full w-0.5 bg-muted-foreground z-10"
                               style={{ left: `${targetVarPct}%` }}
                             />
                             {/* Actual */}

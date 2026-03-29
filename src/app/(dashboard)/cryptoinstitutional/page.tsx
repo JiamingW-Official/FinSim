@@ -1191,7 +1191,7 @@ function Tab3PrimeBrokerageContent() {
                   <td className="py-2 px-3 text-muted-foreground">{pb.strengths}</td>
                   {([pb.custody, pb.otc, pb.lending, pb.margin] as boolean[]).map((has, j) => (
                     <td key={j} className="py-2 px-3 text-center">
-                      <span className={has ? "text-emerald-400" : "text-zinc-700"}>{has ? "✓" : "—"}</span>
+                      <span className={has ? "text-emerald-400" : "text-muted-foreground/50"}>{has ? "✓" : "—"}</span>
                     </td>
                   ))}
                 </tr>

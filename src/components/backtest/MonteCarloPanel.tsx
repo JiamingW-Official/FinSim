@@ -23,7 +23,7 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
     <div className="space-y-4 p-4">
       {/* Probability Stats */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Monte Carlo Analysis ({runs.length} Simulations)
         </h3>
         <div className="grid grid-cols-3 gap-2">
@@ -39,24 +39,24 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
       {/* Range */}
       <div className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/5 px-4 py-3">
         <div className="flex-1 text-center">
-          <div className="text-[11px] uppercase text-zinc-600">Worst Case</div>
+          <div className="text-[11px] uppercase text-muted-foreground/70">Worst Case</div>
           <div className="text-sm font-bold text-rose-400">{dist.min > 0 ? "+" : ""}{dist.min}%</div>
         </div>
         <div className="h-8 w-px bg-white/10" />
         <div className="flex-1 text-center">
-          <div className="text-[11px] uppercase text-zinc-600">Median</div>
-          <div className="text-sm font-bold text-zinc-200">{dist.median > 0 ? "+" : ""}{dist.median}%</div>
+          <div className="text-[11px] uppercase text-muted-foreground/70">Median</div>
+          <div className="text-sm font-bold text-foreground">{dist.median > 0 ? "+" : ""}{dist.median}%</div>
         </div>
         <div className="h-8 w-px bg-white/10" />
         <div className="flex-1 text-center">
-          <div className="text-[11px] uppercase text-zinc-600">Best Case</div>
+          <div className="text-[11px] uppercase text-muted-foreground/70">Best Case</div>
           <div className="text-sm font-bold text-emerald-400">{dist.max > 0 ? "+" : ""}{dist.max}%</div>
         </div>
       </div>
 
       {/* Equity Fan Chart (Confidence Bands) */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Equity Confidence Bands
         </h3>
         <EquityFanChart percentiles={percentiles} startingCapital={startingCapital} />
@@ -69,7 +69,7 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
 
       {/* Return Distribution Histogram */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Return Distribution
         </h3>
         <ReturnHistogram runs={runs} />
@@ -77,7 +77,7 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
 
       {/* Drawdown Distribution */}
       <div>
-        <h3 className="mb-2 text-xs font-semibold text-zinc-500">
+        <h3 className="mb-2 text-xs font-semibold text-muted-foreground">
           Max Drawdown Distribution
         </h3>
         <div className="grid grid-cols-5 gap-1">
@@ -87,7 +87,7 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
             const val = sorted[idx] ?? 0;
             return (
               <div key={pct} className="rounded-lg border border-white/5 bg-white/5 p-2 text-center">
-                <div className="text-[11px] text-zinc-600">P{pct}</div>
+                <div className="text-[11px] text-muted-foreground/70">P{pct}</div>
                 <div className="text-xs font-bold text-rose-400">{val.toFixed(1)}%</div>
               </div>
             );
@@ -101,8 +101,8 @@ export default function MonteCarloPanel({ result, startingCapital }: MonteCarloP
 function StatCard({ label, value, good }: { label: string; value: string; good?: boolean }) {
   return (
     <div className="rounded-lg border border-white/5 bg-white/5 px-3 py-2">
-      <div className="text-[11px] text-zinc-600">{label}</div>
-      <div className={`text-sm font-bold ${good === undefined ? "text-zinc-200" : good ? "text-emerald-400" : "text-rose-400"}`}>
+      <div className="text-[11px] text-muted-foreground/70">{label}</div>
+      <div className={`text-sm font-bold ${good === undefined ? "text-foreground" : good ? "text-emerald-400" : "text-rose-400"}`}>
         {value}
       </div>
     </div>
@@ -224,7 +224,7 @@ function ReturnHistogram({ runs }: { runs: { totalReturnPercent: number }[] }) {
             }}
           >
             {count > 0 && (
-              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-zinc-800 px-1.5 py-0.5 text-[11px] text-zinc-300 shadow group-hover:block whitespace-nowrap">
+              <div className="absolute -top-6 left-1/2 z-10 hidden -translate-x-1/2 rounded bg-muted px-1.5 py-0.5 text-[11px] text-muted-foreground shadow group-hover:block whitespace-nowrap">
                 {binCenter.toFixed(1)}% ({count})
               </div>
             )}

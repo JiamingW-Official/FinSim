@@ -567,7 +567,7 @@ function CalculatorTab() {
                       "px-3 py-1 rounded text-sm font-medium border transition-colors",
                       targetBracket === b
                         ? "bg-indigo-600 border-indigo-500 text-white"
-                        : "bg-muted border-border text-muted-foreground hover:border-zinc-500"
+                        : "bg-muted border-border text-muted-foreground hover:border-muted-foreground"
                     )}
                   >
                     {b}%

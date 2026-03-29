@@ -390,7 +390,7 @@ function ExchangeTradedOptionsTab() {
                 onClick={() => setFilterType(f)}
                 className={cn(
                   "px-3 py-1 rounded-full text-xs font-medium transition-colors",
-                  filterType === f ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-zinc-600"
+                  filterType === f ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
                 )}
               >
                 {f}
@@ -606,7 +606,7 @@ function LeveragedETFsTab() {
               "rounded-lg border p-3 text-left transition-colors",
               selected.ticker === etf.ticker
                 ? "border-primary bg-primary/10"
-                : "border-border bg-muted/40 hover:border-zinc-500"
+                : "border-border bg-muted/40 hover:border-muted-foreground"
             )}
           >
             <p className="font-bold text-white text-sm">{etf.ticker}</p>
@@ -650,7 +650,7 @@ function LeveragedETFsTab() {
               onClick={() => setDays(d)}
               className={cn(
                 "px-2.5 py-1 rounded text-xs font-medium transition-colors",
-                days === d ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-zinc-600"
+                days === d ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {d === 252 ? "1Y" : `${d}d`}
@@ -813,7 +813,7 @@ function StructuredNotesTab() {
               onClick={() => setFilterType(f)}
               className={cn(
                 "px-3 py-1 rounded-full text-xs font-medium transition-colors",
-                filterType === f ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-zinc-600"
+                filterType === f ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {f}
@@ -1135,7 +1135,7 @@ function RetailAlternativesTab() {
               onClick={() => setFilterType(f)}
               className={cn(
                 "px-3 py-1 rounded-full text-xs font-medium transition-colors",
-                filterType === f ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-zinc-600"
+                filterType === f ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
               )}
             >
               {f}

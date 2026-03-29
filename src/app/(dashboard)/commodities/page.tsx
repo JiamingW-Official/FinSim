@@ -765,7 +765,7 @@ function MetalsTab() {
                     <span className="text-muted-foreground">{item.val}</span>
                   </div>
                   <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                    <div className="h-full bg-zinc-400/60 rounded-full" style={{ width: `${item.pct}%` }} />
+                    <div className="h-full bg-muted-foreground/60 rounded-full" style={{ width: `${item.pct}%` }} />
                   </div>
                 </div>
               ))}
@@ -1480,7 +1480,7 @@ function TradeIdeaCard({ idea }: { idea: TradeIdea }) {
                 "text-xs",
                 idea.conviction === "High" && "border-emerald-500 text-emerald-400",
                 idea.conviction === "Medium" && "border-amber-500 text-amber-400",
-                idea.conviction === "Low" && "border-zinc-500 text-muted-foreground"
+                idea.conviction === "Low" && "border-muted-foreground text-muted-foreground"
               )}
             >
               {idea.conviction}

@@ -562,7 +562,7 @@ function SectorImpactBar({ value }: { value: number }) {
         ) : (
           <div className="absolute top-0 h-full rounded" style={{ width: absW, right: "50%", background: color }} />
         )}
-        <div className="absolute left-1/2 top-0 w-px h-full bg-neutral-600" />
+        <div className="absolute left-1/2 top-0 w-px h-full bg-muted" />
       </div>
       <span className="text-xs font-mono" style={{ color, minWidth: 28 }}>
         {value >= 0 ? `+${value}` : value}
@@ -595,7 +595,7 @@ function EventImpactTab() {
               <div className={cn("mb-1", item.color)}>{item.icon}</div>
               <div className="text-xl font-bold text-foreground">{item.value}</div>
               <div className="text-xs text-muted-foreground">{item.label}</div>
-              <div className="text-xs text-neutral-600 mt-0.5">{item.sub}</div>
+              <div className="text-xs text-muted-foreground/70 mt-0.5">{item.sub}</div>
             </CardContent>
           </Card>
         ))}
@@ -645,7 +645,7 @@ function EventImpactTab() {
                         </td>
                       ))}
                       <td className="px-2 py-2">
-                        <ChevronRight className="w-3.5 h-3.5 text-neutral-600" />
+                        <ChevronRight className="w-3.5 h-3.5 text-muted-foreground/70" />
                       </td>
                     </tr>
                   ))}
@@ -755,7 +755,7 @@ function SanctionsTradeTab() {
               "px-3 py-1.5 rounded text-xs font-medium transition-colors",
               activeSection === s
                 ? "bg-primary text-primary-foreground"
-                : "bg-muted text-muted-foreground hover:bg-neutral-700"
+                : "bg-muted text-muted-foreground hover:bg-muted"
             )}
           >
             {s === "swift" ? "SWIFT Exclusion" : s === "dedollar" ? "De-Dollarization" : "Tech Decoupling"}
@@ -814,7 +814,7 @@ function SanctionsTradeTab() {
                     </defs>
                   </svg>
                   <div className="mt-2 text-xs text-muted-foreground flex items-start gap-1.5">
-                    <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-neutral-600" />
+                    <Info className="w-3.5 h-3.5 mt-0.5 flex-shrink-0 text-muted-foreground/70" />
                     Secondary sanctions: any non-US/EU bank that processes transactions for sanctioned entities also faces exclusion — creating a chilling effect well beyond primary targets.
                   </div>
                 </CardContent>
@@ -848,7 +848,7 @@ function SanctionsTradeTab() {
                       ))}
                     </tbody>
                   </table>
-                  <div className="px-4 py-2 text-xs text-neutral-600">E = estimated</div>
+                  <div className="px-4 py-2 text-xs text-muted-foreground/70">E = estimated</div>
                 </CardContent>
               </Card>
             </div>
@@ -1094,12 +1094,12 @@ function RiskPremiumTab() {
                 <div className="flex items-center justify-between text-xs">
                   <div>
                     <span className="font-medium text-foreground">{sh.asset}</span>
-                    <span className="text-neutral-600 ml-1.5">{sh.ticker}</span>
+                    <span className="text-muted-foreground/70 ml-1.5">{sh.ticker}</span>
                   </div>
                   <span className="text-green-400 font-mono">+{sh.avgReturn1m.toFixed(1)}% avg 1M</span>
                 </div>
                 <Progress value={sh.correlation * 100} className="h-1.5" />
-                <div className="text-xs text-neutral-600">{sh.mechanism}</div>
+                <div className="text-xs text-muted-foreground/70">{sh.mechanism}</div>
               </div>
             ))}
           </CardContent>
@@ -1144,7 +1144,7 @@ function RiskPremiumTab() {
               </tbody>
             </table>
           </div>
-          <div className="px-4 py-2 text-xs text-neutral-600">σ = standard deviations vs. historical sector mean return</div>
+          <div className="px-4 py-2 text-xs text-muted-foreground/70">σ = standard deviations vs. historical sector mean return</div>
         </CardContent>
       </Card>
 
@@ -1381,7 +1381,7 @@ function PortfolioPositioningTab() {
                   value={Math.min((value / (threshold * 2)) * 100, 100)}
                   className="h-1"
                 />
-                <div className="text-neutral-600 text-xs mt-0.5">{desc}</div>
+                <div className="text-muted-foreground/70 text-xs mt-0.5">{desc}</div>
               </div>
             ))}
           </CardContent>
@@ -1408,11 +1408,11 @@ function PortfolioPositioningTab() {
                 <span className="text-muted-foreground w-28 flex-shrink-0">{name}</span>
                 <div className="flex-1 flex gap-2">
                   <div className="flex items-center gap-1">
-                    <span className="text-neutral-600">CN</span>
+                    <span className="text-muted-foreground/70">CN</span>
                     <span className={cn("font-mono", china > 15 ? "text-red-400" : "text-muted-foreground")}>{china}%</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="text-neutral-600">EM</span>
+                    <span className="text-muted-foreground/70">EM</span>
                     <span className={cn("font-mono", em > 35 ? "text-amber-400" : "text-muted-foreground")}>{em}%</span>
                   </div>
                 </div>
@@ -1426,7 +1426,7 @@ function PortfolioPositioningTab() {
                 </Badge>
               </div>
             ))}
-            <div className="text-neutral-600 text-xs pt-1">
+            <div className="text-muted-foreground/70 text-xs pt-1">
               CN = China revenue exposure. EM = total emerging market exposure. Tariff risk based on product mix and bilateral trade volumes.
             </div>
           </CardContent>
@@ -1458,7 +1458,7 @@ function PortfolioPositioningTab() {
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function GeopoliticsPage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-foreground p-4 sm:p-6">
+    <div className="min-h-screen bg-background text-foreground p-4 sm:p-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -12 }}

@@ -1541,7 +1541,7 @@ function CorporateHedgingTab() {
                     "px-3 py-1.5 rounded text-xs font-medium transition-colors border",
                     selectedRatio === i
                       ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                      : "text-muted-foreground border-border hover:border-zinc-500",
+                      : "text-muted-foreground border-border hover:border-muted-foreground",
                   )}
                 >
                   {h.ratio}

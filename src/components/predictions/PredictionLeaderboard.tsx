@@ -138,7 +138,7 @@ export function PredictionLeaderboard() {
                   {entry.rank === 1 ? (
                     <span className="text-amber-400 font-bold">1</span>
                   ) : entry.rank === 2 ? (
-                    <span className="text-zinc-400 font-bold">2</span>
+                    <span className="text-muted-foreground font-bold">2</span>
                   ) : entry.rank === 3 ? (
                     <span className="text-orange-600 font-bold">3</span>
                   ) : (

@@ -680,7 +680,7 @@ function GdpTab() {
               <span className="text-muted-foreground">Confidence band</span>
               <span className="text-muted-foreground">±0.8pp</span>
             </div>
-            <div className="w-full bg-gray-700 rounded-full h-2 relative">
+            <div className="w-full bg-muted rounded-full h-2 relative">
               <div className="absolute left-[30%] right-[30%] h-2 bg-indigo-500/40 rounded-full" />
               <div className="absolute left-[49%] w-0.5 h-2 bg-indigo-400" />
             </div>
@@ -931,7 +931,7 @@ function InflationTab() {
                   <span className="text-sm text-muted-foreground">{b.label}</span>
                   <span className="text-xl font-bold text-indigo-300">{b.val}%</span>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-1.5 relative">
+                <div className="w-full bg-muted rounded-full h-1.5 relative">
                   <div className="absolute left-0 h-1.5 bg-indigo-500 rounded-full" style={{ width: `${(b.val / 5) * 100}%` }} />
                   <div className="absolute h-3 w-0.5 bg-red-400 top-[-3px]" style={{ left: `${(2.0 / 5) * 100}%` }} />
                 </div>
@@ -1021,7 +1021,7 @@ function LaborTab() {
                   <span className="text-muted-foreground text-xs">{w.label}</span>
                   <span className="font-bold font-mono" style={{ color: w.color }}>{w.val}%</span>
                 </div>
-                <div className="w-full bg-gray-700 rounded-full h-1.5 relative">
+                <div className="w-full bg-muted rounded-full h-1.5 relative">
                   <div className="absolute left-0 h-1.5 rounded-full" style={{ width: `${(w.val / 8) * 100}%`, background: w.color }} />
                   <div className="absolute h-3 w-0.5 bg-white/30 top-[-3px]" style={{ left: `${(w.benchmark / 8) * 100}%` }} />
                 </div>

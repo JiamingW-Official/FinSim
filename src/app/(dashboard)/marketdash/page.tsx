@@ -484,13 +484,13 @@ export default function MarketDashPage() {
                   <span className={item.pct >= 0 ? "text-emerald-400" : "text-red-400"}>
                     {item.pct >= 0 ? "+" : ""}{item.pct}%
                   </span>
-                  <span className="text-zinc-700 ml-1">·</span>
+                  <span className="text-muted-foreground/50 ml-1">·</span>
                 </span>
               ))}
             </div>
             {/* Fade edges */}
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-zinc-900 to-transparent" />
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-zinc-900 to-transparent" />
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-card to-transparent" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-card to-transparent" />
           </div>
 
           {/* Index cards */}

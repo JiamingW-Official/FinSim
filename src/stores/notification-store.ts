@@ -77,7 +77,7 @@ const DEMO_NOTIFICATIONS: AppNotification[] = [
     title: "Position Closed +4.2%",
     description: "AAPL long closed for a gain of $420. Nice trade.",
     icon: "TrendingUp",
-    color: "text-emerald-400",
+    color: "text-primary",
     timestamp: now - 1000 * 60 * 60 * 26,
     read: true,
     href: "/portfolio",

@@ -426,7 +426,7 @@ export default function RebalancingPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Badge variant="outline" className="text-muted-foreground border-slate-600">
+          <Badge variant="outline" className="text-muted-foreground border-border">
             Portfolio: {fmt$(TOTAL_PORTFOLIO)}
           </Badge>
           {rebalancedAt && (
@@ -586,7 +586,7 @@ export default function RebalancingPage() {
                           } ${h.driftAbs >= driftThreshold ? "bg-red-500/70" : h.driftAbs >= driftThreshold * 0.5 ? "bg-amber-500/70" : "bg-emerald-500/70"}`}
                           style={{ width: `${Math.min((h.driftAbs / 8) * 50, 50)}%` }}
                         />
-                        <div className="absolute inset-y-0 left-1/2 w-px bg-slate-500" />
+                        <div className="absolute inset-y-0 left-1/2 w-px bg-muted-foreground" />
                       </div>
                       <span className={`text-xs w-12 font-mono ${driftColor(h.drift, driftThreshold)}`}>
                         {fmtPct(h.drift)}
@@ -622,7 +622,7 @@ export default function RebalancingPage() {
                           className={`flex-1 py-2 rounded text-xs font-medium capitalize transition-all ${
                             calendarMode === m
                               ? "bg-primary text-white"
-                              : "bg-muted text-muted-foreground hover:bg-slate-600"
+                              : "bg-muted text-muted-foreground hover:bg-muted"
                           }`}
                         >
                           {m}
@@ -879,7 +879,7 @@ export default function RebalancingPage() {
                         >
                           <td className="px-4 py-2">
                             <div className={`w-4 h-4 rounded border-2 flex items-center justify-center ${
-                              selectedHarvest.has(p.ticker) ? "bg-primary border-primary" : "border-slate-600"
+                              selectedHarvest.has(p.ticker) ? "bg-primary border-primary" : "border-border"
                             }`}>
                               {selectedHarvest.has(p.ticker) && <CheckCircle2 className="w-3 h-3 text-white" />}
                             </div>

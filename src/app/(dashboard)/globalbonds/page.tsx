@@ -824,7 +824,7 @@ function SovereignYieldsTab() {
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.03 }}
-                  className="border-b border-border/30 hover:bg-neutral-700/20 transition-colors"
+                  className="border-b border-border/30 hover:bg-muted/20 transition-colors"
                 >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -834,7 +834,7 @@ function SovereignYieldsTab() {
                       </span>
                       <Badge
                         variant="outline"
-                        className="text-xs px-1.5 py-0 border-neutral-600 text-muted-foreground"
+                        className="text-xs px-1.5 py-0 border-border text-muted-foreground"
                       >
                         {bond.region}
                       </Badge>
@@ -1214,7 +1214,7 @@ function YieldCurveTab() {
           {spreadAnalysis.map((a) => (
             <div
               key={a.label}
-              className="flex items-start gap-3 p-2.5 bg-neutral-700/30 rounded-lg"
+              className="flex items-start gap-3 p-2.5 bg-muted/30 rounded-lg"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-0.5">
@@ -1340,7 +1340,7 @@ function HedgedReturnsTab() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="border-b border-border/30 hover:bg-neutral-700/20 transition-colors"
+                  className="border-b border-border/30 hover:bg-muted/20 transition-colors"
                 >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -1692,7 +1692,7 @@ function EMBondsTab() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.04 }}
-                  className="border-b border-border/30 hover:bg-neutral-700/20 transition-colors"
+                  className="border-b border-border/30 hover:bg-muted/20 transition-colors"
                 >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
@@ -2021,7 +2021,7 @@ function CentralBankTab() {
                     {cb.currentInflation.toFixed(1)}% vs {cb.inflationTarget}% target
                   </span>
                 </div>
-                <div className="h-1.5 bg-neutral-700 rounded-full overflow-hidden">
+                <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                   <div
                     className={cn(
                       "h-full rounded-full transition-all",
@@ -2042,7 +2042,7 @@ function CentralBankTab() {
               </div>
 
               <div className="grid grid-cols-2 gap-2 pt-1">
-                <div className="bg-neutral-700/40 rounded p-2">
+                <div className="bg-muted/40 rounded p-2">
                   <div className="text-[11px] text-muted-foreground">QE/QT Status</div>
                   <div
                     className={cn(
@@ -2057,7 +2057,7 @@ function CentralBankTab() {
                     {cb.qeStatus}
                   </div>
                 </div>
-                <div className="bg-neutral-700/40 rounded p-2">
+                <div className="bg-muted/40 rounded p-2">
                   <div className="text-[11px] text-muted-foreground">Balance Sheet</div>
                   <div className="text-xs font-semibold text-foreground">
                     ${cb.balanceSheetTrillion.toFixed(1)}T
@@ -2180,7 +2180,7 @@ export default function GlobalBondsPage() {
           <div className="flex gap-2 shrink-0">
             <Badge
               variant="outline"
-              className="border-neutral-600 text-muted-foreground text-xs"
+              className="border-border text-muted-foreground text-xs"
             >
               <Percent className="w-3 h-3 mr-1" />
               Mar 28, 2026

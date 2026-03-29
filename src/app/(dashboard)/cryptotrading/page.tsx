@@ -144,7 +144,7 @@ function statusBg(s: IndicatorData["status"]): string {
     case "undervalued": return "bg-emerald-400/10 text-emerald-400 border-emerald-400/30";
     case "overvalued":  return "bg-red-400/10 text-red-400 border-red-400/30";
     case "fair":        return "bg-amber-400/10 text-amber-400 border-amber-400/30";
-    default:            return "bg-slate-400/10 text-muted-foreground border-slate-400/30";
+    default:            return "bg-muted-foreground/10 text-muted-foreground border-muted-foreground/30";
   }
 }
 
@@ -565,7 +565,7 @@ function IndicatorCard({ ind }: { ind: IndicatorData }) {
 
   return (
     <div
-      className="bg-muted/60 border border-border/50 rounded-xl p-4 cursor-pointer hover:border-slate-600 transition-colors"
+      className="bg-muted/60 border border-border/50 rounded-xl p-4 cursor-pointer hover:border-border transition-colors"
       onClick={() => setExpanded((e) => !e)}
     >
       <div className="flex items-start justify-between gap-3">
@@ -638,7 +638,7 @@ function TrendBadge({ trend }: { trend: WhaleData["trend"] }) {
     </span>
   );
   return (
-    <span className="text-xs px-2 py-0.5 rounded bg-muted text-muted-foreground border border-slate-600 font-medium">
+    <span className="text-xs px-2 py-0.5 rounded bg-muted text-muted-foreground border border-border font-medium">
       Neutral
     </span>
   );
@@ -647,7 +647,7 @@ function TrendBadge({ trend }: { trend: WhaleData["trend"] }) {
 function FundingBadge({ rate }: { rate: number }) {
   const pct = rate * 100;
   const color = pct > 0.02 ? "text-emerald-400" : pct < -0.02 ? "text-red-400" : "text-muted-foreground";
-  const bg = pct > 0.02 ? "bg-emerald-400/10 border-emerald-400/30" : pct < -0.02 ? "bg-red-400/10 border-red-400/30" : "bg-muted border-slate-600";
+  const bg = pct > 0.02 ? "bg-emerald-400/10 border-emerald-400/30" : pct < -0.02 ? "bg-red-400/10 border-red-400/30" : "bg-muted border-border";
   return (
     <span className={cn("text-xs font-mono px-2 py-0.5 rounded border font-medium", color, bg)}>
       {pct >= 0 ? "+" : ""}{pct.toFixed(4)}%
@@ -1135,7 +1135,7 @@ export default function CryptoTradingPage() {
           ].map((col, i) => (
             <div key={col.label} className={cn(
               "rounded-lg p-3 border",
-              i === 1 ? "bg-emerald-400/5 border-emerald-400/20" : "bg-muted/30 border-slate-600/30"
+              i === 1 ? "bg-emerald-400/5 border-emerald-400/20" : "bg-muted/30 border-border/30"
             )}>
               <p className={cn("text-xs font-semibold mb-2", i === 1 ? "text-emerald-400" : "text-muted-foreground")}>{col.label}</p>
               {[

@@ -886,7 +886,7 @@ function ResearchProcessTab() {
           <button
             key={step.id}
             onClick={() => setActiveStep(activeStep === step.id ? null : step.id)}
-            className="text-left rounded-xl bg-muted/50 border border-border/50 p-4 hover:border-slate-500/60 transition-colors"
+            className="text-left rounded-xl bg-muted/50 border border-border/50 p-4 hover:border-muted-foreground/60 transition-colors"
           >
             <div className="flex items-center gap-3 mb-1">
               <div
@@ -994,7 +994,7 @@ function FinancialModelingTab() {
                           ? "bg-red-500/20 text-red-400"
                           : row.sensitivity === "Medium"
                           ? "bg-amber-500/20 text-amber-400"
-                          : "bg-slate-600/40 text-muted-foreground"
+                          : "bg-muted/40 text-muted-foreground"
                       )}
                     >
                       {row.sensitivity}
@@ -1162,7 +1162,7 @@ function ValuationTab() {
                 );
               })}
               {/* Median row */}
-              <tr className="border-t border-slate-600/50 bg-muted/20">
+              <tr className="border-t border-border/50 bg-muted/20">
                 <td className="py-2 pr-3 text-muted-foreground font-semibold text-xs italic">Median</td>
                 <td className="py-2 px-2 text-right text-muted-foreground font-mono">—</td>
                 <td className="py-2 px-2 text-right text-muted-foreground font-mono font-semibold">{medEvEbitda.toFixed(1)}x</td>
@@ -1386,7 +1386,7 @@ function ReportStructureTab() {
                     ? "bg-primary/20 text-primary"
                     : cat.type === "regulatory"
                     ? "bg-red-500/20 text-red-300"
-                    : "bg-slate-600/40 text-muted-foreground"
+                    : "bg-muted/40 text-muted-foreground"
                 )}
               >
                 {cat.type}

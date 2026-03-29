@@ -865,7 +865,7 @@ function TabCashFlowModel() {
                           : row.phase === "ramp"
                           ? "bg-primary/20 text-primary"
                           : row.phase === "tail"
-                          ? "bg-zinc-500/20 text-muted-foreground"
+                          ? "bg-muted-foreground/20 text-muted-foreground"
                           : "bg-cyan-500/20 text-muted-foreground"
                       )}
                     >

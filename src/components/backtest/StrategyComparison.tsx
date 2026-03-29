@@ -64,14 +64,14 @@ interface MetricRowProps {
 function MetricRow({ label, values, winnerIdx, higherIsBetter = true }: MetricRowProps) {
   return (
     <tr className="border-b border-white/5">
-      <td className="py-1.5 pr-2 text-xs text-zinc-500">{label}</td>
+      <td className="py-1.5 pr-2 text-xs text-muted-foreground">{label}</td>
       {values.map((v, i) => (
         <td
           key={i}
           className={`py-1.5 text-center text-xs font-mono font-semibold ${
             i === winnerIdx
               ? "text-emerald-400"
-              : "text-zinc-300"
+              : "text-muted-foreground"
           }`}
         >
           {typeof v === "number" ? v.toFixed(2) : v}
@@ -177,8 +177,8 @@ export default function StrategyComparison({ baseConfig }: Props) {
   if (!baseConfig || results.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center gap-2 py-10 text-center">
-        <div className="text-xs text-zinc-500">Run a backtest first to enable strategy comparison.</div>
-        <div className="text-xs text-zinc-600">This panel will automatically compare RSI-7, RSI-14, and RSI-21 on the same market data.</div>
+        <div className="text-xs text-muted-foreground">Run a backtest first to enable strategy comparison.</div>
+        <div className="text-xs text-muted-foreground/70">This panel will automatically compare RSI-7, RSI-14, and RSI-21 on the same market data.</div>
       </div>
     );
   }
@@ -216,8 +216,8 @@ export default function StrategyComparison({ baseConfig }: Props) {
               className="inline-block h-2 w-6 rounded-full"
               style={{ backgroundColor: COLORS[i].line }}
             />
-            <span className="text-zinc-300 font-medium">{cfg.label}</span>
-            <span className={`rounded-sm px-1 text-[11px] font-semibold ${results[i].grade === "S" ? "bg-amber-400/20 text-amber-400" : results[i].grade === "A" ? "bg-emerald-400/20 text-emerald-400" : results[i].grade === "B" ? "bg-primary/20 text-primary" : "bg-zinc-400/20 text-zinc-400"}`}>
+            <span className="text-muted-foreground font-medium">{cfg.label}</span>
+            <span className={`rounded-sm px-1 text-[11px] font-semibold ${results[i].grade === "S" ? "bg-amber-400/20 text-amber-400" : results[i].grade === "A" ? "bg-emerald-400/20 text-emerald-400" : results[i].grade === "B" ? "bg-primary/20 text-primary" : "bg-muted-foreground/20 text-muted-foreground"}`}>
               {results[i].grade}
             </span>
           </div>
@@ -226,7 +226,7 @@ export default function StrategyComparison({ baseConfig }: Props) {
 
       {/* Overlay equity curves */}
       <div>
-        <h4 className="mb-1.5 text-xs font-semibold text-zinc-500">Equity Curves (Overlay)</h4>
+        <h4 className="mb-1.5 text-xs font-semibold text-muted-foreground">Equity Curves (Overlay)</h4>
         <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20 p-2">
           <OverlayEquityCurve results={results} startingCapital={baseConfig.startingCapital} />
         </div>
@@ -234,12 +234,12 @@ export default function StrategyComparison({ baseConfig }: Props) {
 
       {/* Metrics comparison table */}
       <div>
-        <h4 className="mb-1.5 text-xs font-semibold text-zinc-500">Metrics Comparison</h4>
+        <h4 className="mb-1.5 text-xs font-semibold text-muted-foreground">Metrics Comparison</h4>
         <div className="overflow-hidden rounded-lg border border-white/5 bg-black/20">
           <table className="w-full">
             <thead>
               <tr className="border-b border-white/5">
-                <th className="py-2 pr-2 text-left text-[11px] font-medium text-zinc-600">Metric</th>
+                <th className="py-2 pr-2 text-left text-[11px] font-medium text-muted-foreground/70">Metric</th>
                 {RSI_CONFIGS.map((cfg, i) => (
                   <th key={i} className="py-2 text-center text-[11px] font-medium" style={{ color: COLORS[i].line }}>
                     {cfg.label.split(" ")[0]}
@@ -263,7 +263,7 @@ export default function StrategyComparison({ baseConfig }: Props) {
         </div>
       </div>
 
-      <div className="text-[11px] text-zinc-600">
+      <div className="text-[11px] text-muted-foreground/70">
         Winner highlighted with green dot per row. All three strategies tested on identical market data (same seed).
       </div>
     </div>

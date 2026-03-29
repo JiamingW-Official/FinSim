@@ -27,7 +27,7 @@ function rewardColor(type: string): string {
     case "title":    return "text-muted-foreground bg-cyan-500/10 border-cyan-500/20";
     case "badge":    return "text-primary bg-primary/10 border-border";
     case "xp_boost": return "text-green-400 bg-green-500/10 border-green-500/20";
-    default:         return "text-zinc-400 bg-white/5 border-white/10";
+    default:         return "text-muted-foreground bg-white/5 border-white/10";
   }
 }
 

@@ -218,7 +218,7 @@ export default function StrategyPanel({
         <div>
           <button
             onClick={() => setShowSaved(!showSaved)}
-            className="flex w-full items-center justify-between rounded-lg border border-white/5 bg-white/5 px-3 py-2 text-xs text-zinc-400 transition-colors hover:bg-white/10"
+            className="flex w-full items-center justify-between rounded-lg border border-white/5 bg-white/5 px-3 py-2 text-xs text-muted-foreground transition-colors hover:bg-white/10"
           >
             <span className="flex items-center gap-1.5">
               <Save className="h-3 w-3" />
@@ -240,8 +240,8 @@ export default function StrategyPanel({
                     onClick={() => loadStrategy(s)}
                     className="w-full rounded-lg border border-white/5 bg-white/5 px-3 py-2 text-left text-xs transition-colors hover:bg-primary/10"
                   >
-                    <span className="font-medium text-zinc-200">{s.strategy.name}</span>
-                    <span className="ml-2 text-zinc-500">Grade {s.bestGrade}</span>
+                    <span className="font-medium text-foreground">{s.strategy.name}</span>
+                    <span className="ml-2 text-muted-foreground">Grade {s.bestGrade}</span>
                   </button>
                 ))}
               </motion.div>
@@ -255,10 +255,10 @@ export default function StrategyPanel({
         <select
           value={ticker}
           onChange={(e) => setTicker(e.target.value)}
-          className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 outline-none focus:border-primary/50"
+          className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground outline-none focus:border-primary/50"
         >
           {WATCHLIST_STOCKS.map((s) => (
-            <option key={s.ticker} value={s.ticker} className="bg-zinc-900">
+            <option key={s.ticker} value={s.ticker} className="bg-card">
               {s.ticker} — {s.name}
             </option>
           ))}
@@ -275,7 +275,7 @@ export default function StrategyPanel({
               className={`flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs transition-all ${
                 preset === key
                   ? "border-primary/50 bg-primary/15 text-orange-300"
-                  : "border-white/5 bg-white/5 text-zinc-400 hover:bg-white/10"
+                  : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
               }`}
             >
               {PRESET_ICONS[key]}
@@ -295,7 +295,7 @@ export default function StrategyPanel({
               className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-medium transition-all ${
                 barCount === n
                   ? "border-primary/50 bg-primary/15 text-orange-300"
-                  : "border-white/5 bg-white/5 text-zinc-400 hover:bg-white/10"
+                  : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
               }`}
             >
               {n}
@@ -316,7 +316,7 @@ export default function StrategyPanel({
                   ? d === "long"
                     ? "border-emerald-500/50 bg-emerald-500/15 text-emerald-300"
                     : "border-rose-500/50 bg-rose-500/15 text-rose-300"
-                  : "border-white/5 bg-white/5 text-zinc-400 hover:bg-white/10"
+                  : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
               }`}
             >
               {d}
@@ -334,7 +334,7 @@ export default function StrategyPanel({
               className="flex items-center justify-between rounded-lg border border-primary/20 bg-primary/10 px-3 py-1.5"
             >
               <span className="text-xs font-medium text-orange-300">{rule.label}</span>
-              <button onClick={() => removeEntryRule(rule.id)} className="text-zinc-500 hover:text-red-400">
+              <button onClick={() => removeEntryRule(rule.id)} className="text-muted-foreground hover:text-red-400">
                 <X className="h-3 w-3" />
               </button>
             </div>
@@ -342,7 +342,7 @@ export default function StrategyPanel({
           {entryRules.length < 3 && (
             <button
               onClick={() => setShowRulePicker(true)}
-              className="flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-white/10 py-2 text-xs text-zinc-500 transition-colors hover:border-primary/30 hover:text-orange-400"
+              className="flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-white/10 py-2 text-xs text-muted-foreground transition-colors hover:border-primary/30 hover:text-orange-400"
             >
               <Plus className="h-3 w-3" /> Add Rule
             </button>
@@ -356,7 +356,7 @@ export default function StrategyPanel({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="mt-2 max-h-52 space-y-1 overflow-y-auto rounded-lg border border-white/10 bg-zinc-900/95 p-2"
+              className="mt-2 max-h-52 space-y-1 overflow-y-auto rounded-lg border border-white/10 bg-card/95 p-2"
             >
               {RULE_CATALOG.filter((r) => !entryRules.find((er) => er.id === r.id)).map((entry) => (
                 <button
@@ -368,14 +368,14 @@ export default function StrategyPanel({
                     <span className={`rounded border px-1.5 py-0.5 text-xs font-medium ${CATEGORY_COLORS[entry.category]}`}>
                       {entry.category}
                     </span>
-                    <span className="text-xs font-medium text-zinc-200">{entry.label}</span>
+                    <span className="text-xs font-medium text-foreground">{entry.label}</span>
                   </div>
-                  <span className="mt-0.5 text-[11px] text-zinc-500">{entry.description}</span>
+                  <span className="mt-0.5 text-[11px] text-muted-foreground">{entry.description}</span>
                 </button>
               ))}
               <button
                 onClick={() => setShowRulePicker(false)}
-                className="w-full pt-1 text-center text-xs text-zinc-600 hover:text-zinc-400"
+                className="w-full pt-1 text-center text-xs text-muted-foreground/70 hover:text-muted-foreground"
               >
                 Cancel
               </button>
@@ -474,7 +474,7 @@ export default function StrategyPanel({
                 className={`flex-1 rounded-lg border px-1.5 py-1.5 text-xs font-medium transition-all ${
                   positionSizing.kind === kind
                     ? "border-primary/50 bg-primary/15 text-orange-300"
-                    : "border-white/5 bg-white/5 text-zinc-400 hover:bg-white/10"
+                    : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
                 }`}
               >
                 {kind === "percent_of_capital" ? "% Capital" : kind === "fixed_shares" ? "Fixed" : "Kelly"}
@@ -504,7 +504,7 @@ export default function StrategyPanel({
               max={1000}
               value={positionSizing.shares}
               onChange={(e) => setPositionSizing({ kind: "fixed_shares", shares: Math.max(1, +e.target.value) })}
-              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-zinc-200 outline-none focus:border-primary/50"
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-foreground outline-none focus:border-primary/50"
             />
           )}
           {positionSizing.kind === "kelly_criterion" && (
@@ -523,7 +523,7 @@ export default function StrategyPanel({
                   {positionSizing.maxPercent}%
                 </span>
               </div>
-              <p className="mt-1 text-[11px] text-zinc-600">
+              <p className="mt-1 text-[11px] text-muted-foreground/70">
                 Kelly fraction capped at max %. Uses win rate & payoff ratio.
               </p>
             </div>
@@ -532,11 +532,11 @@ export default function StrategyPanel({
       </Section>
 
       {/* Advanced Settings */}
-      <Section label="Advanced" icon={<Gauge className="h-3 w-3 text-zinc-400" />}>
+      <Section label="Advanced" icon={<Gauge className="h-3 w-3 text-muted-foreground" />}>
         <div className="space-y-2.5">
           {/* Warmup Bars */}
           <div className="space-y-1">
-            <label className="text-xs text-zinc-500">Warmup Period</label>
+            <label className="text-xs text-muted-foreground">Warmup Period</label>
             <div className="flex items-center gap-2">
               <input
                 type="range"
@@ -545,18 +545,18 @@ export default function StrategyPanel({
                 step={5}
                 value={warmupBars}
                 onChange={(e) => setWarmupBars(+e.target.value)}
-                className="flex-1 accent-zinc-500"
+                className="flex-1 accent-muted-foreground"
               />
-              <span className="w-12 text-right text-xs font-medium text-zinc-400">
+              <span className="w-12 text-right text-xs font-medium text-muted-foreground">
                 {warmupBars} bars
               </span>
             </div>
-            <p className="text-[11px] text-zinc-600">Bars before first trade (indicator warmup)</p>
+            <p className="text-[11px] text-muted-foreground/70">Bars before first trade (indicator warmup)</p>
           </div>
 
           {/* Monte Carlo */}
           <div className="space-y-1">
-            <label className="flex items-center gap-1.5 text-xs text-zinc-500">
+            <label className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Dice5 className="h-3 w-3 text-fuchsia-400" />
               Monte Carlo Runs
             </label>
@@ -568,14 +568,14 @@ export default function StrategyPanel({
                   className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-medium transition-all ${
                     monteCarloRuns === opt.value
                       ? "border-fuchsia-500/50 bg-fuchsia-500/15 text-fuchsia-300"
-                      : "border-white/5 bg-white/5 text-zinc-400 hover:bg-white/10"
+                      : "border-white/5 bg-white/5 text-muted-foreground hover:bg-white/10"
                   }`}
                 >
                   {opt.label}
                 </button>
               ))}
             </div>
-            <p className="text-[11px] text-zinc-600">
+            <p className="text-[11px] text-muted-foreground/70">
               {monteCarloRuns > 0
                 ? `Simulate ${monteCarloRuns} market variations for probability analysis`
                 : "Disabled — enable for statistical confidence analysis"}
@@ -634,10 +634,10 @@ function ExitSlider({
   return (
     <div className="space-y-1">
       <div className="flex items-center justify-between">
-        <label className="text-xs text-zinc-500">{label}</label>
+        <label className="text-xs text-muted-foreground">{label}</label>
         <button
           onClick={() => onToggle(!enabled)}
-          className={`relative h-4 w-7 rounded-full transition-colors ${enabled ? c.toggle : "bg-zinc-700"}`}
+          className={`relative h-4 w-7 rounded-full transition-colors ${enabled ? c.toggle : "bg-muted"}`}
         >
           <span
             className={`absolute top-0.5 h-3 w-3 rounded-full bg-white shadow transition-transform ${enabled ? "translate-x-3.5" : "translate-x-0.5"}`}
@@ -667,7 +667,7 @@ function ExitSlider({
 function Section({ label, icon, children }: { label: string; icon?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <h3 className="flex items-center gap-1.5 text-xs font-semibold text-zinc-500">
+      <h3 className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
         {icon}
         {label}
       </h3>

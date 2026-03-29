@@ -308,7 +308,7 @@ function MergerArbitrageTab() {
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-800/50">
+              <tbody className="divide-y divide-border/50">
                 {DEAL_TABLE.map((row) => (
                     <tr key={row.target} className="hover:bg-muted/30 transition-colors">
                       <td className="py-2 pr-3 text-foreground font-medium">{row.target}</td>
@@ -1050,7 +1050,7 @@ function DistressedSPACTab() {
                   <th className="text-left text-muted-foreground pb-2">Traditional IPO</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-800/40">
+              <tbody className="divide-y divide-border/40">
                 {[
                   ["Timeline", "3–5 months post-DA", "12–18 months"],
                   ["Projections", "Forward guidance allowed (PSLRA safe harbor*)", "No projections in S-1"],

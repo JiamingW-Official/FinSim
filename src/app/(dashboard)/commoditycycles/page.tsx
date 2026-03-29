@@ -1570,7 +1570,7 @@ export default function CommodityCyclesPage() {
                                   ? "bg-red-500/15 text-red-400 border-red-500/25"
                                   : row.laNinaImpact === "Positive"
                                   ? "bg-emerald-500/15 text-emerald-400 border-emerald-500/25"
-                                  : "bg-gray-500/15 text-muted-foreground border-gray-500/25"
+                                  : "bg-muted-foreground/15 text-muted-foreground border-muted-foreground/25"
                               }`}
                             >
                               {row.laNinaImpact}

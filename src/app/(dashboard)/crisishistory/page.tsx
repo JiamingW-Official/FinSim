@@ -724,7 +724,7 @@ export default function CrisisHistoryPage() {
                 onClick={() => setSelectedCrisis(c.id === selectedCrisis ? null : c.id)}
                 className={`text-left rounded-lg border p-3 transition-all ${
                   c.id === selectedCrisis
-                    ? "border-slate-500 bg-muted"
+                    ? "border-muted-foreground bg-muted"
                     : "border-border bg-card hover:border-border"
                 }`}
               >
@@ -1200,7 +1200,7 @@ export default function CrisisHistoryPage() {
                     <div key={row.crisis} className="bg-muted rounded-lg p-3">
                       <div className="flex items-center justify-between mb-1">
                         <p className="text-xs font-bold text-muted-foreground">{row.crisis}</p>
-                        <Badge className={`text-xs px-1.5 py-0 border border-slate-600 bg-muted/50 ${row.color}`}>{row.outcome}</Badge>
+                        <Badge className={`text-xs px-1.5 py-0 border border-border bg-muted/50 ${row.color}`}>{row.outcome}</Badge>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed">{row.response}</p>
                     </div>

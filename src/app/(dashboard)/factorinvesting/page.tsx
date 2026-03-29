@@ -722,7 +722,7 @@ function TiltBuilderTab() {
               </div>
               <div className="relative h-4 rounded bg-white/5 overflow-hidden">
                 <div
-                  className="absolute h-full rounded bg-zinc-600/60"
+                  className="absolute h-full rounded bg-muted/60"
                   style={{ width: `${Math.min(100, (row.bench / row.max) * 100)}%` }}
                 />
                 <motion.div

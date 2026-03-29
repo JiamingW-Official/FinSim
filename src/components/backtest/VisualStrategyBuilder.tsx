@@ -143,7 +143,7 @@ function ConditionRow({
               targetNumber: def.defaultTarget,
             });
           }}
-          className="appearance-none rounded-md border border-white/10 bg-zinc-900 px-2 py-1 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="appearance-none rounded-md border border-white/10 bg-card px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
         >
           {INDICATORS.map((i) => (
             <option key={i} value={i}>{i}</option>
@@ -156,7 +156,7 @@ function ConditionRow({
         <select
           value={cond.condition}
           onChange={(e) => onChange({ ...cond, condition: e.target.value as ConditionChoice })}
-          className="appearance-none rounded-md border border-white/10 bg-zinc-900 px-2 py-1 text-xs text-zinc-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          className="appearance-none rounded-md border border-white/10 bg-card px-2 py-1 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
         >
           {CONDITIONS.map((c) => (
             <option key={c} value={c}>{c}</option>
@@ -173,7 +173,7 @@ function ConditionRow({
             className={`rounded px-2 py-0.5 text-xs font-medium transition-colors ${
               cond.usePreset && cond.targetPreset === p
                 ? "bg-primary text-white"
-                : "bg-white/5 text-zinc-400 hover:bg-white/10"
+                : "bg-white/5 text-muted-foreground hover:bg-white/10"
             }`}
           >
             {p}
@@ -188,10 +188,10 @@ function ConditionRow({
             const v = parseFloat(e.target.value);
             if (!isNaN(v)) onChange({ ...cond, usePreset: false, targetPreset: null, targetNumber: v });
           }}
-          className={`w-16 rounded-md border px-2 py-0.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+          className={`w-16 rounded-md border px-2 py-0.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500 ${
             !cond.usePreset
               ? "border-primary bg-muted/40"
-              : "border-white/10 bg-zinc-900"
+              : "border-white/10 bg-card"
           }`}
         />
       </div>
@@ -199,7 +199,7 @@ function ConditionRow({
       {canRemove && (
         <button
           onClick={onRemove}
-          className="ml-auto rounded p-0.5 text-zinc-600 transition-colors hover:bg-rose-500/10 hover:text-rose-400"
+          className="ml-auto rounded p-0.5 text-muted-foreground/70 transition-colors hover:bg-rose-500/10 hover:text-rose-400"
         >
           <X className="h-3.5 w-3.5" />
         </button>
@@ -265,14 +265,14 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
         className="flex w-full items-center justify-between px-4 py-3"
         onClick={() => setIsCollapsed((v) => !v)}
       >
-        <span className="text-sm font-semibold text-zinc-200">Visual Strategy Builder</span>
+        <span className="text-sm font-semibold text-foreground">Visual Strategy Builder</span>
         <div className="flex items-center gap-2">
           {!isCollapsed && (
             <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary">
               {entryConditions.length} entry / {exitConditions.length} exit rules
             </span>
           )}
-          {isCollapsed ? <ChevronDown className="h-4 w-4 text-zinc-500" /> : <ChevronUp className="h-4 w-4 text-zinc-500" />}
+          {isCollapsed ? <ChevronDown className="h-4 w-4 text-muted-foreground" /> : <ChevronUp className="h-4 w-4 text-muted-foreground" />}
         </div>
       </button>
 
@@ -284,7 +284,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
               type="text"
               value={strategyName}
               onChange={(e) => setStrategyName(e.target.value)}
-              className="flex-1 rounded-md border border-white/10 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-200 placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="flex-1 rounded-md border border-white/10 bg-card px-3 py-1.5 text-xs text-foreground placeholder-muted-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
               placeholder="Strategy name..."
             />
             {savedStrategies.length > 0 && (
@@ -294,7 +294,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                   const idx = parseInt(e.target.value, 10);
                   if (!isNaN(idx)) loadSaved(idx);
                 }}
-                className="appearance-none rounded-md border border-white/10 bg-zinc-900 px-2 py-1.5 text-xs text-zinc-400 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="appearance-none rounded-md border border-white/10 bg-card px-2 py-1.5 text-xs text-muted-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
               >
                 <option value="">Load saved...</option>
                 {savedStrategies.map((s, i) => (
@@ -307,7 +307,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
           {/* Entry Conditions */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-zinc-500">
+              <span className="text-xs font-semibold text-muted-foreground">
                 Entry Conditions
               </span>
               <div className="flex items-center gap-2">
@@ -319,7 +319,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                         key={l}
                         onClick={() => setEntryLogic(l)}
                         className={`px-2 py-0.5 text-xs font-medium transition-colors ${
-                          entryLogic === l ? "bg-primary text-white" : "bg-zinc-900 text-zinc-400"
+                          entryLogic === l ? "bg-primary text-white" : "bg-card text-muted-foreground"
                         }`}
                       >
                         {l}
@@ -330,7 +330,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                 {entryConditions.length < 3 && (
                   <button
                     onClick={addEntry}
-                    className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-zinc-400 transition-colors hover:bg-white/10"
+                    className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-white/10"
                   >
                     <Plus className="h-3 w-3" /> Add
                   </button>
@@ -340,7 +340,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
             {entryConditions.map((cond, i) => (
               <div key={cond.id}>
                 {i > 0 && (
-                  <div className="py-0.5 text-center text-xs font-semibold text-zinc-600">
+                  <div className="py-0.5 text-center text-xs font-semibold text-muted-foreground/70">
                     {entryLogic}
                   </div>
                 )}
@@ -361,7 +361,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
           {/* Exit Conditions */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-zinc-500">
+              <span className="text-xs font-semibold text-muted-foreground">
                 Exit Conditions
               </span>
               <div className="flex items-center gap-2">
@@ -372,7 +372,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                         key={l}
                         onClick={() => setExitLogic(l)}
                         className={`px-2 py-0.5 text-xs font-medium transition-colors ${
-                          exitLogic === l ? "bg-teal-600 text-white" : "bg-zinc-900 text-zinc-400"
+                          exitLogic === l ? "bg-teal-600 text-white" : "bg-card text-muted-foreground"
                         }`}
                       >
                         {l}
@@ -383,7 +383,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                 {exitConditions.length < 2 && (
                   <button
                     onClick={addExit}
-                    className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-zinc-400 transition-colors hover:bg-white/10"
+                    className="flex items-center gap-1 rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:bg-white/10"
                   >
                     <Plus className="h-3 w-3" /> Add
                   </button>
@@ -393,7 +393,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
             {exitConditions.map((cond, i) => (
               <div key={cond.id}>
                 {i > 0 && (
-                  <div className="py-0.5 text-center text-xs font-semibold text-zinc-600">
+                  <div className="py-0.5 text-center text-xs font-semibold text-muted-foreground/70">
                     {exitLogic}
                   </div>
                 )}
@@ -412,7 +412,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
 
             {/* Stop loss */}
             <div className="flex items-center gap-3 rounded-lg border border-white/5 bg-white/[0.03] px-3 py-2">
-              <span className="text-xs text-zinc-400">Stop loss at</span>
+              <span className="text-xs text-muted-foreground">Stop loss at</span>
               <input
                 type="number"
                 min={0}
@@ -424,13 +424,13 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
                   setStopLoss(isNaN(v) ? null : v);
                 }}
                 placeholder="off"
-                className="w-14 rounded-md border border-white/10 bg-zinc-900 px-2 py-0.5 text-xs text-zinc-200 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-14 rounded-md border border-white/10 bg-card px-2 py-0.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-blue-500"
               />
-              <span className="text-xs text-zinc-500">%</span>
+              <span className="text-xs text-muted-foreground">%</span>
               {stopLoss !== null && (
                 <button
                   onClick={() => setStopLoss(null)}
-                  className="text-xs text-zinc-600 hover:text-zinc-400"
+                  className="text-xs text-muted-foreground/70 hover:text-muted-foreground"
                 >
                   off
                 </button>
@@ -441,7 +441,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
           {/* Position Sizing */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-zinc-500">
+              <span className="text-xs font-semibold text-muted-foreground">
                 Position Size
               </span>
               <span className="text-xs font-bold text-primary">{positionSize}% of portfolio</span>
@@ -455,7 +455,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
               onChange={(e) => setPositionSize(parseInt(e.target.value, 10))}
               className="h-1.5 w-full cursor-pointer appearance-none rounded-full bg-white/10 accent-blue-500"
             />
-            <div className="flex justify-between text-[11px] text-zinc-600">
+            <div className="flex justify-between text-[11px] text-muted-foreground/70">
               <span>5%</span>
               <span>50%</span>
               <span>100%</span>
@@ -466,7 +466,7 @@ export default function VisualStrategyBuilder({ savedStrategies, onSaveStrategy,
           <div className="flex gap-2 pt-1">
             <button
               onClick={handleSave}
-              className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-zinc-300 transition-colors hover:bg-white/10"
+              className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-white/10"
             >
               <Save className="h-3.5 w-3.5" /> Save
             </button>
