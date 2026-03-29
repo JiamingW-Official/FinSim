@@ -24,66 +24,59 @@ export function TradeHistory() {
 
   return (
     <div className="overflow-x-auto max-h-64">
-      <table className="w-full text-xs" role="table">
-        <thead>
-          <tr className="border-b border-border text-muted-foreground">
-            <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Date</th>
-            <th scope="col" className="px-2 py-1.5 text-left font-medium whitespace-nowrap">Ticker</th>
-            <th scope="col" className="px-2 py-1.5 text-center font-medium whitespace-nowrap">Side</th>
-            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Qty</th>
-            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Price</th>
-            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Fees</th>
-            <th scope="col" className="px-2 py-1.5 text-right font-medium whitespace-nowrap">Net P&amp;L</th>
+      <table className="w-full text-[11px]" role="table">
+        <thead className="sticky top-0 z-10 bg-card">
+          <tr className="border-b border-border/50">
+            <th scope="col" className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground whitespace-nowrap">Date</th>
+            <th scope="col" className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground whitespace-nowrap">Ticker</th>
+            <th scope="col" className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground whitespace-nowrap">Side</th>
+            <th scope="col" className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">Qty</th>
+            <th scope="col" className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">Price</th>
+            <th scope="col" className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">Fees</th>
+            <th scope="col" className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">Net P&amp;L</th>
           </tr>
         </thead>
         <tbody>
           {tradeHistory.slice(0, 50).map((trade) => (
             <tr
               key={trade.id}
-              className={cn(
-                "border-b border-border/50 transition-colors duration-150 hover:bg-accent/30",
-                trade.side === "sell" && trade.realizedPnL > 0
-                  ? "border-l-2 border-l-[#10b981]/40"
-                  : trade.side === "sell" && trade.realizedPnL < 0
-                    ? "border-l-2 border-l-[#ef4444]/40"
-                    : "border-l-2 border-l-transparent",
-              )}
+              className="border-b border-border/50 transition-colors hover:bg-muted/50"
             >
-              <td className="px-2 py-1.5 text-muted-foreground tabular-nums">
+              <td className="px-3 py-2 font-mono tabular-nums text-muted-foreground">
                 {formatShortDate(trade.simulationDate)}
               </td>
-              <td className="px-2 py-1.5 font-semibold">{trade.ticker}</td>
-              <td className="px-2 py-1.5 text-center">
+              <td className="px-3 py-2 font-medium">{trade.ticker}</td>
+              <td className="px-3 py-2 text-center">
                 <Badge
                   variant="outline"
                   className={cn(
                     "text-xs px-1.5 py-0",
                     trade.side === "buy"
-                      ? "border-[#10b981]/30 text-[#10b981]"
-                      : "border-[#ef4444]/30 text-[#ef4444]",
+                      ? "border-emerald-500/30 text-emerald-500"
+                      : "border-red-500/30 text-red-500",
                   )}
                 >
                   {trade.side.toUpperCase()}
                 </Badge>
               </td>
-              <td className="px-2 py-1.5 text-right tabular-nums">
+              <td className="px-3 py-2 text-right font-mono tabular-nums">
                 {trade.quantity}
               </td>
-              <td className="px-2 py-1.5 text-right tabular-nums">
+              <td className="px-3 py-2 text-right font-mono tabular-nums">
                 {formatCurrency(trade.price)}
               </td>
-              <td className="px-2 py-1.5 text-right tabular-nums text-muted-foreground">
+              <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                 {(trade.fees ?? 0) > 0
                   ? formatCurrency(trade.fees)
                   : "—"}
               </td>
               <td
                 className={cn(
-                  "px-2 py-1.5 text-right tabular-nums",
+                  "px-3 py-2 text-right font-mono tabular-nums",
                   trade.realizedPnL > 0
-                    ? "text-[#10b981]"
+                    ? "text-emerald-500"
                     : trade.realizedPnL < 0
-                      ? "text-[#ef4444]"
+                      ? "text-red-500"
                       : "text-muted-foreground",
                 )}
               >

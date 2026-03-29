@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { X, TrendingUp, TrendingDown, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { formatCurrency, cn } from "@/lib/utils";
 import type { OptionContract, ChainAnalytics, StrategyLeg } from "@/types/options";
 import { computeProbabilityOfProfit } from "@/services/options/analytics";
@@ -109,13 +110,14 @@ export function ContractDetail({
           {contract.ticker} {contract.expiry.slice(5)} ${contract.strike}
           {contract.type[0].toUpperCase()}
         </span>
-        <button
+        <Button
+          variant="ghost"
+          size="icon-xs"
           onClick={onClose}
-          className="text-muted-foreground hover:text-destructive transition-colors rounded p-0.5"
           aria-label="Close"
         >
           <X className="h-3.5 w-3.5" />
-        </button>
+        </Button>
       </div>
 
       {/* Section 2 - Price block */}
@@ -276,8 +278,10 @@ export function ContractDetail({
       </div>
 
       {/* Section 8 - Action buttons */}
-      <div className="px-3 py-3 mt-auto">
-        <button
+      <div className="px-3 py-3 mt-auto space-y-1.5">
+        <Button
+          variant="default"
+          size="sm"
           onClick={() =>
             onAddLeg({
               type: contract.type,
@@ -289,11 +293,13 @@ export function ContractDetail({
               greeks: contract.greeks,
             })
           }
-          className="w-full rounded-md bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[11px] font-bold py-2 hover:bg-emerald-500/25 transition-colors mb-1.5"
+          className="w-full text-[11px] font-bold"
         >
           Buy {contract.type.toUpperCase()} @ ${contract.ask.toFixed(2)}
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="destructive"
+          size="sm"
           onClick={() =>
             onAddLeg({
               type: contract.type,
@@ -305,10 +311,10 @@ export function ContractDetail({
               greeks: contract.greeks,
             })
           }
-          className="w-full rounded-md bg-red-500/15 border border-red-500/30 text-red-400 text-[11px] font-bold py-2 hover:bg-red-500/25 transition-colors"
+          className="w-full text-[11px] font-bold"
         >
           Sell {contract.type.toUpperCase()} @ ${contract.bid.toFixed(2)}
-        </button>
+        </Button>
       </div>
     </motion.div>
   );

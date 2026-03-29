@@ -336,14 +336,25 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
 
       {/* Table */}
       <div className="overflow-auto">
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse text-[11px]">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border/50">
-              {["Time", "Ticker", "Type", "Strike", "Expiry", "Size", "Premium", "Side", "Exchange", "Sentiment"].map(
-                (col, i) => (
+              {[
+                { col: "Time", align: "text-left" },
+                { col: "Ticker", align: "text-left" },
+                { col: "Type", align: "text-left" },
+                { col: "Strike", align: "text-right" },
+                { col: "Expiry", align: "text-right" },
+                { col: "Size", align: "text-right" },
+                { col: "Premium", align: "text-right" },
+                { col: "Side", align: "text-left" },
+                { col: "Exchange", align: "text-left" },
+                { col: "Sentiment", align: "text-left" },
+              ].map(
+                ({ col, align }, i) => (
                   <th
                     key={`${col}-${i}`}
-                    className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70"
+                    className={cn("px-3 py-2 text-[11px] font-medium text-muted-foreground", align)}
                   >
                     {col}
                   </th>
@@ -360,22 +371,17 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                 <tr
                   key={order.id}
                   onClick={() => onTickerExpiry?.(order.ticker, order.expiry)}
-                  className={cn(
-                    "cursor-pointer border-l-2 transition-colors",
-                    isCall
-                      ? "border-l-emerald-500/40 hover:bg-emerald-500/5"
-                      : "border-l-red-500/40 hover:bg-red-500/5",
-                  )}
+                  className="cursor-pointer border-b border-border/50 transition-colors hover:bg-muted/50"
                 >
-                  <td className="px-2 py-1 text-xs text-muted-foreground">{relTime(order.timestamp)}</td>
-                  <td className="px-2 py-1 text-xs font-semibold">{order.ticker}</td>
-                  <td className={cn("px-2 py-1 text-xs font-semibold", isCall ? "text-emerald-400" : "text-red-400")}>
+                  <td className="px-3 py-2 text-muted-foreground">{relTime(order.timestamp)}</td>
+                  <td className="px-3 py-2 font-medium">{order.ticker}</td>
+                  <td className={cn("px-3 py-2 font-medium", isCall ? "text-emerald-500" : "text-red-500")}>
                     {order.type}
                   </td>
-                  <td className="px-2 py-1 text-xs tabular-nums">${order.strike}</td>
-                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">{fmtExpiry(order.expiry)}</td>
-                  <td className="px-2 py-1 text-xs tabular-nums">{order.size.toLocaleString()}</td>
-                  <td className="px-2 py-1 text-xs font-medium tabular-nums text-orange-400">
+                  <td className="px-3 py-2 text-right font-mono tabular-nums">${order.strike}</td>
+                  <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">{fmtExpiry(order.expiry)}</td>
+                  <td className="px-3 py-2 text-right font-mono tabular-nums">{order.size.toLocaleString()}</td>
+                  <td className="px-3 py-2 text-right font-mono tabular-nums font-medium text-orange-400">
                     {fmtPremium(order.premium)}
                     {order.isUnusual && (
                       <span className="ml-1 rounded bg-amber-500/20 px-1 py-0.5 text-[8px] font-semibold text-amber-400">
@@ -383,15 +389,15 @@ function LiveFlowFeed({ baseOrders, onTickerExpiry }: LiveFlowFeedProps) {
                       </span>
                     )}
                   </td>
-                  <td className={cn("px-2 py-1 text-xs font-medium", order.side === "Buy" ? "text-emerald-400" : "text-red-400")}>
+                  <td className={cn("px-3 py-2 font-medium", order.side === "Buy" ? "text-emerald-500" : "text-red-500")}>
                     {order.side}
                   </td>
-                  <td className="px-2 py-1 text-xs text-muted-foreground">{order.exchange}</td>
-                  <td className="px-2 py-1 text-xs">
+                  <td className="px-3 py-2 text-muted-foreground">{order.exchange}</td>
+                  <td className="px-3 py-2">
                     <span
                       className={cn(
                         "font-medium",
-                        isBull ? "text-emerald-400" : isBear ? "text-red-400" : "text-muted-foreground",
+                        isBull ? "text-emerald-500" : isBear ? "text-red-500" : "text-muted-foreground",
                       )}
                     >
                       <span className="mr-0.5 text-[8px]">●</span>
@@ -639,11 +645,21 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
 
       {/* Prints table */}
       <div className="overflow-auto">
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse text-[11px]">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border/50">
-              {["Time", "Ticker", "Size", "Price", "Bid", "Ask", "vs Mkt", "Notional", "Dark Vol%"].map((col) => (
-                <th key={col} className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70">
+              {[
+                { col: "Time", align: "text-left" },
+                { col: "Ticker", align: "text-left" },
+                { col: "Size", align: "text-right" },
+                { col: "Price", align: "text-right" },
+                { col: "Bid", align: "text-right" },
+                { col: "Ask", align: "text-right" },
+                { col: "vs Mkt", align: "text-left" },
+                { col: "Notional", align: "text-right" },
+                { col: "Dark Vol%", align: "text-right" },
+              ].map(({ col, align }) => (
+                <th key={col} className={cn("px-3 py-2 text-[11px] font-medium text-muted-foreground", align)}>
                   {col}
                 </th>
               ))}
@@ -659,27 +675,20 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
               return (
                 <tr
                   key={p.id}
-                  className={cn(
-                    "border-l-2 transition-colors",
-                    isAbove
-                      ? "border-l-emerald-500/40 hover:bg-emerald-500/5"
-                      : isBelow
-                      ? "border-l-red-500/40 hover:bg-red-500/5"
-                      : "border-l-transparent hover:bg-accent/10",
-                  )}
+                  className="border-b border-border/50 transition-colors hover:bg-muted/50"
                 >
-                  <td className="px-2 py-1 text-xs text-muted-foreground">{relTime(p.timestamp)}</td>
-                  <td className="px-2 py-1 text-xs font-semibold">{p.ticker}</td>
-                  <td className="px-2 py-1 text-xs tabular-nums font-medium">{fmtShares(p.size)}</td>
-                  <td className="px-2 py-1 text-xs tabular-nums">${p.price.toFixed(2)}</td>
-                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">${p.bid.toFixed(2)}</td>
-                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">${p.ask.toFixed(2)}</td>
-                  <td className="px-2 py-1 text-xs">
+                  <td className="px-3 py-2 text-muted-foreground">{relTime(p.timestamp)}</td>
+                  <td className="px-3 py-2 font-medium">{p.ticker}</td>
+                  <td className="px-3 py-2 text-right font-mono tabular-nums font-medium">{fmtShares(p.size)}</td>
+                  <td className="px-3 py-2 text-right font-mono tabular-nums">${p.price.toFixed(2)}</td>
+                  <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">${p.bid.toFixed(2)}</td>
+                  <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">${p.ask.toFixed(2)}</td>
+                  <td className="px-3 py-2">
                     <span
                       className={cn(
-                        "rounded px-1 py-0.5 text-[11px] font-semibold",
-                        isAbove ? "bg-emerald-500/15 text-emerald-400"
-                          : isBelow ? "bg-red-500/15 text-red-400"
+                        "rounded px-1 py-0.5 text-[11px] font-medium",
+                        isAbove ? "bg-emerald-500/15 text-emerald-500"
+                          : isBelow ? "bg-red-500/15 text-red-500"
                           : "bg-muted/30 text-muted-foreground",
                       )}
                     >
@@ -687,10 +696,10 @@ function DarkPoolSection({ prints }: DarkPoolSectionProps) {
                       {p.diffPct !== 0 && ` ${p.diffPct > 0 ? "+" : ""}${p.diffPct.toFixed(2)}%`}
                     </span>
                   </td>
-                  <td className="px-2 py-1 text-xs tabular-nums font-medium text-orange-400">
+                  <td className="px-3 py-2 text-right font-mono tabular-nums font-medium text-orange-400">
                     {fmtNotional(p.notional)}
                   </td>
-                  <td className="px-2 py-1 text-xs tabular-nums text-muted-foreground">
+                  <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                     {darkVolPct}%
                   </td>
                 </tr>
@@ -927,12 +936,21 @@ function PcDashboard({ seed }: PcDashboardProps) {
       <div>
         <p className="mb-1.5 text-xs font-semibold text-muted-foreground">P/C Ratio by Ticker</p>
         <div className="overflow-auto">
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse text-[11px]">
             <thead className="sticky top-0 z-10 bg-card">
               <tr className="border-b border-border/50">
-                {["Ticker", "P/C Ratio", "Call Vol", "Put Vol", "Smart $ Bull", "Smart $ Bear", "Retail Bull", "Retail Bear"].map(
-                  (col, i) => (
-                    <th key={`${col}-${i}`} className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70">
+                {[
+                  { col: "Ticker", align: "text-left" },
+                  { col: "P/C Ratio", align: "text-right" },
+                  { col: "Call Vol", align: "text-right" },
+                  { col: "Put Vol", align: "text-right" },
+                  { col: "Smart $ Bull", align: "text-right" },
+                  { col: "Smart $ Bear", align: "text-right" },
+                  { col: "Retail Bull", align: "text-right" },
+                  { col: "Retail Bear", align: "text-right" },
+                ].map(
+                  ({ col, align }, i) => (
+                    <th key={`${col}-${i}`} className={cn("px-3 py-2 text-[11px] font-medium text-muted-foreground", align)}>
                       {col}
                     </th>
                   ),
@@ -944,24 +962,22 @@ function PcDashboard({ seed }: PcDashboardProps) {
                 const isHighFear = r.ratio > 1.5;
                 const isHighGreed = r.ratio < 0.65;
                 return (
-                  <tr key={r.ticker} className="border-l-2 border-l-transparent hover:bg-accent/10 transition-colors">
-                    <td className="px-2 py-1 text-xs font-semibold">{r.ticker}</td>
-                    <td className={cn("px-2 py-1 text-xs tabular-nums font-semibold",
-                      isHighFear ? "text-red-400" : isHighGreed ? "text-emerald-400" : "text-foreground")}>
+                  <tr key={r.ticker} className="border-b border-border/50 transition-colors hover:bg-muted/50">
+                    <td className="px-3 py-2 font-medium">{r.ticker}</td>
+                    <td className={cn("px-3 py-2 text-right font-mono tabular-nums font-medium",
+                      isHighFear ? "text-red-500" : isHighGreed ? "text-emerald-500" : "text-foreground")}>
                       {r.ratio.toFixed(2)}
-                      {isHighFear && <span className="ml-1 text-[8px]">🔴</span>}
-                      {isHighGreed && <span className="ml-1 text-[8px]">🟢</span>}
                     </td>
-                    <td className="px-2 py-1 text-xs tabular-nums text-emerald-400/80">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-emerald-500">
                       {r.callVol.toLocaleString()}
                     </td>
-                    <td className="px-2 py-1 text-xs tabular-nums text-red-400/80">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-red-500">
                       {r.putVol.toLocaleString()}
                     </td>
-                    <td className="px-2 py-1 text-xs tabular-nums text-emerald-400">{r.largeBullish}</td>
-                    <td className="px-2 py-1 text-xs tabular-nums text-red-400">{r.largeBearish}</td>
-                    <td className="px-2 py-1 text-xs tabular-nums text-emerald-400/60">{r.retailBullish}</td>
-                    <td className="px-2 py-1 text-xs tabular-nums text-red-400/60">{r.retailBearish}</td>
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-emerald-500">{r.largeBullish}</td>
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-red-500">{r.largeBearish}</td>
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-emerald-500/60">{r.retailBullish}</td>
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-red-500/60">{r.retailBearish}</td>
                   </tr>
                 );
               })}

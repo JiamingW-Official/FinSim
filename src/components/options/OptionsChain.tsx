@@ -69,40 +69,40 @@ export function OptionsChain({
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full text-xs tabular-nums" role="table">
+      <table className="w-full text-[11px]" role="table">
         <thead className="sticky top-0 z-10 bg-card">
-          <tr className="border-b border-border text-muted-foreground">
+          <tr className="border-b border-border/50">
             {showCalls && (
               <th
                 colSpan={CALL_COLS.length}
                 scope="col"
-                className="px-2 py-1.5 text-center text-xs font-bold text-emerald-400 whitespace-nowrap"
+                className="px-3 py-2 text-center text-[11px] font-medium text-emerald-500 whitespace-nowrap"
               >
                 CALLS
               </th>
             )}
-            <th scope="col" className="px-2 py-1.5 text-center text-xs font-bold whitespace-nowrap">Strike</th>
+            <th scope="col" className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground whitespace-nowrap">Strike</th>
             {showPuts && (
               <th
                 colSpan={PUT_COLS.length}
                 scope="col"
-                className="px-2 py-1.5 text-center text-xs font-bold text-red-400 whitespace-nowrap"
+                className="px-3 py-2 text-center text-[11px] font-medium text-red-500 whitespace-nowrap"
               >
                 PUTS
               </th>
             )}
           </tr>
-          <tr className="border-b border-border/50 text-muted-foreground/70">
+          <tr className="border-b border-border/50">
             {showCalls &&
               CALL_COLS.map((col) => (
-                <th key={`call-${col}`} scope="col" className="px-1.5 py-1 text-right font-medium whitespace-nowrap">
+                <th key={`call-${col}`} scope="col" className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">
                   {col}
                 </th>
               ))}
-            <th scope="col" className="px-2 py-1 text-center font-bold whitespace-nowrap">$</th>
+            <th scope="col" className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground whitespace-nowrap">$</th>
             {showPuts &&
               PUT_COLS.map((col) => (
-                <th key={`put-${col}`} scope="col" className="px-1.5 py-1 text-right font-medium whitespace-nowrap">
+                <th key={`put-${col}`} scope="col" className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">
                   {col}
                 </th>
               ))}
@@ -125,16 +125,14 @@ export function OptionsChain({
 
             const callCellCn = (extra?: string) =>
               cn(
-                "px-1.5 py-1 text-right cursor-pointer hover:bg-accent/30 transition-colors",
-                call.inTheMoney && "bg-emerald-500/5",
-                isCallSelected && "bg-orange-500/8",
+                "px-3 py-2 text-right font-mono tabular-nums cursor-pointer transition-colors",
+                isCallSelected && "bg-muted/50",
                 extra,
               );
             const putCellCn = (extra?: string) =>
               cn(
-                "px-1.5 py-1 text-right cursor-pointer hover:bg-accent/30 transition-colors",
-                put?.inTheMoney && "bg-red-500/5",
-                isPutSelected && "bg-orange-500/8",
+                "px-3 py-2 text-right font-mono tabular-nums cursor-pointer transition-colors",
+                isPutSelected && "bg-muted/50",
                 extra,
               );
 
@@ -142,8 +140,8 @@ export function OptionsChain({
               <tr
                 key={call.strike}
                 className={cn(
-                  "border-b border-border/30 transition-colors",
-                  isAtm && "border-y border-orange-500/30 bg-orange-500/5",
+                  "border-b border-border/50 transition-colors hover:bg-muted/50",
+                  isAtm && "border-y border-orange-500/30",
                 )}
               >
                 {/* Call side */}
@@ -153,7 +151,7 @@ export function OptionsChain({
                       {call.bid.toFixed(2)}
                     </td>
                     <td
-                      className={callCellCn("font-semibold")}
+                      className={callCellCn("font-medium")}
                       onClick={() => onSelectContract?.(call)}
                     >
                       {call.ask.toFixed(2)}
@@ -166,7 +164,7 @@ export function OptionsChain({
                     </td>
                     <td
                       className={callCellCn(
-                        callChg >= 0 ? "font-medium text-emerald-400" : "font-medium text-red-400",
+                        callChg >= 0 ? "font-medium text-emerald-500" : "font-medium text-red-500",
                       )}
                       onClick={() => onSelectContract?.(call)}
                     >
@@ -189,7 +187,7 @@ export function OptionsChain({
                       {(call.iv * 100).toFixed(1)}%
                     </td>
                     <td
-                      className={callCellCn("font-semibold text-emerald-400")}
+                      className={callCellCn("font-medium text-emerald-500")}
                       onClick={() => onSelectContract?.(call)}
                     >
                       {call.greeks.delta.toFixed(2)}
@@ -200,7 +198,7 @@ export function OptionsChain({
                 {/* Strike */}
                 <td
                   className={cn(
-                    "px-2 py-1 text-center font-bold",
+                    "px-3 py-2 text-center font-mono tabular-nums font-medium",
                     isAtm && "text-orange-400",
                   )}
                 >
@@ -213,7 +211,7 @@ export function OptionsChain({
                 {showPuts && put && (
                   <>
                     <td
-                      className={putCellCn("font-semibold text-red-400")}
+                      className={putCellCn("font-medium text-red-500")}
                       onClick={() => onSelectContract?.(put)}
                     >
                       {put.greeks.delta.toFixed(2)}
@@ -235,7 +233,7 @@ export function OptionsChain({
                     </td>
                     <td
                       className={putCellCn(
-                        putChg >= 0 ? "font-medium text-emerald-400" : "font-medium text-red-400",
+                        putChg >= 0 ? "font-medium text-emerald-500" : "font-medium text-red-500",
                       )}
                       onClick={() => onSelectContract?.(put)}
                     >
@@ -249,7 +247,7 @@ export function OptionsChain({
                       {put.last.toFixed(2)}
                     </td>
                     <td
-                      className={putCellCn("font-semibold")}
+                      className={putCellCn("font-medium")}
                       onClick={() => onSelectContract?.(put)}
                     >
                       {put.ask.toFixed(2)}

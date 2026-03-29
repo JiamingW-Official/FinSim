@@ -71,8 +71,8 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
                     <span
                       className={
                         leg.type === "call"
-                          ? "text-emerald-400"
-                          : "text-red-400"
+                          ? "text-emerald-500"
+                          : "text-red-500"
                       }
                     >
                       ${leg.strike}
@@ -92,7 +92,7 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
                 {pos.totalGreeks.delta.toFixed(2)}
               </span>
               <span>
-                <span className="text-red-400">T</span>{" "}
+                <span className="text-red-500">T</span>{" "}
                 {pos.totalGreeks.theta.toFixed(2)}
               </span>
             </div>
@@ -103,8 +103,8 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
                 className={cn(
                   "text-[11px] font-bold tabular-nums",
                   pos.unrealizedPnL >= 0
-                    ? "text-emerald-400"
-                    : "text-red-400",
+                    ? "text-emerald-500"
+                    : "text-red-500",
                 )}
               >
                 {pos.unrealizedPnL >= 0 ? "+" : ""}
@@ -114,8 +114,8 @@ export function OptionsPositions({ chain }: OptionsPositionsProps) {
                 className={cn(
                   "text-[11px] font-bold tabular-nums",
                   pos.unrealizedPnLPercent >= 0
-                    ? "text-emerald-400/70"
-                    : "text-red-400/70",
+                    ? "text-emerald-500/70"
+                    : "text-red-500/70",
                 )}
               >
                 {pos.unrealizedPnLPercent >= 0 ? "+" : ""}

@@ -192,13 +192,13 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
 
       {/* Prints feed */}
       <div className="overflow-auto">
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse text-[11px]">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="border-b border-border/50">
               {["Time", "Ticker", "Size", "Price", "vs Last", "Side"].map((col) => (
                 <th
                   key={col}
-                  className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70"
+                  className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground"
                 >
                   {col}
                 </th>
@@ -212,41 +212,34 @@ export function DarkPoolFlow({ seed = 42 }: DarkPoolFlowProps) {
               return (
                 <tr
                   key={p.id}
-                  className={cn(
-                    "border-l-2 transition-colors",
-                    isAbove
-                      ? "border-l-emerald-500/40 hover:bg-emerald-500/5"
-                      : isBelow
-                      ? "border-l-red-500/40 hover:bg-red-500/5"
-                      : "border-l-transparent hover:bg-accent/10",
-                  )}
+                  className="border-b border-border/50 transition-colors hover:bg-muted/50"
                 >
-                  <td className="px-2 py-1.5 text-xs text-muted-foreground">
+                  <td className="px-3 py-2 text-muted-foreground">
                     {relTime(p.timestamp)}
                   </td>
-                  <td className="px-2 py-1.5 text-xs font-semibold">
+                  <td className="px-3 py-2 font-medium">
                     {p.ticker}
                   </td>
-                  <td className="px-2 py-1.5 text-xs tabular-nums font-medium">
+                  <td className="px-3 py-2 text-right font-mono tabular-nums font-medium">
                     {formatShares(p.size)}
                   </td>
-                  <td className="px-2 py-1.5 text-xs tabular-nums">
+                  <td className="px-3 py-2 text-right font-mono tabular-nums">
                     ${p.price.toFixed(2)}
                   </td>
                   <td
                     className={cn(
-                      "px-2 py-1.5 text-xs tabular-nums font-medium",
+                      "px-3 py-2 text-right font-mono tabular-nums font-medium",
                       isAbove
-                        ? "text-emerald-400"
+                        ? "text-emerald-500"
                         : isBelow
-                        ? "text-red-400"
+                        ? "text-red-500"
                         : "text-muted-foreground",
                     )}
                   >
                     {p.diffPct >= 0 ? "+" : ""}
                     {p.diffPct.toFixed(3)}%
                   </td>
-                  <td className="px-2 py-1.5 text-xs">{sideLabel(p.side)}</td>
+                  <td className="px-3 py-2">{sideLabel(p.side)}</td>
                 </tr>
               );
             })}

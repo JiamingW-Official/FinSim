@@ -244,7 +244,7 @@ export function ChartToolbar() {
                 className={cn(
                   "flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-medium transition-colors",
                   showDividends
-                    ? "bg-purple-500/15 text-purple-400"
+                    ? "bg-primary/15 text-primary"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent",
                 )}
                 aria-label="Toggle dividend markers"
@@ -269,7 +269,7 @@ export function ChartToolbar() {
                   type="button"
                   onClick={() => toggleIndicator(opt.value)}
                   className={cn(
-                    "rounded-full px-2 py-0.5 text-xs font-medium transition-all duration-200",
+                    "rounded px-2 py-0.5 text-xs font-medium transition-colors",
                     activeIndicators.includes(opt.value)
                       ? "bg-primary/15 text-primary"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent",

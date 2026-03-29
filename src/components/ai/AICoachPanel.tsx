@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { useTradingStore } from "@/stores/trading-store";
 import { useChartStore } from "@/stores/chart-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
   analyzeTradeSetup,
@@ -1106,6 +1107,7 @@ export function AICoachPanel() {
         <div className="flex items-center gap-1.5 flex-wrap">
           <AlphaBotFace loading={loading} bias={result?.bias} conviction={result?.conviction} />
           <span className="font-bold">AlphaBot</span>
+          <span className="text-[9px] text-muted-foreground/70 font-normal">Rules-based</span>
           {result && !expanded && (
             <>
               <SmallBadge label={result.regime.label} cls={regimeCls} />
@@ -1385,28 +1387,26 @@ export function AICoachPanel() {
               {/* Action buttons — hidden on Ideas and Scan tabs */}
               {mode !== "ideas" && mode !== "scan" && mode !== "personalized" && (
               <div className="flex gap-1.5">
-                <button
+                <Button
                   type="button"
+                  variant="default"
+                  size="sm"
                   onClick={handleAnalyze}
                   disabled={loading}
-                  className={cn(
-                    "flex-1 rounded-md py-1.5 text-xs font-bold transition-colors",
-                    loading
-                      ? "cursor-not-allowed bg-primary/30 text-primary/50"
-                      : "bg-primary text-white hover:bg-primary/90 active:bg-primary/80",
-                  )}
+                  className="flex-1 text-xs font-bold"
                 >
                   {loading ? "Analyzing…" : "Get Analysis"}
-                </button>
+                </Button>
                 {result && !loading && (
-                  <button
+                  <Button
                     type="button"
+                    variant="outline"
+                    size="sm"
                     onClick={handleAnalyze}
-                    className="rounded-md border border-border px-2 py-1.5 text-xs text-muted-foreground hover:bg-accent transition-colors"
                     title="Retry"
                   >
                     <RotateCcw className="h-3 w-3" />
-                  </button>
+                  </Button>
                 )}
               </div>
               )}

@@ -250,8 +250,9 @@ function AdvancedOrderTicket({
             </Button>
             <Button
               size="sm"
+              variant="default"
               onClick={() => { soundEngine.playClick(); onConfirm(); }}
-              className="flex-1 text-xs font-semibold text-white bg-amber-500 hover:bg-amber-600"
+              className="flex-1 text-xs font-semibold"
             >
               Place Order
             </Button>
@@ -596,8 +597,13 @@ export function OrderEntry() {
         tradeFlash === "sell" && "trade-flash-sell",
       )}
     >
-      <div className="text-xs font-semibold text-muted-foreground">
-        Order Entry
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-semibold text-muted-foreground">
+          Practice Order Entry
+        </span>
+        <span className="rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-500">
+          SIMULATED
+        </span>
       </div>
 
       {/* Ticker & Price */}
@@ -616,51 +622,45 @@ export function OrderEntry() {
 
       {/* Buy / Sell / Short Toggle */}
       <div className="grid grid-cols-3 gap-1 rounded-md bg-muted p-0.5">
-        <button
+        <Button
           type="button"
+          variant={tradeMode === "buy" ? "default" : "ghost"}
+          size="sm"
           onClick={() => setTradeMode("buy")}
           className={cn(
-            "rounded py-1.5 text-xs font-semibold transition-all duration-200",
-            tradeMode === "buy"
-              ? "bg-emerald-500 text-white"
-              : "text-muted-foreground hover:text-foreground",
+            "text-xs font-semibold",
+            tradeMode === "buy" && "shadow-sm",
           )}
         >
-          <span className="inline-flex items-center gap-1">
-            <TrendingUp className="h-3 w-3" />
-            BUY
-          </span>
-        </button>
-        <button
+          <TrendingUp className="h-3 w-3" />
+          BUY
+        </Button>
+        <Button
           type="button"
+          variant={tradeMode === "sell" ? "destructive" : "ghost"}
+          size="sm"
           onClick={() => setTradeMode("sell")}
           className={cn(
-            "rounded py-1.5 text-xs font-semibold transition-all duration-200",
-            tradeMode === "sell"
-              ? "bg-red-500 text-white"
-              : "text-muted-foreground hover:text-foreground",
+            "text-xs font-semibold",
+            tradeMode === "sell" && "shadow-sm",
           )}
         >
-          <span className="inline-flex items-center gap-1">
-            <TrendingDown className="h-3 w-3" />
-            SELL
-          </span>
-        </button>
-        <button
+          <TrendingDown className="h-3 w-3" />
+          SELL
+        </Button>
+        <Button
           type="button"
+          variant={tradeMode === "short" ? "destructive" : "ghost"}
+          size="sm"
           onClick={() => setTradeMode("short")}
           className={cn(
-            "rounded py-1.5 text-xs font-semibold transition-all duration-200",
-            tradeMode === "short"
-              ? "bg-orange-500 text-white"
-              : "text-muted-foreground hover:text-foreground",
+            "text-xs font-semibold",
+            tradeMode === "short" && "shadow-sm",
           )}
         >
-          <span className="inline-flex items-center gap-1">
-            <ArrowDownLeft className="h-3 w-3" />
-            SHORT
-          </span>
-        </button>
+          <ArrowDownLeft className="h-3 w-3" />
+          SHORT
+        </Button>
       </div>
 
       {/* Short mode: borrow rate + risk warning */}
@@ -879,16 +879,8 @@ export function OrderEntry() {
         <Button
           onClick={() => setShowConfirm(true)}
           disabled={!canExecute}
-          className={cn(
-            "w-full font-semibold transition-all duration-200",
-            orderType !== "market"
-              ? "bg-amber-500 hover:bg-amber-600 text-white"
-              : tradeMode === "buy"
-                ? "bg-emerald-500 hover:bg-emerald-600 text-white"
-                : tradeMode === "short"
-                  ? "bg-orange-500 hover:bg-orange-600 text-white"
-                  : "bg-red-500 hover:bg-red-600 text-white",
-          )}
+          variant={tradeMode === "buy" && orderType === "market" ? "default" : "destructive"}
+          className="w-full font-semibold"
         >
           {orderType === "market"
             ? tradeMode === "buy"
@@ -901,17 +893,19 @@ export function OrderEntry() {
       </motion.div>
 
       {/* ═══════════════════ ADVANCED OPTIONS ═══════════════════ */}
-      <button
+      <Button
         type="button"
+        variant="outline"
+        size="sm"
         onClick={() => setShowAdvanced((v) => !v)}
-        className="flex items-center justify-between rounded-md border border-border/40 bg-muted/30 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className="w-full justify-between text-[11px] font-medium text-muted-foreground"
       >
         <span className="inline-flex items-center gap-1.5">
-          <Zap className="h-3 w-3 text-amber-500" />
+          <Zap className="h-3 w-3" />
           Advanced Orders
         </span>
         {showAdvanced ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-      </button>
+      </Button>
 
       <AnimatePresence initial={false}>
         {showAdvanced && (
@@ -980,13 +974,15 @@ export function OrderEntry() {
                           onChange={(e) => setBracketStop(e.target.value)}
                           className="h-7 bg-background text-xs tabular-nums"
                         />
-                        <button
+                        <Button
                           type="button"
+                          variant="outline"
+                          size="xs"
                           onClick={() => setBracketStop(price > 0 ? (price * 0.95).toFixed(2) : "")}
-                          className="shrink-0 rounded border border-red-500/30 px-1 text-[11px] text-red-500 hover:bg-red-500/10"
+                          className="shrink-0 text-[11px]"
                         >
                           -5%
-                        </button>
+                        </Button>
                       </div>
                     </div>
                     <div>
@@ -1002,13 +998,15 @@ export function OrderEntry() {
                           onChange={(e) => setBracketTP(e.target.value)}
                           className="h-7 bg-background text-xs tabular-nums"
                         />
-                        <button
+                        <Button
                           type="button"
+                          variant="outline"
+                          size="xs"
                           onClick={() => setBracketTP(price > 0 ? (price * 1.1).toFixed(2) : "")}
-                          className="shrink-0 rounded border border-emerald-500/30 px-1 text-[11px] text-emerald-500 hover:bg-emerald-500/10"
+                          className="shrink-0 text-[11px]"
                         >
                           +10%
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -1224,21 +1222,16 @@ export function OrderEntry() {
                   {/* Order side for conditional */}
                   <div className="grid grid-cols-2 gap-0.5 rounded-md bg-muted p-0.5">
                     {(["buy", "sell"] as OrderSide[]).map((s) => (
-                      <button
+                      <Button
                         key={s}
                         type="button"
+                        size="sm"
+                        variant={condSide === s ? (s === "buy" ? "default" : "destructive") : "ghost"}
                         onClick={() => setCondSide(s)}
-                        className={cn(
-                          "rounded py-1 text-xs font-medium capitalize transition-colors",
-                          condSide === s
-                            ? s === "buy"
-                              ? "bg-emerald-500 text-white"
-                              : "bg-red-500 text-white"
-                            : "text-muted-foreground",
-                        )}
+                        className="text-xs font-medium capitalize"
                       >
                         {s}
-                      </button>
+                      </Button>
                     ))}
                   </div>
 
@@ -1258,7 +1251,8 @@ export function OrderEntry() {
               <Button
                 onClick={handleAdvancedSubmit}
                 disabled={!currentBar || qty <= 0 || price <= 0}
-                className="w-full bg-amber-500 text-xs font-semibold text-white hover:bg-amber-600"
+                variant="default"
+                className="w-full text-xs font-semibold"
                 size="sm"
               >
                 Preview &amp; Place {ADVANCED_ORDER_TYPES.find((a) => a.value === advancedType)?.label} Order

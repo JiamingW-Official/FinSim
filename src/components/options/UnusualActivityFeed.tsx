@@ -158,10 +158,8 @@ function OrderTypeBadge({ orderType }: { orderType: UnusualActivityItem["orderTy
 
 // ── Row color class based on sentiment ───────────────────────────────────────
 
-function rowColorClass(item: UnusualActivityItem): string {
-  if (item.sentiment === "bullish") return "border-l-2 border-l-emerald-500/40 hover:bg-emerald-500/5";
-  if (item.sentiment === "bearish") return "border-l-2 border-l-red-500/40 hover:bg-red-500/5";
-  return "border-l-2 border-l-transparent hover:bg-accent/20";
+function rowColorClass(_item: UnusualActivityItem): string {
+  return "border-b border-border/50 hover:bg-muted/50";
 }
 
 // ── Main Component ────────────────────────────────────────────────────────────
@@ -234,30 +232,30 @@ export function UnusualActivityFeed({
             <span className="text-[11px]">No unusual activity detected</span>
           </div>
         ) : (
-          <table className="w-full border-collapse">
+          <table className="w-full border-collapse text-[11px]">
             <thead className="sticky top-0 z-10 bg-card">
               <tr className="border-b border-border/50">
                 {[
-                  "Time",
-                  "Ticker",
-                  "Exp",
-                  "DTE",
-                  "Strike",
-                  "C/P",
-                  "Side",
-                  "Sentiment",
-                  "Type",
-                  "Size",
-                  "Price",
-                  "Premium",
-                  "Prem/OI",
-                  "Bid",
-                  "Ask",
-                  "",
-                ].map((col, i) => (
+                  { col: "Time", align: "text-left" },
+                  { col: "Ticker", align: "text-left" },
+                  { col: "Exp", align: "text-right" },
+                  { col: "DTE", align: "text-right" },
+                  { col: "Strike", align: "text-right" },
+                  { col: "C/P", align: "text-left" },
+                  { col: "Side", align: "text-left" },
+                  { col: "Sentiment", align: "text-left" },
+                  { col: "Type", align: "text-left" },
+                  { col: "Size", align: "text-right" },
+                  { col: "Price", align: "text-right" },
+                  { col: "Premium", align: "text-right" },
+                  { col: "Prem/OI", align: "text-right" },
+                  { col: "Bid", align: "text-right" },
+                  { col: "Ask", align: "text-right" },
+                  { col: "", align: "text-left" },
+                ].map(({ col, align }, i) => (
                   <th
                     key={`${col}-${i}`}
-                    className="px-2 py-1.5 text-left text-[11px] font-semibold text-muted-foreground/70"
+                    className={cn("px-3 py-2 text-[11px] font-medium text-muted-foreground", align)}
                   >
                     {col}
                   </th>
@@ -284,35 +282,35 @@ export function UnusualActivityFeed({
                     )}
                   >
                     {/* Time */}
-                    <td className="px-2 py-1.5 text-xs text-muted-foreground">
+                    <td className="px-3 py-2 text-muted-foreground">
                       {relTime(item.timestamp)}
                     </td>
 
                     {/* Ticker */}
-                    <td className="px-2 py-1.5 text-xs font-semibold">
+                    <td className="px-3 py-2 font-medium">
                       {item.ticker}
                     </td>
 
                     {/* Exp */}
-                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                       {item.expiry.slice(5)}
                     </td>
 
                     {/* DTE */}
-                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                       {item.dte}D
                     </td>
 
                     {/* Strike */}
-                    <td className="px-2 py-1.5 text-xs tabular-nums">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums">
                       ${item.strike}
                     </td>
 
                     {/* C/P */}
-                    <td className="px-2 py-1.5 text-xs font-semibold tabular-nums">
+                    <td className="px-3 py-2 font-mono tabular-nums">
                       <span
                         className={
-                          item.type === "call" ? "text-emerald-400" : "text-red-400"
+                          item.type === "call" ? "text-emerald-500" : "text-red-500"
                         }
                       >
                         {item.type === "call" ? "C" : "P"}
@@ -320,7 +318,7 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Side */}
-                    <td className="px-2 py-1.5 text-xs font-medium">
+                    <td className="px-3 py-2 font-medium">
                       {item.side === "ask" ? (
                         <span className="text-orange-400">Ask</span>
                       ) : (
@@ -329,13 +327,13 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Sentiment badge */}
-                    <td className="px-2 py-1.5 text-xs">
+                    <td className="px-3 py-2">
                       {isBullish ? (
-                        <span className="text-emerald-400">
+                        <span className="text-emerald-500">
                           <span className="mr-0.5 text-[8px]">●</span>Bullish
                         </span>
                       ) : isBearish ? (
-                        <span className="text-red-400">
+                        <span className="text-red-500">
                           <span className="mr-0.5 text-[8px]">●</span>Bearish
                         </span>
                       ) : (
@@ -346,36 +344,27 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Order type badge (SWEEP / BLOCK / FLOOR) */}
-                    <td className="px-2 py-1.5 text-xs">
+                    <td className="px-3 py-2">
                       <OrderTypeBadge orderType={item.orderType} />
                     </td>
 
                     {/* Size */}
-                    <td
-                      className={cn(
-                        "px-2 py-1.5 text-xs tabular-nums",
-                        isBullish
-                          ? "text-emerald-400"
-                          : isBearish
-                          ? "text-red-400"
-                          : "text-foreground",
-                      )}
-                    >
+                    <td className="px-3 py-2 text-right font-mono tabular-nums">
                       {item.size.toLocaleString()}
                     </td>
 
                     {/* Price */}
-                    <td className="px-2 py-1.5 text-xs tabular-nums">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums">
                       ${item.price.toFixed(2)}
                     </td>
 
                     {/* Premium */}
-                    <td className="px-2 py-1.5 text-xs font-medium tabular-nums text-orange-400">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums font-medium text-orange-400">
                       {formatPremium(item.premium)}
                     </td>
 
                     {/* Prem/OI ratio */}
-                    <td className="px-2 py-1.5 text-xs tabular-nums">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums">
                       <span
                         className={cn(
                           "font-medium",
@@ -390,17 +379,17 @@ export function UnusualActivityFeed({
                     </td>
 
                     {/* Bid */}
-                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                       {item.bid.toFixed(2)}
                     </td>
 
                     {/* Ask */}
-                    <td className="px-2 py-1.5 text-xs tabular-nums text-muted-foreground">
+                    <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                       {item.ask.toFixed(2)}
                     </td>
 
                     {/* Copy Alert button */}
-                    <td className="px-2 py-1.5 text-xs">
+                    <td className="px-3 py-2">
                       <button
                         onClick={(e) => handleCopyAlert(e, item)}
                         title="Copy alert to clipboard"

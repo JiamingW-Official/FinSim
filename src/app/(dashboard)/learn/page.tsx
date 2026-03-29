@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import {
   GraduationCap,
   BookOpen,
@@ -27,6 +28,10 @@ import {
   Clock,
   Star,
   Filter,
+  LineChart,
+  ArrowRight,
+  Lightbulb,
+  CheckCircle2,
 } from "lucide-react";
 import { useLearnStore } from "@/stores/learn-store";
 import { useGameStore } from "@/stores/game-store";
@@ -271,23 +276,79 @@ export default function LearnPage() {
                 </div>
               </div>
 
-              {/* Recommended next lesson */}
-              {recommendedLesson && (
-                <div className="rounded-lg border border-primary/30 bg-primary/5 p-3">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <ChevronRight className="h-3.5 w-3.5 text-primary" />
-                    <span className="text-xs font-semibold text-primary uppercase tracking-wide">Up Next</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs font-semibold">{recommendedLesson.lesson.title}</p>
-                      <p className="text-[11px] text-muted-foreground">{recommendedLesson.unit.title}</p>
+              {/* Your Learning Journey — Learn → Practice → Review loop */}
+              {(() => {
+                const progressPct = totalLessons > 0 ? completedCount / totalLessons : 0;
+                // Step 0 = Learn (< 10% done), 1 = Practice (10-80%), 2 = Review (80%+)
+                const currentStep = progressPct >= 0.8 ? 2 : progressPct >= 0.1 ? 1 : 0;
+                const steps = [
+                  { label: "Learn", icon: BookOpen, href: "/learn", desc: "Complete lessons" },
+                  { label: "Practice", icon: LineChart, href: "/trade", desc: "Try a trade" },
+                  { label: "Review", icon: CheckCircle2, href: "/portfolio", desc: "Check results" },
+                ];
+                return (
+                  <div className="rounded-lg border border-border bg-card p-4">
+                    <span className="text-xs font-semibold mb-3 block">Your Learning Journey</span>
+                    <div className="flex items-center justify-between">
+                      {steps.map((step, idx) => {
+                        const StepIcon = step.icon;
+                        const isActive = idx === currentStep;
+                        const isDone = idx < currentStep;
+                        return (
+                          <div key={step.label} className="flex items-center gap-0">
+                            <Link
+                              href={step.href}
+                              className={`flex flex-col items-center gap-1.5 rounded-lg px-3 py-2 transition-colors ${
+                                isActive
+                                  ? "bg-primary/10 border border-primary/30"
+                                  : isDone
+                                  ? "bg-emerald-400/10 border border-emerald-400/20"
+                                  : "bg-muted/20 border border-border/40"
+                              }`}
+                            >
+                              <StepIcon className={`h-4 w-4 ${
+                                isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
+                              }`} />
+                              <span className={`text-[11px] font-semibold ${
+                                isActive ? "text-primary" : isDone ? "text-emerald-400" : "text-muted-foreground"
+                              }`}>{step.label}</span>
+                              <span className="text-[10px] text-muted-foreground">{step.desc}</span>
+                            </Link>
+                            {idx < steps.length - 1 && (
+                              <ArrowRight className={`h-3 w-3 mx-1 shrink-0 ${
+                                idx < currentStep ? "text-emerald-400" : "text-muted-foreground/40"
+                              }`} />
+                            )}
+                          </div>
+                        );
+                      })}
                     </div>
-                    <div className="flex items-center gap-1.5">
+                  </div>
+                );
+              })()}
+
+              {/* Recommended next lesson — prominent CTA */}
+              {recommendedLesson && (
+                <div className="rounded-lg border-2 border-primary/40 bg-primary/5 p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary/15 border border-primary/30">
+                      <ChevronRight className="h-3.5 w-3.5 text-primary" />
+                    </div>
+                    <span className="text-xs font-bold text-primary uppercase tracking-wide">Up Next</span>
+                    <div className="ml-auto flex items-center gap-1">
                       <Zap className="h-3 w-3 text-primary" />
                       <span className="text-xs font-bold text-primary">+{recommendedLesson.lesson.xpReward} XP</span>
                     </div>
                   </div>
+                  <p className="text-sm font-semibold mb-0.5">{recommendedLesson.lesson.title}</p>
+                  <p className="text-[11px] text-muted-foreground mb-3">{recommendedLesson.unit.title} &middot; {recommendedLesson.lesson.duration ?? 10} min</p>
+                  <Link
+                    href="/learn"
+                    className="flex items-center justify-center gap-1.5 w-full rounded-md bg-primary py-2 text-xs font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+                  >
+                    Start Lesson
+                    <ArrowRight className="h-3 w-3" />
+                  </Link>
                 </div>
               )}
 
@@ -491,6 +552,16 @@ export default function LearnPage() {
                   </motion.div>
                 )}
               </AnimatePresence>
+
+              {/* Reinforcement tip */}
+              <div className="flex items-start gap-2 rounded-lg border border-border/40 bg-muted/10 px-3 py-2.5">
+                <Lightbulb className="h-3.5 w-3.5 text-amber-400 shrink-0 mt-0.5" />
+                <p className="text-[11px] text-muted-foreground leading-relaxed">
+                  Complete a lesson, then try a{" "}
+                  <Link href="/trade" className="text-primary font-medium hover:underline">practice trade</Link>
+                  {" "}to reinforce what you learned.
+                </p>
+              </div>
             </>
           )}
 
@@ -637,6 +708,18 @@ export default function LearnPage() {
                             )}
                           </div>
                         </div>
+
+                        {/* Practice prompt for completed units */}
+                        {isComplete && (
+                          <Link
+                            href="/trade"
+                            className="flex items-center gap-1 mt-2 pt-2 border-t border-border/40 text-[11px] font-medium text-primary hover:text-primary/80 transition-colors"
+                          >
+                            <LineChart className="h-3 w-3" />
+                            Practice this in a trade
+                            <ArrowRight className="h-2.5 w-2.5" />
+                          </Link>
+                        )}
                       </motion.div>
                     );
                   })

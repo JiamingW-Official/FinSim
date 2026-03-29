@@ -443,8 +443,8 @@ export default function TradePage() {
           </Tabs>
         </div>
         </div>{/* end trade view wrapper */}
-        <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60">
-          For educational purposes only. Not financial advice.
+        <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground">
+          Simulated trading for educational purposes only. Not financial advice.
         </p>
       </div>
 
@@ -523,7 +523,7 @@ export default function TradePage() {
                 value="ai"
                 className="h-7 shrink-0 rounded-none border-b-2 border-transparent px-3 text-xs data-[state=active]:border-primary data-[state=active]:bg-transparent"
               >
-                AI Coach
+                Analysis
               </TabsTrigger>
               <TabsTrigger
                 value="replay"
@@ -556,8 +556,8 @@ export default function TradePage() {
           </Tabs>
         </div>
       </div>
-      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground/60 md:hidden">
-        For educational purposes only. Not financial advice.
+      <p className="shrink-0 border-t border-border/40 px-3 py-1.5 text-center text-[11px] text-muted-foreground md:hidden">
+        Simulated trading for educational purposes only. Not financial advice.
       </p>
     </>
   );

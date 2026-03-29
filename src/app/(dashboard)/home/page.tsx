@@ -242,26 +242,26 @@ const TOP_OPPORTUNITIES: { ticker: string; direction: "long" | "short"; confiden
    Quick Nav shortcuts
 ───────────────────────────────────────────── */
 const NAV_SHORTCUTS = [
-  { label: "Trade", href: "/trade", Icon: BarChart3, color: "text-orange-400" },
-  { label: "Learn", href: "/learn", Icon: BookOpen, color: "text-orange-400" },
-  { label: "Backtest", href: "/backtest", Icon: Activity, color: "text-orange-400" },
-  { label: "Options", href: "/options", Icon: Zap, color: "text-orange-400" },
-  { label: "Arena", href: "/arena", Icon: Swords, color: "text-orange-400" },
-  { label: "Portfolio", href: "/portfolio", Icon: Shield, color: "text-orange-400" },
+  { label: "Trade", href: "/trade", Icon: BarChart3, color: "text-muted-foreground" },
+  { label: "Learn", href: "/learn", Icon: BookOpen, color: "text-muted-foreground" },
+  { label: "Backtest", href: "/backtest", Icon: Activity, color: "text-muted-foreground" },
+  { label: "Options", href: "/options", Icon: Zap, color: "text-muted-foreground" },
+  { label: "Arena", href: "/arena", Icon: Swords, color: "text-muted-foreground" },
+  { label: "Portfolio", href: "/portfolio", Icon: Shield, color: "text-muted-foreground" },
 ];
 
 /* ─────────────────────────────────────────────
    Quick Actions Grid (8 buttons, 4×2)
 ───────────────────────────────────────────── */
 const QUICK_ACTIONS = [
-  { label: "New Trade", href: "/trade", Icon: PlayCircle, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
-  { label: "Portfolio", href: "/portfolio", Icon: PieChart, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
-  { label: "Today's Quiz", href: "/quiz", Icon: Star, color: "text-amber-500", bg: "bg-amber-500/10", hover: "hover:border-amber-500/40 hover:bg-amber-500/5" },
-  { label: "Earnings", href: "/learn", Icon: Newspaper, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
-  { label: "Scan Markets", href: "/backtest", Icon: ScanSearch, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
-  { label: "Journal", href: "/journal", Icon: NotebookPen, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
-  { label: "Options Flow", href: "/options", Icon: Zap, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
-  { label: "Macro Update", href: "/learn", Icon: Globe, color: "text-orange-400", bg: "bg-orange-500/10", hover: "hover:border-orange-500/40 hover:bg-orange-500/5" },
+  { label: "New Trade", href: "/trade", Icon: PlayCircle },
+  { label: "Portfolio", href: "/portfolio", Icon: PieChart },
+  { label: "Today's Quiz", href: "/quiz", Icon: Star },
+  { label: "Earnings", href: "/learn", Icon: Newspaper },
+  { label: "Scan Markets", href: "/backtest", Icon: ScanSearch },
+  { label: "Journal", href: "/journal", Icon: NotebookPen },
+  { label: "Options Flow", href: "/options", Icon: Zap },
+  { label: "Macro Update", href: "/learn", Icon: Globe },
 ] as const;
 
 /* ─────────────────────────────────────────────
@@ -777,43 +777,37 @@ export default function HomePage() {
         <div>
           {completedLessons.length === 0 ? (
             <Link href="/learn">
-              <div className="group flex items-center gap-4 rounded-xl border-2 border-primary/30 bg-primary/5 px-5 py-4 transition-colors hover:border-primary/50 hover:bg-primary/10">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15">
-                  <BookOpen className="h-5 w-5 text-primary" />
-                </div>
+              <div className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:bg-accent/50">
+                <BookOpen className="h-5 w-5 shrink-0 text-muted-foreground" />
                 <div className="flex-1">
                   <p className="text-sm font-semibold">Start your first lesson</p>
                   <p className="text-xs text-muted-foreground">Learn the basics of trading with interactive lessons and quizzes.</p>
                 </div>
-                <ArrowRight className="h-5 w-5 shrink-0 text-primary opacity-60 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground opacity-60 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
           ) : stats.totalTrades === 0 ? (
             <Link href="/trade">
-              <div className="group flex items-center gap-4 rounded-xl border-2 border-orange-500/30 bg-orange-500/5 px-5 py-4 transition-colors hover:border-orange-500/50 hover:bg-orange-500/10">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-500/15">
-                  <BarChart3 className="h-5 w-5 text-orange-400" />
-                </div>
+              <div className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:bg-accent/50">
+                <BarChart3 className="h-5 w-5 shrink-0 text-muted-foreground" />
                 <div className="flex-1">
                   <p className="text-sm font-semibold">Place your first practice trade</p>
                   <p className="text-xs text-muted-foreground">Apply what you learned with simulated trading. No real money at risk.</p>
                 </div>
-                <ArrowRight className="h-5 w-5 shrink-0 text-orange-400 opacity-60 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground opacity-60 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
           ) : (
             <Link href="/portfolio">
-              <div className="group flex items-center gap-4 rounded-xl border-2 border-emerald-500/30 bg-emerald-500/5 px-5 py-4 transition-colors hover:border-emerald-500/50 hover:bg-emerald-500/10">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/15">
-                  <PieChart className="h-5 w-5 text-emerald-400" />
-                </div>
+              <div className="group flex items-center gap-4 rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:bg-accent/50">
+                <PieChart className="h-5 w-5 shrink-0 text-muted-foreground" />
                 <div className="flex-1">
                   <p className="text-sm font-semibold">Review your performance</p>
                   <p className="text-xs text-muted-foreground">
                     {stats.totalTrades} trade{stats.totalTrades !== 1 ? "s" : ""} completed — check your portfolio analytics and trade journal.
                   </p>
                 </div>
-                <ArrowRight className="h-5 w-5 shrink-0 text-emerald-400 opacity-60 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-5 w-5 shrink-0 text-muted-foreground opacity-60 transition-transform group-hover:translate-x-1" />
               </div>
             </Link>
           )}
@@ -833,7 +827,7 @@ export default function HomePage() {
             {/* Portfolio Value */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-1 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                <Wallet className="h-3 w-3 text-orange-400" />
+                <Wallet className="h-3 w-3 text-muted-foreground" />
                 Portfolio Value
               </div>
               <p className="text-lg font-bold tabular-nums">{formatCurrency(portfolioValue)}</p>
@@ -909,7 +903,7 @@ export default function HomePage() {
             {/* Win Rate */}
             <div className="rounded-lg border border-border bg-card p-4">
               <div className="mb-1 flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                <Target className="h-3 w-3 text-orange-400" />
+                <Target className="h-3 w-3 text-muted-foreground" />
                 Win Rate
               </div>
               <div className="flex items-baseline gap-1">
@@ -940,17 +934,10 @@ export default function HomePage() {
             Quick Actions
           </p>
           <div className="grid grid-cols-4 gap-2.5 sm:grid-cols-8">
-            {QUICK_ACTIONS.map(({ label, href, Icon, color, bg, hover }) => (
+            {QUICK_ACTIONS.map(({ label, href, Icon }) => (
               <Link key={href + label} href={href}>
-                <div
-                  className={cn(
-                    "group flex flex-col items-center gap-2 rounded-lg border border-border bg-card px-2 py-3.5 text-center transition-colors",
-                    hover,
-                  )}
-                >
-                  <div className={cn("flex h-8 w-8 items-center justify-center rounded-lg", bg)}>
-                    <Icon className={cn("h-4 w-4", color)} />
-                  </div>
+                <div className="group flex flex-col items-center gap-2 rounded-lg border border-border bg-card px-2 py-3.5 text-center transition-colors hover:bg-accent/50">
+                  <Icon className="h-4 w-4 text-muted-foreground" />
                   <span className="text-xs font-medium leading-tight">{label}</span>
                 </div>
               </Link>
@@ -1253,7 +1240,7 @@ export default function HomePage() {
                     Daily Goals
                   </p>
                   <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Flame className="h-3 w-3 text-orange-400" />
+                    <Flame className="h-3 w-3 text-muted-foreground" />
                     <span>{dailyStreakCount}d streak</span>
                   </div>
                 </div>
@@ -1314,23 +1301,19 @@ export default function HomePage() {
                   <div className="absolute left-[26px] top-4 bottom-4 w-px bg-border/40" />
                   <div className="space-y-3">
                     {activityFeed.map((item) => {
-                      const dotColor =
-                        item.type === "trade" ? "border-orange-500/50 bg-orange-500/10" :
-                        item.type === "achievement" ? "border-amber-500/50 bg-amber-500/10" :
-                        item.type === "quest" ? "border-orange-500/50 bg-orange-500/10" :
-                        "border-emerald-500/50 bg-emerald-500/10";
+                      const dotColor = "border-border bg-card";
 
                       const iconEl =
                         item.type === "trade" ? (
-                          <BarChart3 className="h-3 w-3 text-orange-400" />
+                          <BarChart3 className="h-3 w-3 text-muted-foreground" />
                         ) : item.type === "achievement" ? (
-                          <Award className="h-3 w-3 text-amber-500" />
+                          <Award className="h-3 w-3 text-muted-foreground" />
                         ) : item.type === "quest" ? (
-                          <CircleDot className="h-3 w-3 text-orange-400" />
+                          <CircleDot className="h-3 w-3 text-muted-foreground" />
                         ) : item.type === "levelup" ? (
-                          <Star className="h-3 w-3 text-orange-400" />
+                          <Star className="h-3 w-3 text-muted-foreground" />
                         ) : (
-                          <BookOpen className="h-3 w-3 text-emerald-400" />
+                          <BookOpen className="h-3 w-3 text-muted-foreground" />
                         );
 
                       return (

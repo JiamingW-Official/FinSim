@@ -19,6 +19,7 @@ import {
   XCircle,
   Clock,
   ChevronLeft,
+  HelpCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
@@ -145,7 +146,7 @@ function Sparkline({ data, width = 60, height = 24 }: { data: number[]; width?: 
     })
     .join(" ");
   const delta = data[data.length - 1] - data[0];
-  const stroke = delta > 2 ? "#22c55e" : delta < -2 ? "#ef4444" : "#71717a";
+  const stroke = delta > 2 ? "#10b981" : delta < -2 ? "#ef4444" : "#71717a";
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} aria-hidden>
       <polyline points={pts} fill="none" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -195,11 +196,11 @@ function MarketCard({
       {/* YES probability bar */}
       <div className="mb-2">
         <div className="mb-1 flex justify-between text-xs">
-          <span className="font-semibold text-green-400">YES {market.initialProbability}%</span>
+          <span className="font-semibold text-emerald-500">YES {market.initialProbability}%</span>
           <span className="text-red-400/80">NO {100 - market.initialProbability}%</span>
         </div>
         <div className="h-1 w-full overflow-hidden rounded-full bg-red-500/15">
-          <div className="h-full rounded-full bg-green-500/60 transition-all" style={{ width: `${market.initialProbability}%` }} />
+          <div className="h-full rounded-full bg-emerald-500/60 transition-all" style={{ width: `${market.initialProbability}%` }} />
         </div>
       </div>
 
@@ -210,10 +211,17 @@ function MarketCard({
             <BarChart3 className="h-3 w-3" />
             ${volume.toLocaleString()}
           </span>
-          <span className="flex items-center gap-0.5">
-            <Clock className="h-3 w-3" />
-            {market.expiresInDays}d
-          </span>
+          {market.expiresInDays <= 3 ? (
+            <span className="flex items-center gap-0.5 rounded bg-amber-500/10 px-1.5 py-0.5 text-[11px] font-semibold text-amber-500">
+              <Clock className="h-3 w-3" />
+              Closing soon
+            </span>
+          ) : (
+            <span className="flex items-center gap-0.5">
+              <Clock className="h-3 w-3" />
+              {market.expiresInDays}d
+            </span>
+          )}
         </div>
         <ChevronRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-60" />
       </div>
@@ -246,13 +254,13 @@ function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
     ` ${toX(data.length - 1).toFixed(1)},${(pad.top + plotH).toFixed(1)}`;
 
   const delta = data[data.length - 1] - data[0];
-  const lineColor = delta >= 0 ? "#22c55e" : "#ef4444";
+  const lineColor = delta >= 0 ? "#10b981" : "#ef4444";
 
   return (
     <div className="rounded-lg border border-border bg-card p-3">
       <div className="mb-1.5 flex items-center justify-between">
         <span className="text-xs font-semibold text-muted-foreground">{title}</span>
-        <span className={cn("font-mono tabular-nums text-xs font-semibold", delta >= 0 ? "text-green-400" : "text-red-400")}>
+        <span className={cn("font-mono tabular-nums text-xs font-semibold", delta >= 0 ? "text-emerald-500" : "text-red-400")}>
           {delta >= 0 ? "+" : ""}{delta.toFixed(0)}pp
         </span>
       </div>
@@ -390,8 +398,8 @@ function MarketDetailDrawer({
               className={cn(
                 "rounded-lg py-2 text-xs font-semibold transition-colors",
                 orderSide === "yes"
-                  ? "bg-green-500/20 text-green-400 ring-1 ring-green-500/30"
-                  : "bg-green-500/8 text-green-400/60 hover:bg-green-500/12",
+                  ? "bg-emerald-500/20 text-emerald-500 ring-1 ring-emerald-500/30"
+                  : "bg-emerald-500/8 text-emerald-500/60 hover:bg-emerald-500/12",
               )}
             >
               YES {market.initialProbability}%
@@ -458,7 +466,7 @@ function MarketDetailDrawer({
             ].map(({ label, value, highlight }) => (
               <div key={label} className="rounded bg-muted/50 px-2 py-1.5">
                 <div className="text-[11px] text-muted-foreground">{label}</div>
-                <div className={cn("text-xs font-semibold", highlight ? "text-green-400" : "text-foreground")}>{value}</div>
+                <div className={cn("text-xs font-semibold", highlight ? "text-emerald-500" : "text-foreground")}>{value}</div>
               </div>
             ))}
           </div>
@@ -475,7 +483,7 @@ function MarketDetailDrawer({
         <div className="mb-4 rounded-lg border border-border bg-muted/20 px-3 py-3">
           <div className="mb-1 text-xs font-semibold text-muted-foreground">Your Bet</div>
           <div className="flex items-center gap-2 text-[11px]">
-            <span className={cn("rounded px-1.5 py-0.5 font-semibold uppercase text-xs", existingBet.position === "yes" ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400")}>
+            <span className={cn("rounded px-1.5 py-0.5 font-semibold uppercase text-xs", existingBet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-400")}>
               {existingBet.position.toUpperCase()}
             </span>
             <span className="text-muted-foreground">{existingBet.amount} pts at {Math.round(existingBet.probability * 100)}%</span>
@@ -490,7 +498,7 @@ function MarketDetailDrawer({
           {recentTrades.map((trade, i) => (
             <div key={i} className={cn("flex items-center justify-between px-3 py-2 text-[11px]", i < recentTrades.length - 1 ? "border-b border-border/50" : "")}>
               <div className="flex items-center gap-2">
-                <span className={cn("rounded px-1 py-0.5 text-[11px] font-semibold", trade.side === "YES" ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400")}>
+                <span className={cn("rounded px-1 py-0.5 text-[11px] font-semibold", trade.side === "YES" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-400")}>
                   {trade.side}
                 </span>
                 <span className="font-mono tabular-nums text-muted-foreground">{trade.price}%</span>
@@ -552,10 +560,10 @@ function MyBetsTab() {
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
         {[
           { label: "Total Staked", value: `${totalStaked} pts` },
-          { label: "Total Won", value: `+${totalWon} pts`, color: "text-green-400" },
+          { label: "Total Won", value: `+${totalWon} pts`, color: "text-emerald-500" },
           { label: "Total Lost", value: `-${totalLost} pts`, color: "text-red-400" },
-          { label: "Net P&L", value: `${netPnl >= 0 ? "+" : ""}${netPnl} pts`, color: netPnl >= 0 ? "text-green-400" : "text-red-400" },
-          { label: "ROI", value: `${roi >= 0 ? "+" : ""}${roi.toFixed(1)}%`, color: roi >= 0 ? "text-green-400" : "text-red-400" },
+          { label: "Net P&L", value: `${netPnl >= 0 ? "+" : ""}${netPnl} pts`, color: netPnl >= 0 ? "text-emerald-500" : "text-red-400" },
+          { label: "ROI", value: `${roi >= 0 ? "+" : ""}${roi.toFixed(1)}%`, color: roi >= 0 ? "text-emerald-500" : "text-red-400" },
         ].map(({ label, value, color }) => (
           <div key={label} className="rounded-lg border border-border bg-card px-3 py-2">
             <div className="text-[11px] text-muted-foreground">{label}</div>
@@ -575,13 +583,13 @@ function MyBetsTab() {
           </h2>
           <div className="overflow-x-auto rounded-lg border border-border bg-card">
             <table className="w-full text-[11px] min-w-[480px]">
-              <thead>
-                <tr className="border-b border-border bg-muted/30">
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Market</th>
-                  <th className="px-3 py-2 text-center font-medium text-muted-foreground">Position</th>
-                  <th className="px-3 py-2 text-right font-medium text-muted-foreground">Stake</th>
-                  <th className="px-3 py-2 text-right font-medium text-muted-foreground">Est. Payout</th>
-                  <th className="px-3 py-2 text-right font-medium text-muted-foreground">Odds</th>
+              <thead className="sticky top-0 z-10 bg-card">
+                <tr className="border-b border-border/50">
+                  <th className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground">Market</th>
+                  <th className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground">Position</th>
+                  <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Stake</th>
+                  <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Est. Payout</th>
+                  <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Odds</th>
                 </tr>
               </thead>
               <tbody>
@@ -593,20 +601,20 @@ function MyBetsTab() {
                     : Math.round(bet.amount * (1 / (1 - prob)));
                   const estPnl = estPayout - bet.amount;
                   return (
-                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/50 last:border-0 hover:bg-muted/10 transition-colors">
+                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/50 last:border-0 transition-colors hover:bg-muted/50">
                       <td className="max-w-[200px] truncate px-3 py-2 text-foreground">
                         {market?.question.slice(0, 40) ?? bet.marketId}
                         {(market?.question.length ?? 0) > 40 ? "…" : ""}
                       </td>
                       <td className="px-3 py-2 text-center">
-                        <span className={cn("rounded px-1.5 py-0.5 text-xs font-semibold uppercase", bet.position === "yes" ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400")}>
+                        <span className={cn("rounded px-1.5 py-0.5 text-xs font-medium uppercase", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
                           {bet.position.toUpperCase()}
                         </span>
                       </td>
                       <td className="px-3 py-2 text-right font-mono tabular-nums text-foreground">{bet.amount} pts</td>
                       <td className="px-3 py-2 text-right font-mono tabular-nums text-foreground">
                         {estPayout} pts
-                        <span className="ml-1 text-green-400/80">(+{estPnl})</span>
+                        <span className="ml-1 text-emerald-500/80">(+{estPnl})</span>
                       </td>
                       <td className="px-3 py-2 text-right font-mono tabular-nums text-muted-foreground">
                         {Math.round(prob * 100)}%
@@ -628,13 +636,13 @@ function MyBetsTab() {
           </h2>
           <div className="overflow-x-auto rounded-lg border border-border bg-card">
             <table className="w-full text-[11px] min-w-[480px]">
-              <thead>
-                <tr className="border-b border-border bg-muted/30">
-                  <th className="px-3 py-2 text-left font-medium text-muted-foreground">Market</th>
-                  <th className="px-3 py-2 text-center font-medium text-muted-foreground">Position</th>
-                  <th className="px-3 py-2 text-center font-medium text-muted-foreground">Outcome</th>
-                  <th className="px-3 py-2 text-right font-medium text-muted-foreground">Stake</th>
-                  <th className="px-3 py-2 text-right font-medium text-muted-foreground">P&L</th>
+              <thead className="sticky top-0 z-10 bg-card">
+                <tr className="border-b border-border/50">
+                  <th className="px-3 py-2 text-left text-[11px] font-medium text-muted-foreground">Market</th>
+                  <th className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground">Position</th>
+                  <th className="px-3 py-2 text-center text-[11px] font-medium text-muted-foreground">Outcome</th>
+                  <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">Stake</th>
+                  <th className="px-3 py-2 text-right text-[11px] font-medium text-muted-foreground">P&L</th>
                 </tr>
               </thead>
               <tbody>
@@ -643,31 +651,31 @@ function MyBetsTab() {
                   const isCorrect = (bet.position === "yes" && bet.outcome === true) || (bet.position === "no" && bet.outcome === false);
                   const pnl = (bet.payout ?? 0) - bet.amount;
                   return (
-                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/50 last:border-0">
+                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/50 last:border-0 transition-colors hover:bg-muted/50">
                       <td className="max-w-[200px] truncate px-3 py-2 text-foreground">
                         {market?.question.slice(0, 40) ?? bet.marketId}
                         {(market?.question.length ?? 0) > 40 ? "…" : ""}
                       </td>
                       <td className="px-3 py-2 text-center">
-                        <span className={cn("rounded px-1.5 py-0.5 text-xs font-semibold uppercase", bet.position === "yes" ? "bg-green-500/10 text-green-400" : "bg-red-500/10 text-red-400")}>
+                        <span className={cn("rounded px-1.5 py-0.5 text-xs font-medium uppercase", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-500")}>
                           {bet.position.toUpperCase()}
                         </span>
                       </td>
                       <td className="px-3 py-2 text-center">
                         {isCorrect ? (
-                          <span className="flex items-center justify-center gap-0.5 text-green-400">
+                          <span className="flex items-center justify-center gap-0.5 text-emerald-500">
                             <CheckCircle2 className="h-3 w-3" />
-                            <span className="text-xs font-semibold">Correct</span>
+                            <span className="text-xs font-medium">Correct</span>
                           </span>
                         ) : (
-                          <span className="flex items-center justify-center gap-0.5 text-red-400">
+                          <span className="flex items-center justify-center gap-0.5 text-red-500">
                             <XCircle className="h-3 w-3" />
-                            <span className="text-xs font-semibold">Wrong</span>
+                            <span className="text-xs font-medium">Wrong</span>
                           </span>
                         )}
                       </td>
                       <td className="px-3 py-2 text-right font-mono tabular-nums text-foreground">{bet.amount} pts</td>
-                      <td className={cn("px-3 py-2 text-right font-mono tabular-nums font-semibold", pnl >= 0 ? "text-green-400" : "text-red-400")}>
+                      <td className={cn("px-3 py-2 text-right font-mono tabular-nums font-medium", pnl >= 0 ? "text-emerald-500" : "text-red-500")}>
                         {pnl >= 0 ? "+" : ""}{pnl} pts
                       </td>
                     </tr>
@@ -863,14 +871,31 @@ export function PredictionsPageClient() {
             <TrendingUp className="h-4 w-4 text-foreground" />
           </div>
           <div className="min-w-0">
-            <h1 className="text-base font-semibold tracking-tight">Prediction Markets <span className="text-xs font-normal text-muted-foreground">(Practice)</span></h1>
+            <h1 className="text-base font-semibold tracking-tight">Practice Prediction Markets</h1>
             <p className="text-xs text-muted-foreground">
-              {PREDICTION_MARKETS.length} practice markets — bet with simulated points, learn probability thinking
+              Test your probability thinking with {PREDICTION_MARKETS.length} simulated markets — no real money involved
             </p>
           </div>
           <div className="flex-1" />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button className="flex shrink-0 items-center gap-1 rounded-md border border-border px-2 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground">
+                <HelpCircle className="h-3 w-3" />
+                How it works
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom" align="end" className="max-w-72 text-xs leading-relaxed">
+              <p className="mb-1.5 font-semibold text-foreground">How Practice Markets Work</p>
+              <ol className="list-decimal space-y-1 pl-3.5 text-muted-foreground">
+                <li>Browse markets and estimate the probability of each outcome.</li>
+                <li>Place a YES or NO bet using your Insight Points.</li>
+                <li>Markets resolve based on real-world outcomes. Correct predictions earn points.</li>
+                <li>Track your calibration — are your 70% bets right 70% of the time?</li>
+              </ol>
+            </TooltipContent>
+          </Tooltip>
           <div className="flex items-center gap-1 rounded-md bg-muted px-2.5 py-1">
-            <Coins className="h-3.5 w-3.5 text-amber-400" />
+            <Coins className="h-3.5 w-3.5 text-amber-500" />
             <span className="font-mono tabular-nums text-xs font-semibold text-foreground">
               {insightPoints.toLocaleString()}
             </span>

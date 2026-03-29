@@ -3,11 +3,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Check, Lock, X, Crown, Flame } from "lucide-react";
+import { Check, Lock, X, Crown, Flame, Gift, Star, Coins, Gem, Rocket, Sparkles } from "lucide-react";
 import { useDailyRewardsStore, DAY_REWARDS } from "@/stores/daily-rewards-store";
 import { soundEngine } from "@/services/audio/sound-engine";
 
-const DAY_EMOJIS = ["🎁", "⭐", "💰", "🔥", "💎", "🚀", "👑"];
+const DAY_ICONS: React.ElementType[] = [Gift, Star, Coins, Flame, Gem, Rocket, Crown];
 
 // Confetti colors and shapes
 const CONFETTI_COLORS = ["#f59e0b", "#10b981", "#8b5cf6", "#ec4899", "#06b6d4", "#f97316", "#3b82f6"];
@@ -114,17 +114,16 @@ export function DailyRewardsPopup() {
             )}>
               {/* Animated icon */}
               <motion.div
-                className={cn(
-                  "flex h-16 w-16 items-center justify-center rounded-2xl text-3xl border",
-                  isDay7
-                    ? "border-amber-400/40 bg-amber-500/15"
-                    : "border-primary/30 bg-primary/10",
-                )}
+                className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border/40"
                 initial={{ scale: 0, rotate: -20 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.1 }}
               >
-                {isDay7 ? "👑" : "🎁"}
+                {isDay7 ? (
+                  <Crown className="h-7 w-7 text-amber-400" />
+                ) : (
+                  <Gift className="h-7 w-7 text-primary" />
+                )}
               </motion.div>
 
               <div className="text-center">
@@ -197,7 +196,7 @@ export function DailyRewardsPopup() {
                             animate={isCurrent ? { scale: [1, 1.1, 1] } : {}}
                             transition={{ duration: 2, repeat: Infinity, repeatDelay: 1, type: "tween" }}
                           >
-                            {isLastDay ? <Crown className="h-4 w-4 text-amber-400" /> : DAY_EMOJIS[i]}
+                            {(() => { const DayIcon = DAY_ICONS[i] ?? Gift; return <DayIcon className={cn("h-4 w-4", isLastDay ? "text-amber-400" : "text-muted-foreground")} />; })()}
                           </motion.span>
                         )}
                       </div>
@@ -260,7 +259,7 @@ export function DailyRewardsPopup() {
                       +{todayXP} <span className="text-sm font-bold">XP</span>
                     </p>
                   </div>
-                  <span className="text-4xl">{DAY_EMOJIS[dayIndex]}</span>
+                  {(() => { const RewardIcon = DAY_ICONS[dayIndex] ?? Gift; return <RewardIcon className={cn("h-8 w-8", isDay7 ? "text-amber-400" : "text-primary")} />; })()}
                 </motion.div>
               )}
 
@@ -277,11 +276,11 @@ export function DailyRewardsPopup() {
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 14 }}
                   >
-                    <span className="text-xl">✨</span>
+                    <Sparkles className="h-5 w-5 text-emerald-400" />
                     <span className="text-base font-bold text-emerald-400">
                       +{earnedXP} XP Claimed!
                     </span>
-                    <span className="text-xl">✨</span>
+                    <Sparkles className="h-5 w-5 text-emerald-400" />
                   </motion.div>
                 ) : canClaim ? (
                   <motion.button
@@ -296,7 +295,7 @@ export function DailyRewardsPopup() {
                         : "bg-primary hover:brightness-110",
                     )}
                   >
-                    {isDay7 ? "👑 Claim Day 7 Bonus!" : `Claim Day ${dayIndex + 1} Reward`}
+                    {isDay7 ? "Claim Day 7 Bonus!" : `Claim Day ${dayIndex + 1} Reward`}
                   </motion.button>
                 ) : (
                   <div className="flex items-center justify-center gap-2 rounded-xl border border-border/30 bg-muted/10 px-5 py-3">
