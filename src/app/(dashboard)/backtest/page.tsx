@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useMemo } from "react";
+import { useState, useCallback, useRef, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FlaskConical } from "lucide-react";
 import { useBacktestStore } from "@/stores/backtest-store";
@@ -48,12 +48,53 @@ const TABS: { id: PageTab; label: string }[] = [
   { id: "optimization", label: "Optimization" },
 ];
 
+// ── Default example strategy (RSI mean-reversion on AAPL) ────────────────
+
+const DEFAULT_RSI_CONFIG: BacktestConfig = {
+  strategy: {
+    id: "example-rsi",
+    name: "RSI Mean Reversion",
+    ticker: "AAPL",
+    entryRules: [
+      {
+        id: "entry-rsi-30",
+        source: "rsi14",
+        operator: "crosses_above",
+        target: 30,
+        label: "RSI(14) crosses above 30",
+      },
+    ],
+    exitRules: [
+      {
+        kind: "condition",
+        rule: {
+          id: "exit-rsi-70",
+          source: "rsi14",
+          operator: "crosses_below",
+          target: 70,
+          label: "RSI(14) crosses below 70",
+        },
+      },
+    ],
+    positionSizing: { kind: "percent_of_capital", percent: 95 },
+    direction: "long",
+    warmupBars: 20,
+    maxOpenTrades: 1,
+  },
+  barCount: 200,
+  startingCapital: 10000,
+  seed: 42,
+  barGenPreset: "trending_up",
+  monteCarloRuns: 0,
+};
+
 // ── Page ──────────────────────────────────────────────────────────────────
 
 export default function BacktestPage() {
   const store = useBacktestStore();
   const [activeTab, setActiveTab] = useState<PageTab>("strategy");
   const [isRunning, setIsRunning] = useState(false);
+  const didAutoRun = useRef(false);
   const [xpEarned, setXpEarned] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showTemplates, setShowTemplates] = useState(false);
@@ -180,6 +221,13 @@ export default function BacktestPage() {
       seed: Math.floor(Math.random() * 100000),
     });
   }, [handleRun]);
+
+  // Auto-run example strategy on first visit so the page isn't empty
+  useEffect(() => {
+    if (didAutoRun.current || store.currentResult) return;
+    didAutoRun.current = true;
+    handleRun(DEFAULT_RSI_CONFIG);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Decide which bars to show in the chart
   const chartBars = hasResult ? store.currentResult!.bars : previewBars;

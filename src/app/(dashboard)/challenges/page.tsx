@@ -2,10 +2,12 @@
 
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
   Swords, Calendar, Scroll, Sparkles, Zap, Star,
   Clock, Trophy, CheckCircle2, Lock, Flame,
+  Target, ArrowRight,
 } from "lucide-react";
 import { DailyTab } from "@/components/challenges/DailyTab";
 import { ScenariosTab } from "@/components/challenges/ScenariosTab";
@@ -460,6 +462,90 @@ function HistoryTab() {
   );
 }
 
+// ── Daily Challenge Hero ─────────────────────────────────────────────────────
+
+interface DailyHeroChallenge {
+  title: string;
+  description: string;
+  ticker: string;
+  difficulty: "Easy" | "Medium" | "Hard";
+  xpReward: number;
+}
+
+const DAILY_HERO_POOL: DailyHeroChallenge[] = [
+  { title: "Bullish Conviction", description: "Achieve a 2% return on AAPL in 50 bars", ticker: "AAPL", difficulty: "Medium", xpReward: 150 },
+  { title: "Short Seller", description: "Close a profitable short trade on TSLA", ticker: "TSLA", difficulty: "Hard", xpReward: 200 },
+  { title: "Buy the Dip", description: "Enter NVDA after a 3% decline and close green", ticker: "NVDA", difficulty: "Medium", xpReward: 150 },
+  { title: "Quick Scalp", description: "Make 3 profitable trades on MSFT in one session", ticker: "MSFT", difficulty: "Easy", xpReward: 100 },
+  { title: "Risk Manager", description: "Close a trade on AMZN with less than 1% drawdown", ticker: "AMZN", difficulty: "Hard", xpReward: 200 },
+  { title: "Momentum Rider", description: "Ride a 5-bar winning streak on GOOGL", ticker: "GOOGL", difficulty: "Medium", xpReward: 150 },
+  { title: "Patience Pays", description: "Hold META for 30+ bars and exit with profit", ticker: "META", difficulty: "Easy", xpReward: 100 },
+  { title: "Volatility Play", description: "Profit from a 4%+ move on AMD in either direction", ticker: "AMD", difficulty: "Hard", xpReward: 200 },
+  { title: "Steady Gains", description: "Achieve 1.5% return on JPM without losing more than 0.5%", ticker: "JPM", difficulty: "Medium", xpReward: 150 },
+  { title: "Trend Follower", description: "Enter NFLX on a moving average crossover and profit", ticker: "NFLX", difficulty: "Easy", xpReward: 100 },
+];
+
+function getTodayHeroChallenge(): DailyHeroChallenge {
+  const date = new Date().toISOString().slice(0, 10);
+  let seed = 0;
+  for (let i = 0; i < date.length; i++) {
+    seed = (seed * 31 + date.charCodeAt(i)) | 0;
+  }
+  seed = Math.abs(seed);
+  return DAILY_HERO_POOL[seed % DAILY_HERO_POOL.length];
+}
+
+function DailyHeroCard({ countdown }: { countdown: string }) {
+  const challenge = useMemo(() => getTodayHeroChallenge(), []);
+
+  return (
+    <motion.div
+      className="border-l-4 border-primary rounded-xl bg-card/50 border-r border-t border-b border-r-border border-t-border border-b-border p-6 mb-4"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-start gap-3 min-w-0">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+            <Target className="h-5 w-5 text-primary" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[11px] font-bold uppercase tracking-wide text-primary">Today&apos;s Challenge</span>
+              <DifficultyBadge difficulty={challenge.difficulty} />
+            </div>
+            <h2 className="text-base font-bold mb-1">{challenge.title}</h2>
+            <p className="text-sm text-muted-foreground">{challenge.description}</p>
+          </div>
+        </div>
+
+        <div className="shrink-0 text-right space-y-2">
+          <div>
+            <div className="text-lg font-bold text-primary">+{challenge.xpReward}</div>
+            <div className="text-[11px] text-muted-foreground">XP reward</div>
+          </div>
+          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
+            <Clock className="h-3 w-3" />
+            <span>{countdown} left</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/50">
+        <span className="text-[11px] text-muted-foreground">0/1 daily challenges completed</span>
+        <Link
+          href="/trade"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-4 py-2 text-xs font-bold text-primary-foreground hover:bg-primary/90 transition-colors"
+        >
+          Accept Challenge
+          <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+      </div>
+    </motion.div>
+  );
+}
+
 // ── Main page ─────────────────────────────────────────────────────────────────
 
 export default function ChallengesPage() {
@@ -647,6 +733,9 @@ export default function ChallengesPage() {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
+        {/* Daily Challenge Hero */}
+        <DailyHeroCard countdown={dailyCountdown} />
+
         <AnimatePresence mode="wait">
           {tab === "daily" && (
             <motion.div
@@ -692,6 +781,7 @@ export default function ChallengesPage() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.12 }}
             >
+              <h3 className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-3">Scenario Challenges</h3>
               <ScenariosTab onSelectScenario={handleSelectScenario} />
             </motion.div>
           )}

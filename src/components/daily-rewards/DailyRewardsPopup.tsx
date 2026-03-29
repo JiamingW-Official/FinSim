@@ -30,6 +30,11 @@ export function DailyRewardsPopup() {
 
   useEffect(() => {
     if (canClaim) {
+      // Check if user already dismissed the popup today (without claiming)
+      const today = new Date().toISOString().slice(0, 10);
+      const dismissedDate = localStorage.getItem("finsim_daily_checkin_dismissed");
+      if (dismissedDate === today) return;
+
       const timer = setTimeout(() => setShow(true), 800);
       return () => clearTimeout(timer);
     }
@@ -68,7 +73,12 @@ export function DailyRewardsPopup() {
     }
   }, [claimed, claimToday]);
 
-  const handleClose = useCallback(() => setShow(false), []);
+  const handleClose = useCallback(() => {
+    // Persist dismissal for today so the popup won't reappear on page navigation
+    const today = new Date().toISOString().slice(0, 10);
+    localStorage.setItem("finsim_daily_checkin_dismissed", today);
+    setShow(false);
+  }, []);
 
   const currentDay = getCurrentDay();
   const dayIndex = currentDay === -1 ? 0 : currentDay;

@@ -177,6 +177,11 @@ export default function ResultsPanel({ result, monteCarloResult, xpEarned, onSav
               <h3 className="text-xs font-semibold text-zinc-500">Annual Returns vs SPY</h3>
               <AnnualReturnsChart result={result} />
             </div>
+
+            {/* Disclaimer */}
+            <p className="text-center text-[10px] text-zinc-600">
+              Backtested on simulated data &mdash; past performance is not indicative of future results
+            </p>
           </div>
         )}
 

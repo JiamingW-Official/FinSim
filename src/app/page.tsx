@@ -60,7 +60,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 pt-24 pb-20 text-center">
+      <section className="max-w-5xl mx-auto px-6 pt-20 pb-10 text-center">
         <motion.h1
           className="text-4xl sm:text-5xl md:text-[3.5rem] font-semibold leading-[1.1] tracking-tight"
           initial={{ opacity: 0, y: 16 }}
@@ -100,7 +100,7 @@ export default function LandingPage() {
 
         {/* Stats row */}
         <motion.p
-          className="mt-8 text-[11px] text-muted-foreground tracking-wide"
+          className="mt-4 text-[11px] text-muted-foreground tracking-wide"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.4 }}
@@ -110,7 +110,7 @@ export default function LandingPage() {
 
         {/* Product Preview */}
         <motion.div
-          className="mt-14 mx-auto max-w-3xl"
+          className="mt-8 mx-auto max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.5 }}
@@ -208,9 +208,9 @@ export default function LandingPage() {
       </section>
 
       {/* Feature grid */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
+      <section className="max-w-5xl mx-auto px-6 py-10">
         <motion.h2
-          className="text-xl sm:text-2xl font-semibold text-center mb-10"
+          className="text-xl sm:text-2xl font-semibold text-center mb-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -242,7 +242,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
+      <section className="max-w-5xl mx-auto px-6 py-10">
         <motion.div
           className="rounded-lg border border-border bg-card p-10 text-center"
           initial={{ opacity: 0, y: 12 }}

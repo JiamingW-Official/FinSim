@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useSettingsStore } from "@/stores/settings-store";
+import { useOnboardingStore } from "@/stores/onboarding-store";
 
 export interface TutorialStepDef {
   target: string; // data-tutorial attribute value
@@ -70,21 +71,26 @@ export function useTutorial() {
   const tutorialStep = useSettingsStore((s) => s.tutorialStep);
   const setTutorialStep = useSettingsStore((s) => s.setTutorialStep);
   const setTutorialCompleted = useSettingsStore((s) => s.setTutorialCompleted);
+  const hasCompletedOnboarding = useOnboardingStore((s) => s.hasCompletedOnboarding);
+  const onboardingHydrated = useOnboardingStore((s) => s._hasHydrated);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Auto-start tutorial on first visit
+  // Auto-start tutorial on first visit — only after onboarding is done
+  // Wait for onboarding store hydration to avoid flash of tutorial before
+  // persisted state loads
   useEffect(() => {
-    if (mounted && !tutorialCompleted && tutorialStep === null) {
+    if (mounted && onboardingHydrated && hasCompletedOnboarding && !tutorialCompleted && tutorialStep === null) {
       setTutorialStep(0);
     }
-  }, [mounted, tutorialCompleted, tutorialStep, setTutorialStep]);
+  }, [mounted, onboardingHydrated, hasCompletedOnboarding, tutorialCompleted, tutorialStep, setTutorialStep]);
 
   const currentStep = tutorialStep !== null ? TUTORIAL_STEPS[tutorialStep] : null;
-  const isActive = tutorialStep !== null && !tutorialCompleted;
+  // Never show tutorial if onboarding hasn't been completed
+  const isActive = tutorialStep !== null && !tutorialCompleted && hasCompletedOnboarding;
   const totalSteps = TUTORIAL_STEPS.length;
 
   const next = useCallback(() => {

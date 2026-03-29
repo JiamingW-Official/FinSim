@@ -27,48 +27,14 @@ import { WATCHLIST_STOCKS } from "@/types/market";
 import { FUNDAMENTALS } from "@/data/fundamentals";
 import type { WatchlistItem, AlertType } from "@/stores/watchlist-store";
 
-// ─── Seeded PRNG ─────────────────────────────────────────────────────────────
+// ─── Shared price utility ────────────────────────────────────────────────────
+import { mulberry32, tickerHash, simulateTickerPrice, getDaySeed, BASE_PRICES } from "@/services/market-data/simulate-price";
 
-function mulberry32(seed: number) {
-  return function () {
-    seed |= 0;
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-
-function tickerSeed(ticker: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < ticker.length; i++) {
-    h ^= ticker.charCodeAt(i);
-    h = Math.imul(h, 0x01000193) >>> 0;
-  }
-  return h;
-}
-
-// Stable base prices
-const BASE_PRICES: Record<string, number> = {
-  AAPL: 213,
-  MSFT: 415,
-  GOOG: 178,
-  AMZN: 204,
-  NVDA: 870,
-  TSLA: 248,
-  JPM: 225,
-  SPY: 548,
-  QQQ: 468,
-  META: 568,
-};
+/** Alias kept for local helpers that need the hash */
+const tickerSeed = tickerHash;
 
 function simulatePrice(ticker: string): { price: number; changePct: number } {
-  const base = BASE_PRICES[ticker] ?? 100;
-  const seed = tickerSeed(ticker + Math.floor(Date.now() / 60000).toString());
-  const rand = mulberry32(seed);
-  const changePct = (rand() - 0.5) * 4;
-  const price = base * (1 + changePct / 100);
-  return { price: Math.max(price, 0.01), changePct };
+  return simulateTickerPrice(ticker, getDaySeed());
 }
 
 // Generate a mini sparkline path for the last 8 simulated data points
