@@ -6,9 +6,9 @@ import { useMarketCountdown } from "@/hooks/useMarketCountdown";
 import { cn } from "@/lib/utils";
 
 const SESSION_STYLES: Record<string, { label: string; color: string; dot: string }> = {
-  "pre-market":  { label: "Pre-Mkt",    color: "text-amber-400/80",       dot: "bg-amber-400" },
+  "pre-market":  { label: "Pre-Mkt",    color: "text-amber-400/80",       dot: "bg-amber-400/70" },
   open:          { label: "Open",        color: "text-emerald-400/90",      dot: "bg-emerald-400" },
-  "after-hours": { label: "After-Hrs",  color: "text-sky-400/70",          dot: "bg-sky-400" },
+  "after-hours": { label: "After-Hrs",  color: "text-sky-400/70",          dot: "bg-sky-400/70" },
   closed:        { label: "Closed",     color: "text-muted-foreground/40", dot: "bg-muted-foreground/30" },
 };
 
@@ -70,12 +70,12 @@ export function GameStatusBar() {
             <span className="flex items-center gap-1">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inset-0 rounded-full bg-emerald-400" />
-                <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-60" />
+                <span className="absolute inset-0 rounded-full bg-emerald-400 animate-pulse opacity-60" />
               </span>
               <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-emerald-400/90">LIVE</span>
             </span>
             <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/30">6×</span>
-            <span className="h-3 w-px bg-border/40" />
+            <span className="h-3 w-px bg-border/30" />
             <span className="font-mono text-[10px] tabular-nums text-muted-foreground/50">{realTime}</span>
             <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground/25">ET</span>
           </>
@@ -88,20 +88,20 @@ export function GameStatusBar() {
           const { weekday, monthDay } = formatGameDate(gameDate);
           return (
             <>
-              <span className="font-mono text-[11px] font-semibold tabular-nums text-foreground/70 tracking-wide">
+              <span className="font-mono text-[10px] font-semibold text-foreground/70 tracking-wide">
                 {weekday}
               </span>
-              <span className="font-mono text-[10px] tracking-wider text-muted-foreground/55">
+              <span className="font-mono text-[9px] text-muted-foreground/40 tracking-wide">
                 {monthDay}
               </span>
             </>
           );
         })()}
         <span className="text-border/60 mx-0.5">·</span>
-        <span className="font-mono text-[15px] font-bold tabular-nums text-foreground/90 tracking-tight">
+        <span className="font-mono text-[14px] font-bold tabular-nums text-foreground/90 tracking-tight">
           {gameTimeDisplay}
         </span>
-        <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground/25 mt-px">ET</span>
+        <span className="font-mono text-[8px] uppercase tracking-widest text-muted-foreground/25 mt-px">ET</span>
       </div>
 
       {/* ── RIGHT: countdown + day + session (all on one line) ── */}
@@ -136,8 +136,11 @@ export function GameStatusBar() {
             "font-mono text-[10px] font-medium ring-1 ring-inset ring-current/20",
             session.color,
           )}>
-            <span className={cn("h-1.5 w-1.5 rounded-full flex-shrink-0", session.dot,
-              marketSession === "open" && "animate-pulse")} />
+            <span className={cn(
+              "h-1.5 w-1.5 rounded-full flex-shrink-0",
+              session.dot,
+              marketSession === "open" && "animate-pulse",
+            )} />
             {session.label}
           </span>
         )}

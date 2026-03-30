@@ -98,7 +98,7 @@ function LiveInfoBar() {
    : "Closed";
 
  if (price === 0) return (
-  <div className="flex shrink-0 h-7 border-b border-border/40 px-4 items-center gap-5">
+  <div className="flex shrink-0 h-8 border-b border-border/30 px-3 items-center gap-0 bg-background/95">
    <div className="h-3 w-24 rounded animate-pulse bg-muted/30" />
   </div>
  );
@@ -106,35 +106,49 @@ function LiveInfoBar() {
  const pnlVsStart = ((portfolioValue - 100_000) / 100_000) * 100;
 
  return (
-  <div className="flex shrink-0 h-7 border-b border-border/40 px-4 items-center gap-5">
-   <div className="flex items-baseline gap-2">
-    <span className="text-[11px] font-semibold tracking-tight">{ticker}</span>
-    <span className="text-[11px] font-semibold tabular-nums">${price.toFixed(2)}</span>
-    <span className={cn("text-xs font-mono tabular-nums", isUp ? "text-emerald-400/80" : "text-rose-400/70")}>
+  <div className="flex shrink-0 h-8 border-b border-border/30 px-3 items-center gap-0 bg-background/95">
+
+   {/* Group 1: Ticker + Price + Change */}
+   <div className="flex items-center gap-2 pr-3 border-r border-border/20">
+    <span className="text-[11px] font-bold tracking-tight text-foreground/90">{ticker}</span>
+    <span className="text-[12px] font-mono font-bold tabular-nums text-foreground">${price.toFixed(2)}</span>
+    <span className={cn(
+     "text-[10px] font-mono tabular-nums",
+     isUp ? "text-emerald-400/80" : "text-rose-400/70"
+    )}>
      {isUp ? "+" : ""}{change.toFixed(2)} ({isUp ? "+" : ""}{changePct.toFixed(2)}%)
     </span>
-    <span className={cn("text-[10px] font-mono px-1 rounded", sessionColor)}>
+    {/* Session badge */}
+    <span className={cn("text-[9px] font-mono px-1 py-0.5 rounded", sessionColor)}>
      {sessionLabel}
     </span>
-    <span className="text-[10px] font-mono text-muted-foreground/40 tabular-nums">
+   </div>
+
+   {/* Group 2: Portfolio + Cash */}
+   <div className="flex items-center gap-4 px-3 border-r border-border/20">
+    <div className="flex items-baseline gap-1">
+     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/25">Port</span>
+     <span className="text-[11px] font-mono tabular-nums text-foreground/75">${portfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+    </div>
+    <div className="flex items-baseline gap-1">
+     <span className="text-[9px] font-mono uppercase tracking-wider text-muted-foreground/25">Cash</span>
+     <span className="text-[11px] font-mono tabular-nums text-foreground/60">${cash.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+    </div>
+   </div>
+
+   {/* Group 3: Season P&L + date */}
+   <div className="flex items-center gap-3 px-3">
+    <span className={cn(
+     "text-[10px] font-mono tabular-nums font-semibold",
+     pnlVsStart >= 0 ? "text-emerald-400/70" : "text-rose-400/70"
+    )}>
+     {pnlVsStart >= 0 ? "+" : ""}{pnlVsStart.toFixed(2)}%
+    </span>
+    <span className="text-[9px] font-mono text-muted-foreground/30 tabular-nums">
      {formatLiveDate(gameDate)}
     </span>
    </div>
-   <div className="h-3 w-px bg-border/30" />
-   <div className="flex items-center gap-4">
-    <div className="flex items-baseline gap-1.5">
-     <span className="text-[10px] font-mono text-muted-foreground/25 uppercase tracking-wider">Portfolio</span>
-     <span className="text-[11px] font-medium tabular-nums">${portfolioValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
-    </div>
-    <div className="flex items-baseline gap-1.5">
-     <span className="text-[10px] font-mono text-muted-foreground/25 uppercase tracking-wider">Cash</span>
-     <span className="text-xs font-medium tabular-nums">${cash.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
-    </div>
-    <div className="h-3 w-px bg-border/30" />
-    <span className={pnlVsStart >= 0 ? "text-emerald-400/70" : "text-rose-400/70"} style={{ fontSize: "11px", fontVariantNumeric: "tabular-nums" }}>
-     Season: {pnlVsStart >= 0 ? "+" : ""}{pnlVsStart.toFixed(1)}%
-    </span>
-   </div>
+
   </div>
  );
 }
