@@ -1,14 +1,15 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useClockStore } from "@/stores/clock-store";
 import { useMarketCountdown } from "@/hooks/useMarketCountdown";
 import { cn } from "@/lib/utils";
 
 const SESSION_STYLES: Record<string, { label: string; color: string; dot: string }> = {
-  "pre-market":  { label: "Pre-Market",  color: "text-amber-400/80",       dot: "bg-amber-400" },
-  open:          { label: "Market Open", color: "text-emerald-400/90",      dot: "bg-emerald-400" },
-  "after-hours": { label: "After Hours", color: "text-sky-400/70",          dot: "bg-sky-400" },
-  closed:        { label: "Closed",      color: "text-muted-foreground/40", dot: "bg-muted-foreground/30" },
+  "pre-market":  { label: "Pre-Mkt",    color: "text-amber-400/80",       dot: "bg-amber-400" },
+  open:          { label: "Open",        color: "text-emerald-400/90",      dot: "bg-emerald-400" },
+  "after-hours": { label: "After-Hrs",  color: "text-sky-400/70",          dot: "bg-sky-400" },
+  closed:        { label: "Closed",     color: "text-muted-foreground/40", dot: "bg-muted-foreground/30" },
 };
 
 function formatGameDate(iso: string): string {
@@ -18,8 +19,34 @@ function formatGameDate(iso: string): string {
     weekday: "short",
     month: "short",
     day: "numeric",
-    year: "numeric",
     timeZone: "UTC",
+  }).toUpperCase();
+}
+
+/** Real ET time formatted as HH:MM:SS */
+function getRealETTime(): string {
+  const now = new Date();
+  const et = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  }).formatToParts(now);
+  const h = et.find((p) => p.type === "hour")?.value ?? "00";
+  const m = et.find((p) => p.type === "minute")?.value ?? "00";
+  const s = et.find((p) => p.type === "second")?.value ?? "00";
+  return `${h}:${m}:${s}`;
+}
+
+/** Real ET date formatted as "Mon, Mar 29" */
+function getRealETDate(): string {
+  const now = new Date();
+  return now.toLocaleDateString("en-US", {
+    timeZone: "America/New_York",
+    weekday: "short",
+    month: "short",
+    day: "numeric",
   }).toUpperCase();
 }
 
@@ -30,14 +57,27 @@ export function GameStatusBar() {
   const tradingDayIndex = useClockStore((s) => s.tradingDayIndex);
   const isSeasonOver    = useClockStore((s) => s.isSeasonOver);
 
+  const [realTime, setRealTime] = useState<string>(() => getRealETTime());
+  const [realDate, setRealDate] = useState<string>(() => getRealETDate());
+
+  useEffect(() => {
+    const tick = () => {
+      setRealTime(getRealETTime());
+      setRealDate(getRealETDate());
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
   const countdown = useMarketCountdown();
   const session   = SESSION_STYLES[marketSession] ?? SESSION_STYLES.closed;
 
   return (
-    <div className="h-9 shrink-0 border-t border-border/30 bg-background flex items-center px-3">
+    <div className="h-10 shrink-0 border-t border-border/30 bg-background flex items-center px-3 gap-0">
 
       {/* ── LEFT: LIVE pill ── */}
-      <div className="flex items-center gap-2 w-[88px] shrink-0">
+      <div className="flex items-center gap-2 shrink-0" style={{ width: 72 }}>
         {isSeasonOver ? (
           <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-rose-400/80">
             ENDED
@@ -58,13 +98,24 @@ export function GameStatusBar() {
 
       <span className="h-3 w-px bg-border/40 mx-2 shrink-0" />
 
-      {/* ── CENTER: date · time (the most prominent element) ── */}
+      {/* ── CENTER LEFT: Real ET clock ── */}
+      <div className="flex flex-col items-center shrink-0" style={{ width: 110 }}>
+        <span className="font-mono text-[8px] tracking-widest text-muted-foreground/25 uppercase">Real ET</span>
+        <div className="flex items-baseline gap-1">
+          <span className="font-mono text-[11px] tabular-nums text-muted-foreground/50 tracking-tight">{realDate.split(",")[0]}</span>
+          <span className="font-mono text-[13px] font-semibold tabular-nums text-muted-foreground/60 tracking-tight">{realTime}</span>
+        </div>
+      </div>
+
+      <span className="h-3 w-px bg-border/40 mx-2 shrink-0" />
+
+      {/* ── CENTER: Game clock (the most prominent element) ── */}
       <div className="flex-1 flex items-center justify-center gap-2">
-        <span className="font-mono text-[10px] tracking-wider text-muted-foreground/40">
+        <span className="font-mono text-[10px] tracking-wider text-muted-foreground/30">
           {formatGameDate(gameDate)}
         </span>
         <span className="text-border/60">·</span>
-        <span className="font-mono text-[14px] font-bold tabular-nums text-foreground/85 tracking-tight">
+        <span className="font-mono text-[15px] font-bold tabular-nums text-foreground/90 tracking-tight">
           {gameTimeDisplay}
         </span>
         <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground/25 mt-px">ET</span>
@@ -74,7 +125,6 @@ export function GameStatusBar() {
 
       {/* ── RIGHT: countdown + day + session ── */}
       <div className="flex items-center gap-2 shrink-0">
-        {/* Countdown chip — only when season active and we have a value */}
         {!isSeasonOver && countdown.display && countdown.display !== "--:--" && (
           <div className={cn(
             "flex items-center gap-1.5 rounded px-2 py-0.5",
@@ -90,12 +140,10 @@ export function GameStatusBar() {
           </div>
         )}
 
-        {/* Day counter */}
         <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/35 tabular-nums">
           Day {tradingDayIndex + 1}
         </span>
 
-        {/* Session badge */}
         {isSeasonOver ? (
           <span className="rounded px-1.5 py-0.5 font-mono text-[10px] font-medium ring-1 ring-inset ring-current/20 text-rose-400/70">
             Final

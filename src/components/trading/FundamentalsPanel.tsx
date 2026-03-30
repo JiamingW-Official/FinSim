@@ -8,442 +8,500 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { TrendingUp, TrendingDown, Minus, AlertTriangle, Zap } from "lucide-react";
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
 
 function fmt(n: number, decimals = 1): string {
- return n.toFixed(decimals);
+  return n.toFixed(decimals);
 }
 
 function pctColor(n: number): string {
- if (n > 0) return "text-emerald-400";
- if (n < 0) return "text-red-400";
- return "text-muted-foreground";
+  if (n > 0) return "text-emerald-400";
+  if (n < 0) return "text-red-400";
+  return "text-muted-foreground";
 }
 
 function ratingColor(r: string): string {
- if (r === "Strong Buy") return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
- if (r === "Buy") return "bg-emerald-500/5 text-emerald-400 border-emerald-500/20";
- if (r === "Hold") return "bg-amber-500/10 text-amber-400 border-amber-500/20";
- if (r === "Sell") return "bg-red-500/5 text-red-400 border-red-500/20";
- if (r === "Strong Sell") return "bg-red-500/20 text-red-400 border-red-500/30";
- return "bg-muted/30 text-muted-foreground border-border";
+  if (r === "Strong Buy") return "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+  if (r === "Buy") return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
+  if (r === "Hold") return "bg-amber-500/10 text-amber-400 border-amber-500/20";
+  if (r === "Sell") return "bg-red-500/10 text-red-400 border-red-500/20";
+  if (r === "Strong Sell") return "bg-red-500/20 text-red-400 border-red-500/30";
+  return "bg-muted/30 text-muted-foreground border-border";
 }
 
 function earningsColor(r: string): string {
- if (r === "beat") return "bg-emerald-500/15 text-emerald-400";
- if (r === "miss") return "bg-red-500/15 text-red-400";
- return "bg-amber-500/15 text-amber-400";
+  if (r === "beat") return "bg-emerald-500/15 text-emerald-400";
+  if (r === "miss") return "bg-red-500/15 text-red-400";
+  return "bg-amber-500/15 text-amber-400";
 }
 
-// ── Sub-components ────────────────────────────────────────────────────────────
+// ── Compact 2-column cell ─────────────────────────────────────────────────────
 
-function Row({ label, metric, value, valueClass }: { label: string; metric?: string; value: string; valueClass?: string }) {
- return (
- <div className="flex items-center justify-between py-1 border-b border-border last:border-0">
- <span className="text-xs text-muted-foreground">
- {metric ? <MetricTooltip metric={metric}>{label}</MetricTooltip> : label}
- </span>
- <span className={cn("text-[11px] font-medium tabular-nums", valueClass)}>{value}</span>
- </div>
- );
-}
-
-function MarginBar({ label, value, max = 100 }: { label: string; value: number; max?: number }) {
- const pct = Math.min(Math.max(value, 0), max);
- const width = `${(pct / max) * 100}%`;
- const barColor = value > 50 ? "bg-emerald-500" : value > 20 ? "bg-amber-500" : "bg-red-500";
- return (
- <div className="space-y-0.5">
- <div className="flex justify-between text-[11px]">
- <span className="text-muted-foreground">{label}</span>
- <span className={cn("font-semibold tabular-nums", value > 50 ? "text-emerald-400" : value > 20 ? "text-amber-400" : "text-red-400")}>
- {fmt(value)}%
- </span>
- </div>
- <div className="h-1 rounded-full bg-muted/40">
- <div className={cn("h-1 rounded-full transition-all", barColor)} style={{ width }} />
- </div>
- </div>
- );
-}
-
-function PriceBar({
- current,
- low,
- high,
- label,
+function Cell({
+  label,
+  metric,
+  value,
+  valueClass,
 }: {
- current: number;
- low: number;
- high: number;
- label: string;
+  label: string;
+  metric?: string;
+  value: string;
+  valueClass?: string;
 }) {
- const range = high - low;
- const pos = range > 0 ? ((current - low) / range) * 100 : 50;
- return (
- <div className="space-y-1.5">
- <div className="text-[11px] font-medium text-foreground/50">{label}</div>
- <div className="relative h-1.5 rounded-full bg-muted/40">
- <div className="absolute inset-0 rounded-full bg-muted/60" />
- <div
- className="absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-background bg-foreground shadow"
- style={{ left: `${pos}%` }}
- />
- </div>
- <div className="flex justify-between text-[11px] text-muted-foreground">
- <span>${fmt(low, 0)}</span>
- <span className="font-medium text-foreground">${fmt(current, 2)} ({fmt(pos, 0)}% of range)</span>
- <span>${fmt(high, 0)}</span>
- </div>
- </div>
- );
+  return (
+    <div className="flex flex-col gap-0.5 min-w-0">
+      <span className="text-[10px] text-muted-foreground truncate leading-none">
+        {metric ? (
+          <MetricTooltip metric={metric}>{label}</MetricTooltip>
+        ) : (
+          label
+        )}
+      </span>
+      <span className={cn("text-[11px] font-mono tabular-nums font-medium leading-none truncate", valueClass ?? "text-foreground")}>
+        {value}
+      </span>
+    </div>
+  );
+}
+
+// Two cells side-by-side filling a row
+function GridRow({
+  left,
+  right,
+}: {
+  left: React.ReactNode;
+  right?: React.ReactNode;
+}) {
+  return (
+    <div className="grid grid-cols-2 gap-x-3 py-[3px] border-b border-border/40 last:border-0">
+      {left}
+      {right ?? <div />}
+    </div>
+  );
+}
+
+// Compact % bar (no label — caller provides label above via Cell)
+function MiniBar({ value, max = 100, color }: { value: number; max?: number; color: string }) {
+  const pct = Math.min(Math.max(value, 0), max);
+  return (
+    <div className="h-0.5 mt-0.5 rounded-full bg-muted/40 overflow-hidden">
+      <div
+        className={cn("h-0.5 rounded-full", color)}
+        style={{ width: `${(pct / max) * 100}%` }}
+      />
+    </div>
+  );
+}
+
+// Compact 52-week range bar
+function RangeBar({
+  current,
+  low,
+  high,
+}: {
+  current: number;
+  low: number;
+  high: number;
+}) {
+  const range = high - low;
+  const pos = range > 0 ? ((current - low) / range) * 100 : 50;
+  return (
+    <div className="py-[3px] border-b border-border/40">
+      <div className="flex items-center justify-between text-[10px] text-muted-foreground mb-0.5">
+        <span>52W L ${fmt(low, 0)}</span>
+        <span className="text-foreground font-mono font-medium">${fmt(current, 2)}</span>
+        <span>52W H ${fmt(high, 0)}</span>
+      </div>
+      <div className="relative h-1 rounded-full bg-muted/40">
+        <div
+          className="absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-background bg-primary shadow-sm"
+          style={{ left: `${pos}%` }}
+        />
+      </div>
+    </div>
+  );
 }
 
 // ── Main Panel ────────────────────────────────────────────────────────────────
 
 export function FundamentalsPanel() {
- const currentTicker = useChartStore((s) => s.currentTicker);
- const allData = useMarketDataStore((s) => s.allData);
- const revealedCount = useMarketDataStore((s) => s.revealedCount);
- const data = FUNDAMENTALS[currentTicker];
+  const currentTicker = useChartStore((s) => s.currentTicker);
+  const allData = useMarketDataStore((s) => s.allData);
+  const revealedCount = useMarketDataStore((s) => s.revealedCount);
+  const data = FUNDAMENTALS[currentTicker];
 
- if (!data) {
- return (
- <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
- No fundamental data for {currentTicker}
- </div>
- );
- }
+  if (!data) {
+    return (
+      <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
+        No fundamental data for {currentTicker}
+      </div>
+    );
+  }
 
- const currentPrice = allData[revealedCount - 1]?.close ?? 0;
- const targetUpside =
- currentPrice > 0 && data.priceTarget > 0
- ? Math.round((data.priceTarget / currentPrice - 1) * 100)
- : null;
- const pePremium =
- data.sectorAvgPE > 0
- ? Math.round(((data.peRatio - data.sectorAvgPE) / data.sectorAvgPE) * 100)
- : 0;
- const isETF = data.sector === "ETF";
+  const currentPrice = allData[revealedCount - 1]?.close ?? 0;
+  const targetUpside =
+    currentPrice > 0 && data.priceTarget > 0
+      ? Math.round((data.priceTarget / currentPrice - 1) * 100)
+      : null;
+  const pePremium =
+    data.sectorAvgPE > 0
+      ? Math.round(((data.peRatio - data.sectorAvgPE) / data.sectorAvgPE) * 100)
+      : 0;
+  const isETF = data.sector === "ETF";
 
- // AlphaBot fundamental insight sentence
- const fundamentalInsight = (() => {
- if (isETF) return `${currentTicker} is an ETF tracking a broad market index — fundamentals are aggregate figures from underlying holdings.`;
- const valuation =
- pePremium > 25
- ? `trading at a ${pePremium}% premium to its sector avg P/E`
- : pePremium < -15
- ? `trading at a ${Math.abs(pePremium)}% discount to sector avg P/E`
- : `fairly valued near sector avg P/E`;
- const earnStr =
- data.lastEarningsResult === "beat"
- ? `beat estimates by ${data.earningsSurprisePct}%`
- : data.lastEarningsResult === "miss"
- ? `missed by ${Math.abs(data.earningsSurprisePct)}%`
- : `met estimates`;
- return `${currentTicker}: ${valuation} (${fmt(data.peRatio)}× P/E vs ${fmt(data.sectorAvgPE)}× sector); ${data.analystRating} consensus (${data.analystCount} analysts${targetUpside != null ? `, PT $${data.priceTarget} = ${targetUpside > 0 ? "+" : ""}${targetUpside}% upside` : ""}); last quarter ${earnStr}.`;
- })();
+  const fundamentalInsight = (() => {
+    if (isETF)
+      return `${currentTicker} tracks a broad index — fundamentals are aggregate figures.`;
+    const valuation =
+      pePremium > 25
+        ? `${pePremium}% premium to sector P/E`
+        : pePremium < -15
+        ? `${Math.abs(pePremium)}% discount to sector P/E`
+        : `near sector avg P/E`;
+    const earnStr =
+      data.lastEarningsResult === "beat"
+        ? `beat est. +${data.earningsSurprisePct}%`
+        : data.lastEarningsResult === "miss"
+        ? `missed ${data.earningsSurprisePct}%`
+        : `met estimates`;
+    return `${currentTicker}: ${valuation}; ${data.analystRating} (${data.analystCount}a${targetUpside != null ? `, PT $${data.priceTarget} ${targetUpside > 0 ? "+" : ""}${targetUpside}%` : ""}); last qtr ${earnStr}.`;
+  })();
 
- return (
- <Tabs defaultValue="overview" className="flex h-full flex-col">
- <TabsList className="h-6 w-full justify-start rounded-none border-b border-border bg-card px-2 shrink-0">
- {["overview", "valuation", "financials", "catalyst"].map((tab) => (
- <TabsTrigger
- key={tab}
- value={tab}
- className="h-5 rounded-none border-b-2 border-transparent px-2 text-xs capitalize data-[state=active]:border-primary data-[state=active]:bg-transparent"
- >
- {tab}
- </TabsTrigger>
- ))}
- </TabsList>
+  return (
+    <Tabs defaultValue="overview" className="flex h-full flex-col">
+      {/* Tab strip */}
+      <TabsList className="h-6 w-full justify-start rounded-none border-b border-border bg-transparent px-1 shrink-0 gap-0">
+        {(["overview", "valuation", "financials", "catalyst"] as const).map((tab) => (
+          <TabsTrigger
+            key={tab}
+            value={tab}
+            className="h-5 rounded-none border-b-2 border-transparent px-2 text-[10px] uppercase tracking-wide capitalize data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-foreground text-muted-foreground"
+          >
+            {tab}
+          </TabsTrigger>
+        ))}
+      </TabsList>
 
- {/* ── OVERVIEW TAB ── */}
- <TabsContent value="overview" className="flex-1 overflow-auto mt-0 p-3 space-y-3">
- {/* HERO card — ticker header with generous padding */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-4">
- <div className="flex items-center justify-between">
- <div>
- <div className="text-lg font-semibold text-foreground">{currentTicker}</div>
- <div className="text-xs text-muted-foreground mt-0.5">{data.industry}</div>
- </div>
- <div className="text-right">
- <div className="text-xs text-muted-foreground">{data.sector}</div>
- <div className="text-xs font-semibold text-foreground mt-0.5">{data.marketCap}</div>
- </div>
- </div>
- </div>
+      {/* ── OVERVIEW TAB ── */}
+      <TabsContent value="overview" className="flex-1 overflow-auto mt-0 p-2 space-y-0 data-[state=inactive]:hidden">
+        {/* Header row */}
+        <div className="flex items-start justify-between pb-[3px] border-b border-border/40 mb-0">
+          <div className="min-w-0">
+            <span className="text-[12px] font-semibold text-foreground leading-none">{currentTicker}</span>
+            <span className="text-[10px] text-muted-foreground ml-1.5">{data.industry}</span>
+          </div>
+          <div className="text-right shrink-0 ml-2">
+            <span className="text-[10px] text-muted-foreground">{data.sector}</span>
+            <span className="text-[11px] font-mono font-semibold text-foreground ml-1.5">{data.marketCap}</span>
+          </div>
+        </div>
 
- {/* Key stats chips — CONSOLE card */}
- <div className="rounded-lg bg-card border border-border p-2">
- <div className="flex flex-wrap gap-1.5">
- {[
- { label: "\u03b2", value: fmt(data.beta, 2) },
- { label: "Vol", value: data.avgVolume },
- { label: "Short", value: `${fmt(data.shortFloat, 1)}%` },
- { label: "Div", value: data.dividendYield > 0 ? `${fmt(data.dividendYield, 2)}%` : "N/A" },
- ].map(({ label, value }) => (
- <span key={label} className="px-1.5 py-0.5 text-[10px]">
- <span className="text-muted-foreground uppercase tracking-wide">{label} </span>
- <span className="font-medium tabular-nums text-foreground">{value}</span>
- </span>
- ))}
- </div>
- </div>
+        {/* Key stats 2-col grid */}
+        <GridRow
+          left={<Cell label="Beta" metric="beta" value={fmt(data.beta, 2)} valueClass={data.beta > 1.5 ? "text-amber-400" : "text-foreground"} />}
+          right={<Cell label="Avg Vol" value={data.avgVolume} />}
+        />
+        <GridRow
+          left={<Cell label="Short Float" metric="shortFloat" value={`${fmt(data.shortFloat, 1)}%`} valueClass={data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-foreground"} />}
+          right={<Cell label="Div Yield" metric="dividendYield" value={data.dividendYield > 0 ? `${fmt(data.dividendYield, 2)}%` : "N/A"} valueClass={data.dividendYield > 0 ? "text-emerald-400" : "text-muted-foreground"} />}
+        />
 
- {/* 52-week range bar */}
- {currentPrice > 0 && (
- <PriceBar
- current={currentPrice}
- low={data.week52Low}
- high={data.week52High}
- label="52-Week Range"
- />
- )}
+        {/* 52-week range */}
+        {currentPrice > 0 && (
+          <RangeBar current={currentPrice} low={data.week52Low} high={data.week52High} />
+        )}
 
- {/* Analyst block */}
- {/* Analyst block — CONSOLE card */}
- {!isETF && (
- <div className="rounded-lg bg-card border border-border p-3 space-y-1.5 text-xs">
- <div className="flex items-center justify-between">
- <span className={cn("rounded border px-2 py-0.5 text-xs font-medium", ratingColor(data.analystRating))}>
- {data.analystRating}
- </span>
- <span className="text-[10px] text-muted-foreground uppercase tracking-wide">{data.analystCount} analysts</span>
- </div>
- {/* Price target bar */}
- {currentPrice > 0 && data.priceTargetLow > 0 && (
- <div className="space-y-1">
- <PriceBar
- current={currentPrice}
- low={data.priceTargetLow}
- high={data.priceTargetHigh}
- label="Analyst Price Target Range"
- />
- {targetUpside != null && (
- <div className={cn("text-right text-[11px] font-medium", pctColor(targetUpside))}>
- Consensus PT ${data.priceTarget} → {targetUpside > 0 ? "+" : ""}{targetUpside}% upside
- </div>
- )}
- </div>
- )}
- </div>
- )}
+        {/* Analyst row */}
+        {!isETF && (
+          <div className="grid grid-cols-2 gap-x-3 py-[3px] border-b border-border/40">
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <span className="text-[10px] text-muted-foreground leading-none">Rating</span>
+              <span className={cn("inline-flex w-fit items-center rounded border px-1 py-0 text-[10px] font-medium leading-tight mt-0.5", ratingColor(data.analystRating))}>
+                {data.analystRating}
+              </span>
+            </div>
+            <div className="flex flex-col gap-0.5 min-w-0">
+              <span className="text-[10px] text-muted-foreground leading-none">
+                PT ({data.analystCount}a)
+              </span>
+              {targetUpside != null ? (
+                <span className={cn("text-[11px] font-mono tabular-nums font-medium leading-none", pctColor(targetUpside))}>
+                  ${data.priceTarget} ({targetUpside > 0 ? "+" : ""}{targetUpside}%)
+                </span>
+              ) : (
+                <span className="text-[11px] font-mono text-muted-foreground leading-none">N/A</span>
+              )}
+            </div>
+          </div>
+        )}
 
- {/* AlphaBot insight — FLOW card (borderless) */}
- <div className="flex items-start gap-2 bg-transparent p-0 py-2">
- <span className="shrink-0 text-xs text-primary">AI</span>
- <p className="text-xs leading-relaxed text-muted-foreground">{fundamentalInsight}</p>
- </div>
+        {/* AlphaBot insight */}
+        <p className="text-[10px] italic text-muted-foreground leading-snug pt-1">
+          {fundamentalInsight}
+        </p>
 
- {/* Description — FLOW card (borderless narrative) */}
- <p className="text-xs leading-relaxed text-muted-foreground bg-transparent p-0">{data.description}</p>
- </TabsContent>
+        {/* Description */}
+        <p className="text-[10px] text-muted-foreground leading-snug pt-0.5 line-clamp-2">
+          {data.description}
+        </p>
+      </TabsContent>
 
- {/* ── VALUATION TAB — CONSOLE card layout ── */}
- <TabsContent value="valuation" className="flex-1 overflow-auto mt-0 p-3 space-y-1.5">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-2">Valuation Multiples</div>
- <Row label="P/E Ratio" metric="peRatio" value={data.peRatio > 0 ? `${fmt(data.peRatio)}×` : "N/A"} />
- <Row label="Forward P/E" metric="forwardPE" value={data.forwardPE > 0 ? `${fmt(data.forwardPE)}×` : "N/A"} />
- <Row label="Price / Book" metric="pbRatio" value={data.pbRatio > 0 ? `${fmt(data.pbRatio)}×` : "N/A"} />
- <Row label="Price / Sales" metric="psRatio" value={data.psRatio > 0 ? `${fmt(data.psRatio)}×` : "N/A"} />
- <Row label="EV / EBITDA" metric="evEbitda" value={data.evEbitda > 0 ? `${fmt(data.evEbitda)}×` : "N/A"} />
+      {/* ── VALUATION TAB ── */}
+      <TabsContent value="valuation" className="flex-1 overflow-auto mt-0 p-2 data-[state=inactive]:hidden">
+        <GridRow
+          left={
+            <Cell
+              label="P/E"
+              metric="peRatio"
+              value={data.peRatio > 0 ? `${fmt(data.peRatio)}×` : "N/A"}
+              valueClass={data.peRatio > 0 && data.sectorAvgPE > 0 ? (pePremium > 25 ? "text-red-400" : pePremium < -15 ? "text-emerald-400" : "text-amber-400") : "text-foreground"}
+            />
+          }
+          right={
+            <Cell
+              label="Fwd P/E"
+              metric="forwardPE"
+              value={data.forwardPE > 0 ? `${fmt(data.forwardPE)}×` : "N/A"}
+            />
+          }
+        />
+        <GridRow
+          left={<Cell label="P/B" metric="pbRatio" value={data.pbRatio > 0 ? `${fmt(data.pbRatio)}×` : "N/A"} />}
+          right={<Cell label="P/S" metric="psRatio" value={data.psRatio > 0 ? `${fmt(data.psRatio)}×` : "N/A"} />}
+        />
+        <GridRow
+          left={<Cell label="EV/EBITDA" metric="evEbitda" value={data.evEbitda > 0 ? `${fmt(data.evEbitda)}×` : "N/A"} />}
+          right={<Cell label="PEG" value={data.pegRatio > 0 ? fmt(data.pegRatio, 2) : "N/A"} valueClass={data.pegRatio > 0 && data.pegRatio < 1 ? "text-emerald-400" : data.pegRatio > 2 ? "text-red-400" : "text-foreground"} />}
+        />
+        <GridRow
+          left={<Cell label="Sector P/E" value={data.sectorAvgPE > 0 ? `${fmt(data.sectorAvgPE)}×` : "N/A"} valueClass="text-muted-foreground" />}
+          right={
+            !isETF && data.sectorAvgPE > 0 ? (
+              <div className="flex flex-col gap-0.5 min-w-0">
+                <span className="text-[10px] text-muted-foreground leading-none">vs Sector</span>
+                <span className={cn("text-[10px] font-medium leading-none rounded px-1 py-0 w-fit",
+                  pePremium > 25 ? "bg-red-500/15 text-red-400" :
+                  pePremium < -15 ? "bg-emerald-500/15 text-emerald-400" :
+                  "bg-amber-500/15 text-amber-400"
+                )}>
+                  {pePremium > 0 ? "+" : ""}{pePremium}% {pePremium > 10 ? "premium" : pePremium < -10 ? "discount" : "fair"}
+                </span>
+              </div>
+            ) : <div />
+          }
+        />
+        {!isETF && data.evToRevenue > 0 && (
+          <GridRow
+            left={<Cell label="EV/Rev" value={`${fmt(data.evToRevenue)}×`} />}
+            right={<Cell label="P/FCF" value={data.priceToFCF > 0 ? `${fmt(data.priceToFCF)}×` : "N/A"} />}
+          />
+        )}
+        {!isETF && (
+          <GridRow
+            left={<Cell label="Buyback Yield" value={data.buybackYield > 0 ? `${fmt(data.buybackYield, 2)}%` : "N/A"} valueClass={data.buybackYield > 2 ? "text-emerald-400" : "text-foreground"} />}
+            right={<Cell label="Total Yield" value={data.totalYield > 0 ? `${fmt(data.totalYield, 2)}%` : "N/A"} valueClass={data.totalYield > 3 ? "text-emerald-400" : "text-foreground"} />}
+          />
+        )}
+      </TabsContent>
 
- {/* Vs-sector comparison */}
- {!isETF && data.sectorAvgPE > 0 && (
- <div className="rounded-lg bg-card border border-border p-3 space-y-1 mt-2 text-xs">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Vs Sector Avg P/E</div>
- <div className="flex items-center gap-2">
- <div className="flex-1">
- <div className="flex justify-between text-[11px] mb-0.5">
- <span className="text-muted-foreground">Sector avg</span>
- <span className="text-foreground font-medium">{fmt(data.sectorAvgPE)}×</span>
- </div>
- <div className="h-1 rounded-full bg-muted/40">
- <div className="h-1 rounded-full bg-muted-foreground/40" style={{ width: "100%" }} />
- </div>
- </div>
- </div>
- <div className="flex items-center gap-2">
- <div className="flex-1">
- <div className="flex justify-between text-[11px] mb-0.5">
- <span className="text-muted-foreground">{currentTicker}</span>
- <span className={cn("font-semibold", pePremium > 10 ? "text-red-400" : pePremium < -10 ? "text-emerald-400" : "text-amber-400")}>
- {fmt(data.peRatio)}×
- </span>
- </div>
- <div className="h-1 rounded-full bg-muted/40">
- <div
- className={cn("h-1 rounded-full", pePremium > 10 ? "bg-red-500" : pePremium < -10 ? "bg-emerald-500" : "bg-amber-500")}
- style={{ width: `${Math.min((data.peRatio / (data.sectorAvgPE * 2)) * 100, 100)}%` }}
- />
- </div>
- </div>
- </div>
- <div className={cn("text-[11px] font-semibold pt-0.5", pePremium > 25 ? "text-red-400" : pePremium < -15 ? "text-emerald-400" : "text-amber-400")}>
- {pePremium > 25
- ? `Premium: ${pePremium}% above sector avg — needs consistent earnings beats`
- : pePremium < -15
- ? `Discount: ${Math.abs(pePremium)}% below sector avg — potential value opportunity`
- : `Fairly valued: within normal range of sector peers`}
- </div>
- </div>
- )}
- </TabsContent>
+      {/* ── FINANCIALS TAB ── */}
+      <TabsContent value="financials" className="flex-1 overflow-auto mt-0 p-2 data-[state=inactive]:hidden">
+        {!isETF ? (
+          <>
+            {/* Growth + Margins side by side */}
+            <div className="grid grid-cols-2 gap-x-3 mb-1">
+              {/* Left: Growth */}
+              <div className="space-y-[3px]">
+                <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium pb-0.5 border-b border-border/40">Growth</div>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] text-muted-foreground">Rev YoY</span>
+                    <span className={cn("text-[11px] font-mono font-medium tabular-nums", pctColor(data.revenueGrowthYoY))}>
+                      {data.revenueGrowthYoY > 0 ? "+" : ""}{fmt(data.revenueGrowthYoY)}%
+                    </span>
+                  </div>
+                  <MiniBar value={Math.abs(data.revenueGrowthYoY)} max={50} color={data.revenueGrowthYoY >= 0 ? "bg-emerald-500" : "bg-red-500"} />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] text-muted-foreground">EPS YoY</span>
+                    <span className={cn("text-[11px] font-mono font-medium tabular-nums", pctColor(data.epsGrowthYoY))}>
+                      {data.epsGrowthYoY > 0 ? "+" : ""}{fmt(data.epsGrowthYoY)}%
+                    </span>
+                  </div>
+                  <MiniBar value={Math.abs(data.epsGrowthYoY)} max={50} color={data.epsGrowthYoY >= 0 ? "bg-emerald-500" : "bg-red-500"} />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] text-muted-foreground">Rev 3Y</span>
+                    <span className={cn("text-[11px] font-mono font-medium tabular-nums", pctColor(data.revenueGrowth3Y))}>
+                      {data.revenueGrowth3Y > 0 ? "+" : ""}{fmt(data.revenueGrowth3Y)}%
+                    </span>
+                  </div>
+                  <MiniBar value={Math.abs(data.revenueGrowth3Y)} max={50} color={data.revenueGrowth3Y >= 0 ? "bg-emerald-500" : "bg-red-500"} />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] text-muted-foreground">FCF Growth</span>
+                    <span className={cn("text-[11px] font-mono font-medium tabular-nums", pctColor(data.fcfGrowth))}>
+                      {data.fcfGrowth > 0 ? "+" : ""}{fmt(data.fcfGrowth)}%
+                    </span>
+                  </div>
+                  <MiniBar value={Math.abs(data.fcfGrowth)} max={50} color={data.fcfGrowth >= 0 ? "bg-emerald-500" : "bg-red-500"} />
+                </div>
+              </div>
 
- {/* ── FINANCIALS TAB ── */}
- <TabsContent value="financials" className="flex-1 overflow-auto mt-0 p-3 space-y-3">
- {/* Growth */}
- {!isETF && (
- <div className="space-y-1">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Growth</div>
- <Row
- label="Revenue"
- value={data.revenue}
- />
- <Row
- label="Revenue Growth YoY"
- metric="revenueGrowthYoY"
- value={`${data.revenueGrowthYoY > 0 ? "+" : ""}${fmt(data.revenueGrowthYoY)}%`}
- valueClass={pctColor(data.revenueGrowthYoY)}
- />
- <Row
- label="EPS"
- value={`$${fmt(data.eps, 2)}`}
- />
- <Row
- label="EPS Growth YoY"
- metric="epsGrowthYoY"
- value={`${data.epsGrowthYoY > 0 ? "+" : ""}${fmt(data.epsGrowthYoY)}%`}
- valueClass={pctColor(data.epsGrowthYoY)}
- />
- </div>
- )}
+              {/* Right: Margins */}
+              <div className="space-y-[3px]">
+                <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium pb-0.5 border-b border-border/40">Margins</div>
+                {(
+                  [
+                    { label: "Gross", value: data.grossMargin, metric: "grossMargin" },
+                    { label: "EBITDA", value: data.ebitdaMargin },
+                    { label: "Operating", value: data.operatingMargin, metric: "operatingMargin" },
+                    { label: "Net", value: data.netMargin, metric: "netMargin" },
+                  ] as Array<{ label: string; value: number; metric?: string }>
+                ).map(({ label, value, metric }) => (
+                  <div key={label} className="flex flex-col gap-0.5">
+                    <div className="flex justify-between items-center">
+                      <span className="text-[10px] text-muted-foreground">
+                        {metric ? (
+                          <MetricTooltip metric={metric}>{label}</MetricTooltip>
+                        ) : (
+                          label
+                        )}
+                      </span>
+                      <span className={cn("text-[11px] font-mono font-medium tabular-nums",
+                        value > 40 ? "text-emerald-400" : value > 15 ? "text-amber-400" : value > 0 ? "text-foreground" : "text-red-400"
+                      )}>
+                        {fmt(value)}%
+                      </span>
+                    </div>
+                    <MiniBar
+                      value={value}
+                      max={80}
+                      color={value > 40 ? "bg-emerald-500" : value > 15 ? "bg-amber-500" : "bg-red-500"}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
 
- {/* Margins */}
- {!isETF && (
- <div className="space-y-2">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Margins</div>
- <MetricTooltip metric="grossMargin">
- <span className="text-[11px] text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Gross Margin</span>
- </MetricTooltip>
- <MarginBar label="Gross Margin" value={data.grossMargin} />
- <MarginBar label="Operating Margin" value={data.operatingMargin} />
- <MarginBar label="Net Margin" value={data.netMargin} />
- </div>
- )}
+            {/* Balance Sheet 2-col grid */}
+            <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium pt-1 pb-0.5 border-b border-border/40">Balance Sheet</div>
+            <GridRow
+              left={<Cell label="ROE" metric="roe" value={`${fmt(data.roe)}%`} valueClass={data.roe > 20 ? "text-emerald-400" : data.roe > 10 ? "text-amber-400" : "text-red-400"} />}
+              right={<Cell label="D/E" metric="debtToEquity" value={data.debtToEquity > 0 ? fmt(data.debtToEquity, 2) : "N/A"} valueClass={data.debtToEquity > 2 ? "text-red-400" : data.debtToEquity < 0.5 ? "text-emerald-400" : "text-amber-400"} />}
+            />
+            <GridRow
+              left={<Cell label="Current Ratio" metric="currentRatio" value={data.currentRatio > 0 ? fmt(data.currentRatio, 2) : "N/A"} valueClass={data.currentRatio < 1 ? "text-red-400" : data.currentRatio > 1.5 ? "text-emerald-400" : "text-amber-400"} />}
+              right={<Cell label="Quick Ratio" value={data.quickRatio > 0 ? fmt(data.quickRatio, 2) : "N/A"} valueClass={data.quickRatio < 1 ? "text-red-400" : "text-foreground"} />}
+            />
+            <GridRow
+              left={<Cell label="Free Cash Flow" value={data.freeCashFlow || "N/A"} valueClass="text-emerald-400" />}
+              right={<Cell label="Net Cash" value={data.netCash !== undefined ? `${data.netCash >= 0 ? "+" : ""}$${fmt(Math.abs(data.netCash), 1)}B` : "N/A"} valueClass={data.netCash >= 0 ? "text-emerald-400" : "text-red-400"} />}
+            />
+            <GridRow
+              left={<Cell label="Insider Own" value={data.insiderTransactions} valueClass={data.insiderTransactions === "Net Buying" ? "text-emerald-400" : data.insiderTransactions === "Net Selling" ? "text-red-400" : "text-foreground"} />}
+              right={<Cell label="Inst. Own" value={`${fmt(data.institutionalOwnership, 0)}%`} />}
+            />
+          </>
+        ) : (
+          <div className="flex h-full items-center justify-center text-[10px] text-muted-foreground">
+            ETF — aggregate financials not applicable
+          </div>
+        )}
+      </TabsContent>
 
- {/* Balance Sheet */}
- {!isETF && (
- <div className="space-y-1">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Balance Sheet</div>
- <Row label="ROE" metric="roe" value={`${fmt(data.roe)}%`} valueClass={data.roe > 20 ? "text-emerald-400" : data.roe > 10 ? "text-amber-400" : "text-red-400"} />
- <Row label="Debt / Equity" metric="debtToEquity" value={data.debtToEquity > 0 ? fmt(data.debtToEquity, 2) : "N/A"} valueClass={data.debtToEquity > 2 ? "text-red-400" : data.debtToEquity < 0.5 ? "text-emerald-400" : "text-amber-400"} />
- <Row label="Current Ratio" metric="currentRatio" value={data.currentRatio > 0 ? fmt(data.currentRatio, 2) : "N/A"} valueClass={data.currentRatio < 1 ? "text-red-400" : data.currentRatio > 1.5 ? "text-emerald-400" : "text-amber-400"} />
- <Row label="Free Cash Flow" value={data.freeCashFlow || "N/A"} valueClass="text-emerald-400" />
- </div>
- )}
+      {/* ── CATALYST TAB ── */}
+      <TabsContent value="catalyst" className="flex-1 overflow-auto mt-0 p-2 space-y-0 data-[state=inactive]:hidden">
+        {isETF ? (
+          <div className="flex h-full items-center justify-center text-[10px] text-muted-foreground">
+            ETFs track underlying indices — no individual earnings catalysts
+          </div>
+        ) : (
+          <>
+            {/* Earnings 2-col */}
+            <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium pb-0.5 border-b border-border/40">Earnings</div>
+            <GridRow
+              left={
+                <div className="flex flex-col gap-0.5 min-w-0">
+                  <span className="text-[10px] text-muted-foreground leading-none">Next Date</span>
+                  <span className="text-[11px] font-mono font-medium text-primary leading-none">{data.nextEarningsDate}</span>
+                </div>
+              }
+              right={
+                <div className="flex flex-col gap-0.5 min-w-0">
+                  <span className="text-[10px] text-muted-foreground leading-none">Last Result</span>
+                  <span className={cn("inline-flex items-center gap-0.5 w-fit rounded px-1 py-0 text-[10px] font-medium mt-0.5 leading-tight", earningsColor(data.lastEarningsResult))}>
+                    {data.lastEarningsResult === "beat" ? (
+                      <TrendingUp className="h-2 w-2 shrink-0" />
+                    ) : data.lastEarningsResult === "miss" ? (
+                      <TrendingDown className="h-2 w-2 shrink-0" />
+                    ) : (
+                      <Minus className="h-2 w-2 shrink-0" />
+                    )}
+                    {data.lastEarningsResult === "beat"
+                      ? `Beat +${fmt(data.earningsSurprisePct, 1)}%`
+                      : data.lastEarningsResult === "miss"
+                      ? `Miss ${fmt(data.earningsSurprisePct, 1)}%`
+                      : "In-Line"}
+                  </span>
+                </div>
+              }
+            />
 
- {/* Income */}
- <div className="space-y-1">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Income</div>
- <Row label="Dividend Yield" metric="dividendYield" value={data.dividendYield > 0 ? `${fmt(data.dividendYield, 2)}%` : "N/A"} />
- {!isETF && (
- <Row label="Payout Ratio" metric="dividendPayoutRatio" value={data.dividendPayoutRatio > 0 ? `${fmt(data.dividendPayoutRatio)}%` : "N/A"} />
- )}
- </div>
- </TabsContent>
+            {/* Short squeeze 2-col */}
+            <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium pt-1 pb-0.5 border-b border-border/40">Short Interest</div>
+            <GridRow
+              left={
+                <Cell
+                  label="Short Float"
+                  metric="shortFloat"
+                  value={`${fmt(data.shortFloat, 1)}%`}
+                  valueClass={data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-emerald-400"}
+                />
+              }
+              right={
+                <div className="flex flex-col gap-0.5 min-w-0">
+                  <span className="text-[10px] text-muted-foreground leading-none">Squeeze Risk</span>
+                  <span className={cn("text-[10px] font-medium leading-none",
+                    data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-muted-foreground"
+                  )}>
+                    {data.shortFloat > 15 ? "High" : data.shortFloat > 5 ? "Moderate" : "Low"}
+                  </span>
+                </div>
+              }
+            />
 
- {/* ── CATALYST TAB ── */}
- <TabsContent value="catalyst" className="flex-1 overflow-auto mt-0 p-3 space-y-3">
- {/* Earnings */}
- {/* Earnings — CONSOLE card */}
- {!isETF && (
- <div className="rounded-lg bg-card border border-border p-3 space-y-1.5 text-xs">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Earnings</div>
- <div className="flex items-center justify-between">
- <span className="text-xs text-muted-foreground">Next earnings</span>
- <span className="rounded border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-xs font-medium text-primary">
- {data.nextEarningsDate}
- </span>
- </div>
- <div className="flex items-center justify-between">
- <span className="text-xs text-muted-foreground">Last result</span>
- <span className={cn("flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium", earningsColor(data.lastEarningsResult))}>
- {data.lastEarningsResult === "beat" ? (
- <TrendingUp className="h-2.5 w-2.5" />
- ) : data.lastEarningsResult === "miss" ? (
- <TrendingDown className="h-2.5 w-2.5" />
- ) : (
- <Minus className="h-2.5 w-2.5" />
- )}
- {data.lastEarningsResult === "beat"
- ? `Beat +${fmt(data.earningsSurprisePct, 1)}%`
- : data.lastEarningsResult === "miss"
- ? `Miss ${fmt(data.earningsSurprisePct, 1)}%`
- : "In-Line"}
- </span>
- </div>
- </div>
- )}
-
- {/* Short interest */}
- {/* Short interest — CONSOLE card */}
- {!isETF && (
- <div className="rounded-lg bg-card border border-border p-3 space-y-1 text-xs">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Short Interest</div>
- <div className="flex items-center justify-between">
- <MetricTooltip metric="shortFloat">
- <span className="text-xs text-muted-foreground cursor-help border-b border-dotted border-muted-foreground/50">Short Float</span>
- </MetricTooltip>
- <span className={cn("text-[11px] font-medium", data.shortFloat > 15 ? "text-red-400" : data.shortFloat > 5 ? "text-amber-400" : "text-emerald-400")}>
- {fmt(data.shortFloat, 1)}%
- </span>
- </div>
- <div className="text-[11px] text-muted-foreground">
- {data.shortFloat > 15
- ? "High short interest — potential for short squeeze on positive catalyst"
- : data.shortFloat > 5
- ? "Moderate short interest — bears present but not dominant"
- : "Low short interest — limited short squeeze potential"}
- </div>
- </div>
- )}
-
- {/* Risks */}
- {/* Risks — FLOW card (borderless, narrative) */}
- {!isETF && data.risks.length > 0 && (
- <div className="bg-transparent p-0 space-y-1.5">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Key Risks</div>
- {data.risks.map((risk, i) => (
- <div key={i} className="flex items-start gap-1.5">
- <AlertTriangle className="mt-0.5 h-2.5 w-2.5 shrink-0 text-amber-400" />
- <span className="text-xs leading-relaxed text-muted-foreground">{risk}</span>
- </div>
- ))}
- </div>
- )}
-
- {/* Catalysts */}
- {/* Catalysts — FLOW card (borderless, narrative) */}
- {!isETF && data.catalysts.length > 0 && (
- <div className="bg-transparent p-0 space-y-1.5">
- <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">Key Catalysts</div>
- {data.catalysts.map((catalyst, i) => (
- <div key={i} className="flex items-start gap-1.5">
- <Zap className="mt-0.5 h-2.5 w-2.5 shrink-0 text-emerald-400" />
- <span className="text-xs leading-relaxed text-muted-foreground">{catalyst}</span>
- </div>
- ))}
- </div>
- )}
-
- {isETF && (
- <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
- ETFs track underlying indices — no individual earnings catalysts
- </div>
- )}
- </TabsContent>
- </Tabs>
- );
+            {/* Bull / Bear catalysts + risks in 2-col */}
+            {(data.catalysts.length > 0 || data.risks.length > 0) && (
+              <div className="grid grid-cols-2 gap-x-3 pt-1">
+                {/* Catalysts */}
+                <div className="space-y-[3px]">
+                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium pb-0.5 border-b border-border/40">Catalysts</div>
+                  {data.catalysts.map((c, i) => (
+                    <div key={i} className="flex items-start gap-1">
+                      <Zap className="mt-0.5 h-2 w-2 shrink-0 text-emerald-400" />
+                      <span className="text-[10px] leading-snug text-muted-foreground">{c}</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Risks */}
+                <div className="space-y-[3px]">
+                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground font-medium pb-0.5 border-b border-border/40">Risks</div>
+                  {data.risks.map((r, i) => (
+                    <div key={i} className="flex items-start gap-1">
+                      <AlertTriangle className="mt-0.5 h-2 w-2 shrink-0 text-amber-400" />
+                      <span className="text-[10px] leading-snug text-muted-foreground">{r}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </TabsContent>
+    </Tabs>
+  );
 }

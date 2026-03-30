@@ -326,7 +326,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
  return (
   <div
    className="absolute inset-0 z-10"
-   style={{ pointerEvents: "none" }}
+   style={{ pointerEvents: isToolActive ? "auto" : "none" }}
   >
    <svg
     ref={svgRef}

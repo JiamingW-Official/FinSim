@@ -16,6 +16,7 @@ interface ClockState {
   gameTimeDisplay: string; // "14:35"
   gameHour: number;
   gameMinute: number;
+  gameSecond: number;
   marketSession: MarketSession;
   tradingDayIndex: number;
   totalTradingDays: number;
@@ -38,9 +39,9 @@ function formatDateISO(d: Date): string {
   return `${y}-${m}-${day}`;
 }
 
-/** Format time as "HH:MM" */
-function formatTime(hour: number, minute: number): string {
-  return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+/** Format time as "HH:MM:SS" */
+function formatTime(hour: number, minute: number, second: number): string {
+  return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}:${String(second).padStart(2, "0")}`;
 }
 
 export const useClockStore = create<ClockState>()(
@@ -52,9 +53,10 @@ export const useClockStore = create<ClockState>()(
 
       // Derived defaults
       gameDate: "2023-01-01",
-      gameTimeDisplay: "09:30",
+      gameTimeDisplay: "09:30:00",
       gameHour: 9,
       gameMinute: 30,
+      gameSecond: 0,
       marketSession: "closed" as MarketSession,
       tradingDayIndex: 0,
       totalTradingDays: 0,
@@ -88,11 +90,13 @@ export const useClockStore = create<ClockState>()(
 
         const state = getGameTime(seasonStartRealMs);
 
+        const gameSecond = state.gameTimeOfDay % 60;
         set({
           gameDate: formatDateISO(state.gameDate),
-          gameTimeDisplay: formatTime(state.gameHour, state.gameMinute),
+          gameTimeDisplay: formatTime(state.gameHour, state.gameMinute, gameSecond),
           gameHour: state.gameHour,
           gameMinute: state.gameMinute,
+          gameSecond,
           marketSession: state.marketSession,
           tradingDayIndex: state.tradingDayIndex,
           totalTradingDays: state.totalTradingDays,

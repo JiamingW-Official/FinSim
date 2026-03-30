@@ -381,7 +381,7 @@ export function OrderEntry() {
  // Validation for standard orders
  const canExecuteMarket =
  orderType === "market" &&
- isMarketOpen &&
+ (isMarketOpen || isExtendedHours) &&
  qty > 0 &&
  price > 0 &&
  (tradeMode === "buy"
@@ -894,8 +894,8 @@ export function OrderEntry() {
  : "bg-red-500 hover:bg-red-400 text-white",
  )}
  >
- {orderType === "market" && !isMarketOpen
- ? isExtendedHours ? "Use Limit Order" : "Market Closed"
+ {orderType === "market" && !isMarketOpen && !isExtendedHours
+ ? "Market Closed"
  : orderType === "market"
  ? tradeMode === "buy"
  ? `Buy ${currentTicker}`

@@ -14,7 +14,7 @@ function getDateRange() {
   // "to" is today so the full season range is covered.
   const to = new Date();
   return {
-    from: "2022-12-01",
+    from: "2022-01-01",
     to: to.toISOString().split("T")[0],
   };
 }
