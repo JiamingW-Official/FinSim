@@ -2,137 +2,123 @@
 
 import { useTradingStore } from "@/stores/trading-store";
 import { useMarketDataStore } from "@/stores/market-data-store";
-import { formatCurrency, cn } from "@/lib/utils";
-import { X, Clock, AlertTriangle } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { AlertTriangle } from "lucide-react";
 
 export function PendingOrders() {
- const pendingOrders = useTradingStore((s) => s.pendingOrders);
- const cancelPendingOrder = useTradingStore((s) => s.cancelPendingOrder);
- const allData = useMarketDataStore((s) => s.allData);
- const revealedCount = useMarketDataStore((s) => s.revealedCount);
+  const pendingOrders = useTradingStore((s) => s.pendingOrders);
+  const cancelPendingOrder = useTradingStore((s) => s.cancelPendingOrder);
+  const allData = useMarketDataStore((s) => s.allData);
+  const revealedCount = useMarketDataStore((s) => s.revealedCount);
 
- const currentPrice =
- allData.length > 0 && revealedCount > 0
- ? allData[revealedCount - 1].close
- : null;
+  const currentPrice =
+    allData.length > 0 && revealedCount > 0
+      ? allData[revealedCount - 1].close
+      : null;
 
- if (pendingOrders.length === 0) {
- return (
- <div className="flex h-24 flex-col items-center justify-center gap-1.5">
- <Clock className="h-5 w-5 text-muted-foreground/40" />
- <span className="text-xs font-medium text-muted-foreground">
- No pending orders
- </span>
- <span className="text-xs text-muted-foreground/60">
- Set limit, stop-loss, or take-profit orders
- </span>
- </div>
- );
- }
+  return (
+    <div className="flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/20 shrink-0">
+        <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/30">
+          Pending Orders
+        </span>
+        <span className="text-[9px] font-mono text-muted-foreground/30 tabular-nums">
+          {pendingOrders.length}
+        </span>
+      </div>
 
- return (
- <div className="overflow-auto">
- <table className="w-full text-xs">
- <thead>
- <tr className="border-b border-border text-muted-foreground">
- <th className="px-2 py-1.5 text-left font-medium">Ticker</th>
- <th className="px-2 py-1.5 text-center font-medium">Type</th>
- <th className="px-2 py-1.5 text-center font-medium">Side</th>
- <th className="px-2 py-1.5 text-right font-medium">Qty</th>
- <th className="px-2 py-1.5 text-right font-medium">Price</th>
- <th className="px-2 py-1.5 text-right font-medium">Dist.</th>
- <th className="w-8 px-1 py-1.5"></th>
- </tr>
- </thead>
- <tbody>
- {pendingOrders.map((order) => {
- const triggerPrice =
- order.limitPrice ?? order.stopPrice ?? order.takeProfitPrice ?? 0;
+      {/* Empty state */}
+      {pendingOrders.length === 0 ? (
+        <div className="flex items-center justify-center h-16">
+          <span className="text-[9px] font-mono uppercase tracking-widest text-muted-foreground/25">
+            No Pending Orders
+          </span>
+        </div>
+      ) : (
+        <div className="overflow-auto">
+          {pendingOrders.map((order) => {
+            const triggerPrice =
+              order.limitPrice ?? order.stopPrice ?? order.takeProfitPrice ?? 0;
 
- // Proximity calculation
- let proximityPct: number | null = null;
- if (currentPrice && triggerPrice > 0) {
- proximityPct =
- Math.abs(currentPrice - triggerPrice) / currentPrice * 100;
- }
+            let proximityPct: number | null = null;
+            if (currentPrice && triggerPrice > 0) {
+              proximityPct =
+                Math.abs(currentPrice - triggerPrice) / currentPrice * 100;
+            }
 
- const isVeryNear = proximityPct !== null && proximityPct < 0.5;
- const isNear = proximityPct !== null && proximityPct < 2;
+            const isVeryNear = proximityPct !== null && proximityPct < 0.5;
+            const isNear = proximityPct !== null && proximityPct < 2;
 
- return (
- <tr
- key={order.id}
- className={cn(
- "border-b border-border border-l-2 border-l-amber-500/40 transition-colors duration-150 hover:bg-muted/10",
- isVeryNear && "bg-red-500/5",
- )}
- >
- <td className="px-2 py-1.5 font-semibold">{order.ticker}</td>
- <td className="px-2 py-1.5 text-center">
- <Badge
- variant="outline"
- className="border-yellow-500/30 px-1.5 py-0 text-xs text-yellow-500"
- >
- <Clock className="mr-0.5 h-2.5 w-2.5" />
- {order.type.replace("_", " ").toUpperCase()}
- </Badge>
- </td>
- <td className="px-2 py-1.5 text-center">
- <Badge
- variant="outline"
- className={cn(
- "px-1.5 py-0 text-xs",
- order.side === "buy"
- ? "border-profit/30 text-profit"
- : "border-loss/30 text-loss",
- )}
- >
- {order.side.toUpperCase()}
- </Badge>
- </td>
- <td className="px-2 py-1.5 text-right tabular-nums">
- {order.quantity}
- </td>
- <td className="px-2 py-1.5 text-right tabular-nums">
- {formatCurrency(triggerPrice)}
- </td>
- <td className="px-2 py-1.5 text-right">
- {proximityPct !== null && isNear ? (
- <span
- className={cn(
- "inline-flex items-center gap-0.5 rounded px-1 py-0.5 text-xs font-medium tabular-nums",
- isVeryNear
- ? "bg-red-500/15 text-red-400 proximity-pulse"
- : "bg-amber-500/15 text-amber-400",
- )}
- >
- {isVeryNear && <AlertTriangle className="h-2.5 w-2.5" />}
- {proximityPct.toFixed(1)}%
- </span>
- ) : proximityPct !== null ? (
- <span className="text-xs tabular-nums text-muted-foreground/50">
- {proximityPct.toFixed(1)}%
- </span>
- ) : (
- "—"
- )}
- </td>
- <td className="px-1 py-1.5">
- <button
- type="button"
- onClick={() => cancelPendingOrder(order.id)}
- className="rounded p-0.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
- title="Cancel order"
- >
- <X className="h-3 w-3" />
- </button>
- </td>
- </tr>
- );
- })}
- </tbody>
- </table>
- </div>
- );
+            const typeLabel = order.type.replace("_", " ").toUpperCase();
+
+            return (
+              <div
+                key={order.id}
+                className={cn(
+                  "flex items-center px-2 py-1.5 border-b border-border/10 gap-2 text-[10px] font-mono transition-colors hover:bg-muted/5",
+                  isVeryNear && "bg-rose-500/5",
+                )}
+              >
+                {/* Ticker */}
+                <span className="font-semibold text-foreground/80 w-10 shrink-0">
+                  {order.ticker}
+                </span>
+
+                {/* Order type */}
+                <span className="text-muted-foreground/40 text-[8px] uppercase shrink-0">
+                  {typeLabel}
+                </span>
+
+                {/* Side */}
+                <span
+                  className={cn(
+                    "text-[8px] uppercase px-1 py-0.5 rounded shrink-0",
+                    order.side === "buy"
+                      ? "text-emerald-400/70 bg-emerald-500/10"
+                      : "text-rose-400/70 bg-rose-500/10",
+                  )}
+                >
+                  {order.side}
+                </span>
+
+                {/* Qty × Price */}
+                <span className="flex-1 text-muted-foreground/60 tabular-nums truncate">
+                  {order.quantity} × ${triggerPrice > 0 ? triggerPrice.toFixed(2) : "MKT"}
+                </span>
+
+                {/* Proximity indicator */}
+                {proximityPct !== null && isNear && (
+                  <span
+                    className={cn(
+                      "flex items-center gap-0.5 text-[8px] font-mono tabular-nums shrink-0",
+                      isVeryNear ? "text-rose-400/80" : "text-amber-400/70",
+                    )}
+                  >
+                    {isVeryNear && <AlertTriangle className="h-2 w-2" />}
+                    {proximityPct.toFixed(1)}%
+                  </span>
+                )}
+                {proximityPct !== null && !isNear && (
+                  <span className="text-[8px] font-mono tabular-nums text-muted-foreground/30 shrink-0">
+                    {proximityPct.toFixed(1)}%
+                  </span>
+                )}
+
+                {/* Cancel */}
+                <button
+                  type="button"
+                  onClick={() => cancelPendingOrder(order.id)}
+                  className="text-[10px] font-mono text-muted-foreground/25 hover:text-rose-400/70 transition-colors shrink-0 leading-none"
+                  title="Cancel order"
+                >
+                  ×
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }
