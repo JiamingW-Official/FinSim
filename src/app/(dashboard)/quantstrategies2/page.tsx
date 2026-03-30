@@ -1609,45 +1609,11 @@ export default function QuantStrategies2Page() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 bg-primary/10 rounded-lg border border-border">
- <Activity className="w-6 h-6 text-primary" />
- </div>
- <div>
- <h1 className="text-2xl font-bold text-foreground">Advanced Quantitative Strategies II</h1>
- <p className="text-sm text-muted-foreground">
- Statistical arbitrage · Machine learning · HFT market-making · Optimal execution
- </p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Quant Strategies II</h1>
+  <p className="text-sm text-muted-foreground mb-6">ADVANCED · EXECUTION · RISK · LIVE</p>
 
- {/* Quick-stat chips */}
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { label: "Stat Arb Sharpe", value: "1.42", color: "text-emerald-400" },
- { label: "XGBoost IC", value: "0.048", color: "text-sky-400" },
- { label: "HFT Spread", value: "1.1bp", color: "text-primary" },
- { label: "IS (avg)", value: "17.2bp", color: "text-amber-400" },
- ].map(({ label, value, color }) => (
- <div
- key={label}
- className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-1.5 text-xs text-muted-foreground"
- >
- <span className="text-muted-foreground">{label}</span>
- <span className={`font-medium ${color}`}>{value}</span>
- </div>
- ))}
- </div>
- </motion.div>
-
- {/* Tabs */}
  <Tabs value={tab} onValueChange={setTab} className="w-full">
  <TabsList className="bg-card border border-border p-1 h-auto flex flex-wrap gap-1 mb-4">
  {tabItems.map(({ id, label, icon: Icon }) => (
@@ -1687,5 +1653,6 @@ export default function QuantStrategies2Page() {
  </TabsContent>
  </Tabs>
  </div>
+  </div>
  );
 }

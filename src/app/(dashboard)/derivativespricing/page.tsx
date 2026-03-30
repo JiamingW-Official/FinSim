@@ -948,43 +948,28 @@ function InterestRateModels() {
 // ═══════════════════════════════════════════════════════════════════════════════
 export default function DerivativesPricingPage() {
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-center gap-3 mb-6"
- >
- <div className="p-2 bg-indigo-600/20 rounded-lg border border-indigo-600/30">
- </div>
- <div>
- <h1 className="text-xl font-medium">Derivatives Pricing Laboratory</h1>
- <p className="text-sm text-muted-foreground">Black-Scholes, Binomial Trees, Monte Carlo, Exotic Options, Interest Rate Models</p>
- </div>
- <div className="ml-auto flex gap-2">
- <Badge variant="outline" className="border-indigo-700 text-indigo-400 text-xs">Interactive</Badge>
- <Badge variant="outline" className="border-border text-muted-foreground text-xs">Pure SVG</Badge>
- </div>
- </motion.div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Derivatives Pricing</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground mb-8">BLACK-SCHOLES · MONTE CARLO · MODELS</p>
 
  {/* Tabs */}
- <Tabs defaultValue="bs" className="w-full mt-8">
+ <Tabs defaultValue="bs" className="w-full mt-0">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
- <TabsTrigger value="bs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="bs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground">
  Black-Scholes Lab
  </TabsTrigger>
- <TabsTrigger value="binomial" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="binomial" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground">
  Binomial Tree
  </TabsTrigger>
- <TabsTrigger value="mc" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="mc" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground">
  Monte Carlo
  </TabsTrigger>
- <TabsTrigger value="exotic" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="exotic" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground">
  Exotic Options
  </TabsTrigger>
- <TabsTrigger value="rates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
+ <TabsTrigger value="rates" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-sm text-muted-foreground data-[state=active]:text-foreground">
  Interest Rate Models
  </TabsTrigger>
  </TabsList>

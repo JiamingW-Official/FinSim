@@ -666,33 +666,10 @@ export default function QuantPortfolioPage() {
  const selectedViewObj = BL_VIEWS.find((v) => v.id === selectedView) ?? null;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <div className="mb-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Quantitative Portfolio Construction</h1>
- <p className="text-muted-foreground text-sm">
- Mean-variance optimization, Black-Litterman, risk parity, and cost-aware rebalancing
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { label: "Asset Classes", value: "5" },
- { label: "Framework", value: "Markowitz + BL" },
- { label: "Risk Model", value: "Ledoit-Wolf" },
- { label: "Rebal", value: "Threshold + Tax" },
- ].map((chip) => (
- <div key={chip.label} className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted border border-border text-xs text-muted-foreground">
- <span className="text-muted-foreground">{chip.label}:</span>
- <span className="text-foreground font-medium">{chip.value}</span>
- </div>
- ))}
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Quant Portfolio</h1>
+  <p className="text-sm text-muted-foreground mb-6">OPTIMIZATION · RISK · FACTOR · CONSTRAINTS</p>
 
  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
@@ -1310,5 +1287,6 @@ export default function QuantPortfolioPage() {
  </TabsContent>
  </Tabs>
  </div>
+  </div>
  );
 }

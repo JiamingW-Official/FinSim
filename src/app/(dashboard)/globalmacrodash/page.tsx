@@ -1043,35 +1043,22 @@ export default function GlobalMacroDashPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-5">
- {/* Page header — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex items-start justify-between flex-wrap gap-3">
- <div>
- <div className="flex items-center gap-2 mb-1">
- <Globe className="w-6 h-6 text-primary" />
- <h1 className="text-lg font-medium text-foreground">Global Macro Dashboard</h1>
- </div>
- <p className="text-sm text-muted-foreground">
- Cross-asset correlations · Central bank policy · Macro regimes · Positioning intelligence
- </p>
- </div>
- <div className="flex items-center gap-2">
- <Badge className="bg-muted/60 text-primary border-border text-xs">
- <Activity className="w-3 h-3 mr-1" />
- Live Feed
- </Badge>
- <span className="text-xs text-muted-foreground">Updated Mar 28, 2026</span>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Global Macro Dashboard</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-6">REAL-TIME · INDICATORS · POSITIONING</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mt-8">
- <TabsList className="bg-card/70 border border-border h-auto p-1 flex flex-wrap gap-1">
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto w-full flex overflow-x-auto">
  {tabs.map((t) => (
  <TabsTrigger
  key={t.value}
  value={t.value}
- className="flex items-center gap-1.5 text-xs data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground"
+ className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground"
  >
  {t.icon}
  {t.label}
@@ -1145,6 +1132,7 @@ export default function GlobalMacroDashPage() {
  </TabsContent>
  </div>
  </Tabs>
+ </div>
  </div>
  );
 }

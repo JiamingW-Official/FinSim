@@ -716,46 +716,12 @@ export default function MLStocksPage() {
  const totalFeatures = useMemo(() => FEATURE_CATEGORIES.reduce((s, c) => s + c.count, 0), []);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- <Brain className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Machine Learning in Stock Selection</h1>
- <p className="text-xs text-muted-foreground">Factor models, feature engineering, model architectures, backtesting &amp; live signal generation</p>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">ML Stock Prediction</h1>
+  <p className="text-sm text-muted-foreground mb-6">FEATURES · MODELS · BACKTEST · SIGNALS</p>
 
- {/* KPI chips */}
- <div className="flex flex-wrap gap-2 mt-3">
- {[
- { label: `${totalFeatures} Features`, color: "text-primary bg-muted/10 border-border" },
- { label: "8 Model Types", color: "text-primary bg-muted/10 border-border" },
- { label: "5 Pitfalls", color: "text-red-400 bg-red-500/5 border-red-500/20" },
- { label: "IC/ICIR Framework", color: "text-green-400 bg-green-500/10 border-green-500/20" },
- { label: "10-Stock Ranking", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
- ].map(chip => (
- <span key={chip.label} className={`text-xs text-muted-foreground px-2 py-1 rounded-full border ${chip.color}`}>{chip.label}</span>
- ))}
- </div>
- </motion.div>
-
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">ML Stock Selection Engine</h2>
- <p className="text-sm text-muted-foreground">Factor models, feature engineering, model architectures, backtesting framework, and live signal generation.</p>
- </div>
-
- {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="features" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Feature Engineering
  </TabsTrigger>
@@ -1339,5 +1305,6 @@ export default function MLStocksPage() {
  </TabsContent>
  </Tabs>
  </div>
+  </div>
  );
 }

@@ -1111,38 +1111,11 @@ function BacktestedPerformance() {
 
 export default function QuantValuePage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 sm:p-4">
- {/* Page Header */}
- <div className="mb-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-primary/20 border border-border">
- <Target className="w-3.5 h-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-2xl font-bold text-foreground">Quantitative Value Investing</h1>
- <p className="text-sm text-muted-foreground">Deep value analysis: Graham, Magic Formula, Acquirer&apos;s Multiple, Quality-Value blend</p>
- </div>
- </div>
- <div className="flex gap-2 flex-wrap mt-3">
- {[
- { icon: <Star className="w-3.5 h-3.5" />, label: "Graham Number", color: "text-amber-400 bg-amber-900/20 border-amber-800/40" },
- { icon: <Award className="w-3.5 h-3.5" />, label: "Magic Formula", color: "text-emerald-400 bg-emerald-900/20 border-emerald-800/40" },
- { icon: <BarChart2 className="w-3.5 h-3.5" />, label: "Acquirer's Multiple", color: "text-primary bg-muted/40 border-border" },
- { icon: <Layers className="w-3.5 h-3.5" />, label: "Quality-Value Blend", color: "text-primary bg-muted/40 border-border" },
- { icon: <TrendingUp className="w-3.5 h-3.5" />, label: "20Y Backtest", color: "text-rose-400 bg-rose-900/20 border-rose-800/40" },
- ].map((chip) => (
- <span
- key={chip.label}
- className={cn("inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs text-muted-foreground border", chip.color)}
- >
- {chip.icon}
- {chip.label}
- </span>
- ))}
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Quant Value</h1>
+  <p className="text-sm text-muted-foreground mb-6">FACTOR · DEEP VALUE · SYSTEMATIC</p>
 
- {/* Tabs */}
  <Tabs defaultValue="deepvalue">
  <TabsList className="bg-card border border-border mb-4 h-auto flex-wrap gap-1 p-1">
  <TabsTrigger value="deepvalue" className="text-xs text-muted-foreground data-[state=active]:bg-muted">
@@ -1194,5 +1167,6 @@ export default function QuantValuePage() {
  </p>
  </div>
  </div>
+  </div>
  );
 }

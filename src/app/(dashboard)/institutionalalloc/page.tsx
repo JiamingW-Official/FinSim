@@ -772,42 +772,14 @@ export default function InstitutionalAllocPage() {
  const latestFundingRatio = pensionFunding[pensionFunding.length - 1].fundingRatio;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-muted/10">
- <Building2 className="w-6 h-6 text-primary" />
- </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Institutional Asset Allocation</h1>
- <p className="text-sm text-muted-foreground">
- Endowment model · Pension LDI · Sovereign wealth · Yale/Harvard/Norway strategies
- </p>
- </div>
- </div>
- <div className="flex gap-2 flex-wrap mt-3">
- {["Endowment Model", "LDI / Pension", "SWF Strategies", "Yale Framework"].map((tag) => (
- <Badge key={tag} variant="outline" className="text-xs border-border text-muted-foreground">
- {tag}
- </Badge>
- ))}
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  {/* Hero */}
+  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Institutional Allocation</h1>
+  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ENDOWMENTS · PENSIONS · SOVEREIGN WEALTH</p>
 
- {/* Hero */}
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Institutional Allocation Framework</h2>
- <p className="text-sm text-muted-foreground">Compare endowment, pension, and sovereign wealth allocation models across Yale, Harvard, and Norway frameworks.</p>
- </div>
-
- {/* Tabs */}
- <Tabs defaultValue="models" className="mt-8">
+  {/* Tabs */}
+  <Tabs defaultValue="models" className="mt-8">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="models" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Models Comparison</TabsTrigger>
  <TabsTrigger value="endowment" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Endowment Model</TabsTrigger>
@@ -1458,6 +1430,7 @@ export default function InstitutionalAllocPage() {
  </motion.div>
  </TabsContent>
  </Tabs>
+  </div>
  </div>
  );
 }

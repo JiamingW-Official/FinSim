@@ -432,29 +432,15 @@ export default function MomentumBuilderPage() {
  const botDecile = stocks.slice(27, 30);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* Header */}
- <div className="flex items-start justify-between">
- <div>
- <div className="flex items-center gap-2 mb-1">
- <h1 className="text-xl font-semibold tracking-tight">Momentum Builder</h1>
- </div>
- <p className="text-sm text-muted-foreground">Quantitative momentum strategy construction, backtesting &amp; signal analysis</p>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="text-xs text-muted-foreground">
- Quant Engine
- </Badge>
- <Badge variant="secondary" className="text-xs text-muted-foreground">20-Year Backtest</Badge>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Momentum Builder</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-6">CROSS-SECTIONAL · TIME-SERIES · SIGNALS</p>
 
- <div className="rounded-md border border-border bg-card border-l-4 border-l-primary p-6">
- <h2 className="text-lg font-medium text-foreground mb-1">Momentum Strategy Lab</h2>
- <p className="text-sm text-muted-foreground">Quantitative momentum construction, signal analysis, backtesting, decay dynamics, and crash behavior.</p>
- </div>
+ <div className="border-t border-border mb-6" />
 
- <Tabs defaultValue="builder" className="w-full mt-8">
+ <Tabs defaultValue="builder" className="w-full">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="builder" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Signal Builder</TabsTrigger>
  <TabsTrigger value="screener" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Universe</TabsTrigger>
@@ -1098,6 +1084,7 @@ export default function MomentumBuilderPage() {
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

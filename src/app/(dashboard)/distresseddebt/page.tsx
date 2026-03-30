@@ -1156,20 +1156,14 @@ export default function DistressedDebtPage() {
  const planScenarios = useMemo(() => generatePlanScenarios(), []);
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
- {/* Header */}
- <div className="space-y-1">
- <div className="flex items-center gap-2">
- <Scale className="h-5 w-5 text-rose-400" />
- <h1 className="text-2xl font-bold text-foreground">Distressed Debt Investing</h1>
- </div>
- <p className="text-sm text-foreground/50">
- Loan-to-own strategies · Recovery rate analysis · Capital structure arbitrage · Bankruptcy process
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Distressed Debt</h1>
+ <p className="text-sm text-muted-foreground mb-6">RESTRUCTURING · RECOVERY · SPECIAL SITUATIONS</p>
 
- {/* Key metrics — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+ {/* Key metrics */}
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
  <MetricCard
  label="Market Size"
  value="$1.2T"
@@ -1200,19 +1194,21 @@ export default function DistressedDebtPage() {
  />
  </div>
 
+ <div className="border-t border-border mb-6" />
+
  {/* Tabs */}
- <Tabs defaultValue="opportunities" className="mt-8">
- <TabsList className="bg-foreground/5 border border-border">
- <TabsTrigger value="opportunities" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
+ <Tabs defaultValue="opportunities">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsTrigger value="opportunities" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Opportunities
  </TabsTrigger>
- <TabsTrigger value="recovery" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="recovery" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Recovery Model
  </TabsTrigger>
- <TabsTrigger value="capital" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="capital" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Capital Structure
  </TabsTrigger>
- <TabsTrigger value="bankruptcy" className="data-[state=active]:bg-foreground/10 text-xs text-muted-foreground sm:text-sm">
+ <TabsTrigger value="bankruptcy" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Bankruptcy
  </TabsTrigger>
  </TabsList>
@@ -1230,6 +1226,7 @@ export default function DistressedDebtPage() {
  <BankruptcyTab scenarios={planScenarios} />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

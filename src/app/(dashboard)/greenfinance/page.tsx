@@ -540,21 +540,12 @@ export default function GreenFinancePage() {
  const euaPrice = etsPrices[etsPrices.length - 1];
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
- >
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <div className="flex items-center gap-3">
- <div className="rounded-lg bg-emerald-500/5 border border-emerald-500/30 p-2">
- <Leaf className="text-emerald-400" size={20} />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Green Bonds &amp; Climate Finance</h1>
- <p className="text-xs text-muted-foreground">Sustainable debt markets, greenium analysis, carbon markets &amp; taxonomy</p>
- </div>
+ <div className="mb-8">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Green Finance</h1>
+ <p className="text-sm text-muted-foreground tracking-widest uppercase">GREEN BONDS · TAXONOMY · TRANSITION</p>
  </div>
 
  {/* Stats row — Hero */}
@@ -1046,6 +1037,7 @@ export default function GreenFinancePage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
+ </div>
  );
 }

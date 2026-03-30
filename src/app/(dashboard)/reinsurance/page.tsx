@@ -1097,27 +1097,18 @@ export default function ReinsurancePage() {
  const [activeTab, setActiveTab] = useState<TabValue>("basics");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-5xl mx-auto px-4 py-6">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-2">
- <div className="rounded-lg p-2 bg-muted/10 border border-border">
- <Shield size={20} className="text-primary" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Reinsurance</h1>
+ <p className="text-sm font-mono tracking-widest text-muted-foreground uppercase">CAT BONDS · RETROCESSION · RISK TRANSFER</p>
  </div>
- <div>
- <h1 className="text-2xl font-semibold text-foreground">Reinsurance Markets</h1>
- <p className="text-sm text-muted-foreground">
- Insurance of insurers — cat bonds, ILS, and underwriting cycles
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
+
+ <div className="border-t border-border mb-6" />
+
+ {/* Stats row */}
+ <div className="flex flex-wrap gap-3 mb-6">
  {[
  { label: "Global Reinsurance Premium", value: "$340B", color: "blue" as const },
  { label: "Cat Bond Outstanding", value: "$44B", color: "green" as const },
@@ -1127,7 +1118,6 @@ export default function ReinsurancePage() {
  <StatChip key={chip.label} label={chip.label} value={chip.value} color={chip.color} />
  ))}
  </div>
- </motion.div>
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as TabValue)}>

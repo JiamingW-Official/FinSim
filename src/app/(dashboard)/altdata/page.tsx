@@ -1164,41 +1164,11 @@ export default function AltDataPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <div className="max-w-4xl mx-auto space-y-4">
- {/* HERO Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.3 }}
- className="border-l-4 border-l-primary rounded-md bg-card p-6"
- >
- <div className="flex items-start gap-3">
- <div className="p-2 rounded-lg bg-indigo-500/20">
- <Database className="w-6 h-6 text-indigo-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Alternative Data in Investing</h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Satellite imagery, credit card transactions, NLP on filings, geolocation, and the
- full alt data ecosystem.
- </p>
- </div>
- </div>
- <div className="flex flex-wrap gap-2 mt-3">
- {headerChips.map((chip, i) => (
- <div
- key={`chip-${i}`}
- className={cn("px-3 py-1 rounded-full text-xs text-muted-foreground font-medium", chip.color)}
- >
- {chip.label}: <span className="font-medium">{chip.value}</span>
- </div>
- ))}
- </div>
- </motion.div>
- <div className="mt-8" />
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Alternative Data</h1>
+  <p className="text-sm text-muted-foreground mb-6">SATELLITE · WEB · SENTIMENT · NLP</p>
 
- {/* Tabs */}
  <Tabs defaultValue="categories">
  <TabsList className="grid grid-cols-4 bg-card border border-border w-full">
  <TabsTrigger

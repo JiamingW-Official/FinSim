@@ -762,61 +762,26 @@ export default function StructuredCreditPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- >
- <div className="flex items-start justify-between gap-4">
- <div>
- <h1 className="text-xl font-medium flex items-center gap-2">
- <Layers className="w-6 h-6 text-primary" />
- Structured Credit & CLOs
- </h1>
- <p className="text-muted-foreground text-sm mt-1">
- Collateralized Loan Obligations — tranche structure, cash flow waterfalls, and market analytics
- </p>
- </div>
- <div className="flex gap-2 flex-wrap">
- <Badge variant="outline" className="border-border text-primary text-xs">
- CLO 2.0
- </Badge>
- <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-xs">
- Leveraged Loans
- </Badge>
- <Badge variant="outline" className="border-amber-500/30 text-amber-400 text-xs">
- ABS / MBS
- </Badge>
- </div>
- </div>
- </motion.div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Structured Credit</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground mb-8">CLO · CDO · ABS · TRANCHING</p>
 
  {/* Key metrics */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {metrics.map((m) => (
  <StatCard key={m.label} {...m} />
  ))}
- </motion.div>
+ </div>
 
  {/* Main tabs */}
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
- >
  <Tabs defaultValue="structure">
- <TabsList className="mb-4">
- <TabsTrigger value="structure">CLO Structure</TabsTrigger>
- <TabsTrigger value="tranches">Tranches</TabsTrigger>
- <TabsTrigger value="waterfall">Cash Flow Waterfall</TabsTrigger>
- <TabsTrigger value="market">Market Data</TabsTrigger>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
+ <TabsTrigger value="structure" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm">CLO Structure</TabsTrigger>
+ <TabsTrigger value="tranches" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm">Tranches</TabsTrigger>
+ <TabsTrigger value="waterfall" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm">Cash Flow Waterfall</TabsTrigger>
+ <TabsTrigger value="market" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground px-3 py-2 text-sm">Market Data</TabsTrigger>
  </TabsList>
 
  {/* ── CLO Structure tab ── */}
@@ -1192,7 +1157,7 @@ export default function StructuredCreditPage() {
  </div>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

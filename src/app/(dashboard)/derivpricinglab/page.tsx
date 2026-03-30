@@ -395,39 +395,15 @@ export default function DerivPricingLabPage() {
  );
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="flex items-center gap-4"
- >
- <div className="p-2.5 rounded-md bg-muted/10 border border-border">
- </div>
- <div>
- <h1 className="text-2xl font-semibold tracking-tight">Derivatives Pricing Lab</h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Black-Scholes · Binomial Trees · Monte Carlo · Exotic Options
- </p>
- </div>
- <div className="ml-auto flex gap-2">
- <Badge variant="outline" className="border-border text-foreground text-xs">
- Interactive
- </Badge>
- <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-xs">
- Real-Time Pricing
- </Badge>
- </div>
- </motion.div>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Pricing Lab</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground mb-8">INTERACTIVE · MODELS · SENSITIVITIES</p>
 
  {/* Shared Parameter Bar — Hero */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.1 }}
- >
- <Card className="bg-card border-border border-l-4 border-l-primary">
+ <div>
+ <Card className="bg-card border-border mb-6">
  <CardContent className="p-4">
  <p className="text-xs text-muted-foreground mb-4 font-medium">
  Shared Option Parameters — all tabs update in real time
@@ -476,15 +452,9 @@ export default function DerivPricingLabPage() {
  </div>
  </CardContent>
  </Card>
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.2 }}
- className="mt-8"
- >
  <Tabs defaultValue="bs">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="bs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
@@ -771,7 +741,7 @@ export default function DerivPricingLabPage() {
  </Card>
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

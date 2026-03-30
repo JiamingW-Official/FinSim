@@ -433,30 +433,13 @@ export default function ESGIntegrationPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6 space-y-4">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
  {/* Header */}
- <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-start justify-between">
- <div>
- <h1 className="text-xl font-semibold tracking-tight flex items-center gap-2">
- <Leaf className="w-6 h-6 text-emerald-400" />
- ESG Portfolio Integration
- </h1>
- <p className="text-sm text-muted-foreground mt-1">
- Environmental, Social &amp; Governance scoring · Impact measurement · Sustainable frameworks
- </p>
+ <div className="mb-8">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">ESG Integration</h1>
+ <p className="text-sm text-muted-foreground tracking-widest uppercase">PORTFOLIO · SCREENING · ENGAGEMENT</p>
  </div>
- <div className="flex gap-2 flex-wrap justify-end">
- <Badge variant="outline" className="border-emerald-500/40 text-emerald-400">TCFD</Badge>
- <Badge variant="outline" className="border-green-500/40 text-green-400">SFDR</Badge>
- <Badge variant="outline" className="border-lime-500/40 text-lime-400">PRI</Badge>
- <Badge variant="outline" className="border-yellow-500/40 text-yellow-400">UN SDGs</Badge>
- </div>
- </div>
- </motion.div>
 
  {/* Summary stats */}
  <motion.div className="mt-8" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.35 }}>

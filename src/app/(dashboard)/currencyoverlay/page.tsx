@@ -1676,40 +1676,13 @@ export default function CurrencyOverlayPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* HERO Header */}
- <div className="border-b border-border border-l-4 border-l-primary bg-card/50 backdrop-blur-sm sticky top-0 z-10">
- <div className="px-6 py-4">
- <div className="flex items-center justify-between">
- <div className="flex items-center gap-3">
- <div className="p-2 rounded-md bg-muted/10">
- </div>
- <div>
- <h1 className="text-lg font-semibold">Currency Overlay</h1>
- <p className="text-xs text-muted-foreground">FX Exposure Management & Hedging Strategy Platform</p>
- </div>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="secondary" className="text-xs text-muted-foreground">
- <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block mr-1.5" />
- Live Rates
- </Badge>
- <Button
- variant="outline"
- size="sm"
- className="text-xs text-muted-foreground"
- onClick={() => toast.info("Rates refreshed", { description: "FX data updated to latest market close." })}
- >
- Refresh
- </Button>
- </div>
- </div>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+  <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+  {/* Hero */}
+  <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Currency Overlay</h1>
+  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">HEDGING · ACTIVE · PASSIVE · BENCHMARKS</p>
 
- {/* Navigation Tabs */}
- <div className="px-6 py-4">
- <Tabs value={activeTab} onValueChange={setActiveTab}>
+  <Tabs value={activeTab} onValueChange={setActiveTab}>
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {tabs.map((tab) => (
  <TabsTrigger
@@ -1777,7 +1750,7 @@ export default function CurrencyOverlayPage() {
  </AnimatePresence>
  </TabsContent>
  </Tabs>
- </div>
+  </div>
  </div>
  );
 }

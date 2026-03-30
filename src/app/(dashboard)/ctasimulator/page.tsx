@@ -583,32 +583,22 @@ export default function CTASimulatorPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* HERO Header */}
- <div className="mb-8 border-l-4 border-l-primary rounded-md bg-card p-6">
- <div className="flex items-center gap-3 mb-2">
- <div className="p-2 rounded-lg bg-emerald-500/5 border border-emerald-500/20">
- <Sigma className="w-5 h-5 text-emerald-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">CTA Strategy Simulator</h1>
- <p className="text-sm text-muted-foreground">Systematic macro & commodity trading advisor strategies</p>
- </div>
- <div className="ml-auto flex items-center gap-2">
- <Badge className="bg-emerald-500/5 text-emerald-400 border-emerald-500/20 text-xs">Managed Futures</Badge>
- <Badge className="bg-muted/10 text-primary border-border text-xs">Live Signals</Badge>
- </div>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">CTA Simulator</h1>
+ <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase mb-6">TREND FOLLOWING · MANAGED FUTURES</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto w-full flex overflow-x-auto">
  {TABS.map(({ id, label, icon: Icon }) => (
  <TabsTrigger
  key={id}
  value={id}
- className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-300"
+ className="flex items-center gap-1.5 text-xs px-3 py-2 rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-foreground text-muted-foreground"
  >{label}</TabsTrigger>
  ))}
  </TabsList>
@@ -1133,6 +1123,7 @@ export default function CTASimulatorPage() {
  <p className="mt-8 text-xs text-muted-foreground text-center">
  Simulated data for educational purposes only. Past performance of CTA strategies does not guarantee future results. Seed 742002.
  </p>
+ </div>
  </div>
  );
 }

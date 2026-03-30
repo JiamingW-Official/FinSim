@@ -1525,5 +1525,6 @@ export default function ESGDataPage() {
  </TabsContent>
  </Tabs>
  </div>
+ </div>
  );
 }

@@ -1598,5 +1598,6 @@ export default function CentralBankPage() {
  </div>
  </Tabs>
  </div>
+ </div>
  );
 }

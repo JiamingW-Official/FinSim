@@ -626,28 +626,28 @@ export default function CommoditySpreadsPage() {
 
  {/* Main Tabs */}
  <Tabs defaultValue="crack">
- <TabsList className="bg-card border border-border flex-wrap h-auto gap-1 p-1">
- <TabsTrigger value="crack" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-4">
+ <TabsTrigger value="crack" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5">
  <Flame className="w-3.5 h-3.5" />
  Crack Spreads
  </TabsTrigger>
- <TabsTrigger value="spark" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+ <TabsTrigger value="spark" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5">
  <Zap className="w-3.5 h-3.5" />
  Spark Spreads
  </TabsTrigger>
- <TabsTrigger value="crush" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+ <TabsTrigger value="crush" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5">
  <Wheat className="w-3.5 h-3.5" />
  Crush Spread
  </TabsTrigger>
- <TabsTrigger value="calendar" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+ <TabsTrigger value="calendar" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5">
  <Calendar className="w-3.5 h-3.5" />
  Calendar Spreads
  </TabsTrigger>
- <TabsTrigger value="weather" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+ <TabsTrigger value="weather" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5">
  <CloudRain className="w-3.5 h-3.5" />
  Weather &amp; Seasonality
  </TabsTrigger>
- <TabsTrigger value="strategies" className="flex items-center gap-1.5 text-xs text-muted-foreground">
+ <TabsTrigger value="strategies" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5">
  <BarChart2 className="w-3.5 h-3.5" />
  Strategies
  </TabsTrigger>

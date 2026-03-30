@@ -1182,27 +1182,21 @@ function CrisisHistoryTab() {
 
 export default function EmDebtPage() {
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header — Hero */}
- <div className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6">
- <div className="flex items-center gap-3 mb-2 flex-wrap">
- <div className="p-2 rounded-lg bg-muted/10 border border-border">
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Emerging Markets Debt</h1>
- <p className="text-sm text-muted-foreground">
- Sovereign bonds, hard vs local currency, spread decomposition, crisis history
- </p>
- </div>
- <div className="ml-auto flex gap-2 flex-wrap">
- <Badge className="bg-muted/60 text-foreground border-border text-xs">EMBI +185 bps</Badge>
- <Badge className="bg-amber-900/40 text-amber-400 border-amber-700 text-xs">GBI-EM 6.88%</Badge>
- <Badge className="bg-rose-900/40 text-rose-400 border-rose-700 text-xs">EM FX -3.2% YTD</Badge>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Emerging Market Debt</h1>
+ <p className="text-sm text-muted-foreground mb-6">EM BONDS · SPREADS · CURRENCY · RISK</p>
+
+ <div className="flex flex-wrap gap-2 mb-6">
+ <span className="text-xs text-muted-foreground bg-card border border-border rounded-full px-3 py-1 font-mono tabular-nums">EMBI +185 bps</span>
+ <span className="text-xs text-muted-foreground bg-card border border-border rounded-full px-3 py-1 font-mono tabular-nums">GBI-EM 6.88%</span>
+ <span className="text-xs text-muted-foreground bg-card border border-border rounded-full px-3 py-1 font-mono tabular-nums">EM FX -3.2% YTD</span>
  </div>
 
- <Tabs defaultValue="sovereign" className="mt-8">
+ <div className="border-t border-border mb-6" />
+
+ <Tabs defaultValue="sovereign">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  <TabsTrigger value="sovereign" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  Sovereign Dashboard
@@ -1251,6 +1245,7 @@ export default function EmDebtPage() {
  </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }
