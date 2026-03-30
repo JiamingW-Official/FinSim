@@ -13,17 +13,17 @@ import type { IndicatorType } from "@/stores/chart-store";
 
 // ─── Category config ──────────────────────────────────────────────────────────
 
-const CATEGORY_CONFIG: Record<GlossaryEntry["category"], { label: string; color: string }> = {
-  basics:            { label: "Basics",         color: "bg-primary/10 text-primary/70 border-primary/15" },
-  orders:            { label: "Orders",         color: "bg-primary/10 text-primary/70 border-primary/15" },
-  indicators:        { label: "Indicators",     color: "bg-teal-500/10 text-teal-400/80 border-teal-500/15" },
-  risk:              { label: "Risk",           color: "bg-red-500/10 text-red-400/80 border-red-500/15" },
-  fundamental:       { label: "Fundamental",   color: "bg-amber-500/10 text-amber-400/80 border-amber-500/15" },
-  "personal-finance":{ label: "Personal",      color: "bg-green-500/10 text-green-400/80 border-green-500/15" },
-  crypto:            { label: "Crypto",         color: "bg-orange-500/10 text-orange-400/80 border-orange-500/15" },
-  macro:             { label: "Macro",          color: "bg-sky-500/10 text-sky-400/80 border-sky-500/15" },
-  "options-advanced":{ label: "Options",        color: "bg-pink-500/10 text-pink-400/80 border-pink-500/15" },
-  technical:         { label: "Technical",      color: "bg-cyan-500/10 text-cyan-400/80 border-cyan-500/15" },
+const CATEGORY_CONFIG: Record<GlossaryEntry["category"], { label: string }> = {
+  basics:             { label: "Basics" },
+  orders:             { label: "Orders" },
+  indicators:         { label: "Indicators" },
+  risk:               { label: "Risk" },
+  fundamental:        { label: "Fundamental" },
+  "personal-finance": { label: "Personal" },
+  crypto:             { label: "Crypto" },
+  macro:              { label: "Macro" },
+  "options-advanced": { label: "Options" },
+  technical:          { label: "Technical" },
 };
 
 const INDICATOR_FILTER_CONFIG: Record<string, string[]> = {
@@ -39,50 +39,35 @@ const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 // ─── Shared mini-components ───────────────────────────────────────────────────
 
-function ReliabilityDots({ score, max = 5 }: { score: number; max?: number }) {
+function FilterPills<T extends string>({
+  options, active, onChange,
+}: { options: readonly T[]; active: T; onChange: (v: T) => void }) {
   return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: max }).map((_, i) => (
-        <span key={i} className={cn(
-          "inline-block h-1.5 w-1.5 rounded-full",
-          i < score ? "bg-primary" : "bg-border",
-        )} />
+    <div className="flex items-center gap-1 flex-wrap">
+      {options.map((opt) => (
+        <button
+          key={opt}
+          type="button"
+          onClick={() => onChange(opt)}
+          className={cn(
+            "px-3 py-1.5 text-xs rounded-md font-medium transition-all border capitalize",
+            active === opt
+              ? "border-foreground/30 bg-foreground/[0.06] text-foreground"
+              : "border-border/30 text-muted-foreground/40 hover:text-muted-foreground/70 hover:border-border/60",
+          )}
+        >
+          {opt}
+        </button>
       ))}
     </div>
   );
 }
 
-function DirectionPill({ direction }: { direction: "bullish" | "bearish" | "both" }) {
-  return (
-    <span className={cn(
-      "inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide border",
-      direction === "bullish" && "bg-emerald-500/10 text-emerald-400/80 border-emerald-500/15",
-      direction === "bearish" && "bg-red-500/10 text-red-400/80 border-red-500/15",
-      direction === "both"    && "bg-muted/40 text-muted-foreground/60 border-border/50",
-    )}>
-      {direction}
-    </span>
-  );
-}
-
-function TypePill({ type }: { type: "continuation" | "reversal" }) {
-  return (
-    <span className={cn(
-      "inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide border",
-      type === "continuation"
-        ? "bg-primary/10 text-primary/70 border-primary/15"
-        : "bg-amber-500/10 text-amber-400/80 border-amber-500/15",
-    )}>
-      {type}
-    </span>
-  );
-}
-
-function InfoRow({ label, children }: { label: string; children: React.ReactNode }) {
+function InfoSection({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 mb-1">{label}</p>
-      <div className="text-xs text-muted-foreground/75 leading-relaxed">{children}</div>
+      <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 mb-1.5">{label}</p>
+      <div className="text-xs text-muted-foreground/65 leading-relaxed">{children}</div>
     </div>
   );
 }
@@ -115,15 +100,15 @@ function ChartPatternSVG({ name, direction }: { name: string; direction: "bullis
       <path d="M0,10 Q20,42 40,42 Q55,42 60,28 L65,30 L68,24 L80,20" fill="none" stroke="#22c55e" strokeWidth="1.5" />
     );
     if (lc.includes("ascending triangle")) return (<>
-      <line x1="0" y1="15" x2="80" y2="15" stroke="#6b7280" strokeWidth="1" strokeDasharray="3,2" />
+      <line x1="0" y1="15" x2="80" y2="15" stroke="currentColor" strokeOpacity={0.2} strokeWidth="1" strokeDasharray="3,2" />
       <polyline points="0,42 20,15 30,30 50,15 60,22 80,15" fill="none" stroke="#22c55e" strokeWidth="1.5" strokeLinejoin="round" />
     </>);
     if (lc.includes("descending triangle")) return (<>
-      <line x1="0" y1="38" x2="80" y2="38" stroke="#6b7280" strokeWidth="1" strokeDasharray="3,2" />
+      <line x1="0" y1="38" x2="80" y2="38" stroke="currentColor" strokeOpacity={0.2} strokeWidth="1" strokeDasharray="3,2" />
       <polyline points="0,10 20,38 30,22 50,38 60,28 80,38" fill="none" stroke="#ef4444" strokeWidth="1.5" strokeLinejoin="round" />
     </>);
     if (lc.includes("symmetrical triangle")) return (
-      <polyline points="0,8 15,35 25,18 40,30 50,20 65,28 80,25" fill="none" stroke="#a3a3a3" strokeWidth="1.5" strokeLinejoin="round" />
+      <polyline points="0,8 15,35 25,18 40,30 50,20 65,28 80,25" fill="none" stroke="currentColor" strokeOpacity={0.5} strokeWidth="1.5" strokeLinejoin="round" />
     );
     if (lc === "bull flag") return (<>
       <polyline points="0,42 15,10" fill="none" stroke="#22c55e" strokeWidth="1.5" />
@@ -157,36 +142,11 @@ function ChartPatternSVG({ name, direction }: { name: string; direction: "bullis
   );
 }
 
-// ─── Custom filter pills ───────────────────────────────────────────────────────
-
-function FilterPills<T extends string>({
-  options, active, onChange,
-}: { options: readonly T[]; active: T; onChange: (v: T) => void }) {
-  return (
-    <div className="flex items-center gap-0.5 border border-border/70 rounded-lg p-0.5 w-fit flex-wrap">
-      {options.map((opt) => (
-        <button
-          key={opt}
-          type="button"
-          onClick={() => onChange(opt)}
-          className={cn(
-            "px-3 py-1 text-[11px] font-medium rounded-md transition-colors capitalize",
-            active === opt
-              ? "bg-foreground text-background font-semibold"
-              : "text-muted-foreground/45 hover:text-foreground/70",
-          )}
-        >
-          {opt}
-        </button>
-      ))}
-    </div>
-  );
-}
-
 // ─── Tab 1: Dictionary ────────────────────────────────────────────────────────
 
 function DictionaryTab() {
   const [search, setSearch] = useState("");
+  const [expanded, setExpanded] = useState<string | null>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   const filtered = useMemo(() => {
@@ -214,18 +174,18 @@ function DictionaryTab() {
     <div className="flex flex-col gap-5">
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground/35" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground/30" />
         <input
           placeholder="Search terms, definitions..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full border border-border/70 bg-transparent pl-9 pr-3 py-2.5 text-xs rounded-lg focus:outline-none focus:border-foreground/30 placeholder:text-muted-foreground/25 transition-colors"
+          className="w-full border border-border/50 bg-transparent pl-9 pr-3 py-2.5 text-xs rounded-lg focus:outline-none focus:border-foreground/25 placeholder:text-muted-foreground/20 transition-colors"
         />
       </div>
 
-      {/* Alphabet jump bar */}
+      {/* Alphabet bar */}
       {!search.trim() && (
-        <div className="flex flex-wrap gap-0.5">
+        <div className="flex flex-wrap gap-0">
           {ALPHABET.map((letter) => (
             <button
               key={letter}
@@ -233,9 +193,9 @@ function DictionaryTab() {
               onClick={() => scrollTo(letter)}
               disabled={!presentLetters.has(letter)}
               className={cn(
-                "h-6 w-6 rounded text-[11px] font-mono font-medium transition-colors",
+                "h-6 w-6 text-[10px] font-mono transition-colors rounded",
                 presentLetters.has(letter)
-                  ? "text-foreground/70 hover:bg-foreground/10 cursor-pointer"
+                  ? "text-muted-foreground/50 hover:text-foreground hover:bg-foreground/[0.05] cursor-pointer"
                   : "text-muted-foreground/15 cursor-default",
               )}
             >
@@ -245,39 +205,36 @@ function DictionaryTab() {
         </div>
       )}
 
-      {/* Count */}
-      <p className="text-[10px] font-mono text-muted-foreground/30 tracking-wide">
-        {filtered.length} {filtered.length === 1 ? "term" : "terms"}
-        {search.trim() ? ` for "${search}"` : ""}
+      <p className="text-[10px] font-mono text-muted-foreground/25 tracking-wide">
+        {filtered.length} {filtered.length === 1 ? "term" : "terms"}{search.trim() ? ` for "${search}"` : ""}
       </p>
 
       {/* Grouped sections */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-8">
         {Object.keys(grouped).sort().map((letter) => (
           <div key={letter} ref={(el) => { sectionRefs.current[letter] = el; }}>
-            {/* Letter anchor */}
-            <div className="flex items-center gap-3 mb-3">
-              <span className="font-serif text-2xl font-bold text-foreground/12 select-none leading-none w-6">
-                {letter}
-              </span>
-              <div className="h-px flex-1 bg-border/40" />
+            <div className="flex items-center gap-4 mb-1">
+              <span className="text-lg font-bold text-foreground/10 select-none leading-none w-5">{letter}</span>
+              <div className="h-px flex-1 bg-border/30" />
             </div>
-            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="divide-y divide-border/25">
               {grouped[letter].map((entry) => {
-                const cat = CATEGORY_CONFIG[entry.category];
+                const isOpen = expanded === entry.term;
                 return (
-                  <div key={entry.term} className="rounded-xl border border-border/60 bg-card p-3.5 flex flex-col gap-2">
-                    <div className="flex items-start justify-between gap-2">
-                      <span className="text-sm font-semibold text-foreground leading-tight">{entry.term}</span>
-                      <span className={cn("shrink-0 rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide border", cat.color)}>
-                        {cat.label}
-                      </span>
-                    </div>
-                    <p className="text-xs text-muted-foreground/65 leading-relaxed">{entry.definition}</p>
-                    {entry.example && (
-                      <p className="text-[11px] text-muted-foreground/45 italic border-l-2 border-foreground/10 pl-2.5 leading-relaxed">
-                        {entry.example}
-                      </p>
+                  <div key={entry.term}>
+                    <button
+                      type="button"
+                      className="w-full text-left py-3 flex items-start gap-5 hover:bg-foreground/[0.02] -mx-1 px-1 rounded transition-colors"
+                      onClick={() => setExpanded(isOpen ? null : entry.term)}
+                    >
+                      <span className="text-sm font-medium text-foreground/85 w-36 shrink-0 leading-relaxed">{entry.term}</span>
+                      <span className="text-xs text-muted-foreground/55 flex-1 leading-relaxed text-left">{entry.definition}</span>
+                      <span className="text-[10px] font-mono text-muted-foreground/25 shrink-0 mt-0.5 w-16 text-right">{CATEGORY_CONFIG[entry.category]?.label}</span>
+                    </button>
+                    {isOpen && entry.example && (
+                      <div className="pb-3 pl-[calc(9rem+1.25rem)] pr-1">
+                        <p className="text-[11px] text-muted-foreground/40 italic border-l border-foreground/10 pl-3 leading-relaxed">{entry.example}</p>
+                      </div>
                     )}
                   </div>
                 );
@@ -286,9 +243,8 @@ function DictionaryTab() {
           </div>
         ))}
         {Object.keys(grouped).length === 0 && (
-          <div className="py-12 text-center">
-            <p className="font-serif text-2xl font-bold text-foreground/10 mb-1">No terms found</p>
-            <p className="text-xs text-muted-foreground/30">Try a different search</p>
+          <div className="py-16 text-center">
+            <p className="text-sm text-muted-foreground/30">No terms found for &ldquo;{search}&rdquo;</p>
           </div>
         )}
       </div>
@@ -310,60 +266,47 @@ function IndicatorsTab() {
 
   return (
     <div className="flex flex-col gap-5">
-      <FilterPills
-        options={Object.keys(INDICATOR_FILTER_CONFIG) as string[]}
-        active={filter}
-        onChange={setFilter}
-      />
-      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+      <FilterPills options={Object.keys(INDICATOR_FILTER_CONFIG) as string[]} active={filter} onChange={setFilter} />
+      <div className="flex flex-col gap-0 divide-y divide-border/25">
         {filtered.map((key) => {
           const info = INDICATOR_EXPLANATIONS[key];
           const isOpen = expanded === key;
           return (
-            <div key={key} className={cn(
-              "rounded-xl border overflow-hidden transition-colors",
-              isOpen ? "border-foreground/20 bg-foreground/[0.03]" : "border-border/60 bg-card",
-            )}>
+            <div key={key}>
               <button
                 type="button"
-                className="w-full text-left px-4 py-3.5 flex items-start justify-between gap-2"
+                className="w-full text-left py-3.5 flex items-start justify-between gap-3 hover:bg-foreground/[0.02] -mx-1 px-1 rounded transition-colors"
                 onClick={() => setExpanded(isOpen ? null : key)}
               >
                 <div className="flex flex-col gap-0.5 min-w-0">
-                  <span className="text-sm font-semibold text-foreground leading-tight">{info.name}</span>
-                  <span className="text-[11px] text-muted-foreground/45 leading-tight">{info.shortDesc}</span>
+                  <span className="text-sm font-medium text-foreground/85">{info.name}</span>
+                  <span className="text-xs text-muted-foreground/40 leading-tight">{info.shortDesc}</span>
                 </div>
-                {isOpen
-                  ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0 mt-0.5" />
-                  : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0 mt-0.5" />}
+                <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground/25 shrink-0 mt-1 transition-transform", isOpen && "rotate-180")} />
               </button>
 
               {isOpen && (
-                <div className="border-t border-border/40 px-4 py-4 flex flex-col gap-3.5">
-                  <InfoRow label="How to read">{info.howToRead}</InfoRow>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div className="rounded-lg border border-emerald-500/15 bg-emerald-500/[0.05] px-3 py-2.5">
-                      <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-emerald-400/70 mb-1">Bull signal</p>
-                      <p className="text-[11px] text-muted-foreground/70 leading-relaxed">{info.bullSignal}</p>
+                <div className="pb-5 flex flex-col gap-4 pl-1">
+                  <InfoSection label="How to read">{info.howToRead}</InfoSection>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="border-l-2 border-emerald-500/40 pl-3">
+                      <p className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/30 mb-1">Bull signal</p>
+                      <p className="text-xs text-muted-foreground/60 leading-relaxed">{info.bullSignal}</p>
                     </div>
-                    <div className="rounded-lg border border-red-500/15 bg-red-500/[0.05] px-3 py-2.5">
-                      <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-red-400/70 mb-1">Bear signal</p>
-                      <p className="text-[11px] text-muted-foreground/70 leading-relaxed">{info.bearSignal}</p>
+                    <div className="border-l-2 border-rose-500/35 pl-3">
+                      <p className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/30 mb-1">Bear signal</p>
+                      <p className="text-xs text-muted-foreground/60 leading-relaxed">{info.bearSignal}</p>
                     </div>
                   </div>
-                  <InfoRow label="Best for">{info.bestFor}</InfoRow>
-                  <div className="rounded-lg border border-amber-500/15 bg-amber-500/[0.05] px-3 py-2.5">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-amber-400/70 mb-1">Common mistake</p>
-                    <p className="text-[11px] text-muted-foreground/70 leading-relaxed">{info.commonMistakes}</p>
-                  </div>
-                  <div className="rounded-lg border border-primary/15 bg-primary/[0.05] px-3 py-2.5">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-primary/70 mb-1">Pro tip</p>
-                    <p className="text-[11px] text-muted-foreground/70 leading-relaxed">{info.proTip}</p>
-                  </div>
-                  <div className="rounded-lg border border-border/40 bg-muted/20 px-3 py-2.5">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 mb-1">Example</p>
-                    <p className="text-[11px] text-muted-foreground/60 italic leading-relaxed">{info.exampleScenario}</p>
-                  </div>
+                  <InfoSection label="Best for">{info.bestFor}</InfoSection>
+                  {info.commonMistakes && <InfoSection label="Common mistake">{info.commonMistakes}</InfoSection>}
+                  {info.proTip && <InfoSection label="Pro tip">{info.proTip}</InfoSection>}
+                  {info.exampleScenario && (
+                    <div>
+                      <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 mb-1.5">Example</p>
+                      <p className="text-xs text-muted-foreground/45 italic leading-relaxed border-l border-foreground/10 pl-3">{info.exampleScenario}</p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -388,85 +331,78 @@ function ChartPatternsTab() {
   return (
     <div className="flex flex-col gap-5">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground/35" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground/30" />
         <input
           placeholder="Search patterns..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full border border-border/70 bg-transparent pl-9 pr-3 py-2.5 text-xs rounded-lg focus:outline-none focus:border-foreground/30 placeholder:text-muted-foreground/25 transition-colors"
+          className="w-full border border-border/50 bg-transparent pl-9 pr-3 py-2.5 text-xs rounded-lg focus:outline-none focus:border-foreground/25 placeholder:text-muted-foreground/20 transition-colors"
         />
       </div>
 
-      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="divide-y divide-border/25">
         {filtered.map((pattern) => {
           const isOpen = expanded === pattern.name;
+          const dirColor = pattern.direction === "bullish" ? "text-emerald-400/60" : pattern.direction === "bearish" ? "text-rose-400/55" : "text-muted-foreground/35";
           return (
-            <div key={pattern.name} className={cn(
-              "rounded-xl border overflow-hidden transition-colors",
-              isOpen ? "border-foreground/20 bg-foreground/[0.03]" : "border-border/60 bg-card",
-            )}>
+            <div key={pattern.name}>
               <button
                 type="button"
-                className="w-full text-left px-4 pt-3.5 pb-3"
+                className="w-full text-left py-3.5 flex items-center gap-4 hover:bg-foreground/[0.02] -mx-1 px-1 rounded transition-colors"
                 onClick={() => setExpanded(isOpen ? null : pattern.name)}
               >
-                <div className="flex items-start justify-between gap-2 mb-2.5">
-                  <span className="text-sm font-semibold text-foreground leading-tight">{pattern.name}</span>
-                  {isOpen
-                    ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0 mt-0.5" />
-                    : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0 mt-0.5" />}
+                <div className="shrink-0 opacity-60">
+                  <ChartPatternSVG name={pattern.name} direction={pattern.direction} />
                 </div>
-                <div className="flex items-center gap-1.5 mb-3 flex-wrap">
-                  <TypePill type={pattern.type} />
-                  <DirectionPill direction={pattern.direction} />
-                  <div className="flex items-center gap-1 ml-auto">
-                    <ReliabilityDots score={pattern.reliability} />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground/85">{pattern.name}</p>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className={`text-[10px] font-mono uppercase ${dirColor}`}>{pattern.direction}</span>
+                    <span className="text-muted-foreground/20">·</span>
+                    <span className="text-[10px] font-mono text-muted-foreground/30">{pattern.type}</span>
+                    <span className="text-muted-foreground/20">·</span>
+                    <span className="text-[10px] font-mono text-muted-foreground/25">
+                      {"●".repeat(pattern.reliability)}{"○".repeat(5 - pattern.reliability)}
+                    </span>
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="rounded-lg bg-muted/20 border border-border/30 px-2 py-1.5">
-                    <ChartPatternSVG name={pattern.name} direction={pattern.direction} />
-                  </div>
-                  <div className="text-right">
-                    <p className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/30">Timeframe</p>
-                    <p className="text-[11px] text-muted-foreground/60 mt-0.5">{pattern.timeframe.split(".")[0]}</p>
-                  </div>
-                </div>
+                <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground/25 shrink-0 transition-transform", isOpen && "rotate-180")} />
               </button>
 
               {isOpen && (
-                <div className="border-t border-border/40 px-4 py-4 flex flex-col gap-3.5">
-                  <InfoRow label="Description">{pattern.description}</InfoRow>
-                  <InfoRow label="Psychology">{pattern.psychology}</InfoRow>
+                <div className="pb-5 flex flex-col gap-4 pl-1">
+                  <InfoSection label="Description">{pattern.description}</InfoSection>
+                  <InfoSection label="Psychology">{pattern.psychology}</InfoSection>
                   <div>
                     <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 mb-2">How to identify</p>
-                    <ul className="space-y-1.5">
+                    <ol className="flex flex-col gap-1.5">
                       {pattern.howToIdentify.map((step, i) => (
-                        <li key={i} className="flex gap-2 text-xs text-muted-foreground/65">
-                          <span className="text-primary/60 shrink-0 font-mono font-bold">{i + 1}.</span>
+                        <li key={i} className="flex gap-2.5 text-xs text-muted-foreground/60">
+                          <span className="font-mono text-muted-foreground/30 shrink-0">{i + 1}.</span>
                           {step}
                         </li>
                       ))}
-                    </ul>
+                    </ol>
                   </div>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-3">
                     {(["entry", "stopLoss", "target"] as const).map((field) => (
-                      <div key={field} className="rounded-lg border border-border/40 bg-muted/15 px-2.5 py-2">
-                        <p className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/30 mb-0.5">
+                      <div key={field}>
+                        <p className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/25 mb-1">
                           {field === "stopLoss" ? "Stop" : field}
                         </p>
-                        <p className="text-[11px] text-muted-foreground/65 leading-snug">{pattern.tradeSetup[field]}</p>
+                        <p className="text-xs text-muted-foreground/55 leading-snug">{pattern.tradeSetup[field]}</p>
                       </div>
                     ))}
                   </div>
+                  <p className="text-[10px] font-mono text-muted-foreground/25">Timeframe: {pattern.timeframe.split(".")[0]}</p>
                 </div>
               )}
             </div>
           );
         })}
         {filtered.length === 0 && (
-          <div className="col-span-full py-12 text-center">
-            <p className="font-serif text-2xl font-bold text-foreground/10 mb-1">No patterns found</p>
+          <div className="py-16 text-center">
+            <p className="text-sm text-muted-foreground/30">No patterns found</p>
           </div>
         )}
       </div>
@@ -486,61 +422,47 @@ function CandlestickPatternsTab() {
 
   return (
     <div className="flex flex-col gap-5">
-      <FilterPills
-        options={["All", "bullish", "bearish", "neutral"] as const}
-        active={filter}
-        onChange={setFilter}
-      />
-      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+      <FilterPills options={["All", "bullish", "bearish", "neutral"] as const} active={filter} onChange={setFilter} />
+      <div className="divide-y divide-border/25">
         {filtered.map((pattern) => {
           const isOpen = expanded === pattern.name;
           const typeColor =
-            pattern.type === "bullish" ? "bg-emerald-500/10 text-emerald-400/80 border-emerald-500/15"
-            : pattern.type === "bearish" ? "bg-red-500/10 text-red-400/80 border-red-500/15"
-            : "bg-muted/30 text-muted-foreground/50 border-border/40";
-
+            pattern.type === "bullish" ? "text-emerald-400/60"
+            : pattern.type === "bearish" ? "text-rose-400/55"
+            : "text-muted-foreground/35";
           return (
-            <div key={pattern.name} className={cn(
-              "rounded-xl border overflow-hidden transition-colors",
-              isOpen ? "border-foreground/20 bg-foreground/[0.03]" : "border-border/60 bg-card",
-            )}>
+            <div key={pattern.name}>
               <button
                 type="button"
-                className="w-full text-left px-4 pt-3.5 pb-3"
+                className="w-full text-left py-3.5 flex items-center gap-4 hover:bg-foreground/[0.02] -mx-1 px-1 rounded transition-colors"
                 onClick={() => setExpanded(isOpen ? null : pattern.name)}
               >
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold text-foreground leading-tight">{pattern.name}</p>
-                    <p className="text-[11px] text-muted-foreground/35 font-mono mt-0.5">{pattern.japaneseName}</p>
-                  </div>
-                  {isOpen
-                    ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0" />
-                    : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0" />}
-                </div>
-                <div className="flex items-center gap-1.5 mb-3">
-                  <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide border", typeColor)}>
-                    {pattern.type}
-                  </span>
-                  <div className="flex items-center gap-1 ml-auto">
-                    <ReliabilityDots score={pattern.reliability} />
-                  </div>
-                </div>
-                <div className="flex items-center justify-center rounded-lg bg-muted/20 border border-border/30 py-2">
-                  <svg viewBox="0 0 50 50" width={50} height={50} className="block" aria-hidden="true"
+                <div className="shrink-0 opacity-70">
+                  <svg viewBox="0 0 50 50" width={40} height={40} className="block" aria-hidden="true"
                     dangerouslySetInnerHTML={{ __html: pattern.svg }} />
                 </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground/85">{pattern.name}</p>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className={`text-[10px] font-mono uppercase ${typeColor}`}>{pattern.type}</span>
+                    {pattern.japaneseName && (
+                      <><span className="text-muted-foreground/20">·</span>
+                      <span className="text-[10px] font-mono text-muted-foreground/25">{pattern.japaneseName}</span></>
+                    )}
+                    <span className="ml-auto text-[10px] font-mono text-muted-foreground/25">
+                      {"●".repeat(pattern.reliability)}{"○".repeat(5 - pattern.reliability)}
+                    </span>
+                  </div>
+                </div>
+                <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground/25 shrink-0 transition-transform", isOpen && "rotate-180")} />
               </button>
 
               {isOpen && (
-                <div className="border-t border-border/40 px-4 py-4 flex flex-col gap-3.5">
-                  <InfoRow label="Description">{pattern.description}</InfoRow>
-                  <InfoRow label="Psychology">{pattern.psychology}</InfoRow>
-                  <InfoRow label="How to trade">{pattern.howToTrade}</InfoRow>
-                  <div className="rounded-lg border border-primary/15 bg-primary/[0.05] px-3 py-2.5">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-primary/70 mb-1">Confirmation needed</p>
-                    <p className="text-[11px] text-muted-foreground/70 leading-relaxed">{pattern.confirmation}</p>
-                  </div>
+                <div className="pb-5 flex flex-col gap-4 pl-1">
+                  <InfoSection label="Description">{pattern.description}</InfoSection>
+                  <InfoSection label="Psychology">{pattern.psychology}</InfoSection>
+                  <InfoSection label="How to trade">{pattern.howToTrade}</InfoSection>
+                  <InfoSection label="Confirmation">{pattern.confirmation}</InfoSection>
                 </div>
               )}
             </div>
@@ -560,35 +482,17 @@ function MarketWisdomTab() {
     return MARKET_WISDOM.filter((w) => w.category === filter);
   }, [filter]);
 
-  const catColor: Record<string, string> = {
-    risk:        "bg-red-500/10 text-red-400/80 border-red-500/15",
-    psychology:  "bg-primary/10 text-primary/70 border-primary/15",
-    strategy:    "bg-primary/10 text-primary/70 border-primary/15",
-    discipline:  "bg-amber-500/10 text-amber-400/80 border-amber-500/15",
-    market:      "bg-teal-500/10 text-teal-400/80 border-teal-500/15",
-  };
-
   return (
     <div className="flex flex-col gap-5">
-      <FilterPills
-        options={WISDOM_CATEGORIES}
-        active={filter}
-        onChange={setFilter}
-      />
-      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+      <FilterPills options={WISDOM_CATEGORIES} active={filter} onChange={setFilter} />
+      <div className="flex flex-col gap-6">
         {filtered.map((wisdom, i) => (
-          <div key={i} className="rounded-xl border border-border/60 bg-card p-4 flex flex-col gap-3">
-            {/* Quote */}
-            <p className="font-serif text-base font-bold text-foreground/80 leading-snug italic">
+          <div key={i} className="flex flex-col gap-3 py-5 border-b border-border/25 last:border-0">
+            <p className="text-base font-serif font-medium text-foreground/80 leading-relaxed italic">
               &ldquo;{wisdom.quote}&rdquo;
             </p>
-            <p className="text-[11px] font-mono text-primary/60">— {wisdom.author}</p>
-            <div className="pt-3 border-t border-border/40 flex flex-col gap-2">
-              <span className={cn("w-fit rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide border", catColor[wisdom.category] ?? "bg-muted/30 text-muted-foreground/50 border-border/40")}>
-                {wisdom.category}
-              </span>
-              <p className="text-xs text-muted-foreground/55 leading-relaxed">{wisdom.lesson}</p>
-            </div>
+            <p className="text-[11px] font-mono text-muted-foreground/35">— {wisdom.author}</p>
+            <p className="text-xs text-muted-foreground/50 leading-relaxed">{wisdom.lesson}</p>
           </div>
         ))}
       </div>
@@ -601,59 +505,42 @@ function MarketWisdomTab() {
 function EconomicIndicatorsTab() {
   const [expanded, setExpanded] = useState<string | null>(null);
 
-  const freqColor = (f: string) =>
-    f === "weekly"  ? "bg-emerald-500/10 text-emerald-400/80 border-emerald-500/15"
-    : f === "monthly" ? "bg-primary/10 text-primary/70 border-primary/15"
-    : "bg-amber-500/10 text-amber-400/80 border-amber-500/15";
-
-  const leadColor = (l: string) =>
-    l === "leading"    ? "bg-primary/10 text-primary/70 border-primary/15"
-    : l === "coincident" ? "bg-teal-500/10 text-teal-400/80 border-teal-500/15"
-    : "bg-muted/30 text-muted-foreground/50 border-border/40";
-
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="divide-y divide-border/25">
       {ECONOMIC_INDICATORS.map((ind) => {
         const isOpen = expanded === ind.name;
         return (
-          <div key={ind.name} className={cn(
-            "rounded-xl border overflow-hidden transition-colors",
-            isOpen ? "border-foreground/20 bg-foreground/[0.03]" : "border-border/60 bg-card",
-          )}>
+          <div key={ind.name}>
             <button
               type="button"
-              className="w-full text-left px-4 py-3.5 flex items-start justify-between gap-3"
+              className="w-full text-left py-3.5 flex items-start justify-between gap-3 hover:bg-foreground/[0.02] -mx-1 px-1 rounded transition-colors"
               onClick={() => setExpanded(isOpen ? null : ind.name)}
             >
-              <div className="flex flex-col gap-1.5 min-w-0 flex-1">
-                <span className="text-sm font-semibold text-foreground leading-tight">{ind.name}</span>
-                <div className="flex flex-wrap items-center gap-1.5">
-                  <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide border", freqColor(ind.frequency))}>
-                    {ind.frequency}
-                  </span>
-                  <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wide border", leadColor(ind.leadingOrLagging))}>
-                    {ind.leadingOrLagging}
-                  </span>
-                  <span className="text-[10px] font-mono text-muted-foreground/30">{ind.source}</span>
+              <div className="flex flex-col gap-1 min-w-0 flex-1">
+                <span className="text-sm font-medium text-foreground/85">{ind.name}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-muted-foreground/30 uppercase">{ind.frequency}</span>
+                  <span className="text-muted-foreground/20">·</span>
+                  <span className="text-[10px] font-mono text-muted-foreground/30">{ind.leadingOrLagging}</span>
+                  <span className="text-muted-foreground/20">·</span>
+                  <span className="text-[10px] font-mono text-muted-foreground/20">{ind.source}</span>
                 </div>
-                <p className="text-xs text-muted-foreground/50 line-clamp-1 leading-relaxed">{ind.whatItMeasures}</p>
+                <p className="text-xs text-muted-foreground/40 line-clamp-1 leading-relaxed">{ind.whatItMeasures}</p>
               </div>
-              {isOpen
-                ? <ChevronUp className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0 mt-0.5" />
-                : <ChevronDown className="h-3.5 w-3.5 text-muted-foreground/40 shrink-0 mt-0.5" />}
+              <ChevronDown className={cn("h-3.5 w-3.5 text-muted-foreground/25 shrink-0 mt-1 transition-transform", isOpen && "rotate-180")} />
             </button>
 
             {isOpen && (
-              <div className="border-t border-border/40 px-4 py-4 flex flex-col gap-3.5">
-                <InfoRow label="Why it matters">{ind.whyItMatters}</InfoRow>
-                <InfoRow label="How to read it">{ind.howToRead}</InfoRow>
+              <div className="pb-5 flex flex-col gap-4 pl-1">
+                <InfoSection label="Why it matters">{ind.whyItMatters}</InfoSection>
+                <InfoSection label="How to read">{ind.howToRead}</InfoSection>
                 <div>
                   <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 mb-2">Market impact</p>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-4">
                     {(["stocks", "bonds", "forex"] as const).map((asset) => (
-                      <div key={asset} className="rounded-lg border border-border/40 bg-muted/15 px-2.5 py-2">
-                        <p className="text-[10px] font-mono uppercase tracking-wide text-muted-foreground/30 mb-0.5">{asset}</p>
-                        <p className="text-[11px] text-muted-foreground/60 leading-snug">{ind.marketImpact[asset]}</p>
+                      <div key={asset}>
+                        <p className="text-[10px] font-mono uppercase text-muted-foreground/25 mb-1">{asset}</p>
+                        <p className="text-xs text-muted-foreground/55 leading-snug">{ind.marketImpact[asset]}</p>
                       </div>
                     ))}
                   </div>
@@ -661,11 +548,9 @@ function EconomicIndicatorsTab() {
                 {ind.relatedIndicators.length > 0 && (
                   <div>
                     <p className="text-[10px] font-mono uppercase tracking-[0.15em] text-muted-foreground/30 mb-2">Related</p>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-1.5">
                       {ind.relatedIndicators.map((r) => (
-                        <span key={r} className="rounded-full border border-border/50 bg-muted/20 px-2 py-0.5 text-[10px] font-mono text-muted-foreground/45">
-                          {r}
-                        </span>
+                        <span key={r} className="text-[10px] font-mono text-muted-foreground/35 border border-border/30 rounded px-2 py-0.5">{r}</span>
                       ))}
                     </div>
                   </div>
@@ -682,12 +567,12 @@ function EconomicIndicatorsTab() {
 // ─── Tab bar ──────────────────────────────────────────────────────────────────
 
 const TABS = [
-  { value: "dictionary",     label: "Dictionary",    icon: BookOpen },
-  { value: "indicators",     label: "Indicators",    icon: BarChart2 },
-  { value: "chart-patterns", label: "Patterns",      icon: TrendingUp },
-  { value: "candlesticks",   label: "Candles",       icon: BarChart2 },
-  { value: "wisdom",         label: "Wisdom",        icon: Lightbulb },
-  { value: "economics",      label: "Economics",     icon: Globe },
+  { value: "dictionary",     label: "Dictionary" },
+  { value: "indicators",     label: "Indicators" },
+  { value: "chart-patterns", label: "Patterns" },
+  { value: "candlesticks",   label: "Candles" },
+  { value: "wisdom",         label: "Wisdom" },
+  { value: "economics",      label: "Economics" },
 ] as const;
 
 type TabValue = typeof TABS[number]["value"];
@@ -699,42 +584,34 @@ export default function GlossaryPage() {
 
   return (
     <div className="flex flex-col h-full min-h-0">
-      {/* ── Header ── */}
-      <div className="border-b border-border px-5 pt-5 pb-4 shrink-0">
-        <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/25 mb-2">
-          Reference
-        </p>
-        <h1 className="font-serif text-3xl font-bold tracking-tight leading-none text-foreground">
-          Education <span className="font-light text-muted-foreground/35">Hub</span>
-        </h1>
-        <p className="text-xs text-muted-foreground/40 mt-2 leading-relaxed">
-          Glossary · Indicators · Patterns · Market wisdom · Economics
-        </p>
+      {/* Header */}
+      <div className="border-b border-border px-6 pt-5 pb-0 shrink-0">
+        <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground/25 mb-1.5">Reference</p>
+        <h1 className="text-base font-semibold tracking-tight mb-1">Education Hub</h1>
 
-        {/* Custom tab bar */}
-        <div className="flex items-center gap-0.5 mt-5 border-b border-border/0">
+        {/* Tab bar */}
+        <div className="flex items-center gap-0 mt-3">
           {TABS.map((tab) => (
             <button
               key={tab.value}
               type="button"
               onClick={() => setActiveTab(tab.value)}
               className={cn(
-                "flex items-center gap-1.5 px-3 py-2 text-[11px] font-medium transition-all border-b-2 -mb-px",
+                "px-4 py-2.5 text-xs font-medium transition-all border-b-2 -mb-px",
                 activeTab === tab.value
-                  ? "border-foreground text-foreground font-semibold"
-                  : "border-transparent text-muted-foreground/45 hover:text-foreground/60 hover:border-border",
+                  ? "border-foreground text-foreground"
+                  : "border-transparent text-muted-foreground/35 hover:text-muted-foreground/65 hover:border-border/50",
               )}
             >
-              <tab.icon className="h-3 w-3" />
               {tab.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* ── Content ── */}
+      {/* Content */}
       <div className="flex-1 min-h-0 overflow-y-auto">
-        <div className="max-w-5xl mx-auto px-5 py-6">
+        <div className="max-w-4xl mx-auto px-6 py-6">
           {activeTab === "dictionary"     && <DictionaryTab />}
           {activeTab === "indicators"     && <IndicatorsTab />}
           {activeTab === "chart-patterns" && <ChartPatternsTab />}
