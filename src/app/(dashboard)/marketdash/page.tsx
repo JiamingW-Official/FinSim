@@ -743,8 +743,7 @@ export default function MarketDashPage() {
  <div className="border-t border-border" />
  <section>
  <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Unusual Options Activity</h2>
- <div className="flex items-center justify-between mb-3">
- <div className="flex items-center gap-2">
+ <div className="flex items-center justify-end mb-3">
  <div className="flex items-center gap-1.5">
  <Filter className="h-3.5 w-3.5 text-muted-foreground" />
  {(["all", "calls", "puts", "big"] as const).map((f) => (
@@ -763,7 +762,6 @@ export default function MarketDashPage() {
  {f === "all" ? "All" : f === "calls" ? "Calls" : f === "puts" ? "Puts" : ">$1M"}
  </Button>
  ))}
- </div>
  </div>
  </div>
 

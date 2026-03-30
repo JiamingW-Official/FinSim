@@ -1573,57 +1573,42 @@ export default function RiskManagementPage() {
  ];
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- <div className="max-w-7xl mx-auto px-4 py-6">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="w-9 h-9 rounded-lg bg-red-500/15 flex items-center justify-center">
- <Shield className="w-5 h-5 text-red-400" />
- </div>
- <div>
- <h1 className="text-xl font-medium text-foreground">Portfolio Risk Management</h1>
- <p className="text-xs text-muted-foreground">
- VaR • Stress Testing • Drawdown Analysis • Position Sizing • Hedging Tools
- </p>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <div className="mb-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Portfolio</p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Risk Management</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">VAR · STRESS TESTS · DRAWDOWN · HEDGING</p>
  </div>
 
  {/* Quick stats */}
- <div className="flex flex-wrap gap-2 mt-3">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
  {[
- { label: "Portfolio Value", value: "$500k", color: "text-foreground" },
- { label: "Positions", value: "7", color: "text-indigo-400" },
- { label: "Daily VaR 95%", value: "~$4.2k", color: "text-amber-400" },
- { label: "Max DD (est.)", value: "~18%", color: "text-red-400" },
- { label: "Diversification Ratio", value: "1.31×", color: "text-green-400" },
+ { label: "Portfolio Value", value: "$500k" },
+ { label: "Daily VaR 95%", value: "~$4.2k" },
+ { label: "Max DD (est.)", value: "~18%" },
+ { label: "Diversification Ratio", value: "1.31×" },
  ].map(s => (
- <div key={s.label} className="bg-muted/60 rounded-lg px-3 py-1.5 text-xs text-muted-foreground border border-border flex items-center gap-2">
- <span className="text-muted-foreground">{s.label}</span>
- <span className={cn("font-semibold", s.color)}>{s.value}</span>
+ <div key={s.label} className="rounded-lg border border-border bg-card p-5">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{s.label}</p>
+ <p className="font-mono tabular-nums text-xl font-semibold text-foreground">{s.value}</p>
  </div>
  ))}
  </div>
- </motion.div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {tabs.map(tab => {
- const Icon = tab.icon;
- return (
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ {tabs.map(tab => (
  <TabsTrigger
  key={tab.id}
  value={tab.id}
- className="data-[state=active]:bg-muted data-[state=active]:text-foreground text-muted-foreground text-xs flex items-center gap-1.5 px-3 py-1.5"
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:text-foreground text-muted-foreground text-xs px-3 py-2 bg-transparent"
  >{tab.label}</TabsTrigger>
- );
- })}
+ ))}
  </TabsList>
 
  <AnimatePresence mode="wait">

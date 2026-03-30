@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { OptionChainExpiry } from "@/types/options";
 
@@ -16,10 +15,7 @@ export function ExpirySelector({
  onSelectExpiry,
 }: ExpirySelectorProps) {
  return (
- <div className="flex items-center gap-1.5 px-3 py-2">
- <span className="text-xs font-semibold text-muted-foreground mr-1">
- Expiry
- </span>
+ <div className="flex flex-wrap gap-1 px-3 py-1.5 border-b border-border/20">
  {chain.map((c) => {
  const isActive = c.expiry === selectedExpiry;
  const label = new Date(c.expiry + "T12:00:00").toLocaleDateString(
@@ -27,30 +23,21 @@ export function ExpirySelector({
  { month: "short", day: "numeric" },
  );
  return (
- <motion.button
+ <button
  key={c.expiry}
  onClick={() => onSelectExpiry(c.expiry)}
  className={cn(
- "relative rounded-md px-2.5 py-1 text-xs font-semibold transition-colors",
+ "rounded-full px-2 py-0.5 text-[9px] font-mono transition-colors",
  isActive
- ? "bg-orange-500/15 text-orange-400"
- : "text-muted-foreground hover:bg-muted/30 hover:text-foreground",
+ ? "bg-primary/15 text-primary/80"
+ : "text-muted-foreground/30 hover:text-muted-foreground/60",
  )}
- whileHover={{ scale: 1.05 }}
- whileTap={{ scale: 0.95 }}
  >
  <span>{label}</span>
- <span className="ml-1 text-[11px] opacity-60">
+ <span className="ml-1 text-[8px] font-mono text-muted-foreground/25">
  {c.daysToExpiry}d
  </span>
- {isActive && (
- <motion.div
- className="absolute inset-0 rounded-md border border-orange-400/40"
- layoutId="expiry-indicator"
- transition={{ type: "spring", stiffness: 500, damping: 30 }}
- />
- )}
- </motion.button>
+ </button>
  );
  })}
  </div>

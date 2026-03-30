@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -1245,65 +1244,54 @@ const TABS = [
 
 export default function RetirementPage() {
  return (
- <div className="flex flex-col h-full overflow-y-auto bg-background">
- <motion.div
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.35 }}
- className="flex flex-col flex-1 p-4 gap-4 max-w-7xl w-full mx-auto"
- >
- {/* Header */}
- <div className="flex items-center justify-between flex-wrap gap-2">
- <div>
- <h1 className="text-xl font-medium tracking-tight flex items-center gap-2">
- <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <div className="mb-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
+ 401K · IRA · PENSION · DRAWDOWN
+ </p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
  Retirement Planning
  </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
+ <p className="text-sm text-muted-foreground">
  Comprehensive tools for a secure retirement — readiness scoring, account optimization, Social Security strategy, and healthcare planning.
  </p>
  </div>
- <div className="flex items-center gap-2 flex-wrap">
- <Badge variant="outline" className="text-xs text-muted-foreground gap-1">
- <Activity className="h-3 w-3" />
- 4% Rule
- </Badge>
- <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Educational</span>
- </div>
- </div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="readiness" className="flex flex-col flex-1">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
- {TABS.map((t) => {
- const Icon = t.icon;
- return (
+ <Tabs defaultValue="readiness" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ {TABS.map((t) => (
  <TabsTrigger
  key={t.value}
  value={t.value}
- className="flex items-center gap-1.5 text-xs text-muted-foreground px-3 py-1.5 rounded-md data-[state=active]:bg-background data-[state=active]:"
- >{t.label}</TabsTrigger>
- );
- })}
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
+ >
+ {t.label}
+ </TabsTrigger>
+ ))}
  </TabsList>
 
- <TabsContent value="readiness" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="readiness" className="data-[state=inactive]:hidden">
  <ReadinessTab />
  </TabsContent>
- <TabsContent value="accounts" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="accounts" className="data-[state=inactive]:hidden">
  <AccountsTab />
  </TabsContent>
- <TabsContent value="social-security" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="social-security" className="data-[state=inactive]:hidden">
  <SocialSecurityTab />
  </TabsContent>
- <TabsContent value="strategy" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="strategy" className="data-[state=inactive]:hidden">
  <InvestmentStrategyTab />
  </TabsContent>
- <TabsContent value="healthcare" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="healthcare" className="data-[state=inactive]:hidden">
  <HealthcareRMDsTab />
  </TabsContent>
  </Tabs>
- </motion.div>
+ </div>
  </div>
  );
 }

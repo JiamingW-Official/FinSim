@@ -870,95 +870,74 @@ export default function FXOptionsPage() {
  const chain = chainsByExpiry[selectedExpiry] ?? [];
 
  return (
- <motion.div
- className="min-h-screen bg-background text-foreground p-4 md:p-4 space-y-4"
- initial={{ opacity: 0, y: 20 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.5 }}
- >
- {/* Header — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
- <div>
- <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
- <BarChart2 className="text-sky-400" size={24} />
- FX Options
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Foreign Exchange derivatives — pricing, volatility & carry
- </p>
- </div>
- <div className="flex items-center gap-2">
- <Badge variant="outline" className="border-emerald-500/30 text-emerald-400 text-xs">
- <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse" />
- London / NY Session
- </Badge>
- <span className="rounded bg-muted/40 px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground">Simulated</span>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+
+ {/* Page hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">FX Options</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">CALLS · PUTS · VOLATILITY SURFACE</p>
  </div>
 
- {/* Spot Rates Strip */}
- <div className="mt-8">
- <h2 className="text-xs font-medium text-muted-foreground mb-3 flex items-center gap-1.5">
- <Activity size={12} /> Live Spot Rates
- </h2>
- <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
- {spotRates.map((rate) => (
- <SpotRateCard key={rate.pair} rate={rate} />
+ {/* Spot rates grid */}
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+ {spotRates.slice(0, 4).map((rate) => (
+ <div key={rate.pair} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{rate.pair}</div>
+ <div className="font-mono tabular-nums text-lg font-semibold text-foreground">{rate.bid}</div>
+ <div className={`text-xs font-mono mt-0.5 ${rate.change >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+ {rate.change >= 0 ? "+" : ""}{rate.changePct.toFixed(3)}%
+ </div>
+ </div>
  ))}
  </div>
- </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Main Tabs */}
- <Tabs defaultValue="chain" className="w-full">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="chain" className="w-full flex-1">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger
  value="chain"
  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <Layers size={12} className="mr-1.5" />
  Options Chain
  </TabsTrigger>
  <TabsTrigger
  value="rr"
  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <Activity size={12} className="mr-1.5" />
  RR &amp; Butterfly
  </TabsTrigger>
  <TabsTrigger
  value="surface"
  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <BarChart2 size={12} className="mr-1.5" />
  Vol Surface
  </TabsTrigger>
  <TabsTrigger
  value="gk"
  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <DollarSign size={12} className="mr-1.5" />
  G-K Pricer
  </TabsTrigger>
  <TabsTrigger
  value="carry"
  className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground"
  >
- <TrendingUp size={12} className="mr-1.5" />
  Carry Trades
  </TabsTrigger>
  </TabsList>
 
  {/* Options Chain */}
- <TabsContent value="chain" className="data-[state=inactive]:hidden mt-4">
- <Card className="bg-card border-border">
- <CardHeader className="pb-3">
- <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
- <CardTitle className="text-base text-foreground">
- EUR/USD Vanilla Options Chain
- <span className="ml-2 text-xs font-normal text-muted-foreground">
- Spot: {spot.toFixed(5)}
- </span>
- </CardTitle>
+ <TabsContent value="chain" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Options Chain</h2>
+ <div className="rounded-lg border border-border bg-card p-5 mb-6">
+ <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+ <div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">EUR/USD Vanilla Options</div>
+ <span className="text-sm font-mono tabular-nums text-foreground">Spot: {spot.toFixed(5)}</span>
+ </div>
  <div className="flex items-center gap-1.5 flex-wrap">
  <span className="text-xs text-muted-foreground mr-1">Expiry:</span>
  {EXPIRIES.map((e) => (
@@ -978,9 +957,6 @@ export default function FXOptionsPage() {
  ))}
  </div>
  </div>
- </CardHeader>
- <CardContent className="pt-0">
- {/* Greeks legend */}
  <div className="flex gap-4 mb-3 text-xs text-muted-foreground flex-wrap">
  {[
  { label: "Δ Delta", color: "text-sky-400" },
@@ -988,93 +964,66 @@ export default function FXOptionsPage() {
  { label: "IV Implied Vol", color: "text-muted-foreground" },
  ].map(({ label, color }) => (
  <span key={label} className={`${color} flex items-center gap-1`}>
- <span className={`inline-block w-2 h-2 rounded-full bg-current`} />
+ <span className="inline-block w-2 h-2 rounded-full bg-current" />
  {label}
  </span>
  ))}
  </div>
  <OptionsChainTable rows={chain} expiry={selectedExpiry} />
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
 
  {/* RR & Butterfly */}
- <TabsContent value="rr" className="data-[state=inactive]:hidden mt-4">
- <Card className="bg-card border-border">
- <CardHeader className="pb-3">
- <CardTitle className="text-base text-foreground flex items-center gap-2">
- <Activity size={16} className="text-muted-foreground/50" />
- Risk Reversal &amp; Butterfly Structures
- <span className="ml-1 text-xs font-normal text-muted-foreground">EUR/USD</span>
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <TabsContent value="rr" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Risk Reversal &amp; Butterfly</h2>
+ <div className="rounded-lg border border-border bg-card p-5 mb-6">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">EUR/USD STRUCTURES</div>
  <RRButterflyTable />
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
 
  {/* Vol Surface */}
- <TabsContent value="surface" className="data-[state=inactive]:hidden mt-4">
- <Card className="bg-card border-border">
- <CardHeader className="pb-3">
- <CardTitle className="text-base text-foreground flex items-center gap-2">
- <BarChart2 size={16} className="text-amber-400" />
- Implied Volatility Surface
- <span className="ml-1 text-xs font-normal text-muted-foreground">EUR/USD — Delta vs Tenor</span>
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <TabsContent value="surface" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Implied Volatility Surface</h2>
+ <div className="rounded-lg border border-border bg-card p-5 mb-6">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">EUR/USD — DELTA VS TENOR</div>
  <VolSurfaceHeatmap />
- <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-muted-foreground">
- <div className="bg-card border border-border rounded p-3">
- <p className="text-muted-foreground font-medium mb-1">Reading the Surface</p>
+ <div className="border-t border-border my-6" />
+ <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-muted-foreground">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <p className="text-foreground font-medium mb-2">Reading the Surface</p>
  <p>Each cell shows the implied volatility for a given delta strike and tenor. Higher vol (red) indicates more expensive options; lower vol (blue) signals cheaper options relative to the surface.</p>
  </div>
- <div className="bg-card border border-border rounded p-3">
- <p className="text-muted-foreground font-medium mb-1">Skew &amp; Term Structure</p>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <p className="text-foreground font-medium mb-2">Skew &amp; Term Structure</p>
  <p>Negative skew = puts more expensive than calls (left column higher). Positive term structure = longer dated options carry more vol — normal in FX due to event uncertainty compounding over time.</p>
  </div>
  </div>
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
 
  {/* G-K Pricer */}
- <TabsContent value="gk" className="data-[state=inactive]:hidden mt-4">
- <Card className="bg-card border-border">
- <CardHeader className="pb-3">
- <CardTitle className="text-base text-foreground flex items-center gap-2">
- <DollarSign size={16} className="text-sky-400" />
- Garman-Kohlhagen FX Option Pricer
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <TabsContent value="gk" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Garman-Kohlhagen Pricer</h2>
+ <div className="rounded-lg border border-border bg-card p-5 mb-6">
  <GKCalculator />
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
 
  {/* Carry Trades */}
- <TabsContent value="carry" className="data-[state=inactive]:hidden mt-4">
- <Card className="bg-card border-border">
- <CardHeader className="pb-3">
- <CardTitle className="text-base text-foreground flex items-center gap-2">
- <TrendingUp size={16} className="text-amber-400" />
- Carry Trade Monitor
- </CardTitle>
- </CardHeader>
- <CardContent>
+ <TabsContent value="carry" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Carry Trade Monitor</h2>
+ <div className="rounded-lg border border-border bg-card p-5 mb-6">
  <CarryTradeTable />
- </CardContent>
- </Card>
+ </div>
  </TabsContent>
  </Tabs>
 
- {/* Footer note */}
- <p className="text-[11px] text-muted-foreground text-center pb-2">
+ <p className="text-[11px] text-muted-foreground text-center pt-4 pb-2">
  All data is synthetically generated for educational purposes. Prices do not represent real market quotes.
  </p>
- </motion.div>
+
+ </div>
+ </div>
  );
 }

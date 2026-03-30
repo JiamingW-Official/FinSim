@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -242,11 +241,11 @@ function WealthAccumulationTab() {
  }, [startingCapital, monthlyContrib, returnRate, years]);
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
  {/* Controls */}
  <Card className="lg:col-span-1 p-5 bg-card border-border space-y-5">
- <h3 className="text-sm font-semibold text-muted-foreground ">Parameters</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Parameters</h2>
 
  <div className="space-y-2">
  <div className="flex justify-between text-sm">
@@ -335,7 +334,8 @@ function WealthAccumulationTab() {
  <Card className="p-5 bg-card border-border">
  <div className="flex items-center gap-2 mb-4">
  <Zap size={16} className="text-yellow-400" />
- <h3 className="text-sm font-medium text-foreground">Power of Starting Early — $500/month at 8%</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Power of Starting Early</h2>
+ <span className="text-xs text-muted-foreground">$500/month at 8%</span>
  </div>
  <EarlyStartChart />
  <p className="text-xs text-muted-foreground mt-2">Starting 10 years earlier can more than double your retirement wealth due to compound interest.</p>
@@ -473,12 +473,12 @@ function NetWorthTab() {
  const percentileLabel = getPercentileLabel(netWorth, ageBracket);
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
  {/* Assets column */}
  <Card className="p-5 bg-card border-border space-y-3">
  <div className="flex items-center justify-between">
- <h3 className="text-sm font-medium text-muted-foreground">Assets</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Assets</h2>
  <Badge className="bg-green-900/50 text-green-400 border-green-800">{fmt(totalAssets)}</Badge>
  </div>
  {assetItems.map((item, i) => (
@@ -501,7 +501,7 @@ function NetWorthTab() {
  {/* Liabilities column */}
  <Card className="p-5 bg-card border-border space-y-3">
  <div className="flex items-center justify-between">
- <h3 className="text-sm font-medium text-muted-foreground">Liabilities</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Liabilities</h2>
  <Badge className="bg-red-900/50 text-red-400 border-red-800">{fmt(totalLiabilities)}</Badge>
  </div>
  {liabilityItems.map((item, i) => (
@@ -527,8 +527,8 @@ function NetWorthTab() {
  <DonutChart assets={totalAssets} liabilities={totalLiabilities} />
  </div>
  <div className="text-center">
- <div className="text-xs text-muted-foreground">Net Worth</div>
- <div className={cn("text-2xl font-semibold", netWorth >= 0 ? "text-green-400" : "text-red-400")}>{fmtK(netWorth)}</div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Net Worth</div>
+ <div className={cn("text-4xl font-serif font-light tracking-tight", netWorth >= 0 ? "text-foreground" : "text-red-500")}>{fmtK(netWorth)}</div>
  </div>
 
  {/* Age Bracket Selector */}
@@ -562,7 +562,7 @@ function NetWorthTab() {
 
  {/* Milestones */}
  <Card className="p-5 bg-card border-border">
- <h3 className="text-sm font-medium text-muted-foreground mb-4">Net Worth Milestones</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Net Worth Milestones</h2>
  <div className="flex items-center gap-3 overflow-x-auto pb-2">
  {NET_WORTH_MILESTONES.map((m, i) => {
  const achieved = netWorth >= m.value;
@@ -672,13 +672,13 @@ function PassiveIncomeTab() {
  const dvAreaPath = `M ${dvPad.left},${dvPad.top + dvCh} L ${dvPoints} L ${dvPad.left + dvCw},${dvPad.top + dvCh} Z`;
 
  return (
- <div className="space-y-5">
+ <div className="space-y-6">
  {/* FI progress */}
  <Card className="p-5 bg-card border-border">
  <div className="flex items-center justify-between mb-3">
  <div className="flex items-center gap-2">
  <Flame size={16} className="text-orange-400" />
- <span className="text-sm font-medium text-foreground">Financial Independence Progress</span>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Financial Independence Progress</h2>
  </div>
  <div className="text-xs text-muted-foreground">
  Active Income Target: {fmt(activeIncome)}/mo
@@ -735,7 +735,7 @@ function PassiveIncomeTab() {
  {/* Dividend Growth Chart */}
  <Card className="p-5 bg-card border-border">
  <div className="flex items-center justify-between mb-3">
- <h3 className="text-sm font-medium text-foreground">Dividend Growth Investing — $100K at 3% Yield Growing 7%/yr</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Dividend Growth Investing</h2>
  <div className="flex items-center gap-2 text-xs text-muted-foreground">
  Years: {yearsGrowth}
  <input type="range" min={5} max={30} step={1} value={yearsGrowth}
@@ -776,7 +776,7 @@ function PassiveIncomeTab() {
 
  {/* Capital Needed for $5K/month */}
  <Card className="p-5 bg-card border-border">
- <h3 className="text-sm font-medium text-foreground mb-3">Capital Required for $5,000/month Passive Income</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Capital Required for $5,000/month</h2>
  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
  {capitalNeeded.map((row) => (
  <div key={row.yield} className="bg-muted rounded-lg p-3 text-center">
@@ -924,11 +924,11 @@ function TaxOptimizationTab() {
  }));
 
  return (
- <div className="space-y-5">
+ <div className="space-y-6">
  {/* Income & bracket */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <Card className="p-5 bg-card border-border space-y-4">
- <h3 className="text-sm font-medium text-muted-foreground">Tax Bracket Calculator</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Tax Bracket Calculator</h2>
  <div className="space-y-2">
  <div className="flex justify-between text-sm">
  <span className="text-muted-foreground">Annual Income</span>
@@ -956,7 +956,7 @@ function TaxOptimizationTab() {
  </Card>
 
  <Card className="p-5 bg-card border-border space-y-4">
- <h3 className="text-sm font-medium text-muted-foreground">Tax-Advantaged Account Optimizer</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Tax-Advantaged Accounts</h2>
  <div className="space-y-2">
  <div className="flex justify-between text-sm">
  <span className="text-muted-foreground">Annual 401k Contribution</span>
@@ -1001,7 +1001,7 @@ function TaxOptimizationTab() {
 
  {/* Asset Location */}
  <Card className="p-5 bg-card border-border">
- <h3 className="text-sm font-medium text-muted-foreground mb-3">Asset Location Strategy</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Asset Location Strategy</h2>
  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
  {ACCOUNT_TYPES.map((acct) => (
  <div key={acct.type} className="bg-muted rounded-md p-4 space-y-3">
@@ -1030,7 +1030,7 @@ function TaxOptimizationTab() {
  {/* Roth Conversion + Estate */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <Card className="p-5 bg-card border-border space-y-3">
- <h3 className="text-sm font-medium text-muted-foreground">Roth Conversion Ladder</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Roth Conversion Ladder</h2>
  <p className="text-xs text-muted-foreground">Convert traditional IRA funds to Roth up to the top of each bracket. Ideal strategy for early retirees with low current income.</p>
  {rothConversionRanges.map((r, i) => (
  <div key={i} className="flex items-center gap-3">
@@ -1045,7 +1045,7 @@ function TaxOptimizationTab() {
  </Card>
 
  <Card className="p-5 bg-card border-border space-y-3">
- <h3 className="text-sm font-medium text-muted-foreground">Estate Planning Basics</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Estate Planning Basics</h2>
  <div className="space-y-2">
  {[
  { label: "Annual Gift Exclusion", value: "$18,000 per person", note: "Gift tax-free to any number of individuals", color: "#3b82f6" },
@@ -1457,7 +1457,7 @@ function FIRoadmapTab() {
  <Card className="p-5 bg-card border-border">
  <div className="flex items-center gap-2 mb-3">
  <BarChart3 size={14} className="text-green-400" />
- <h3 className="text-sm font-medium text-foreground">4% Safe Withdrawal Rate — Historical Analysis</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">4% Safe Withdrawal Rate</h2>
  </div>
  <SWRHistoricalChart />
  </Card>
@@ -1465,7 +1465,7 @@ function FIRoadmapTab() {
  {/* Barista FIRE + One More Year */}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
  <Card className="p-5 bg-card border-border space-y-3">
- <h3 className="text-sm font-medium text-foreground">Barista FIRE Calculator</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Barista FIRE Calculator</h2>
  <p className="text-xs text-muted-foreground">Work part-time to cover some expenses — retire with less capital needed.</p>
  <div className="space-y-2">
  <div className="flex justify-between text-xs text-muted-foreground">
@@ -1496,7 +1496,7 @@ function FIRoadmapTab() {
  </Card>
 
  <Card className="p-5 bg-card border-border space-y-3">
- <h3 className="text-sm font-medium text-foreground">One More Year Syndrome</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">One More Year Syndrome</h2>
  <p className="text-xs text-muted-foreground">
  Working one extra year after reaching FI adds capital but costs you irreplaceable time.
  </p>
@@ -1555,34 +1555,14 @@ export default function WealthBuilderPage() {
  const [activeTab, setActiveTab] = useState("accumulation");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* Header */}
- <div className="border-b border-border bg-background/80 backdrop-blur-sm sticky top-0 z-10 border-l-4 border-l-primary">
- <div className="max-w-screen-2xl mx-auto px-6 py-6">
- <div className="flex items-center justify-between">
- <div className="flex items-center gap-3">
- <div className="w-9 h-9 rounded-md bg-emerald-600 flex items-center justify-center">
- <TrendingUp size={18} className="text-foreground" />
- </div>
- <div>
- <h1 className="text-lg font-medium text-foreground">Wealth Builder</h1>
- <p className="text-xs text-muted-foreground">Comprehensive financial independence planning toolkit</p>
- </div>
- </div>
- <div className="flex items-center gap-2">
- <Badge className="bg-green-900/50 text-green-400 border-green-800">
- <Star size={10} className="mr-1" />
- Planning Mode
- </Badge>
- </div>
- </div>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Wealth Builder</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">GOALS · SAVINGS · COMPOUND GROWTH</p>
 
- {/* Content */}
- <div className="max-w-screen-2xl mx-auto px-6 py-6">
- <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
+ <Tabs value={activeTab} onValueChange={setActiveTab} className="flex-1 flex flex-col">
+ <TabsList className="mb-6 bg-transparent border-b border-border rounded-none p-0 h-auto">
  {TABS.map((tab) => (
  <TabsTrigger
  key={tab.id}
@@ -1594,14 +1574,6 @@ export default function WealthBuilderPage() {
  ))}
  </TabsList>
 
- <AnimatePresence mode="wait" initial={false}>
- <motion.div
- key={activeTab}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
- >
  <TabsContent value="accumulation" className="mt-0 data-[state=inactive]:hidden">
  <WealthAccumulationTab />
  </TabsContent>
@@ -1620,8 +1592,6 @@ export default function WealthBuilderPage() {
  <TabsContent value="fire" className="mt-0 data-[state=inactive]:hidden">
  <FIRoadmapTab />
  </TabsContent>
- </motion.div>
- </AnimatePresence>
  </Tabs>
  </div>
  </div>

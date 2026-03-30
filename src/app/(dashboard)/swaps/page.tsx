@@ -137,11 +137,11 @@ function MetricCard({
  positive?: boolean;
 }) {
  return (
- <div className="bg-foreground/5 rounded-lg p-3 flex flex-col gap-1">
- <span className="text-[11px] text-foreground/40 ">{label}</span>
+ <div className="rounded-lg border border-border bg-card p-4 flex flex-col gap-1">
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{label}</span>
  <span
  className={cn(
- "text-lg font-semibold tabular-nums",
+ "text-lg font-semibold tabular-nums font-mono",
  positive === true && "text-emerald-400",
  positive === false && "text-red-400",
  positive === undefined && "text-foreground",
@@ -149,7 +149,7 @@ function MetricCard({
  >
  {value}
  </span>
- {sub && <span className="text-[11px] text-foreground/40">{sub}</span>}
+ {sub && <span className="text-[11px] text-muted-foreground/60">{sub}</span>}
  </div>
  );
 }
@@ -164,9 +164,9 @@ function InfoBox({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
  return (
- <h3 className="text-sm font-semibold text-foreground/70 mb-3">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">
  {children}
- </h3>
+ </h2>
  );
 }
 
@@ -296,7 +296,7 @@ function IRSPricer() {
  const groupW = barArea / results.cashFlows.length;
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Inputs */}
  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
  <NumberInput
@@ -379,7 +379,7 @@ function IRSPricer() {
  </div>
 
  {/* Market shift / MtM */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>Mark-to-Market Sensitivity</SectionTitle>
  <div className="flex items-center gap-4">
  <span className="text-xs text-foreground/50 w-32">Rate shift (bps)</span>
@@ -421,7 +421,7 @@ function IRSPricer() {
  </div>
 
  {/* Cash Flow Schedule SVG */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>Cash Flow Schedule (PV, first {results.cashFlows.length} periods)</SectionTitle>
  <svg
  width="100%"
@@ -569,9 +569,9 @@ function SwapCurveBuilder() {
  ];
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Curve SVG */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>SOFR OIS Curve + Implied Forwards</SectionTitle>
  <svg width="100%" viewBox={`0 0 ${W} ${H}`} className="overflow-visible">
  {/* Grid lines */}
@@ -672,7 +672,7 @@ function SwapCurveBuilder() {
  </div>
 
  {/* Bootstrap table */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3 overflow-x-auto">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3 overflow-x-auto">
  <SectionTitle>Bootstrapped Discount Factors</SectionTitle>
  <table className="w-full text-sm">
  <thead>
@@ -707,7 +707,7 @@ function SwapCurveBuilder() {
  </div>
 
  {/* Basis spreads */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>Basis Swap Spreads (bps)</SectionTitle>
  <div className="grid grid-cols-2 gap-3">
  {basisSpreads.map((b, i) => (
@@ -802,7 +802,7 @@ function CDSPricer() {
  const survPath = survPts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join("");
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Inputs */}
  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
  <SelectInput
@@ -868,7 +868,7 @@ function CDSPricer() {
  </div>
 
  {/* Survival Probability Curve */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-2">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-2">
  <SectionTitle>Survival Probability Curve</SectionTitle>
  <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
  {/* Grid */}
@@ -910,7 +910,7 @@ function CDSPricer() {
  </div>
 
  {/* P&L Slider */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>CDS P&amp;L — Spread Widening/Tightening</SectionTitle>
  <div className="flex items-center gap-4">
  <span className="text-xs text-foreground/50 w-36">Spread shift (bps)</span>
@@ -946,18 +946,18 @@ function CDSPricer() {
  </div>
 
  {/* CDX indices */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>CDX Index Snapshot</SectionTitle>
- <div className="grid grid-cols-2 gap-3">
- <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3 space-y-1">
- <div className="text-xs text-foreground/40 ">CDX.NA.IG (125 names)</div>
- <div className="text-2xl font-semibold text-emerald-400">108 bps</div>
- <div className="text-xs text-foreground/50">Investment Grade — avg per-name: 0.86 bps</div>
+ <div className="grid grid-cols-2 gap-4">
+ <div className="rounded-lg border border-border bg-card p-5 space-y-1">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">CDX.NA.IG (125 names)</div>
+ <div className="text-2xl font-semibold font-mono tabular-nums text-emerald-400">108 bps</div>
+ <div className="text-[11px] text-muted-foreground/60">Investment Grade — avg per-name: 0.86 bps</div>
  </div>
- <div className="bg-rose-500/10 border border-rose-500/20 rounded-lg p-3 space-y-1">
- <div className="text-xs text-foreground/40 ">CDX.NA.HY (100 names)</div>
- <div className="text-lg font-medium text-rose-400">450 bps</div>
- <div className="text-xs text-foreground/50">High Yield — avg per-name: 4.5 bps</div>
+ <div className="rounded-lg border border-border bg-card p-5 space-y-1">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">CDX.NA.HY (100 names)</div>
+ <div className="text-2xl font-semibold font-mono tabular-nums text-rose-400">450 bps</div>
+ <div className="text-[11px] text-muted-foreground/60">High Yield — avg per-name: 4.5 bps</div>
  </div>
  </div>
  </div>
@@ -1010,7 +1010,7 @@ function TRSPage() {
  const barW = chartW / scenarios.length;
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
  <NumberInput
  label="TRS Notional ($)"
@@ -1116,7 +1116,7 @@ function TRSPage() {
  </div>
 
  {/* P&L scenarios chart */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>Leveraged P&amp;L by Asset Return Scenario</SectionTitle>
  <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
  <line x1={pad.l} y1={midY} x2={W - pad.r} y2={midY} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
@@ -1146,7 +1146,7 @@ function TRSPage() {
  </div>
 
  {/* Structure explanation */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>TRS Structure &amp; Regulatory Context</SectionTitle>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-foreground/70">
  <div className="space-y-2">
@@ -1233,7 +1233,7 @@ function SwaptionsPage() {
  }
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Inputs */}
  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
  <div className="flex flex-col gap-1">
@@ -1330,7 +1330,7 @@ function SwaptionsPage() {
  </div>
 
  {/* Vol surface heatmap */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3 overflow-x-auto">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3 overflow-x-auto">
  <SectionTitle>Implied Swaption Vol Surface (%)</SectionTitle>
  <svg
  width={SWAP_TENORS.length * cellW + 60}
@@ -1491,7 +1491,7 @@ function InflationSwapsPage() {
  const inflPath = inflPts.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`).join("");
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
  <NumberInput
  label="Tenor (years)"
@@ -1573,14 +1573,14 @@ function InflationSwapsPage() {
 
  {/* Inflation cap/floor */}
  <div className="grid grid-cols-2 gap-3">
- <div className="bg-foreground/5 rounded-md p-4 space-y-2">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-2">
  <div className="text-xs text-foreground/40 ">Inflation Cap (≥{capStrike}% CPI)</div>
  <div className="text-xl font-medium text-amber-300">
  ${(results.capPV / 1000).toFixed(0)}K
  </div>
  <p className="text-xs text-foreground/50">Protects against CPI above {capStrike}% — e.g. pension paying real benefits</p>
  </div>
- <div className="bg-foreground/5 rounded-md p-4 space-y-2">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-2">
  <div className="text-xs text-foreground/40 ">Inflation Floor (≤{floorStrike}% CPI)</div>
  <div className="text-xl font-medium text-sky-300">
  ${(results.floorPV / 1000).toFixed(0)}K
@@ -1590,7 +1590,7 @@ function InflationSwapsPage() {
  </div>
 
  {/* Inflation swap curve */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3">
  <SectionTitle>Market-Implied Inflation Expectations Curve</SectionTitle>
  <svg width="100%" viewBox={`0 0 ${W} ${H}`}>
  {[2.4, 2.6, 2.8, 3.0].map((r) => {
@@ -1632,7 +1632,7 @@ function InflationSwapsPage() {
  </div>
 
  {/* TIPS breakeven */}
- <div className="bg-foreground/5 rounded-md p-4 space-y-3 overflow-x-auto">
+ <div className="rounded-lg border border-border bg-muted/30 p-5 space-y-3 overflow-x-auto">
  <SectionTitle>TIPS Breakeven Inflation (nominal − TIPS yield)</SectionTitle>
  <table className="w-full text-sm">
  <thead>
@@ -1688,24 +1688,14 @@ export default function SwapsPage() {
  const [activeTab, setActiveTab] = useState("irs");
 
  return (
- <div className="min-h-screen bg-background text-foreground">
- {/* Header */}
- <div className="border-b border-border bg-card/60 backdrop-blur px-6 py-6 border-l-4 border-l-primary">
- <div className="flex items-center gap-3">
- <div className="w-8 h-8 rounded-lg bg-sky-600/20 border border-sky-500/30 flex items-center justify-center">
- </div>
- <div>
- <h1 className="text-lg font-semibold text-foreground">Interest Rate Swaps &amp; Fixed Income Derivatives</h1>
- <p className="text-xs text-foreground/40">
- IRS · Swap Curves · CDS · Total Return Swaps · Swaptions · Inflation Derivatives
- </p>
- </div>
- </div>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Interest Rate Swaps</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">IRS · CDS · SWAPTIONS · BASIS SWAPS</p>
 
- <div className="px-6 py-6 max-w-6xl mx-auto space-y-4">
  <Tabs value={activeTab} onValueChange={setActiveTab}>
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {TABS.map((tab) => (
  <TabsTrigger
  key={tab.id}
@@ -1717,7 +1707,7 @@ export default function SwapsPage() {
  ))}
  </TabsList>
 
- <TabsContent value="irs" className="data-[state=inactive]:hidden mt-4">
+ <TabsContent value="irs" className="data-[state=inactive]:hidden mt-0">
  <motion.div
  key="irs"
  initial={{ opacity: 0, y: 8 }}
@@ -1728,7 +1718,7 @@ export default function SwapsPage() {
  </motion.div>
  </TabsContent>
 
- <TabsContent value="curve" className="data-[state=inactive]:hidden mt-4">
+ <TabsContent value="curve" className="data-[state=inactive]:hidden mt-0">
  <motion.div
  key="curve"
  initial={{ opacity: 0, y: 8 }}
@@ -1739,7 +1729,7 @@ export default function SwapsPage() {
  </motion.div>
  </TabsContent>
 
- <TabsContent value="cds" className="data-[state=inactive]:hidden mt-4">
+ <TabsContent value="cds" className="data-[state=inactive]:hidden mt-0">
  <motion.div
  key="cds"
  initial={{ opacity: 0, y: 8 }}
@@ -1750,7 +1740,7 @@ export default function SwapsPage() {
  </motion.div>
  </TabsContent>
 
- <TabsContent value="trs" className="data-[state=inactive]:hidden mt-4">
+ <TabsContent value="trs" className="data-[state=inactive]:hidden mt-0">
  <motion.div
  key="trs"
  initial={{ opacity: 0, y: 8 }}
@@ -1761,7 +1751,7 @@ export default function SwapsPage() {
  </motion.div>
  </TabsContent>
 
- <TabsContent value="swaptions" className="data-[state=inactive]:hidden mt-4">
+ <TabsContent value="swaptions" className="data-[state=inactive]:hidden mt-0">
  <motion.div
  key="swaptions"
  initial={{ opacity: 0, y: 8 }}
@@ -1772,7 +1762,7 @@ export default function SwapsPage() {
  </motion.div>
  </TabsContent>
 
- <TabsContent value="inflation" className="data-[state=inactive]:hidden mt-4">
+ <TabsContent value="inflation" className="data-[state=inactive]:hidden mt-0">
  <motion.div
  key="inflation"
  initial={{ opacity: 0, y: 8 }}

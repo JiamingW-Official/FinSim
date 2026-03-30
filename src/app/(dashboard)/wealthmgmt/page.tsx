@@ -1421,31 +1421,26 @@ export default function WealthMgmtPage() {
  void r();
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- <div className="max-w-6xl mx-auto">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="mb-6 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="flex items-center gap-3 mb-1">
- <div className="rounded-md bg-amber-500/15 p-2.5">
- <Briefcase size={22} className="text-amber-400" />
- </div>
- <div>
- <h1 className="text-xl font-semibold text-foreground">Wealth Management</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <div className="mb-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
+ CLIENT PORTFOLIOS · ADVISORY · PLANNING
+ </p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
+ Wealth Management
+ </h1>
  <p className="text-sm text-muted-foreground">
  HNW client segmentation, financial planning, asset allocation, fee models, and family offices
  </p>
  </div>
- </div>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="segmentation" className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="segmentation" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="segmentation" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">
  <Users size={13} className="mr-1.5" />
  Client Segmentation
@@ -1465,59 +1460,19 @@ export default function WealthMgmtPage() {
  </TabsList>
 
  <TabsContent value="segmentation" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="segmentation"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.25 }}
- >
  <ClientSegmentationTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="planning" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="planning"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.25 }}
- >
  <FinancialPlanningTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="allocation" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="allocation"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.25 }}
- >
  <AssetAllocationTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
 
  <TabsContent value="fees" className="data-[state=inactive]:hidden">
- <AnimatePresence mode="wait">
- <motion.div
- key="fees"
- initial={{ opacity: 0, y: 12 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -12 }}
- transition={{ duration: 0.25 }}
- >
  <FeeModelsTab />
- </motion.div>
- </AnimatePresence>
  </TabsContent>
  </Tabs>
  </div>

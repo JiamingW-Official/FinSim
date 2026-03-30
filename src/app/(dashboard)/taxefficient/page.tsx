@@ -1232,31 +1232,16 @@ function CapitalGainsTab() {
 
 export default function TaxEfficientPage() {
  return (
- <div className="flex flex-col gap-3 p-4 md:p-4 max-w-5xl mx-auto">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- className="space-y-1 border-l-4 border-l-primary p-6 rounded-lg bg-card/40"
- >
- <div className="flex items-center gap-3">
- <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-green-500/10 border border-green-500/20">
- <DollarSign className="h-5 w-5 text-green-400" />
- </div>
- <div>
- <h1 className="text-xl font-medium tracking-tight">Tax-Efficient Investing</h1>
- <p className="text-sm text-muted-foreground">
- Asset location, tax-loss harvesting, Roth conversions &amp; capital gains management
- </p>
- </div>
- <Badge className="ml-auto bg-green-500/20 text-green-400 border-green-500/30">
- Tax Alpha
- </Badge>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Tax-Efficient Investing</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">ASSET LOCATION · TURNOVER · TAX DRAG</p>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Quick stats */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
+ <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
  {[
  { label: "Optimal Location Benefit", value: "0.4–1.5%/yr", icon: MapPin, color: "#22c55e" },
  { label: "TLH Tax Alpha", value: "0.5–1.2%/yr", icon: Scissors, color: "#ef4444" },

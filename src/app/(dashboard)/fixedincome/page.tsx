@@ -342,6 +342,7 @@ function BondUniverseTab({
 
  return (
  <div className="space-y-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Bond Universe</h2>
  {/* Filters */}
  <div className="flex flex-wrap gap-3 items-center">
  <div className="flex gap-1">
@@ -395,7 +396,7 @@ function BondUniverseTab({
  </div>
 
  {/* Table */}
- <div className="overflow-x-auto rounded-lg border border-border">
+ <div className="overflow-x-auto rounded-lg border border-border bg-card">
  <table className="w-full text-xs text-muted-foreground">
  <thead className="bg-muted text-muted-foreground">
  <tr>
@@ -502,42 +503,42 @@ function BondUniverseTab({
  exit={{ opacity: 0, height: 0 }}
  className="overflow-hidden"
  >
- <div className="bg-muted/60 rounded-lg border border-border p-4 grid grid-cols-2 md:grid-cols-4 gap-4">
- <div>
- <div className="text-muted-foreground text-xs mb-1">Macaulay Duration</div>
- <div className="text-foreground font-semibold">{selectedBond.duration.toFixed(3)} yrs</div>
+ <div className="rounded-lg border border-border bg-muted/30 p-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Macaulay Duration</div>
+ <div className="text-foreground font-mono tabular-nums font-semibold">{selectedBond.duration.toFixed(3)} yrs</div>
  </div>
- <div>
- <div className="text-muted-foreground text-xs mb-1">Modified Duration</div>
- <div className="text-foreground font-medium">{selectedBond.modDur.toFixed(3)} yrs</div>
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Modified Duration</div>
+ <div className="text-foreground font-mono tabular-nums font-medium">{selectedBond.modDur.toFixed(3)} yrs</div>
  </div>
- <div>
- <div className="text-muted-foreground text-xs mb-1">Convexity</div>
- <div className="text-foreground font-medium">{selectedBond.convexity.toFixed(4)}</div>
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Convexity</div>
+ <div className="text-foreground font-mono tabular-nums font-medium">{selectedBond.convexity.toFixed(4)}</div>
  </div>
- <div>
- <div className="text-muted-foreground text-xs mb-1">DV01 (per $1M face)</div>
- <div className="text-foreground font-medium">{fmtUSD(selectedBond.modDur * selectedBond.price * 1000 * 0.0001, 2)}</div>
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">DV01 (per $1M face)</div>
+ <div className="text-foreground font-mono tabular-nums font-medium">{fmtUSD(selectedBond.modDur * selectedBond.price * 1000 * 0.0001, 2)}</div>
  </div>
- <div>
- <div className="text-muted-foreground text-xs mb-1">Price (par = 1000)</div>
- <div className="text-foreground font-medium">${selectedBond.price.toFixed(4)}</div>
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Price (par = 1000)</div>
+ <div className="text-foreground font-mono tabular-nums font-medium">${selectedBond.price.toFixed(4)}</div>
  </div>
- <div>
- <div className="text-muted-foreground text-xs mb-1">+100bps price chg</div>
- <div className="text-red-400 font-medium">
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">+100bps price chg</div>
+ <div className="text-red-400 font-mono tabular-nums font-medium">
  {priceChange(selectedBond.price, selectedBond.modDur, selectedBond.convexity, 1.0).toFixed(2)}
  </div>
  </div>
- <div>
- <div className="text-muted-foreground text-xs mb-1">-100bps price chg</div>
- <div className="text-emerald-400 font-medium">
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">-100bps price chg</div>
+ <div className="text-emerald-400 font-mono tabular-nums font-medium">
  +{Math.abs(priceChange(selectedBond.price, selectedBond.modDur, selectedBond.convexity, -1.0)).toFixed(2)}
  </div>
  </div>
- <div>
- <div className="text-muted-foreground text-xs mb-1">Spread to Treasury</div>
- <div className={cn("font-medium", selectedBond.spreadBps > 200 ? "text-red-400" : selectedBond.spreadBps > 100 ? "text-amber-400" : "text-emerald-400")}>
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Spread to Treasury</div>
+ <div className={cn("font-mono tabular-nums font-medium", selectedBond.spreadBps > 200 ? "text-red-400" : selectedBond.spreadBps > 100 ? "text-amber-400" : "text-emerald-400")}>
  {selectedBond.spreadBps > 0 ? `+${selectedBond.spreadBps}` : selectedBond.spreadBps} bps
  </div>
  </div>
@@ -602,25 +603,31 @@ function YieldCurveTab() {
  return (
  <div className="space-y-4">
  {/* Key Spreads */}
- <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Yield Curve Overview</h2>
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-2">
  {[
  { label: "Curve Shape", value: shape, color: shape === "Inverted" ? "text-red-400" : shape === "Normal" ? "text-emerald-400" : "text-amber-400" },
  { label: "2s/10s Spread", value: `${Number(spread2s10s) > 0 ? "+" : ""}${spread2s10s}%`, color: Number(spread2s10s) < 0 ? "text-red-400" : "text-emerald-400" },
  { label: "3M/10Y Spread", value: `${Number(spread3m10y) > 0 ? "+" : ""}${spread3m10y}%`, color: Number(spread3m10y) < 0 ? "text-red-400" : "text-emerald-400" },
  { label: "5s/30s Spread", value: `${Number(spread5s30s) > 0 ? "+" : ""}${spread5s30s}%`, color: Number(spread5s30s) > 0 ? "text-emerald-400" : "text-amber-400" },
- { label: "Fed Dots Terminal", value: "3.75%", color: "text-foreground" },
  ].map((item) => (
- <div key={item.label} className="bg-muted/60 rounded-lg p-3 border border-border">
- <div className="text-muted-foreground text-xs mb-1">{item.label}</div>
- <div className={cn("text-lg font-semibold", item.color)}>{item.value}</div>
+ <div key={item.label} className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{item.label}</div>
+ <div className={cn("text-lg font-mono tabular-nums font-semibold", item.color)}>{item.value}</div>
  </div>
  ))}
  </div>
+ <div className="rounded-lg border border-border bg-card p-4 mb-2">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Fed Dots Terminal</div>
+ <div className="text-lg font-mono tabular-nums font-semibold text-foreground">3.75%</div>
+ </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Chart + overlays */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
  <div className="flex items-center justify-between mb-3">
- <h3 className="text-sm font-medium text-foreground">Treasury Yield Curve</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Treasury Yield Curve</h2>
  <div className="flex gap-2">
  {(["6M ago", "1Y ago", "2Y ago"] as const).map((label) => {
  const c = curves.find((x) => x.label === label)!;
@@ -707,11 +714,11 @@ function YieldCurveTab() {
  animate={{ opacity: 1, y: 0 }}
  exit={{ opacity: 0, y: 12 }}
  >
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">
  {selectedBond2.tenor.label} Treasury — YTM {fmtPct(selectedBond2.ytm)} — Price Sensitivity
- </h3>
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+ </h2>
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
  {[
  { label: "+50bps", bps: 0.5, color: "text-red-400" },
  { label: "+100bps", bps: 1.0, color: "text-red-500" },
@@ -721,12 +728,12 @@ function YieldCurveTab() {
  const chg = priceChange(approxPrice, approxDuration, approxConvexity, sc.bps);
  const pct = (chg / approxPrice) * 100;
  return (
- <div key={sc.label} className="bg-muted/50 rounded p-3">
- <div className="text-muted-foreground text-xs mb-1">{sc.label} shift</div>
- <div className={cn("text-base font-semibold", sc.color)}>
+ <div key={sc.label} className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{sc.label} shift</div>
+ <div className={cn("text-base font-mono tabular-nums font-semibold", sc.color)}>
  {chg > 0 ? "+" : ""}{chg.toFixed(3)}
  </div>
- <div className={cn("text-xs text-muted-foreground", sc.color)}>
+ <div className={cn("text-xs font-mono tabular-nums", sc.color)}>
  ({pct > 0 ? "+" : ""}{pct.toFixed(3)}%)
  </div>
  </div>
@@ -734,7 +741,7 @@ function YieldCurveTab() {
  })}
  </div>
  <div className="mt-3 text-xs text-muted-foreground">
- Approx. Modified Duration: {approxDuration.toFixed(2)} yrs | Convexity: {approxConvexity.toFixed(4)}
+ Approx. Modified Duration: <span className="font-mono tabular-nums">{approxDuration.toFixed(2)}</span> yrs | Convexity: <span className="font-mono tabular-nums">{approxConvexity.toFixed(4)}</span>
  </div>
  </div>
  </motion.div>
@@ -801,25 +808,31 @@ function PortfolioBuilderTab({
  return (
  <div className="space-y-5">
  {/* Stats row */}
- <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Portfolio Summary</h2>
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
  {[
  { label: "Total Allocated", value: fmtM(totalNotional), color: "text-foreground" },
  { label: "Cash Remaining", value: fmtM(Math.max(0, 1_000_000 - totalNotional)), color: totalNotional > 1_000_000 ? "text-red-400" : "text-emerald-400" },
  { label: "Wtd. Avg. Duration", value: stats ? `${stats.waDuration.toFixed(2)}y` : "—", color: "text-foreground" },
- { label: "Wtd. Avg. YTM", value: stats ? fmtPct(stats.waYtm) : "—", color: "text-indigo-400" },
- { label: "Portfolio DV01", value: stats ? fmtUSD(stats.dv01, 0) : "—", color: "text-amber-400" },
+ { label: "Wtd. Avg. YTM", value: stats ? fmtPct(stats.waYtm) : "—", color: "text-foreground" },
  ].map((s) => (
- <div key={s.label} className="bg-muted/60 rounded-lg p-3 border border-border">
- <div className="text-muted-foreground text-xs mb-1">{s.label}</div>
- <div className={cn("text-lg font-medium", s.color)}>{s.value}</div>
+ <div key={s.label} className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{s.label}</div>
+ <div className={cn("text-lg font-mono tabular-nums font-semibold", s.color)}>{s.value}</div>
  </div>
  ))}
  </div>
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Portfolio DV01</div>
+ <div className="text-lg font-mono tabular-nums font-semibold text-amber-400">{stats ? fmtUSD(stats.dv01, 0) : "—"}</div>
+ </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Target duration */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
  <div className="flex items-center justify-between mb-3">
- <h3 className="text-sm font-medium text-foreground">Duration Target</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Duration Target</h2>
  <span className="text-xs text-muted-foreground">
  Gap: {stats ? `${(stats.waDuration - targetDuration).toFixed(2)}y` : "—"}
  </span>
@@ -856,9 +869,9 @@ function PortfolioBuilderTab({
  </div>
 
  {/* Strategy comparison */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <div className="flex items-center gap-3 mb-3">
- <h3 className="text-sm font-medium text-foreground">Strategy Templates</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <div className="flex items-center gap-3 mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Strategy Templates</h2>
  <div className="flex gap-1">
  {(["barbell", "bullet", "ladder"] as const).map((m) => (
  <button
@@ -903,9 +916,9 @@ function PortfolioBuilderTab({
  </div>
 
  {/* Portfolio holdings */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <div className="flex items-center justify-between mb-3">
- <h3 className="text-sm font-medium text-foreground">Current Holdings</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <div className="flex items-center justify-between mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Current Holdings</h2>
  <button
  onClick={onAddBond}
  className="flex items-center gap-1 text-xs px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-foreground rounded transition-colors"
@@ -1018,23 +1031,26 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
  return (
  <div className="space-y-5">
  {/* Summary cards */}
- <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Risk Metrics</h2>
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
  {[
  { label: "Portfolio Mod. Duration", value: stats ? `${stats.waDuration.toFixed(3)}y` : "—", color: "text-foreground" },
- { label: "Portfolio Convexity", value: stats ? stats.waConvexity.toFixed(4) : "—", color: "text-indigo-400" },
+ { label: "Portfolio Convexity", value: stats ? stats.waConvexity.toFixed(4) : "—", color: "text-foreground" },
  { label: "DV01 (PVBP)", value: stats ? fmtUSD(stats.dv01, 0) : "—", color: "text-amber-400" },
- { label: "TY Futures Hedge", value: stats ? `${stats.hedgeRatio.toFixed(0)} contracts` : "—", color: "text-orange-400" },
+ { label: "TY Futures Hedge", value: stats ? `${stats.hedgeRatio.toFixed(0)} contracts` : "—", color: "text-foreground" },
  ].map((s) => (
- <div key={s.label} className="bg-muted/60 rounded-lg p-3 border border-border">
- <div className="text-muted-foreground text-xs mb-1">{s.label}</div>
- <div className={cn("text-lg font-medium", s.color)}>{s.value}</div>
+ <div key={s.label} className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{s.label}</div>
+ <div className={cn("text-lg font-mono tabular-nums font-semibold", s.color)}>{s.value}</div>
  </div>
  ))}
  </div>
 
+ <div className="border-t border-border my-6" />
+
  {/* Duration contribution bar chart */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">Duration Contribution by Bond</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Duration Contribution by Bond</h2>
  <div className="space-y-2">
  {portfolio.map((p) => {
  const contrib = p.bond.modDur * (p.notional / totalNotional);
@@ -1058,8 +1074,8 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
  </div>
 
  {/* Parallel shift scenarios */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">Parallel Rate Shift Scenarios</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Parallel Rate Shift Scenarios</h2>
  <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
  {scenarios.map((sc) => (
  <button
@@ -1070,11 +1086,11 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
  selectedShift === sc.bps ? "border-primary bg-muted/10" : "border-border bg-muted/30 hover:bg-muted/50"
  )}
  >
- <div className="text-xs text-muted-foreground mb-1">{sc.bps > 0 ? "+" : ""}{sc.bps}bps</div>
- <div className={cn("text-sm font-medium", sc.totalChg >= 0 ? "text-emerald-400" : "text-red-400")}>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{sc.bps > 0 ? "+" : ""}{sc.bps}bps</div>
+ <div className={cn("text-sm font-mono tabular-nums font-semibold", sc.totalChg >= 0 ? "text-emerald-400" : "text-red-400")}>
  {sc.totalChg >= 0 ? "+" : ""}{fmtM(sc.totalChg)}
  </div>
- <div className={cn("text-xs", sc.pct >= 0 ? "text-emerald-500" : "text-red-500")}>
+ <div className={cn("text-xs font-mono tabular-nums", sc.pct >= 0 ? "text-emerald-500" : "text-red-500")}>
  {sc.pct.toFixed(2)}%
  </div>
  </button>
@@ -1087,8 +1103,8 @@ function DurationRiskTab({ portfolio }: { portfolio: PortfolioBond[] }) {
  </div>
 
  {/* Non-parallel shifts */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">Non-Parallel Shift Analysis</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Non-Parallel Shift Analysis</h2>
  <div className="grid grid-cols-3 gap-3">
  {nonParallelScenarios.map((sc) => (
  <div key={sc.name} className="bg-muted/40 rounded-lg p-3">
@@ -1176,6 +1192,7 @@ function CreditAnalysisTab() {
  return (
  <div className="space-y-5">
  {/* IG/HY spread monitor */}
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Credit Spread Monitor</h2>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
  {[
  { label: "IG Corporate Spread", spread: igSpread, avg: igAvg, history: IG_SPREAD_HISTORY, color: "#60a5fa" },
@@ -1184,10 +1201,10 @@ function CreditAnalysisTab() {
  const min2 = Math.min(...item.history) - 10;
  const max2 = Math.max(...item.history) + 10;
  return (
- <div key={item.label} className="bg-muted/60 rounded-lg border border-border p-4">
+ <div key={item.label} className="rounded-lg border border-border bg-muted/30 p-5">
  <div className="flex items-center justify-between mb-2">
- <h3 className="text-sm font-medium text-foreground">{item.label}</h3>
- <span className="text-xl font-medium" style={{ color: item.color }}>{item.spread}bps</span>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">{item.label}</h2>
+ <span className="text-xl font-mono tabular-nums font-semibold" style={{ color: item.color }}>{item.spread}bps</span>
  </div>
  <div className="flex gap-4 text-xs text-muted-foreground mb-2">
  <span className="text-muted-foreground">24M avg: <span className="text-muted-foreground">{item.avg}bps</span></span>
@@ -1208,10 +1225,12 @@ function CreditAnalysisTab() {
  })}
  </div>
 
+ <div className="border-t border-border my-6" />
+
  {/* Credit scorecard */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <div className="flex items-center justify-between mb-3">
- <h3 className="text-sm font-medium text-foreground">Credit Scorecard</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <div className="flex items-center justify-between mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Credit Scorecard</h2>
  <select
  className="bg-muted border border-border text-muted-foreground text-xs rounded px-2 py-1"
  value={selectedBond3?.id ?? ""}
@@ -1221,7 +1240,7 @@ function CreditAnalysisTab() {
  </select>
  </div>
  {selectedBond3 && scorecard && (
- <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
  {[
  { label: "Credit Score", value: `${scorecard.score}/100`, color: scorecard.score >= 60 ? "text-emerald-400" : scorecard.score >= 35 ? "text-amber-400" : "text-red-400" },
  { label: "Prob. of Default (1Y)", value: fmtPct(scorecard.pd, 3), color: scorecard.pd < 0.5 ? "text-emerald-400" : scorecard.pd < 2 ? "text-amber-400" : "text-red-400" },
@@ -1229,9 +1248,9 @@ function CreditAnalysisTab() {
  { label: "Expected Loss", value: fmtPct(scorecard.expectedLoss, 4), color: scorecard.expectedLoss < 0.1 ? "text-emerald-400" : "text-amber-400" },
  { label: "Spread Duration", value: `${scorecard.spreadDuration.toFixed(2)}y`, color: "text-foreground" },
  ].map((m) => (
- <div key={m.label} className="bg-muted/50 rounded p-3">
- <div className="text-muted-foreground text-xs mb-1">{m.label}</div>
- <div className={cn("text-base font-medium", m.color)}>{m.value}</div>
+ <div key={m.label} className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{m.label}</div>
+ <div className={cn("text-base font-mono tabular-nums font-semibold", m.color)}>{m.value}</div>
  </div>
  ))}
  </div>
@@ -1239,8 +1258,8 @@ function CreditAnalysisTab() {
  </div>
 
  {/* Relative value */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">IG Corporate Relative Value</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">IG Corporate Relative Value</h2>
  <div className="space-y-2">
  {relativeValue.map((rv) => (
  <div key={rv.bond.id} className="flex items-center gap-3">
@@ -1267,9 +1286,9 @@ function CreditAnalysisTab() {
  </div>
 
  {/* Fallen angel tracker */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <div className="flex items-center gap-2 mb-3">
- <h3 className="text-sm font-medium text-foreground">Fallen Angel Watch</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <div className="flex items-center gap-2 mb-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Fallen Angel Watch</h2>
  <span className="text-xs text-muted-foreground">— IG bonds at risk of HY downgrade</span>
  </div>
  <div className="space-y-2">
@@ -1367,8 +1386,8 @@ function TaxExemptTab() {
  return (
  <div className="space-y-5">
  {/* Tax rate inputs */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-4">Tax Parameters</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Tax Parameters</h2>
  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
  <div>
  <div className="flex justify-between mb-2">
@@ -1420,9 +1439,11 @@ function TaxExemptTab() {
  </div>
  </div>
 
+ <div className="border-t border-border my-6" />
+
  {/* After-tax comparison table */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">After-Tax Return Comparison</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">After-Tax Return Comparison</h2>
  <div className="overflow-x-auto">
  <table className="w-full text-xs text-muted-foreground">
  <thead className="text-muted-foreground border-b border-border">
@@ -1475,8 +1496,8 @@ function TaxExemptTab() {
  </div>
 
  {/* Muni bond detail list */}
- <div className="bg-muted/60 rounded-lg border border-border p-4">
- <h3 className="text-sm font-medium text-foreground mb-3">Municipal Bond Universe</h3>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Municipal Bond Universe</h2>
  <div className="space-y-2">
  {MUNI_BONDS.map((b) => {
  const isTriple = b.tripleExempt && inState;
@@ -1530,19 +1551,21 @@ function TaxExemptTab() {
  </div>
  </div>
 
+ <div className="border-t border-border my-6" />
+
  {/* AMT/BAB explainer */}
  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
- <div className="bg-muted/60 rounded-lg border border-amber-500/20 p-4">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
  <div className="flex items-center gap-2 mb-2">
- <h3 className="text-sm font-medium text-amber-400">AMT Private Activity Bonds</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">AMT Private Activity Bonds</h2>
  </div>
  <p className="text-xs text-muted-foreground">
  Private Activity Bonds finance private projects (airports, hospitals, stadiums) using municipal credit. While federally tax-exempt for most investors, AMT taxpayers must include this income in AMT calculations. Always check your AMT exposure before buying PABs.
  </p>
  </div>
- <div className="bg-muted/60 rounded-lg border border-border p-4">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
  <div className="flex items-center gap-2 mb-2">
- <h3 className="text-sm font-medium text-foreground">Build America Bonds (BABs)</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Build America Bonds (BABs)</h2>
  </div>
  <p className="text-xs text-muted-foreground">
  Introduced in 2009 stimulus, BABs are taxable municipal bonds where the federal government subsidizes 35% of the interest cost. Issuers get lower borrowing rates; investors get higher taxable yields. They trade in both institutional and retail markets and can offer attractive after-tax returns vs Treasuries.
@@ -1586,46 +1609,31 @@ export default function FixedIncomePage() {
  const portfolioCount = portfolio.length;
 
  return (
- <div className="min-h-screen bg-background text-foreground p-4 md:p-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -16 }}
- animate={{ opacity: 1, y: 0 }}
- className="mb-6 border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
- <div className="flex items-center justify-between">
- <div>
- <h1 className="text-xl font-semibold text-foreground flex items-center gap-2">
- Fixed Income
- </h1>
- <p className="text-muted-foreground text-sm mt-1">
- Bond universe, yield curve analysis, portfolio construction and risk management
- </p>
- </div>
- <div className="flex items-center gap-3">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Fixed Income</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">BONDS · DURATION · CREDIT RISK · YIELD</p>
+
+ {/* Portfolio summary chips */}
  {portfolioCount > 0 && (
- <motion.div
- initial={{ scale: 0.8, opacity: 0 }}
- animate={{ scale: 1, opacity: 1 }}
- className="flex items-center gap-2 bg-muted border border-border rounded-lg px-3 py-2"
- >
- <div>
- <div className="text-xs text-muted-foreground">Portfolio</div>
- <div className="text-sm font-medium text-foreground">{fmtM(totalNotional)}</div>
+ <div className="flex items-center gap-4 mb-6">
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Portfolio Value</div>
+ <div className="text-lg font-mono tabular-nums font-semibold text-foreground">{fmtM(totalNotional)}</div>
  </div>
- <div className="ml-1">
- <div className="text-xs text-muted-foreground">Bonds</div>
- <div className="text-sm font-medium text-foreground">{portfolioCount}</div>
+ <div className="rounded-lg border border-border bg-card p-4">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Bonds Held</div>
+ <div className="text-lg font-mono tabular-nums font-semibold text-foreground">{portfolioCount}</div>
  </div>
- </motion.div>
+ </div>
  )}
- </div>
- </div>
- </motion.div>
+
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs value={activeTab} onValueChange={setActiveTab}>
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {[
  { value: "universe", label: "Bond Universe" },
  { value: "yieldcurve", label: "Yield Curve" },
@@ -1667,6 +1675,7 @@ export default function FixedIncomePage() {
  <TaxExemptTab />
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

@@ -1143,23 +1143,25 @@ const TABS = [
 
 export default function EstatePlanningPage() {
  return (
- <div className="flex flex-col h-full min-h-0 overflow-y-auto bg-background p-4 md:p-4 space-y-4">
- {/* Header */}
- <div className="flex flex-col gap-1">
- <div className="flex items-center gap-2">
- <Scale className="w-3.5 h-3.5 text-muted-foreground/50" />
- <h1 className="text-xl font-semibold text-foreground">Estate Planning</h1>
- <Badge variant="outline" className="text-xs border-primary/30 text-primary">
- Wealth Preservation
- </Badge>
- </div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <div className="mb-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
+ TRUSTS · INHERITANCE · TAX EFFICIENCY
+ </p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
+ Estate Planning
+ </h1>
  <p className="text-sm text-muted-foreground">
  Wealth preservation, estate planning, and intergenerational wealth transfer strategies
  </p>
  </div>
 
- {/* Summary chips — Hero */}
- <div className="border-l-4 border-l-primary rounded-lg bg-card p-6 grid grid-cols-2 md:grid-cols-5 gap-3">
+ <div className="border-t border-border mb-6" />
+
+ {/* Summary stats */}
+ <div className="grid grid-cols-2 sm:grid-cols-5 gap-4 mb-6">
  <StatChip label="2024 Estate Tax Exemption" value="$13.61M" color="green" />
  <StatChip label="Annual Gift Exclusion" value="$18,000" color="blue" />
  <StatChip label="Top Estate Tax Rate" value="40%" color="red" />
@@ -1167,11 +1169,17 @@ export default function EstatePlanningPage() {
  <StatChip label="DAF Growth (5yr)" value="+42% AUM" color="purple" />
  </div>
 
+ <div className="border-t border-border mb-6" />
+
  {/* Tabs */}
- <Tabs defaultValue="basics" className="flex-1 mt-8">
- <TabsList className="grid w-full grid-cols-5 mb-4">
+ <Tabs defaultValue="basics" className="flex-1 flex flex-col">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  {TABS.map((t) => (
- <TabsTrigger key={t.id} value={t.id} className="flex items-center gap-1.5 text-xs text-muted-foreground">
+ <TabsTrigger
+ key={t.id}
+ value={t.id}
+ className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground flex items-center gap-1.5"
+ >
  <t.icon className="w-3.5 h-3.5" />
  <span className="hidden sm:inline">{t.label}</span>
  </TabsTrigger>
@@ -1179,35 +1187,26 @@ export default function EstatePlanningPage() {
  </TabsList>
 
  <TabsContent value="basics" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
  <EstatePlanningBasicsTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="trusts" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
  <TrustsTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="tax" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
  <TaxStrategiesTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="charitable" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
  <CharitableGivingTab />
- </motion.div>
  </TabsContent>
 
  <TabsContent value="succession" className="data-[state=inactive]:hidden">
- <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }}>
  <BusinessSuccessionTab />
- </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

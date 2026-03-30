@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useRef, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { Slider } from "@/components/ui/slider";
 import {
  Activity,
@@ -1133,21 +1133,13 @@ export default function GreeksSimulator() {
  </div>
 
  {/* Content */}
- <AnimatePresence mode="wait">
- <motion.div
- key={active}
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -8 }}
- transition={{ duration: 0.18 }}
- >
+ <div>
  {active === "surface" && <VolSurface3D />}
  {active === "attribution" && <PnlAttribution />}
  {active === "hedging" && <DeltaHedgingSimulator />}
  {active === "voltrading" && <VolTradingMechanics />}
  {active === "skew" && <SkewTradingPanel />}
- </motion.div>
- </AnimatePresence>
+ </div>
  </div>
  );
 }

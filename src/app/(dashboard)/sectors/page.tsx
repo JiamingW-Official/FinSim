@@ -1160,24 +1160,19 @@ export default function SectorsPage() {
  }
 
  return (
- <div className="flex h-full flex-col overflow-hidden">
- {/* Header */}
- <div className="flex shrink-0 items-center gap-3 border-b border-border px-6 py-6 border-l-4 border-l-primary">
- <div>
- <h1 className="text-lg font-semibold leading-none">Sector Analysis</h1>
- <p className="mt-0.5 text-xs text-muted-foreground">11 GICS Sectors — Performance, Rotation, Factors & ETFs</p>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Sector Analysis</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">11 GICS sectors · performance, rotation, factors & etfs</p>
+ <div className="flex items-center gap-2 mb-6">
+ <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-[10px] uppercase tracking-widest font-medium text-emerald-400">Early Recovery</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">current cycle phase</span>
  </div>
- <div className="ml-auto flex items-center gap-2 text-xs text-muted-foreground">
- <span className="rounded bg-emerald-500/20 px-2 py-0.5 text-xs font-medium text-emerald-400">
- EARLY RECOVERY
- </span>
- <span className="text-xs text-muted-foreground">Current Cycle Phase</span>
- </div>
- </div>
+ <div className="border-t border-border mb-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="performance" className="flex flex-1 flex-col overflow-hidden">
- <div className="shrink-0 border-b border-border px-6">
+ <Tabs defaultValue="performance" className="flex flex-1 flex-col">
+ <div className="border-b border-border mb-0">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "performance", label: "Sector Performance" },
@@ -1198,7 +1193,7 @@ export default function SectorsPage() {
  </div>
 
  {/* ── Tab 1: Sector Performance ─────────────────────────────────────── */}
- <TabsContent value="performance" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
+ <TabsContent value="performance" className="flex-1 pt-6 data-[state=inactive]:hidden">
  <div className="mx-auto max-w-5xl space-y-4">
  {/* Heatmap */}
  <SectorHeatmap perfs={perfs} selectedSector={selectedSector} onSelect={setSelectedSector} />
@@ -1215,7 +1210,7 @@ export default function SectorsPage() {
  </TabsContent>
 
  {/* ── Tab 2: Rotation Model ─────────────────────────────────────────── */}
- <TabsContent value="rotation" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
+ <TabsContent value="rotation" className="flex-1 pt-6 data-[state=inactive]:hidden">
  <div className="mx-auto max-w-5xl space-y-4">
  <div className="grid gap-3 lg:grid-cols-[auto_1fr]">
  {/* Cycle wheel */}
@@ -1295,7 +1290,7 @@ export default function SectorsPage() {
  </TabsContent>
 
  {/* ── Tab 3: Factor Exposure ────────────────────────────────────────── */}
- <TabsContent value="factors" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
+ <TabsContent value="factors" className="flex-1 pt-6 data-[state=inactive]:hidden">
  <div className="mx-auto max-w-5xl space-y-4">
  {/* Factor bar chart + style box side by side */}
  <div className="grid gap-4 lg:grid-cols-[1fr_auto]">
@@ -1340,7 +1335,7 @@ export default function SectorsPage() {
  </TabsContent>
 
  {/* ── Tab 4: Sector ETFs ────────────────────────────────────────────── */}
- <TabsContent value="etfs" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
+ <TabsContent value="etfs" className="flex-1 pt-6 data-[state=inactive]:hidden">
  <div className="mx-auto max-w-6xl space-y-4">
  {/* ETF comparison */}
  <div>
@@ -1380,12 +1375,13 @@ export default function SectorsPage() {
  </div>
  </TabsContent>
  {/* ── Tab 5: Rotation Strategy ──────────────────────────────────────── */}
- <TabsContent value="strategy" className="flex-1 overflow-y-auto p-4 data-[state=inactive]:hidden">
+ <TabsContent value="strategy" className="flex-1 pt-6 data-[state=inactive]:hidden">
  <div className="mx-auto max-w-5xl">
  <SectorRotationStrategy />
  </div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

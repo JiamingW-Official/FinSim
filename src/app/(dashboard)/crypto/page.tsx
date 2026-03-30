@@ -1959,23 +1959,23 @@ export default function CryptoPage() {
  void ShieldAlert;
 
  return (
- <div className="flex flex-col h-full overflow-hidden">
- {/* Header */}
- <div className="shrink-0 border-b border-border bg-background px-4 pt-4 pb-0">
- <p className="text-xs text-muted-foreground mb-1">Markets</p>
- <h1 className="text-lg font-semibold mb-3">Crypto &amp; DeFi</h1>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Crypto Markets</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">DIGITAL ASSETS · DeFi · ON-CHAIN</p>
 
  {/* Tab bar */}
- <div className="flex gap-0.5 overflow-x-auto">
+ <div className="flex gap-0.5 overflow-x-auto border-b border-border mb-6">
  {PAGE_TABS.map((tab) => (
  <button
  key={tab.id}
  type="button"
  onClick={() => setActiveTab(tab.id)}
  className={cn(
- "flex items-center gap-1.5 whitespace-nowrap px-3 py-2 text-xs text-muted-foreground font-medium border-b-2 transition-colors",
+ "flex items-center gap-1.5 whitespace-nowrap px-3 py-2 text-xs font-medium border-b-2 transition-colors",
  activeTab === tab.id
- ? "border-primary text-primary"
+ ? "border-foreground text-foreground"
  : "border-transparent text-muted-foreground hover:text-foreground",
  )}
  >
@@ -1984,10 +1984,9 @@ export default function CryptoPage() {
  </button>
  ))}
  </div>
- </div>
 
  {/* Content */}
- <div className="flex-1 overflow-y-auto p-4">
+ <div className="flex-1">
  {activeTab === "markets" && <MarketsTab rows={cryptoRows} seed={seed} />}
  {activeTab === "trade" && <TradeTab rows={cryptoRows} seed={seed} />}
  {activeTab === "defi" && <DeFiTab seed={seed} />}
@@ -1996,6 +1995,7 @@ export default function CryptoPage() {
  {activeTab === "portfolio" && <CryptoPortfolioTab rows={cryptoRows} />}
  {activeTab === "education" && <EducationTab />}
  {activeTab === "defianalytics" && <DeFiAnalytics />}
+ </div>
  </div>
  </div>
  );

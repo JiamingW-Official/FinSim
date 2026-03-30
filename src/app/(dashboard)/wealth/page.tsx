@@ -230,15 +230,15 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
  const prevMilestone = [...NET_WORTH_MILESTONES].reverse().find((m) => m.value <= netWorth);
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Hero net worth */}
- <div className="rounded-md border border-border bg-card p-4">
+ <div className="rounded-lg border border-border border-t-2 border-t-emerald-500/30 bg-card p-6">
  <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
  <div>
- <p className="text-sm text-muted-foreground">Total Net Worth</p>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Total Net Worth</p>
  <p
  className={cn(
- "text-2xl font-bold tracking-tight",
+ "text-4xl font-serif font-light tracking-tight",
  netWorth >= 0 ? "text-foreground" : "text-red-500",
  )}
  >
@@ -259,32 +259,32 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
  </div>
  <div className="mt-4 grid grid-cols-2 gap-4 border-t border-border pt-4 sm:grid-cols-4">
  <div>
- <p className="text-xs text-muted-foreground">Total Assets</p>
- <p className="text-lg font-bold text-emerald-500">{fmt(totalAssets)}</p>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Total Assets</p>
+ <p className="font-mono tabular-nums text-lg font-semibold text-emerald-500">{fmt(totalAssets)}</p>
  </div>
  <div>
- <p className="text-xs text-muted-foreground">Total Liabilities</p>
- <p className="text-lg font-medium text-red-500">{fmt(totalLiabilities)}</p>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Total Liabilities</p>
+ <p className="font-mono tabular-nums text-lg font-medium text-red-500">{fmt(totalLiabilities)}</p>
  </div>
  <div>
- <p className="text-xs text-muted-foreground">Debt-to-Asset</p>
- <p className="text-lg font-medium">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Debt-to-Asset</p>
+ <p className="font-mono tabular-nums text-lg font-medium">
  {totalAssets > 0 ? fmtPct((totalLiabilities / totalAssets) * 100) : "—"}
  </p>
  </div>
  <div>
- <p className="text-xs text-muted-foreground">Brokerage (live)</p>
- <p className="text-lg font-medium text-primary">{fmt(brokerageValue)}</p>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Brokerage (live)</p>
+ <p className="font-mono tabular-nums text-lg font-medium text-primary">{fmt(brokerageValue)}</p>
  </div>
  </div>
  </div>
 
- <div className="grid gap-3 lg:grid-cols-3">
+ <div className="grid gap-4 lg:grid-cols-3">
  {/* Asset / Liability inputs */}
  <div className="lg:col-span-2 space-y-4">
  {/* Assets */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-semibold text-emerald-500">Assets</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Assets</h2>
  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
  <NumInput label="Cash / Savings" value={als.cashSavings} onChange={set("cashSavings")} />
  <div className="flex flex-col gap-1">
@@ -306,8 +306,8 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
  </div>
 
  {/* Liabilities */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium text-red-500">Liabilities</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Liabilities</h2>
  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
  <NumInput label="Mortgage" value={als.mortgage} onChange={set("mortgage")} />
  <NumInput label="Student Loans" value={als.studentLoans} onChange={set("studentLoans")} />
@@ -324,8 +324,8 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
 
  {/* Donut + milestones */}
  <div className="space-y-4">
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Asset Allocation</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Asset Allocation</h2>
  <div className="flex justify-center">
  <DonutChart segments={donutSegments} size={160} />
  </div>
@@ -345,8 +345,8 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
  </div>
 
  {/* Milestones */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Net Worth Milestones</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Milestones</h2>
  <div className="space-y-2">
  {NET_WORTH_MILESTONES.map((m) => {
  const achieved = netWorth >= m.value;
@@ -396,10 +396,12 @@ function NetWorthTab({ brokerageValue }: { brokerageValue: number }) {
  </div>
  </div>
 
+ <div className="border-t border-border my-6" />
+
  {/* Balance sheet table */}
- <div className="rounded-md border border-border bg-card overflow-hidden">
- <div className="border-b border-border px-4 py-3">
- <h3 className="text-sm font-medium">Net Worth Statement</h3>
+ <div className="rounded-lg border border-border bg-card overflow-hidden">
+ <div className="border-b border-border px-5 py-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Net Worth Statement</h2>
  </div>
  <table className="w-full text-sm">
  <thead>
@@ -675,11 +677,11 @@ function GoalsTab() {
  }
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Goals list */}
- <div className="rounded-md border border-border bg-card p-4">
- <div className="mb-3 flex items-center justify-between">
- <h3 className="text-sm font-medium">Financial Goals</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="mb-4 flex items-center justify-between">
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Financial Goals</h2>
  <button
  onClick={() => setShowAdd((v) => !v)}
  className="flex items-center gap-1 rounded-md bg-primary px-2.5 py-1 text-xs font-medium text-primary-foreground hover:bg-primary/90"
@@ -776,18 +778,18 @@ function GoalsTab() {
 
  {/* Timeline */}
  {goals.length > 0 && (
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Goal Timeline</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Goal Timeline</h2>
  <GoalsTimeline goals={goals} />
  </div>
  )}
 
  <div className="grid gap-4 md:grid-cols-2">
  {/* Emergency Fund */}
- <div className="rounded-md border border-border bg-card p-4">
- <div className="mb-3 flex items-center gap-2">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="mb-4 flex items-center gap-2">
  <Shield className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h3 className="text-sm font-medium">Emergency Fund</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Emergency Fund</h2>
  </div>
  <div className="mb-3 grid grid-cols-2 gap-3">
  <NumInput label="Monthly Expenses" value={efMonthlyExpenses} onChange={setEfMonthlyExpenses} />
@@ -820,10 +822,10 @@ function GoalsTab() {
  </div>
 
  {/* FIRE Calculator */}
- <div className="rounded-md border border-border bg-card p-4">
- <div className="mb-3 flex items-center gap-2">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="mb-4 flex items-center gap-2">
  <Flame className="h-4 w-4 text-orange-500" />
- <h3 className="text-sm font-medium">FIRE Calculator</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">FIRE Calculator</h2>
  <span className="rounded bg-orange-500/10 px-1.5 py-0.5 text-[11px] font-medium text-orange-500">
  4% Rule
  </span>
@@ -1032,10 +1034,10 @@ function TaxTab() {
  );
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Inputs */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Tax Inputs</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Tax Inputs</h2>
  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
  <NumInput label="Gross Income" value={grossIncome} onChange={setGrossIncome} />
  <div>
@@ -1097,17 +1099,17 @@ function TaxTab() {
  { label: "Taxable Income", value: fmt(taxableIncome), sub: `Deduction: ${fmt(deduction)}`, color: "text-foreground" },
  { label: "After-Tax Income", value: fmtK(afterTax), sub: `vs gross ${fmtK(grossIncome)}`, color: "text-emerald-500" },
  ].map((card, i) => (
- <div key={i} className="rounded-md border border-border bg-card p-4">
- <p className="text-xs text-muted-foreground">{card.label}</p>
- <p className={cn("text-lg font-medium", card.color)}>{card.value}</p>
+ <div key={i} className="rounded-lg border border-border bg-card p-5">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{card.label}</p>
+ <p className={cn("font-mono tabular-nums text-lg font-medium", card.color)}>{card.value}</p>
  {card.sub && <p className="text-xs text-muted-foreground">{card.sub}</p>}
  </div>
  ))}
  </div>
 
  {/* Bracket visualizer */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Tax Bracket Visualizer</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Tax Bracket Visualizer</h2>
  <TaxBracketBar grossIncome={grossIncome} taxableIncome={taxableIncome} brackets={brackets} />
  <div className="mt-3 flex flex-wrap gap-2">
  {BRACKET_COLORS.map((c, i) => {
@@ -1125,8 +1127,8 @@ function TaxTab() {
 
  {/* Optimization opportunities */}
  <div className="grid gap-4 md:grid-cols-2">
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Tax Reduction Opportunities</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Tax Reduction Opportunities</h2>
  <div className="space-y-4">
  {/* 401k */}
  <div className="space-y-1.5">
@@ -1208,8 +1210,8 @@ function TaxTab() {
  </div>
 
  {/* Tax optimization score */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Tax Optimization Score</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Tax Optimization Score</h2>
  <div className="flex flex-col items-center gap-4">
  {/* Gauge SVG */}
  <svg viewBox="0 0 120 70" className="w-40">
@@ -1468,10 +1470,10 @@ function RoadmapTab() {
  ];
 
  return (
- <div className="space-y-4">
+ <div className="space-y-6">
  {/* Inputs */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Your Financial Profile</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Your Financial Profile</h2>
  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
  <div>
  <label className="text-xs text-muted-foreground">Current Age: {currentAge}</label>
@@ -1492,26 +1494,26 @@ function RoadmapTab() {
 
  {/* Retirement projection summary */}
  <div className="grid gap-4 sm:grid-cols-3">
- <div className="rounded-md border border-border bg-card p-4 text-center">
- <p className="text-xs text-muted-foreground">Monthly Savings</p>
- <p className="text-lg font-medium text-primary">{fmt(monthlySavings)}</p>
+ <div className="rounded-lg border border-border bg-card p-5 text-center">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Monthly Savings</p>
+ <p className="font-mono tabular-nums text-lg font-medium text-primary">{fmt(monthlySavings)}</p>
  <p className="text-xs text-muted-foreground">{annualSavingsRate}% of income</p>
  </div>
- <div className="rounded-md border border-border bg-card p-4 text-center">
- <p className="text-xs text-muted-foreground">Projected at Retirement (65)</p>
- <p className="text-lg font-medium text-emerald-500">{fmtK(retirementProjection)}</p>
+ <div className="rounded-lg border border-border border-t-2 border-t-emerald-500/30 bg-card p-5 text-center">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Projected at Retirement (65)</p>
+ <p className="font-mono tabular-nums text-lg font-medium text-emerald-500">{fmtK(retirementProjection)}</p>
  <p className="text-xs text-muted-foreground">{Math.max(0, 65 - currentAge)} years at {expectedReturn}%</p>
  </div>
- <div className="rounded-md border border-border bg-card p-4 text-center">
- <p className="text-xs text-muted-foreground">Annual Retirement Income (4%)</p>
- <p className="text-lg font-medium text-amber-500">{fmtK(retirementProjection * 0.04)}</p>
+ <div className="rounded-lg border border-border bg-card p-5 text-center">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Annual Retirement Income (4%)</p>
+ <p className="font-mono tabular-nums text-lg font-medium text-amber-500">{fmtK(retirementProjection * 0.04)}</p>
  <p className="text-xs text-muted-foreground">Safe withdrawal rate</p>
  </div>
  </div>
 
  {/* Projection chart */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Portfolio Growth Projection</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Portfolio Growth Projection</h2>
  <ProjectionChart
  currentAge={currentAge}
  currentSavings={currentSavings}
@@ -1521,10 +1523,10 @@ function RoadmapTab() {
  </div>
 
  {/* Age-based milestones */}
- <div className="rounded-md border border-border bg-card p-4">
- <div className="mb-3 flex items-center gap-2">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="mb-4 flex items-center gap-2">
  <Target className="h-3.5 w-3.5 text-muted-foreground/50" />
- <h3 className="text-sm font-medium">Fidelity Savings Benchmarks</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Fidelity Savings Benchmarks</h2>
  <Info className="h-3.5 w-3.5 text-muted-foreground" />
  </div>
  <div className="grid gap-3 sm:grid-cols-5">
@@ -1558,8 +1560,8 @@ function RoadmapTab() {
 
  <div className="grid gap-4 md:grid-cols-2">
  {/* Millionaire timeline table */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Time to $1 Million</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Time to $1 Million</h2>
  <p className="mb-3 text-xs text-muted-foreground">At {expectedReturn}% annual return</p>
  <table className="w-full text-sm">
  <thead>
@@ -1590,8 +1592,8 @@ function RoadmapTab() {
  </div>
 
  {/* Asset allocation by age */}
- <div className="rounded-md border border-border bg-card p-4">
- <h3 className="mb-3 text-sm font-medium">Asset Allocation by Age</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Asset Allocation by Age</h2>
  <div className="mb-3">
  <label className="text-xs text-muted-foreground">Age for allocation: {allocationAge}</label>
  <Slider value={[allocationAge]} onValueChange={([v]) => setAllocationAge(v)} min={20} max={75} step={1} className="mt-2" />
@@ -1624,10 +1626,10 @@ function RoadmapTab() {
  </div>
 
  {/* Compound interest infographic */}
- <div className="rounded-md border border-border bg-card p-4">
- <div className="mb-3 flex items-center gap-2">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="mb-4 flex items-center gap-2">
  <Star className="h-4 w-4 text-amber-500" />
- <h3 className="text-sm font-medium">Compound Interest — The 8th Wonder</h3>
+ <h2 className="text-xl font-serif tracking-tight text-foreground">Compound Interest — The 8th Wonder</h2>
  </div>
  <CompoundInfographic />
  </div>
@@ -1642,22 +1644,13 @@ export default function WealthPage() {
 
  return (
  <div className="flex h-full flex-col overflow-y-auto">
- <div className="flex-1 space-y-4 p-4 md:p-4">
- {/* Page header */}
- <div className="flex items-center gap-3 border-l-4 border-l-primary p-6 rounded-lg bg-card/40">
- <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10">
- <Landmark className="h-3.5 w-3.5 text-muted-foreground/50" />
- </div>
- <div>
- <h1 className="text-xl font-medium">Wealth Management</h1>
- <p className="text-xs text-muted-foreground">
- Track your net worth, plan goals, optimize taxes, and build long-term wealth.
- </p>
- </div>
- </div>
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Wealth Management</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">NET WORTH · ASSET ALLOCATION · GROWTH</p>
 
- <Tabs defaultValue="networth" className="space-y-4">
- <TabsList className="grid w-full grid-cols-4 md:w-auto md:inline-grid">
+ <Tabs defaultValue="networth" className="flex-1 flex flex-col">
+ <TabsList className="mb-6 grid w-full grid-cols-4 md:w-auto md:inline-grid">
  <TabsTrigger value="networth" className="flex items-center gap-1.5 text-xs text-muted-foreground">
  <PieChart className="h-3.5 w-3.5" />
  <span className="hidden sm:inline">Net Worth</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useId } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { cn } from "@/lib/utils";
 
 // ── Seeded PRNG ───────────────────────────────────────────────────────────────
@@ -383,18 +383,13 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
  </tr>
  </thead>
  <tbody>
- <AnimatePresence initial={false}>
  {filtered.map((e) => {
  const isWhale = e.premium >= 500_000;
  const isBullish = e.sentiment === "bullish";
  const isBearish = e.sentiment === "bearish";
  return (
- <motion.tr
+ <tr
  key={e.id}
- initial={{ opacity: 0, y: -4 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0 }}
- transition={{ duration: 0.2 }}
  className="border-b border-border transition-colors hover:bg-muted/50"
  >
  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">
@@ -445,10 +440,9 @@ function ActivityFeed({ entries }: { entries: FlowEntry[] }) {
  <span className="text-muted-foreground"><span className="mr-0.5 text-[11px]">●</span>Neutral</span>
  )}
  </td>
- </motion.tr>
+ </tr>
  );
  })}
- </AnimatePresence>
  </tbody>
  </table>
  </div>
@@ -623,14 +617,8 @@ function FlowHeatmapSection({ entries }: { entries: FlowEntry[] }) {
  </div>
 
  {/* Selected cell breakdown */}
- <AnimatePresence>
  {selectedCell && (
- <motion.div
- initial={{ opacity: 0, height: 0 }}
- animate={{ opacity: 1, height: "auto" }}
- exit={{ opacity: 0, height: 0 }}
- className="overflow-hidden rounded-md border border-primary/30 bg-primary/5 p-3"
- >
+ <div className="overflow-hidden rounded-md border border-primary/30 bg-primary/5 p-3">
  <div className="mb-2 flex items-center gap-2">
  <span className="text-[11px] font-semibold">{selectedCell.ticker}</span>
  <span className="text-xs text-muted-foreground">{selectedCell.expiry}</span>
@@ -655,9 +643,8 @@ function FlowHeatmapSection({ entries }: { entries: FlowEntry[] }) {
  <div>{selectedCell.totalVol.toLocaleString()} contracts</div>
  </div>
  </div>
- </motion.div>
+ </div>
  )}
- </AnimatePresence>
  </div>
  );
 }
@@ -1296,14 +1283,9 @@ export default function OptionsFlowAnalytics() {
  <div className="flex shrink-0 items-center justify-between border-b border-border px-4 py-2">
  <div className="flex items-center gap-2">
  <span className="text-[11px] font-semibold">Options Flow Analytics</span>
- <motion.span
- key={tick}
- initial={{ opacity: 0, scale: 0.7 }}
- animate={{ opacity: 1, scale: 1 }}
- className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-400"
- >
+ <span className="rounded bg-emerald-500/15 px-1.5 py-0.5 text-[11px] font-semibold text-emerald-400">
  LIVE
- </motion.span>
+ </span>
  </div>
  <button
  onClick={refresh}
@@ -1333,21 +1315,13 @@ export default function OptionsFlowAnalytics() {
 
  {/* Content */}
  <div className="flex-1 overflow-auto">
- <AnimatePresence mode="wait">
- <motion.div
- key={tab}
- initial={{ opacity: 0, y: 6 }}
- animate={{ opacity: 1, y: 0 }}
- exit={{ opacity: 0, y: -4 }}
- transition={{ duration: 0.15 }}
- >
+ <div>
  {tab === "flow" && <><SectionTitle>Unusual Options Activity Feed</SectionTitle><ActivityFeed entries={entries} /></>}
  {tab === "heatmap" && <><SectionTitle>Flow Heatmap — Ticker × Expiry</SectionTitle><FlowHeatmapSection entries={entries} /></>}
  {tab === "pcr" && <><SectionTitle>Put/Call Ratio Dashboard</SectionTitle><PCRatioDashboard seed={seed} /></>}
  {tab === "oi" && <><SectionTitle>Open Interest Analysis</SectionTitle><OIAnalysis seed={seed} /></>}
  {tab === "darkpool" && <><SectionTitle>Simulated Institutional Flow + Options Correlation</SectionTitle><DarkPoolCorrelation seed={seed} /></>}
- </motion.div>
- </AnimatePresence>
+ </div>
  </div>
  </div>
  );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { cn } from "@/lib/utils";
 import type { StrategyLeg } from "@/types/options";
 import { CONTRACT_MULTIPLIER } from "@/types/options";
@@ -16,12 +16,8 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
  const cost = leg.price * leg.quantity * CONTRACT_MULTIPLIER;
 
  return (
- <motion.div
+ <div
  className="rounded-lg border border-border/20 bg-card/30 p-2 flex items-center gap-2"
- initial={{ opacity: 0, x: -8 }}
- animate={{ opacity: 1, x: 0 }}
- exit={{ opacity: 0, x: 8 }}
- layout
  >
  <div className="flex-1 min-w-0">
  <div className="flex items-center gap-1.5">
@@ -75,6 +71,6 @@ export function LegBuilder({ leg, index, onRemove }: LegBuilderProps) {
  >
  ×
  </button>
- </motion.div>
+ </div>
  );
 }

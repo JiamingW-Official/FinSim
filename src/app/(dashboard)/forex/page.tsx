@@ -1518,58 +1518,38 @@ function RiskManagementTab() {
 
 export default function ForexPage() {
  return (
- <div className="p-4 md:p-4 space-y-4 min-h-screen">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
- >
- <div>
- <h1 className="text-lg font-semibold text-foreground flex items-center gap-2">
- <Globe className="w-3.5 h-3.5 text-muted-foreground/50" />
- Foreign Exchange
- </h1>
- <p className="text-sm text-muted-foreground mt-0.5">
- Major pairs, carry trade, technical analysis, macro fundamentals &amp; risk management
- </p>
- </div>
- <div className="flex items-center gap-2 text-xs text-muted-foreground">
- <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
- <span>London &amp; New York sessions open</span>
- </div>
- </motion.div>
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
 
- {/* Summary stat chips */}
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4, delay: 0.08 }}
- className="flex flex-wrap gap-2"
- >
+ {/* Page hero */}
+ <div className="mb-6">
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Foreign Exchange</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">FX PAIRS · RATES · CARRY · VOLATILITY</p>
+ </div>
+
+ {/* Summary stats grid */}
+ <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
  {[
- { icon: <TrendingUp className="w-3 h-3" />, label: "EUR/USD", value: fmt(MAJOR_PAIRS[0].price, 5), color: MAJOR_PAIRS[0].change1d >= 0 ? "text-emerald-400" : "text-rose-400" },
- { icon: <TrendingDown className="w-3 h-3" />, label: "GBP/USD", value: fmt(MAJOR_PAIRS[1].price, 5), color: MAJOR_PAIRS[1].change1d >= 0 ? "text-emerald-400" : "text-rose-400" },
- { icon: <ArrowUpDown className="w-3 h-3" />, label: "USD/JPY", value: fmt(MAJOR_PAIRS[2].price, 3), color: MAJOR_PAIRS[2].change1d >= 0 ? "text-emerald-400" : "text-rose-400" },
- { icon: <DollarSign className="w-3 h-3" />, label: "USD/CHF", value: fmt(MAJOR_PAIRS[3].price, 5), color: MAJOR_PAIRS[3].change1d >= 0 ? "text-emerald-400" : "text-rose-400" },
- { icon: <Zap className="w-3 h-3" />, label: "Fed Rate", value: "5.25%", color: "text-amber-400" },
- { icon: <Activity className="w-3 h-3" />, label: "Daily Vol", value: "High", color: "text-emerald-400" },
- ].map((chip) => (
- <div
- key={chip.label}
- className="flex items-center gap-1.5 bg-muted/70 border border-border rounded-full px-3 py-1 text-xs text-muted-foreground"
- >
- <span className={chip.color}>{chip.icon}</span>
- <span className="text-muted-foreground">{chip.label}</span>
- <span className={cn("font-medium", chip.color)}>{chip.value}</span>
+ { label: "EUR/USD", value: fmt(MAJOR_PAIRS[0].price, 5), change: MAJOR_PAIRS[0].change1d },
+ { label: "GBP/USD", value: fmt(MAJOR_PAIRS[1].price, 5), change: MAJOR_PAIRS[1].change1d },
+ { label: "USD/JPY", value: fmt(MAJOR_PAIRS[2].price, 3), change: MAJOR_PAIRS[2].change1d },
+ { label: "USD/CHF", value: fmt(MAJOR_PAIRS[3].price, 5), change: MAJOR_PAIRS[3].change1d },
+ ].map((stat) => (
+ <div key={stat.label} className="rounded-lg border border-border bg-card p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{stat.label}</div>
+ <div className="font-mono tabular-nums text-lg font-semibold text-foreground">{stat.value}</div>
+ <div className={cn("text-xs font-mono mt-0.5", stat.change >= 0 ? "text-emerald-400" : "text-rose-400")}>
+ {stat.change >= 0 ? "+" : ""}{(stat.change * 100).toFixed(2)}%
+ </div>
  </div>
  ))}
- </motion.div>
+ </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Tabs */}
- <Tabs defaultValue="pairs" className="mt-8">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <Tabs defaultValue="pairs" className="flex-1">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="pairs" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Major Pairs
  </TabsTrigger>
  <TabsTrigger value="carry" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Carry Trade
@@ -1582,22 +1562,29 @@ export default function ForexPage() {
  </TabsTrigger>
  </TabsList>
 
- <TabsContent value="pairs" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="pairs" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Major Pairs</h2>
  <MajorPairsTab />
  </TabsContent>
- <TabsContent value="carry" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="carry" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Carry Trade</h2>
  <CarryTradeTab />
  </TabsContent>
- <TabsContent value="technical" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="technical" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Technical Analysis</h2>
  <TechnicalAnalysisTab />
  </TabsContent>
- <TabsContent value="macro" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="macro" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Macro Drivers</h2>
  <MacroDriversTab />
  </TabsContent>
- <TabsContent value="risk" className="mt-4 data-[state=inactive]:hidden">
+ <TabsContent value="risk" className="data-[state=inactive]:hidden">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Risk Management</h2>
  <RiskManagementTab />
  </TabsContent>
  </Tabs>
+
+ </div>
  </div>
  );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { formatCurrency, cn } from "@/lib/utils";
 import type { StrategyRecommendation } from "@/types/options";
 
@@ -96,10 +96,7 @@ export function StrategyRecommendationCard({
  : `${returnOnRisk.toFixed(1)}:1`;
 
  return (
- <motion.div
- initial={{ opacity: 0, y: 8 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.2 }}
+ <div
  onClick={() => onSelect(rec)}
  className="rounded-xl border border-border/20 bg-card/30 p-3 flex flex-col gap-2 cursor-pointer hover:border-primary/30 hover:bg-muted/20 transition-colors duration-150"
  >
@@ -228,6 +225,6 @@ export function StrategyRecommendationCard({
  >
  Select Strategy &rarr;
  </button>
- </motion.div>
+ </div>
  );
 }

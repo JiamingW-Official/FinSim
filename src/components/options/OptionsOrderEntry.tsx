@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence } from "framer-motion";
+
 import { useOptionsStore } from "@/stores/options-store";
 import { useTradingStore } from "@/stores/trading-store";
 import { LegBuilder } from "./LegBuilder";
@@ -115,7 +115,6 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
 
  {/* Legs list */}
  <div className="space-y-1.5">
- <AnimatePresence mode="popLayout">
  {selectedLegs.map((leg, i) => (
  <LegBuilder
  key={`${leg.type}-${leg.strike}-${leg.side}-${i}`}
@@ -124,7 +123,6 @@ export function OptionsOrderEntry({ spotPrice, analytics }: OptionsOrderEntryPro
  onRemove={removeLeg}
  />
  ))}
- </AnimatePresence>
  </div>
 
  {selectedLegs.length === 0 && (

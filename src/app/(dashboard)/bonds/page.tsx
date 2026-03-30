@@ -13,9 +13,6 @@ import {
  BarChart3,
  PlusCircle,
  Trash2,
- ChevronDown,
- ChevronUp,
- AlertCircle,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
@@ -586,33 +583,31 @@ export default function BondsPage() {
  // ── Render ────────────────────────────────────────────────────────────────
 
  return (
- <div className="flex h-full flex-col overflow-hidden">
- {/* HERO Header */}
- <div className="flex items-center gap-3 border-b border-border border-l-4 border-l-primary px-6 py-4">
- <Landmark className="h-3.5 w-3.5 text-muted-foreground/50" />
- <div>
- <h1 className="text-lg font-semibold leading-none">Fixed Income Simulator</h1>
- <p className="mt-1 text-xs text-muted-foreground">
- Bonds, yield curves, credit analysis &amp; portfolio construction
- </p>
- </div>
- <div className="ml-auto flex items-center gap-2">
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Page hero */}
+ <div className="mb-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">BONDS · TREASURIES · CREDIT</p>
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Fixed Income Markets</h1>
+ <div className="flex items-center gap-3 mt-2">
  <span className={cn(
- "rounded-full px-2.5 py-1 text-xs text-muted-foreground font-semibold",
+ "rounded px-2 py-0.5 text-xs font-medium",
  isInverted ? "bg-red-500/15 text-red-400" :
  isFlat ? "bg-amber-500/15 text-amber-400" :
  "bg-green-500/15 text-green-400",
  )}>
- {curveRegime} Yield Curve
+ {curveRegime} Curve
  </span>
- <span className="text-xs text-muted-foreground/50">
- 10Y-2Y: {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(0)} bps
+ <span className="font-mono tabular-nums text-xs text-muted-foreground/60">
+ 10Y–2Y: {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(0)} bps
  </span>
  </div>
  </div>
 
+ <div className="border-t border-border mb-6" />
+
  <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-1 flex-col min-h-0">
- <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
+ <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto mb-6">
  <TabsTrigger value="overview" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Bond Market</TabsTrigger>
  <TabsTrigger value="calculator" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Pricing Calculator</TabsTrigger>
  <TabsTrigger value="yieldcurve" className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-3 py-2 text-xs text-muted-foreground data-[state=active]:text-foreground">Yield Curve</TabsTrigger>
@@ -621,16 +616,16 @@ export default function BondsPage() {
  </TabsList>
 
  {/* ── Tab 1: Bond Market Overview ──────────────────────────────────────── */}
- <TabsContent value="overview" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+ <TabsContent value="overview" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
  <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
  {/* Yield curve card */}
- <div className="mb-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
- <div className="col-span-2 rounded-lg border border-border bg-card p-4">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Yield Curve</h2>
+ <div className="mb-6 grid grid-cols-1 gap-4 lg:grid-cols-3">
+ <div className="col-span-2 rounded-lg border border-border bg-card p-5">
  <div className="mb-3 flex items-center justify-between">
- <span className="text-xs font-semibold text-muted-foreground">
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">
  US Treasury Yield Curve
  </span>
- <div className="flex items-center gap-2">
  {isInverted && (
  <span className="flex items-center gap-1 text-xs text-red-400">
  <AlertTriangle className="h-3 w-3" />
@@ -638,37 +633,38 @@ export default function BondsPage() {
  </span>
  )}
  </div>
- </div>
  <YieldCurveSVG />
  </div>
- <div className="flex flex-col gap-2">
+ <div className="flex flex-col gap-3">
  <div className={cn(
- "rounded-lg border p-4",
+ "rounded-lg border p-5",
  isInverted ? "border-red-500/30 bg-red-500/5" :
  isFlat ? "border-amber-500/30 bg-amber-500/5" :
  "border-green-500/30 bg-green-500/5",
  )}>
- <div className="text-xs font-medium text-muted-foreground mb-1">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
  10Y – 2Y Spread
  </div>
- <div className={cn("text-2xl font-semibold tabular-nums",
+ <div className={cn("text-2xl font-mono font-semibold tabular-nums",
  isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
  {spread10y2y >= 0 ? "+" : ""}{(spread10y2y * 100).toFixed(1)} bps
  </div>
- <div className="mt-1.5 text-xs text-muted-foreground">
- {isInverted ? "Historically precedes recession by 12-18 months." :
+ <div className="mt-2 text-xs text-muted-foreground leading-relaxed">
+ {isInverted ? "Historically precedes recession by 12–18 months." :
  isFlat ? "Transition — watch for further inversion." :
  "Healthy growth expectation embedded."}
  </div>
  </div>
  {yieldCurve.current.map(p => (
- <div key={p.label} className="flex items-center justify-between rounded-md border border-border bg-card px-3 py-1.5">
+ <div key={p.label} className="flex items-center justify-between rounded-md border border-border bg-card px-3 py-2">
  <span className="text-xs text-muted-foreground">{p.label} Treasury</span>
- <span className="text-xs font-medium tabular-nums text-foreground">{p.ytm.toFixed(3)}%</span>
+ <span className="font-mono tabular-nums text-xs font-medium text-foreground">{p.ytm.toFixed(3)}%</span>
  </div>
  ))}
  </div>
  </div>
+
+ <div className="border-t border-border my-6" />
 
  {/* Bond grid — 3 sections */}
  {(["treasury", "corporate-ig", "high-yield"] as const).map(type => {
@@ -678,15 +674,13 @@ export default function BondsPage() {
  type === "corporate-ig" ? "Investment Grade Corporates" :
  "High Yield Bonds";
  return (
- <div key={type} className="mb-5">
- <h3 className={cn("mb-3 text-xs text-muted-foreground font-medium",
- type === "treasury" ? "text-primary" :
- type === "corporate-ig" ? "text-primary" :
- "text-red-400"
+ <div key={type} className="mb-6">
+ <h2 className={cn("text-xl font-serif tracking-tight mb-4",
+ type === "high-yield" ? "text-foreground" : "text-foreground"
  )}>
  {sectionTitle}
- </h3>
- <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
+ </h2>
+ <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
  {sectionBonds.map(b => {
  const tl = typeLabel(b.type);
  const rc = ratingColor(b.creditRating);
@@ -697,41 +691,41 @@ export default function BondsPage() {
  initial={{ opacity: 0, scale: 0.97 }}
  animate={{ opacity: 1, scale: 1 }}
  transition={{ duration: 0.25 }}
- className="rounded-lg border border-border bg-card p-4"
+ className="rounded-lg border border-border bg-card p-5"
  >
- <div className="mb-2 flex items-start justify-between">
+ <div className="mb-3 flex items-start justify-between">
  <div>
- <div className="text-xs font-medium text-muted-foreground">{b.ticker}</div>
- <div className="mt-0.5 text-xs font-medium text-foreground leading-tight">{b.name}</div>
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{b.ticker}</div>
+ <div className="mt-1 text-xs font-medium text-foreground leading-tight">{b.name}</div>
  </div>
  <span className={cn("rounded px-1.5 py-0.5 text-[11px] font-semibold", rc)}>
  {b.creditRating}
  </span>
  </div>
- <div className="grid grid-cols-2 gap-1.5 text-xs text-muted-foreground">
+ <div className="grid grid-cols-2 gap-3 text-xs text-muted-foreground">
  <div className="flex flex-col">
- <span className="text-muted-foreground">Coupon</span>
- <span className="font-medium text-foreground">{b.coupon.toFixed(2)}%</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Coupon</span>
+ <span className="font-mono tabular-nums font-medium text-foreground mt-0.5">{b.coupon.toFixed(2)}%</span>
  </div>
  <div className="flex flex-col">
- <span className="text-muted-foreground">YTM</span>
- <span className="font-medium text-primary">{b.ytm.toFixed(3)}%</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">YTM</span>
+ <span className="font-mono tabular-nums font-medium text-primary mt-0.5">{b.ytm.toFixed(3)}%</span>
  </div>
  <div className="flex flex-col">
- <span className="text-muted-foreground">Price</span>
- <span className="font-medium text-foreground">${b.price.toFixed(2)}</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Price</span>
+ <span className="font-mono tabular-nums font-medium text-foreground mt-0.5">${b.price.toFixed(2)}</span>
  </div>
  <div className="flex flex-col">
- <span className="text-muted-foreground">Duration</span>
- <span className="font-medium text-foreground">{b.duration.toFixed(2)}yr</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Duration</span>
+ <span className="font-mono tabular-nums font-medium text-foreground mt-0.5">{b.duration.toFixed(2)}yr</span>
  </div>
  <div className="flex flex-col">
- <span className="text-muted-foreground">Maturity</span>
- <span className="font-medium text-foreground">{b.maturityDate.slice(0, 7)}</span>
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Maturity</span>
+ <span className="font-mono tabular-nums font-medium text-foreground mt-0.5">{b.maturityDate.slice(0, 7)}</span>
  </div>
  <div className="flex flex-col">
- <span className="text-muted-foreground">Yield Chg</span>
- <span className={cn("font-medium tabular-nums flex items-center gap-0.5",
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Yield Chg</span>
+ <span className={cn("font-mono tabular-nums font-medium flex items-center gap-0.5 mt-0.5",
  isRising ? "text-red-400" : "text-green-400")}>
  {isRising ? <TrendingUp className="h-2.5 w-2.5" /> : <TrendingDown className="h-2.5 w-2.5" />}
  {b.yieldChange1d >= 0 ? "+" : ""}{(b.yieldChange1d * 100).toFixed(1)} bps
@@ -746,19 +740,20 @@ export default function BondsPage() {
  );
  })}
 
- <p className="mt-1 text-xs text-muted-foreground/40">
+ <p className="mt-2 text-[10px] uppercase tracking-widest text-muted-foreground/40">
  Prices per $1,000 face value. Yield change (bps): yield rise = price falls. Synthetic data for educational purposes.
  </p>
  </motion.div>
  </TabsContent>
 
  {/* ── Tab 2: Bond Pricing Calculator ───────────────────────────────────── */}
- <TabsContent value="calculator" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+ <TabsContent value="calculator" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
  <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Bond Pricing Calculator</h2>
  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
  {/* Inputs */}
  <div className="rounded-lg border border-border bg-card p-5">
- <h3 className="mb-4 text-sm font-medium">Bond Parameters</h3>
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Bond Parameters</h3>
  <div className="space-y-4">
  <div>
  <label className="mb-1.5 block text-xs font-medium text-muted-foreground">Face Value ($)</label>
@@ -805,7 +800,7 @@ export default function BondsPage() {
  {/* Outputs */}
  <div className="flex flex-col gap-4">
  <div className="rounded-lg border border-border bg-card p-5">
- <h3 className="mb-4 text-sm font-medium">Calculated Metrics</h3>
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Calculated Metrics</h3>
  <div className="grid grid-cols-2 gap-3">
  {[
  { label: "Bond Price", value: `$${calcOutputs.price.toFixed(4)}`, highlight: true, sub: `${calcOutputs.price > calcFace ? "Premium" : calcOutputs.price < calcFace ? "Discount" : "At Par"}` },
@@ -828,8 +823,8 @@ export default function BondsPage() {
  </div>
 
  {/* Duration visual explainer */}
- <div className="rounded-lg border border-border bg-card p-4">
- <h4 className="mb-3 text-xs font-medium text-muted-foreground">
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">
  Duration Impact — Rate Scenarios
  </h4>
  <div className="space-y-2">
@@ -864,14 +859,15 @@ export default function BondsPage() {
  </div>
  </div>
 
+ <div className="border-t border-border my-6" />
  {/* Price-yield chart */}
- <div className="mt-5 rounded-lg border border-border bg-card p-5">
- <div className="mb-3 flex items-center justify-between">
- <span className="text-xs font-medium text-muted-foreground">
+ <div className="rounded-lg border border-border bg-card p-5">
+ <div className="mb-3 flex items-start justify-between gap-4">
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">
  Price–Yield Relationship (Convex Curve, 1%–15%)
  </span>
- <span className="text-xs text-muted-foreground/60">
- Amber dot = current yield | Convexity = bond outperforms linear estimate
+ <span className="text-xs text-muted-foreground/60 text-right">
+ Amber dot = current yield
  </span>
  </div>
  <PriceYieldSVG />
@@ -880,14 +876,15 @@ export default function BondsPage() {
  </TabsContent>
 
  {/* ── Tab 3: Yield Curve Analysis ───────────────────────────────────────── */}
- <TabsContent value="yieldcurve" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+ <TabsContent value="yieldcurve" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
  <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Yield Curve Analysis</h2>
  {/* Historical curves */}
- <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
+ <div className="mb-6 grid grid-cols-1 gap-5 lg:grid-cols-3">
  <div className="col-span-2 rounded-lg border border-border bg-card p-5">
  <div className="mb-3 flex items-center justify-between">
- <span className="text-xs font-medium text-muted-foreground">
- Yield Curve — Historical Comparison
+ <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">
+ Historical Comparison
  </span>
  <div className="flex items-center gap-3 text-[11px] text-muted-foreground/60">
  <span className="flex items-center gap-1">
@@ -906,14 +903,14 @@ export default function BondsPage() {
 
  {/* Regime indicator */}
  <div className="flex flex-col gap-3">
- <div className={cn("rounded-lg border p-4",
+ <div className={cn("rounded-lg border p-5",
  isInverted ? "border-red-500/30 bg-red-500/5" :
  isFlat ? "border-amber-500/30 bg-amber-500/5" :
  "border-green-500/30 bg-green-500/5")}>
- <div className="text-xs font-medium text-muted-foreground mb-1">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
  Current Regime
  </div>
- <div className={cn("text-xl font-medium",
+ <div className={cn("text-xl font-mono font-semibold tabular-nums",
  isInverted ? "text-red-400" : isFlat ? "text-amber-400" : "text-green-400")}>
  {curveRegime}
  </div>
@@ -927,8 +924,8 @@ export default function BondsPage() {
  </div>
 
  {/* Curve shape guide */}
- <div className="rounded-lg border border-border bg-card p-4">
- <div className="text-xs font-medium text-muted-foreground mb-3">Shape Guide</div>
+ <div className="rounded-lg border border-border bg-muted/30 p-5">
+ <div className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Shape Guide</div>
  <div className="space-y-2.5">
  {[
  { shape: "Normal", color: "text-green-400", bg: "bg-green-500", desc: "Long > Short — growth & inflation expected" },
@@ -949,10 +946,12 @@ export default function BondsPage() {
  </div>
  </div>
 
+ <div className="border-t border-border my-6" />
  {/* Spread analysis */}
- <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Spread Analysis</h2>
+ <div className="mb-6 grid grid-cols-1 gap-5 lg:grid-cols-2">
  <div className="rounded-lg border border-border bg-card p-5">
- <h3 className="mb-4 text-sm font-medium">Spread Analysis (bps)</h3>
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Key Spreads (bps)</h3>
  <SpreadBarSVG />
  <div className="mt-4 grid grid-cols-2 gap-2 text-xs text-muted-foreground">
  {[
@@ -972,7 +971,7 @@ export default function BondsPage() {
  </div>
 
  <div className="rounded-lg border border-border bg-card p-5">
- <h3 className="mb-4 text-sm font-medium">Spread Interpretation</h3>
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Spread Interpretation</h3>
  <div className="space-y-3">
  {[
  {
@@ -1018,12 +1017,13 @@ export default function BondsPage() {
  </TabsContent>
 
  {/* ── Tab 4: Portfolio Builder ──────────────────────────────────────────── */}
- <TabsContent value="portfolio" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+ <TabsContent value="portfolio" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
  <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Portfolio Builder</h2>
  <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
  {/* Bond selector */}
  <div className="rounded-lg border border-border bg-card p-5">
- <h3 className="mb-3 text-sm font-medium">Bond Universe</h3>
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Bond Universe</h3>
 
  {/* Target duration slider */}
  <div className="mb-4 rounded-md border border-border bg-muted/20 p-3">
@@ -1154,7 +1154,7 @@ export default function BondsPage() {
  {/* Maturity ladder SVG */}
  {portfolio.length > 0 && (
  <div className="rounded-lg border border-border bg-card p-5">
- <h4 className="mb-3 text-xs font-medium text-muted-foreground">
+ <h4 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">
  Bond Maturity Ladder
  </h4>
  <MaturityLadderSVG />
@@ -1201,8 +1201,9 @@ export default function BondsPage() {
  </TabsContent>
 
  {/* ── Tab 5: Credit Analysis ────────────────────────────────────────────── */}
- <TabsContent value="credit" className="flex-1 overflow-y-auto px-6 pb-6 pt-4 data-[state=inactive]:hidden">
+ <TabsContent value="credit" className="flex-1 overflow-y-auto pb-6 data-[state=inactive]:hidden">
  <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+ <h2 className="text-xl font-serif tracking-tight text-foreground mb-4">Credit Analysis</h2>
  {/* Fallen angel alert */}
  {creditAnalysis.some(c => c.atRisk && c.bond?.type === "corporate-ig") && (
  <div className="mb-4 flex items-start gap-2.5 rounded-lg border border-amber-500/30 bg-amber-500/5 p-4">
@@ -1320,9 +1321,10 @@ export default function BondsPage() {
  })}
  </div>
 
+ <div className="border-t border-border my-6" />
  {/* Credit metric legend */}
- <div className="mt-5 rounded-lg border border-border bg-card p-5">
- <h3 className="mb-3 text-sm font-medium">Credit Metric Benchmarks</h3>
+ <div className="rounded-lg border border-border bg-card p-5">
+ <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Credit Metric Benchmarks</h3>
  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
  {[
  {
@@ -1367,6 +1369,7 @@ export default function BondsPage() {
  </motion.div>
  </TabsContent>
  </Tabs>
+ </div>
  </div>
  );
 }

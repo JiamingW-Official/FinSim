@@ -1609,36 +1609,32 @@ function AnalystRatingsTab() {
 // ── Main Page ──────────────────────────────────────────────────────────────────
 export default function EquityResearchPage() {
  return (
- <div className="min-h-screen bg-card text-foreground p-4 sm:p-4">
- <div className="max-w-6xl mx-auto space-y-4">
- {/* Header */}
- <motion.div
- initial={{ opacity: 0, y: -12 }}
- animate={{ opacity: 1, y: 0 }}
- transition={{ duration: 0.4 }}
- className="border-l-4 border-l-primary rounded-lg bg-card p-6"
- >
+ <div className="flex h-full flex-col overflow-y-auto">
+ <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
+ {/* Hero */}
+ <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">Equity Research</h1>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-6">FUNDAMENTAL ANALYSIS · VALUATION · RATINGS</p>
+
+ {/* Price callout */}
+ <div className="rounded-lg border border-border bg-muted/30 p-5 mb-6">
  <div className="flex items-start justify-between">
  <div>
- <div className="flex items-center gap-2 mb-1">
- <BookOpen size={20} className="text-indigo-400" />
- <h1 className="text-lg font-medium text-foreground">Equity Research</h1>
- </div>
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Case Study</p>
  <p className="text-sm text-muted-foreground">
  Process, financial modeling, valuation methodology, and analyst dynamics —
- illustrated with <span className="text-indigo-300 font-medium">{TICKER}</span> as a live case study.
+ illustrated with <span className="font-medium text-foreground">{TICKER}</span> as a live case study.
  </p>
  </div>
- <div className="text-right flex-shrink-0">
- <p className="text-xs text-muted-foreground">Current Price</p>
- <p className="text-2xl font-semibold text-foreground">${CURRENT_PRICE.toFixed(2)}</p>
- <p className="text-xs text-emerald-400">Avg PT: ${BASE_PT} (+{(((BASE_PT - CURRENT_PRICE) / CURRENT_PRICE) * 100).toFixed(1)}%)</p>
+ <div className="text-right flex-shrink-0 ml-6">
+ <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Current Price</p>
+ <p className="text-2xl font-mono tabular-nums font-bold text-foreground">${CURRENT_PRICE.toFixed(2)}</p>
+ <p className="text-xs text-emerald-400 font-mono">Avg PT: ${BASE_PT} (+{(((BASE_PT - CURRENT_PRICE) / CURRENT_PRICE) * 100).toFixed(1)}%)</p>
  </div>
  </div>
- </motion.div>
+ </div>
 
  {/* Tabs */}
- <Tabs defaultValue="process" className="mt-8">
+ <Tabs defaultValue="process" className="flex-1">
  <TabsList className="bg-transparent border-b border-border rounded-none p-0 h-auto">
  {[
  { value: "process", label: "Research Process", icon: <Search size={13} /> },

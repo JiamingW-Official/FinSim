@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { useOptionsStore } from "@/stores/options-store";
 import { STRATEGY_PRESETS } from "@/data/options/strategy-presets";
 import { cn } from "@/lib/utils";
@@ -77,7 +77,7 @@ export function StrategyBuilder() {
  const isActive = activeStrategy === preset.name;
 
  return (
- <motion.button
+ <button
  key={preset.id}
  onClick={() => handleApply(preset)}
  disabled={!currentChain}
@@ -88,8 +88,6 @@ export function StrategyBuilder() {
  : "border-border bg-card/30 hover:bg-muted/20",
  !currentChain && "cursor-not-allowed opacity-40",
  )}
- whileHover={currentChain ? { scale: 1.01 } : {}}
- whileTap={currentChain ? { scale: 0.99 } : {}}
  >
  <div
  className={cn(
@@ -116,7 +114,7 @@ export function StrategyBuilder() {
  >
  {preset.sentiment}
  </span>
- </motion.button>
+ </button>
  );
  })}
  </div>

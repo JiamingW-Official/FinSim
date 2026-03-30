@@ -129,6 +129,13 @@ function LiveInfoBar() {
     <span className="text-[10px] font-mono text-muted-foreground/45 tabular-nums">
      {formatLiveDate(gameDate)}
     </span>
+    <button
+     onClick={() => toast.dismiss()}
+     className="ml-2 text-[9px] font-mono text-muted-foreground/20 hover:text-muted-foreground/50 transition-colors"
+     title="Clear all notifications (Esc)"
+    >
+     × clear
+    </button>
    </div>
 
   </div>
