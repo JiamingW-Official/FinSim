@@ -39,16 +39,6 @@ function getRealETTime(): string {
   return `${h}:${m}:${s}`;
 }
 
-/** Real ET date formatted as "Mon, Mar 29" */
-function getRealETDate(): string {
-  const now = new Date();
-  return now.toLocaleDateString("en-US", {
-    timeZone: "America/New_York",
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  }).toUpperCase();
-}
 
 export function GameStatusBar() {
   const gameDate        = useClockStore((s) => s.gameDate);
@@ -58,12 +48,10 @@ export function GameStatusBar() {
   const isSeasonOver    = useClockStore((s) => s.isSeasonOver);
 
   const [realTime, setRealTime] = useState<string>(() => getRealETTime());
-  const [realDate, setRealDate] = useState<string>(() => getRealETDate());
 
   useEffect(() => {
     const tick = () => {
       setRealTime(getRealETTime());
-      setRealDate(getRealETDate());
     };
     tick();
     const id = setInterval(tick, 1000);
@@ -99,12 +87,9 @@ export function GameStatusBar() {
       <span className="h-3 w-px bg-border/40 mx-2 shrink-0" />
 
       {/* ── CENTER LEFT: Real ET clock ── */}
-      <div className="flex flex-col items-center shrink-0" style={{ width: 110 }}>
-        <span className="font-mono text-[8px] tracking-widest text-muted-foreground/25 uppercase">Real ET</span>
-        <div className="flex items-baseline gap-1">
-          <span className="font-mono text-[11px] tabular-nums text-muted-foreground/50 tracking-tight">{realDate.split(",")[0]}</span>
-          <span className="font-mono text-[13px] font-semibold tabular-nums text-muted-foreground/60 tracking-tight">{realTime}</span>
-        </div>
+      <div className="flex items-center gap-1.5 shrink-0">
+        <span className="font-mono text-[9px] tracking-widest text-muted-foreground/25 uppercase">Real ET</span>
+        <span className="font-mono text-[12px] font-semibold tabular-nums text-muted-foreground/55 tracking-tight">{realTime}</span>
       </div>
 
       <span className="h-3 w-px bg-border/40 mx-2 shrink-0" />

@@ -869,9 +869,12 @@ export function OrderEntry() {
 
  {/* Market session warning */}
  {orderType === "market" && isExtendedHours && (
- <div className="flex items-center gap-1.5 rounded-md border border-amber-500/20 bg-amber-500/5 px-2.5 py-1.5 text-xs text-amber-500/70">
- <AlertTriangle className="h-3 w-3 shrink-0" />
- <span>{marketSession === "pre-market" ? "Pre-market" : "After-hours"} — use limit orders</span>
+ <div className="flex items-center gap-2 rounded px-2 py-1 bg-amber-500/8 border border-amber-500/15 text-amber-400/70">
+ <AlertTriangle className="h-3 w-3 shrink-0 text-amber-400/60" />
+ <span className="text-[9px] font-mono">
+ {marketSession === "pre-market" ? "Pre-Market  04:00 – 09:30 ET" : "After-Hours  16:00 – 20:00 ET"}
+ </span>
+ <span className="ml-auto text-[9px] font-mono opacity-60">Wider spreads may apply</span>
  </div>
  )}
  {orderType === "market" && marketSession === "closed" && (

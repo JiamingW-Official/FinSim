@@ -78,12 +78,12 @@ function LiveInfoBar() {
 
  const sessionLabel =
   marketSession === "pre-market"
-   ? "盘前"
+   ? "Pre-Mkt"
    : marketSession === "open"
-   ? "开盘"
+   ? "Open"
    : marketSession === "after-hours"
-   ? "盘后"
-   : "休市";
+   ? "AH"
+   : "Closed";
 
  if (price === 0) return null;
 

@@ -33,10 +33,10 @@ function formatDateLabel(timestamp: number): string {
 
 // Speed config: multiplier → Chinese label
 const SPEED_OPTIONS: { value: number; label: string; cn: string }[] = [
- { value: 1, label: "1x", cn: "慢速" },
- { value: 2, label: "2x", cn: "正常" },
- { value: 4, label: "4x", cn: "快速" },
- { value: 8, label: "8x", cn: "极速" },
+ { value: 1, label: "1x", cn: "Slow" },
+ { value: 2, label: "2x", cn: "Normal" },
+ { value: 4, label: "4x", cn: "Fast" },
+ { value: 8, label: "8x", cn: "Max" },
 ];
 
 export function TimeTravelControls() {
@@ -220,7 +220,7 @@ export function TimeTravelControls() {
    {/* Keyboard hints row */}
    <div className="flex items-center gap-3 border-t border-border/20 px-3 pb-1 pt-0.5">
     <span className="text-[9px] font-mono text-muted-foreground/25 uppercase tracking-wider">
-     快捷键
+     Shortcuts
     </span>
     <div className="flex items-center gap-2.5">
      <span className="text-[9px] text-muted-foreground/30">

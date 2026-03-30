@@ -26,12 +26,12 @@ function getTodayStr(): string {
 }
 
 const MECHANICS = [
-  { icon: "⏱", label: "时间压缩", value: "6× 速度", desc: "4小时真实时间 = 1游戏交易日" },
-  { icon: "📅", label: "赛季周期", value: "Jan 2023 — Mar 2026", desc: "3年+历史真实市场数据" },
-  { icon: "💰", label: "初始资金", value: "$100,000", desc: "所有玩家相同起点" },
-  { icon: "🕐", label: "交易时段", value: "4AM – 8PM ET", desc: "盘前 · 正常 · 盘后全覆盖" },
-  { icon: "🤖", label: "AI对手", value: "25 players", desc: "动量/价值/摆动等多策略AI" },
-  { icon: "🏆", label: "胜利条件", value: "资产最大化", desc: "赛季结束时投资组合价值最高者获胜" },
+  { icon: "⏱", label: "Time Scale", value: "6× Speed", desc: "4 real hours = 1 game trading day" },
+  { icon: "📅", label: "Season", value: "Jan 2023 — Mar 2026", desc: "3+ years of real historical market data" },
+  { icon: "💰", label: "Starting Capital", value: "$100,000", desc: "所有玩家相同起点" },
+  { icon: "🕐", label: "Trading Hours", value: "4AM – 8PM ET", desc: "Pre-market · Regular · After-hours" },
+  { icon: "🤖", label: "Competitors", value: "25 AI Players", desc: "Momentum · Value · Swing · Contrarian" },
+  { icon: "🏆", label: "Win Condition", value: "Max Portfolio", desc: "Highest portfolio value at season end wins" },
 ];
 
 const STRATEGY_LABELS: Record<string, string> = {
@@ -72,12 +72,12 @@ export function LobbyScreen({ onStart, className }: LobbyScreenProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-border/30 bg-card/40">
           <div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-0.5">FinSim — Historical Market Simulator</div>
-            <h1 className="text-xl font-bold text-foreground/95 tracking-tight">选择服务器</h1>
+            <h1 className="text-xl font-bold text-foreground/95 tracking-tight">Select Server</h1>
           </div>
           <div className="text-right">
-            <div className="font-mono text-[10px] text-muted-foreground/40 uppercase tracking-wider">今日服务器</div>
+            <div className="font-mono text-[10px] text-muted-foreground/40 uppercase tracking-wider">Today's Server</div>
             <div className="font-mono text-xs font-semibold text-foreground/70">{getTodayStr()}</div>
-            <div className="font-mono text-[10px] text-muted-foreground/40 mt-0.5">每日 0:00 EST 重置 · Day 1</div>
+            <div className="font-mono text-[10px] text-muted-foreground/40 mt-0.5">Resets daily at 00:00 EST · Day 1</div>
           </div>
         </div>
 
@@ -85,7 +85,7 @@ export function LobbyScreen({ onStart, className }: LobbyScreenProps) {
         <div className="grid grid-cols-2 divide-x divide-border/30">
           {/* LEFT: game mechanics */}
           <div className="p-5">
-            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-3">游戏机制</div>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-3">Game Rules</div>
             <div className="space-y-2">
               {MECHANICS.map((m) => (
                 <div key={m.label} className="flex items-start gap-2.5 rounded-md p-2 bg-muted/5 hover:bg-muted/10 transition-colors">
@@ -107,7 +107,7 @@ export function LobbyScreen({ onStart, className }: LobbyScreenProps) {
             {/* Lobby name */}
             <div>
               <label className="block font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-1.5">
-                房间名称
+                Room Name
               </label>
               <Input
                 value={lobbyName}
@@ -119,14 +119,14 @@ export function LobbyScreen({ onStart, className }: LobbyScreenProps) {
 
             {/* Capital */}
             <div className="flex items-center justify-between rounded-md border border-border/20 bg-muted/5 px-3 py-2">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">初始资金</span>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50">Starting Capital</span>
               <span className="font-mono text-base font-bold tabular-nums text-foreground/90">$100,000</span>
             </div>
 
             {/* AI competitors preview */}
             <div className="flex-1">
               <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/50 mb-1.5">
-                AI 对手 <span className="text-muted-foreground/30 normal-case">(25 total)</span>
+                AI Competitors <span className="text-muted-foreground/30 normal-case">(25 total)</span>
               </div>
               <div className="divide-y divide-border/15 rounded-md border border-border/20 bg-muted/5">
                 {previewPlayers.map((player) => (
@@ -146,7 +146,7 @@ export function LobbyScreen({ onStart, className }: LobbyScreenProps) {
 
             {/* Start button */}
             <Button onClick={handleStart} className="w-full h-10 font-mono text-xs uppercase tracking-widest font-bold">
-              开始交易 · Start Season
+              Start Season
             </Button>
           </div>
         </div>

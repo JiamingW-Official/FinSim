@@ -7,11 +7,11 @@
  * All durations are always shown to the second (H:MM:SS or MM:SS).
  *
  * Session labels (what opens/closes next):
- *  closed (before 4AM)  → 盘前 Pre-Mkt opens in
- *  closed (after 8PM)   → 盘前 Pre-Mkt opens in (next day)
- *  pre-market           → 正式开盘 Market opens in
- *  open                 → 即将收盘 Market closes in
- *  after-hours          → 盘后结束 AH ends in
+ *  closed (before 4AM)  → Pre-Market opens in
+ *  closed (after 8PM)   → Pre-Market opens in (next day)
+ *  pre-market           → Market Open Market opens in
+ *  open                 → Market Close Market closes in
+ *  after-hours          → After-Hours AH ends in
  *
  * Runs its own setInterval(500ms) and reads the clock imperatively —
  * NEVER subscribes to Zustand, so it never causes TradePage re-renders.
@@ -22,7 +22,7 @@ import { useClockStore } from "@/stores/clock-store";
 import { getGameTime } from "@/services/game-clock/engine";
 
 export interface CountdownInfo {
-  /** Short verb phrase, e.g. "盘前 Pre-Mkt" or "正式开盘" */
+  /** Short verb phrase, e.g. "Pre-Market" or "Market Open" */
   label: string;
   /** Action word: "opens in" | "closes in" | "ends in" */
   action: string;
@@ -73,7 +73,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     const secsToMidnight = 86400 - currentSec;
     const remaining = secsToMidnight + PRE_MARKET_SEC;
     return {
-      label: "盘前 Pre-Mkt",
+      label: "Pre-Market",
       action: "opens in",
       display: formatCountdown(remaining),
       urgent: false,
@@ -87,7 +87,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
         // Before 4AM — count to pre-market open
         const remaining = PRE_MARKET_SEC - currentSec;
         return {
-          label: "盘前 Pre-Mkt",
+          label: "Pre-Market",
           action: "opens in",
           display: formatCountdown(remaining),
           urgent: remaining < URGENT_GAME_SEC,
@@ -97,7 +97,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
       // After 8PM (AH ended) — count to next day 4AM pre-market
       const secsToMidnight = 86400 - currentSec;
       return {
-        label: "盘前 Pre-Mkt",
+        label: "Pre-Market",
         action: "opens in",
         display: formatCountdown(secsToMidnight + PRE_MARKET_SEC),
         urgent: false,
@@ -108,7 +108,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     case "pre-market": {
       const remaining = OPEN_SEC - currentSec;
       return {
-        label: "正式开盘",
+        label: "Market Open",
         action: "opens in",
         display: formatCountdown(remaining),
         urgent: remaining < URGENT_GAME_SEC,
@@ -119,7 +119,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     case "open": {
       const remaining = CLOSE_SEC - currentSec;
       return {
-        label: "即将收盘",
+        label: "Market Close",
         action: "closes in",
         display: formatCountdown(remaining),
         urgent: remaining < URGENT_GAME_SEC,
@@ -130,7 +130,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
     case "after-hours": {
       const remaining = AH_END_SEC - currentSec;
       return {
-        label: "盘后结束",
+        label: "After-Hours",
         action: "ends in",
         display: formatCountdown(remaining),
         urgent: remaining < URGENT_GAME_SEC,
@@ -143,7 +143,7 @@ function computeCountdown(seasonStartRealMs: number): CountdownInfo {
 }
 
 const EMPTY: CountdownInfo = {
-  label: "盘前 Pre-Mkt",
+  label: "Pre-Market",
   action: "opens in",
   display: "--:--",
   urgent: false,
