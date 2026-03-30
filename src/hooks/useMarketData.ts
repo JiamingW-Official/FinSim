@@ -36,7 +36,14 @@ async function fetchBars(
 export function useMarketData() {
   const { currentTicker, currentTimeframe } = useChartStore();
   const setAllData = useMarketDataStore((s) => s.setAllData);
+  const clearData = useMarketDataStore((s) => s.clearData);
   const { from, to } = getDateRange();
+
+  // When the ticker changes, immediately wipe the old ticker's data so the
+  // chart doesn't display stale bars while the new query is in-flight.
+  useEffect(() => {
+    clearData();
+  }, [currentTicker, clearData]);
 
   // Always fetch daily bars; intraday/weekly views are derived client-side.
   const query = useQuery({

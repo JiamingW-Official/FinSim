@@ -11,6 +11,7 @@ interface MarketDataState {
  subBarStep: number;
 
  setAllData: (data: OHLCVBar[]) => void;
+ clearData: () => void;
  setRevealedCount: (n: number) => void;
  incrementRevealed: () => void;
  setIsPlaying: (playing: boolean) => void;
@@ -27,17 +28,20 @@ export const useMarketDataStore = create<MarketDataState>((set, get) => ({
  subBarStep: 2, // start fully revealed (all 3 sub-bars of last 15m bar)
 
  setAllData: (data) => {
- // Bail out early if the incoming data is referentially identical or
- // structurally the same (same length + same last bar timestamp), so
- // that downstream useMemos keyed on `allData` don't recompute.
+ // Bail out early if the incoming data is referentially identical.
+ // Do NOT bail on same-length + same-timestamp alone: different tickers
+ // generate synthetic intraday bars with identical timestamps but different
+ // OHLCV values, so the length+timestamp check would wrongly skip ticker
+ // switches. We also compare the first bar's close price as a ticker proxy.
  // Uses get() + early return to TRULY skip set() — returning {} from
  // set((state)=>...) still notifies all subscribers (Zustand v5 bug).
  const state = get();
+ if (state.allData === data) return;
  if (
-  state.allData === data ||
-  (state.allData.length === data.length &&
-   data.length > 0 &&
-   state.allData[data.length - 1]?.timestamp === data[data.length - 1]?.timestamp)
+  state.allData.length === data.length &&
+  data.length > 0 &&
+  state.allData[data.length - 1]?.timestamp === data[data.length - 1]?.timestamp &&
+  state.allData[0]?.close === data[0]?.close
  ) {
   return;
  }
@@ -47,6 +51,13 @@ export const useMarketDataStore = create<MarketDataState>((set, get) => ({
   subBarStep: 2,
  });
  },
+
+ clearData: () =>
+ set({
+  allData: [],
+  revealedCount: INITIAL_REVEALED,
+  subBarStep: 2,
+ }),
 
  setRevealedCount: (n) =>
  set((state) => ({
