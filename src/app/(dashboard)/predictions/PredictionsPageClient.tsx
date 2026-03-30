@@ -1,12 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import {
-  Search,
-  X,
-  ChevronLeft,
-  HelpCircle,
-} from "lucide-react";
+import { ChevronLeft, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   PREDICTION_MARKETS,
@@ -32,16 +27,9 @@ import {
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
-type PageTab = "markets" | "bets" | "leaderboard" | "tools";
 type FilterTab = "all" | MarketCategory;
 type SortMode = "volume" | "closing" | "probability" | "activity";
-
-const PAGE_TABS: { value: PageTab; label: string }[] = [
-  { value: "markets", label: "Markets" },
-  { value: "bets", label: "My Bets" },
-  { value: "leaderboard", label: "Leaderboard" },
-  { value: "tools", label: "Tools" },
-];
+type ToolTab = "kelly" | "depth" | "calibration" | "tips";
 
 const FILTER_TABS: { value: FilterTab; label: string }[] = [
   { value: "all", label: "All" },
@@ -50,17 +38,8 @@ const FILTER_TABS: { value: FilterTab; label: string }[] = [
   { value: "equities", label: "Equities" },
   { value: "crypto", label: "Crypto" },
   { value: "earnings", label: "Earnings" },
-  { value: "geopolitics", label: "Geopolitics" },
+  { value: "geopolitics", label: "Geo" },
 ];
-
-const SORT_OPTIONS: { value: SortMode; label: string }[] = [
-  { value: "volume", label: "Vol" },
-  { value: "closing", label: "Closing" },
-  { value: "probability", label: "Prob" },
-  { value: "activity", label: "Activity" },
-];
-
-type ToolTab = "kelly" | "depth" | "calibration" | "tips";
 
 // ── Seeded PRNG helpers ────────────────────────────────────────────────────────
 
@@ -84,7 +63,6 @@ function mulberry32(seed: number) {
   };
 }
 
-// Synthetic computed fields from seeded PRNG — deterministic per market id
 function getMarketVolume(m: PredictionMarket): number {
   const rand = mulberry32(hashStr(m.id + "vol"));
   return Math.round(rand() * 50000 + 1000);
@@ -140,101 +118,7 @@ function Sparkline({ data, width = 60, height = 24 }: { data: number[]; width?: 
   );
 }
 
-// ── Market Row ────────────────────────────────────────────────────────────────
-
-// Category dot colors (subtle, not the full pill background)
-const CATEGORY_DOT_COLORS: Record<string, string> = {
-  fed: "bg-blue-400",
-  macro: "bg-amber-400",
-  equities: "bg-emerald-400",
-  crypto: "bg-purple-400",
-  earnings: "bg-orange-400",
-  geopolitics: "bg-red-400",
-};
-
-function MarketRow({
-  market,
-  volume,
-  onSelect,
-}: {
-  market: PredictionMarket;
-  volume: number;
-  onSelect: (m: PredictionMarket) => void;
-}) {
-  const bet = usePredictionMarketStore((s) => s.getMarketBet(market.id));
-  const prob = market.initialProbability;
-  const isUrgent = market.expiresInDays <= 7;
-  const priceHistory = useMemo(() => getPriceHistory(market), [market.id]);
-
-  return (
-    <button
-      onClick={() => onSelect(market)}
-      className="group w-full text-left rounded-xl border border-border/20 bg-card/30 p-3 hover:bg-card/50 hover:border-border/40 transition-colors duration-150"
-    >
-      {/* Header row: category badge + question */}
-      <div className="flex items-start gap-3">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5 mb-1.5">
-            <span className={cn(
-              "inline-flex items-center rounded px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-wider",
-              CATEGORY_COLORS[market.category]
-            )}>
-              {CATEGORY_LABELS[market.category]}
-            </span>
-            {isUrgent && (
-              <span className="inline-flex items-center rounded px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-wider text-amber-500/80 bg-amber-500/10">
-                {market.expiresInDays}d
-              </span>
-            )}
-            {bet && (
-              <span className={cn(
-                "rounded px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-wider",
-                bet.position === "yes" ? "text-emerald-500/80 bg-emerald-500/10" : "text-red-500/80 bg-red-500/10"
-              )}>
-                {bet.position}
-              </span>
-            )}
-          </div>
-          <p className="text-[11px] font-medium leading-snug text-foreground/80 line-clamp-2 mb-2">
-            {market.question}
-          </p>
-          {/* Probability bar */}
-          <div className="flex items-center gap-2">
-            <div className="flex h-1 flex-1 overflow-hidden rounded-full bg-foreground/10">
-              <div
-                className="h-full bg-emerald-500/50 transition-all duration-500"
-                style={{ width: `${prob}%` }}
-              />
-            </div>
-            <span className="shrink-0 text-right font-mono tabular-nums text-[9px] text-muted-foreground/40">
-              NO {100 - prob}%
-            </span>
-          </div>
-        </div>
-
-        {/* Right: big probability + sparkline + stats */}
-        <div className="shrink-0 flex flex-col items-end gap-1 min-w-[64px]">
-          <span className={cn(
-            "text-xl font-black tabular-nums leading-none font-mono",
-            prob >= 60 ? "text-emerald-400" : prob <= 40 ? "text-rose-400" : "text-muted-foreground"
-          )}>
-            {prob}<span className="text-sm font-light text-muted-foreground/30">%</span>
-          </span>
-          <Sparkline data={priceHistory} width={52} height={16} />
-          <span className="text-[9px] font-mono text-muted-foreground/40 tabular-nums">
-            ${(volume / 1000).toFixed(0)}K vol
-          </span>
-          <span className="text-[9px] font-mono text-muted-foreground/30 tabular-nums">
-            {market.expiresInDays}d left
-          </span>
-        </div>
-      </div>
-    </button>
-  );
-}
-
-
-// ── Price History Chart (SVG) ──────────────────────────────────────────────────
+// ── Price History Chart ────────────────────────────────────────────────────────
 
 function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
   const w = 400;
@@ -251,8 +135,6 @@ function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
   const toY = (v: number) => pad.top + (1 - (v - min) / range) * plotH;
 
   const points = data.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
-
-  // Filled area under curve
   const areaPoints =
     `${toX(0).toFixed(1)},${(pad.top + plotH).toFixed(1)} ` +
     data.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ") +
@@ -262,29 +144,23 @@ function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
   const lineColor = delta >= 0 ? "#10b981" : "#ef4444";
 
   return (
-    <div className="bg-transparent p-0">
+    <div>
       <div className="mb-1.5 flex items-center justify-between">
-        <span className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">{title}</span>
-        <span className={cn("font-mono tabular-nums text-[9px]", delta >= 0 ? "text-emerald-500/80" : "text-red-500/80")}>
+        <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{title}</span>
+        <span className={cn("font-mono tabular-nums text-[10px]", delta >= 0 ? "text-emerald-500" : "text-red-400")}>
           {delta >= 0 ? "+" : ""}{delta.toFixed(0)}pp
         </span>
       </div>
       <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full" aria-hidden="true">
-        {/* Grid lines */}
         {[25, 50, 75].map((v) => (
           <line key={v} x1={pad.left} x2={pad.left + plotW} y1={toY(v)} y2={toY(v)} stroke="currentColor" strokeOpacity={0.08} strokeDasharray="3 3" />
         ))}
-        {/* Area fill */}
         <polygon points={areaPoints} fill={lineColor} fillOpacity={0.08} />
-        {/* Line */}
         <polyline points={points} fill="none" stroke={lineColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        {/* Current dot */}
         <circle cx={toX(data.length - 1)} cy={toY(data[data.length - 1])} r={3} fill={lineColor} />
-        {/* Y axis labels */}
         {[25, 50, 75].map((v) => (
           <text key={v} x={pad.left - 4} y={toY(v) + 3} textAnchor="end" fontSize={8} className="fill-muted-foreground">{v}%</text>
         ))}
-        {/* X axis labels */}
         {[0, Math.floor((data.length - 1) / 2), data.length - 1].map((i, idx) => (
           <text key={idx} x={toX(i)} y={h - 4} textAnchor="middle" fontSize={8} className="fill-muted-foreground">
             {i === 0 ? "Start" : i === data.length - 1 ? "Now" : "Mid"}
@@ -295,9 +171,100 @@ function PriceHistoryChart({ data, title }: { data: number[]; title: string }) {
   );
 }
 
-// ── Market Detail Drawer ───────────────────────────────────────────────────────
+// ── Market Card ────────────────────────────────────────────────────────────────
 
-function MarketDetailDrawer({
+function MarketCard({
+  market,
+  volume,
+  onSelect,
+}: {
+  market: PredictionMarket;
+  volume: number;
+  onSelect: (m: PredictionMarket) => void;
+}) {
+  const bet = usePredictionMarketStore((s) => s.getMarketBet(market.id));
+  const prob = market.initialProbability;
+  const priceHistory = useMemo(() => getPriceHistory(market), [market.id]);
+
+  return (
+    <button
+      onClick={() => onSelect(market)}
+      className="group w-full text-left rounded-lg border border-border bg-card p-5 hover:bg-muted/30 transition-colors duration-150"
+    >
+      {/* Category + badges row */}
+      <div className="flex items-center gap-2 mb-3">
+        <span className={cn(
+          "inline-flex items-center rounded-full px-2 py-0.5 text-[10px] uppercase tracking-widest",
+          CATEGORY_COLORS[market.category]
+        )}>
+          {CATEGORY_LABELS[market.category]}
+        </span>
+        {market.expiresInDays <= 7 && (
+          <span className="inline-flex items-center rounded-full border border-amber-500/30 px-2 py-0.5 text-[10px] uppercase tracking-widest text-amber-500">
+            {market.expiresInDays}d left
+          </span>
+        )}
+        {bet && (
+          <span className={cn(
+            "ml-auto rounded-full px-2 py-0.5 text-[10px] uppercase tracking-widest",
+            bet.position === "yes" ? "text-emerald-500 bg-emerald-500/10" : "text-red-400 bg-red-500/10"
+          )}>
+            {bet.position}
+          </span>
+        )}
+      </div>
+
+      {/* Question */}
+      <p className="text-sm font-medium leading-snug mb-4 line-clamp-2">
+        {market.question}
+      </p>
+
+      {/* Probability bar */}
+      <div className="mb-3">
+        <div className="flex justify-between text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1.5">
+          <span>YES {prob}%</span>
+          <span>NO {100 - prob}%</span>
+        </div>
+        <div className="h-1 w-full overflow-hidden rounded-full bg-muted/30">
+          <div
+            className="h-full rounded-full bg-emerald-500/60 transition-all duration-500"
+            style={{ width: `${prob}%` }}
+          />
+        </div>
+      </div>
+
+      {/* Footer row */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3 text-[10px] text-muted-foreground/40">
+          <span className="font-mono tabular-nums">Vol ${(volume / 1000).toFixed(0)}K</span>
+          <span>·</span>
+          <span>Closes {market.expiresInDays}d</span>
+        </div>
+        <Sparkline data={priceHistory} width={48} height={16} />
+      </div>
+
+      {/* YES / NO bet buttons */}
+      <div className="grid grid-cols-2 gap-2 mt-4">
+        <div className={cn(
+          "rounded-full border border-border px-4 py-1.5 text-center text-[11px] font-medium transition-colors",
+          "group-hover:border-emerald-500/30 group-hover:text-emerald-500"
+        )}>
+          YES {prob}%
+        </div>
+        <div className={cn(
+          "rounded-full border border-border px-4 py-1.5 text-center text-[11px] font-medium transition-colors",
+          "group-hover:border-red-400/30 group-hover:text-red-400"
+        )}>
+          NO {100 - prob}%
+        </div>
+      </div>
+    </button>
+  );
+}
+
+// ── Market Detail View ─────────────────────────────────────────────────────────
+
+function MarketDetailView({
   market,
   onClose,
 }: {
@@ -316,7 +283,6 @@ function MarketDetailDrawer({
   const recentTrades = useMemo(() => getRecentTrades(market), [market.id]);
   const volume = useMemo(() => getMarketVolume(market), [market.id]);
 
-  // Find matching ActiveMarket for order book
   const activeMarket: ActiveMarket | undefined = useMemo(
     () => ACTIVE_MARKETS.find((m) => m.id === market.id) ?? ACTIVE_MARKETS[0],
     [market.id],
@@ -338,194 +304,204 @@ function MarketDetailDrawer({
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      {/* Back button */}
-      <button
-        onClick={onClose}
-        className="mb-4 flex items-center gap-1.5 text-[9px] font-mono uppercase tracking-wider text-muted-foreground/40 transition-colors hover:text-foreground/60"
-      >
-        <ChevronLeft className="h-3 w-3" />
-        Back to markets
-      </button>
+      <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
 
-      {/* Header */}
-      <div className="mb-4 rounded-xl border border-border/20 bg-card/30 p-3">
-        <div className="mb-2 flex items-center gap-1.5 flex-wrap">
-          <span className={cn("rounded px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-wider", CATEGORY_COLORS[market.category])}>
-            {CATEGORY_LABELS[market.category]}
-          </span>
-          <span className="text-[9px] font-mono text-muted-foreground/40">{difficultyLabel}</span>
-          <span className="text-[9px] font-mono text-muted-foreground/40">{market.expiresInDays}d left</span>
-        </div>
-        <h2 className="mb-2 text-[11px] font-medium leading-snug text-foreground/80">{market.question}</h2>
-        <p className="text-[10px] leading-relaxed text-muted-foreground/50">{market.description}</p>
-      </div>
+        {/* Back */}
+        <button
+          onClick={onClose}
+          className="mb-6 flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-muted-foreground/40 hover:text-muted-foreground transition-colors"
+        >
+          <ChevronLeft className="h-3 w-3" />
+          Back to markets
+        </button>
 
-      {/* Resolution criteria */}
-      <div className="mb-4 rounded-xl border border-border/20 bg-card/20 px-3 py-2.5">
-        <div className="mb-1 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Resolution Criteria</div>
-        <p className="text-[10px] leading-relaxed text-foreground/70">{market.resolutionCriteria}</p>
-      </div>
-
-      {/* Price history chart */}
-      <div className="mb-2">
-        <PriceHistoryChart data={priceHistory} title="YES Probability History" />
-      </div>
-
-      {/* Stats row */}
-      <div className="mb-6 flex items-center gap-3 text-[9px] font-mono px-1">
-        <span className="text-muted-foreground/40">YES <span className="tabular-nums text-foreground/60">{market.initialProbability}%</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground/40">Vol <span className="tabular-nums text-foreground/60">${(volume / 1000).toFixed(1)}K</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground/40">Closes <span className="tabular-nums text-foreground/60">{market.expiresInDays}d</span></span>
-      </div>
-
-      {/* Order book */}
-      <div className="mb-4">
-        <div className="mb-1.5 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Order Book</div>
-        <MarketDepth market={activeMarket} />
-      </div>
-
-      {/* Trade panel */}
-      {!existingBet ? (
-        <div className="mb-4 rounded-xl border border-border/20 bg-card/30 p-3">
-          <div className="mb-3 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Place a Prediction</div>
-
-          {/* YES / NO toggle */}
-          <div className="mb-3 grid grid-cols-2 gap-2">
-            <button
-              onClick={() => setOrderSide("yes")}
-              className={cn(
-                "rounded-full px-3 py-1.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
-                orderSide === "yes"
-                  ? "bg-emerald-500/15 text-emerald-400/80 ring-1 ring-emerald-500/20"
-                  : "bg-foreground/[0.03] text-muted-foreground/40 hover:bg-foreground/[0.06]",
-              )}
-            >
-              YES {market.initialProbability}%
-            </button>
-            <button
-              onClick={() => setOrderSide("no")}
-              className={cn(
-                "rounded-full px-3 py-1.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
-                orderSide === "no"
-                  ? "bg-rose-500/15 text-rose-400/80 ring-1 ring-rose-500/20"
-                  : "bg-foreground/[0.03] text-muted-foreground/40 hover:bg-foreground/[0.06]",
-              )}
-            >
-              NO {100 - market.initialProbability}%
-            </button>
-          </div>
-
-          {/* Amount slider */}
-          <div className="mb-3">
-            <div className="mb-1 flex justify-between text-[9px] font-mono text-muted-foreground/40">
-              <span>Stake</span>
-              <span className="tabular-nums text-foreground/60">{betAmount} pts</span>
-            </div>
-            <input
-              type="range"
-              min={10}
-              max={Math.min(100, insightPoints)}
-              step={10}
-              value={betAmount}
-              onChange={(e) => setBetAmount(Number(e.target.value))}
-              className="h-1 w-full cursor-pointer appearance-none rounded-full bg-foreground/10 accent-primary"
-            />
-            <div className="mt-0.5 flex justify-between text-[9px] font-mono text-muted-foreground/30">
-              <span>10</span><span>{Math.min(100, insightPoints)}</span>
-            </div>
-          </div>
-
-          {/* My probability */}
-          <div className="mb-3">
-            <div className="mb-1 flex justify-between text-[9px] font-mono text-muted-foreground/40">
-              <span>My probability estimate</span>
-              <span className="tabular-nums text-foreground/60">{betProbability}%</span>
-            </div>
-            <input
-              type="range"
-              min={1}
-              max={99}
-              step={1}
-              value={betProbability}
-              onChange={(e) => setBetProbability(Number(e.target.value))}
-              className="h-1 w-full cursor-pointer appearance-none rounded-full bg-foreground/10 accent-primary"
-            />
-            <div className="mt-0.5 flex justify-between text-[9px] font-mono text-muted-foreground/30">
-              <span>1%</span><span>99%</span>
-            </div>
-          </div>
-
-          {/* Payout calculation */}
-          <div className="mb-4 flex items-center gap-4 text-[9px] font-mono px-1">
-            <span className="text-muted-foreground/40">Stake <span className="tabular-nums text-foreground/60">{betAmount} pts</span></span>
-            <span className="text-muted-foreground/40">Payout <span className="tabular-nums text-emerald-500/70">{expectedPayout} pts</span></span>
-            <span className="text-muted-foreground/40">Profit <span className="tabular-nums text-emerald-500/70">+{expectedPayout - betAmount} pts</span></span>
-          </div>
-
-          <button
-            onClick={handlePlaceBet}
-            disabled={betAmount > insightPoints}
-            className="w-full rounded-full bg-primary/80 px-4 py-2 text-[9px] font-mono uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary disabled:opacity-40"
-          >
-            Place Bet — {betAmount} pts
-          </button>
-        </div>
-      ) : (
-        <div className="mb-4 rounded-xl border border-border/20 bg-card/20 px-3 py-2.5">
-          <div className="mb-1 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Your Bet</div>
-          <div className="flex items-center gap-2 text-[10px] font-mono">
-            <span className={cn("rounded-full px-1.5 py-0.5 text-[9px] font-mono uppercase tracking-wider", existingBet.position === "yes" ? "bg-emerald-500/10 text-emerald-500/70" : "bg-red-500/10 text-red-500/70")}>
-              {existingBet.position.toUpperCase()}
+        {/* Header card */}
+        <div className="rounded-lg border border-border border-t-2 border-t-emerald-500/30 bg-card p-5 mb-6">
+          <div className="flex items-center gap-2 mb-3">
+            <span className={cn("rounded-full px-2 py-0.5 text-[10px] uppercase tracking-widest", CATEGORY_COLORS[market.category])}>
+              {CATEGORY_LABELS[market.category]}
             </span>
-            <span className="text-muted-foreground/40 tabular-nums">{existingBet.amount} pts at {Math.round(existingBet.probability * 100)}%</span>
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{difficultyLabel}</span>
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground/40">{market.expiresInDays}d left</span>
+          </div>
+          <h2 className="text-xl font-serif tracking-tight text-foreground mb-2">{market.question}</h2>
+          <p className="text-sm text-muted-foreground/60 leading-relaxed">{market.description}</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+          {/* Price history + stats */}
+          <div className="lg:col-span-2 rounded-lg border border-border bg-card p-5">
+            <PriceHistoryChart data={priceHistory} title="YES Probability History" />
+            <div className="flex items-center gap-4 mt-4 pt-4 border-t border-border text-xs font-mono tabular-nums text-muted-foreground/40">
+              <span>YES <span className="text-foreground/60">{market.initialProbability}%</span></span>
+              <span>·</span>
+              <span>Vol <span className="text-foreground/60">${(volume / 1000).toFixed(1)}K</span></span>
+              <span>·</span>
+              <span>Closes <span className="text-foreground/60">{market.expiresInDays}d</span></span>
+            </div>
+          </div>
+
+          {/* Trade panel */}
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            {!existingBet ? (
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Place a Prediction</p>
+
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  <button
+                    onClick={() => setOrderSide("yes")}
+                    className={cn(
+                      "rounded-full border px-3 py-2 text-[11px] font-medium transition-colors",
+                      orderSide === "yes"
+                        ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-500"
+                        : "border-border text-muted-foreground/40 hover:bg-foreground/5"
+                    )}
+                  >
+                    YES {market.initialProbability}%
+                  </button>
+                  <button
+                    onClick={() => setOrderSide("no")}
+                    className={cn(
+                      "rounded-full border px-3 py-2 text-[11px] font-medium transition-colors",
+                      orderSide === "no"
+                        ? "border-red-400/40 bg-red-500/10 text-red-400"
+                        : "border-border text-muted-foreground/40 hover:bg-foreground/5"
+                    )}
+                  >
+                    NO {100 - market.initialProbability}%
+                  </button>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex justify-between text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
+                    <span>Stake</span>
+                    <span className="font-mono tabular-nums text-foreground/60">{betAmount} pts</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={10}
+                    max={Math.min(100, insightPoints)}
+                    step={10}
+                    value={betAmount}
+                    onChange={(e) => setBetAmount(Number(e.target.value))}
+                    className="h-1 w-full cursor-pointer appearance-none rounded-full bg-muted/30 accent-primary"
+                  />
+                  <div className="flex justify-between text-[10px] font-mono text-muted-foreground/30 mt-1">
+                    <span>10</span><span>{Math.min(100, insightPoints)}</span>
+                  </div>
+                </div>
+
+                <div className="mb-4">
+                  <div className="flex justify-between text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">
+                    <span>My estimate</span>
+                    <span className="font-mono tabular-nums text-foreground/60">{betProbability}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={1}
+                    max={99}
+                    step={1}
+                    value={betProbability}
+                    onChange={(e) => setBetProbability(Number(e.target.value))}
+                    className="h-1 w-full cursor-pointer appearance-none rounded-full bg-muted/30 accent-primary"
+                  />
+                  <div className="flex justify-between text-[10px] font-mono text-muted-foreground/30 mt-1">
+                    <span>1%</span><span>99%</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between text-xs font-mono tabular-nums mb-4 px-1">
+                  <span className="text-muted-foreground/40">Payout <span className="text-emerald-500">{expectedPayout} pts</span></span>
+                  <span className="text-muted-foreground/40">+{expectedPayout - betAmount} profit</span>
+                </div>
+
+                <button
+                  onClick={handlePlaceBet}
+                  disabled={betAmount > insightPoints}
+                  className="w-full rounded-full border border-border px-5 py-2 text-[11px] font-medium hover:bg-foreground/[0.03] disabled:opacity-40 transition-colors"
+                >
+                  Place Bet — {betAmount} pts
+                </button>
+              </div>
+            ) : (
+              <div>
+                <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Your Bet</p>
+                <div className="flex items-center gap-2 text-sm font-mono">
+                  <span className={cn(
+                    "rounded-full px-3 py-1 text-[11px] font-medium",
+                    existingBet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-400"
+                  )}>
+                    {existingBet.position.toUpperCase()}
+                  </span>
+                  <span className="text-muted-foreground/40 tabular-nums">{existingBet.amount} pts at {Math.round(existingBet.probability * 100)}%</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      )}
 
-      {/* Recent trades */}
-      <div className="mb-4">
-        <div className="mb-1.5 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Recent Trades</div>
-        <div className="rounded-xl border border-border/20 bg-card/20 divide-y divide-border/10">
-          {recentTrades.map((trade, i) => (
-            <div key={i} className="flex items-center justify-between px-3 py-1.5 text-[10px] font-mono">
-              <div className="flex items-center gap-2">
-                <span className={cn("rounded-full px-1.5 py-0.5 text-[9px] uppercase tracking-wider", trade.side === "YES" ? "bg-emerald-500/10 text-emerald-500/70" : "bg-red-500/10 text-red-500/70")}>
-                  {trade.side}
-                </span>
-                <span className="tabular-nums text-muted-foreground/40">{trade.price}%</span>
-              </div>
-              <div className="flex items-center gap-3 text-muted-foreground/40">
-                <span className="tabular-nums">${trade.amount}</span>
-                <span>{trade.timeAgo}</span>
-              </div>
+        <div className="border-t border-border mb-6" />
+
+        {/* Resolution criteria */}
+        <div className="rounded-lg border border-border bg-muted/30 p-5 mb-6">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">Resolution Criteria</p>
+          <p className="text-sm leading-relaxed text-foreground/70">{market.resolutionCriteria}</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
+          {/* Order book */}
+          <div className="rounded-lg border border-border bg-card p-5">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Order Book</p>
+            <MarketDepth market={activeMarket} />
+          </div>
+
+          {/* Recent trades */}
+          <div className="rounded-lg border border-border bg-card p-5">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Recent Trades</p>
+            <div className="space-y-0 divide-y divide-border">
+              {recentTrades.map((trade, i) => (
+                <div key={i} className="flex items-center justify-between py-2 text-xs font-mono">
+                  <div className="flex items-center gap-2">
+                    <span className={cn(
+                      "rounded-full px-2 py-0.5 text-[10px] uppercase",
+                      trade.side === "YES" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-400"
+                    )}>
+                      {trade.side}
+                    </span>
+                    <span className="tabular-nums text-muted-foreground/40">{trade.price}%</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-muted-foreground/40">
+                    <span className="tabular-nums">${trade.amount}</span>
+                    <span>{trade.timeAgo}</span>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
 
-      {/* Educational note */}
-      <div className="mb-4 rounded-xl border border-border/20 bg-card/20 px-3 py-2.5">
-        <div className="mb-1 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Why This Matters</div>
-        <p className="text-[10px] leading-relaxed text-muted-foreground/50">{market.educationalNote}</p>
-        <div className="mt-2 flex flex-wrap gap-1">
-          {market.relatedConcepts.map((c) => (
-            <span key={c} className="rounded-full bg-foreground/5 px-1.5 py-0.5 text-[9px] font-mono text-muted-foreground/40">{c}</span>
-          ))}
+        {/* Educational note */}
+        <div className="rounded-lg border border-border bg-muted/30 p-5">
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-2">Why This Matters</p>
+          <p className="text-sm leading-relaxed text-muted-foreground/60 mb-3">{market.educationalNote}</p>
+          <div className="flex flex-wrap gap-1.5">
+            {market.relatedConcepts.map((c) => (
+              <span key={c} className="rounded-full border border-border px-2.5 py-0.5 text-[10px] text-muted-foreground/40">{c}</span>
+            ))}
+          </div>
         </div>
+
       </div>
     </div>
   );
 }
 
-// ── My Bets Tab ────────────────────────────────────────────────────────────────
+// ── My Bets Section ────────────────────────────────────────────────────────────
 
-function MyBetsTab() {
+function MyBetsSection() {
   const bets = usePredictionMarketStore((s) => s.bets);
   const insightPoints = usePredictionMarketStore((s) => s.insightPoints);
   const totalResolved = usePredictionMarketStore((s) => s.totalResolved);
-  const correctPredictions = usePredictionMarketStore((s) => s.correctPredictions);
   const resolveBet = usePredictionMarketStore((s) => s.resolveBet);
 
   const activeBets = useMemo(() => bets.filter((b) => !b.resolved), [bets]);
@@ -539,9 +515,8 @@ function MyBetsTab() {
 
   if (bets.length === 0) {
     return (
-      <div className="flex h-40 flex-col items-center justify-center gap-1 text-center">
-        <p className="text-[10px] font-mono text-muted-foreground/40">No bets placed yet</p>
-        <p className="max-w-xs text-[10px] font-mono text-muted-foreground/30">Browse open markets and place your first bet.</p>
+      <div className="rounded-lg border border-border bg-muted/30 p-5 flex h-40 items-center justify-center">
+        <p className="text-xs text-muted-foreground/40">No bets placed yet. Browse open markets to place your first prediction.</p>
       </div>
     );
   }
@@ -549,16 +524,18 @@ function MyBetsTab() {
   return (
     <div className="space-y-5">
       {/* Summary stats */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] font-mono px-1">
-        <span className="text-muted-foreground/40">Staked <span className="tabular-nums text-foreground/60">{totalStaked} pts</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground/40">Won <span className="tabular-nums text-emerald-500/70">+{totalWon} pts</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground/40">Lost <span className="tabular-nums text-red-500/70">-{totalLost} pts</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground/40">Net P&amp;L <span className={cn("tabular-nums", netPnl >= 0 ? "text-emerald-500/70" : "text-red-500/70")}>{netPnl >= 0 ? "+" : ""}{netPnl} pts</span></span>
-        <span className="text-border/30">·</span>
-        <span className="text-muted-foreground/40">ROI <span className={cn("tabular-nums", roi >= 0 ? "text-emerald-500/70" : "text-red-500/70")}>{roi >= 0 ? "+" : ""}{roi.toFixed(1)}%</span></span>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { label: "Total Staked", value: `${totalStaked} pts`, color: "" },
+          { label: "Won", value: `+${totalWon} pts`, color: "text-emerald-500" },
+          { label: "Lost", value: `-${totalLost} pts`, color: "text-red-400" },
+          { label: "ROI", value: `${roi >= 0 ? "+" : ""}${roi.toFixed(1)}%`, color: roi >= 0 ? "text-emerald-500" : "text-red-400" },
+        ].map((s) => (
+          <div key={s.label} className="rounded-lg border border-border bg-card p-4">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">{s.label}</p>
+            <p className={cn("text-xl font-serif tracking-tight", s.color || "text-foreground")}>{s.value}</p>
+          </div>
+        ))}
       </div>
 
       {/* Accuracy tracker */}
@@ -567,18 +544,16 @@ function MyBetsTab() {
       {/* Active bets */}
       {activeBets.length > 0 && (
         <div>
-          <div className="mb-2 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">
-            Active Positions ({activeBets.length})
-          </div>
-          <div className="overflow-x-auto rounded-xl border border-border/20 bg-card/30">
-            <table className="w-full text-[10px] font-mono min-w-[480px]">
-              <thead>
-                <tr className="border-b border-border/20">
-                  <th className="px-3 py-2.5 text-left text-[9px] uppercase tracking-[0.15em] text-muted-foreground/35">Market</th>
-                  <th className="px-3 py-2.5 text-center text-[9px] uppercase tracking-[0.15em] text-muted-foreground/35">Pos</th>
-                  <th className="px-3 py-2.5 text-right text-[9px] uppercase tracking-[0.15em] text-muted-foreground/35">Stake</th>
-                  <th className="px-3 py-2.5 text-right text-[9px] uppercase tracking-[0.15em] text-muted-foreground/35">Est. Payout</th>
-                  <th className="px-3 py-2.5 text-right text-[9px] uppercase tracking-[0.15em] text-muted-foreground/35">Odds</th>
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Active Positions ({activeBets.length})</p>
+          <div className="rounded-lg border border-border bg-card overflow-hidden">
+            <table className="w-full text-xs font-mono min-w-[480px]">
+              <thead className="border-b border-border">
+                <tr>
+                  <th className="px-4 py-3 text-left text-[10px] uppercase tracking-widest text-muted-foreground/40">Market</th>
+                  <th className="px-4 py-3 text-center text-[10px] uppercase tracking-widest text-muted-foreground/40">Pos</th>
+                  <th className="px-4 py-3 text-right text-[10px] uppercase tracking-widest text-muted-foreground/40">Stake</th>
+                  <th className="px-4 py-3 text-right text-[10px] uppercase tracking-widest text-muted-foreground/40">Payout</th>
+                  <th className="px-4 py-3 text-right text-[10px] uppercase tracking-widest text-muted-foreground/40">Odds</th>
                 </tr>
               </thead>
               <tbody>
@@ -590,22 +565,22 @@ function MyBetsTab() {
                     : Math.round(bet.amount * (1 / (1 - prob)));
                   const estPnl = estPayout - bet.amount;
                   return (
-                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border/10 last:border-0 hover:bg-foreground/[0.02] transition-colors">
-                      <td className="max-w-[200px] truncate px-3 py-2.5 text-foreground/70">
+                    <tr key={bet.marketId + bet.timestamp} className="border-b border-border last:border-0 hover:bg-foreground/[0.02] transition-colors">
+                      <td className="max-w-[200px] truncate px-4 py-3 text-foreground/70">
                         {market?.question.slice(0, 40) ?? bet.marketId}
                         {(market?.question.length ?? 0) > 40 ? "…" : ""}
                       </td>
-                      <td className="px-3 py-2.5 text-center">
-                        <span className={cn("rounded-full px-1.5 py-0.5 text-[9px] uppercase tracking-wider", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500/70" : "bg-red-500/10 text-red-500/70")}>
+                      <td className="px-4 py-3 text-center">
+                        <span className={cn("rounded-full px-2 py-0.5 text-[10px] uppercase", bet.position === "yes" ? "bg-emerald-500/10 text-emerald-500" : "bg-red-500/10 text-red-400")}>
                           {bet.position.toUpperCase()}
                         </span>
                       </td>
-                      <td className="px-3 py-2.5 text-right tabular-nums text-foreground/60">{bet.amount} pts</td>
-                      <td className="px-3 py-2.5 text-right tabular-nums text-foreground/60">
+                      <td className="px-4 py-3 text-right tabular-nums text-foreground/60">{bet.amount} pts</td>
+                      <td className="px-4 py-3 text-right tabular-nums text-foreground/60">
                         {estPayout} pts
                         <span className="ml-1 text-emerald-500/50">(+{estPnl})</span>
                       </td>
-                      <td className="px-3 py-2.5 text-right tabular-nums text-muted-foreground/40">
+                      <td className="px-4 py-3 text-right tabular-nums text-muted-foreground/40">
                         {Math.round(prob * 100)}%
                       </td>
                     </tr>
@@ -619,25 +594,23 @@ function MyBetsTab() {
 
       {/* Resolved bets */}
       {resolvedBets.length > 0 && (
-        <div className="mt-6 opacity-70">
-          <div className="mb-1.5 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">
-            Resolved ({resolvedBets.length})
-          </div>
-          <div className="space-y-0 rounded-xl border border-border/20 bg-card/20 divide-y divide-border/10">
+        <div>
+          <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-3">Resolved ({resolvedBets.length})</p>
+          <div className="rounded-lg border border-border bg-card divide-y divide-border">
             {resolvedBets.slice().reverse().map((bet) => {
               const market = PREDICTION_MARKETS.find((m) => m.id === bet.marketId);
               const isCorrect = (bet.position === "yes" && bet.outcome === true) || (bet.position === "no" && bet.outcome === false);
               const pnl = (bet.payout ?? 0) - bet.amount;
               return (
-                <div key={bet.marketId + bet.timestamp} className="flex items-center gap-2 px-3 py-1.5 text-[10px] font-mono text-muted-foreground/40">
-                  <span className={cn("shrink-0", isCorrect ? "text-emerald-500/60" : "text-red-500/60")}>
-                    {isCorrect ? "+" : "-"}
+                <div key={bet.marketId + bet.timestamp} className="flex items-center gap-3 px-4 py-2.5">
+                  <span className={cn("shrink-0 text-xs font-mono font-medium", isCorrect ? "text-emerald-500" : "text-red-400")}>
+                    {isCorrect ? "WIN" : "LOSS"}
                   </span>
-                  <span className="min-w-0 flex-1 truncate">
+                  <span className="min-w-0 flex-1 truncate text-xs font-mono text-muted-foreground/40">
                     {market?.question.slice(0, 50) ?? bet.marketId}
                   </span>
-                  <span className="shrink-0 uppercase tracking-wider">{bet.position}</span>
-                  <span className={cn("shrink-0 tabular-nums", pnl >= 0 ? "text-emerald-500/60" : "text-red-500/60")}>
+                  <span className="shrink-0 text-xs font-mono uppercase tracking-widest text-muted-foreground/40">{bet.position}</span>
+                  <span className={cn("shrink-0 tabular-nums text-xs font-mono", pnl >= 0 ? "text-emerald-500" : "text-red-400")}>
                     {pnl >= 0 ? "+" : ""}{pnl}
                   </span>
                 </div>
@@ -682,25 +655,23 @@ function CalibrationChartSection() {
 
   if (calibrationData.length === 0) {
     return (
-      <div className="flex h-48 items-center justify-center rounded-xl border border-border/20 bg-card/30 text-[10px] font-mono text-muted-foreground/40">
+      <div className="flex h-48 items-center justify-center rounded-lg border border-border bg-muted/30 text-xs text-muted-foreground/40">
         Resolve bets to see your calibration chart
       </div>
     );
   }
 
   return (
-    <div className="rounded-xl border border-border/20 bg-card/30 p-3">
-      <div className="mb-3 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">Predicted vs actual outcomes</div>
+    <div className="rounded-lg border border-border bg-card p-5">
+      <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Predicted vs Actual Outcomes</p>
       <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ maxWidth: w }} aria-hidden>
         {[0, 0.25, 0.5, 0.75, 1].map((v) => (
           <line key={`g-${v}`} x1={pad.left} x2={pad.left + plotW} y1={pad.top + plotH * (1 - v)} y2={pad.top + plotH * (1 - v)} stroke="currentColor" strokeOpacity={0.1} />
         ))}
-        {/* Perfect calibration line */}
         <line x1={pad.left} y1={pad.top + plotH} x2={pad.left + plotW} y2={pad.top} stroke="currentColor" strokeOpacity={0.2} strokeDasharray="4 4" />
         {calibrationData.map((d, i) => (
           <circle key={i} cx={pad.left + d.predicted * plotW} cy={pad.top + (1 - d.actual) * plotH} r={Math.min(9, 3 + d.count)} fill="hsl(var(--primary))" fillOpacity={0.6} stroke="hsl(var(--primary))" strokeWidth={1} />
         ))}
-        {/* Axis labels */}
         <text x={pad.left + plotW / 2} y={h - 4} textAnchor="middle" className="fill-muted-foreground text-xs" fontSize={10}>Predicted Probability</text>
         {[0, 0.5, 1].map((v) => (
           <text key={`xl-${v}`} x={pad.left + v * plotW} y={pad.top + plotH + 14} textAnchor="middle" className="fill-muted-foreground" fontSize={9}>{Math.round(v * 100)}%</text>
@@ -709,7 +680,7 @@ function CalibrationChartSection() {
           <text key={`yl-${v}`} x={pad.left - 6} y={pad.top + plotH * (1 - v) + 3} textAnchor="end" className="fill-muted-foreground" fontSize={9}>{Math.round(v * 100)}%</text>
         ))}
       </svg>
-      <p className="mt-1 text-center text-[9px] font-mono text-muted-foreground/35">Points on the dashed line = perfectly calibrated</p>
+      <p className="mt-2 text-center text-[10px] text-muted-foreground/40">Points on the dashed line = perfectly calibrated</p>
     </div>
   );
 }
@@ -741,15 +712,19 @@ const PREDICTOR_TIPS = [
 
 function PredictorTips() {
   return (
-    <div className="rounded-xl border border-border/20 bg-card/30 divide-y divide-border/10">
-      <div className="px-3 py-2 text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35">How to Be a Good Predictor</div>
+    <div className="rounded-lg border border-border bg-card divide-y divide-border">
+      <div className="px-5 py-3">
+        <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">How to Be a Good Predictor</p>
+      </div>
       {PREDICTOR_TIPS.map((tip, i) => (
-        <div key={i} className="px-3 py-2.5">
-          <div className="mb-1 flex items-center gap-2">
-            <span className="text-[9px] font-mono tabular-nums text-muted-foreground/40">{String(i + 1).padStart(2, "0")}</span>
-            <span className="text-[10px] font-mono text-foreground/70">{tip.title}</span>
+        <div key={i} className="px-5 py-4">
+          <div className="flex items-start gap-3">
+            <span className="shrink-0 text-[10px] font-mono tabular-nums text-muted-foreground/30 mt-0.5">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <p className="text-sm font-medium mb-1">{tip.title}</p>
+              <p className="text-xs leading-relaxed text-muted-foreground/60">{tip.body}</p>
+            </div>
           </div>
-          <p className="text-[10px] leading-relaxed text-muted-foreground/40 pl-6">{tip.body}</p>
         </div>
       ))}
     </div>
@@ -759,7 +734,6 @@ function PredictorTips() {
 // ── Main PredictionsPageClient ────────────────────────────────────────────────
 
 export function PredictionsPageClient() {
-  const [pageTab, setPageTab] = useState<PageTab>("markets");
   const [activeFilter, setActiveFilter] = useState<FilterTab>("all");
   const [sortMode, setSortMode] = useState<SortMode>("closing");
   const [searchQuery, setSearchQuery] = useState("");
@@ -770,13 +744,18 @@ export function PredictionsPageClient() {
   const insightPoints = usePredictionMarketStore((s) => s.insightPoints);
   const bets = usePredictionMarketStore((s) => s.bets);
   const totalResolved = usePredictionMarketStore((s) => s.totalResolved);
+  const correctPredictions = usePredictionMarketStore((s) => s.correctPredictions);
   const storeRef = usePredictionMarketStore.getState;
   const accuracy = useMemo(() => storeRef().getAccuracy(), [storeRef, bets, totalResolved]);
   const brierScore = useMemo(() => storeRef().getBrierScore(), [storeRef, bets]);
 
-  const activeBetCount = useMemo(() => bets.filter((b) => !b.resolved).length, [bets]);
+  const activeBets = useMemo(() => bets.filter((b) => !b.resolved), [bets]);
+  const totalStaked = useMemo(() => activeBets.reduce((sum, b) => sum + b.amount, 0), [activeBets]);
+  const totalPotentialPayout = useMemo(() => activeBets.reduce((sum, b) => {
+    const prob = b.probability;
+    return sum + (b.position === "yes" ? Math.round(b.amount * (1 / prob)) : Math.round(b.amount * (1 / (1 - prob))));
+  }, 0), [activeBets]);
 
-  // Filtered + sorted markets
   const filteredMarkets = useMemo(() => {
     let markets =
       activeFilter === "all"
@@ -820,234 +799,252 @@ export function PredictionsPageClient() {
 
   const selectedDepthMarket = ACTIVE_MARKETS[depthMarketIndex] ?? ACTIVE_MARKETS[0];
 
+  // If a market is selected, show the detail view
+  if (selectedMarket) {
+    return <MarketDetailView market={selectedMarket} onClose={handleCloseMarket} />;
+  }
+
   return (
-    <div className="flex h-full flex-col">
-      {/* Page header */}
-      <div className="h-9 shrink-0 border-b border-border/30 bg-background/95 px-4 flex items-center justify-between">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground/50">Prediction Markets</span>
-        <div className="flex items-center gap-2">
-          <span className="text-[9px] font-mono text-muted-foreground/35 tabular-nums">{PREDICTION_MARKETS.length} markets</span>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button className="flex shrink-0 items-center gap-1 text-[9px] font-mono text-muted-foreground/35 transition-colors hover:text-foreground/50">
-                <HelpCircle className="h-3 w-3" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="bottom" align="end" className="max-w-72 text-xs leading-relaxed">
-              <p className="mb-1.5 font-medium text-foreground">How prediction markets work</p>
-              <ol className="list-decimal space-y-1 pl-3.5 text-muted-foreground">
-                <li>Browse markets and estimate the probability of each outcome.</li>
-                <li>Place a YES or NO bet using your Insight Points.</li>
-                <li>Markets resolve based on real-world outcomes. Correct predictions earn points.</li>
-                <li>Track your calibration — are your 70% bets right 70% of the time?</li>
-              </ol>
-            </TooltipContent>
-          </Tooltip>
-        </div>
-      </div>
+    <div className="flex h-full flex-col overflow-y-auto">
+      <div className="mx-auto w-full max-w-5xl px-6 py-8 flex-1 flex flex-col">
 
-      {/* Main tab bar */}
-      <div className="shrink-0 border-b border-border/20 bg-muted/5 px-4 flex items-center gap-0">
-        {PAGE_TABS.map((tab) => (
-          <button
-            key={tab.value}
-            onClick={() => { setPageTab(tab.value); setSelectedMarket(null); }}
-            className={cn(
-              "flex shrink-0 items-center gap-1.5 border-b-2 px-3 py-2.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
-              pageTab === tab.value
-                ? "border-primary/60 text-foreground/80"
-                : "border-transparent text-muted-foreground/40 hover:text-foreground/60",
-            )}
-          >
-            {tab.label}
-            {tab.value === "bets" && activeBetCount > 0 && (
-              <span className="rounded-full bg-foreground/10 px-1 text-[9px] font-mono tabular-nums text-foreground/50">{activeBetCount}</span>
-            )}
-          </button>
-        ))}
-        <div className="flex-1" />
-        {/* Insight points inline */}
-        <span className="text-[9px] font-mono text-muted-foreground/35 tabular-nums mr-1">{insightPoints.toLocaleString()} pts</span>
-      </div>
-
-      {/* Hero stats strip (Markets tab only) */}
-      {pageTab === "markets" && (
-        <div className="shrink-0 border-b border-border/20 px-4 py-2.5">
-          <div className="flex items-center gap-4">
-            {/* Accuracy ring */}
-            <div className="relative shrink-0">
-              <svg width="40" height="40" className="-rotate-90">
-                <circle cx="20" cy="20" r="16" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted/20" />
-                <circle
-                  cx="20" cy="20" r="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
-                  strokeDasharray={2 * Math.PI * 16}
-                  strokeDashoffset={2 * Math.PI * 16 * (1 - (totalResolved > 0 ? accuracy / 100 : 0))}
-                  className="text-emerald-500/60 transition-all duration-500"
-                />
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[9px] font-mono tabular-nums text-foreground/60">
-                  {totalResolved > 0 ? `${accuracy}%` : "--"}
-                </span>
-              </div>
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-1">Your Accuracy</div>
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[9px] font-mono text-muted-foreground/40">
-                <span className="tabular-nums">{bets.length} bets</span>
-                <span className="text-border/30">·</span>
-                <span className="tabular-nums">{totalResolved} resolved</span>
-                <span className="text-border/30">·</span>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span className="cursor-help">Brier <span className="tabular-nums text-foreground/50">{totalResolved > 0 ? brierScore.toFixed(3) : "--"}</span></span>
-                  </TooltipTrigger>
-                  <TooltipContent side="bottom" className="max-w-64 text-xs">
-                    Brier Score measures calibration (0 = perfect, 1 = worst). Below 0.25 is well-calibrated.
-                  </TooltipContent>
-                </Tooltip>
-              </div>
-            </div>
+        {/* Page title row */}
+        <div className="flex items-start justify-between mb-6">
+          <div>
+            <h1 className="text-xl font-serif tracking-tight text-foreground mb-1">Prediction Markets</h1>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40">Forecast · Earn Coins · Track Accuracy</p>
+          </div>
+          <div className="text-right">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Balance</p>
+            <p className="text-xl font-serif font-light tracking-tight font-mono tabular-nums">{insightPoints.toLocaleString()} pts</p>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button className="flex items-center gap-1 text-[10px] text-muted-foreground/40 hover:text-muted-foreground transition-colors ml-auto mt-1">
+                  <HelpCircle className="h-3 w-3" />
+                  How it works
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom" align="end" className="max-w-72 text-xs leading-relaxed">
+                <p className="mb-1.5 font-medium text-foreground">How prediction markets work</p>
+                <ol className="list-decimal space-y-1 pl-3.5 text-muted-foreground">
+                  <li>Browse markets and estimate the probability of each outcome.</li>
+                  <li>Place a YES or NO bet using your Insight Points.</li>
+                  <li>Markets resolve based on real-world outcomes. Correct predictions earn points.</li>
+                  <li>Track your calibration — are your 70% bets right 70% of the time?</li>
+                </ol>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
-      )}
 
-      {/* Markets Tab */}
-      {pageTab === "markets" && (
-        <div className="flex flex-1 overflow-hidden">
-          <div className="flex flex-1 flex-col overflow-hidden">
-            {selectedMarket ? (
-              <div className="flex-1 overflow-y-auto p-4">
-                <MarketDetailDrawer market={selectedMarket} onClose={handleCloseMarket} />
-              </div>
+        {/* Section divider */}
+        <div className="border-t border-border mb-6" />
+
+        {/* Stats row — 3 cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-6">
+          {/* Active Markets summary — col-span-2 */}
+          <div className="lg:col-span-2 rounded-lg border border-border bg-card p-5">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Active Markets</p>
+            {activeBets.length === 0 ? (
+              <p className="text-sm text-muted-foreground/40">No open positions. Browse markets below to place your first bet.</p>
             ) : (
-              <>
-                {/* Search + filter + sort bar */}
-                <div className="shrink-0 border-b border-border/20 px-4 py-2.5 space-y-2">
-                  {/* Search */}
-                  <div className="relative">
-                    <Search className="absolute left-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-muted-foreground/30" />
-                    <input
-                      type="text"
-                      placeholder="Search markets..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full rounded-full border border-border/20 bg-foreground/[0.02] py-1.5 pl-8 pr-8 text-[10px] font-mono text-foreground/70 placeholder-muted-foreground/25 outline-none focus:border-border/40 transition-colors"
+              <div>
+                <div className="flex items-end gap-6 mb-4">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Open Bets</p>
+                    <p className="text-2xl font-serif font-light tracking-tight">{activeBets.length}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Total Staked</p>
+                    <p className="text-2xl font-serif font-light tracking-tight">{totalStaked} <span className="text-sm text-muted-foreground/40">pts</span></p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Potential Payout</p>
+                    <p className="text-2xl font-serif font-light tracking-tight text-emerald-500">{totalPotentialPayout} <span className="text-sm text-muted-foreground/40">pts</span></p>
+                  </div>
+                </div>
+                {/* Performance bar */}
+                <div>
+                  <div className="flex justify-between text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1.5">
+                    <span>Staked</span>
+                    <span>Potential return {totalStaked > 0 ? `+${(((totalPotentialPayout - totalStaked) / totalStaked) * 100).toFixed(0)}%` : "—"}</span>
+                  </div>
+                  <div className="h-1 overflow-hidden rounded-full bg-muted/30">
+                    <div
+                      className="h-full rounded-full bg-emerald-500/60"
+                      style={{ width: totalPotentialPayout > 0 ? `${Math.min(100, (totalStaked / totalPotentialPayout) * 100)}%` : "0%" }}
                     />
-                    {searchQuery && (
-                      <button onClick={() => setSearchQuery("")} className="absolute right-2.5 top-1/2 -translate-y-1/2">
-                        <X className="h-3 w-3 text-muted-foreground/30 hover:text-foreground/50" />
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Category filter pills */}
-                  <div className="flex items-center gap-1.5 overflow-x-auto">
-                    {FILTER_TABS.map((tab) => (
-                      <button
-                        key={tab.value}
-                        onClick={() => setActiveFilter(tab.value)}
-                        className={cn(
-                          "shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
-                          activeFilter === tab.value
-                            ? "bg-primary/15 text-primary/80"
-                            : "text-muted-foreground/30 hover:text-foreground/50",
-                        )}
-                      >
-                        {tab.value !== "all" && (
-                          <span className={cn("inline-block h-1.5 w-1.5 rounded-full shrink-0", CATEGORY_DOT_COLORS[tab.value] ?? "bg-muted-foreground")} />
-                        )}
-                        {tab.label}
-                      </button>
-                    ))}
-                    <div className="flex-1" />
-                    {/* Sort pills */}
-                    <div className="flex items-center gap-1 shrink-0">
-                      {SORT_OPTIONS.map((opt) => (
-                        <button
-                          key={opt.value}
-                          onClick={() => setSortMode(opt.value)}
-                          className={cn(
-                            "rounded-full px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
-                            sortMode === opt.value
-                              ? "bg-primary/15 text-primary/80"
-                              : "text-muted-foreground/30 hover:text-foreground/50",
-                          )}
-                        >
-                          {opt.label}
-                        </button>
-                      ))}
-                    </div>
                   </div>
                 </div>
-
-                {/* Market list */}
-                <div className="flex-1 overflow-y-auto px-4 py-3">
-                  <div className="mb-2">
-                    <span className="text-[9px] font-mono text-muted-foreground/35 tabular-nums">
-                      {filteredMarkets.length} markets
-                    </span>
-                  </div>
-
-                  {filteredMarkets.length > 0 ? (
-                    <div className="space-y-2">
-                      {filteredMarkets.map((market) => (
-                        <MarketRow
-                          key={market.id}
-                          market={market}
-                          volume={getMarketVolume(market)}
-                          onSelect={handleSelectMarket}
-                        />
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="flex h-40 flex-col items-center justify-center gap-1 text-[10px] font-mono text-muted-foreground/40">
-                      <span>No markets found</span>
-                      <span className="text-muted-foreground/25">Try a different category or search term</span>
-                    </div>
-                  )}
-                </div>
-              </>
+              </div>
             )}
           </div>
-        </div>
-      )}
 
-      {/* My Bets Tab */}
-      {pageTab === "bets" && (
-        <div className="flex-1 overflow-y-auto p-4">
-          <MyBetsTab />
+          {/* Accuracy card */}
+          <div className="rounded-lg border border-border bg-muted/30 p-5">
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">Your Accuracy</p>
+            <p className="text-4xl font-serif font-light tracking-tight mb-1">
+              {totalResolved > 0 ? `${accuracy}%` : "—"}
+            </p>
+            <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-4">accuracy rate</p>
+            <div className="space-y-1.5 text-xs font-mono tabular-nums">
+              <div className="flex justify-between">
+                <span className="text-muted-foreground/40">Bets placed</span>
+                <span>{bets.length}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground/40">Resolved</span>
+                <span>{totalResolved}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground/40">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="cursor-help border-b border-dashed border-muted-foreground/30">Brier score</span>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="max-w-64 text-xs">
+                      Brier Score measures calibration (0 = perfect, 1 = worst). Below 0.25 is well-calibrated.
+                    </TooltipContent>
+                  </Tooltip>
+                </span>
+                <span>{totalResolved > 0 ? brierScore.toFixed(3) : "—"}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground/40">Correct</span>
+                <span className="text-emerald-500">{correctPredictions}</span>
+              </div>
+            </div>
+          </div>
         </div>
-      )}
 
-      {/* Leaderboard Tab */}
-      {pageTab === "leaderboard" && (
-        <div className="flex-1 overflow-y-auto p-4">
-          <PredictionLeaderboard />
+        {/* Section divider */}
+        <div className="border-t border-border mb-6" />
+
+        {/* Open Markets section */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-serif tracking-tight text-foreground">Open Markets</h2>
+            <span className="text-[10px] text-muted-foreground/40 font-mono tabular-nums">{filteredMarkets.length} markets</span>
+          </div>
+
+          {/* Filter + sort bar */}
+          <div className="flex flex-wrap items-center gap-2 mb-5">
+            {/* Search */}
+            <input
+              type="text"
+              placeholder="Search markets..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="rounded-full border border-border bg-card px-3 py-1.5 text-xs text-foreground/70 placeholder-muted-foreground/30 outline-none focus:border-foreground/20 transition-colors min-w-[160px]"
+            />
+
+            {/* Category filter pills */}
+            <div className="flex items-center gap-1.5 flex-wrap">
+              {FILTER_TABS.map((tab) => (
+                <button
+                  key={tab.value}
+                  onClick={() => setActiveFilter(tab.value)}
+                  className={cn(
+                    "rounded-full border px-3 py-1 text-[11px] font-medium transition-colors",
+                    activeFilter === tab.value
+                      ? "border-foreground/20 bg-foreground/[0.06] text-foreground"
+                      : "border-border text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]"
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex-1" />
+
+            {/* Sort links */}
+            <div className="flex items-center gap-3 text-[11px]">
+              {[
+                { value: "volume" as SortMode, label: "Volume" },
+                { value: "closing" as SortMode, label: "Closing" },
+                { value: "probability" as SortMode, label: "Probability" },
+              ].map((opt, i) => (
+                <span key={opt.value} className="flex items-center gap-3">
+                  {i > 0 && <span className="text-muted-foreground/20">·</span>}
+                  <button
+                    onClick={() => setSortMode(opt.value)}
+                    className={cn(
+                      "transition-colors",
+                      sortMode === opt.value
+                        ? "text-foreground"
+                        : "text-muted-foreground/40 hover:text-muted-foreground"
+                    )}
+                  >
+                    {opt.label}
+                  </button>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Market cards grid */}
+          {filteredMarkets.length > 0 ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {filteredMarkets.map((market) => (
+                <MarketCard
+                  key={market.id}
+                  market={market}
+                  volume={getMarketVolume(market)}
+                  onSelect={handleSelectMarket}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex h-40 items-center justify-center rounded-lg border border-border bg-muted/30">
+              <p className="text-xs text-muted-foreground/40">No markets found. Try a different category or search term.</p>
+            </div>
+          )}
         </div>
-      )}
 
-      {/* Tools Tab */}
-      {pageTab === "tools" && (
-        <div className="flex-1 overflow-y-auto">
+        {/* Section divider */}
+        <div className="border-t border-border mb-6" />
+
+        {/* My Bets + Leaderboard */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
+          {/* My Bets */}
+          <div>
+            <p className="text-xl font-serif tracking-tight text-foreground mb-4">My Bets</p>
+            <MyBetsSection />
+          </div>
+
+          {/* Leaderboard */}
+          <div>
+            <p className="text-xl font-serif tracking-tight text-foreground mb-4">Leaderboard</p>
+            <PredictionLeaderboard />
+          </div>
+        </div>
+
+        {/* Section divider */}
+        <div className="border-t border-border mb-6" />
+
+        {/* Tools row */}
+        <div>
+          <p className="text-xl font-serif tracking-tight text-foreground mb-4">Tools</p>
+
           {/* Tool sub-tabs */}
-          <div className="shrink-0 border-b border-border/20 bg-muted/5 px-4 flex items-center gap-0">
+          <div className="flex items-center gap-1.5 mb-5">
             {(
               [
-                { value: "kelly", label: "Kelly" },
-                { value: "depth", label: "Depth" },
+                { value: "kelly", label: "Kelly Calculator" },
+                { value: "depth", label: "Market Depth" },
                 { value: "calibration", label: "Calibration" },
-                { value: "tips", label: "Tips" },
+                { value: "tips", label: "Predictor Tips" },
               ] as { value: ToolTab; label: string }[]
             ).map((t) => (
               <button
                 key={t.value}
                 onClick={() => setToolTab(t.value)}
                 className={cn(
-                  "shrink-0 border-b-2 px-3 py-2.5 text-[9px] font-mono uppercase tracking-wider transition-colors",
+                  "rounded-full border px-4 py-1.5 text-[11px] font-medium transition-colors",
                   toolTab === t.value
-                    ? "border-primary/60 text-foreground/80"
-                    : "border-transparent text-muted-foreground/40 hover:text-foreground/60",
+                    ? "border-foreground/20 bg-foreground/[0.06] text-foreground"
+                    : "border-border text-muted-foreground/40 hover:text-muted-foreground hover:bg-foreground/[0.03]"
                 )}
               >
                 {t.label}
@@ -1055,12 +1052,12 @@ export function PredictionsPageClient() {
             ))}
           </div>
 
-          <div className="p-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {toolTab === "kelly" && (
-              <div className="max-w-2xl space-y-3">
-                <div>
-                  <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-1">Kelly Criterion Calculator</div>
-                  <p className="text-[10px] font-mono text-muted-foreground/40">
+              <div className="lg:col-span-2 max-w-2xl">
+                <div className="rounded-lg border border-border bg-muted/30 p-5 mb-4">
+                  <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Kelly Criterion Calculator</p>
+                  <p className="text-xs text-muted-foreground/60">
                     Compute the optimal bet size that maximizes long-run log-growth of wealth.
                   </p>
                 </div>
@@ -1069,53 +1066,54 @@ export function PredictionsPageClient() {
             )}
 
             {toolTab === "depth" && (
-              <div className="max-w-2xl space-y-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-1">Market Depth</div>
-                    <p className="text-[10px] font-mono text-muted-foreground/40">
-                      Simulated YES/NO order book. The mid price equals the implied probability.
-                    </p>
+              <div className="lg:col-span-2 max-w-2xl">
+                <div className="rounded-lg border border-border bg-muted/30 p-5 mb-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest text-muted-foreground/40 mb-1">Market Depth</p>
+                      <p className="text-xs text-muted-foreground/60">
+                        Simulated YES/NO order book. The mid price equals the implied probability.
+                      </p>
+                    </div>
+                    <select
+                      value={depthMarketIndex}
+                      onChange={(e) => setDepthMarketIndex(Number(e.target.value))}
+                      className="shrink-0 appearance-none rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-foreground/60 outline-none focus:border-foreground/20 max-w-[200px]"
+                    >
+                      {ACTIVE_MARKETS.map((m, i) => (
+                        <option key={m.id} value={i}>
+                          {m.question.slice(0, 45)}{m.question.length > 45 ? "…" : ""}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                  <select
-                    value={depthMarketIndex}
-                    onChange={(e) => setDepthMarketIndex(Number(e.target.value))}
-                    className="max-w-[200px] shrink-0 appearance-none truncate rounded-lg border border-border/20 bg-card/30 px-2 py-1.5 text-[9px] font-mono text-foreground/60 outline-none focus:border-border/40"
-                  >
-                    {ACTIVE_MARKETS.map((m, i) => (
-                      <option key={m.id} value={i}>
-                        {m.question.slice(0, 45)}{m.question.length > 45 ? "…" : ""}
-                      </option>
-                    ))}
-                  </select>
                 </div>
                 <MarketDepth market={selectedDepthMarket} />
               </div>
             )}
 
             {toolTab === "calibration" && (
-              <div className="max-w-2xl space-y-4">
-                <div>
-                  <div className="text-[9px] font-mono uppercase tracking-[0.15em] text-muted-foreground/35 mb-1">Calibration Chart</div>
-                  <p className="text-[10px] font-mono text-muted-foreground/40">
-                    Shows whether your predicted probabilities match actual outcome rates.
-                  </p>
-                </div>
+              <div className="lg:col-span-2 max-w-2xl space-y-4">
                 <CalibrationChartSection />
-                <div className="rounded-xl border border-border/20 bg-card/20 px-3 py-2.5 text-[10px] font-mono leading-relaxed text-muted-foreground/40">
-                  <span className="text-foreground/60">Calibration</span> means your 70% confident predictions should resolve YES about 70% of the time. Points above the diagonal = overconfident. Points below = underconfident.
+                <div className="rounded-lg border border-border bg-muted/30 p-5 text-sm leading-relaxed text-muted-foreground/60">
+                  <span className="font-medium text-foreground">Calibration</span> means your 70% confident predictions should resolve YES about 70% of the time. Points above the diagonal = overconfident. Points below = underconfident.
                 </div>
               </div>
             )}
 
             {toolTab === "tips" && (
-              <div className="max-w-2xl">
+              <div className="lg:col-span-2 max-w-2xl">
                 <PredictorTips />
               </div>
             )}
           </div>
         </div>
-      )}
+
+        {/* Spacer */}
+        <div className="flex-1" />
+        <p className="mt-8 pb-4 text-[10px] font-mono text-muted-foreground/30">All prediction markets are simulated for educational purposes.</p>
+
+      </div>
     </div>
   );
 }
