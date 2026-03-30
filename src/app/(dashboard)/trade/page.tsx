@@ -47,17 +47,21 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 // ── Live info bar ────────────────────────────────────────────────────────────
 function LiveInfoBar() {
- const allData = useMarketDataStore((s) => s.allData);
- const revealedCount = useMarketDataStore((s) => s.revealedCount);
+ // Use a fine-grained selector so we only re-render when the current price changes,
+ // not whenever the full allData array reference changes (e.g. on initial load).
+ const { price, change, changePct } = useMarketDataStore((s) => {
+  const idx = s.revealedCount > 0 ? s.revealedCount - 1 : s.allData.length - 1;
+  const cur = s.allData[idx];
+  const prev = s.allData[idx - 1];
+  const p = cur?.close ?? 0;
+  const chg = prev && prev.close > 0 ? p - prev.close : 0;
+  const chgPct = prev && prev.close > 0 ? (chg / prev.close) * 100 : 0;
+  return { price: p, change: chg, changePct: chgPct };
+ });
  const ticker = useChartStore((s) => s.currentTicker);
  const portfolioValue = useTradingStore((s) => s.portfolioValue);
  const cash = useTradingStore((s) => s.cash);
 
- const currentBar = revealedCount > 0 ? allData[revealedCount - 1] : allData[allData.length - 1];
- const prevBar = revealedCount > 1 ? allData[revealedCount - 2] : allData[allData.length - 2];
- const price = currentBar?.close ?? 0;
- const change = prevBar && prevBar.close > 0 ? price - prevBar.close : 0;
- const changePct = prevBar && prevBar.close > 0 ? (change / prevBar.close) * 100 : 0;
  const isUp = change >= 0;
 
  if (price === 0) return null;

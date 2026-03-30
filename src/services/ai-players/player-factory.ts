@@ -29,7 +29,7 @@ function createPRNG(seed: number) {
   };
 }
 
-// ── Name pool (30 diverse names) ─────────────────────────────────────────────
+// ── Name pool (42 diverse names — real + handle-style traders) ───────────────
 
 const NAMES: string[] = [
   "Marcus Chen",
@@ -62,6 +62,19 @@ const NAMES: string[] = [
   "Dmitri Sokolov",
   "Grace Okonkwo",
   "Sebastian Park",
+  // Handle-style trader names
+  "AlphaQuant_7",
+  "MarketMaker99",
+  "TrendFollower",
+  "MeanReversionBot",
+  "BreakoutHunter",
+  "MomentumRider",
+  "VolArb_X",
+  "DeltaHedger",
+  "TapeReader42",
+  "FlowTrader",
+  "SigmaEdge",
+  "QuietCarry",
 ];
 
 const STRATEGIES: AIStrategy[] = [

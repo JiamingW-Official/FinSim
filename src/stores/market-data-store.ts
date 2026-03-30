@@ -27,10 +27,23 @@ export const useMarketDataStore = create<MarketDataState>((set, get) => ({
  subBarStep: 2, // start fully revealed (all 3 sub-bars of last 15m bar)
 
  setAllData: (data) =>
- set({
- allData: data,
- revealedCount: Math.min(INITIAL_REVEALED, data.length),
- subBarStep: 2,
+ set((state) => {
+ // Bail out early if the incoming data is referentially identical or
+ // structurally the same (same length + same last bar timestamp), so
+ // that downstream useMemos keyed on `allData` don't recompute.
+ if (
+  state.allData === data ||
+  (state.allData.length === data.length &&
+   data.length > 0 &&
+   state.allData[data.length - 1]?.timestamp === data[data.length - 1]?.timestamp)
+ ) {
+  return {};
+ }
+ return {
+  allData: data,
+  revealedCount: Math.min(INITIAL_REVEALED, data.length),
+  subBarStep: 2,
+ };
  }),
 
  setRevealedCount: (n) =>

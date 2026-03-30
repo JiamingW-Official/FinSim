@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/lib/utils";
 import { useCompetitionStore } from "@/stores/competition-store";
+import { useClockStore } from "@/stores/clock-store";
 
 // ── Sparkline ────────────────────────────────────────────────────────────────
 
@@ -75,7 +76,9 @@ export function SeasonSummary({
     aiPortfolios,
     aiPlayers,
     resetSeason,
+    initializeSeason,
   } = useCompetitionStore();
+  const startSeason = useClockStore((s) => s.startSeason);
 
   const totalPlayers = leaderboard.length || 26;
   const userReturn = ((userPortfolioValue - 100_000) / 100_000) * 100;
@@ -98,6 +101,8 @@ export function SeasonSummary({
 
   const handleNewSeason = () => {
     resetSeason();
+    initializeSeason();
+    startSeason();
     onNewSeason?.();
   };
 
@@ -196,7 +201,7 @@ export function SeasonSummary({
         onClick={handleNewSeason}
         className="w-full h-10 font-mono text-xs uppercase tracking-widest"
       >
-        Start New Season
+        Play Again
       </Button>
     </motion.div>
   );

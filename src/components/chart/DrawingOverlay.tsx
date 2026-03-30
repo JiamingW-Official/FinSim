@@ -240,10 +240,12 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
    switch (activeTool) {
     case "hline":
      addDrawing({ id: uid(), type: "hline", price: pt.price, color: "#f59e0b" });
+     setActiveTool("none");
      break;
 
     case "vline":
      addDrawing({ id: uid(), type: "vline", time: pt.time, color: "#06b6d4" });
+     setActiveTool("none");
      break;
 
     case "trendline":
@@ -266,6 +268,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
       setFirstClick(null);
       setFirstClickScreen(null);
       setInProgress(null);
+      setActiveTool("none");
      }
      break;
     }
@@ -340,6 +343,7 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
    >
     {hasApi && drawings.map((d) => {
      const canInteract = activeTool === "eraser" || activeTool === "none";
+     const isEraserMode = activeTool === "eraser";
      const isHovered = hoveredId === d.id;
 
      // ── Trendline ───────────────────────────────────────────────
@@ -354,7 +358,8 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         key={d.id}
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
-        style={{ pointerEvents: canInteract ? "auto" : "none" }}
+        onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <line x1={s1.x} y1={s1.y} x2={s2.x} y2={s2.y}
          stroke={d.color} strokeWidth={isHovered ? 2 : 1.5} strokeLinecap="round"
@@ -388,7 +393,8 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         key={d.id}
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
-        style={{ pointerEvents: canInteract ? "auto" : "none" }}
+        onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <line x1={0} y1={y} x2={width} y2={y}
          stroke={d.color} strokeWidth={1} strokeDasharray="4 3"
@@ -419,7 +425,8 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         key={d.id}
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
-        style={{ pointerEvents: canInteract ? "auto" : "none" }}
+        onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <line x1={x} y1={0} x2={x} y2={height}
          stroke={d.color} strokeWidth={1} strokeDasharray="4 3"
@@ -453,7 +460,8 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         key={d.id}
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
-        style={{ pointerEvents: canInteract ? "auto" : "none" }}
+        onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <rect x={rx} y={ry} width={rw} height={rh}
          fill={`${d.color}1a`} stroke={d.color} strokeWidth={isHovered ? 1.5 : 1}
@@ -476,7 +484,8 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         key={d.id}
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
-        style={{ pointerEvents: canInteract ? "auto" : "none" }}
+        onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         {d.levels.map((lv, i) => {
          const y = priceToY(lv.price);

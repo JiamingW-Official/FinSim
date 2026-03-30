@@ -144,11 +144,24 @@ function LeaderboardRow({ entry }: { entry: CompetitionEntry }) {
         ? "text-rose-400/70"
         : "text-muted-foreground/40";
 
+  const podiumBg =
+    entry.rank === 1
+      ? "bg-amber-400/[0.06]"
+      : entry.rank === 2
+        ? "bg-foreground/[0.03]"
+        : entry.rank === 3
+          ? "bg-orange-400/[0.04]"
+          : "";
+
+  const rankMedal =
+    entry.rank === 1 ? "🥇" : entry.rank === 2 ? "🥈" : entry.rank === 3 ? "🥉" : null;
+
   return (
     <tr
       className={cn(
         "transition-colors hover:bg-foreground/[0.02]",
-        entry.isUser && "bg-foreground/[0.04]",
+        entry.isUser && "bg-primary/[0.06] ring-1 ring-inset ring-primary/10",
+        podiumBg,
       )}
     >
       {/* Player */}
@@ -157,11 +170,16 @@ function LeaderboardRow({ entry }: { entry: CompetitionEntry }) {
           className={cn(
             "text-sm",
             entry.isUser
-              ? "text-foreground font-medium"
+              ? "text-foreground font-semibold"
               : "text-foreground/70",
           )}
         >
           {entry.name}
+          {entry.isUser && (
+            <span className="ml-1.5 font-mono text-[9px] uppercase tracking-widest text-primary/60">
+              you
+            </span>
+          )}
         </span>
       </td>
 
@@ -173,6 +191,9 @@ function LeaderboardRow({ entry }: { entry: CompetitionEntry }) {
             rankColor(entry.rank),
           )}
         >
+          {rankMedal ? (
+            <span className="mr-0.5">{rankMedal}</span>
+          ) : null}
           #{entry.rank}
         </span>
       </td>

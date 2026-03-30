@@ -151,6 +151,15 @@ export const useCompetitionStore = create<CompetitionState>()(
         const state = get();
         if (!state.isSeasonActive) return;
 
+        // Skip expensive sort if user's portfolio value hasn't moved by more than $1
+        const existingUser = state.leaderboard.find((e) => e.isUser);
+        if (
+          existingUser &&
+          Math.abs(existingUser.portfolioValue - userPortfolioValue) < 1
+        ) {
+          return;
+        }
+
         const userReturn =
           ((userPortfolioValue - 100_000) / 100_000) * 100;
 

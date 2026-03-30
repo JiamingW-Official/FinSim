@@ -13,12 +13,14 @@ import { useChartStore } from "@/stores/chart-store";
  * Bars are sourced from market-data-store (allData) and filtered to
  * the current ticker. When no bar data is available for the day, an
  * empty record is passed — strategy-engine guards against this safely.
+ *
+ * NOTE: allData is read imperatively via getState() instead of being
+ * subscribed reactively to avoid re-renders on every data load cycle.
  */
 export function useCompetitionAdvance() {
   const tradingDayIndex = useClockStore((s) => s.tradingDayIndex);
   const advanceDay = useCompetitionStore((s) => s.advanceDay);
   const isSeasonActive = useCompetitionStore((s) => s.isSeasonActive);
-  const allData = useMarketDataStore((s) => s.allData);
   const ticker = useChartStore((s) => s.currentTicker);
 
   // Track the last index we processed so we fire exactly once per day
@@ -30,11 +32,15 @@ export function useCompetitionAdvance() {
 
     lastProcessedRef.current = tradingDayIndex;
 
+    // Read allData imperatively — no need to subscribe reactively since we
+    // only access a single element by index when tradingDayIndex changes.
+    const allData = useMarketDataStore.getState().allData;
+
     // Build a bars record for this day's closing bar, keyed by ticker.
     // The competition-store & strategy-engine accept any Record<string, OHLCVBar>.
     const bar = allData[tradingDayIndex] ?? null;
     const dailyBars = bar && ticker ? { [ticker]: bar } : {};
 
     advanceDay(dailyBars, tradingDayIndex);
-  }, [tradingDayIndex, isSeasonActive, allData, ticker, advanceDay]);
+  }, [tradingDayIndex, isSeasonActive, ticker, advanceDay]);
 }

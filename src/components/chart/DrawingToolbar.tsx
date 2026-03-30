@@ -134,10 +134,8 @@ export function DrawingToolbar() {
  };
 
  const handleErase = () => {
- if (drawings.length > 0) {
- clearDrawings();
- }
- // If already on eraser, deactivate; otherwise activate for per-click removal
+ // Toggle eraser mode: click a drawing to remove it individually.
+ // Undo (↩) removes the last drawing; this is for per-click removal.
  setActiveTool(activeTool === "eraser" ? "none" : "eraser");
  };
 
@@ -205,7 +203,7 @@ export function DrawingToolbar() {
  <TooltipTrigger asChild>
  <button
  type="button"
- aria-label="Clear all drawings"
+ aria-label="Eraser — click a drawing to remove it"
  onClick={handleErase}
  className={cn(
  "flex h-6 w-6 items-center justify-center rounded transition-colors",
@@ -220,7 +218,7 @@ export function DrawingToolbar() {
  </button>
  </TooltipTrigger>
  <TooltipContent side="right" sideOffset={6} className="text-xs">
- {activeTool === "eraser" ? "Click a drawing to remove it" : "Clear all drawings"}
+ {activeTool === "eraser" ? "Eraser active — click a drawing to remove it" : "Eraser — click to activate, then click a drawing"}
  </TooltipContent>
  </Tooltip>
  </div>

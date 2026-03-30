@@ -325,6 +325,14 @@ export function CandlestickChart() {
  fontSize: 11,
  attributionLogo: false,
  },
+ localization: {
+  timeFormatter: (time: number) => {
+   const d = new Date(time * 1000);
+   const etHour = (d.getUTCHours() - 5 + 24) % 24;
+   const etMin = d.getUTCMinutes();
+   return `${String(etHour).padStart(2, "0")}:${String(etMin).padStart(2, "0")}`;
+  },
+ },
  grid: {
  vertLines: { color: CHART_COLORS.grid },
  horzLines: { color: CHART_COLORS.grid },
@@ -416,8 +424,9 @@ export function CandlestickChart() {
  useEffect(() => {
  if (!chartRef.current) return;
  chartRef.current.applyOptions({
- timeScale: { timeVisible: showTime },
+ timeScale: { timeVisible: showTime, secondsVisible: false },
  });
+ if (showTime) chartRef.current.timeScale().fitContent();
  }, [showTime]);
 
  // Apply grid visibility
@@ -497,7 +506,7 @@ export function CandlestickChart() {
 
  // Auto-scroll to latest bar during playback
  if (isPlaying && chartRef.current) {
- chartRef.current.timeScale().scrollToRealTime();
+ chartRef.current.timeScale().scrollToPosition(0, false);
  }
  }, [renderBars, displayBars, isPlaying]);
 
