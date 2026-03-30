@@ -529,7 +529,8 @@ export function DrawingOverlay({ height, width }: DrawingOverlayProps) {
         key={d.id}
         onMouseEnter={() => canInteract && setHoveredId(d.id)}
         onMouseLeave={() => setHoveredId(null)}
-        style={{ pointerEvents: canInteract ? "auto" : "none" }}
+        onClick={isEraserMode ? (e) => handleDrawingClick(e, d.id) : undefined}
+        style={{ pointerEvents: canInteract ? "auto" : "none", cursor: isEraserMode ? "pointer" : undefined }}
        >
         <text x={s.x} y={s.y} fill={d.color} fontSize={11} fontFamily="monospace" fontWeight="500"
          style={{ userSelect: "none" }}

@@ -339,9 +339,10 @@ export function OrderEntry() {
  // Advanced order ticket (summary modal)
  const [advancedTicket, setAdvancedTicket] = useState<AdvancedOrderSummary | null>(null);
 
- // Market session — market orders are disabled when closed
+ // Market session — market orders require the regular session; pre/after-hours only support limit orders
  const marketSession = useClockStore((s) => s.marketSession);
- const isMarketOpen = marketSession === "open" || marketSession === "pre-market" || marketSession === "after-hours";
+ const isMarketOpen = marketSession === "open";
+ const isExtendedHours = marketSession === "pre-market" || marketSession === "after-hours";
 
  // Store selectors
  const currentTicker = useChartStore((s) => s.currentTicker);
@@ -866,8 +867,14 @@ export function OrderEntry() {
  />
  )}
 
- {/* Market closed warning */}
- {orderType === "market" && !isMarketOpen && (
+ {/* Market session warning */}
+ {orderType === "market" && isExtendedHours && (
+ <div className="flex items-center gap-1.5 rounded-md border border-amber-500/20 bg-amber-500/5 px-2.5 py-1.5 text-xs text-amber-500/70">
+ <AlertTriangle className="h-3 w-3 shrink-0" />
+ <span>{marketSession === "pre-market" ? "Pre-market" : "After-hours"} — use limit orders</span>
+ </div>
+ )}
+ {orderType === "market" && marketSession === "closed" && (
  <div className="flex items-center gap-1.5 rounded-md border border-amber-500/20 bg-amber-500/5 px-2.5 py-1.5 text-xs text-amber-500/70">
  <AlertCircle className="h-3 w-3 shrink-0" />
  <span>Market closed — orders unavailable</span>
@@ -888,7 +895,7 @@ export function OrderEntry() {
  )}
  >
  {orderType === "market" && !isMarketOpen
- ? "Market Closed"
+ ? isExtendedHours ? "Use Limit Order" : "Market Closed"
  : orderType === "market"
  ? tradeMode === "buy"
  ? `Buy ${currentTicker}`
